@@ -1,0 +1,688 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card snapshot Card demo snapshot 0 1`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "background": "#eee",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "270px",
+      }
+    }
+  >
+    <div
+      className="bui-card"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-card-header"
+      >
+        <div
+          className="bui-card-header-title"
+        >
+          <div>
+            美味小食
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Card snapshot Card demo snapshot 0 2`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "background": "#eee",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "270px",
+      }
+    }
+  >
+    <div
+      className="bui-card"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-card-header"
+      >
+        <div
+          className="bui-card-header-subtitle"
+        >
+          （大桶爆米花1份+300ml自制奶茶2杯）
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Card snapshot Card demo snapshot 0 3`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "background": "#eee",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "270px",
+      }
+    }
+  >
+    <div
+      className="bui-card"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-card-header"
+      >
+        <div
+          className="bui-card-header-title"
+        >
+          美味小食
+        </div>
+        <div
+          className="bui-card-header-subtitle"
+        >
+          （大桶爆米花1份+300ml自制奶茶2杯）
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Card snapshot Card demo snapshot 0 4`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "background": "#eee",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "270px",
+      }
+    }
+  >
+    <div
+      className="bui-card"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-card-header"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-card-header-title"
+        >
+          订单
+        </div>
+        <div
+          className="bui-card-header-extra"
+        >
+          查看更多
+        </div>
+        <div
+          className="bui-card-header-end-icon"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            color="#ced1d6"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Card snapshot Card demo snapshot 0 5`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "background": "#eee",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "270px",
+      }
+    }
+  >
+    <div
+      className="bui-card"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-card-header"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-card-header-title"
+        >
+          订单
+        </div>
+        <div
+          className="bui-card-header-extra"
+        >
+          查看更多
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Card snapshot Card demo snapshot 0 6`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "background": "#eee",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "270px",
+      }
+    }
+  >
+    <div
+      className="bui-card"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-card-content"
+      >
+        <div>
+          订单号：7a73fcggert235fag4
+        </div>
+        <div>
+          取餐码：235634
+        </div>
+        <div>
+          手机号: 134****5427
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Card snapshot Card demo snapshot 0 7`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "background": "#eee",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "270px",
+      }
+    }
+  >
+    <div
+      className="bui-card"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-card-header"
+      >
+        <div
+          className="bui-card-header-title"
+        >
+          订单
+        </div>
+      </div>
+      <div
+        className="bui-card-content"
+      >
+        <div>
+          订单号：7a73fcggert235fag4
+        </div>
+        <div>
+          取餐码：235634
+        </div>
+        <div>
+          手机号: 134****5427
+        </div>
+      </div>
+      <div
+        className="bui-card-footer"
+      >
+        <button
+          className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-success"
+          type="button"
+        >
+          签收
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Card snapshot Card demo snapshot 0 8`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "background": "#eee",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "270px",
+      }
+    }
+  >
+    <div
+      className="bui-card"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-card-header"
+      >
+        <div
+          className="bui-card-header-title"
+        >
+          订单
+        </div>
+      </div>
+      <div
+        className="bui-card-content"
+      >
+        <div>
+          订单号：7a73fcggert235fag4
+        </div>
+        <div>
+          取餐码：235634
+        </div>
+        <div>
+          手机号: 134****5427
+        </div>
+      </div>
+      <div
+        className="bui-card-footer"
+      >
+        <button
+          className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-success"
+          type="button"
+        >
+          签收
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Card snapshot Card demo snapshot 0 9`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "background": "#eee",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "270px",
+      }
+    }
+  >
+    <div
+      className="bui-card"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-card-header"
+      >
+        <div
+          className="bui-card-header-title"
+        >
+          购买商品
+        </div>
+      </div>
+      <div
+        className="bui-card-content"
+      >
+        <div
+          className="bui-card"
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            className="bui-card-header"
+            onClick={[Function]}
+          >
+            <div
+              className="bui-card-header-title"
+            >
+              生鲜水果
+            </div>
+            <div
+              className="bui-card-header-extra"
+            >
+              共6件
+            </div>
+            <div
+              className="bui-card-header-end-icon"
+            >
+              <svg
+                className="bui-svg-icon icon-size-small"
+                color="#ced1d6"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<path d=\\"M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z\\"/>",
+                  }
+                }
+                focusable="false"
+                viewBox="0 0 96 96"
+              />
+            </div>
+          </div>
+          <div
+            className="bui-card-content"
+          >
+            <div>
+              苹果*2
+            </div>
+            <div>
+              木瓜*1
+            </div>
+            <div>
+              菠菜*3
+            </div>
+          </div>
+        </div>
+        <div
+          className="bui-card subCard"
+        >
+          <div
+            className="bui-card-header"
+            onClick={[Function]}
+          >
+            <div
+              className="bui-card-header-title"
+            >
+              零食饮料
+            </div>
+            <div
+              className="bui-card-header-extra"
+            >
+              共14件
+            </div>
+            <div
+              className="bui-card-header-end-icon"
+            >
+              <svg
+                className="bui-svg-icon icon-size-small"
+                color="#ced1d6"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<path d=\\"M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z\\"/>",
+                  }
+                }
+                focusable="false"
+                viewBox="0 0 96 96"
+              />
+            </div>
+          </div>
+          <div
+            className="bui-card-content"
+          >
+            <div>
+              薯片*2
+            </div>
+            <div>
+              橙汁*2
+            </div>
+            <div>
+              火腿肠*10
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Card snapshot Card demo snapshot 0 10`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "background": "#eee",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "270px",
+      }
+    }
+  >
+    <div
+      className="bui-card"
+      style={
+        Object {
+          "padding": "10px",
+        }
+      }
+    >
+      <div>
+        配料表
+      </div>
+      <div>
+        主要成分：水，生牛乳
+      </div>
+      <div>
+        产品检验合格
+      </div>
+    </div>
+  </div>
+</div>
+`;

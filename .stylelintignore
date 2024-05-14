@@ -1,0 +1,11 @@
+*.js
+*.tsx
+*.ts
+*.json
+websites
+coverage
+node_modules
+dist
+.idea
+.husky
+.vscode

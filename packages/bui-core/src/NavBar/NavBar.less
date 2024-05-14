@@ -1,0 +1,67 @@
+@import '~@bifrostui/styles/mixins/index.less';
+
+.bui-navbar {
+  --height: var(--bui-navbar-height, 45px);
+  --icon-size: var(--bui-navbar-icon-size, 24px);
+  --background-color: var(
+    --bui-navbar-background-color,
+    var(--bui-color-white)
+  );
+  --border-bottom: var(--bui-navbar-border-bottom, none);
+  --z-index: var(--bui-navbar-z-index, auto);
+
+  position: relative;
+  width: 100%;
+  height: var(--height);
+  box-sizing: border-box;
+  padding: 0 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color);
+  border-bottom: var(--border-bottom);
+  user-select: none;
+  z-index: var(--z-index);
+  font-family: var(--bui-font-family);
+
+  &-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  &-title {
+    max-width: 60%;
+    padding: 0 8px;
+    font-size: var(--bui-title-size-2);
+    .ellipsis();
+  }
+
+  &-left,
+  &-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    font-size: var(--bui-title-size-3);
+  }
+
+  &-left {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  &-right {
+    justify-content: flex-end;
+    text-align: right;
+    align-self: stretch;
+  }
+
+  &-icon {
+    font-size: var(--icon-size);
+  }
+
+  &-placeholder {
+    width: 100%;
+  }
+}

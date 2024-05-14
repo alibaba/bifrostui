@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading demo snapshot Loading demo snapshot 0 1`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    className="bui-loading bui-loading-vertical"
+  >
+    <svg
+      className="bui-svg-icon bui-loading-icon"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<path d=\\"M48 0c26.5 0 48 21.5 48 48 0 2.2-.1 4.4-.4 6.6-.3 2-2.1 3.4-4 3.1-2-.3-3.4-2.1-3.1-4 .2-1.8.4-3.7.4-5.6C88.8 25.5 70.5 7.2 48 7.2S7.2 25.5 7.2 48 25.5 88.8 48 88.8c1.9 0 3.7-.1 5.6-.4 2-.3 3.8 1.1 4 3.1.3 2-1.1 3.8-3.1 4-2.1.3-4.3.5-6.5.5C21.5 96 0 74.5 0 48S21.5 0 48 0z\\"/>",
+        }
+      }
+      focusable="false"
+      viewBox="0 0 96 96"
+    />
+    <div
+      className="bui-loading-text"
+    />
+  </div>
+</div>
+`;
+
+exports[`Loading demo snapshot Loading demo snapshot 0 2`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    className="bui-loading bui-loading-vertical"
+  >
+    <svg
+      className="bui-svg-icon bui-loading-icon"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<path d=\\"M48 0c26.5 0 48 21.5 48 48 0 2.2-.1 4.4-.4 6.6-.3 2-2.1 3.4-4 3.1-2-.3-3.4-2.1-3.1-4 .2-1.8.4-3.7.4-5.6C88.8 25.5 70.5 7.2 48 7.2S7.2 25.5 7.2 48 25.5 88.8 48 88.8c1.9 0 3.7-.1 5.6-.4 2-.3 3.8 1.1 4 3.1.3 2-1.1 3.8-3.1 4-2.1.3-4.3.5-6.5.5C21.5 96 0 74.5 0 48S21.5 0 48 0z\\"/>",
+        }
+      }
+      focusable="false"
+      viewBox="0 0 96 96"
+    />
+    <div
+      className="bui-loading-text"
+    >
+      加载中...
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Loading demo snapshot Loading demo snapshot 0 3`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    className="bui-loading bui-loading-horizontal"
+  >
+    <svg
+      className="bui-svg-icon bui-loading-icon"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<path d=\\"M48 0c26.5 0 48 21.5 48 48 0 2.2-.1 4.4-.4 6.6-.3 2-2.1 3.4-4 3.1-2-.3-3.4-2.1-3.1-4 .2-1.8.4-3.7.4-5.6C88.8 25.5 70.5 7.2 48 7.2S7.2 25.5 7.2 48 25.5 88.8 48 88.8c1.9 0 3.7-.1 5.6-.4 2-.3 3.8 1.1 4 3.1.3 2-1.1 3.8-3.1 4-2.1.3-4.3.5-6.5.5C21.5 96 0 74.5 0 48S21.5 0 48 0z\\"/>",
+        }
+      }
+      focusable="false"
+      viewBox="0 0 96 96"
+    />
+    <div
+      className="bui-loading-text"
+    >
+      加载中...
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Loading demo snapshot Loading demo snapshot 0 4`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    className="bui-loading bui-loading-vertical"
+  >
+    <svg
+      className="bui-svg-icon bui-loading-icon"
+      color="#ff335c"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<path d=\\"M48 0c26.5 0 48 21.5 48 48 0 2.2-.1 4.4-.4 6.6-.3 2-2.1 3.4-4 3.1-2-.3-3.4-2.1-3.1-4 .2-1.8.4-3.7.4-5.6C88.8 25.5 70.5 7.2 48 7.2S7.2 25.5 7.2 48 25.5 88.8 48 88.8c1.9 0 3.7-.1 5.6-.4 2-.3 3.8 1.1 4 3.1.3 2-1.1 3.8-3.1 4-2.1.3-4.3.5-6.5.5C21.5 96 0 74.5 0 48S21.5 0 48 0z\\"/>",
+        }
+      }
+      focusable="false"
+      viewBox="0 0 96 96"
+    />
+    <div
+      className="bui-loading-text"
+    >
+      加载中...
+    </div>
+  </div>
+</div>
+`;

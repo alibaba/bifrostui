@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionSheet renders correctly 1`] = `
+<div
+  class="bui-modal bui-drawer bui-action-sheet"
+>
+  <div
+    class="bui-backdrop bui-modal-backdrop"
+    style="visibility: visible; transition: opacity 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; opacity: 1;"
+  />
+  <div
+    class="bui-drawer-content bui-drawer-content-bottom bui-action-sheet-content"
+    style="visibility: visible; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transform: none;"
+  >
+    <div
+      class="bui-action-sheet-extra"
+    >
+      extra action item
+    </div>
+    <div
+      class="bui-action-sheet-item-wrapper"
+    >
+      <div
+        class="bui-action-sheet-item bui-action-sheet-item-default"
+      >
+        <div
+          class="bui-action-sheet-item-content"
+        >
+          action item copy
+        </div>
+      </div>
+      <div
+        class="bui-action-sheet-item bui-action-sheet-item-default"
+      >
+        <div
+          class="bui-action-sheet-item-content"
+        >
+          action item edit
+        </div>
+      </div>
+      <div
+        class="bui-action-sheet-item bui-action-sheet-item-default bui-action-sheet-item-disabled"
+      >
+        <div
+          class="bui-action-sheet-item-content"
+        >
+          action item disabled
+        </div>
+      </div>
+      <div
+        class="bui-action-sheet-item bui-action-sheet-item-default bui-action-sheet-item-bold"
+      >
+        <div
+          class="bui-action-sheet-item-content"
+        >
+          action item bold
+        </div>
+      </div>
+      <div
+        class="bui-action-sheet-item bui-action-sheet-item-default"
+      >
+        <div
+          class="bui-action-sheet-item-content"
+        >
+          action item description
+        </div>
+        <div
+          class="bui-action-sheet-item-description"
+        >
+          description
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

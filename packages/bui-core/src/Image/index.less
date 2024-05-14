@@ -1,0 +1,40 @@
+.bui-image {
+  width: auto;
+  height: auto;
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  font-family: var(--bui-font-family);
+
+  .bui-image-img {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: block;
+    opacity: 0;
+
+    &.bui-image-loaded {
+      opacity: 1;
+    }
+  }
+
+  &-default-icon-wrap {
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    &.bui-image-loaded {
+      opacity: 0;
+    }
+  }
+
+  &-default-icon-item {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(127, 127, 127, 0.2);
+  }
+}

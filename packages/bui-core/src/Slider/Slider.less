@@ -1,0 +1,108 @@
+@import '~@bifrostui/styles/mixins/index.less';
+
+.bui-slider {
+  --line-color: var(--bui-color-primary);
+  --line-bg-color: var(--bui-color-border-default);
+  --tooltip-font-size: var(--bui-text-size-3);
+  --tooltip-color: var(--bui-color-white);
+  --tooltip-bg-color: var(--line-color);
+  position: relative;
+  width: 100%;
+  height: 2px;
+  padding: 19px 0;
+  box-sizing: border-box;
+  font-family: var(--bui-font-family);
+
+  &-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 2px;
+    transform: translateY(-50%);
+    background-color: var(--line-color);
+  }
+
+  &-rail {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transform: translateY(-50%);
+    background-color: var(--line-bg-color);
+  }
+
+  &-button {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 26px;
+    height: 26px;
+    background-color: #fff;
+    box-shadow: #ddd 0 0 10px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    font-size: var(--bui-title-size-3);
+    cursor: grab;
+
+    // 增加点击热区大小
+    &::after {
+      position: absolute;
+      content: '';
+      top: -10px;
+      bottom: -10px;
+      left: -10px;
+      right: -10px;
+    }
+
+    &-0 {
+      left: 0%;
+      top: 50%;
+      z-index: var(--bui-z-index-affix);
+    }
+
+    &-1 {
+      left: 0%;
+      top: 50%;
+      z-index: var(--bui-z-index-affix);
+    }
+  }
+
+  &-tooltip {
+    position: absolute;
+    top: -14px;
+    width: 46px;
+    height: 24px;
+    line-height: 24px;
+    font-size: var(--tooltip-font-size);
+    border-radius: 24px;
+    color: var(--tooltip-color);
+    text-align: center;
+    background-color: var(--tooltip-bg-color);
+    transform: translate(-50%, -50%);
+    z-index: var(--bui-z-index-popover);
+
+    &::after {
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      content: '';
+      width: 0;
+      height: 0;
+      border: 6px solid transparent;
+      border-top: 6px solid var(--tooltip-bg-color);
+    }
+
+    &-hidden {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,324 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Switch demo snapshot Switch demo snapshot 0 1`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    className="bui-switch bui-switch-medium bui-switch-primary"
+  >
+    <input
+      checked={false}
+      className="bui-switch-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+</div>
+`;
+
+exports[`Switch demo snapshot Switch demo snapshot 0 2`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "5px",
+    }
+  }
+>
+  <div
+    className="bui-switch bui-switch-medium bui-switch-primary bui-switch-checked"
+  >
+    <input
+      checked={true}
+      className="bui-switch-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <div
+    className="bui-switch bui-switch-medium bui-switch-info bui-switch-checked"
+  >
+    <input
+      checked={true}
+      className="bui-switch-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <div
+    className="bui-switch bui-switch-medium bui-switch-success bui-switch-checked"
+  >
+    <input
+      checked={true}
+      className="bui-switch-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <div
+    className="bui-switch bui-switch-medium bui-switch-warning bui-switch-checked"
+  >
+    <input
+      checked={true}
+      className="bui-switch-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <div
+    className="bui-switch bui-switch-medium bui-switch-danger bui-switch-checked"
+  >
+    <input
+      checked={true}
+      className="bui-switch-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+</div>
+`;
+
+exports[`Switch demo snapshot Switch demo snapshot 0 3`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "row",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "10px",
+    }
+  }
+>
+  <div
+    className="bui-switch bui-switch-small bui-switch-primary"
+  >
+    <input
+      checked={false}
+      className="bui-switch-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <div
+    className="bui-switch bui-switch-medium bui-switch-primary"
+  >
+    <input
+      checked={false}
+      className="bui-switch-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <div
+    className="bui-switch bui-switch-large bui-switch-primary"
+  >
+    <input
+      checked={false}
+      className="bui-switch-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+</div>
+`;
+
+exports[`Switch demo snapshot Switch demo snapshot 0 4`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "row",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "10px",
+    }
+  }
+>
+  <div
+    className="bui-switch bui-switch-medium bui-switch-primary bui-switch-checked"
+  >
+    <input
+      checked={true}
+      className="bui-switch-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <span
+      className="bui-switch-inner"
+    >
+      开
+    </span>
+  </div>
+  <div
+    className="bui-switch bui-switch-medium bui-switch-primary bui-switch-checked"
+  >
+    <input
+      checked={true}
+      className="bui-switch-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <span
+      className="bui-switch-inner"
+    >
+      <svg
+        className="bui-svg-icon"
+        color="#fff"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<path d=\\"M55 10c.8 0 1.6 0 2.4.1C51 16.4 47 25.2 47 35c0 19.3 15.7 35 35 35 1.4 0 2.8-.1 4.2-.2C79.3 79.6 67.9 86 55 86c-21 0-38-17-38-38s17-38 38-38z\\"/>",
+          }
+        }
+        focusable="false"
+        viewBox="0 0 96 96"
+      />
+    </span>
+  </div>
+  <div
+    className="bui-switch bui-switch-large bui-switch-primary bui-switch-checked"
+  >
+    <input
+      checked={true}
+      className="bui-switch-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <span
+      className="bui-switch-inner"
+    >
+      <svg
+        className="bui-svg-icon"
+        color="#fff"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<path d=\\"M55 10c.8 0 1.6 0 2.4.1C51 16.4 47 25.2 47 35c0 19.3 15.7 35 35 35 1.4 0 2.8-.1 4.2-.2C79.3 79.6 67.9 86 55 86c-21 0-38-17-38-38s17-38 38-38z\\"/>",
+          }
+        }
+        focusable="false"
+        viewBox="0 0 96 96"
+      />
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Switch demo snapshot Switch demo snapshot 0 5`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    className="bui-switch bui-switch-medium bui-switch-primary bui-switch-checked"
+  >
+    <input
+      checked={true}
+      className="bui-switch-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+</div>
+`;
+
+exports[`Switch demo snapshot Switch demo snapshot 0 6`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    className="bui-switch bui-switch-medium bui-switch-primary bui-switch-checked"
+  >
+    <input
+      checked={true}
+      className="bui-switch-input my-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+</div>
+`;
+
+exports[`Switch demo snapshot Switch demo snapshot 0 7`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "5px",
+    }
+  }
+>
+  <div
+    className="bui-switch bui-switch-medium bui-switch-primary bui-switch-disabled"
+  >
+    <input
+      checked={false}
+      className="bui-switch-input"
+      disabled={true}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <div
+    className="bui-switch bui-switch-medium bui-switch-primary bui-switch-checked bui-switch-disabled"
+  >
+    <input
+      checked={true}
+      className="bui-switch-input"
+      disabled={true}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+</div>
+`;

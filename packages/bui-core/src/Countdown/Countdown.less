@@ -1,0 +1,39 @@
+@import '~@bifrostui/styles/mixins/index.less';
+
+.bui-countdown {
+  --font-size: var(--bui-countdown-font-size, var(--bui-text-size-1));
+  --color: var(--bui-countdown-color, var(--bui-color-fg-default));
+  --font-weight: var(
+    --bui-countdown-font-weight,
+    var(--bui-font-weight-normal)
+  );
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: var(--font-size);
+  color: var(--color);
+  font-weight: var(--font-weight);
+  font-family: var(--bui-font-family);
+
+  &-slice {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    &-value {
+      font-family: 'Helvetica Neue', helvetica, 'PingFang SC', 'Chinese Quote',
+        'Segoe UI', roboto, 'Hiragino Sans GB', 'Microsoft YaHei', arial,
+        sans-serif;
+    }
+
+    &-unit {
+      margin: 0 2px;
+    }
+  }
+}

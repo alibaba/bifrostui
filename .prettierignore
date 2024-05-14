@@ -1,0 +1,4 @@
+**/*.html
+**/*.svg
+package.json
+node_modules

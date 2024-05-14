@@ -1,0 +1,30 @@
+{
+  "name": "@bifrostui/utils",
+  "version": "0.0.1",
+  "description": "BUI React utilities for building components.",
+  "main": "dist/index.js",
+  "module": "es/index.js",
+  "sideEffects": false,
+  "files": [
+    "es",
+    "dist"
+  ],
+  "scripts": {
+    "build": "father build",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "devDependencies": {
+    "father": "^4.1.8"
+  },
+  "dependencies": {
+    "react-is": "^18.0.0"
+  },
+  "peerDependencies": {
+    "@tarojs/taro": "^3.2.0",
+    "react": "^17.0.0 || ^18.0.0"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}

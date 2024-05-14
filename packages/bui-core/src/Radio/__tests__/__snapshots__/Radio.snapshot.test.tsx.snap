@@ -1,0 +1,1138 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Radio snapshot Radio demo snapshot 0 1`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    className="bui-radio bui-radio-label-right"
+    onClick={[Function]}
+  >
+    <input
+      checked={false}
+      className="bui-radio-input"
+      onChange={[Function]}
+      type="radio"
+    />
+    <div
+      className="bui-radio-icon"
+    >
+      <span
+        className="bui-radio-btn-icon"
+      >
+        <svg
+          className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+          color="#959aa5"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+            }
+          }
+          focusable="false"
+          viewBox="0 0 96 96"
+        />
+        <svg
+          className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+          color="#959aa5"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+            }
+          }
+          focusable="false"
+          viewBox="0 0 96 96"
+        />
+      </span>
+    </div>
+    <div
+      className="bui-radio-label"
+    >
+      Radio
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Radio snapshot Radio demo snapshot 0 2`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    className="bui-radio bui-radio-label-right"
+    onClick={[Function]}
+  >
+    <input
+      checked={false}
+      className="bui-radio-input my-input"
+      onChange={[Function]}
+      type="radio"
+    />
+    <div
+      className="bui-radio-icon"
+    >
+      <span
+        className="bui-radio-btn-icon"
+      >
+        <svg
+          className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+          color="#959aa5"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+            }
+          }
+          focusable="false"
+          viewBox="0 0 96 96"
+        />
+        <svg
+          className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+          color="#959aa5"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+            }
+          }
+          focusable="false"
+          viewBox="0 0 96 96"
+        />
+      </span>
+    </div>
+    <div
+      className="bui-radio-label"
+    >
+      Radio
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Radio snapshot Radio demo snapshot 0 3`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    className="bui-radio bui-radio-label-right"
+    onClick={[Function]}
+  >
+    <input
+      checked={false}
+      className="bui-radio-input"
+      name="myRadio"
+      onChange={[Function]}
+      type="radio"
+      value="tpp"
+    />
+    <div
+      className="bui-radio-icon"
+    >
+      <span
+        className="bui-radio-btn-icon"
+      >
+        <svg
+          className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+          color="#959aa5"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+            }
+          }
+          focusable="false"
+          viewBox="0 0 96 96"
+        />
+        <svg
+          className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+          color="#959aa5"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+            }
+          }
+          focusable="false"
+          viewBox="0 0 96 96"
+        />
+      </span>
+    </div>
+    <div
+      className="bui-radio-label"
+    >
+      Radio
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Radio snapshot Radio demo snapshot 0 4`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "width": "100px",
+      }
+    }
+  >
+    <div
+      className="bui-radio bui-radio-label-top"
+      onClick={[Function]}
+    >
+      <input
+        checked={false}
+        className="bui-radio-input"
+        onChange={[Function]}
+        type="radio"
+      />
+      <div
+        className="bui-radio-icon"
+      >
+        <span
+          className="bui-radio-btn-icon"
+        >
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+            color="#959aa5"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+            color="#959aa5"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </span>
+      </div>
+      <div
+        className="bui-radio-label"
+      >
+        文案在上边
+      </div>
+    </div>
+    <div
+      className="bui-radio bui-radio-label-right"
+      onClick={[Function]}
+    >
+      <input
+        checked={false}
+        className="bui-radio-input"
+        onChange={[Function]}
+        type="radio"
+      />
+      <div
+        className="bui-radio-icon"
+      >
+        <span
+          className="bui-radio-btn-icon"
+        >
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+            color="#959aa5"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+            color="#959aa5"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </span>
+      </div>
+      <div
+        className="bui-radio-label"
+      >
+        文案在右边
+      </div>
+    </div>
+    <div
+      className="bui-radio bui-radio-label-bottom"
+      onClick={[Function]}
+    >
+      <input
+        checked={false}
+        className="bui-radio-input"
+        onChange={[Function]}
+        type="radio"
+      />
+      <div
+        className="bui-radio-icon"
+      >
+        <span
+          className="bui-radio-btn-icon"
+        >
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+            color="#959aa5"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+            color="#959aa5"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </span>
+      </div>
+      <div
+        className="bui-radio-label"
+      >
+        文案在下边
+      </div>
+    </div>
+    <div
+      className="bui-radio bui-radio-label-left"
+      onClick={[Function]}
+    >
+      <input
+        checked={false}
+        className="bui-radio-input"
+        onChange={[Function]}
+        type="radio"
+      />
+      <div
+        className="bui-radio-icon"
+      >
+        <span
+          className="bui-radio-btn-icon"
+        >
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+            color="#959aa5"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+            color="#959aa5"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </span>
+      </div>
+      <div
+        className="bui-radio-label"
+      >
+        文案在左边
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Radio snapshot Radio demo snapshot 0 5`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    className="bui-radio bui-radio-label-right"
+    onClick={[Function]}
+  >
+    <input
+      checked={false}
+      className="bui-radio-input"
+      onChange={[Function]}
+      type="radio"
+    />
+    <div
+      className="bui-radio-icon"
+    >
+      <svg
+        className="bui-svg-icon"
+        color="#ccc"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<path d=\\"M62.6 11C78.1 11 88 23.4 88 40.1c0 13-11.7 27.2-34.8 43.3-3.1 2.2-7.2 2.2-10.3 0C19.7 67.3 8 53.1 8 40.1 8 23.4 17.9 11 33.4 11c5.6 0 9.4 2 14.6 6.4C53.2 13 57 11 62.6 11zm0 5.9c-3.9 0-6.6 1.4-11 5.2-.2.2-1.4 1.2-1.7 1.4-1.1 1-2.8 1-3.9 0-.3-.3-1.5-1.3-1.7-1.4-4.4-3.7-7.1-5.2-11-5.2C21.6 16.9 14 26.4 14 40c0 10.4 10.6 23.3 32.3 38.3 1 .7 2.4.7 3.4 0C71.4 63.3 82 50.4 82 40c0-13.6-7.6-23.1-19.4-23.1z\\"/>",
+          }
+        }
+        focusable="false"
+        viewBox="0 0 96 96"
+      />
+    </div>
+    <div
+      className="bui-radio-label"
+    >
+      Radio
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Radio snapshot Radio demo snapshot 0 6`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    className="bui-radio bui-radio-label-right bui-radio-disabled"
+    onClick={[Function]}
+  >
+    <input
+      checked={false}
+      className="bui-radio-input"
+      disabled={true}
+      onChange={[Function]}
+      type="radio"
+    />
+    <div
+      className="bui-radio-icon"
+    >
+      <span
+        className="bui-radio-btn-icon"
+      >
+        <svg
+          className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+          color="#959aa5"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+            }
+          }
+          focusable="false"
+          viewBox="0 0 96 96"
+        />
+        <svg
+          className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+          color="#959aa5"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+            }
+          }
+          focusable="false"
+          viewBox="0 0 96 96"
+        />
+      </span>
+    </div>
+    <div
+      className="bui-radio-label"
+    >
+      Radio
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Radio snapshot Radio demo snapshot 0 7`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    className="bui-radio-group"
+  >
+    <div
+      className="bui-radio bui-radio-label-right"
+      onClick={[Function]}
+    >
+      <input
+        checked={false}
+        className="bui-radio-input"
+        disabled={false}
+        onChange={[Function]}
+        type="radio"
+        value="水门桥"
+      />
+      <div
+        className="bui-radio-icon"
+      >
+        <span
+          className="bui-radio-btn-icon"
+        >
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+            color="#959aa5"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+            color="#959aa5"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </span>
+      </div>
+      <div
+        className="bui-radio-label"
+      >
+        水门桥
+      </div>
+    </div>
+    <div
+      className="bui-radio bui-radio-label-right"
+      onClick={[Function]}
+    >
+      <input
+        checked={false}
+        className="bui-radio-input"
+        disabled={false}
+        onChange={[Function]}
+        type="radio"
+        value="淘票票"
+      />
+      <div
+        className="bui-radio-icon"
+      >
+        <span
+          className="bui-radio-btn-icon"
+        >
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+            color="#959aa5"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+            color="#959aa5"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </span>
+      </div>
+      <div
+        className="bui-radio-label"
+      >
+        淘票票
+      </div>
+    </div>
+    <div
+      className="bui-radio bui-radio-label-right"
+      onClick={[Function]}
+    >
+      <input
+        checked={false}
+        className="bui-radio-input"
+        disabled={false}
+        onChange={[Function]}
+        type="radio"
+        value="喜洋洋"
+      />
+      <div
+        className="bui-radio-icon"
+      >
+        <span
+          className="bui-radio-btn-icon"
+        >
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+            color="#959aa5"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+            color="#959aa5"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </span>
+      </div>
+      <div
+        className="bui-radio-label"
+      >
+        喜洋洋
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Radio snapshot Radio demo snapshot 0 8`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "width": "100px",
+      }
+    }
+  >
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+      onClick={[Function]}
+      type="button"
+    >
+      取消
+       淘票票
+    </button>
+    <div
+      className="bui-radio-group"
+    >
+      <div
+        className="bui-radio bui-radio-label-right"
+        onClick={[Function]}
+      >
+        <input
+          checked={false}
+          className="bui-radio-input"
+          disabled={false}
+          onChange={[Function]}
+          type="radio"
+          value="水门桥"
+        />
+        <div
+          className="bui-radio-icon"
+        >
+          <span
+            className="bui-radio-btn-icon"
+          >
+            <svg
+              className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+              color="#959aa5"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+                }
+              }
+              focusable="false"
+              viewBox="0 0 96 96"
+            />
+            <svg
+              className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+              color="#959aa5"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+                }
+              }
+              focusable="false"
+              viewBox="0 0 96 96"
+            />
+          </span>
+        </div>
+        <div
+          className="bui-radio-label"
+        >
+          水门桥
+        </div>
+      </div>
+      <div
+        className="bui-radio bui-radio-label-right"
+        onClick={[Function]}
+      >
+        <input
+          checked={true}
+          className="bui-radio-input"
+          disabled={false}
+          onChange={[Function]}
+          type="radio"
+          value="淘票票"
+        />
+        <div
+          className="bui-radio-icon"
+        >
+          <span
+            className="bui-radio-btn-icon bui-radio-btn-icon-checked"
+          >
+            <svg
+              className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+              color="#ff335c"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+                }
+              }
+              focusable="false"
+              viewBox="0 0 96 96"
+            />
+            <svg
+              className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+              color="#ff335c"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+                }
+              }
+              focusable="false"
+              viewBox="0 0 96 96"
+            />
+          </span>
+        </div>
+        <div
+          className="bui-radio-label"
+        >
+          淘票票
+        </div>
+      </div>
+      <div
+        className="bui-radio bui-radio-label-right"
+        onClick={[Function]}
+      >
+        <input
+          checked={false}
+          className="bui-radio-input"
+          disabled={false}
+          onChange={[Function]}
+          type="radio"
+          value="喜洋洋"
+        />
+        <div
+          className="bui-radio-icon"
+        >
+          <span
+            className="bui-radio-btn-icon"
+          >
+            <svg
+              className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+              color="#959aa5"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+                }
+              }
+              focusable="false"
+              viewBox="0 0 96 96"
+            />
+            <svg
+              className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+              color="#959aa5"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+                }
+              }
+              focusable="false"
+              viewBox="0 0 96 96"
+            />
+          </span>
+        </div>
+        <div
+          className="bui-radio-label"
+        >
+          喜洋洋
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "width": "100px",
+      }
+    }
+  >
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+      onClick={[Function]}
+      type="button"
+    >
+      取消
+    </button>
+    <div
+      className="bui-radio bui-radio-label-right"
+      onClick={[Function]}
+    >
+      <input
+        checked={true}
+        className="bui-radio-input"
+        onChange={[Function]}
+        type="radio"
+      />
+      <div
+        className="bui-radio-icon"
+      >
+        <span
+          className="bui-radio-btn-icon bui-radio-btn-icon-checked"
+        >
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+            color="#ff335c"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+            color="#ff335c"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </span>
+      </div>
+      <div
+        className="bui-radio-label"
+      >
+        淘票票
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Radio snapshot Radio demo snapshot 0 9`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "width": "100px",
+      }
+    }
+  >
+    <div>
+      RadioGroup：
+    </div>
+    <div
+      className="bui-radio-group"
+    >
+      <div
+        className="bui-radio bui-radio-label-right"
+        onClick={[Function]}
+      >
+        <input
+          checked={false}
+          className="bui-radio-input"
+          disabled={false}
+          onChange={[Function]}
+          type="radio"
+          value="水门桥"
+        />
+        <div
+          className="bui-radio-icon"
+        >
+          <span
+            className="bui-radio-btn-icon"
+          >
+            <svg
+              className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+              color="#959aa5"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+                }
+              }
+              focusable="false"
+              viewBox="0 0 96 96"
+            />
+            <svg
+              className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+              color="#959aa5"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+                }
+              }
+              focusable="false"
+              viewBox="0 0 96 96"
+            />
+          </span>
+        </div>
+        <div
+          className="bui-radio-label"
+        >
+          水门桥
+        </div>
+      </div>
+      <div
+        className="bui-radio bui-radio-label-right"
+        onClick={[Function]}
+      >
+        <input
+          checked={true}
+          className="bui-radio-input"
+          disabled={false}
+          onChange={[Function]}
+          type="radio"
+          value="淘票票"
+        />
+        <div
+          className="bui-radio-icon"
+        >
+          <span
+            className="bui-radio-btn-icon bui-radio-btn-icon-checked"
+          >
+            <svg
+              className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+              color="#ff335c"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+                }
+              }
+              focusable="false"
+              viewBox="0 0 96 96"
+            />
+            <svg
+              className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+              color="#ff335c"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+                }
+              }
+              focusable="false"
+              viewBox="0 0 96 96"
+            />
+          </span>
+        </div>
+        <div
+          className="bui-radio-label"
+        >
+          淘票票
+        </div>
+      </div>
+      <div
+        className="bui-radio bui-radio-label-right"
+        onClick={[Function]}
+      >
+        <input
+          checked={false}
+          className="bui-radio-input"
+          disabled={false}
+          onChange={[Function]}
+          type="radio"
+          value="喜洋洋"
+        />
+        <div
+          className="bui-radio-icon"
+        >
+          <span
+            className="bui-radio-btn-icon"
+          >
+            <svg
+              className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+              color="#959aa5"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+                }
+              }
+              focusable="false"
+              viewBox="0 0 96 96"
+            />
+            <svg
+              className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+              color="#959aa5"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+                }
+              }
+              focusable="false"
+              viewBox="0 0 96 96"
+            />
+          </span>
+        </div>
+        <div
+          className="bui-radio-label"
+        >
+          喜洋洋
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div>
+      Radio：
+    </div>
+    <div
+      className="bui-radio bui-radio-label-right"
+      onClick={[Function]}
+    >
+      <input
+        checked={true}
+        className="bui-radio-input"
+        onChange={[Function]}
+        type="radio"
+      />
+      <div
+        className="bui-radio-icon"
+      >
+        <span
+          className="bui-radio-btn-icon bui-radio-btn-icon-checked"
+        >
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+            color="#ff335c"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+          <svg
+            className="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+            color="#ff335c"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<path d=\\"M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0\\"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </span>
+      </div>
+      <div
+        className="bui-radio-label"
+      >
+        淘票票
+      </div>
+    </div>
+  </div>
+</div>
+`;

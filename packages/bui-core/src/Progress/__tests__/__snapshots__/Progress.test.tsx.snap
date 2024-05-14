@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Progress renders correctly 1`] = `
+<div
+  class="bui-progress"
+  data-testid="progress"
+>
+  <div
+    class="bui-progress-inner"
+  >
+    <div
+      class="bui-progress-bg"
+      style="width: 54%; background: rgb(88, 35, 49);"
+    />
+  </div>
+</div>
+`;

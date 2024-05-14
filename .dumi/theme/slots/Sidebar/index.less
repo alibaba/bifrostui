@@ -1,0 +1,138 @@
+@import (reference) '../../styles/variables.less';
+
+.@{prefix}-sidebar {
+  position: sticky;
+  top: calc(40px + @s-header-height);
+  width: @s-sidebar-width;
+  height: calc(100vh - @s-header-height - 40px);
+  padding-bottom: 24px;
+  padding-inline-start: 8px;
+  padding-inline-end: 8px;
+  box-sizing: border-box;
+  overflow: auto;
+  border-right: 0.5px solid @c-border;
+  @{dark-selector} & {
+    border-right: solid 0.5px @c-border-dark;
+  }
+
+  &::selection,
+  & ::selection {
+    background: @c-primary-light;
+  }
+
+  &-group-cn {
+    color: @c-text-grey;
+  }
+
+  @media @not-desktop {
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    max-height: initial;
+    padding-inline-start: 32px;
+    background-color: @c-site-bg;
+    border-top: 1px solid @c-border;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
+    @{dark-selector} & {
+      background-color: @c-site-bg-dark;
+      border-top-color: @c-border-dark;
+    }
+
+    .@{prefix}-doc-layout:not([data-mobile-sidebar-active]) & {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-100%);
+    }
+  }
+
+  > dl {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+
+    > dt {
+      margin: 8px 40px 8px 19px;
+      // margin-left: 19px;
+      color: @c-text-grey;
+      font-size: 14px;
+      line-height: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-transform: uppercase;
+      padding-bottom: 13px;
+      border-bottom: solid 1px @c-border;
+      // padding-left: 19px;
+
+      @{dark-selector} & {
+        color: @c-text-dark;
+        border-bottom: solid 1px @c-border-dark;
+      }
+    }
+
+    > dd {
+      margin: 0;
+      // // padding: 13px 0;
+      // &:hover {
+      //   background-color: @c-primary-light;
+      // }
+
+      > a {
+        padding: 0 19px;
+        height: 38px;
+        display: block;
+        color: @c-text-secondary;
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        line-height: 40px;
+        text-decoration: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-radius: 4px;
+        margin: 4px 0;
+
+        @{dark-selector} & {
+          color: @c-text-secondary-dark;
+        }
+
+        &:hover {
+          background-color: @c-bg-grey;
+          border-radius: 4px;
+          @{dark-selector} & {
+            color: @c-text;
+          }
+        }
+
+        &.active {
+          color: @c-primary;
+          font-family: PingFangSC-Medium;
+          background-color: @c-primary-light;
+
+          @{dark-selector} & {
+            color: @c-primary-dark;
+          }
+
+          > span {
+            color: @c-primary;
+          }
+        }
+      }
+    }
+
+    // divider line & gap
+    + dl {
+      margin-top: 8px;
+      padding-top: 16px;
+      // border-top: 1px solid @c-border;
+
+      // @{dark-selector} & {
+      //   border-top-color: @c-border-dark;
+      // }
+    }
+  }
+}

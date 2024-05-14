@@ -1,0 +1,51 @@
+.dark {
+  padding: 12px;
+
+  .dark-container {
+    padding: 12px;
+    background-color: #000;
+    border-radius: 6px;
+  }
+
+  .color-unit-cell {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .color-block {
+    flex-shrink: 0;
+    width: 100px;
+    height: 50px;
+    border-radius: 6px;
+    margin-right: 9px;
+  }
+
+  .color-value {
+    font-size: 16px;
+    margin-right: 4px;
+    white-space: nowrap;
+    color: #f0f6fc;
+  }
+
+  .color-desc {
+    font-size: 13px;
+    white-space: nowrap;
+    color: #f0f6fc;
+  }
+
+  @media only screen and (max-width: 400px) {
+    .color-block {
+      width: 80px;
+    }
+
+    .color-value {
+      font-size: 14px;
+    }
+
+    .color-desc {
+      font-size: 12px;
+    }
+  }
+}

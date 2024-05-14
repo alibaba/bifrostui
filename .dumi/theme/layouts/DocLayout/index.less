@@ -1,0 +1,136 @@
+@import (reference) '../../styles/variables.less';
+
+@{dark-selector} {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: @c-site-bg;
+
+  @{dark-selector} & {
+    background-color: @c-site-bg-dark;
+  }
+}
+
+.@{prefix}-doc-layout {
+  font-family: sans-serif;
+  background-color: @c-site-bg;
+
+  @{dark-selector} & {
+    background-color: @c-site-bg-dark;
+  }
+
+  @media @mobile {
+    &::before {
+      content: '';
+      position: fixed;
+      z-index: 11; // 1 more than header
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      transition: all 0.1s;
+    }
+
+    &:not([data-mobile-sidebar-active])::before {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &-mobile-bar {
+    @height: 36px;
+
+    position: sticky;
+    z-index: 9; // 1 less than header
+    top: @s-header-height-m;
+    left: 0;
+    right: 0;
+    display: none;
+    align-items: center;
+    padding: 0 24px;
+    height: @height;
+    background-color: fadeout(@c-site-bg, 10%);
+    backdrop-filter: blur(6px);
+
+    @{dark-selector} & {
+      background-color: fadein(@c-site-bg-dark, 10%);
+    }
+
+    @media @not-desktop {
+      display: flex;
+    }
+
+    .@{prefix}-sidebar-btn {
+      padding: 0;
+      color: @c-text-secondary;
+      border: 0;
+      background-color: transparent;
+
+      @{dark-selector} & {
+        color: @c-text-secondary-dark;
+      }
+
+      > svg {
+        width: 16px;
+        margin-right: 6px;
+        fill: @c-text-secondary;
+        vertical-align: middle;
+
+        @{dark-selector} & {
+          fill: @c-text-secondary-dark;
+        }
+      }
+    }
+  }
+
+  &-content {
+    display: flex;
+    margin: auto;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    min-height: calc(100vh - @s-header-height);
+
+    .left {
+      flex: none;
+    }
+
+    .right {
+      flex: 1;
+
+      .top {
+        display: flex;
+
+        .main {
+          min-width: 0;
+          flex: auto;
+          padding-bottom: 50px;
+          position: relative;
+        }
+
+        .side {
+          width: @s-toc-width;
+          flex: none;
+
+          > .dumi-default-doc-layout-toc-wrapper {
+            z-index: 999;
+            position: fixed;
+            top: @s-header-height + 30px;
+            width: @s-toc-width;
+            max-height: 80vh;
+            overflow: auto;
+            overscroll-behavior: contain;
+            -webkit-overflow-scrolling: touch;
+            backdrop-filter: blur(8px);
+          }
+
+          @media @mobile {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "@bifrostui/react",
+  "version": "0.0.1",
+  "description": "React components for building mobile application",
+  "homepage": "http://bui.taopiaopiao.com",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "es/index.js",
+  "typings": "es/index.d.ts",
+  "directories": {
+    "test": "__tests__"
+  },
+  "files": [
+    "dist",
+    "es",
+    "package.json",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "father build"
+  },
+  "sideEffects": [
+    "*.css",
+    "*.less"
+  ],
+  "devDependencies": {
+    "father": "^4.1.8"
+  },
+  "dependencies": {
+    "clsx": "^1.2.1",
+    "dayjs": "^1.11.7",
+    "@bifrostui/icons": "^0.0.1",
+    "@bifrostui/styles": "^0.0.1",
+    "@bifrostui/types": "^0.0.1",
+    "@bifrostui/utils": "^0.0.1",
+    "swiper": "^8.1.5"
+  },
+  "peerDependencies": {
+    "@tarojs/components": "3.3.16",
+    "@tarojs/taro": "^3.2.0",
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
+  }
+}

@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox Checkbox label placement label should on the bottom 1`] = `
+<div
+  class="bui-checkbox bui-checkbox-label-bottom"
+  data-testid="bui-checkbox"
+>
+  <input
+    class="bui-checkbox-input"
+    type="checkbox"
+    value=""
+  />
+  <div
+    class="bui-checkbox-icon"
+  >
+    <svg
+      class="bui-svg-icon"
+      color="#ced1d6"
+      focusable="false"
+      viewBox="0 0 96 96"
+    >
+      <path
+        d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"
+      />
+    </svg>
+  </div>
+  <div
+    class="bui-checkbox-label"
+  >
+    Checkbox
+  </div>
+</div>
+`;
+
+exports[`Checkbox Checkbox label placement label should on the left 1`] = `
+<div
+  class="bui-checkbox bui-checkbox-label-left"
+  data-testid="bui-checkbox"
+>
+  <input
+    class="bui-checkbox-input"
+    type="checkbox"
+    value=""
+  />
+  <div
+    class="bui-checkbox-icon"
+  >
+    <svg
+      class="bui-svg-icon"
+      color="#ced1d6"
+      focusable="false"
+      viewBox="0 0 96 96"
+    >
+      <path
+        d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"
+      />
+    </svg>
+  </div>
+  <div
+    class="bui-checkbox-label"
+  >
+    Checkbox
+  </div>
+</div>
+`;
+
+exports[`Checkbox Checkbox label placement label should on the right 1`] = `
+<div
+  class="bui-checkbox bui-checkbox-label-right"
+  data-testid="bui-checkbox"
+>
+  <input
+    class="bui-checkbox-input"
+    type="checkbox"
+    value=""
+  />
+  <div
+    class="bui-checkbox-icon"
+  >
+    <svg
+      class="bui-svg-icon"
+      color="#ced1d6"
+      focusable="false"
+      viewBox="0 0 96 96"
+    >
+      <path
+        d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"
+      />
+    </svg>
+  </div>
+  <div
+    class="bui-checkbox-label"
+  >
+    Checkbox
+  </div>
+</div>
+`;
+
+exports[`Checkbox Checkbox label placement label should on the top 1`] = `
+<div
+  class="bui-checkbox bui-checkbox-label-top"
+  data-testid="bui-checkbox"
+>
+  <input
+    class="bui-checkbox-input"
+    type="checkbox"
+    value=""
+  />
+  <div
+    class="bui-checkbox-icon"
+  >
+    <svg
+      class="bui-svg-icon"
+      color="#ced1d6"
+      focusable="false"
+      viewBox="0 0 96 96"
+    >
+      <path
+        d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"
+      />
+    </svg>
+  </div>
+  <div
+    class="bui-checkbox-label"
+  >
+    Checkbox
+  </div>
+</div>
+`;

@@ -1,0 +1,10 @@
+websites
+scripts
+coverage
+node_modules
+dist
+**/es/**
+**/dist/**
+.idea
+.husky
+.vscode
