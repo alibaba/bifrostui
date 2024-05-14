@@ -1,0 +1,17 @@
+.bui-modal {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  z-index: var(--bui-z-index-modal);
+  font-family: var(--bui-font-family);
+
+  &-exited {
+    visibility: hidden;
+  }
+
+  &-backdrop {
+    z-index: -1;
+  }
+}

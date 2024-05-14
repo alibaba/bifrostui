@@ -1,0 +1,39 @@
+.bui-avatar-group {
+  display: flex;
+  flex-direction: row;
+  font-family: var(--bui-font-family);
+
+  &-avatar,
+  &-extra {
+    box-shadow: 0 0 0 2px var(--bui-color-bg-view);
+    color: var(--bui-color-fg-default);
+  }
+
+  .bui-avatar-xsmall {
+    &:not(:first-child) {
+      margin-left: -5px;
+    }
+  }
+
+  .bui-avatar-small {
+    &:not(:first-child) {
+      margin-left: -9px;
+    }
+
+    box-shadow: 0 0 0 1px var(--bui-color-bg-view);
+  }
+
+  .bui-avatar-large {
+    &:not(:first-child) {
+      margin-left: -21px;
+    }
+    box-shadow: 0 0 0 3px var(--bui-color-bg-view);
+  }
+
+  .bui-avatar-medium {
+    &:not(:first-child) {
+      margin-left: -13px;
+    }
+    box-shadow: 0 0 0 2px var(--bui-color-bg-view);
+  }
+}

@@ -1,0 +1,31 @@
+.bui-action-sheet {
+  font-family: var(--bui-font-family);
+
+  &-content {
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+    border-top-left-radius: var(--bui-shape-radius-drawer);
+    border-top-right-radius: var(--bui-shape-radius-drawer);
+    overflow: hidden;
+  }
+
+  .bui-action-sheet-cancel {
+    border-top: none;
+  }
+
+  &-gap {
+    height: var(--bui-spacing-md);
+    background-color: var(--bui-color-bg-default);
+  }
+
+  &-extra {
+    font-size: var(--bui-text-size-1);
+    line-height: 23px;
+    padding: var(--bui-spacing-xl);
+    color: var(--bui-color-fg-muted);
+    background: var(--bui-color-bg-view);
+    text-align: center;
+    border-bottom: 1px solid var(--bui-color-border-default);
+    margin: 0 var(--bui-spacing-xl);
+  }
+}

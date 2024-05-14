@@ -1,0 +1,11 @@
+{
+  "branch": "feat/components",
+  "cname": "bui.taopiaopiao.com",
+  "commands": [
+    "nvm install 18",
+    "yarn",
+    "yarn docs:build",
+    "mv docs-dist/* $BUILD_DEST"
+  ],
+  "public": "./"
+}

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input should render end icon 1`] = `
+<div
+  class="bui-input"
+>
+  <input
+    class="bui-input-input"
+    type="text"
+    value=""
+  />
+  <div
+    class="bui-input-icon bui-input-icon-end"
+  >
+    <div
+      class="test-end-icon"
+    >
+      endIcon
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Input should render placeholder 1`] = `
+<input
+  class="bui-input-input"
+  placeholder="请输入内容"
+  type="text"
+  value=""
+/>
+`;
+
+exports[`Input should render start icon 1`] = `
+<div
+  class="bui-input"
+>
+  <div
+    class="bui-input-icon bui-input-icon-start"
+  >
+    <div
+      class="test-start-icon"
+    >
+      startIcon
+    </div>
+  </div>
+  <input
+    class="bui-input-input"
+    type="text"
+    value=""
+  />
+</div>
+`;

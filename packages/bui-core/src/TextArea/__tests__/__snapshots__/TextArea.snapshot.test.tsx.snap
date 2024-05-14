@@ -1,0 +1,215 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextArea snapshot TextArea demo snapshot 0 1`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "stretch",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    className="bui-textarea"
+  >
+    <textarea
+      className="bui-textarea-content"
+      maxLength={-1}
+      onChange={[Function]}
+      onInput={[Function]}
+      placeholder="默认"
+      rows={2}
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`TextArea snapshot TextArea demo snapshot 0 2`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "stretch",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    className="bui-textarea"
+  >
+    <textarea
+      className="bui-textarea-content"
+      maxLength={10}
+      onChange={[Function]}
+      onInput={[Function]}
+      placeholder="最多输入10个字"
+      rows={2}
+      value=""
+    />
+    <div
+      className="bui-textarea-count"
+    >
+      0/10
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TextArea snapshot TextArea demo snapshot 0 3`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "stretch",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "column",
+        "marginBottom": "40px",
+      }
+    }
+  >
+    受控组件：
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+      onClick={[Function]}
+      type="button"
+    >
+      数量加10
+    </button>
+    <br />
+    <div
+      className="bui-textarea"
+    >
+      <textarea
+        className="bui-textarea-content"
+        maxLength={-1}
+        onChange={[Function]}
+        onInput={[Function]}
+        rows={2}
+        value="0"
+      />
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "column",
+      }
+    }
+  >
+    非受控组件：
+    <br />
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+      onClick={[Function]}
+      type="button"
+    >
+      数量减10(操作defaultValue无效)
+    </button>
+    <br />
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+      onClick={[Function]}
+      type="button"
+    >
+      数量乘2(通过DOM操作value有效)
+    </button>
+    <br />
+    <div
+      className="bui-textarea"
+    >
+      <textarea
+        className="bui-textarea-content"
+        maxLength={-1}
+        onChange={[Function]}
+        onInput={[Function]}
+        rows={2}
+        value="100"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TextArea snapshot TextArea demo snapshot 0 4`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "stretch",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <button
+    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    onClick={[Function]}
+    type="button"
+  >
+    聚
+    焦
+  </button>
+  <div
+    className="bui-textarea"
+  >
+    <textarea
+      className="bui-textarea-content"
+      maxLength={-1}
+      onChange={[Function]}
+      onInput={[Function]}
+      rows={2}
+      value="123"
+    />
+  </div>
+</div>
+`;
+
+exports[`TextArea snapshot TextArea demo snapshot 0 5`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "stretch",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <div
+    className="bui-textarea"
+  >
+    <textarea
+      className="bui-textarea-content"
+      maxLength={-1}
+      onChange={[Function]}
+      onInput={[Function]}
+      placeholder="文案过多会自动撑高"
+      rows={2}
+      value=""
+    />
+  </div>
+</div>
+`;
