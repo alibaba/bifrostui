@@ -37,7 +37,7 @@ BUI是基于`React`技术栈开发的 _跨端_ 组件库，一套代码在web和
 <div>
 微信小程序：
 
-![](https://gw.alicdn.com/imgextra/i4/O1CN014TC9CC1kCNPJZxQE5_!!6000000004647-0-tps-258-258.jpg)
+![](https://gw.alicdn.com/imgextra/i4/O1CN01mpcpzN29vayTjIv56_!!6000000008130-0-tps-512-512.jpg)
 
 </div>
 </div>
