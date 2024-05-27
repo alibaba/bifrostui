@@ -41,7 +41,7 @@ _Bifrost UI_，bifrost原指北欧神话中连接天宫和大地的彩虹桥，�
 <div style="width: 200px; text-align: center">
 微信小程序：
 
-![](https://gw.alicdn.com/imgextra/i4/O1CN014TC9CC1kCNPJZxQE5_!!6000000004647-0-tps-258-258.jpg)
+![](https://gw.alicdn.com/imgextra/i4/O1CN01mpcpzN29vayTjIv56_!!6000000008130-0-tps-512-512.jpg)
 
 </div>
 </div>
