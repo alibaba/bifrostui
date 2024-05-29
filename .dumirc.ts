@@ -3,6 +3,7 @@ import { defineConfig } from 'dumi';
 export default defineConfig({
   outputPath: 'docs-dist',
   title: 'BUI DESIGN',
+  publicPath: '/bifrostui/',
   themeConfig: {
     nav: [
       { title: '指南', link: '/guide/introduce', activePath: '/guide' },
