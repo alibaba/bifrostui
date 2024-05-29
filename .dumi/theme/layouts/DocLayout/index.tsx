@@ -33,7 +33,7 @@ const DocLayout: FC = () => {
   // const curColor = themeConfig.switch ? 'dark' : 'light';
 
   const showSidebar = fm.sidebar !== false && sidebar?.length > 0;
-  const hideToc = (fm.title === 'BUI Design' && fm.filename === 'docs/index.md')
+  const hideToc = (fm.title === 'bifrostui' && fm.filename === 'docs/index.md')
 
   // handle hash change or visit page hash after async chunk loaded
   useEffect(() => {
