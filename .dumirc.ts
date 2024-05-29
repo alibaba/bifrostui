@@ -2,7 +2,7 @@ import { defineConfig } from 'dumi';
 
 export default defineConfig({
   outputPath: 'docs-dist',
-  title: 'BUI DESIGN',
+  title: 'bifrostui',
   publicPath: '/bifrostui/',
   base: '/bifrostui/',
   themeConfig: {
