@@ -8,7 +8,7 @@ REPO_URL="http://gitlab.alibaba-inc.com/alipay-movie-client/bifrostui.git"
 # 资源文件夹
 SOURCE_FOLDER="docs-dist"
 # 目标分支
-TARGET_BRANCH="gitlab_pages/prod"
+TARGET_BRANCH="gh-pages"
 
 # 临时目录
 TEMP_DEST="../bui_temporary_location"
