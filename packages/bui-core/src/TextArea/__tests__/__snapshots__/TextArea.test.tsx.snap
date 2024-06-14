@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextArea can auto size 1`] = `
+<textarea
+  class="bui-textarea-content"
+  maxlength="-1"
+  rows="2"
+  style="height: 0px;"
+>
+  test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.
+</textarea>
+`;

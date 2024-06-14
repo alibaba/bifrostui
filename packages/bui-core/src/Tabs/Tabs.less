@@ -1,0 +1,77 @@
+@holderWidth: 12px;
+@class-prefix-tabs: ~'bui-tabs';
+
+.@{class-prefix-tabs} {
+  --height: 39px;
+  --font-size: var(--bui-text-size-1);
+  --color: var(--bui-color-fg-subtle);
+  --active-color: var(--bui-color-fg-default);
+  --line-color: var(--bui-color-primary);
+
+  position: relative;
+  font-family: var(--bui-font-family);
+
+  &-tabs {
+    height: var(--height);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    scrollbar-width: none;
+  }
+
+  &-tabline {
+    position: absolute;
+    width: 18px;
+    bottom: 0;
+
+    /* prettier-ignore */
+    height: 3PX;
+    color: var(--bui-color-primary);
+    background: var(--line-color);
+    border-radius: var(--bui-shape-radius-label);
+  }
+
+  &-content {
+    padding: var(--bui-spacing-lg);
+  }
+
+  &-mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    width: @holderWidth;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  &-mask-left {
+    left: 0;
+    background: linear-gradient(
+      to right,
+      var(--bui-color-white),
+      rgba(255, 255, 255, 0)
+    );
+  }
+
+  &-mask-right {
+    right: 0;
+    background: linear-gradient(
+      to left,
+      var(--bui-color-white),
+      rgba(255, 255, 255, 0)
+    );
+  }
+}
+
+.bui-tabline-invisible {
+  visibility: hidden;
+  background-color: transparent;
+}

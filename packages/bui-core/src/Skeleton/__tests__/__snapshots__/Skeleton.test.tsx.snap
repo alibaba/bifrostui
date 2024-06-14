@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Skeleton can set width and height in style 1`] = `
+<span
+  class="bui-skeleton bui-skeleton-text bui-skeleton-animation-wave bui-skeleton-with-children"
+  style="width: 48px; height: 48px;"
+>
+  Skeleton
+</span>
+`;
