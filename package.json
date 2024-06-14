@@ -2,6 +2,7 @@
   "name": "@bifrostui/monorepo",
   "private": true,
   "license": "MIT",
+  "homepage": "https://alibaba.github.io/bifrostui",
   "scripts": {
     "pub": "npx lerna publish --no-private",
     "start:h5": "dumi dev",
