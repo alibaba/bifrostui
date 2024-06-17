@@ -1,4 +1,4 @@
-import useDomReadied from '../useDomReadied';
+import useDomReady from '../useDomReady';
 import { getTargetElement } from '../../domTarget';
 import type { BasicTarget } from '../../domTarget';
 
@@ -7,7 +7,7 @@ function useDomCss(
   computedStyle: string[],
   cb: (res: Record<string, any>) => void,
 ) {
-  useDomReadied(() => {
+  useDomReady(() => {
     const ele = getTargetElement(target);
     const style = window.getComputedStyle(ele, null);
 

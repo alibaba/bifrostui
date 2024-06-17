@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro';
 
-function useDomReadied(cb: () => void) {
+function useDomReady(cb: () => void) {
   Taro.useReady(() => {
     Taro.nextTick(() => {
       cb?.();
@@ -8,4 +8,4 @@ function useDomReadied(cb: () => void) {
   });
 }
 
-export default useDomReadied;
+export default useDomReady;

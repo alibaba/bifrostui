@@ -6,7 +6,7 @@ export {
   useForkRef,
   useTouchEmulator,
   useValue,
-  useDomReadied,
+  useDomReady,
   useSize,
   useDomCss,
 } from './hooks';
