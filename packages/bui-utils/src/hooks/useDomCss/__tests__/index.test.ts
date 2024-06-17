@@ -4,7 +4,7 @@ import useDomCss from '../index'; // 根据实际路径调整这里的导入
 
 // 模拟`@bifrostui/utils`中的useDomReadied
 jest.mock('@bifrostui/utils', () => ({
-  useDomReadied: jest.fn((cb) => cb()),
+  useDomReady: jest.fn((cb) => cb()),
 }));
 
 beforeEach(() => {

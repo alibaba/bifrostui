@@ -1,9 +1,9 @@
 import React from 'react';
 
-function useDomReadied(cb: () => void) {
+function useDomReady(cb: () => void) {
   React.useEffect(() => {
     cb?.();
   }, []);
 }
 
-export default useDomReadied;
+export default useDomReady;

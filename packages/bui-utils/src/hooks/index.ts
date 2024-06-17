@@ -3,7 +3,7 @@ import useEventCallback from './useEventCallback';
 import useForkRef from './useForkRef';
 import useTouchEmulator from './useTouchEmulator';
 import useValue from './useValue';
-import useDomReadied from './useDomReadied';
+import useDomReady from './useDomReady';
 import useSize from './useSize';
 import useDomCss from './useDomCss';
 
@@ -13,7 +13,7 @@ export {
   useEventCallback,
   useDidMountEffect,
   useTouchEmulator,
-  useDomReadied,
+  useDomReady,
   useSize,
   useDomCss,
 };

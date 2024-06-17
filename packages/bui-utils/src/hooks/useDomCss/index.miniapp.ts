@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro';
 import type { TaroElement } from '@tarojs/runtime';
-import useDomReadied from '../useDomReadied';
+import useDomReady from '../useDomReady';
 import { getTargetElement } from '../../domTarget';
 
 function useDomCss(
@@ -8,7 +8,7 @@ function useDomCss(
   computedStyle: string[],
   cb: (res: Record<string, any>) => void,
 ) {
-  useDomReadied(() => {
+  useDomReady(() => {
     const ele = getTargetElement(target);
     if (ele) {
       const query = Taro.createSelectorQuery();

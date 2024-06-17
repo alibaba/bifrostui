@@ -1,7 +1,7 @@
-// useDomReadied.test.ts
+// useDomReady.test.ts
 import Taro from '@tarojs/taro';
 import { renderHook } from '@testing-library/react-hooks';
-import useDomReadied from '../index.miniapp'; // 根据实际路径调整
+import useDomReady from '../index.miniapp'; // 根据实际路径调整
 
 // Mock Taro的useReady和nextTick方法
 jest.mock('@tarojs/taro', () => ({
@@ -9,12 +9,12 @@ jest.mock('@tarojs/taro', () => ({
   nextTick: jest.fn((cb) => cb()),
 }));
 
-describe('useDomReadied', () => {
+describe('useDomReady', () => {
   it('应当在Taro组件ready之后调用callback', () => {
     const mockCallback = jest.fn();
     const spyUseReady = jest.spyOn(Taro, 'useReady');
 
-    renderHook(() => useDomReadied(mockCallback));
+    renderHook(() => useDomReady(mockCallback));
 
     // 确保Taro.useReady被调用
     expect(spyUseReady).toHaveBeenCalled();

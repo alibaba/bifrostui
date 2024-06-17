@@ -1,12 +1,12 @@
 // useDomCss.test.js
 import { renderHook } from '@testing-library/react-hooks';
 // import Taro from '@tarojs/taro';
-// import { useDomReadied } from '@bifrostui/utils';
+// import { useDomReady } from '@bifrostui/utils';
 import useDomCss from '../index.miniapp'; // 调整路径以匹配你的文件位置
 
 // 模拟@bifrostui/utils中的useDomReadied
 jest.mock('@bifrostui/utils', () => ({
-  useDomReadied: jest.fn((cb) => cb()),
+  useDomReady: jest.fn((cb) => cb()),
 }));
 
 // 模拟@tarojs/taro中的createSelectorQuery和相关方法
