@@ -1,0 +1,23 @@
+# 代码质量检查
+name: Code Check
+
+on: [push, pull_request]
+
+jobs:
+  run-lint:
+    name: Run Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Run Code Lint
+        run: yarn lint
