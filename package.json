@@ -13,7 +13,7 @@
     "build:alipay": "node scripts/mini-program-site/index.js --type alipay",
     "build:tt": "node scripts/mini-program-site/index.js --type tt",
     "build": "lerna run build --no-private",
-    "docs:build": "dumi build",
+    "docs:build": "dumi build && chmod +x ./scripts/copy-cname.sh && ./scripts/copy-cname.sh",
     "site:release": "chmod +x ./scripts/website-release.sh && ./scripts/website-release.sh 'update website'",
     "test": "jest --no-cache",
     "ci:test": "npm run test -- --coverage",
