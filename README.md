@@ -16,7 +16,7 @@ BUI是基于`React`技术栈开发的 _跨端_ 组件库，一套代码在web和
 
 ## 快速上手
 
-请参考[快速上手](https://alibaba.github.io/bifrostui/guide/introduce)章节。
+请参考[快速上手](https://bui.taopiaopiao.com/guide/introduce)章节。
 
 ## 兼容性
 
