@@ -13,14 +13,11 @@ on:
       - 'v*'
 
 jobs:
-  # ['Unit Tests', 'Code Check']工作流成功完成
-  precheck:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    # ['Unit Tests', 'Code Check']工作流成功完成
     if: >
       ${{ github.event.workflow_run.conclusion == 'success' }}
-    runs-on: ubuntu-latest
-
-  build:
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
