@@ -1,5 +1,5 @@
 # 运行单测
-name: Run Test for Continuous Integration
+name: Unit Tests
 
 on: [push, pull_request]
 

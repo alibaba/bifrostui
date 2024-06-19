@@ -1,0 +1,40 @@
+# 发布到npm
+name: Publish to npm
+
+on:
+  workflow_run:
+    workflows: ['Unit Tests', 'Code Check']
+    types:
+      - completed
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+
+jobs:
+  # ['Unit Tests', 'Code Check']工作流成功完成
+  precheck:
+    if: >
+      ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 确保检出带有版本标签的提交
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - run: yarn
+
+      - run: yarn build
+
+      - run: yarn pub
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
