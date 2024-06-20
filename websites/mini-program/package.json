@@ -1,5 +1,6 @@
 {
   "name": "@bifrostui/miniapp-site",
+  "private": true,
   "version": "3.0.12",
   "license": "MIT",
   "description": "bui demo in miniapp!",
@@ -87,7 +88,6 @@
     "@types/node": "^18.15.11"
   },
   "publishConfig": {
-    "access": "public",
     "registry": "https://registry.npmjs.org/"
   }
 }
