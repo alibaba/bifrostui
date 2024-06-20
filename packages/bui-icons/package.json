@@ -1,6 +1,6 @@
 {
   "name": "@bifrostui/icons",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "SVG icon components for BUI",
   "homepage": "http://bui.taopiaopiao.com",
   "license": "MIT",
@@ -21,17 +21,17 @@
     "README.md"
   ],
   "devDependencies": {
-    "father": "^4.1.8",
     "chalk": "^4.1.2",
+    "fast-glob": "^3.3.1",
+    "father": "^4.1.8",
     "fs-extra": "^10.0.0",
     "rimraf": "^3.0.0",
-    "fast-glob": "^3.3.1",
     "svgo": "^2.8.0"
   },
   "dependencies": {
-    "@bifrostui/types": "^0.0.1",
-    "@bifrostui/utils": "^0.0.1",
-    "@bifrostui/react": "^0.0.1",
+    "@bifrostui/react": "^0.0.2",
+    "@bifrostui/types": "^0.0.2",
+    "@bifrostui/utils": "^0.0.2",
     "clsx": "^1.2.1"
   },
   "peerDependencies": {
