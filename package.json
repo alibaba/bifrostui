@@ -1,6 +1,5 @@
 {
   "name": "@bifrostui/monorepo",
-  "private": true,
   "license": "MIT",
   "homepage": "https://alibaba.github.io/bifrostui",
   "scripts": {

@@ -1,7 +1,6 @@
 {
   "name": "@bifrostui/miniapp-site",
   "version": "3.0.12",
-  "private": true,
   "license": "MIT",
   "description": "bui demo in miniapp!",
   "templateInfo": {
