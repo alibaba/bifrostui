@@ -93,9 +93,5 @@
     "*.{json,md}": [
       "npx prettier --write"
     ]
-  },
-  "workspaces": [
-    "packages/*",
-    "websites/**/*"
-  ]
+  }
 }
