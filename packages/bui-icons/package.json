@@ -8,6 +8,7 @@
   "module": "es/index.js",
   "typings": "es/index.d.ts",
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "sideEffects": [
