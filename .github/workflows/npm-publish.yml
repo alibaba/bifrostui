@@ -1,4 +1,5 @@
 # 发布到npm
+# 开发者请在本地执行lerna version进行版本控制，提交后触发自动发布
 name: Publish to npm
 
 on:
@@ -10,28 +11,33 @@ on:
     branches:
       - main
     tags:
-      - 'v*'
+      - 'Publish'
 
 jobs:
   build-and-publish:
-    runs-on: ubuntu-latest
     # ['Unit Tests', 'Code Check']工作流成功完成
     if: >
-      ${{ github.event.workflow_run.conclusion == 'success' }}
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0 # 确保检出带有版本标签的提交
 
-      - uses: actions/setup-node@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
           registry-url: 'https://registry.npmjs.org/'
 
-      - run: yarn
+      - name: Install dependencies
+        run: yarn
 
-      - run: yarn build
+      - name: Build
+        run: yarn build
 
-      - run: yarn pub
+      - name: Publish to NPM
+        run: npx lerna publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # 在 GitHub Secrets 中设置的 NPM_TOKEN
