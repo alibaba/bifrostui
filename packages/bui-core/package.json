@@ -1,6 +1,6 @@
 {
   "name": "@bifrostui/react",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "React components for building mobile application",
   "homepage": "http://bui.taopiaopiao.com",
   "license": "MIT",
@@ -31,10 +31,10 @@
     "father": "^4.1.8"
   },
   "dependencies": {
-    "@bifrostui/icons": "^0.0.6",
-    "@bifrostui/styles": "^0.0.6",
-    "@bifrostui/types": "^0.0.6",
-    "@bifrostui/utils": "^0.0.6",
+    "@bifrostui/icons": "^0.0.7",
+    "@bifrostui/styles": "^0.0.7",
+    "@bifrostui/types": "^0.0.7",
+    "@bifrostui/utils": "^0.0.7",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.7",
     "swiper": "^8.1.5"
