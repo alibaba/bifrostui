@@ -1,6 +1,6 @@
 {
   "name": "@bifrostui/icons",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "SVG icon components for BUI",
   "homepage": "http://bui.taopiaopiao.com",
   "license": "MIT",
@@ -30,7 +30,7 @@
     "svgo": "^2.8.0"
   },
   "dependencies": {
-    "@bifrostui/react": "^0.0.7",
+    "@bifrostui/react": "^0.0.8",
     "@bifrostui/types": "^0.0.7",
     "@bifrostui/utils": "^0.0.7",
     "clsx": "^1.2.1"
