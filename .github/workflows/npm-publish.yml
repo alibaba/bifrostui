@@ -38,6 +38,6 @@ jobs:
         run: yarn build
 
       - name: Publish to NPM
-        run: npx lerna publish
+        run: npx lerna publish --yes from-git
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # 在 GitHub Secrets 中设置的 NPM_TOKEN
