@@ -1,6 +1,6 @@
 # @bifrostui/react
 
-React components for building mobile application
+React components for building mobile application.
 
 ## Usage
 
