@@ -1,7 +1,7 @@
 ---
 name: Issue Report
 about: 创建一个关于某个 issue 的报告，如果你开的 issue 不符合规定，它将会被关闭；另外，在开 issue 前，可以先搜索一下以往的旧 issue，你遇到的问题可能已经有人提了，也可能已经在最新版本中被修正。注意：如果你发现一个已经关闭的旧 issue 在最新版本中仍然存在，请不要在旧 issue 下面留言，而应该开一个新的 issue。
-title: '[Issue]'
+title: '[Issue] '
 labels: issue
 ---
 
