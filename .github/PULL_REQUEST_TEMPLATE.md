@@ -1,9 +1,9 @@
----
-name: Feature Request
-about: 首先，感谢你的贡献！新特性请提交至 main 分支，在维护者审核通过后会合并。请确保填写以下 pull request 的信息，谢谢！~
-title: '[FEATURE] '
-labels: enhancement
----
+<!-- PULL REQUEST TEMPLATE -->
+<!--
+首先，感谢你的贡献！
+新特性请提交至 main 分支，在维护者审核通过后会合并。
+请确保填写以下 pull request 的信息，谢谢！~
+-->
 
 <!-- Tips: "[ ]" 更改为 "[x]" 可选中复选框 -->
 
