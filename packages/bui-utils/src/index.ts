@@ -9,6 +9,7 @@ export {
   useDomReady,
   useSize,
   useDomCss,
+  useTouch,
 } from './hooks';
 export { default as isDev } from './isDev';
 export { isMini, isWeapp, isAlipay } from './isMini';
