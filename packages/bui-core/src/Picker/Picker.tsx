@@ -130,6 +130,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
       open={open}
       className={clsx(prefixCls, className)}
       onClose={handleClose}
+      disableScrollLock
       {...others}
     >
       <div
