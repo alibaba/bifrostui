@@ -48,7 +48,7 @@ const Modal = React.forwardRef<HTMLDivElement, ViewProps & ModalProps>(
         <View
           className={clsx(prefixCls, className)}
           ref={handleRef}
-          catchMove={disableScrollLock}
+          catchMove={!disableScrollLock}
           {...others}
         >
           {!hideBackdrop ? (
