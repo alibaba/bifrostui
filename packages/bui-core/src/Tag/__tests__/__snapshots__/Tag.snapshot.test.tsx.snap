@@ -322,5 +322,191 @@ exports[`Tag snapshot Tag demo snapshot 0 4`] = `
       info
     </div>
   </div>
+  <div
+    className="bui-tag-group"
+  >
+    <div
+      className="bui-tag bui-tag-contained bui-tag-primary"
+      style={Object {}}
+    >
+      primary
+    </div>
+    <div
+      className="bui-tag bui-tag-outlined bui-tag-info"
+      style={Object {}}
+    >
+      info
+    </div>
+    <div
+      className="bui-tag bui-tag-outlined bui-tag-info"
+      style={Object {}}
+    >
+      info
+    </div>
+  </div>
+  <div
+    className="bui-tag-group"
+  >
+    <div
+      className="bui-tag bui-tag-outlined bui-tag-primary"
+      style={Object {}}
+    >
+      primary
+    </div>
+    <div
+      className="bui-tag bui-tag-contained bui-tag-info"
+      style={Object {}}
+    >
+      info
+    </div>
+    <div
+      className="bui-tag bui-tag-outlined bui-tag-info"
+      style={Object {}}
+    >
+      info
+    </div>
+  </div>
+  <div
+    className="bui-tag-group"
+  >
+    <div
+      className="bui-tag bui-tag-outlined bui-tag-primary"
+      style={Object {}}
+    >
+      primary
+    </div>
+    <div
+      className="bui-tag bui-tag-outlined bui-tag-info"
+      style={Object {}}
+    >
+      info
+    </div>
+    <div
+      className="bui-tag bui-tag-contained bui-tag-info"
+      style={Object {}}
+    >
+      info
+    </div>
+  </div>
+  <div
+    className="bui-tag-group"
+  >
+    <div
+      className="bui-tag bui-tag-outlined bui-tag-primary"
+      style={Object {}}
+    >
+      primary
+    </div>
+    <div
+      className="bui-tag bui-tag-outlined bui-tag-info"
+      style={Object {}}
+    >
+      info
+    </div>
+    <div
+      className="bui-tag bui-tag-outlined bui-tag-info"
+      style={Object {}}
+    >
+      info
+    </div>
+  </div>
+  <div
+    className="bui-tag-group"
+  >
+    <div
+      className="bui-tag bui-tag-contained bui-tag-primary"
+      style={Object {}}
+    >
+      primary
+    </div>
+    <div
+      className="bui-tag bui-tag-outlined bui-tag-info"
+      style={Object {}}
+    >
+      info
+    </div>
+    <div
+      className="bui-tag bui-tag-contained bui-tag-info"
+      style={Object {}}
+    >
+      info
+    </div>
+  </div>
+  <div
+    className="bui-tag-group"
+  >
+    <div
+      className="bui-tag bui-tag-contained bui-tag-primary"
+      style={Object {}}
+    >
+      primary
+    </div>
+    <div
+      className="bui-tag bui-tag-contained bui-tag-info"
+      style={Object {}}
+    >
+      info
+    </div>
+    <div
+      className="bui-tag bui-tag-contained bui-tag-info"
+      style={Object {}}
+    >
+      info
+    </div>
+  </div>
+  <div
+    className="bui-tag-group"
+  >
+    <div
+      className="bui-tag bui-tag-contained bui-tag-primary"
+      style={Object {}}
+    >
+      primary
+    </div>
+    <div
+      className="bui-tag bui-tag-contained bui-tag-info"
+      style={Object {}}
+    >
+      info
+    </div>
+    <div
+      className="bui-tag bui-tag-outlined bui-tag-info"
+      style={Object {}}
+    >
+      info
+    </div>
+  </div>
+  <div
+    className="bui-tag-group"
+  >
+    <div
+      className="bui-tag bui-tag-outlined bui-tag-primary"
+      style={Object {}}
+    >
+      primary
+    </div>
+    <div
+      className="bui-tag bui-tag-contained bui-tag-info"
+      style={Object {}}
+    >
+      info
+    </div>
+    <div
+      className="bui-tag bui-tag-contained bui-tag-info"
+      style={Object {}}
+    >
+      info
+    </div>
+  </div>
+  <div
+    className="bui-tag-group"
+  >
+    <div
+      className="bui-tag bui-tag-outlined bui-tag-warning"
+      style={Object {}}
+    >
+      warning
+    </div>
+  </div>
 </div>
 `;
