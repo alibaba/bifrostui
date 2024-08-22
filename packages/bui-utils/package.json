@@ -1,6 +1,6 @@
 {
   "name": "@bifrostui/utils",
-  "version": "1.0.1-beta.0",
+  "version": "1.0.1",
   "description": "BUI React utilities for building components.",
   "main": "dist/index.js",
   "module": "es/index.js",
