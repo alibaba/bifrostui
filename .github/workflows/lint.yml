@@ -1,7 +1,7 @@
 # 代码质量检查
 name: Code Check
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   run-lint:
