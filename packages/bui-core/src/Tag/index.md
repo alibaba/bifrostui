@@ -175,6 +175,101 @@ export default () => {
           info
         </Tag>
       </TagGroup>
+      <TagGroup>
+        <Tag variant="contained" color="primary">
+          primary
+        </Tag>
+        <Tag variant="outlined" color="info">
+          info
+        </Tag>
+        <Tag variant="outlined" color="info">
+          info
+        </Tag>
+      </TagGroup>
+
+      <TagGroup>
+        <Tag variant="outlined" color="primary">
+          primary
+        </Tag>
+        <Tag variant="contained" color="info">
+          info
+        </Tag>
+        <Tag variant="outlined" color="info">
+          info
+        </Tag>
+      </TagGroup>
+
+      <TagGroup>
+        <Tag variant="outlined" color="primary">
+          primary
+        </Tag>
+        <Tag variant="outlined" color="info">
+          info
+        </Tag>
+        <Tag variant="contained" color="info">
+          info
+        </Tag>
+      </TagGroup>
+      <TagGroup>
+        <Tag variant="outlined" color="primary">
+          primary
+        </Tag>
+        <Tag variant="outlined" color="info">
+          info
+        </Tag>
+        <Tag variant="outlined" color="info">
+          info
+        </Tag>
+      </TagGroup>
+      <TagGroup>
+        <Tag variant="contained" color="primary">
+          primary
+        </Tag>
+        <Tag variant="outlined" color="info">
+          info
+        </Tag>
+        <Tag variant="contained" color="info">
+          info
+        </Tag>
+      </TagGroup>
+      <TagGroup>
+        <Tag variant="contained" color="primary">
+          primary
+        </Tag>
+        <Tag variant="contained" color="info">
+          info
+        </Tag>
+        <Tag variant="contained" color="info">
+          info
+        </Tag>
+      </TagGroup>
+      <TagGroup>
+        <Tag variant="contained" color="primary">
+          primary
+        </Tag>
+        <Tag variant="contained" color="info">
+          info
+        </Tag>
+        <Tag variant="outlined" color="info">
+          info
+        </Tag>
+      </TagGroup>
+      <TagGroup>
+        <Tag variant="outlined" color="primary">
+          primary
+        </Tag>
+        <Tag variant="contained" color="info">
+          info
+        </Tag>
+        <Tag variant="contained" color="info">
+          info
+        </Tag>
+      </TagGroup>
+      <TagGroup>
+        <Tag variant="outlined" color="warning">
+          warning
+        </Tag>
+      </TagGroup>
     </Stack>
   );
 };
