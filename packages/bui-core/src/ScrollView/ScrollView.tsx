@@ -79,7 +79,7 @@ const ScrollView = forwardRef<HTMLDivElement, ScrollViewProps>(
 
     const handleScroll = useCallback(
       (isInit = false) => {
-        const isAnimation = 'scrollWithAnimation' in props;
+        const isAnimation = props?.scrollWithAnimation;
         // scrollIntoView
         if (
           scrollIntoView &&
