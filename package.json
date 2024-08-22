@@ -4,8 +4,8 @@
   "license": "MIT",
   "homepage": "https://alibaba.github.io/bifrostui",
   "scripts": {
-    "version": "npx lerna version",
-    "version:beta": "npx lerna version prerelease --preid=beta",
+    "v": "npx lerna version --force-publish",
+    "v:beta": "npx lerna version prerelease --preid=beta --force-publish",
     "start:h5": "dumi dev",
     "start:weapp": "node scripts/mini-program-site/index.js --type weapp",
     "start:alipay": "node scripts/mini-program-site/index.js --type alipay",
@@ -26,9 +26,6 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "qrcode.react": "^3.0.2",
-    "lerna": "^7.1.2",
-    "less-plugin-npm-import": "^2.1.0",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
@@ -67,14 +64,17 @@
     "jest": "^28.1.0",
     "jest-environment-jsdom": "^28.1.0",
     "jest-less-loader": "^0.2.0",
+    "lerna": "^7.1.2",
+    "less-plugin-npm-import": "^2.1.0",
     "lint-staged": "^13.2.2",
     "mdast-util-from-markdown": "^0.8.0",
     "pinyin": "^2.11.2",
     "postcss-less": "^6.0.0",
     "prettier": "^3.0.0",
-    "react-test-renderer": "^18.0.0",
+    "qrcode.react": "^3.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-test-renderer": "^18.0.0",
     "stylelint": "^15.6.1",
     "stylelint-config-standard": "^33.0.0",
     "stylelint-prettier": "^4.0.0",
@@ -99,5 +99,6 @@
   "workspaces": [
     "packages/*",
     "websites/**/*"
-  ]
+  ],
+  "version": "0.0.0"
 }
