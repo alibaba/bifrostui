@@ -4,8 +4,8 @@
   "license": "MIT",
   "homepage": "https://alibaba.github.io/bifrostui",
   "scripts": {
-    "v": "npx lerna version --force-publish",
-    "v:beta": "npx lerna version prerelease --preid=beta --force-publish",
+    "v": "npx lerna version --force-publish --message 'Publish'",
+    "v:beta": "npx lerna version prerelease --preid=beta --force-publish --message 'Publish'",
     "start:h5": "dumi dev",
     "start:weapp": "node scripts/mini-program-site/index.js --type weapp",
     "start:alipay": "node scripts/mini-program-site/index.js --type alipay",
