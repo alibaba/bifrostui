@@ -1,7 +1,7 @@
 # 运行单测
 name: Unit Tests
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   run-ci-test:
