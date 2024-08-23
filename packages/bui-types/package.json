@@ -10,6 +10,7 @@
   ],
   "homepage": "http://bui.taopiaopiao.com",
   "peerDependencies": {
+    "@tarojs/components": "^3.3.16",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0"
   },
