@@ -1,0 +1,121 @@
+@import '~@bifrostui/styles/mixins/index.less';
+
+.bui-city-selector {
+  height: 100%;
+
+  &-title {
+    width: 100%;
+    height: 45px;
+    color: var(--bui-color-fg-default);
+    font-size: var(--bui-title-size-3);
+    line-height: 45px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1004;
+    border-bottom: solid 1px var(--bui-color-border-default);
+    background-color: var(--bui-color-bg-view);
+  }
+
+  &-btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    color: var(--bui-color-fg-muted);
+    text-align: center;
+    font-size: 20px;
+  }
+
+  &-scroll-view-container {
+    height: 100%;
+    display: flex;
+
+    &.container-has-title {
+      height: calc(100% - 45px);
+    }
+  }
+
+  &-all-city {
+    min-height: 500px;
+    font-size: var(--bui-text-size-2);
+    width: 100%;
+    background: var(--bui-color-bg-view);
+    align-self: flex-start;
+
+    .select-city-buttons {
+      display: flex;
+      flex-flow: wrap;
+      padding-left: 3px;
+      padding-top: 7.5px;
+    }
+
+    .select-city-title {
+      font-size: var(--bui-title-size-4);
+      line-height: 15px;
+      font-weight: 600;
+      padding-left: 12px;
+      padding-top: 9px;
+    }
+  }
+
+  &-list {
+    padding-left: 12px;
+    list-style-type: none;
+  }
+
+  &-list-item {
+    height: 45px;
+    font-size: var(--bui-title-size-4);
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child) {
+      border-bottom: 0.5px solid var(--bui-color-border-default);
+    }
+  }
+
+  &-index-container {
+    z-index: 1001;
+    position: absolute;
+    white-space: nowrap;
+    right: 0;
+    top: 50%;
+    width: 40px;
+    will-change: transform;
+    // transform: translate(100%, -50%);
+    transform: translate(0, -50%);
+    transition:
+      opacity 0.2s ease-out,
+      transform 0.2s ease-out;
+
+    &.left-in {
+      opacity: 1;
+      transform: translate(0, -50%);
+    }
+
+    &.city-index-has-title {
+      top: calc(50% + 22.5px);
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      float: left;
+      width: 100%;
+      touch-action: none;
+    }
+
+    li {
+      list-style: none;
+      height: 20px;
+      text-align: center;
+      font-size: var(--bui-text-size-3);
+      color: var(--bui-color-info, --bui-color-info);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
