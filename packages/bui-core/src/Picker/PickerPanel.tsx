@@ -18,14 +18,13 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
 
     const touch = useTouch();
     let timer;
-    // 触发惯性滑动条件:
-    // 在手指离开屏幕时，如果和上一次 move 时的间隔小于 `INERTIA_TIME` 且 move 距离大于 `INERTIA_DISTANCE` 时，执行惯性滑动
+    // 在手指离开屏幕时，如果和上一次 move 时的间隔小于 `INERTIA_TIME` 且 move 距离大于 `INERTIA_DISTANCE` 时，触发惯性滑动
     const INERTIA_TIME = 300;
     const INERTIA_DISTANCE = 15;
 
     const DEFAULT_DURATION = 200;
-    const lineSpacing = 36;
-    const rotation = 20;
+    const LINE_SPACING = 36;
+    const ROTATION = 20;
 
     const [startY, setStartY] = useState(0);
     const [currIndex, setCurrIndex] = useState(1);
@@ -54,7 +53,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       }
 
       setCurrIndex(index === -1 ? 1 : index + 1);
-      const move = index === -1 ? 0 : index * lineSpacing;
+      const move = index === -1 ? 0 : index * LINE_SPACING;
       setMove({ move: -move });
     };
 
@@ -95,31 +94,31 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
         if (updateMove > 0) {
           updateMove = 0;
         }
-        if (updateMove < -(options.length - 1) * lineSpacing) {
-          updateMove = -(options.length - 1) * lineSpacing;
+        if (updateMove < -(options.length - 1) * LINE_SPACING) {
+          updateMove = -(options.length - 1) * LINE_SPACING;
         }
 
-        // 设置滚动距离为lineSpacing的倍数值
-        const endMove = Math.round(updateMove / lineSpacing) * lineSpacing;
+        // 设置滚动距离为LINE_SPACING的倍数值
+        const endMove = Math.round(updateMove / LINE_SPACING) * LINE_SPACING;
         const deg = `${
-          (Math.abs(Math.round(endMove / lineSpacing)) + 1) * rotation
+          (Math.abs(Math.round(endMove / LINE_SPACING)) + 1) * ROTATION
         }deg`;
 
         setTransform(type, deg, time, endMove);
-        setCurrIndex(Math.abs(Math.round(endMove / lineSpacing)) + 1);
+        setCurrIndex(Math.abs(Math.round(endMove / LINE_SPACING)) + 1);
       } else {
         let deg = 0;
-        const currentDeg = (-updateMove / lineSpacing + 1) * rotation;
+        const currentDeg = (-updateMove / LINE_SPACING + 1) * ROTATION;
 
         // picker 滚动的最大角度
-        const maxDeg = (options.length + 1) * rotation;
+        const maxDeg = (options.length + 1) * ROTATION;
         const minDeg = 0;
 
         deg = Math.min(Math.max(currentDeg, minDeg), maxDeg);
 
         if (minDeg < deg && deg < maxDeg) {
           setTransform('', `${deg}deg`, undefined, updateMove);
-          setCurrIndex(Math.abs(Math.round(updateMove / lineSpacing)) + 1);
+          setCurrIndex(Math.abs(Math.round(updateMove / LINE_SPACING)) + 1);
         }
       }
     };
@@ -145,6 +144,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       touch.move(event);
       if (touch.isVertical) {
         isVerticalMoving.current = true;
+        event.preventDefault();
         event.stopPropagation();
       }
       const move = touch.deltaY.current - startY;
@@ -196,7 +196,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       isVerticalMoving.current = false;
       setTouchTime(0);
       onSelect?.(e, {
-        columnOption: options?.[Math.round(-scrollDistance / lineSpacing)],
+        columnOption: options?.[Math.round(-scrollDistance / LINE_SPACING)],
         columnIndex,
       });
     };
@@ -227,7 +227,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
               key={`${item?.value}-${i}`}
               style={{
                 transform: `rotate3d(1, 0, 0, ${
-                  -rotation * (i + 1)
+                  -ROTATION * (i + 1)
                 }deg) translate3d(0px, 0px, 104px)`,
               }}
             >
