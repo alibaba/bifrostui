@@ -25,6 +25,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
     const DEFAULT_DURATION = 200;
     const LINE_SPACING = 36;
     const ROTATION = 20;
+    const TOUCH_END = 'end';
 
     const [startY, setStartY] = useState(0);
     const [currIndex, setCurrIndex] = useState(1);
@@ -73,7 +74,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       translateY = 0,
     ) => {
       let nTime = time;
-      if (type !== 'end') {
+      if (type !== TOUCH_END) {
         nTime = 0;
       }
       setTouchTime(nTime);
@@ -89,7 +90,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       const { move, type, time } = config || {};
 
       let updateMove = move + transformY.current;
-      if (type === 'end') {
+      if (type === TOUCH_END) {
         // 限定滚动距离
         if (updateMove > 0) {
           updateMove = 0;
@@ -160,14 +161,14 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
         const distance = momentum(move, moveTime);
         setMove({
           move: distance,
-          type: 'end',
+          type: TOUCH_END,
           time: 1000,
         });
       } else {
         // 非惯性滚动
         setMove({
           move,
-          type: 'end',
+          type: TOUCH_END,
         });
       }
       timer = setTimeout(() => {
