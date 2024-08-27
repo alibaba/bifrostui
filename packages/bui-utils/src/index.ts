@@ -9,9 +9,10 @@ export {
   useDomReady,
   useSize,
   useDomCss,
+  useTouch,
 } from './hooks';
 export { default as isDev } from './isDev';
-export { isMini, isWeapp, isAlipay } from './isMini';
+export { isMini, isWeapp, isAlipay, isMiniapp } from './isMini';
 export { default as setRef } from './setRef';
 export { default as throttle } from './throttle';
 export { default as toArray } from './toArray';

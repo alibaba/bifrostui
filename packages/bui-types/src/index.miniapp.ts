@@ -1,17 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-
-declare module 'react' {
-  interface CSSProperties {
-    // Allow any CSS Custom Properties
-    [index: `--${string}`]: string | number;
-  }
-}
+import { ITouchEvent } from '@tarojs/components';
 
 /**
  * Remove properties `K` from `T`.
  * Distributive for union types.
- * @internal
  */
 export type DistributiveOmit<T, K extends keyof any> = T extends any
   ? Omit<T, K>
@@ -21,13 +14,16 @@ export interface ICommonProps {
   className?: string;
   style?: React.CSSProperties;
 }
+
 export interface IOverridableTypeMap {
   // eslint-disable-next-line @typescript-eslint/ban-types
   props: {};
   defaultComponent: React.ElementType;
 }
+
 export type BaseProps<M extends IOverridableTypeMap> = M['props'] &
   ICommonProps;
+
 export type OverrideProps<
   M extends IOverridableTypeMap,
   C extends React.ElementType,
@@ -42,10 +38,7 @@ export type StandardProps<
   className?: string;
   style?: React.CSSProperties;
 };
-
-export type ThemeColor = 'primary' | 'info' | 'success' | 'warning' | 'danger';
-
-export type IClickEvent = React.MouseEvent<HTMLElement>;
+export type IClickEvent = ITouchEvent | React.MouseEvent<HTMLElement>;
 
 /** Button元素小程序专属的 open-type 的合法值 */
 interface ButtonOpenTypeKeys {

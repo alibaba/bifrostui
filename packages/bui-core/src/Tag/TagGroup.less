@@ -2,13 +2,46 @@
   display: inline-flex;
   font-family: var(--bui-font-family);
 
-  .bui-tag {
-    margin: 0 0 0 -1px;
+  .bui-tag-outlined {
+    background-color: var(--bui-color-white);
+  }
+
+  .bui-tag-outlined + .bui-tag-contained {
+    margin-left: -1px;
+  }
+
+  .bui-tag-outlined:not(:last-child) {
+    position: relative;
+    border-right-style: dotted;
+
+    &::after {
+      top: 0;
+    }
+
+    &::before {
+      bottom: 0;
+    }
+
+    &::after,
+    &::before {
+      content: '';
+      position: absolute;
+      right: -1px;
+      width: 1px;
+      height: 13%;
+      color: #fff;
+      background-color: #fff;
+      border-right-style: solid;
+    }
   }
 
   .bui-tag:not(:last-child) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+
+    &:not(.bui-tag-outlined) {
+      border-right: 0;
+    }
   }
 
   .bui-tag:not(:first-child) {

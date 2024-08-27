@@ -55,7 +55,8 @@ const ScrollView = forwardRef<HTMLDivElement, ScrollViewProps>(
     const handleRef = useForkRef(ref, container);
 
     const onTouchMove = (e) => {
-      e.stopPropagation();
+      // 会导致埋点工具无法正确区分滑动和点击，必须去掉。
+      // e.stopPropagation();
     };
 
     const scrollVertical = useCallback((top, isAnimation) => {
@@ -78,7 +79,7 @@ const ScrollView = forwardRef<HTMLDivElement, ScrollViewProps>(
 
     const handleScroll = useCallback(
       (isInit = false) => {
-        const isAnimation = 'scrollWithAnimation' in props;
+        const isAnimation = props?.scrollWithAnimation;
         // scrollIntoView
         if (
           scrollIntoView &&
