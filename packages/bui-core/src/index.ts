@@ -36,4 +36,5 @@ export * from './NavBar';
 export * from './Loading';
 export * from './TabBar';
 export * from './Countdown';
+export * from './CitySelector';
 export * from './Picker';
