@@ -23,10 +23,14 @@
     height: 100%;
     background-image: linear-gradient(
         180deg,
-        rgba(255, 255, 255, 0.9),
-        rgba(255, 255, 255, 0.4)
+        var(--bui-color-bg-view-opacity-9),
+        var(--bui-color-bg-view-opacity-4)
       ),
-      linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4));
+      linear-gradient(
+        0deg,
+        var(--bui-color-bg-view-opacity-9),
+        var(--bui-color-bg-view-opacity-4)
+      );
     background-position: top, bottom;
     background-size: 100% var(--indicator-top);
     background-repeat: no-repeat;
