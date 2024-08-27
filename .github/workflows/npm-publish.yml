@@ -7,17 +7,14 @@ on:
     workflows: ['Unit Tests', 'Code Check']
     types:
       - completed
-  push:
     branches:
       - main
-    tags:
-      - 'Publish'
+    if: startsWith(github.ref, 'refs/tags/v')
 
 jobs:
   build-and-publish:
     # ['Unit Tests', 'Code Check']工作流成功完成
-    if: >
-      github.event.workflow_run.conclusion == 'success'
+    if: github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Check out code

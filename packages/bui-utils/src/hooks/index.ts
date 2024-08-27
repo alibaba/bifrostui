@@ -6,6 +6,7 @@ import useValue from './useValue';
 import useDomReady from './useDomReady';
 import useSize from './useSize';
 import useDomCss from './useDomCss';
+import useTouch from './useTouch';
 
 export {
   useValue,
@@ -16,4 +17,5 @@ export {
   useDomReady,
   useSize,
   useDomCss,
+  useTouch,
 };

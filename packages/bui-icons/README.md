@@ -1,4 +1,4 @@
-# @bifrostui/react-icon
+# @bifrostui/icons
 
 icon components for BUI
 
@@ -6,8 +6,8 @@ icon components for BUI
 
 ```sh
 // with npm
-npm install @bifrostui/react-icon
+npm install @bifrostui/icons
 
 // with yarn
-yarn add @bifrostui/react-icon
+yarn add @bifrostui/icons
 ```
