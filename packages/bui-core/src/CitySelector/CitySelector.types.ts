@@ -35,7 +35,7 @@ export type CitySelectorProps<
       /** 城市列表 */
       cities: allCityItemType[];
       /** 禁用展示索引 默认false 即展示索引 */
-      disableIndex: boolean;
+      disableIndex?: boolean;
       /** 头部标题 */
       title?: string;
       /** 选择城市回调 */

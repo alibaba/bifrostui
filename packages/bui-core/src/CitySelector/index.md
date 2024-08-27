@@ -11,6 +11,8 @@ name: CitySelector 城市选择
 
 ### 基础用法
 
+城市选择展示当前城市、定位城市、热门城市及所有城市，支持右侧字母导航
+
 ```tsx
 import React from 'react';
 import { CitySelector } from '@bifrostui/react';
@@ -94,7 +96,6 @@ export default () => {
     code: '310100',
     name: '上海',
   };
-
   const onSelect = (city) => {
     console.log(city);
   };
@@ -113,14 +114,16 @@ export default () => {
       currentCityGroupName="定位城市"
       hotCities={hotCities}
       hotCitiesGroupName="热门城市"
-      title="选择城市"
       onClose={onHide}
+      style={{ height: '500px' }}
     />
   );
 };
 ```
 
 ### 不展示导航用法
+
+用户可以设置disableIndex控制右侧字母导航的展示，默认为false，即展示字母导航
 
 ```tsx
 import React from 'react';
@@ -227,12 +230,15 @@ export default () => {
       title="选择城市"
       disableIndex
       onClose={onHide}
+      style={{ height: '500px' }}
     />
   );
 };
 ```
 
-### 不展示title用法
+### 不展示title和导航用法用法
+
+用户可以设置title来控制头部的展示
 
 ```tsx
 import React from 'react';
@@ -337,6 +343,8 @@ export default () => {
       hotCities={hotCities}
       hotCitiesGroupName="热门城市"
       onClose={onHide}
+      disableIndex
+      style={{ height: '500px' }}
     />
   );
 };
@@ -354,7 +362,7 @@ export default () => {
 | selectedCityGroupName | 当前城市栏的title                   | string                                               | '当前城市' |
 | currentCity           | 定位城市信息                        | City                                                 | -          |
 | currentCityGroupName  | 定位城市栏的title                   | string                                               | '定位城市' |
-| hotCities             | 热门城市信息                        | City                                                 | -          |
+| hotCities             | 热门城市信息                        | City[]                                               | -          |
 | hotCitiesGroupName    | 热门城市栏的title                   | string                                               | '热门城市' |
 | disableIndex          | 禁用展示索引 默认false 即展示索引   | boolean                                              | false      |
 | title                 | 头部title，非必传                   | string                                               | -          |

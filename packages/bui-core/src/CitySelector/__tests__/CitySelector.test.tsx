@@ -8,7 +8,7 @@ import {
   waitFor,
 } from 'testing';
 import CitySelector from '../CitySelector';
-import { hotCities, cities } from '../mock';
+import { hotCities, cities } from './mock';
 
 const selectedCity = { code: '310100', name: '上海' };
 const selectedCityGroupName = '当前城市';

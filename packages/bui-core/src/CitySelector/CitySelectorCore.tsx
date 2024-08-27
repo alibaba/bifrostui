@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
-import { throttle, useForkRef } from '@bifrostui/utils';
+import { throttle, useForkRef, useTouchEmulator } from '@bifrostui/utils';
 import { ScrollView } from '../ScrollView';
 import { CitySelectorCoreProps } from './CitySelector.types';
 import Selector from './Selector';
@@ -46,14 +46,22 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
       ref: propsRef,
       ...others
     } = props;
-    const nodeRef = useForkRef(ref, propsRef);
+    const cityRef = useRef(null);
+    const nodeRef = useForkRef(ref, propsRef, cityRef);
+    useTouchEmulator(cityRef.current);
     const [codeGroup, setCodeGroup] = useState([]);
     const [codeShow, setCodeShow] = useState(false);
     const [targetId, setTargetId] = useState('');
 
     // 提取字母
     useEffect(() => {
-      if (cities.length === 0 || codeGroup.length !== 0 || disableIndex) return;
+      if (
+        !cities ||
+        cities?.length === 0 ||
+        codeGroup.length !== 0 ||
+        disableIndex
+      )
+        return;
 
       const newGroup = [];
       if (selectedCity) {
@@ -100,7 +108,7 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
 
     const scrollHandler = throttle(() => {
       if (targetId) {
-        setTargetId('');
+        setTargetId(undefined);
       }
     }, 500);
 
@@ -111,7 +119,7 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
     const renderTitile = (title, titleCode?) => {
       const parseTitle = (titleCode || title).toUpperCase();
       return (
-        <div className="select-city-title" id={parseTitle}>
+        <div className="select-city-title" id={disableIndex ? '' : parseTitle}>
           {title.toUpperCase()}
         </div>
       );
