@@ -1,7 +1,9 @@
 @import '~@bifrostui/styles/mixins/index.less';
 
 .bui-city-selector {
+  font-family: var(--bui-font-family);
   height: 100%;
+  position: relative;
 
   &-title {
     width: 100%;
@@ -30,7 +32,6 @@
 
   &-scroll-view-container {
     height: 100%;
-    display: flex;
 
     &.container-has-title {
       height: calc(100% - 45px);
@@ -55,13 +56,13 @@
       font-size: var(--bui-title-size-4);
       line-height: 15px;
       font-weight: 600;
-      padding-left: 12px;
+      padding-left: var(--bui-spacing-lg);
       padding-top: 9px;
     }
   }
 
   &-list {
-    padding-left: 12px;
+    padding-left: var(--bui-spacing-lg);
     list-style-type: none;
   }
 
