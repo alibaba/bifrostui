@@ -8,7 +8,9 @@ import {
   waitFor,
 } from 'testing';
 import CitySelector from '../CitySelector';
-import { hotCities, cities } from './mock';
+
+const cities = require('./cities.json');
+const hotCities = require('./hotCities.json');
 
 const selectedCity = { code: '310100', name: '上海' };
 const selectedCityGroupName = '当前城市';
