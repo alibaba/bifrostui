@@ -1,0 +1,58 @@
+@import '~@bifrostui/styles/mixins/index.less';
+
+.bui-toast {
+  position: fixed;
+  right: unset;
+  bottom: unset;
+  font-family: var(--bui-font-family);
+
+  --font-size: var(--bui-text-size-1);
+  --color: var(--bui-color-white);
+  --padding: var(--bui-spacing-xl);
+  --word-break: break-all;
+  --top: 15%;
+  --bottom: 85%;
+  --background-color: rgba(0, 0, 0, 0.8);
+  --border-radius: var(--bui-shape-radius-default);
+
+  &-content {
+    position: fixed;
+    left: 50%;
+    z-index: var(--bui-z-index-toast);
+    width: fit-content;
+    // 无效，最大宽度取决于绝对定位的left值
+    max-width: 92%;
+    padding: var(--padding);
+    font-size: var(--font-size);
+    color: var(--color);
+    border-radius: var(--border-radius);
+    word-break: var(--word-break);
+    background-color: var(--background-color);
+
+    &-center {
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &-top {
+      top: var(--top);
+      transform: translate(-50%, calc(-1 * var(--top)));
+    }
+
+    &-bottom {
+      top: var(--bottom);
+      transform: translate(-50%, calc(-1 * var(--bottom)));
+    }
+
+    &-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .bui-svg-icon {
+        margin-bottom: 8px;
+        font-size: 30px;
+      }
+    }
+  }
+}
