@@ -17,7 +17,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
       ref={ref}
       className={clsx(
         prefixCls,
-        `${prefixCls}-${align}`,
+        align !== 'start' && `${prefixCls}-${align}`,
         {
           [`${prefixCls}-active`]: !isMini && index === value,
           [`${prefixCls}-miniapp-active`]: isMini && index === value,
