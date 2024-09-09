@@ -148,6 +148,7 @@ export { default as MoreVerticalOutlinedIcon } from './MoreVerticalOutlined';
 export { default as MovieAppointmentOutlinedIcon } from './MovieAppointmentOutlined';
 export { default as MovieFilledIcon } from './MovieFilled';
 export { default as MovieOutlinedIcon } from './MovieOutlined';
+export { default as NearMeIcon } from './NearMe';
 export { default as NextFilledIcon } from './NextFilled';
 export { default as NoteOutlinedIcon } from './NoteOutlined';
 export { default as NoticeOutlinedIcon } from './NoticeOutlined';
