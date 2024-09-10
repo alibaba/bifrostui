@@ -303,21 +303,21 @@ exports[`Tabs snapshot Tabs demo snapshot 0 4`] = `
         }
       />
       <div
-        className="bui-tab bui-tab-start bui-tab-active"
+        className="bui-tab bui-tab-active"
         onClick={[Function]}
         title="水果"
       >
         水果
       </div>
       <div
-        className="bui-tab bui-tab-start"
+        className="bui-tab"
         onClick={[Function]}
         title="蔬菜"
       >
         蔬菜
       </div>
       <div
-        className="bui-tab bui-tab-start"
+        className="bui-tab"
         onClick={[Function]}
         title="动物"
       >
