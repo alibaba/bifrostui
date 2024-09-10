@@ -21,7 +21,8 @@
   },
   "peerDependencies": {
     "@tarojs/taro": "^3.2.0",
-    "react": "^17.0.0 || ^18.0.0"
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
   },
   "license": "MIT",
   "publishConfig": {

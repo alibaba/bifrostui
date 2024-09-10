@@ -23,5 +23,7 @@ export {
   getTransitionProps,
   createTransitions,
 } from './transitions';
+export { default as getRootElement } from './getRootElement';
 export { default as getBoundingClientRect } from './getBoundingClientRect';
 export * from './isType';
+export * from './render';
