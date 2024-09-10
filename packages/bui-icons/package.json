@@ -24,7 +24,7 @@
   "devDependencies": {
     "chalk": "^4.1.2",
     "fast-glob": "^3.3.1",
-    "father": "^4.1.8",
+    "father": "4.3.1",
     "fs-extra": "^10.0.0",
     "rimraf": "^3.0.0",
     "svgo": "^2.8.0"
