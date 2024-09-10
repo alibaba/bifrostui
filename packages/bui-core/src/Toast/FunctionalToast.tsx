@@ -1,4 +1,4 @@
-import { createRoot } from 'react-dom/client';
+import { render, unmount, getRootElement } from '@bifrostui/utils';
 import React, { useCallback, useEffect, useState } from 'react';
 import ToastView from './Toast';
 import {
@@ -22,18 +22,6 @@ const formatProps = (props) => {
 };
 
 /**
- * Toast组件容器
- */
-const createContainer = (
-  getContainer?: HTMLElement | (() => HTMLElement) | undefined,
-): HTMLElement => {
-  const container =
-    typeof getContainer === 'function' ? getContainer() : getContainer;
-
-  return container || document.body;
-};
-
-/**
  * 销毁全部Toast
  */
 const destroyAll = () => {
@@ -49,28 +37,49 @@ const functionalToast = (props: ToastProps) => {
     duration: 2000,
     position: 'center',
     allowMultiple: false,
-    closeOnClickBackdrop: false,
+    disableClick: false,
     ...(formatProps(props) || {}),
   };
-
-  const rootWrapper = document.createElement('div');
-  const container = createContainer();
-  container.appendChild(rootWrapper);
 
   const instance: ToastReturnType = {
     close: () => null,
   };
+  const rootWrapper = document.createElement('div');
+  if (options.disableClick) {
+    const styles = {
+      position: 'fixed',
+      top: '0',
+      bottom: '0',
+      left: '0',
+      right: '0',
+      zIndex: 'var(--bui-z-index-toast)',
+    };
+    Object.keys(styles).forEach((property) => {
+      rootWrapper.style[property] = styles[property];
+    });
+  }
+
+  const rootElement = getRootElement();
+  rootElement.appendChild(rootWrapper);
 
   const ToastComponent = () => {
-    const { duration, allowMultiple, ...others } = options;
+    const { duration, allowMultiple, onClose, ...others } = options;
     const [open, setOpen] = useState(false);
     let timer;
+    const fadeTimeout = {
+      enter: 350,
+      exit: 150,
+    };
 
     const close = useCallback(() => {
       setOpen(false);
-      if (rootWrapper.parentNode) {
-        rootWrapper.parentNode.removeChild(rootWrapper);
-      }
+      setTimeout(() => {
+        const unmountRes = unmount(rootWrapper);
+        if (unmountRes && rootWrapper.parentNode) {
+          rootWrapper.parentNode.removeChild(rootWrapper);
+        }
+      }, fadeTimeout.exit);
+      onClose?.();
     }, [rootWrapper]);
 
     useEffect(() => {
@@ -92,21 +101,25 @@ const functionalToast = (props: ToastProps) => {
 
     return (
       <ToastView
-        open={open}
-        onClose={() => {
-          setOpen(false);
-        }}
         {...others}
+        open={open}
+        timeout={fadeTimeout}
+        onClose={close}
       />
     );
   };
 
-  const root = createRoot(rootWrapper);
-  root.render(<ToastComponent />);
+  render(<ToastComponent />, rootWrapper);
 
   return instance;
 };
 
+/**
+ * Toast.warning(options: ToastOptions)
+ * Toast.loading(options: ToastOptions)
+ * Toast.success(options: ToastOptions)
+ * Toast.fail(options: ToastOptions)
+ */
 ['warning', 'loading', 'success', 'fail'].forEach((methodName: ToastType) => {
   functionalToast[methodName] = (options: ToastOptions) =>
     functionalToast({
@@ -114,6 +127,11 @@ const functionalToast = (props: ToastProps) => {
       ...(formatProps(options) || {}),
     });
 });
+
+/**
+ * 清除所有Toast
+ * Toast.clear()
+ */
 functionalToast.clear = () => {
   // 处理toast还未弹出就立刻销毁的情况，将销毁放到下一个时间循环中，避免销毁失败
   setTimeout(() => {

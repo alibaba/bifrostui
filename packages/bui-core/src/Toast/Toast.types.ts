@@ -1,5 +1,4 @@
 import React from 'react';
-import { ModalProps } from '../Modal/Modal.types';
 import { FadeProps } from '../Fade/Fade.types';
 
 /**
@@ -7,13 +6,17 @@ import { FadeProps } from '../Fade/Fade.types';
  */
 export type ToastType = 'loading' | 'success' | 'fail' | 'warning';
 
-export interface ToastProps extends ModalProps {
+export interface ToastProps extends FadeProps {
+  /**
+   * 是否展示
+   */
+  open?: boolean;
   /**
    * 提示类型
    */
   type?: ToastType;
   /**
-   * toast内容
+   * toast内容，支持使用`\n`换行
    */
   message?: string;
   /**
@@ -27,7 +30,7 @@ export interface ToastProps extends ModalProps {
    */
   position?: 'top' | 'center' | 'bottom';
   /**
-   * 是否允许存在多个Toast
+   * 是否允许同时存在多个Toast
    * @default false
    */
   allowMultiple?: boolean;
@@ -36,24 +39,20 @@ export interface ToastProps extends ModalProps {
    */
   icon?: React.ReactNode;
   /**
-   * Fade组件的Props
-   */
-  FadeProps?: Partial<FadeProps>;
-  /**
-   * 是否在点击遮罩层后关闭
+   * 展示Toast时，页面内容是否可以点击
    * @default false
    */
-  closeOnClickBackdrop?: boolean;
+  disableClick?: boolean;
   /**
    * 关闭时的回调函数
    */
-  onClose?: ModalProps['onClose'];
+  onClose?: () => void;
 }
 
 /**
  * 函数式调用配置参数
  */
-export type ToastOptions = Omit<ToastProps, 'type'> | string;
+export type ToastOptions = Omit<ToastProps, 'type' | 'open'> | string;
 
 /**
  * 函数式调用返回值类型

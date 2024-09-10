@@ -7,7 +7,6 @@ import {
   SuccessCircleFilledBoldIcon,
 } from '@bifrostui/icons';
 import { ToastProps } from './Toast.types';
-import Modal from '../Modal';
 import Fade from '../Fade';
 import './Toast.less';
 
@@ -18,13 +17,12 @@ const ToastComponent = React.forwardRef<HTMLDivElement, ToastProps>(
     const {
       className,
       style,
+      open,
       type,
+      icon,
       message,
       position = 'center',
-      icon,
-      FadeProps,
-      closeOnClickBackdrop = false,
-      onClose,
+      disableClick = false,
       ...others
     } = props;
 
@@ -37,31 +35,24 @@ const ToastComponent = React.forwardRef<HTMLDivElement, ToastProps>(
     const iconDom = iconMap[type] || icon;
 
     return (
-      <Modal
-        className={clsx(prefixCls, className)}
-        ref={ref}
-        style={style}
-        onClose={closeOnClickBackdrop && onClose}
-        hideBackdrop
-        disableScrollLock
-        disablePortal
-        {...others}
-      >
-        <Fade appear in timeout={1000} {...FadeProps}>
-          <div
-            className={clsx(
-              `${prefixCls}-content`,
-              `${prefixCls}-content-${position}`,
-              {
-                [`${prefixCls}-content-icon`]: !!iconDom,
-              },
-            )}
-          >
-            {iconDom}
-            {message}
-          </div>
-        </Fade>
-      </Modal>
+      <Fade {...others} in={open} appear={false} unmountOnExit>
+        <div
+          className={clsx(
+            prefixCls,
+            `${prefixCls}-${position}`,
+            {
+              [`${prefixCls}-icon`]: !!iconDom,
+              [`${prefixCls}-allow-click`]: !disableClick,
+            },
+            className,
+          )}
+          ref={ref}
+          style={style}
+        >
+          {iconDom}
+          {message}
+        </div>
+      </Fade>
     );
   },
 );
