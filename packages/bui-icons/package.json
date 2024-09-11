@@ -30,7 +30,6 @@
     "svgo": "^2.8.0"
   },
   "dependencies": {
-    "@bifrostui/react": "^1.1.7",
     "@bifrostui/types": "^1.1.7",
     "@bifrostui/utils": "^1.1.7",
     "clsx": "^1.2.1"
