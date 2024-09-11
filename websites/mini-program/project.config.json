@@ -1,6 +1,5 @@
 {
   "miniprogramRoot": "dist/",
-  "projectname": "mini",
   "description": "",
   "appid": "wx5ee52f8dc068c1fb",
   "setting": {
@@ -16,18 +15,22 @@
       "outputPath": ""
     },
     "condition": false,
-    "ignoreUploadUnusedFiles": true
+    "ignoreUploadUnusedFiles": true,
+    "coverView": false,
+    "showShadowRootInWxmlPanel": false,
+    "packNpmRelationList": []
   },
   "compileType": "miniprogram",
-  "libVersion": "2.32.3",
   "srcMiniprogramRoot": "dist/",
-  "packOptions": {
-    "ignore": [],
-    "include": []
-  },
   "condition": {},
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
-  }
+  },
+  "libVersion": "2.32.3",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "projectname": "mini"
 }
