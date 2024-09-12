@@ -43,11 +43,10 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
       height,
       onSelect,
       onClose,
-      ref: propsRef,
       ...others
     } = props;
     const cityRef = useRef(null);
-    const nodeRef = useForkRef(ref, propsRef, cityRef);
+    const nodeRef = useForkRef(ref, cityRef);
     useTouchEmulator(cityRef.current);
     const [codeGroup, setCodeGroup] = useState([]);
     const [codeShow, setCodeShow] = useState(false);

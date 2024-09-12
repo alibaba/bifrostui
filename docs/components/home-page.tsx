@@ -41,9 +41,9 @@ export default () => {
             className="introduce-icon"
             src="https://gw.alicdn.com/imgextra/i1/O1CN01y4iaZr1aLP2g7R9xm_!!6000000003313-2-tps-160-160.png"
           />
-          <div className="introduce-title">跨端</div>
+          <div className="introduce-title">一码多端</div>
           <div className="introduce-desc">
-            一套搞定Web与小程序跨端需求的组件库
+            同时支持H5和小程序
           </div>
         </div>
         <div className="introduce-item">
@@ -51,9 +51,9 @@ export default () => {
             className="introduce-icon"
             src="https://gw.alicdn.com/imgextra/i4/O1CN01fvzf101QVLTsWkcrR_!!6000000001981-2-tps-160-160.png"
           />
-          <div className="introduce-title">可定制</div>
+          <div className="introduce-title">高定制</div>
           <div className="introduce-desc">
-            可以高效的对组件外观进行调整或创造自己的主题
+            一致优雅的API帮助您快速创造新主题
           </div>
         </div>
         <div className="introduce-item">
@@ -63,7 +63,7 @@ export default () => {
           />
           <div className="introduce-title">高可用</div>
           <div className="introduce-desc">
-            完善的配套工具体系、更灵活的组件，自由组合使用
+            完善的配套，丰富的组件，开箱即用
           </div>
         </div>
       </div>
@@ -74,7 +74,7 @@ export default () => {
             <div>
               <div className="content-title">设计语言</div>
               <div className="content-desc">
-                基于阿里影业的众多业务实践，抽象构建出移动端资产库
+                基于阿里影业的众多业务实践沉淀的设计语言和设计系统
               </div>
               <Button
                 size="large"
@@ -100,7 +100,7 @@ export default () => {
             <div>
               <div className="content-title">组件列表</div>
               <div className="content-desc">
-                基于阿里影业的众多业务实践，抽象构建出的跨端组件库
+                一致的API、丰富的组件帮助您快速构建前端应用
               </div>
               <Button
                 size="large"
