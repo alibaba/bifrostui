@@ -36,3 +36,5 @@ backstop_data/html_report
 /.ci
 /.dumi/tmp
 /.vscode
+
+project.private.config.json
