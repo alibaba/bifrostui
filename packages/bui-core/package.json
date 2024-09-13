@@ -21,7 +21,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "build": "father build"
+    "build": "node esbuild.config.js"
   },
   "sideEffects": [
     "*.css",
@@ -37,6 +37,8 @@
     "@bifrostui/utils": "^1.1.11-beta.0",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.7",
+    "fs-extra": "^11.2.0",
+    "glob": "11.0.0",
     "swiper": "^8.1.5"
   },
   "peerDependencies": {
