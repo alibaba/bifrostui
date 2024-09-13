@@ -32,13 +32,13 @@ const destroyAll = () => {
   }
 };
 
-const functionalToast = (props: ToastProps) => {
+const functionalToast = (props: ToastProps | string) => {
   const options = {
     duration: 2000,
     position: 'center',
     allowMultiple: false,
     disableClick: false,
-    ...(formatProps(props) || {}),
+    ...formatProps(props),
   };
 
   const instance: ToastReturnType = {
@@ -124,7 +124,7 @@ const functionalToast = (props: ToastProps) => {
   functionalToast[methodName] = (options: ToastOptions) =>
     functionalToast({
       type: methodName,
-      ...(formatProps(options) || {}),
+      ...formatProps(options),
     });
 });
 
@@ -139,6 +139,6 @@ functionalToast.clear = () => {
   });
 };
 
-const Toast = functionalToast as unknown as ToastInstance;
+const Toast = functionalToast as ToastInstance;
 
 export default Toast;

@@ -279,6 +279,7 @@ export default () => {
           Toast({
             message: '提示内容',
             disableClick: true,
+            duration: 1000000,
           });
         }}
       >
@@ -364,6 +365,44 @@ export default () => {
 };
 ```
 
+### 自定义提示样式
+
+可以根据提供的css变量，以及className等属性自定义Toast样式。
+
+```tsx
+import { Stack, Button, Toast } from '@bifrostui/react';
+import React, { useRef } from 'react';
+
+export default () => {
+  const ref = useRef();
+
+  return (
+    <Stack direction="row" spacing="10px">
+      <Button
+        onClick={() => {
+          Toast({
+            ref,
+            message: '提示内容',
+            className: 'my-toast',
+            duration: 5000,
+            style: {
+              '--color': 'red',
+              '--border-radius': '30px',
+              '--font-size': '16px',
+            },
+            onEntered: () => {
+              console.log('ref', ref);
+            },
+          });
+        }}
+      >
+        toast
+      </Button>
+    </Stack>
+  );
+};
+```
+
 ### API
 
 ##### ToastOptions
@@ -405,6 +444,7 @@ export default () => {
 | --color            | 字体颜色                 | --bui-color-white          | -        |
 | --padding          | 内边距                   | --bui-spacing-xl           | -        |
 | --word-break       | 换行规则                 | break-all                  | -        |
+| --z-index          | 层级                     | --bui-z-index-toast        | -        |
 | --position-top     | 顶部展示时，距离顶部距离 | 15%                        | -        |
 | --position-bottom  | 底部展示时，距离顶部距离 | 85%                        | -        |
 | --background-color | 背景颜色                 | rgba(0, 0, 0, 0.8)         | -        |

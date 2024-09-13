@@ -68,6 +68,7 @@ export type ToastReturnType = {
  * Toast Instance
  */
 export interface ToastInstance {
+  (options: ToastOptions): ToastReturnType;
   /**
    * 警告提示
    */
