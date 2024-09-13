@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import React from 'react';
-import { act, fireEvent, isConformant, render } from 'testing';
+import { fireEvent, isConformant, render } from 'testing';
 import { Calendar } from '..';
 
 describe('Calendar', () => {
@@ -199,9 +199,7 @@ describe('Calendar', () => {
     const texts = container.querySelector(`.${rootClass}-handler-text`);
     fireEvent.click(texts);
 
-    await act(async () => {
-      await jest.runAllTimers();
-    });
+    jest.useFakeTimers();
 
     const [panel1] = document.querySelectorAll(`.bui-picker-panel`);
     const [roller1] = document.querySelectorAll(`.bui-picker-panel-roller`);
