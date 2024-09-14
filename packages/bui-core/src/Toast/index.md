@@ -279,7 +279,7 @@ export default () => {
           Toast({
             message: '提示内容',
             disableClick: true,
-            duration: 1000000,
+            duration: 3000,
           });
         }}
       >
@@ -384,7 +384,6 @@ export default () => {
             ref,
             message: '提示内容',
             className: 'my-toast',
-            duration: 5000,
             style: {
               '--color': 'red',
               '--border-radius': '30px',

@@ -44,6 +44,19 @@ function toggleWarning(skip: boolean) {
 }
 
 // ========================== Render ==========================
+
+/** @private Test usage. Not work in prod */
+// eslint-disable-next-line consistent-return
+export function testModernRender(
+  node: ReactElement,
+  container: ContainerType,
+  isTest: boolean,
+) {
+  if (process.env.NODE_ENV !== 'production' && isTest) {
+    return legacyRender(node, container);
+  }
+}
+
 function modernRender(node: ReactElement, container: ContainerType) {
   toggleWarning(true);
   const root = container[MARK] || createRoot(container);
@@ -66,6 +79,15 @@ export function render(node: ReactElement, container: ContainerType) {
 }
 
 // ========================== Unmount =========================
+
+/** @private Test usage. Not work in prod */
+// eslint-disable-next-line consistent-return
+export function testLegacyUnmount(container: ContainerType, isTest: boolean) {
+  if (process.env.NODE_ENV !== 'production' && isTest) {
+    return legacyUnmount(container);
+  }
+}
+
 async function modernUnmount(container: ContainerType) {
   // Delay to unmount to avoid React 18 sync warning
   return Promise.resolve().then(() => {
