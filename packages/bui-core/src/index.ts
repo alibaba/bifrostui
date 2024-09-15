@@ -39,3 +39,4 @@ export * from './Countdown';
 export * from './CitySelector';
 export * from './Picker';
 export * from './Toast';
+export * from './Dialog';

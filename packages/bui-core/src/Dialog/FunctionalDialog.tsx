@@ -1,0 +1,133 @@
+import type { ReactNode } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import Popup from './Dialog';
+import { getRootElement, render, unmount } from '@bifrostui/utils';
+import {
+  DialogProps,
+  DialogPromise,
+  Dispatch,
+  DialogInstance,
+  PromptOptions,
+  ConfirmOptions,
+} from './Dialog.types';
+const { isValidElement, Component } = React;
+
+/**
+ * 参数格式化，支持直接传文案
+ */
+const formatProps = (props) => {
+  if (typeof props === 'string' || isValidElement(props)) {
+    return { header: props };
+  }
+  return props;
+};
+
+const DialogGenerator = (options: DialogProps) => {
+  const rootWrapper = document.createElement('div');
+  const rootElement = getRootElement();
+  rootElement.appendChild(rootWrapper);
+
+  const DialogComponent = () => {
+    const {
+      // closeBefore,
+      closeAfter,
+      custom,
+      footer,
+      onConfirm,
+      onCancel,
+      ...others
+    } = options;
+    const [visible, setVisible] = useState(false);
+    const fadeTimeout = {
+      enter: 350,
+      exit: 150,
+    };
+
+    const close = useCallback(() => {
+      setVisible(false);
+      setTimeout(() => {
+        const unmountRes = unmount(rootWrapper);
+        if (unmountRes && rootWrapper.parentNode) {
+          rootWrapper.parentNode.removeChild(rootWrapper);
+        }
+      }, fadeTimeout.exit);
+    }, [rootWrapper]);
+
+    useEffect(() => {
+      setVisible(true);
+    }, []);
+
+    const dispatch: Dispatch = async (action, val) => {
+      if (action === true) {
+        await onConfirm?.(val);
+      } else if (action === false) {
+        await onCancel?.();
+      }
+      close();
+    };
+
+    const destroy = () => {
+      setVisible(false);
+      closeAfter && closeAfter();
+    };
+
+    const customNode: ReactNode =
+      typeof custom === 'function' ? custom(dispatch) : custom;
+    const footerNode: ReactNode =
+      typeof footer === 'function' ? footer(dispatch) : footer;
+
+    return (
+      <Popup
+        {...others}
+        custom={customNode}
+        footer={footerNode}
+        visible={visible}
+        onConfirm={(val) => dispatch(true, val)}
+        onCancel={() => dispatch(false)}
+        closeAfter={destroy}
+      />
+    );
+  };
+
+  return render(<DialogComponent />, rootWrapper);
+};
+
+const Dialog: DialogInstance = (options: DialogProps = {}): DialogPromise => {
+  const { onConfirm, onCancel, ...rest } = options;
+  return new Promise((resolve) => {
+    DialogGenerator({
+      ...rest,
+      onConfirm: async (val) => {
+        await onConfirm?.(val);
+        if (rest.type === 'prompt') resolve(val);
+        else resolve(true);
+      },
+      onCancel: async () => {
+        await onCancel?.();
+        resolve(false);
+      },
+    });
+  });
+};
+
+Dialog.prototype = Component.prototype;
+
+const confirm = (options: ConfirmOptions) => {
+  return Dialog({
+    type: 'confirm',
+    ...formatProps(options),
+  });
+};
+
+const prompt = (options: PromptOptions) => {
+  return Dialog({
+    type: 'prompt',
+    ...formatProps(options),
+  });
+};
+
+Dialog.confirm = confirm;
+Dialog.prompt = prompt;
+export { confirm, prompt };
+
+export default Dialog;
