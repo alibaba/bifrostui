@@ -13,7 +13,6 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     onCancel,
     onConfirm,
     dispatch,
-    closeBefore,
     custom,
     header,
     desc,
@@ -30,11 +29,6 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   const dialogDispatch: Dispatch = async (action) => {
     if (dispatch) {
       dispatch(action);
-    } else if (closeBefore) {
-      try {
-        await closeBefore(action);
-        onCancel && onCancel();
-      } catch (e) {}
     } else if (action === false) {
       onCancel && onCancel();
     } else if (action === true) {
@@ -88,18 +82,24 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
         className={clsx(`${prefixCls}-main`)}
         onClick={(e) => e.stopPropagation()}
       >
-        {customNode ? (
-          customNode
-        ) : (
-          <div className={`${prefixCls}-body`}>
-            <h1 className={`${prefixCls}-title`}>{titleNode}</h1>
-            {descNode && <div className={`${prefixCls}-desc`}>{descNode}</div>}
-            {inputNode}
-            {!!footerNode && (
-              <div className={`${prefixCls}-footer`}>{footerNode}</div>
-            )}
-          </div>
-        )}
+        <div className={`${prefixCls}-body`}>
+          {customNode ? (
+            customNode
+          ) : (
+            <>
+              {titleNode && (
+                <h1 className={`${prefixCls}-title`}>{titleNode}</h1>
+              )}
+              {descNode && (
+                <div className={`${prefixCls}-desc`}>{descNode}</div>
+              )}
+              {inputNode}
+            </>
+          )}
+          {!!footerNode && (
+            <div className={`${prefixCls}-footer`}>{footerNode}</div>
+          )}
+        </div>
       </div>
     </Modal>
   );
