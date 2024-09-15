@@ -1,4 +1,8 @@
+@import '~@bifrostui/styles/mixins/index.less';
+
 .bui-dialog {
+  --max-width: 300px;
+  --border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6,25 +10,13 @@
 
 .bui-dialog-main {
   padding-top: 21px;
-  min-width: 300px;
+  min-width: var(--max-width);
   margin: 0 auto;
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   background-clip: padding-box;
   background-color: #fff;
   line-height: 21px;
 }
-
-// .bui-dialog-confirm {
-//   margin-top: -20vh;
-//   width: 410px;
-//   background-color: #fff;
-//   border-radius: 10px;
-//   box-shadow:
-//     0 3px 6px -4px #0000001f,
-//     0 6px 16px #00000014,
-//     0 9px 28px 8px #0000000d;
-//   max-width: 90vw;
-// }
 
 .bui-dialog-body {
   .bui-dialog-title {
@@ -86,7 +78,7 @@
 .bui-dialog .bui-dialog:last-child {
   font-weight: 500;
   border-bottom-right-radius: 12px;
-  color: #ff4361;
+  color: var(--bui-color-red);
 }
 
 .bui-dialog .bui-dialog-button:disabled,
@@ -121,17 +113,8 @@
 }
 
 .bui-dialog .bui-dialog-input {
-  // box-sizing: border-box;
-  // display: block;
   width: calc(100% - 48px);
-  // height: 39px;
-  // overflow: hidden;
   border: 0;
-  // border-radius: 6px;
-  // background-clip: padding-box;
   background-color: #f5f6fe;
   margin: 14px 24px 0;
-  // padding: 0 12px;
-  // box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
-  // font-size: 14px;
 }

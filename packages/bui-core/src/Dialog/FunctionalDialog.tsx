@@ -28,20 +28,8 @@ const DialogGenerator = (options: DialogProps) => {
   rootElement.appendChild(rootWrapper);
 
   const DialogComponent = () => {
-    const {
-      // closeBefore,
-      closeAfter,
-      custom,
-      footer,
-      onConfirm,
-      onCancel,
-      ...others
-    } = options;
+    const { custom, footer, onConfirm, onCancel, ...others } = options;
     const [visible, setVisible] = useState(false);
-    const fadeTimeout = {
-      enter: 350,
-      exit: 150,
-    };
 
     const close = useCallback(() => {
       setVisible(false);
@@ -50,7 +38,7 @@ const DialogGenerator = (options: DialogProps) => {
         if (unmountRes && rootWrapper.parentNode) {
           rootWrapper.parentNode.removeChild(rootWrapper);
         }
-      }, fadeTimeout.exit);
+      }, 150);
     }, [rootWrapper]);
 
     useEffect(() => {
@@ -59,16 +47,19 @@ const DialogGenerator = (options: DialogProps) => {
 
     const dispatch: Dispatch = async (action, val) => {
       if (action === true) {
-        await onConfirm?.(val);
+        try {
+          await onConfirm?.(val);
+        } catch (error) {
+          /* empty */
+        }
       } else if (action === false) {
-        await onCancel?.();
+        try {
+          await onCancel?.();
+        } catch (error) {
+          /* empty */
+        }
       }
       close();
-    };
-
-    const destroy = () => {
-      setVisible(false);
-      closeAfter && closeAfter();
     };
 
     const customNode: ReactNode =
@@ -84,7 +75,6 @@ const DialogGenerator = (options: DialogProps) => {
         visible={visible}
         onConfirm={(val) => dispatch(true, val)}
         onCancel={() => dispatch(false)}
-        closeAfter={destroy}
       />
     );
   };
@@ -128,6 +118,5 @@ const prompt = (options: PromptOptions) => {
 
 Dialog.confirm = confirm;
 Dialog.prompt = prompt;
-export { confirm, prompt };
 
 export default Dialog;
