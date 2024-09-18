@@ -26,6 +26,7 @@ export interface DialogProps extends ModalProps {
   /**
    * 自定义内容
    */
+  // TODO description
   desc?: Render;
   /**
    * 自定义按钮区域
@@ -34,6 +35,7 @@ export interface DialogProps extends ModalProps {
   /**
    * 是否显示
    */
+  // TODO 删除，用open
   visible?: boolean;
   /**
    * 输入框占位文本
@@ -42,6 +44,8 @@ export interface DialogProps extends ModalProps {
   /**
    * 内部<input>标签的标准属性
    */
+  // TODO React not defined
+  // TODO InputProps
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   /**
    * 执行操作
@@ -58,6 +62,7 @@ export interface DialogProps extends ModalProps {
   /**
    * 确认回调
    */
+  // TODO del void
   onConfirm?: (val?: string) => void | Promise<void | string>;
   /**
    * 取消回调
@@ -100,6 +105,7 @@ export type Options = PromptOptions | ConfirmOptions;
  * Dialog Instance
  */
 export interface DialogInstance {
+  // 默认ConfirmOptions
   (options: Options): DialogPromise;
   /**
    * 警告提示

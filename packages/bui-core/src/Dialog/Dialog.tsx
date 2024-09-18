@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import clsx from 'clsx';
+// TODO 相对路径
 import { Input } from '@bifrostui/react';
 import { DialogProps, Dispatch, Render } from './Dialog.types';
 import Modal from '../Modal';
@@ -27,23 +28,28 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
 
   const InputRef = useRef(null);
 
+  // TODO 类型中val 用不到？
   const dialogDispatch: Dispatch = async (action) => {
     if (dispatch) {
       dispatch(action);
     } else if (action === false) {
+      // TODO onCancel?.()
       onCancel && onCancel();
     } else if (action === true) {
+      // TODO onCancel?.()
       onConfirm && onConfirm(InputRef?.current?.value);
     }
   };
 
   const renderNode = (node: Render) =>
     typeof node === 'function' ? node(dialogDispatch) : node;
+
   const customNode = custom && renderNode(custom);
   const titleNode = header && renderNode(header);
   const descNode = desc && renderNode(desc);
   const footerNode = !footer ? (
     <div className={`${prefixCls}-footer`}>
+      {/* TODO 使用Button */}
       <a onClick={onCancel} className={`${prefixCls}-button`}>
         {cancelText ? cancelText : '取消'}
       </a>
@@ -74,17 +80,20 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   return (
     <Modal
       {...others}
+      // TODO className
       className={clsx(prefixCls)}
       open={props.visible}
       disablePortal
       onClose={onCancel}
     >
+      {/* TODO 删除一层DOM */}
       <div
         ref={ref}
         className={clsx(`${prefixCls}-main`)}
         onClick={(e) => e.stopPropagation()}
       >
         <div className={`${prefixCls}-body`}>
+          {/* TODO 语法 */}
           {customNode ? (
             customNode
           ) : (
