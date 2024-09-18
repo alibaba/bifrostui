@@ -3,6 +3,8 @@
 .bui-dialog {
   --max-width: 300px;
   --border-radius: 12px;
+  --header-font-size: 18px;
+  --desc-font-size: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,7 +23,7 @@
 .bui-dialog-body {
   .bui-dialog-title {
     padding: 0 40px 9px;
-    font-size: 18px;
+    font-size: var(--header-font-size);
     text-align: center;
     color: #2e333e;
     font-weight: 500;
@@ -31,7 +33,7 @@
     padding: 0 24px;
     color: #5f6672;
     padding-top: 3px;
-    font-size: 15px;
+    font-size: var(--desc-font-size);
     text-align: center;
 
     &:first-child {
