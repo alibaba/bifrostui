@@ -40,6 +40,10 @@ export interface DialogProps extends ModalProps {
    */
   placeholder?: string;
   /**
+   * 内部<input>标签的标准属性
+   */
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  /**
    * 执行操作
    */
   dispatch?: Dispatch;
@@ -64,14 +68,22 @@ export interface DialogProps extends ModalProps {
 /**
  * 函数式调用配置参数
  */
-export type DialogOptions = Omit<DialogProps, 'type'> | string;
+export type DialogOptions =
+  | Omit<DialogProps, 'type' | 'placeholder' | 'inputProps'>
+  | string;
 
 /**
  * prompt函数式调用配置参数
  */
 export type PromptOptions = DialogOptions & {
+  /**
+   * 输入框占位文本
+   */
   placeholder?: string;
-  type?: string;
+  /**
+   * 内部<input>标签的标准属性
+   */
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 };
 
 /**

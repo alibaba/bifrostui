@@ -21,6 +21,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     confirmText,
     cancelText,
     placeholder,
+    inputProps,
     ...others
   } = props;
 
@@ -42,7 +43,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   const titleNode = header && renderNode(header);
   const descNode = desc && renderNode(desc);
   const footerNode = !footer ? (
-    <>
+    <div className={`${prefixCls}-footer`}>
       <a onClick={onCancel} className={`${prefixCls}-button`}>
         {cancelText ? cancelText : '取消'}
       </a>
@@ -54,13 +55,14 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       >
         {confirmText ? confirmText : '确定'}
       </a>
-    </>
+    </div>
   ) : (
     renderNode(footer)
   );
 
   const inputNode = type === 'prompt' && (
     <Input
+      inputProps={inputProps}
       inputRef={InputRef}
       className={`${prefixCls}-input`}
       placeholder={`${placeholder || '请在此处输入'}`}
@@ -96,9 +98,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
               {inputNode}
             </>
           )}
-          {!!footerNode && (
-            <div className={`${prefixCls}-footer`}>{footerNode}</div>
-          )}
+          {!!footerNode && footerNode}
         </div>
       </div>
     </Modal>

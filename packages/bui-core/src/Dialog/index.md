@@ -11,7 +11,7 @@ name: Dialog 对话框
 
 ### 确认框
 
-使用`Dialog`（默认是confirm）或`Dialog.confirm`来展示确认框。`Dialog.confirm` 返回的是`Promise<boolean>`，你可以通过这个 boolean 来判断用户是点击的确认还是取消。
+使用`Dialog`（默认类型是confirm）或`Dialog.confirm`来展示确认框。`Dialog.confirm` 返回类型是`Promise<boolean>`，你可以通过这个`boolean`来判断用户是点击的确认还是取消。
 
 ```tsx
 import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
@@ -33,7 +33,6 @@ export default () => {
   return (
     <Stack direction="row" spacing="10px">
       <Button
-        block
         onClick={() =>
           Dialog.confirm({
             header: '标题',
@@ -128,15 +127,58 @@ export default () => {
       ),
     });
   };
+  const handleClickCustomFooter = async () => {
+    await Dialog({
+      header: 'Confirm',
+      desc: 'custom footer',
+      footer: (dispatch) => {
+        return (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-around',
+              marginTop: '30px',
+            }}
+          >
+            <span
+              className="pointer"
+              style={{
+                cursor: 'pointer',
+                color: '#777',
+                lineHeight: '25px',
+                height: '53px',
+                padding: '12px 0 13px',
+              }}
+              onClick={() => dispatch('cancel')}
+            >
+              Cancel
+            </span>
+            <span
+              onClick={() => dispatch('delete')}
+              style={{
+                cursor: 'pointer',
+                color: '#ff335c',
+                lineHeight: '25px',
+                height: '53px',
+                padding: '12px 0 13px',
+              }}
+            >
+              Delete
+            </span>
+          </div>
+        );
+      },
+    });
+  };
   return (
     <Stack direction="row" spacing="10px">
       <Button
         onClick={() => {
           Dialog.confirm({
-            header: '自定义标题和内容',
+            header: '自定义标题和消息',
             desc: (
               <>
-                <div>请用手机拍摄手持工牌照，注意保持照片清晰</div>
+                <div>请参考如下说明</div>
                 <div>
                   详情说明请查阅<a>操作指引</a>
                 </div>
@@ -145,7 +187,7 @@ export default () => {
           });
         }}
       >
-        自定义标题和内容
+        自定义标题和消息
       </Button>
       <Button
         onClick={() => {
@@ -155,10 +197,11 @@ export default () => {
           });
         }}
       >
-        自定义底部按钮文本
+        自定义确认按钮文本
       </Button>
+      <Button onClick={handleClickCustomFooter}>自定义底部区域</Button>
       <Button style={{ marginLeft: 10 }} onClick={handleClickCustomPopup}>
-        Custom
+        自定义内容区域
       </Button>
     </Stack>
   );
@@ -167,7 +210,7 @@ export default () => {
 
 ### 提示对话框
 
-使用`Dialog.prompt`来展示提示对话框，返回值为`Promise<string | boolean>`。可以使用`placeholder`来自定义占位文本。
+使用`Dialog.prompt`来展示提示对话框，返回值为`Promise<string | boolean>`。可以使用`placeholder`来自定义占位文本。同时支持`inputProps`透传到内部`input`标签，参考[Input](/cores/input#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95)。
 
 ```tsx
 import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
@@ -194,27 +237,43 @@ export default () => {
 
 ##### DialogOptions
 
-| 属性        | 说明               | 类型                                      | 默认值 |
-| ----------- | ------------------ | ----------------------------------------- | ------ |
-| header      | 对话框标题         | `React.ReactNode`                         | -      |
-| desc        | 对话框内容         | `React.ReactNode`                         | -      |
-| custom      | 自定义文本区域     | `React.ReactNode`                         |
-| footer      | 自定义底部按钮区域 | `React.ReactNode`                         | -      |
-| confirmText | 确认按钮的内容     | string                                    | 确认   |
-| onConfirm   | 点击确认按钮时触发 | `() => void \| Promise<void>`             | 取消   |
-| onCancel    | 点击取消按钮时触发 | `onCancel?: () => void \| Promise<void>;` | -      |
+| 属性        | 说明           | 类型                                      | 默认值 |
+| ----------- | -------------- | ----------------------------------------- | ------ |
+| header      | 自定义页头     | `React.ReactNode`                         | -      |
+| desc        | 自定义消息     | `React.ReactNode`                         | -      |
+| custom      | 自定义内容区域 | `React.ReactNode`                         |
+| footer      | 自定义页脚     | `React.ReactNode`                         | -      |
+| confirmText | 确认按钮文案   | `React.ReactNode`                         | 确认   |
+| cancelText  | 取消按钮文案   | `React.ReactNode`                         | 取消   |
+| onConfirm   | 确定按钮回调   | `() => void \| Promise<void>`             | -      |
+| onCancel    | 取消按钮回调   | `onCancel?: () => void \| Promise<void>;` | -      |
+
+`ConfirmOptions`的取值同`DialogOptions`
+
+`DialogOptions` 继承自 `ModalProps`, 其他属性见 [Modal API](/cores/modal?#API)
+
+##### PromptOptions
+
+`Dialog.prompt` 接受的参数同 `Dialog.confirm`, 此外，它还额外支持以下属性：
+
+| 属性        | 说明                        | 类型                                          | 默认值       |
+| ----------- | --------------------------- | --------------------------------------------- | ------------ |
+| placeholder | 输入框占位文本              | string                                        | 请在此处输入 |
+| inputProps  | 内部`<input>`标签的标准属性 | `React.InputHTMLAttributes<HTMLInputElement>` | -            |
 
 ##### 方法
 
-| 方法名         | 说明     | 参数           | 返回值        |
-| -------------- | -------- | -------------- | ------------- |
-| Dialog         | 展示提示 | DialogOptions  | DialogPromise |
-| Dialog.confirm | 警告提示 | ConfirmOptions | DialogPromise |
-| Dialog.prompt  | 加载提示 | PromptOptions  | DialogPromise |
+| 方法名         | 说明           | 参数           | 返回值        |
+| -------------- | -------------- | -------------- | ------------- |
+| Dialog         | 展示确认框     | DialogOptions  | DialogPromise |
+| Dialog.confirm | 展示确认框     | ConfirmOptions | DialogPromise |
+| Dialog.prompt  | 展示提示对话框 | PromptOptions  | DialogPromise |
 
 ### 样式变量
 
-| 属性            | 说明     | 默认值 | 全局变量 |
-| --------------- | -------- | ------ | -------- |
-| --border-radius | 圆角     | 12px   | -        |
-| --max-width     | 最大宽度 | 300px  | -        |
+| 属性               | 说明               | 默认值 | 全局变量 |
+| ------------------ | ------------------ | ------ | -------- |
+| --border-radius    | 对话框圆角         | 12px   | -        |
+| --max-width        | 对话框最大宽度     | 300px  | -        |
+| --header-font-size | 对话框标题字体大小 | 18px   | -        |
+| --desc-font-size   | 对话框消息字体大小 | 15px   | -        |
