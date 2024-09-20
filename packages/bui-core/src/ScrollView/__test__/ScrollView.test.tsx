@@ -1,5 +1,5 @@
-import React, { useEffect, useState, act } from 'react';
-import { render, screen } from 'testing';
+import React, { useEffect, useState } from 'react';
+import { act, render, screen } from 'testing';
 import { fireEvent, waitFor } from '@testing-library/react';
 import ScrollView from '../ScrollView';
 
