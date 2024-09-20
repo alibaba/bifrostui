@@ -17,8 +17,6 @@ export interface ICalendarMonthChangeData {
 export interface ICalendarYearChangeData {
   /** 切换后的年份 */
   year: number;
-  /** 操作类型change */
-  type: 'change';
 }
 
 export type ICalendarMode = 'single' | 'range';

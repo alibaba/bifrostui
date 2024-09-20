@@ -115,7 +115,13 @@ export default () => {
   return (
     <Stack>
       <div style={{ width: '320px' }}>
-        <Calendar enableSelectYear value={value} onChange={handleChange} />
+        <Calendar
+          minDate={dayjs().subtract(5, 'year').toDate()}
+          maxDate={dayjs().add(5, 'year').toDate()}
+          enableSelectYear
+          value={value}
+          onChange={handleChange}
+        />
       </div>
     </Stack>
   );
