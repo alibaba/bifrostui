@@ -3,11 +3,18 @@ import { useDidMountEffect, useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
-import React, { SyntheticEvent, useMemo, useState } from 'react';
-import Picker from '../Picker';
+import React, {
+  Suspense,
+  lazy,
+  SyntheticEvent,
+  useMemo,
+  useState,
+} from 'react';
 import './Calendar.less';
 import { CalendarProps, ICalendarInstance } from './Calendar.types';
 import { formatDate, isRange, isSame } from './utils';
+
+const Picker = lazy(() => import('../Picker'));
 
 dayjs.extend(isoWeek);
 
@@ -310,7 +317,6 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       e.stopPropagation();
       setRenderMonth(dayjs(renderMonth).set('year', selectYear).toDate());
       onYearChange?.(e, {
-        type: 'change',
         year: selectYear,
       });
       setOpenPicker(false);
@@ -371,12 +377,16 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         </div>
 
         <div className={clsx(`${classes.root}-month`)}>{renderDayList()}</div>
-        <Picker
-          options={[getYearsList()]}
-          open={openPicker}
-          value={[dayjs(renderMonth).year()]}
-          onClose={onClosePicker}
-        />
+        {enableSelectYear && (
+          <Suspense fallback={null}>
+            <Picker
+              options={[getYearsList()]}
+              open={openPicker}
+              value={[dayjs(renderMonth).year()]}
+              onClose={onClosePicker}
+            />
+          </Suspense>
+        )}
       </div>
     );
   },

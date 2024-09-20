@@ -227,7 +227,7 @@ describe('Calendar', () => {
     fireEvent.transitionEnd(roller1);
     fireEvent.click(confirmBtn1);
 
-    expect(fakeYearChange).toReturnWith('change');
+    expect(fakeYearChange).toBeCalled();
   });
 
   describe('single mode', () => {
