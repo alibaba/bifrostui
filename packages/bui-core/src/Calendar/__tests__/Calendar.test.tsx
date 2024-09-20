@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import React from 'react';
-import { fireEvent, isConformant, render } from 'testing';
+import { act, fireEvent, isConformant, render } from 'testing';
 import { Calendar } from '..';
 
 describe('Calendar', () => {
@@ -166,7 +166,7 @@ describe('Calendar', () => {
     expect(fakeMonthChange).toReturnWith('next');
   });
 
-  it('should render Picker when `enableSelectYear`', () => {
+  it('should render Picker when `enableSelectYear`', async () => {
     const fakeYearChange = jest.fn((e, data) => data.type);
     const { container } = render(
       <Calendar
@@ -179,9 +179,11 @@ describe('Calendar', () => {
       />,
     );
     const texts = container.querySelector(`.${rootClass}-handler-text`);
-    fireEvent.click(texts);
-    const picker = document.querySelectorAll(`.bui-picker`);
-    expect(picker.length).toBe(1);
+    await act(() => {
+      fireEvent.click(texts);
+    });
+    const picker = document.querySelector(`.bui-picker-confirm`);
+    expect(picker).toHaveTextContent('确认');
   });
 
   it('should be called when onYearChange change yaer', async () => {

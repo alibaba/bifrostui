@@ -27,22 +27,25 @@ describe('Transition', () => {
     );
     await waitFor(() => {
       expect(ons.onEnter).toBeCalled();
+      expect(ons.onEntering).not.toBeCalled();
     });
-    expect(ons.onEntering).not.toBeCalled();
+
     await waitFor(() => {
       expect(screen.getByTestId('status')).toHaveTextContent('entering');
     });
     await waitFor(() => {
       expect(ons.onEntering).toBeCalled();
+      expect(ons.onEntered).not.toBeCalled();
     });
-    expect(ons.onEntered).not.toBeCalled();
+
     await waitFor(() => {
       expect(screen.getByTestId('status')).toHaveTextContent('entered');
     });
     await waitFor(() => {
       expect(ons.onEntered).toBeCalled();
+      expect(ons.onExit).not.toBeCalled();
     });
-    expect(ons.onExit).not.toBeCalled();
+
     rerender(
       <Transition {...ons} in={false} timeout={10}>
         {renderFn}
@@ -50,15 +53,15 @@ describe('Transition', () => {
     );
     await waitFor(() => {
       expect(ons.onExit).toBeCalled();
+      expect(ons.onExiting).not.toBeCalled();
     });
-    expect(ons.onExiting).not.toBeCalled();
     await waitFor(() => {
       expect(screen.getByTestId('status')).toHaveTextContent('exiting');
     });
     await waitFor(() => {
       expect(ons.onExiting).toBeCalled();
+      expect(ons.onExited).not.toBeCalled();
     });
-    expect(ons.onExited).not.toBeCalled();
     await waitFor(() => {
       expect(screen.getByTestId('status')).toHaveTextContent('exited');
     });
@@ -93,8 +96,8 @@ describe('Transition', () => {
     });
     await waitFor(() => {
       expect(ons.onEntering).toBeCalled();
+      expect(ons.onEntered).not.toBeCalled();
     });
-    expect(ons.onEntered).not.toBeCalled();
     await waitFor(() => {
       expect(screen.getByTestId('status')).toHaveTextContent('entered');
     });
