@@ -36,11 +36,11 @@ export interface DialogProps extends ModalProps {
   /**
    * 确认文本内容
    */
-  confirmText?: string;
+  confirmText?: ReactNode;
   /**
    * 取消文本内容
    */
-  cancelText?: string;
+  cancelText?: ReactNode;
   /**
    * 确认回调
    */
@@ -71,21 +71,23 @@ export type DialogOptions = Omit<
 /**
  * prompt函数式调用配置参数
  */
-export type PromptOptions = DialogOptions & {
-  /**
-   * 输入框占位文本
-   */
-  placeholder?: string;
-  /**
-   * 内部<input>标签的标准属性
-   */
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
-};
+export type PromptOptions =
+  | (DialogOptions & {
+      /**
+       * 输入框占位文本
+       */
+      placeholder?: string;
+      /**
+       * 内部<input>标签的标准属性
+       */
+      inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+    })
+  | string;
 
 /**
  * confirm函数式调用配置参数
  */
-export type ConfirmOptions = DialogOptions;
+export type ConfirmOptions = DialogOptions | string;
 /**
  * Dialog函数式调用返回值类型
  */
