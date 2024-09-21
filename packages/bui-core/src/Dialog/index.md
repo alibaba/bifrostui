@@ -19,7 +19,7 @@ import React from 'react';
 
 export default () => {
   const handleClickConfirm = async () => {
-    const res = await Dialog.confirm({
+    const res = await Dialog({
       header: '标题',
       message: '这是描述内容',
     });
@@ -32,6 +32,9 @@ export default () => {
 
   return (
     <Stack direction="row" spacing="10px">
+      <Button onClick={() => Dialog.confirm('是否提交申请')}>
+        默认为confirm
+      </Button>
       <Button
         onClick={() =>
           Dialog.confirm({
@@ -197,11 +200,11 @@ export default () => {
 
 ##### 方法
 
-| 方法名         | 说明           | 参数           | 返回值        |
-| -------------- | -------------- | -------------- | ------------- |
-| Dialog         | 展示确认框     | DialogOptions  | DialogPromise |
-| Dialog.confirm | 展示确认框     | ConfirmOptions | DialogPromise |
-| Dialog.prompt  | 展示提示对话框 | PromptOptions  | DialogPromise |
+| 方法名         | 说明           | 参数                     | 返回值        |
+| -------------- | -------------- | ------------------------ | ------------- |
+| Dialog         | 展示确认框     | DialogOptions            | DialogPromise |
+| Dialog.confirm | 展示确认框     | ConfirmOptions \| string | DialogPromise |
+| Dialog.prompt  | 展示提示对话框 | PromptOptions \| string  | DialogPromise |
 
 ### 样式变量
 

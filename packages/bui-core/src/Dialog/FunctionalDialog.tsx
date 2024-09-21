@@ -17,7 +17,7 @@ const { isValidElement, Component } = React;
  */
 const formatProps = (props) => {
   if (typeof props === 'string' || isValidElement(props)) {
-    return { header: props };
+    return { message: props };
   }
   return props;
 };
