@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import clsx from 'clsx';
-// TODO 相对路径
-import { Input } from '@bifrostui/react';
-import { DialogProps, Dispatch, Render } from './Dialog.types';
+import { Input } from '../Input';
+import { Button } from '../Button';
+import { DialogProps } from './Dialog.types';
 import Modal from '../Modal';
 import './index.less';
 
@@ -10,60 +10,42 @@ const prefixCls = 'bui-dialog';
 
 const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   const {
-    visible,
-    onCancel,
-    onConfirm,
-    dispatch,
-    custom,
+    open,
+    onOk,
+    onClose,
     header,
-    desc,
-    footer,
+    message,
     type,
     confirmText,
     cancelText,
     placeholder,
     inputProps,
+    className,
     ...others
   } = props;
 
   const InputRef = useRef(null);
 
-  // TODO 类型中val 用不到？
-  const dialogDispatch: Dispatch = async (action) => {
-    if (dispatch) {
-      dispatch(action);
-    } else if (action === false) {
-      // TODO onCancel?.()
-      onCancel && onCancel();
-    } else if (action === true) {
-      // TODO onCancel?.()
-      onConfirm && onConfirm(InputRef?.current?.value);
-    }
-  };
-
-  const renderNode = (node: Render) =>
-    typeof node === 'function' ? node(dialogDispatch) : node;
-
-  const customNode = custom && renderNode(custom);
-  const titleNode = header && renderNode(header);
-  const descNode = desc && renderNode(desc);
-  const footerNode = !footer ? (
+  const footerNode = (
     <div className={`${prefixCls}-footer`}>
-      {/* TODO 使用Button */}
-      <a onClick={onCancel} className={`${prefixCls}-button`}>
-        {cancelText ? cancelText : '取消'}
-      </a>
-      <a
+      <Button
+        variant="text"
+        onClick={onClose}
+        className={`${prefixCls}-button`}
+      >
+        {cancelText || '取消'}
+      </Button>
+      <Button
+        variant="text"
+        color="primary"
         onClick={() => {
-          onConfirm(InputRef?.current?.value);
+          onOk(InputRef?.current?.value);
         }}
         className={`${prefixCls}-button`}
       >
-        {confirmText ? confirmText : '确定'}
-      </a>
+        {confirmText || '确定'}
+      </Button>
     </div>
-  ) : (
-    renderNode(footer)
   );
 
   const inputNode = type === 'prompt' && (
@@ -75,40 +57,22 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     />
   );
 
-  if (!visible) return null;
+  if (!open) return null;
 
   return (
     <Modal
       {...others}
-      // TODO className
-      className={clsx(prefixCls)}
-      open={props.visible}
+      open
+      className={clsx(prefixCls, className)}
       disablePortal
-      onClose={onCancel}
+      onClose={onClose}
+      ref={ref}
     >
-      {/* TODO 删除一层DOM */}
-      <div
-        ref={ref}
-        className={clsx(`${prefixCls}-main`)}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className={`${prefixCls}-body`}>
-          {/* TODO 语法 */}
-          {customNode ? (
-            customNode
-          ) : (
-            <>
-              {titleNode && (
-                <h1 className={`${prefixCls}-title`}>{titleNode}</h1>
-              )}
-              {descNode && (
-                <div className={`${prefixCls}-desc`}>{descNode}</div>
-              )}
-              {inputNode}
-            </>
-          )}
-          {!!footerNode && footerNode}
-        </div>
+      <div className={`${prefixCls}-body`}>
+        {header && <h1 className={`${prefixCls}-title`}>{header}</h1>}
+        {message && <div className={`${prefixCls}-desc`}>{message}</div>}
+        {inputNode}
+        {footerNode}
       </div>
     </Modal>
   );

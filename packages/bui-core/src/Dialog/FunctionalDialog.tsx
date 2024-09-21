@@ -1,15 +1,15 @@
-import type { ReactNode } from 'react';
 import React, { useCallback, useEffect, useState } from 'react';
-import Popup from './Dialog';
 import { getRootElement, render, unmount } from '@bifrostui/utils';
+import Popup from './Dialog';
 import {
-  DialogProps,
   DialogPromise,
-  Dispatch,
   DialogInstance,
   PromptOptions,
   ConfirmOptions,
+  DialogOptions,
+  Dispatch,
 } from './Dialog.types';
+
 const { isValidElement, Component } = React;
 
 /**
@@ -22,13 +22,13 @@ const formatProps = (props) => {
   return props;
 };
 
-const DialogGenerator = (options: DialogProps) => {
+const DialogGenerator = (options: DialogOptions) => {
   const rootWrapper = document.createElement('div');
   const rootElement = getRootElement();
   rootElement.appendChild(rootWrapper);
 
   const DialogComponent = () => {
-    const { custom, footer, onConfirm, onCancel, ...others } = options;
+    const { onConfirm, onCancel, ...others } = options;
     const [visible, setVisible] = useState(false);
 
     const close = useCallback(() => {
@@ -62,19 +62,12 @@ const DialogGenerator = (options: DialogProps) => {
       close();
     };
 
-    const customNode: ReactNode =
-      typeof custom === 'function' ? custom(dispatch) : custom;
-    const footerNode: ReactNode =
-      typeof footer === 'function' ? footer(dispatch) : footer;
-
     return (
       <Popup
         {...others}
-        custom={customNode}
-        footer={footerNode}
-        visible={visible}
-        onConfirm={(val) => dispatch(true, val)}
-        onCancel={() => dispatch(false)}
+        open={visible}
+        onOk={(val) => dispatch(true, val)}
+        onClose={() => dispatch(false)}
       />
     );
   };
@@ -82,7 +75,7 @@ const DialogGenerator = (options: DialogProps) => {
   return render(<DialogComponent />, rootWrapper);
 };
 
-const Dialog: DialogInstance = (options: DialogProps = {}): DialogPromise => {
+const Dialog: DialogInstance = (options: DialogOptions): DialogPromise => {
   const { onConfirm, onCancel, ...rest } = options;
   return new Promise((resolve) => {
     DialogGenerator({
