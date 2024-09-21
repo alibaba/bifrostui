@@ -1,13 +1,11 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { ModalProps } from '../Modal/Modal.types';
 
-export type Action = boolean | string | number;
-export type Dispatch = (action: Action, val?: string) => void;
 /**
  * 对话框类型
  */
 export type DialogType = 'confirm' | 'prompt';
-export type Render = ReactNode | ((dispatch: Dispatch) => ReactNode);
+export type Dispatch = (action: boolean, val?: string) => void;
 
 export interface DialogProps extends ModalProps {
   /**
@@ -16,27 +14,17 @@ export interface DialogProps extends ModalProps {
    */
   type?: DialogType;
   /**
-   * 自定义文本区域内容
-   */
-  custom?: Render;
-  /**
    * 自定义标题
    */
-  header?: Render;
+  header?: ReactNode;
   /**
    * 自定义内容
    */
-  // TODO description
-  desc?: Render;
-  /**
-   * 自定义按钮区域
-   */
-  footer?: Render;
+  message?: ReactNode;
   /**
    * 是否显示
    */
-  // TODO 删除，用open
-  visible?: boolean;
+  open?: boolean;
   /**
    * 输入框占位文本
    */
@@ -44,13 +32,7 @@ export interface DialogProps extends ModalProps {
   /**
    * 内部<input>标签的标准属性
    */
-  // TODO React not defined
-  // TODO InputProps
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
-  /**
-   * 执行操作
-   */
-  dispatch?: Dispatch;
   /**
    * 确认文本内容
    */
@@ -62,20 +44,29 @@ export interface DialogProps extends ModalProps {
   /**
    * 确认回调
    */
-  // TODO del void
-  onConfirm?: (val?: string) => void | Promise<void | string>;
+  onOk?: (val?: string) => void;
   /**
    * 取消回调
    */
-  onCancel?: () => void | Promise<void>;
+  onClose?: () => void;
 }
 
 /**
  * 函数式调用配置参数
  */
-export type DialogOptions =
-  | Omit<DialogProps, 'type' | 'placeholder' | 'inputProps'>
-  | string;
+export type DialogOptions = Omit<
+  DialogProps,
+  'placeholder' | 'inputProps' | 'onOk' | 'onClose'
+> & {
+  /**
+   * 确认回调
+   */
+  onConfirm?: (val?: string) => void | Promise<void>;
+  /**
+   * 取消回调
+   */
+  onCancel?: () => void | Promise<void>;
+};
 
 /**
  * prompt函数式调用配置参数
@@ -98,21 +89,23 @@ export type ConfirmOptions = DialogOptions;
 /**
  * Dialog函数式调用返回值类型
  */
+
 export type DialogPromise = Promise<boolean | string>;
-export type Options = PromptOptions | ConfirmOptions;
 
 /**
  * Dialog Instance
  */
 export interface DialogInstance {
-  // 默认ConfirmOptions
-  (options: Options): DialogPromise;
   /**
-   * 警告提示
+   * 直接调用显示确认框 Dialog
+   */
+  (options: ConfirmOptions): DialogPromise;
+  /**
+   * 显示确认框 Dialog.confirm
    */
   confirm?: (options: ConfirmOptions) => DialogPromise;
   /**
-   * 加载提示
+   * 显示提示对话框 Dialog.prompt
    */
   prompt?: (options: PromptOptions, val?: string) => DialogPromise;
 }
