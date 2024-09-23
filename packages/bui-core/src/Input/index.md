@@ -144,8 +144,7 @@ import React, { useRef, useState } from 'react';
 
 export default () => {
   const [value, setValue] = useState('0');
-  // TODO
-  // const [defaultValue, setDefaultValue] = useState('100');
+  const [defaultValue, setDefaultValue] = useState('100');
   const reduceRef = useRef(null);
 
   const addTen = () => {
@@ -182,7 +181,7 @@ export default () => {
         <br />
         <Button onClick={multiplyTwo}>数量乘2(通过DOM操作value有效)</Button>
         <br />
-        <Input inputRef={reduceRef} />
+        <Input inputRef={reduceRef} defaultValue={defaultValue} />
       </div>
     </div>
   );

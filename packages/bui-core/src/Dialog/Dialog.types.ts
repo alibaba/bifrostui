@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { ModalProps } from '../Modal/Modal.types';
+import { InputProps } from '../Input/Input.types';
 
 /**
  * 对话框类型
@@ -22,17 +23,13 @@ export interface DialogProps extends ModalProps {
    */
   message?: ReactNode;
   /**
-   * 是否显示
-   */
-  open?: boolean;
-  /**
    * 输入框占位文本
    */
   placeholder?: string;
   /**
-   * 内部<input>标签的标准属性
+   * 透传给内部Input组件的属性
    */
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  InputProps?: Partial<InputProps>;
   /**
    * 确认文本内容
    */
