@@ -75,7 +75,10 @@ const DialogGenerator = (options: DialogOptions) => {
   return render(<DialogComponent />, rootWrapper);
 };
 
-const Dialog: DialogInstance = (options: DialogOptions): DialogPromise => {
+const Dialog: DialogInstance = (
+  props: DialogOptions | string,
+): DialogPromise => {
+  const options = formatProps(props);
   const { onConfirm, onCancel, ...rest } = options;
   return new Promise((resolve) => {
     DialogGenerator({

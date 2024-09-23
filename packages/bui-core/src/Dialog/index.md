@@ -32,9 +32,7 @@ export default () => {
 
   return (
     <Stack direction="row" spacing="10px">
-      <Button onClick={() => Dialog.confirm('是否提交申请')}>
-        默认为confirm
-      </Button>
+      <Button onClick={() => Dialog('是否提交申请')}>默认为confirm</Button>
       <Button
         onClick={() =>
           Dialog.confirm({
@@ -106,7 +104,7 @@ export default () => {
 
 ### 自定义内容区域
 
-可以使用`header`, `desc`和`footer`来分别自定义标题、内容和底部按钮。也可以使用`confirmText`和`cancelText`来自定义取消和确定按钮内容。若想自定义整个文本区域，可以使用`custom`。
+可以使用`header`, `message`来分别自定义标题、内容区域。也可以使用`confirmText`和`cancelText`来自定义取消和确定按钮内容。
 
 ```tsx
 import { Stack, Button, Dialog } from '@bifrostui/react';
@@ -202,7 +200,7 @@ export default () => {
 
 | 方法名         | 说明           | 参数                     | 返回值        |
 | -------------- | -------------- | ------------------------ | ------------- |
-| Dialog         | 展示确认框     | DialogOptions            | DialogPromise |
+| Dialog         | 展示确认框     | DialogOptions \| string  | DialogPromise |
 | Dialog.confirm | 展示确认框     | ConfirmOptions \| string | DialogPromise |
 | Dialog.prompt  | 展示提示对话框 | PromptOptions \| string  | DialogPromise |
 
