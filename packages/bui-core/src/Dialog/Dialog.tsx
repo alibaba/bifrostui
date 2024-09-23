@@ -19,7 +19,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     confirmText,
     cancelText,
     placeholder,
-    inputProps,
+    InputProps,
     className,
     ...others
   } = props;
@@ -50,7 +50,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
 
   const inputNode = type === 'prompt' && (
     <Input
-      inputProps={inputProps}
+      {...InputProps}
       inputRef={InputRef}
       className={`${prefixCls}-input`}
       placeholder={`${placeholder || '请在此处输入'}`}

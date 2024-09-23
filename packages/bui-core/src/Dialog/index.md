@@ -147,7 +147,7 @@ export default () => {
 
 ### 提示对话框
 
-使用`Dialog.prompt`来展示提示对话框，返回值为`Promise<string | boolean>`。可以使用`placeholder`来自定义占位文本。同时支持`inputProps`透传到内部`input`标签，参考[Input](/cores/input#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95)。
+使用`Dialog.prompt`来展示提示对话框，返回值为`Promise<string | boolean>`。可以使用`placeholder`来自定义占位文本。同时支持`InputProps`透传到内部`Input`组件中，参考[Input](/cores/input#api)。
 
 ```tsx
 import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
@@ -165,6 +165,19 @@ export default () => {
   return (
     <Stack direction="row" spacing="10px">
       <Button onClick={handleClickPrompt}>prompt</Button>
+      <Button
+        onClick={() => {
+          Dialog.prompt({
+            header: '标题',
+            placeholder: '自定义占位文本',
+            InputProps: {
+              clearable: true,
+            },
+          });
+        }}
+      >
+        传入InputProps
+      </Button>
     </Stack>
   );
 };
@@ -191,10 +204,10 @@ export default () => {
 
 `Dialog.prompt` 接受的参数同 `Dialog.confirm`, 此外，它还额外支持以下属性：
 
-| 属性        | 说明                        | 类型                                          | 默认值       |
-| ----------- | --------------------------- | --------------------------------------------- | ------------ |
-| placeholder | 输入框占位文本              | string                                        | 请在此处输入 |
-| inputProps  | 内部`<input>`标签的标准属性 | `React.InputHTMLAttributes<HTMLInputElement>` | -            |
+| 属性        | 说明                        | 类型                  | 默认值       |
+| ----------- | --------------------------- | --------------------- | ------------ |
+| placeholder | 输入框占位文本              | string                | 请在此处输入 |
+| InputProps  | 透传给内部`Input`组件的属性 | `Partial<InputProps>` | -            |
 
 ##### 方法
 
