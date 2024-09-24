@@ -27,11 +27,11 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   const InputRef = useRef(null);
 
   const footerNode = (
-    <div className={`${prefixCls}-footer`}>
+    <div className={`${prefixCls}-body-footer`}>
       <Button
         variant="text"
         onClick={onClose}
-        className={`${prefixCls}-button`}
+        className={`${prefixCls}-body-button`}
       >
         {cancelText || '取消'}
       </Button>
@@ -41,7 +41,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
         onClick={() => {
           onOk(InputRef?.current?.value);
         }}
-        className={`${prefixCls}-button`}
+        className={`${prefixCls}-body-button`}
       >
         {confirmText || '确定'}
       </Button>
@@ -52,7 +52,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     <Input
       {...InputProps}
       inputRef={InputRef}
-      className={`${prefixCls}-input`}
+      className={`${prefixCls}-body-input`}
       placeholder={`${placeholder || '请在此处输入'}`}
     />
   );
@@ -69,8 +69,8 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       ref={ref}
     >
       <div className={`${prefixCls}-body`}>
-        {header && <h1 className={`${prefixCls}-title`}>{header}</h1>}
-        {message && <div className={`${prefixCls}-desc`}>{message}</div>}
+        {header && <h1 className={`${prefixCls}-body-title`}>{header}</h1>}
+        {message && <div className={`${prefixCls}-body-desc`}>{message}</div>}
         {inputNode}
         {footerNode}
       </div>
