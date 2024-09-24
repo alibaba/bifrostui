@@ -31,7 +31,7 @@ describe('Dialog Functional Calls', () => {
     );
     fireEvent.click(getByTestId('emit-button'));
     expect(
-      document.body.querySelector(`.${rootClass}-desc`),
+      document.body.querySelector(`.${rootClass}-body-desc`),
     ).toBeInTheDocument();
   });
 
@@ -100,10 +100,10 @@ describe('Dialog Functional Calls', () => {
     );
     fireEvent.click(getByTestId('emit-button'));
     expect(
-      document.body.querySelector(`.${rootClass}-title`),
+      document.body.querySelector(`.${rootClass}-body-title`),
     ).toBeInTheDocument();
     expect(
-      document.body.querySelector(`.${rootClass}-input`),
+      document.body.querySelector(`.${rootClass}-body-input`),
     ).toBeInTheDocument();
     expect(screen.getByText('Prompt Title')).toBeInTheDocument();
     expect(screen.getByText('Please enter a value:')).toBeInTheDocument();
