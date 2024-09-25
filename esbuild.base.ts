@@ -72,7 +72,7 @@ const build = async (type, entryPoints, outbase, outdir) => {
                 ?.replace('src', 'dist')
                 .replace('tsx', 'js');
               const esPath = args.path
-                ?.replace('src', 'dist')
+                ?.replace('src', 'es')
                 .replace('tsx', 'js');
               distFile.push(distPath);
               esFile.push(esPath);
