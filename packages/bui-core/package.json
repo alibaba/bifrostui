@@ -28,7 +28,11 @@
     "*.less"
   ],
   "devDependencies": {
-    "father": "4.3.1"
+    "father": "4.3.1",
+    "esbuild-plugin-d.ts": "1.3.0",
+    "esbuild-plugin-less": "1.3.10",
+    "fs-extra": "^11.2.0",
+    "glob": "11.0.0"
   },
   "dependencies": {
     "@bifrostui/icons": "^1.1.8-beta.2",
@@ -37,8 +41,6 @@
     "@bifrostui/utils": "^1.1.8-beta.2",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.7",
-    "fs-extra": "^11.2.0",
-    "glob": "11.0.0",
     "swiper": "^8.1.5"
   },
   "peerDependencies": {

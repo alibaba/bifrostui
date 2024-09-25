@@ -1,53 +1,107 @@
-const fs = require('fs');
-const path = require('path');
 const esbuild = require('esbuild');
-const readPkgJson = require('read-pkg');
-const { dtsPlugin } = require('@ali/esbuild-plugin-d.ts');
+const fs = require('fs');
+const ts = require('typescript');
+const { lessLoader } = require('esbuild-plugin-less');
+const {
+  getCompilerOptions,
+} = require('./scripts/esbuild/getCompilerOptions.js');
+const { resolveTSConfig } = require('./scripts/esbuild/resolveTSConfig.js');
 
 const build = async (type, entryPoints, outbase, outdir) => {
-  const packageJson = await readPkgJson();
-  const externalPacks = Object.keys(packageJson.dependencies);
-
   esbuild
     .build({
       entryPoints, // 你的入口文件
       outdir,
-      bundle: true, // 是否打包
+      bundle: false, // 是否打包
       minify: false, // 是否压缩
       outbase,
       plugins: [
-        dtsPlugin({}),
+        lessLoader(),
         {
-          name: 'buiPlugin',
-          setup: (builder) => {
-            builder.onLoad({ filter: /\.less$/ }, async (args) => {
-              const source = await fs.promises.readFile(args.path, 'utf8');
-              return {
-                contents: source,
-                loader: 'copy',
-              };
+          name: 'dts-plugin',
+          async setup(build) {
+            const { config } = resolveTSConfig({});
+            const willBundleDeclarations = false;
+            const compilerOptions = getCompilerOptions({
+              tsconfig: config,
+              pluginOptions: { tsconfig: { outdir } },
+              esbuildOptions: build.initialOptions,
+              willBundleDeclarations,
             });
-            builder.onResolve({ filter: /.*/ }, (args) => {
-              if (args.kind === 'entry-point') {
-                // skip entry point
-                return { path: path.join(args.resolveDir, args.path) };
-              }
-              if (args.path.startsWith('.')) {
-                // skip relative module
-                return { path: args.path, external: true };
-              }
+            const compilerHost = compilerOptions.incremental
+              ? ts.createIncrementalCompilerHost(compilerOptions)
+              : ts.createCompilerHost(compilerOptions);
 
-              return {
-                path: args.path,
-                external: true,
-              };
+            const inputFiles = [];
+
+            build.onLoad({ filter: /(\.tsx|\.ts)$/ }, async (args) => {
+              inputFiles.push(args.path);
+              compilerHost.getSourceFile(
+                args.path,
+                compilerOptions.target ?? ts.ScriptTarget.Latest,
+                true,
+              );
+            });
+            build.onEnd(() => {
+              let compilerProgram;
+
+              if (compilerOptions.incremental) {
+                compilerProgram = ts.createIncrementalProgram({
+                  options: compilerOptions,
+                  host: compilerHost,
+                  rootNames: inputFiles,
+                });
+              } else {
+                compilerProgram = ts.createProgram(
+                  inputFiles,
+                  compilerOptions,
+                  compilerHost,
+                );
+              }
+              compilerProgram.emit();
+            });
+          },
+        },
+        {
+          name: 'transform-import-less-to-css',
+          async setup(build) {
+            const distFile = [];
+            const esFile = [];
+            build.onLoad({ filter: /(\.tsx)$/ }, async (args) => {
+              const distPath = args.path
+                ?.replace('src', 'dist')
+                .replace('tsx', 'js');
+              const esPath = args.path
+                ?.replace('src', 'dist')
+                .replace('tsx', 'js');
+              distFile.push(distPath);
+              esFile.push(esPath);
+            });
+            build.onEnd(() => {
+              distFile.forEach((item) => {
+                fs.readFile(item, 'utf8', function (err, data) {
+                  if (err) console.error(`构建失败: ${err}`);
+                  const result = data?.replace('.less', '.css');
+                  fs.writeFile(item, result, (err) => {
+                    if (err) console.error(`构建失败: ${err}`);
+                  });
+                });
+              });
+              esFile.forEach((item) => {
+                fs.readFile(item, 'utf8', function (err, data) {
+                  if (err) console.error(`构建失败: ${err}`);
+                  const result = data?.replace('.less', '.css');
+                  fs.writeFile(item, result, (err) => {
+                    if (err) console.error(`构建失败: ${err}`);
+                  });
+                });
+              });
             });
           },
         },
       ],
       format: type,
-      platform: 'browser', // 目标平台: 'node' 或 'browser'
-      external: externalPacks,
+      platform: 'node', // 目标平台: 'node' 或 'browser'
       target: 'es2015',
     })
     .catch(() => process.exit(1));
