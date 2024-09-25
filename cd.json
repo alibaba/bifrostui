@@ -3,8 +3,8 @@
   "cname": "bui.taopiaopiao.com",
   "commands": [
     "nvm install 18",
-    "yarn",
-    "yarn docs:build",
+    "pnpm",
+    "pnpm docs:build",
     "mv docs-dist/* $BUILD_DEST"
   ],
   "public": "./"

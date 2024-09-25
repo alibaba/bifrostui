@@ -17,6 +17,9 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "build": "rm -rf dist && mkdir dist  && lessc index.less > dist/index.css"
+    "build": "rm -rf dist && mkdir dist && lessc index.less > dist/index.css"
+  },
+  "devDependencies": {
+    "less": "^4.2.0"
   }
 }
