@@ -14,11 +14,11 @@ if (fs.existsSync(esPath)) {
   fs.removeSync(esPath);
 }
 
-glob('**/*.{tsx,jsx}', {
-  ignore: ['**/*.test.{tsx,jsx}', '**/node_modules/**/*.{tsx,jsx}'],
+glob('**/*.{tsx,ts,less}', {
+  ignore: ['**/*.test.*', '**/node_modules/**/*.*'],
 })
   .then((file) => {
-    esBuilder([...file, './src/**/*.ts', './src/**/*.js', './src/**/*.less']);
+    esBuilder(file);
   })
   .catch((err) => {
     console.log('构建失败', err);
