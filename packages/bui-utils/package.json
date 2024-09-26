@@ -14,10 +14,10 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "devDependencies": {
-    "esbuild-plugin-d.ts": "1.3.0",
     "esbuild": "^0.19.7",
     "esbuild-plugin-less": "1.3.10",
-    "fs-extra": "^11.2.0"
+    "fs-extra": "^11.2.0",
+    "glob": "11.0.0"
   },
   "dependencies": {
     "react-is": "^18.0.0"
