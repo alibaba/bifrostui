@@ -102,7 +102,6 @@ const build = async (type, entryPoints, outbase, outdir) => {
                   });
                 }
               });
-
             });
           },
         },
