@@ -1,0 +1,44 @@
+name: Create Release Draft
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  create-release-draft:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build
+        run: yarn build
+
+      - name: Create compressed packages
+        run: |
+          cd packages
+          for dir in */; do
+            cd "$dir"
+            npm pack
+            cd ..
+          done
+
+      - name: Upload Release Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          tag: ${{ github.ref }}
+          files: |
+            packages/*/*.tgz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
