@@ -4,8 +4,8 @@
   "description": "React components for building mobile application",
   "homepage": "http://bui.taopiaopiao.com",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "es/index.js",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
   "typings": "es/index.d.ts",
   "directories": {
     "test": "__tests__"
@@ -17,6 +17,8 @@
     "README.md"
   ],
   "publishConfig": {
+    "main": "dist/index.js",
+    "module": "es/index.js",
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
@@ -42,8 +44,8 @@
     "swiper": "^8.1.5"
   },
   "peerDependencies": {
-    "@tarojs/components": "^3.3.16",
-    "@tarojs/taro": "^3.2.0",
+    "@tarojs/components": "^3.0.0",
+    "@tarojs/taro": "^3.0.0",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
