@@ -11,7 +11,7 @@ name: Dialog 对话框
 
 ### 确认框
 
-使用`Dialog`（默认类型是confirm）或`Dialog.confirm`来展示确认框。`Dialog.confirm` 返回类型是`Promise<boolean>`，你可以通过这个`boolean`来判断用户是点击的确认还是取消。
+使用`Dialog`（默认类型是confirm）或`Dialog.confirm`来展示确认框。`Dialog.confirm` 返回`Promise`，你可以通过返回值来判断用户是点击的确认还是取消。
 
 ```tsx
 import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
@@ -147,7 +147,7 @@ export default () => {
 
 ### 提示对话框
 
-使用`Dialog.prompt`来展示提示对话框，返回值为`Promise<string | boolean>`。可以使用`placeholder`来自定义占位文本。同时支持`InputProps`透传到内部`Input`组件中，参考[Input](/cores/input#api)。
+使用`Dialog.prompt`来展示提示对话框。可以使用`placeholder`来自定义占位文本。同时支持`InputProps`透传到内部`Input`组件中，参考[Input](/cores/input#api)。
 
 ```tsx
 import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
