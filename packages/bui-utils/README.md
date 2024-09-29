@@ -10,4 +10,7 @@ npm install @bifrostui/utils
 
 // with yarn
 yarn add @bifrostui/utils
+
+// with pnpm
+pnpm add @bifrostui/utils
 ```
