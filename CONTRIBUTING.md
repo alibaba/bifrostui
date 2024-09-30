@@ -77,11 +77,11 @@ $ pnpm --filter @bifrostui/react remove <dependency>
 #### 3. 操作 packages 下的所有子包
 
 ```bash
-# 新增依赖
-$ pnpm -r --filter=./packages/* add <dependency>
+# 新增依赖，注意安装的包名需要加引号
+$ pnpm -r --filter='./packages/*' add <dependency>
 
 # 删除依赖
-$ pnpm -r --filter=./packages/* remove <dependency>
+$ pnpm -r --filter='./packages/*' remove <dependency>
 ```
 
 ### 清理所有依赖
