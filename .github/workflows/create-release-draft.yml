@@ -39,11 +39,23 @@ jobs:
             cd ..
           done
 
+      - name: Determine Release Type
+        id: release-type
+        run: |
+          if [[ "${GITHUB_REF}" == *"beta"* ]]; then
+            echo "release=pre-release" >> $GITHUB_ENV
+          else
+            echo "release=latest" >> $GITHUB_ENV
+          fi
+
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v2
         with:
           tag: ${{ github.ref }}
           files: |
             packages/*/*.tgz
+          name: ${{ github.event.repository.name }} ${{ github.ref }}
+          draft: true
+          prerelease: ${{ env.release == 'pre-release' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
