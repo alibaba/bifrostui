@@ -409,19 +409,19 @@ importers:
         specifier: ^7.7.7
         version: 7.25.6
       '@bifrostui/icons':
-        specifier: workspace:1.1.11-beta.0
+        specifier: workspace:*
         version: link:../../packages/bui-icons
       '@bifrostui/react':
-        specifier: workspace:1.1.11-beta.0
+        specifier: workspace:*
         version: link:../../packages/bui-core
       '@bifrostui/styles':
-        specifier: workspace:1.1.11-beta.0
+        specifier: workspace:*
         version: link:../../packages/bui-styles
       '@bifrostui/types':
-        specifier: workspace:1.1.11-beta.0
+        specifier: workspace:*
         version: link:../../packages/bui-types
       '@bifrostui/utils':
-        specifier: workspace:1.1.11-beta.0
+        specifier: workspace:*
         version: link:../../packages/bui-utils
       '@tarojs/components':
         specifier: ^3.0.0
