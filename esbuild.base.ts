@@ -15,6 +15,10 @@ const builder = async (type, entryPoints, outbase, outdir) => {
       bundle: false, // 是否打包
       minify: false, // 是否压缩
       outbase,
+      format: type,
+      platform: 'node', // 目标平台: 'node' 或 'browser'
+      target: 'es2015',
+      metafile: true,
       plugins: [
         lessLoader(),
         {
@@ -77,32 +81,31 @@ const builder = async (type, entryPoints, outbase, outdir) => {
               distFile.push(distPath);
               esFile.push(esPath);
             });
-            build.onEnd(() => {
-              distFile.forEach((item) => {
-                fs.readFile(item, 'utf8', function (err, data) {
-                  if (err) console.error(`构建失败: ${err}`);
-                  const result = data?.replace('.less', '.css');
-                  fs.writeFile(item, result, (err) => {
-                    if (err) console.error(`构建失败: ${err}`);
+            build.onEnd(async (buildResult) => {
+              if (buildResult.errors?.length) {
+                return null;
+              }
+              const { outputs } = buildResult?.metafile || {};
+
+              const assets = Object.keys(outputs);
+              assets.forEach((asset) => {
+                if (asset.endsWith('.js')) {
+                  const assetPath = `${process.cwd()}/${asset}`;
+                  fs.readFile(assetPath, 'utf8', (readErr, data) => {
+                    if (readErr) console.error(`构建失败: ${readErr}`);
+                    if (data?.indexOf('.less') > -1) {
+                      const result = data?.replace('.less', '.css');
+                      fs.writeFile(assetPath, result, (writeErr) => {
+                        if (writeErr) console.error(`构建失败: ${writeErr}`);
+                      });
+                    }
                   });
-                });
-              });
-              esFile.forEach((item) => {
-                fs.readFile(item, 'utf8', function (err, data) {
-                  if (err) console.error(`构建失败: ${err}`);
-                  const result = data?.replace('.less', '.css');
-                  fs.writeFile(item, result, (err) => {
-                    if (err) console.error(`构建失败: ${err}`);
-                  });
-                });
+                }
               });
             });
           },
         },
       ],
-      format: type,
-      platform: 'node', // 目标平台: 'node' 或 'browser'
-      target: 'es2015',
     })
     .catch(() => process.exit(1));
 };
