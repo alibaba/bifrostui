@@ -271,17 +271,17 @@ importers:
   packages/bui-core:
     dependencies:
       '@bifrostui/icons':
-        specifier: ^1.1.11-beta.0
-        version: 1.1.11-beta.0(@tarojs/components@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@tarojs/shared@3.6.31)(@types/react@18.3.9)(postcss@8.4.47)(react@18.3.1))(@tarojs/taro@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@types/react@18.3.9)(postcss@8.4.47))(@types/react@18.3.9)(react@18.3.1)
+        specifier: workspace:*
+        version: link:../bui-icons
       '@bifrostui/styles':
-        specifier: ^1.1.11-beta.0
-        version: 1.1.11-beta.0
+        specifier: workspace:*
+        version: link:../bui-styles
       '@bifrostui/types':
-        specifier: ^1.1.11-beta.0
-        version: 1.1.11-beta.0(@tarojs/components@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@tarojs/shared@3.6.31)(@types/react@18.3.9)(postcss@8.4.47)(react@18.3.1))(@types/react@18.3.9)(react@18.3.1)
+        specifier: workspace:*
+        version: link:../bui-types
       '@bifrostui/utils':
-        specifier: ^1.1.11-beta.0
-        version: 1.1.11-beta.0(@tarojs/taro@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@types/react@18.3.9)(postcss@8.4.47))(react@18.3.1)
+        specifier: workspace:*
+        version: link:../bui-utils
       '@tarojs/components':
         specifier: ^3.0.0
         version: 3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@tarojs/shared@3.6.31)(@types/react@18.3.9)(postcss@8.4.47)(react@18.3.1)
@@ -320,11 +320,11 @@ importers:
   packages/bui-icons:
     dependencies:
       '@bifrostui/types':
-        specifier: ^1.1.11-beta.0
-        version: 1.1.11-beta.0(@tarojs/components@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@tarojs/shared@3.6.31)(@types/react@18.3.9)(postcss@8.4.47)(react@18.3.1))(@types/react@18.3.9)(react@18.3.1)
+        specifier: workspace:*
+        version: link:../bui-types
       '@bifrostui/utils':
-        specifier: ^1.1.11-beta.0
-        version: 1.1.11-beta.0(@tarojs/taro@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@types/react@18.3.9)(postcss@8.4.47))(react@18.3.1)
+        specifier: workspace:*
+        version: link:../bui-utils
       clsx:
         specifier: ^1.2.1
         version: 1.2.1
@@ -1362,11 +1362,6 @@ packages:
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
 
-  '@bifrostui/icons@1.1.11-beta.0':
-    resolution: {integrity: sha512-esiG5NVPw0h74vPOg2NN6TaNVKrHC7XPBhHK/x+xdO4dS03HEGlsST1aYBbauEk9tcx+8gCAckxd+x7+M1jBGQ==}
-    peerDependencies:
-      react: ^17.0.0 || ^18.0.0
-
   '@bifrostui/react@1.1.10':
     resolution: {integrity: sha512-ed5UQmWUknYcC/jIfkX4BDTFpmnDQ9dBaSujtPhn+dvdEfee8fXejpXArWB7m7Vx3kifFhfWaHP4wBBX/8QyLg==}
     peerDependencies:
@@ -1379,9 +1374,6 @@ packages:
   '@bifrostui/styles@1.1.10':
     resolution: {integrity: sha512-sCWWvWYq9NZTnieZo4nnELLzLMrPNjsMYK3KFn853DbZZBHv9gs5JhCXeseA6xr4iR3xWSBINtuwRMxnMZfi1A==}
 
-  '@bifrostui/styles@1.1.11-beta.0':
-    resolution: {integrity: sha512-YyWoW5UrsLt59XB8b8gkJHAu7T3/HDHxgZB7Nng+v2n3nbENv0rsH4JuHFVGxqJZ2/Yoh0SLrwz8y6qCqdX5mw==}
-
   '@bifrostui/types@1.1.10':
     resolution: {integrity: sha512-fEbi1ED54+ORY2xmunYKYyKRHRvpIlgFxET9UX+SccKIaK6Tm+PLLsbWs1wxg60xvsuzjC+rDt3TukSRykwIOg==}
     peerDependencies:
@@ -1389,21 +1381,8 @@ packages:
       '@types/react': ^17.0.0 || ^18.0.0
       react: ^17.0.0 || ^18.0.0
 
-  '@bifrostui/types@1.1.11-beta.0':
-    resolution: {integrity: sha512-1dSHjcHygFpOYzHnMNDDFIOcgi2dXbE9aHD2s+31Kc5yw2hxt8ItDaQ5+tstE0eo2yI8qTFMD4EmFq0EG+6HUA==}
-    peerDependencies:
-      '@tarojs/components': ^3.3.16
-      '@types/react': ^17.0.0 || ^18.0.0
-      react: ^17.0.0 || ^18.0.0
-
   '@bifrostui/utils@1.1.10':
     resolution: {integrity: sha512-9sDIWPoKSBJhGZ/UnYs98PACIy30cMo6qY5Ibman4loe4ElBrH+LcWSlRpgTOYD/VKoERRHjMGYbRUSz6u3rWg==}
-    peerDependencies:
-      '@tarojs/taro': ^3.2.0
-      react: ^17.0.0 || ^18.0.0
-
-  '@bifrostui/utils@1.1.11-beta.0':
-    resolution: {integrity: sha512-CXINhXeB274yOjkH8wK/febY+vBvX8YykToMyC5sV+NGD1DzILYbfOqy2/oiik0By8XGKTJtiGZ7xJDxKVwlxg==}
     peerDependencies:
       '@tarojs/taro': ^3.2.0
       react: ^17.0.0 || ^18.0.0
@@ -14093,17 +14072,6 @@ snapshots:
       - '@tarojs/taro'
       - '@types/react'
 
-  '@bifrostui/icons@1.1.11-beta.0(@tarojs/components@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@tarojs/shared@3.6.31)(@types/react@18.3.9)(postcss@8.4.47)(react@18.3.1))(@tarojs/taro@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@types/react@18.3.9)(postcss@8.4.47))(@types/react@18.3.9)(react@18.3.1)':
-    dependencies:
-      '@bifrostui/types': 1.1.11-beta.0(@tarojs/components@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@tarojs/shared@3.6.31)(@types/react@18.3.9)(postcss@8.4.47)(react@18.3.1))(@types/react@18.3.9)(react@18.3.1)
-      '@bifrostui/utils': 1.1.11-beta.0(@tarojs/taro@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@types/react@18.3.9)(postcss@8.4.47))(react@18.3.1)
-      clsx: 1.2.1
-      react: 18.3.1
-    transitivePeerDependencies:
-      - '@tarojs/components'
-      - '@tarojs/taro'
-      - '@types/react'
-
   '@bifrostui/react@1.1.10(@tarojs/components@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@tarojs/shared@3.6.31)(@types/react@18.3.9)(postcss@8.4.47)(react@18.3.1))(@tarojs/taro@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@types/react@18.3.9)(postcss@8.4.47))(@types/react@18.3.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@bifrostui/icons': 1.1.10(@tarojs/components@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@tarojs/shared@3.6.31)(@types/react@18.3.9)(postcss@8.4.47)(react@18.3.1))(@tarojs/taro@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@types/react@18.3.9)(postcss@8.4.47))(@types/react@18.3.9)(react@18.3.1)
@@ -14121,27 +14089,13 @@ snapshots:
 
   '@bifrostui/styles@1.1.10': {}
 
-  '@bifrostui/styles@1.1.11-beta.0': {}
-
   '@bifrostui/types@1.1.10(@tarojs/components@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@tarojs/shared@3.6.31)(@types/react@18.3.9)(postcss@8.4.47)(react@18.3.1))(@types/react@18.3.9)(react@18.3.1)':
     dependencies:
       '@tarojs/components': 3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@tarojs/shared@3.6.31)(@types/react@18.3.9)(postcss@8.4.47)(react@18.3.1)
       '@types/react': 18.3.9
       react: 18.3.1
 
-  '@bifrostui/types@1.1.11-beta.0(@tarojs/components@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@tarojs/shared@3.6.31)(@types/react@18.3.9)(postcss@8.4.47)(react@18.3.1))(@types/react@18.3.9)(react@18.3.1)':
-    dependencies:
-      '@tarojs/components': 3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@tarojs/shared@3.6.31)(@types/react@18.3.9)(postcss@8.4.47)(react@18.3.1)
-      '@types/react': 18.3.9
-      react: 18.3.1
-
   '@bifrostui/utils@1.1.10(@tarojs/taro@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@types/react@18.3.9)(postcss@8.4.47))(react@18.3.1)':
-    dependencies:
-      '@tarojs/taro': 3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@types/react@18.3.9)(postcss@8.4.47)
-      react: 18.3.1
-      react-is: 18.3.1
-
-  '@bifrostui/utils@1.1.11-beta.0(@tarojs/taro@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@types/react@18.3.9)(postcss@8.4.47))(react@18.3.1)':
     dependencies:
       '@tarojs/taro': 3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@types/react@18.3.9)(postcss@8.4.47)
       react: 18.3.1

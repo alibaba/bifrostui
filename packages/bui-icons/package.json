@@ -34,8 +34,8 @@
     "svgo": "^2.8.0"
   },
   "dependencies": {
-    "@bifrostui/types": "^1.1.11-beta.0",
-    "@bifrostui/utils": "^1.1.11-beta.0",
+    "@bifrostui/types": "workspace:*",
+    "@bifrostui/utils": "workspace:*",
     "clsx": "^1.2.1"
   },
   "peerDependencies": {
