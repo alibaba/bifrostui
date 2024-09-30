@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 本地压缩包使用
+
 # 设置 packages 目录路径
 PACKAGES_DIR="packages"
 
