@@ -35,10 +35,10 @@
     "glob": "11.0.0"
   },
   "dependencies": {
-    "@bifrostui/icons": "^1.1.11-beta.0",
-    "@bifrostui/styles": "^1.1.11-beta.0",
-    "@bifrostui/types": "^1.1.11-beta.0",
-    "@bifrostui/utils": "^1.1.11-beta.0",
+    "@bifrostui/icons": "workspace:*",
+    "@bifrostui/styles": "workspace:*",
+    "@bifrostui/types": "workspace:*",
+    "@bifrostui/utils": "workspace:*",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.7",
     "swiper": "^8.1.5"
