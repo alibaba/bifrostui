@@ -6,8 +6,8 @@
   "scripts": {
     "v": "npx lerna version --force-publish --message 'Publish'",
     "v:beta": "npx lerna version prerelease --preid=beta --force-publish --message 'Publish'",
-    "pub": "npx lerna publish --yes from-git",
-    "pub:beta": "pnpm -r publish --tag beta --dry-run",
+    "pub": "pnpm -r publish",
+    "pub:beta": "pnpm -r publish --tag beta",
     "start:h5": "dumi dev",
     "start:weapp": "node scripts/mini-program-site/index.js --type weapp",
     "start:alipay": "node scripts/mini-program-site/index.js --type alipay",
