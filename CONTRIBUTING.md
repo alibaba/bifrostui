@@ -120,13 +120,13 @@ $ pnpm --filter @bifrostui/icons build
 
   ```bash
   # 1. 切到main分支，拉取最新代码
-  $ pnpm v
+  $ pnpm v:online
 
   # 2. 构建
   $ pnpm build
 
   # 3. 发布
-  $ pnpm pub
+  $ pnpm pub:online
   ```
 
 ## 提交 commit
