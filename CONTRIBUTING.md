@@ -113,7 +113,7 @@ $ pnpm --filter @bifrostui/icons build
   $ pnpm build
 
   # 3. 发布
-  $ pnpm pub
+  $ pnpm pub:beta
   ```
 
 - 发布正式版
