@@ -110,7 +110,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
 
   useDidMountEffect(() => {
     animate({ transitionInUse: true });
-  }, [active, tabs]);
+  }, [active, tabs, children]);
 
   const safeValue = () => {
     let defaultIndex = value;
