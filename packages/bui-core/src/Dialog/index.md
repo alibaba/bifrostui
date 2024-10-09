@@ -219,9 +219,9 @@ export default () => {
 
 ### 样式变量
 
-| 属性                | 说明               | 默认值 | 全局变量 |
-| ------------------- | ------------------ | ------ | -------- |
-| --border-radius     | 对话框圆角         | 12px   | -        |
-| --max-width         | 对话框最大宽度     | 300px  | -        |
-| --header-font-size  | 对话框标题字体大小 | 18px   | -        |
-| --message-font-size | 对话框消息字体大小 | 15px   | -        |
+| 属性                | 说明               | 默认值                    | 全局变量 |
+| ------------------- | ------------------ | ------------------------- | -------- |
+| --border-radius     | 对话框圆角         | --bui-shape-radius-drawer | -        |
+| --max-width         | 对话框最大宽度     | 300px                     | -        |
+| --header-font-size  | 对话框标题字体大小 | --bui-title-size-2        | -        |
+| --message-font-size | 对话框消息字体大小 | --bui-title-size-4        | -        |

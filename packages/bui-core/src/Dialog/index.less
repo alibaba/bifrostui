@@ -2,9 +2,9 @@
 
 .bui-dialog {
   --max-width: 300px;
-  --border-radius: 12px;
-  --header-font-size: 18px;
-  --message-font-size: 15px;
+  --border-radius: var(--bui-shape-radius-drawer);
+  --header-font-size: var(--bui-title-size-2);
+  --message-font-size: var(--bui-title-size-4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +22,7 @@
       padding: 0 40px 9px;
       font-size: var(--header-font-size);
       text-align: center;
-      color: #2e333e;
+      color: var(--bui-color-neutral-1);
       font-weight: 500;
     }
 
@@ -32,7 +32,7 @@
 
     &-desc {
       padding: 0 24px;
-      color: #5f6672;
+      color: var(--bui-color-neutral-2);
       font-size: var(--message-font-size);
       text-align: center;
 
