@@ -10,4 +10,7 @@ npm install @bifrostui/types
 
 // with yarn
 yarn add @bifrostui/types
+
+// with pnpm
+pnpm add @bifrostui/types
 ```
