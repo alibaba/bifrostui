@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import { throttle, useForkRef, useTouchEmulator } from '@bifrostui/utils';
-import { ScrollView } from '../ScrollView';
+import ScrollView from '../ScrollView';
 import { CitySelectorCoreProps } from './CitySelector.types';
 import Selector from './Selector';
 

@@ -7,7 +7,7 @@ const {
 } = require('./scripts/esbuild/getCompilerOptions.js');
 const { resolveTSConfig } = require('./scripts/esbuild/resolveTSConfig.js');
 
-const build = async (type, entryPoints, outbase, outdir) => {
+const builder = async (type, entryPoints, outbase, outdir) => {
   esbuild
     .build({
       entryPoints, // 你的入口文件
@@ -114,7 +114,7 @@ const esBuilder = (entryPoints) => {
   const outbase = 'src';
   const esmOutdir = 'es';
   const cjsOutdir = 'dist';
-  build('esm', entryPoints, outbase, esmOutdir);
-  build('cjs', entryPoints, outbase, cjsOutdir);
+  builder('esm', entryPoints, outbase, esmOutdir);
+  builder('cjs', entryPoints, outbase, cjsOutdir);
 };
 module.exports = esBuilder;
