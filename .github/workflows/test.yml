@@ -12,13 +12,18 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '9'
+
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
       - name: Install dependencies
-        run: yarn
+        run: pnpm install
 
       - name: Run Tests with Coverage
-        run: yarn ci:test
+        run: pnpm ci:test
