@@ -7,7 +7,7 @@ export default defineConfig({
     nav: [
       { title: '指南', link: '/guide/introduce', activePath: '/guide' },
       { title: '设计语言', link: '/design/colors', activePath: '/design' },
-      { title: '基础组件', link: '/cores/button', activePath: '/cores' },
+      { title: '组件', link: '/cores/button', activePath: '/cores' },
       { title: '图标', link: '/icons' },
       { title: 'GitHub', link: 'https://github.com/alibaba/bifrostui' },
     ],

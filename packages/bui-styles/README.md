@@ -10,4 +10,7 @@ npm install @bifrostui/styles
 
 // with yarn
 yarn add @bifrostui/styles
+
+// with pnpm
+pnpm add @bifrostui/styles
 ```

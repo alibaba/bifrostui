@@ -1,11 +1,11 @@
 {
   "name": "@bifrostui/react",
-  "version": "1.1.11-beta.0",
+  "version": "1.1.11-beta.9",
   "description": "React components for building mobile application",
   "homepage": "http://bui.taopiaopiao.com",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "es/index.js",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
   "typings": "es/index.d.ts",
   "directories": {
     "test": "__tests__"
@@ -17,31 +17,35 @@
     "README.md"
   ],
   "publishConfig": {
+    "main": "dist/index.js",
+    "module": "es/index.js",
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "build": "father build"
+    "build": "node esbuild.config.js"
   },
   "sideEffects": [
     "*.css",
     "*.less"
   ],
   "devDependencies": {
-    "father": "4.3.1"
+    "esbuild-plugin-less": "1.3.10",
+    "fs-extra": "^11.2.0",
+    "glob": "11.0.0"
   },
   "dependencies": {
-    "@bifrostui/icons": "^1.1.11-beta.0",
-    "@bifrostui/styles": "^1.1.11-beta.0",
-    "@bifrostui/types": "^1.1.11-beta.0",
-    "@bifrostui/utils": "^1.1.11-beta.0",
+    "@bifrostui/icons": "workspace:*",
+    "@bifrostui/styles": "workspace:*",
+    "@bifrostui/types": "workspace:*",
+    "@bifrostui/utils": "workspace:*",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.7",
     "swiper": "^8.1.5"
   },
   "peerDependencies": {
-    "@tarojs/components": "3.3.16",
-    "@tarojs/taro": "^3.2.0",
+    "@tarojs/components": "^3.0.0",
+    "@tarojs/taro": "^3.0.0",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"

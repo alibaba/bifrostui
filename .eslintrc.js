@@ -106,6 +106,7 @@ module.exports = {
           '**/*.test.js',
           '**/__tests__/*',
           '*.config.js',
+          '**/*.config.js',
           '**/*.md',
           '**/builder.js',
         ],

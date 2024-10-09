@@ -19,20 +19,34 @@ jobs:
           node-version: '18'
           registry-url: 'https://registry.npmjs.org/'
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '9'
+
       - name: Install dependencies
-        run: yarn
+        run: pnpm install
 
       - name: Build
-        run: yarn build
+        run: pnpm build
 
       - name: Create compressed packages
         run: |
           cd packages
           for dir in */; do
             cd "$dir"
-            npm pack
+            pnpm pack
             cd ..
           done
+
+      - name: Determine Release Type
+        id: release-type
+        run: |
+          if [[ "${GITHUB_REF}" == *"beta"* ]]; then
+            echo "release=pre-release" >> $GITHUB_ENV
+          else
+            echo "release=latest" >> $GITHUB_ENV
+          fi
 
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v2
@@ -40,5 +54,8 @@ jobs:
           tag: ${{ github.ref }}
           files: |
             packages/*/*.tgz
+          name: ${{ github.event.repository.name }} ${{ github.ref }}
+          draft: true
+          prerelease: ${{ env.release == 'pre-release' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
