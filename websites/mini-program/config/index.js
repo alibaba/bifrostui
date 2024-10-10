@@ -23,26 +23,6 @@ const config = {
     enable: false, // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
   },
   alias: {
-    '@bifrostui/react': path.resolve(
-      __dirname,
-      '../../../packages/bui-core/src/index.ts',
-    ),
-    '@bifrostui/icons': path.resolve(
-      __dirname,
-      '../../../packages/bui-icons/src/index.ts',
-    ),
-    '@bifrostui/utils': path.resolve(
-      __dirname,
-      '../../../packages/bui-utils/src/index.ts',
-    ),
-    '@bifrostui/types': path.resolve(
-      __dirname,
-      '../../../packages/bui-types/src/index.ts',
-    ),
-    '@bifrostui/styles': path.resolve(
-      __dirname,
-      '../../../packages/bui-styles',
-    ),
     '@': path.resolve(__dirname, '../src'),
   },
   plugins: [
@@ -54,6 +34,12 @@ const config = {
     ],
   ],
   mini: {
+    compile: {
+      include: [
+        (modulePath) =>
+          /bui-core|bui-utils|bui-icons|bui-styles|bui-types/.test(modulePath),
+      ],
+    },
     webpackChain: (chain, webpack) => {
       chain.resolve.extensions.prepend('.miniapp.tsx');
       chain.resolve.extensions.prepend('.miniapp.ts');

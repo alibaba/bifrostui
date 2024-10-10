@@ -38,3 +38,4 @@ backstop_data/html_report
 /.vscode
 
 project.private.config.json
+.tgz

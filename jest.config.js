@@ -37,6 +37,6 @@ module.exports = {
     },
   },
   transformIgnorePatterns: [
-    '<rootDir>/node_modules/(?!(swiper|ssr-window|dom7|dayjs))',
+    '<rootDir>/node_modules/(?!(swiper|ssr-window|dom7|dayjs)(/|$)|(.pnpm/[^/]+/node_modules/\\1))',
   ],
 };
