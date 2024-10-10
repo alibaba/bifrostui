@@ -7,7 +7,7 @@ import clsx from 'clsx';
 import React from 'react';
 
 export interface IRadioButtonIconProps extends ISvgIconProps {
-  checked?: boolean;
+  checked: boolean;
 }
 
 const prefixCls = 'bui-radio-btn-icon';
@@ -37,8 +37,8 @@ function RadioButtonIcon(props: IRadioButtonIconProps) {
   );
 }
 
-RadioButtonIcon.defaultProps = {
-  checked: false,
-};
+// RadioButtonIcon.defaultProps = {
+//   checked: false,
+// };
 
 export default RadioButtonIcon;
