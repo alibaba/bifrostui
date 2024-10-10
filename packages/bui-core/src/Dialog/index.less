@@ -15,14 +15,14 @@
     margin: 0 auto;
     border-radius: var(--border-radius);
     background-clip: padding-box;
-    background-color: #fff;
+    background-color: var(--bui-color-bg-view);
     line-height: 21px;
 
     &-title {
       padding: 0 40px 9px;
       font-size: var(--header-font-size);
       text-align: center;
-      color: var(--bui-color-neutral-1);
+      color: var(--bui-color-fg-default);
       font-weight: 500;
     }
 
@@ -32,7 +32,7 @@
 
     &-desc {
       padding: 0 24px;
-      color: var(--bui-color-neutral-2);
+      color: var(--bui-color-fg-muted);
       font-size: var(--message-font-size);
       text-align: center;
 
@@ -50,8 +50,6 @@
 
     &-input {
       width: calc(100% - 48px);
-      border: 0;
-      background-color: #f5f6fe;
       margin: 14px 24px 0;
     }
 
