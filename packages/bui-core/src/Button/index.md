@@ -3,7 +3,7 @@ group:
   title: 基本输入
   order: -1
 order: -1
-nav: 基础组件
+nav: 组件
 name: Button 按钮
 ---
 
