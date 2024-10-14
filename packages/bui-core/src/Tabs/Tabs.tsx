@@ -114,9 +114,24 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
 
   const safeValue = () => {
     let defaultIndex = value;
+    const childs = React.Children.toArray(children);
+    const hasSameChild =
+      !!childs.length &&
+      childs.some(
+        (child) =>
+          React.isValidElement(child) &&
+          child.type === Tab &&
+          child?.props?.index === value,
+      );
     if (!!tabs.length && !tabs.some((item) => item.index === value)) {
       defaultIndex = tabs[0]?.index;
+    } else if (children && !hasSameChild) {
+      const childNode = childs[0];
+      if (React.isValidElement(childNode)) {
+        defaultIndex = childNode.props.index;
+      }
     }
+
     return defaultIndex;
   };
 
@@ -167,7 +182,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const providerValue = useMemo(() => {
     const v = safeValue();
     return { value: v, align, triggerChange: handleClick };
-  }, [value, align, handleClick]);
+  }, [value, align, children, handleClick]);
 
   return (
     <div ref={ref} className={clsx(prefixCls, className)} {...others}>
