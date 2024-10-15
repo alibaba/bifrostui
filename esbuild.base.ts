@@ -93,13 +93,35 @@ const builder = async (type, entryPoints, outbase, outdir) => {
                   const assetPath = `${process.cwd()}/${asset}`;
                   fs.readFile(assetPath, 'utf8', (readErr, data) => {
                     if (readErr) console.error(`构建失败: ${readErr}`);
-                    if (data?.indexOf('.less') > -1) {
-                      const result = data?.replace('.less', '.css');
+                    if (!data) return;
+                    if (
+                      data.indexOf('.less') > -1 ||
+                      data.indexOf('import_react.default.forwardRef') > -1 ||
+                      data.indexOf('React.forwardRef')
+                    ) {
+                      /**
+                       *
+                       */
+                      const result = data
+                        .replace('.less', '.css')
+                        .replace(
+                          /(import_react\.default\.memo|import_react\.default\.forwardRef|React\.forwardRef|React\.memo)/gm,
+                          `/* @__PURE__ */ $1`,
+                        );
                       fs.writeFile(assetPath, result, (writeErr) => {
                         if (writeErr) console.error(`构建失败: ${writeErr}`);
                       });
                     }
                   });
+
+                  if (
+                    asset.endsWith('.types.js') &&
+                    assetPath.includes('es/')
+                  ) {
+                    fs.writeFile(assetPath, 'export {};', (writeErr) => {
+                      if (writeErr) console.error(`构建失败: ${writeErr}`);
+                    });
+                  }
                 }
               });
             });
