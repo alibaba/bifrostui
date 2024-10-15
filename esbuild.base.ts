@@ -95,12 +95,14 @@ const builder = async (type, entryPoints, outbase, outdir) => {
                     if (readErr) console.error(`构建失败: ${readErr}`);
                     if (!data) return;
                     if (
-                      data.indexOf('.less') > -1 ||
-                      data.indexOf('import_react.default.forwardRef') > -1 ||
-                      data.indexOf('React.forwardRef')
+                      data.match(
+                        /(import_react\.default\.memo|import_react\.default\.forwardRef|React\.forwardRef|React\.memo|\.less)/gm,
+                      )
                     ) {
                       /**
-                       *
+                       * 1、将js中less改css引入
+                       * 2、处理esbuild构建在forwardRef、memo场景不会注入PURE
+                       * https://github.com/evanw/esbuild/issues/3492
                        */
                       const result = data
                         .replace('.less', '.css')
