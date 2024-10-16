@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useImperativeHandle } from 'react';
 import { useTouch, useForkRef, useTouchEmulator } from '@bifrostui/utils';
 import { PickerPanelProps } from './Picker.types';
 import './PickerPanel.less';
@@ -19,7 +19,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
     const touch = useTouch();
     let timer;
     // 在手指离开屏幕时，如果和上一次 move 时的间隔小于 `INERTIA_TIME` 且 move 距离大于 `INERTIA_DISTANCE` 时，触发惯性滑动
-    const INERTIA_TIME = 300;
+    const INERTIA_TIME = 200;
     const INERTIA_DISTANCE = 15;
 
     const DEFAULT_DURATION = 200;
@@ -37,6 +37,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
 
     const transformY = useRef(0);
     const isVerticalMoving = useRef(false);
+    const rollerRef = useRef(null);
     const PickerPanelRef = useRef(null);
     const pickerPanelRef = useForkRef(PickerPanelRef, ref);
     useTouchEmulator(PickerPanelRef.current);
@@ -202,6 +203,11 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       });
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useImperativeHandle(ref, (): any => ({
+      isMoving: isVerticalMoving.current,
+    }));
+
     return (
       <div
         className={prefixCls}
@@ -213,6 +219,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       >
         <div
           className={`${prefixCls}-roller`}
+          ref={rollerRef}
           style={{
             transition: `transform ${touchTime}ms cubic-bezier(0.17, 0.89, 0.45, 1)`,
             transform: `rotate3d(1, 0, 0, ${touchDeg})`,
