@@ -118,7 +118,7 @@ const builder = async (type, entryPoints, outbase, outdir) => {
 
                   if (
                     asset.endsWith('.types.js') &&
-                    assetPath.includes('es/')
+                    assetPath.includes('/es/')
                   ) {
                     fs.writeFile(assetPath, 'export {};', (writeErr) => {
                       if (writeErr) console.error(`构建失败: ${writeErr}`);
