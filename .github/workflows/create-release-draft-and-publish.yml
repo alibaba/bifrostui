@@ -5,7 +5,6 @@ on:
     branches:
       - main
       - 'releases/**'
-    if: startsWith(github.ref, 'refs/tags/v')
 
 jobs:
   create-release-draft-and-publish:
@@ -25,11 +24,22 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          registry-url: 'https://registry.npmjs.org/'
+      # ------------------最新提交不是tag，取消当前工作流--------------------
+      - name: Check if latest commit is tagged
+        id: check_latest_tag
+        shell: bash -ex {0}
+        run: |
+          git fetch --tags
+          # 获取最新一次提交的hash
+          LATEST_COMMIT=$(git rev-parse HEAD)
+          # 检查最新一次tag是否在最新提交信息中
+          TAG=$(git tag --points-at $LATEST_COMMIT)
+          if [ -z "$TAG" ]; then
+            echo "正常中断: No tag found for the latest commit. Cancelling the workflow."
+            exit 1
+          else
+            echo "Latest commit is tagged as: $TAG"
+          fi
 
       # ----------------------从最新一次提交信息中获取tag标签信息---------------------
       - name: Extract tag version
@@ -45,7 +55,7 @@ jobs:
           fi
           echo "COMMIT_TAG=${COMMIT_TAG}" >> $GITHUB_ENV
 
-      # ------------------检查tag是否存在--------------------
+      # ------------------检查tag在github中是否存在，不存在，取消当前工作流--------------------
       - name: Check tag
         id: check_tag
         shell: bash -ex {0}
@@ -54,17 +64,19 @@ jobs:
           http_status_code=$(curl -LI $GET_API_URL -o /dev/null -w '%{http_code}\n' -s \
             -H "Authorization: token ${GITHUB_TOKEN}")
           if [ "$http_status_code" -ne "404" ] ; then
-            echo "::set-output name=is_exists_tag::true"
+            echo "this tag already exists. Continue..."
           else
-            echo "::set-output name=is_exists_tag::false"
+            echo "正常中断: this tag does not exist. Canceling the workflow."
+            exit 1
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # ------------------tag已存在，取消当前工作流-----------------
-      - name: Git tag verification
-        if: steps.check_tag.outputs.is_exists_tag == false
-        uses: andymckay/cancel-action@0.3
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org/'
 
       # ------------------安装依赖-----------------
       - name: Install pnpm
