@@ -118,10 +118,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     const hasSameChild =
       !!childs.length &&
       childs.some(
-        (child) =>
-          React.isValidElement(child) &&
-          child.type === Tab &&
-          child?.props?.index === value,
+        (child) => React.isValidElement(child) && child?.props?.index === value,
       );
     if (!!tabs.length && !tabs.some((item) => item.index === value)) {
       defaultIndex = tabs[0]?.index;
