@@ -1,0 +1,137 @@
+name: Create Release Draft and Publish
+
+on:
+  push:
+    branches:
+      - main
+      - 'releases/**'
+    if: startsWith(github.ref, 'refs/tags/v')
+
+jobs:
+  create-release-draft-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Git identity
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org/'
+
+      # ----------------------从最新一次提交信息中获取tag标签信息---------------------
+      - name: Extract tag version
+        shell: bash -ex {0}
+        run: |
+          git fetch --tags
+          COMMIT_TAG=$(git describe --tags --abbrev=0)
+          echo "COMMIT_TAG is $COMMIT_TAG"
+          echo "github.ref_name(current branch) is ${{ github.ref_name }}"
+          if [ -z "$COMMIT_TAG" ]; then
+            echo "No valid version tag found."
+            exit 1
+          fi
+          echo "COMMIT_TAG=${COMMIT_TAG}" >> $GITHUB_ENV
+
+      # ------------------检查tag是否存在--------------------
+      - name: Check tag
+        id: check_tag
+        shell: bash -ex {0}
+        run: |
+          GET_API_URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/git/ref/tags/${COMMIT_TAG}"
+          http_status_code=$(curl -LI $GET_API_URL -o /dev/null -w '%{http_code}\n' -s \
+            -H "Authorization: token ${GITHUB_TOKEN}")
+          if [ "$http_status_code" -ne "404" ] ; then
+            echo "::set-output name=is_exists_tag::false"
+          else
+            echo "::set-output name=is_exists_tag::true"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # ------------------tag已存在，取消当前工作流-----------------
+      - name: Git tag verification
+        if: steps.check_tag.outputs.is_exists_tag == true
+        uses: andymckay/cancel-action@0.3
+
+      # ------------------安装依赖-----------------
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '9'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      # ------------------构建-----------------
+      - name: Build
+        run: pnpm build
+
+      # ----------------------生成发布日志草稿---------------------
+      - name: Create compressed packages
+        run: |
+          cd packages
+          for dir in */; do
+            cd "$dir"
+            pnpm pack
+            cd ..
+          done
+
+      - name: Determine release type
+        id: release-type
+        run: |
+          if [[ "${{ env.COMMIT_TAG }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-beta\.[0-9]+$ ]]; then
+            echo "RELEASE=pre-release" >> $GITHUB_ENV
+            echo "......pre-release......"
+          elif [[ "${{ env.COMMIT_TAG }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "RELEASE=latest" >> $GITHUB_ENV
+            echo "......latest......"
+          else
+            echo "Error: Invalid tag, only support like vX.X.X-beta.X or vX.X.X, plase check your tag."
+            exit 1
+          fi
+
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          tag: ${{ env.COMMIT_TAG }}
+          files: |
+            packages/*/*.tgz
+          name: ${{ github.event.repository.name }} ${{ env.COMMIT_TAG }}
+          draft: true
+          prerelease: ${{ env.RELEASE == 'pre-release' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # ----------------------检查git状态，将上一步生成未被git追踪的.tgz文件暂存起来---------------------
+      - name: Check git status
+        run: git status
+
+      - name: Stash untracked changes
+        run: |
+          git add .
+          git stash
+
+      # ----------------------发布到npm---------------------
+      - name: Publish to NPM
+        run: |
+          if [ '${{ env.RELEASE }}' == 'pre-release' ] ; then
+            pnpm -r publish --tag beta --publish-branch=${{ github.ref_name }}
+          elif [ '${{ env.RELEASE }}' == 'latest' ] ; then
+            pnpm -r publish --publish-branch=${{ github.ref_name }}
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
