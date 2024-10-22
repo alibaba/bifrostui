@@ -47,7 +47,7 @@ const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
   }
 
   const radioCheckIcon = checkedIcon || <RadioButtonIcon checked />;
-  const radioUncheckIcon = icon || <RadioButtonIcon />;
+  const radioUncheckIcon = icon || <RadioButtonIcon checked={false} />;
   const radioDisabled =
     disabled !== undefined ? disabled : groupContext?.disabled;
 
