@@ -46,7 +46,7 @@ exports[`Tabs snapshot Tabs demo snapshot 0 1`] = `
         style={
           Object {
             "transform": "translate3d(0px, 0px, 0px)",
-            "transition": "",
+            "transition": undefined,
           }
         }
       />
@@ -130,7 +130,7 @@ exports[`Tabs snapshot Tabs demo snapshot 0 2`] = `
         style={
           Object {
             "transform": "translate3d(0px, 0px, 0px)",
-            "transition": "",
+            "transition": undefined,
           }
         }
       />
@@ -214,7 +214,7 @@ exports[`Tabs snapshot Tabs demo snapshot 0 3`] = `
         style={
           Object {
             "transform": "translate3d(0px, 0px, 0px)",
-            "transition": "",
+            "transition": undefined,
           }
         }
       />
@@ -298,7 +298,7 @@ exports[`Tabs snapshot Tabs demo snapshot 0 4`] = `
         style={
           Object {
             "transform": "translate3d(0px, 0px, 0px)",
-            "transition": "",
+            "transition": undefined,
           }
         }
       />
@@ -409,7 +409,7 @@ exports[`Tabs snapshot Tabs demo snapshot 0 5`] = `
           style={
             Object {
               "transform": "translate3d(0px, 0px, 0px)",
-              "transition": "",
+              "transition": undefined,
             }
           }
         />
