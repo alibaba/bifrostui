@@ -205,7 +205,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
           style={{
             transition: lineData.transitionInUse
               ? 'transform 0.25s ease-in-out'
-              : '',
+              : undefined,
             transform: `translate3d(${lineData.x}px, 0px, 0px)`,
           }}
         />
