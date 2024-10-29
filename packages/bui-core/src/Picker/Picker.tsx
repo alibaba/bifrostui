@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Drawer from '../Drawer';
 import PickerPanel from './PickerPanel';
 import { PickerProps } from './Picker.types';
@@ -23,6 +23,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
     ...others
   } = props;
   const pickerType = pickerPanelType(options);
+  const rollerRefs = useRef([]);
   const [columns, setColumns] = useState([]);
   const [internalValue, setInternalValue] = useState([]);
 
@@ -53,6 +54,10 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
       value: internalValue,
       options: columns,
     };
+    const isMoving = rollerRefs.current.some((roller) => roller?.isMoving);
+    // 处于惯性滚动中，不允许确认关闭选择器
+    if (isMoving) return;
+
     onConfirm?.(e, payload);
     onClose?.(e, {
       from: 'confirm',
@@ -124,6 +129,13 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
     });
   };
 
+  const setRefs = useCallback(
+    (index: number) => (e: HTMLDivElement) => {
+      if (e) rollerRefs.current[index] = e;
+    },
+    [],
+  );
+
   return (
     <Drawer
       ref={ref}
@@ -149,6 +161,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
         <div className={`${prefixCls}-container`}>
           {columns.map((column, index) => (
             <PickerPanel
+              ref={setRefs(index)}
               key={index}
               options={column}
               columnIndex={index}
