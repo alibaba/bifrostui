@@ -199,9 +199,10 @@ describe('Calendar', () => {
       />,
     );
     const texts = container.querySelector(`.${rootClass}-handler-text`);
-    fireEvent.click(texts);
 
-    jest.useFakeTimers();
+    await act(() => {
+      fireEvent.click(texts);
+    });
 
     const [panel1] = document.querySelectorAll(`.bui-picker-panel`);
     const [roller1] = document.querySelectorAll(`.bui-picker-panel-roller`);
@@ -221,6 +222,16 @@ describe('Calendar', () => {
         {
           clientX: 0,
           clientY: -36,
+        },
+      ],
+      cancelable: true,
+      bubbles: true,
+    });
+    fireEvent.touchEnd(panel1, {
+      touches: [
+        {
+          clientX: 0,
+          clientY: -30,
         },
       ],
       cancelable: true,
