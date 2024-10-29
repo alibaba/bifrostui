@@ -331,3 +331,5 @@ export default () => {
 | --color        | 字体颜色          | --bui-color-fg-subtle  | -        |
 | --active-color | 激活 Tab 字体颜色 | --bui-color-fg-default | -        |
 | --line-color   | 下标线颜色        | --bui-color-primary    | -        |
+| --line-width   | 下标线宽度        | 18px                   | -        |
+| --line-height  | 下标线高度        | 3PX                    | -        |

@@ -14,6 +14,10 @@ export interface ICalendarMonthChangeData {
   /** 操作类型，prev: 点击上个月 next: 点击下个月 */
   type: 'prev' | 'next';
 }
+export interface ICalendarYearChangeData {
+  /** 切换后的年份 */
+  year: number;
+}
 
 export type ICalendarMode = 'single' | 'range';
 
@@ -70,6 +74,17 @@ export type CalendarProps<
        * 自定义周单元格的内容
        */
       weekRender?: (week: string) => React.ReactNode;
+      /**
+       * 是否开启选择年
+       */
+      enableSelectYear?: boolean;
+      /**
+       * 年份发生变化的回调
+       */
+      onYearChange?: (
+        e: React.SyntheticEvent,
+        data: ICalendarYearChangeData,
+      ) => void;
       /**
        * 月份发生变化的回调
        */
