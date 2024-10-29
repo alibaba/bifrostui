@@ -37,4 +37,5 @@ backstop_data/html_report
 /.dumi/tmp
 /.vscode
 
+project.private.config.json
 .tgz
