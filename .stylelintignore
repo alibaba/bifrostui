@@ -2,6 +2,7 @@
 *.tsx
 *.ts
 *.json
+*.yaml
 websites
 coverage
 node_modules

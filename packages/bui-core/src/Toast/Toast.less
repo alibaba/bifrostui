@@ -1,0 +1,64 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+.bui-toast {
+  --min-width: 86px;
+  --max-width: 80%;
+  --font-size: var(--bui-text-size-1);
+  --color: var(--bui-color-white);
+  --padding: var(--bui-spacing-xl);
+  --word-break: break-all;
+  --z-index: var(--bui-z-index-toast);
+  --position-top: 15%;
+  --position-bottom: 85%;
+  --background-color: rgba(0, 0, 0, 0.8);
+  --border-radius: var(--bui-shape-radius-default);
+  --text-align: center;
+
+  &.bui-toast-allow-click {
+    position: fixed;
+    right: unset;
+    bottom: unset;
+  }
+
+  position: fixed;
+  left: 50%;
+  z-index: var(--z-index);
+  width: fit-content;
+  min-width: var(--min-width);
+  max-width: var(--max-width);
+  padding: var(--padding);
+  font-size: var(--font-size);
+  color: var(--color);
+  border-radius: var(--border-radius);
+  word-break: var(--word-break);
+  white-space: pre-wrap;
+  background-color: var(--background-color);
+  text-align: var(--text-align);
+  font-family: var(--bui-font-family);
+
+  &-center {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &-top {
+    top: var(--position-top);
+    transform: translate(-50%, calc(-1 * var(--position-top)));
+  }
+
+  &-bottom {
+    top: var(--position-bottom);
+    transform: translate(-50%, calc(-1 * var(--position-bottom)));
+  }
+
+  &-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .bui-svg-icon {
+      margin-bottom: 8px;
+      font-size: 30px;
+    }
+  }
+}
