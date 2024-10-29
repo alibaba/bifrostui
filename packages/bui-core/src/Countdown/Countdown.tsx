@@ -52,6 +52,9 @@ const Countdown = forwardRef<HTMLDivElement, CountdownProps>((props, ref) => {
     if (serverTimestamp && endTimestamp) {
       setStartTime(serverTimestamp);
       setEndTime(endTimestamp);
+    } else if (endTimestamp) {
+      setStartTime(Date.now());
+      setEndTime(endTimestamp);
     }
   }, [serverTimestamp, endTimestamp]);
 
