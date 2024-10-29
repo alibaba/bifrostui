@@ -231,3 +231,5 @@ export { default as WifiOutlinedIcon } from './WifiOutlined';
 export { default as XiaMiCircleOutlinedIcon } from './XiaMiCircleOutlined';
 export { default as YouKuVipCircleOutlinedIcon } from './YouKuVipCircleOutlined';
 export { default as ZoomInOutlinedIcon } from './ZoomInOutlined';
+export { default as maisuiyouIcon } from './maisuiyou';
+export { default as maisuizuoIcon } from './maisuizuo';
