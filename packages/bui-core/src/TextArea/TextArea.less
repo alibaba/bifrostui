@@ -1,13 +1,24 @@
 .bui-textarea {
   --bg-color: var(--bui-color-bg-default);
-  --text-color: var(--bui-color-fg-subtle);
+  --text-color: var(--bui-textarea-text-color, var(--bui-color-fg-subtle));
   --count-bg-color: var(--bg-color, var(--bui-color-bg-default));
-  --count-text-color: var(--bui-color-fg-subtle);
+  --count-text-color: var(
+    --bui-textarea-count-color,
+    var(--bui-color-fg-subtle)
+  );
+  --text-font-size: var(--bui-textarea-text-font-size, var(--bui-text-size-2));
+  --count-font-size: var(
+    --bui-textarea-count-font-size,
+    var(--bui-title-size-3)
+  );
+  --content-padding: var(--bui-textarea-padding, 8px);
+  --count-padding: var(--bui-textarea-count-padding, 4px);
+
   background: var(--bui-color-bg-default);
   font-family: var(--bui-font-family);
 
   textarea {
-    font-size: var(--bui-text-size-2);
+    font-size: var(--text-font-size);
     color: var(--text-color);
     line-height: var(--bui-line-height);
   }
@@ -30,7 +41,7 @@
   width: 100%;
   resize: none;
   background: var(--bg-color);
-  padding: 8px;
+  padding: var(--content-padding);
   border: none;
   outline: none;
   word-break: break-all;
@@ -46,6 +57,6 @@
   background: var(--count-bg-color);
   color: var(--count-text-color);
   text-align: right;
-  padding: 0 4px;
-  font-size: var(--bui-title-size-3);
+  padding: 0 var(--count-padding);
+  font-size: var(--count-font-size);
 }
