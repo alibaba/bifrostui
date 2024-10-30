@@ -171,10 +171,24 @@ export default () => {
 
 ## 样式变量
 
-| 属性            | 说明     | 默认值                     | 全局变量                      |
-| --------------- | -------- | -------------------------- | ----------------------------- |
-| --border-radius | 圆角大小 | 100px                      | --bui-button-border-radius    |
-| --bg-color      | 背景颜色 | --bui-color-neutral-5      | --bui-button-default-bg-color |
-| --text-color    | 文字颜色 | --bui-color-fg-muted       | --bui-button-text-color       |
-| --border-color  | 边框颜色 | --bui-color-border-default | --bui-button-border-color     |
-| --font-weight   | 字重     | --bui-font-weight-medium   | --bui-button-font-weight      |
+| 属性                      | 说明           | 默认值                     | 全局变量                             |
+| ------------------------- | -------------- | -------------------------- | ------------------------------------ |
+| --border-radius           | 圆角大小       | 100px                      | --bui-button-border-radius           |
+| --bg-color                | 背景颜色       | --bui-color-neutral-5      | --bui-button-default-bg-color        |
+| --text-color              | 文字颜色       | --bui-color-fg-muted       | --bui-button-text-color              |
+| --border-color            | 边框颜色       | --bui-color-border-default | --bui-button-border-color            |
+| --font-weight             | 按钮默认字重   | --bui-font-weight-medium   | --bui-button-font-weight             |
+| --height                  | 按钮默认高度   | 27px                       | --bui-button-height                  |
+| --font-size               | 按钮默认字号   | --bui-text-size-3          | --bui-button-font-size               |
+| --icon-start-margin-right | 前置标签右边距 | --bui-spacing-xs           | --bui-button-icon-start-margin-right |
+| --icon-end-margin-left    | 前置标签左边距 | --bui-spacing-xs           | --bui-button-icon-end-margin-left    |
+| --disabled-opacity        | 禁用状态透明度 | 0.5                        | --bui-button-disabled-opacity        |
+| --small-font-size         | 小按钮字号     | --bui-text-size-4          | --bui-button-small-font-size         |
+| --small-padding           | 小按钮内边距   | 0 11px                     | --bui-button-small-padding           |
+| --small-height            | 小按钮高度     | 24px                       | --bui-button-small-height            |
+| --medium-padding          | 中按钮内边距   | 0 14px                     | --bui-button-medium-padding          |
+| --large-font-size         | 大按钮字号     | --bui-text-size-2          | --bui-button-large-font-size         |
+| --large-padding           | 大按钮内边距   | 0 14px                     | --bui-button-large-padding           |
+| --large-height            | 大按钮高度     | 33px                       | --bui-button-large-height            |
+| --full-font-size          | 满屏按钮字号   | --bui-title-size-4         | --bui-button-full-font-size          |
+| --full-height             | 满屏按钮高度   | 42px                       | --bui-button-full-height             |

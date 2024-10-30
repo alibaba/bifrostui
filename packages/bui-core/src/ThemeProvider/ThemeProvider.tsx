@@ -1,24 +1,42 @@
-import React from 'react';
-import { ThemeContext, useTheme } from './hooks';
+import React, { useMemo } from 'react';
+import { ThemeContext } from './hooks';
+import mountTokens from './utils/mountTokens';
 
-function mergeTheme(outerTheme, localTheme) {
-  if (typeof localTheme === 'function') {
-    const mergedTheme = localTheme(outerTheme);
+// function mergeTheme(outerTheme, localTheme) {
+//   if (typeof localTheme === 'function') {
+//     const mergedTheme = localTheme(outerTheme);
 
-    return mergedTheme;
-  }
+//     return mergedTheme;
+//   }
 
-  return { ...outerTheme, ...localTheme };
-}
+//   return { ...outerTheme, ...localTheme };
+// }
 
 const ThemeProvider = React.forwardRef<HTMLDivElement, any>((props, ref) => {
-  const { theme: localTheme, children } = props;
-  const outerTheme = useTheme();
-  const theme = React.useMemo(() => {
-    return outerTheme === null
-      ? { ...localTheme }
-      : mergeTheme(outerTheme, localTheme);
-  }, [outerTheme, localTheme]);
+  const {
+    locale,
+    responsive,
+    lightToken,
+    darkToken,
+    dmLightToken,
+    dmDarkToken,
+    token,
+    children,
+  } = props;
+
+  const theme = useMemo(() => {
+    return { locale };
+  }, [locale]);
+
+  // 挂载响应式Tokens
+  mountTokens({
+    responsive,
+    lightToken,
+    darkToken,
+    dmLightToken,
+    dmDarkToken,
+    token,
+  });
 
   return (
     <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>

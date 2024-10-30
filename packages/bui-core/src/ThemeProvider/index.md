@@ -30,6 +30,54 @@ export default () => {
 };
 ```
 
+### 自定义Tokens
+
+```tsx
+import { ThemeProvider, Button } from '@bifrostui/react';
+import React from 'react';
+
+// 响应式相关Tokens
+const responsive = {
+  xs: {
+    '--bui-button-border-radius': '6px',
+    '--bui-button-height': '30px',
+    '--bui-button-text-color': 'green',
+    '--bui-button-border-color': 'purple',
+  },
+  sm: {
+    '--bui-button-border-radius': '16px',
+    '--bui-button-height': '40px',
+    '--bui-button-text-color': 'red',
+    '--bui-button-border-color': '#0499ff',
+  },
+  md: {
+    '--bui-button-border-radius': '26px',
+    '--bui-button-height': '50px',
+    '--bui-button-text-color': 'blue',
+    '--bui-button-border-color': '#f99999',
+  },
+  lg: {
+    '--bui-button-border-radius': '36px',
+    '--bui-button-height': '60px',
+    '--bui-button-text-color': 'black',
+    '--bui-button-border-color': '#000feb',
+  },
+  xl: {
+    '--bui-button-border-radius': '46px',
+    '--bui-button-height': '100px',
+    '--bui-color-primary': 'green',
+    '--bui-button-border-color': '#ef871f',
+  },
+};
+export default () => {
+  return (
+    <ThemeProvider responsive={responsive}>
+      <Button>自定义Tokens</Button>
+    </ThemeProvider>
+  );
+};
+```
+
 ```tsx
 import { ThemeProvider, createTheme, Button } from '@bifrostui/react';
 import React from 'react';
