@@ -29,3 +29,33 @@ export default () => {
   );
 };
 ```
+
+```tsx
+import { ThemeProvider, createTheme, Button } from '@bifrostui/react';
+import React from 'react';
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 60,
+    },
+  },
+  background: 'red',
+});
+
+export default () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <ThemeProvider
+        theme={(outerTheme) => {
+          return {
+            ...outerTheme,
+            background: 'yellow',
+          };
+        }}
+      >
+        <Button>测试</Button>
+      </ThemeProvider>
+    </ThemeProvider>
+  );
+};
+```
