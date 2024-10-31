@@ -1,3 +1,4 @@
+import { isMini } from '@bifrostui/utils';
 import { breakpoints, rootSelector } from './constants';
 import {
   ThemeProps,
@@ -10,6 +11,8 @@ import {
  * 更新 Design Tokens
  */
 export const updateTokens = (rootString: string) => {
+  if (isMini) return;
+
   const style = document.createElement('style');
   style.type = 'text/css';
   style.appendChild(document.createTextNode(rootString));
@@ -107,6 +110,7 @@ export const mountComponentsTokens = (token: componentsTokenOptions) => {
  * - 命名规则决定组件的Tokens（如：--bui-button-xxx）
  */
 export default function mountTokens(tokenOptions?: ThemeProps) {
+  if (isMini) return;
   const { token, responsive } = tokenOptions || {};
   // 复写内置主题Tokens
   overrideBuiltInThemes(tokenOptions);
