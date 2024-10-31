@@ -1,3 +1,4 @@
+import { BaseLang } from '../locales/base';
 /**
  * 响应式屏幕断点配置
  */
@@ -27,9 +28,8 @@ export interface ResponsiveProps {
 export interface ThemeProps {
   /**
    * 语言
-   * TODO 换成枚举
    */
-  locale?: string;
+  locale?: BaseLang;
   /**
    * 响应式屏幕断点配置
    */

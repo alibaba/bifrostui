@@ -1,10 +1,10 @@
 import { BaseLang } from './base';
 
 const enUS: BaseLang = {
-  cancel: 'Cancel', // actionsheet dialog picker
-  confirm: 'Confirm', // dialog picker
+  cancel: 'Cancel',
+  confirm: 'Confirm',
   weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-  placeholder: 'Placeholder', // input textarea用
+  placeholder: 'Placeholder',
   select: 'Please select ',
   selectedCityGroupName: 'Selected City',
   currentCityGroupName: 'Current City',
@@ -14,12 +14,10 @@ const enUS: BaseLang = {
     code: 'GPS',
   },
   currentType: {
-    // citySelector
     title: 'Selected',
     code: 'CRRT',
   },
   hotCityType: {
-    // citySelector
     title: 'Hot',
     code: 'HOT',
   },

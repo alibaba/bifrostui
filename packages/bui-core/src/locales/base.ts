@@ -1,5 +1,5 @@
 export interface BaseLang {
-  cancel: string; // dialog picker
+  cancel: string; // actionsheet dialog picker
   confirm: string; // dialog picker
   weekdays: Array<string>; // calendar
   placeholder: string; // input textarea
