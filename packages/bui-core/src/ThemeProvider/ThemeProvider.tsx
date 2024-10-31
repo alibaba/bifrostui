@@ -16,8 +16,8 @@ const ThemeProvider = React.forwardRef<HTMLDivElement, any>((props, ref) => {
   const {
     locale,
     responsive,
-    lightToken,
-    darkToken,
+    defaultLightToken,
+    defaultDarkToken,
     dmLightToken,
     dmDarkToken,
     token,
@@ -31,8 +31,8 @@ const ThemeProvider = React.forwardRef<HTMLDivElement, any>((props, ref) => {
   // 挂载响应式Tokens
   mountTokens({
     responsive,
-    lightToken,
-    darkToken,
+    defaultLightToken,
+    defaultDarkToken,
     dmLightToken,
     dmDarkToken,
     token,

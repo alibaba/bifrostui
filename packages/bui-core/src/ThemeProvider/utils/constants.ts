@@ -27,10 +27,15 @@ export const breakpoints = {
 /**
  * 根节点选择器，用于挂载全局Tokens
  */
-export const rootSelector = [
-  ':root',
-  'page',
-  'xhs-page',
-  '.bui-default-light',
-  '[data-color-mode="light"][data-theme="default"]',
-];
+export const rootSelector = {
+  defaultLight: [
+    ':root',
+    'page',
+    'xhs-page',
+    '.bui-default-light',
+    '[data-color-mode="light"][data-theme="default"]',
+  ],
+  defaultDark: ['.bui-dark', '[data-color-mode="dark"][data-theme="default"]'],
+  dmLight: ['.bui-dm-light', '[data-color-mode="light"][data-theme="dm"]'],
+  dmDark: ['.bui-dm-dark', '[data-color-mode="dark"][data-theme="dm"]'],
+};

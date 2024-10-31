@@ -2,27 +2,27 @@ import { BaseLang } from '../locales/base';
 /**
  * 响应式屏幕断点配置
  */
-export interface ResponsiveProps {
+export interface ResponsiveTokenOptions {
   /**
    * 超小屏幕 (小于 576px，实际为了处理临界值，断点值为 575.98px)
    */
-  xsToken?: Record<string, string>;
+  xs?: Record<string, string>;
   /**
    * 小屏幕 (≥ 576px)
    */
-  smToken?: Record<string, string>;
+  sm?: Record<string, string>;
   /**
    * 中等屏幕 (≥ 768px)
    */
-  mdToken?: Record<string, string>;
+  md?: Record<string, string>;
   /**
    * 大屏幕 (≥ 992px)
    */
-  lgToken?: Record<string, string>;
+  lg?: Record<string, string>;
   /**
    * 超大屏幕 (≥ 1200px)
    */
-  xlToken?: Record<string, string>;
+  xl?: Record<string, string>;
 }
 
 export interface ThemeProps {
@@ -33,15 +33,15 @@ export interface ThemeProps {
   /**
    * 响应式屏幕断点配置
    */
-  responsive?: ResponsiveProps;
+  responsive?: ResponsiveTokenOptions;
   /**
    * 默认高亮主题Token
    */
-  lightToken?: Record<string, string>;
+  defaultLightToken?: Record<string, string>;
   /**
    * 默认暗黑主题Token
    */
-  darkToken?: Record<string, string>;
+  defaultDarkToken?: Record<string, string>;
   /**
    * 大麦高亮主题Token
    */
@@ -55,3 +55,16 @@ export interface ThemeProps {
    */
   token?: Record<string, string>;
 }
+
+/**
+ * 内置主题Tokens
+ */
+export type BuiltInThemesTokenOptions = Pick<
+  ThemeProps,
+  'defaultLightToken' | 'defaultDarkToken' | 'dmLightToken' | 'dmDarkToken'
+>;
+
+/**
+ * 组件自定义Tokens
+ */
+export type componentsTokenOptions = Pick<ThemeProps, 'token'>;
