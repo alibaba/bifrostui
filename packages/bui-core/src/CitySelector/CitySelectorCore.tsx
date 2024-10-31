@@ -116,7 +116,7 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
       const parseTitle = (titleCode || title).toUpperCase();
       return (
         <div className="select-city-title" id={disableIndex ? '' : parseTitle}>
-          {title.toUpperCase()}
+          {title?.toUpperCase()}
         </div>
       );
     };

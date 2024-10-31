@@ -222,10 +222,6 @@ export default () => {
   const [inputValue, setInputValue] = useState('');
   const [curValue, setCurValue] = useState(En);
 
-  const theme = createTheme({
-    locale: curValue,
-  });
-
   const handleChange = (e, res) => {
     console.log('date change:', res);
     setValue(res.value);
@@ -264,7 +260,7 @@ export default () => {
     },
   ];
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider locale={curValue}>
       <Stack spacing="10px">
         <Select
           defaultValue={En}
