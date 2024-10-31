@@ -5,6 +5,7 @@ import PickerPanel from './PickerPanel';
 import { PickerProps } from './Picker.types';
 import { formatOptions, pickerPanelType } from './utils';
 import './Picker.less';
+import { useTheme } from '../ThemeProvider';
 
 const prefixCls = 'bui-picker';
 
@@ -26,6 +27,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
   const rollerRefs = useRef([]);
   const [columns, setColumns] = useState([]);
   const [internalValue, setInternalValue] = useState([]);
+  const { locale } = useTheme();
 
   useEffect(() => {
     if (!open) return;
@@ -150,11 +152,11 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
       >
         <div className={`${prefixCls}-header`}>
           <div className={`${prefixCls}-cancel`} onClick={cancel}>
-            取消
+            {locale?.cancel || '取消'}
           </div>
           {title && <div className={`${prefixCls}-title`}>{title}</div>}
           <div className={`${prefixCls}-confirm`} onClick={confirm}>
-            确认
+            {locale?.confirm || '确定'}
           </div>
         </div>
 

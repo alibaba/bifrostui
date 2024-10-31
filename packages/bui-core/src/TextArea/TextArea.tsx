@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import React, { useEffect, useRef } from 'react';
 import { TextAreaProps } from './TextArea.types';
 import './TextArea.less';
+import { useTheme } from '../ThemeProvider';
 
 const prefixCls = 'bui-textarea';
 const DEFAULT_ROWS = 2;
@@ -27,6 +28,7 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
       ...others
     } = props;
 
+    const { locale } = useTheme();
     const [textAreaValue, triggerChange] = useValue({
       value,
       defaultValue,
@@ -117,7 +119,9 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
           {...nativeProps}
           name={name}
           value={textAreaValue}
-          placeholder={placeholder}
+          placeholder={
+            placeholder === undefined ? locale?.placeholder : placeholder
+          }
           disabled={disabled}
           rows={rows}
           {...textareaProps}

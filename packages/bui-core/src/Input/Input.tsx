@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import React, { forwardRef, useState } from 'react';
 import { InputProps } from './index';
 import './Input.less';
+import { useTheme } from '../ThemeProvider';
 
 const prefixCls = 'bui-input';
 
@@ -28,6 +29,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     ...others
   } = props;
 
+  const { locale } = useTheme();
   const [inputValue, triggerChange] = useValue({
     value,
     defaultValue,
@@ -100,7 +102,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
         ref={inputRef}
         value={inputValue}
         disabled={disabled}
-        placeholder={placeholder}
+        placeholder={placeholder || locale?.placeholder}
         {...inputProps}
         onChange={handleChange}
         onFocus={handleFocus}

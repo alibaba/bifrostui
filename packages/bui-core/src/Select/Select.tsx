@@ -8,6 +8,7 @@ import { SelectProps } from './Select.types';
 import BuiSelectContext from './selectContext';
 import Backdrop from '../Backdrop';
 import './Select.less';
+import { useTheme } from '../ThemeProvider';
 
 const prefixCls = 'bui-select';
 
@@ -32,6 +33,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     ...others
   } = props;
 
+  const { locale } = useTheme();
   const [selectValue, selectValueChange] = useValue({
     value,
     defaultValue,
@@ -109,7 +111,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       >
         <div className={`${prefixCls}-selector-container`}>
           <div className={`${prefixCls}-selector`}>
-            {renderValue || placeholder}
+            {renderValue || placeholder || locale?.select}
           </div>
           <input
             name={name}

@@ -6,6 +6,7 @@ import { CitySelectorCoreProps } from './CitySelector.types';
 import Selector from './Selector';
 
 import './CitySelector.less';
+import { useTheme } from '../ThemeProvider';
 
 // 误差偏移量
 const DEVIATION_HEIGHT = '6vmin';
@@ -32,11 +33,11 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
       className,
       title: pageTitle,
       selectedCity,
-      selectedCityGroupName = '当前城市',
+      selectedCityGroupName,
       currentCity,
-      currentCityGroupName = '定位城市',
+      currentCityGroupName,
       hotCities,
-      hotCitiesGroupName = '热门城市',
+      hotCitiesGroupName,
       cities,
       disableIndex,
       touchHandler,
@@ -45,6 +46,8 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
       onClose,
       ...others
     } = props;
+
+    const { locale } = useTheme();
     const cityRef = useRef(null);
     const nodeRef = useForkRef(ref, cityRef);
     useTouchEmulator(cityRef.current);
@@ -54,23 +57,17 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
 
     // 提取字母
     useEffect(() => {
-      if (
-        !cities ||
-        cities?.length === 0 ||
-        codeGroup.length !== 0 ||
-        disableIndex
-      )
-        return;
+      if (!cities || cities?.length === 0 || disableIndex) return;
 
       const newGroup = [];
       if (selectedCity) {
-        newGroup.push(CURRENT_TYPE);
+        newGroup.push(locale?.currentType || CURRENT_TYPE);
       }
       if (currentCity) {
-        newGroup.push(GPS_TYPE);
+        newGroup.push(locale?.gpsType || GPS_TYPE);
       }
       if (hotCities) {
-        newGroup.push(HOT_CITY_TYPE);
+        newGroup.push(locale?.hotCityType || HOT_CITY_TYPE);
       }
       cities.forEach((item) => {
         newGroup.push(item.groupName.toUpperCase());
@@ -162,17 +159,25 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
             {selectedCity
               ? renderCity(
                   [selectedCity],
-                  selectedCityGroupName,
+                  selectedCityGroupName || locale?.selectedCityGroupName,
                   CURRENT_TYPE.code,
                 )
               : null}
             {/* 定位城市 */}
             {currentCity
-              ? renderCity([currentCity], currentCityGroupName, GPS_TYPE.code)
+              ? renderCity(
+                  [currentCity],
+                  currentCityGroupName || locale?.currentCityGroupName,
+                  GPS_TYPE.code,
+                )
               : null}
             {/* 热门城市 */}
             {hotCities?.length > 0
-              ? renderCity(hotCities, hotCitiesGroupName, HOT_CITY_TYPE.code)
+              ? renderCity(
+                  hotCities,
+                  hotCitiesGroupName || locale?.hotCitiesGroupName,
+                  HOT_CITY_TYPE.code,
+                )
               : null}
             {cities?.length > 0 ? (
               <div className={`${prefixCls}-list-container`}>

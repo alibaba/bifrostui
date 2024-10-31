@@ -13,12 +13,12 @@ import React, {
 import './Calendar.less';
 import { CalendarProps, ICalendarInstance } from './Calendar.types';
 import { formatDate, isRange, isSame } from './utils';
+import { useTheme } from '../ThemeProvider';
 
 const Picker = lazy(() => import('../Picker'));
 
 dayjs.extend(isoWeek);
 
-const SUNDAY_WEEK_DATA = ['日', '一', '二', '三', '四', '五', '六'];
 const classes = {
   root: 'bui-calendar',
   handler: 'bui-calendar-handler',
@@ -48,6 +48,16 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       ...others
     } = props;
 
+    const { locale } = useTheme();
+    const SUNDAY_WEEK_DATA = locale?.weekdays || [
+      '日',
+      '一',
+      '二',
+      '三',
+      '四',
+      '五',
+      '六',
+    ];
     const isRangeMode = mode === 'range';
     /** @type undefined | Array<Date|null> */
     const formattedValue = formatDate(mode, value, minDate, maxDate);
