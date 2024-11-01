@@ -2,15 +2,16 @@
 @class-prefix-tabs: ~'bui-tabs';
 
 .@{class-prefix-tabs} {
-  --height: 39px;
+  --height: var(--bui-tabs-height, 39px);
   --font-size: var(--bui-text-size-1);
   --color: var(--bui-color-fg-subtle);
   --active-color: var(--bui-color-fg-default);
   --line-color: var(--bui-color-primary);
 
   /* prettier-ignore */
-  --line-height: 3PX;
-  --line-width: 18px;
+  --line-height: var(--bui-tabs-line-height, 3PX);
+  --line-width: var(--bui-tabs-line-width, 18px);
+  --mask-height: var(--bui-tabs-mask-height, 100%);
 
   position: relative;
   font-family: var(--bui-font-family);
@@ -51,10 +52,11 @@
     bottom: 0;
     z-index: 1;
     width: @holderWidth;
-    height: 100%;
+    height: var(--bui-tabs-mask-height);
     pointer-events: none;
   }
 
+  // TODO 这个是干嘛的！！！
   &-mask-left {
     left: 0;
     background: linear-gradient(

@@ -1,25 +1,26 @@
 @holderWidth: 12px;
 
 .bui-tab {
+  --height: var(--bui-tab-height, 100%);
+  --padding: var(
+    --bui-tab-padding,
+    var(--bui-spacing-lg) var(--bui-spacing-lg) 10px
+  );
+
   display: flex;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
   width: min-content;
-  height: 100%;
+  height: var(--height);
   box-sizing: border-box;
   position: relative;
   cursor: pointer;
   font-size: var(--font-size);
   line-height: var(--bui-line-height);
   color: var(--color);
-  padding: var(--bui-spacing-lg) var(--bui-spacing-lg) 10px;
+  padding: var(--padding);
   font-family: var(--bui-font-family);
-
-  &-center {
-    flex: 1 0 auto;
-    margin: 0 auto;
-  }
 
   &-active {
     font-size: var(--font-size);
