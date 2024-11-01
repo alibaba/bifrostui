@@ -1,4 +1,5 @@
 .bui-textarea {
+  --width: var(--bui-textarea-width, 100%);
   --bg-color: var(--bui-color-bg-default);
   --text-color: var(--bui-textarea-text-color, var(--bui-color-fg-subtle));
   --count-bg-color: var(--bg-color, var(--bui-color-bg-default));
@@ -13,6 +14,7 @@
   );
   --content-padding: var(--bui-textarea-padding, 8px);
   --count-padding: var(--bui-textarea-count-padding, '0 4px');
+  --placeholder-line-height: var(--bui-textarea-placeholder-line-height, 1.3);
 
   background: var(--bui-color-bg-default);
   font-family: var(--bui-font-family);
@@ -38,7 +40,7 @@
 }
 
 .bui-textarea-content {
-  width: 100%;
+  width: var(--width);
   resize: none;
   background: var(--bg-color);
   padding: var(--content-padding);
@@ -49,7 +51,7 @@
 
   &::placeholder {
     color: var(--bui-color-fg-disabled);
-    line-height: 1.3;
+    line-height: var(--placeholder-line-height);
   }
 }
 

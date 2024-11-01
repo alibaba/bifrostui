@@ -187,13 +187,15 @@ export default () => {
 
 ## 样式变量
 
-| 属性               | 说明           | 默认值                 | 全局变量                      |
-| ------------------ | -------------- | ---------------------- | ----------------------------- |
-| --bg-color         | 输入框底色     | --bui-color-bg-default | -                             |
-| --text-color       | 输入框字体颜色 | --bui-color-fg-subtle  | --bui-textarea-text-color     |
-| --count-bg-color   | 计数栏底色     | --bui-color-bg-default | -                             |
-| --count-text-color | 计数栏字体颜色 | --bui-color-fg-subtle  | --bui-textarea-count-color    |
-| --text-font-size   | 输入框字体大小 | --bui-text-size-2      | --bui-textarea-text-font-size |
-| --count-font-size  | 输入框字体大小 | --bui-text-size-2      | --bui-textarea-count-color    |
-| --content-padding  | 输入框内边距   | 8px                    | --bui-textarea-padding        |
-| --count-padding    | 计数栏内边距   | 4px                    | --bui-textarea-count-padding  |
+| 属性                      | 说明           | 默认值                 | 全局变量                               |
+| ------------------------- | -------------- | ---------------------- | -------------------------------------- |
+| --width                   | 宽度           | 100%                   | --bui-textarea-width                   |
+| --bg-color                | 输入框底色     | --bui-color-bg-default | -                                      |
+| --text-color              | 输入框字体颜色 | --bui-color-fg-subtle  | --bui-textarea-text-color              |
+| --count-bg-color          | 计数栏底色     | --bui-color-bg-default | -                                      |
+| --count-text-color        | 计数栏字体颜色 | --bui-color-fg-subtle  | --bui-textarea-count-color             |
+| --text-font-size          | 输入框字体大小 | --bui-text-size-2      | --bui-textarea-text-font-size          |
+| --count-font-size         | 输入框字体大小 | --bui-text-size-2      | --bui-textarea-count-color             |
+| --content-padding         | 输入框内边距   | 8px                    | --bui-textarea-padding                 |
+| --count-padding           | 计数栏内边距   | 4px                    | --bui-textarea-count-padding           |
+| --placeholder-line-height | 占位符行高     | 1.3                    | --bui-textarea-placeholder-line-height |
