@@ -435,17 +435,17 @@ export default () => {
 
 ### 样式变量
 
-| 属性               | 说明                     | 默认值                     | 全局变量 |
-| ------------------ | ------------------------ | -------------------------- | -------- |
-| --min-width        | 最小宽度                 | 86px                       | -        |
-| --max-width        | 最大宽度                 | 80%                        | -        |
-| --font-size        | 字体大小                 | --bui-text-size-1          | -        |
-| --color            | 字体颜色                 | --bui-color-white          | -        |
-| --padding          | 内边距                   | --bui-spacing-xl           | -        |
-| --word-break       | 换行规则                 | break-all                  | -        |
-| --z-index          | 层级                     | --bui-z-index-toast        | -        |
-| --position-top     | 顶部展示时，距离顶部距离 | 15%                        | -        |
-| --position-bottom  | 底部展示时，距离顶部距离 | 85%                        | -        |
-| --background-color | 背景颜色                 | rgba(0, 0, 0, 0.8)         | -        |
-| --border-radius    | 圆角                     | --bui-shape-radius-default | -        |
-| --text-align       | 文字位置                 | center                     | -        |
+| 属性               | 说明                     | 默认值                     | 全局变量                    |
+| ------------------ | ------------------------ | -------------------------- | --------------------------- |
+| --min-width        | 最小宽度                 | 86px                       | --bui-toast-min-width       |
+| --max-width        | 最大宽度                 | 80%                        | --bui-toast-max-width       |
+| --font-size        | 字体大小                 | --bui-text-size-1          | -                           |
+| --color            | 字体颜色                 | --bui-color-white          | -                           |
+| --padding          | 内边距                   | --bui-spacing-xl           | --bui-toast-padding         |
+| --word-break       | 换行规则                 | break-all                  | -                           |
+| --z-index          | 层级                     | --bui-z-index-toast        | -                           |
+| --position-top     | 顶部展示时，距离顶部距离 | 15%                        | --bui-toast-position-top    |
+| --position-bottom  | 底部展示时，距离顶部距离 | 85%                        | --bui-toast-position-bottom |
+| --background-color | 背景颜色                 | rgba(0, 0, 0, 0.8)         | -                           |
+| --border-radius    | 圆角                     | --bui-shape-radius-default | --bui-toast-bg-color        |
+| --text-align       | 文字位置                 | center                     | -                           |

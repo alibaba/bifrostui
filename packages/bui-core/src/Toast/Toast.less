@@ -1,16 +1,16 @@
 @import '@bifrostui/styles/mixins/index.less';
 
 .bui-toast {
-  --min-width: 86px;
-  --max-width: 80%;
+  --min-width: var(--bui-toast-min-width, 86px);
+  --max-width: var(--bui-toast-max-width, 80%);
   --font-size: var(--bui-text-size-1);
   --color: var(--bui-color-white);
-  --padding: var(--bui-spacing-xl);
+  --padding: var(--bui-toast-padding, var(--bui-spacing-xl));
   --word-break: break-all;
   --z-index: var(--bui-z-index-toast);
-  --position-top: 15%;
-  --position-bottom: 85%;
-  --background-color: rgba(0, 0, 0, 0.8);
+  --position-top: var(--bui-toast-position-top, 15%);
+  --position-bottom: var(--bui-toast-position-bottom, 85%);
+  --background-color: var(--bui-toast-bg-color, rgba(0, 0, 0, 0.8));
   --border-radius: var(--bui-shape-radius-default);
   --text-align: center;
 
