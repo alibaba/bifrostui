@@ -5,7 +5,7 @@
   --height: var(--bui-tag-height, 15px);
   --line-height: var(--bui-tag-line-height, 15px);
   --padding: var(--bui-tag-padding, 0 var(--bui-spacing-xs));
-  --border-width: var(--bui-tag-border-width, 1px);
+  --bg-color-vip: var(--bui-tag-color-vip, fade(#ff866e, 30%));
 
   position: relative;
   display: inline-flex;
@@ -18,43 +18,43 @@
   font-size: var(--bui-text-size-5);
   font-weight: var(--bui-font-weight-normal);
   border-radius: var(--bui-shape-radius-label);
-  border: var(--border-width) solid transparent;
+  border: 1px solid transparent;
   box-sizing: border-box;
   color: var(--bui-color-bg-view);
   font-family: var(--bui-font-family);
   // 描边
   &-outlined {
     color: var(--color);
-    border: var(--border-width) solid var(--border-color);
+    border: 1px solid var(--border-color);
 
     &.bui-tag-primary {
       color: var(--bui-color-primary);
-      border: var(--border-width) solid var(--bui-color-border-primary);
+      border: 1px solid var(--bui-color-border-primary);
     }
 
     &.bui-tag-info {
       color: var(--bui-color-info);
-      border: var(--border-width) solid var(--bui-color-border-info);
+      border: 1px solid var(--bui-color-border-info);
     }
 
     &.bui-tag-warning {
       color: var(--bui-color-warning);
-      border: var(--border-width) solid var(--bui-color-border-warning);
+      border: 1px solid var(--bui-color-border-warning);
     }
 
     &.bui-tag-success {
       color: var(--bui-color-success);
-      border: var(--border-width) solid var(--bui-color-border-success);
+      border: 1px solid var(--bui-color-border-success);
     }
 
     &.bui-tag-danger {
       color: var(--bui-color-danger);
-      border: var(--border-width) solid var(--bui-color-border-danger);
+      border: 1px solid var(--bui-color-border-danger);
     }
 
     &.bui-tag-vip {
       color: var(--bui-color-red);
-      border: var(--border-width) solid var(--bui-color-border-primary);
+      border: 1px solid var(--bui-color-border-primary);
     }
   }
 
@@ -117,7 +117,7 @@
     }
 
     &.bui-tag-vip {
-      background-color: fade(#ff866e, 30%);
+      background-color: var(--bg-color-vip);
       color: var(--bui-color-vip);
     }
   }

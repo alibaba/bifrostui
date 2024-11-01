@@ -1,4 +1,6 @@
 .bui-tag-group {
+  --height: var(--bui-tag-group-divider-height, 13%);
+
   display: inline-flex;
   font-family: var(--bui-font-family);
 
@@ -28,7 +30,7 @@
       position: absolute;
       right: -1px;
       width: 1px;
-      height: 13%;
+      height: var(--height);
       color: #fff;
       background-color: #fff;
       border-right-style: solid;
