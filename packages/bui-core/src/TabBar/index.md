@@ -193,7 +193,17 @@ export default () => {
 | activeIcon | 选中图标 | ReactNode  |
 | BadgeProps | 徽标     | BadgeProps | -      |
 
-#### 样式变量
+### 样式变量
+
+#### TabBar
+
+| 属性      | 说明   | 默认值 | 全局变量              |
+| --------- | ------ | ------ | --------------------- |
+| --width   | 宽度   | 100%   | --bui-tab-bar-width   |
+| --height  | 高度   | 50px   | --bui-tab-bar-height  |
+| --padding | 内边距 | 6px 0  | --bui-tab-bar-padding |
+
+#### TabBarItem
 
 | 属性        | 说明     | 默认值                 | 全局变量                    |
 | ----------- | -------- | ---------------------- | --------------------------- |
