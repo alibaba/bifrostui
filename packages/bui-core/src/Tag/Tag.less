@@ -2,54 +2,59 @@
   --color: var(--bui-tag-color, var(--bui-color-gray));
   --border-color: var(--bui-tag-border-color, var(--bui-color-border-gray));
   --bg-color: var(--bui-tag-bg-color, var(--bui-color-gray));
+  --height: var(--bui-tag-height, 15px);
+  --line-height: var(--bui-tag-line-height, 15px);
+  --padding: var(--bui-tag-padding, 0 var(--bui-spacing-xs));
+  --border-width: var(--bui-tag-border-width, 1px);
+
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  height: 15px;
-  line-height: 15px;
-  padding: 0 var(--bui-spacing-xs);
+  height: var(--height);
+  line-height: var(--line-height);
+  padding: var(--padding);
   font-size: var(--bui-text-size-5);
   font-weight: var(--bui-font-weight-normal);
   border-radius: var(--bui-shape-radius-label);
-  border: 1px solid transparent;
+  border: var(--border-width) solid transparent;
   box-sizing: border-box;
   color: var(--bui-color-bg-view);
   font-family: var(--bui-font-family);
   // 描边
   &-outlined {
     color: var(--color);
-    border: 1px solid var(--border-color);
+    border: var(--border-width) solid var(--border-color);
 
     &.bui-tag-primary {
       color: var(--bui-color-primary);
-      border: 1px solid var(--bui-color-border-primary);
+      border: var(--border-width) solid var(--bui-color-border-primary);
     }
 
     &.bui-tag-info {
       color: var(--bui-color-info);
-      border: 1px solid var(--bui-color-border-info);
+      border: var(--border-width) solid var(--bui-color-border-info);
     }
 
     &.bui-tag-warning {
       color: var(--bui-color-warning);
-      border: 1px solid var(--bui-color-border-warning);
+      border: var(--border-width) solid var(--bui-color-border-warning);
     }
 
     &.bui-tag-success {
       color: var(--bui-color-success);
-      border: 1px solid var(--bui-color-border-success);
+      border: var(--border-width) solid var(--bui-color-border-success);
     }
 
     &.bui-tag-danger {
       color: var(--bui-color-danger);
-      border: 1px solid var(--bui-color-border-danger);
+      border: var(--border-width) solid var(--bui-color-border-danger);
     }
 
     &.bui-tag-vip {
       color: var(--bui-color-red);
-      border: 1px solid var(--bui-color-border-primary);
+      border: var(--border-width) solid var(--bui-color-border-primary);
     }
   }
 

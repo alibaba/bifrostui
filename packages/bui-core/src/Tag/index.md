@@ -287,8 +287,12 @@ export default () => {
 
 ### 样式变量
 
-| 属性           | 说明         | 默认值                 | 全局变量               |
-| -------------- | ------------ | ---------------------- | ---------------------- |
-| --bg-color     | Tag 背景色   | --bui-color-gay        | --bui-tag-bg-color     |
-| --border-color | Tag 边框色   | --bui-color-border-gay | --bui-tag-border-color |
-| --color        | Tag 文案颜色 | --bui-color-gay        | --bui-tag-color        |
+| 属性           | 说明         | 默认值                  | 全局变量               |
+| -------------- | ------------ | ----------------------- | ---------------------- |
+| --bg-color     | Tag 背景色   | --bui-color-gay         | --bui-tag-bg-color     |
+| --border-color | Tag 边框色   | --bui-color-border-gay  | --bui-tag-border-color |
+| --color        | Tag 文案颜色 | --bui-color-gay         | --bui-tag-color        |
+| --height       | Tag 高度     | 15px                    | --bui-tag-height       |
+| --line-height  | Tag 行高     | 15px                    | --bui-tag-line-height  |
+| --padding      | Tag 内边距   | 0 var(--bui-spacing-xs) | --bui-tag-padding      |
+| --border-width | Tag 边框宽度 | 1px                     | --bui-tag-border-width |
