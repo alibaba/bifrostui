@@ -12,7 +12,7 @@
     var(--bui-title-size-3)
   );
   --content-padding: var(--bui-textarea-padding, 8px);
-  --count-padding: var(--bui-textarea-count-padding, 4px);
+  --count-padding: var(--bui-textarea-count-padding, '0 4px');
 
   background: var(--bui-color-bg-default);
   font-family: var(--bui-font-family);
@@ -57,6 +57,6 @@
   background: var(--count-bg-color);
   color: var(--count-text-color);
   text-align: right;
-  padding: 0 var(--count-padding);
+  padding: var(--count-padding);
   font-size: var(--count-font-size);
 }
