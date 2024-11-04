@@ -1,9 +1,9 @@
 import React from 'react';
-import Dm from './user-icon/dm';
-import Tpp from './user-icon/tpp';
 import { Button } from '@bifrostui/react';
 import { usePrefersColor, useNavigate } from 'dumi';
 import { ToTopOutlinedIcon } from '@bifrostui/icons';
+import Tpp from './user-icon/tpp';
+import Dm from './user-icon/dm';
 import './home-page.less';
 
 export default () => {
@@ -24,7 +24,7 @@ export default () => {
             className="start-btn"
             endIcon={<ToTopOutlinedIcon />}
             onClick={() => {
-              navigate("/guide/introduce", { replace: true });
+              navigate('/guide/introduce', { replace: true });
             }}
           >
             开始体验
@@ -42,9 +42,7 @@ export default () => {
             src="https://gw.alicdn.com/imgextra/i1/O1CN01y4iaZr1aLP2g7R9xm_!!6000000003313-2-tps-160-160.png"
           />
           <div className="introduce-title">一码多端</div>
-          <div className="introduce-desc">
-            同时支持H5和小程序
-          </div>
+          <div className="introduce-desc">同时支持H5和小程序</div>
         </div>
         <div className="introduce-item">
           <img
@@ -62,9 +60,7 @@ export default () => {
             src="https://gw.alicdn.com/imgextra/i4/O1CN01CCqAR028qGfPoYba0_!!6000000007983-2-tps-160-160.png"
           />
           <div className="introduce-title">高可用</div>
-          <div className="introduce-desc">
-            完善的配套，丰富的组件，开箱即用
-          </div>
+          <div className="introduce-desc">完善的配套，丰富的组件，开箱即用</div>
         </div>
       </div>
       <div className="main-resource">
@@ -82,7 +78,7 @@ export default () => {
                 style={{ '--bg-color': '#2356df', '--text-color': '#fff' }}
                 endIcon={<ToTopOutlinedIcon />}
                 onClick={() => {
-                  navigate("/design/colors", { replace: true });
+                  navigate('/design/colors', { replace: true });
                 }}
               >
                 查看详情
@@ -108,7 +104,7 @@ export default () => {
                 style={{ '--bg-color': '#2356df', '--text-color': '#fff' }}
                 endIcon={<ToTopOutlinedIcon />}
                 onClick={() => {
-                  navigate("/cores/button", { replace: true });
+                  navigate('/cores/button', { replace: true });
                 }}
               >
                 查看详情

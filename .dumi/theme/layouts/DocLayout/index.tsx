@@ -8,7 +8,7 @@ import {
   useRouteMeta,
   useSidebarData,
   useSiteData,
-  usePrefersColor
+  usePrefersColor,
 } from 'dumi';
 import Content from 'dumi/theme/slots/Content';
 import Features from 'dumi/theme/slots/Features';
@@ -17,6 +17,9 @@ import Hero from 'dumi/theme/slots/Hero';
 import Sidebar from 'dumi/theme/slots/Sidebar';
 import Toc from 'dumi/theme/slots/Toc';
 import React, { useEffect, useState, type FC } from 'react';
+import En from '@bifrostui/react/locales/en-US';
+import CN from '@bifrostui/react/locales/zh-CN';
+import { ThemeProvider } from '@bifrostui/react';
 import './index.less';
 
 const DocLayout: FC = () => {
@@ -27,13 +30,13 @@ const DocLayout: FC = () => {
   const { loading, hostname, themeConfig } = useSiteData();
   const [activateSidebar, updateActivateSidebar] = useState(false);
   const { frontmatter: fm } = useRouteMeta();
-  const [ color ] = usePrefersColor();
-  fm.toc = 'content'
+  const [color] = usePrefersColor();
+  fm.toc = 'content';
 
   // const curColor = themeConfig.switch ? 'dark' : 'light';
 
   const showSidebar = fm.sidebar !== false && sidebar?.length > 0;
-  const hideToc = (fm.title === 'bifrostui' && fm.filename === 'docs/index.md')
+  const hideToc = fm.title === 'bifrostui' && fm.filename === 'docs/index.md';
 
   // handle hash change or visit page hash after async chunk loaded
   useEffect(() => {
@@ -60,7 +63,11 @@ const DocLayout: FC = () => {
       onClick={() => updateActivateSidebar(false)}
     >
       <Helmet>
-        <html lang={intl.locale.replace(/-.+$/, '')} data-color-mode={color} data-theme="default" />
+        <html
+          lang={intl.locale.replace(/-.+$/, '')}
+          data-color-mode={color}
+          data-theme="default"
+        />
         {fm.title && <title>{fm.title}</title>}
         {fm.title && <meta property="og:title" content={fm.title} />}
         {fm.description && <meta name="description" content={fm.description} />}
@@ -76,49 +83,45 @@ const DocLayout: FC = () => {
           ))}
         {hostname && <link rel="canonical" href={hostname + pathname} />}
       </Helmet>
-      <Header />
-      <Hero />
-      <Features />
-      {showSidebar && (
-        <div className="dumi-default-doc-layout-mobile-bar">
-          <button
-            type="button"
-            className="dumi-default-sidebar-btn"
-            onClick={(ev) => {
-              ev.stopPropagation();
-              updateActivateSidebar((v) => !v);
-            }}
-          >
-            <IconSidebar />
-            {intl.formatMessage({ id: 'layout.sidebar.btn' })}
-          </button>
-        </div>
-      )}
-      <main className="dumi-default-doc-layout-content">
-        <div className="left">
-          {showSidebar && <Sidebar />}
-        </div>
-        <div className='right'>
-          <div className='top'>
-            <div className="main">
-              <Content>
-                {outlet}
-              </Content>
-            </div>
-            {
-              !hideToc && <div className="side">
-              {fm.toc === 'content' && (
-                <div className="dumi-default-doc-layout-toc-wrapper">
-                  <Toc />
+      <ThemeProvider locale={intl.locale === 'en-US' ? En : CN}>
+        <Header />
+        <Hero />
+        <Features />
+        {showSidebar && (
+          <div className="dumi-default-doc-layout-mobile-bar">
+            <button
+              type="button"
+              className="dumi-default-sidebar-btn"
+              onClick={(ev) => {
+                ev.stopPropagation();
+                updateActivateSidebar((v) => !v);
+              }}
+            >
+              <IconSidebar />
+              {intl.formatMessage({ id: 'layout.sidebar.btn' })}
+            </button>
+          </div>
+        )}
+        <main className="dumi-default-doc-layout-content">
+          <div className="left">{showSidebar && <Sidebar />}</div>
+          <div className="right">
+            <div className="top">
+              <div className="main">
+                <Content>{outlet}</Content>
+              </div>
+              {!hideToc && (
+                <div className="side">
+                  {fm.toc === 'content' && (
+                    <div className="dumi-default-doc-layout-toc-wrapper">
+                      <Toc />
+                    </div>
+                  )}
                 </div>
               )}
             </div>
-            }
           </div>
-        </div>
-
-
-      </main>
+        </main>
+      </ThemeProvider>
     </div>
   );
 };

@@ -1,15 +1,15 @@
 ---
-group: 主题
-name: ThemeProvider 主题配置
+group: theme
+name: ThemeProvider
 ---
 
 # ThemeProvider
 
-主题配置，可以用来指定组件颜色、尺寸、语言等。
+Theme configuration can be used to specify component colors, sizes, languages, etc.
 
-## 代码演示
+## Code demonstration
 
-### 基础用法
+### Basic usage
 
 ```tsx
 import { ThemeProvider, createTheme, Button } from '@bifrostui/react';
@@ -30,20 +30,20 @@ export default () => {
 };
 ```
 
-### 自定义Tokens
+### Custom Tokens
 
-BUI的Tokens分为三个层面：
+BUI's tokens are divided into three levels:
 
-1. BUI内置Tokens：包括`defaultLightToken`（默认高亮模式的全局Token）、`defaultDarkToken`（默认暗黑模式的全局Token）、`dmLightToken`（大麦高亮模式的全局Token）、`dmDarkToken`（大麦暗黑模式的全局Token）。
-2. 响应式Tokens：BUI默认是移动端优先的响应式方案，使用者可以通过`responsive`自定义响应式Tokens。
-3. 组件的Tokens：BUI在实现组件时，允许使用者通过`token`能够比较灵活地自定义组件样式。
+1. BUI built-in tokens: including`defaultLightToken`（global token with default highlight mode)`defaultDarkToken`（default global token for dark mode)`dmLightToken`（global token for barley highlight mode`dmDarkToken`（the global token for the dark mode of damai.
+2. Responsive Tokens: BUI is a mobile first responsive solution by default, and users can use it through`responsive` define responsive tokens.
+3. Component Tokens: BUI allows users to implement the component through`token` be flexible enough to customize component styles.
 
-通常情况下，从局部高于通用的角度来看，三种Tokens的优先级是：组件的Tokens > 响应式Tokens > BUI内置Tokens。但对于暗黑模式这种特殊场景，BUI内置的两种暗黑模式Tokens的优先级要高于响应式Tokens。
+Normally, from the perspective of local superiority over general, the priority of the three types of tokens is: Component Tokens>Responsive Tokens>BUI Built in Tokens. But for the special scenario of dark mode, the priority of the two dark mode tokens built into BUI is higher than that of responsive tokens.
 
-原则性：开发者在自定义Tokens时，应保持以下原则。
+Principle: Developers should adhere to the following principles when customizing Tokens.
 
-1. 不要混淆定义：不同业务场景，应使用对应的API来自定义Tokens，如响应式布局应使用`responsive`属性，暗黑模式应使用`defaultDarkToken`或`dmDarkToken`属性。
-2. 分清优先级：特殊场景的优先级永远大于全局通用场景。
+1. Do not confuse definitions: Tokens should be defined using corresponding APIs for different business scenarios, such as responsive layouts`responsive`, dark mode should be used`defaultDarkToken`and`dmDarkToken`.
+2. Distinguish priorities: The priority of special scenarios is always higher than that of global general scenarios.
 
 ```tsx
 import { ThemeProvider, Button } from '@bifrostui/react';
@@ -142,7 +142,7 @@ export default () => {
 };
 ```
 
-### 国际化
+### internationalization
 
 ```tsx
 import {
@@ -161,9 +161,9 @@ import {
 } from '@bifrostui/react';
 import React, { useState } from 'react';
 import dayjs from 'dayjs/esm/index';
-import En from '@bifrostui/react/locales/en-US';
-import CN from '@bifrostui/react/locales/zh-CN';
-import TW from '@bifrostui/react/locales/zh-TW';
+import { EN, CN, TW } from '@bifrostui/react/locales';
+// import CN from '@bifrostui/react/locales/zh-CN';
+// import TW from '@bifrostui/react/locales/zh-TW';
 
 const options = [
   {
@@ -254,7 +254,7 @@ export default () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(dayjs().toDate());
   const [inputValue, setInputValue] = useState('');
-  const [curValue, setCurValue] = useState(En);
+  const [curValue, setCurValue] = useState(EN);
 
   const handleChange = (e, res) => {
     console.log('date change:', res);
@@ -282,7 +282,7 @@ export default () => {
   const optionInt = [
     {
       label: 'en-US',
-      value: En,
+      value: EN,
     },
     {
       label: 'zh-CN',
@@ -297,7 +297,7 @@ export default () => {
     <ThemeProvider locale={curValue}>
       <Stack spacing="10px">
         <Select
-          defaultValue={En}
+          defaultValue={EN}
           onChange={(e, { value = '' }) => {
             setCurValue(value);
           }}

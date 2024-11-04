@@ -41,3 +41,4 @@ export * from './Picker';
 export * from './Toast';
 export * from './Dialog';
 export * from './ThemeProvider';
+export * from './locales';
