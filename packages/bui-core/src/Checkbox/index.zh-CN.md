@@ -322,8 +322,10 @@ export default () => {
 
 ## 样式变量
 
-| 属性              | 说明         | 默认值                 | 全局变量 |
-| ----------------- | ------------ | ---------------------- | -------- |
-| --label-color     | 文案字体颜色 | --bui-color-fg-default | -        |
-| --label-font-size | 文案字体大小 | --bui-text-size-1      | -        |
-| --icon-font-size  | 图标字体大小 | --bui-title-size-2     | -        |
+| 属性               | 说明           | 默认值                 | 全局变量                        |
+| ------------------ | -------------- | ---------------------- | ------------------------------- |
+| --label-color      | 文案字体颜色   | --bui-color-fg-default | --bui-checkbox-label-color      |
+| --label-font-size  | 文案字体大小   | --bui-text-size-1      | --bui-checkbox-label-font-size  |
+| --icon-font-size   | 图标字体大小   | --bui-title-size-2     | --bui-checkbox-icon-font-size   |
+| --disabled-opacity | 禁用状态透明度 | 0.5                    | --bui-checkbox-disabled-opacity |
+| --icon-padding     | 图标内边距     | 5px                    | --bui-checkbox-icon-padding     |

@@ -478,7 +478,7 @@ export default () => {
 
 ### API
 
-##### ListProps
+#### ListProps
 
 | 属性        | 说明           | 类型                       | 默认值   |
 | ----------- | -------------- | -------------------------- | -------- |
@@ -488,7 +488,7 @@ export default () => {
 | size        | 列表尺寸       | `small`｜`medium`｜`large` | `medium` |
 | component   | 列表节点标签   | React.ElementType          | -        |
 
-##### ListItemProps
+#### ListItemProps
 
 | 属性        | 说明                 | 类型                | 默认值 |
 | ----------- | -------------------- | ------------------- | ------ |
@@ -497,7 +497,7 @@ export default () => {
 | hideDivider | 是否隐藏分割线       | boolean             | false  |
 | component   | 根节点标签           | React.ElementType   | -      |
 
-##### ListItemContentProps
+#### ListItemContentProps
 
 | 属性      | 说明       | 类型              | 默认值 |
 | --------- | ---------- | ----------------- | ------ |
@@ -505,8 +505,16 @@ export default () => {
 | secondary | 次要内容   | ReactNode         | -      |
 | component | 根节点标签 | React.ElementType | -      |
 
-##### ListItemHeaderProps、ListItemFooterProps、ListItemExtraProps
+#### ListItemHeaderProps、ListItemFooterProps、ListItemExtraProps
 
 | 属性      | 说明       | 类型              | 默认值 |
 | --------- | ---------- | ----------------- | ------ |
 | component | 根节点标签 | React.ElementType | -      |
+
+### 样式变量
+
+| 属性                  | 说明           | 默认值    | 全局变量                       |
+| --------------------- | -------------- | --------- | ------------------------------ |
+| --small-item-padding  | 默认占位背景色 | 5px 12px  | --bui-list-small-item-padding  |
+| --medium-item-padding | 默认占位背景色 | 18px 12px | --bui-list-medium-item-padding |
+| --large-item-padding  | 默认占位背景色 | 20px 12px | --bui-list-large-item-padding  |

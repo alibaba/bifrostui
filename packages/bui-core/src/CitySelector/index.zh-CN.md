@@ -352,7 +352,7 @@ export default () => {
 
 ### API
 
-##### CitySelectorProps
+#### CitySelectorProps
 
 | 属性                  | 说明                                | 类型                                                 | 默认值     |
 | --------------------- | ----------------------------------- | ---------------------------------------------------- | ---------- |
@@ -368,16 +368,36 @@ export default () => {
 | title                 | 头部title，非必传                   | string                                               | -          |
 | onClose               | 和title配合使用，头部右侧的关闭回调 | (e: React.SyntheticEvent) => void                    | -          |
 
-##### CityGroup
+#### CityGroup
 
 | 属性      | 说明     | 类型   | 默认值 |
 | --------- | -------- | ------ | ------ |
 | groupName | 分组名   | string | -      |
 | cities    | 城市列表 | City[] | -      |
 
-##### City
+#### City
 
 | 属性 | 说明   | 类型   | 默认值 |
 | ---- | ------ | ------ | ------ |
 | code | 城市id | string | -      |
 | name | 城市名 | string | -      |
+
+### 样式变量
+
+| 属性                            | 说明                 | 默认值                         | 全局变量                                          |
+| ------------------------------- | -------------------- | ------------------------------ | ------------------------------------------------- |
+| --select-item-width             | 横排选项宽度         | 111px                          | --bui-city-selector-item-width                    |
+| --select-item-height            | 横排选项高度         | 36px                           | --bui-city-selector-item-height                   |
+| --select-item-border-radius     | 横排选项圆角         | 20px                           | --bui-city-selector-item-border-radius            |
+| --select-item-margin            | 横排选项外边距       | 4.5px 0 4.5px 9px              | --bui-city-selector-item-margin                   |
+| --title-height                  | 标题高度             | 45px                           | --bui-city-selector-title-height                  |
+| --title-line-height             | 标题行高             | 45px                           | --bui-city-selector-title-line-height             |
+| --btn-close-size                | 关闭按钮容器宽高     | 45px                           | --bui-city-selector-btn-close-size                |
+| --btn-close-font-size           | 关闭按钮字号         | 20px                           | --bui-city-selector-btn-close-font-size           |
+| --container-with-title-height   | 带标题的城市容器高度 | calc(100% - --title-height)    | --bui-city-selector-container-with-title-height   |
+| --city-container-min-height     | 城市容器最小高度     | 500px                          | --bui-city-selector-city-container-min-height     |
+| --select-city-buttons-padding   | 横排按钮容器内边距   | 7.5px 0 0 3px                  | --bui-city-selector-select-city-buttons-padding   |
+| --select-city-title-line-height | 城市索引标题栏行高   | 15px                           | --bui-city-selector-select-city-title-line-height |
+| --list-item-height              | 城市项高度           | 45px                           | --bui-city-selector-list-item-height              |
+| --city-index-has-title-top      | 城市索引容器距顶距离 | calc(50% + --title-height / 2) | --bui-city-selector-city-index-has-title-top      |
+| --index-item-height             | 城市索引项高度       | 20px                           | --bui-city-selector-index-item-height             |

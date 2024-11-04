@@ -207,7 +207,7 @@ export default () => {
 
 ### API
 
-##### BadgeProps
+#### BadgeProps
 
 | 属性     | 说明           | 类型                                                      | 默认值      |
 | -------- | -------------- | --------------------------------------------------------- | ----------- |
@@ -216,3 +216,18 @@ export default () => {
 | maxCount | 数字徽章最大值 | number                                                    | -           |
 | variant  | 徽章类型       | `contained` ｜`outlined`                                  | `contained` |
 | type     | 徽章形状       | `dot`｜`rounded`｜`bubble`                                | `rounded`   |
+
+### 样式变量
+
+| 属性                   | 说明                     | 默认值        | 全局变量                         |
+| ---------------------- | ------------------------ | ------------- | -------------------------------- |
+| --badge-position       | 徽章距离顶部和右部的位置 | 14%           | --bui-badge-position             |
+| --min-width            | 徽章最小宽度             | 15px          | --bui-badge-min-width            |
+| --height               | 徽章高度                 | 15px          | --bui-badge-height               |
+| --line-height          | 字体行高                 | 15px          | --bui-badge-line-height          |
+| --padding              | 内边距                   | 0 3px         | --bui-badge-padding              |
+| --border-radius        | 圆角                     | 8px           | --bui-badge-border-radius        |
+| --outlined-padding     | 描边场景内边距           | 0 2px         | --bui-badge-outlined-padding     |
+| --dot-size             | 点状场景宽高             | 9px           | --bui-badge-dot-size             |
+| --bubble-padding       | 气泡场景内边距           | 9px           | --bui-badge-dot-size             |
+| --bubble-border-radius | 气泡场景内边距           | 6px 6px 6px 0 | --bui-badge-bubble-border-radius |

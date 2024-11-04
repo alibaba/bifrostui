@@ -247,7 +247,7 @@ export default () => {
 
 ### API
 
-##### AvatarProps
+#### AvatarProps
 
 | 属性        | 说明                     | 类型                                                 | 默认值    |
 | ----------- | ------------------------ | ---------------------------------------------------- | --------- |
@@ -261,7 +261,7 @@ export default () => {
 | onError     | 图像头像加载失败回调     | ReactEventHandler                                    | -         |
 | onLoad      | 图像头像加载回调         | ReactEventHandler                                    | -         |
 
-##### AvatarGroupProps
+#### AvatarGroupProps
 
 | 属性        | 说明                 | 类型                                  | 默认值    |
 | ----------- | -------------------- | ------------------------------------- | --------- |
@@ -270,3 +270,26 @@ export default () => {
 | size        | 头像大小             | `large`｜`medium`｜`small` ｜`xsmall` | `medium`  |
 | spacing     | 头像间距             | string                                | -         |
 | orientation | 头像朝向             | `left`｜`right`                       | `right`   |
+
+### 样式变量
+
+#### Avatar
+
+| 属性          | 说明             | 默认值 | 全局变量                 |
+| ------------- | ---------------- | ------ | ------------------------ |
+| --large-size  | 大尺寸头像宽高   | 60px   | --bui-avatar-large-size  |
+| --medium-size | 中等尺寸头像宽高 | 42px   | --bui-avatar-medium-size |
+| --small-size  | 小尺寸头像宽高   | 30px   | --bui-avatar-small-size  |
+| --xsmall-size | 超小尺寸头像宽高 | 24px   | --bui-avatar-xsmall-size |
+
+#### AvatarGroup
+
+| 属性                 | 说明               | 默认值                        | 全局变量                              |
+| -------------------- | ------------------ | ----------------------------- | ------------------------------------- |
+| --xsmall-margin-left | 超小尺寸头像左边距 | -5px                          | --bui-avatar-group-xsmall-margin-left |
+| --small-margin-left  | 小尺寸头左边距     | -9px                          | --bui-avatar-group-small-margin-left  |
+| --small-box-shadow   | 小尺寸头像阴影     | 0 0 0 1px --bui-color-bg-view | --bui-avatar-group-small-box-shadow   |
+| --medium-margin-left | 中等尺寸头左边距   | -13px                         | --bui-avatar-group-medium-margin-left |
+| --medium-box-shadow  | 中等尺寸头像阴影   | 0 0 0 2px --bui-color-bg-view | --bui-avatar-group-medium-box-shadow  |
+| --large-margin-left  | 大尺寸头左边距     | -21px                         | --bui-avatar-group-large-margin-left  |
+| --large-box-shadow   | 大尺寸头像阴影     | 0 0 0 3px --bui-color-bg-view | --bui-avatar-group-large-box-shadow   |

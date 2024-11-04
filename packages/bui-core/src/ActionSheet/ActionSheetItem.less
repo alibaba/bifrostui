@@ -1,17 +1,24 @@
 .bui-action-sheet-item {
-  --font-size: var(--bui-title-size-2);
-  --color: var(--bui-color-fg-default);
+  --padding: var(--bui-action-sheet-item-padding, var(--bui-spacing-xl));
+  --font-size: var(--bui-action-sheet-item-font-size, var(--bui-title-size-2));
+  --line-height: var(--bui-action-sheet-item-line-height, 24px);
+  --color: var(--bui-action-sheet-item-color, var(--bui-color-fg-default));
+  --margin: var(--bui-action-sheet-item-margin, 0 var(--bui-spacing-xl));
+  --description-line-height: var(
+    --bui-action-sheet-item-description-line-height,
+    19px
+  );
   font-family: var(--bui-font-family);
   position: relative;
-  padding: var(--bui-spacing-xl);
+  padding: var(--padding);
   cursor: pointer;
   background: var(--bui-color-bg-view);
   font-size: var(--font-size);
   text-align: center;
-  line-height: 24px;
+  line-height: var(--line-height);
   color: var(--color);
   border-top: 1px solid var(--bui-color-border-default);
-  margin: 0 var(--bui-spacing-xl);
+  margin: var(--margin);
 
   &:first-child {
     border-top: none;
@@ -56,7 +63,7 @@
 
   &-description {
     font-size: var(--bui-text-size-2);
-    line-height: 19px;
+    line-height: var(--description-line-height);
     color: var(--bui-color-fg-subtle);
   }
 }

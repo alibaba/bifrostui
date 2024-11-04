@@ -190,3 +190,9 @@ export default () => {
 | webp        | 解析webp               | boolean                                                                         | false  |
 | showMenu    | （小程序）长按菜单配置 | boolean                                                                         | false  |
 | imgProps    | 透传到img的参数        | React.HTMLAttributes\<HTMLImageElement\>                                        | -      |
+
+## 样式变量
+
+| 属性                       | 说明           | 默认值                   | 全局变量                             |
+| -------------------------- | -------------- | ------------------------ | ------------------------------------ |
+| --default-background-color | 默认占位背景色 | rgba(127, 127, 127, 0.2) | --bui-image-default-background-color |

@@ -115,3 +115,9 @@ export default () => {
 | open               | 是否显示                   | boolean                              | false  |
 | invisible          | 是否透明不可见（仍可点击） | boolean                              | false  |
 | transitionDuration | 淡入淡出时间               | number \| TransitionProps['timeout'] |        |
+
+## 样式变量
+
+| 属性               | 说明   | 默认值              | 全局变量                        |
+| ------------------ | ------ | ------------------- | ------------------------------- |
+| --background-color | 背景色 | rgba(0, 0, 0, 0.68) | --bui-backdrop-background-color |

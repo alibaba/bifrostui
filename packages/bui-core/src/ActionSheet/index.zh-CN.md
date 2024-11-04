@@ -191,7 +191,21 @@ export default () => {
 
 ## 样式变量
 
-| 属性        | 说明                     | 默认值                 |
-| ----------- | ------------------------ | ---------------------- |
-| --font-size | ActionSheetItem 字体大小 | --bui-title-size-2     |
-| --color     | ActionSheetItem 内容颜色 | --bui-color-fg-default |
+### ActionSheet
+
+| 属性                | 说明               | 默认值             | 全局变量                             |
+| ------------------- | ------------------ | ------------------ | ------------------------------------ |
+| --extra-line-height | 顶部额外内容行高   | 23px               | --bui-action-sheet-extra-line-height |
+| --extra-padding     | 顶部额外内容内边距 | --bui-spacing-xl   | --bui-action-sheet-extra-padding     |
+| --extra-magin       | 顶部额外内容内边距 | 0 --bui-spacing-xl | --bui-action-sheet-extra-magin       |
+
+### ActionSheetItem
+
+| 属性                      | 说明             | 默认值                 | 全局变量                                        |
+| ------------------------- | ---------------- | ---------------------- | ----------------------------------------------- |
+| --padding                 | 子项内边距       | --bui-spacing-xl       | --bui-action-sheet-item-padding                 |
+| --font-size               | 子项字体大小     | --bui-title-size-2     | --bui-action-sheet-item-font-size               |
+| --line-height             | 子项字体行高     | 24px                   | --bui-action-sheet-item-line-height             |
+| --color                   | 子项字体颜色     | --bui-color-fg-default | --bui-action-sheet-item-color                   |
+| --margin                  | 子项字体         | 0 --bui-spacing-xl     | --bui-action-sheet-item-margin                  |
+| --description-line-height | 子项描述文案行高 | 19px                   | --bui-action-sheet-item-description-line-height |

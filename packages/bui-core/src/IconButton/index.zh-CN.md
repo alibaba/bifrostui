@@ -182,9 +182,11 @@ export default () => {
 
 ## 样式变量
 
-| 属性        | 说明                 | 默认值                |
-| ----------- | -------------------- | --------------------- |
-| --bg-color  | 图标按钮背景颜色     | --bui-color-neutral-5 |
-| --color     | 图标颜色             | --bui-color-fg-muted  |
-| --icon-size | 图标大小             | 17px                  |
-| --user-area | 按钮点击安全区域大小 | 5px                   |
+| 属性               | 说明                                       | 默认值                | 全局变量                        |
+| ------------------ | ------------------------------------------ | --------------------- | ------------------------------- |
+| --bg-color         | 图标按钮背景颜色                           | --bui-color-neutral-5 | --bui-icon-btn-bg-color         |
+| --color            | 图标颜色                                   | --bui-color-fg-muted  | --bui-icon-btn-color            |
+| --icon-size        | 图标大小                                   | 17px                  | --bui-icon-btn-font-size        |
+| --user-area        | 按钮点击安全区域大小(默认medium大小情况下) | 5px                   | --bui-icon-btn-padding          |
+| --large-font-size  | 大号按钮字号                               | 23px                  | --bui-icon-btn-large-font-size  |
+| --disabled-opacity | 禁用状态透明度                             | 0.5                   | --bui-icon-btn-disabled-opacity |

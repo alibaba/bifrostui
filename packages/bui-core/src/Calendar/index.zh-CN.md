@@ -414,3 +414,23 @@ export default () => {
 | ----- | -------- | ------- |
 | month | 日期对象 | Date    |
 | type  | 是否禁用 | boolean |
+
+## 样式变量
+
+| 属性                               | 说明                     | 默认值       | 全局变量                                        |
+| ---------------------------------- | ------------------------ | ------------ | ----------------------------------------------- |
+| --padding                          | 内边距                   | 6px 12px 7px | --bui-calendar-padding                          |
+| --week-height                      | 周几显示栏高度           | 30px         | --bui-calendar-week-height                      |
+| --handler-height                   | 操作栏高度               | 28px         | --bui-calendar-handler-height                   |
+| --handler-margin-bottom            | 操作栏底部外边距         | 7px          | --bui-calendar-handler-margin-bottom            |
+| --handler-text-width               | 操作栏文案容器宽度       | 80px         | --bui-calendar-handler-text-width               |
+| --handler-btn-width                | 操作栏按钮宽度           | 46px         | --bui-calendar-handler-btn-width                |
+| --handler-btn-height               | 操作栏按钮高度           | 100%         | --bui-calendar-handler-btn-height               |
+| --handler-btn-icon-font-size       | 操作栏按钮图标字号       | 28px         | --bui-calendar-handler-btn-icon-font-size       |
+| --day-box-height                   | 日期框高度               | 30px         | --bui-calendar-day-box-height                   |
+| --day-box-margin-bottom            | 日期框底部外边距         | 7px          | --bui-calendar-day-box-margin-bottom            |
+| --day-disabled-color               | 日期禁用字体颜色         | #9c9ca5      | --bui-calendar-day-disabled-color               |
+| --middle-color                     | 范围选择中间部分字体颜色 | #000         | --bui-calendar-middle-color                     |
+| --middle-background-color          | 范围选择中间部分背景颜色 | #ffeaf1      | --bui-calendar-middle-background-color          |
+| --range-both-ends-color            | 范围选择两端字体颜色     | #000         | --bui-calendar-range-both-ends-color            |
+| --range-both-ends-background-color | 范围选择两端背景颜色     | #ffc7da      | --bui-calendar-range-both-ends-background-color |

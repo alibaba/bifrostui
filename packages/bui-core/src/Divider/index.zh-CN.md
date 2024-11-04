@@ -175,9 +175,11 @@ export default () => {
 | size      | 分割线尺寸 | string                     | -          |
 | dashed    | 是否为虚线 | boolean                    | false      |
 
-##### 样式变量
+### 样式变量
 
-| 属性     | 说明       | 默认值 | 全局变量             |
-| -------- | ---------- | ------ | -------------------- |
-| --height | 分割线高度 | 100%   | --bui-divider-height |
-| --width  | 分割线宽度 | 100%   | --bui-divider-width  |
+| 属性           | 说明                                   | 默认值 | 全局变量                   |
+| -------------- | -------------------------------------- | ------ | -------------------------- |
+| --height       | 分割线高度                             | 100%   | --bui-divider-height       |
+| --width        | 分割线宽度                             | 100%   | --bui-divider-width        |
+| --border-width | 分割线粗细(所有形式的分割线均受此控制) | 1px    | --bui-divider-border-width |
+| --line-width   | 可插入文案的分割线长度                 | 40px   | --bui-divider-line-width   |

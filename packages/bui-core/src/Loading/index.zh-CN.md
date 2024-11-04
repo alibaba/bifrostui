@@ -103,4 +103,6 @@ export default () => {
 
 | 属性                 | 说明             | 默认值 | 全局变量                         |
 | -------------------- | ---------------- | ------ | -------------------------------- |
+| --icon-font-size     | 图标字号         | 30px   | --bui-loading-icon-font-size     |
+| --text-padding       | 文案容器内边距   | 10px   | --bui-loading-text-padding       |
 | --animation-duration | 加载动画播放周期 | 1.6s   | --bui-loading-animation-duration |
