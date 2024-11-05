@@ -131,6 +131,7 @@ export default () => {
 
 ## Style variables
 
-| attribute       | explain                     | Default value              |
-| --------------- | --------------------------- | -------------------------- |
-| --border-radius | Skeleton screen corner size | `--bui-shape-radius-label` |
+| attribute       | explain                       | Default value              | global variable       |
+| --------------- | ----------------------------- | -------------------------- | --------------------- |
+| --border-radius | Skeleton screen corner size   | `--bui-shape-radius-label` | -                     |
+| --height        | Skeleton screen corner height | 1.2em                      | --bui-skeleton-height |
