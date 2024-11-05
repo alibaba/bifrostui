@@ -172,3 +172,12 @@ export default () => {
 | disableClear | 是否禁止点击后清空      | boolean                                                                       | false                                   |
 | name         | 单选输入元素的name属性  | string                                                                        | -                                       |
 | onChange     | 选择评分的回调          | (ev?: React.ChangeEvent<HTMLInputElement\>\,data?: { value: number }) => void | -                                       |
+
+## 样式变量
+
+| 属性                  | 说明             | 默认值 | 全局变量                         |
+| --------------------- | ---------------- | ------ | -------------------------------- |
+| --small-margin-right  | 小号评分右外边距 | 0.5px  | --bui-rating-small-margin-right  |
+| --medium-margin-right | 中号评分右外边距 | 1px    | --bui-rating-medium-margin-right |
+| --large-margin-right  | 大号评分右外边距 | 2px    | --bui-rating-large-margin-right  |
+| --large-font-size     | 大号评分字体大小 | 22px   | --bui-rating-large-font-size     |

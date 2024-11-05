@@ -172,3 +172,12 @@ export default () => {
 | disableClear | Do you prohibit clearing after clicking      | boolean                                                                       | false                                   |
 | name         | Single choice input element's name attribute | string                                                                        | -                                       |
 | onChange     | Select the callback for rating selection     | (ev?: React.ChangeEvent<HTMLInputElement\>\,data?: { value: number }) => void | -                                       |
+
+## Style variables
+
+| attribute             | explain                     | Default value | global variable                  |
+| --------------------- | --------------------------- | ------------- | -------------------------------- |
+| --small-margin-right  | Small rating right margin   | 0.5px         | --bui-rating-small-margin-right  |
+| --medium-margin-right | Medium rating, right margin | 1px           | --bui-rating-medium-margin-right |
+| --large-margin-right  | Large rating right margin   | 2px           | --bui-rating-large-margin-right  |
+| --large-font-size     | Large rating font size      | 22px          | --bui-rating-large-font-size     |
