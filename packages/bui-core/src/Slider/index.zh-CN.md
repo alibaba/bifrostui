@@ -237,10 +237,21 @@ export default () => {
 
 ## 样式变量
 
-| 属性                | 说明             | 默认值                     | 全局变量 |
-| ------------------- | ---------------- | -------------------------- | -------- |
-| --line-color        | 线条前景色       | --bui-color-primary        | -        |
-| --line-bg-color     | 线条背景色       | --bui-color-border-default | -        |
-| --tooltip-font-size | 提示气泡字体大小 | --bui-text-size-3          | -        |
-| --tooltip-color     | 提示气泡字体颜色 | --bui-color-white          | -        |
-| --tooltip-bg-color  | 提示气泡背景颜色 | --line-color               | -        |
+| 属性                    | 说明             | 默认值                     | 全局变量                           |
+| ----------------------- | ---------------- | -------------------------- | ---------------------------------- |
+| --line-color            | 线条前景色       | --bui-color-primary        | -                                  |
+| --line-bg-color         | 线条背景色       | --bui-color-border-default | -                                  |
+| --width                 | 滑动输入条宽度   | 100%                       | --bui-slider-width                 |
+| --height                | 滑动输入条高度   | 2px                        | --bui-slider-height                |
+| --padding               | 滑动输入条内边距 | 19px 0                     | --bui-slider-padding               |
+| --button-width          | 滑动按钮宽度     | 100%                       | --bui-slider-button-width          |
+| --button-height         | 滑动按钮高度     | 2px                        | --bui-slider-button-height         |
+| --button-font-size      | 滑动按钮字体大小 | --line-color               | -                                  |
+| --button-border-radius  | 滑动按钮边框圆角 | 50%                        | --bui-slider-button-border-radius  |
+| --tooltip-font-size     | 提示气泡字体大小 | --bui-text-size-3          | -                                  |
+| --tooltip-color         | 提示气泡字体颜色 | --bui-color-white          | -                                  |
+| --tooltip-bg-color      | 提示气泡背景颜色 | --line-color               | -                                  |
+| --tooltip-width         | 提示气泡宽度     | 46px                       | --bui-slider-tooltip-width         |
+| --tooltip-height        | 提示气泡高度     | 24px                       | --bui-slider-tooltip-height        |
+| --tooltip-line-height   | 提示气泡行高     | 24px                       | --bui-slider-tooltip-line-height   |
+| --tooltip-border-radius | 提示气泡边框圆角 | 24px                       | --bui-slider-tooltip-border-radius |

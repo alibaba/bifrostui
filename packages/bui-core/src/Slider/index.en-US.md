@@ -237,10 +237,21 @@ export default () => {
 
 ## Style variables
 
-| attribute           | explain                        | Default value              | global variable |
-| ------------------- | ------------------------------ | -------------------------- | --------------- |
-| --line-color        | Line foreground scenery        | --bui-color-primary        | -               |
-| --line-bg-color     | Line background color          | --bui-color-border-default | -               |
-| --tooltip-font-size | Prompt for bubble font size    | --bui-text-size-3          | -               |
-| --tooltip-color     | Prompt bubble font color       | --bui-color-white          | -               |
-| --tooltip-bg-color  | Prompt bubble background color | --line-color               | -               |
+| attribute               | explain                                 | Default value              | global variable                    |
+| ----------------------- | --------------------------------------- | -------------------------- | ---------------------------------- |
+| --line-color            | Line foreground scenery                 | --bui-color-primary        | -                                  |
+| --line-bg-color         | Line background color                   | --bui-color-border-default | -                                  |
+| --width                 | Sliding input bar width                 | 100%                       | --bui-slider-width                 |
+| --height                | Sliding input bar height                | 2px                        | --bui-slider-height                |
+| --padding               | Slide the inner margin of the input bar | 19px 0                     | --bui-slider-padding               |
+| --button-width          | Sliding button width                    | 100%                       | --bui-slider-button-width          |
+| --button-height         | Slide button height                     | 2px                        | --bui-slider-button-height         |
+| --button-font-size      | Font size of sliding button             | --line-color               | -                                  |
+| --button-border-radius  | Sliding button border rounded corner    | 50%                        | --bui-slider-button-border-radius  |
+| --tooltip-font-size     | Prompt for bubble font size             | --bui-text-size-3          | -                                  |
+| --tooltip-color         | Prompt bubble font color                | --bui-color-white          | -                                  |
+| --tooltip-bg-color      | Prompt bubble background color          | --line-color               | -                                  |
+| --tooltip-width         | Prompt bubble width                     | 46px                       | --bui-slider-tooltip-width         |
+| --tooltip-height        | Prompt bubble height                    | 24px                       | --bui-slider-tooltip-height        |
+| --tooltip-line-height   | Prompt bubble height                    | 24px                       | --bui-slider-tooltip-line-height   |
+| --tooltip-border-radius | Prompt bubble border rounded corners    | 24px                       | --bui-slider-tooltip-border-radius |
