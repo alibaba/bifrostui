@@ -230,4 +230,4 @@ export default () => {
 | --outlined-padding     | 描边场景内边距           | 0 2px         | --bui-badge-outlined-padding     |
 | --dot-size             | 点状场景宽高             | 9px           | --bui-badge-dot-size             |
 | --bubble-padding       | 气泡场景内边距           | 9px           | --bui-badge-dot-size             |
-| --bubble-border-radius | 气泡场景内边距           | 6px 6px 6px 0 | --bui-badge-bubble-border-radius |
+| --bubble-border-radius | 气泡场景圆角             | 6px 6px 6px 0 | --bui-badge-bubble-border-radius |

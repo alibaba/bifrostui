@@ -304,7 +304,7 @@ export default () => {
 
 ### API
 
-##### CardHeaderProps
+#### CardHeaderProps
 
 | attribute | explain                                      | type                 | Default value |
 | --------- | -------------------------------------------- | -------------------- | ------------- |
@@ -312,3 +312,18 @@ export default () => {
 | subtitle  | subtitle                                     | ReactNode            | -             |
 | extra     | Operation area on the right side of the card | ReactNode            | -             |
 | endIcon   | Icon on the right side of the card           | ReactNode ｜ boolean | -             |
+
+### Style variables
+
+#### CardHeader
+
+| attribute              | explain               | Default value                     | global variable                        |
+| ---------------------- | --------------------- | --------------------------------- | -------------------------------------- |
+| --padding              | padding               | --bui-spacing-md --bui-spacing-lg | --bui-card-header-padding              |
+| --end-icon-margin-left | Tail icon left margin | 2px                               | --bui-card-header-end-icon-margin-left |
+
+#### CardFooter
+
+| attribute | explain | Default value                     | global variable           |
+| --------- | ------- | --------------------------------- | ------------------------- |
+| --padding | padding | --bui-spacing-md --bui-spacing-lg | --bui-card-footer-padding |

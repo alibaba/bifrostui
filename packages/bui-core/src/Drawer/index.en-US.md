@@ -159,6 +159,8 @@ export default () => {
 };
 ```
 
+### API
+
 | attribute          | explain                               | type                                                         | Default value   |
 | ------------------ | ------------------------------------- | ------------------------------------------------------------ | --------------- |
 | anchor             | The position where the Drawer appears | `left` \| `top` \| `right` \| `bottom`                       | `text`          |

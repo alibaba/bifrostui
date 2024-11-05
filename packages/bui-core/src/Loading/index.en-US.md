@@ -103,4 +103,6 @@ export default () => {
 
 | attribute            | explain                       | Default value | global variable                  |
 | -------------------- | ----------------------------- | ------------- | -------------------------------- |
+| --icon-font-size     | Icon font size                | 30px          | --bui-loading-icon-font-size     |
+| --text-padding       | Copy container padding        | 10px          | --bui-loading-text-padding       |
 | --animation-duration | Load animation playback cycle | 1.6s          | --bui-loading-animation-duration |

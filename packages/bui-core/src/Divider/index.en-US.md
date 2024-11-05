@@ -167,7 +167,7 @@ export default () => {
 
 ### API
 
-##### DividerProps
+#### DividerProps
 
 | attribute | explain                    | type                       | Default value |
 | --------- | -------------------------- | -------------------------- | ------------- |
@@ -175,9 +175,11 @@ export default () => {
 | size      | Size of dividing line      | string                     | -             |
 | dashed    | Is it a dashed line        | boolean                    | false         |
 
-##### Style variables
+### Style variables
 
-| attribute | explain                 | Default value | global variable      |
-| --------- | ----------------------- | ------------- | -------------------- |
-| --height  | Height of dividing line | 100%          | --bui-divider-height |
-| --width   | Width of dividing line  | 100%          | --bui-divider-width  |
+| attribute      | explain                                                                                 | Default value | global variable            |
+| -------------- | --------------------------------------------------------------------------------------- | ------------- | -------------------------- |
+| --height       | Height of dividing line                                                                 | 100%          | --bui-divider-height       |
+| --width        | Width of dividing line                                                                  | 100%          | --bui-divider-width        |
+| --border-width | The thickness of the dividing line (all forms of dividing lines are controlled by this) | 1px           | --bui-divider-border-width |
+| --line-width   | The length of the dividing line that can be inserted into the text                      | 40px          | --bui-divider-line-width   |

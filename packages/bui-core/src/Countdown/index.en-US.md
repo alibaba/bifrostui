@@ -266,8 +266,9 @@ export default () => {
 
 ## Style variables
 
-| attribute     | explain          | Default value            | global variable             |
-| ------------- | ---------------- | ------------------------ | --------------------------- |
-| --font-size   | Copy font size   | --bui-text-size-1        | --bui-countdown-font-size   |
-| --font-weight | Copy font weight | --bui-font-weight-normal | --bui-countdown-color       |
-| --color       | Text font color  | --bui-color-fg-default   | --bui-countdown-font-weight |
+| attribute           | explain           | Default value            | global variable                   |
+| ------------------- | ----------------- | ------------------------ | --------------------------------- |
+| --font-size         | Copy font size    | --bui-text-size-1        | --bui-countdown-font-size         |
+| --color             | Copy font color   | --bui-color-fg-default   | --bui-countdown-color             |
+| --font-weight       | Copy font weight  | --bui-font-weight-normal | --bui-countdown-font-weight       |
+| --slice-unit-margin | separator spacing | 0 2px                    | --bui-countdown-slice-unit-margin |

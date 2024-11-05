@@ -414,3 +414,23 @@ export default () => {
 | --------- | ------------------------- | ------- |
 | month     | Date Object               | Date    |
 | type      | Do you want to disable it | boolean |
+
+## Style variables
+
+| attribute                          | explain                                       | Default value | global variable                                 |
+| ---------------------------------- | --------------------------------------------- | ------------- | ----------------------------------------------- |
+| --padding                          | padding                                       | 6px 12px 7px  | --bui-calendar-padding                          |
+| --week-height                      | Day of the week display bar height            | 30px          | --bui-calendar-week-height                      |
+| --handler-height                   | Action bar height                             | 28px          | --bui-calendar-handler-height                   |
+| --handler-margin-bottom            | Action bar bottom margin                      | 7px           | --bui-calendar-handler-margin-bottom            |
+| --handler-text-width               | Action bar copy container width               | 80px          | --bui-calendar-handler-text-width               |
+| --handler-btn-width                | Action bar button width                       | 46px          | --bui-calendar-handler-btn-width                |
+| --handler-btn-height               | Action bar button height                      | 100%          | --bui-calendar-handler-btn-height               |
+| --handler-btn-icon-font-size       | Action bar button icon font size              | 28px          | --bui-calendar-handler-btn-icon-font-size       |
+| --day-box-height                   | date box height                               | 30px          | --bui-calendar-day-box-height                   |
+| --day-box-margin-bottom            | Date box bottom margin                        | 7px           | --bui-calendar-day-box-margin-bottom            |
+| --day-disabled-color               | Date disabled font color                      | #9c9ca5       | --bui-calendar-day-disabled-color               |
+| --middle-color                     | Range selection middle part font color        | #000          | --bui-calendar-middle-color                     |
+| --middle-background-color          | Range selection middle part background color  | #ffeaf1       | --bui-calendar-middle-background-color          |
+| --range-both-ends-color            | Range selection font color at both ends       | #000          | --bui-calendar-range-both-ends-color            |
+| --range-both-ends-background-color | Range selection background color at both ends | #ffc7da       | --bui-calendar-range-both-ends-background-color |

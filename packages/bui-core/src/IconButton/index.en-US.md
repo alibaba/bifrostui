@@ -182,9 +182,11 @@ See [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#at
 
 ## Style variables
 
-| attribute   | explain                                                    | Default value         |
-| ----------- | ---------------------------------------------------------- | --------------------- |
-| --bg-color  | Icon button background color                               | --bui-color-neutral-5 |
-| --color     | Icon color                                                 | --bui-color-fg-muted  |
-| --icon-size | Icon size                                                  | 17px                  |
-| --user-area | Click on the button to determine the size of the safe zone | 5px                   |
+| attribute          | explain                                           | Default value         |
+| ------------------ | ------------------------------------------------- | --------------------- | ------------------------------- |
+| --bg-color         | Icon button background color                      | --bui-color-neutral-5 | --bui-icon-btn-bg-color         |
+| --color            | Icon color                                        | --bui-color-fg-muted  | --bui-icon-btn-color            |
+| --icon-size        | Icon size                                         | 17px                  | --bui-icon-btn-font-size        |
+| --user-area        | Button click safe area size (default medium size) | 5px                   | --bui-icon-btn-padding          |
+| --large-font-size  | Large button font size                            | 23px                  | --bui-icon-btn-large-font-size  |
+| --disabled-opacity | Disable state transparency                        | 0.5                   | --bui-icon-btn-disabled-opacity |

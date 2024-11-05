@@ -115,3 +115,9 @@ export default () => {
 | open               | Is it displayed                                  | boolean                              | false         |
 | invisible          | Is it transparent or invisible (still clickable) | boolean                              | false         |
 | transitionDuration | Fade in/fade out time                            | number \| TransitionProps['timeout'] |               |
+
+## Style variables
+
+| attribute          | explain          | Default value       | global variable                 |
+| ------------------ | ---------------- | ------------------- | ------------------------------- |
+| --background-color | background color | rgba(0, 0, 0, 0.68) | --bui-backdrop-background-color |

@@ -207,7 +207,7 @@ export default () => {
 
 ### API
 
-##### BadgeProps
+#### BadgeProps
 
 | attribute | explain                        | type                                                      | Default value |
 | --------- | ------------------------------ | --------------------------------------------------------- | ------------- |
@@ -216,3 +216,18 @@ export default () => {
 | maxCount  | Maximum value of digital badge | number                                                    | -             |
 | variant   | Badge type                     | `contained` ｜`outlined`                                  | `contained`   |
 | type      | Badge shape                    | `dot`｜`rounded`｜`bubble`                                | `rounded`     |
+
+### Style variables
+
+| attribute              | explain                                          | Default value | global variable                  |
+| ---------------------- | ------------------------------------------------ | ------------- | -------------------------------- |
+| --badge-position       | The position of the badge from the top and right | 14%           | --bui-badge-position             |
+| --min-width            | Badge minimum width                              | 15px          | --bui-badge-min-width            |
+| --height               | badge height                                     | 15px          | --bui-badge-height               |
+| --line-height          | Font line height                                 | 15px          | --bui-badge-line-height          |
+| --padding              | padding                                          | 0 3px         | --bui-badge-padding              |
+| --border-radius        | rounded corners                                  | 8px           | --bui-badge-border-radius        |
+| --outlined-padding     | Stroke scene padding                             | 0 2px         | --bui-badge-outlined-padding     |
+| --dot-size             | Point scene width and height                     | 9px           | --bui-badge-dot-size             |
+| --bubble-padding       | Bubble scene padding                             | 9px           | --bui-badge-dot-size             |
+| --bubble-border-radius | Bubble scene rounded corners                     | 6px 6px 6px 0 | --bui-badge-bubble-border-radius |

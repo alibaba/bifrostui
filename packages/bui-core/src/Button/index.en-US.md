@@ -171,24 +171,19 @@ See [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#at
 
 ## Style variables
 
-| attribute                 | explain                         | Default value              | global variable                      |
-| ------------------------- | ------------------------------- | -------------------------- | ------------------------------------ |
-| --border-radius           | Rounded corner size             | 100px                      | --bui-button-border-radius           |
-| --bg-color                | background color                | --bui-color-neutral-5      | --bui-button-default-bg-color        |
-| --text-color              | Text color                      | --bui-color-fg-muted       | --bui-button-text-color              |
-| --border-color            | Border color                    | --bui-color-border-default | --bui-button-border-color            |
-| --font-weight             | Default font weight for buttons | --bui-font-weight-medium   | --bui-button-font-weight             |
-| --height                  | Default height of button        | 27px                       | --bui-button-height                  |
-| --font-size               | Default font size for buttons   | --bui-text-size-3          | --bui-button-font-size               |
-| --icon-start-margin-right | Right margin of front label     | --bui-spacing-xs           | --bui-button-icon-start-margin-right |
-| --icon-end-margin-left    | Left margin of front label      | --bui-spacing-xs           | --bui-button-icon-end-margin-left    |
-| --disabled-opacity        | Disable transparency status     | 0.5                        | --bui-button-disabled-opacity        |
-| --small-font-size         | Small button font size          | --bui-text-size-4          | --bui-button-small-font-size         |
-| --small-padding           | Inner margin of small button    | 0 11px                     | --bui-button-small-padding           |
-| --small-height            | Small button height             | 24px                       | --bui-button-small-height            |
-| --medium-padding          | Inner margin of middle button   | 0 14px                     | --bui-button-medium-padding          |
-| --large-font-size         | Large button font size          | --bui-text-size-2          | --bui-button-large-font-size         |
-| --large-padding           | Large button margin             | 0 14px                     | --bui-button-large-padding           |
-| --large-height            | Height of large button          | 33px                       | --bui-button-large-height            |
-| --full-font-size          | Full screen button font size    | --bui-title-size-4         | --bui-button-full-font-size          |
-| --full-height             | Full screen button height       | 42px                       | --bui-button-full-height             |
+| attribute                 | explain                      | Default value              | global variable                      |
+| ------------------------- | ---------------------------- | -------------------------- | ------------------------------------ |
+| --border-radius           | Fillet size                  | 100px                      | --bui-button-border-radius           |
+| --bg-color                | background color             | --bui-color-neutral-5      | --bui-button-default-bg-color        |
+| --border-color            | border color                 | --bui-color-border-default | --bui-button-border-color            |
+| --height                  | Button default height        | 27px                       | --bui-button-height                  |
+| --icon-start-margin-right | Front label right margin     | --bui-spacing-xs           | --bui-button-icon-start-margin-right |
+| --icon-end-margin-left    | Front label left margin      | --bui-spacing-xs           | --bui-button-icon-end-margin-left    |
+| --disabled-opacity        | Disable state transparency   | 0.5                        | --bui-button-disabled-opacity        |
+| --small-padding           | small button padding         | 0 11px                     | --bui-button-small-padding           |
+| --small-height            | small button height          | 24px                       | --bui-button-small-height            |
+| --medium-padding          | Center button padding        | 0 14px                     | --bui-button-medium-padding          |
+| --large-padding           | Large button padding         | 0 14px                     | --bui-button-large-padding           |
+| --large-height            | Large button height          | 33px                       | --bui-button-large-height            |
+| --full-font-size          | Full screen button font size | --bui-title-size-4         | --bui-button-full-font-size          |
+| --full-height             | Full screen button height    | 42px                       | --bui-button-full-height             |

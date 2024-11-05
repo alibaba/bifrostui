@@ -352,7 +352,7 @@ export default () => {
 
 ### API
 
-##### CitySelectorProps
+#### CitySelectorProps
 
 | attribute             | explain                                                                              | type                                                 | Default value      |
 | --------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------- | ------------------ |
@@ -368,16 +368,36 @@ export default () => {
 | title                 | Title at the top, not mandatory                                                      | string                                               | -                  |
 | onClose               | Used in conjunction with the title, the close callback on the right side of the head | (e: React.SyntheticEvent) => void                    | -                  |
 
-##### CityGroup
+#### CityGroup
 
 | attribute | explain    | type   | Default value |
 | --------- | ---------- | ------ | ------------- |
 | groupName | Group name | string | -             |
 | cities    | City List  | City[] | -             |
 
-##### City
+#### City
 
 | attribute | explain   | type   | Default value |
 | --------- | --------- | ------ | ------------- |
 | code      | City ID   | string | -             |
 | name      | City name | string | -             |
+
+### Style variables
+
+| attribute                       | explain                                 | Default value                  | global variable                                   |
+| ------------------------------- | --------------------------------------- | ------------------------------ | ------------------------------------------------- |
+| --select-item-width             | Horizontal option width                 | 111px                          | --bui-city-selector-item-width                    |
+| --select-item-height            | Horizontal option height                | 36px                           | --bui-city-selector-item-height                   |
+| --select-item-border-radius     | Horizontal options rounded corners      | 20px                           | --bui-city-selector-item-border-radius            |
+| --select-item-margin            | Horizontal option margins               | 4.5px 0 4.5px 9px              | --bui-city-selector-item-margin                   |
+| --title-height                  | title height                            | 45px                           | --bui-city-selector-title-height                  |
+| --title-line-height             | Title row height                        | 45px                           | --bui-city-selector-title-line-height             |
+| --btn-close-size                | Close button container width and height | 45px                           | --bui-city-selector-btn-close-size                |
+| --btn-close-font-size           | Close button font size                  | 20px                           | --bui-city-selector-btn-close-font-size           |
+| --container-with-title-height   | City container height with title        | calc(100% - --title-height)    | --bui-city-selector-container-with-title-height   |
+| --city-container-min-height     | City container minimum height           | 500px                          | --bui-city-selector-city-container-min-height     |
+| --select-city-buttons-padding   | Horizontal button container padding     | 7.5px 0 0 3px                  | --bui-city-selector-select-city-buttons-padding   |
+| --select-city-title-line-height | City index title bar row height         | 15px                           | --bui-city-selector-select-city-title-line-height |
+| --list-item-height              | city ​​item height                      | 45px                           | --bui-city-selector-list-item-height              |
+| --city-index-has-title-top      | City index container distance from top  | calc(50% + --title-height / 2) | --bui-city-selector-city-index-has-title-top      |
+| --index-item-height             | City index item height                  | 20px                           | --bui-city-selector-index-item-height             |

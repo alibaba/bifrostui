@@ -515,6 +515,6 @@ export default () => {
 
 | 属性                  | 说明           | 默认值    | 全局变量                       |
 | --------------------- | -------------- | --------- | ------------------------------ |
-| --small-item-padding  | 默认占位背景色 | 5px 12px  | --bui-list-small-item-padding  |
-| --medium-item-padding | 默认占位背景色 | 18px 12px | --bui-list-medium-item-padding |
-| --large-item-padding  | 默认占位背景色 | 20px 12px | --bui-list-large-item-padding  |
+| --small-item-padding  | 小号子项内边距 | 5px 12px  | --bui-list-small-item-padding  |
+| --medium-item-padding | 中等子项内边距 | 18px 12px | --bui-list-medium-item-padding |
+| --large-item-padding  | 大号子项内边距 | 20px 12px | --bui-list-large-item-padding  |

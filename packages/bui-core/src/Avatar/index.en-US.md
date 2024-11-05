@@ -247,7 +247,7 @@ export default () => {
 
 ### API
 
-##### AvatarProps
+#### AvatarProps
 
 | attribute   | explain                                         | type                                                 | Default value |
 | ----------- | ----------------------------------------------- | ---------------------------------------------------- | ------------- |
@@ -261,7 +261,7 @@ export default () => {
 | onError     | Image avatar loading failure callback           | ReactEventHandler                                    | -             |
 | onLoad      | Image avatar loading callback                   | ReactEventHandler                                    | -             |
 
-##### AvatarGroupProps
+#### AvatarGroupProps
 
 | attribute   | explain                                             | type                                  | Default value |
 | ----------- | --------------------------------------------------- | ------------------------------------- | ------------- |
@@ -270,3 +270,26 @@ export default () => {
 | size        | Avatar size                                         | `large`｜`medium`｜`small` ｜`xsmall` | `medium`      |
 | spacing     | Avatar spacing                                      | string                                | -             |
 | orientation | Avatar orientation                                  | `left`｜`right`                       | `right`       |
+
+### Style variables
+
+#### Avatar
+
+| attribute     | explain                                  | Default value | global variable          |
+| ------------- | ---------------------------------------- | ------------- | ------------------------ |
+| --large-size  | Large size avatar width and height       | 60px          | --bui-avatar-large-size  |
+| --medium-size | Medium size avatar width and height      | 42px          | --bui-avatar-medium-size |
+| --small-size  | Small size avatar width and height       | 30px          | --bui-avatar-small-size  |
+| --xsmall-size | Ultra small size avatar width and height | 24px          | --bui-avatar-xsmall-size |
+
+#### AvatarGroup
+
+| attribute            | explain                                | Default value                 | global variable                       |
+| -------------------- | -------------------------------------- | ----------------------------- | ------------------------------------- |
+| --xsmall-margin-left | Ultra small size left margin of avatar | -5px                          | --bui-avatar-group-xsmall-margin-left |
+| --small-margin-left  | Small size header left margin          | -9px                          | --bui-avatar-group-small-margin-left  |
+| --small-box-shadow   | Small size avatar shadow               | 0 0 0 1px --bui-color-bg-view | --bui-avatar-group-small-box-shadow   |
+| --medium-margin-left | Medium header left margin              | -13px                         | --bui-avatar-group-medium-margin-left |
+| --medium-box-shadow  | Medium size avatar shadow              | 0 0 0 2px --bui-color-bg-view | --bui-avatar-group-medium-box-shadow  |
+| --large-margin-left  | Large left margin of header            | -21px                         | --bui-avatar-group-large-margin-left  |
+| --large-box-shadow   | Large size avatar shadow               | 0 0 0 3px --bui-color-bg-view | --bui-avatar-group-large-box-shadow   |

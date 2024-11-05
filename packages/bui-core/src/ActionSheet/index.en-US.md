@@ -191,7 +191,21 @@ export default () => {
 
 ## Style variables
 
-| attribute   | explain                          | Default value          |
-| ----------- | -------------------------------- | ---------------------- |
-| --font-size | Font size of ActionSheetItem     | --bui-title-size-2     |
-| --color     | Color of ActionSheetItem Content | --bui-color-fg-default |
+### ActionSheet
+
+| attribute           | explain                       | Default value      | global variable                      |
+| ------------------- | ----------------------------- | ------------------ | ------------------------------------ |
+| --extra-line-height | Top extra content line height | 23px               | --bui-action-sheet-extra-line-height |
+| --extra-padding     | Top extra content padding     | --bui-spacing-xl   | --bui-action-sheet-extra-padding     |
+| --extra-magin       | Top extra content padding     | 0 --bui-spacing-xl | --bui-action-sheet-extra-magin       |
+
+### ActionSheetItem
+
+| attribute                 | explain                              | Default value          | global variable                                 |
+| ------------------------- | ------------------------------------ | ---------------------- | ----------------------------------------------- |
+| --padding                 | child padding                        | --bui-spacing-xl       | --bui-action-sheet-item-padding                 |
+| --font-size               | Subitem font size                    | --bui-title-size-2     | --bui-action-sheet-item-font-size               |
+| --line-height             | Subitem font line height             | 24px                   | --bui-action-sheet-item-line-height             |
+| --color                   | Subitem font color                   | --bui-color-fg-default | --bui-action-sheet-item-color                   |
+| --margin                  | child font                           | 0 --bui-spacing-xl     | --bui-action-sheet-item-margin                  |
+| --description-line-height | Subitem description copy line height | 19px                   | --bui-action-sheet-item-description-line-height |

@@ -235,3 +235,13 @@ export default () => {
 | onChange     | Callback when input box content changes                                                                           | (e: React.ChangeEvent<HTMLInputElement\>,data: {value:string}) => void | -             |
 | onFocus      | Callback during focusing                                                                                          | (e: React.SyntheticEvent) => void                                      | -             |
 | onBlur       | Callback when out of focus                                                                                        | (e: React.SyntheticEvent) => void                                      | -             |
+
+## Style variables
+
+| attribute                   | explain                          | Default value       | global variable                       |
+| --------------------------- | -------------------------------- | ------------------- | ------------------------------------- |
+| --height                    | height                           | 32px                | --bui-input-height                    |
+| --padding                   | padding                          | 4px 10px            | --bui-input-padding                   |
+| --icon-start-margin-right   | Head button right margin         | 3px                 | --bui-input-icon-start-margin-right   |
+| --icon-end-margin-left      | Tail button left margin          | 3px                 | --bui-input-icon-end-margin-left      |
+| --disabled-background-color | Disabled status background color | rgba(0, 0, 0, 0.04) | --bui-input-disabled-background-color |

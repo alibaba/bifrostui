@@ -478,7 +478,7 @@ export default () => {
 
 ### API
 
-##### ListProps
+#### ListProps
 
 | attribute   | explain                               | type                       | Default value |
 | ----------- | ------------------------------------- | -------------------------- | ------------- |
@@ -488,7 +488,7 @@ export default () => {
 | size        | List size                             | `small`｜`medium`｜`large` | `medium`      |
 | component   | List node label                       | React.ElementType          | -             |
 
-##### ListItemProps
+#### ListItemProps
 
 | attribute   | explain                                               | type                | Default value |
 | ----------- | ----------------------------------------------------- | ------------------- | ------------- |
@@ -497,7 +497,7 @@ export default () => {
 | hideDivider | Do you want to hide the dividing line                 | boolean             | false         |
 | component   | Root node label                                       | React.ElementType   | -             |
 
-##### ListItemContentProps
+#### ListItemContentProps
 
 | attribute | explain           | type              | Default value |
 | --------- | ----------------- | ----------------- | ------------- |
@@ -505,8 +505,16 @@ export default () => {
 | secondary | Secondary content | ReactNode         | -             |
 | component | Root node label   | React.ElementType | -             |
 
-##### ListItemHeaderProps、ListItemFooterProps、ListItemExtraProps
+#### ListItemHeaderProps、ListItemFooterProps、ListItemExtraProps
 
 | attribute | explain         | type              | Default value |
 | --------- | --------------- | ----------------- | ------------- |
 | component | Root node label | React.ElementType | -             |
+
+### Style variables
+
+| attribute             | explain              | Default value | global variable                |
+| --------------------- | -------------------- | ------------- | ------------------------------ |
+| --small-item-padding  | Small child padding  | 5px 12px      | --bui-list-small-item-padding  |
+| --medium-item-padding | Medium child padding | 18px 12px     | --bui-list-medium-item-padding |
+| --large-item-padding  | Large child padding  | 20px 12px     | --bui-list-large-item-padding  |

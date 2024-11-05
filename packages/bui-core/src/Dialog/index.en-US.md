@@ -185,7 +185,7 @@ export default () => {
 
 ### API
 
-##### DialogOptions
+#### DialogOptions
 
 | attribute   | explain                 | type                                       | Default value |
 | ----------- | ----------------------- | ------------------------------------------ | ------------- |
@@ -200,7 +200,7 @@ export default () => {
 
 `DialogOptions`inherited from`ModalProps`,other attributes can be found in [modern api] (/cores/modal? # api)
 
-##### PromptOptions
+#### PromptOptions
 
 `Dialog.prompt`the accepted parameters are the same`Dialog.confirm`,in addition, it also supports the following additional attributes:
 
@@ -209,7 +209,7 @@ export default () => {
 | placeholder | Input box placeholder text                                | string                | Please enter here |
 | InputProps  | Transmitting properties to the internal 'Input' component | `Partial<InputProps>` | -                 |
 
-##### method
+#### method
 
 | Method Name    | explain                   | parameter                | Return value  |
 | -------------- | ------------------------- | ------------------------ | ------------- |
@@ -219,9 +219,16 @@ export default () => {
 
 ### Style variables
 
-| attribute           | explain                         | Default value             | global variable |
-| ------------------- | ------------------------------- | ------------------------- | --------------- |
-| --border-radius     | Round corner of dialog box      | --bui-shape-radius-drawer | -               |
-| --max-width         | Maximum width of dialog box     | 300px                     | -               |
-| --header-font-size  | Font size of dialog box title   | --bui-title-size-2        | -               |
-| --message-font-size | Font size of dialog box message | --bui-title-size-4        | -               |
+| attribute                        | explain                                   | Default value                 | global variable                             |
+| -------------------------------- | ----------------------------------------- | ----------------------------- | ------------------------------------------- |
+| --max-width                      | Dialog maximum width                      | 300px                         | --bui-dialog-max-width                      |
+| --border-radius                  | Dialog rounded corners                    | --bui-shape-radius-drawer     | --bui-dialog-border-radius                  |
+| --title-padding                  | title bar padding                         | 0 40px 9px                    | --bui-dialog-title-padding                  |
+| --desc-padding                   | Description copy padding                  | 0 24px                        | --bui-dialog-desc-padding                   |
+| --footer-margin-top              | Bottom top margin                         | 15px                          | --bui-dialog-footer-margin-top              |
+| --button-height                  | button height                             | 53px                          | --bui-dialog-button-height                  |
+| --button-line-height             | Button row height                         | 25px                          | --bui-dialog-button-line-height             |
+| --button-padding                 | button padding                            | 12px 0 13px                   | --bui-dialog-button-padding                 |
+| --button-font-size               | Button font size                          | 17px                          | --bui-dialog-button-font-size               |
+| --button-border-left             | Button left border                        | 1px solid rgba(0, 0, 0, 0.05) | --bui-dialog-button-border-left             |
+| --button-active-background-color | Button activation status background color | rgba(54, 57, 64, 0.05)        | --bui-dialog-button-active-background-color |

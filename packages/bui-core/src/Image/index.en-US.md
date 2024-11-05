@@ -186,3 +186,9 @@ export default () => {
 | webp        | Analyzing Webp                               | boolean                                                                         | false         |
 | showMenu    | (Mini Program) Long press menu configuration | boolean                                                                         | false         |
 | imgProps    | Parameters transmitted transparently to img  | React.HTMLAttributes\<HTMLImageElement\>                                        | -             |
+
+## Style variables
+
+| attribute                  | explain                              | Default value            | global variable                      |
+| -------------------------- | ------------------------------------ | ------------------------ | ------------------------------------ |
+| --default-background-color | Default placeholder background color | rgba(127, 127, 127, 0.2) | --bui-image-default-background-color |

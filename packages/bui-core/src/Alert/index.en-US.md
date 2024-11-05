@@ -220,7 +220,7 @@ export default () => {
 
 ### API
 
-##### AlertProps
+#### AlertProps
 
 | attribute | explain                                   | type                                                      | Default value |
 | --------- | ----------------------------------------- | --------------------------------------------------------- | ------------- |
@@ -229,3 +229,15 @@ export default () => {
 | action    | Warning prompt operation area             | React.ReactNode                                           | -             |
 | variant   | Warning mode                              | `standard`｜`outlined`                                    | `standard`    |
 | onClose   | Close callback                            | (e?: SyntheticEvent, data?: any) => void;                 | -             |
+
+### Style variables
+
+| attribute                | explain                    | Default value      | global variable                    |
+| ------------------------ | -------------------------- | ------------------ | ---------------------------------- |
+| --content-marquee-speed  | Content scroll speed       | 10s                | --bui-alert-content-marquee-speed  |
+| --padding                | padding                    | 8px                | --bui-alert-padding                |
+| --line-height            | row height                 | 16px               | --bui-alert-line-height            |
+| --default-icon-font-size | Default icon font size     | 15px               | --bui-alert-default-icon-font-size |
+| --action-margin-left     | Operating area left margin | 16px               | --bui-alert-action-margin-left     |
+| --icon-margin-right      | Icon right margin          | --bui-spacing-xs   | --bui-alert-icon-margin-right      |
+| --icon-font-size         | Icon font size             | --bui-title-size-4 | --bui-alert-icon-font-size         |

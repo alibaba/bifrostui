@@ -322,8 +322,10 @@ export default () => {
 
 ## Style variables
 
-| attribute         | explain         | Default value          | global variable |
-| ----------------- | --------------- | ---------------------- | --------------- |
-| --label-color     | Text font color | --bui-color-fg-default | -               |
-| --label-font-size | Copy font size  | --bui-text-size-1      | -               |
-| --icon-font-size  | Icon font size  | --bui-title-size-2     | -               |
+| attribute          | explain                    | Default value          | global variable                 |
+| ------------------ | -------------------------- | ---------------------- | ------------------------------- |
+| --label-color      | Text font color            | --bui-color-fg-default | --bui-checkbox-label-color      |
+| --label-font-size  | Copy font size             | --bui-text-size-1      | --bui-checkbox-label-font-size  |
+| --icon-font-size   | Icon font size             | --bui-title-size-2     | --bui-checkbox-icon-font-size   |
+| --disabled-opacity | Disable state transparency | 0.5                    | --bui-checkbox-disabled-opacity |
+| --icon-padding     | icon padding               | 5px                    | --bui-checkbox-icon-padding     |
