@@ -118,8 +118,10 @@ export default () => {
 
 ## Style variables
 
-| attribute      | explain                        | Default value            |
-| -------------- | ------------------------------ | ------------------------ |
-| --fill-color   | Color of progress bar          | --bui-color-primary      |
-| --trail-color  | Color of unfilled progress bar | rgba(156, 156, 165, 0.2) |
-| --stroke-width | Progress bar width             | 8px                      |
+| attribute       | explain                        | Default value            | global variable              |
+| --------------- | ------------------------------ | ------------------------ | ---------------------------- |
+| --fill-color    | Color of progress bar          | --bui-color-primary      | -                            |
+| --trail-color   | Color of unfilled progress bar | rgba(156, 156, 165, 0.2) | --bui-progress-trail-color   |
+| --stroke-width  | Fill in progress bar width     | 8px                      | --bui-progress-stroke-width  |
+| --width         | Progress bar width             | 100%                     | --bui-progress-width         |
+| --border-radius | Round corner of progress bar   | 100px                    | --bui-progress-border-radius |
