@@ -322,8 +322,9 @@ export default () => {
 
 ### Style variables
 
-| attribute         | explain         | Default value          | global variable |
-| ----------------- | --------------- | ---------------------- | --------------- |
-| --label-color     | Text font color | --bui-color-fg-default | -               |
-| --label-font-size | Copy font size  | --bui-text-size-1      | -               |
-| --icon-font-size  | Icon font size  | --bui-title-size-2     | -               |
+| attribute         | explain         | Default value            | global variable |
+| ----------------- | --------------- | ------------------------ | --------------- |
+| --label-color     | Text font color | --bui-color-fg-default   | -               |
+| --label-font-size | Copy font size  | --bui-text-size-1        | -               |
+| --icon-font-size  | Icon font size  | --bui-title-size-2       | -               |
+| --icon-padding    | Icon padding    | --bui-radio-icon-padding | 5px             |
