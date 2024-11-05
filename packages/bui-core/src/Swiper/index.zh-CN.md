@@ -356,3 +356,9 @@ export default () => {
 | indicatorActiveColor | 页面指示器当前页的颜色         | string           | -      |
 | onChange             | 切换回调（松手和切换时触发）   | event=>void      | -      |
 | onAnimationFinish    | 动画结束回调（动画结束时触发） | event=>void      | -      |
+
+## 样式变量
+
+| 属性     | 说明 | 默认值 | 全局变量            |
+| -------- | ---- | ------ | ------------------- |
+| --height | 高度 | 150px  | --bui-swiper-height |

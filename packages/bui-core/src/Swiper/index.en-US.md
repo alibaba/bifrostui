@@ -356,3 +356,9 @@ export default () => {
 | indicatorActiveColor | Page indicator: The color of the current page                  | string           | -             |
 | onChange             | Switching callback (triggered when releasing and switching)    | event=>void      | -             |
 | onAnimationFinish    | Animation end callback (triggered at the end of the animation) | event=>void      | -             |
+
+## Style variables
+
+| attribute | explain | Default value | global variable     |
+| --------- | ------- | ------------- | ------------------- |
+| --height  | height  | 150px         | --bui-swiper-height |

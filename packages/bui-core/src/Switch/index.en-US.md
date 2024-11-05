@@ -180,6 +180,21 @@ Other attributes can be found on the [label](https://developer.mozilla.org/en-US
 
 ## Style variables
 
-| attribute  | explain          | Default value |
-| ---------- | ---------------- | ------------- |
-| --bg-color | background color | #ccc          |
+| attribute                  | explain               | Default value | global variable                       |
+| -------------------------- | --------------------- | ------------- | ------------------------------------- |
+| --bg-color                 | background color      | #ccc          | --bui-switch-bg-color                 |
+| --padding                  | padding               | 0             | --bui-switch-padding                  |
+| --border-radius            | fillet                | 15px          | --bui-switch-border-radius            |
+| --small-width              | Small switch width    | 24px          | --bui-switch-small-width              |
+| --small-height             | Small switch height   | 16px          | --bui-switch-small-height             |
+| --small-font-size          | fine print            | 9px           | --bui-switch-small-font-size          |
+| --controller-small-width   | Small control width   | 12px          | --bui-switch-controller-small-width   |
+| --controller-small-height  | Small control height  | 12px          | --bui-switch-controller-small-height  |
+| --medium-width             | Medium switch width   | 44px          | --bui-switch-medium-width             |
+| --medium-height            | Medium switch height  | 22px          | --bui-switch-medium-height            |
+| --controller-medium-width  | Medium control width  | 18px          | --bui-switch-controller-medium-width  |
+| --controller-medium-height | Medium control height | 18px          | --bui-switch-controller-medium-height |
+| --large-width              | Large switch width    | 51px          | --bui-switch-large-width              |
+| --large-height             | Large switch height   | 30px          | --bui-switch-large-height             |
+| --controller-large-width   | Large control width   | 24px          | --bui-switch-controller-large-width   |
+| --controller-large-height  | Large control height  | 24px          | --bui-switch-controller-large-height  |
