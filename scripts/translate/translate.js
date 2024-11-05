@@ -16,8 +16,8 @@ const crypto = require('crypto');
 const minimist = require('minimist');
 
 // 百度翻译 API 配置
-const APP_ID = '***'; // 替换为你的 APP ID
-const API_KEY = '***'; // 替换为你的 API 密钥
+const APP_ID = '20241103002193096'; // 替换为你的 APP ID
+const API_KEY = 'v1i7fPjDsUzTsEMMKLpu'; // 替换为你的 API 密钥
 const BAIDU_TRANSLATE_API =
   'https://fanyi-api.baidu.com/api/trans/vip/translate';
 
@@ -232,7 +232,10 @@ async function main() {
     outputFilePath = path.join(directory, 'index.en-US.md');
   } else if (argv.file) {
     inputFilePath = path.resolve(__dirname, '../../', argv.file);
-    outputFilePath = path.resolve(inputFilePath, '../index.en-US.md');
+    outputFilePath = path.resolve(
+      inputFilePath,
+      `../${argv.file.split('/')[2].split('.')[0]}.en-US.md`,
+    );
   }
   // 翻译文件
   await translateMarkdownFile(inputFilePath, outputFilePath);

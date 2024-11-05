@@ -1,23 +1,27 @@
+/* eslint-disable react/display-name */
 import React from 'react';
 import { Button } from '@bifrostui/react';
-import { usePrefersColor, useNavigate } from 'dumi';
+import { usePrefersColor, useNavigate, useIntl, useLocale } from 'dumi';
 import { ToTopOutlinedIcon } from '@bifrostui/icons';
 import Tpp from './user-icon/tpp';
 import Dm from './user-icon/dm';
-import './home-page.less';
+import './index.less';
+import locales from './locales';
 
 export default () => {
   const [color] = usePrefersColor();
+  const { locale } = useIntl();
+  const current = locale === 'zh-CN' ? 'zhCN' : 'enUS';
   const navigate = useNavigate();
   return (
-    <div className="main-container">
+    <div className="main-container home-page">
       <div className="main-head">
         <div>
           <img
             className="main-logo"
             src="https://gw.alicdn.com/imgextra/i2/O1CN01Bqi4MA1USNSLdER5C_!!6000000002516-55-tps-190-90.svg"
           />
-          <div className="main-desc">一款简洁灵活的跨端组件库</div>
+          <div className="main-desc">{locales[current].description}</div>
           <Button
             size="large"
             variant="contained"
@@ -27,7 +31,7 @@ export default () => {
               navigate('/guide/introduce', { replace: true });
             }}
           >
-            开始体验
+            {locales[current].start}
           </Button>
         </div>
         <img
@@ -41,17 +45,23 @@ export default () => {
             className="introduce-icon"
             src="https://gw.alicdn.com/imgextra/i1/O1CN01y4iaZr1aLP2g7R9xm_!!6000000003313-2-tps-160-160.png"
           />
-          <div className="introduce-title">一码多端</div>
-          <div className="introduce-desc">同时支持H5和小程序</div>
+          <div className="introduce-title">
+            {locales[current].features[0].title}
+          </div>
+          <div className="introduce-desc">
+            {locales[current].features[0].desc}
+          </div>
         </div>
         <div className="introduce-item">
           <img
             className="introduce-icon"
             src="https://gw.alicdn.com/imgextra/i4/O1CN01fvzf101QVLTsWkcrR_!!6000000001981-2-tps-160-160.png"
           />
-          <div className="introduce-title">高定制</div>
+          <div className="introduce-title">
+            {locales[current].features[1].title}
+          </div>
           <div className="introduce-desc">
-            一致优雅的API帮助您快速创造新主题
+            {locales[current].features[1].desc}
           </div>
         </div>
         <div className="introduce-item">
@@ -59,18 +69,26 @@ export default () => {
             className="introduce-icon"
             src="https://gw.alicdn.com/imgextra/i4/O1CN01CCqAR028qGfPoYba0_!!6000000007983-2-tps-160-160.png"
           />
-          <div className="introduce-title">高可用</div>
-          <div className="introduce-desc">完善的配套，丰富的组件，开箱即用</div>
+          <div className="introduce-title">
+            {locales[current].features[2].title}
+          </div>
+          <div className="introduce-desc">
+            {locales[current].features[2].desc}
+          </div>
         </div>
       </div>
       <div className="main-resource">
         <div className="resource-item">
-          <div className="resource-title">设计语言</div>
+          <div className="resource-title">
+            {locales[current].subTitle[0].title}
+          </div>
           <div className="resource-content">
             <div>
-              <div className="content-title">设计语言</div>
+              <div className="content-title">
+                {locales[current].subTitle[0].title}
+              </div>
               <div className="content-desc">
-                基于阿里影业的众多业务实践沉淀的设计语言和设计系统
+                {locales[current].subTitle[0].desc}
               </div>
               <Button
                 size="large"
@@ -81,7 +99,7 @@ export default () => {
                   navigate('/design/colors', { replace: true });
                 }}
               >
-                查看详情
+                {locales[current].subTitle[0].btn}
               </Button>
             </div>
             <img
@@ -91,12 +109,16 @@ export default () => {
           </div>
         </div>
         <div className="resource-item">
-          <div className="resource-title">组件列表</div>
+          <div className="resource-title">
+            {locales[current].subTitle[1].title}
+          </div>
           <div className="resource-content">
             <div>
-              <div className="content-title">组件列表</div>
+              <div className="content-title">
+                {locales[current].subTitle[1].title}
+              </div>
               <div className="content-desc">
-                一致的API、丰富的组件帮助您快速构建前端应用
+                {locales[current].subTitle[1].desc}
               </div>
               <Button
                 size="large"
@@ -107,7 +129,7 @@ export default () => {
                   navigate('/cores/button', { replace: true });
                 }}
               >
-                查看详情
+                {locales[current].subTitle[1].btn}
               </Button>
             </div>
             <img
@@ -119,7 +141,7 @@ export default () => {
       </div>
 
       <div className="main-users">
-        <div className="users-title">谁在使用</div>
+        <div className="users-title">{locales[current].subTitle[2].title}</div>
         <div className="user-list">
           <Tpp color={color === 'light' ? '#eee' : '#5F6672'} />
           <Dm color={color === 'light' ? '#eee' : '#5F6672'} />

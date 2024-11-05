@@ -20,6 +20,7 @@ import React, { useEffect, useState, type FC } from 'react';
 import En from '@bifrostui/react/locales/en-US';
 import CN from '@bifrostui/react/locales/zh-CN';
 import { ThemeProvider } from '@bifrostui/react';
+import classNames from 'classnames';
 import './index.less';
 
 const DocLayout: FC = () => {
@@ -102,7 +103,11 @@ const DocLayout: FC = () => {
             </button>
           </div>
         )}
-        <main className="dumi-default-doc-layout-content">
+        <main
+          className={classNames('dumi-default-doc-layout-content', {
+            'home-page': pathname === '/index-en' || pathname === '/',
+          })}
+        >
           <div className="left">{showSidebar && <Sidebar />}</div>
           <div className="right">
             <div className="top">

@@ -1,4 +1,4 @@
-@import (reference) '../../.dumi/theme/styles/variables.less';
+@import (reference) '../../theme/styles/variables.less';
 
 .main-container {
   background: #fff;
@@ -211,6 +211,22 @@
     right: 0;
     @{dark-selector} & {
       background: var(--bui-color-bg-default);
+    }
+  }
+}
+
+.dumi-default-doc-layout-content.home-page {
+  .side {
+    display: none;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .right {
+    .dumi-default-content {
+      padding: 0;
     }
   }
 }
