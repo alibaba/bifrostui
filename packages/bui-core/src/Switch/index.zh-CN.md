@@ -180,6 +180,21 @@ export default () => {
 
 ## 样式变量
 
-| 属性       | 说明     | 默认值 |
-| ---------- | -------- | ------ |
-| --bg-color | 背景颜色 | #ccc   |
+| 属性                       | 说明         | 默认值 | 全局变量                              |
+| -------------------------- | ------------ | ------ | ------------------------------------- |
+| --bg-color                 | 背景颜色     | #ccc   | --bui-switch-bg-color                 |
+| --padding                  | 内边距       | 0      | --bui-switch-padding                  |
+| --border-radius            | 圆角         | 15px   | --bui-switch-border-radius            |
+| --small-width              | 小号开关宽度 | 24px   | --bui-switch-small-width              |
+| --small-height             | 小号开关高度 | 16px   | --bui-switch-small-height             |
+| --small-font-size          | 小号字体     | 9px    | --bui-switch-small-font-size          |
+| --controller-small-width   | 小号控件宽度 | 12px   | --bui-switch-controller-small-width   |
+| --controller-small-height  | 小号控件高度 | 12px   | --bui-switch-controller-small-height  |
+| --medium-width             | 中号开关宽度 | 44px   | --bui-switch-medium-width             |
+| --medium-height            | 中号开关高度 | 22px   | --bui-switch-medium-height            |
+| --controller-medium-width  | 中号控件宽度 | 18px   | --bui-switch-controller-medium-width  |
+| --controller-medium-height | 中号控件高度 | 18px   | --bui-switch-controller-medium-height |
+| --large-width              | 大号开关宽度 | 51px   | --bui-switch-large-width              |
+| --large-height             | 大号开关高度 | 30px   | --bui-switch-large-height             |
+| --controller-large-width   | 大号控件宽度 | 24px   | --bui-switch-controller-large-width   |
+| --controller-large-height  | 大号控件高度 | 24px   | --bui-switch-controller-large-height  |
