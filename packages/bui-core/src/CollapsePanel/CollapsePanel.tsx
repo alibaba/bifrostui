@@ -14,6 +14,7 @@ const CollapsePanel = React.forwardRef<HTMLDivElement, CollapsePanelProps>(
   (props, ref) => {
     const {
       className,
+      style,
       accordion,
       activeKeys,
       defaultActiveKeys,
@@ -77,7 +78,6 @@ const CollapsePanel = React.forwardRef<HTMLDivElement, CollapsePanelProps>(
       }
 
       const enhancedChildren = React.Children.map(children, (child) => {
-        // 确保我们只处理 React 元素
         if (React.isValidElement(child)) {
           const newProps = {
             icon: getArrowIcon(),
@@ -93,7 +93,12 @@ const CollapsePanel = React.forwardRef<HTMLDivElement, CollapsePanelProps>(
     };
 
     return (
-      <div className={clsx(prefixCls, className)} ref={ref} {...others}>
+      <div
+        className={clsx(prefixCls, className)}
+        style={style}
+        ref={ref}
+        {...others}
+      >
         <div className={`${prefixCls}-list`}>{renderList()}</div>
       </div>
     );
