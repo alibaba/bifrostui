@@ -40,3 +40,4 @@ export * from './Countdown';
 export * from './CitySelector';
 export * from './Picker';
 export * from './CollapsePanel';
+export * from './Breadcrumb';
