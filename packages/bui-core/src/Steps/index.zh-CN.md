@@ -386,11 +386,20 @@ export default () => {
 
 ## 样式变量
 
-| 属性                    | 说明             | 默认值                                | 全局变量 |
-| ----------------------- | ---------------- | ------------------------------------- | -------- |
-| --title-font-size       | 主标题字体大小   | --bui-title-size-4                    | -        |
-| --title-font-weight     | 主标题字重       | --bui-font-weight-medium              | -        |
-| --subtitle-font-size    | 副标题字体大小   | --bui-text-size-2                     | -        |
-| --description-font-size | 描述文案字体大小 | --bui-text-size-3                     | -        |
-| --step-icon-margin      | 步骤图标外边距   | --bui-spacing-xs --bui-spacing-xs 0 0 | -        |
-| --step-line-padding     | 步骤条连线内边距 | 20px 0 3px 0                          | -        |
+| 属性                                | 说明                   | 默认值                                          | 全局变量                                |
+| ----------------------------------- | ---------------------- | ----------------------------------------------- | --------------------------------------- |
+| --font-size                         | 默认字体大小           | --bui-title-size-3                              | --bui-steps-font-size                   |
+| --title-font-size                   | 主标题字体大小         | --bui-title-size-4                              | -                                       |
+| --title-font-weight                 | 主标题字重             | --bui-font-weight-medium                        | -                                       |
+| --subtitle-font-size                | 副标题字体大小         | --bui-text-size-2                               | --bui-step-subtitle-font-size           |
+| --step-icon-margin                  | 步骤图标外边距         | --bui-spacing-xs --bui-spacing-xs 0 0           | --bui-step-icon-margin                  |
+| --step-line-padding                 | 步骤条连线内边距       | 20px 0 3px 0                                    | --bui-step-line-padding                 |
+| --step-line-width                   | 步骤条连线宽度         | 1px                                             | --bui-step-line-width                   |
+| --step-line-height                  | 步骤条连线高度         | 100%                                            | --bui-step-line-height                  |
+| --step-label-horizontal-line-height | 步骤条标签水平方向行高 | 1.8                                             | --bui-step-label-horizontal-line-height |
+| --step-icon-width                   | 步骤条图标宽度         | 28px                                            | --bui-step-icon-width                   |
+| --step-icon-font-size               | 步骤条图标             | var(--bui-title-size-4)                         | --bui-step-icon-font-size               |
+| --step-icon-active-width            | 步骤条当前激活图标宽度 | 12px                                            | --bui-step-icon-active-width            |
+| --step-icon-active-height           | 步骤条当前激活图标高度 | 12px                                            | --bui-step-icon-active-height           |
+| --step-icon-margin                  | 步骤条图标外边距       | var(--bui-spacing-xs) var(--bui-spacing-xs) 0 0 | --bui-step-icon-margin                  |
+| --step-content-padding              | 步骤条内容内边距       | 3px 0                                           | --bui-step-content-padding              |

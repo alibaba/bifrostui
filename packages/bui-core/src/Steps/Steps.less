@@ -1,13 +1,33 @@
 .bui-steps {
+  --font-size: var(--bui-steps-font-size, var(--bui-title-size-3));
   --title-font-size: var(--bui-title-size-4);
   --title-font-weight: var(--bui-font-weight-medium);
-  --subtitle-font-size: var(--bui-text-size-2);
-  --description-font-size: var(--bui-text-size-3);
-  --step-icon-margin: var(--bui-spacing-xs) var(--bui-spacing-xs) 0 0;
-  --step-line-padding: 20px 0 3px 0;
+  --subtitle-font-size: var(
+    --bui-step-subtitle-font-size,
+    var(--bui-text-size-2)
+  );
+  --step-line-padding: var(--bui-step-line-padding, 20px 0 3px 0);
+  --step-line-width: var(--bui-step-line-width, 1px);
+  --step-line-height: var(--bui-step-line-height, 100%);
+  --step-label-horizontal-line-height: var(
+    --bui-step-label-horizontal-line-height,
+    1.8
+  );
+  --step-icon-width: var(--bui-step-icon-width, 28px);
+  --step-icon-active-width: var(--bui-step-icon-active-width, 12px);
+  --step-icon-active-height: var(--bui-step-icon-active-height, 12px);
+  --step-icon-font-size: var(
+    --bui-step-icon-font-size,
+    var(--bui-title-size-4)
+  );
+  --step-icon-margin: var(
+    --bui-step-icon-margin,
+    var(--bui-spacing-xs) var(--bui-spacing-xs) 0 0
+  );
+  --step-content-padding: var(--bui-step-content-padding, 3px 0);
 
   display: flex;
-  font-size: var(--bui-title-size-3);
+  font-size: var(--font-size);
   font-family: var(--bui-font-family);
 
   &-vertical {

@@ -386,11 +386,20 @@ export default () => {
 
 ## Style variables
 
-| attribute               | explain                            | Default value                         | global variable |
-| ----------------------- | ---------------------------------- | ------------------------------------- | --------------- |
-| --title-font-size       | Main title font size               | --bui-title-size-4                    | -               |
-| --title-font-weight     | Main title word weight             | --bui-font-weight-medium              | -               |
-| --subtitle-font-size    | Subtitle font size                 | --bui-text-size-2                     | -               |
-| --description-font-size | Describe the font size of the copy | --bui-text-size-3                     | -               |
-| --step-icon-margin      | Step icon margin                   | --bui-spacing-xs --bui-spacing-xs 0 0 | -               |
-| --step-line-padding     | Step bar line inner margin         | 20px 0 3px 0                          | -               |
+| attribute                           | explain                                        | Default value                                   | global variable                         |
+| ----------------------------------- | ---------------------------------------------- | ----------------------------------------------- | --------------------------------------- |
+| --font-size                         | Default font size                              | --bui-title-size-3                              | --bui-steps-font-size                   |
+| --title-font-size                   | Main title font size                           | --bui-title-size-4                              | -                                       |
+| --title-font-weight                 | Main title word weight                         | --bui-font-weight-medium                        | -                                       |
+| --subtitle-font-size                | Subtitle font size                             | --bui-text-size-2                               | --bui-step-subtitle-font-size           |
+| --step-icon-margin                  | Step icon margin                               | --bui-spacing-xs --bui-spacing-xs 0 0           | --bui-step-icon-margin                  |
+| --step-line-padding                 | Step bar line inner margin                     | 20px 0 3px 0                                    | --bui-step-line-padding                 |
+| --step-line-width                   | Step bar line width                            | 1px                                             | --bui-step-line-width                   |
+| --step-line-height                  | Step bar line height                           | 100%                                            | --bui-step-line-height                  |
+| --step-label-horizontal-line-height | Step bar label horizontal direction row height | 1.8                                             | --bui-step-label-horizontal-line-height |
+| --step-icon-width                   | Step bar icon width                            | 28px                                            | --bui-step-icon-width                   |
+| --step-icon-font-size               | Step bar icon                                  | var(--bui-title-size-4)                         | --bui-step-icon-font-size               |
+| --step-icon-active-width            | Step Bar Current Activation Icon Width         | 12px                                            | --bui-step-icon-active-width            |
+| --step-icon-active-height           | Step bar current activation icon height        | 12px                                            | --bui-step-icon-active-height           |
+| --step-icon-margin                  | Step bar icon margin                           | var(--bui-spacing-xs) var(--bui-spacing-xs) 0 0 | --bui-step-icon-margin                  |
+| --step-content-padding              | Step bar content margin                        | 3px 0                                           | --bui-step-content-padding              |
