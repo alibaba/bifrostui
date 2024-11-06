@@ -258,7 +258,7 @@ export default () => {
   const [value, setValue] = useState(dayjs().toDate());
   const [inputValue, setInputValue] = useState('');
   const [curValue, setCurValue] = useState(EN);
-
+  const [dialog, contextHolder] = Dialog.useDialog();
   const handleChange = (e, res) => {
     console.log('date change:', res);
     setValue(res.value);
@@ -298,7 +298,18 @@ export default () => {
   ];
   return (
     <ThemeProvider locale={curValue}>
+      {contextHolder}
+
       <Stack spacing="10px">
+        <Button
+          onClick={() => {
+            dialog.confirm({
+              message: '测试',
+            });
+          }}
+        >
+          Toast
+        </Button>
         <div>语言选择</div>
         <Select
           defaultValue={EN}

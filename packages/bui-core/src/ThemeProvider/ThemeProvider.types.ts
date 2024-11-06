@@ -1,8 +1,9 @@
 import { BaseLang } from '../locales/base';
+
 /**
  * 响应式屏幕断点配置
  */
-export interface ResponsiveTokenOptions {
+interface ResponsiveTokenOptions {
   /**
    * 超小屏幕 (小于 576px，实际为了处理临界值，断点值为 575.98px)
    */
@@ -25,7 +26,7 @@ export interface ResponsiveTokenOptions {
   xl?: Record<string, string>;
 }
 
-export interface ThemeProps {
+interface ThemeProps {
   /**
    * 语言
    */
@@ -59,7 +60,7 @@ export interface ThemeProps {
 /**
  * 内置主题Tokens
  */
-export type BuiltInThemesTokenOptions = Pick<
+type BuiltInThemesTokenOptions = Pick<
   ThemeProps,
   'defaultLightToken' | 'defaultDarkToken' | 'dmLightToken' | 'dmDarkToken'
 >;
@@ -67,4 +68,12 @@ export type BuiltInThemesTokenOptions = Pick<
 /**
  * 组件自定义Tokens
  */
-export type componentsTokenOptions = Pick<ThemeProps, 'token'>;
+type componentsTokenOptions = Pick<ThemeProps, 'token'>;
+
+export {
+  BaseLang,
+  ResponsiveTokenOptions,
+  ThemeProps,
+  BuiltInThemesTokenOptions,
+  componentsTokenOptions,
+};

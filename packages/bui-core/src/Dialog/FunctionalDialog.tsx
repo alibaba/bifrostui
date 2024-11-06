@@ -111,8 +111,27 @@ const prompt = (options: PromptOptions) => {
     ...formatProps(options),
   });
 };
+const useDialog = () => {
+  const holderRef = React.useRef(null);
+  const wrapAPI = {
+    confirm: (options: ConfirmOptions) =>
+      Dialog({
+        type: 'confirm',
+        ...formatProps(options),
+        theme: holderRef.current.theme,
+      }),
+    prompt: (options: PromptOptions) =>
+      Dialog({
+        type: 'promptF',
+        ...formatProps(options),
+        theme: holderRef.current.theme,
+      }),
+  };
+  return [wrapAPI, <Popup key="dialog-holder" ref={holderRef} />];
+};
 
 Dialog.confirm = confirm;
 Dialog.prompt = prompt;
+Dialog.useDialog = useDialog;
 
 export default Dialog;

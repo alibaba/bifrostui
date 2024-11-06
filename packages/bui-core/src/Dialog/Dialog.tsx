@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useImperativeHandle, useRef } from 'react';
 import clsx from 'clsx';
 import { Input } from '../Input';
 import { Button } from '../Button';
 import { DialogProps } from './Dialog.types';
 import Modal from '../Modal';
 import './index.less';
+import { useTheme } from '../ThemeProvider';
 
 const prefixCls = 'bui-dialog';
 
@@ -21,11 +22,16 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     placeholder,
     InputProps,
     className,
+    theme,
     ...others
   } = props;
 
   const InputRef = useRef(null);
-
+  const themeConfig = useTheme(theme);
+  useImperativeHandle(ref, () => {
+    return { theme: themeConfig };
+  });
+  console.log(themeConfig, '测试看看');
   const footerNode = (
     <div className={`${prefixCls}-body-footer`}>
       <Button
