@@ -127,11 +127,5 @@ export interface DialogFunction {
   prompt?: (options: PromptOptions, val?: string) => DialogPromise;
 }
 export interface DialogInstance extends DialogFunction {
-  useDialog: () => (
-    | React.JSX.Element
-    | {
-        confirm: (options: ConfirmOptions) => DialogPromise;
-        prompt: (options: PromptOptions) => DialogPromise;
-      }
-  )[];
+  useDialog: () => [DialogFunction, React.JSX.Element];
 }

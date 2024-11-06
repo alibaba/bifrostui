@@ -1,25 +1,38 @@
 ---
 group: feedback
-name: Dialogue
+name: Dialog
 ---
 
-# Dialogue
+# Dialog
 
-Used for informing important information or providing feedback on operations, supporting`Dialog`,`Dialog.confirm` and `Dialog.prompt`。
+Used for informing important information or providing feedback on operations, supporting`Dialog`,`Dialog.confirm`and`Dialog.prompt`。
+Recommended Hooks calling method, static methods cannot obtain context, ThemeProvider data will not take effect, therefore recommended`Dialog.useDialog`创build contextholder that supports reading context, using top-level registration methods instead`Dialog`static method.
 
 ## Code demonstration
 
 ### Confirmation box
 
-Use`Dialog`（the default type is confirm) or`Dialog.confirm`to display confirmation box.`Dialog.confirm`return`Promise`，you can determine whether the user clicked to confirm or cancel by returning the value.
+#### Static method (not recommended)
+
+Use`Dialog`（the default type is confirm) or`Dialog.confirm`to display confirmation box.`Dialog.confirm`return`Promise`，you can determine whether the user clicked to confirm or cancel by returning the value
 
 ```tsx
-import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Dialog,
+  Toast,
+  useTheme,
+  ThemeProvider,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const theme = useTheme();
+  const [dialog, contextHolder] = Dialog.useDialog();
+
   const handleClickConfirm = async () => {
-    const res = await Dialog({
+    const res = await dialog({
       header: '标题',
       message: '这是描述内容',
     });
@@ -31,30 +44,91 @@ export default () => {
   };
 
   return (
-    <Stack direction="row" spacing="10px">
-      <Button onClick={() => Dialog('是否提交申请')}>默认为confirm</Button>
-      <Button
-        onClick={() =>
-          Dialog.confirm({
-            header: '标题',
-            message: '详细描述',
-          })
-        }
-      >
-        confirm
-      </Button>
-      <Button onClick={handleClickConfirm}>等待confirm完成</Button>
-    </Stack>
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button onClick={() => dialog('是否提交申请')}>默认为confirm</Button>
+        <Button
+          onClick={() =>
+            dialog.confirm({
+              header: '标题',
+              message: '详细描述',
+            })
+          }
+        >
+          confirm
+        </Button>
+        <Button onClick={handleClickConfirm}>等待confirm完成</Button>
+      </Stack>
+    </ThemeProvider>
+  );
+};
+```
+
+#### Hooks call (recommended)
+
+```tsx
+import {
+  Stack,
+  Button,
+  Dialog,
+  Toast,
+  useTheme,
+  ThemeProvider,
+} from '@bifrostui/react';
+import React from 'react';
+
+export default () => {
+  const theme = useTheme();
+  const [dialog, contextHolder] = Dialog.useDialog();
+
+  const handleClickConfirm = async () => {
+    const res = await dialog({
+      header: '标题',
+      message: '这是描述内容',
+    });
+    if (res) {
+      Toast({ message: '点击了确认', position: 'bottom' });
+    } else {
+      Toast({ message: '点击了取消', position: 'bottom' });
+    }
+  };
+
+  return (
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button onClick={() => dialog('是否提交申请')}>默认为confirm</Button>
+        <Button
+          onClick={() =>
+            dialog.confirm({
+              header: '标题',
+              message: '详细描述',
+            })
+          }
+        >
+          confirm
+        </Button>
+        <Button onClick={handleClickConfirm}>等待confirm完成</Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
 
 ### Asynchronous operation execution successful/failed
 
-Use`onConfirm` define a callback when clicking confirm.
+Use`onConfirm`to define a callback when clicking confirm.
 
 ```tsx
-import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Dialog,
+  Toast,
+  useTheme,
+  ThemeProvider,
+} from '@bifrostui/react';
 import React from 'react';
 
 const sleep = (time: number) =>
@@ -62,8 +136,11 @@ const sleep = (time: number) =>
   new Promise((resolve) => setTimeout(resolve, time));
 
 export default () => {
+  const theme = useTheme();
+  const [dialog, contextHolder] = Dialog.useDialog();
+
   const handleClickConfirm = async () => {
-    const res = await Dialog.confirm({
+    const res = await dialog.confirm({
       message: '是否提交申请',
       onConfirm: async () => {
         await sleep(3000);
@@ -78,7 +155,7 @@ export default () => {
   };
 
   const handleClickConfirmError = async () => {
-    const res = await Dialog.confirm({
+    const res = await dialog.confirm({
       message: '是否提交申请',
       onConfirm: async () => {
         await sleep(3000);
@@ -94,68 +171,92 @@ export default () => {
   };
 
   return (
-    <Stack direction="row" spacing="10px">
-      <Button onClick={handleClickConfirm}>异步操作执行成功</Button>
-      <Button onClick={handleClickConfirmError}>异步操作执行失败</Button>
-    </Stack>
+    <ThemeProvider locale={theme}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button onClick={handleClickConfirm}>异步操作执行成功</Button>
+        <Button onClick={handleClickConfirmError}>异步操作执行失败</Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
 
 ### Customize content area
 
-Have access to`header`,`message` customize the title and content area separately. it can also be used`confirmText` and `cancelText` customize the content of the cancel and confirm buttons.
+Have access to`header`,`message`to customize the title and content area separately. it can also be used`confirmText`and`cancelText`to customize the content of the cancel and confirm buttons.
 
 ```tsx
-import { Stack, Button, Dialog } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Dialog,
+  useTheme,
+  ThemeProvider,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const theme = useTheme();
+  const [dialog, contextHolder] = Dialog.useDialog();
+
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Dialog.confirm({
-            header: '自定义标题和消息',
-            message: (
-              <>
-                <div>请参考如下说明</div>
-                <div>
-                  详情说明请查阅<span>操作指引</span>
-                </div>
-              </>
-            ),
-          });
-        }}
-      >
-        自定义标题和消息
-      </Button>
-      <Button
-        onClick={() => {
-          Dialog.confirm({
-            header: '自定义底部按钮文本',
-            confirmText: '删除',
-          });
-        }}
-      >
-        自定义确认按钮文本
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            dialog.confirm({
+              header: '自定义标题和消息',
+              message: (
+                <>
+                  <div>请参考如下说明</div>
+                  <div>
+                    详情说明请查阅<span>操作指引</span>
+                  </div>
+                </>
+              ),
+            });
+          }}
+        >
+          自定义标题和消息
+        </Button>
+        <Button
+          onClick={() => {
+            dialog.confirm({
+              header: '自定义底部按钮文本',
+              confirmText: '删除',
+            });
+          }}
+        >
+          自定义确认按钮文本
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
 
 ### Prompt dialog box
 
-Use`Dialog.prompt`display prompt dialog box. have access to`placeholder`customize placeholder text. simultaneously supporting`InputProps`transferred internally`Input`in the document, refer to [Input](/cores/input#api).
+Use`dialog.prompt`to display prompt dialog box. have access to`placeholder` to customize placeholder text. simultaneously supporting`InputProps`transferred internally`Input`in the document, refer to [input] (/cores/input # api).
 
 ```tsx
-import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Dialog,
+  Toast,
+  useTheme,
+  ThemeProvider,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const theme = useTheme();
+  const [dialog, contextHolder] = Dialog.useDialog();
   const handleClickPrompt = async () => {
-    const res = await Dialog.prompt({
+    const res = await dialog.prompt({
       header: '标题',
       placeholder: '自定义占位文本',
     });
@@ -163,22 +264,25 @@ export default () => {
   };
 
   return (
-    <Stack direction="row" spacing="10px">
-      <Button onClick={handleClickPrompt}>prompt</Button>
-      <Button
-        onClick={() => {
-          Dialog.prompt({
-            header: '标题',
-            placeholder: '自定义占位文本',
-            InputProps: {
-              clearable: true,
-            },
-          });
-        }}
-      >
-        传入InputProps
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button onClick={handleClickPrompt}>prompt</Button>
+        <Button
+          onClick={() => {
+            dialog.prompt({
+              header: '标题',
+              placeholder: '自定义占位文本',
+              InputProps: {
+                clearable: true,
+              },
+            });
+          }}
+        >
+          传入InputProps
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -219,16 +323,16 @@ export default () => {
 
 ### Style variables
 
-| attribute                        | explain                                   | Default value                 | global variable                             |
-| -------------------------------- | ----------------------------------------- | ----------------------------- | ------------------------------------------- |
-| --max-width                      | Dialog maximum width                      | 300px                         | --bui-dialog-max-width                      |
-| --border-radius                  | Dialog rounded corners                    | --bui-shape-radius-drawer     | --bui-dialog-border-radius                  |
-| --title-padding                  | title bar padding                         | 0 40px 9px                    | --bui-dialog-title-padding                  |
-| --desc-padding                   | Description copy padding                  | 0 24px                        | --bui-dialog-desc-padding                   |
-| --footer-margin-top              | Bottom top margin                         | 15px                          | --bui-dialog-footer-margin-top              |
-| --button-height                  | button height                             | 53px                          | --bui-dialog-button-height                  |
-| --button-line-height             | Button row height                         | 25px                          | --bui-dialog-button-line-height             |
-| --button-padding                 | button padding                            | 12px 0 13px                   | --bui-dialog-button-padding                 |
-| --button-font-size               | Button font size                          | 17px                          | --bui-dialog-button-font-size               |
-| --button-border-left             | Button left border                        | 1px solid rgba(0, 0, 0, 0.05) | --bui-dialog-button-border-left             |
-| --button-active-background-color | Button activation status background color | rgba(54, 57, 64, 0.05)        | --bui-dialog-button-active-background-color |
+| attribute                        | explain                                      | Default value                 | global variable                             |
+| -------------------------------- | -------------------------------------------- | ----------------------------- | ------------------------------------------- |
+| --max-width                      | Maximum width of dialog box                  | 300px                         | --bui-dialog-max-width                      |
+| --border-radius                  | Round corner of dialog box                   | --bui-shape-radius-drawer     | --bui-dialog-border-radius                  |
+| --title-padding                  | Title bar margin                             | 0 40px 9px                    | --bui-dialog-title-padding                  |
+| --desc-padding                   | Describe the inner margin of the copy        | 0 24px                        | --bui-dialog-desc-padding                   |
+| --footer-margin-top              | Bottom margin                                | 15px                          | --bui-dialog-footer-margin-top              |
+| --button-height                  | Button height                                | 53px                          | --bui-dialog-button-height                  |
+| --button-line-height             | Button row height                            | 25px                          | --bui-dialog-button-line-height             |
+| --button-padding                 | Button inner margin                          | 12px 0 13px                   | --bui-dialog-button-padding                 |
+| --button-font-size               | Button font size                             | 17px                          | --bui-dialog-button-font-size               |
+| --button-border-left             | Left border of button                        | 1px solid rgba(0, 0, 0, 0.05) | --bui-dialog-button-border-left             |
+| --button-active-background-color | Background color of button activation status | rgba(54, 57, 64, 0.05)        | --bui-dialog-button-active-background-color |

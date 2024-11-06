@@ -8,6 +8,7 @@ import {
   ConfirmOptions,
   DialogOptions,
   Dispatch,
+  DialogFunction,
 } from './Dialog.types';
 
 const { isValidElement, Component } = React;
@@ -113,21 +114,43 @@ const prompt = (options: PromptOptions) => {
 };
 const useDialog = () => {
   const holderRef = React.useRef(null);
-  const wrapAPI = {
-    confirm: (options: ConfirmOptions) =>
-      Dialog({
-        type: 'confirm',
-        ...formatProps(options),
-        theme: holderRef.current.theme,
-      }),
-    prompt: (options: PromptOptions) =>
-      Dialog({
-        type: 'promptF',
-        ...formatProps(options),
-        theme: holderRef.current.theme,
-      }),
+  const wrapAPI: DialogFunction = (
+    props: DialogOptions | string,
+  ): DialogPromise => {
+    const options = { theme: holderRef.current.theme, ...formatProps(props) };
+    const { onConfirm, onCancel, ...rest } = options;
+    return new Promise((resolve) => {
+      DialogGenerator({
+        ...rest,
+
+        onConfirm: async (val) => {
+          await onConfirm?.(val);
+          if (rest.type === 'prompt') resolve(val);
+          else resolve(true);
+        },
+        onCancel: async () => {
+          await onCancel?.();
+          resolve(false);
+        },
+      });
+    });
   };
-  return [wrapAPI, <Popup key="dialog-holder" ref={holderRef} />];
+  wrapAPI.confirm = (options: ConfirmOptions) =>
+    Dialog({
+      type: 'confirm',
+      ...formatProps(options),
+      theme: holderRef.current.theme,
+    });
+  wrapAPI.prompt = (options: PromptOptions) =>
+    Dialog({
+      type: 'promptF',
+      ...formatProps(options),
+      theme: holderRef.current.theme,
+    });
+  return [wrapAPI, <Popup key="dialog-holder" ref={holderRef} />] as [
+    DialogFunction,
+    React.JSX.Element,
+  ];
 };
 
 Dialog.confirm = confirm;
