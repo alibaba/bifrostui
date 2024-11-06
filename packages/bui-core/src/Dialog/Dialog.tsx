@@ -28,10 +28,10 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
 
   const InputRef = useRef(null);
   const themeConfig = useTheme(theme);
+  const { locale } = themeConfig;
   useImperativeHandle(ref, () => {
     return { theme: themeConfig };
   });
-  console.log(themeConfig, '测试看看');
   const footerNode = (
     <div className={`${prefixCls}-body-footer`}>
       <Button
@@ -39,7 +39,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
         onClick={onClose}
         className={`${prefixCls}-body-button`}
       >
-        {cancelText || '取消'}
+        {cancelText || locale?.dialog?.cancel}
       </Button>
       <Button
         variant="text"
@@ -49,7 +49,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
         }}
         className={`${prefixCls}-body-button`}
       >
-        {confirmText || '确定'}
+        {confirmText || locale?.dialog?.confirm}
       </Button>
     </div>
   );
@@ -59,7 +59,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       {...InputProps}
       inputRef={InputRef}
       className={`${prefixCls}-body-input`}
-      placeholder={`${placeholder || '请在此处输入'}`}
+      placeholder={`${placeholder || themeConfig?.dialog?.placeholder}`}
     />
   );
 

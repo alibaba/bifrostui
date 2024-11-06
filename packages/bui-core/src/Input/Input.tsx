@@ -102,7 +102,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
         ref={inputRef}
         value={inputValue}
         disabled={disabled}
-        placeholder={placeholder || locale?.placeholder}
+        placeholder={placeholder || locale?.input.placeholder}
         {...inputProps}
         onChange={handleChange}
         onFocus={handleFocus}

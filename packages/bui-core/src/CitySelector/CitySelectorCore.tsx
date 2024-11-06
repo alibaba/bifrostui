@@ -61,13 +61,13 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
 
       const newGroup = [];
       if (selectedCity) {
-        newGroup.push(locale?.currentType || CURRENT_TYPE);
+        newGroup.push(locale?.citySelector?.currentType || CURRENT_TYPE);
       }
       if (currentCity) {
-        newGroup.push(locale?.gpsType || GPS_TYPE);
+        newGroup.push(locale?.citySelector?.gpsType || GPS_TYPE);
       }
       if (hotCities) {
-        newGroup.push(locale?.hotCityType || HOT_CITY_TYPE);
+        newGroup.push(locale?.citySelector?.hotCityType || HOT_CITY_TYPE);
       }
       cities.forEach((item) => {
         newGroup.push(item.groupName.toUpperCase());
@@ -159,7 +159,8 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
             {selectedCity
               ? renderCity(
                   [selectedCity],
-                  selectedCityGroupName || locale?.selectedCityGroupName,
+                  selectedCityGroupName ||
+                    locale?.citySelector?.selectedCityGroupName,
                   CURRENT_TYPE.code,
                 )
               : null}
@@ -167,7 +168,8 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
             {currentCity
               ? renderCity(
                   [currentCity],
-                  currentCityGroupName || locale?.currentCityGroupName,
+                  currentCityGroupName ||
+                    locale?.citySelector?.currentCityGroupName,
                   GPS_TYPE.code,
                 )
               : null}
@@ -175,7 +177,8 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
             {hotCities?.length > 0
               ? renderCity(
                   hotCities,
-                  hotCitiesGroupName || locale?.hotCitiesGroupName,
+                  hotCitiesGroupName ||
+                    locale?.citySelector?.hotCitiesGroupName,
                   HOT_CITY_TYPE.code,
                 )
               : null}

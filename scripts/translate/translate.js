@@ -5,7 +5,7 @@
  * 如 node scripts/translate/translate.js --component Button 表示翻译 Button 组件下的 index.zh-CN.md 文件，并写入 index.en-US.md
  * 等价于运行 pnpm run md:trans --component Button
  * 2. 通过 --file 指定
- * 如 node scripts/translate/translate.js --file packages/bui-icons/src/index.zh-CN.md
+ * 如 node scripts/translate/translate.js --file ./packages/bui-icons/src/index.zh-CN.md
  */
 
 const fs = require('fs');
@@ -28,7 +28,6 @@ async function translateText(text, from = 'zh', to = 'en') {
     .createHash('md5')
     .update(`${APP_ID}${text}${salt}${API_KEY}`)
     .digest('hex');
-
   const response = await axios.get(BAIDU_TRANSLATE_API, {
     params: {
       q: text,
@@ -39,7 +38,6 @@ async function translateText(text, from = 'zh', to = 'en') {
       sign,
     },
   });
-
   return response.data.trans_result ? response.data.trans_result[0].dst : text;
 }
 
@@ -47,8 +45,8 @@ async function translateText(text, from = 'zh', to = 'en') {
 async function translateMarkdownFile(inputFilePath, outputFilePath) {
   const lines = fs.readFileSync(inputFilePath, 'utf-8').split('\n');
   const translatedLines = [];
-
   let insideCodeBlock = false;
+  let insideFrontMatter = false; // 新增标志
 
   for (const line of lines) {
     const leadingSpaces = line.match(/^\s*/)[0]; // 提取行前空格
@@ -58,22 +56,45 @@ async function translateMarkdownFile(inputFilePath, outputFilePath) {
     if (trimmedLine.startsWith('```')) {
       insideCodeBlock = !insideCodeBlock;
       translatedLines.push(line); // 保留代码块标识符，不翻译
-    } else if (insideCodeBlock) {
+      continue;
+    }
+
+    // 检测 front matter 的起止符号
+    if (trimmedLine.startsWith('---') && trimmedLine.endsWith('---')) {
+      // 可能是 front matter 的起止符号
+      if (insideFrontMatter) {
+        insideFrontMatter = false;
+      } else {
+        insideFrontMatter = true;
+      }
+      translatedLines.push(line); // 直接保留分隔线
+      continue;
+    }
+
+    if (insideCodeBlock) {
       // 在代码块内，保留原行
       translatedLines.push(line);
-    } else if (trimmedLine.startsWith('---') && trimmedLine.endsWith('---')) {
-      // 保留分隔线并处理说明行
-      translatedLines.push(line); // 直接保留分隔线
-    } else if (/^\s*(group|title|order|nav|name):/i.test(trimmedLine)) {
-      // 对于以小写开头的说明行，保留格式
-      const [key, ...rest] = trimmedLine.split(':');
-      const value = rest.join(':').trim(); // 获取冒号后面的内容
-      const translatedValue = await translateText(value); // 进行翻译
-      translatedLines.push(
-        `${leadingSpaces}${key.toLowerCase()}: ${translatedValue}`,
-      ); // 保持小写及原格式
-    } else if (trimmedLine.startsWith('---') || trimmedLine.startsWith('|')) {
-      // 保留分隔线、表格行等不翻译
+    } else if (insideFrontMatter) {
+      // 处理 front matter 内的键值对
+      if (/^\s*(group|title|order|nav|name):/i.test(trimmedLine)) {
+        const [key, ...rest] = trimmedLine.split(':');
+        const value = rest.join(':').trim(); // 获取冒号后面的内容
+        const isNumeric = /^-?\d+(\.\d+)?$/.test(value); // 检查是否为数字
+
+        let translatedValue = value;
+        if (!isNumeric) {
+          translatedValue = await translateText(value); // 进行翻译
+        }
+
+        translatedLines.push(
+          `${leadingSpaces}${key.toLowerCase()}: ${translatedValue}`,
+        ); // 保持小写及原格式
+      } else {
+        // 其他行直接保留
+        translatedLines.push(line);
+      }
+    } else if (trimmedLine.startsWith('---')) {
+      // 保留其他的分隔线、表格等不翻译
       const translatedLine =
         await translateLineWithPreservedEnglish(trimmedLine);
       translatedLines.push(`${leadingSpaces}${translatedLine}`);
@@ -111,7 +132,6 @@ async function translateLineWithBackticks(line) {
 
   for (let i = 0; i < segments.length; i++) {
     const segment = segments[i];
-
     if (segment.startsWith('`') && segment.endsWith('`')) {
       // 如果是单反引号包裹的内容，进行翻译
       const innerText = segment.slice(1, -1); // 提取反引号内的内容
@@ -119,27 +139,23 @@ async function translateLineWithBackticks(line) {
       if (isChinese) {
         // 只有中文内容需要翻译
         let translatedInner = await translateText(innerText);
-
         // 根据句子开头大写处理
         if (isFirstSegment) {
           translatedInner =
             translatedInner.charAt(0).toUpperCase() + translatedInner.slice(1);
         }
-
-        translatedSegments.push(`\`${translatedInner}\``); // 加空格包裹
+        translatedSegments.push(`\`${translatedInner}\``); // 加反引号包裹
       } else {
         // 非中文内容直接保留
-        translatedSegments.push(`\`${innerText}\``); // 加空格包裹
+        translatedSegments.push(`\`${innerText}\``); // 加反引号包裹
       }
     } else if (segment.trim()) {
       // 翻译非反引号包裹的部分
       const translatedSegment = await translateText(segment.trim());
-
       // 判断首个非反引号段落是否为句首
       const processedSegment = isFirstSegment
         ? translatedSegment.charAt(0).toUpperCase() + translatedSegment.slice(1)
         : translatedSegment.toLowerCase(); // 非首个段落为小写
-
       // 移除多余空格并添加到结果
       translatedSegments.push(processedSegment.replace(/\s+/g, ' '));
     }
@@ -149,12 +165,12 @@ async function translateLineWithBackticks(line) {
       const punctuation = segments[i + 1];
       if (punctuation === ' ' || punctuation === '\t') {
         // 如果是空格或制表符，跳过
+        i++;
         continue;
       }
       translatedSegments.push(punctuation); // 添加标点符号
       i++;
     }
-
     isFirstSegment = false;
   }
 
@@ -167,14 +183,12 @@ async function translateLineWithBackticks(line) {
 async function translateLineWithPreservedEnglish(line) {
   const parts = line.split(/([|])/); // 根据 | 分割行
   const translatedParts = [];
-
   for (const part of parts) {
     // 保留分隔线和空白部分
     if (part.trim().startsWith('---') || part.trim() === '') {
       translatedParts.push(part);
       continue;
     }
-
     // 对于每一部分进行中文检测和翻译
     const isChinese = /[\u4e00-\u9fa5]/.test(part);
     if (isChinese) {
@@ -186,7 +200,6 @@ async function translateLineWithPreservedEnglish(line) {
       translatedParts.push(part);
     }
   }
-
   return translatedParts.join('');
 }
 
@@ -232,9 +245,10 @@ async function main() {
     outputFilePath = path.join(directory, 'index.en-US.md');
   } else if (argv.file) {
     inputFilePath = path.resolve(__dirname, '../../', argv.file);
+    let splitPath = inputFilePath.split('/');
     outputFilePath = path.resolve(
       inputFilePath,
-      `../${argv.file.split('/')[2].split('.')[0]}.en-US.md`,
+      `../${splitPath[splitPath.length - 1].split('.')[0]}.en-US.md`,
     );
   }
   // 翻译文件

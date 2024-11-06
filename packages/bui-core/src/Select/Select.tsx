@@ -111,7 +111,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       >
         <div className={`${prefixCls}-selector-container`}>
           <div className={`${prefixCls}-selector`}>
-            {renderValue || placeholder || locale?.select}
+            {renderValue || placeholder || locale?.selector?.select}
           </div>
           <input
             name={name}

@@ -49,7 +49,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
     } = props;
 
     const { locale } = useTheme();
-    const SUNDAY_WEEK_DATA = locale?.weekdays || [
+    const SUNDAY_WEEK_DATA = locale?.calendar?.weekdays || [
       '日',
       '一',
       '二',

@@ -1,25 +1,40 @@
 export interface BaseLang {
-  cancel: string; // actionsheet dialog picker
-  confirm: string; // dialog picker
-  weekdays: Array<string>; // calendar
-  placeholder: string; // input textarea
-  select: string; // selector
-  selectedCityGroupName: string; // citySelector
-  currentCityGroupName: string; // citySelector
-  hotCitiesGroupName: string; // citySelector
-  gpsType: {
-    // citySelector
-    title: string;
-    code: string;
+  dialog: {
+    cancel: string;
+    confirm: string;
+    placeholder: string;
   };
-  currentType: {
-    // citySelector
-    title: string;
-    code: string;
+  picker: {
+    cancel: string;
+    confirm: string;
   };
-  hotCityType: {
-    // citySelector
-    title: string;
-    code: string;
+  calendar: {
+    weekdays: Array<string>;
+  };
+  input: {
+    placeholder: string;
+  };
+  textarea: {
+    placeholder: string;
+  };
+  selector: {
+    select: string;
+  };
+  citySelector: {
+    selectedCityGroupName: string;
+    currentCityGroupName: string;
+    hotCitiesGroupName: string;
+    gpsType: {
+      title: string;
+      code: string;
+    };
+    currentType: {
+      title: string;
+      code: string;
+    };
+    hotCityType: {
+      title: string;
+      code: string;
+    };
   };
 }

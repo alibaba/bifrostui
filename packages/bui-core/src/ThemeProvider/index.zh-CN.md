@@ -145,7 +145,7 @@ export default () => {
 ### 国际化
 
 此处列出 BUI 中需要国际化支持的组件，你可以在演示里切换语言。
-目前支持国际化的组件有：`Picker`, `Calendar`, `Input`, `TextArea`, `Select`, `CitySelector`
+目前支持国际化的组件有：`Picker`, `Calendar`, `Input`, `TextArea`, `Select`, `CitySelector`, `Dialog`
 
 ```tsx
 import {
@@ -300,15 +300,6 @@ export default () => {
     <ThemeProvider locale={curValue}>
       {contextHolder}
       <Stack spacing="10px">
-        <Button
-          onClick={() => {
-            dialog.confirm({
-              message: '测试',
-            });
-          }}
-        >
-          Dialog
-        </Button>
         <div>语言选择</div>
         <Select
           defaultValue={EN}
@@ -320,7 +311,15 @@ export default () => {
             <SelectOption key={index} value={item.value} label={item.label} />
           ))}
         </Select>
-
+        <Button
+          onClick={() => {
+            dialog.confirm({
+              message: '测试',
+            });
+          }}
+        >
+          Dialog
+        </Button>
         <Button
           onClick={() => {
             setOpen(true);

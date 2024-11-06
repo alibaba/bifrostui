@@ -152,11 +152,11 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
       >
         <div className={`${prefixCls}-header`}>
           <div className={`${prefixCls}-cancel`} onClick={cancel}>
-            {locale?.cancel || '取消'}
+            {locale?.picker?.cancel || '取消'}
           </div>
           {title && <div className={`${prefixCls}-title`}>{title}</div>}
           <div className={`${prefixCls}-confirm`} onClick={confirm}>
-            {locale?.confirm || '确定'}
+            {locale?.picker?.confirm || '确定'}
           </div>
         </div>
 

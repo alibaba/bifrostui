@@ -5,13 +5,13 @@ name: Dialogue
 
 # Dialogue
 
-Used for informing important information or providing feedback on operations, supporting`Dialog`,`Dialog.confirm`和`Dialog.prompt`。
+Used for informing important information or providing feedback on operations, supporting`Dialog`,`Dialog.confirm` and `Dialog.prompt`。
 
 ## Code demonstration
 
 ### Confirmation box
 
-Use`Dialog`（the default type is confirm) or`Dialog.confirm`来display confirmation box.`Dialog.confirm`return`Promise`，you can determine whether the user clicked to confirm or cancel by returning the value.
+Use`Dialog`（the default type is confirm) or`Dialog.confirm`to display confirmation box.`Dialog.confirm`return`Promise`，you can determine whether the user clicked to confirm or cancel by returning the value.
 
 ```tsx
 import { Stack, Button, Dialog, Toast } from '@bifrostui/react';

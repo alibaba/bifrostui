@@ -120,7 +120,9 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
           name={name}
           value={textAreaValue}
           placeholder={
-            placeholder === undefined ? locale?.placeholder : placeholder
+            placeholder === undefined
+              ? locale?.textarea?.placeholder
+              : placeholder
           }
           disabled={disabled}
           rows={rows}
