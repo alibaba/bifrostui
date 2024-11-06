@@ -1,0 +1,126 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+@arrowSize: 8px;
+@arrowTransparent: solid transparent;
+
+.arrow-common {
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.arrow-top {
+  border-left: @arrowSize @arrowTransparent;
+  border-right: @arrowSize @arrowTransparent;
+  border-top: @arrowSize solid rgba(0, 0, 0, 0.75);
+}
+
+.arrow-bottom {
+  border-left: @arrowSize @arrowTransparent;
+  border-right: @arrowSize @arrowTransparent;
+  border-bottom: @arrowSize solid rgba(0, 0, 0, 0.75);
+}
+
+.arrow-left {
+  border-top: @arrowSize @arrowTransparent;
+  border-bottom: @arrowSize @arrowTransparent;
+  border-left: @arrowSize solid rgba(0, 0, 0, 0.75);
+}
+
+.arrow-right {
+  border-top: @arrowSize @arrowTransparent;
+  border-bottom: @arrowSize @arrowTransparent;
+  border-right: @arrowSize solid rgba(0, 0, 0, 0.75);
+}
+
+.bui-tooltip {
+  max-width: 250px;
+  font-size: var(--bui-text-size-1);
+  position: absolute;
+  visibility: hidden;
+  z-index: 3000;
+
+  .bui-tooltip-arrow {
+    .arrow-common();
+
+    &.location-left {
+      left: @arrowSize;
+    }
+
+    &.location-right {
+      right: @arrowSize;
+    }
+
+    &.location-top {
+      top: @arrowSize;
+    }
+
+    &.location-bottom {
+      bottom: @arrowSize;
+    }
+  }
+
+  &.tooltip-top .location-center,
+  &.tooltip-bottom .location-center {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.tooltip-left .location-center,
+  &.tooltip-right .location-center {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &.tooltip-top {
+    padding-bottom: @arrowSize;
+
+    .bui-tooltip-arrow {
+      .arrow-top();
+      bottom: 0;
+    }
+  }
+
+  &.tooltip-bottom {
+    padding-top: @arrowSize;
+
+    .bui-tooltip-arrow {
+      .arrow-bottom();
+      top: 0;
+    }
+  }
+
+  &.tooltip-left {
+    padding-right: @arrowSize;
+
+    .bui-tooltip-arrow {
+      .arrow-left();
+      right: 0;
+    }
+  }
+
+  &.tooltip-right {
+    padding-left: @arrowSize;
+
+    .bui-tooltip-arrow {
+      .arrow-right();
+      left: 0;
+    }
+  }
+
+  .bui-tooltip-content {
+    min-width: 30px;
+    min-height: 32px;
+    padding: 6px 8px;
+    color: var(--bui-color-white);
+    text-align: left;
+    text-decoration: none;
+    word-wrap: break-word;
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: var(--bui-shape-radius-poster);
+    box-shadow:
+      0 3px 6px -4px rgba(0, 0, 0, 0.12),
+      0 6px 16px 0 rgba(0, 0, 0, 0.08),
+      0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  }
+}
