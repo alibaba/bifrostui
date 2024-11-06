@@ -299,7 +299,6 @@ export default () => {
   return (
     <ThemeProvider locale={curValue}>
       {contextHolder}
-
       <Stack spacing="10px">
         <Button
           onClick={() => {
@@ -308,7 +307,7 @@ export default () => {
             });
           }}
         >
-          Toast
+          Dialog
         </Button>
         <div>语言选择</div>
         <Select
