@@ -3,10 +3,18 @@ import { useDidMountEffect, useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
-import React, { SyntheticEvent, useMemo, useState } from 'react';
+import React, {
+  Suspense,
+  lazy,
+  SyntheticEvent,
+  useMemo,
+  useState,
+} from 'react';
 import './Calendar.less';
 import { CalendarProps, ICalendarInstance } from './Calendar.types';
 import { formatDate, isRange, isSame } from './utils';
+
+const Picker = lazy(() => import('../Picker'));
 
 dayjs.extend(isoWeek);
 
@@ -30,10 +38,12 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       mode,
       hideDaysOutsideCurrentMonth,
       disabledDate,
+      enableSelectYear,
       highlightDate,
       dateRender,
       weekRender,
       onMonthChange,
+      onYearChange,
       onChange,
       ...others
     } = props;
@@ -49,6 +59,8 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       maxDate,
     );
 
+    // 控制年份选择picker
+    const [openPicker, setOpenPicker] = useState<boolean>(false);
     // 头部操作栏月份
     const [renderMonth, setRenderMonth] = useState(() => {
       const initMonth =
@@ -139,6 +151,21 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       });
 
       return list;
+    };
+
+    const getYearsList = () => {
+      const result = [];
+      // 使用传入参数的时间
+      let startTime = new Date(minDate).getFullYear();
+      const endTime = new Date(maxDate).getFullYear();
+      while (endTime - startTime >= 0) {
+        result.push({
+          label: startTime,
+          value: startTime,
+        });
+        startTime += 1;
+      }
+      return result;
     };
 
     const getDayClassName = ({ day: itemDate, disabled }) => {
@@ -274,6 +301,27 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       }
     };
 
+    /**
+     * 点击顶部日期
+     */
+    const onClickDate = (e) => {
+      if (!enableSelectYear) {
+        return;
+      }
+      e.stopPropagation();
+      setOpenPicker(true);
+      getYearsList();
+    };
+    const onClosePicker = (e, data) => {
+      const selectYear = data.value[0];
+      e.stopPropagation();
+      setRenderMonth(dayjs(renderMonth).set('year', selectYear).toDate());
+      onYearChange?.(e, {
+        year: selectYear,
+      });
+      setOpenPicker(false);
+    };
+
     let data: Record<string, string> = {};
     if (isRangeMode) {
       data = {
@@ -304,7 +352,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
               htmlColor={isMinMonth && '#cccccc'}
             />
           </div>
-          <div className={`${classes.handler}-text`}>
+          <div className={`${classes.handler}-text`} onClick={onClickDate}>
             {dayjs(renderMonth).format('YYYY/MM')}
           </div>
           <div onClick={onClickNext} className={`${classes.handler}-btn`}>
@@ -329,6 +377,16 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         </div>
 
         <div className={clsx(`${classes.root}-month`)}>{renderDayList()}</div>
+        {enableSelectYear && (
+          <Suspense fallback={null}>
+            <Picker
+              options={[getYearsList()]}
+              open={openPicker}
+              value={[dayjs(renderMonth).year()]}
+              onClose={onClosePicker}
+            />
+          </Suspense>
+        )}
       </div>
     );
   },
@@ -337,6 +395,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
 Calendar.displayName = 'BuiCalendar';
 Calendar.defaultProps = {
   hideDaysOutsideCurrentMonth: false,
+  enableSelectYear: false,
   mode: 'single',
   minDate: dayjs(dayjs().format('YYYYMMDD')).add(0, 'month').toDate(),
   maxDate: dayjs(dayjs().format('YYYYMMDD')).add(11, 'month').toDate(),
