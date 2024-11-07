@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { FadeProps } from '../Fade/Fade.types';
 
 /**
@@ -18,7 +18,7 @@ export interface ToastProps extends FadeProps {
   /**
    * toast内容，支持使用`\n`换行
    */
-  message?: string;
+  message?: ReactNode;
   /**
    * 展示时长(ms)，值为 0 时，toast 不会消失
    * @default 2000

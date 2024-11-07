@@ -435,17 +435,20 @@ export default () => {
 
 ### Style variables
 
-| attribute          | explain                                                  | Default value              | global variable |
-| ------------------ | -------------------------------------------------------- | -------------------------- | --------------- |
-| --min-width        | Minimum width                                            | 86px                       | -               |
-| --max-width        | Maximum width                                            | 80%                        | -               |
-| --font-size        | font size                                                | --bui-text-size-1          | -               |
-| --color            | Font color                                               | --bui-color-white          | -               |
-| --padding          | padding                                                  | --bui-spacing-xl           | -               |
-| --word-break       | Line break rule                                          | break-all                  | -               |
-| --z-index          | Hierarchical structure                                   | --bui-z-index-toast        | -               |
-| --position-top     | When displaying at the top, the distance from the top    | 15%                        | -               |
-| --position-bottom  | When displaying at the bottom, the distance from the top | 85%                        | -               |
-| --background-color | background color                                         | rgba(0, 0, 0, 0.8)         | -               |
-| --border-radius    | fillet                                                   | --bui-shape-radius-default | -               |
-| --text-align       | Text position                                            | center                     | -               |
+| attribute          | explain                                                  | Default value              | global variable                |
+| ------------------ | -------------------------------------------------------- | -------------------------- | ------------------------------ |
+| --min-width        | Minimum width                                            | 86px                       | -                              |
+| --max-width        | Maximum width                                            | 80%                        | -                              |
+| --font-size        | font size                                                | --bui-text-size-1          | -                              |
+| --color            | Font color                                               | --bui-color-white          | -                              |
+| --flex-direction   | icon and content direction                               | column                     | --bui-toast-flex-direction     |
+| --padding          | padding                                                  | --bui-spacing-xl           | -                              |
+| --word-break       | Line break rule                                          | break-all                  | -                              |
+| --z-index          | Hierarchical structure                                   | --bui-z-index-toast        | -                              |
+| --position-top     | When displaying at the top, the distance from the top    | 15%                        | -                              |
+| --position-bottom  | When displaying at the bottom, the distance from the top | 85%                        | -                              |
+| --background-color | background color                                         | rgba(0, 0, 0, 0.8)         | -                              |
+| --border-radius    | fillet                                                   | --bui-shape-radius-default | -                              |
+| --icon-margin      | icon margin                                              | 8px                        | --bui-toast-icon-margin-bottom |
+| --icon-font-size   | icon font size                                           | 30px                       | --bui-toast-icon-font-size     |
+| --text-align       | Text position                                            | center                     | -                              |
