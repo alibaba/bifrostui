@@ -143,7 +143,7 @@ const useDialog = () => {
     });
   wrapAPI.prompt = (options: PromptOptions) =>
     Dialog({
-      type: 'promptF',
+      type: 'prompt',
       ...formatProps(options),
       theme: holderRef.current.theme,
     });
