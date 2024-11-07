@@ -11,7 +11,7 @@ name: collapse 折叠动效
 
 ### 基础使用
 
-Collapse组件支持两个折叠方向，通过`orientation`参数传入，如果需要水平折叠则使用`horizontal`值，如果需要垂直方向折叠则使用`vertical`值。默认值为`vertical`
+Collapse组件支持两个折叠方向，通过`direction`参数传入，如果需要水平折叠则使用`horizontal`值，如果需要垂直方向折叠则使用`vertical`值。默认值为`vertical`
 
 #### 横向
 
@@ -29,7 +29,7 @@ export default () => {
           setOpen(data?.checked);
         }}
       ></Switch>
-      <Collapse timeout={1500} orientation="horizontal" in={open}>
+      <Collapse timeout={1500} direction="horizontal" in={open}>
         <Card
           style={{
             background: '#CCCCCC',
@@ -59,7 +59,7 @@ export default () => {
           setOpen(data?.checked);
         }}
       ></Switch>
-      <Collapse orientation="vertical" in={open} timeout={1500}>
+      <Collapse direction="vertical" in={open} timeout={1500}>
         <Card
           style={{
             background: '#CCCCCC',
@@ -121,7 +121,7 @@ export default () => {
 | exit          | 是否播放退出动画                   | boolean                         | true   |
 | mountOnEnter  | 首次进入时再挂载children           | boolean                         | false  |
 | unmountOnExit | 退出时卸载children                 | boolean                         | false  |
-| orientation   | 折叠方向                           | horizontal \| vertical          | -      |
+| direction     | 折叠方向                           | horizontal \| vertical          | -      |
 | collapsedSize | 折叠尺寸                           | string \| number                | -      |
 | onEnter       | 进入开始前的回调                   | node=>void                      | -      |
 | onEntering    | 进入开始后的回调                   | node=>void                      | -      |

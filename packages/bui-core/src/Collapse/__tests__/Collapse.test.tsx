@@ -14,10 +14,10 @@ describe('Collapse', () => {
     );
   });
   it.each(['horizontal', 'vertical'])(
-    'collapse in from different orientation',
-    (orientation) => {
+    'collapse in from different direction',
+    (direction) => {
       render(
-        <Collapse in orientation={orientation as 'horizontal' | 'vertical'}>
+        <Collapse in direction={direction as 'horizontal' | 'vertical'}>
           <div
             className="bui-collapse-content"
             style={{ height: '100px', width: '100px' }}
@@ -26,7 +26,7 @@ describe('Collapse', () => {
           </div>
         </Collapse>,
       );
-      const size = orientation === 'horizontal' ? 'width' : 'height';
+      const size = direction === 'horizontal' ? 'width' : 'height';
       const getSize = (_size) => {
         // eslint-disable-next-line no-underscore-dangle
         return screen.getByText('Collapse').style[_size];

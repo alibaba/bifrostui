@@ -25,7 +25,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
     appear,
     in: inProp,
     easing: easingProp,
-    orientation,
+    direction,
     timeout,
     delay,
     collapsedSize: collapsedSizeProp,
@@ -39,7 +39,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
   const wrapperRef = useRef(null);
   const collapseRef = useForkRef(wrapperRef, ref);
   const transitions = createTransitions();
-  const isHorizontal = orientation === 'horizontal';
+  const isHorizontal = direction === 'horizontal';
   const collapsedSize =
     typeof collapsedSizeProp === 'number'
       ? `${collapsedSizeProp}px`
@@ -129,7 +129,7 @@ Collapse.defaultProps = {
   easing: defaultEasing,
   timeout: defaultTimeout,
   delay: 0,
-  orientation: 'vertical',
+  direction: 'vertical',
   collapsedSize: '0',
 };
 export default Collapse;
