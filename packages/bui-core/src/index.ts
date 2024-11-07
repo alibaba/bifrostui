@@ -41,3 +41,5 @@ export * from './CitySelector';
 export * from './Picker';
 export * from './CollapsePanel';
 export * from './Breadcrumb';
+export * from './Toast';
+export * from './Dialog';

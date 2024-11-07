@@ -130,6 +130,8 @@ export { default as LoadingThreeQuartersOutlinedIcon } from './LoadingThreeQuart
 export { default as LocationFilledIcon } from './LocationFilled';
 export { default as LocationOutlinedIcon } from './LocationOutlined';
 export { default as LuckyMoneyOutlinedIcon } from './LuckyMoneyOutlined';
+export { default as MaiSuiLeftIcon } from './MaiSuiLeft';
+export { default as MaiSuiRightIcon } from './MaiSuiRight';
 export { default as MailOutlinedIcon } from './MailOutlined';
 export { default as MaleOutlinedIcon } from './MaleOutlined';
 export { default as MapFilledIcon } from './MapFilled';

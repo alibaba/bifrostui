@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { render, screen } from 'testing';
+import { act, render, screen } from 'testing';
 import { fireEvent, waitFor } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
 import ScrollView from '../ScrollView';
 
 describe('ScrollView', () => {
