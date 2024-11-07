@@ -23,19 +23,17 @@ export type PopoverProps<
       open?: boolean;
       /**
        * 浮层的标题
-       * @default true
        */
       title?: React.ReactNode;
       /**
        * 浮层的内容
-       * @default true
        */
       content?: React.ReactNode;
       /**
        * 是否展示箭头
-       * @default true
+       * @default false
        */
-      showArrow?: boolean;
+      hideArrow?: boolean;
       /**
        * 气泡框位置
        * @default 'top'
@@ -64,7 +62,7 @@ export type PopoverProps<
       /**
        * Portal组件的属性
        */
-      portalProps?: PortalCoreProps;
+      PortalProps?: PortalCoreProps;
       /**
        * 点击事件回调方法
        * - event 触发事件
@@ -72,7 +70,7 @@ export type PopoverProps<
        * @returns
        */
       onOpenChange?: (
-        event: React.MouseEvent<HTMLButtonElement>,
+        event: React.SyntheticEvent,
         data: { open: boolean },
       ) => void;
     };

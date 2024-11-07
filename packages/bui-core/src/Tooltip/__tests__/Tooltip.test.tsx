@@ -25,7 +25,7 @@ describe('Tooltip', () => {
     displayName: 'BuiTooltip',
     className: rootClass,
     skip: [
-      'portalProps',
+      'PortalProps',
       'component-has-root-ref',
       'component-handles-classNames',
       'component-has-default-className',

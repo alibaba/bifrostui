@@ -25,7 +25,7 @@ describe('Popover', () => {
     displayName: 'BuiPopover',
     className: rootClass,
     skip: [
-      'portalProps',
+      'PortalProps',
       'component-has-root-ref',
       'component-handles-classNames',
       'component-has-default-className',
@@ -46,9 +46,9 @@ describe('Popover', () => {
     expect(screen.getByText('This is a popover content')).toBeInTheDocument();
   });
 
-  it('test showArrow props', () => {
+  it('test hideArrow props', () => {
     render(
-      <Popover title="This is a popover title" showArrow={false} defaultOpen>
+      <Popover title="This is a popover title" hideArrow defaultOpen>
         <div>children</div>
       </Popover>,
     );

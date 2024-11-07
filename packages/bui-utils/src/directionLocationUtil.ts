@@ -5,6 +5,9 @@ const directionCssMap = {
   bottom: 'top',
 };
 
+/**
+ * 根据元素宽高判断是否超出边界，超出边界则重新定义方向
+ */
 export const getNewDirectionLocation = ({
   rootOffset,
   arrowDirection,
@@ -21,6 +24,7 @@ export const getNewDirectionLocation = ({
   let newArrowDirection = arrowDirection;
   let newArrowLocation = arrowLocation;
 
+  // 气泡所在位置 上下左右
   const isDirectionTop = arrowDirection === 'top';
   const isDirectionBottom = arrowDirection === 'bottom';
   const isDirectionLeft = arrowDirection === 'left';
@@ -35,8 +39,7 @@ export const getNewDirectionLocation = ({
     newArrowDirection = directionCssMap[arrowDirection];
   }
 
-  const isCenter = arrowLocation === 'center';
-  // 箭头靠边的情况
+  // 箭头靠边的情况，是否超过边界
   if (
     (arrowLocation === 'top' && cTop + height > pgegHeight) ||
     (arrowLocation === 'bottom' && cBottom - height < 0) ||
@@ -46,7 +49,8 @@ export const getNewDirectionLocation = ({
     newArrowLocation = directionCssMap[arrowLocation];
   }
 
-  // 箭头在中间的情况
+  const isCenter = arrowLocation === 'center';
+  // 箭头在中间的情况，是否超过边界
   if (isCenter && (isDirectionTop || isDirectionBottom)) {
     if (cLeft + width > pgegWidth) {
       newArrowLocation = directionCssMap.left;
@@ -67,6 +71,9 @@ export const getNewDirectionLocation = ({
   };
 };
 
+/**
+ * 根据新的气泡位置和箭头位置 计算气泡位置以及箭头位置
+ */
 export const getDirectionLocationStyle = ({
   rootOffset,
   arrowDirection,
@@ -167,21 +174,19 @@ export const getDirectionLocationStyle = ({
   return styles;
 };
 
+/**
+ * 获取气泡位置和箭头位置
+ */
 export const getStylesAndLocation = ({
   childrenRef,
   arrowDirection,
   arrowLocation,
   selector,
 }) => {
-  console.log('childrenRef====', childrenRef.current);
   const rootOffset = childrenRef.current.getBoundingClientRect();
-  console.log('childrenOffset===', rootOffset);
-
   const $rtDom = document.querySelector(selector);
   if (!$rtDom) return null;
   const tipOffset = $rtDom.getBoundingClientRect();
-
-  console.log('offset====', tipOffset);
   const { newArrowDirection, newArrowLocation } = getNewDirectionLocation({
     rootOffset,
     arrowDirection,
@@ -207,12 +212,6 @@ export const getStylesAndLocation = ({
 const onMouseEnter = 'onMouseEnter';
 const onMouseLeave = 'onMouseLeave';
 const onClick = 'onClick';
-
-// enum eventNames {
-//   onMouseEnter,
-//   onMouseLeave,
-//   onClick,
-// }
 
 const TriggerEvent = {
   hover: [onMouseEnter, onMouseLeave],

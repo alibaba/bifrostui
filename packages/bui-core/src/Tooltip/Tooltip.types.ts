@@ -53,7 +53,7 @@ export type TooltipProps<
       /**
        * Portal组件的属性
        */
-      portalProps?: PortalCoreProps;
+      PortalProps?: PortalCoreProps;
       /**
        * 点击事件回调方法
        * - event 触发事件
@@ -61,7 +61,7 @@ export type TooltipProps<
        * @returns
        */
       onOpenChange?: (
-        event: React.MouseEvent<HTMLDivElement>,
+        event: React.SyntheticEvent,
         data: { open: boolean },
       ) => void;
     };

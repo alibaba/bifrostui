@@ -3,42 +3,42 @@
 @arrowSize: 8px;
 @arrowTransparent: solid transparent;
 
-.arrow-common {
+.arrow-common() {
   width: 0;
   height: 0;
   position: absolute;
 }
 
-.arrow-top {
+.arrow-top() {
   border-left: @arrowSize @arrowTransparent;
   border-right: @arrowSize @arrowTransparent;
   border-top: @arrowSize solid rgba(0, 0, 0, 0.75);
 }
 
-.arrow-bottom {
+.arrow-bottom() {
   border-left: @arrowSize @arrowTransparent;
   border-right: @arrowSize @arrowTransparent;
   border-bottom: @arrowSize solid rgba(0, 0, 0, 0.75);
 }
 
-.arrow-left {
+.arrow-left() {
   border-top: @arrowSize @arrowTransparent;
   border-bottom: @arrowSize @arrowTransparent;
   border-left: @arrowSize solid rgba(0, 0, 0, 0.75);
 }
 
-.arrow-right {
+.arrow-right() {
   border-top: @arrowSize @arrowTransparent;
   border-bottom: @arrowSize @arrowTransparent;
   border-right: @arrowSize solid rgba(0, 0, 0, 0.75);
 }
 
 .bui-tooltip {
-  max-width: 250px;
+  max-width: 350px;
   font-size: var(--bui-text-size-1);
   position: absolute;
   visibility: hidden;
-  z-index: 3000;
+  z-index: var(--bui-z-index-tooltip);
 
   .bui-tooltip-arrow {
     .arrow-common();

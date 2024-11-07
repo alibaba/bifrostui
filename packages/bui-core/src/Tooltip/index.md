@@ -26,7 +26,7 @@ export default () => {
 };
 ```
 
-### open 外部控制
+<!-- ### open 外部控制
 
 外部通过open设置气泡浮层显隐
 
@@ -188,7 +188,7 @@ export default () => {
     </Tooltip>
   );
 };
-```
+``` -->
 
 ### API
 
@@ -200,5 +200,5 @@ export default () => {
 | open         | 用于手动控制气泡浮层显隐 | boolean                                                                                                                                                          | false   |
 | placement    | 气泡框位置               | string，枚举值是 `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` `bottom` | 'top'   |
 | trigger      | 触发行为                 | string \| string[]，枚举值是 'click' \| 'hover'                                                                                                                  | 'click' |
-| portalProps  | 内部Portal组件的属性     | PortalCoreProps                                                                                                                                                  | -       |
+| PortalProps  | 内部Portal组件的属性     | PortalCoreProps                                                                                                                                                  | -       |
 | onOpenChange | 气泡浮层显隐的回调方法   | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                             | -       |

@@ -4,42 +4,42 @@
 @locationSize: 5px;
 @arrowTransparent: solid transparent;
 
-.arrow-common {
+.arrow-common() {
   width: 0;
   height: 0;
   position: absolute;
 }
 
-.arrow-top {
+.arrow-top() {
   border-left: @arrowSize @arrowTransparent;
   border-right: @arrowSize @arrowTransparent;
-  border-top: @arrowSize solid #fff;
+  border-top: @arrowSize solid var(--bui-color-bg-view);
 }
 
-.arrow-bottom {
+.arrow-bottom() {
   border-left: @arrowSize @arrowTransparent;
   border-right: @arrowSize @arrowTransparent;
-  border-bottom: @arrowSize solid #fff;
+  border-bottom: @arrowSize solid var(--bui-color-bg-view);
 }
 
-.arrow-left {
+.arrow-left() {
   border-top: @arrowSize @arrowTransparent;
   border-bottom: @arrowSize @arrowTransparent;
-  border-left: @arrowSize solid #fff;
+  border-left: @arrowSize solid var(--bui-color-bg-view);
 }
 
-.arrow-right {
+.arrow-right() {
   border-top: @arrowSize @arrowTransparent;
   border-bottom: @arrowSize @arrowTransparent;
-  border-right: @arrowSize solid #fff;
+  border-right: @arrowSize solid var(--bui-color-bg-view);
 }
 
 .bui-popover {
-  max-width: 400px;
+  max-width: 350px;
   font-size: var(--bui-text-size-1);
   position: absolute;
   visibility: hidden;
-  z-index: 3000;
+  z-index: var(--bui-z-index-tooltip);
 
   .bui-popover-arrow {
     .arrow-common();
@@ -75,7 +75,7 @@
 
   &.popover-top {
     padding-bottom: @arrowSize;
-    // transform: translateY(-100%);
+
     .bui-popover-arrow {
       .arrow-top();
       bottom: 0;
@@ -84,7 +84,7 @@
 
   &.popover-bottom {
     padding-top: @arrowSize;
-    // transform: translateY(100%);
+
     .bui-popover-arrow {
       .arrow-bottom();
       top: 0;
@@ -93,7 +93,7 @@
 
   &.popover-left {
     padding-right: @arrowSize;
-    // transform: translateX(-100%);
+
     .bui-popover-arrow {
       .arrow-left();
       right: 0;
@@ -102,7 +102,7 @@
 
   &.popover-right {
     padding-left: @arrowSize;
-    // transform: translateX(100%);
+
     .bui-popover-arrow {
       .arrow-right();
       left: 0;
@@ -110,7 +110,7 @@
   }
 
   div:nth-child(2) {
-    margin-top: 8px;
+    margin-top: var(--bui-spacing-md);
   }
 
   .bui-popover-title {
@@ -121,11 +121,11 @@
     min-width: 30px;
     min-height: 32px;
     padding: 6px 8px;
-    color: #000;
+    color: var(--bui-color-black);
     text-align: left;
     text-decoration: none;
     word-wrap: break-word;
-    background-color: var(--bui-color-white);
+    background-color: var(--bui-color-bg-view);
     border-radius: var(--bui-shape-radius-poster);
     box-shadow:
       0 3px 6px -4px rgba(0, 0, 0, 0.12),
