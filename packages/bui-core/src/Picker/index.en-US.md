@@ -1015,19 +1015,24 @@ export default () => {
 
 ### Style variables
 
-| attribute                | explain                     | Default value                     | global variable |
-| ------------------------ | --------------------------- | --------------------------------- | --------------- |
-| --cancel-color           | Cancel button font color    | --bui-color-fg-default            | -               |
-| --cancel-font-size       | Cancel button font size     | var(--bui-title-size-4, 15px)     | -               |
-| --confirm-color          | Confirm button font color   | --bui-color-primary               | -               |
-| --confirm-font-size      | Confirm button font size    | var(--bui-title-size-4, 15px)     | -               |
-| --title-color            | Title font color            | --bui-color-fg-default            | -               |
-| --title-font-size        | Title font size             | var(--bui-title-size-3, 16px)     | -               |
-| --title-font-weight      | Title word duplication      | ar(--bui-font-weight-medium, 500) | -               |
-| --panel-container-height | Select container height     | 260px                             | -               |
-| --indicator-top          | Indicator distance from top | 108px                             | -               |
-| --indicator-height       | Indicator height            | 36px                              | -               |
-| --indicator-border-color | Indicator stroke color      | --bui-color-border-default        | -               |
-| --option-color           | Option font color           | --bui-color-fg-default            | -               |
-| --option-font-size       | Option font size            | --bui-title-size-4                | -               |
-| --option-height          | Option height               | 36px                              | -               |
+| Attributes                | Description                    | Default Values                       | Global Variables                     |
+| ------------------------- | ------------------------------ | ------------------------------------ | ------------------------------------ |
+| -- font size              | selector default font size     | var (-- bui title size-4, 15px)      | -- bui picker font size              |
+| -- header height          | selector header height         | 50px                                 | -- bui picker header height          |
+| -- header padding         | selector header margin         | 0 var (-- bui spacing lg)            | -- bui picker header padding         |
+| -- cancel height          | Cancel button height           | 100%                                 | -- bui picker cancel height          |
+| -- cancel line height     | Cancel button line height      | 50px                                 | -- bui picker cancel line height     |
+| -- cancel color           | Cancel button font color       | -- bui color fg default              | -- bui picker cancel color           |
+| -- confirm height         | confirm button height          | 100%                                 | -- bui picker confirm height         |
+| -- confirm line height    | Confirm button line height     | 50px                                 | -- bui picker confirm line height    |
+| -- confirm color          | Confirm button font color      | -- bui color primary                 | -                                    |
+| -- title color            | title font color               | -- bui color fg default              | -- bui picker title color            |
+| -- title font size        | title font size                | var (-- bui-title size-3, 16px)      | -                                    |
+| -- title font weight      | title word weight              | var (-- bui font weight medium, 500) | -- bui picker title font size        |
+| -- panel container height | selector container height      | 260px                                | -- bui picker panel height           |
+| -- indicator top          | distance from indicator to top | 108px                                | -- bui picker indicator top          |
+| -- indicator height       | indicator height               | 36px                                 | -- bui picker indicator height       |
+| -- indicator border color | indicator border color         | -- bui color border default          | -- bui picker indicator border color |
+| -- option color           | option font color              | -- bui color fg default              | -- bui picker option color           |
+| -- option font size       | option font size               | -- bui-title-size-4                  | -- bui picker option font size       |
+| -- option height          | option height                  | 36px                                 | -- bui picker option height          |

@@ -1,20 +1,37 @@
 @import '@bifrostui/styles/mixins/index.less';
 
 .bui-picker {
-  --cancel-color: var(--bui-color-fg-default);
-  --cancel-font-size: var(--bui-title-size-4, 15px);
+  --font-size: var(--bui-picker-font-size, var(--bui-title-size-4, 15px));
+  --header-height: var(--bui-picker-header-height, 50px);
+  --header-padding: var(--bui-picker-header-padding, 0 var(--bui-spacing-lg));
+  --cancel-height: var(--bui-picker-cancel-height, 100%);
+  --cancel-line-height: var(--bui-picker-cancel-line-height, 50px);
+  --cancel-color: var(--bui-picker-cancel-color, var(--bui-color-fg-default));
+  --confirm-height: var(--bui-picker-confirm-height, 100%);
+  --confirm-line-height: var(--bui-picker-confirm-line-height, 50px);
   --confirm-color: var(--bui-color-primary);
-  --confirm-font-size: var(--bui-title-size-4, 15px);
-  --title-color: var(--bui-color-fg-default);
-  --title-font-size: var(--bui-title-size-3, 16px);
-  --title-font-weight: var(--bui-font-weight-medium, 500);
-  --panel-container-height: 260px;
-  --indicator-top: 108px;
-  --indicator-height: 36px;
-  --indicator-border-color: var(--bui-color-border-default);
-  --option-color: var(--bui-color-fg-default);
-  --option-font-size: var(--bui-title-size-4);
-  --option-height: 36px;
+  --title-color: var(--bui-picker-title-color, var(--bui-color-fg-default));
+  --title-font-size: var(
+    --bui-picker-title-font-size,
+    var(--bui-title-size-3, 16px)
+  );
+  --title-font-weight: var(
+    --bui-picker-title-font-weight,
+    var(--bui-font-weight-medium, 500)
+  );
+  --panel-container-height: var(--bui-picker-panel-height, 260px);
+  --indicator-top: var(--bui-picker-indicator-top, 108px);
+  --indicator-height: var(--bui-picker-indicator-height, 36px);
+  --indicator-border-color: var(
+    --bui-picker-indicator-border-color,
+    var(--bui-color-border-default)
+  );
+  --option-color: var(--bui-picker-option-color, var(--bui-color-fg-default));
+  --option-font-size: var(
+    --bui-picker-option-font-size,
+    var(--bui-title-size-4)
+  );
+  --option-height: var(--bui-picker-option-height, 36px);
   font-family: var(--bui-font-family);
 
   .bui-drawer-content {
@@ -23,19 +40,19 @@
   }
 
   &-header {
-    height: 50px;
+    height: var(--header-height);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 var(--bui-spacing-lg);
+    padding: var(--header-padding);
   }
 
   &-cancel {
     cursor: pointer;
-    height: 100%;
-    font-size: var(--cancel-font-size);
+    height: var(--cancel-height);
+    font-size: var(--font-size);
     text-align: center;
-    line-height: 50px;
+    line-height: var(--cancel-line-height);
     color: var(--cancel-color);
   }
 
@@ -47,10 +64,10 @@
 
   &-confirm {
     cursor: pointer;
-    height: 100%;
-    font-size: var(--confirm-font-size);
+    height: var(--confirm-height);
+    font-size: var(--font-size);
     text-align: center;
-    line-height: 50px;
+    line-height: var(--confirm-line-height);
     color: var(--confirm-color);
   }
 
