@@ -3,9 +3,9 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Drawer from '../Drawer';
 import PickerPanel from './PickerPanel';
 import { PickerProps } from './Picker.types';
-import { formatOptions, pickerPanelType } from './utils';
-import './Picker.less';
+import { formatOptions, pickerPanelType, safeData } from './utils';
 import { useTheme } from '../ThemeProvider';
+import './Picker.less';
 
 const prefixCls = 'bui-picker';
 
@@ -52,13 +52,19 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
   }, [value, options]);
 
   const confirm = (e) => {
-    const payload = {
-      value: internalValue,
-      options: columns,
-    };
     const isMoving = rollerRefs.current.some((roller) => roller?.isMoving);
     // 处于惯性滚动中，不允许确认关闭选择器
     if (isMoving) return;
+
+    const { safeValue } = safeData({
+      value: internalValue,
+      formatted: columns,
+      options,
+    });
+    const payload = {
+      value: safeValue,
+      options: columns,
+    };
 
     onConfirm?.(e, payload);
     onClose?.(e, {
@@ -69,10 +75,18 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
 
   const cancel = (e) => {
     onCancel?.(e);
+    const { safeValue } = safeData({
+      value: internalValue,
+      formatted: columns,
+      options,
+    });
+    const payload = {
+      value: safeValue,
+      options: columns,
+    };
     onClose?.(e, {
       from: 'cancel',
-      value: internalValue,
-      options: columns,
+      ...payload,
     });
   };
 
@@ -107,7 +121,8 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
           currentOption: columnOption,
         });
       } else {
-        const result = internalValue;
+        // value为引用类型，防止取消时外部value被修改
+        const result = [...internalValue];
         result[columnIndex] = columnOption.value;
         setInternalValue(result);
         onOptionChange?.(e, {
@@ -124,8 +139,13 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
   };
 
   const handleClose = (e, data) => {
-    onClose?.(e, {
+    const { safeValue } = safeData({
       value: internalValue,
+      formatted: columns,
+      options,
+    });
+    onClose?.(e, {
+      value: safeValue,
       options: columns,
       ...data,
     });
@@ -169,6 +189,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
               columnIndex={index}
               defaultValue={internalValue?.[index]}
               onSelect={handleSelect}
+              pickerStyle={others?.style}
             />
           ))}
         </div>

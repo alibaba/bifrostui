@@ -1,36 +1,14 @@
 @import '@bifrostui/styles/mixins/index.less';
 
 .bui-picker {
-  --font-size: var(--bui-picker-font-size, var(--bui-title-size-4, 15px));
   --header-height: var(--bui-picker-header-height, 50px);
   --header-padding: var(--bui-picker-header-padding, 0 var(--bui-spacing-lg));
   --cancel-height: var(--bui-picker-cancel-height, 100%);
   --cancel-line-height: var(--bui-picker-cancel-line-height, 50px);
-  --cancel-color: var(--bui-picker-cancel-color, var(--bui-color-fg-default));
   --confirm-height: var(--bui-picker-confirm-height, 100%);
   --confirm-line-height: var(--bui-picker-confirm-line-height, 50px);
-  --confirm-color: var(--bui-color-primary);
-  --title-color: var(--bui-picker-title-color, var(--bui-color-fg-default));
-  --title-font-size: var(
-    --bui-picker-title-font-size,
-    var(--bui-title-size-3, 16px)
-  );
-  --title-font-weight: var(
-    --bui-picker-title-font-weight,
-    var(--bui-font-weight-medium, 500)
-  );
   --panel-container-height: var(--bui-picker-panel-height, 260px);
   --indicator-top: var(--bui-picker-indicator-top, 108px);
-  --indicator-height: var(--bui-picker-indicator-height, 36px);
-  --indicator-border-color: var(
-    --bui-picker-indicator-border-color,
-    var(--bui-color-border-default)
-  );
-  --option-color: var(--bui-picker-option-color, var(--bui-color-fg-default));
-  --option-font-size: var(
-    --bui-picker-option-font-size,
-    var(--bui-title-size-4)
-  );
   --option-height: var(--bui-picker-option-height, 36px);
   font-family: var(--bui-font-family);
 
@@ -50,30 +28,31 @@
   &-cancel {
     cursor: pointer;
     height: var(--cancel-height);
-    font-size: var(--font-size);
+    font-size: var(--bui-title-size-4);
     text-align: center;
     line-height: var(--cancel-line-height);
-    color: var(--cancel-color);
+    color: var(--bui-color-fg-default);
   }
 
   &-title {
-    font-size: var(--title-font-size);
-    color: var(--title-color);
-    font-weight: var(--title-font-weight);
+    font-size: var(--bui-title-size-3);
+    color: var(--bui-color-fg-default);
+    font-weight: var(--bui-font-weight-medium);
   }
 
   &-confirm {
     cursor: pointer;
     height: var(--confirm-height);
-    font-size: var(--font-size);
+    font-size: var(--bui-title-size-4);
     text-align: center;
     line-height: var(--confirm-line-height);
-    color: var(--confirm-color);
+    color: var(--bui-color-primary);
   }
 
   &-container {
     width: 100%;
     height: var(--panel-container-height);
     display: flex;
+    overflow: hidden;
   }
 }

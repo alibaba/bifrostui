@@ -13,6 +13,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       defaultValue,
       onSelect,
       columnIndex,
+      pickerStyle,
       ...others
     } = props;
 
@@ -26,6 +27,13 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
     const LINE_SPACING = 36;
     const ROTATION = 20;
     const TOUCH_END = 'end';
+    const INDICATOR_HEIGHT = (
+      pickerStyle?.['--option-height']
+        ? `${pickerStyle?.['--option-height']}`
+        : `${LINE_SPACING}`
+    ).match(/\d+/)?.[0];
+    const INDICATOR_OFFSET =
+      (parseInt(INDICATOR_HEIGHT, 10) * 108) / LINE_SPACING;
 
     const [startY, setStartY] = useState(0);
     const [currIndex, setCurrIndex] = useState(1);
@@ -236,7 +244,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
               style={{
                 transform: `rotate3d(1, 0, 0, ${
                   -ROTATION * (i + 1)
-                }deg) translate3d(0px, 0px, 104px)`,
+                }deg) translate3d(0px, 0px, ${INDICATOR_OFFSET}px)`,
               }}
             >
               {item?.label}

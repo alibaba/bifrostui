@@ -15,10 +15,16 @@ name: Picker 选择器
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default () => {
   const [open, setOpen] = useState(false);
+  const [val, setVal] = useState([2]);
+
+  useEffect(() => {
+    console.log(val);
+  }, [val]);
+
   return (
     <Stack>
       <Button
@@ -30,6 +36,7 @@ export default () => {
       </Button>
       <Picker
         open={open}
+        value={val}
         onClose={(e, data) => {
           setOpen(false);
           console.log('onClose', e, data);
@@ -644,7 +651,122 @@ import React, { useState } from 'react';
 
 export default () => {
   const [open, setOpen] = useState(false);
-  const [val, setVal] = useState([]);
+  const [val, setVal] = useState<any>([]);
+  return (
+    <Stack>
+      <Button
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+        打开选择器
+      </Button>
+      <Picker
+        open={open}
+        onConfirm={(e, data) => {
+          console.log('onConfirm', e, data);
+          const { value } = data;
+          setVal(value);
+        }}
+        value={val}
+        onClose={(e, data) => {
+          setOpen(false);
+        }}
+        options={[
+          {
+            value: 1,
+            label: '北京',
+            children: [
+              {
+                value: 1,
+                label: '朝阳区',
+                children: [
+                  {
+                    value: 1,
+                    label: '朝阳街',
+                  },
+                ],
+              },
+              {
+                value: 2,
+                label: '海淀区',
+              },
+              {
+                value: 3,
+                label: '大兴区',
+              },
+              {
+                value: 4,
+                label: '东城区',
+              },
+              {
+                value: 5,
+                label: '西城区',
+              },
+              {
+                value: 6,
+                label: '丰台区',
+              },
+            ],
+          },
+          {
+            value: 2,
+            label: '上海',
+            children: [
+              {
+                value: 1,
+                label: '黄埔区',
+              },
+              {
+                value: 2,
+                label: '长宁区',
+              },
+              {
+                value: 3,
+                label: '普陀区',
+              },
+              {
+                value: 4,
+                label: '杨浦区',
+              },
+              {
+                value: 5,
+                label: '浦东新区',
+              },
+              {
+                value: 6,
+                label: '徐汇区',
+                children: [
+                  {
+                    value: 1,
+                    label: '龙耀路',
+                  },
+                  {
+                    value: 2,
+                    label: '云锦路',
+                  },
+                ],
+              },
+            ],
+          },
+        ]}
+      />
+    </Stack>
+  );
+};
+```
+
+### 纠正回调函数中的参数
+
+若传入的 `value` 不是 `options` 的等长子集，在关闭选择器时会自动纠正回调函数中的 `value` 字段，使其为 `options` 中存在的选项。
+
+```tsx
+import { Button, Picker, Stack } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  const [val, setVal] = useState([2, 100]);
   return (
     <Stack>
       <Button
@@ -1015,24 +1137,15 @@ export default () => {
 
 ### 样式变量
 
-| 属性                     | 说明               | 默认值                             | 全局变量                            |
-| ------------------------ | ------------------ | ---------------------------------- | ----------------------------------- |
-| --font-size              | 选择器默认字体大小 | var(--bui-title-size-4, 15px)      | --bui-picker-font-size              |
-| --header-height          | 选择器头部高度     | 50px                               | --bui-picker-header-height          |
-| --header-padding         | 选择器头部内边距   | 0 var(--bui-spacing-lg)            | --bui-picker-header-padding         |
-| --cancel-height          | 取消按钮高度       | 100%                               | --bui-picker-cancel-height          |
-| --cancel-line-height     | 取消按钮行高       | 50px                               | --bui-picker-cancel-line-height     |
-| --cancel-color           | 取消按钮字体颜色   | --bui-color-fg-default             | --bui-picker-cancel-color           |
-| --confirm-height         | 确认按钮高度       | 100%                               | --bui-picker-confirm-height         |
-| --confirm-line-height    | 确认按钮行高       | 50px                               | --bui-picker-confirm-line-height    |
-| --confirm-color          | 确认按钮字体颜色   | --bui-color-primary                | -                                   |
-| --title-color            | 标题字体颜色       | --bui-color-fg-default             | --bui-picker-title-color            |
-| --title-font-size        | 标题字体大小       | var(--bui-title-size-3, 16px)      | -                                   |
-| --title-font-weight      | 标题字重           | var(--bui-font-weight-medium, 500) | --bui-picker-title-font-size        |
-| --panel-container-height | 选择器容器高度     | 260px                              | --bui-picker-panel-height           |
-| --indicator-top          | 指示器距离顶部距离 | 108px                              | --bui-picker-indicator-top          |
-| --indicator-height       | 指示器高度         | 36px                               | --bui-picker-indicator-height       |
-| --indicator-border-color | 指示器描边颜色     | --bui-color-border-default         | --bui-picker-indicator-border-color |
-| --option-color           | 选项字体颜色       | --bui-color-fg-default             | --bui-picker-option-color           |
-| --option-font-size       | 选项字体大小       | --bui-title-size-4                 | --bui-picker-option-font-size       |
-| --option-height          | 选项高度           | 36px                               | --bui-picker-option-height          |
+| 属性                     | 说明               | 默认值                     | 全局变量                            |
+| ------------------------ | ------------------ | -------------------------- | ----------------------------------- |
+| --header-height          | 选择器头部高度     | 50px                       | --bui-picker-header-height          |
+| --header-padding         | 选择器头部内边距   | 0 var(--bui-spacing-lg)    | --bui-picker-header-padding         |
+| --cancel-height          | 取消按钮高度       | 100%                       | --bui-picker-cancel-height          |
+| --cancel-line-height     | 取消按钮行高       | 50px                       | --bui-picker-cancel-line-height     |
+| --confirm-height         | 确认按钮高度       | 100%                       | --bui-picker-confirm-height         |
+| --confirm-line-height    | 确认按钮行高       | 50px                       | --bui-picker-confirm-line-height    |
+| --panel-container-height | 选择器容器高度     | 260px                      | --bui-picker-panel-height           |
+| --indicator-top          | 指示器距离顶部距离 | 108px                      | --bui-picker-indicator-top          |
+| --indicator-border-color | 指示器描边颜色     | --bui-color-border-default | --bui-picker-indicator-border-color |
+| --option-height          | 选项高度           | 36px                       | --bui-picker-option-height          |
