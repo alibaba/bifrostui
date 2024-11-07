@@ -39,3 +39,8 @@ export const rootSelector = {
   dmLight: ['.bui-dm-light', '[data-color-mode="light"][data-theme="dm"]'],
   dmDark: ['.bui-dm-dark', '[data-color-mode="dark"][data-theme="dm"]'],
 };
+
+/**
+ * BUI css变量前缀
+ */
+export const BUI_VAR_PREFIX = 'bui-var-';

@@ -1,19 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useId, useEffect } from 'react';
 import { ThemeContext } from './hooks';
-import mountTokens from './utils/mountTokens';
-
-// function mergeTheme(outerTheme, localTheme) {
-//   if (typeof localTheme === 'function') {
-//     const mergedTheme = localTheme(outerTheme);
-
-//     return mergedTheme;
-//   }
-
-//   return { ...outerTheme, ...localTheme };
-// }
+import { BUI_VAR_PREFIX } from './utils/constants';
+import { mountTokens } from './utils/mountTokens';
 
 const ThemeProvider = React.forwardRef<HTMLDivElement, any>((props, ref) => {
   const {
+    isRoot,
     locale,
     responsive,
     defaultLightToken,
@@ -24,22 +16,57 @@ const ThemeProvider = React.forwardRef<HTMLDivElement, any>((props, ref) => {
     children,
   } = props;
 
+  let containerId = (useId() || '').replace(/:/g, '');
+  containerId = `${BUI_VAR_PREFIX}${containerId}`;
+
   const theme = useMemo(() => {
     return { locale };
   }, [locale]);
 
-  // 挂载响应式Tokens
-  mountTokens({
+  let childrenNode = children;
+
+  if (React.isValidElement(children)) {
+    childrenNode = React.cloneElement(children as React.ReactElement, {
+      className:
+        `${containerId} ${(children as React.ReactElement)?.props?.className || ''}`.trim(),
+    });
+  }
+
+  useEffect(() => {
+    // 挂载响应式Tokens
+    if (
+      responsive ||
+      defaultLightToken ||
+      defaultDarkToken ||
+      dmLightToken ||
+      dmDarkToken ||
+      token
+    ) {
+      mountTokens({
+        isRoot,
+        containerId,
+        container: children,
+        responsive,
+        defaultLightToken,
+        defaultDarkToken,
+        dmLightToken,
+        dmDarkToken,
+        token,
+      });
+    }
+  }, [
+    isRoot,
+    containerId,
     responsive,
     defaultLightToken,
     defaultDarkToken,
     dmLightToken,
     dmDarkToken,
     token,
-  });
+  ]);
 
   return (
-    <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={theme}>{childrenNode}</ThemeContext.Provider>
   );
 });
 

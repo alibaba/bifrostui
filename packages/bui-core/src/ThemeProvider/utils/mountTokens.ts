@@ -1,30 +1,46 @@
+import React from 'react';
 import { isMini } from '@bifrostui/utils';
-import { breakpoints, rootSelector } from './constants';
+import { breakpoints as defaultBreakpoints, rootSelector } from './constants';
 import {
   ThemeProps,
-  ResponsiveTokenOptions,
-  componentsTokenOptions,
+  UpdateTokensOptions,
+  MountResponsiveTokenOptions,
+  MountComponentsTokenOptions,
   BuiltInThemesTokenOptions,
 } from '../ThemeProvider.types';
 
 /**
  * 更新 Design Tokens
  */
-export const updateTokens = (rootString: string) => {
+const updateTokens = (options: UpdateTokensOptions) => {
+  const { isRoot, rootString, container, containerId } = options || {};
   if (isMini) return;
 
   const style = document.createElement('style');
   style.type = 'text/css';
   style.appendChild(document.createTextNode(rootString));
 
-  document.head.appendChild(style);
+  let containerNode;
+
+  if (isRoot) {
+    // 挂载到根节点
+    containerNode = document.head;
+  } else if (containerId && container && React.isValidElement(container)) {
+    // 挂载到组件节点
+    containerNode = document.querySelector(`.${containerId}`);
+  }
+
+  if (containerNode) {
+    containerNode.appendChild(style);
+  }
 };
 
 /**
  * 挂载响应式自定义Tokens
  * 响应式相关的Tokens挂载在全局根节点上，暗黑模式或大麦高亮主题下可自定义额外Toekns复写响应式Tokens
  */
-export const mountResponsiveTokens = (responsive: ResponsiveTokenOptions) => {
+export const mountResponsiveTokens = (options: MountResponsiveTokenOptions) => {
+  const { responsive, breakpoints = defaultBreakpoints } = options || {};
   if (!responsive) return;
 
   const modeSelector = rootSelector.defaultLight;
@@ -45,7 +61,7 @@ export const mountResponsiveTokens = (responsive: ResponsiveTokenOptions) => {
     rootString += `@media (${mediaQuery}: ${breakpoints[size]}) { ${cssVariablesString} }`;
   });
   rootString = `${rootString} }`;
-  updateTokens(rootString);
+  updateTokens({ isRoot: true, rootString });
 };
 
 /**
@@ -75,18 +91,21 @@ export const overrideBuiltInThemes = (
       );
       rootString = `${rootString} ${cssVariablesString} }`;
 
-      updateTokens(rootString);
+      updateTokens({ isRoot: true, rootString });
     }
   });
 };
 
 /**
  * 挂载组件的自定义Tokens
+ * **!SECTION 注意：只有自定义Tokens才会挂载到指定容器中
  */
-export const mountComponentsTokens = (token: componentsTokenOptions) => {
+const mountComponentsTokens = (options: MountComponentsTokenOptions) => {
+  const { isRoot = false, token, container, containerId } = options || {};
   if (!token) return;
 
-  const modeSelector = rootSelector.defaultLight;
+  // 嵌套的ThemeProvider将css变量挂载到指定容器
+  const modeSelector = isRoot ? rootSelector.defaultLight : [`.${containerId}`];
   let rootString = `${modeSelector.join(',')} { `;
   const cssVariablesString = Object.entries(token).reduce(
     (acc, [key, value]) => {
@@ -96,7 +115,7 @@ export const mountComponentsTokens = (token: componentsTokenOptions) => {
   );
   rootString = `${rootString} ${cssVariablesString} }`;
 
-  updateTokens(rootString);
+  updateTokens({ isRoot, rootString, container, containerId });
 };
 
 /**
@@ -109,13 +128,12 @@ export const mountComponentsTokens = (token: componentsTokenOptions) => {
  * - 选择器权重决定暗黑模式的Tokens和响应式Tokens的优先级
  * - 命名规则决定组件的Tokens（如：--bui-button-xxx）
  */
-export default function mountTokens(tokenOptions?: ThemeProps) {
+export const mountTokens = (tokenOptions?: ThemeProps) => {
   if (isMini) return;
-  const { token, responsive } = tokenOptions || {};
   // 复写内置主题Tokens
   overrideBuiltInThemes(tokenOptions);
   // 挂载响应式自定义Tokens
-  mountResponsiveTokens(responsive);
+  mountResponsiveTokens(tokenOptions);
   // 挂载组件的自定义Tokens
-  mountComponentsTokens(token);
-}
+  mountComponentsTokens(tokenOptions);
+};

@@ -1,4 +1,33 @@
+import { ReactNode } from 'react';
 import { BaseLang } from '../locales/base';
+
+export interface Breakpoints {
+  /**
+   * 超小屏幕 (小于 576px，实际为了处理临界值，断点值为 575.98px)
+   * @default '575.98px'
+   */
+  xs?: string;
+  /**
+   * 小屏幕
+   * @default '576px'
+   */
+  sm?: string;
+  /**
+   * 中等屏幕
+   * @default '768px'
+   */
+  md?: string;
+  /**
+   * 大屏幕
+   * @default '992px'
+   */
+  lg?: string;
+  /**
+   * 超大屏幕
+   * @default '1200px'
+   */
+  xl?: string;
+}
 
 /**
  * 响应式屏幕断点配置
@@ -27,6 +56,22 @@ interface ResponsiveTokenOptions {
 }
 
 interface ThemeProps {
+  /**
+   * 当前ThemeProvider是否为最顶层
+   * 若当前应用会出现嵌套的ThemeProvider，则需要将最外层的ThemeProvider isRoot属性设置为true
+   * TODO 不通过属性判断
+   * @default false
+   */
+  isRoot?: boolean;
+  /**
+   * 挂载的容器
+   * @default root
+   */
+  container?: ReactNode;
+  /**
+   * 挂载容器的id
+   */
+  containerId?: string;
   /**
    * 语言
    */
@@ -58,7 +103,7 @@ interface ThemeProps {
 }
 
 /**
- * 内置主题Tokens
+ * 复写内置主题Tokens
  */
 type BuiltInThemesTokenOptions = Pick<
   ThemeProps,
@@ -66,9 +111,32 @@ type BuiltInThemesTokenOptions = Pick<
 >;
 
 /**
- * 组件自定义Tokens
+ * 挂载组件自定义Tokens参数
+ */
+export type MountComponentsTokenOptions = Pick<
+  ThemeProps,
+  'isRoot' | 'container' | 'containerId' | 'token'
+>;
+
+/**
+ * 挂载响应式Tokens参数
  */
 type componentsTokenOptions = Pick<ThemeProps, 'token'>;
+
+export type MountResponsiveTokenOptions = Pick<ThemeProps, 'responsive'> & {
+  // 屏幕断点配置
+  breakpoints?: Breakpoints;
+};
+
+/**
+ * 更新Tokens
+ */
+export type UpdateTokensOptions = Pick<
+  ThemeProps,
+  'isRoot' | 'containerId' | 'container'
+> & {
+  rootString: string;
+};
 
 export {
   BaseLang,

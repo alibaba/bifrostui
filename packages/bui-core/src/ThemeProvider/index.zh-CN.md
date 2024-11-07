@@ -30,84 +30,154 @@ export default () => {
 };
 ```
 
-### 自定义Tokens
+## 主题定制
 
 BUI的Tokens分为三个层面：
 
-1. BUI内置Tokens：包括`defaultLightToken`（默认高亮模式的全局Token）、`defaultDarkToken`（默认暗黑模式的全局Token）、`dmLightToken`（大麦高亮模式的全局Token）、`dmDarkToken`（大麦暗黑模式的全局Token）。
-2. 响应式Tokens：BUI默认是移动端优先的响应式方案，使用者可以通过`responsive`自定义响应式Tokens。
-3. 组件的Tokens：BUI在实现组件时，允许使用者通过`token`能够比较灵活地自定义组件样式。
+1. **BUI内置Tokens：** 包括 defaultLightToken（默认高亮模式的全局Token）、defaultDarkToken（默认暗黑模式的全局Token）、dmLightToken（大麦高亮模式的全局Token）、dmDarkToken（大麦暗黑模式的全局Token）。
+2. **响应式Tokens：** BUI默认是移动端优先的响应式方案，使用者可以通过 responsive 属性自定义响应式Tokens。
+3. **组件的Tokens：** BUI在实现组件时，允许使用者通过 token 属性能够比较灵活地自定义组件样式。
 
-通常情况下，从局部高于通用的角度来看，三种Tokens的优先级是：组件的Tokens > 响应式Tokens > BUI内置Tokens。但对于暗黑模式这种特殊场景，BUI内置的两种暗黑模式Tokens的优先级要高于响应式Tokens。
+通常情况下，从局部高于通用的角度来看，三种Tokens的优先级是： **组件的Tokens > 响应式Tokens > BUI内置Tokens** 。但对于暗黑模式这种特殊场景，BUI内置的两种暗黑模式Tokens的优先级要高于响应式Tokens。
 
-原则性：开发者在自定义Tokens时，应保持以下原则。
+**原则性：开发者在自定义Tokens时，应保持以下原则。**
 
-1. 不要混淆定义：不同业务场景，应使用对应的API来自定义Tokens，如响应式布局应使用`responsive`属性，暗黑模式应使用`defaultDarkToken`或`dmDarkToken`属性。
+1. 不要混淆定义：不同业务场景，应使用对应的API来自定义Tokens，如响应式布局应使用 responsive 属性，暗黑模式应使用 defaultDarkToken 或 dmDarkToken 属性，覆盖内置高亮模式Tokens应使用 defaultLightToken 或 dmLightToken 。
 2. 分清优先级：特殊场景的优先级永远大于全局通用场景。
+
+### 浏览器
+
+在浏览器中可以比较灵活地自定义Design Tokens。
 
 ```tsx
 import { ThemeProvider, Button } from '@bifrostui/react';
 import React from 'react';
 
-// 响应式：不同屏幕尺寸下自定义Tokens
+/**
+ * 响应式：不同屏幕尺寸下自定义Tokens
+ * 可配置响应式场景下的内置Tokens和组件的全局Tokens
+ */
 const responsive = {
   xs: {
-    '--bui-button-border-radius': '6px',
-    '--bui-button-height': '30px',
-    '--bui-color-fg-muted': 'green',
-    '--bui-button-border-color': 'purple',
+    '--bui-button-border-radius': '2px',
   },
   sm: {
-    '--bui-button-border-radius': '16px',
-    '--bui-button-height': '40px',
-    '--bui-color-fg-muted': 'red',
-    '--bui-button-border-color': '#0499ff',
+    '--bui-button-border-radius': '6px',
   },
   md: {
-    '--bui-button-border-radius': '26px',
-    '--bui-button-height': '50px',
-    '--bui-color-fg-muted': 'blue',
-    '--bui-button-border-color': '#f99999',
+    '--bui-button-border-radius': '10px',
   },
   lg: {
-    '--bui-button-border-radius': '36px',
-    '--bui-button-height': '60px',
-    '--bui-color-fg-muted': 'black',
-    '--bui-button-border-color': '#000feb',
+    '--bui-button-border-radius': '14px',
   },
   xl: {
-    '--bui-button-border-radius': '46px',
-    '--bui-button-height': '100px',
-    '--bui-color-primary': 'green',
-    '--bui-button-border-color': '#ef871f',
+    '--bui-button-border-radius': '16px',
   },
 };
 
-// 默认高亮模式自定义Tokens
+/**
+ * 默认高亮模式自定义Tokens
+ * 应配置BUI内置默认高亮模式全局Tokens
+ */
 const defaultLightToken = {
-  '--bui-color-fg-muted': 'yellow',
+  '--bui-color-info-start': '#33a7ff',
+  '--bui-color-info-end': '#148aff',
 };
 
-// 默认暗黑模式自定义Tokens
+/**
+ * 默认暗黑模式自定义Tokens
+ * 应配置BUI内默认置暗黑模式全局Tokens
+ */
 const defaultDarkToken = {
-  '--bui-color-fg-muted': 'red',
+  '--bui-color-info-start': '#11caee',
+  '--bui-color-info-end': '#47bfbb',
 };
 
-// 自定义组件Tokens
+/**
+ * 自定义组件Tokens
+ * 应配置组件级别的全局Tokens
+ */
 const token = {
-  '--bui-button-text-color': '#f3eeee',
+  '--bui-button-height': '34px',
 };
 
 export default () => {
   return (
     <ThemeProvider
+      isRoot
       token={token}
       responsive={responsive}
       defaultLightToken={defaultLightToken}
       defaultDarkToken={defaultDarkToken}
     >
-      <Button>自定义Tokens</Button>
+      <Button variant="contained" color="info">
+        自定义Tokens
+      </Button>
     </ThemeProvider>
+  );
+};
+```
+
+### 局部主题（嵌套主题）
+
+可通过嵌套`ThemeProvider`组件来配置组件相关的全局Design Tokens，BUI没有限制在组件层面的自定义Tokens中传入内置Token属性来复写全局内置Token，但建议非必要时不要这么做，以免导致主题配置的混乱。
+
+```tsx
+import { ThemeProvider, Button } from '@bifrostui/react';
+import React from 'react';
+
+const token = {
+  '--bui-button-height': '34px',
+};
+
+const internalToken = {
+  '--bui-button-height': '28px',
+  // 不推荐在token中复写内置Token，尽量使用组件的全局变量来定制样式
+  // '--bui-color-info-end': '#148a00',
+};
+
+export default () => {
+  return (
+    <ThemeProvider isRoot token={token}>
+      <Button variant="contained" color="info" style={{ marginRight: '20px' }}>
+        自定义Tokens
+      </Button>
+      <ThemeProvider token={internalToken}>
+        <Button variant="contained" color="info" className="test">
+          嵌套的Tokens
+        </Button>
+      </ThemeProvider>
+    </ThemeProvider>
+  );
+};
+```
+
+### 小程序
+
+小程序中无法动态注入代码，无法通过`ThemeProvider`组件动态配置主题和响应式相关Design Tokens，目前支持以下两种方式来修改小程序主题：
+
+1. 在样式文件中自行书写对应选择器下的Tokens，全局样式文件的主题配置会被页面级样式文件覆盖。
+2. 局部主题只能在使用组件时通过内联的方式传入css变量。
+
+```tsx
+import { Button } from '@bifrostui/react';
+import React from 'react';
+/**
+ * 1.小程序全局或页面级主题，可在入口或页面级样式文件中自行书写选择器对应的样式变量，页面级会覆盖全局样式
+ * app.less
+ * page { --bui-button-height: 32px }
+ */
+
+// 2.小程序局部主题
+export default () => {
+  return (
+    <Button
+      variant="contained"
+      color="info"
+      style={{ '--bui-button-height': '28px' }}
+    >
+      自定义Tokens
+    </Button>
   );
 };
 ```
@@ -142,7 +212,7 @@ export default () => {
 };
 ```
 
-### 国际化
+## 国际化
 
 此处列出 BUI 中需要国际化支持的组件，你可以在演示里切换语言。
 目前支持国际化的组件有：`Picker`, `Calendar`, `Input`, `TextArea`, `Select`, `CitySelector`, `Dialog`
@@ -368,7 +438,7 @@ export default () => {
         />
         <Calendar value={value} onChange={handleChange} />
         <Input value={inputValue} onChange={handleInputChange} />
-        <TextArea />
+        <TextArea style={{ width: '300px' }} />
         <Select>
           {options.map((item, index) => (
             <SelectOption key={index} value={item.value} label={item.label} />
