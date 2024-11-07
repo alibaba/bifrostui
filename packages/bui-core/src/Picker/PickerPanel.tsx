@@ -24,16 +24,17 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
     const INERTIA_DISTANCE = 15;
 
     const DEFAULT_DURATION = 200;
-    const LINE_SPACING = 36;
     const ROTATION = 20;
     const TOUCH_END = 'end';
-    const INDICATOR_HEIGHT = (
+    // 默认行高
+    const DEFAULT_LINE_SPACING = 36;
+    const LINE_SPACING_STR = (
       pickerStyle?.['--option-height']
         ? `${pickerStyle?.['--option-height']}`
-        : `${LINE_SPACING}`
+        : `${DEFAULT_LINE_SPACING}`
     ).match(/\d+/)?.[0];
-    const INDICATOR_OFFSET =
-      (parseInt(INDICATOR_HEIGHT, 10) * 108) / LINE_SPACING;
+    const LINE_SPACING = parseInt(LINE_SPACING_STR, 10);
+    const INDICATOR_OFFSET = (LINE_SPACING * 108) / DEFAULT_LINE_SPACING;
 
     const [startY, setStartY] = useState(0);
     const [currIndex, setCurrIndex] = useState(1);

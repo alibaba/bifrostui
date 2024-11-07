@@ -651,7 +651,7 @@ import React, { useState } from 'react';
 
 export default () => {
   const [open, setOpen] = useState(false);
-  const [val, setVal] = useState<any>([]);
+  const [val, setVal] = useState<(string | number)[]>([]);
   return (
     <Stack>
       <Button
@@ -1006,6 +1006,119 @@ export default () => {
         onCancel={(e) => {
           console.log('onCancel', e);
         }}
+        onClose={() => {
+          setOpen(false);
+        }}
+        options={[
+          {
+            value: 1,
+            label: '北京',
+            children: [
+              {
+                value: 1,
+                label: '朝阳区',
+                children: [
+                  {
+                    value: 1,
+                    label: '朝阳街',
+                  },
+                ],
+              },
+              {
+                value: 2,
+                label: '海淀区',
+              },
+              {
+                value: 3,
+                label: '大兴区',
+              },
+              {
+                value: 4,
+                label: '东城区',
+              },
+              {
+                value: 5,
+                label: '西城区',
+              },
+              {
+                value: 6,
+                label: '丰台区',
+              },
+            ],
+          },
+          {
+            value: 2,
+            label: '上海',
+            children: [
+              {
+                value: 1,
+                label: '黄埔区',
+              },
+              {
+                value: 2,
+                label: '长宁区',
+              },
+              {
+                value: 3,
+                label: '普陀区',
+              },
+              {
+                value: 4,
+                label: '杨浦区',
+              },
+              {
+                value: 5,
+                label: '浦东新区',
+              },
+              {
+                value: 6,
+                label: '徐汇区',
+                children: [
+                  {
+                    value: 1,
+                    label: '龙耀路',
+                  },
+                  {
+                    value: 2,
+                    label: '云锦路',
+                  },
+                ],
+              },
+            ],
+          },
+        ]}
+      />
+    </Stack>
+  );
+};
+```
+
+### 自定义样式
+
+通过[样式变量](#样式变量)提供的Tokens，可实现自定义样式。
+
+```tsx
+import { Button, Picker, Stack } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Stack>
+      <Button
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+        打开选择器
+      </Button>
+      <Picker
+        style={{
+          '--panel-container-height': '500px',
+          '--indicator-top': '207px',
+          '--option-height': '70px',
+        }}
+        open={open}
         onClose={() => {
           setOpen(false);
         }}
