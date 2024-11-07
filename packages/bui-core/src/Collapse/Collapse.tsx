@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   useForkRef,
   duration,
@@ -47,8 +47,21 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
   const getCollapseWrapperSize = (reactNode) => {
     return reactNode
       ? `${reactNode[isHorizontal ? 'clientWidth' : 'clientHeight']}px`
-      : '0';
+      : 'fit-content';
   };
+
+  useEffect(() => {
+    // 修复未挂载时获取不到children元素宽高，动画异常
+    if (
+      appear === false &&
+      inProp === true &&
+      wrapperRef.current.style[size] === 'fit-content'
+    ) {
+      wrapperRef.current.style[size] = getCollapseWrapperSize(
+        wrapperRef.current?.children?.[0],
+      );
+    }
+  }, [appear, inProp]);
 
   if (!children) return null;
 
@@ -69,14 +82,10 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
             { mode: state },
           ),
         );
-
         const wrapperSize = () => {
           const collapseWrapperSize =
             state === 'entering' || state === 'entered'
-              ? getCollapseWrapperSize(
-                  wrapperRef.current?.children?.[0] ||
-                    React.cloneElement(children),
-                )
+              ? getCollapseWrapperSize(wrapperRef.current?.children?.[0])
               : collapsedSize;
           return isHorizontal
             ? {
@@ -114,7 +123,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
 });
 Collapse.displayName = 'BuiCollapse';
 Collapse.defaultProps = {
-  appear: true,
+  appear: false,
   easing: defaultEasing,
   timeout: defaultTimeout,
   delay: 0,
