@@ -30,12 +30,14 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
     delay,
     collapsedSize: collapsedSizeProp,
     style,
+    className,
     children,
     ...other
   } = props;
   // @ts-expect-error will upstream fix
   const nodeRef = useForkRef(ref, children?.ref);
   const wrapperRef = useRef(null);
+  const collapseRef = useForkRef(wrapperRef, ref);
   const transitions = createTransitions();
   const isHorizontal = orientation === 'horizontal';
   const collapsedSize =
@@ -101,17 +103,17 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
         return React.createElement(
           'div',
           {
-            className: 'bui-collapse',
+            className: `bui-collapse ${className}`,
             style: {
+              ...style,
               transition,
               WebkitTransition: transition,
               ...wrapperSize(),
             },
-            ref: wrapperRef,
+            ref: collapseRef,
           },
           React.cloneElement(children, {
             style: {
-              ...style,
               ...children.props.style,
             },
             ...childProps,
