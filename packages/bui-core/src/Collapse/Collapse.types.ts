@@ -9,6 +9,6 @@ export interface CollapseProps extends Omit<TransitionProps, 'children'> {
    * horizontal - 水平方向
    * vertical - 垂直方向
    */
-  orientation?: 'horizontal' | 'vertical';
+  direction?: 'horizontal' | 'vertical';
   collapsedSize?: string | number;
 }
