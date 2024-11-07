@@ -176,10 +176,14 @@ export default () => {
 
 ## Style variables
 
-| attribute          | explain                               | Default value          | global variable               |
-| ------------------ | ------------------------------------- | ---------------------- | ----------------------------- |
-| --height           | Navigation bar height                 | 45px                   | --bui-navbar-height           |
-| --icon-size        | Navigation bar icon size              | 30px                   | --bui-navbar-icon-size        |
-| --background-color | Navigation bar background color       | var(--bui-color-white) | --bui-navbar-background-color |
-| --border-bottom    | Bottom border style of navigation bar | none                   | --bui-navbar-border-bottom    |
-| --z-index          | Default hierarchy of navigation bar   | auto                   | --bui-navbar-z-index          |
+| Attributes          | Description                           | Default Values            | Global Variables                  |
+| ------------------- | ------------------------------------- | ------------------------- | --------------------------------- |
+| -- width            | Navigation bar width                  | 100%                      | -- bui navbar width               |
+| -- height           | Navigation bar height                 | 45px                      | -- bui navbar height              |
+| --padding           |                                       | 0 8px                     | --bui-navbar-padding              |
+| -- title max width  | maximum width of navigation bar title | 60%                       | -- bui navbar title max width     |
+| -- icon size        | Navigation bar icon size              | 30px                      | -- bui navbar icon size           |
+| -- icon font size   | Navigation bar icon font              | var (-- bui-title-size-3) | -- bui-navbar-icon font size size |
+| -- background color | navigation bar background color       | var (-- bui color white)  | -- bui navbar background color    |
+| -- border bottom    | Navigation bar bottom border style    | none                      | -- bui navbar border bottom       |
+| -- z-index          | default navigation bar hierarchy      | auto                      | -- bui-navbar-z index             |
