@@ -55,5 +55,8 @@ const CollapsePanelItem = React.forwardRef<
 });
 
 CollapsePanelItem.displayName = 'BuiCollapsePanelItem';
+CollapsePanelItem.defaultProps = {
+  active: false,
+};
 
 export default CollapsePanelItem;
