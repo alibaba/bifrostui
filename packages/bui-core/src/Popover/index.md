@@ -207,6 +207,30 @@ export default () => {
 };
 ```
 
+### onOpenChange 气泡浮层显隐的回调方法
+
+显示气泡的触发方式 "click"或者"hover"，默认click
+
+```tsx
+import { Popover } from '@bifrostui/react';
+import React from 'react';
+
+export default () => {
+  const onOpenChange = (event, data) => {
+    alert(JSON.stringify(data));
+  };
+  return (
+    <Popover
+      title="This is a popover"
+      trigger="hover"
+      onOpenChange={onOpenChange}
+    >
+      <span>onOpenChange 回调方法</span>
+    </Popover>
+  );
+};
+```
+
 ### API
 
 | 属性         | 说明                     | 类型                                                                                                                                                             | 默认值  |

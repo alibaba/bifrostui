@@ -26,7 +26,7 @@ export default () => {
 };
 ```
 
-<!-- ### open 外部控制
+### open 外部控制
 
 外部通过open设置气泡浮层显隐
 
@@ -188,7 +188,31 @@ export default () => {
     </Tooltip>
   );
 };
-``` -->
+```
+
+### onOpenChange 气泡浮层显隐的回调方法
+
+显示气泡的触发方式 "click"或者"hover"，默认click
+
+```tsx
+import { Tooltip } from '@bifrostui/react';
+import React from 'react';
+
+export default () => {
+  const onOpenChange = (event, data) => {
+    alert(JSON.stringify(data));
+  };
+  return (
+    <Tooltip
+      title="This is a tooltip"
+      trigger="click"
+      onOpenChange={onOpenChange}
+    >
+      <span>onOpenChange 回调方法</span>
+    </Tooltip>
+  );
+};
+```
 
 ### API
 
