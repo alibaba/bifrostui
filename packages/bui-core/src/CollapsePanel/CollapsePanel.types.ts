@@ -21,6 +21,7 @@ export type CollapsePanelItemProps<
       icon?: React.ReactNode | ((active: boolean) => React.ReactNode);
       /**
        * 是否展开
+       * @default false
        */
       active?: boolean;
       /**
