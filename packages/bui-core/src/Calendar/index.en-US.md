@@ -96,6 +96,85 @@ export default () => {
 };
 ```
 
+### Customize header date format
+
+You can customize the header date format using 'headerBarFormat', with the default format being 'YYYY/MM'.
+
+```tsx
+import { Calendar, Stack } from '@bifrostui/react';
+import dayjs from 'dayjs/esm/index';
+import React, { useState } from 'react';
+
+export default () => {
+  const [value, setValue] = useState(dayjs().toDate());
+  const handleChange = (e, res) => {
+    console.log('date change:', res);
+    setValue(res.value);
+  };
+
+  return (
+    <Stack>
+      <div style={{ width: '320px' }}>
+        <Calendar
+          style={{ '--handler-text-width': '90px' }}
+          onMonthChange={(e, res) => {
+            console.log('月份变化：', res);
+          }}
+          headerBarFormat="YYYY年MM月"
+          value={value}
+          onChange={handleChange}
+        />
+      </div>
+    </Stack>
+  );
+};
+```
+
+### Customize the left and right buttons of the header bar
+
+You can customize the left and right icons of the header bar using 'headerBarLeftAcon' and 'headerBarRightIcon'.
+
+```tsx
+import { Calendar, Stack } from '@bifrostui/react';
+import {
+  DoubleArrowLeftTwoToneIcon,
+  DoubleArrowRightTwoToneIcon,
+} from '@bifrostui/icons';
+import dayjs from 'dayjs/esm/index';
+import React, { useState } from 'react';
+
+export default () => {
+  const [value, setValue] = useState(dayjs().toDate());
+  const handleChange = (e, res) => {
+    console.log('date change:', res);
+    setValue(res.value);
+  };
+
+  return (
+    <Stack>
+      <div style={{ width: '320px' }}>
+        <Calendar
+          headerBarLeftIcon={({ isMinMonth }) => {
+            return (
+              <DoubleArrowLeftTwoToneIcon htmlColor={isMinMonth && '#cccccc'} />
+            );
+          }}
+          headerBarRightIcon={({ isMaxMonth }) => {
+            return (
+              <DoubleArrowRightTwoToneIcon
+                htmlColor={isMaxMonth && '#cccccc'}
+              />
+            );
+          }}
+          value={value}
+          onChange={handleChange}
+        />
+      </div>
+    </Stack>
+  );
+};
+```
+
 ### Enable direct year switching function
 
 Enable 'enableSelectYear' by clicking on the date text area to open the year floating layer and switch years.
@@ -394,6 +473,9 @@ export default () => {
 | maxDate                     | Maximum selectable dates                                              | Date                                                              | One year after the current date    |
 | mode                        | Calendar selection type                                               | `single` \|`range`                                                | `single`                           |
 | hideDaysOutsideCurrentMonth | Do you want to hide dates outside the current month                   | boolean                                                           | false                              |
+| headerBarFormat             | Display format of date in the header operation bar                    | string                                                            | YYYY/MM                            |
+| headerBarLeftIcon           | Left icon of the head operation bar                                   | (options: ICustomIconProps) => React.ReactNode                    | \<CaretLeftIcon />                 |
+| headerBarRightIcon          | Icon on the right side of the head operation bar                      | (options: ICustomIconProps) => React.ReactNode                    | \<CaretRightIcon />                |
 | disabledDate                | Non selectable dates                                                  | (currentDate: Date) => boolean                                    | Date before that day               |
 | highlightDate               | Highlighted date                                                      | `today` \|`weekend`                                               | `today`                            |
 | dateRender                  | Customize the content of the date cell                                | (currentDate: ICalendarInstance) => React.ReactNode               | -                                  |
@@ -414,6 +496,13 @@ export default () => {
 | --------- | ------------------------- | ------- |
 | month     | Date Object               | Date    |
 | type      | Do you want to disable it | boolean |
+
+### ICustomIconProps
+
+| attribute  | explain                                            | type    |
+| ---------- | -------------------------------------------------- | ------- |
+| isMinMonth | Is it the smallest month within the optional range | boolean |
+| isMaxMonth | Is it the maximum month within the optional range  | boolean |
 
 ## Style variables
 
