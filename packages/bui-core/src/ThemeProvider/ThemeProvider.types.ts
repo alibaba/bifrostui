@@ -1,5 +1,17 @@
 import { ReactNode } from 'react';
+import { OverrideProps } from '@bifrostui/types';
 import { BaseLang } from '../locales/base';
+
+export type ThemeProviderProps<
+  D extends React.ElementType = 'div',
+  P = {},
+> = OverrideProps<
+  {
+    props: P & ThemeProps;
+    defaultComponent: D;
+  },
+  D
+>;
 
 export interface Breakpoints {
   /**

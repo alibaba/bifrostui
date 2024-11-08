@@ -6,29 +6,9 @@ name: ThemeProvider 主题配置
 # ThemeProvider
 
 主题配置，可以用来指定组件颜色、尺寸、语言等。
+`ThemeProvider`依赖React的`context`将主题、国际化传递给组件，因此您需要确保`ThemeProvider` 是您尝试自定义组件的父级。
 
 ## 代码演示
-
-### 基础用法
-
-```tsx
-import { ThemeProvider, createTheme, Button } from '@bifrostui/react';
-import React from 'react';
-const theme = createTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-    },
-  },
-});
-export default () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <Button>测试</Button>
-    </ThemeProvider>
-  );
-};
-```
 
 ## 主题定制
 
@@ -420,3 +400,29 @@ export default () => {
   );
 };
 ```
+
+### API
+
+#### ThemeProviderProps、ThemeProps
+
+| 属性              | 说明                              | 类型                   | 默认值 |
+| ----------------- | --------------------------------- | ---------------------- | ------ |
+| isRoot            | 当前ThemeProvider是否挂载在最顶层 | boolean                | false  |
+| container         | 挂载的容器                        | ReactNode              | -      |
+| containerId       | 挂载容器的id                      | string                 | -      |
+| locale            | 语言                              | BaseLang               | zh-CN  |
+| responsive        | 响应式屏幕断点配置                | ResponsiveTokenOptions | -      |
+| defaultLightToken | 默认高亮主题token                 | Record<string, string> | -      |
+| defaultDarkToken  | 默认暗黑主题token                 | Record<string, string> | -      |
+| dmLightToken      | 大麦暗黑主题token                 | Record<string, string> | -      |
+| token             | 组件全局Token                     | Record<string, string> | -      |
+
+#### ResponsiveTokenOptions
+
+| 属性 | 说明     | 类型                   | 默认值   |
+| ---- | -------- | ---------------------- | -------- |
+| xs   | 超小屏幕 | Record<string, string> | 575.98px |
+| sm   | 小屏幕   | Record<string, string> | 576px    |
+| md   | 中屏幕   | Record<string, string> | 768px    |
+| lg   | 大屏幕   | Record<string, string> | 992px    |
+| xl   | 超大屏幕 | Record<string, string> | 1200px   |

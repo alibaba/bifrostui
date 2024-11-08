@@ -6,41 +6,13 @@ name: ThemeProvider Theme Configuration
 # ThemeProvider
 
 Theme configuration can be used to specify component colors, sizes, languages, etc.
+ThemeProvider relies on React's' context 'to pass themes and internationalization to components, so you need to ensure that ThemeProvider is the parent of the component you are trying to customize.
 
 ## Code demonstration
 
-### Basic usage
-
-```tsx
-import { ThemeProvider, createTheme, Button } from '@bifrostui/react';
-import React from 'react';
-const theme = createTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-    },
-  },
-});
-export default () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <Button>测试</Button>
-    </ThemeProvider>
-  );
-};
-```
-
 ## Theme customization
 
-BUI's tokens are divided into three levels:
-
-1. BUI Built in Tokens: \* \* Includes defaultLightToken (global token for default highlight mode), defaultDarkToken (global token for default dark mode), dmLightToken (global token for Damai highlight mode), and dmDarkToken (global token for Damai dark mode).
-2. - - Responsive Tokens: \* \* BUI defaults to a mobile first responsive solution, and users can customize responsive tokens through the responsive attribute.
-3. Tokens of \* _ Components: _ \* BUI allows users to flexibly customize component styles through token attributes when implementing components.
-
-Normally, from the perspective of local superiority over general, the priority of the three types of tokens is: \* _ Component Tokens>Responsive Tokens>BUI Built in Tokens _ \*. But for the special scenario of dark mode, the priority of the two dark mode tokens built into BUI is higher than that of responsive tokens.
-
-**Principle: Developers should adhere to the following principles when customizing Tokens**
+\*\*Developers should pay attention to the following two points when customizing Tokens. For detailed information on theme customization, please refer to [Customize Theme] (/guide/theme).
 
 1. Do not confuse definitions: Different business scenarios should use corresponding APIs to customize Tokens. For example, responsive layout should use the responsive attribute, dark mode should use the defaultDarkToken or dmDarkToken attribute, and overlay built-in highlight mode Tokens should use defaultLightToken or dmLightToken.
 2. Distinguish priorities: The priority of special scenarios is always higher than that of global general scenarios.
@@ -178,36 +150,6 @@ export default () => {
     >
       自定义Tokens
     </Button>
-  );
-};
-```
-
-```tsx
-import { ThemeProvider, createTheme, Button } from '@bifrostui/react';
-import React from 'react';
-const theme = createTheme({
-  breakpoints: {
-    values: {
-      xs: 60,
-    },
-  },
-  background: 'red',
-});
-
-export default () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <ThemeProvider
-        theme={(outerTheme) => {
-          return {
-            ...outerTheme,
-            background: 'yellow',
-          };
-        }}
-      >
-        <Button>测试</Button>
-      </ThemeProvider>
-    </ThemeProvider>
   );
 };
 ```
@@ -458,3 +400,29 @@ export default () => {
   );
 };
 ```
+
+### API
+
+#### ThemeProviderProps、ThemeProps
+
+| attribute         | explain                                               | type                   | Default value |
+| ----------------- | ----------------------------------------------------- | ---------------------- | ------------- |
+| isRoot            | Is the current ThemeProvider mounted at the top level | boolean                | false         |
+| container         | Mounted container                                     | ReactNode              | -             |
+| containerId       | Mount the container's ID                              | string                 | -             |
+| locale            | language                                              | BaseLang               | zh-CN         |
+| responsive        | Responsive screen breakpoint configuration            | ResponsiveTokenOptions | -             |
+| defaultLightToken | Default highlight theme token                         | Record<string, string> | -             |
+| defaultDarkToken  | Default Dark Theme Token                              | Record<string, string> | -             |
+| dmLightToken      | Damai Dark Theme Token                                | Record<string, string> | -             |
+| token             | Component Global Token                                | Record<string, string> | -             |
+
+#### ResponsiveTokenOptions
+
+| attribute | explain            | type                   | Default value |
+| --------- | ------------------ | ---------------------- | ------------- |
+| xs        | Ultra small screen | Record<string, string> | 575.98px      |
+| sm        | Small screen       | Record<string, string> | 576px         |
+| md        | Medium screen      | Record<string, string> | 768px         |
+| lg        | Large screen       | Record<string, string> | 992px         |
+| xl        | Large screen       | Record<string, string> | 1200px        |
