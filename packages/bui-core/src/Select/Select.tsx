@@ -80,7 +80,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
 
   const selectContext = useMemo(
     () => ({ selectValue, setRenderValue, handleOptionClick }),
-    [selectValue],
+    [selectValue, onChange, setRenderValue],
   );
 
   // 监听外部open的改变
