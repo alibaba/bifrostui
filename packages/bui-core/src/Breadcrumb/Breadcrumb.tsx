@@ -6,20 +6,26 @@ import './Breadcrumb.less';
 
 const prefixCls = 'bui-breadcrumb';
 
-const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(
+const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
   (props, ref) => {
-    const { className, style, items, separator, children, ...others } = props;
+    const {
+      className,
+      style,
+      items,
+      separator = '/',
+      children,
+      ...others
+    } = props;
 
     const renderList = () => {
       if (items && items.length > 0) {
         return items.map((item, index) => {
-          const { key, title, ...otherItemProps } = item;
-          const mergedKey = key ?? index;
+          const { title, ...otherItemProps } = item;
           const isLast = index === items.length - 1;
 
           return (
             <BreadcrumbItem
-              key={mergedKey}
+              key={index}
               separator={isLast ? '' : separator}
               {...otherItemProps}
             >
@@ -65,8 +71,5 @@ const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(
 );
 
 Breadcrumb.displayName = 'BuiBreadcrumb';
-Breadcrumb.defaultProps = {
-  separator: '/',
-};
 
 export default Breadcrumb;
