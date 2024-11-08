@@ -176,7 +176,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
           </div>
           {title && <div className={`${prefixCls}-title`}>{title}</div>}
           <div className={`${prefixCls}-confirm`} onClick={confirm}>
-            {locale?.picker?.confirm || '确定'}
+            {locale?.picker?.confirm || '确认'}
           </div>
         </div>
 

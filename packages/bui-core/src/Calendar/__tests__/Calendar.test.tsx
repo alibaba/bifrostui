@@ -6,6 +6,15 @@ import { Calendar } from '..';
 describe('Calendar', () => {
   const rootClass = 'bui-calendar';
 
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.clearAllTimers();
+    jest.useRealTimers();
+  });
+
   isConformant({
     className: rootClass,
     displayName: 'BuiCalendar',
@@ -179,8 +188,11 @@ describe('Calendar', () => {
       />,
     );
     const texts = container.querySelector(`.${rootClass}-handler-text`);
-    await act(() => {
-      fireEvent.click(texts);
+
+    fireEvent.click(texts);
+
+    await act(async () => {
+      await jest.runAllTimers();
     });
     const picker = document.querySelector(`.bui-picker-confirm`);
     expect(picker).toHaveTextContent('确认');
@@ -200,8 +212,10 @@ describe('Calendar', () => {
     );
     const texts = container.querySelector(`.${rootClass}-handler-text`);
 
-    await act(() => {
-      fireEvent.click(texts);
+    fireEvent.click(texts);
+
+    await act(async () => {
+      await jest.runAllTimers();
     });
 
     const [panel1] = document.querySelectorAll(`.bui-picker-panel`);
@@ -239,6 +253,10 @@ describe('Calendar', () => {
     });
     fireEvent.transitionEnd(roller1);
     fireEvent.click(confirmBtn1);
+
+    await act(async () => {
+      await jest.runAllTimers();
+    });
 
     expect(fakeYearChange).toBeCalled();
   });
