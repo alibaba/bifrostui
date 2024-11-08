@@ -96,6 +96,85 @@ export default () => {
 };
 ```
 
+### 自定义头部栏日期格式
+
+使用 `headerBarFormat` 可自定义头部栏日期格式，默认格式为 `YYYY/MM`。
+
+```tsx
+import { Calendar, Stack } from '@bifrostui/react';
+import dayjs from 'dayjs/esm/index';
+import React, { useState } from 'react';
+
+export default () => {
+  const [value, setValue] = useState(dayjs().toDate());
+  const handleChange = (e, res) => {
+    console.log('date change:', res);
+    setValue(res.value);
+  };
+
+  return (
+    <Stack>
+      <div style={{ width: '320px' }}>
+        <Calendar
+          style={{ '--handler-text-width': '90px' }}
+          onMonthChange={(e, res) => {
+            console.log('月份变化：', res);
+          }}
+          headerBarFormat="YYYY年MM月"
+          value={value}
+          onChange={handleChange}
+        />
+      </div>
+    </Stack>
+  );
+};
+```
+
+### 自定义头部栏左右按钮
+
+使用 `headerBarLeftIcon` 和 `headerBarRightIcon` 可自定义头部栏左右图标。
+
+```tsx
+import { Calendar, Stack } from '@bifrostui/react';
+import {
+  DoubleArrowLeftTwoToneIcon,
+  DoubleArrowRightTwoToneIcon,
+} from '@bifrostui/icons';
+import dayjs from 'dayjs/esm/index';
+import React, { useState } from 'react';
+
+export default () => {
+  const [value, setValue] = useState(dayjs().toDate());
+  const handleChange = (e, res) => {
+    console.log('date change:', res);
+    setValue(res.value);
+  };
+
+  return (
+    <Stack>
+      <div style={{ width: '320px' }}>
+        <Calendar
+          headerBarLeftIcon={({ isMinMonth }) => {
+            return (
+              <DoubleArrowLeftTwoToneIcon htmlColor={isMinMonth && '#cccccc'} />
+            );
+          }}
+          headerBarRightIcon={({ isMaxMonth }) => {
+            return (
+              <DoubleArrowRightTwoToneIcon
+                htmlColor={isMaxMonth && '#cccccc'}
+              />
+            );
+          }}
+          value={value}
+          onChange={handleChange}
+        />
+      </div>
+    </Stack>
+  );
+};
+```
+
 ### 开启直接切换年份功能
 
 启用 `enableSelectYear` 通过点击日期文本区域打开年份浮层切换年份。
@@ -386,20 +465,23 @@ export default () => {
 
 ## API
 
-| 属性                        | 说明                             | 类型                                                              | 默认值           |
-| --------------------------- | -------------------------------- | ----------------------------------------------------------------- | ---------------- |
-| defaultValue                | 默认选中的值，当组件非受控时使用 | Date \| Date[] \| null                                            | -                |
-| value                       | 选中的值，当组件受控时使用       | Date \| Date[] \| null                                            | -                |
-| minDate                     | 可选择的最小日期                 | Date                                                              | 当前月第一天     |
-| maxDate                     | 可选择的最大日期                 | Date                                                              | 当前日期的一年后 |
-| mode                        | 日历选择类型                     | `single` \| `range`                                               | `single`         |
-| hideDaysOutsideCurrentMonth | 是否隐藏当前月之外的日期         | boolean                                                           | false            |
-| disabledDate                | 不可选择的日期                   | (currentDate: Date) => boolean                                    | 当天之前的日期   |
-| highlightDate               | 高亮的日期                       | `today` \| `weekend`                                              | `today`          |
-| dateRender                  | 自定义日期单元格的内容           | (currentDate: ICalendarInstance) => React.ReactNode               | -                |
-| weekRender                  | 自定义周单元格的内容             | (week: string) => React.ReactNode                                 | -                |
-| onMonthChange               | 月份发生变化的回调               | (e: React.SyntheticEvent,data: ICalendarMonthChangeData) => void  | -                |
-| onChange                    | 日期发生变化的回调               | (e: React.SyntheticEvent,data: { value: ICalendarValue }) => void | -                |
+| 属性                        | 说明                             | 类型                                                              | 默认值              |
+| --------------------------- | -------------------------------- | ----------------------------------------------------------------- | ------------------- |
+| defaultValue                | 默认选中的值，当组件非受控时使用 | Date \| Date[] \| null                                            | -                   |
+| value                       | 选中的值，当组件受控时使用       | Date \| Date[] \| null                                            | -                   |
+| minDate                     | 可选择的最小日期                 | Date                                                              | 当前月第一天        |
+| maxDate                     | 可选择的最大日期                 | Date                                                              | 当前日期的一年后    |
+| mode                        | 日历选择类型                     | `single` \| `range`                                               | `single`            |
+| hideDaysOutsideCurrentMonth | 是否隐藏当前月之外的日期         | boolean                                                           | false               |
+| headerBarFormat             | 头部操作栏日期显示格式           | string                                                            | YYYY/MM             |
+| headerBarLeftIcon           | 头部操作栏左边图标               | (options: ICustomIconProps) => React.ReactNode                    | \<CaretLeftIcon />  |
+| headerBarRightIcon          | 头部操作栏右边图标               | (options: ICustomIconProps) => React.ReactNode                    | \<CaretRightIcon /> |
+| disabledDate                | 不可选择的日期                   | (currentDate: Date) => boolean                                    | 当天之前的日期      |
+| highlightDate               | 高亮的日期                       | `today` \| `weekend`                                              | `today`             |
+| dateRender                  | 自定义日期单元格的内容           | (currentDate: ICalendarInstance) => React.ReactNode               | -                   |
+| weekRender                  | 自定义周单元格的内容             | (week: string) => React.ReactNode                                 | -                   |
+| onMonthChange               | 月份发生变化的回调               | (e: React.SyntheticEvent,data: ICalendarMonthChangeData) => void  | -                   |
+| onChange                    | 日期发生变化的回调               | (e: React.SyntheticEvent,data: { value: ICalendarValue }) => void | -                   |
 
 ### ICalendarMonthChangeData
 
@@ -414,6 +496,13 @@ export default () => {
 | ----- | -------- | ------- |
 | month | 日期对象 | Date    |
 | type  | 是否禁用 | boolean |
+
+### ICustomIconProps
+
+| 属性       | 说明                       | 类型    |
+| ---------- | -------------------------- | ------- |
+| isMinMonth | 是否为可选范围内的最小月份 | boolean |
+| isMaxMonth | 是否为可选范围内的最大月份 | boolean |
 
 ## 样式变量
 
