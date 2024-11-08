@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { ArrowDownwardLargeIcon } from '@bifrostui/icons';
+import { useValue } from '@bifrostui/utils';
 import CollapseItem from './CollapsePanelItem';
 import {
   CollapsePanelProps,
@@ -15,7 +16,7 @@ const CollapsePanel = React.forwardRef<HTMLDivElement, CollapsePanelProps>(
     const {
       className,
       style,
-      accordion,
+      accordion = false,
       activeKeys,
       defaultActiveKeys,
       items,
@@ -24,33 +25,32 @@ const CollapsePanel = React.forwardRef<HTMLDivElement, CollapsePanelProps>(
       onChange,
       ...others
     } = props;
-    const [openKeys, setOpenKeys] = useState(
-      defaultActiveKeys || activeKeys || [],
-    );
     // 如果有受控的 activeKey，则使用它，否则使用内部状态
-    const currentOpenKeys = activeKeys !== undefined ? activeKeys : openKeys;
+    // const currentOpenKeys = activeKeys !== undefined ? activeKeys : openKeys;
+    const [openKeys, setOpenKeys] = useValue<(number | string)[]>({
+      defaultValue: defaultActiveKeys || [],
+      value: activeKeys,
+    });
 
     const handleClick = (
       event: React.MouseEvent<HTMLDivElement, MouseEvent>,
       target: CollapsePanelItemProps,
     ) => {
       const targetKey = target?.key;
-      let newOpenKeys: string[] = [];
+      let newOpenKeys: (number | string)[] = [];
 
       if (accordion) {
         // 手风琴模式：单个打开
-        newOpenKeys = currentOpenKeys.includes(targetKey) ? [] : [targetKey];
+        newOpenKeys = openKeys.includes(targetKey) ? [] : [targetKey];
       } else {
         // 非手风琴模式：多个打开
-        newOpenKeys = currentOpenKeys.includes(targetKey)
-          ? currentOpenKeys.filter((k) => k !== targetKey)
-          : [targetKey, ...currentOpenKeys];
-
-        setOpenKeys(newOpenKeys);
+        newOpenKeys = openKeys.includes(targetKey)
+          ? openKeys.filter((k) => k !== targetKey)
+          : [targetKey, ...openKeys];
       }
 
-      setOpenKeys(newOpenKeys);
-      onChange?.(newOpenKeys);
+      setOpenKeys(event, newOpenKeys);
+      onChange?.(event, { activeKeys: newOpenKeys });
       target?.onClick?.(event);
     };
 
@@ -69,7 +69,7 @@ const CollapsePanel = React.forwardRef<HTMLDivElement, CollapsePanelProps>(
             <CollapseItem
               key={key}
               icon={getArrowIcon()}
-              active={currentOpenKeys.includes(item.key)}
+              active={openKeys.includes(item.key)}
               {...otherProps}
               onClick={(e) => handleClick(e, item)}
             />
@@ -81,7 +81,7 @@ const CollapsePanel = React.forwardRef<HTMLDivElement, CollapsePanelProps>(
         if (React.isValidElement(child)) {
           const newProps = {
             icon: getArrowIcon(),
-            active: currentOpenKeys.includes(child.key),
+            active: openKeys.includes(child.key),
             onClick: (e) => handleClick(e, child),
           };
           return React.cloneElement(child, newProps);
@@ -91,6 +91,10 @@ const CollapsePanel = React.forwardRef<HTMLDivElement, CollapsePanelProps>(
 
       return enhancedChildren;
     };
+
+    if (items == null && children == null) {
+      return null;
+    }
 
     return (
       <div
@@ -106,8 +110,5 @@ const CollapsePanel = React.forwardRef<HTMLDivElement, CollapsePanelProps>(
 );
 
 CollapsePanel.displayName = 'BuiCollapsePanel';
-CollapsePanel.defaultProps = {
-  accordion: false,
-};
 
 export default CollapsePanel;

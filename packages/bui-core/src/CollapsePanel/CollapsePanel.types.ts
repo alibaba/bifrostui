@@ -10,7 +10,7 @@ export type CollapsePanelItemProps<
       /**
        * 唯一标识，对应 activeKey
        */
-      key?: string;
+      key?: string | number;
       /**
        * 面板标题
        */
@@ -48,11 +48,11 @@ export type CollapsePanelProps<
       /**
        * 当前激活面板的 key
        */
-      activeKeys?: string[];
+      activeKeys?: (number | string)[];
       /**
        * 默认展开面板的 key
        */
-      defaultActiveKeys?: string[];
+      defaultActiveKeys?: (number | string)[];
       /**
        * 折叠项目内容
        */
@@ -60,7 +60,7 @@ export type CollapsePanelProps<
       /**
        * body 区域内容，使用 CollapseItem 进行渲染
        */
-      children: React.ReactNode;
+      children?: React.ReactNode;
       /**
        * 自定义箭头图标
        */
@@ -68,7 +68,12 @@ export type CollapsePanelProps<
       /**
        * 切换面板时触发
        */
-      onChange?: (activeKeys: string[]) => void;
+      onChange?: (
+        e: React.SyntheticEvent,
+        params: {
+          activeKeys: (number | string)[];
+        },
+      ) => void;
     };
     defaultComponent: D;
   },

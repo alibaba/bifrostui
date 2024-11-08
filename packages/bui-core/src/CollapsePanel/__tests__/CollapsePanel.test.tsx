@@ -14,18 +14,20 @@ const setup = (props: CollapsePanelProps, children?: ReactElement) => {
 const setupByElement = (props: CollapsePanelProps, itemNum = 2) => {
   const component = render(
     <CollapsePanel {...props}>
-      {Array(itemNum)
-        .fill('')
-        .map((item, index) => {
-          return (
-            <CollapsePanelItem
-              key={`${index + 1}`}
-              label={`这是面板标题${index + 1}`}
-            >
-              这是面板内容{index + 1}
-            </CollapsePanelItem>
-          );
-        })}
+      {itemNum
+        ? Array(itemNum)
+            .fill('')
+            .map((item, index) => {
+              return (
+                <CollapsePanelItem
+                  key={`${index + 1}`}
+                  label={`这是面板标题${index + 1}`}
+                >
+                  这是面板内容{index + 1}
+                </CollapsePanelItem>
+              );
+            })
+        : null}
     </CollapsePanel>,
   );
   return {
@@ -51,6 +53,9 @@ describe('CollapsePanel', () => {
     Component: CollapsePanel,
     displayName: 'BuiCollapsePanel',
     className: 'bui-collapse-panel',
+    requiredProps: {
+      items,
+    },
   });
   it('should render children', () => {
     const { container } = setup({
@@ -140,9 +145,9 @@ describe('CollapsePanel', () => {
     const fakeChange = jest.fn();
     const Component = () => {
       const [activeKeys, setActiveKeys] = useState(['1']);
-      const handleChange = (keys) => {
-        fakeChange(keys);
-        setActiveKeys(keys);
+      const handleChange = (event, params) => {
+        fakeChange(params.activeKeys);
+        setActiveKeys(params.activeKeys);
       };
 
       return (
@@ -166,6 +171,11 @@ describe('CollapsePanel', () => {
     expect(fakeChange).toBeCalledWith(['2', '1']);
     expect(firstPanel).toHaveClass('bui-collapse-panel-item-active');
     expect(secondPanel).toHaveClass('bui-collapse-panel-item-active');
+  });
+  it('should return null', () => {
+    const { container } = setup({});
+
+    expect(container.firstChild).toBeNull();
   });
 
   describe('CollapsePanelItem', () => {
@@ -248,9 +258,9 @@ describe('CollapsePanel', () => {
       const fakeChange = jest.fn();
       const Component = () => {
         const [activeKeys, setActiveKeys] = useState(['1']);
-        const handleChange = (keys) => {
-          fakeChange(keys);
-          setActiveKeys(keys);
+        const handleChange = (event, params) => {
+          fakeChange(params.activeKeys);
+          setActiveKeys(params.activeKeys);
         };
 
         return (
@@ -277,6 +287,11 @@ describe('CollapsePanel', () => {
       expect(fakeChange).toBeCalledWith(['2', '1']);
       expect(firstPanel).toHaveClass('bui-collapse-panel-item-active');
       expect(secondPanel).toHaveClass('bui-collapse-panel-item-active');
+    });
+    it('should return null', () => {
+      const { container } = setupByElement({}, 0);
+
+      expect(container.firstChild).toBeNull();
     });
   });
 });
