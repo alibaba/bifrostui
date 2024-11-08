@@ -133,8 +133,6 @@ BUI的Tokens分为三个层面
 | --bui-color-bg-default | --bui-color-neutral-6 | 默认背景色 |
 | --bui-color-bg-view    | --bui-color-neutral-7 | 视图背景色 |
 
-<!-- TODO 透明度 -->
-
 ### 带透明度的色彩
 
 | 内置Token变量名               | 默认值          | 说明      |
