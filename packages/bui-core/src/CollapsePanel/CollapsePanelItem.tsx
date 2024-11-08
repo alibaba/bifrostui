@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Collapse } from '../Collapse';
 import { CollapsePanelItemProps } from './CollapsePanel.types';
 
-const prefixCls = 'bui-collapse-panel';
+const prefixCls = 'bui-collapse-panel-item';
 
 const CollapsePanelItem = React.forwardRef<
   HTMLDivElement,
@@ -27,19 +27,19 @@ const CollapsePanelItem = React.forwardRef<
 
   return (
     <div
-      className={clsx(`${prefixCls}-item`, className)}
+      className={clsx(prefixCls, active && `${prefixCls}-active`, className)}
       style={style}
       ref={ref}
       {...others}
     >
-      <div className={`${prefixCls}-item-header`} onClick={onClick}>
-        <div className={`${prefixCls}-item-header-label`}>{label}</div>
+      <div className={`${prefixCls}-header`} onClick={onClick}>
+        <div className={`${prefixCls}-header-label`}>{label}</div>
         <div
           className={clsx(
-            `${prefixCls}-item-header-icon`,
-            `${prefixCls}-item-header-icon-arrow`,
+            `${prefixCls}-header-icon`,
+            `${prefixCls}-header-icon-arrow`,
             {
-              [`${prefixCls}-item-header-icon-arrow-active`]:
+              [`${prefixCls}-header-icon-arrow-active`]:
                 !isControlledIcon && active,
             },
           )}
@@ -47,8 +47,8 @@ const CollapsePanelItem = React.forwardRef<
           {getIcon()}
         </div>
       </div>
-      <Collapse in={active} orientation="vertical" timeout={300}>
-        <div className={`${prefixCls}-item-content`}>{children}</div>
+      <Collapse in={active} direction="vertical" timeout={300}>
+        <div className={`${prefixCls}-content`}>{children}</div>
       </Collapse>
     </div>
   );
