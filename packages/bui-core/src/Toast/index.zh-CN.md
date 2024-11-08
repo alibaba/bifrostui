@@ -5,13 +5,16 @@ name: Toast 轻提示
 
 # Toast 轻提示
 
-在页面中弹出黑色半透明提示，用于操作结果提示等场景。
+在页面中弹出黑色半透明提示，用于操作结果提示等场景，支持`Toast`,`Toast.warning`,`Toast.loading`,`Toast.success`,`Toast.fail`。
+推荐使用Hooks调用方式，静态方法无法获取上下文，ThemeProvider数据不会生效，因此推荐`Toast.useToast`创建支持读取context的contextHolder, 通过顶层注册方式代替`Toast`静态方法。
 
 ## 代码演示
 
 ### 基础提示
 
 展示提示内容。
+
+#### 静态方法（不推荐）
 
 ```tsx
 import { Stack, Button, Toast } from '@bifrostui/react';
@@ -32,46 +35,91 @@ export default () => {
 };
 ```
 
+#### Hooks调用（推荐）
+
+```tsx
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
+import React from 'react';
+
+export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
+  return (
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast('提示内容');
+          }}
+        >
+          toast
+        </Button>
+      </Stack>
+    </ThemeProvider>
+  );
+};
+```
+
 ### 常用模式
 
 Toast提供了 `warning`、`loading`、`success`、`fail`四种常用模式。
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast.warning('校验不通过，请重试');
-        }}
-      >
-        warning
-      </Button>
-      <Button
-        onClick={() => {
-          Toast.loading('正在加载');
-        }}
-      >
-        loading
-      </Button>
-      <Button
-        onClick={() => {
-          Toast.success('操作成功');
-        }}
-      >
-        success
-      </Button>
-      <Button
-        onClick={() => {
-          Toast.fail('操作失败');
-        }}
-      >
-        fail
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast.warning('校验不通过，请重试');
+          }}
+        >
+          warning
+        </Button>
+        <Button
+          onClick={() => {
+            toast.loading('正在加载');
+          }}
+        >
+          loading
+        </Button>
+        <Button
+          onClick={() => {
+            toast.success('操作成功');
+          }}
+        >
+          success
+        </Button>
+        <Button
+          onClick={() => {
+            toast.fail('操作失败');
+          }}
+        >
+          fail
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -81,20 +129,31 @@ export default () => {
 提示文案支持使用`\n`换行。
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast('小二很忙\n系统很累，请稍后再试～');
-        }}
-      >
-        toast
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast('小二很忙\n系统很累，请稍后再试～');
+          }}
+        >
+          toast
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -104,39 +163,51 @@ export default () => {
 使用`duration`控制提示展示时长，默认展示2秒，当`duration`为0时，Toast不会自动关闭，当然你可以接收返回值，并使用其`close`函数，手动关闭当前Toast。
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
-  let toast;
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
+  let toastA;
   const showToastA = () => {
-    toast = Toast({
+    toastA = toast({
       message: '我不会自动关闭',
       duration: 0,
     });
   };
 
   const closeToastA = () => {
-    toast?.close();
+    toastA?.close();
   };
 
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast({
-            message: '我会展示4秒',
-            duration: 4000,
-          });
-        }}
-      >
-        展示4秒
-      </Button>
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              message: '我会展示4秒',
+              duration: 4000,
+            });
+          }}
+        >
+          展示4秒
+        </Button>
 
-      <Button onClick={showToastA}>不自动关闭(ToastA)</Button>
+        <Button onClick={showToastA}>不自动关闭(ToastA)</Button>
 
-      <Button onClick={closeToastA}>手动关闭ToastA</Button>
-    </Stack>
+        <Button onClick={closeToastA}>手动关闭ToastA</Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -146,43 +217,55 @@ export default () => {
 Toast提供了`top`、`center`、`bottom`三种展示位置，默认为`center`。
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast({
-            message: '顶部展示',
-            position: 'top',
-          });
-        }}
-      >
-        顶部展示
-      </Button>
-      <Button
-        onClick={() => {
-          Toast({
-            message: '居中展示',
-            position: 'center',
-          });
-        }}
-      >
-        居中展示
-      </Button>
-      <Button
-        onClick={() => {
-          Toast({
-            message: '底部展示',
-            position: 'bottom',
-          });
-        }}
-      >
-        底部展示
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              message: '顶部展示',
+              position: 'top',
+            });
+          }}
+        >
+          顶部展示
+        </Button>
+        <Button
+          onClick={() => {
+            toast({
+              message: '居中展示',
+              position: 'center',
+            });
+          }}
+        >
+          居中展示
+        </Button>
+        <Button
+          onClick={() => {
+            toast({
+              message: '底部展示',
+              position: 'bottom',
+            });
+          }}
+        >
+          底部展示
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -192,46 +275,58 @@ export default () => {
 使用`allowMultiple`可允许页面中同时存在多个Taost提示，默认每次只展示一个Toast。
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast({
-            message: '顶部展示',
-            position: 'top',
-            allowMultiple: true,
-          });
-        }}
-      >
-        允许存在其他Toast
-      </Button>
-      <Button
-        onClick={() => {
-          Toast({
-            message: '居中展示',
-            position: 'center',
-            allowMultiple: true,
-          });
-        }}
-      >
-        允许存在其他Toast
-      </Button>
-      <Button
-        onClick={() => {
-          Toast({
-            message: '底部展示',
-            position: 'bottom',
-            allowMultiple: false,
-          });
-        }}
-      >
-        会清除其他Toast
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              message: '顶部展示',
+              position: 'top',
+              allowMultiple: true,
+            });
+          }}
+        >
+          允许存在其他Toast
+        </Button>
+        <Button
+          onClick={() => {
+            toast({
+              message: '居中展示',
+              position: 'center',
+              allowMultiple: true,
+            });
+          }}
+        >
+          允许存在其他Toast
+        </Button>
+        <Button
+          onClick={() => {
+            toast({
+              message: '底部展示',
+              position: 'bottom',
+              allowMultiple: false,
+            });
+          }}
+        >
+          会清除其他Toast
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -241,24 +336,36 @@ export default () => {
 使用`icon`可定制图标。
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import { LocationFilledIcon } from '@bifrostui/icons';
 import React from 'react';
 
 export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast({
-            message: '我在上海',
-            icon: <LocationFilledIcon size="large" htmlColor="#fee01e" />,
-          });
-        }}
-      >
-        定制图标
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              message: '我在上海',
+              icon: <LocationFilledIcon size="large" htmlColor="#fee01e" />,
+            });
+          }}
+        >
+          定制图标
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -268,24 +375,36 @@ export default () => {
 使用`disableClick`可控制展示Toast提示时，页面其他内容是否可点击，默认可点击。
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast({
-            message: '提示内容',
-            disableClick: true,
-            duration: 3000,
-          });
-        }}
-      >
-        展示Toast禁止页面内容点击
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              message: '提示内容',
+              disableClick: true,
+              duration: 3000,
+            });
+          }}
+        >
+          展示Toast禁止页面内容点击
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -295,25 +414,37 @@ export default () => {
 可通过`onClose`监听Toast关闭时的回调。
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast({
-            message: '提示内容',
-            onClose: () => {
-              Toast('已关闭');
-            },
-          });
-        }}
-      >
-        关闭回调
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              message: '提示内容',
+              onClose: () => {
+                toast('已关闭');
+              },
+            });
+          }}
+        >
+          关闭回调
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -323,44 +454,56 @@ export default () => {
 Toast提供了`clear`方法，用于关闭页面中所有存在的弹窗。
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast({
-            message: '提示内容1',
-            position: 'top',
-            allowMultiple: true,
-            duration: 0,
-          });
-        }}
-      >
-        不消失1
-      </Button>
-      <Button
-        onClick={() => {
-          Toast({
-            message: '提示内容2',
-            position: 'center',
-            allowMultiple: true,
-            duration: 0,
-          });
-        }}
-      >
-        不消失2
-      </Button>
-      <Button
-        onClick={() => {
-          Toast.clear();
-        }}
-      >
-        关闭所有Toast
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              message: '提示内容1',
+              position: 'top',
+              allowMultiple: true,
+              duration: 0,
+            });
+          }}
+        >
+          不消失1
+        </Button>
+        <Button
+          onClick={() => {
+            toast({
+              message: '提示内容2',
+              position: 'center',
+              allowMultiple: true,
+              duration: 0,
+            });
+          }}
+        >
+          不消失2
+        </Button>
+        <Button
+          onClick={() => {
+            toast.clear();
+          }}
+        >
+          关闭所有Toast
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -370,34 +513,45 @@ export default () => {
 可以根据提供的css变量，以及className等属性自定义Toast样式。
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React, { useRef } from 'react';
 
 export default () => {
   const ref = useRef();
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
 
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast({
-            ref,
-            message: '提示内容',
-            className: 'my-toast',
-            style: {
-              '--color': 'red',
-              '--border-radius': '30px',
-              '--font-size': '16px',
-            },
-            onEntered: () => {
-              console.log('ref', ref);
-            },
-          });
-        }}
-      >
-        toast
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              ref,
+              message: '提示内容',
+              className: 'my-toast',
+              style: {
+                '--color': 'red',
+                '--border-radius': '30px',
+                '--font-size': '16px',
+              },
+              onEntered: () => {
+                console.log('ref', ref);
+              },
+            });
+          }}
+        >
+          toast
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```

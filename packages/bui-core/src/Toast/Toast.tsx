@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import React, { useImperativeHandle } from 'react';
 import {
   ErrorCircleFilledBoldIcon,
   AccessTimeCircleFilledBoldIcon,
@@ -9,6 +9,7 @@ import {
 import { ToastProps } from './Toast.types';
 import Fade from '../Fade';
 import './Toast.less';
+import { useTheme } from '../ThemeProvider';
 
 const prefixCls = 'bui-toast';
 
@@ -23,8 +24,13 @@ const ToastComponent = React.forwardRef<HTMLDivElement, ToastProps>(
       message,
       position = 'center',
       disableClick = false,
+      theme,
       ...others
     } = props;
+    const themeConfig = useTheme(theme);
+    useImperativeHandle(ref, () => {
+      return { theme: themeConfig };
+    }, []);
 
     const iconMap = {
       fail: <ErrorCircleFilledBoldIcon htmlColor="#ffffff" />,

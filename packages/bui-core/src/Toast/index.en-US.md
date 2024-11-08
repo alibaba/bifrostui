@@ -5,13 +5,16 @@ name: Toast Light Tips
 
 # Toast Light Tips
 
-Pop up a black semi transparent prompt on the page for scenarios such as operation result prompts.
+Pop up a black semi transparent prompt on the page, used for operation result prompts and other scenarios, supports`Toast`,`Toast.warning`,`Toast.loading`,`Toast.success`,`Toast.fail`。
+It is recommended to use Hooks calling method. Static methods cannot obtain context, and ThemeProvider data will not take effect. Therefore, it is recommended to use Hooks calling method`Toast.useToast`创build contextholder that supports reading context and replaces it with top-level registration`Toast`静state method.
 
 ## Code demonstration
 
 ### Basic Tips
 
 Display prompt content.
+
+#### Static method (not recommended)
 
 ```tsx
 import { Stack, Button, Toast } from '@bifrostui/react';
@@ -32,46 +35,91 @@ export default () => {
 };
 ```
 
+#### Hooks call (recommended)
+
+```tsx
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
+import React from 'react';
+
+export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
+  return (
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast('提示内容');
+          }}
+        >
+          toast
+        </Button>
+      </Stack>
+    </ThemeProvider>
+  );
+};
+```
+
 ### Common modes
 
 Toast provides four common modes: warning, loading, success, and fail.
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast.warning('校验不通过，请重试');
-        }}
-      >
-        warning
-      </Button>
-      <Button
-        onClick={() => {
-          Toast.loading('正在加载');
-        }}
-      >
-        loading
-      </Button>
-      <Button
-        onClick={() => {
-          Toast.success('操作成功');
-        }}
-      >
-        success
-      </Button>
-      <Button
-        onClick={() => {
-          Toast.fail('操作失败');
-        }}
-      >
-        fail
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast.warning('校验不通过，请重试');
+          }}
+        >
+          warning
+        </Button>
+        <Button
+          onClick={() => {
+            toast.loading('正在加载');
+          }}
+        >
+          loading
+        </Button>
+        <Button
+          onClick={() => {
+            toast.success('操作成功');
+          }}
+        >
+          success
+        </Button>
+        <Button
+          onClick={() => {
+            toast.fail('操作失败');
+          }}
+        >
+          fail
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -81,20 +129,31 @@ export default () => {
 The prompt text supports the use of '\ n' line breaks.
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast('小二很忙\n系统很累，请稍后再试～');
-        }}
-      >
-        toast
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast('小二很忙\n系统很累，请稍后再试～');
+          }}
+        >
+          toast
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -104,39 +163,51 @@ export default () => {
 Use 'duration' to control the duration of the prompt display, with a default display of 2 seconds. When 'duration' is 0, Toast will not automatically close. Of course, you can receive the return value and use its' close 'function to manually close the current Toast.
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
-  let toast;
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
+  let toastA;
   const showToastA = () => {
-    toast = Toast({
+    toastA = toast({
       message: '我不会自动关闭',
       duration: 0,
     });
   };
 
   const closeToastA = () => {
-    toast?.close();
+    toastA?.close();
   };
 
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast({
-            message: '我会展示4秒',
-            duration: 4000,
-          });
-        }}
-      >
-        展示4秒
-      </Button>
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              message: '我会展示4秒',
+              duration: 4000,
+            });
+          }}
+        >
+          展示4秒
+        </Button>
 
-      <Button onClick={showToastA}>不自动关闭(ToastA)</Button>
+        <Button onClick={showToastA}>不自动关闭(ToastA)</Button>
 
-      <Button onClick={closeToastA}>手动关闭ToastA</Button>
-    </Stack>
+        <Button onClick={closeToastA}>手动关闭ToastA</Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -146,43 +217,55 @@ export default () => {
 Toast provides three display positions: top, center, and bottom, with the default being center.
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast({
-            message: '顶部展示',
-            position: 'top',
-          });
-        }}
-      >
-        顶部展示
-      </Button>
-      <Button
-        onClick={() => {
-          Toast({
-            message: '居中展示',
-            position: 'center',
-          });
-        }}
-      >
-        居中展示
-      </Button>
-      <Button
-        onClick={() => {
-          Toast({
-            message: '底部展示',
-            position: 'bottom',
-          });
-        }}
-      >
-        底部展示
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              message: '顶部展示',
+              position: 'top',
+            });
+          }}
+        >
+          顶部展示
+        </Button>
+        <Button
+          onClick={() => {
+            toast({
+              message: '居中展示',
+              position: 'center',
+            });
+          }}
+        >
+          居中展示
+        </Button>
+        <Button
+          onClick={() => {
+            toast({
+              message: '底部展示',
+              position: 'bottom',
+            });
+          }}
+        >
+          底部展示
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -192,46 +275,58 @@ export default () => {
 Using 'allowMultiple' allows for multiple Toast prompts to exist simultaneously on the page, with only one Toast displayed by default at a time.
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast({
-            message: '顶部展示',
-            position: 'top',
-            allowMultiple: true,
-          });
-        }}
-      >
-        允许存在其他Toast
-      </Button>
-      <Button
-        onClick={() => {
-          Toast({
-            message: '居中展示',
-            position: 'center',
-            allowMultiple: true,
-          });
-        }}
-      >
-        允许存在其他Toast
-      </Button>
-      <Button
-        onClick={() => {
-          Toast({
-            message: '底部展示',
-            position: 'bottom',
-            allowMultiple: false,
-          });
-        }}
-      >
-        会清除其他Toast
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              message: '顶部展示',
+              position: 'top',
+              allowMultiple: true,
+            });
+          }}
+        >
+          允许存在其他Toast
+        </Button>
+        <Button
+          onClick={() => {
+            toast({
+              message: '居中展示',
+              position: 'center',
+              allowMultiple: true,
+            });
+          }}
+        >
+          允许存在其他Toast
+        </Button>
+        <Button
+          onClick={() => {
+            toast({
+              message: '底部展示',
+              position: 'bottom',
+              allowMultiple: false,
+            });
+          }}
+        >
+          会清除其他Toast
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -241,24 +336,36 @@ export default () => {
 Use 'icon' to customize icons.
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import { LocationFilledIcon } from '@bifrostui/icons';
 import React from 'react';
 
 export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast({
-            message: '我在上海',
-            icon: <LocationFilledIcon size="large" htmlColor="#fee01e" />,
-          });
-        }}
-      >
-        定制图标
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              message: '我在上海',
+              icon: <LocationFilledIcon size="large" htmlColor="#fee01e" />,
+            });
+          }}
+        >
+          定制图标
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -268,24 +375,36 @@ export default () => {
 Use 'disableClick' to control whether other content on the page can be clicked when displaying Toast prompts. It defaults to clickable.
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast({
-            message: '提示内容',
-            disableClick: true,
-            duration: 3000,
-          });
-        }}
-      >
-        展示Toast禁止页面内容点击
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              message: '提示内容',
+              disableClick: true,
+              duration: 3000,
+            });
+          }}
+        >
+          展示Toast禁止页面内容点击
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -295,25 +414,37 @@ export default () => {
 You can listen for callbacks when Toast is closed through 'onClose'.
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast({
-            message: '提示内容',
-            onClose: () => {
-              Toast('已关闭');
-            },
-          });
-        }}
-      >
-        关闭回调
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              message: '提示内容',
+              onClose: () => {
+                toast('已关闭');
+              },
+            });
+          }}
+        >
+          关闭回调
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -323,44 +454,56 @@ export default () => {
 Toast provides a 'clear' method to close all existing pop ups on the page.
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast({
-            message: '提示内容1',
-            position: 'top',
-            allowMultiple: true,
-            duration: 0,
-          });
-        }}
-      >
-        不消失1
-      </Button>
-      <Button
-        onClick={() => {
-          Toast({
-            message: '提示内容2',
-            position: 'center',
-            allowMultiple: true,
-            duration: 0,
-          });
-        }}
-      >
-        不消失2
-      </Button>
-      <Button
-        onClick={() => {
-          Toast.clear();
-        }}
-      >
-        关闭所有Toast
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              message: '提示内容1',
+              position: 'top',
+              allowMultiple: true,
+              duration: 0,
+            });
+          }}
+        >
+          不消失1
+        </Button>
+        <Button
+          onClick={() => {
+            toast({
+              message: '提示内容2',
+              position: 'center',
+              allowMultiple: true,
+              duration: 0,
+            });
+          }}
+        >
+          不消失2
+        </Button>
+        <Button
+          onClick={() => {
+            toast.clear();
+          }}
+        >
+          关闭所有Toast
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -370,34 +513,45 @@ export default () => {
 You can customize the Toast style based on the provided CSS variables and properties such as className.
 
 ```tsx
-import { Stack, Button, Toast } from '@bifrostui/react';
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
 import React, { useRef } from 'react';
 
 export default () => {
   const ref = useRef();
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
 
   return (
-    <Stack direction="row" spacing="10px">
-      <Button
-        onClick={() => {
-          Toast({
-            ref,
-            message: '提示内容',
-            className: 'my-toast',
-            style: {
-              '--color': 'red',
-              '--border-radius': '30px',
-              '--font-size': '16px',
-            },
-            onEntered: () => {
-              console.log('ref', ref);
-            },
-          });
-        }}
-      >
-        toast
-      </Button>
-    </Stack>
+    <ThemeProvider locale={theme}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              ref,
+              message: '提示内容',
+              className: 'my-toast',
+              style: {
+                '--color': 'red',
+                '--border-radius': '30px',
+                '--font-size': '16px',
+              },
+              onEntered: () => {
+                console.log('ref', ref);
+              },
+            });
+          }}
+        >
+          toast
+        </Button>
+      </Stack>
+    </ThemeProvider>
   );
 };
 ```
@@ -429,9 +583,9 @@ export default () => {
 
 ##### ToastReturnType
 
-| Attribute Name | explain                  | type       | Return value |
-| -------------- | ------------------------ | ---------- | ------------ |
-| close          | Close the current prompt | () => void | -            |
+| Attribute Name | Description              | Type     | Return Value |
+| -------------- | ------------------------ | -------- | ------------ |
+| Close          | Close the current prompt | ()=>void | -            |
 
 ### Style variables
 

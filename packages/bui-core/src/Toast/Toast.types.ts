@@ -1,5 +1,9 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { FadeProps } from '../Fade/Fade.types';
+import {
+  BaseLang,
+  ResponsiveTokenOptions,
+} from '../ThemeProvider/ThemeProvider.types';
 
 /**
  * 提示类型
@@ -18,7 +22,7 @@ export interface ToastProps extends FadeProps {
   /**
    * toast内容，支持使用`\n`换行
    */
-  message?: ReactNode;
+  message?: string;
   /**
    * 展示时长(ms)，值为 0 时，toast 不会消失
    * @default 2000
@@ -38,6 +42,20 @@ export interface ToastProps extends FadeProps {
    * 自定义图标
    */
   icon?: React.ReactNode;
+  /**
+   * theme 主题定制
+   */
+  theme?: {
+    locale: BaseLang;
+    responsive: ResponsiveTokenOptions;
+    others: {
+      defaultLightToken?: Record<string, string>;
+      defaultDarkToken?: Record<string, string>;
+      dmLightToken?: Record<string, string>;
+      dmDarkToken?: Record<string, string>;
+      token?: Record<string, string>;
+    };
+  };
   /**
    * 展示Toast时，页面内容是否可以点击
    * @default false
@@ -67,7 +85,7 @@ export type ToastReturnType = {
 /**
  * Toast Instance
  */
-export interface ToastInstance {
+export interface ToastFunction {
   (options: ToastOptions): ToastReturnType;
   /**
    * 警告提示
@@ -89,4 +107,11 @@ export interface ToastInstance {
    * 清空提示
    */
   clear: () => void;
+}
+
+export interface ToastInstance extends ToastFunction {
+  /**
+   * 获取toast静态方法 & contextHolder
+   */
+  useToast: () => [ToastFunction, React.JSX.Element];
 }
