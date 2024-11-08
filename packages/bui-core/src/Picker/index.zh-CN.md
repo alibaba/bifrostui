@@ -19,7 +19,7 @@ import React, { useState, useEffect } from 'react';
 
 export default () => {
   const [open, setOpen] = useState(false);
-  const [val, setVal] = useState([2]);
+  const [val, setVal] = useState<(string | number)[]>([2]);
 
   useEffect(() => {
     console.log(val);
@@ -380,7 +380,7 @@ export default () => {
       label: '上海',
     },
   ];
-  const [val, setVal] = useState([]);
+  const [val, setVal] = useState<(string | number)[]>([]);
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
 
@@ -766,7 +766,7 @@ import React, { useState } from 'react';
 
 export default () => {
   const [open, setOpen] = useState(false);
-  const [val, setVal] = useState([2, 100]);
+  const [val, setVal] = useState<(string | number)[]>([2, 100]);
   return (
     <Stack>
       <Button

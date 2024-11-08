@@ -133,14 +133,15 @@ Used to define a universal background color
 | --bui-color-bg-default       | --bui-color-neutral-6 | Default background color |
 | --bui-color-bg-view          | --bui-color-neutral-7 | View background color    |
 
-<! -- TODO Transparency -->
-
 ### Color with transparency
 
 | Built in Token variable name  | Default value   | explain         |
 | ----------------------------- | --------------- | --------------- |
 | --bui-color-bg-view-opacity-9 | fade(#fff, 90%) | Translucent 90% |
-| --bui-color-bg-view-opacity-4 | fade(#fff, 40%) | Translucent 40% |
+| --bui-color-bg-view-opacity-7 | fade(#fff, 70%) | Translucent 70% |
+| --bui-color-bg-view-opacity-5 | fade(#fff, 50%) | Translucent 50% |
+| --bui-color-bg-view-opacity-3 | fade(#fff, 30%) | Translucent 30% |
+| --bui-color-bg-view-opacity-1 | fade(#fff, 10%) | Translucent 10% |
 
 ### Color of dividing lines or borders
 
@@ -221,7 +222,10 @@ Dark mode will use the following Tokens to overwrite CSS variables with the same
 | --bui-color-bg-default        | #010409            | Default background color                            |
 | --bui-color-bg-view           | #161b22            | View background color                               |
 | --bui-color-bg-view-opacity-9 | fade(#161b22, 90%) | Translucent 90%                                     |
-| --bui-color-bg-view-opacity-4 | fade(#161b22, 40%) | Translucent 40%                                     |
+| --bui-color-bg-view-opacity-7 | fade(#161b22, 70%) | Translucent 70%                                     |
+| --bui-color-bg-view-opacity-5 | fade(#161b22, 50%) | Translucent 50%                                     |
+| --bui-color-bg-view-opacity-3 | fade(#161b22, 30%) | Translucent 30%                                     |
+| --bui-color-bg-view-opacity-1 | fade(#161b22, 10%) | Translucent 10%                                     |
 | --bui-color-border-default    | #30363d            | Divide line, border                                 |
 
 ## How to customize
