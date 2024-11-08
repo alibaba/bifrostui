@@ -1,9 +1,9 @@
 ---
 group: Dynamic effect
-name: Slide
+name: Slide In Slide Out
 ---
 
-# Slide
+# Slide In Slide Out
 
 Basic slide in/slide out animation using Transition encapsulation.
 Considering the compatibility of mini programs, slide along one edge of the element itself instead of the screen edge.
@@ -12,8 +12,8 @@ Considering the compatibility of mini programs, slide along one edge of the elem
 
 ### Basic usage
 
-The Slide component supports four slide in directions, through`direction`number input
-The component itself only handles the displacement of internal elements, you may need to add it yourself`overflow:hidden`external style
+The Slide component supports four sliding directions, which are passed in through the 'direction' parameter
+The component itself only handles the displacement of internal elements, and you may need to add external styles such as' overflow: midden 'by yourself
 
 ```tsx
 import React, { useState } from 'react';
@@ -54,7 +54,7 @@ export default () => {
 
 ### Play animation upon entry
 
-When`appear``in`by`true`
+When both 'append' and 'in' are 'true'
 The component will immediately play an animation when mounted
 
 ```tsx
@@ -92,25 +92,25 @@ export default () => {
 
 ### Events and other attributes
 
-`Slide`inherited from`Transition`other attributes can be found in [Transition](/cores/transition)
+Slide inherits from Transition. Other properties can be found in Transition (/ores/transition)
 
 ## API
 
-| attribute     | explain                                    | type                            | Default value |
-| ------------- | ------------------------------------------ | ------------------------------- | ------------- |
-| in            | Do you want to enter                       | boolean                         | false         |
-| appear        | Whether to play animation during mounting  | boolean                         | false         |
-| direction     | Sliding direction                          | "up"\|"down"\|"left"\|"right"   |               |
-| timeout       | Animation time configuration               | number \| {appear, enter, exit} | -             |
-| delay         | Animation Delay Configuration              | number \| {appear, enter, exit} | -             |
-| enter         | Do you want to play the animation          | boolean                         | true          |
-| exit          | Do you want to play the exit animation     | boolean                         | true          |
-| mountOnEnter  | Mount children on first entry              | boolean                         | false         |
-| unmountOnExit | Uninstall children upon exit               | boolean                         | false         |
-| onEnter       | The callback before entering the beginning | node=>void                      | -             |
-| onEntering    | The callback after entering the beginning  | node=>void                      | -             |
-| onEntered     | Enter the completed callback               | node=>void                      | -             |
-| onExit        | Callback before exit starts                | node=>void                      | -             |
-| onExiting     | Callback after exit starts                 | node=>void                      | -             |
-| onExited      | Exit completed callback                    | node=>void                      | -             |
-| easing        | Transition limiting function               | string \| {enter, exit}         | -             |
+| attribute     | explain                                    | type                           | Default value |
+| ------------- | ------------------------------------------ | ------------------------------ | ------------- |
+| in            | Do you want to enter                       | boolean                        | false         |
+| appear        | Whether to play animation during mounting  | boolean                        | false         |
+| direction     | Sliding direction                          | "up"\|"down"\|"left"\|"right"  |               |
+| timeout       | Animation time configuration               | number \|{appear, enter, exit} | -             |
+| delay         | Animation Delay Configuration              | number \|{appear, enter, exit} | -             |
+| enter         | Do you want to play the animation          | boolean                        | true          |
+| exit          | Do you want to play the exit animation     | boolean                        | true          |
+| mountOnEnter  | Mount children on first entry              | boolean                        | false         |
+| unmountOnExit | Uninstall children upon exit               | boolean                        | false         |
+| onEnter       | The callback before entering the beginning | node=>void                     | -             |
+| onEntering    | The callback after entering the beginning  | node=>void                     | -             |
+| onEntered     | Enter the completed callback               | node=>void                     | -             |
+| onExit        | Callback before exit starts                | node=>void                     | -             |
+| onExiting     | Callback after exit starts                 | node=>void                     | -             |
+| onExited      | Exit completed callback                    | node=>void                     | -             |
+| easing        | Transition limiting function               | string \|{enter, exit}         | -             |

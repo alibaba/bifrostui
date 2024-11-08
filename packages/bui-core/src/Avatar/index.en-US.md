@@ -1,19 +1,19 @@
 ---
 group:
   title: Basic input
-name: Avatar
+name: Avatar avatar
 ---
 
-# Avatar
+# Avatar avatar
 
 Used to display user avatars or objects, supporting the display of images, text, icons, etc.
-`Avatar`be based on `Image` [Image](http://bui.taopiaopiao.com/cores/image). Commonly used attributes are also supported by avatar.
+Avatar is encapsulated based on the Image component, [Image]（ http://bui.taopiaopiao.com/cores/image ）Commonly used attributes are also supported by Avatar.
 
 ## Code demonstration
 
 ### Basic usage
 
-Avatar component passed `src` to create an image avatar by using an image address.
+The avatar component creates an image avatar by passing the image address through the 'src' attribute.
 
 ```tsx
 import { Avatar, Stack } from '@bifrostui/react';
@@ -30,7 +30,7 @@ export default () => {
 
 ### String avatar
 
-In addition to picture avatars, you can also use `children` to create a simple character avatar.
+In addition to picture avatars, you can also create simple character avatars through 'children'.
 
 ```tsx
 import { Avatar, Stack } from '@bifrostui/react';
@@ -48,7 +48,7 @@ export default () => {
 
 ### Customize avatar
 
-Adopting `children`, you can create custom avatars such as icons.
+Through 'children', you can also create custom avatars such as icons.
 
 ```tsx
 import React from 'react';
@@ -68,8 +68,8 @@ export default () => {
 
 ### Avatar shape
 
-The Avatar component provides two avatar modes: circular `rounded` and square shaped`square`，you can use `variant` to set the corresponding mode.
-The default value for variant is `rounded`。
+The Avatar component provides two avatar modes: round and square. You can use 'variable' to set the corresponding mode.
+The default value for variant is' rounded '.
 
 ```tsx
 import { Avatar, Stack } from '@bifrostui/react';
@@ -90,8 +90,8 @@ export default () => {
 
 ### Avatar size
 
-`Avatar` supply `xsmall`、`small`、`medium`、`large`, you can go through `size` to set the corresponding size.
-The default size for size is `medium`。
+Avatar offers four sizes: xsmall, small, medium, and large. You can set the corresponding size through size.
+The default size is' medium '.
 
 ```tsx
 import { Avatar, Stack } from '@bifrostui/react';
@@ -123,7 +123,7 @@ export default () => {
 
 ## Avatar combination
 
-In addition to providing individual avatars, we also offer combination avatars through `AvatarGroup`、`Avatar` combined use.
+In addition to providing individual avatars, we also offer combination avatars that can be used through AvatarGroup and Avatar combinations.
 
 ```tsx
 import { Avatar, AvatarGroup, Stack } from '@bifrostui/react';
@@ -145,8 +145,8 @@ export default () => {
 
 ### Avatar shape
 
-AvatarGroup component provides two avatar modes: circular `rounded` square shaped `square`，you can use `variant` to set the corresponding mode.
-The default value for variant is `rounded`。
+The AvatarGroup component provides two avatar modes: round and square. You can use 'variable' to set the corresponding mode.
+The default value for variant is' rounded '.
 
 ```tsx
 import { Avatar, AvatarGroup, Stack } from '@bifrostui/react';
@@ -174,7 +174,7 @@ export default () => {
 
 ### Control the number of avatar displays
 
-AvatarGroup component provides `maxCount` to limit the number of displayed avatars based on gender and automatically calculate the number of avatars that are not displayed.
+The AvatarGroup component provides the 'maxCount' property to limit the number of displayed avatars and automatically calculate the number of avatars that are not displayed.
 
 ```tsx
 import { Avatar, AvatarGroup, Stack } from '@bifrostui/react';
@@ -196,8 +196,8 @@ export default () => {
 
 ### Avatar combination orientation
 
-AvatarGroup component provides `orientation` to control the orientation of the avatar.
-The default orientation is `left`。
+The AvatarGroup component provides the 'orientation' property to control the orientation of avatars.
+The default orientation is' left '.
 
 ```tsx
 import { Avatar, AvatarGroup, Stack } from '@bifrostui/react';
@@ -225,7 +225,7 @@ export default () => {
 
 ### Avatar spacing
 
-AvatarGroup component provides `spacing` to control the spacing between avatars.
+The AvatarGroup component provides the 'spacing' attribute to control the distance between avatars.
 
 ```tsx
 import { Avatar, AvatarGroup, Stack } from '@bifrostui/react';
@@ -275,21 +275,21 @@ export default () => {
 
 #### Avatar
 
-| attribute     | explain                                  | Default value | global variable          |
-| ------------- | ---------------------------------------- | ------------- | ------------------------ |
-| --large-size  | Large size avatar width and height       | 60px          | --bui-avatar-large-size  |
-| --medium-size | Medium size avatar width and height      | 42px          | --bui-avatar-medium-size |
-| --small-size  | Small size avatar width and height       | 30px          | --bui-avatar-small-size  |
-| --xsmall-size | Ultra small size avatar width and height | 24px          | --bui-avatar-xsmall-size |
+| attribute     | explain                                | Default value | global variable          |
+| ------------- | -------------------------------------- | ------------- | ------------------------ |
+| --large-size  | Large profile picture width and height | 60px          | --bui-avatar-large-size  |
+| --medium-size | Medium sized avatar width and height   | 42px          | --bui-avatar-medium-size |
+| --small-size  | Small profile picture width and height | 30px          | --bui-avatar-small-size  |
+| --xsmall-size | Ultra small avatar width and height    | 24px          | --bui-avatar-xsmall-size |
 
 #### AvatarGroup
 
-| attribute            | explain                                | Default value                 | global variable                       |
-| -------------------- | -------------------------------------- | ----------------------------- | ------------------------------------- |
-| --xsmall-margin-left | Ultra small size left margin of avatar | -5px                          | --bui-avatar-group-xsmall-margin-left |
-| --small-margin-left  | Small size header left margin          | -9px                          | --bui-avatar-group-small-margin-left  |
-| --small-box-shadow   | Small size avatar shadow               | 0 0 0 1px --bui-color-bg-view | --bui-avatar-group-small-box-shadow   |
-| --medium-margin-left | Medium header left margin              | -13px                         | --bui-avatar-group-medium-margin-left |
-| --medium-box-shadow  | Medium size avatar shadow              | 0 0 0 2px --bui-color-bg-view | --bui-avatar-group-medium-box-shadow  |
-| --large-margin-left  | Large left margin of header            | -21px                         | --bui-avatar-group-large-margin-left  |
-| --large-box-shadow   | Large size avatar shadow               | 0 0 0 3px --bui-color-bg-view | --bui-avatar-group-large-box-shadow   |
+| attribute            | explain                        | Default value                 | global variable                       |
+| -------------------- | ------------------------------ | ----------------------------- | ------------------------------------- |
+| --xsmall-margin-left | Ultra small avatar left margin | -5px                          | --bui-avatar-group-xsmall-margin-left |
+| --small-margin-left  | Small size head left margin    | -9px                          | --bui-avatar-group-small-margin-left  |
+| --small-box-shadow   | Small sized avatar shadow      | 0 0 0 1px --bui-color-bg-view | --bui-avatar-group-small-box-shadow   |
+| --medium-margin-left | Medium size head left margin   | -13px                         | --bui-avatar-group-medium-margin-left |
+| --medium-box-shadow  | Medium sized avatar shadow     | 0 0 0 2px --bui-color-bg-view | --bui-avatar-group-medium-box-shadow  |
+| --large-margin-left  | Large head left margin         | -21px                         | --bui-avatar-group-large-margin-left  |
+| --large-box-shadow   | Large sized avatar shadow      | 0 0 0 3px --bui-color-bg-view | --bui-avatar-group-large-box-shadow   |

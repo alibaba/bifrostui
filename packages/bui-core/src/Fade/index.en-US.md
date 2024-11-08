@@ -1,9 +1,9 @@
 ---
 group: Dynamic effect
-name: Fade
+name: Fade in/out
 ---
 
-# Fade
+# Fade in/out
 
 Basic fade in/fade out animation using Transition encapsulation
 
@@ -46,7 +46,7 @@ export default () => {
 
 ### Play animation upon entry
 
-When`appear`和`in`by`true`
+When both 'append' and 'in' are 'true'
 The component will immediately play an animation when mounted
 
 ```tsx
@@ -76,8 +76,8 @@ export default () => {
 
 ### Delay mount/exit uninstall
 
-Use`mountOnEnter`使mount components only when they are first in
-Use`unmountOnExit`使you have to uninstall the components every time you exit
+Use 'MountOnEnter' to mount components only on the first in time
+Use 'remountOnExit' to uninstall components every time you exit
 
 ```tsx
 import { Button, Fade, Stack } from '@bifrostui/react';
@@ -123,24 +123,24 @@ export default () => {
 
 ### Events and other attributes
 
-`Fade`inherited from`Transition`other attributes can be found in [transition] (/ores/transition)
+Fade inherits from Transition. Other properties can be found in Transition (/ores/transition)
 
 ## API
 
-| attribute     | explain                                    | type                            | Default value |
-| ------------- | ------------------------------------------ | ------------------------------- | ------------- |
-| in            | Do you want to enter                       | boolean                         | false         |
-| appear        | Whether to play animation during mounting  | boolean                         | false         |
-| timeout       | Animation time configuration               | number \| {appear, enter, exit} | -             |
-| delay         | Animation Delay Configuration              | number \| {appear, enter, exit} | -             |
-| enter         | Do you want to play the animation          | boolean                         | true          |
-| exit          | Do you want to play the exit animation     | boolean                         | true          |
-| mountOnEnter  | Mount children on first entry              | boolean                         | false         |
-| unmountOnExit | Uninstall children upon exit               | boolean                         | false         |
-| onEnter       | The callback before entering the beginning | node=>void                      | -             |
-| onEntering    | The callback after entering the beginning  | node=>void                      | -             |
-| onEntered     | Enter the completed callback               | node=>void                      | -             |
-| onExit        | Callback before exit starts                | node=>void                      | -             |
-| onExiting     | Callback after exit starts                 | node=>void                      | -             |
-| onExited      | Exit completed callback                    | node=>void                      | -             |
-| easing        | Transition limiting function               | string \| {enter, exit}         | -             |
+| attribute     | explain                                    | type                           | Default value |
+| ------------- | ------------------------------------------ | ------------------------------ | ------------- |
+| in            | Do you want to enter                       | boolean                        | false         |
+| appear        | Whether to play animation during mounting  | boolean                        | false         |
+| timeout       | Animation time configuration               | number \|{appear, enter, exit} | -             |
+| delay         | Animation Delay Configuration              | number \|{appear, enter, exit} | -             |
+| enter         | Do you want to play the animation          | boolean                        | true          |
+| exit          | Do you want to play the exit animation     | boolean                        | true          |
+| mountOnEnter  | Mount children on first entry              | boolean                        | false         |
+| unmountOnExit | Uninstall children upon exit               | boolean                        | false         |
+| onEnter       | The callback before entering the beginning | node=>void                     | -             |
+| onEntering    | The callback after entering the beginning  | node=>void                     | -             |
+| onEntered     | Enter the completed callback               | node=>void                     | -             |
+| onExit        | Callback before exit starts                | node=>void                     | -             |
+| onExiting     | Callback after exit starts                 | node=>void                     | -             |
+| onExited      | Exit completed callback                    | node=>void                     | -             |
+| easing        | Transition limiting function               | string \|{enter, exit}         | -             |

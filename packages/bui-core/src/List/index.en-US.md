@@ -1,9 +1,9 @@
 ---
 group: Data Display
-name: List
+name: List component
 ---
 
-# List
+# List component
 
 A list is a continuous set of text or images composed of items from the main and supplementary operations, commonly used for data display.
 
@@ -48,8 +48,8 @@ export default () => {
 };
 ```
 
-List component provided`ListItem`item, used to carry sub items in the list.
-`ListItem`the item is divided into four areas:`ListItemHeader`、`ListItemContent`、`ListItemExtra`、`ListItemFooter`。
+The list component provides the 'ListItem' component to host list sub items.
+The ListItem component is divided into four areas: ListItem Header, ListItem Content, ListItem Extra, and ListItem Footer.
 
 ```tsx
 import {
@@ -98,8 +98,8 @@ export default () => {
 
 ### Clickable status
 
-List component provided`disabled`use sex to control the clickable state of the list.
-You can do it through`ListItem`item transmission`disabled`single control sub item prohibits clicking.
+The list component provides the 'disabled' attribute to control the clickable state of the list.
+You can pass' disabled 'through the' ListItem 'component to individually control sub items from clicking.
 
 ```tsx
 import {
@@ -164,7 +164,7 @@ export default () => {
 
 ### Set the header of the list
 
-The list component can be accessed through`header`、`subheader`set the top of the list.
+The list component can set the list header through header and subheader .
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
@@ -202,7 +202,7 @@ export default () => {
 
 ### Set the left operation area of the list sub items
 
-List component provided`ListItemHeader`component, used to customize the header operation area of list items, commonly used to customize the header icons of list items.
+The list component provides the 'ListItemHeader' sub component, which is used to customize the header operation area of list items and is commonly used to customize the header icons of list items.
 
 ```tsx
 import React from 'react';
@@ -249,8 +249,8 @@ export default () => {
 
 ### Set the content area for sub items in the list
 
-List component provided`ListItemContent`component, used to customize the sub item content area of the list.
-You can do it through`primary`、`secondary`the main content area and sub content area of the sexual setting list sub items.
+The list component provides a 'ListItemContent' sub component for customizing the content area of list sub items.
+You can set the main content area and sub content area of the list sub items through the 'primary' and 'secondary' attributes.
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
@@ -277,7 +277,7 @@ export default () => {
 
 ### Set the tail area of the list sub items
 
-List component provided`ListItemFooter`component, used to customize the tail area of list items.
+The list component provides a 'ListItemFooter' sub component for customizing the tail area of list items.
 
 ```tsx
 import {
@@ -314,8 +314,8 @@ export default () => {
 
 ### Set the operation area on the right side of the list sub items
 
-List component provided`ListItemExtra`component, used to customize the operation area on the right side of the list item.
-`ListItemExtra`components can be used to configure switches and to individually control list sub items.
+The list component provides a 'ListItemExtra' sub component for customizing the operation area on the right side of list items.
+The ListItemExtra sub component can be used to configure switches and to individually control list sub items.
 
 ```tsx
 import {
@@ -356,8 +356,8 @@ export default () => {
 
 ### Dividing line
 
-The default sub items in the list component have a dividing line before them, provided by`dividerProp`the attribute of the sex transmission dividing line component.
-You can also do it through`hideDivider`hidden dividing line.
+The default sub item of the list component has a dividing line before it, and the dividing line component attribute is transparently passed through by providing the 'dividerDrop' attribute.
+You can also hide the dividing line through 'hideDivider'.
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
@@ -427,7 +427,7 @@ export default () => {
 
 ### Set size
 
-List component provided`3`size and dimensions:`small`、`medium`、`large`。you can do it through`size`customize these three sizes.
+The list component provides three sizes: small, medium, and large. You can customize these three sizes through the 'size' attribute.
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
@@ -497,7 +497,7 @@ export default () => {
 | hideDivider | Do you want to hide the dividing line                 | boolean             | false         |
 | component   | Root node label                                       | React.ElementType   | -             |
 
-#### ListItemContentProps
+#### List
 
 | attribute | explain           | type              | Default value |
 | --------- | ----------------- | ----------------- | ------------- |
@@ -513,8 +513,8 @@ export default () => {
 
 ### Style variables
 
-| attribute             | explain              | Default value | global variable                |
-| --------------------- | -------------------- | ------------- | ------------------------------ |
-| --small-item-padding  | Small child padding  | 5px 12px      | --bui-list-small-item-padding  |
-| --medium-item-padding | Medium child padding | 18px 12px     | --bui-list-medium-item-padding |
-| --large-item-padding  | Large child padding  | 20px 12px     | --bui-list-large-item-padding  |
+| attribute             | explain                         | Default value | global variable                |
+| --------------------- | ------------------------------- | ------------- | ------------------------------ |
+| --small-item-padding  | Inner margin of small sub items | 5px 12px      | --bui-list-small-item-padding  |
+| --medium-item-padding | Median sub item margin          | 18px 12px     | --bui-list-medium-item-padding |
+| --large-item-padding  | Large sub item margin           | 20px 12px     | --bui-list-large-item-padding  |

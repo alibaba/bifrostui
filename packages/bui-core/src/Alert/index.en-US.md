@@ -1,9 +1,9 @@
 ---
 group: feedback
-name: Alert
+name: Alert warning prompt
 ---
 
-# Alert
+# Alert warning prompt
 
 The Alert component is commonly used to display brief information that needs attention, and to show warning or success prompts to users.
 
@@ -11,7 +11,7 @@ The Alert component is commonly used to display brief information that needs att
 
 ### Basic Usage
 
-The Alert component can be used by`children`set the content of the alert component.
+The Alert component can be set to its content by using 'children'.
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
@@ -28,8 +28,8 @@ export default () => {
 
 ### Warning box icon
 
-`icon`allow you to add icons to the header of the alert component, which will override the default alert icon.
-You can also set it up through`icon`the attribute is`false`to remove the default alert icon.
+Icon allows you to add icons to the header of the Alert component, which will override the default Alert icon.
+You can also remove the default Alert icon by setting the 'icon' attribute to 'false'.
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
@@ -54,6 +54,8 @@ export default () => {
 ```
 
 ### Warning box scrolling
+
+The marquee attribute allows you to scroll through the content of the Alert component.
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
@@ -80,8 +82,8 @@ export default () => {
 
 ### Warning box theme
 
-The Alert component provides 5 color themes:`warning`、`success`、`error`、`info`、`primary`，you can do it through`color`attribute setting component theme color.
-Default value of color attribute:`primary`。
+The Alert component provides 5 color themes: 'warning', 'success',' error ',' info ', and' primary '. You can set the component theme color through the' color 'attribute.
+The default value for the color attribute is' primary '.
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
@@ -106,9 +108,9 @@ export default () => {
 
 ### Warning box mode
 
-The Alert component supports two modes: fill in`standard`、outline`outlined`。
-You can do it through`variant`attribute setting component mode.
-`variant`default attribute values:`standard`。
+The Alert component supports two modes: fill in 'standard' and outline 'outlined'.
+You can set the component mode through the 'variant' property.
+The default value for the variable attribute is' standard '.
 
 ##### standard
 
@@ -175,9 +177,9 @@ export default () => {
 
 ### Operation area
 
-The Alert component provides`action`attribute, used to close or revoke alerts.
+The Alert component provides an 'action' attribute for closing or revoking alerts.
 Alert provides an onClose callback. If the business has configured nClose and the action has not set its attribute, a close icon will be displayed at the end of the Alert component.
-`action`attributes can be used to override this close icon and customize the action area.
+The 'action' attribute can be used to override this close icon and customize the action area.
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
@@ -220,7 +222,7 @@ export default () => {
 
 ### API
 
-#### AlertProps
+#### AlertProperts
 
 | attribute | explain                                   | type                                                      | Default value |
 | --------- | ----------------------------------------- | --------------------------------------------------------- | ------------- |
@@ -232,12 +234,12 @@ export default () => {
 
 ### Style variables
 
-| attribute                | explain                    | Default value      | global variable                    |
-| ------------------------ | -------------------------- | ------------------ | ---------------------------------- |
-| --content-marquee-speed  | Content scroll speed       | 10s                | --bui-alert-content-marquee-speed  |
-| --padding                | padding                    | 8px                | --bui-alert-padding                |
-| --line-height            | row height                 | 16px               | --bui-alert-line-height            |
-| --default-icon-font-size | Default icon font size     | 15px               | --bui-alert-default-icon-font-size |
-| --action-margin-left     | Operating area left margin | 16px               | --bui-alert-action-margin-left     |
-| --icon-margin-right      | Icon right margin          | --bui-spacing-xs   | --bui-alert-icon-margin-right      |
-| --icon-font-size         | Icon font size             | --bui-title-size-4 | --bui-alert-icon-font-size         |
+| attribute                | explain                       | Default value      | global variable                    |
+| ------------------------ | ----------------------------- | ------------------ | ---------------------------------- |
+| --content-marquee-speed  | Content scrolling speed       | 10s                | --bui-alert-content-marquee-speed  |
+| --padding                | padding                       | 8px                | --bui-alert-padding                |
+| --line-height            | Hang Gao                      | 16px               | --bui-alert-line-height            |
+| --default-icon-font-size | Default icon font size        | 15px               | --bui-alert-default-icon-font-size |
+| --action-margin-left     | Left margin of operation area | 16px               | --bui-alert-action-margin-left     |
+| --icon-margin-right      | Icon right margin             | --bui-spacing-xs   | --bui-alert-icon-margin-right      |
+| --icon-font-size         | Icon font size                | --bui-title-size-4 | --bui-alert-icon-font-size         |

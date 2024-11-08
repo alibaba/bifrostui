@@ -1,11 +1,11 @@
 ---
 group: feedback
-name: Backdrop
+name: Backdrop pop-up background
 ---
 
-# Backdrop
+# Backdrop pop-up background
 
-As a part of [Modal](/cores/modal), the popup background is implemented using Fade.
+As a part of [Today popup] (/cores/modal), the popup background is implemented using Fade.
 Generally speaking, you should use Modal directly instead of this component.
 
 ## Code demonstration
@@ -67,7 +67,7 @@ export default () => {
       <Backdrop
         open={open}
         onClick={handleClick}
-        invisible
+        invisible={true}
         style={{ zIndex: 'var(--bui-z-index-modal-backdrop)' }}
       />
     </Stack>
@@ -110,14 +110,14 @@ export default () => {
 
 ## API
 
-| attribute          | explain                                          | type                                 | Default value |
-| ------------------ | ------------------------------------------------ | ------------------------------------ | ------------- |
-| open               | Is it displayed                                  | boolean                              | false         |
-| invisible          | Is it transparent or invisible (still clickable) | boolean                              | false         |
-| transitionDuration | Fade in/fade out time                            | number \| TransitionProps['timeout'] |               |
+| attribute          | explain                                          | type                                | Default value |
+| ------------------ | ------------------------------------------------ | ----------------------------------- | ------------- |
+| open               | Is it displayed                                  | boolean                             | false         |
+| invisible          | Is it transparent or invisible (still clickable) | boolean                             | false         |
+| transitionDuration | Fade in/fade out time                            | number \|TransitionProps['timeout'] |               |
 
 ## Style variables
 
 | attribute          | explain          | Default value       | global variable                 |
 | ------------------ | ---------------- | ------------------- | ------------------------------- |
-| --background-color | background color | rgba(0, 0, 0, 0.68) | --bui-backdrop-background-color |
+| --background-color | Background color | rgba(0, 0, 0, 0.68) | --bui-backdrop-background-color |

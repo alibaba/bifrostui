@@ -1,9 +1,9 @@
 ---
 group: feedback
-name: Drawer
+name: Drawer drawer
 ---
 
-# Drawer
+# Drawer drawer
 
 A floating panel that slides out from the edge of the screen.
 
@@ -11,7 +11,7 @@ A floating panel that slides out from the edge of the screen.
 
 ### Basic usage
 
-Adopt`open`as well as`onClose`control whether the drawer is displayed
+Control whether the drawer is displayed through 'open' and 'onClose'
 
 ```tsx
 import { Button, Drawer, Stack } from '@bifrostui/react';
@@ -44,7 +44,7 @@ export default () => {
 
 ### Direction of appearance
 
-By default, it appears from the bottom and supports settings`anchor`control the direction of appearance, default is from the bottom
+By default, it appears from the bottom and supports controlling the appearance direction through setting 'anchor'. It appears from the bottom by default
 
 ```tsx
 import { Button, Drawer, Stack } from '@bifrostui/react';
@@ -123,7 +123,7 @@ export default () => {
 
 ### Specify container
 
-By default, Drawer is rendered to the root node of the page, H5 is`document.body`,the mini program is`Page Node`。
+By default, Drawer is rendered to the root node of the page, H5 is' document. body ', and the mini program is the' page node '.
 
 ```tsx
 import { Button, Drawer, Stack } from '@bifrostui/react';
@@ -161,16 +161,16 @@ export default () => {
 
 ### API
 
-| attribute          | explain                               | type                                                         | Default value   |
-| ------------------ | ------------------------------------- | ------------------------------------------------------------ | --------------- |
-| anchor             | The position where the Drawer appears | `left` \| `top` \| `right` \| `bottom`                       | `text`          |
-| open               | Is it displayed                       | boolean                                                      | false           |
-| hideBackdrop       | Do you want to hide the mask layer    | boolean                                                      | false           |
-| container          | Element nodes mounted on drawers      | ModalProps['container']                                      | Pages and Nodes |
-| SlideProps         | Props for Slide Animation             | Partial<SlideProps\>                                         | -               |
-| transitionDuration | Animation execution time              | number \| { appear?: number, enter?: number, exit?: number } | -               |
-| onClose            | Close drawer callback                 | ModalProps['onClose']                                        | -               |
-| disablePortal      | Prohibit Portal Capability            | boolean                                                      | false           |
-| contentProps       | Props of drawer content element nodes | React.HTMLAttributes<HTMLDivElement\>                        | -               |
+| attribute          | explain                               | type                                                        | Default value   |
+| ------------------ | ------------------------------------- | ----------------------------------------------------------- | --------------- |
+| anchor             | The position where the Drawer appears | `left` \|`top` \|`right` \|`bottom`                         | `text`          |
+| open               | Is it displayed                       | boolean                                                     | false           |
+| hideBackdrop       | Do you want to hide the mask layer    | boolean                                                     | false           |
+| container          | Element nodes mounted on drawers      | ModalProps['container']                                     | Pages and Nodes |
+| SlideProps         | Props for Slide Animation             | Partial<SlideProps\>                                        | -               |
+| transitionDuration | Animation execution time              | number \|{ appear?: number, enter?: number, exit?: number } | -               |
+| onClose            | Close drawer callback                 | ModalProps['onClose']                                       | -               |
+| disablePortal      | Prohibit Portal Capability            | boolean                                                     | false           |
+| contentProps       | Props of drawer content element nodes | React.HTMLAttributes<HTMLDivElement\>                       | -               |
 
-`Drawer`inherited from`Modal`other attributes can be found in [modern api] (/cores/modal? # api)
+Drawer inherits from Modal. Other properties can be found in the Modal API (/cores/modal? # API)

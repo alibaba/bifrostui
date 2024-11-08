@@ -1,9 +1,9 @@
 ---
 group: Data Display
-name: TabBar
+name: TabBar bottom navigation bar
 ---
 
-# TabBar
+# TabBar bottom navigation bar
 
 Bottom navigation bar, used to switch between different pages
 
@@ -11,7 +11,7 @@ Bottom navigation bar, used to switch between different pages
 
 ### Basic usage
 
-By monitoring`onChange`update the document`current`change,`current`required, the first element is selected by default.
+Update the 'current' value change by listening to the 'onChange' event. The 'current' value is mandatory and the first element is selected by default.
 
 ```tsx
 import React, { useState } from 'react';
@@ -36,7 +36,7 @@ export default () => {
 
 ### Customize icons
 
-Can be done through`icon`、`activeIcon`attribute customization`TabBarItem`default icon, selected icon
+You can customize the default icon and selected icon of TabBarItem through the 'icon' and 'activeIcon' properties
 
 ```tsx
 import React, { useState } from 'react';
@@ -80,7 +80,7 @@ export default () => {
 
 ### Custom Theme
 
-Support through`color`、`activeColor`set default theme color and select theme color to achieve custom icon and font color
+Support setting default theme colors and selecting theme colors through 'color' and 'activeColor' to achieve custom icon and font colors
 
 ```tsx
 import React, { useState } from 'react';
@@ -131,7 +131,7 @@ export default () => {
 
 ### Logo Tip
 
-Support setting through the BadgeProps attribute`TabBarItem`the appropriate logo content
+Support setting the corresponding logo content for 'TabBarItem' through the BadgeProps property
 
 ```tsx
 import React, { useState } from 'react';
@@ -177,14 +177,14 @@ export default () => {
 
 #### TabBar
 
-| attribute   | explain                                    | type                                                                            | Default value |
-| ----------- | ------------------------------------------ | ------------------------------------------------------------------------------- | ------------- |
-| current     | The currently selected tag index value     | number                                                                          | 0             |
-| color       | Default Theme Color                        | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` \| `vip` | `default`     |
-| activeColor | Select theme color                         | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` \| `vip` | `primary`     |
-| onChange    | The callback when selecting a certain item | (e:SyntheticEvent, data:{value:number}) => void                                 | -             |
+| attribute   | explain                                    | type                                                                      | Default value |
+| ----------- | ------------------------------------------ | ------------------------------------------------------------------------- | ------------- |
+| current     | The currently selected tag index value     | number                                                                    | 0             |
+| color       | Default Theme Color                        | `primary` \|`info` \|`success` \|`warning` \|`danger` \|`default` \|`vip` | `default`     |
+| activeColor | Select theme color                         | `primary` \|`info` \|`success` \|`warning` \|`danger` \|`default` \|`vip` | `primary`     |
+| onChange    | The callback when selecting a certain item | (e:SyntheticEvent, data:{value:number}) => void                           | -             |
 
-#### TabBarItem
+#### Tabbar Item
 
 | attribute  | explain     | type       | Default value |
 | ---------- | ----------- | ---------- | ------------- |
@@ -193,7 +193,17 @@ export default () => {
 | activeIcon | Select icon | ReactNode  |
 | BadgeProps | logo        | BadgeProps | -             |
 
-#### Style variables
+### Style variables
+
+#### TabBar
+
+| attribute | explain | Default value | global variable       |
+| --------- | ------- | ------------- | --------------------- |
+| --width   | width   | 100%          | --bui-tab-bar-width   |
+| --height  | height  | 50px          | --bui-tab-bar-height  |
+| --padding | padding | 6px 0         | --bui-tab-bar-padding |
+
+#### Tabbar Item
 
 | attribute   | explain    | Default value          | global variable             |
 | ----------- | ---------- | ---------------------- | --------------------------- |

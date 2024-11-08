@@ -1,9 +1,9 @@
 ---
 group: Data Display
-name: Countdown
+name: Countdown countdown
 ---
 
-# Countdown
+# Countdown countdown
 
 Used for real-time display of countdown values.
 
@@ -11,7 +11,7 @@ Used for real-time display of countdown values.
 
 ### Basic Usage
 
-Adopt`remainingTime`control the remaining duration of the countdown, and`endTimestamp`choose one of the two fields.
+Control the remaining duration of the countdown through 'remaningTime' and choose one from the 'endTimestamp' field.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -28,7 +28,7 @@ export default () => {
 
 ### End timestamp
 
-Adopt`endTimestamp`specify the end time of the countdown, and`remainingTime`choose one of the two fields, priority ratio`remainingTime`high.
+Specify the countdown end time point through 'endTimestamp', choose one from the 'remaningTime' field, and prioritize it over the 'remaningTime' field.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -45,7 +45,7 @@ export default () => {
 
 ### Calculate server timestamp
 
-Adopt`serverTimestamp`set server timestamp, which can be used in conjunction with`endTimestamp`when used in conjunction, this attribute can be used to prevent situations where local time is modified and countdown errors occur.
+By setting the server timestamp through 'serverless timestamp', it can be used in conjunction with 'endtimestamp'. This property can be used to prevent situations where local time is modified and countdown errors occur.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -66,7 +66,7 @@ export default () => {
 
 ### Format countdown timer
 
-Adopt`format`the format of the countdown can be set after formatting, and the default value is`HH:mm:ss`。
+The countdown can be formatted using 'format', with the default value being 'HH: mm: ss'.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -86,7 +86,7 @@ export default () => {
 
 ### Countdown unit style
 
-Adopt`unitStyle`countdown unit styles can be set.
+The countdown unit style can be set through 'unitStyle'.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -111,7 +111,7 @@ export default () => {
 
 ### Countdown numerical style
 
-Can be done through`valueStyle`customize the style of the first and second digits of the countdown timer.
+The style of the first and second digits of the countdown can be customized through 'valueStyle'.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -142,7 +142,7 @@ export default () => {
 
 ### The style of countdown timer
 
-Can be done through`timeSliceStyle`customize the style of each time slot for the countdown timer.
+You can customize the style of each countdown time slot through 'timeSliceStyle'.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -168,7 +168,7 @@ export default () => {
 
 ### Countdown End Event
 
-Triggered when the countdown ends`onFinish`event.
+When the countdown ends, the 'onFinnish' event will be triggered.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -189,7 +189,7 @@ export default () => {
 
 ### Countdown change event
 
-Triggered when the countdown changes`onChange`event.
+When the countdown changes, the 'onChange' event will be triggered.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -210,7 +210,7 @@ export default () => {
 
 ### Customize countdown content
 
-Can be done through`renderContent`custom rendering countdown component content.
+You can customize the content of the countdown component by using renderContent .
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -251,7 +251,7 @@ export default () => {
 | onChange        | Triggered when the countdown time changes                                                                                                                          | (data: { value: CurrentTime }) => void; | -             |
 | renderContent   | Customize rendering content                                                                                                                                        | (data: CurrentTime) => React.ReactNode; | -             |
 
-#### CurrentTime
+#### Today
 
 | attribute     | explain                                 | type   | Default value |
 | ------------- | --------------------------------------- | ------ | ------------- |
@@ -269,6 +269,6 @@ export default () => {
 | attribute           | explain           | Default value            | global variable                   |
 | ------------------- | ----------------- | ------------------------ | --------------------------------- |
 | --font-size         | Copy font size    | --bui-text-size-1        | --bui-countdown-font-size         |
-| --color             | Copy font color   | --bui-color-fg-default   | --bui-countdown-color             |
+| --color             | Text font color   | --bui-color-fg-default   | --bui-countdown-color             |
 | --font-weight       | Copy font weight  | --bui-font-weight-normal | --bui-countdown-font-weight       |
-| --slice-unit-margin | separator spacing | 0 2px                    | --bui-countdown-slice-unit-margin |
+| --slice-unit-margin | Delimiter spacing | 0 2px                    | --bui-countdown-slice-unit-margin |

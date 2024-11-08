@@ -1,18 +1,18 @@
 ---
 group: Basic input
-name: Select
+name: Select dropdown selector
 ---
 
-# Select
+# Select dropdown selector
 
 The Select component is used to collect user provided information from a list of options.
-Currently, the Select component only supports`Single Choice`，please wait for us to unlock more features.
+At present, the Select component only supports' single selection '. Please wait for us to unlock more features.
 
 ## Code demonstration
 
 ### Basic usage
 
-By combining`SelectOption` item, achieving a dropdown selection effect.
+By combining the 'SelectOption' components, the dropdown selection effect can be achieved.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
@@ -48,7 +48,7 @@ export default () => {
 
 ### placeholder
 
-Support through`placeholder` set the selection box to display default content.
+Support configuring the default display content of the selection box through 'placeholder'.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
@@ -84,7 +84,7 @@ export default () => {
 
 ## Initialize default values
 
-Support through`defaultValue`attribute, initial selected value.
+Support initial selection value through the 'defaultValue' attribute.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
@@ -120,9 +120,9 @@ export default () => {
 
 ## Uncontrolled/Uncontrolled
 
-By whether it is transmitted or not`value` distinguish whether it is a controlled component:
-Controlled situation business passed`onChange`callback control component value;
-Uncontrolled situations can be addressed through`inputRef` retrieve component value;
+Distinguish whether it is a controlled component by passing in 'value':
+Under controlled circumstances, the business retrieves the control component value through 'onChange' callback;
+Uncontrolled situations can obtain component values through 'inputRef';
 
 ```tsx
 import { Alert, Button, Select, SelectOption, Stack } from '@bifrostui/react';
@@ -194,8 +194,8 @@ export default () => {
 
 ## Disable
 
-Provide`disabled`attribute to prohibit user operations.
-You can do it through`Select`上set up`disabled`all operations are prohibited, but can also be done in`SelectOption`set up`disabled`对an option prohibits operation.
+Provide the 'disabled' attribute to prohibit user operations.
+You can disable all operations by setting 'disabled' on 'Select', or disable operations on a specific option by setting 'disabled' on 'SelectOption'.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
@@ -249,7 +249,7 @@ The following is an example of a customized Select component.
 
 #### customize icons
 
-Provide the ability to customize icons, which can be achieved through`icon` customize icons based on sex.
+Provide the ability to customize icons, which can be customized through the 'icon' attribute.
 
 ```tsx
 import React from 'react';
@@ -286,7 +286,7 @@ export default () => {
 
 #### Customized options display content
 
-When you don't want to use`label` for options`SelectOptions` when displaying content, it can be done through`children` customized options display content.
+When you do not want to use 'label' as an option 'SelectOptions' to display content, you can customize the option display content through' children '.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
@@ -328,7 +328,7 @@ export default () => {
 
 ### Customized selector displays results
 
-`label` hold`ReactNode` type, when you want to customize a selector`Select`the content can be displayed through`SelectOption`item attribute:`label`与`children`，the combination of the two achieves customization.
+Label 'supports the' ReactNode 'type. When you want to customize the display content of the selector' Select ', you can use the' SelectOption 'component properties:' label 'and' children ', and use them together to achieve customization.
 
 ```tsx
 import React from 'react';
@@ -377,7 +377,7 @@ export default () => {
 
 ## event
 
-The Select component not only provides basic`onChange`adjustment, also provides options`open`、`fold`event callback.
+The Select component not only provides basic 'onChange' callbacks, but also event callbacks for options such as' unfold 'and' collapse '.
 
 ```tsx
 import { Alert, Select, SelectOption, Stack } from '@bifrostui/react';
@@ -426,21 +426,21 @@ export default () => {
 
 ##### SelectProps
 
-| attribute     | explain                                       | type                                            | Default value |
-| ------------- | --------------------------------------------- | ----------------------------------------------- | ------------- |
-| inputRef      | Selector inputRef                             | Ref                                             | -             |
-| inputProps    | Selector `<input/>` tag transparent attribute | React.InputHTMLAttributes                       | -             |
-| BackdropProps | Mask<Backdrop/>tag transparent attribute      | React.DivHTMLAttributes                         | -             |
-| name          | Selector `<input/>` tag name identifier       | string                                          | -             |
-| value         | Select value with selector                    | string ｜ number                                | -             |
-| defaultValue  | Selector default value                        | string ｜ number                                | -             |
-| placeholder   | Selector placeholder content                  | ReactNode                                       | -             |
-| icon          | Selector icon                                 | ReactNode                                       | -             |
-| disabled      | Is the selector clickable                     | boolean                                         | false         |
-| open          | Is the selector dropdown option enabled       | boolean                                         | false         |
-| onChange      | The callback when selecting a certain item    | (e:SyntheticEvent, data:{value:string}) => void | -             |
-| onOpen        | Callback when expanding dropdown menu         | () => void                                      | -             |
-| onClose       | Callback when folding dropdown menu           | () => void                                      | -             |
+| attribute     | explain                                            | type                                            | Default value |
+| ------------- | -------------------------------------------------- | ----------------------------------------------- | ------------- |
+| inputRef      | Selector inputRef                                  | Ref                                             | -             |
+| inputProps    | selector `<input/>` Tag transparent attribute      | React.InputHTMLAttributes                       | -             |
+| BackdropProps | Mask layer `<Backdrop/>` Tag transparent attribute | React.DivHTMLAttributes                         | -             |
+| name          | selector `<input/>` Label name identification      | string                                          | -             |
+| value         | Select value with selector                         | string ｜ number                                | -             |
+| defaultValue  | Selector default value                             | string ｜ number                                | -             |
+| placeholder   | Selector placeholder content                       | ReactNode                                       | -             |
+| icon          | Selector icon                                      | ReactNode                                       | -             |
+| disabled      | Is the selector clickable                          | boolean                                         | false         |
+| open          | Is the selector dropdown option enabled            | boolean                                         | false         |
+| onChange      | The callback when selecting a certain item         | (e:SyntheticEvent, data:{value:string}) => void | -             |
+| onOpen        | Callback when expanding dropdown menu              | () => void                                      | -             |
+| onClose       | Callback when folding dropdown menu                | () => void                                      | -             |
 
 ##### SelectOptionProps
 

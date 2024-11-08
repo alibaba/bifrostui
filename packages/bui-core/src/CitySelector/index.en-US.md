@@ -1,9 +1,9 @@
 ---
 group: Data Display
-name: Cityselector
+name: Cityselector City Selection
 ---
 
-# Cityselector
+# Cityselector City Selection
 
 City selection
 
@@ -384,20 +384,20 @@ export default () => {
 
 ### Style variables
 
-| attribute                       | explain                                 | Default value                  | global variable                                   |
-| ------------------------------- | --------------------------------------- | ------------------------------ | ------------------------------------------------- |
-| --select-item-width             | Horizontal option width                 | 111px                          | --bui-city-selector-item-width                    |
-| --select-item-height            | Horizontal option height                | 36px                           | --bui-city-selector-item-height                   |
-| --select-item-border-radius     | Horizontal options rounded corners      | 20px                           | --bui-city-selector-item-border-radius            |
-| --select-item-margin            | Horizontal option margins               | 4.5px 0 4.5px 9px              | --bui-city-selector-item-margin                   |
-| --title-height                  | title height                            | 45px                           | --bui-city-selector-title-height                  |
-| --title-line-height             | Title row height                        | 45px                           | --bui-city-selector-title-line-height             |
-| --btn-close-size                | Close button container width and height | 45px                           | --bui-city-selector-btn-close-size                |
-| --btn-close-font-size           | Close button font size                  | 20px                           | --bui-city-selector-btn-close-font-size           |
-| --container-with-title-height   | City container height with title        | calc(100% - --title-height)    | --bui-city-selector-container-with-title-height   |
-| --city-container-min-height     | City container minimum height           | 500px                          | --bui-city-selector-city-container-min-height     |
-| --select-city-buttons-padding   | Horizontal button container padding     | 7.5px 0 0 3px                  | --bui-city-selector-select-city-buttons-padding   |
-| --select-city-title-line-height | City index title bar row height         | 15px                           | --bui-city-selector-select-city-title-line-height |
-| --list-item-height              | city ​​item height                      | 45px                           | --bui-city-selector-list-item-height              |
-| --city-index-has-title-top      | City index container distance from top  | calc(50% + --title-height / 2) | --bui-city-selector-city-index-has-title-top      |
-| --index-item-height             | City index item height                  | 20px                           | --bui-city-selector-index-item-height             |
+| attribute                       | explain                                           | Default value                  | global variable                                   |
+| ------------------------------- | ------------------------------------------------- | ------------------------------ | ------------------------------------------------- |
+| --select-item-width             | Horizontal option width                           | 111px                          | --bui-city-selector-item-width                    |
+| --select-item-height            | Horizontal option height                          | 36px                           | --bui-city-selector-item-height                   |
+| --select-item-border-radius     | Horizontal options with rounded corners           | 20px                           | --bui-city-selector-item-border-radius            |
+| --select-item-margin            | Horizontal option margin                          | 4.5px 0 4.5px 9px              | --bui-city-selector-item-margin                   |
+| --title-height                  | Title height                                      | 45px                           | --bui-city-selector-title-height                  |
+| --title-line-height             | Title line height                                 | 45px                           | --bui-city-selector-title-line-height             |
+| --btn-close-size                | Close button container width and height           | 45px                           | --bui-city-selector-btn-close-size                |
+| --btn-close-font-size           | Close button font size                            | 20px                           | --bui-city-selector-btn-close-font-size           |
+| --container-with-title-height   | City container height with title                  | calc(100% - --title-height)    | --bui-city-selector-container-with-title-height   |
+| --city-container-min-height     | Minimum height of urban container                 | 500px                          | --bui-city-selector-city-container-min-height     |
+| --select-city-buttons-padding   | Horizontal button container inner margin          | 7.5px 0 0 3px                  | --bui-city-selector-select-city-buttons-padding   |
+| --select-city-title-line-height | City index title bar row height                   | 15px                           | --bui-city-selector-select-city-title-line-height |
+| --list-item-height              | City item height                                  | 45px                           | --bui-city-selector-list-item-height              |
+| --city-index-has-title-top      | Distance from the top of the city index container | calc(50% + --title-height / 2) | --bui-city-selector-city-index-has-title-top      |
+| --index-item-height             | City index item height                            | 20px                           | --bui-city-selector-index-item-height             |

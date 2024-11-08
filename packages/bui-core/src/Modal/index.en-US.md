@@ -1,9 +1,9 @@
 ---
 group: feedback
-name: Modal
+name: Modal pop-up window
 ---
 
-# Modal
+# Modal pop-up window
 
 Basic floating layer components.
 Provides the ability to draw custom content at the top of the main view and isolate interaction with lower level content.
@@ -61,8 +61,8 @@ export default () => {
 
 ### Control the bottom mask
 
-Use`hideBackdrop` rendering the bottom mask (without triggering a click, you need to implement the closing logic yourself)
-Use`BackdropProps` `invisible` the mask layer is not visible (still triggering click)
+Use 'hideBackdrop' to not render the bottom mask (without triggering a click, you need to implement the shutdown logic yourself)
+Use the 'invisible' feature of BackdropProps to make the mask layer invisible (still triggering clicks)
 
 ```tsx
 import { Button, Modal, Stack } from '@bifrostui/react';
@@ -150,7 +150,7 @@ export default () => {
 ### Slide/Roll Penetration
 
 Modal distinguishes the target of each sliding/scrolling event and prevents manipulation of the page below the pop-up layer during its display.
-If this behavior causes trouble, use`disableScrollLock` close this characteristic
+If this behavior causes trouble, use 'disableScrollLock' to disable this feature
 
 ```tsx
 import { Button, Modal, Stack } from '@bifrostui/react';
@@ -227,7 +227,7 @@ export default () => {
 
 ### Control component uninstallation
 
-Adopt`keepMounted`control`open` the overall uninstallation timing of the component after false is to handle possible animation scenes (e.g. the sliding motion effect of the drawer part of the [drawer component] (/cores/drawer)).
+Control the overall uninstallation timing of components when 'open' becomes false through 'keepMounted' to handle possible animation scenes (e.g. the sliding motion effect of the drawer section of the [Drawer component] (/cores/drawer)).
 Passing 'true' indicates that the mod should not be uninstalled yet (e.g. the exit animation for internal elements is still in progress).
 
 ```tsx

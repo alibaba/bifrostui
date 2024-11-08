@@ -1,9 +1,9 @@
 ---
 group: Navigation
-name: NavBar
+name: NavBar navigation bar
 ---
 
-# NavBar
+# NavBar navigation bar
 
 Provide navigation components for pages, commonly found at the top of mobile pages
 
@@ -31,7 +31,7 @@ export default () => {
 
 ### Modify or hide the default icon on the left side
 
-The component supports modifying the style of the left return arrow by`leftIcon` delivery`ReactNode` type parameters, modify the left return arrow. when passing parameters as`false` situation, hide icon.
+The component supports modifying the style of the left return arrow by passing a parameter of type ReactNode to leftCon to modify the left return arrow. When the pass parameter is' false ', hide the icon.
 
 ```tsx
 /**
@@ -53,7 +53,7 @@ export default () => {
 
 ### Custom icon display
 
-By setting`IconProps`来control internal icons
+Control internal icons by setting 'IconProps'
 
 ```tsx
 /**
@@ -73,7 +73,7 @@ export default () => {
 
 ### Customize left copy
 
-By approaching`left` sexual transmission`ReactNode` type parameters, modify the text content to the left of the return arrow.
+Modify the text content to the left of the return arrow by passing a parameter of type ReactNode to the left attribute.
 
 ```tsx
 /**
@@ -93,7 +93,7 @@ export default () => {
 
 ### Add a title to the navigation bar
 
-The component supports custom titles through`title` sexual transmission`ReactNode` type parameters, complete the modification of the title.`string` the title of the type supports omitting the display of the excess part,`ReactNode` to achieve it on one's own.
+The component supports custom titles, which can be modified by passing parameters of type ReactNode to the title property The title of 'string' type supports omitting display beyond the limit, while 'ReactNode' needs to be implemented by oneself.
 
 ```tsx
 /**
@@ -116,7 +116,7 @@ export default () => {
 
 ### Customize the content on the right side
 
-Users can access it through`right` sexual transmission`ReactNode` type parameters are used to customize the content of the right area, refer to`@bifrostui/icons` the icon content.
+Users can customize the content of the right area by passing parameters of type ReactNode to the 'right' attribute, as shown in the icon content in '@ bifrostui/icons'.
 
 ```tsx
 /**
@@ -138,7 +138,7 @@ export default () => {
 
 ### Fixed at the top
 
-Users can access it through`fixed` sexual transmission`true` the navigation bar is fixed at the top of the page and can also be set`placeholder` sexual transmission`true` generate a placeholder block at the original location.
+Users can fix the navigation bar at the top of the page by passing 'true' to the 'fixed' property, and can also set the 'placeholder' property to pass' true 'to generate a placeholder block in its original position.
 
 ```tsx
 /**
@@ -160,14 +160,14 @@ export default () => {
 
 ## API
 
-### NavBar
+### Name
 
 | attribute   | explain                                                                                                                                  | type                                       | Default value               |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | --------------------------- |
 | className   | Component class name                                                                                                                     | string                                     | -                           |
 | title       | title                                                                                                                                    | ReactNode                                  | -                           |
 | left        | Customize the content on the left side of the navigation bar                                                                             | ReactNode                                  | -                           |
-| leftIcon    | Customize left arrow, false controls hide                                                                                                | ReactNode \| boolean                       | <ArrowBackwardLargeIcon \/> |
+| leftIcon    | Customize left arrow, false controls hide                                                                                                | ReactNode \|boolean                        | <ArrowBackwardLargeIcon \/> |
 | IconProps   | Transmitting attributes to internal icons                                                                                                | ISvgIconProps                              | -                           |
 | right       | Customize the content on the right side of the navigation bar                                                                            | ReactNode                                  | -                           |
 | fixed       | Is it fixed at the top                                                                                                                   | boolean                                    | false                       |
@@ -176,14 +176,14 @@ export default () => {
 
 ## Style variables
 
-| Attributes          | Description                           | Default Values            | Global Variables                  |
-| ------------------- | ------------------------------------- | ------------------------- | --------------------------------- |
-| -- width            | Navigation bar width                  | 100%                      | -- bui navbar width               |
-| -- height           | Navigation bar height                 | 45px                      | -- bui navbar height              |
-| --padding           |                                       | 0 8px                     | --bui-navbar-padding              |
-| -- title max width  | maximum width of navigation bar title | 60%                       | -- bui navbar title max width     |
-| -- icon size        | Navigation bar icon size              | 30px                      | -- bui navbar icon size           |
-| -- icon font size   | Navigation bar icon font              | var (-- bui-title-size-3) | -- bui-navbar-icon font size size |
-| -- background color | navigation bar background color       | var (-- bui color white)  | -- bui navbar background color    |
-| -- border bottom    | Navigation bar bottom border style    | none                      | -- bui navbar border bottom       |
-| -- z-index          | default navigation bar hierarchy      | auto                      | -- bui-navbar-z index             |
+| attribute          | explain                               | Default value           | global variable               |
+| ------------------ | ------------------------------------- | ----------------------- | ----------------------------- |
+| --width            | Navigation bar width                  | 100%                    | --bui-navbar-width            |
+| --height           | Navigation bar height                 | 45px                    | --bui-navbar-height           |
+| --padding          |                                       | 0 8px                   | --bui-navbar-padding          |
+| --title-max-width  | Maximum width of navigation bar title | 60%                     | --bui-navbar-title-max-width  |
+| --icon-size        | Navigation bar icon size              | 30px                    | --bui-navbar-icon-size        |
+| --icon-font-size   | Navigation bar icon font              | var(--bui-title-size-3) | --bui-navbar-icon-font-size   |
+| --background-color | Navigation bar background color       | var(--bui-color-white)  | --bui-navbar-background-color |
+| --border-bottom    | Bottom border style of navigation bar | none                    | --bui-navbar-border-bottom    |
+| --z-index          | Default hierarchy of navigation bar   | auto                    | --bui-navbar-z-index          |

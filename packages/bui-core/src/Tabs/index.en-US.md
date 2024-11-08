@@ -1,9 +1,9 @@
 ---
 group: Data Display
-name: Tabs
+name: Tabs tab
 ---
 
-# Tabs
+# Tabs tab
 
 Tab switching component.
 
@@ -59,7 +59,7 @@ export default () => {
 
 ### Support the use of tabs
 
-Use`tabs`generate tab.
+Generate tabs using 'tabs'.
 
 ```tsx
 import { Stack, TabPanel, Tabs } from '@bifrostui/react';
@@ -100,7 +100,7 @@ export default () => {
 
 ### Disabled status
 
-Adopt`disabled`prohibit tab from triggering clicks.
+Disable Tab from triggering clicks through 'disabled'.
 
 ```tsx
 import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
@@ -295,10 +295,10 @@ export default () => {
 | --------- | ------------------------------------------------------------------------- | -------------------------------------------------- | ------------- |
 | value     | The index value of the currently selected panel corresponds to tabs.index | string                                             | -             |
 | tabs      | Switch panel data                                                         | ITabItem[]                                         | -             |
-| align     | Alignment method                                                          | `start` \| `center`                                | `center`      |
+| align     | Alignment method                                                          | `start` \|`center`                                 | `center`      |
 | onChange  | Switch panel callback                                                     | (e?: SyntheticEvent,data?:{index: string}) => void | -             |
 
-### ITabItem
+### ITab
 
 | attribute | explain               | type            | Default value |
 | --------- | --------------------- | --------------- | ------------- |
@@ -324,12 +324,22 @@ export default () => {
 
 ## Style variables
 
-| attribute      | explain                          | Default value          | global variable |
-| -------------- | -------------------------------- | ---------------------- | --------------- |
-| --height       | Tabs height                      | 39px                   | -               |
-| --font-size    | font size                        | --bui-text-size-1      | -               |
-| --color        | Font color                       | --bui-color-fg-subtle  | -               |
-| --active-color | Activate Tab font color          | --bui-color-fg-default | -               |
-| --line-color   | Index line color                 | --bui-color-primary    | -               |
-| --line-width   | Width of the lower marking line  | 18px                   | -               |
-| --line-height  | Height of the lower marking line | 3PX                    | -               |
+### Tabs
+
+| attribute      | explain                          | Default value          | global variable        |
+| -------------- | -------------------------------- | ---------------------- | ---------------------- |
+| --height       | Tabs height                      | 39px                   | --bui-tabs-height      |
+| --font-size    | font size                        | --bui-text-size-1      | -                      |
+| --color        | Font color                       | --bui-color-fg-subtle  | -                      |
+| --active-color | Activate Tab font color          | --bui-color-fg-default | -                      |
+| --line-color   | Index line color                 | --bui-color-primary    | -                      |
+| --line-width   | Width of the lower marking line  | 18px                   | --bui-tabs-line-width  |
+| --line-height  | Height of the lower marking line | 3PX                    | --bui-tabs-line-height |
+| --mask-height  | Mask height                      | 100%                   | --bui-tabs-mask-height |
+
+### Tab
+
+| attribute | explain          | Default value                                    | global variable   |
+| --------- | ---------------- | ------------------------------------------------ | ----------------- |
+| --height  | Tab height       | 100%                                             | --bui-tab-height  |
+| --padding | Tab inner margin | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding |

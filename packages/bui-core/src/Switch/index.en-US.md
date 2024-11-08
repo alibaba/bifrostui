@@ -1,9 +1,9 @@
 ---
 group: Basic input
-name: Switch
+name: Switch switch
 ---
 
-# Switch
+# Switch switch
 
 By simply tapping the button, users can trigger actions or make choices.
 
@@ -11,7 +11,7 @@ By simply tapping the button, users can trigger actions or make choices.
 
 ### Basic usage
 
-`Switch` basic usage. the default color for switch is`primary`，the default size is`medium`。
+Basic usage of Switch. The default color for Switch is' primary ', and the default size is' medium'.
 
 ```tsx
 import React from 'react';
@@ -29,7 +29,7 @@ export default () => {
 
 ### color
 
-`Switch` the item provides 5 theme colors:`primary`、`info`、`success`、`warning`、`danger`，can be done through`color` set the theme color of the component.The default value of `color` is `primary`。
+The Switch component provides 5 theme colors: primary, info, success, warning, and danger. The component theme color can be set through color The default value for the color attribute is' primary '.
 
 ```tsx
 import React from 'react';
@@ -49,7 +49,7 @@ export default () => {
 
 ### size
 
-Can be done through`size`specify component size, optional values include`small`、`medium`、`large`。default is`medium`。
+The component size can be specified through 'size', with optional values including 'small', 'medium', and 'large'. The default is' medium '.
 
 ```tsx
 import React from 'react';
@@ -67,7 +67,7 @@ export default () => {
 
 ### With text and icons
 
-Adopting`checkedChildren`and`unCheckedChildren`to customize status text or icon.
+Customize status text or icons through 'checkedChildren' and 'uncheckedChildren'.
 
 ```tsx
 import React from 'react';
@@ -96,7 +96,7 @@ export default () => {
 
 ### Controlled use
 
-Adopt`checked`and`onChange`custom component selection status.
+Customize component selection status through 'checked' and 'onChange'.
 
 ```tsx
 import React, { useState } from 'react';
@@ -118,7 +118,7 @@ export default () => {
 
 ### Transmitting attributes transparently to internal input tags
 
-Adopt`inputProps`the input attribute can be transparently transmitted internally`input`sign.
+The input property passed through 'inputProps' can be passed transparently to the internal' input 'tag.
 
 ```tsx
 import React, { useState } from 'react';
@@ -144,7 +144,7 @@ export default () => {
 
 ### Unavailable state
 
-Adopting`disabled`to set`Switch`disabled state.
+Specify 'Switch' as disabled through 'disabled'.
 
 ```tsx
 import React from 'react';
@@ -166,17 +166,17 @@ export default () => {
 | ----------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------- | ------------- |
 | checked           | Selected or not                                                            | boolean                                                       | -             |
 | defaultChecked    | Whether it is selected by default, used when the component is uncontrolled | boolean                                                       | -             |
-| inputRef          | Ref for internal<input>tag                                                 | React.Ref<HTMLInputElement\>                                  | -             |
-| inputProps        | Standard properties of internal<input>tags                                 | React.InputHTMLAttributes<HTMLInputElement\>                  | -             |
-| name              | Internal `<input>` name identifier                                         | string                                                        | -             |
+| inputRef          | inside `<input>` Label's ref                                               | React.Ref<HTMLInputElement\>                                  | -             |
+| inputProps        | inside `<input>` Standard attributes of tags                               | React.InputHTMLAttributes<HTMLInputElement\>                  | -             |
+| name              | inside `<input>` Name identification                                       | string                                                        | -             |
 | checkedChildren   | Content when selected                                                      | ReactNode                                                     | -             |
 | unCheckedChildren | Content when not selected                                                  | ReactNode                                                     | -             |
 | disabled          | Do you want to disable it                                                  | boolean                                                       | false         |
-| size              | size                                                                       | `small` \| `medium` \| `large`                                | `medium`      |
-| color             | colour                                                                     | `info` \| `primary` \| `success` \| `warning` \| `danger`     | `primary`     |
+| size              | size                                                                       | `small` \|`medium` \|`large`                                  | `medium`      |
+| color             | colour                                                                     | `info` \|`primary` \|`success` \|`warning` \|`danger`         | `primary`     |
 | onChange          | The callback function during changes                                       | (e: React.SyntheticEvent,data: { checked: boolean;},) => void | -             |
 
-Other attributes can be found on the [label](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attributes)
+[UNK][UNK]属[UNK]见 [label](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attributes)
 
 ## Style variables
 

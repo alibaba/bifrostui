@@ -1,9 +1,9 @@
 ---
 group: Data Display
-name: Image
+name: Image picture
 ---
 
-# Image
+# Image picture
 
 On the basis of img tags, Placeholder and Fallback capabilities have been added, which are compatible with multi terminal native lazy loading and provide more comprehensive image components.
 
@@ -30,7 +30,7 @@ export default () => {
 ## Multiple filling modes
 
 Customize fill mode through fit parameter
-`widthFix` and `heightFix` mini program available
+WidthFix and HighFix are only available in mini programs
 
 ```tsx
 import React from 'react';
@@ -61,7 +61,7 @@ export default () => {
 ## Styles and other HTML attributes
 
 The properties directly passed to Image will appear on the top-level div
-If it needs to be transmitted to img, it can be used`imgProps`
+If you need to transfer it to img, you can use 'imgDrops'
 
 ```tsx
 import React from 'react';
@@ -118,7 +118,7 @@ export default () => {
         width={100}
         height={100}
         style={{ borderRadius: 4 }}
-        placeholder
+        placeholder={true}
       />
       <Image
         src="https://localhost:3000/failed"
@@ -154,18 +154,22 @@ export default () => {
       >
         重新加载
       </Button>
-      <Stack direction="row" spacing="8px">
-        <Image width={100} height={100} src={src} />
-        <Image width={100} height={100} src={src} placeholder />
-        <Image
-          width={100}
-          height={100}
-          src={src}
-          placeholder={
-            <div style={{ background: 'red', width: '100%', height: '100%' }} />
-          }
-        />
-      </Stack>
+      {
+        <Stack direction="row" spacing="8px">
+          <Image width={100} height={100} src={src} />
+          <Image width={100} height={100} src={src} placeholder={true} />
+          <Image
+            width={100}
+            height={100}
+            src={src}
+            placeholder={
+              <div
+                style={{ background: 'red', width: '100%', height: '100%' }}
+              />
+            }
+          />
+        </Stack>
+      }
     </>
   );
 };
@@ -173,19 +177,19 @@ export default () => {
 
 ## API
 
-| attribute   | explain                                      | type                                                                            | Default value |
-| ----------- | -------------------------------------------- | ------------------------------------------------------------------------------- | ------------- |
-| src         | Image address                                | string                                                                          | -             |
-| lazy        | Using native lazy loading                    | boolean                                                                         | false         |
-| alt         | Alternative Text                             | string                                                                          | -             |
-| fallback    | Occupancy during loading failure             | ReactNode                                                                       | -             |
-| placeholder | Occupancy during loading                     | ReactNode \| boolean                                                            | -             |
-| width       | image width                                  | string \| number                                                                | -             |
-| height      | Image height                                 | string \| number                                                                | -             |
-| fit         | Width height adaptation method               | `contain`\| `cover`\| `fill`\| `none`\| `scale-down`\| `widthFix`\| `heightFix` | `fill`        |
-| webp        | Analyzing Webp                               | boolean                                                                         | false         |
-| showMenu    | (Mini Program) Long press menu configuration | boolean                                                                         | false         |
-| imgProps    | Parameters transmitted transparently to img  | React.HTMLAttributes\<HTMLImageElement\>                                        | -             |
+| attribute   | explain                                      | type                                                                      | Default value |
+| ----------- | -------------------------------------------- | ------------------------------------------------------------------------- | ------------- |
+| src         | Image address                                | string                                                                    | -             |
+| lazy        | Using native lazy loading                    | boolean                                                                   | false         |
+| alt         | Alternative Text                             | string                                                                    | -             |
+| fallback    | Occupancy during loading failure             | ReactNode                                                                 | -             |
+| placeholder | Occupancy during loading                     | ReactNode \|boolean                                                       | -             |
+| width       | image width                                  | string \|number                                                           | -             |
+| height      | Image height                                 | string \|number                                                           | -             |
+| fit         | Width height adaptation method               | `contain`\|`cover`\|`fill`\|`none`\|`scale-down`\|`widthFix`\|`heightFix` | `fill`        |
+| webp        | Analyzing Webp                               | boolean                                                                   | false         |
+| showMenu    | (Mini Program) Long press menu configuration | boolean                                                                   | false         |
+| imgProps    | Parameters transmitted transparently to img  | React.HTMLAttributes\<HTMLImageElement\>                                  | -             |
 
 ## Style variables
 

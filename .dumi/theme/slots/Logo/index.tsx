@@ -5,7 +5,6 @@ import './index.less';
 const Logo: FC = () => {
   const { themeConfig } = useSiteData();
   const locale = useLocale();
-
   return (
     <Link
       className="dumi-default-logo"

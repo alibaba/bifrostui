@@ -1,14 +1,14 @@
 ---
 group: layout
-name: ScrollView
+name: Scroll View
 ---
 
-# ScrollView
+# Scroll View
 
 Used to handle scenes of internal element scrolling, and encapsulates scrolling and event callbacks for scrolling to the beginning and end, as well as actively controlling its scrolling position
 The mini program side directly uses Taro's ScrollView component, while the H5 side uses React to directly implement and align the input parameters.
 
-> Mini program documentation reference:< https://docs.taro.zone/docs/components/viewContainer/scroll-view >
+> 小程序文档参考：<https://docs.taro.zone/docs/components/viewContainer/scroll-view>
 
 ## Code demonstration
 
@@ -63,8 +63,8 @@ export default () => {
 
 ### Events and Control
 
-Use`onScrollToLower`,`onScrollToUpper` roll back to the beginning and end of the callback
-Afferent`scrollTop`/`scrollLeft`,`scrollIntoView` scroll to the element corresponding to the coordinate/id
+Use 'onCrollToLower' and 'onCrollToUpper' to receive callbacks for scrolling to the beginning and end
+Pass in 'scrollTop'/'scrollLeft', 'scrollIntoView' to scroll to the corresponding coordinate/ID element
 
 ```tsx
 import { ScrollView, Button, Stack } from '@bifrostui/react';
@@ -109,7 +109,7 @@ export default () => {
         scrollY
         scrollTop={h}
         scrollIntoView={id}
-        scrollIntoViewAlignment="nearest"
+        scrollIntoViewAlignment={'nearest'}
         onScrollToLower={onScrollToLower}
         onScrollToUpper={onScrollToUpper}
         onScroll={(e) => {

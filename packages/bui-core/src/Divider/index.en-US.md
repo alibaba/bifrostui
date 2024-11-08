@@ -1,9 +1,9 @@
 ---
 group: layout
-name: Divider
+name: Divider dividing line
 ---
 
-# Divider
+# Divider dividing line
 
 Splitting lines are commonly used to group the content of components in a list or layout.
 
@@ -30,7 +30,7 @@ export default () => {
 
 ### Dashed line
 
-You can also do it through`dashed` use sex to control whether the dividing line is a dashed line or a solid line.
+You can also control whether the dividing line is a dashed or solid line through the 'dashed' attribute.
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
@@ -50,7 +50,7 @@ export default () => {
 ### Direction of dividing line
 
 The default dividing line is vertical, but we also provide horizontal dividing lines.
-You can also do it through`direction` use sex to control the direction of the dividing line.
+You can also control the direction of the dividing line through the 'direction' attribute.
 
 ##### Vertical: Fully support the height of the parent element
 
@@ -88,7 +88,7 @@ export default () => {
 
 ### Customized segmentation line size
 
-The default dividing line supports the width/height of the parent element. You can also use`size` customize the size of the dividing line.
+The default dividing line supports the width/height of the parent element, and you can also customize the dividing line size through 'size'.
 
 ##### Vertical: Specify size
 
@@ -126,8 +126,8 @@ export default () => {
 
 ### A dividing line with explanatory text
 
-You can also render split lines with content. adopt`children` spread the copy.
-Currently only`direction`为`horizontal` support.
+You can also render split lines with content. Transmitting copy through 'children'.
+Currently, it is only supported when 'direction' is' horizontal '.
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
@@ -148,7 +148,7 @@ export default () => {
 
 ### Customized segmentation line
 
-For other special styles, they can be achieved through`style`customization, such as customizing the thickness of dividing lines.
+For other special styles, you can customize them yourself through 'style', such as customizing the thickness of the dividing line.
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';

@@ -1,9 +1,9 @@
 ---
 group: Data Display
-name: Tag
+name: Tag tags
 ---
 
-# Tag
+# Tag tags
 
 Tags are usually used to mark or supplement a visual element.
 
@@ -11,10 +11,10 @@ Tags are usually used to mark or supplement a visual element.
 
 ### Basic tags
 
-Tag support`Stroke `、`fill`、`Light Bright`there are three display modes, with the default being stroke labels.
-`Stroke label`：common white background with borders can be used in combination with fill buttons.
-`Fill in label`：users need to pay attention to the highest priority tag on the entire page to guide them to follow.
-`Light label`：the light mode is weaker in visual emphasis than the fill label, and the background and text have the same theme color.
+The label supports three display modes: 'stroke', 'fill', and 'light', with the default being the stroke label.
+Stroke label: a common form of white background with borders, which can be used in combination with fill buttons.
+Fill in tags: Users need to focus on the highest priority tag on the entire page to guide them to pay attention.
+Light Bright Label: The light bright mode is visually less emphasized than the fill label, and the background and text have the same theme color.
 
 ```tsx
 import { Stack, Tag } from '@bifrostui/react';
@@ -33,7 +33,7 @@ export default () => {
 
 ## theme
 
-Tag tag support`primary`、`success`、`info`、`warning`、`danger`topic definition. if color is not set, it defaults to`default`
+Tag tags support defining themes such as' primary ',' success', 'info', 'warning', and 'danger'. If color is not set, it defaults to 'default'
 
 ```tsx
 import { Stack, Tag } from '@bifrostui/react';
@@ -109,7 +109,7 @@ export default () => {
 
 ### Customize colors
 
-In addition to using the theme colors we provide, you can also`htmlColor`custom colors for sexuality.
+In addition to using the theme colors we provide, you can also customize colors through the 'htmlColor' property.
 
 ```tsx
 import { Stack, Tag } from '@bifrostui/react';
@@ -134,7 +134,7 @@ export default () => {
 
 ## combination
 
-In addition to individual tags, you can also combine them`TagGroup`implement combination labels for items.
+In addition to a single tag tag, you can also combine the 'TagGroup' component to achieve combined tags.
 
 ```tsx
 import { Stack, Tag, TagGroup } from '@bifrostui/react';
@@ -279,16 +279,28 @@ export default () => {
 
 ##### TagProps
 
-| attribute | explain                | type                                                                            | Default value |
-| --------- | ---------------------- | ------------------------------------------------------------------------------- | ------------- |
-| color     | Tag Theme Color        | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` \| `vip` | `default`     |
-| htmlColor | Customize label colors | string                                                                          | -             |
-| variant   | Tag type               | `contained` ｜`outlined`｜`light`                                               | `contained`   |
+| attribute | explain                | type                                                                      | Default value |
+| --------- | ---------------------- | ------------------------------------------------------------------------- | ------------- |
+| color     | Tag Theme Color        | `primary` \|`info` \|`success` \|`warning` \|`danger` \|`default` \|`vip` | `default`     |
+| htmlColor | Customize label colors | string                                                                    | -             |
+| variant   | Tag type               | `contained` ｜`outlined`｜`light`                                         | `contained`   |
 
 ### Style variables
 
-| attribute      | explain              | Default value          | global variable        |
-| -------------- | -------------------- | ---------------------- | ---------------------- |
-| --bg-color     | Tag background color | --bui-color-gay        | --bui-tag-bg-color     |
-| --border-color | Tag border color     | --bui-color-border-gay | --bui-tag-border-color |
-| --color        | Tag Text Color       | --bui-color-gay        | --bui-tag-color        |
+#### Tag
+
+| attribute      | explain                | Default value           | global variable        |
+| -------------- | ---------------------- | ----------------------- | ---------------------- |
+| --bg-color     | Tag background color   | --bui-color-gay         | --bui-tag-bg-color     |
+| --border-color | Tag border color       | --bui-color-border-gay  | --bui-tag-border-color |
+| --color        | Tag Text Color         | --bui-color-gay         | --bui-tag-color        |
+| --height       | Tag height             | 15px                    | --bui-tag-height       |
+| --line-height  | Tag row height         | 15px                    | --bui-tag-line-height  |
+| --padding      | Tag inner margin       | 0 var(--bui-spacing-xs) | --bui-tag-padding      |
+| --bg-color-vip | Tag Member Theme Color | fade(#ff866e, 30%)      | --bui-tag-color-vip    |
+
+#### TagGroup
+
+| attribute | explain                 | Default value | global variable                |
+| --------- | ----------------------- | ------------- | ------------------------------ |
+| --height  | Height of dividing line | 13%           | --bui-tag-group-divider-height |

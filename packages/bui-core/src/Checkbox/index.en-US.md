@@ -1,9 +1,9 @@
 ---
 group: Basic input
-name: Checkbox
+name: Checkbox checkbox
 ---
 
-# Checkbox
+# Checkbox checkbox
 
 Checkboxes provide users with multiple options to choose from or cancel selected items when displaying a series of options.
 
@@ -11,7 +11,7 @@ Checkboxes provide users with multiple options to choose from or cancel selected
 
 ### Basic Usage
 
-Adopt`checked`and`onChange`control status.
+Control the status through 'checked' and 'onChange'.
 
 ```tsx
 import { Checkbox, Stack } from '@bifrostui/react';
@@ -36,7 +36,7 @@ export default () => {
 
 ### Transmitting attributes transparently to internal input tags
 
-Adopt`inputProps`the input attribute passed in can be transparently transmitted internally`input` sign.
+The input property passed through 'inputProps' can be passed transparently to the internal' input 'tag.
 
 ```tsx
 import { Checkbox, Stack } from '@bifrostui/react';
@@ -64,7 +64,7 @@ export default () => {
 
 ### Internal input tags name and value
 
-`name`and`value`can be directly transmitted to the interior`input` sign, it won't be accepted`inputProps`the attribute with the same name passed in is overwritten.
+Name 'and' value 'can be directly passed through to the internal' input 'tag without being overwritten by the same named attribute passed in by' inputProps'.
 
 ```tsx
 import { Checkbox, Stack } from '@bifrostui/react';
@@ -91,7 +91,7 @@ export default () => {
 
 ### Copy position
 
-Adopt`labelPlacement`you can control the position of the text in the checkbox icon.
+The position of the text in the checkbox icon can be controlled through 'labelPlacement'.
 
 ```tsx
 import { Checkbox, Stack } from '@bifrostui/react';
@@ -149,7 +149,7 @@ export default () => {
 
 ### Customize icons
 
-Adopt`icon`can be customized as a selected status icon,`checkedIcon`customizable selection status icon.
+The 'icon' can be customized as a selected status icon, and the 'checkedIcon' can be customized as a selected status icon.
 
 ```tsx
 import React, { useState } from 'react';
@@ -177,7 +177,7 @@ export default () => {
 
 ### Disabled status
 
-Use`disabled` using components,`CheckboxGroup.disabled`can be disabled as a whole group.
+Use 'disabled' to disable components, and 'CheckboxGroup. disabled' can disable the entire group.
 
 ```tsx
 import { Checkbox, Stack } from '@bifrostui/react';
@@ -197,7 +197,7 @@ export default () => {
 
 #### Checkbox group
 
-`CheckboxGroup`and`Checkbox`combination can achieve checkbox grouping, and at this time`Checkbox`it should be passed in`value`attributes.
+The combination of CheckboxGroup and Checkbox can implement a checkbox group, and the Checkbox should be passed with the value attribute.
 
 ```tsx
 import { Checkbox, CheckboxGroup, Stack } from '@bifrostui/react';
@@ -223,7 +223,7 @@ export default () => {
 
 ### Controlled Checkbox
 
-Adopt`value`control`CheckboxGroup`components, through`checked`control`Checkbox`components.
+Control the CheckboxGroup component through 'value' and the Checkbox component through 'checked'.
 
 ```tsx
 import { Button, Checkbox, CheckboxGroup, Stack } from '@bifrostui/react';
@@ -266,7 +266,7 @@ export default () => {
 
 ### Use default values
 
-Use`defaultValue`appoint`CheckboxGroup`component default value, using`defaultChecked`appoint`Checkbox`component default values.
+Use 'defaultValue' to specify the default value of the 'CheckboxGroup' component, and use 'defaultChecked' to specify the default value of the 'Checkbox' component.
 
 ```tsx
 import { Checkbox, CheckboxGroup, Stack } from '@bifrostui/react';
@@ -310,22 +310,22 @@ export default () => {
 | -------------- | ------------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------- |
 | defaultChecked | Whether it is selected by default, used when the component is uncontrolled            | boolean                                                   | -             |
 | checked        | Is it selected to be used when the component is controlled                            | boolean                                                   | -             |
-| inputProps     | Standard properties of internal<input>tags                                            | React.InputHTMLAttributes<HTMLInputElement\>              | -             |
-| inputRef       | Ref for internal<input>tag                                                            | React.Ref<HTMLInputElement\>                              | -             |
-| name           | `<input>` Name identifier                                                             | string                                                    | -             |
+| inputProps     | inside `<input>` Standard attributes of tags                                          | React.InputHTMLAttributes<HTMLInputElement\>              | -             |
+| inputRef       | inside `<input>` Label's ref                                                          | React.Ref<HTMLInputElement\>                              | -             |
+| name           | `<input>` Name identification                                                         | string                                                    | -             |
 | value          | The value of the component, if using CheckboxGroup, this property should be passed in | string                                                    | -             |
 | disabled       | Do you want to disable it                                                             | boolean                                                   | false         |
 | icon           | Unchecked status icon                                                                 | ReactNode                                                 | -             |
 | checkedIcon    | Select status icon                                                                    | ReactNode                                                 | -             |
-| labelPlacement | Copy position                                                                         | `left` \| `top` \| `right` \| `bottom`                    | `right`       |
+| labelPlacement | Copy position                                                                         | `left` \|`top` \|`right` \|`bottom`                       | `right`       |
 | onChange       | The callback function during changes                                                  | (e: React.SyntheticEvent,data: {checked:boolean}) => void | -             |
 
 ## Style variables
 
-| attribute          | explain                    | Default value          | global variable                 |
-| ------------------ | -------------------------- | ---------------------- | ------------------------------- |
-| --label-color      | Text font color            | --bui-color-fg-default | --bui-checkbox-label-color      |
-| --label-font-size  | Copy font size             | --bui-text-size-1      | --bui-checkbox-label-font-size  |
-| --icon-font-size   | Icon font size             | --bui-title-size-2     | --bui-checkbox-icon-font-size   |
-| --disabled-opacity | Disable state transparency | 0.5                    | --bui-checkbox-disabled-opacity |
-| --icon-padding     | icon padding               | 5px                    | --bui-checkbox-icon-padding     |
+| attribute          | explain                     | Default value          | global variable                 |
+| ------------------ | --------------------------- | ---------------------- | ------------------------------- |
+| --label-color      | Text font color             | --bui-color-fg-default | --bui-checkbox-label-color      |
+| --label-font-size  | Copy font size              | --bui-text-size-1      | --bui-checkbox-label-font-size  |
+| --icon-font-size   | Icon font size              | --bui-title-size-2     | --bui-checkbox-icon-font-size   |
+| --disabled-opacity | Disable transparency status | 0.5                    | --bui-checkbox-disabled-opacity |
+| --icon-padding     | Icon inner margin           | 5px                    | --bui-checkbox-icon-padding     |

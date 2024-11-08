@@ -1,9 +1,9 @@
 ---
 group: layout
-name: Swiper
+name: Swiper slider view container
 ---
 
-# Swiper
+# Swiper slider view container
 
 A slider view container used for creating commonly used layouts such as slideshows and pagination displays.
 The mini program side directly used Taro's Swiper component, while the H5 side used Swiper/react and aligned the input parameters.
@@ -187,7 +187,7 @@ export default () => {
       circular
       interval={500}
       autoplay
-      effect="fade"
+      effect={'fade'}
       style={{ width: '300px', height: '200px' }}
     >
       <SwiperItem>
@@ -269,8 +269,8 @@ export default () => {
       interval={500}
       autoplay
       indicatorDots
-      indicatorColor="#880000"
-      indicatorActiveColor="#FF0000"
+      indicatorColor={'#880000'}
+      indicatorActiveColor={'#FF0000'}
       style={{ width: '300px', height: '200px' }}
     >
       <SwiperItem>
@@ -339,23 +339,23 @@ export default () => {
 
 ## API
 
-| attribute            | explain                                                        | type             | Default value |
-| -------------------- | -------------------------------------------------------------- | ---------------- | ------------- |
-| current              | Current page index                                             | number           | -             |
-| autoplay             | Automatic switching                                            | boolean          | false         |
-| interval             | Interval time for automatic switching                          | number           | 5000          |
-| duration             | Switch animation time                                          | number           | 500           |
-| displayMultipleItems | Number of images displayed on each screen                      | number           | 1             |
-| circular             | Circular display                                               | boolean          | false         |
-| vertical             | Vertical mode                                                  | boolean          | false         |
-| spaceBetween         | The distance between two sheets                                | number           | -             |
-| previousMargin       | Leakage of the width (height) of the previous sheet            | number \| string | -             |
-| nextMargin           | Leakage of the width (height) of the next sheet                | number \| string | -             |
-| indicatorDots        | Page indicator (small dot)                                     | boolean          | false         |
-| indicatorColor       | Page indicator is not the color of the current page            | string           | -             |
-| indicatorActiveColor | Page indicator: The color of the current page                  | string           | -             |
-| onChange             | Switching callback (triggered when releasing and switching)    | event=>void      | -             |
-| onAnimationFinish    | Animation end callback (triggered at the end of the animation) | event=>void      | -             |
+| attribute            | explain                                                        | type            | Default value |
+| -------------------- | -------------------------------------------------------------- | --------------- | ------------- |
+| current              | Current page index                                             | number          | -             |
+| autoplay             | Automatic switching                                            | boolean         | false         |
+| interval             | Interval time for automatic switching                          | number          | 5000          |
+| duration             | Switch animation time                                          | number          | 500           |
+| displayMultipleItems | Number of images displayed on each screen                      | number          | 1             |
+| circular             | Circular display                                               | boolean         | false         |
+| vertical             | Vertical mode                                                  | boolean         | false         |
+| spaceBetween         | The distance between two sheets                                | number          | -             |
+| previousMargin       | Leakage of the width (height) of the previous sheet            | number \|string | -             |
+| nextMargin           | Leakage of the width (height) of the next sheet                | number \|string | -             |
+| indicatorDots        | Page indicator (small dot)                                     | boolean         | false         |
+| indicatorColor       | Page indicator is not the color of the current page            | string          | -             |
+| indicatorActiveColor | Page indicator: The color of the current page                  | string          | -             |
+| onChange             | Switching callback (triggered when releasing and switching)    | event=>void     | -             |
+| onAnimationFinish    | Animation end callback (triggered at the end of the animation) | event=>void     | -             |
 
 ## Style variables
 

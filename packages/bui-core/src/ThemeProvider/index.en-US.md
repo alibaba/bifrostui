@@ -1,6 +1,6 @@
 ---
 group: theme
-name: ThemeProvider
+name: ThemeProvider Theme Configuration
 ---
 
 # ThemeProvider
@@ -30,84 +30,154 @@ export default () => {
 };
 ```
 
-### Custom Tokens
+## Theme customization
 
 BUI's tokens are divided into three levels:
 
-1. BUI built-in tokens: including`defaultLightToken`（global token with default highlight mode)`defaultDarkToken`（default global token for dark mode)`dmLightToken`（global token for barley highlight mode`dmDarkToken`（the global token for the dark mode of damai.
-2. Responsive Tokens: BUI is a mobile first responsive solution by default, and users can use it through`responsive` define responsive tokens.
-3. Component Tokens: BUI allows users to implement the component through`token` be flexible enough to customize component styles.
+1. BUI Built in Tokens: \* \* Includes defaultLightToken (global token for default highlight mode), defaultDarkToken (global token for default dark mode), dmLightToken (global token for Damai highlight mode), and dmDarkToken (global token for Damai dark mode).
+2. - - Responsive Tokens: \* \* BUI defaults to a mobile first responsive solution, and users can customize responsive tokens through the responsive attribute.
+3. Tokens of \* _ Components: _ \* BUI allows users to flexibly customize component styles through token attributes when implementing components.
 
-Normally, from the perspective of local superiority over general, the priority of the three types of tokens is: Component Tokens>Responsive Tokens>BUI Built in Tokens. But for the special scenario of dark mode, the priority of the two dark mode tokens built into BUI is higher than that of responsive tokens.
+Normally, from the perspective of local superiority over general, the priority of the three types of tokens is: \* _ Component Tokens>Responsive Tokens>BUI Built in Tokens _ \*. But for the special scenario of dark mode, the priority of the two dark mode tokens built into BUI is higher than that of responsive tokens.
 
-Principle: Developers should adhere to the following principles when customizing Tokens.
+**Principle: Developers should adhere to the following principles when customizing Tokens**
 
-1. Do not confuse definitions: Tokens should be defined using corresponding APIs for different business scenarios, such as responsive layouts`responsive`, dark mode should be used`defaultDarkToken`and`dmDarkToken`.
+1. Do not confuse definitions: Different business scenarios should use corresponding APIs to customize Tokens. For example, responsive layout should use the responsive attribute, dark mode should use the defaultDarkToken or dmDarkToken attribute, and overlay built-in highlight mode Tokens should use defaultLightToken or dmLightToken.
 2. Distinguish priorities: The priority of special scenarios is always higher than that of global general scenarios.
+
+### browser
+
+You can flexibly customize Design Tokens in the browser.
 
 ```tsx
 import { ThemeProvider, Button } from '@bifrostui/react';
 import React from 'react';
 
-// 响应式：不同屏幕尺寸下自定义Tokens
+/**
+ * 响应式：不同屏幕尺寸下自定义Tokens
+ * 可配置响应式场景下的内置Tokens和组件的全局Tokens
+ */
 const responsive = {
   xs: {
-    '--bui-button-border-radius': '6px',
-    '--bui-button-height': '30px',
-    '--bui-color-fg-muted': 'green',
-    '--bui-button-border-color': 'purple',
+    '--bui-button-border-radius': '2px',
   },
   sm: {
-    '--bui-button-border-radius': '16px',
-    '--bui-button-height': '40px',
-    '--bui-color-fg-muted': 'red',
-    '--bui-button-border-color': '#0499ff',
+    '--bui-button-border-radius': '6px',
   },
   md: {
-    '--bui-button-border-radius': '26px',
-    '--bui-button-height': '50px',
-    '--bui-color-fg-muted': 'blue',
-    '--bui-button-border-color': '#f99999',
+    '--bui-button-border-radius': '10px',
   },
   lg: {
-    '--bui-button-border-radius': '36px',
-    '--bui-button-height': '60px',
-    '--bui-color-fg-muted': 'black',
-    '--bui-button-border-color': '#000feb',
+    '--bui-button-border-radius': '14px',
   },
   xl: {
-    '--bui-button-border-radius': '46px',
-    '--bui-button-height': '100px',
-    '--bui-color-primary': 'green',
-    '--bui-button-border-color': '#ef871f',
+    '--bui-button-border-radius': '16px',
   },
 };
 
-// 默认高亮模式自定义Tokens
+/**
+ * 默认高亮模式自定义Tokens
+ * 应配置BUI内置默认高亮模式全局Tokens
+ */
 const defaultLightToken = {
-  '--bui-color-fg-muted': 'yellow',
+  '--bui-color-info-start': '#33a7ff',
+  '--bui-color-info-end': '#148aff',
 };
 
-// 默认暗黑模式自定义Tokens
+/**
+ * 默认暗黑模式自定义Tokens
+ * 应配置BUI内默认置暗黑模式全局Tokens
+ */
 const defaultDarkToken = {
-  '--bui-color-fg-muted': 'red',
+  '--bui-color-info-start': '#11caee',
+  '--bui-color-info-end': '#47bfbb',
 };
 
-// 自定义组件Tokens
+/**
+ * 自定义组件Tokens
+ * 应配置组件级别的全局Tokens
+ */
 const token = {
-  '--bui-button-text-color': '#f3eeee',
+  '--bui-button-height': '34px',
 };
 
 export default () => {
   return (
     <ThemeProvider
+      isRoot
       token={token}
       responsive={responsive}
       defaultLightToken={defaultLightToken}
       defaultDarkToken={defaultDarkToken}
     >
-      <Button>自定义Tokens</Button>
+      <Button variant="contained" color="info">
+        自定义Tokens
+      </Button>
     </ThemeProvider>
+  );
+};
+```
+
+### Local themes (nested themes)
+
+Global Design Tokens related to components can be configured by nested ThemeProvider components. BUI does not restrict the transmission of built-in Token properties in custom Tokens at the component level to override global built-in Tokens, but it is recommended not to do so unless necessary to avoid confusion in theme configuration.
+
+```tsx
+import { ThemeProvider, Button } from '@bifrostui/react';
+import React from 'react';
+
+const token = {
+  '--bui-button-height': '34px',
+};
+
+const internalToken = {
+  '--bui-button-height': '28px',
+  // 不推荐在token中复写内置Token，尽量使用组件的全局变量来定制样式
+  // '--bui-color-info-end': '#148a00',
+};
+
+export default () => {
+  return (
+    <ThemeProvider isRoot token={token}>
+      <Button variant="contained" color="info" style={{ marginRight: '20px' }}>
+        自定义Tokens
+      </Button>
+      <ThemeProvider token={internalToken}>
+        <Button variant="contained" color="info" className="test">
+          嵌套的Tokens
+        </Button>
+      </ThemeProvider>
+    </ThemeProvider>
+  );
+};
+```
+
+### Mini program
+
+Code cannot be dynamically injected into mini programs, and themes and responsive design tokens cannot be dynamically configured through the ThemeProvider component. Currently, the following two methods are supported to modify mini program themes:
+
+1. Write the corresponding tokens under the selector in the style file, and the theme configuration of the global style file will be overwritten by the page level style file.
+2. Local themes can only be passed in CSS variables inline when using components.
+
+```tsx
+import { Button } from '@bifrostui/react';
+import React from 'react';
+/**
+ * 1.小程序全局或页面级主题，可在入口或页面级样式文件中自行书写选择器对应的样式变量，页面级会覆盖全局样式
+ * app.less
+ * page { --bui-button-height: 32px }
+ */
+
+// 2.小程序局部主题
+export default () => {
+  return (
+    <Button
+      variant="contained"
+      color="info"
+      style={{ '--bui-button-height': '28px' }}
+    >
+      自定义Tokens
+    </Button>
   );
 };
 ```
@@ -142,7 +212,10 @@ export default () => {
 };
 ```
 
-### internationalization
+## internationalization
+
+Here are the components in BUI that require internationalization support. You can switch languages in the demonstration.
+Currently, the components that support internationalization include: Picker, Calendar, Input, TextArea, Select, CitySelector, and Dialog
 
 ```tsx
 import {
@@ -158,12 +231,12 @@ import {
   Select,
   SelectOption,
   CitySelector,
+  EN,
+  CN,
+  TW,
 } from '@bifrostui/react';
 import React, { useState } from 'react';
 import dayjs from 'dayjs/esm/index';
-import { EN, CN, TW } from '@bifrostui/react/locales';
-// import CN from '@bifrostui/react/locales/zh-CN';
-// import TW from '@bifrostui/react/locales/zh-TW';
 
 const options = [
   {
@@ -255,7 +328,7 @@ export default () => {
   const [value, setValue] = useState(dayjs().toDate());
   const [inputValue, setInputValue] = useState('');
   const [curValue, setCurValue] = useState(EN);
-
+  const [dialog, contextHolder] = Dialog.useDialog();
   const handleChange = (e, res) => {
     console.log('date change:', res);
     setValue(res.value);
@@ -295,7 +368,9 @@ export default () => {
   ];
   return (
     <ThemeProvider locale={curValue}>
+      {contextHolder}
       <Stack spacing="10px">
+        <div>语言选择</div>
         <Select
           defaultValue={EN}
           onChange={(e, { value = '' }) => {
@@ -306,6 +381,15 @@ export default () => {
             <SelectOption key={index} value={item.value} label={item.label} />
           ))}
         </Select>
+        <Button
+          onClick={() => {
+            dialog.confirm({
+              message: '测试',
+            });
+          }}
+        >
+          Dialog
+        </Button>
         <Button
           onClick={() => {
             setOpen(true);
@@ -354,7 +438,7 @@ export default () => {
         />
         <Calendar value={value} onChange={handleChange} />
         <Input value={inputValue} onChange={handleInputChange} />
-        <TextArea />
+        <TextArea style={{ width: '300px' }} />
         <Select>
           {options.map((item, index) => (
             <SelectOption key={index} value={item.value} label={item.label} />

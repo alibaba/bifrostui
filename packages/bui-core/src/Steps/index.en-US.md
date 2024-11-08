@@ -1,9 +1,9 @@
 ---
 group: layout
-name: Steps
+name: Steps Bar
 ---
 
-# Steps
+# Steps Bar
 
 Step flow navigation bar.
 
@@ -38,7 +38,7 @@ export default () => {
 
 ### Horizontal display
 
-Adopt`direction` change the direction of the step bar
+Change the direction of the step bar through 'direction'
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
@@ -59,7 +59,7 @@ export default () => {
 
 ### Change the subtitle arrangement position
 
-If there is a subtitle, it can be done through`labelPlacement`改change its display position
+If there is a subtitle, its display position can be changed through 'labelPlacement'
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
@@ -85,7 +85,7 @@ export default () => {
 
 ### Display description copy
 
-Afferent`description` add a description and explanation.
+Enter 'description' to add a description.
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
@@ -127,7 +127,7 @@ export default () => {
 
 ### Control step status
 
-The step status can be controlled through status,`wait`waiting,`active`currently activated,`finish`completed,`error`failed completed
+The step status can be controlled through status, with 'wait' indicating waiting, 'active' indicating current activation, 'finish' indicating completed, and 'error' indicating failed completion
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
@@ -173,7 +173,7 @@ export default () => {
 
 ### Customize icons
 
-Adopt`icon` customize icons for each state.
+You can customize the icons for each state through 'icon'.
 
 ```tsx
 import React from 'react';
@@ -228,7 +228,7 @@ export default () => {
 
 #### Disable clicking
 
-Adopt`disabled` the step table cannot be clicked
+Make the step table non clickable through 'disabled'
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
@@ -368,8 +368,8 @@ export default () => {
 | attribute      | explain                                                                                                                     | type                                                    | Default value |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ------------- |
 | current        | Specify the current step, counting from 0. In the sub Step element, the status attribute can be used to override the status | number                                                  | 0             |
-| direction      | Step bar direction                                                                                                          | `horizontal` \| `vertical`                              | `vertical`    |
-| labelPlacement | Specify label placement location                                                                                            | `horizontal` \| `vertical`                              | `horizontal`  |
+| direction      | Step bar direction                                                                                                          | `horizontal` \|`vertical`                               | `vertical`    |
+| labelPlacement | Specify label placement location                                                                                            | `horizontal` \|`vertical`                               | `horizontal`  |
 | onChange       | Triggered when clicking to switch steps                                                                                     | (ev?: SyntheticEvent,data?: { current: number }) =>void | -             |
 
 ### Step
@@ -380,7 +380,7 @@ export default () => {
 | subtitle    | Subtitle                         | React.ReactNode                                         | -             |
 | description | Detailed description of steps    | React.ReactNode                                         | -             |
 | icon        | Step icon                        | React.ReactNode                                         | -             |
-| status      | The status of the current step   | `wait` \| `active` \| `finish` \| `error`               | `active`      |
+| status      | The status of the current step   | `wait` \|`active` \|`finish` \|`error`                  | `active`      |
 | disabled    | Do you want to prohibit clicking | boolean                                                 | false         |
 | onClick     | Step icon                        | (ev?: SyntheticEvent,data?: { current: number }) =>void | -             |
 

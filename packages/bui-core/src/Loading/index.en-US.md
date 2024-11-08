@@ -1,9 +1,9 @@
 ---
 group: feedback
-name: Loading
+name: Loading Loading
 ---
 
-# Loading
+# Loading Loading
 
 ## Code demonstration
 
@@ -29,7 +29,7 @@ export default () => {
 
 ### Add Text
 
-Can be done through`children`sexual transmission copy, not`ReactNode`the content of the type will default to adding a layer of dom structure to control the style.
+Text can be passed through the 'children' attribute, and non - 'ReactNode' content will default to adding a layer of DOM structure to control the style.
 
 ```tsx
 /**
@@ -49,7 +49,7 @@ export default () => {
 
 ### Modify the arrangement of icons and text
 
-Can be done through`direction`delivery`vertical`｜`horizontal`control the display format of rows and columns.
+You can control the display format of rows and columns by passing 'vertical' | 'horizontal' through 'direction'.
 
 ```tsx
 /**
@@ -69,7 +69,7 @@ export default () => {
 
 ### Custom icon display
 
-By setting`IconProps`control internal icons
+Control internal icons by setting 'IconProps'
 
 ```tsx
 /**
@@ -89,20 +89,20 @@ export default () => {
 
 ## API
 
-### NavBar
+### Name
 
-| attribute | explain                                           | type                       | Default value |
-| --------- | ------------------------------------------------- | -------------------------- | ------------- |
-| className | Component class name                              | string                     | -             |
-| icon      | Customize loading icon                            | ReactNode                  | -             |
-| IconProps | Customize icons                                   | ISvgIconProps              | -             |
-| direction | The arrangement of loading icons and loading copy | 'vertical' \| 'horizontal' | 'vertical'    |
-| children  | Control the loading of copy content               | ReactNode                  | -             |
+| attribute | explain                                           | type                      | Default value |
+| --------- | ------------------------------------------------- | ------------------------- | ------------- |
+| className | Component class name                              | string                    | -             |
+| icon      | Customize loading icon                            | ReactNode                 | -             |
+| IconProps | Customize icons                                   | ISvgIconProps             | -             |
+| direction | The arrangement of loading icons and loading copy | 'vertical' \|'horizontal' | 'vertical'    |
+| children  | Control the loading of copy content               | ReactNode                 | -             |
 
 ## Style variables
 
-| attribute            | explain                       | Default value | global variable                  |
-| -------------------- | ----------------------------- | ------------- | -------------------------------- |
-| --icon-font-size     | Icon font size                | 30px          | --bui-loading-icon-font-size     |
-| --text-padding       | Copy container padding        | 10px          | --bui-loading-text-padding       |
-| --animation-duration | Load animation playback cycle | 1.6s          | --bui-loading-animation-duration |
+| attribute            | explain                               | Default value | global variable                  |
+| -------------------- | ------------------------------------- | ------------- | -------------------------------- |
+| --icon-font-size     | Icon font size                        | 30px          | --bui-loading-icon-font-size     |
+| --text-padding       | Inner margin of copywriting container | 10px          | --bui-loading-text-padding       |
+| --animation-duration | Load animation playback cycle         | 1.6s          | --bui-loading-animation-duration |

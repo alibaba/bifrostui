@@ -1,9 +1,9 @@
 ---
 group: feedback
-name: Skeleton
+name: Skeleton Skeleton Screen
 ---
 
-# Skeleton
+# Skeleton Skeleton Screen
 
 Provide a placeholder graphic combination at the location where content needs to be loaded.
 
@@ -11,7 +11,7 @@ Provide a placeholder graphic combination at the location where content needs to
 
 ### Basic usage
 
-Use`width`和`height` set width and height.
+Use 'width' and 'height' to set the width and height.
 
 ```tsx
 import React from 'react';
@@ -29,11 +29,11 @@ export default () => {
 
 ### variant
 
-The component supports 4 variants`variant`:
+The component supports four variants:
 
-`text`(default: can be based on`font-size` adjust the size dynamically.
+Text '(default): It can automatically adjust the size based on' font size '.
 
-`circular`,`rectangular`,`rounded`:can be based on`width` and `height` to adjust the size.
+Circular, rectangular, rounded: can be resized based on width and height.
 
 ```tsx
 import React from 'react';
@@ -53,7 +53,7 @@ export default () => {
 
 ### animation
 
-The default is`wave`。you can base it on`animation` to set different animations or completely disable it.
+The default is' wave '. You can set different animations based on 'animation' or completely disable it.
 
 ```tsx
 import React from 'react';
@@ -100,7 +100,7 @@ export default () => {
 
 ### Dimensional inference
 
-Can be based on`style` `height`和`width` set the size based on sex.
+You can set the size based on the 'height' and 'width' properties of 'style'.
 
 ```tsx
 import React from 'react';
@@ -122,16 +122,16 @@ export default () => {
 
 ## API
 
-| attribute | explain             | type                                               | Default value |
-| --------- | ------------------- | -------------------------------------------------- | ------------- |
-| animation | Animation effects   | `wave` \| `pulse` \| `false`                       | `wave`        |
-| variant   | Presentation format | `text` \| `circular` \| `rectangular` \| `rounded` | `text`        |
-| width     | Occupation width    | `string` \| `number`                               | `100%`        |
-| height    | Occupation height   | `string` \| `number `                              | `16px`        |
+| attribute | explain             | type                                            | Default value |
+| --------- | ------------------- | ----------------------------------------------- | ------------- |
+| animation | Animation effects   | `wave` \|`pulse` \|`false`                      | `wave`        |
+| variant   | Presentation format | `text` \|`circular` \|`rectangular` \|`rounded` | `text`        |
+| width     | Occupation width    | `string` \|`number`                             | `100%`        |
+| height    | Occupation height   | `string` \|`number `                            | `16px`        |
 
 ## Style variables
 
-| attribute       | explain                       | Default value              | global variable       |
-| --------------- | ----------------------------- | -------------------------- | --------------------- |
-| --border-radius | Skeleton screen corner size   | `--bui-shape-radius-label` | -                     |
-| --height        | Skeleton screen corner height | 1.2em                      | --bui-skeleton-height |
+| attribute       | explain                     | Default value              | global variable       |
+| --------------- | --------------------------- | -------------------------- | --------------------- |
+| --border-radius | Skeleton screen corner size | `--bui-shape-radius-label` | -                     |
+| --height        | Skeleton screen height      | 1.2em                      | --bui-skeleton-height |

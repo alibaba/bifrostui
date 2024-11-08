@@ -1,9 +1,9 @@
 ---
 group: Basic input
-name: Rating
+name: Rating rating
 ---
 
-# Rating
+# Rating rating
 
 The rating component provides a display of evaluations. It also allows users to quickly rate operations.
 
@@ -27,7 +27,7 @@ export default () => {
 
 ### Controlled use
 
-Adopt`value`and`onChange`custom rating selection value
+Customize ratings through 'value' and 'onChange' to select values
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -49,7 +49,7 @@ export default () => {
 
 ### Half Selected
 
-Adopt`allowHalf`appoint`Rating`support semi selected state.
+Specify 'Rating' through 'allowHalf' to support half selection state.
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -66,7 +66,7 @@ export default () => {
 
 ### read-only
 
-Adopt`readOnly`appoint`Rating`for read-only.
+Specify 'Rating' as read-only through 'readOnly'.
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -83,7 +83,7 @@ export default () => {
 
 ### size
 
-Adopt`size`appoint`Rating`the size
+Specify the size of 'Rating' through 'size'
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -102,7 +102,7 @@ export default () => {
 
 ### quantity
 
-Adopt`count`appoint`Rating`the number of display icons
+Specify the number of display icons for 'Rating' through 'count'
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -118,7 +118,7 @@ export default () => {
 
 ### Disable
 
-Adopt`disabled`appoint`Rating`in disabled state
+Specify 'Rating' as disabled through 'disabled'
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -134,7 +134,7 @@ export default () => {
 
 ### Customize icons
 
-Adopting `icon`and`emptyIcon`, stars can be replaced with other characters, such as emojis, letters, numbers, fonts, icons, and even chinese,`icon`selected icon,`emptyIcon` unchecked icon
+By using 'icon' and 'emptyIcon', stars can be replaced with other characters such as emoticons, letters, numbers, font icons, and even Chinese. 'icon' is a selected icon, while 'emptyIcon' is an unselected icon
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -163,7 +163,7 @@ export default () => {
 | count        | Total number of ratings                      | number                                                                        | 5                                       |
 | value        | Current rating                               | number                                                                        | -                                       |
 | defaultValue | Default rating for uncontrolled use          | number                                                                        | -                                       |
-| size         | size                                         | `xsmall`\| `small` \| `medium` \| `large`                                     | `medium`                                |
+| size         | size                                         | `xsmall`\|`small` \|`medium` \|`large`                                        | `medium`                                |
 | disabled     | Do you want to disable it                    | boolean                                                                       | false                                   |
 | readOnly     | Read only or not                             | boolean                                                                       | false                                   |
 | allowHalf    | Is half selection allowed                    | boolean                                                                       | false                                   |

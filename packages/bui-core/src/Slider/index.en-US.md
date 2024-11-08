@@ -1,9 +1,9 @@
 ---
 group: Basic input
-name: Slider
+name: Slider sliding input bar
 ---
 
-# Slider
+# Slider sliding input bar
 
 Slide the input bar to select a value within a given range.
 
@@ -11,7 +11,7 @@ Slide the input bar to select a value within a given range.
 
 ### Basic usage
 
-Use`value`and`onChange`control the sliding input bar.
+Use 'value' and 'onChange' to control the sliding input bar.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
@@ -33,7 +33,7 @@ export default () => {
 
 ### Maximum and minimum values
 
-Use`min`and`max`slide to limit the value range of the input bar.
+Use 'min' and 'max' to slide and limit the value range of the input bar.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
@@ -55,7 +55,7 @@ export default () => {
 
 ### Custom Step Size
 
-Adopt`step`customizable step size,`step`it should be an integer multiple of max min.
+The step size can be customized through 'step', which should be an integer multiple of max min.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
@@ -77,7 +77,7 @@ export default () => {
 
 ### Always display prompt bubbles
 
-Enable`tipVisible`，the prompt bubble will always be displayed, otherwise it will only be displayed when sliding.
+Enable 'tipVisible', the prompt bubble will always be displayed, otherwise it will only be displayed when sliding.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
@@ -99,7 +99,7 @@ export default () => {
 
 ### Double slider
 
-When`value`or`defaultValue`the type is`[number, number]`the dual slider mode will be enabled.
+When the type of 'value' or 'defaultValue' is' [number, number] ', the double slider mode will be enabled.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
@@ -121,7 +121,7 @@ export default () => {
 
 ### Prohibit interlocking of front and rear buttons
 
-When using double sliders, it is possible to use`disableSwap`prohibit interlocking of front and rear buttons.
+When using a double slider, you can use 'disableSwap' to disable the front and back buttons from interlocking.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
@@ -144,7 +144,7 @@ export default () => {
 
 ### Start/End icon
 
-Adopt`startIcon`customizable front button icon, through`endIcon`customizable back button icon.
+The front button icon can be customized through 'startIcon', and the back button icon can be customized through 'endIcon'.
 
 ```tsx
 import React from 'react';
@@ -167,7 +167,7 @@ export default () => {
 
 ### Disable
 
-Use`disabled`disable components.
+Use 'disabled' to disable the component.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
@@ -184,7 +184,7 @@ export default () => {
 
 ### Bubble prompt formatting
 
-Use`tooltipRender`customizable prompt bubbles.
+Use 'tooltipRender' to customize prompt bubbles.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
@@ -222,8 +222,8 @@ export default () => {
 
 | attribute     | explain                                                                | type                                                                                 | Default value |
 | ------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------- |
-| defaultValue  | Set initial value, to be used when the component is uncontrolled       | number \| [number, number]                                                           | -             |
-| value         | Set the current value to be used when the component is controlled      | number \| [number, number]                                                           | -             |
+| defaultValue  | Set initial value, to be used when the component is uncontrolled       | number \|[number, number]                                                            | -             |
+| value         | Set the current value to be used when the component is controlled      | number \|[number, number]                                                            | -             |
 | min           | minimum value                                                          | number                                                                               | 0             |
 | max           | Maximum value                                                          | number                                                                               | 100           |
 | step          | Step size, the value must be greater than 0 and divisible by (max min) | number                                                                               | 1             |

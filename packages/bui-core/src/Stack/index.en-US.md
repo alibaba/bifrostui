@@ -1,9 +1,9 @@
 ---
 group: layout
-name: Stack
+name: Stack Layout Components
 ---
 
-# Stack
+# Stack Layout Components
 
 Stack is a container component used to control the vertical or horizontal arrangement of elements.
 
@@ -11,9 +11,9 @@ Stack is a container component used to control the vertical or horizontal arrang
 
 ### Basic usage
 
-You can do it through`direction` use sex to control the vertical/horizontal distribution of child nodes.
-You can also use`alignItem`、`justifyContent` control the alignment of child nodes on the main/cross axis.
-In addition, you can also use`spacing` the spacing between child nodes.
+You can control the vertical/horizontal distribution of child nodes through the 'direction' attribute.
+You can also control the alignment of child nodes on the main/cross axis through 'alignItem' and 'justifyContent'.
+In addition, you can also control the spacing between child nodes through 'spacing'.
 The example document is as follows:
 
 ##### Interactive experience
@@ -22,7 +22,7 @@ The example document is as follows:
 
 ### Dividing line
 
-Use`divider` sex, you can insert an element between each sub element.
+By using the 'divide' attribute, you can insert an element between each child element.
 
 ```tsx
 import { Button, Divider, Stack } from '@bifrostui/react';

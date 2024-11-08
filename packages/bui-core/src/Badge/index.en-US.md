@@ -1,9 +1,9 @@
 ---
 group: Data Display
-name: Badge
+name: Badge badge
 ---
 
-# Badge
+# Badge badge
 
 A logo on a corner of a container, usually used to notify the icon or avatar in the upper right corner.
 
@@ -11,7 +11,7 @@ A logo on a corner of a container, usually used to notify the icon or avatar in 
 
 ### Basic usage
 
-Simple badge, through`content` set badge content.
+Simple badge, set badge content through 'content'.
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
@@ -30,8 +30,8 @@ export default () => {
 
 ### Badge shape
 
-`Badge` available in 3 badge shapes:`rounded`、`dot`、`bubble`。
-You can do it through`type` use sex to control the shape of badges.
+Badge offers three badge shapes: round, dot, and bubble.
+You can control the badge shape through the 'type' attribute.
 
 ##### Circular badge
 
@@ -84,7 +84,7 @@ export default () => {
 
 ### Badge type
 
-In addition, the badge also offers two modes:`contained`、`outlined`。
+In addition, the badge also offers two modes: 'contained' and 'outlined'.
 
 ##### Solid badge
 
@@ -128,7 +128,7 @@ export default () => {
 
 ## Set maximum value
 
-You can do it through`maxCount`属limit badge values based on sex.
+You can limit the badge value through the 'maxCount' attribute.
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
@@ -147,7 +147,7 @@ export default () => {
 
 ## Set color
 
-We also offer 5 themed colors for badges:`danger`、`success`、`warning`、`info`、`primary`。
+We also offer 5 themed colors for badges: 'danger', 'success',' warning ',' information ', and' primary '.
 
 ```tsx
 import React from 'react';
@@ -222,12 +222,12 @@ export default () => {
 | attribute              | explain                                          | Default value | global variable                  |
 | ---------------------- | ------------------------------------------------ | ------------- | -------------------------------- |
 | --badge-position       | The position of the badge from the top and right | 14%           | --bui-badge-position             |
-| --min-width            | Badge minimum width                              | 15px          | --bui-badge-min-width            |
-| --height               | badge height                                     | 15px          | --bui-badge-height               |
+| --min-width            | Minimum badge width                              | 15px          | --bui-badge-min-width            |
+| --height               | Badge height                                     | 15px          | --bui-badge-height               |
 | --line-height          | Font line height                                 | 15px          | --bui-badge-line-height          |
 | --padding              | padding                                          | 0 3px         | --bui-badge-padding              |
-| --border-radius        | rounded corners                                  | 8px           | --bui-badge-border-radius        |
-| --outlined-padding     | Stroke scene padding                             | 0 2px         | --bui-badge-outlined-padding     |
-| --dot-size             | Point scene width and height                     | 9px           | --bui-badge-dot-size             |
-| --bubble-padding       | Bubble scene padding                             | 9px           | --bui-badge-dot-size             |
+| --border-radius        | fillet                                           | 8px           | --bui-badge-border-radius        |
+| --outlined-padding     | Stroke the inner margin of the scene             | 0 2px         | --bui-badge-outlined-padding     |
+| --dot-size             | Point like scene width and height                | 9px           | --bui-badge-dot-size             |
+| --bubble-padding       | Inner margin of bubble scene                     | 9px           | --bui-badge-dot-size             |
 | --bubble-border-radius | Bubble scene rounded corners                     | 6px 6px 6px 0 | --bui-badge-bubble-border-radius |

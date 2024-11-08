@@ -1,9 +1,9 @@
 ---
 group: feedback
-name: Progress
+name: Progress bar
 ---
 
-# Progress
+# Progress bar
 
 Display the current progress of the operation.
 
@@ -11,7 +11,7 @@ Display the current progress of the operation.
 
 ### Basic usage
 
-Adopt`percent` set the operation progress.
+Set the operation progress through 'percentage'.
 
 ```tsx
 import React from 'react';
@@ -23,7 +23,7 @@ export default () => {
 
 ### Specify line color
 
-Adopt`strokeColor` set the line color, with a default value of`--bui-color-primary`。
+Set the line color through 'strokeColor', with the default value being '-- bui color primary'.
 
 ```tsx
 import React from 'react';
@@ -43,7 +43,7 @@ export default () => {
 
 ### Progress bar width
 
-Can be done through`strokeWidth` set the width of the progress bar.
+You can set the width of the progress bar through 'strokeWidth'.
 
 ```tsx
 import React from 'react';
@@ -68,7 +68,7 @@ export default () => {
 
 ### Custom progress bar gradient color
 
-`linear-gradient` encapsulation. recommend only transmitting two colors.
+Encapsulation of linear gradient. Recommend only transmitting two colors.
 
 ```tsx
 import React from 'react';
@@ -97,7 +97,7 @@ export default () => {
 
 ### Customize the color of unfinished segments
 
-Adopt`trailColor` color unfinished segments.
+Specify the color of unfinished segments through 'trailColor'.
 
 ```tsx
 import React from 'react';
@@ -109,12 +109,12 @@ export default () => {
 
 ## API
 
-| attribute   | explain                                                             | type                                                                                                               | Default value |
-| ----------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------- |
-| percent     | percentage                                                          | number                                                                                                             | -             |
-| strokeColor | The color of the progress bar is gradient when passing in an object | string \| { from: string; to: string; direction?: string } \| { [percentage: string]: string; direction?: string } | -             |
-| trailColor  | Color of unfilled progress bar                                      | string                                                                                                             | -             |
-| strokeWidth | Width of progress bar                                               | number \| string                                                                                                   | -             |
+| attribute   | explain                                                             | type                                                                                                             | Default value |
+| ----------- | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------- |
+| percent     | percentage                                                          | number                                                                                                           | -             |
+| strokeColor | The color of the progress bar is gradient when passing in an object | string \|{ from: string; to: string; direction?: string } \|{ [percentage: string]: string; direction?: string } | -             |
+| trailColor  | Color of unfilled progress bar                                      | string                                                                                                           | -             |
+| strokeWidth | Width of progress bar                                               | number \|string                                                                                                  | -             |
 
 ## Style variables
 

@@ -1,9 +1,9 @@
 ---
 group: Dynamic effect
-name: Transition
+name: Transition Foundation Transition
 ---
 
-# Transition
+# Transition Foundation Transition
 
 All the underlying components of dynamic effects.
 
@@ -124,19 +124,19 @@ export default () => {
 
 ## API
 
-| attribute     | explain                                    | type                            | Default value |
-| ------------- | ------------------------------------------ | ------------------------------- | ------------- |
-| in            | Do you want to enter                       | boolean                         | false         |
-| appear        | Whether to play animation during mounting  | boolean                         | false         |
-| timeout       | Animation time configuration               | number \| {appear, enter, exit} | -             |
-| delay         | Animation Delay Configuration              | number \| {appear, enter, exit} | -             |
-| enter         | Do you want to play the animation          | boolean                         | true          |
-| exit          | Do you want to play the exit animation     | boolean                         | true          |
-| mountOnEnter  | Mount children on first entry              | boolean                         | false         |
-| unmountOnExit | Uninstall children upon exit               | boolean                         | false         |
-| onEnter       | The callback before entering the beginning | node=>void                      | -             |
-| onEntering    | The callback after entering the beginning  | node=>void                      | -             |
-| onEntered     | Enter the completed callback               | node=>void                      | -             |
-| onExit        | Callback before exit starts                | node=>void                      | -             |
-| onExiting     | Callback after exit starts                 | node=>void                      | -             |
-| onExited      | Exit completed callback                    | node=>void                      | -             |
+| attribute     | explain                                    | type                           | Default value |
+| ------------- | ------------------------------------------ | ------------------------------ | ------------- |
+| in            | Do you want to enter                       | boolean                        | false         |
+| appear        | Whether to play animation during mounting  | boolean                        | false         |
+| timeout       | Animation time configuration               | number \|{appear, enter, exit} | -             |
+| delay         | Animation Delay Configuration              | number \|{appear, enter, exit} | -             |
+| enter         | Do you want to play the animation          | boolean                        | true          |
+| exit          | Do you want to play the exit animation     | boolean                        | true          |
+| mountOnEnter  | Mount children on first entry              | boolean                        | false         |
+| unmountOnExit | Uninstall children upon exit               | boolean                        | false         |
+| onEnter       | The callback before entering the beginning | node=>void                     | -             |
+| onEntering    | The callback after entering the beginning  | node=>void                     | -             |
+| onEntered     | Enter the completed callback               | node=>void                     | -             |
+| onExit        | Callback before exit starts                | node=>void                     | -             |
+| onExiting     | Callback after exit starts                 | node=>void                     | -             |
+| onExited      | Exit completed callback                    | node=>void                     | -             |

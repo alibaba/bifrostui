@@ -1,12 +1,12 @@
 ---
 group: feedback
-name: Dialog
+name: Dialogue box
 ---
 
-# Dialog
+# Dialogue box
 
-Used for informing important information or providing feedback on operations, supporting`Dialog`,`Dialog.confirm`and`Dialog.prompt`。
-Recommended Hooks calling method, static methods cannot obtain context, ThemeProvider data will not take effect, therefore recommended`Dialog.useDialog`创build contextholder that supports reading context, using top-level registration methods instead`Dialog`static method.
+Used for informing or providing feedback on important information, supporting 'Dialogue', 'Dialogue. confirm', and 'Dialogue. prompt'.
+Recommend Hooks calling method. Static methods cannot obtain context, and ThemeProvider data will not take effect. Therefore, it is recommended to create a contextHolder that supports reading context using Dialog.useDialogue , and replace Dialogue static methods with top-level registration methods.
 
 ## Code demonstration
 
@@ -14,7 +14,7 @@ Recommended Hooks calling method, static methods cannot obtain context, ThemePro
 
 #### Static method (not recommended)
 
-Use`Dialog`（the default type is confirm) or`Dialog.confirm`to display confirmation box.`Dialog.confirm`return`Promise`，you can determine whether the user clicked to confirm or cancel by returning the value
+Use 'Dialogue' (default type is confirm) or 'Dialogue. confirm' to display the confirmation box Dialogue. confirm returns a Promise, which allows you to determine whether the user has clicked to confirm or cancel
 
 ```tsx
 import {
@@ -118,7 +118,7 @@ export default () => {
 
 ### Asynchronous operation execution successful/failed
 
-Use`onConfirm`to define a callback when clicking confirm.
+Use 'onConfirm' to define a callback when clicking confirm.
 
 ```tsx
 import {
@@ -184,7 +184,7 @@ export default () => {
 
 ### Customize content area
 
-Have access to`header`,`message`to customize the title and content area separately. it can also be used`confirmText`and`cancelText`to customize the content of the cancel and confirm buttons.
+You can use 'header' and 'message' to customize the title and content area separately. You can also use 'confirmText' and 'cancelText' to customize the content of the cancel and confirm buttons.
 
 ```tsx
 import {
@@ -239,7 +239,7 @@ export default () => {
 
 ### Prompt dialog box
 
-Use`dialog.prompt`to display prompt dialog box. have access to`placeholder` to customize placeholder text. simultaneously supporting`InputProps`transferred internally`Input`in the document, refer to [input] (/cores/input # api).
+Use 'dialog. prompt' to display prompt dialog boxes. You can use 'placeholder' to customize placeholder text. Simultaneously supporting transparent transmission of 'InputProps' to internal' Input 'components, refer to [Input] (/cores/input # API).
 
 ```tsx
 import {
@@ -291,35 +291,35 @@ export default () => {
 
 #### DialogOptions
 
-| attribute   | explain                 | type                                       | Default value |
-| ----------- | ----------------------- | ------------------------------------------ | ------------- |
-| header      | custom header           | `React.ReactNode`                          | -             |
-| message     | Custom message          | `React.ReactNode`                          | -             |
-| confirmText | Confirm button copy     | `React.ReactNode`                          | confirm       |
-| cancelText  | Cancel button text      | `React.ReactNode`                          | cancel        |
-| onConfirm   | Confirm button callback | `(val?: string) => void \| Promise<void>;` | -             |
-| onCancel    | Cancel button callback  | `() =>void \| Promise<void>`               | -             |
+| attribute   | explain                 | type                                      | Default value |
+| ----------- | ----------------------- | ----------------------------------------- | ------------- |
+| header      | custom header           | `React.ReactNode`                         | -             |
+| message     | Custom message          | `React.ReactNode`                         | -             |
+| confirmText | Confirm button copy     | `React.ReactNode`                         | confirm       |
+| cancelText  | Cancel button text      | `React.ReactNode`                         | cancel        |
+| onConfirm   | Confirm button callback | `(val?: string) => void \|Promise<void>;` | -             |
+| onCancel    | Cancel button callback  | `() =>void \|Promise<void>`               | -             |
 
-`ConfirmOptions`的same value`DialogOptions`
+The value of ConfirmOptions is the same as that of DialogOptions
 
-`DialogOptions`inherited from`ModalProps`,other attributes can be found in [modern api] (/cores/modal? # api)
+DialogOptions' inherits from 'Modal Props', other properties can be found in [Modal API] (/cores/modal? # API)
 
 #### PromptOptions
 
-`Dialog.prompt`the accepted parameters are the same`Dialog.confirm`,in addition, it also supports the following additional attributes:
+Dialogue. prompt 'accepts the same parameters as' Dialogue. confirm', and additionally supports the following properties:
 
-| attribute   | explain                                                   | type                  | Default value     |
-| ----------- | --------------------------------------------------------- | --------------------- | ----------------- |
-| placeholder | Input box placeholder text                                | string                | Please enter here |
-| InputProps  | Transmitting properties to the internal 'Input' component | `Partial<InputProps>` | -                 |
+| attribute   | explain                                           | type                  | Default value     |
+| ----------- | ------------------------------------------------- | --------------------- | ----------------- |
+| placeholder | Input box placeholder text                        | string                | Please enter here |
+| InputProps  | Spread it internally `Input` Component properties | `Partial<InputProps>` | -                 |
 
 #### method
 
-| Method Name    | explain                   | parameter                | Return value  |
-| -------------- | ------------------------- | ------------------------ | ------------- |
-| Dialog         | Display confirmation box  | DialogOptions \| string  | DialogPromise |
-| Dialog.confirm | Display confirmation box  | ConfirmOptions \| string | DialogPromise |
-| Dialog.prompt  | Display prompt dialog box | PromptOptions \| string  | DialogPromise |
+| Method Name    | explain                   | parameter               | Return value  |
+| -------------- | ------------------------- | ----------------------- | ------------- |
+| Dialog         | Display confirmation box  | DialogOptions \|string  | DialogPromise |
+| Dialog.confirm | Display confirmation box  | ConfirmOptions \|string | DialogPromise |
+| Dialog.prompt  | Display prompt dialog box | PromptOptions \|string  | DialogPromise |
 
 ### Style variables
 

@@ -1,9 +1,9 @@
 ---
 group: feedback
-name: Toast
+name: Toast Light Tips
 ---
 
-# Toast
+# Toast Light Tips
 
 Pop up a black semi transparent prompt on the page for scenarios such as operation result prompts.
 
@@ -34,7 +34,7 @@ export default () => {
 
 ### Common modes
 
-Toast provides`warning`、`loading`、`success`、`fail` commonly used modes.
+Toast provides four common modes: warning, loading, success, and fail.
 
 ```tsx
 import { Stack, Button, Toast } from '@bifrostui/react';
@@ -78,7 +78,7 @@ export default () => {
 
 ### Prompt for text wrapping
 
-The prompt text supports the use of`\n` that 's ok.
+The prompt text supports the use of '\ n' line breaks.
 
 ```tsx
 import { Stack, Button, Toast } from '@bifrostui/react';
@@ -101,7 +101,7 @@ export default () => {
 
 ### Display duration
 
-Use`duration` the prompt display duration is set to 2 seconds by default`duration` at 0 o'clock, toast will not automatically shut down, but you can receive the return value and use it`close` number, manually turn off the current toast.
+Use 'duration' to control the duration of the prompt display, with a default display of 2 seconds. When 'duration' is 0, Toast will not automatically close. Of course, you can receive the return value and use its' close 'function to manually close the current Toast.
 
 ```tsx
 import { Stack, Button, Toast } from '@bifrostui/react';
@@ -143,7 +143,7 @@ export default () => {
 
 ### Display location
 
-Toast provides`top`、`center`、`bottom` display location, default is`center`。
+Toast provides three display positions: top, center, and bottom, with the default being center.
 
 ```tsx
 import { Stack, Button, Toast } from '@bifrostui/react';
@@ -189,7 +189,7 @@ export default () => {
 
 ### There are multiple Toasts simultaneously present
 
-Use`allowMultiple` allow multiple toast prompts to exist simultaneously on the page, with only one toast displayed by default at a time.
+Using 'allowMultiple' allows for multiple Toast prompts to exist simultaneously on the page, with only one Toast displayed by default at a time.
 
 ```tsx
 import { Stack, Button, Toast } from '@bifrostui/react';
@@ -238,7 +238,7 @@ export default () => {
 
 ### Customize icons
 
-Use`icon` customize icons.
+Use 'icon' to customize icons.
 
 ```tsx
 import { Stack, Button, Toast } from '@bifrostui/react';
@@ -265,7 +265,7 @@ export default () => {
 
 ### Prohibit background clicking
 
-Use`disableClick`可control whether other content on the page can be clicked when displaying toast prompts, default is clickable.
+Use 'disableClick' to control whether other content on the page can be clicked when displaying Toast prompts. It defaults to clickable.
 
 ```tsx
 import { Stack, Button, Toast } from '@bifrostui/react';
@@ -292,7 +292,7 @@ export default () => {
 
 ### Close callback
 
-Can be done through`onClose` listen to the callback when toast is closed.
+You can listen for callbacks when Toast is closed through 'onClose'.
 
 ```tsx
 import { Stack, Button, Toast } from '@bifrostui/react';
@@ -320,7 +320,7 @@ export default () => {
 
 ### Close all Toasts
 
-Toast provides`clear` law, used to close all existing pop ups on the page.
+Toast provides a 'clear' method to close all existing pop ups on the page.
 
 ```tsx
 import { Stack, Button, Toast } from '@bifrostui/react';
@@ -404,28 +404,28 @@ export default () => {
 
 ### API
 
-##### ToastOptions
+##### Toastoptions
 
-| attribute     | explain                                                              | type                          | Default value |
-| ------------- | -------------------------------------------------------------------- | ----------------------------- | ------------- |
-| message       | Toast content, supports using '\ n' line breaks                      | string                        | -             |
-| duration      | Display duration (ms), when the value is 0, toast will not disappear | number                        | 2000          |
-| position      | Display location                                                     | `top` \| `center` \| `bottom` | `center`      |
-| allowMultiple | Is it allowed to have multiple Toasts at the same time               | boolean                       | false         |
-| icon          | Customize icons                                                      | React.ReactNode               | -             |
-| disableClick  | Can the page content be clicked when displaying Toast                | boolean                       | false         |
-| onClose       | The callback function when closing                                   | () => void                    | -             |
+| attribute     | explain                                                              | type                        | Default value |
+| ------------- | -------------------------------------------------------------------- | --------------------------- | ------------- |
+| message       | Toast content, supports the use of `\n` Line break                   | string                      | -             |
+| duration      | Display duration (ms), when the value is 0, toast will not disappear | number                      | 2000          |
+| position      | Display location                                                     | `top` \|`center` \|`bottom` | `center`      |
+| allowMultiple | Is it allowed to have multiple Toasts at the same time               | boolean                     | false         |
+| icon          | Customize icons                                                      | React.ReactNode             | -             |
+| disableClick  | Can the page content be clicked when displaying Toast                | boolean                     | false         |
+| onClose       | The callback function when closing                                   | () => void                  | -             |
 
 ##### method
 
-| Method Name   | explain           | parameter              | Return value    |
-| ------------- | ----------------- | ---------------------- | --------------- |
-| Taost         | Display Tips      | ToastOptions \| string | ToastReturnType |
-| Taost.warning | Warning prompt    | ToastOptions \| string | ToastReturnType |
-| Taost.loading | Loading prompt    | ToastOptions \| string | ToastReturnType |
-| Taost.success | Successful prompt | ToastOptions \| string | ToastReturnType |
-| Taost.fail    | Failure prompt    | ToastOptions \| string | ToastReturnType |
-| Taost.clear   | Clear prompt      | -                      | -               |
+| Method Name   | explain           | parameter             | Return value    |
+| ------------- | ----------------- | --------------------- | --------------- |
+| Taost         | Display Tips      | ToastOptions \|string | ToastReturnType |
+| Taost.warning | Warning prompt    | ToastOptions \|string | ToastReturnType |
+| Taost.loading | Loading prompt    | ToastOptions \|string | ToastReturnType |
+| Taost.success | Successful prompt | ToastOptions \|string | ToastReturnType |
+| Taost.fail    | Failure prompt    | ToastOptions \|string | ToastReturnType |
+| Taost.clear   | Clear prompt      | -                     | -               |
 
 ##### ToastReturnType
 
@@ -437,18 +437,18 @@ export default () => {
 
 | attribute          | explain                                                  | Default value              | global variable                |
 | ------------------ | -------------------------------------------------------- | -------------------------- | ------------------------------ |
-| --min-width        | Minimum width                                            | 86px                       | -                              |
-| --max-width        | Maximum width                                            | 80%                        | -                              |
+| --min-width        | Minimum width                                            | 86px                       | --bui-toast-min-width          |
+| --max-width        | Maximum width                                            | 80%                        | --bui-toast-max-width          |
 | --font-size        | font size                                                | --bui-text-size-1          | -                              |
 | --color            | Font color                                               | --bui-color-white          | -                              |
-| --flex-direction   | icon and content direction                               | column                     | --bui-toast-flex-direction     |
-| --padding          | padding                                                  | --bui-spacing-xl           | -                              |
+| --flex-direction   | Icon and copywriting arrangement direction               | column                     | --bui-toast-flex-direction     |
+| --padding          | padding                                                  | --bui-spacing-xl           | --bui-toast-padding            |
 | --word-break       | Line break rule                                          | break-all                  | -                              |
 | --z-index          | Hierarchical structure                                   | --bui-z-index-toast        | -                              |
-| --position-top     | When displaying at the top, the distance from the top    | 15%                        | -                              |
-| --position-bottom  | When displaying at the bottom, the distance from the top | 85%                        | -                              |
+| --position-top     | When displaying at the top, the distance from the top    | 15%                        | --bui-toast-position-top       |
+| --position-bottom  | When displaying at the bottom, the distance from the top | 85%                        | --bui-toast-position-bottom    |
 | --background-color | background color                                         | rgba(0, 0, 0, 0.8)         | -                              |
-| --border-radius    | fillet                                                   | --bui-shape-radius-default | -                              |
-| --icon-margin      | icon margin                                              | 8px                        | --bui-toast-icon-margin-bottom |
-| --icon-font-size   | icon font size                                           | 30px                       | --bui-toast-icon-font-size     |
+| --border-radius    | fillet                                                   | --bui-shape-radius-default | --bui-toast-bg-color           |
+| --icon-margin      | Icon margin                                              | 8px                        | --bui-toast-icon-margin-bottom |
+| --icon-font-size   | Icon font size                                           | 30px                       | --bui-toast-icon-font-size     |
 | --text-align       | Text position                                            | center                     | -                              |

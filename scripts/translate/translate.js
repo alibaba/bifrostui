@@ -22,34 +22,142 @@ const BAIDU_TRANSLATE_API =
   'https://fanyi-api.baidu.com/api/trans/vip/translate';
 
 // 翻译函数
-async function translateText(text, from = 'zh', to = 'en') {
+/**
+ * 翻译文本
+ * @param {string} text - 要翻译的文本
+ * @param {string} from - 源语言代码（默认自动检测）
+ * @param {string} to - 目标语言代码（默认英文 'en'）
+ * @returns {Promise<string>} - 翻译后的文本
+ */
+async function translateText(text, from = 'auto', to = 'en') {
   const salt = Date.now();
   const sign = crypto
     .createHash('md5')
     .update(`${APP_ID}${text}${salt}${API_KEY}`)
     .digest('hex');
-  const response = await axios.get(BAIDU_TRANSLATE_API, {
-    params: {
-      q: text,
-      from,
-      to,
-      appid: APP_ID,
-      salt,
-      sign,
-    },
-  });
-  return response.data.trans_result ? response.data.trans_result[0].dst : text;
+  try {
+    const response = await axios.get(BAIDU_TRANSLATE_API, {
+      params: {
+        q: text,
+        from,
+        to,
+        appid: APP_ID,
+        salt,
+        sign,
+      },
+    });
+    // 检查翻译结果
+    if (
+      response.data &&
+      response.data.trans_result &&
+      response.data.trans_result.length > 0
+    ) {
+      const translatedText = response.data.trans_result[0].dst;
+      console.log(`翻译 "${text}" -> "${translatedText}"`); // 添加日志
+      return translatedText;
+    } else {
+      console.warn(`未获得有效的翻译结果: ${text}`);
+      return text;
+    }
+  } catch (error) {
+    console.error(`翻译错误: ${error}`);
+    return text;
+  }
+}
+
+// 优化后的函数：整体翻译并去除反引号
+async function translateLineSimplified(line) {
+  // 先翻译整个句子
+  const translated = await translateText(line);
+  // 然后去除反引号，替换为空格
+  const cleaned = translated.replace(/`/g, '');
+  return cleaned;
+}
+
+// 优化后的 translateTableLine 函数
+async function translateTableLine(line) {
+  // 移除行首和行尾的管道符（如果存在）并保留左右空格
+  const trimmedLine = line.trim().replace(/^(\|)/, '').replace(/(\|)$/, '');
+
+  // 按管道符分割单元格，并保留前后的空格
+  const cells = trimmedLine.split('|').map((cell) => cell.trim());
+
+  // 遍历每个单元格，检测是否包含中文并进行翻译
+  const translatedCells = await Promise.all(
+    cells.map(async (cell, index) => {
+      if (containsChinese(cell)) {
+        // 使用更明确的中文检测函数
+        // 处理包含反引号的内容，避免翻译代码片段
+        const translatedCell = await translateCellContent(cell);
+        console.log(
+          `翻译表格单元格 [${index}]: "${cell}" -> "${translatedCell}"`,
+        ); // 添加日志
+        return translatedCell;
+      } else {
+        // 不包含中文，保持原样
+        return cell;
+      }
+    }),
+  );
+
+  // 重新组合表格行，保持原有的表格格式，不添加多余的空格
+  return `|${translatedCells.join('|')}|`;
+}
+
+// 检测字符串中是否包含中文字符
+function containsChinese(text) {
+  return /[\u4e00-\u9fa5]/.test(text);
+}
+
+// 翻译单元格内容，保留反引号中的代码片段
+async function translateCellContent(cell) {
+  // 匹配反引号中的内容
+  const codeRegex = /`([^`]+)`/g;
+  let match;
+  const fragments = [];
+  let lastIndex = 0;
+  while ((match = codeRegex.exec(cell)) !== null) {
+    const [fullMatch, codeContent] = match;
+    const indexMatch = match.index;
+    // 翻译代码片段前的文本
+    if (lastIndex < indexMatch) {
+      const textToTranslate = cell.substring(lastIndex, indexMatch).trim();
+      if (textToTranslate) {
+        const translatedText = await translateText(textToTranslate);
+        fragments.push(translatedText);
+      }
+    }
+    // 保留代码片段
+    fragments.push(fullMatch);
+    lastIndex = indexMatch + fullMatch.length;
+  }
+  // 翻译代码片段后的文本
+  if (lastIndex < cell.length) {
+    const textToTranslate = cell.substring(lastIndex).trim();
+    if (textToTranslate) {
+      const translatedText = await translateText(textToTranslate);
+      fragments.push(translatedText);
+    }
+  }
+  // 重新组合翻译后的单元格内容
+  const finalCell = fragments.join(' ').replace(/\s+/g, ' ').trim();
+  return finalCell;
 }
 
 // 逐行翻译 Markdown 文件，保留格式和标识符
+/**
+ * 翻译 Markdown 文件中的中文为英文
+ * @param {string} inputFilePath - 输入文件路径
+ * @param {string} outputFilePath - 输出文件路径
+ */
 async function translateMarkdownFile(inputFilePath, outputFilePath) {
   const lines = fs.readFileSync(inputFilePath, 'utf-8').split('\n');
   const translatedLines = [];
   let insideCodeBlock = false;
-  let insideFrontMatter = false; // 新增标志
-
+  let insideFrontMatter = false; // 标记是否在 front matter 中
   for (const line of lines) {
-    const leadingSpaces = line.match(/^\s*/)[0]; // 提取行前空格
+    const leadingSpacesMatch = line.match(/^\s*/);
+    const leadingSpaces = leadingSpacesMatch ? leadingSpacesMatch[0] : '';
     const trimmedLine = line.trim();
 
     // 检测代码块的起止符号
@@ -60,147 +168,82 @@ async function translateMarkdownFile(inputFilePath, outputFilePath) {
     }
 
     // 检测 front matter 的起止符号
-    if (trimmedLine.startsWith('---') && trimmedLine.endsWith('---')) {
-      // 可能是 front matter 的起止符号
-      if (insideFrontMatter) {
-        insideFrontMatter = false;
-      } else {
-        insideFrontMatter = true;
-      }
+    if (trimmedLine.startsWith('---')) {
+      insideFrontMatter = !insideFrontMatter;
       translatedLines.push(line); // 直接保留分隔线
       continue;
     }
-
     if (insideCodeBlock) {
       // 在代码块内，保留原行
       translatedLines.push(line);
     } else if (insideFrontMatter) {
       // 处理 front matter 内的键值对
-      if (/^\s*(group|title|order|nav|name):/i.test(trimmedLine)) {
-        const [key, ...rest] = trimmedLine.split(':');
-        const value = rest.join(':').trim(); // 获取冒号后面的内容
+      const frontMatterMatch = trimmedLine.match(/^(\w+):\s*(.+)$/);
+      if (frontMatterMatch) {
+        const [, key, value] = frontMatterMatch;
         const isNumeric = /^-?\d+(\.\d+)?$/.test(value); // 检查是否为数字
-
         let translatedValue = value;
         if (!isNumeric) {
           translatedValue = await translateText(value); // 进行翻译
         }
-
         translatedLines.push(
           `${leadingSpaces}${key.toLowerCase()}: ${translatedValue}`,
-        ); // 保持小写及原格式
+        );
       } else {
         // 其他行直接保留
         translatedLines.push(line);
       }
-    } else if (trimmedLine.startsWith('---')) {
-      // 保留其他的分隔线、表格等不翻译
-      const translatedLine =
-        await translateLineWithPreservedEnglish(trimmedLine);
+    } else if (isTableSeparatorLine(line)) {
+      // 处理表格分隔行，保留原样
+      translatedLines.push(line);
+    } else if (isTableHeaderLine(line) || isTableRowLine(line)) {
+      // 处理表格头部或表格行
+      const translatedLine = await translateTableLine(line);
       translatedLines.push(`${leadingSpaces}${translatedLine}`);
     } else if (/^#+\s+/.test(trimmedLine)) {
       // 对以 #, ##, ###, #### 等开头的行进行翻译
-      const headerMatch = trimmedLine.match(/^#+\s+(.*)$/);
+      const headerMatch = trimmedLine.match(/^(#+)\s+(.*)$/);
       if (headerMatch) {
-        const headerText = headerMatch[1]; // 获取标题内容
-        const translatedHeader = await translateText(headerText.trim());
-        const headerLevel = headerMatch[0].match(/^#+/)[0]; // 获取标题标识符
+        const [, headerLevel, headerText] = headerMatch;
+        const translatedHeader = await translateText(headerText);
         translatedLines.push(
           `${leadingSpaces}${headerLevel} ${translatedHeader}`,
-        ); // 保留标题格式
+        );
       } else {
         translatedLines.push(line); // 如果不匹配，则保留原行
       }
+    } else if (trimmedLine) {
+      // 对其他非空行进行翻译，整体翻译并去除反引号
+      const translatedLine = await translateLineSimplified(line);
+      translatedLines.push(translatedLine);
     } else {
-      // 对于包含 `...` 的文本，分离出 ` 包裹的内容进行翻译
-      const translatedLine = await translateLineWithBackticks(line);
-      translatedLines.push(`${leadingSpaces}${translatedLine}`);
+      // 对于空行，直接保留
+      translatedLines.push(line);
     }
   }
-
   // 将翻译结果写入新文件
   fs.writeFileSync(outputFilePath, translatedLines.join('\n'), 'utf-8');
-  console.log(`${outputFilePath}翻译完成！`);
+  console.log(`${outputFilePath} 翻译完成！`);
 }
 
-// 处理包含 `...` 标识符的行
-async function translateLineWithBackticks(line) {
-  const backtickPattern = /(`[^`]+`)(\W?)/g; // 匹配 `内容`，后跟可选标点符号
-  const segments = line.split(backtickPattern);
-  const translatedSegments = [];
-  let isFirstSegment = true;
-
-  for (let i = 0; i < segments.length; i++) {
-    const segment = segments[i];
-    if (segment.startsWith('`') && segment.endsWith('`')) {
-      // 如果是单反引号包裹的内容，进行翻译
-      const innerText = segment.slice(1, -1); // 提取反引号内的内容
-      const isChinese = /[\u4e00-\u9fa5]/.test(innerText);
-      if (isChinese) {
-        // 只有中文内容需要翻译
-        let translatedInner = await translateText(innerText);
-        // 根据句子开头大写处理
-        if (isFirstSegment) {
-          translatedInner =
-            translatedInner.charAt(0).toUpperCase() + translatedInner.slice(1);
-        }
-        translatedSegments.push(`\`${translatedInner}\``); // 加反引号包裹
-      } else {
-        // 非中文内容直接保留
-        translatedSegments.push(`\`${innerText}\``); // 加反引号包裹
-      }
-    } else if (segment.trim()) {
-      // 翻译非反引号包裹的部分
-      const translatedSegment = await translateText(segment.trim());
-      // 判断首个非反引号段落是否为句首
-      const processedSegment = isFirstSegment
-        ? translatedSegment.charAt(0).toUpperCase() + translatedSegment.slice(1)
-        : translatedSegment.toLowerCase(); // 非首个段落为小写
-      // 移除多余空格并添加到结果
-      translatedSegments.push(processedSegment.replace(/\s+/g, ' '));
-    }
-
-    // 标点符号或空格处理
-    if (i + 1 < segments.length && segments[i + 1].match(/^\W$/)) {
-      const punctuation = segments[i + 1];
-      if (punctuation === ' ' || punctuation === '\t') {
-        // 如果是空格或制表符，跳过
-        i++;
-        continue;
-      }
-      translatedSegments.push(punctuation); // 添加标点符号
-      i++;
-    }
-    isFirstSegment = false;
-  }
-
-  // 处理翻译后的结果，确保英文与标点符号之间没有空格
-  const result = translatedSegments.join('').trim();
-  return result.replace(/ \./g, '.').replace(/ \,/g, ',').replace(/ \!/g, '!');
+// 辅助函数：判断是否为表格分隔行（例如：| --- | --- |）
+function isTableSeparatorLine(line) {
+  // 匹配至少一个单元格分隔符
+  return /^(\s*\|?\s*:?-+:?\s*\|?)+\s*$/.test(line);
 }
 
-// 处理 --- 和 | 行，保持英文原状，只翻译中文
-async function translateLineWithPreservedEnglish(line) {
-  const parts = line.split(/([|])/); // 根据 | 分割行
-  const translatedParts = [];
-  for (const part of parts) {
-    // 保留分隔线和空白部分
-    if (part.trim().startsWith('---') || part.trim() === '') {
-      translatedParts.push(part);
-      continue;
-    }
-    // 对于每一部分进行中文检测和翻译
-    const isChinese = /[\u4e00-\u9fa5]/.test(part);
-    if (isChinese) {
-      // 只翻译中文内容
-      const translatedPart = await translateText(part.trim());
-      translatedParts.push(translatedPart);
-    } else {
-      // 英文部分直接保留，不做任何更改
-      translatedParts.push(part);
-    }
-  }
-  return translatedParts.join('');
+// 辅助函数：判断是否为表格头行（包含中文）
+function isTableHeaderLine(line) {
+  return line.includes('|') && containsChinese(line);
+}
+
+// 辅助函数：判断是否为表格数据行
+function isTableRowLine(line) {
+  return (
+    line.includes('|') &&
+    !isTableSeparatorLine(line) &&
+    !isTableHeaderLine(line)
+  );
 }
 
 // 处理指定目录下的所有 index.zh-CN.md 文件，并将翻译结果写入index.en-US.md 文件

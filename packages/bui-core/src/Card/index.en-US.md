@@ -1,9 +1,9 @@
 ---
 group: Data Display
-name: Card
+name: Card card
 ---
 
-# Card
+# Card card
 
 Universal card container, the most basic card container, can be used to hold text, lists, images, paragraphs, and is commonly used for backend overview pages.
 
@@ -11,11 +11,11 @@ Universal card container, the most basic card container, can be used to hold tex
 
 ### Basic usage
 
-`Card`the items are divided into:`CardHeader`、`CardContent`、`CardFooter`waiting for 3 modules, the following is an example document.
+The Card component is divided into three modules: CardHeader, CardContent, CardFooter, etc. The following is an example document.
 
 ### Card Title
 
-Card components provided`CardHeader`the component is used to set the card header module, and you can use it to`title`设place the title of the card container.
+The card component provides a 'CardHeader' sub component for setting the card header module. You can set the title of the card container through 'title'.
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
@@ -36,7 +36,7 @@ export default () => {
 
 ### Card Subtitle
 
-You can also use`subtitle`subtitle for card container placement.
+You can also set the subtitle of the card container through 'subtitle'.
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
@@ -55,7 +55,7 @@ export default () => {
 };
 ```
 
-`title`、`subtitle`combination use
+Use title and subtitle in combination
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
@@ -79,8 +79,8 @@ export default () => {
 
 ### Card head operation area
 
-`CardHeader`in addition to providing titles and subheadings, the component also provides a card header operation area, which you can use to`extra`load card head operation area action.
-When binding`onClick`during the process,`CardHeader`for the default right-hand operation icon, you can also set it through settings`endIcon`sex is`true/false`show or hide this icon.
+In addition to providing titles and subheadings, the CardHeader sub component also provides a card header operation area. You can use 'extra' to carry the card header operation area Action.
+When binding the 'nClick' event, the 'CardHeader' provides the default icon for the right side operation. You can also display or hide this icon by setting the 'endIcon' property to 'true/false'.
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
@@ -105,7 +105,7 @@ export default () => {
 };
 ```
 
-Set up`endIcon`为`false`。
+Set 'endIcon' to 'false'.
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
@@ -133,7 +133,7 @@ export default () => {
 
 ### Card Text
 
-`Card`item provided`CardContent`components are typically used to carry the main contents of card containers.
+The Card component provides a CardContent sub component, typically used to hold the main content of a card container.
 
 ```tsx
 import { Card, CardContent, Stack } from '@bifrostui/react';
@@ -158,7 +158,7 @@ export default () => {
 
 ### Bottom of the card
 
-`Card`item provided`CardFooter`component, usually used to carry the bottom operating area of the card container.
+The Card component provides a CardFooter sub component, typically used to carry the bottom operating area of the card container.
 
 ```tsx
 import {
@@ -194,7 +194,7 @@ export default () => {
 
 ### Typical card example
 
-Coordination`CardHeader`、`CardContent`、`CardFooter`component usage.
+Used in conjunction with the 'CardHeader', 'CardContent', and 'CardFooter' sub components.
 
 ```tsx
 import {
@@ -230,7 +230,7 @@ export default () => {
 
 ### Examples of Complex Scenarios
 
-`Card`the item supports nested use.
+The Card component supports nested use.
 
 ```tsx
 import { Card, CardContent, CardHeader, Stack } from '@bifrostui/react';
@@ -281,7 +281,7 @@ export default () => {
 
 ### Highly customized
 
-Apart from cooperation`CardHeader`、`CardContent`、`CardFooter`component usage, you can also achieve highly customized cards by directly inserting children.
+In addition to being used in conjunction with the CardHeader, CardContent, and CardFooter sub components, you can also achieve highly customized cards by directly inserting children.
 
 ```tsx
 import { Card, Stack } from '@bifrostui/react';
@@ -304,7 +304,7 @@ export default () => {
 
 ### API
 
-#### CardHeaderProps
+##### CardHeaderProps
 
 | attribute | explain                                      | type                 | Default value |
 | --------- | -------------------------------------------- | -------------------- | ------------- |
@@ -317,10 +317,10 @@ export default () => {
 
 #### CardHeader
 
-| attribute              | explain               | Default value                     | global variable                        |
-| ---------------------- | --------------------- | --------------------------------- | -------------------------------------- |
-| --padding              | padding               | --bui-spacing-md --bui-spacing-lg | --bui-card-header-padding              |
-| --end-icon-margin-left | Tail icon left margin | 2px                               | --bui-card-header-end-icon-margin-left |
+| attribute              | explain                      | Default value                     | global variable                        |
+| ---------------------- | ---------------------------- | --------------------------------- | -------------------------------------- |
+| --padding              | padding                      | --bui-spacing-md --bui-spacing-lg | --bui-card-header-padding              |
+| --end-icon-margin-left | Left margin of the tail icon | 2px                               | --bui-card-header-end-icon-margin-left |
 
 #### CardFooter
 
