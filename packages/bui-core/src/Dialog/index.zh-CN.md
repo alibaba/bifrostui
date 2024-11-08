@@ -17,22 +17,12 @@ name: Dialog 对话框
 使用`Dialog`（默认类型是confirm）或`Dialog.confirm`来展示确认框。`Dialog.confirm` 返回`Promise`，你可以通过返回值来判断用户是点击的确认还是取消
 
 ```tsx
-import {
-  Stack,
-  Button,
-  Dialog,
-  Toast,
-  useTheme,
-  ThemeProvider,
-} from '@bifrostui/react';
+import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
-  const theme = useTheme();
-  const [dialog, contextHolder] = Dialog.useDialog();
-
   const handleClickConfirm = async () => {
-    const res = await dialog({
+    const res = await Dialog({
       header: '标题',
       message: '这是描述内容',
     });
@@ -44,23 +34,20 @@ export default () => {
   };
 
   return (
-    <ThemeProvider locale={theme.locale}>
-      {contextHolder}
-      <Stack direction="row" spacing="10px">
-        <Button onClick={() => dialog('是否提交申请')}>默认为confirm</Button>
-        <Button
-          onClick={() =>
-            dialog.confirm({
-              header: '标题',
-              message: '详细描述',
-            })
-          }
-        >
-          confirm
-        </Button>
-        <Button onClick={handleClickConfirm}>等待confirm完成</Button>
-      </Stack>
-    </ThemeProvider>
+    <Stack direction="row" spacing="10px">
+      <Button onClick={() => Dialog('是否提交申请')}>默认为confirm</Button>
+      <Button
+        onClick={() =>
+          Dialog.confirm({
+            header: '标题',
+            message: '详细描述',
+          })
+        }
+      >
+        confirm
+      </Button>
+      <Button onClick={handleClickConfirm}>等待confirm完成</Button>
+    </Stack>
   );
 };
 ```
