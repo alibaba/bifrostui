@@ -8,14 +8,6 @@ export type BreadcrumbItemProps<
   {
     props: P & {
       /**
-       * 唯一标识
-       */
-      key?: string | number;
-      /**
-       * 链接的目的地
-       */
-      href?: string;
-      /**
        * 分隔符自定义
        */
       separator?: React.ReactNode;
@@ -23,6 +15,10 @@ export type BreadcrumbItemProps<
        * body 区域内容
        */
       children?: React.ReactNode;
+      /**
+       * 点击事件
+       */
+      onClick?: (e: React.SyntheticEvent) => void;
     };
     defaultComponent: D;
   },
@@ -40,17 +36,13 @@ export type BreadcrumbProps<
        */
       items?: Array<{
         /**
-         * 唯一标识
-         */
-        key?: string | number;
-        /**
          * 名称
          */
         title?: string;
         /**
-         * 链接的目的地
+         * 点击事件
          */
-        href?: string;
+        onClick?: (e: React.SyntheticEvent) => void;
       }>;
       /**
        * 分隔符自定义

@@ -5,26 +5,30 @@
   list-style: none;
   font-size: var(--bui-text-size-1);
   line-height: var(--bui-line-height);
-}
 
-.bui-breadcrumb-list {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
-.bui-breadcrumb-list a {
-  color: rgba(0, 0, 0, 0.45);
-  text-decoration: none;
-  cursor: pointer;
-}
+  &-list a {
+    color: rgba(0, 0, 0, 0.45);
+    text-decoration: none;
+    cursor: pointer;
+  }
 
-.bui-breadcrumb-list li:last-child {
-  color: rgba(0, 0, 0, 0.88);
-}
+  &-list li:last-child {
+    color: rgba(0, 0, 0, 0.88);
+  }
 
-.bui-breadcrumb-item-separator {
-  margin: 0 8px;
+  &-item {
+    cursor: pointer;
+  }
+
+  &-item-separator {
+    margin: 0 8px;
+  }
 }
