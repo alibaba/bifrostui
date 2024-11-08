@@ -22,7 +22,7 @@
     "package": "chmod +x ./scripts/pack-packages.sh && ./scripts/pack-packages.sh",
     "test": "jest --no-cache",
     "ci:test": "pnpm run test --coverage",
-    "ci:eslint": "pnpm run lint:script -- -f json -o ./.ci/eslint.json",
+    "ci:eslint": "pnpm run lint:script -f json -o ./.ci/eslint.json",
     "generate:mini:files": "node scripts/mini-program-site/generateMiniFiles.js",
     "lint": "pnpm run lint:script && pnpm run lint:style",
     "lint:script": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
