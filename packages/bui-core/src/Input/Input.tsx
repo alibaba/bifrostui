@@ -35,13 +35,13 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
   });
   const [hasFocus, setHasFocus] = useState(false);
 
-  const handleFocus = (e) => {
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     setHasFocus(true);
     onFocus?.(e);
     inputProps?.onFocus?.(e);
   };
 
-  const handleBlur = (e) => {
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     // 解决H5/小程序清除按钮先失焦隐藏不到的问题
     setTimeout(() => {
       setHasFocus(false);
@@ -50,7 +50,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     inputProps?.onBlur?.(e);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 小程序中input有onChange事件，其他类型一般只有onInput事件
     if (isMini) return;
     triggerChange(e, e.target.value);
@@ -65,7 +65,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     inputProps?.onInput?.(e);
   };
 
-  const handleClear = (e) => {
+  const handleClear = (e: React.MouseEvent<HTMLDivElement>) => {
     triggerChange(e, '');
     onClear?.(e);
   };
