@@ -42,8 +42,9 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
           (child, index) => {
             // 确保我们只处理 React 元素
             if (React.isValidElement(child)) {
+              const itemSeparator = child.props.separator || separator;
               const newProps = {
-                separator: index === childrenLength - 1 ? '' : separator,
+                separator: index === childrenLength - 1 ? '' : itemSeparator,
               };
               return React.cloneElement(child, newProps);
             }
@@ -56,6 +57,10 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
 
       return null;
     };
+
+    if (items == null && children == null) {
+      return null;
+    }
 
     return (
       <nav
