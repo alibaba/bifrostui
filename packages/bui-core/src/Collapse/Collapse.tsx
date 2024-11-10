@@ -7,8 +7,8 @@ import {
   createTransitions,
 } from '@bifrostui/utils';
 import { Transition } from '../Transition';
-import './Collapse.less';
 import { CollapseProps } from './Collapse.types';
+import './Collapse.less';
 
 const defaultEasing = {
   enter: easing.easeOut,
@@ -22,20 +22,20 @@ const defaultTimeout = {
 
 const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
   const {
-    appear,
+    appear = false,
     in: inProp,
-    easing: easingProp,
-    direction,
-    timeout,
-    delay,
-    collapsedSize: collapsedSizeProp,
+    easing: easingProp = defaultEasing,
+    direction = 'vertical',
+    timeout = defaultTimeout,
+    delay = 0,
+    collapsedSize: collapsedSizeProp = 0,
     style,
     className,
     children,
     ...other
   } = props;
-  // @ts-expect-error will upstream fix
-  const nodeRef = useForkRef(ref, children?.ref);
+
+  const nodeRef = useForkRef(ref);
   const wrapperRef = useRef(null);
   const collapseRef = useForkRef(wrapperRef, ref);
   const transitions = createTransitions();
@@ -57,7 +57,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
     if (
       appear === false &&
       inProp === true &&
-      wrapperRef.current.style[size] === 'fit-content'
+      wrapperRef.current?.style?.[size] === 'fit-content'
     ) {
       wrapperRef.current.style[size] = getCollapseWrapperSize(
         wrapperRef.current?.children?.[0],
@@ -114,7 +114,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
           },
           React.cloneElement(children, {
             style: {
-              ...children.props.style,
+              ...children.props?.style,
             },
             ...childProps,
           }),
@@ -124,12 +124,5 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
   );
 });
 Collapse.displayName = 'BuiCollapse';
-Collapse.defaultProps = {
-  appear: false,
-  easing: defaultEasing,
-  timeout: defaultTimeout,
-  delay: 0,
-  direction: 'vertical',
-  collapsedSize: '0',
-};
+
 export default Collapse;
