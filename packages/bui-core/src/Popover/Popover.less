@@ -34,7 +34,7 @@
 
 .bui-popover {
   --arrow-size: var(--bui-popover-arrow-size, 8px);
-  --localtion-position: var(--bui-popover-localtion-position, 5px);
+  --localtion-position: var(--bui-popover-localtion-position, 8px);
   --max-width: var(--bui-popover-max-width, 350px);
   --content-min-width: var(--bui-popover-content-min-width, 30px);
   --content-min-height: var(--bui-popover-content-min-height, 32px);
@@ -113,10 +113,6 @@
     }
   }
 
-  div:nth-child(2) {
-    margin-top: var(--bui-spacing-md);
-  }
-
   .bui-popover-title {
     font-weight: var(--bui-font-weight-bold);
   }
@@ -135,5 +131,9 @@
       0 3px 6px -4px rgba(0, 0, 0, 0.12),
       0 6px 16px 0 rgba(0, 0, 0, 0.08),
       0 9px 28px 8px rgba(0, 0, 0, 0.05);
+
+    div:nth-child(2) {
+      margin-top: var(--bui-spacing-md);
+    }
   }
 }
