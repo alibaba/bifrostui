@@ -6,20 +6,15 @@
   justify-content: center;
   white-space: nowrap;
   width: min-content;
-  height: 100%;
+  height: var(--tab-height);
   box-sizing: border-box;
   position: relative;
   cursor: pointer;
   font-size: var(--font-size);
   line-height: var(--bui-line-height);
   color: var(--color);
-  padding: var(--bui-spacing-lg) var(--bui-spacing-lg) 10px;
+  padding: var(--tab-padding);
   font-family: var(--bui-font-family);
-
-  &-center {
-    flex: 1 0 auto;
-    margin: 0 auto;
-  }
 
   &-active {
     font-size: var(--font-size);

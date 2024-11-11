@@ -168,6 +168,55 @@ describe('Picker', () => {
     },
   ];
 
+  const cascadeCallbackOptions = [
+    [
+      {
+        value: 1,
+        label: '北京',
+        children: [
+          {
+            value: 1,
+            label: '朝阳区',
+            children: [{ value: 1, label: '朝阳街' }],
+          },
+          { value: 2, label: '海淀区' },
+          { value: 3, label: '大兴区' },
+          { value: 4, label: '东城区' },
+          { value: 5, label: '西城区' },
+          { value: 6, label: '丰台区' },
+        ],
+      },
+      {
+        value: 2,
+        label: '上海',
+        children: [
+          { value: 1, label: '黄埔区' },
+          { value: 2, label: '长宁区' },
+          { value: 3, label: '普陀区' },
+          { value: 4, label: '杨浦区' },
+          { value: 5, label: '浦东新区' },
+          {
+            value: 6,
+            label: '徐汇区',
+            children: [
+              { value: 1, label: '龙耀路' },
+              { value: 2, label: '云锦路' },
+            ],
+          },
+        ],
+      },
+    ],
+    [
+      { value: 1, label: '朝阳区', children: [{ value: 1, label: '朝阳街' }] },
+      { value: 2, label: '海淀区' },
+      { value: 3, label: '大兴区' },
+      { value: 4, label: '东城区' },
+      { value: 5, label: '西城区' },
+      { value: 6, label: '丰台区' },
+    ],
+    [{ value: 1, label: '朝阳街' }],
+  ];
+
   beforeEach(() => {
     jest.useFakeTimers();
   });
@@ -261,6 +310,165 @@ describe('Picker', () => {
     userEvent.click(comfirmButton);
     expect(confirm).toHaveBeenCalled();
     expect(confirm).toReturnWith([2, 6, 2]);
+  });
+
+  it('should modify callback `value` when click confirm button', () => {
+    const confirm = jest.fn((_, { options, value }) => {
+      return { options, value };
+    });
+    const close = jest.fn((_, { options, value }) => {
+      return { options, value };
+    });
+    render(
+      <Picker
+        open
+        onConfirm={confirm}
+        onClose={close}
+        value={[1, 100]}
+        options={cascadeData}
+      />,
+    );
+    const comfirmButton = document.querySelector(`.${rootClass}-confirm`);
+    userEvent.click(comfirmButton);
+    expect(confirm).toHaveBeenCalled();
+    expect(confirm).toReturnWith({
+      options: cascadeCallbackOptions,
+      value: [1, 1, 1],
+    });
+    expect(close).toReturnWith({
+      options: cascadeCallbackOptions,
+      value: [1, 1, 1],
+    });
+  });
+
+  it('should modify callback `value` when click cancel button', () => {
+    const close = jest.fn((_, { options, value }) => {
+      return { options, value };
+    });
+    render(
+      <Picker open onClose={close} value={[2, 6, 100]} options={cascadeData} />,
+    );
+    const cancelButton = document.querySelector(`.${rootClass}-cancel`);
+    userEvent.click(cancelButton);
+    expect(close).toReturnWith({
+      options: [
+        [
+          {
+            value: 1,
+            label: '北京',
+            children: [
+              {
+                value: 1,
+                label: '朝阳区',
+                children: [{ value: 1, label: '朝阳街' }],
+              },
+              { value: 2, label: '海淀区' },
+              { value: 3, label: '大兴区' },
+              { value: 4, label: '东城区' },
+              { value: 5, label: '西城区' },
+              { value: 6, label: '丰台区' },
+            ],
+          },
+          {
+            value: 2,
+            label: '上海',
+            children: [
+              { value: 1, label: '黄埔区' },
+              { value: 2, label: '长宁区' },
+              { value: 3, label: '普陀区' },
+              { value: 4, label: '杨浦区' },
+              { value: 5, label: '浦东新区' },
+              {
+                value: 6,
+                label: '徐汇区',
+                children: [
+                  { value: 1, label: '龙耀路' },
+                  { value: 2, label: '云锦路' },
+                ],
+              },
+            ],
+          },
+        ],
+        [
+          { value: 1, label: '黄埔区' },
+          { value: 2, label: '长宁区' },
+          { value: 3, label: '普陀区' },
+          { value: 4, label: '杨浦区' },
+          { value: 5, label: '浦东新区' },
+          {
+            value: 6,
+            label: '徐汇区',
+            children: [
+              { value: 1, label: '龙耀路' },
+              { value: 2, label: '云锦路' },
+            ],
+          },
+        ],
+        [
+          { value: 1, label: '龙耀路' },
+          { value: 2, label: '云锦路' },
+        ],
+      ],
+      value: [2, 6, 1],
+    });
+  });
+
+  it('should modify callback `value` when click confirm button in multiple picker', () => {
+    const confirm = jest.fn((_, { options, value }) => {
+      return { options, value };
+    });
+    const close = jest.fn((_, { options, value }) => {
+      return { options, value };
+    });
+    render(
+      <Picker
+        open
+        onConfirm={confirm}
+        onClose={close}
+        value={[100, 100]}
+        options={multiData}
+      />,
+    );
+    const comfirmButton = document.querySelector(`.${rootClass}-confirm`);
+    userEvent.click(comfirmButton);
+    expect(confirm).toHaveBeenCalled();
+    expect(confirm).toReturnWith({
+      options: multiData,
+      value: [1, 1],
+    });
+    expect(close).toReturnWith({
+      options: multiData,
+      value: [1, 1],
+    });
+  });
+
+  it('should modify callback `value` when click confirm button in single picker', () => {
+    const confirm = jest.fn((_, { options, value }) => {
+      return { options, value };
+    });
+    const close = jest.fn((_, { options, value }) => {
+      return { options, value };
+    });
+    render(
+      <Picker
+        open
+        onConfirm={confirm}
+        onClose={close}
+        value={[100]}
+        options={singleData}
+      />,
+    );
+    const comfirmButton = document.querySelector(`.${rootClass}-confirm`);
+    userEvent.click(comfirmButton);
+    expect(confirm).toHaveBeenCalled();
+    expect(confirm).toReturnWith({
+      options: singleData,
+      value: [1],
+    });
+    expect(close).toReturnWith({
+      options: singleData,
+      value: [1],
+    });
   });
 
   it('should call cascade `onOptionChange` when select option', async () => {

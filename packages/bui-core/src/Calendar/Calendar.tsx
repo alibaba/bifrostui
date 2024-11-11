@@ -10,15 +10,15 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import './Calendar.less';
 import { CalendarProps, ICalendarInstance } from './Calendar.types';
 import { formatDate, isRange, isSame } from './utils';
+import { useLocaleText } from '../locales';
+import './Calendar.less';
 
 const Picker = lazy(() => import('../Picker'));
 
 dayjs.extend(isoWeek);
 
-const SUNDAY_WEEK_DATA = ['日', '一', '二', '三', '四', '五', '六'];
 const classes = {
   root: 'bui-calendar',
   handler: 'bui-calendar-handler',
@@ -37,6 +37,9 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       maxDate,
       mode,
       hideDaysOutsideCurrentMonth,
+      headerBarFormat,
+      headerBarLeftIcon,
+      headerBarRightIcon,
       disabledDate,
       enableSelectYear,
       highlightDate,
@@ -47,7 +50,17 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       onChange,
       ...others
     } = props;
-
+    const { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday } =
+      useLocaleText('calendar');
+    const SUNDAY_WEEK_DATA = [
+      Sunday,
+      Monday,
+      Tuesday,
+      Wednesday,
+      Thursday,
+      Friday,
+      Saturday,
+    ];
     const isRangeMode = mode === 'range';
     /** @type undefined | Array<Date|null> */
     const formattedValue = formatDate(mode, value, minDate, maxDate);
@@ -88,6 +101,26 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
 
     const isMinMonth = dayjs(minDate).isSame(renderMonth, 'month');
     const isMaxMonth = dayjs(maxDate).isSame(renderMonth, 'month');
+
+    // 头部操作栏左右图标
+    const headerBarIcon = {
+      left: headerBarLeftIcon ? (
+        headerBarLeftIcon({ isMinMonth })
+      ) : (
+        <CaretLeftIcon
+          className={`${classes.handler}-btn-icon`}
+          htmlColor={isMinMonth && '#cccccc'}
+        />
+      ),
+      right: headerBarRightIcon ? (
+        headerBarRightIcon({ isMaxMonth })
+      ) : (
+        <CaretRightIcon
+          className={`${classes.handler}-btn-icon`}
+          htmlColor={isMaxMonth && '#cccccc'}
+        />
+      ),
+    };
 
     useDidMountEffect(() => {
       const initMonth =
@@ -282,7 +315,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         setRenderMonth(month);
         onMonthChange?.(e, {
           type: 'prev',
-          month: dayjs(month).format('YYYY/MM'),
+          month: dayjs(month).format(headerBarFormat),
         });
       }
     };
@@ -296,7 +329,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         setRenderMonth(month);
         onMonthChange?.(e, {
           type: 'next',
-          month: dayjs(month).format('YYYY/MM'),
+          month: dayjs(month).format(headerBarFormat),
         });
       }
     };
@@ -347,19 +380,13 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         {/* 顶部操作栏 */}
         <div className={classes.handler}>
           <div onClick={onClickPrev} className={`${classes.handler}-btn`}>
-            <CaretLeftIcon
-              className={`${classes.handler}-btn-icon`}
-              htmlColor={isMinMonth && '#cccccc'}
-            />
+            {headerBarIcon.left}
           </div>
           <div className={`${classes.handler}-text`} onClick={onClickDate}>
-            {dayjs(renderMonth).format('YYYY/MM')}
+            {dayjs(renderMonth).format(headerBarFormat)}
           </div>
           <div onClick={onClickNext} className={`${classes.handler}-btn`}>
-            <CaretRightIcon
-              className={`${classes.handler}-btn-icon`}
-              htmlColor={isMaxMonth && '#cccccc'}
-            />
+            {headerBarIcon.right}
           </div>
         </div>
 
@@ -395,6 +422,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
 Calendar.displayName = 'BuiCalendar';
 Calendar.defaultProps = {
   hideDaysOutsideCurrentMonth: false,
+  headerBarFormat: 'YYYY/MM',
   enableSelectYear: false,
   mode: 'single',
   minDate: dayjs(dayjs().format('YYYYMMDD')).add(0, 'month').toDate(),

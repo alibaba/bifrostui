@@ -1,4 +1,5 @@
 .bui-backdrop {
+  --background-color: var(--bui-backdrop-background-color, rgba(0, 0, 0, 0.68));
   position: fixed;
   display: flex;
   align-items: center;
@@ -7,7 +8,7 @@
   bottom: 0;
   left: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.68);
+  background-color: var(--background-color);
 
   &-invisible {
     background-color: transparent;

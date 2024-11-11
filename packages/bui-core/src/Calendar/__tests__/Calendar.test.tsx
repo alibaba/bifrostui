@@ -1,10 +1,19 @@
 import dayjs from 'dayjs';
 import React from 'react';
-import { act, fireEvent, isConformant, render } from 'testing';
+import { act, screen, fireEvent, isConformant, render } from 'testing';
 import { Calendar } from '..';
 
 describe('Calendar', () => {
   const rootClass = 'bui-calendar';
+
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.clearAllTimers();
+    jest.useRealTimers();
+  });
 
   isConformant({
     className: rootClass,
@@ -179,8 +188,11 @@ describe('Calendar', () => {
       />,
     );
     const texts = container.querySelector(`.${rootClass}-handler-text`);
-    await act(() => {
-      fireEvent.click(texts);
+
+    fireEvent.click(texts);
+
+    await act(async () => {
+      await jest.runAllTimers();
     });
     const picker = document.querySelector(`.bui-picker-confirm`);
     expect(picker).toHaveTextContent('确认');
@@ -200,8 +212,10 @@ describe('Calendar', () => {
     );
     const texts = container.querySelector(`.${rootClass}-handler-text`);
 
-    await act(() => {
-      fireEvent.click(texts);
+    fireEvent.click(texts);
+
+    await act(async () => {
+      await jest.runAllTimers();
     });
 
     const [panel1] = document.querySelectorAll(`.bui-picker-panel`);
@@ -240,7 +254,75 @@ describe('Calendar', () => {
     fireEvent.transitionEnd(roller1);
     fireEvent.click(confirmBtn1);
 
+    await act(async () => {
+      await jest.runAllTimers();
+    });
+
     expect(fakeYearChange).toBeCalled();
+  });
+
+  it('should render handler bar by `headerBarFormat`', () => {
+    const { container } = render(
+      <Calendar
+        headerBarFormat="YYYY年MM月"
+        mode="range"
+        minDate={dayjs('20230701').toDate()}
+        maxDate={dayjs('20230731').toDate()}
+        defaultValue={[
+          dayjs('20230701').toDate(),
+          dayjs('20230701').add(3, 'day').toDate(),
+        ]}
+      />,
+    );
+    const headerTextContainer = container.querySelector(
+      `.${rootClass}-handler-text`,
+    );
+    expect(headerTextContainer.innerHTML).toContain('2023年07月');
+  });
+
+  it('should render handler bar icons by `headerBarLeftIcon` or `headerBarRightIcon`', () => {
+    const fakeMonthChange = jest.fn((e, data) => data.type);
+    const { container } = render(
+      <Calendar
+        headerBarLeftIcon={({ isMinMonth }) => {
+          return (
+            <div
+              style={{
+                color: isMinMonth && '#cccccc',
+              }}
+            >
+              prev-icon
+            </div>
+          );
+        }}
+        headerBarRightIcon={({ isMaxMonth }) => {
+          return (
+            <div
+              style={{
+                color: isMaxMonth && '#cccccc',
+              }}
+            >
+              next-icon
+            </div>
+          );
+        }}
+        mode="single"
+        value={dayjs('20230402').toDate()}
+        minDate={dayjs('20230401').toDate()}
+        maxDate={dayjs('20230501').toDate()}
+        onMonthChange={fakeMonthChange}
+      />,
+    );
+    const leftIcon = screen.getByText('prev-icon');
+    const rightIcon = screen.getByText('next-icon');
+    expect(leftIcon).toHaveStyle('color: #cccccc');
+    expect(rightIcon).not.toHaveStyle('color: #cccccc');
+
+    const btns = container.querySelectorAll(`.${rootClass}-handler-btn`);
+    fireEvent.click(btns[1]);
+    expect(fakeMonthChange).toReturnWith('next');
+    expect(leftIcon).not.toHaveStyle('color: #cccccc');
+    expect(rightIcon).toHaveStyle('color: #cccccc');
   });
 
   describe('single mode', () => {
