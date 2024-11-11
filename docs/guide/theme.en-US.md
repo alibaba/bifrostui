@@ -135,13 +135,13 @@ Used to define a universal background color
 
 ### Color with transparency
 
-| Built in Token variable name  | Default value   | explain         |
-| ----------------------------- | --------------- | --------------- |
-| --bui-color-bg-view-opacity-9 | fade(#fff, 90%) | Translucent 90% |
-| --bui-color-bg-view-opacity-7 | fade(#fff, 70%) | Translucent 70% |
-| --bui-color-bg-view-opacity-5 | fade(#fff, 50%) | Translucent 50% |
-| --bui-color-bg-view-opacity-3 | fade(#fff, 30%) | Translucent 30% |
-| --bui-color-bg-view-opacity-1 | fade(#fff, 10%) | Translucent 10% |
+| Built in Token variable name | Default value   | explain         |
+| ---------------------------- | --------------- | --------------- |
+| --bui-color-bg-view-alpha-9  | fade(#fff, 90%) | Translucent 90% |
+| --bui-color-bg-view-alpha-7  | fade(#fff, 70%) | Translucent 70% |
+| --bui-color-bg-view-alpha-5  | fade(#fff, 50%) | Translucent 50% |
+| --bui-color-bg-view-alpha-3  | fade(#fff, 30%) | Translucent 30% |
+| --bui-color-bg-view-alpha-1  | fade(#fff, 10%) | Translucent 10% |
 
 ### Color of dividing lines or borders
 
@@ -213,20 +213,20 @@ Used to define a universal background color
 
 Dark mode will use the following Tokens to overwrite CSS variables with the same name mounted on the root node, in order to achieve style consistency in Dark mode.
 
-| Built in Token variable name  | Default value      | explain                                             |
-| ----------------------------- | ------------------ | --------------------------------------------------- |
-| --bui-color-fg-default        | #f0f6fc            | Title, primary information                          |
-| --bui-color-fg-muted          | #8b949e            | Secondary and supplementary explanatory information |
-| --bui-color-fg-subtle         | #484f58            | Auxiliary and weakened information                  |
-| --bui-color-fg-disabled       | #484f58            | Invalid, unavailable                                |
-| --bui-color-bg-default        | #010409            | Default background color                            |
-| --bui-color-bg-view           | #161b22            | View background color                               |
-| --bui-color-bg-view-opacity-9 | fade(#161b22, 90%) | Translucent 90%                                     |
-| --bui-color-bg-view-opacity-7 | fade(#161b22, 70%) | Translucent 70%                                     |
-| --bui-color-bg-view-opacity-5 | fade(#161b22, 50%) | Translucent 50%                                     |
-| --bui-color-bg-view-opacity-3 | fade(#161b22, 30%) | Translucent 30%                                     |
-| --bui-color-bg-view-opacity-1 | fade(#161b22, 10%) | Translucent 10%                                     |
-| --bui-color-border-default    | #30363d            | Divide line, border                                 |
+| Built in Token variable name | Default value      | explain                                             |
+| ---------------------------- | ------------------ | --------------------------------------------------- |
+| --bui-color-fg-default       | #f0f6fc            | Title, primary information                          |
+| --bui-color-fg-muted         | #8b949e            | Secondary and supplementary explanatory information |
+| --bui-color-fg-subtle        | #484f58            | Auxiliary and weakened information                  |
+| --bui-color-fg-disabled      | #484f58            | Invalid, unavailable                                |
+| --bui-color-bg-default       | #010409            | Default background color                            |
+| --bui-color-bg-view          | #161b22            | View background color                               |
+| --bui-color-bg-view-alpha-9  | fade(#161b22, 90%) | Translucent 90%                                     |
+| --bui-color-bg-view-alpha-7  | fade(#161b22, 70%) | Translucent 70%                                     |
+| --bui-color-bg-view-alpha-5  | fade(#161b22, 50%) | Translucent 50%                                     |
+| --bui-color-bg-view-alpha-3  | fade(#161b22, 30%) | Translucent 30%                                     |
+| --bui-color-bg-view-alpha-1  | fade(#161b22, 10%) | Translucent 10%                                     |
+| --bui-color-border-default   | #30363d            | Divide line, border                                 |
 
 ## How to customize
 

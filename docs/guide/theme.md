@@ -135,13 +135,13 @@ BUI的Tokens分为三个层面
 
 ### 带透明度的色彩
 
-| 内置Token变量名               | 默认值          | 说明      |
-| ----------------------------- | --------------- | --------- |
-| --bui-color-bg-view-opacity-9 | fade(#fff, 90%) | 半透明90% |
-| --bui-color-bg-view-opacity-7 | fade(#fff, 70%) | 半透明70% |
-| --bui-color-bg-view-opacity-5 | fade(#fff, 50%) | 半透明50% |
-| --bui-color-bg-view-opacity-3 | fade(#fff, 30%) | 半透明30% |
-| --bui-color-bg-view-opacity-1 | fade(#fff, 10%) | 半透明10% |
+| 内置Token变量名             | 默认值          | 说明      |
+| --------------------------- | --------------- | --------- |
+| --bui-color-bg-view-alpha-9 | fade(#fff, 90%) | 半透明90% |
+| --bui-color-bg-view-alpha-7 | fade(#fff, 70%) | 半透明70% |
+| --bui-color-bg-view-alpha-5 | fade(#fff, 50%) | 半透明50% |
+| --bui-color-bg-view-alpha-3 | fade(#fff, 30%) | 半透明30% |
+| --bui-color-bg-view-alpha-1 | fade(#fff, 10%) | 半透明10% |
 
 ### 分割线或边框色彩
 
@@ -213,20 +213,20 @@ BUI的Tokens分为三个层面
 
 暗黑模式会使用以下Tokens复写挂载在根节点下的同名CSS变量，以达到暗黑模式下的样式统一。
 
-| 内置Token变量名               | 默认值             | 说明               |
-| ----------------------------- | ------------------ | ------------------ |
-| --bui-color-fg-default        | #f0f6fc            | 标题、一级信息     |
-| --bui-color-fg-muted          | #8b949e            | 次级、补充说明信息 |
-| --bui-color-fg-subtle         | #484f58            | 辅助、弱化的信息   |
-| --bui-color-fg-disabled       | #484f58            | 失效、不可用       |
-| --bui-color-bg-default        | #010409            | 默认背景色         |
-| --bui-color-bg-view           | #161b22            | 视图背景色         |
-| --bui-color-bg-view-opacity-9 | fade(#161b22, 90%) | 半透明90%          |
-| --bui-color-bg-view-opacity-7 | fade(#161b22, 70%) | 半透明70%          |
-| --bui-color-bg-view-opacity-5 | fade(#161b22, 50%) | 半透明50%          |
-| --bui-color-bg-view-opacity-3 | fade(#161b22, 30%) | 半透明30%          |
-| --bui-color-bg-view-opacity-1 | fade(#161b22, 10%) | 半透明10%          |
-| --bui-color-border-default    | #30363d            | 分割线、边框       |
+| 内置Token变量名             | 默认值             | 说明               |
+| --------------------------- | ------------------ | ------------------ |
+| --bui-color-fg-default      | #f0f6fc            | 标题、一级信息     |
+| --bui-color-fg-muted        | #8b949e            | 次级、补充说明信息 |
+| --bui-color-fg-subtle       | #484f58            | 辅助、弱化的信息   |
+| --bui-color-fg-disabled     | #484f58            | 失效、不可用       |
+| --bui-color-bg-default      | #010409            | 默认背景色         |
+| --bui-color-bg-view         | #161b22            | 视图背景色         |
+| --bui-color-bg-view-alpha-9 | fade(#161b22, 90%) | 半透明90%          |
+| --bui-color-bg-view-alpha-7 | fade(#161b22, 70%) | 半透明70%          |
+| --bui-color-bg-view-alpha-5 | fade(#161b22, 50%) | 半透明50%          |
+| --bui-color-bg-view-alpha-3 | fade(#161b22, 30%) | 半透明30%          |
+| --bui-color-bg-view-alpha-1 | fade(#161b22, 10%) | 半透明10%          |
+| --bui-color-border-default  | #30363d            | 分割线、边框       |
 
 ## 如何定制
 
