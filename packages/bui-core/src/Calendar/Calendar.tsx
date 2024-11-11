@@ -1,5 +1,5 @@
 import { CaretLeftIcon, CaretRightIcon } from '@bifrostui/icons';
-import { useDidMountEffect, useValue, useLocaleText } from '@bifrostui/utils';
+import { useDidMountEffect, useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
@@ -12,6 +12,7 @@ import React, {
 } from 'react';
 import { CalendarProps, ICalendarInstance } from './Calendar.types';
 import { formatDate, isRange, isSame } from './utils';
+import { useLocaleText } from '../locales';
 import './Calendar.less';
 
 const Picker = lazy(() => import('../Picker'));

@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { useLocaleText } from '@bifrostui/utils';
 import Drawer from '../Drawer';
 import PickerPanel from './PickerPanel';
+import { useLocaleText } from '../locales';
 import { PickerProps } from './Picker.types';
 import { formatOptions, pickerPanelType, safeData } from './utils';
 import './Picker.less';

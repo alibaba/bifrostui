@@ -1,5 +1,5 @@
 import { useTheme } from '@bifrostui/react';
-import useLocaleText from '../useLocaleText';
+import useLocaleText from '../hooks/useLocaleText';
 
 // Mock 数据
 const mockCN = {

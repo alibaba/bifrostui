@@ -1,8 +1,8 @@
-import React, { useImperativeHandle, useRef } from 'react';
 import clsx from 'clsx';
-import { useLocaleText } from '@bifrostui/utils';
+import React, { useImperativeHandle, useRef } from 'react';
 import { Input } from '../Input';
 import { Button } from '../Button';
+import { useLocaleText } from '../locales';
 import { DialogProps, DialogRef } from './Dialog.types';
 import Modal from '../Modal';
 import { useTheme } from '../ThemeProvider';

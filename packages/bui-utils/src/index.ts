@@ -1,6 +1,5 @@
 export { default as debounce } from './debounce';
 export { default as convertHexToRGBA } from './hex2rgba';
-export { default as useLocaleText } from './hooks/useLocaleText';
 export {
   useDidMountEffect,
   useEventCallback,
