@@ -1,17 +1,17 @@
 ---
-group: 数据展示
-name: CollapsePanel 折叠面板
+group: Data Display
+name: CollapsePanel
 ---
 
-# CollapsePanel 折叠面板
+# CollapsePanel
 
-可以折叠/展开的内容区域。
+The content area that can be folded/unfolded.
 
-## 代码演示
+## Code demonstration
 
-### 基础用法
+### Basic usage
 
-可以同时展开多个面板，这个例子默认展开了第一个。
+Multiple panels can be expanded simultaneously, and this example defaults to expanding the first one.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -49,9 +49,9 @@ export default () => {
 };
 ```
 
-### 使用 CollapseItem
+### Using CollapseItem
 
-使用 CollapseItem 替代 Items 进行渲染
+Use CollapseItem instead of Items for rendering
 
 ```tsx
 import { CollapsePanel, CollapsePanelItem } from '@bifrostui/react';
@@ -80,9 +80,9 @@ export default () => {
 };
 ```
 
-### 手风琴模式
+### Accordion mode
 
-手风琴模式，始终只有一个面板处在激活状态。
+In accordion mode, only one panel is always active.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -121,9 +121,9 @@ export default () => {
 };
 ```
 
-### 指定当前展开面板 activeKeys
+### Specify the active keys for the current expansion panel
 
-通过设置 activeKeys 可以手动指定当前展开的面板，需配合 onChange 才能实现受控的展开折叠效果。
+By setting ActiveKeys, you can manually specify the currently unfolded panel, which needs to be combined with oChange to achieve controlled unfolding and folding effects.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -167,9 +167,9 @@ export default () => {
 };
 ```
 
-### 使用 activeKeys 实现手风琴模式
+### Implementing accordion mode using ActiveKeys
 
-通过设置 activeKeys 可以手动指定当前展开的面板，通过设置 accordion 开启手风琴模式
+By setting ActiveKeys, the currently unfolded panel can be manually specified, and accordion mode can be enabled by setting accordion
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -214,9 +214,9 @@ export default () => {
 };
 ```
 
-### 自定义图标
+### Customize icons
 
-通过 arrowIcon 设置自定义图标，如果是 ReactNode，那么会自动为你增加旋转动画效果。
+By setting a custom icon through arrowIcon, if it is a ReactNode, it will automatically add a rotation animation effect for you.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -256,9 +256,9 @@ export default () => {
 };
 ```
 
-### 自定义展开折叠图标
+### Customize unfolding and folding icons
 
-arrowIcon 可以传入一个 function，入参为是否激活，根据入参状态返回具体的 icon。
+ArrowIcon can pass in a function with the parameter being whether it is activated, and return the specific icon based on the input status.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -312,21 +312,29 @@ export default () => {
 
 ##### CollapsePanelProps
 
-| 属性              | 说明                                      | 类型                                                                     | 默认值 |
-|-------------------|-------------------------------------------|--------------------------------------------------------------------------|--------|
-| accordion         | 是否开启手风琴模式                        | boolean                                                                  | false  |
-| activeKeys        | 当前激活面板的 key                        | string[]                                                                 | -      |
-| defaultActiveKeys | 默认展开面板的 key                        | string[]                                                                 | -      |
-| items             | 折叠项目内容                              | CollapsePanelItemProps[]                                                 | -      |
-| children          | body 区域内容，使用 CollapseItem 进行渲染 | React.ReactNode                                                          | -      |
-| arrowIcon         | 自定义箭头图标                            | React.ReactNode                \| ((active: boolean) => React.ReactNode) | -      |
-| onChange          | 切换面板时触发                            | (activeKeys: string[]) => void                                           | -      |
+| attribute         | explain                                        | type                                                     | Default value |
+| ----------------- | ---------------------------------------------- | -------------------------------------------------------- | ------------- |
+| accordion         | Do you want to activate accordion mode         | boolean                                                  | false         |
+| activeKeys        | The key of the current activation panel        | string[]                                                 | -             |
+| defaultActiveKeys | Default key for expanding the panel            | string[]                                                 | -             |
+| items             | Folding project content                        | CollapsePanelItemProps[]                                 | -             |
+| children          | Body area content, rendered using CollapseItem | React.ReactNode                                          | -             |
+| arrowIcon         | Customize arrow icon                           | React.ReactNode \|((active: boolean) => React.ReactNode) | -             |
+| onChange          | Triggered when switching panels                | (activeKeys: string[]) => void                           | -             |
 
 ##### CollapsePanelItemProps
 
-| 属性     | 说明                        | 类型                                                      | 默认值 |
-|----------|-----------------------------|-----------------------------------------------------------|--------|
-| key      | 唯一标识，对应 activeKey    | string                                                    | -      |
-| label    | 面板标题                    | React.ReactNode                                           | -      |
-| icon     | 自定义 icon，覆盖 arrowIcon | React.ReactNode \| ((active: boolean) => React.ReactNode) | -      |
-| children | body 区域内容               | React.ReactNode                                           | -      |
+| attribute | explain                                       | type                                                     | Default value |
+| --------- | --------------------------------------------- | -------------------------------------------------------- | ------------- |
+| key       | Unique identifier, corresponding to ActiveKey | string                                                   | -             |
+| label     | Panel Title                                   | React.ReactNode                                          | -             |
+| icon      | Custom icon, overwrite arrowIcon              | React.ReactNode \|((active: boolean) => React.ReactNode) | -             |
+| children  | Body area content                             | React.ReactNode                                          | -             |
+
+### Style variables
+
+| attribute         | explain                    | Default value           | global variable                      |
+| ----------------- | -------------------------- | ----------------------- | ------------------------------------ |
+| --width           | width                      | 100%                    | --bui-collapse-panel-width           |
+| --header-padding  | Inner margin of panel head | var(--bui-spacing-lg) 0 | --bui-collapse-panel-header-padding  |
+| --content-padding | Panel theme margin         | var(--bui-spacing-lg) 0 | --bui-collapse-panel-content-padding |
