@@ -42,17 +42,16 @@ const Header: FC = () => {
           <Logo />
         </section>
         <section className="dumi-default-header-right">
-
           {/* <div className="dumi-default-header-right-aside"> */}
-            <SearchBar />
-            <Navbar />
-            <LangSwitch />
-            <RtlSwitch />
-            {themeConfig.prefersColor.switch && <ColorSwitch />}
-            {/* {socialIcons.map((item) => (
+          <SearchBar />
+          <Navbar />
+          <LangSwitch />
+          <RtlSwitch />
+          {themeConfig.prefersColor.switch && <ColorSwitch />}
+          {/* {socialIcons.map((item) => (
               <SocialIcon icon={item.icon} link={item.link} key={item.link} />
             ))} */}
-            <HeaderExtra />
+          <HeaderExtra />
           {/* </div> */}
         </section>
         <button

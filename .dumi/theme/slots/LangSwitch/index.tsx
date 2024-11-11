@@ -9,6 +9,7 @@ import {
 } from 'dumi';
 import React, { useEffect, useState, type FC } from 'react';
 import './index.less';
+import * as utils from '../../utils';
 
 type ILocaleItem = ReturnType<typeof useSiteData>['locales'][0];
 
@@ -41,14 +42,21 @@ const SingleSwitch: FC<{ locale: ILocaleItem; current: ILocaleItem }> = ({
   locale,
   current,
 }) => {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
+  const currentProtocol = `${window.location.protocol}//`;
   const [path, setPath] = useState(() =>
     getTargetLocalePath({ pathname, current, target: locale }),
   );
 
+  if (utils.isLocalStorageNameSupported()) {
+    localStorage.setItem('locale', utils.isZhCN(pathname) ? 'en-US' : 'zh-CN');
+  }
   useEffect(() => {
-    setPath(getTargetLocalePath({ pathname, current, target: locale }));
-  }, [pathname, current.id, locale.id]);
+    setPath(
+      utils.getLocalizedPathname(pathname, !utils.isZhCN(pathname), search)
+        .pathname,
+    );
+  }, [current.id, locale.id, pathname]);
 
   return (
     <Link className="dumi-default-lang-switch" to={path}>
@@ -90,7 +98,7 @@ const LangSwitch: FC = () => {
   ) : (
     // single language switch
     <SingleSwitch
-      locale={locales.find(({ id }) => id !== locale)!}
+      locale={locales.find(({ id }) => id === locale)!}
       current={current}
     />
   );

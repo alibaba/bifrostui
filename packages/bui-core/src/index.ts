@@ -43,3 +43,5 @@ export * from './CollapsePanel';
 export * from './Breadcrumb';
 export * from './Toast';
 export * from './Dialog';
+export * from './ThemeProvider';
+export * from './locales';

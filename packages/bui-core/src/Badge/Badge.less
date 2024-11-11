@@ -1,13 +1,24 @@
-.bui-badge-position(@offset) {
-  top: @offset;
-  right: @offset;
+.bui-badge-position() {
+  top: var(--badge-position);
+  right: var(--badge-position);
   transform: scale(1) translate(50%, -50%);
 }
 .bui-badge-bubble-radius() {
-  border-radius: 6px 6px 6px 0;
+  border-radius: var(--bubble-border-radius);
 }
 
 .bui-badge {
+  --badge-position: var(--bui-badge-position, 14%);
+  --min-width: var(--bui-badge-min-width, 15px);
+  --height: var(--bui-badge-height, 15px);
+  --line-height: var(--bui-badge-line-height, 15px);
+  --padding: var(--bui-badge-padding, 0 3px);
+  --border-radius: var(--bui-badge-border-radius, 8px);
+  --outlined-padding: var(--bui-badge-outlined-padding, 0 2px);
+  --dot-size: var(--bui-badge-dot-size, 9px);
+  --bubble-padding: var(--bui-badge-bubble-padding, 0 5px);
+  --bubble-border-radius: var(--bui-badge-bubble-border-radius, 6px 6px 6px 0);
+
   display: inline-block;
   font-family: var(--bui-font-family);
 
@@ -17,15 +28,15 @@
     .bui-badge-contained,
     .bui-badge-outlined {
       position: absolute;
-      .bui-badge-position(14%);
+      .bui-badge-position();
     }
 
     .bui-badge-dot {
-      .bui-badge-position(14%);
+      .bui-badge-position();
     }
 
     .bui-badge-bubble {
-      .bui-badge-position(14%);
+      .bui-badge-position();
     }
   }
 
@@ -35,19 +46,19 @@
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
-    min-width: 15px;
-    height: 15px;
-    line-height: 15px;
-    padding: 0 3px;
+    min-width: var(--min-width);
+    height: var(--height);
+    line-height: var(--line-height);
+    padding: var(--padding);
     font-size: var(--bui-text-size-4);
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     color: var(--bui-color-bg-view);
     white-space: nowrap;
     z-index: 1;
   }
 
   &-outlined {
-    padding: 0 2px;
+    padding: var(--outlined-padding);
   }
 
   &-primary {
@@ -71,16 +82,16 @@
   }
 
   &-dot {
-    width: 9px;
+    width: var(--dot-size);
     min-width: 0;
-    height: 9px;
+    height: var(--dot-size);
     padding: 0;
     border-radius: 100%;
   }
 
   &-bubble {
     .bui-badge-bubble-radius();
-    padding: 0 5px;
+    padding: var(--bubble-padding);
   }
 
   &-outlined {
