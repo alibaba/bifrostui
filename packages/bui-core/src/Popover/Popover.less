@@ -1,7 +1,5 @@
 @import '@bifrostui/styles/mixins/index.less';
 
-@arrowSize: 8px;
-@locationSize: 5px;
 @arrowTransparent: solid transparent;
 
 .arrow-common() {
@@ -11,31 +9,37 @@
 }
 
 .arrow-top() {
-  border-left: @arrowSize @arrowTransparent;
-  border-right: @arrowSize @arrowTransparent;
-  border-top: @arrowSize solid var(--bui-color-bg-view);
+  border-left: var(--arrow-size) @arrowTransparent;
+  border-right: var(--arrow-size) @arrowTransparent;
+  border-top: var(--arrow-size) solid var(--bui-color-bg-view);
 }
 
 .arrow-bottom() {
-  border-left: @arrowSize @arrowTransparent;
-  border-right: @arrowSize @arrowTransparent;
-  border-bottom: @arrowSize solid var(--bui-color-bg-view);
+  border-left: var(--arrow-size) @arrowTransparent;
+  border-right: var(--arrow-size) @arrowTransparent;
+  border-bottom: var(--arrow-size) solid var(--bui-color-bg-view);
 }
 
 .arrow-left() {
-  border-top: @arrowSize @arrowTransparent;
-  border-bottom: @arrowSize @arrowTransparent;
-  border-left: @arrowSize solid var(--bui-color-bg-view);
+  border-top: var(--arrow-size) @arrowTransparent;
+  border-bottom: var(--arrow-size) @arrowTransparent;
+  border-left: var(--arrow-size) solid var(--bui-color-bg-view);
 }
 
 .arrow-right() {
-  border-top: @arrowSize @arrowTransparent;
-  border-bottom: @arrowSize @arrowTransparent;
-  border-right: @arrowSize solid var(--bui-color-bg-view);
+  border-top: var(--arrow-size) @arrowTransparent;
+  border-bottom: var(--arrow-size) @arrowTransparent;
+  border-right: var(--arrow-size) solid var(--bui-color-bg-view);
 }
 
 .bui-popover {
-  max-width: 350px;
+  --arrow-size: var(--bui-popover-arrow-size, 8px);
+  --localtion-position: var(--bui-popover-localtion-position, 5px);
+  --max-width: var(--bui-popover-max-width, 350px);
+  --content-min-width: var(--bui-popover-content-min-width, 30px);
+  --content-min-height: var(--bui-popover-content-min-height, 32px);
+  --content-padding: var(--bui-popover-content-padding, 6px 8px);
+  max-width: var(--max-width);
   font-size: var(--bui-text-size-1);
   position: absolute;
   visibility: hidden;
@@ -45,19 +49,19 @@
     .arrow-common();
 
     &.location-left {
-      left: @locationSize;
+      left: var(--localtion-position);
     }
 
     &.location-right {
-      right: @locationSize;
+      right: var(--localtion-position);
     }
 
     &.location-top {
-      top: @locationSize;
+      top: var(--localtion-position);
     }
 
     &.location-bottom {
-      bottom: @locationSize;
+      bottom: var(--localtion-position);
     }
   }
 
@@ -74,7 +78,7 @@
   }
 
   &.popover-top {
-    padding-bottom: @arrowSize;
+    padding-bottom: var(--arrow-size);
 
     .bui-popover-arrow {
       .arrow-top();
@@ -83,7 +87,7 @@
   }
 
   &.popover-bottom {
-    padding-top: @arrowSize;
+    padding-top: var(--arrow-size);
 
     .bui-popover-arrow {
       .arrow-bottom();
@@ -92,7 +96,7 @@
   }
 
   &.popover-left {
-    padding-right: @arrowSize;
+    padding-right: var(--arrow-size);
 
     .bui-popover-arrow {
       .arrow-left();
@@ -101,7 +105,7 @@
   }
 
   &.popover-right {
-    padding-left: @arrowSize;
+    padding-left: var(--arrow-size);
 
     .bui-popover-arrow {
       .arrow-right();
@@ -118,9 +122,9 @@
   }
 
   .bui-popover-content {
-    min-width: 30px;
-    min-height: 32px;
-    padding: 6px 8px;
+    min-width: var(--content-min-width);
+    min-height: var(--content-min-height);
+    padding: var(--content-padding);
     color: var(--bui-color-black);
     text-align: left;
     text-decoration: none;

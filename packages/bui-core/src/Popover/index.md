@@ -245,3 +245,14 @@ export default () => {
 | trigger      | 触发行为                 | string \| string[]，枚举值是 'click' \| 'hover'                                                                                                                  | 'click' |
 | PortalProps  | 内部Portal组件的属性     | PortalCoreProps                                                                                                                                                  | -       |
 | onOpenChange | 气泡浮层显隐的回调方法   | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                             | -       |
+
+### 样式变量
+
+| 属性                 | 说明             | 默认值  | 全局变量                         |
+| -------------------- | ---------------- | ------- | -------------------------------- |
+| --arrow-size         | 箭头大小         | 8px     | --bui-popover-arrow-size         |
+| --localtion-position | 箭头位置         | 5px     | --bui-popover-localtion-position |
+| --max-width          | 最大宽度         | 350px   | --bui-popover-max-width          |
+| --content-min-width  | 内容区域最小宽度 | 30px    | --bui-popover-content-min-width  |
+| --content-min-height | 内容区域最小高度 | 32px    | --bui-popover-content-min-height |
+| --content-padding    | 内容区域内边距   | 6px 8px | --bui-popover-content-padding    |

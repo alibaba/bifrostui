@@ -1,6 +1,5 @@
 @import '@bifrostui/styles/mixins/index.less';
 
-@arrowSize: 8px;
 @arrowTransparent: solid transparent;
 
 .arrow-common() {
@@ -10,31 +9,37 @@
 }
 
 .arrow-top() {
-  border-left: @arrowSize @arrowTransparent;
-  border-right: @arrowSize @arrowTransparent;
-  border-top: @arrowSize solid rgba(0, 0, 0, 0.75);
+  border-left: var(--arrow-size) @arrowTransparent;
+  border-right: var(--arrow-size) @arrowTransparent;
+  border-top: var(--arrow-size) solid rgba(0, 0, 0, 0.75);
 }
 
 .arrow-bottom() {
-  border-left: @arrowSize @arrowTransparent;
-  border-right: @arrowSize @arrowTransparent;
-  border-bottom: @arrowSize solid rgba(0, 0, 0, 0.75);
+  border-left: var(--arrow-size) @arrowTransparent;
+  border-right: var(--arrow-size) @arrowTransparent;
+  border-bottom: var(--arrow-size) solid rgba(0, 0, 0, 0.75);
 }
 
 .arrow-left() {
-  border-top: @arrowSize @arrowTransparent;
-  border-bottom: @arrowSize @arrowTransparent;
-  border-left: @arrowSize solid rgba(0, 0, 0, 0.75);
+  border-top: var(--arrow-size) @arrowTransparent;
+  border-bottom: var(--arrow-size) @arrowTransparent;
+  border-left: var(--arrow-size) solid rgba(0, 0, 0, 0.75);
 }
 
 .arrow-right() {
-  border-top: @arrowSize @arrowTransparent;
-  border-bottom: @arrowSize @arrowTransparent;
-  border-right: @arrowSize solid rgba(0, 0, 0, 0.75);
+  border-top: var(--arrow-size) @arrowTransparent;
+  border-bottom: var(--arrow-size) @arrowTransparent;
+  border-right: var(--arrow-size) solid rgba(0, 0, 0, 0.75);
 }
 
 .bui-tooltip {
-  max-width: 350px;
+  --arrow-size: var(--bui-tooltip-arrow-size, 8px);
+  --localtion-position: var(--bui-tooltip-localtion-position, 8px);
+  --max-width: var(--bui-tooltip-max-width, 350px);
+  --content-min-width: var(--bui-tooltip-content-min-width, 30px);
+  --content-min-height: var(--bui-tooltip-content-min-height, 32px);
+  --content-padding: var(--bui-tooltip-content-padding, 6px 8px);
+  max-width: var(--max-width);
   font-size: var(--bui-text-size-1);
   position: absolute;
   visibility: hidden;
@@ -44,19 +49,19 @@
     .arrow-common();
 
     &.location-left {
-      left: @arrowSize;
+      left: var(--localtion-position);
     }
 
     &.location-right {
-      right: @arrowSize;
+      right: var(--localtion-position);
     }
 
     &.location-top {
-      top: @arrowSize;
+      top: var(--localtion-position);
     }
 
     &.location-bottom {
-      bottom: @arrowSize;
+      bottom: var(--localtion-position);
     }
   }
 
@@ -73,7 +78,7 @@
   }
 
   &.tooltip-top {
-    padding-bottom: @arrowSize;
+    padding-bottom: var(--localtion-position);
 
     .bui-tooltip-arrow {
       .arrow-top();
@@ -82,7 +87,7 @@
   }
 
   &.tooltip-bottom {
-    padding-top: @arrowSize;
+    padding-top: var(--localtion-position);
 
     .bui-tooltip-arrow {
       .arrow-bottom();
@@ -91,7 +96,7 @@
   }
 
   &.tooltip-left {
-    padding-right: @arrowSize;
+    padding-right: var(--localtion-position);
 
     .bui-tooltip-arrow {
       .arrow-left();
@@ -100,7 +105,7 @@
   }
 
   &.tooltip-right {
-    padding-left: @arrowSize;
+    padding-left: var(--localtion-position);
 
     .bui-tooltip-arrow {
       .arrow-right();
@@ -109,9 +114,9 @@
   }
 
   .bui-tooltip-content {
-    min-width: 30px;
-    min-height: 32px;
-    padding: 6px 8px;
+    min-width: var(--content-min-width);
+    min-height: var(--content-min-height);
+    padding: var(--content-padding);
     color: var(--bui-color-white);
     text-align: left;
     text-decoration: none;
