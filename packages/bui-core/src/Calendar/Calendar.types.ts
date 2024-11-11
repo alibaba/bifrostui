@@ -19,6 +19,13 @@ export interface ICalendarYearChangeData {
   year: number;
 }
 
+export interface ICustomIconProps {
+  /** 是否为可选范围内的最小月份 */
+  isMinMonth?: boolean;
+  /** 是否为可选范围内的最大月份 */
+  isMaxMonth?: boolean;
+}
+
 export type ICalendarMode = 'single' | 'range';
 
 export type ICalendarValue = Date | Date[] | null;
@@ -56,6 +63,21 @@ export type CalendarProps<
        * 是否隐藏当前月之外的日期，默认为false
        */
       hideDaysOutsideCurrentMonth?: boolean;
+      /**
+       * 头部操作栏日期显示格式
+       * @default YYYY/MM
+       */
+      headerBarFormat?: string;
+      /**
+       * 头部操作栏左边图标
+       * @defaultReturn <CaretLeftIcon />
+       */
+      headerBarLeftIcon?: (options: ICustomIconProps) => React.ReactNode;
+      /**
+       * 头部操作栏右边图标
+       * @defaultReturn <CaretRightIcon />
+       */
+      headerBarRightIcon?: (options: ICustomIconProps) => React.ReactNode;
       /**
        * 不可选择的日期
        */

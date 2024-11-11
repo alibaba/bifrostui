@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import { throttle, useForkRef, useTouchEmulator } from '@bifrostui/utils';
+import { useLocaleText } from '../locales';
 import ScrollView from '../ScrollView';
 import { CitySelectorCoreProps } from './CitySelector.types';
 import Selector from './Selector';
@@ -10,33 +11,27 @@ import './CitySelector.less';
 // 误差偏移量
 const DEVIATION_HEIGHT = '6vmin';
 
-const GPS_TYPE = {
-  title: '定位',
-  code: 'GPS',
-};
-const CURRENT_TYPE = {
-  title: '当前',
-  code: 'CRRT',
-};
-
-const HOT_CITY_TYPE = {
-  title: '热门',
-  code: 'HOT',
-};
-
 const prefixCls = 'bui-city-selector';
 
 const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
   (props, ref) => {
     const {
+      selectedCityGroupName: selectedCityGroupLocaleName,
+      currentCityGroupName: currentCityGroupLocaleName,
+      hotCitiesGroupName: hotCitiesGroupLocaleName,
+      located,
+      current,
+      hot,
+    } = useLocaleText('citySelector');
+    const {
       className,
       title: pageTitle,
       selectedCity,
-      selectedCityGroupName = '当前城市',
+      selectedCityGroupName = selectedCityGroupLocaleName,
       currentCity,
-      currentCityGroupName = '定位城市',
+      currentCityGroupName = currentCityGroupLocaleName,
       hotCities,
-      hotCitiesGroupName = '热门城市',
+      hotCitiesGroupName = hotCitiesGroupLocaleName,
       cities,
       disableIndex,
       touchHandler,
@@ -45,6 +40,21 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
       onClose,
       ...others
     } = props;
+
+    const GPS_TYPE = {
+      title: located,
+      code: 'GPS',
+    };
+    const CURRENT_TYPE = {
+      title: current,
+      code: 'CRRT',
+    };
+
+    const HOT_CITY_TYPE = {
+      title: hot,
+      code: 'HOT',
+    };
+
     const cityRef = useRef(null);
     const nodeRef = useForkRef(ref, cityRef);
     useTouchEmulator(cityRef.current);
@@ -119,7 +129,7 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
       const parseTitle = (titleCode || title).toUpperCase();
       return (
         <div className="select-city-title" id={disableIndex ? '' : parseTitle}>
-          {title.toUpperCase()}
+          {title?.toUpperCase()}
         </div>
       );
     };

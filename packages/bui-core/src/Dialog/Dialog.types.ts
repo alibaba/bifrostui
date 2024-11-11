@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ModalProps } from '../Modal/Modal.types';
 import { InputProps } from '../Input/Input.types';
+import { ThemeProps } from '../ThemeProvider/ThemeProvider.types';
 
 /**
  * 对话框类型
@@ -8,6 +9,9 @@ import { InputProps } from '../Input/Input.types';
 export type DialogType = 'confirm' | 'prompt';
 export type Dispatch = (action: boolean, val?: string) => void;
 
+export type DialogRef = {
+  theme?: ThemeProps;
+};
 export interface DialogProps extends ModalProps {
   /**
    * 对话框类型
@@ -38,6 +42,10 @@ export interface DialogProps extends ModalProps {
    * 取消文本内容
    */
   cancelText?: ReactNode;
+  /**
+   * theme 主题定制
+   */
+  theme?: ThemeProps;
   /**
    * 确认回调
    */
@@ -94,7 +102,7 @@ export type DialogPromise = Promise<boolean | string>;
 /**
  * Dialog Instance
  */
-export interface DialogInstance {
+export interface DialogFunction {
   /**
    * 直接调用显示确认框 Dialog
    */
@@ -107,4 +115,7 @@ export interface DialogInstance {
    * 显示提示对话框 Dialog.prompt
    */
   prompt?: (options: PromptOptions, val?: string) => DialogPromise;
+}
+export interface DialogInstance extends DialogFunction {
+  useDialog: () => [DialogFunction, React.JSX.Element];
 }

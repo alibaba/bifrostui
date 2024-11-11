@@ -28,16 +28,31 @@
 }
 
 .bui-btn {
-  --bg-color: var(--bui-button-default-bg-color, var(--bui-color-neutral-5));
-  --text-color: var(--bui-button-text-color, var(--bui-color-fg-muted));
-  --border-color: var(--bui-button-border-color, var(--bui-color-neutral-4));
   --border-radius: var(--bui-button-border-radius, 100px);
-  --font-weight: var(--bui-button-font-weight, var(--bui-font-weight-medium));
+  --bg-color: var(--bui-button-default-bg-color, var(--bui-color-neutral-5));
+  --border-color: var(--bui-button-border-color, var(--bui-color-neutral-4));
+  --height: var(--bui-button-height, 27px);
+  --icon-start-margin-right: var(
+    --bui-button-icon-start-margin-right,
+    var(--bui-spacing-xs)
+  );
+  --icon-start-margin-left: var(
+    --bui-button-icon-start-margin-left,
+    var(--bui-spacing-xs)
+  );
+  --disabled-opacity: var(--bui-button-disabled-opacity, 0.5);
+  --small-padding: var(--bui-button-small-padding, 0 11px);
+  --small-height: var(--bui-button-small-height, 24px);
+  --medium-padding: var(--bui-button-medium-padding, 0 14px);
+  --large-padding: var(--bui-button-large-padding, 0 14px);
+  --large-height: var(--bui-button-large-height, 33px);
+  --full-font-size: var(--bui-button-full-font-size, var(--bui-title-size-4));
+  --full-height: var(--bui-button-full-height, 42px);
   border: 1px solid transparent;
   outline: 0;
   background-color: transparent;
   cursor: pointer;
-  color: var(--text-color);
+  color: var(--bui-color-fg-muted);
   box-sizing: border-box;
   position: relative;
   display: inline-flex;
@@ -46,9 +61,9 @@
   justify-content: center;
   white-space: nowrap;
   font-size: var(--bui-text-size-3);
-  font-weight: var(--font-weight);
+  font-weight: var(--bui-font-weight-medium);
   border-radius: var(--border-radius);
-  height: 27px;
+  height: var(--height);
   line-height: var(--bui-line-height);
   font-family: var(--bui-font-family);
 
@@ -87,40 +102,40 @@
 
   &-icon-start {
     .btn-icon();
-    margin-right: var(--bui-spacing-xs);
+    margin-right: var(--icon-start-margin-right);
   }
 
   &-icon-end {
     .btn-icon();
-    margin-left: var(--bui-spacing-xs);
+    margin-left: var(--icon-start-margin-left);
   }
 
   &-disabled {
     pointer-events: none;
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
   }
 
   &-small {
     font-size: var(--bui-text-size-4);
-    padding: 0 11px;
-    height: 24px;
+    padding: var(--small-padding);
+    height: var(--small-height);
   }
 
   &-medium {
-    padding: 0 14px;
-    height: 27px;
+    padding: var(--medium-padding);
+    height: var(--height);
   }
 
   &-large {
     font-size: var(--bui-text-size-2);
-    padding: 0 14px;
-    height: 33px;
+    padding: var(--large-padding);
+    height: var(--large-height);
   }
 
   &-full {
-    font-size: var(--bui-title-size-4);
+    font-size: var(--full-font-size);
     width: 100%;
-    height: 42px;
+    height: var(--full-height);
   }
 
   &-text {

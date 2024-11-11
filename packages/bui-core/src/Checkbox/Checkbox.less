@@ -1,9 +1,14 @@
 @import '@bifrostui/styles/mixins/index.less';
 
 .bui-checkbox {
-  --label-color: var(--bui-color-fg-default);
-  --label-font-size: var(--bui-text-size-1);
-  --icon-font-size: var(--bui-title-size-2);
+  --label-color: var(--bui-checkbox-label-color, --bui-color-fg-default);
+  --label-font-size: var(
+    --bui-checkbox-label-font-size,
+    var(--bui-text-size-1)
+  );
+  --icon-font-size: var(--bui-checkbox-icon-font-size, var(--bui-title-size-2));
+  --disabled-opacity: var(--bui-checkbox-disabled-opacity, 0.5);
+  --icon-padding: var(--bui-checkbox-icon-padding, 5px);
   display: inline-flex;
   align-items: center;
   position: relative;
@@ -11,7 +16,7 @@
 
   &.bui-checkbox-disabled {
     pointer-events: none;
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
   }
 
   &-label-left {
@@ -43,7 +48,7 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    padding: 5px;
+    padding: var(--icon-padding);
     box-sizing: border-box;
     font-size: var(--icon-font-size);
   }

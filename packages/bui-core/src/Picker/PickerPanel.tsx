@@ -13,6 +13,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       defaultValue,
       onSelect,
       columnIndex,
+      pickerStyle,
       ...others
     } = props;
 
@@ -23,9 +24,17 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
     const INERTIA_DISTANCE = 15;
 
     const DEFAULT_DURATION = 200;
-    const LINE_SPACING = 36;
     const ROTATION = 20;
     const TOUCH_END = 'end';
+    // 默认行高
+    const DEFAULT_LINE_SPACING = 36;
+    const LINE_SPACING_STR = (
+      pickerStyle?.['--option-height']
+        ? `${pickerStyle?.['--option-height']}`
+        : `${DEFAULT_LINE_SPACING}`
+    ).match(/\d+/)?.[0];
+    const LINE_SPACING = parseInt(LINE_SPACING_STR, 10);
+    const INDICATOR_OFFSET = (LINE_SPACING * 108) / DEFAULT_LINE_SPACING;
 
     const [startY, setStartY] = useState(0);
     const [currIndex, setCurrIndex] = useState(1);
@@ -236,7 +245,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
               style={{
                 transform: `rotate3d(1, 0, 0, ${
                   -ROTATION * (i + 1)
-                }deg) translate3d(0px, 0px, 104px)`,
+                }deg) translate3d(0px, 0px, ${INDICATOR_OFFSET}px)`,
               }}
             >
               {item?.label}

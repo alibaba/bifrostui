@@ -1,6 +1,10 @@
 import React from 'react';
 import { FadeProps } from '../Fade/Fade.types';
+import { ThemeProps } from '../ThemeProvider/ThemeProvider.types';
 
+export type ToastRef = {
+  theme?: ThemeProps;
+};
 /**
  * 提示类型
  */
@@ -39,6 +43,10 @@ export interface ToastProps extends FadeProps {
    */
   icon?: React.ReactNode;
   /**
+   * theme 主题定制
+   */
+  theme?: ThemeProps;
+  /**
    * 展示Toast时，页面内容是否可以点击
    * @default false
    */
@@ -67,7 +75,7 @@ export type ToastReturnType = {
 /**
  * Toast Instance
  */
-export interface ToastInstance {
+export interface ToastFunction {
   (options: ToastOptions): ToastReturnType;
   /**
    * 警告提示
@@ -89,4 +97,11 @@ export interface ToastInstance {
    * 清空提示
    */
   clear: () => void;
+}
+
+export interface ToastInstance extends ToastFunction {
+  /**
+   * 获取toast静态方法 & contextHolder
+   */
+  useToast: () => [ToastFunction, React.JSX.Element];
 }
