@@ -1,16 +1,16 @@
 import React, { useImperativeHandle, useRef } from 'react';
 import clsx from 'clsx';
+import { useLocaleText } from '@bifrostui/utils';
 import { Input } from '../Input';
 import { Button } from '../Button';
-import { DialogProps } from './Dialog.types';
+import { DialogProps, DialogRef } from './Dialog.types';
 import Modal from '../Modal';
-import './index.less';
 import { useTheme } from '../ThemeProvider';
-import { useLocaleText } from '@bifrostui/utils';
+import './index.less';
 
 const prefixCls = 'bui-dialog';
 
-const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
+const Dialog = React.forwardRef<DialogRef, DialogProps>((props, ref) => {
   const {
     open,
     onOk,
@@ -78,7 +78,6 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       className={clsx(prefixCls, className)}
       disablePortal
       onClose={onClose}
-      ref={ref}
     >
       <div className={`${prefixCls}-body`}>
         {header && <h1 className={`${prefixCls}-body-title`}>{header}</h1>}

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { LegacyRef, useCallback, useEffect, useState } from 'react';
 import { getRootElement, render, unmount } from '@bifrostui/utils';
 import Popup from './Dialog';
 import {
@@ -9,6 +9,7 @@ import {
   DialogOptions,
   Dispatch,
   DialogFunction,
+  DialogRef,
 } from './Dialog.types';
 
 const { isValidElement, Component } = React;
@@ -29,7 +30,7 @@ const DialogGenerator = (options: DialogOptions) => {
   rootElement.appendChild(rootWrapper);
 
   const DialogComponent = () => {
-    const { onConfirm, onCancel, ...others } = options;
+    const { onConfirm, onCancel, ref, ...others } = options;
     const [visible, setVisible] = useState(false);
 
     const close = useCallback(() => {
@@ -65,6 +66,7 @@ const DialogGenerator = (options: DialogOptions) => {
 
     return (
       <Popup
+        ref={ref as LegacyRef<DialogRef>}
         {...others}
         open={visible}
         onOk={(val) => dispatch(true, val)}

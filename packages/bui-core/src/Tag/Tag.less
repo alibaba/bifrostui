@@ -1,20 +1,12 @@
 .bui-tag {
-  --color: var(--bui-tag-color, var(--bui-color-gray));
-  --border-color: var(--bui-tag-border-color, var(--bui-color-border-gray));
-  --bg-color: var(--bui-tag-bg-color, var(--bui-color-gray));
-  --height: var(--bui-tag-height, 15px);
-  --line-height: var(--bui-tag-line-height, 15px);
-  --padding: var(--bui-tag-padding, 0 var(--bui-spacing-xs));
-  --bg-color-vip: var(--bui-tag-color-vip, fade(#ff866e, 30%));
-
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  height: var(--height);
-  line-height: var(--line-height);
-  padding: var(--padding);
+  height: var(--tag-height);
+  line-height: var(--tag-line-height);
+  padding: var(--tag-padding);
   font-size: var(--bui-text-size-5);
   font-weight: var(--bui-font-weight-normal);
   border-radius: var(--bui-shape-radius-label);
@@ -24,8 +16,8 @@
   font-family: var(--bui-font-family);
   // 描边
   &-outlined {
-    color: var(--color);
-    border: 1px solid var(--border-color);
+    color: var(--tag-color);
+    border: 1px solid var(--tag-border-color);
 
     &.bui-tag-primary {
       color: var(--bui-color-primary);
@@ -60,7 +52,7 @@
 
   // 实心
   &-contained {
-    background-color: var(--bg-color);
+    background-color: var(--tag-bg-color);
 
     &.bui-tag-primary {
       background-color: var(--bui-color-primary);
@@ -117,7 +109,7 @@
     }
 
     &.bui-tag-vip {
-      background-color: var(--bg-color-vip);
+      background-color: var(--tag-bg-color-vip);
       color: var(--bui-color-vip);
     }
   }

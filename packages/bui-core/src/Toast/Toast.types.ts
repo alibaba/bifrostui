@@ -1,10 +1,10 @@
 import React from 'react';
 import { FadeProps } from '../Fade/Fade.types';
-import {
-  BaseLang,
-  ResponsiveTokenOptions,
-} from '../ThemeProvider/ThemeProvider.types';
+import { ThemeProps } from '../ThemeProvider/ThemeProvider.types';
 
+export type ToastRef = {
+  theme?: ThemeProps;
+};
 /**
  * 提示类型
  */
@@ -45,17 +45,7 @@ export interface ToastProps extends FadeProps {
   /**
    * theme 主题定制
    */
-  theme?: {
-    locale: BaseLang;
-    responsive: ResponsiveTokenOptions;
-    others: {
-      defaultLightToken?: Record<string, string>;
-      defaultDarkToken?: Record<string, string>;
-      dmLightToken?: Record<string, string>;
-      dmDarkToken?: Record<string, string>;
-      token?: Record<string, string>;
-    };
-  };
+  theme?: ThemeProps;
   /**
    * 展示Toast时，页面内容是否可以点击
    * @default false

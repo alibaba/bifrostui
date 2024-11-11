@@ -162,7 +162,6 @@ Currently, the components that support internationalization include: Picker, Cal
 ```tsx
 import {
   ThemeProvider,
-  createTheme,
   Button,
   Dialog,
   Stack,

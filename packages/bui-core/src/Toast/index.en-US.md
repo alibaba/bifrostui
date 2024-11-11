@@ -593,16 +593,14 @@ export default () => {
 | ------------------ | -------------------------------------------------------- | -------------------------- | ------------------------------ |
 | --min-width        | Minimum width                                            | 86px                       | --bui-toast-min-width          |
 | --max-width        | Maximum width                                            | 80%                        | --bui-toast-max-width          |
-| --font-size        | font size                                                | --bui-text-size-1          | -                              |
-| --color            | Font color                                               | --bui-color-white          | -                              |
 | --flex-direction   | Icon and copywriting arrangement direction               | column                     | --bui-toast-flex-direction     |
 | --padding          | padding                                                  | --bui-spacing-xl           | --bui-toast-padding            |
 | --word-break       | Line break rule                                          | break-all                  | -                              |
 | --z-index          | Hierarchical structure                                   | --bui-z-index-toast        | -                              |
 | --position-top     | When displaying at the top, the distance from the top    | 15%                        | --bui-toast-position-top       |
 | --position-bottom  | When displaying at the bottom, the distance from the top | 85%                        | --bui-toast-position-bottom    |
-| --background-color | background color                                         | rgba(0, 0, 0, 0.8)         | -                              |
-| --border-radius    | fillet                                                   | --bui-shape-radius-default | --bui-toast-bg-color           |
+| --background-color | background color                                         | rgba(0, 0, 0, 0.8)         | --bui-toast-bg-color           |
+| --border-radius    | fillet                                                   | --bui-shape-radius-default | --bui-toast-border-radius      |
 | --icon-margin      | Icon margin                                              | 8px                        | --bui-toast-icon-margin-bottom |
 | --icon-font-size   | Icon font size                                           | 30px                       | --bui-toast-icon-font-size     |
 | --text-align       | Text position                                            | center                     | -                              |

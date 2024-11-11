@@ -1,10 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ModalProps } from '../Modal/Modal.types';
 import { InputProps } from '../Input/Input.types';
-import {
-  BaseLang,
-  ResponsiveTokenOptions,
-} from '../ThemeProvider/ThemeProvider.types';
+import { ThemeProps } from '../ThemeProvider/ThemeProvider.types';
 
 /**
  * 对话框类型
@@ -12,6 +9,9 @@ import {
 export type DialogType = 'confirm' | 'prompt';
 export type Dispatch = (action: boolean, val?: string) => void;
 
+export type DialogRef = {
+  theme?: ThemeProps;
+};
 export interface DialogProps extends ModalProps {
   /**
    * 对话框类型
@@ -45,17 +45,7 @@ export interface DialogProps extends ModalProps {
   /**
    * theme 主题定制
    */
-  theme?: {
-    locale: BaseLang;
-    responsive: ResponsiveTokenOptions;
-    others: {
-      defaultLightToken?: Record<string, string>;
-      defaultDarkToken?: Record<string, string>;
-      dmLightToken?: Record<string, string>;
-      dmDarkToken?: Record<string, string>;
-      token?: Record<string, string>;
-    };
-  };
+  theme?: ThemeProps;
   /**
    * 确认回调
    */

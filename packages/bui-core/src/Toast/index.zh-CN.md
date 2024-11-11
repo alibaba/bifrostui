@@ -593,16 +593,14 @@ export default () => {
 | ------------------ | ------------------------ | -------------------------- | ------------------------------ |
 | --min-width        | 最小宽度                 | 86px                       | --bui-toast-min-width          |
 | --max-width        | 最大宽度                 | 80%                        | --bui-toast-max-width          |
-| --font-size        | 字体大小                 | --bui-text-size-1          | -                              |
-| --color            | 字体颜色                 | --bui-color-white          | -                              |
 | --flex-direction   | icon跟文案排列方向       | column                     | --bui-toast-flex-direction     |
 | --padding          | 内边距                   | --bui-spacing-xl           | --bui-toast-padding            |
 | --word-break       | 换行规则                 | break-all                  | -                              |
 | --z-index          | 层级                     | --bui-z-index-toast        | -                              |
 | --position-top     | 顶部展示时，距离顶部距离 | 15%                        | --bui-toast-position-top       |
 | --position-bottom  | 底部展示时，距离顶部距离 | 85%                        | --bui-toast-position-bottom    |
-| --background-color | 背景颜色                 | rgba(0, 0, 0, 0.8)         | -                              |
-| --border-radius    | 圆角                     | --bui-shape-radius-default | --bui-toast-bg-color           |
+| --background-color | 背景颜色                 | rgba(0, 0, 0, 0.8)         | --bui-toast-bg-color           |
+| --border-radius    | 圆角                     | --bui-shape-radius-default | --bui-toast-border-radius      |
 | --icon-margin      | 图标边距                 | 8px                        | --bui-toast-icon-margin-bottom |
 | --icon-font-size   | 图标字体大小             | 30px                       | --bui-toast-icon-font-size     |
 | --text-align       | 文字位置                 | center                     | -                              |

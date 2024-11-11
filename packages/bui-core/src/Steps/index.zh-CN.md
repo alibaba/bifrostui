@@ -403,3 +403,4 @@ export default () => {
 | --step-icon-active-height           | 步骤条当前激活图标高度 | 12px                                            | --bui-step-icon-active-height           |
 | --step-icon-margin                  | 步骤条图标外边距       | var(--bui-spacing-xs) var(--bui-spacing-xs) 0 0 | --bui-step-icon-margin                  |
 | --step-content-padding              | 步骤条内容内边距       | 3px 0                                           | --bui-step-content-padding              |
+| --step-horizontal-line-padding      | 步骤条水平连线内边距   | 28px 0 6px                                      | --bui-step-horizontal-line-padding      |

@@ -4,8 +4,8 @@ export default function createTheme(options: ThemeProps) {
   const { locale, ...others } = options || {};
   const buiTheme = {
     locale,
-    others,
+    ...others,
   };
 
-  return buiTheme;
+  return buiTheme as ThemeProps;
 }
