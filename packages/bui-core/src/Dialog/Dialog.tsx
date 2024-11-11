@@ -1,14 +1,16 @@
-import React, { useRef } from 'react';
 import clsx from 'clsx';
+import React, { useImperativeHandle, useRef } from 'react';
 import { Input } from '../Input';
 import { Button } from '../Button';
-import { DialogProps } from './Dialog.types';
+import { useLocaleText } from '../locales';
+import { DialogProps, DialogRef } from './Dialog.types';
 import Modal from '../Modal';
+import { useTheme } from '../ThemeProvider';
 import './index.less';
 
 const prefixCls = 'bui-dialog';
 
-const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
+const Dialog = React.forwardRef<DialogRef, DialogProps>((props, ref) => {
   const {
     open,
     onOk,
@@ -21,11 +23,21 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     placeholder,
     InputProps,
     className,
+    theme,
     ...others
   } = props;
 
   const InputRef = useRef(null);
 
+  const themeConfig = useTheme(theme);
+  const {
+    cancel,
+    confirm,
+    placeholder: placeholderLocaleName,
+  } = useLocaleText('dialog', themeConfig);
+  useImperativeHandle(ref, () => {
+    return { theme: themeConfig };
+  });
   const footerNode = (
     <div className={`${prefixCls}-body-footer`}>
       <Button
@@ -33,7 +45,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
         onClick={onClose}
         className={`${prefixCls}-body-button`}
       >
-        {cancelText || '取消'}
+        {cancelText || cancel}
       </Button>
       <Button
         variant="text"
@@ -43,7 +55,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
         }}
         className={`${prefixCls}-body-button`}
       >
-        {confirmText || '确定'}
+        {confirmText || confirm}
       </Button>
     </div>
   );
@@ -53,7 +65,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       {...InputProps}
       inputRef={InputRef}
       className={`${prefixCls}-body-input`}
-      placeholder={`${placeholder || '请在此处输入'}`}
+      placeholder={`${placeholder || placeholderLocaleName}`}
     />
   );
 
@@ -66,7 +78,6 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       className={clsx(prefixCls, className)}
       disablePortal
       onClose={onClose}
-      ref={ref}
     >
       <div className={`${prefixCls}-body`}>
         {header && <h1 className={`${prefixCls}-body-title`}>{header}</h1>}

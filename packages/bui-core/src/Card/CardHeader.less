@@ -5,11 +5,16 @@
 }
 
 .bui-card-header {
+  --padding: var(
+    --bui-card-header-padding,
+    var(--bui-spacing-md) var(--bui-spacing-lg)
+  );
+  --end-icon-margin-left: var(--bui-card-header-end-icon-margin-left, 2px);
   .bui-card-flex();
   position: relative;
   padding: var(--bui-spacing-md) var(--bui-spacing-lg);
   font-size: var(--bui-title-size-4);
-  font-weight: 500;
+  font-weight: var(--bui-font-weight-medium);
   color: var(--bui-color-fg-default);
   font-family: var(--bui-font-family);
 
