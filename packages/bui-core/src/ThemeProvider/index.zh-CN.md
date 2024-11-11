@@ -156,8 +156,7 @@ export default () => {
 
 ## 国际化
 
-此处列出 BUI 中需要国际化支持的组件，你可以在演示里切换语言。
-目前支持国际化的组件有：`Picker`, `Calendar`, `Input`, `TextArea`, `Select`, `CitySelector`, `Dialog`
+BUI 默认支持中文、繁体中文和英语三种语言，另外也支持按组件维度自定义语言，此处列出目前涉及国际化的组件，你可以在演示里切换语言。
 
 ```tsx
 import {
