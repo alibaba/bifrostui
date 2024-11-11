@@ -67,7 +67,7 @@ interface ResponsiveTokenOptions {
   xl?: Record<string, string>;
 }
 
-export interface ThemeProps {
+interface ThemeProps {
   /**
    * 当前ThemeProvider是否为最顶层
    * 若当前应用会出现嵌套的ThemeProvider，则需要将最外层的ThemeProvider isRoot属性设置为true
