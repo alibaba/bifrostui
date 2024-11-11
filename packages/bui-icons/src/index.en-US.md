@@ -29,7 +29,7 @@ import { SettingsOutlinedIcon } from '@bifrostui/icons';
 
 ### size
 
-Adopt`size`属set the size of the sex icon.
+Set the icon size through the 'size' attribute.
 
 ```tsx
 import React from 'react';
@@ -49,7 +49,7 @@ export default () => {
 
 ### color
 
-Adopt`color`属set the color of the sex icon.
+Set the icon color through the 'color' attribute.
 
 ```tsx
 import React from 'react';
@@ -74,7 +74,7 @@ export default () => {
 
 ### Customize icons
 
-If the predefined icon size and color cannot meet the needs, you can use`htmlColor`属customized colors for sex, or`style`属sexual customization.
+If the predefined icon size and color cannot meet the needs, you can customize the color through the 'htmlColor' property or the 'style' property.
 
 ```tsx
 import React from 'react';
@@ -97,9 +97,9 @@ export default () => {
 
 ## API
 
-| attribute | explain                                                                                         | type                                                                                 | Default value                               |
-| --------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------- |
-| color     | Icon Theme Colors                                                                               | `default` \| `primary` \| `info` \| `success` \| `warning` \| `danger` \| `disabled` | -                                           |
-| htmlColor | Customize icon colors                                                                           | string                                                                               | -                                           |
-| size      | The preset icon size can also be set to a custom icon size through the font size of the element | `small` \| `medium` \| `large`                                                       | Inherit the font size of the parent element |
-| viewBox   | The viewBox property of SVG                                                                     | string                                                                               | '0 0 96 96'                                 |
+|attribute|explain|type|Default value|
+| --------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------- |
+|color|Icon Theme Colors|`default` \|`primary` \|`info` \|`success` \|`warning` \|`danger` \|`disabled`|-|
+|htmlColor|Customize icon colors|string|-|
+|size|The preset icon size can also be set to a custom icon size through the font size of the element|`small` \|`medium` \|`large`|Inherit the font size of the parent element|
+|viewBox|The viewBox property of SVG|string|'0 0 96 96'|

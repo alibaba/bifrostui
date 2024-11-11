@@ -11,7 +11,13 @@ const enUS: BaseLang = {
     confirm: 'Confirm',
   },
   calendar: {
-    weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    Monday: 'Mon',
+    Tuesday: 'Tue',
+    Wednesday: 'Wed',
+    Thursday: 'Thu',
+    Friday: 'Fri',
+    Saturday: 'Sat',
+    Sunday: 'Sun',
   },
   input: {
     placeholder: 'Placeholder',

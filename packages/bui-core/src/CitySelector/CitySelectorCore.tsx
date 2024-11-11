@@ -1,43 +1,41 @@
 import React, { useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
-import { throttle, useForkRef, useTouchEmulator } from '@bifrostui/utils';
+import {
+  throttle,
+  useForkRef,
+  useLocaleText,
+  useTouchEmulator,
+} from '@bifrostui/utils';
 import ScrollView from '../ScrollView';
 import { CitySelectorCoreProps } from './CitySelector.types';
 import Selector from './Selector';
 
 import './CitySelector.less';
-import { useTheme } from '../ThemeProvider';
 
 // 误差偏移量
 const DEVIATION_HEIGHT = '6vmin';
-
-const GPS_TYPE = {
-  title: '定位',
-  code: 'GPS',
-};
-const CURRENT_TYPE = {
-  title: '当前',
-  code: 'CRRT',
-};
-
-const HOT_CITY_TYPE = {
-  title: '热门',
-  code: 'HOT',
-};
 
 const prefixCls = 'bui-city-selector';
 
 const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
   (props, ref) => {
     const {
+      selectedCityGroupName: selectedCityGroupLocaleName,
+      currentCityGroupName: currentCityGroupLocaleName,
+      hotCitiesGroupName: hotCitiesGroupLocaleName,
+      located,
+      current,
+      hot,
+    } = useLocaleText('citySelector');
+    const {
       className,
       title: pageTitle,
       selectedCity,
-      selectedCityGroupName,
+      selectedCityGroupName = selectedCityGroupLocaleName,
       currentCity,
-      currentCityGroupName,
+      currentCityGroupName = currentCityGroupLocaleName,
       hotCities,
-      hotCitiesGroupName,
+      hotCitiesGroupName = hotCitiesGroupLocaleName,
       cities,
       disableIndex,
       touchHandler,
@@ -47,7 +45,20 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
       ...others
     } = props;
 
-    const { locale } = useTheme();
+    const GPS_TYPE = {
+      title: located,
+      code: 'GPS',
+    };
+    const CURRENT_TYPE = {
+      title: current,
+      code: 'CRRT',
+    };
+
+    const HOT_CITY_TYPE = {
+      title: hot,
+      code: 'HOT',
+    };
+
     const cityRef = useRef(null);
     const nodeRef = useForkRef(ref, cityRef);
     useTouchEmulator(cityRef.current);
@@ -57,17 +68,23 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
 
     // 提取字母
     useEffect(() => {
-      if (!cities || cities?.length === 0 || disableIndex) return;
+      if (
+        !cities ||
+        cities?.length === 0 ||
+        codeGroup.length !== 0 ||
+        disableIndex
+      )
+        return;
 
       const newGroup = [];
       if (selectedCity) {
-        newGroup.push(locale?.citySelector?.currentType || CURRENT_TYPE);
+        newGroup.push(CURRENT_TYPE);
       }
       if (currentCity) {
-        newGroup.push(locale?.citySelector?.gpsType || GPS_TYPE);
+        newGroup.push(GPS_TYPE);
       }
       if (hotCities) {
-        newGroup.push(locale?.citySelector?.hotCityType || HOT_CITY_TYPE);
+        newGroup.push(HOT_CITY_TYPE);
       }
       cities.forEach((item) => {
         newGroup.push(item.groupName.toUpperCase());
@@ -159,28 +176,17 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
             {selectedCity
               ? renderCity(
                   [selectedCity],
-                  selectedCityGroupName ||
-                    locale?.citySelector?.selectedCityGroupName,
+                  selectedCityGroupName,
                   CURRENT_TYPE.code,
                 )
               : null}
             {/* 定位城市 */}
             {currentCity
-              ? renderCity(
-                  [currentCity],
-                  currentCityGroupName ||
-                    locale?.citySelector?.currentCityGroupName,
-                  GPS_TYPE.code,
-                )
+              ? renderCity([currentCity], currentCityGroupName, GPS_TYPE.code)
               : null}
             {/* 热门城市 */}
             {hotCities?.length > 0
-              ? renderCity(
-                  hotCities,
-                  hotCitiesGroupName ||
-                    locale?.citySelector?.hotCitiesGroupName,
-                  HOT_CITY_TYPE.code,
-                )
+              ? renderCity(hotCities, hotCitiesGroupName, HOT_CITY_TYPE.code)
               : null}
             {cities?.length > 0 ? (
               <div className={`${prefixCls}-list-container`}>

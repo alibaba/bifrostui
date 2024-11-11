@@ -9,32 +9,20 @@ export interface BaseLang {
     confirm: string;
   };
   calendar: {
-    weekdays: Array<string>;
-  };
-  input: {
-    placeholder: string;
-  };
-  textarea: {
-    placeholder: string;
-  };
-  selector: {
-    select: string;
+    Monday: string;
+    Tuesday: string;
+    Wednesday: string;
+    Thursday: string;
+    Friday: string;
+    Saturday: string;
+    Sunday: string;
   };
   citySelector: {
     selectedCityGroupName: string;
     currentCityGroupName: string;
     hotCitiesGroupName: string;
-    gpsType: {
-      title: string;
-      code: string;
-    };
-    currentType: {
-      title: string;
-      code: string;
-    };
-    hotCityType: {
-      title: string;
-      code: string;
-    };
+    located: string;
+    current: string;
+    hot: string;
   };
 }

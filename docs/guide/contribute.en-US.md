@@ -12,7 +12,7 @@ The following is a guide for submitting feedback or code.
 
 Follow the steps below to develop the component library locally
 
-BUI uses lerna for multi package management, please use [yarn](https://pnpm.io/) Install dependencies
+BUI uses lerna for multi package management, please use [yarn](https://pnpm.io/) to install dependencies.
 
 ```bash
 # 克隆仓库
@@ -64,11 +64,11 @@ Component structure
 
 ### Pull Request Process
 
-The process of submitting a Pull Request on GitHub can refer to [First time participating in open source](https://github.com/firstcontributions/first-contributions) Learning
+The process of submitting a Pull Request on GitHub can refer to [First time participating in open source](https://github.com/firstcontributions/first-contributions) for more.
 
 1. Fork the main repository, if it has already been forked, synchronize the latest code of the main repository
-2. Based on fork warehouse`master`branch: create a new branch`your-branch-name`
-3. In`your-branch-name`分support development, after development is completed, submit a pull request to the main repository`master`branch
+2. Create a new branch called 'young branch name' based on the 'master' branch of the fork repository
+3. Develop on the 'young branch name' branch, and after completion, submit a Pull Request to the 'master' branch of the main repository
 4. Pull requests will be merged into the main repository after the review is approved
 5. Waiting for BUI release version
 

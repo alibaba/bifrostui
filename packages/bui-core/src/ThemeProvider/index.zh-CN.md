@@ -161,14 +161,11 @@ BUI 默认提供了中文、繁体中文和英语三种语言，若无法满足�
 ```tsx
 import {
   ThemeProvider,
-  createTheme,
   Button,
   Dialog,
   Stack,
   Picker,
   Calendar,
-  Input,
-  TextArea,
   Select,
   SelectOption,
   CitySelector,
@@ -267,16 +264,11 @@ const cities = [
 export default () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(dayjs().toDate());
-  const [inputValue, setInputValue] = useState('');
   const [curValue, setCurValue] = useState(EN);
   const [dialog, contextHolder] = Dialog.useDialog();
   const handleChange = (e, res) => {
     console.log('date change:', res);
     setValue(res.value);
-  };
-  const handleInputChange = (e, data) => {
-    setInputValue(data?.value);
-    console.log('change', data?.value);
   };
   const selectedCity = {
     code: '110100',
@@ -314,8 +306,8 @@ export default () => {
         <div>语言选择</div>
         <Select
           defaultValue={EN}
-          onChange={(e, { value = '' }) => {
-            setCurValue(value);
+          onChange={(e, { locale }) => {
+            setCurValue(locale);
           }}
         >
           {optionInt.map((item, index) => (
@@ -329,14 +321,14 @@ export default () => {
             });
           }}
         >
-          Dialog
+          open Dialog
         </Button>
         <Button
           onClick={() => {
             setOpen(true);
           }}
         >
-          打开picker
+          open Picker
         </Button>
         <Picker
           open={open}
@@ -378,13 +370,6 @@ export default () => {
           ]}
         />
         <Calendar value={value} onChange={handleChange} />
-        <Input value={inputValue} onChange={handleInputChange} />
-        <TextArea style={{ width: '300px' }} />
-        <Select>
-          {options.map((item, index) => (
-            <SelectOption key={index} value={item.value} label={item.label} />
-          ))}
-        </Select>
         <CitySelector
           cities={cities}
           onSelect={onSelect}

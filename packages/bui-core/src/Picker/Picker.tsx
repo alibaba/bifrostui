@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { useLocaleText } from '@bifrostui/utils';
 import Drawer from '../Drawer';
 import PickerPanel from './PickerPanel';
 import { PickerProps } from './Picker.types';
 import { formatOptions, pickerPanelType, safeData } from './utils';
-import { useTheme } from '../ThemeProvider';
 import './Picker.less';
 
 const prefixCls = 'bui-picker';
@@ -27,7 +27,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
   const rollerRefs = useRef([]);
   const [columns, setColumns] = useState([]);
   const [internalValue, setInternalValue] = useState([]);
-  const { locale } = useTheme();
+  const { cancel: cancelText, confirm: confirmText } = useLocaleText('picker');
 
   useEffect(() => {
     if (!open) return;
@@ -172,11 +172,11 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
       >
         <div className={`${prefixCls}-header`}>
           <div className={`${prefixCls}-cancel`} onClick={cancel}>
-            {locale?.picker?.cancel || '取消'}
+            {cancelText}
           </div>
           {title && <div className={`${prefixCls}-title`}>{title}</div>}
           <div className={`${prefixCls}-confirm`} onClick={confirm}>
-            {locale?.picker?.confirm || '确认'}
+            {confirmText}
           </div>
         </div>
 

@@ -1,5 +1,5 @@
 import { CaretLeftIcon, CaretRightIcon } from '@bifrostui/icons';
-import { useDidMountEffect, useValue } from '@bifrostui/utils';
+import { useDidMountEffect, useValue, useLocaleText } from '@bifrostui/utils';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
@@ -10,10 +10,9 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import './Calendar.less';
 import { CalendarProps, ICalendarInstance } from './Calendar.types';
 import { formatDate, isRange, isSame } from './utils';
-import { useTheme } from '../ThemeProvider';
+import './Calendar.less';
 
 const Picker = lazy(() => import('../Picker'));
 
@@ -50,16 +49,16 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       onChange,
       ...others
     } = props;
-
-    const { locale } = useTheme();
-    const SUNDAY_WEEK_DATA = locale?.calendar?.weekdays || [
-      '日',
-      '一',
-      '二',
-      '三',
-      '四',
-      '五',
-      '六',
+    const { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday } =
+      useLocaleText('calendar');
+    const SUNDAY_WEEK_DATA = [
+      Sunday,
+      Monday,
+      Tuesday,
+      Wednesday,
+      Thursday,
+      Friday,
+      Saturday,
     ];
     const isRangeMode = mode === 'range';
     /** @type undefined | Array<Date|null> */

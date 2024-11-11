@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 /**
- * 翻译单个文件（推荐开发新组件时使用，如果只是更改现有md的内容，建议手动修改）
+ * 翻译单个md文件
  * 1. 通过 --component 指定
  * 如 node scripts/translate/translate.js --component Button 表示翻译 Button 组件下的 index.zh-CN.md 文件，并写入 index.en-US.md
  * 等价于运行 pnpm run md:trans --component Button
@@ -268,8 +268,7 @@ async function processMarkdownFiles(directory) {
   }
 }
 
-// 调用函数，处理 src 目录下的文件
-// 谨慎操作
+// 翻译所有基础组件的md
 // processMarkdownFiles(
 //   path.resolve(__dirname, '../../packages/bui-core/src'),
 // ).catch((err) => console.error(err));

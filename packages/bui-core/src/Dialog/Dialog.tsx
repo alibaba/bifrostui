@@ -6,6 +6,7 @@ import { DialogProps } from './Dialog.types';
 import Modal from '../Modal';
 import './index.less';
 import { useTheme } from '../ThemeProvider';
+import { useLocaleText } from '@bifrostui/utils';
 
 const prefixCls = 'bui-dialog';
 
@@ -27,8 +28,13 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   } = props;
 
   const InputRef = useRef(null);
+
   const themeConfig = useTheme(theme);
-  const { locale } = themeConfig;
+  const {
+    cancel,
+    confirm,
+    placeholder: placeholderLocaleName,
+  } = useLocaleText('dialog', themeConfig);
   useImperativeHandle(ref, () => {
     return { theme: themeConfig };
   });
@@ -39,7 +45,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
         onClick={onClose}
         className={`${prefixCls}-body-button`}
       >
-        {cancelText || locale?.dialog?.cancel}
+        {cancelText || cancel}
       </Button>
       <Button
         variant="text"
@@ -49,7 +55,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
         }}
         className={`${prefixCls}-body-button`}
       >
-        {confirmText || locale?.dialog?.confirm}
+        {confirmText || confirm}
       </Button>
     </div>
   );
@@ -59,7 +65,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       {...InputProps}
       inputRef={InputRef}
       className={`${prefixCls}-body-input`}
-      placeholder={`${placeholder || themeConfig?.dialog?.placeholder}`}
+      placeholder={`${placeholder || placeholderLocaleName}`}
     />
   );
 

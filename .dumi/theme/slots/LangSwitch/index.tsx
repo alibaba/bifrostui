@@ -42,10 +42,8 @@ const SingleSwitch: FC<{ locale: ILocaleItem; current: ILocaleItem }> = ({
   locale,
   current,
 }) => {
-  // debugger;
   const { pathname, search } = useLocation();
   const currentProtocol = `${window.location.protocol}//`;
-  const currentHref = window.location.href.slice(currentProtocol.length);
   const [path, setPath] = useState(() =>
     getTargetLocalePath({ pathname, current, target: locale }),
   );
@@ -53,18 +51,6 @@ const SingleSwitch: FC<{ locale: ILocaleItem; current: ILocaleItem }> = ({
   if (utils.isLocalStorageNameSupported()) {
     localStorage.setItem('locale', utils.isZhCN(pathname) ? 'en-US' : 'zh-CN');
   }
-  // window.location.href =
-  //   currentProtocol +
-  //   currentHref.replace(
-  //     window.location.pathname,
-  //     utils.getLocalizedPathname(pathname, !utils.isZhCN(pathname), search)
-  //       .pathname,
-  //   );
-  // const { pathname } = useLocation();
-
-  // useEffect(() => {
-  //   setPath(getTargetLocalePath({ pathname, current, target: locale }));
-  // }, [pathname, current.id, locale.id]);
   useEffect(() => {
     setPath(
       utils.getLocalizedPathname(pathname, !utils.isZhCN(pathname), search)
