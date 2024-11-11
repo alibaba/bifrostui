@@ -89,6 +89,7 @@ const NavbarContent: FC<{ data: ReturnType<typeof useNavData> }> = ({
   );
 };
 
+// ============================= Theme =============================
 const Navbar: FC = () => {
   const nav = useNavData();
 

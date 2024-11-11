@@ -1,4 +1,13 @@
 .bui-tag-group {
+  --height: var(--bui-tag-group-divider-height, 13%);
+  --tag-color: var(--bui-tag-color, var(--bui-color-gray));
+  --tag-border-color: var(--bui-tag-border-color, var(--bui-color-border-gray));
+  --tag-bg-color: var(--bui-tag-bg-color, var(--bui-color-gray));
+  --tag-height: var(--bui-tag-height, 15px);
+  --tag-line-height: var(--bui-tag-line-height, 15px);
+  --tag-padding: var(--bui-tag-padding, 0 var(--bui-spacing-xs));
+  --tag-bg-color-vip: var(--bui-tag-color-vip, fade(#ff866e, 30%));
+
   display: inline-flex;
   font-family: var(--bui-font-family);
 
@@ -28,7 +37,7 @@
       position: absolute;
       right: -1px;
       width: 1px;
-      height: 13%;
+      height: var(--height);
       color: #fff;
       background-color: #fff;
       border-right-style: solid;

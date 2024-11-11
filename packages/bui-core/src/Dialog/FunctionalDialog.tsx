@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { LegacyRef, useCallback, useEffect, useState } from 'react';
 import { getRootElement, render, unmount } from '@bifrostui/utils';
 import Popup from './Dialog';
 import {
@@ -8,6 +8,8 @@ import {
   ConfirmOptions,
   DialogOptions,
   Dispatch,
+  DialogFunction,
+  DialogRef,
 } from './Dialog.types';
 
 const { isValidElement, Component } = React;
@@ -28,7 +30,7 @@ const DialogGenerator = (options: DialogOptions) => {
   rootElement.appendChild(rootWrapper);
 
   const DialogComponent = () => {
-    const { onConfirm, onCancel, ...others } = options;
+    const { onConfirm, onCancel, ref, ...others } = options;
     const [visible, setVisible] = useState(false);
 
     const close = useCallback(() => {
@@ -64,6 +66,7 @@ const DialogGenerator = (options: DialogOptions) => {
 
     return (
       <Popup
+        ref={ref as LegacyRef<DialogRef>}
         {...others}
         open={visible}
         onOk={(val) => dispatch(true, val)}
@@ -111,8 +114,49 @@ const prompt = (options: PromptOptions) => {
     ...formatProps(options),
   });
 };
+const useDialog = () => {
+  const holderRef = React.useRef(null);
+  const wrapAPI: DialogFunction = (
+    props: DialogOptions | string,
+  ): DialogPromise => {
+    const options = { theme: holderRef.current.theme, ...formatProps(props) };
+    const { onConfirm, onCancel, ...rest } = options;
+    return new Promise((resolve) => {
+      DialogGenerator({
+        ...rest,
+
+        onConfirm: async (val) => {
+          await onConfirm?.(val);
+          if (rest.type === 'prompt') resolve(val);
+          else resolve(true);
+        },
+        onCancel: async () => {
+          await onCancel?.();
+          resolve(false);
+        },
+      });
+    });
+  };
+  wrapAPI.confirm = (options: ConfirmOptions) =>
+    Dialog({
+      type: 'confirm',
+      ...formatProps(options),
+      theme: holderRef.current.theme,
+    });
+  wrapAPI.prompt = (options: PromptOptions) =>
+    Dialog({
+      type: 'prompt',
+      ...formatProps(options),
+      theme: holderRef.current.theme,
+    });
+  return [wrapAPI, <Popup key="dialog-holder" ref={holderRef} />] as [
+    DialogFunction,
+    React.JSX.Element,
+  ];
+};
 
 Dialog.confirm = confirm;
 Dialog.prompt = prompt;
+Dialog.useDialog = useDialog;
 
 export default Dialog;

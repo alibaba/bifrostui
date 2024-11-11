@@ -1,20 +1,24 @@
 @import '@bifrostui/styles/mixins/index.less';
 
 .bui-navbar {
+  --width: var(--bui-navbar-width, 100%);
   --height: var(--bui-navbar-height, 45px);
+  --padding: var(--bui-navbar-padding, 0 8px);
   --icon-size: var(--bui-navbar-icon-size, 24px);
+  --icon-font-size: var(--bui-navbar-icon-font-size, var(--bui-title-size-3));
   --background-color: var(
     --bui-navbar-background-color,
     var(--bui-color-white)
   );
   --border-bottom: var(--bui-navbar-border-bottom, none);
   --z-index: var(--bui-navbar-z-index, auto);
+  --title-max-width: var(--bui-navbar-title-max-width, 60%);
 
   position: relative;
-  width: 100%;
+  width: var(--width);
   height: var(--height);
   box-sizing: border-box;
-  padding: 0 8px;
+  padding: var(--padding);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,8 +36,8 @@
   }
 
   &-title {
-    max-width: 60%;
-    padding: 0 8px;
+    max-width: var(--title-max-width);
+    padding: var(--padding);
     font-size: var(--bui-title-size-2);
     .ellipsis();
   }
@@ -43,7 +47,7 @@
     flex: 1;
     display: flex;
     align-items: center;
-    font-size: var(--bui-title-size-3);
+    font-size: var(--icon-font-size);
   }
 
   &-left {

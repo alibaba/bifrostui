@@ -128,7 +128,7 @@ const IconDemo = () => {
           <div> {currentIcon?.importName}</div>
           <div>
             import {`{ ${currentIcon?.importName} }`} from
-            &apos;@bifrostui/react&apos;;
+            &apos;@bifrostui/icons&apos;;
           </div>
           {currentIcon ? (
             <currentIcon.Component style={{ fontSize: '100px' }} />
