@@ -385,9 +385,9 @@ export default () => {
 };
 ```
 
-### API
+## API
 
-#### ThemeProviderProps、ThemeProps
+### ThemeProviderProps、ThemeProps
 
 | 属性              | 说明                              | 类型                   | 默认值 |
 | ----------------- | --------------------------------- | ---------------------- | ------ |
@@ -401,7 +401,7 @@ export default () => {
 | dmLightToken      | 大麦暗黑主题token                 | Record<string, string> | -      |
 | token             | 组件全局Token                     | Record<string, string> | -      |
 
-#### ResponsiveTokenOptions
+### ResponsiveTokenOptions
 
 | 属性 | 说明     | 类型                   | 默认值   |
 | ---- | -------- | ---------------------- | -------- |
