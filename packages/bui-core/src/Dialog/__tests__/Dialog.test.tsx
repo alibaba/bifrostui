@@ -108,7 +108,7 @@ describe('Dialog Functional Calls', () => {
     expect(screen.getByText('Prompt Title')).toBeInTheDocument();
     expect(screen.getByText('Please enter a value:')).toBeInTheDocument();
 
-    const input = screen.getByPlaceholderText('请在此处输入');
+    const input = screen.getByPlaceholderText('请输入内容');
     fireEvent.change(input, { target: { value: 'Test Input' } });
 
     fireEvent.click(screen.getByText('Confirm'));
