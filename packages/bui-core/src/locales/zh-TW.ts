@@ -20,11 +20,11 @@ const zhTW: BaseLang = {
     Sunday: '日',
   },
   citySelector: {
-    selectedCityGroupName: '当前城市',
+    selectedCityGroupName: '目前城市',
     currentCityGroupName: '定位城市',
     hotCitiesGroupName: '熱門城市',
     located: '定位',
-    current: '当前',
+    current: '目前',
     hot: '熱門',
   },
 };
