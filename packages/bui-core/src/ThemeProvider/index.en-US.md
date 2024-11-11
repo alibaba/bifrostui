@@ -314,8 +314,8 @@ export default () => {
         <div>语言选择</div>
         <Select
           defaultValue={EN}
-          onChange={(e, { value = '' }) => {
-            setCurValue(value);
+          onChange={(e, { value: locale }) => {
+            setCurValue(locale);
           }}
         >
           {optionInt.map((item, index) => (

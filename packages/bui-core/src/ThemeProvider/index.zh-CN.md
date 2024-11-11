@@ -306,7 +306,7 @@ export default () => {
         <div>语言选择</div>
         <Select
           defaultValue={EN}
-          onChange={(e, { locale }) => {
+          onChange={(e, { value: locale }) => {
             setCurValue(locale);
           }}
         >
