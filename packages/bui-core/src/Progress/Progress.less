@@ -1,23 +1,26 @@
 .bui-progress {
   --fill-color: var(--bui-color-primary);
-  --trail-color: rgba(156, 156, 165, 0.2);
-  --stroke-width: 8px;
-  width: 100%;
+  --trail-color: var(--bui-progress-trail-color, rgba(156, 156, 165, 0.2));
+  --stroke-width: var(--bui-progress-stroke-width, 8px);
+  --width: var(--bui-progress-width, 100%);
+  --border-radius: var(--bui-progress-border-radius, 100px);
+
+  width: var(--width);
   font-family: var(--bui-font-family);
 
   &-inner {
     position: relative;
     display: inline-block;
-    width: 100%;
+    width: var(--width);
     overflow: hidden;
     vertical-align: middle;
     background-color: var(--trail-color);
-    border-radius: 100px;
+    border-radius: var(--border-radius);
   }
 
   &-bg {
     position: relative;
-    border-radius: 100px;
+    border-radius: var(--border-radius);
     background-color: var(--fill-color);
     height: var(--stroke-width);
   }

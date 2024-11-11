@@ -1,0 +1,232 @@
+@import (reference) '../../theme/styles/variables.less';
+
+.main-container {
+  background: #fff;
+  @{dark-selector} & {
+    background: var(--bui-color-bg-default);
+  }
+
+  .bui-btn-icon-end {
+    transform: rotate(90deg);
+  }
+
+  .main-head {
+    height: 440px;
+    background: #e6eeff;
+    font-size: 45px;
+    color: #2e333e;
+    padding: 51px 148px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    @{dark-selector} & {
+      background: var(--bui-color-bg-default);
+    }
+
+    @media @mobile {
+      padding: 40px;
+    }
+
+    .main-desc {
+      font-size: 24px;
+      margin-top: 18px;
+    }
+
+    .main-logo {
+      height: 45px;
+      margin-top: 39px;
+    }
+
+    .start-btn {
+      background-color: #fff;
+      color: @c-primary;
+      box-shadow: 0 12px 24px 0 rgba(0, 16, 61, 0.05);
+      @{dark-selector} & {
+        background-color: @c-light-bg-dark;
+      }
+    }
+
+    .head-img {
+      width: 240px;
+
+      @media @mobile {
+        width: 140px;
+        margin-top: 55px;
+      }
+    }
+  }
+
+  .main-introduce {
+    margin: -110px 58px 0;
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 36px 33px;
+    box-shadow: 0 12px 28px 0 rgba(113, 142, 204, 0.1);
+    justify-content: space-around;
+    align-items: start;
+    @{dark-selector} & {
+      background: var(--bui-color-bg-default);
+    }
+
+    @media @mobile {
+      margin: -140px 25px 0;
+    }
+  }
+
+  .introduce-title {
+    font-size: 15px;
+    color: #000;
+    font-weight: bold;
+    @{dark-selector} & {
+      color: var(--bui-color-fg-default);
+    }
+  }
+
+  .introduce-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+  }
+
+  .introduce-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 28px;
+  }
+
+  .introduce-desc {
+    margin-top: 13px;
+    color: #666;
+    line-height: 19px;
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .main-resource {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 58px 60px;
+    flex-wrap: wrap;
+
+    @media @mobile {
+      margin: 60px 25px;
+    }
+  }
+
+  .resource-item {
+    flex-grow: 1;
+    margin-top: 30px;
+
+    &:first-child {
+      margin-right: 24px;
+    }
+
+    @media @not-desktop {
+      &:first-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .resource-title {
+    font-size: 21px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .resource-content {
+    background: #e6eeff;
+    padding: 54px 48px;
+    display: flex;
+    justify-content: space-between;
+    @{dark-selector} & {
+      background: var(--bui-color-bg-default);
+    }
+
+    .content-title {
+      font-size: 24px;
+      color: #2e333e;
+      font-weight: bold;
+      margin-bottom: 16px;
+      @{dark-selector} & {
+        color: var(--bui-color-fg-default);
+      }
+    }
+
+    .content-desc {
+      font-size: 13px;
+      color: var(--bui-color-fg-muted);
+      line-height: 19px;
+      margin-bottom: 18px;
+    }
+
+    .content-img {
+      width: 150px;
+      margin-left: 36px;
+
+      @media @mobile {
+        width: 110px;
+        height: 110px;
+        align-self: center;
+      }
+    }
+  }
+
+  .main-users {
+    padding: 0 58px 60px;
+    box-sizing: border-box;
+
+    .users-title {
+      color: #666;
+      font-size: 21px;
+      margin-bottom: 30px;
+    }
+
+    .user-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    svg {
+      margin-right: 42px;
+      margin-left: 18px;
+      width: 100px;
+      height: auto;
+    }
+  }
+
+  .main-footer {
+    color: var(--bui-color-neutral-3);
+    font-size: 14px;
+    text-align: center;
+    background: #e8e8e8;
+    word-break: break-all;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    @{dark-selector} & {
+      background: var(--bui-color-bg-default);
+    }
+  }
+}
+
+.dumi-default-doc-layout-content.home-page {
+  .side {
+    display: none;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .right {
+    .dumi-default-content {
+      padding: 0;
+    }
+  }
+}

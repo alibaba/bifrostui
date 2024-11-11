@@ -63,3 +63,40 @@ export const formatOptions = (internalValue, options = []) => {
       return options;
   }
 };
+
+/**
+ * 在格式化后的数据源中是否存在等长子项的value
+ */
+export const existSameLengthValue = (value, formatted) => {
+  const result = formatted.every((item, idx) =>
+    item.some((i) => value?.[idx] === i?.value),
+  );
+  return result;
+};
+
+/**
+ * 关闭选择器时，纠正value和格式化数据
+ * 取决于formatted后的options有几列，若value为格式化后数据源（formatted）的等长子集，则取value，否则执行纠正逻辑
+ */
+export const safeData = ({ value, formatted, options }) => {
+  let safeValue = [];
+  let safeFormatted = [];
+
+  const existValidChildren = existSameLengthValue(value, formatted);
+
+  if (existValidChildren) {
+    safeValue = value;
+    safeFormatted = formatted;
+  } else {
+    formatted.forEach((item, index) => {
+      const childIndex = item.findIndex((i) => i.value === value[index]);
+      safeValue[index] = item?.[childIndex]?.value || item?.[0]?.value;
+    });
+    safeFormatted = formatOptions(safeValue, options);
+  }
+
+  return {
+    safeValue,
+    safeFormatted,
+  };
+};

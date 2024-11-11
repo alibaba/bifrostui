@@ -3,14 +3,22 @@ import { useDidMountEffect, useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
-import React, { SyntheticEvent, useMemo, useState } from 'react';
-import './Calendar.less';
+import React, {
+  Suspense,
+  lazy,
+  SyntheticEvent,
+  useMemo,
+  useState,
+} from 'react';
 import { CalendarProps, ICalendarInstance } from './Calendar.types';
 import { formatDate, isRange, isSame } from './utils';
+import { useLocaleText } from '../locales';
+import './Calendar.less';
+
+const Picker = lazy(() => import('../Picker'));
 
 dayjs.extend(isoWeek);
 
-const SUNDAY_WEEK_DATA = ['日', '一', '二', '三', '四', '五', '六'];
 const classes = {
   root: 'bui-calendar',
   handler: 'bui-calendar-handler',
@@ -29,15 +37,30 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       maxDate,
       mode,
       hideDaysOutsideCurrentMonth,
+      headerBarFormat,
+      headerBarLeftIcon,
+      headerBarRightIcon,
       disabledDate,
+      enableSelectYear,
       highlightDate,
       dateRender,
       weekRender,
       onMonthChange,
+      onYearChange,
       onChange,
       ...others
     } = props;
-
+    const { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday } =
+      useLocaleText('calendar');
+    const SUNDAY_WEEK_DATA = [
+      Sunday,
+      Monday,
+      Tuesday,
+      Wednesday,
+      Thursday,
+      Friday,
+      Saturday,
+    ];
     const isRangeMode = mode === 'range';
     /** @type undefined | Array<Date|null> */
     const formattedValue = formatDate(mode, value, minDate, maxDate);
@@ -49,6 +72,8 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       maxDate,
     );
 
+    // 控制年份选择picker
+    const [openPicker, setOpenPicker] = useState<boolean>(false);
     // 头部操作栏月份
     const [renderMonth, setRenderMonth] = useState(() => {
       const initMonth =
@@ -76,6 +101,26 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
 
     const isMinMonth = dayjs(minDate).isSame(renderMonth, 'month');
     const isMaxMonth = dayjs(maxDate).isSame(renderMonth, 'month');
+
+    // 头部操作栏左右图标
+    const headerBarIcon = {
+      left: headerBarLeftIcon ? (
+        headerBarLeftIcon({ isMinMonth })
+      ) : (
+        <CaretLeftIcon
+          className={`${classes.handler}-btn-icon`}
+          htmlColor={isMinMonth && '#cccccc'}
+        />
+      ),
+      right: headerBarRightIcon ? (
+        headerBarRightIcon({ isMaxMonth })
+      ) : (
+        <CaretRightIcon
+          className={`${classes.handler}-btn-icon`}
+          htmlColor={isMaxMonth && '#cccccc'}
+        />
+      ),
+    };
 
     useDidMountEffect(() => {
       const initMonth =
@@ -139,6 +184,21 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       });
 
       return list;
+    };
+
+    const getYearsList = () => {
+      const result = [];
+      // 使用传入参数的时间
+      let startTime = new Date(minDate).getFullYear();
+      const endTime = new Date(maxDate).getFullYear();
+      while (endTime - startTime >= 0) {
+        result.push({
+          label: startTime,
+          value: startTime,
+        });
+        startTime += 1;
+      }
+      return result;
     };
 
     const getDayClassName = ({ day: itemDate, disabled }) => {
@@ -255,7 +315,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         setRenderMonth(month);
         onMonthChange?.(e, {
           type: 'prev',
-          month: dayjs(month).format('YYYY/MM'),
+          month: dayjs(month).format(headerBarFormat),
         });
       }
     };
@@ -269,9 +329,30 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         setRenderMonth(month);
         onMonthChange?.(e, {
           type: 'next',
-          month: dayjs(month).format('YYYY/MM'),
+          month: dayjs(month).format(headerBarFormat),
         });
       }
+    };
+
+    /**
+     * 点击顶部日期
+     */
+    const onClickDate = (e) => {
+      if (!enableSelectYear) {
+        return;
+      }
+      e.stopPropagation();
+      setOpenPicker(true);
+      getYearsList();
+    };
+    const onClosePicker = (e, data) => {
+      const selectYear = data.value[0];
+      e.stopPropagation();
+      setRenderMonth(dayjs(renderMonth).set('year', selectYear).toDate());
+      onYearChange?.(e, {
+        year: selectYear,
+      });
+      setOpenPicker(false);
     };
 
     let data: Record<string, string> = {};
@@ -299,19 +380,13 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         {/* 顶部操作栏 */}
         <div className={classes.handler}>
           <div onClick={onClickPrev} className={`${classes.handler}-btn`}>
-            <CaretLeftIcon
-              className={`${classes.handler}-btn-icon`}
-              htmlColor={isMinMonth && '#cccccc'}
-            />
+            {headerBarIcon.left}
           </div>
-          <div className={`${classes.handler}-text`}>
-            {dayjs(renderMonth).format('YYYY/MM')}
+          <div className={`${classes.handler}-text`} onClick={onClickDate}>
+            {dayjs(renderMonth).format(headerBarFormat)}
           </div>
           <div onClick={onClickNext} className={`${classes.handler}-btn`}>
-            <CaretRightIcon
-              className={`${classes.handler}-btn-icon`}
-              htmlColor={isMaxMonth && '#cccccc'}
-            />
+            {headerBarIcon.right}
           </div>
         </div>
 
@@ -329,6 +404,16 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         </div>
 
         <div className={clsx(`${classes.root}-month`)}>{renderDayList()}</div>
+        {enableSelectYear && (
+          <Suspense fallback={null}>
+            <Picker
+              options={[getYearsList()]}
+              open={openPicker}
+              value={[dayjs(renderMonth).year()]}
+              onClose={onClosePicker}
+            />
+          </Suspense>
+        )}
       </div>
     );
   },
@@ -337,6 +422,8 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
 Calendar.displayName = 'BuiCalendar';
 Calendar.defaultProps = {
   hideDaysOutsideCurrentMonth: false,
+  headerBarFormat: 'YYYY/MM',
+  enableSelectYear: false,
   mode: 'single',
   minDate: dayjs(dayjs().format('YYYYMMDD')).add(0, 'month').toDate(),
   maxDate: dayjs(dayjs().format('YYYYMMDD')).add(11, 'month').toDate(),

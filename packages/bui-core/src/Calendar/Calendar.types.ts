@@ -14,6 +14,17 @@ export interface ICalendarMonthChangeData {
   /** 操作类型，prev: 点击上个月 next: 点击下个月 */
   type: 'prev' | 'next';
 }
+export interface ICalendarYearChangeData {
+  /** 切换后的年份 */
+  year: number;
+}
+
+export interface ICustomIconProps {
+  /** 是否为可选范围内的最小月份 */
+  isMinMonth?: boolean;
+  /** 是否为可选范围内的最大月份 */
+  isMaxMonth?: boolean;
+}
 
 export type ICalendarMode = 'single' | 'range';
 
@@ -53,6 +64,21 @@ export type CalendarProps<
        */
       hideDaysOutsideCurrentMonth?: boolean;
       /**
+       * 头部操作栏日期显示格式
+       * @default YYYY/MM
+       */
+      headerBarFormat?: string;
+      /**
+       * 头部操作栏左边图标
+       * @defaultReturn <CaretLeftIcon />
+       */
+      headerBarLeftIcon?: (options: ICustomIconProps) => React.ReactNode;
+      /**
+       * 头部操作栏右边图标
+       * @defaultReturn <CaretRightIcon />
+       */
+      headerBarRightIcon?: (options: ICustomIconProps) => React.ReactNode;
+      /**
        * 不可选择的日期
        */
       disabledDate?: (currentDate: Date) => boolean;
@@ -70,6 +96,17 @@ export type CalendarProps<
        * 自定义周单元格的内容
        */
       weekRender?: (week: string) => React.ReactNode;
+      /**
+       * 是否开启选择年
+       */
+      enableSelectYear?: boolean;
+      /**
+       * 年份发生变化的回调
+       */
+      onYearChange?: (
+        e: React.SyntheticEvent,
+        data: ICalendarYearChangeData,
+      ) => void;
       /**
        * 月份发生变化的回调
        */

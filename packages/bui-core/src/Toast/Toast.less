@@ -1,0 +1,65 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+.bui-toast {
+  --min-width: var(--bui-toast-min-width, 86px);
+  --max-width: var(--bui-toast-max-width, 80%);
+  --flex-direction: var(--bui-toast-flex-direction, column);
+  --padding: var(--bui-toast-padding, var(--bui-spacing-xl));
+  --word-break: break-all;
+  --z-index: var(--bui-z-index-toast);
+  --position-top: var(--bui-toast-position-top, 15%);
+  --position-bottom: var(--bui-toast-position-bottom, 85%);
+  --background-color: var(--bui-toast-bg-color, rgba(0, 0, 0, 0.8));
+  --border-radius: var(--bui-toast-border-radius, --bui-shape-radius-default);
+  --icon-margin: var(--bui-toast-icon-margin-bottom, 8px);
+  --icon-font-size: var(--bui-toast-icon-font-size, 30px);
+  --text-align: center;
+
+  &.bui-toast-allow-click {
+    position: fixed;
+    right: unset;
+    bottom: unset;
+  }
+
+  position: fixed;
+  left: 50%;
+  z-index: var(--z-index);
+  width: fit-content;
+  min-width: var(--min-width);
+  max-width: var(--max-width);
+  padding: var(--padding);
+  font-size: var(--bui-text-size-1);
+  color: var(--bui-color-white);
+  border-radius: var(--border-radius);
+  word-break: var(--word-break);
+  white-space: pre-wrap;
+  background-color: var(--background-color);
+  text-align: var(--text-align);
+  font-family: var(--bui-font-family);
+
+  &-center {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &-top {
+    top: var(--position-top);
+    transform: translate(-50%, calc(-1 * var(--position-top)));
+  }
+
+  &-bottom {
+    top: var(--position-bottom);
+    transform: translate(-50%, calc(-1 * var(--position-bottom)));
+  }
+
+  &-icon {
+    display: flex;
+    flex-direction: var(--flex-direction);
+    align-items: center;
+
+    .bui-svg-icon {
+      margin: 0 0 var(--icon-margin);
+      font-size: var(--icon-font-size);
+    }
+  }
+}

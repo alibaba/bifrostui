@@ -1,5 +1,7 @@
 .bui-skeleton {
   --border-radius: var(--bui-shape-radius-label);
+  --height: var(--bui-skeleton-height, 1.2em);
+
   display: block;
 
   &-animation-wave {
@@ -30,11 +32,11 @@
   }
 
   &-rectangular {
-    height: 1.2em;
+    height: var(--height);
   }
 
   &-rounded {
-    height: 1.2em;
+    height: var(--height);
     border-radius: var(--border-radius);
   }
 

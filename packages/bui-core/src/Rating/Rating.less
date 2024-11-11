@@ -1,4 +1,9 @@
 .bui-rating {
+  --small-margin-right: var(--bui-rating-small-margin-right, 0.5px);
+  --medium-margin-right: var(--bui-rating-medium-margin-right, 1px);
+  --large-margin-right: var(--bui-rating-large-margin-right, 2px);
+  --large-font-size: var(--bui-rating-large-font-size, 22px);
+
   display: flex;
   flex-wrap: wrap;
   font-family: var(--bui-font-family);
@@ -22,17 +27,17 @@
 
     &-small {
       font-size: var(--bui-text-size-1);
-      margin-right: 0.5px;
+      margin-right: var(--small-margin-right);
     }
 
     &-medium {
       font-size: var(--bui-title-size-3);
-      margin-right: 1px;
+      margin-right: var(--small-medium-right);
     }
 
     &-large {
-      font-size: 22px;
-      margin-right: 2px;
+      font-size: var(--large-font-size);
+      margin-right: var(--large-margin-right);
     }
   }
 
