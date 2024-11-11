@@ -1,5 +1,15 @@
 .bui-collapse-panel {
-  width: 100%;
+  --width: var(--bui-collapse-panel-width, 100%);
+  --header-padding: var(
+    --bui-collapse-panel-header-padding,
+    var(--bui-spacing-lg) 0
+  );
+  --content-padding: var(
+    --bui-collapse-panel-content-padding,
+    var(--bui-spacing-lg) 0
+  );
+
+  width: var(--width);
   background-color: var(--bui-color-bg-view);
   color: var(--bui-color-fg-default);
 }
@@ -14,7 +24,7 @@
   }
 
   &-header-label {
-    padding: var(--bui-spacing-lg) 0;
+    padding: var(--header-padding);
     font-size: var(--bui-title-size-2);
   }
 
@@ -28,7 +38,7 @@
   }
 
   &-content {
-    padding: var(--bui-spacing-lg) 0;
+    padding: var(--content-padding);
     font-size: var(--bui-text-size-1);
     transition: height 0.5s ease;
     overflow: hidden;
