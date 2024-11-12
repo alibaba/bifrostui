@@ -94,4 +94,21 @@ describe('Portal', () => {
       screen.getByTestId('container').contains(screen.getByTestId('test')),
     ).toEqual(true);
   });
+
+  it('test onRootElementMouted props', () => {
+    const onRootElementMouted = jest.fn();
+    const containerRef = React.createRef<HTMLDivElement>();
+    render(
+      <>
+        <div ref={containerRef} data-testid="container" />
+        <Portal
+          container={() => containerRef.current}
+          onRootElementMouted={onRootElementMouted}
+        >
+          <div data-testid="test" />
+        </Portal>
+      </>,
+    );
+    expect(onRootElementMouted).toHaveBeenCalled();
+  });
 });
