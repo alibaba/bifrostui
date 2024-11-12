@@ -40,6 +40,10 @@ export type BreadcrumbProps<
          */
         title?: string;
         /**
+         * 分隔符自定义
+         */
+        separator?: React.ReactNode;
+        /**
          * 点击事件
          */
         onClick?: (e: React.SyntheticEvent) => void;
