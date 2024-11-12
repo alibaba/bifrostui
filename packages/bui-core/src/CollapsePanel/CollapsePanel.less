@@ -1,0 +1,46 @@
+.bui-collapse-panel {
+  --width: var(--bui-collapse-panel-width, 100%);
+  --header-padding: var(
+    --bui-collapse-panel-header-padding,
+    var(--bui-spacing-lg) 0
+  );
+  --content-padding: var(
+    --bui-collapse-panel-content-padding,
+    var(--bui-spacing-lg) 0
+  );
+
+  width: var(--width);
+  background-color: var(--bui-color-bg-view);
+  color: var(--bui-color-fg-default);
+}
+
+.bui-collapse-panel-item {
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 1px #eee;
+    cursor: pointer;
+  }
+
+  &-header-label {
+    padding: var(--header-padding);
+    font-size: var(--bui-title-size-2);
+  }
+
+  &-header-icon-arrow {
+    transform: rotate(0deg);
+    transition: all 0.3s ease;
+  }
+
+  &-header-icon-arrow-active {
+    transform: rotate(-180deg);
+  }
+
+  &-content {
+    padding: var(--content-padding);
+    font-size: var(--bui-text-size-1);
+    transition: height 0.5s ease;
+    overflow: hidden;
+  }
+}
