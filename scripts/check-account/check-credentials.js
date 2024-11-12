@@ -10,8 +10,8 @@ try {
 
   const forbiddenPatterns = /alibaba-inc|alibabapictures/i;
 
-  console.log('账号名', userName);
-  console.log('邮箱', userEmail);
+  console.log('Name:', userName);
+  console.log('Email:', userEmail);
   if (forbiddenPatterns.test(userName) || forbiddenPatterns.test(userEmail)) {
     console.error('💔Git用户名或邮箱不符合规范，禁止提交。');
     process.exit(1);
