@@ -1,0 +1,243 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button demo snapshot Button demo snapshot 0 1`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "row",
+      "--flex-wrap": "wrap",
+      "--justify-content": "center",
+      "--spacing": "8px",
+    }
+  }
+>
+  <button
+    className="bui-btn bui-btn-text bui-btn-medium bui-btn-primary"
+    type="button"
+  >
+    文字按钮
+  </button>
+  <button
+    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-primary"
+    type="button"
+  >
+    描边按钮
+  </button>
+  <button
+    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-primary"
+    type="button"
+  >
+    填充按钮
+  </button>
+  <button
+    className="bui-btn bui-btn-light bui-btn-medium bui-btn-primary"
+    type="button"
+  >
+    浅亮按钮
+  </button>
+</div>
+`;
+
+exports[`Button demo snapshot Button demo snapshot 0 2`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "8px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "row",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "8px",
+      }
+    }
+  >
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-small bui-btn-default"
+      type="button"
+    >
+      小号按钮
+    </button>
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+      type="button"
+    >
+      中号按钮
+    </button>
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-large bui-btn-default"
+      type="button"
+    >
+      大号按钮
+    </button>
+  </div>
+  <button
+    className="bui-btn bui-btn-outlined bui-btn-full bui-btn-default"
+    type="button"
+  >
+    通栏按钮
+  </button>
+</div>
+`;
+
+exports[`Button demo snapshot Button demo snapshot 0 3`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "row",
+      "--flex-wrap": "wrap",
+      "--justify-content": "center",
+      "--spacing": "8px",
+    }
+  }
+>
+  <button
+    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-default"
+    type="button"
+  >
+    取消
+  </button>
+  <button
+    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-primary"
+    type="button"
+  >
+    购票
+  </button>
+  <button
+    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-success"
+    type="button"
+  >
+    影城
+  </button>
+  <button
+    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-info"
+    type="button"
+  >
+    电影
+  </button>
+  <button
+    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-warning"
+    type="button"
+  >
+    想看
+  </button>
+  <button
+    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-danger"
+    type="button"
+  >
+    特惠
+  </button>
+  <button
+    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-vip"
+    type="button"
+  >
+    会员
+  </button>
+</div>
+`;
+
+exports[`Button demo snapshot Button demo snapshot 0 4`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "row",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "8px",
+    }
+  }
+>
+  <button
+    className="bui-btn bui-btn-text bui-btn-medium bui-btn-default bui-btn-disabled"
+    type="button"
+  >
+    文字禁用
+  </button>
+  <button
+    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default bui-btn-disabled"
+    type="button"
+  >
+    描边禁用
+  </button>
+  <button
+    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-default bui-btn-disabled"
+    type="button"
+  >
+    填充禁用
+  </button>
+</div>
+`;
+
+exports[`Button demo snapshot Button demo snapshot 0 5`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "row",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "8px",
+    }
+  }
+>
+  <button
+    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    type="button"
+  >
+    <span
+      className="bui-btn-icon-start"
+    >
+      <svg
+        className="bui-svg-icon"
+        color="linear-gradient(150deg, #FFFDFC 0%, #D5B198 100%)"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<path d=\\"M62.6 11C78.1 11 88 23.4 88 40.1c0 13-11.7 27.2-34.8 43.3-3.1 2.2-7.2 2.2-10.3 0C19.7 67.3 8 53.1 8 40.1 8 23.4 17.9 11 33.4 11c5.6 0 9.4 2 14.6 6.4C53.2 13 57 11 62.6 11z\\"/>",
+          }
+        }
+        focusable="false"
+        viewBox="0 0 96 96"
+      />
+    </span>
+    Heart
+  </button>
+  <button
+    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    type="button"
+  >
+    Date
+    <span
+      className="bui-btn-icon-end"
+    >
+      <svg
+        className="bui-svg-icon"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<path d=\\"M68 16h7c6.1 0 11 4.9 11 11v48c0 6.1-4.9 11-11 11H21c-6.1 0-11-4.9-11-11V27c0-6.1 4.9-11 11-11h7v-3c0-1.7 1.3-3 3-3s3 1.3 3 3v3h28v-3c0-1.7 1.3-3 3-3s3 1.3 3 3v3zm0 6v3c0 1.7-1.3 3-3 3s-3-1.3-3-3v-3H34v3c0 1.7-1.3 3-3 3s-3-1.3-3-3v-3h-7c-2.8 0-5 2.2-5 5v48c0 2.8 2.2 5 5 5h54c2.8 0 5-2.2 5-5V27c0-2.8-2.2-5-5-5h-7zm-1 21c1.7 0 3 1.3 3 3s-1.3 3-3 3H29c-1.7 0-3-1.3-3-3s1.3-3 3-3h38zM55 58c1.7 0 3 1.3 3 3s-1.3 3-3 3H29c-1.7 0-3-1.3-3-3s1.3-3 3-3h26z\\"/>",
+          }
+        }
+        focusable="false"
+        viewBox="0 0 96 96"
+      />
+    </span>
+  </button>
+</div>
+`;

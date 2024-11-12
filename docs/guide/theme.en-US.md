@@ -135,13 +135,19 @@ Used to define a universal background color
 
 ### Color with transparency
 
-| Built in Token variable name | Default value   | explain         |
-| ---------------------------- | --------------- | --------------- |
-| --bui-color-bg-view-alpha-9  | fade(#fff, 90%) | Translucent 90% |
-| --bui-color-bg-view-alpha-7  | fade(#fff, 70%) | Translucent 70% |
-| --bui-color-bg-view-alpha-5  | fade(#fff, 50%) | Translucent 50% |
-| --bui-color-bg-view-alpha-3  | fade(#fff, 30%) | Translucent 30% |
-| --bui-color-bg-view-alpha-1  | fade(#fff, 10%) | Translucent 10% |
+| Built in Token variable name | Default value         | explain                                |
+| ---------------------------- | --------------------- | -------------------------------------- |
+| --bui-color-bg-popover       | --bui-color-neutral-7 | Bubble background color                |
+| --bui-color-bg-alpha-light-9 | fade(#fff, 90%)       | High brightness - semi transparent 90% |
+| --bui-color-bg-alpha-light-7 | fade(#fff, 70%)       | High brightness - semi transparent 70% |
+| --bui-color-bg-alpha-light-5 | fade(#fff, 50%)       | High brightness - semi transparent 50% |
+| --bui-color-bg-alpha-light-3 | fade(#fff, 30%)       | High brightness - semi transparent 30% |
+| --bui-color-bg-alpha-light-1 | fade(#fff, 10%)       | High brightness - semi transparent 10% |
+| --bui-color-bg-alpha-dark-9  | fade(#000, 90%)       | Dark - Translucent 90%                 |
+| --bui-color-bg-alpha-dark-7  | fade(#000, 70%)       | Dark - Translucent 70%                 |
+| --bui-color-bg-alpha-dark-5  | fade(#000, 50%)       | Dark - Translucent 50%                 |
+| --bui-color-bg-alpha-dark-3  | fade(#000, 30%)       | Dark - Translucent 30%                 |
+| --bui-color-bg-alpha-dark-1  | fade(#000, 10%)       | Dark - Translucent 10%                 |
 
 ### Color of dividing lines or borders
 
@@ -221,11 +227,17 @@ Dark mode will use the following Tokens to overwrite CSS variables with the same
 | --bui-color-fg-disabled      | #484f58            | Invalid, unavailable                                |
 | --bui-color-bg-default       | #010409            | Default background color                            |
 | --bui-color-bg-view          | #161b22            | View background color                               |
-| --bui-color-bg-view-alpha-9  | fade(#161b22, 90%) | Translucent 90%                                     |
-| --bui-color-bg-view-alpha-7  | fade(#161b22, 70%) | Translucent 70%                                     |
-| --bui-color-bg-view-alpha-5  | fade(#161b22, 50%) | Translucent 50%                                     |
-| --bui-color-bg-view-alpha-3  | fade(#161b22, 30%) | Translucent 30%                                     |
-| --bui-color-bg-view-alpha-1  | fade(#161b22, 10%) | Translucent 10%                                     |
+| --bui-color-bg-popover       | fade(#484f58, 70%) | Bubble background color                             |
+| --bui-color-bg-alpha-light-9 | fade(#161b22, 90%) | High brightness - semi transparent 90%              |
+| --bui-color-bg-alpha-light-7 | fade(#161b22, 70%) | High brightness - semi transparent 70%              |
+| --bui-color-bg-alpha-light-5 | fade(#161b22, 50%) | High brightness - semi transparent 50%              |
+| --bui-color-bg-alpha-light-3 | fade(#161b22, 30%) | High brightness - semi transparent 30%              |
+| --bui-color-bg-alpha-light-1 | fade(#161b22, 10%) | High brightness - semi transparent 10%              |
+| --bui-color-bg-alpha-dark-9  | fade(#484f58, 90%) | Dark - Translucent 90%                              |
+| --bui-color-bg-alpha-dark-7  | fade(#484f58, 70%) | Dark - Translucent 70%                              |
+| --bui-color-bg-alpha-dark-5  | fade(#484f58, 50%) | Dark - Translucent 50%                              |
+| --bui-color-bg-alpha-dark-3  | fade(#484f58, 30%) | Dark - Translucent 30%                              |
+| --bui-color-bg-alpha-dark-1  | fade(#484f58, 10%) | Dark - Translucent 10%                              |
 | --bui-color-border-default   | #30363d            | Divide line, border                                 |
 
 ## How to customize
