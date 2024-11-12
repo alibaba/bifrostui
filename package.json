@@ -28,7 +28,8 @@
     "lint:script": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
     "lint:style": "stylelint ./**/*.less",
     "prepare": "husky install",
-    "md:trans": "node scripts/translate/translate.js"
+    "md:trans": "node scripts/translate/translate.js",
+    "check:credentials": "node scripts/check-account/check-credentials.js"
   },
   "devDependencies": {
     "@ant-design/icons-svg": "4.4.2",
