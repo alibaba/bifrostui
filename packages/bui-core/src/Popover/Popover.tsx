@@ -11,7 +11,7 @@ import { PopoverProps } from './Popover.types';
 
 const prefixCls = 'bui-popover';
 
-const Popover = React.forwardRef<HTMLElement, PopoverProps>((props, ref) => {
+const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   const {
     className,
     style,
@@ -83,7 +83,7 @@ const Popover = React.forwardRef<HTMLElement, PopoverProps>((props, ref) => {
     changeOpenStatus(event, true);
   };
 
-  if (!(title || content)) return children;
+  if (!title && !content) return null;
 
   const triggerEventOption = triggerEventTransform({
     trigger,
