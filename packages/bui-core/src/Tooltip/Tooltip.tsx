@@ -1,6 +1,10 @@
 import clsx from 'clsx';
-import React, { useState, useRef, useId } from 'react';
-import { getStylesAndLocation, triggerEventTransform } from '@bifrostui/utils';
+import React, { useState, useRef } from 'react';
+import {
+  getStylesAndLocation,
+  triggerEventTransform,
+  useUniqueId,
+} from '@bifrostui/utils';
 import Portal from '../Portal';
 import './Tooltip.less';
 import { TooltipProps } from './Tooltip.types';
@@ -39,7 +43,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   // 箭头位置
   const [arrowLocation, setArrowLocation] = useState(location);
   const [tooltyles, setTooltyles] = useState({});
-  const ttId = useId();
+  const ttId = useUniqueId();
 
   const onRootElementMouted = () => {
     const result = getStylesAndLocation({
