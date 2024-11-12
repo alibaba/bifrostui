@@ -219,7 +219,6 @@ export default () => {
 | 属性         | 说明                     | 类型                                                                                                                                                             | 默认值  |
 | ------------ | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | title        | 气泡浮层内容             | string                                                                                                                                                           | -       |
-| children     | 气泡箭头指向目标         | ReactNode                                                                                                                                                        | -       |
 | defaultOpen  | 默认是否显隐             | boolean                                                                                                                                                          | false   |
 | open         | 用于手动控制气泡浮层显隐 | boolean                                                                                                                                                          | false   |
 | placement    | 气泡框位置               | string，枚举值是 `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` `bottom` | 'top'   |

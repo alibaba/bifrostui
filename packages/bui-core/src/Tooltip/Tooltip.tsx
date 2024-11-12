@@ -6,8 +6,8 @@ import {
   useUniqueId,
 } from '@bifrostui/utils';
 import Portal from '../Portal';
-import './Tooltip.less';
 import { TooltipProps } from './Tooltip.types';
+import './Tooltip.less';
 
 const prefixCls = 'bui-tooltip';
 
@@ -93,8 +93,6 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     ...triggerEventOption,
   };
 
-  if (!children || !title) return null;
-
   return (
     <>
       {(open || openStatus) && title ? (
@@ -116,7 +114,9 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
           </div>
         </Portal>
       ) : null}
-      {React.cloneElement(children, childrenOptions)}
+      {React.isValidElement(children)
+        ? React.cloneElement(children, childrenOptions)
+        : children}
     </>
   );
 });

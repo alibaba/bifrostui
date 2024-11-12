@@ -83,7 +83,7 @@ const Popover = React.forwardRef<HTMLElement, PopoverProps>((props, ref) => {
     changeOpenStatus(event, true);
   };
 
-  if (!children || !(title || content)) return null;
+  if (!(title || content)) return children;
 
   const triggerEventOption = triggerEventTransform({
     trigger,
@@ -98,7 +98,7 @@ const Popover = React.forwardRef<HTMLElement, PopoverProps>((props, ref) => {
   };
   return (
     <>
-      {(open || openStatus) && title ? (
+      {open || openStatus ? (
         <Portal
           onRootElementMouted={onRootElementMouted}
           {...PortalProps}
@@ -129,7 +129,9 @@ const Popover = React.forwardRef<HTMLElement, PopoverProps>((props, ref) => {
           </div>
         </Portal>
       ) : null}
-      {React.cloneElement(children, childrenOptions)}
+      {React.isValidElement(children)
+        ? React.cloneElement(children, childrenOptions)
+        : children}
     </>
   );
 });
