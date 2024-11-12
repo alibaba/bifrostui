@@ -1,0 +1,77 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+.bui-dialog {
+  --max-width: 300px;
+  --border-radius: var(--bui-shape-radius-drawer);
+  --header-font-size: var(--bui-title-size-2);
+  --message-font-size: var(--bui-title-size-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-body {
+    padding-top: 21px;
+    min-width: var(--max-width);
+    margin: 0 auto;
+    border-radius: var(--border-radius);
+    background-clip: padding-box;
+    background-color: var(--bui-color-bg-view);
+    line-height: 21px;
+
+    &-title {
+      padding: 0 40px 9px;
+      font-size: var(--header-font-size);
+      text-align: center;
+      color: var(--bui-color-fg-default);
+      font-weight: 500;
+    }
+
+    &-title + &-footer {
+      margin-top: 6px;
+    }
+
+    &-desc {
+      padding: 0 24px;
+      color: var(--bui-color-fg-muted);
+      font-size: var(--message-font-size);
+      text-align: center;
+
+      &:first-child {
+        padding-top: 0;
+      }
+    }
+
+    &-footer {
+      margin-top: 15px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      display: -webkit-box;
+      display: flex;
+    }
+
+    &-input {
+      width: calc(100% - 48px);
+      margin: 14px 24px 0;
+    }
+
+    &-button {
+      flex: 1;
+      display: block;
+      width: 100%;
+      height: 53px;
+      line-height: 25px;
+      padding: 12px 0 13px;
+      font-size: 17px;
+      background: 0 0;
+      border: 0;
+      outline: 0;
+      border-left: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 0;
+      text-align: center;
+      box-sizing: border-box;
+
+      &:active {
+        background-color: rgba(54, 57, 64, 0.05);
+      }
+    }
+  }
+}
