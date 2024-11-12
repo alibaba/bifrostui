@@ -14,6 +14,7 @@ export {
   useSize,
   useDomCss,
   useTouch,
+  useUniqueId,
 } from './hooks';
 export { default as isDev } from './isDev';
 export { isMini, isWeapp, isAlipay, isMiniapp } from './isMini';
