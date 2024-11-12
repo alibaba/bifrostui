@@ -1,4 +1,5 @@
-import React, { useMemo, useId, useEffect } from 'react';
+import React, { useMemo, useEffect } from 'react';
+import { useUniqueId } from '@bifrostui/utils';
 import { ThemeContext } from './hooks';
 import { BUI_VAR_PREFIX } from './utils/constants';
 import { mountTokens } from './utils/mountTokens';
@@ -18,7 +19,7 @@ const ThemeProvider = React.forwardRef<HTMLDivElement, ThemeProviderProps>(
       children,
     } = props;
 
-    let containerId = (useId() || '').replace(/:/g, '');
+    let containerId = useUniqueId();
     containerId = `${BUI_VAR_PREFIX}${containerId}`;
 
     const theme = useMemo(() => {
@@ -27,7 +28,7 @@ const ThemeProvider = React.forwardRef<HTMLDivElement, ThemeProviderProps>(
 
     let childrenNode = children;
 
-    if (React.isValidElement(children)) {
+    if (!isRoot && React.isValidElement(children)) {
       childrenNode = React.cloneElement(children as React.ReactElement, {
         className:
           `${containerId} ${(children as React.ReactElement)?.props?.className || ''}`.trim(),
