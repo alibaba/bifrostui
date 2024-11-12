@@ -10,7 +10,6 @@ export type TooltipProps<
 > = OverrideProps<
   {
     props: P & {
-      children: React.ReactElement;
       /**
        * 气泡浮层显示内容
        */

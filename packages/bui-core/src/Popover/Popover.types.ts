@@ -10,7 +10,6 @@ export type PopoverProps<
 > = OverrideProps<
   {
     props: P & {
-      children: React.ReactElement;
       /**
        * 默认是否显隐
        * @default false
