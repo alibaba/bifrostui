@@ -171,11 +171,13 @@ $ pnpm --filter @bifrostui/icons build
 
 ## Pull Request 指南
 
-1. 务必保证 `npm run build` 能够编译成功；
-2. 务必保证提交的代码遵循相关包中的 `.eslintrc`, `.stylelintrc`, `.prettierrc` 所规定的规范；
-3. 根目录下运行 `pnpm ci:test` 命令时，必须保证所有测试用例都通过，且新增的组件，单测行覆盖率 90%以上；
-4. 当相关包有测试用例时，请给你提交的代码也添加相应的测试用例。
-5. 提交代码 commit 时，commit 信息需要遵循 [Conventional Commits]标准。
+1. 务必保证 `pnpm build` 能够编译成功；
+2. 非特殊情况（紧急需求仅支持部分渠道的功能），务必保证你的功能在小程序上能正常运行；
+3. 务必保证你改动到的文档支持中英两种语言，可执行 `pnpm md:trans --file <filepath>` 进行机翻，机翻后的文档需要格式化一下；
+4. 务必保证提交的代码遵循相关包中的 `.eslintrc`, `.stylelintrc`, `.prettierrc` 所规定的规范；
+5. 根目录下运行 `pnpm ci:test` 命令时，必须保证所有测试用例都通过，且新增的组件，单测行覆盖率 90%以上；
+6. 当相关包有测试用例时，请给你提交的代码也添加相应的测试用例。
+7. 提交代码 commit 时，commit 信息需要遵循 [Conventional Commits]标准。
 
 ## 最后
 
