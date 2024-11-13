@@ -238,10 +238,12 @@ export default () => {
 
 ## Style variables
 
-| attribute                   | explain                         | Default value       | global variable                       |
-| --------------------------- | ------------------------------- | ------------------- | ------------------------------------- |
-| --height                    | height                          | 32px                | --bui-input-height                    |
-| --padding                   | padding                         | 4px 10px            | --bui-input-padding                   |
-| --icon-start-margin-right   | Right margin of the head button | 3px                 | --bui-input-icon-start-margin-right   |
-| --icon-end-margin-left      | Left margin of the tail button  | 3px                 | --bui-input-icon-end-margin-left      |
-| --disabled-background-color | Disable background color        | rgba(0, 0, 0, 0.04) | --bui-input-disabled-background-color |
+| attribute                   | explain                         | Default value              | global variable                       |
+| --------------------------- | ------------------------------- | -------------------------- | ------------------------------------- |
+| --height                    | height                          | 32px                       | --bui-input-height                    |
+| --padding                   | padding                         | 4px 10px                   | --bui-input-padding                   |
+| --border-radius             | fillet                          | --bui-shape-radius-default | --bui-input-border-radius             |
+| --icon-start-margin-right   | Right margin of the head button | 3px                        | --bui-input-icon-start-margin-right   |
+| --icon-end-margin-left      | Left margin of the tail button  | 3px                        | --bui-input-icon-end-margin-left      |
+| --background-color          | Background color                | transparent                | --bui-input-background-color          |
+| --disabled-background-color | Disable background color        | rgba(0, 0, 0, 0.04)        | --bui-input-disabled-background-color |
