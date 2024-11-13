@@ -187,15 +187,17 @@ export default () => {
 
 ## Style variables
 
-| attribute                 | explain                       | Default value          | global variable                        |
-| ------------------------- | ----------------------------- | ---------------------- | -------------------------------------- |
-| --width                   | width                         | 100%                   | --bui-textarea-width                   |
-| --bg-color                | Background color of input box | --bui-color-bg-default | -                                      |
-| --text-color              | Input box font color          | --bui-color-fg-subtle  | --bui-textarea-text-color              |
-| --count-bg-color          | Count column background color | --bui-color-bg-default | -                                      |
-| --count-text-color        | Count column font color       | --bui-color-fg-subtle  | --bui-textarea-count-color             |
-| --text-font-size          | Font size of input box        | --bui-text-size-2      | --bui-textarea-text-font-size          |
-| --count-font-size         | Font size of input box        | --bui-text-size-2      | --bui-textarea-count-color             |
-| --content-padding         | Input box margin              | 8px                    | --bui-textarea-padding                 |
-| --count-padding           | Count column margin           | 4px                    | --bui-textarea-count-padding           |
-| --placeholder-line-height | Occupation symbol row height  | 1.3                    | --bui-textarea-placeholder-line-height |
+| attribute                 | explain                                        | Default value            | global variable                        |
+| ------------------------- | ---------------------------------------------- | ------------------------ | -------------------------------------- |
+| --border-radius           | fillet                                         | --bui-shape-radius-label | --bui-textarea-border-radius           |
+| --width                   | width                                          | 100%                     | --bui-textarea-width                   |
+| --bg-color                | Text box background color                      | --bui-color-bg-default   | --bui-textarea-background-color        |
+| --text-color              | Text box font color                            | --bui-color-fg-subtle    | --bui-textarea-text-color              |
+| --count-bg-color          | Count column background color                  | --bui-color-bg-default   | -                                      |
+| --count-text-color        | Count column font color                        | --bui-color-fg-subtle    | --bui-textarea-count-color             |
+| --text-font-size          | Font size of text box                          | --bui-text-size-2        | --bui-textarea-text-font-size          |
+| --count-font-size         | Text box word count and font size              | --bui-title-size-3       | --bui-textarea-count-font-size         |
+| --content-padding         | Text box margin                                | 8px                      | --bui-textarea-padding                 |
+| --count-padding           | Count column margin                            | 4px                      | --bui-textarea-count-padding           |
+| --placeholder-color       | Placeholder font color                         | #ced1d6                  | --bui-textarea-placeholder-color       |
+| --placeholder-line-height | Placeholder line height (invalid mini program) | 1.3                      | --bui-textarea-placeholder-line-height |

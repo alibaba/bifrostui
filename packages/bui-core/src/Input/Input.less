@@ -3,8 +3,13 @@
 .bui-input {
   --height: var(--bui-input-height, 32px);
   --padding: var(--bui-input-padding, 4px 10px);
+  --border-radius: var(
+    --bui-input-border-radius,
+    var(--bui-shape-radius-default)
+  );
   --icon-start-margin-right: var(--bui-input-icon-start-margin-right, 3px);
   --icon-end-margin-left: var(--bui-input-icon-end-margin-left, 3px);
+  --background-color: var(--bui-input-background-color, transparent);
   --disabled-background-color: var(
     --bui-input-disabled-background-color,
     rgba(0, 0, 0, 0.04)
@@ -15,7 +20,7 @@
   height: var(--height);
   padding: var(--padding);
   box-sizing: border-box;
-  border-radius: var(--bui-shape-radius-default);
+  border-radius: var(--border-radius);
   border: 1px solid var(--bui-color-border-default);
   font-family: var(--bui-font-family);
 
@@ -43,7 +48,7 @@
     color: var(--bui-color-fg-default);
     border: none;
     outline: none;
-    background-color: transparent;
+    background-color: var(--background-color);
     font-size: var(--bui-text-size-2);
 
     &::placeholder {
