@@ -238,10 +238,12 @@ export default () => {
 
 ## 样式变量
 
-| 属性                        | 说明           | 默认值              | 全局变量                              |
-| --------------------------- | -------------- | ------------------- | ------------------------------------- |
-| --height                    | 高度           | 32px                | --bui-input-height                    |
-| --padding                   | 内边距         | 4px 10px            | --bui-input-padding                   |
-| --icon-start-margin-right   | 头部按钮右边距 | 3px                 | --bui-input-icon-start-margin-right   |
-| --icon-end-margin-left      | 尾部按钮左边距 | 3px                 | --bui-input-icon-end-margin-left      |
-| --disabled-background-color | 禁用状态背景色 | rgba(0, 0, 0, 0.04) | --bui-input-disabled-background-color |
+| 属性                        | 说明           | 默认值                     | 全局变量                              |
+| --------------------------- | -------------- | -------------------------- | ------------------------------------- |
+| --height                    | 高度           | 32px                       | --bui-input-height                    |
+| --padding                   | 内边距         | 4px 10px                   | --bui-input-padding                   |
+| --border-radius             | 圆角           | --bui-shape-radius-default | --bui-input-border-radius             |
+| --icon-start-margin-right   | 头部按钮右边距 | 3px                        | --bui-input-icon-start-margin-right   |
+| --icon-end-margin-left      | 尾部按钮左边距 | 3px                        | --bui-input-icon-end-margin-left      |
+| --background-color          | 背景色         | transparent                | --bui-input-background-color          |
+| --disabled-background-color | 禁用状态背景色 | rgba(0, 0, 0, 0.04)        | --bui-input-disabled-background-color |

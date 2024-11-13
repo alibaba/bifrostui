@@ -18,7 +18,7 @@
 
 .btn-light(@color) {
   background-image: none;
-  border: 1px solid transparent;
+  border: var(--light-border);
   color: var(~'--bui-color-@{color}');
   background-color: var(~'--bui-color-@{color}-light');
 }
@@ -40,6 +40,12 @@
     --bui-button-icon-start-margin-left,
     var(--bui-spacing-xs)
   );
+  --default-border: var(--bui-button-default-border, 1px solid transparent);
+  --light-border: var(--bui-button-light-border, 1px solid transparent);
+  --outlined-default-border: var(
+    --bui-button-outlined-default-border,
+    1px solid var(--bui-color-neutral-4)
+  );
   --disabled-opacity: var(--bui-button-disabled-opacity, 0.5);
   --small-padding: var(--bui-button-small-padding, 0 11px);
   --small-height: var(--bui-button-small-height, 24px);
@@ -48,7 +54,7 @@
   --large-height: var(--bui-button-large-height, 33px);
   --full-font-size: var(--bui-button-full-font-size, var(--bui-title-size-4));
   --full-height: var(--bui-button-full-height, 42px);
-  border: 1px solid transparent;
+  border: var(--default-border);
   outline: 0;
   background-color: transparent;
   cursor: pointer;
@@ -198,7 +204,7 @@
   }
 
   &-outlined {
-    border: solid 1px var(--border-color);
+    border: var(--outlined-default-border);
 
     &.bui-btn-primary {
       .btn-outline(primary);
@@ -228,7 +234,7 @@
   &-light {
     background-image: none;
     background-color: var(--bui-color-gray-light);
-    border: 1px solid transparent;
+    border: var(--light-border);
 
     &.bui-btn-warning {
       .btn-light(warning);
