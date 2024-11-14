@@ -389,8 +389,6 @@ export default () => {
 | 属性                                | 说明                   | 默认值                                          | 全局变量                                |
 | ----------------------------------- | ---------------------- | ----------------------------------------------- | --------------------------------------- |
 | --font-size                         | 默认字体大小           | --bui-title-size-3                              | --bui-steps-font-size                   |
-| --title-font-size                   | 主标题字体大小         | --bui-title-size-4                              | -                                       |
-| --title-font-weight                 | 主标题字重             | --bui-font-weight-medium                        | -                                       |
 | --subtitle-font-size                | 副标题字体大小         | --bui-text-size-2                               | --bui-step-subtitle-font-size           |
 | --step-icon-margin                  | 步骤图标外边距         | --bui-spacing-xs --bui-spacing-xs 0 0           | --bui-step-icon-margin                  |
 | --step-line-padding                 | 步骤条连线内边距       | 20px 0 3px 0                                    | --bui-step-line-padding                 |
