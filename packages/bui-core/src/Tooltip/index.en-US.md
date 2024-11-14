@@ -32,12 +32,13 @@ External setting of bubble floating layer visibility through open
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import React, { useState } from 'react';
 
 export default () => {
+  const [open, setOpen] = useState(true);
   return (
-    <Tooltip title="This is a tooltip" open>
-      <span>open控制显隐</span>
+    <Tooltip title="This is a tooltip" open={open}>
+      <span onClick={() => setOpen(!open)}>open控制显隐</span>
     </Tooltip>
   );
 };
@@ -220,7 +221,7 @@ export default () => {
 | ------------ | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | title        | Bubble floating layer content                                                          | string                                                                                                                                                                           | -             |
 | defaultOpen  | Whether to hide by default                                                             | boolean                                                                                                                                                                          | false         |
-| open         | Used for manually controlling the appearance and concealment of bubble floating layers | boolean                                                                                                                                                                          | false         |
+| open         | Used for manually controlling the appearance and concealment of bubble floating layers | boolean                                                                                                                                                                          | -             |
 | placement    | Bubble box position                                                                    | String, the enumeration value is `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` `bottom` | 'top'         |
 | trigger      | Trigger behavior                                                                       | string \|String [], the enumeration value is' click '\|'hover'                                                                                                                   | 'click'       |
 | PortalProps  | Properties of internal Portal components                                               | PortalCoreProps                                                                                                                                                                  | -             |

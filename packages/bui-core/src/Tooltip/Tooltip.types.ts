@@ -21,7 +21,6 @@ export type TooltipProps<
       defaultOpen?: boolean;
       /**
        * 用于手动控制气泡浮层显隐
-       * @default false
        */
       open?: boolean;
       /**
