@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   getStylesAndLocation,
   triggerEventTransform,
@@ -28,6 +28,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     ...others
   } = props;
 
+  const controlByUser = typeof open !== 'undefined';
   const positionArr = placement.split(/([A-Z])/);
   const direction = positionArr[0];
   let location;
@@ -46,6 +47,11 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   const [arrowLocation, setArrowLocation] = useState(location);
   const [tooltyles, setTooltyles] = useState({});
   const ttId = useUniqueId();
+
+  useEffect(() => {
+    if (!controlByUser) return;
+    setOpenStatus(open);
+  }, [open]);
 
   const onRootElementMouted = () => {
     const result = getStylesAndLocation({
@@ -67,7 +73,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   };
 
   const changeOpenStatus = (event, status) => {
-    if (open) return;
+    if (controlByUser) return;
     setOpenStatus(status);
     onOpenChange?.(event, { open: status });
   };
@@ -85,12 +91,15 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
 
   if (!title && !content) return null;
 
-  const triggerEventOption = triggerEventTransform({
-    trigger,
-    click: triggerClick,
-    show: showPopover,
-    hide: hidePopover,
-  });
+  let triggerEventOption;
+  if (!controlByUser) {
+    triggerEventOption = triggerEventTransform({
+      trigger,
+      click: triggerClick,
+      show: showPopover,
+      hide: hidePopover,
+    });
+  }
 
   const childrenOptions = {
     ref: childrenRef,

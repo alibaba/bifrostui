@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   getStylesAndLocation,
   triggerEventTransform,
@@ -26,6 +26,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     ...others
   } = props;
 
+  const controlByUser = typeof open !== 'undefined';
   const positionArr = placement.split(/([A-Z])/);
   const direction = positionArr[0];
   let location;
@@ -44,6 +45,11 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   const [arrowLocation, setArrowLocation] = useState(location);
   const [tooltyles, setTooltyles] = useState({});
   const ttId = useUniqueId();
+
+  useEffect(() => {
+    if (!controlByUser) return;
+    setOpenStatus(open);
+  }, [open]);
 
   const onRootElementMouted = () => {
     const result = getStylesAndLocation({
@@ -65,7 +71,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   };
 
   const changeOpenStatus = (event, status) => {
-    if (open) return;
+    if (controlByUser) return;
     setOpenStatus(status);
     onOpenChange?.(event, { open: status });
   };
@@ -81,12 +87,15 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     changeOpenStatus(event, true);
   };
 
-  const triggerEventOption = triggerEventTransform({
-    trigger,
-    click: triggerClick,
-    show: showTooltip,
-    hide: hideTooltip,
-  });
+  let triggerEventOption;
+  if (!controlByUser) {
+    triggerEventOption = triggerEventTransform({
+      trigger,
+      click: triggerClick,
+      show: showTooltip,
+      hide: hideTooltip,
+    });
+  }
 
   const childrenOptions = {
     ref: childrenRef,

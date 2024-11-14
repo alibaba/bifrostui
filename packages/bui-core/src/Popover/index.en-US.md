@@ -32,12 +32,13 @@ External setting of bubble floating layer visibility through open
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import React, { useState } from 'react';
 
 export default () => {
+  const [open, setOpen] = useState(true);
   return (
-    <Popover title="This is a popover" open>
-      <span>open控制显隐</span>
+    <Popover title="This is a popover" open={open}>
+      <span onClick={() => setOpen(!open)}>open控制显隐</span>
     </Popover>
   );
 };
@@ -238,7 +239,7 @@ export default () => {
 | title        | Title of Bubble Floating Layer Floating Layer Content                                  | ReactNode                                                                                                                                                                        | -             |
 | content      | Content of Bubble Floating Layer                                                       | ReactNode                                                                                                                                                                        | -             |
 | defaultOpen  | Whether to hide by default                                                             | boolean                                                                                                                                                                          | false         |
-| open         | Used for manually controlling the appearance and concealment of bubble floating layers | boolean                                                                                                                                                                          | false         |
+| open         | Used for manually controlling the appearance and concealment of bubble floating layers | boolean                                                                                                                                                                          | -             |
 | hideArrow    | Display arrows or not                                                                  | boolean                                                                                                                                                                          | false         |
 | placement    | Bubble box position                                                                    | String, the enumeration value is `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` `bottom` | 'top'         |
 | trigger      | Trigger behavior                                                                       | string \|String [], the enumeration value is' click '\|'hover'                                                                                                                   | 'click'       |

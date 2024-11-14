@@ -32,12 +32,13 @@ export default () => {
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import React, { useState } from 'react';
 
 export default () => {
+  const [open, setOpen] = useState(true);
   return (
-    <Tooltip title="This is a tooltip" open>
-      <span>open控制显隐</span>
+    <Tooltip title="This is a tooltip" open={open}>
+      <span onClick={() => setOpen(!open)}>open控制显隐</span>
     </Tooltip>
   );
 };
@@ -220,7 +221,7 @@ export default () => {
 | ------------ | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | title        | 气泡浮层内容             | string                                                                                                                                                           | -       |
 | defaultOpen  | 默认是否显隐             | boolean                                                                                                                                                          | false   |
-| open         | 用于手动控制气泡浮层显隐 | boolean                                                                                                                                                          | false   |
+| open         | 用于手动控制气泡浮层显隐 | boolean                                                                                                                                                          | -       |
 | placement    | 气泡框位置               | string，枚举值是 `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` `bottom` | 'top'   |
 | trigger      | 触发行为                 | string \| string[]，枚举值是 'click' \| 'hover'                                                                                                                  | 'click' |
 | PortalProps  | 内部Portal组件的属性     | PortalCoreProps                                                                                                                                                  | -       |
