@@ -183,6 +183,12 @@ export const getStylesAndLocation = ({
   arrowLocation,
   selector,
 }) => {
+  if (!childrenRef?.current) {
+    console.error(
+      '组件包裹的children可能是一个组件，您的当前写法可能导致ref没有绑定到children上，请尝试对children对应的组件使用React.forwardRef来解决',
+    );
+    return null;
+  }
   const rootOffset = childrenRef.current.getBoundingClientRect();
   const $rtDom = document.querySelector(selector);
   if (!$rtDom) return null;
