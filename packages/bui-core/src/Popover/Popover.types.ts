@@ -17,7 +17,6 @@ export type PopoverProps<
       defaultOpen?: boolean;
       /**
        * 用于手动控制浮层显隐
-       * @default false
        */
       open?: boolean;
       /**

@@ -32,12 +32,13 @@ export default () => {
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import React, { useState } from 'react';
 
 export default () => {
+  const [open, setOpen] = useState(true);
   return (
-    <Popover title="This is a popover" open>
-      <span>open控制显隐</span>
+    <Popover title="This is a popover" open={open}>
+      <span onClick={() => setOpen(!open)}>open控制显隐</span>
     </Popover>
   );
 };
@@ -238,7 +239,7 @@ export default () => {
 | title        | 气泡浮层的标题浮层内容   | ReactNode                                                                                                                                                        | -       |
 | content      | 气泡浮层的内容           | ReactNode                                                                                                                                                        | -       |
 | defaultOpen  | 默认是否显隐             | boolean                                                                                                                                                          | false   |
-| open         | 用于手动控制气泡浮层显隐 | boolean                                                                                                                                                          | false   |
+| open         | 用于手动控制气泡浮层显隐 | boolean                                                                                                                                                          | -       |
 | hideArrow    | 是否展示箭头             | boolean                                                                                                                                                          | false   |
 | placement    | 气泡框位置               | string，枚举值是 `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` `bottom` | 'top'   |
 | trigger      | 触发行为                 | string \| string[]，枚举值是 'click' \| 'hover'                                                                                                                  | 'click' |
