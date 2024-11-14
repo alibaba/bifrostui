@@ -231,8 +231,8 @@ export default () => {
 
 | 属性                 | 说明             | 默认值  | 全局变量                         |
 | -------------------- | ---------------- | ------- | -------------------------------- |
-| --arrow-size         | 箭头大小         | 8px     | --bui-tooltip-arrow-size         |
-| --localtion-position | 箭头位置         | 8px     | --bui-tooltip-localtion-position |
+| --arrow-size         | 箭头大小         | 8PX     | --bui-tooltip-arrow-size         |
+| --localtion-position | 箭头位置         | 8PX     | --bui-tooltip-localtion-position |
 | --max-width          | 最大宽度         | 350px   | --bui-tooltip-max-width          |
 | --content-min-width  | 内容区域最小宽度 | 30px    | --bui-tooltip-content-min-width  |
 | --content-min-height | 内容区域最小高度 | 32px    | --bui-tooltip-content-min-height |

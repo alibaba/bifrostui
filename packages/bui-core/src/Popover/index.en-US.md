@@ -250,8 +250,8 @@ export default () => {
 
 | attribute            | explain                        | Default value | global variable                  |
 | -------------------- | ------------------------------ | ------------- | -------------------------------- |
-| --arrow-size         | ARROW size                     | 8px           | --bui-popover-arrow-size         |
-| --localtion-position | Arrow Position                 | 5px           | --bui-popover-localtion-position |
+| --arrow-size         | ARROW size                     | 8PX           | --bui-popover-arrow-size         |
+| --localtion-position | Arrow Position                 | 8PX           | --bui-popover-localtion-position |
 | --max-width          | Maximum width                  | 350px         | --bui-popover-max-width          |
 | --content-min-width  | Minimum width of content area  | 30px          | --bui-popover-content-min-width  |
 | --content-min-height | Minimum height of content area | 32px          | --bui-popover-content-min-height |
