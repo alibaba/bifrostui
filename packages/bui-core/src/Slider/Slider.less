@@ -1,11 +1,8 @@
 @import '@bifrostui/styles/mixins/index.less';
 
 .bui-slider {
-  --line-color: var(--bui-color-primary);
-  --line-bg-color: var(--bui-color-border-default);
-  --tooltip-font-size: var(--bui-text-size-3);
-  --tooltip-color: var(--bui-color-white);
-  --tooltip-bg-color: var(--line-color);
+  --line-color: var(--bui-slider-line-color, --bui-color-primary);
+  --line-bg-color: var(--bui-slider-line-bg-color, --bui-color-border-default);
   --width: var(--bui-slider-width, 100%);
   --height: var(--bui-slider-height, 2px);
   --padding: var(--bui-slider-padding, 19px 0);
@@ -20,6 +17,9 @@
   --tooltip-height: var(--bui-slider-tooltip-height, 24px);
   --tooltip-line-height: var(--bui-slider-tooltip-line-height, 24px);
   --tooltip-border-radius: var(--bui-slider-tooltip-border-radius, 24px);
+  --tooltip-font-size: var(--bui-tooltip-font-size, --bui-text-size-3);
+  --tooltip-color: var(--bui-tooltip-color, --bui-color-white);
+  --tooltip-bg-color: var(--bui-tooltip-bg-color, --line-color);
 
   position: relative;
   width: var(--width);

@@ -595,8 +595,6 @@ export default () => {
 | --max-width        | Maximum width                                            | 80%                        | --bui-toast-max-width          |
 | --flex-direction   | Icon and copywriting arrangement direction               | column                     | --bui-toast-flex-direction     |
 | --padding          | padding                                                  | --bui-spacing-xl           | --bui-toast-padding            |
-| --word-break       | Line break rule                                          | break-all                  | -                              |
-| --z-index          | Hierarchical structure                                   | --bui-z-index-toast        | -                              |
 | --position-top     | When displaying at the top, the distance from the top    | 15%                        | --bui-toast-position-top       |
 | --position-bottom  | When displaying at the bottom, the distance from the top | 85%                        | --bui-toast-position-bottom    |
 | --background-color | background color                                         | rgba(0, 0, 0, 0.8)         | --bui-toast-bg-color           |

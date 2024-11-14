@@ -120,7 +120,7 @@ export default () => {
 
 | attribute       | explain                        | Default value            | global variable              |
 | --------------- | ------------------------------ | ------------------------ | ---------------------------- |
-| --fill-color    | Color of progress bar          | --bui-color-primary      | -                            |
+| --fill-color    | Color of progress bar          | --bui-color-primary      | --bui-progress-fill-color    |
 | --trail-color   | Color of unfilled progress bar | rgba(156, 156, 165, 0.2) | --bui-progress-trail-color   |
 | --stroke-width  | Fill in progress bar width     | 8px                      | --bui-progress-stroke-width  |
 | --width         | Progress bar width             | 100%                     | --bui-progress-width         |

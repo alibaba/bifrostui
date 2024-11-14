@@ -193,7 +193,7 @@ export default () => {
 | --width                   | width                                          | 100%                     | --bui-textarea-width                   |
 | --bg-color                | Text box background color                      | --bui-color-bg-default   | --bui-textarea-background-color        |
 | --text-color              | Text box font color                            | --bui-color-fg-subtle    | --bui-textarea-text-color              |
-| --count-bg-color          | Count column background color                  | --bui-color-bg-default   | -                                      |
+| --count-bg-color          | Count column background color                  | --bui-color-bg-default   | --bui-textarea-background-color        |
 | --count-text-color        | Count column font color                        | --bui-color-fg-subtle    | --bui-textarea-count-color             |
 | --text-font-size          | Font size of text box                          | --bui-text-size-2        | --bui-textarea-text-font-size          |
 | --count-font-size         | Text box word count and font size              | --bui-title-size-3       | --bui-textarea-count-font-size         |

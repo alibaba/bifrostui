@@ -326,16 +326,14 @@ export default () => {
 
 ### Tabs
 
-| attribute      | explain                          | Default value          | global variable        |
-| -------------- | -------------------------------- | ---------------------- | ---------------------- |
-| --height       | Tabs height                      | 39px                   | --bui-tabs-height      |
-| --font-size    | font size                        | --bui-text-size-1      | -                      |
-| --color        | Font color                       | --bui-color-fg-subtle  | -                      |
-| --active-color | Activate Tab font color          | --bui-color-fg-default | -                      |
-| --line-color   | Index line color                 | --bui-color-primary    | -                      |
-| --line-width   | Width of the lower marking line  | 18px                   | --bui-tabs-line-width  |
-| --line-height  | Height of the lower marking line | 3PX                    | --bui-tabs-line-height |
-| --mask-height  | Mask height                      | 100%                   | --bui-tabs-mask-height |
+| attribute      | explain                          | Default value          | global variable         |
+| -------------- | -------------------------------- | ---------------------- | ----------------------- |
+| --height       | Tabs height                      | 39px                   | --bui-tabs-height       |
+| --color        | Font color                       | --bui-color-fg-subtle  | --bui-tabs-color        |
+| --active-color | Activate Tab font color          | --bui-color-fg-default | --bui-tabs-active-color |
+| --line-width   | Width of the lower marking line  | 18px                   | --bui-tabs-line-width   |
+| --line-height  | Height of the lower marking line | 3PX                    | --bui-tabs-line-height  |
+| --mask-height  | Mask height                      | 100%                   | --bui-tabs-mask-height  |
 
 ### Tab
 

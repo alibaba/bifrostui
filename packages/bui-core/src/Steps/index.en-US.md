@@ -389,8 +389,6 @@ export default () => {
 | attribute                           | explain                                        | Default value                                   | global variable                         |
 | ----------------------------------- | ---------------------------------------------- | ----------------------------------------------- | --------------------------------------- |
 | --font-size                         | Default font size                              | --bui-title-size-3                              | --bui-steps-font-size                   |
-| --title-font-size                   | Main title font size                           | --bui-title-size-4                              | -                                       |
-| --title-font-weight                 | Main title word weight                         | --bui-font-weight-medium                        | -                                       |
 | --subtitle-font-size                | Subtitle font size                             | --bui-text-size-2                               | --bui-step-subtitle-font-size           |
 | --step-icon-margin                  | Step icon margin                               | --bui-spacing-xs --bui-spacing-xs 0 0           | --bui-step-icon-margin                  |
 | --step-line-padding                 | Step bar line inner margin                     | 20px 0 3px 0                                    | --bui-step-line-padding                 |

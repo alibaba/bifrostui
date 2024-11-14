@@ -120,7 +120,7 @@ export default () => {
 
 | 属性            | 说明               | 默认值                   | 全局变量                     |
 | --------------- | ------------------ | ------------------------ | ---------------------------- |
-| --fill-color    | 进度条的色彩       | --bui-color-primary      | -                            |
+| --fill-color    | 进度条的色彩       | --bui-color-primary      | --bui-progress-fill-color    |
 | --trail-color   | 未填充进度条的色彩 | rgba(156, 156, 165, 0.2) | --bui-progress-trail-color   |
 | --stroke-width  | 填充进度条宽度     | 8px                      | --bui-progress-stroke-width  |
 | --width         | 进度条宽度         | 100%                     | --bui-progress-width         |
