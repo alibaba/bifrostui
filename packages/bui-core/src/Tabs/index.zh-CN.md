@@ -326,16 +326,14 @@ export default () => {
 
 ### Tabs
 
-| 属性           | 说明              | 默认值                 | 全局变量               |
-| -------------- | ----------------- | ---------------------- | ---------------------- |
-| --height       | Tabs 高度         | 39px                   | --bui-tabs-height      |
-| --font-size    | 字体大小          | --bui-text-size-1      | -                      |
-| --color        | 字体颜色          | --bui-color-fg-subtle  | -                      |
-| --active-color | 激活 Tab 字体颜色 | --bui-color-fg-default | -                      |
-| --line-color   | 下标线颜色        | --bui-color-primary    | -                      |
-| --line-width   | 下标线宽度        | 18px                   | --bui-tabs-line-width  |
-| --line-height  | 下标线高度        | 3PX                    | --bui-tabs-line-height |
-| --mask-height  | 蒙层高度          | 100%                   | --bui-tabs-mask-height |
+| 属性           | 说明              | 默认值                 | 全局变量                |
+| -------------- | ----------------- | ---------------------- | ----------------------- |
+| --height       | Tabs 高度         | 39px                   | --bui-tabs-height       |
+| --color        | 字体颜色          | --bui-color-fg-subtle  | --bui-tabs-color        |
+| --active-color | 激活 Tab 字体颜色 | --bui-color-fg-default | --bui-tabs-active-color |
+| --line-width   | 下标线宽度        | 18px                   | --bui-tabs-line-width   |
+| --line-height  | 下标线高度        | 3PX                    | --bui-tabs-line-height  |
+| --mask-height  | 蒙层高度          | 100%                   | --bui-tabs-mask-height  |
 
 ### Tab
 

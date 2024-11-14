@@ -1,5 +1,4 @@
 .bui-skeleton {
-  --border-radius: var(--bui-shape-radius-label);
   --height: var(--bui-skeleton-height, 1.2em);
 
   display: block;
@@ -24,7 +23,7 @@
     height: auto;
     transform-origin: 0 55%;
     transform: scale(1, 0.6);
-    border-radius: var(--border-radius);
+    border-radius: var(--bui-shape-radius-label);
 
     &::before {
       content: '\00a0';
@@ -37,7 +36,7 @@
 
   &-rounded {
     height: var(--height);
-    border-radius: var(--border-radius);
+    border-radius: var(--bui-shape-radius-label);
   }
 
   &-circular {
