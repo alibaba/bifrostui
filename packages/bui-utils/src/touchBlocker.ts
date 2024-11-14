@@ -55,6 +55,8 @@ export default function blockTouch(root) {
   };
   const onTouchMove = (e) => {
     const currentTouch = e.touches[0];
+    // 如果单指在滑动的时候另一只手指碰到屏幕一次而滑动手指不放开，就会触发touchend清空lastTouch引发这个问题
+    if (!lastTouch || !currentTouch) return;
     if (!moveAxis) {
       if (
         Math.abs(lastTouch.screenY - currentTouch.screenY) >
@@ -81,7 +83,8 @@ export default function blockTouch(root) {
       e.preventDefault();
     // setLastTouch(e.touches[0]);
   };
-  const onTouchEnd = () => {
+  const onTouchEnd = (e) => {
+    if (e.touches.length !== 0) return;
     lastTouch = undefined;
     moveDirection = undefined;
     moveAxis = undefined;
