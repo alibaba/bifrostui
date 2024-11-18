@@ -80,7 +80,7 @@ export default () => {
 
 ### Placement Bubble Box Position
 
-placement设置气泡浮层的位置，可选 top left right bottom topLeft topRight bottomLeft bottomRight leftTop leftBottom rightTop rightBottom
+placement sets the position of the bubble floating layer, optional top left right bottom topLeft topRight bottomLeft bottomRight leftTop leftBottom rightTop rightBottom
 
 ```tsx
 import { Popover, Button } from '@bifrostui/react';
