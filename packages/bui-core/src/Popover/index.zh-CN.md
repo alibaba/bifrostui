@@ -63,7 +63,7 @@ export default () => {
 
 ### hideArrow 箭头展示
 
-可以设置hideArrow为true隐藏箭头
+可以设置 `hideArrow` 为 true 隐藏箭头
 
 ```tsx
 import { Popover } from '@bifrostui/react';
@@ -80,7 +80,7 @@ export default () => {
 
 ### placement 气泡框位置
 
-placement设置气泡浮层的位置，可选 top left right bottom topLeft topRight bottomLeft bottomRight leftTop leftBottom rightTop rightBottom
+`placement` 设置气泡浮层的位置。可选值有： `top` `left` `right` `bottom` `topLeft` `topRight` `bottomLeft` `bottomRight` `leftTop` `leftBottom` `rightTop` `rightBottom`
 
 ```tsx
 import { Popover, Button } from '@bifrostui/react';

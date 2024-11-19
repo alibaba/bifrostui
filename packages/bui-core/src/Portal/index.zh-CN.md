@@ -89,5 +89,5 @@ export default () => {
 | 属性          | 说明                                   | 类型                                       | 默认值     |
 | ------------- | -------------------------------------- | ------------------------------------------ | ---------- |
 | children      | Portal组件的子元素                     | React.ReactNode                            | -          |
-| container     | children内容将会被append到container中  | Element \| (() => Element \| null) \| null | 页面跟节点 |
+| container     | children内容将会被append到container中  | Element \| (() => Element \| null) \| null | 页面根节点 |
 | disablePortal | 禁止Portal，children将被渲染在父节点中 | boolean                                    | false      |

@@ -166,7 +166,7 @@ export default () => {
 | anchor             | Drawer 出现的位置        | `left` \| `top` \| `right` \| `bottom`                       | `text`     |
 | open               | 是否显示                 | boolean                                                      | false      |
 | hideBackdrop       | 是否隐藏遮罩层           | boolean                                                      | false      |
-| container          | 抽屉挂载的元素节点       | ModalProps['container']                                      | 页面跟节点 |
+| container          | 抽屉挂载的元素节点       | ModalProps['container']                                      | 页面根节点 |
 | SlideProps         | Slide 动画的 props       | Partial<SlideProps\>                                         | -          |
 | transitionDuration | 动画执行时间             | number \| { appear?: number, enter?: number, exit?: number } | -          |
 | onClose            | 关闭抽屉回调             | ModalProps['onClose']                                        | -          |
