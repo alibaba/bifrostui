@@ -158,7 +158,7 @@ export default () => {
 
 | attribute | explain                                     | type                                                                      | Default value |
 | --------- | ------------------------------------------- | ------------------------------------------------------------------------- | ------------- |
-| variant   | Button type                                 | `outlined` \|`text` \|`contained` \|light                                 | `text`        |
+| variant   | Button type                                 | `outlined` \|`text` \|`contained` \|`light`                               | `outlined`    |
 | color     | Button color                                | `primary` \|`info` \|`success` \|`warning` \|`danger` \|`vip` \|`default` | `default`     |
 | size      | Button size                                 | `small` \|`medium` \|`large` \|`full`                                     | `medium`      |
 | disabled  | Do you want to disable it                   | boolean                                                                   | false         |

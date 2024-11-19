@@ -1250,15 +1250,19 @@ export default () => {
 
 ### 样式变量
 
-| 属性                     | 说明               | 默认值                     | 全局变量                            |
-| ------------------------ | ------------------ | -------------------------- | ----------------------------------- |
-| --header-height          | 选择器头部高度     | 50px                       | --bui-picker-header-height          |
-| --header-padding         | 选择器头部内边距   | 0 var(--bui-spacing-lg)    | --bui-picker-header-padding         |
-| --cancel-height          | 取消按钮高度       | 100%                       | --bui-picker-cancel-height          |
-| --cancel-line-height     | 取消按钮行高       | 50px                       | --bui-picker-cancel-line-height     |
-| --confirm-height         | 确认按钮高度       | 100%                       | --bui-picker-confirm-height         |
-| --confirm-line-height    | 确认按钮行高       | 50px                       | --bui-picker-confirm-line-height    |
-| --panel-container-height | 选择器容器高度     | 260px                      | --bui-picker-panel-height           |
-| --indicator-top          | 指示器距离顶部距离 | 108px                      | --bui-picker-indicator-top          |
-| --indicator-border-color | 指示器描边颜色     | --bui-color-border-default | --bui-picker-indicator-border-color |
-| --option-height          | 选项高度           | 36px                       | --bui-picker-option-height          |
+| 属性                     | 说明                                        | 默认值                     | 全局变量                            |
+| ------------------------ | ------------------------------------------- | -------------------------- | ----------------------------------- |
+| --header-height          | 选择器头部高度                              | 50px                       | --bui-picker-header-height          |
+| --header-padding         | 选择器头部内边距                            | 0 var(--bui-spacing-lg)    | --bui-picker-header-padding         |
+| --cancel-height          | 取消按钮高度                                | 100%                       | --bui-picker-cancel-height          |
+| --cancel-line-height     | 取消按钮行高                                | 50px                       | --bui-picker-cancel-line-height     |
+| --confirm-height         | 确认按钮高度                                | 100%                       | --bui-picker-confirm-height         |
+| --confirm-line-height    | 确认按钮行高                                | 50px                       | --bui-picker-confirm-line-height    |
+| --panel-container-height | 选择器容器高度                              | 260px                      | --bui-picker-panel-height           |
+| --indicator-top          | 指示器距离顶部距离                          | 108px                      | --bui-picker-indicator-top          |
+| --indicator-border-color | 指示器描边颜色                              | --bui-color-border-default | --bui-picker-indicator-border-color |
+| --option-height          | 选项高度，与indicator同高，必须使用内联传入 | 36px                       | --bui-picker-option-height          |
+
+#### --option-height 为什么要使用内联方式传入
+
+Picker组件逻辑层需要动态获取`--option-height`的值，用于计算滑动面板的高度，若不在内联style中传入，tsx中无法获取到该值。
