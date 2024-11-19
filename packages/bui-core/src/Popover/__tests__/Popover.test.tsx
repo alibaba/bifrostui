@@ -85,16 +85,6 @@ describe('Popover', () => {
     });
   });
 
-  // it('test placement props', () => {
-  //   render(
-  //     <Popover title="This is a popover3" defaultOpen placement="bottomLeft">
-  //       <div>children</div>
-  //     </Popover>,
-  //   );
-  //   const $dom = document.querySelector('.bui-popover');
-  //   expect($dom).toHaveClass(`popover-bottom`);
-  // });
-
   it('test trigger onOpenChange props', () => {
     const onOpenChange = jest.fn();
     render(
@@ -112,13 +102,29 @@ describe('Popover', () => {
     expect(onOpenChange).toHaveBeenCalled();
   });
 
+  it('test trigger click anywhere hide props', () => {
+    const onOpenChange = jest.fn();
+    render(
+      <Popover
+        title="This is a popover4"
+        defaultOpen
+        trigger="click"
+        onOpenChange={onOpenChange}
+      >
+        <div data-testid="popoverTestid">children</div>
+      </Popover>,
+    );
+    userEvent.click(document.body);
+    expect(onOpenChange).toHaveBeenCalled();
+  });
+
   it('test trigger hover onOpenChange props', () => {
     const onOpenChange = jest.fn();
     render(
       <Popover
         title="This is a popover4"
         defaultOpen
-        trigger="hover"
+        trigger={['hover']}
         onOpenChange={onOpenChange}
       >
         <div data-testid="popoverTestid">children</div>
@@ -127,6 +133,10 @@ describe('Popover', () => {
     const $childrenDom = screen.getByTestId('popoverTestid');
     fireEvent.mouseEnter($childrenDom);
     fireEvent.mouseLeave($childrenDom);
+    expect(onOpenChange).toBeCalledTimes(2);
+
+    // 代表不触发隐藏
+    userEvent.click(document.body);
     expect(onOpenChange).toBeCalledTimes(2);
   });
 });

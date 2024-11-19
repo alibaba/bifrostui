@@ -32,10 +32,10 @@ describe('Tooltip', () => {
     ],
   });
 
-  it('test open onOpenChange props', () => {
+  it('test open props', () => {
     const onOpenChange = jest.fn();
     render(
-      <Tooltip title="This is a tooltip2" open>
+      <Tooltip title="This is a tooltip2" open onOpenChange={onOpenChange}>
         <div data-testid="tooltipTestid">children</div>
       </Tooltip>,
     );
@@ -44,7 +44,6 @@ describe('Tooltip', () => {
     const $childrenDom = screen.getByTestId('tooltipTestid');
     userEvent.click($childrenDom);
     expect(onOpenChange).toHaveBeenCalledTimes(0);
-    // expect(container.firstChild).toMatchSnapshot();
   });
 
   directions.forEach((placement) => {
@@ -78,13 +77,30 @@ describe('Tooltip', () => {
     expect(onOpenChange).toHaveBeenCalled();
   });
 
+  it('test trigger click anywhere hide props', () => {
+    const onOpenChange = jest.fn();
+    render(
+      <Tooltip
+        title="This is a tooltip4"
+        defaultOpen
+        trigger="click"
+        onOpenChange={onOpenChange}
+      >
+        <div data-testid="tooltipTestid">children</div>
+      </Tooltip>,
+    );
+    // const $childrenDom = screen.getByTestId('tooltipTestid');
+    userEvent.click(document.body);
+    expect(onOpenChange).toHaveBeenCalled();
+  });
+
   it('test trigger hover onOpenChange props', () => {
     const onOpenChange = jest.fn();
     render(
       <Tooltip
         title="This is a tooltip4"
         defaultOpen
-        trigger="hover"
+        trigger={['hover']}
         onOpenChange={onOpenChange}
       >
         <div data-testid="tooltipTestid">children</div>
@@ -93,6 +109,9 @@ describe('Tooltip', () => {
     const $childrenDom = screen.getByTestId('tooltipTestid');
     fireEvent.mouseEnter($childrenDom);
     fireEvent.mouseLeave($childrenDom);
+    expect(onOpenChange).toBeCalledTimes(2);
+    // 代表不触发隐藏
+    userEvent.click(document.body);
     expect(onOpenChange).toBeCalledTimes(2);
   });
 });

@@ -235,7 +235,7 @@ export const triggerEventTransform = ({ trigger, click, show, hide }) => {
   }
   const option = {};
   triggers.forEach((item) => {
-    const eventNames = TriggerEvent[item];
+    const eventNames = TriggerEvent[item] || [];
     eventNames.forEach((eventName) => {
       let cbk;
       if (eventName === onMouseEnter) {
