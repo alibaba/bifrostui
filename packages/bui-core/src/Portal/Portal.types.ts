@@ -16,7 +16,7 @@ export interface PortalCoreProps {
    */
   disablePortal?: boolean;
   /**
-   * 页面跟节点
+   * 页面根节点
    */
   rootElement?: Element;
   /**

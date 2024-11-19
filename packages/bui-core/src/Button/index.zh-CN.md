@@ -156,16 +156,16 @@ export default () => {
 
 ## API
 
-| 属性      | 说明                 | 类型                                                                            | 默认值    |
-| --------- | -------------------- | ------------------------------------------------------------------------------- | --------- |
-| variant   | 按钮类型             | `outlined` \| `text` \| `contained` \| light                                    | `text`    |
-| color     | 按钮颜色             | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `vip` \| `default` | `default` |
-| size      | 按钮大小             | `small` \| `medium` \| `large` \| `full`                                        | `medium`  |
-| disabled  | 是否禁用             | boolean                                                                         | false     |
-| startIcon | 在子元素前放在的内容 | React.ReactNode                                                                 | -         |
-| endIcon   | 在子元素后放在的内容 | React.ReactNode                                                                 | -         |
-| openType  | 微信开放能力         | string                                                                          | -         |
-| onClick   | 点击按钮时的回调     | (event: MouseEvent) => void                                                     | -         |
+| 属性      | 说明                 | 类型                                                                            | 默认值     |
+| --------- | -------------------- | ------------------------------------------------------------------------------- | ---------- |
+| variant   | 按钮类型             | `outlined` \| `text` \| `contained` \| `light`                                  | `outlined` |
+| color     | 按钮颜色             | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `vip` \| `default` | `default`  |
+| size      | 按钮大小             | `small` \| `medium` \| `large` \| `full`                                        | `medium`   |
+| disabled  | 是否禁用             | boolean                                                                         | false      |
+| startIcon | 在子元素前放在的内容 | React.ReactNode                                                                 | -          |
+| endIcon   | 在子元素后放在的内容 | React.ReactNode                                                                 | -          |
+| openType  | 微信开放能力         | string                                                                          | -          |
+| onClick   | 点击按钮时的回调     | (event: MouseEvent) => void                                                     | -          |
 
 其他属性见 [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes)
 

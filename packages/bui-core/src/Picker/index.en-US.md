@@ -19,7 +19,7 @@ import React, { useState, useEffect } from 'react';
 
 export default () => {
   const [open, setOpen] = useState(false);
-  const [val, setVal] = useState([2]);
+  const [val, setVal] = useState<(string | number)[]>([2]);
 
   useEffect(() => {
     console.log(val);
@@ -380,7 +380,7 @@ export default () => {
       label: '上海',
     },
   ];
-  const [val, setVal] = useState([]);
+  const [val, setVal] = useState<(string | number)[]>([]);
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
 
@@ -766,7 +766,7 @@ import React, { useState } from 'react';
 
 export default () => {
   const [open, setOpen] = useState(false);
-  const [val, setVal] = useState([2, 100]);
+  const [val, setVal] = useState<(string | number)[]>([2, 100]);
   return (
     <Stack>
       <Button
@@ -1250,15 +1250,19 @@ Picker inherits from Drawer. Other properties can be found in the Drawer API (/o
 
 ### Style variables
 
-| attribute                | explain                                             | Default value              | global variable                     |
-| ------------------------ | --------------------------------------------------- | -------------------------- | ----------------------------------- |
-| --header-height          | Selector head height                                | 50px                       | --bui-picker-header-height          |
-| --header-padding         | Select the inner margin of the head of the selector | 0 var(--bui-spacing-lg)    | --bui-picker-header-padding         |
-| --cancel-height          | Cancel button height                                | 100%                       | --bui-picker-cancel-height          |
-| --cancel-line-height     | Cancel button row height                            | 50px                       | --bui-picker-cancel-line-height     |
-| --confirm-height         | Confirm button height                               | 100%                       | --bui-picker-confirm-height         |
-| --confirm-line-height    | Confirm button row height                           | 50px                       | --bui-picker-confirm-line-height    |
-| --panel-container-height | Select container height                             | 260px                      | --bui-picker-panel-height           |
-| --indicator-top          | Indicator distance from top                         | 108px                      | --bui-picker-indicator-top          |
-| --indicator-border-color | Indicator stroke color                              | --bui-color-border-default | --bui-picker-indicator-border-color |
-| --option-height          | Option height                                       | 36px                       | --bui-picker-option-height          |
+| attribute                | explain                                                                      | Default value              | global variable                     |
+| ------------------------ | ---------------------------------------------------------------------------- | -------------------------- | ----------------------------------- |
+| --header-height          | Selector head height                                                         | 50px                       | --bui-picker-header-height          |
+| --header-padding         | Select the inner margin of the head of the selector                          | 0 var(--bui-spacing-lg)    | --bui-picker-header-padding         |
+| --cancel-height          | Cancel button height                                                         | 100%                       | --bui-picker-cancel-height          |
+| --cancel-line-height     | Cancel button row height                                                     | 50px                       | --bui-picker-cancel-line-height     |
+| --confirm-height         | Confirm button height                                                        | 100%                       | --bui-picker-confirm-height         |
+| --confirm-line-height    | Confirm button row height                                                    | 50px                       | --bui-picker-confirm-line-height    |
+| --panel-container-height | Select container height                                                      | 260px                      | --bui-picker-panel-height           |
+| --indicator-top          | Indicator distance from top                                                  | 108px                      | --bui-picker-indicator-top          |
+| --indicator-border-color | Indicator stroke color                                                       | --bui-color-border-default | --bui-picker-indicator-border-color |
+| --option-height          | Option height, at the same height as the indicator, must be passed in inline | 36px                       | --bui-picker-option-height          |
+
+#### --Why is option height passed in inline
+
+The logic layer of the Picker component needs to dynamically obtain the value of '--option-height' to calculate the height of the sliding panel. If it is not passed in the inline style, this value cannot be obtained in tsx.

@@ -63,7 +63,7 @@ export default () => {
 
 ### HideArrow arrow display
 
-You can set hideArrow to true to hide arrows
+You can set 'hideArrow' to true to hide arrows
 
 ```tsx
 import { Popover } from '@bifrostui/react';
@@ -80,7 +80,7 @@ export default () => {
 
 ### Placement Bubble Box Position
 
-placement sets the position of the bubble floating layer, optional top left right bottom topLeft topRight bottomLeft bottomRight leftTop leftBottom rightTop rightBottom
+Placement: Set the position of the bubble float layer. The optional values are: top, left, right, bottom, topLeft, topRight, bottomLeft, bottomRight, leftTop, leftBottom, rightTop, rightBottom
 
 ```tsx
 import { Popover, Button } from '@bifrostui/react';
