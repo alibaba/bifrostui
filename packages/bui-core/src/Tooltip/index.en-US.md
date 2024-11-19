@@ -193,15 +193,13 @@ export default () => {
 
 ### Callback method for bubble floating layer in onOpenChange
 
-The triggering method for displaying bubbles is "click" or "hover", with the default being "click"
-
 ```tsx
 import { Tooltip } from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
   const onOpenChange = (event, data) => {
-    alert(JSON.stringify(data));
+    console.log(JSON.stringify(data));
   };
   return (
     <Tooltip

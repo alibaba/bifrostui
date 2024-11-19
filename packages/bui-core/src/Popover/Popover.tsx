@@ -20,7 +20,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     content,
     defaultOpen,
     placement = 'top',
-    trigger,
+    trigger = 'click',
     onOpenChange,
     open,
     hideArrow,
@@ -48,10 +48,47 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   const [tooltyles, setTooltyles] = useState({});
   const ttId = useUniqueId();
 
+  const changeOpenStatus = (event, status) => {
+    if (controlByUser) return;
+    setOpenStatus(status);
+    onOpenChange?.(event, { open: status });
+  };
+
+  const triggerClick = (event) => {
+    event.stopPropagation();
+    const targetStatus = !openStatus;
+    changeOpenStatus(event, targetStatus);
+  };
+  const hidePopover = (event) => {
+    changeOpenStatus(event, false);
+  };
+  const showPopover = (event) => {
+    changeOpenStatus(event, true);
+  };
+
   useEffect(() => {
     if (!controlByUser) return;
     setOpenStatus(open);
   }, [open]);
+
+  const clickEventHandler = (event) => {
+    if (
+      trigger === 'hover' ||
+      (trigger?.length === 1 && trigger?.[0] === 'hover')
+    )
+      return;
+
+    hidePopover(event);
+  };
+
+  useEffect(() => {
+    if (controlByUser) return;
+    document.addEventListener('click', clickEventHandler);
+    // eslint-disable-next-line
+    return () => {
+      document.removeEventListener('click', clickEventHandler);
+    };
+  }, []);
 
   const onRootElementMouted = () => {
     const result = getStylesAndLocation({
@@ -72,22 +109,22 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     setTooltyles(styles);
   };
 
-  const changeOpenStatus = (event, status) => {
-    if (controlByUser) return;
-    setOpenStatus(status);
-    onOpenChange?.(event, { open: status });
-  };
+  // const changeOpenStatus = (event, status) => {
+  //   if (controlByUser) return;
+  //   setOpenStatus(status);
+  //   onOpenChange?.(event, { open: status });
+  // };
 
-  const triggerClick = (event) => {
-    const targetStatus = !openStatus;
-    changeOpenStatus(event, targetStatus);
-  };
-  const hidePopover = (event) => {
-    changeOpenStatus(event, false);
-  };
-  const showPopover = (event) => {
-    changeOpenStatus(event, true);
-  };
+  // const triggerClick = (event) => {
+  //   const targetStatus = !openStatus;
+  //   changeOpenStatus(event, targetStatus);
+  // };
+  // const hidePopover = (event) => {
+  //   changeOpenStatus(event, false);
+  // };
+  // const showPopover = (event) => {
+  //   changeOpenStatus(event, true);
+  // };
 
   if (!title && !content) return null;
 

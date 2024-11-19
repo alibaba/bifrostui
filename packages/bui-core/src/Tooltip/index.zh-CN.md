@@ -184,7 +184,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <Tooltip title="This is a tooltip" trigger="hover">
+    <Tooltip title="This is a tooltip" trigger={['hover']}>
       <span>hover触发方式</span>
     </Tooltip>
   );
@@ -193,15 +193,13 @@ export default () => {
 
 ### onOpenChange 气泡浮层显隐的回调方法
 
-显示气泡的触发方式 "click"或者"hover"，默认click
-
 ```tsx
 import { Tooltip } from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
   const onOpenChange = (event, data) => {
-    alert(JSON.stringify(data));
+    console.log(JSON.stringify(data));
   };
   return (
     <Tooltip
