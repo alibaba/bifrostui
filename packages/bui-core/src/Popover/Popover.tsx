@@ -109,23 +109,6 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     setTooltyles(styles);
   };
 
-  // const changeOpenStatus = (event, status) => {
-  //   if (controlByUser) return;
-  //   setOpenStatus(status);
-  //   onOpenChange?.(event, { open: status });
-  // };
-
-  // const triggerClick = (event) => {
-  //   const targetStatus = !openStatus;
-  //   changeOpenStatus(event, targetStatus);
-  // };
-  // const hidePopover = (event) => {
-  //   changeOpenStatus(event, false);
-  // };
-  // const showPopover = (event) => {
-  //   changeOpenStatus(event, true);
-  // };
-
   if (!title && !content) return null;
 
   let triggerEventOption;
