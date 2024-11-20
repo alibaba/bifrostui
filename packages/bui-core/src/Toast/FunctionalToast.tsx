@@ -9,7 +9,7 @@ import {
   ToastReturnType,
 } from './Toast.types';
 
-const toastCloses = [];
+let toastCloses = [];
 
 /**
  * 参数格式化，支持直接传文案
@@ -88,7 +88,13 @@ const functionalToast = (props: ToastProps | string) => {
       toastCloses.push(close);
 
       if (duration !== 0 && typeof duration === 'number') {
-        timer = setTimeout(close, duration);
+        timer = setTimeout(() => {
+          close();
+          // 不允许共存的场景下，当前Toast关闭后，应清空toastCloses
+          if (!allowMultiple) {
+            toastCloses = [];
+          }
+        }, duration);
       }
 
       return () => {
