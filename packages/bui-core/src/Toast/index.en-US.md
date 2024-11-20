@@ -589,16 +589,17 @@ export default () => {
 
 ### Style variables
 
-| attribute          | explain                                                  | Default value              | global variable                |
-| ------------------ | -------------------------------------------------------- | -------------------------- | ------------------------------ |
-| --min-width        | Minimum width                                            | 86px                       | --bui-toast-min-width          |
-| --max-width        | Maximum width                                            | 80%                        | --bui-toast-max-width          |
-| --flex-direction   | Icon and copywriting arrangement direction               | column                     | --bui-toast-flex-direction     |
-| --padding          | padding                                                  | --bui-spacing-xl           | --bui-toast-padding            |
-| --position-top     | When displaying at the top, the distance from the top    | 15%                        | --bui-toast-position-top       |
-| --position-bottom  | When displaying at the bottom, the distance from the top | 85%                        | --bui-toast-position-bottom    |
-| --background-color | background color                                         | rgba(0, 0, 0, 0.8)         | --bui-toast-bg-color           |
-| --border-radius    | fillet                                                   | --bui-shape-radius-default | --bui-toast-border-radius      |
-| --icon-margin      | Icon margin                                              | 8px                        | --bui-toast-icon-margin-bottom |
-| --icon-font-size   | Icon font size                                           | 30px                       | --bui-toast-icon-font-size     |
-| --text-align       | Text position                                            | center                     | -                              |
+| attribute          | explain                                                  | Default value              | global variable             |
+| ------------------ | -------------------------------------------------------- | -------------------------- | --------------------------- |
+| --min-width        | Minimum width                                            | 86px                       | --bui-toast-min-width       |
+| --max-width        | Maximum width                                            | 80%                        | --bui-toast-max-width       |
+| --text-align       | text arrangement                                         | center                     | --bui-toast-text-align      |
+| --flex-direction   | Icon and copywriting arrangement direction               | column                     | --bui-toast-flex-direction  |
+| --padding          | padding                                                  | --bui-spacing-xl           | --bui-toast-padding         |
+| --position-top     | When displaying at the top, the distance from the top    | 15%                        | --bui-toast-position-top    |
+| --position-bottom  | When displaying at the bottom, the distance from the top | 85%                        | --bui-toast-position-bottom |
+| --background-color | background color                                         | rgba(0, 0, 0, 0.8)         | --bui-toast-bg-color        |
+| --border-radius    | fillet                                                   | --bui-shape-radius-default | --bui-toast-border-radius   |
+| --icon-margin      | Icon margin                                              | 0 0 8px                    | --bui-toast-icon-margin     |
+| --icon-font-size   | Icon font size                                           | 30px                       | --bui-toast-icon-font-size  |
+| --text-align       | Text position                                            | center                     | -                           |
