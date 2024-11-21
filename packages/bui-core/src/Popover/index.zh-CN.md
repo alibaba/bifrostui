@@ -16,10 +16,14 @@ click或hover触发弹出气泡式的卡片浮层，可以自定义事件
 ```tsx
 import { Popover } from '@bifrostui/react';
 import React from 'react';
+import './md.css';
 
 export default () => {
   return (
-    <Popover title="This is a title" content="This is a content">
+    <Popover
+      title={<div className="pop-style">This is a title</div>}
+      content={<div className="pop-style">This is a content</div>}
+    >
       <span>click显示</span>
     </Popover>
   );
@@ -37,7 +41,10 @@ import React, { useState } from 'react';
 export default () => {
   const [open, setOpen] = useState(true);
   return (
-    <Popover title="This is a popover" open={open}>
+    <Popover
+      title={<div className="pop-style">This is a popover</div>}
+      open={open}
+    >
       <span onClick={() => setOpen(!open)}>open控制显隐</span>
     </Popover>
   );
@@ -51,10 +58,14 @@ export default () => {
 ```tsx
 import { Popover } from '@bifrostui/react';
 import React from 'react';
+import './md.css';
 
 export default () => {
   return (
-    <Popover title="This is a popover" defaultOpen>
+    <Popover
+      title={<div className="pop-style">This is a popover</div>}
+      defaultOpen
+    >
       <span>defaultOpen默认显示</span>
     </Popover>
   );
@@ -68,10 +79,15 @@ export default () => {
 ```tsx
 import { Popover } from '@bifrostui/react';
 import React from 'react';
+import './md.css';
 
 export default () => {
   return (
-    <Popover title="This is a popover" defaultOpen hideArrow>
+    <Popover
+      title={<div className="pop-style">This is a popover</div>}
+      defaultOpen
+      hideArrow
+    >
       <span>defaultOpen默认显示</span>
     </Popover>
   );
@@ -85,6 +101,7 @@ export default () => {
 ```tsx
 import { Popover, Button } from '@bifrostui/react';
 import React from 'react';
+import './md.css';
 
 export default () => {
   const packageButton = (inner) => {
@@ -105,13 +122,25 @@ export default () => {
           justifyContent: 'space-between',
         }}
       >
-        <Popover trigger="hover" title="This is a popover" placement="topLeft">
+        <Popover
+          trigger="hover"
+          title={<div className="pop-style">This is a popover</div>}
+          placement="topLeft"
+        >
           {packageButton(<span>topLeft</span>)}
         </Popover>
-        <Popover trigger="hover" title="This is a popover" placement="top">
+        <Popover
+          trigger="hover"
+          title={<div className="pop-style">This is a popover</div>}
+          placement="top"
+        >
           {packageButton(<span>top</span>)}
         </Popover>
-        <Popover trigger="hover" title="This is a popover" placement="topRight">
+        <Popover
+          trigger="hover"
+          title={<div className="pop-style">This is a popover</div>}
+          placement="topRight"
+        >
           {packageButton(<span>topRight</span>)}
         </Popover>
       </div>
@@ -123,15 +152,23 @@ export default () => {
           flexDirection: 'column',
         }}
       >
-        <Popover trigger="hover" title="This is a popover" placement="leftTop">
+        <Popover
+          trigger="hover"
+          title={<div className="pop-style">This is a popover</div>}
+          placement="leftTop"
+        >
           {packageButton(<span>leftTop</span>)}
         </Popover>
-        <Popover trigger="hover" title="This is a popover" placement="left">
+        <Popover
+          trigger="hover"
+          title={<div className="pop-style">This is a popover</div>}
+          placement="left"
+        >
           {packageButton(<span>left</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title="This is a popover"
+          title={<div className="pop-style">This is a popover</div>}
           placement="leftBottom"
         >
           {packageButton(<span>leftBottom</span>)}
@@ -145,15 +182,23 @@ export default () => {
           flexDirection: 'column',
         }}
       >
-        <Popover trigger="hover" title="This is a popover" placement="rightTop">
+        <Popover
+          trigger="hover"
+          title={<div className="pop-style">This is a popover</div>}
+          placement="rightTop"
+        >
           {packageButton(<span>rightTop</span>)}
         </Popover>
-        <Popover trigger="hover" title="This is a popover" placement="right">
+        <Popover
+          trigger="hover"
+          title={<div className="pop-style">This is a popover</div>}
+          placement="right"
+        >
           {packageButton(<span>right</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title="This is a popover"
+          title={<div className="pop-style">This is a popover</div>}
           placement="rightBottom"
         >
           {packageButton(<span>rightBottom</span>)}
@@ -170,17 +215,21 @@ export default () => {
       >
         <Popover
           trigger="hover"
-          title="This is a popover"
+          title={<div className="pop-style">This is a popover</div>}
           placement="bottomLeft"
         >
           {packageButton(<span>bottomLeft</span>)}
         </Popover>
-        <Popover trigger="hover" title="This is a popover" placement="bottom">
+        <Popover
+          trigger="hover"
+          title={<div className="pop-style">This is a popover</div>}
+          placement="bottom"
+        >
           {packageButton(<span>bottom</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title="This is a popover"
+          title={<div className="pop-style">This is a popover</div>}
           placement="bottomRight"
         >
           {packageButton(<span>bottomRight</span>)}
@@ -198,10 +247,14 @@ export default () => {
 ```tsx
 import { Popover } from '@bifrostui/react';
 import React from 'react';
+import './md.css';
 
 export default () => {
   return (
-    <Popover title="This is a popover" trigger="hover">
+    <Popover
+      title={<div className="pop-style">This is a popover</div>}
+      trigger="hover"
+    >
       <span>hover触发方式</span>
     </Popover>
   );
@@ -213,6 +266,7 @@ export default () => {
 ```tsx
 import { Popover } from '@bifrostui/react';
 import React from 'react';
+import './md.css';
 
 export default () => {
   const onOpenChange = (event, data) => {
@@ -220,7 +274,7 @@ export default () => {
   };
   return (
     <Popover
-      title="This is a popover"
+      title={<div className="pop-style">This is a popover</div>}
       trigger="hover"
       onOpenChange={onOpenChange}
     >
@@ -241,7 +295,6 @@ export default () => {
 | hideArrow    | 是否展示箭头             | boolean                                                                                                                                                          | false   |
 | placement    | 气泡框位置               | string，枚举值是 `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` `bottom` | 'top'   |
 | trigger      | 触发行为                 | string \| string[]，枚举值是 'click' \| 'hover'                                                                                                                  | 'click' |
-| PortalProps  | 内部Portal组件的属性     | PortalCoreProps                                                                                                                                                  | -       |
 | onOpenChange | 气泡浮层显隐的回调方法   | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                             | -       |
 
 ### 样式变量

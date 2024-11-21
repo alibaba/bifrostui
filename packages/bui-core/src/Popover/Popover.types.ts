@@ -1,6 +1,5 @@
 import React from 'react';
 import { OverrideProps } from '@bifrostui/types';
-import { PortalCoreProps } from '../Portal/Portal.types';
 
 type triggerType = 'click' | 'hover';
 
@@ -57,10 +56,6 @@ export type PopoverProps<
        * @default 'click'
        */
       trigger?: triggerType | triggerType[];
-      /**
-       * Portal组件的属性
-       */
-      PortalProps?: PortalCoreProps;
       /**
        * 点击事件回调方法
        * - event 触发事件

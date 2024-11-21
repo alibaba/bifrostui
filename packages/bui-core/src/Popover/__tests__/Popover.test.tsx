@@ -25,7 +25,6 @@ describe('Popover', () => {
     displayName: 'BuiPopover',
     className: rootClass,
     skip: [
-      'PortalProps',
       'component-has-root-ref',
       'component-handles-classNames',
       'component-has-default-className',
