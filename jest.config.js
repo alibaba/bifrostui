@@ -16,9 +16,9 @@ module.exports = {
       },
     ],
   },
+  collectCoverage: true,
   coveragePathIgnorePatterns: ['<rootDir>/scripts/', 'tests/'],
   coverageDirectory: './.ci/',
-  coverageReporters: ['json', 'html'],
   moduleNameMapper: {
     '^@bifrostui/(styles.*)$': '<rootDir>/tests/mocks/styleMock.js',
     '^@bifrostui/react$': '<rootDir>/packages/bui-core/src',
