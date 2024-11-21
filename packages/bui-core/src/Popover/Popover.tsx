@@ -4,6 +4,7 @@ import {
   getStylesAndLocation,
   triggerEventTransform,
   useUniqueId,
+  throttle,
 } from '@bifrostui/utils';
 import Portal from '../Portal';
 import './Popover.less';
@@ -24,7 +25,6 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     onOpenChange,
     open,
     hideArrow,
-    PortalProps,
     ...others
   } = props;
 
@@ -81,16 +81,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     hidePopover(event);
   };
 
-  useEffect(() => {
-    if (controlByUser) return;
-    document.addEventListener('click', clickEventHandler);
-    // eslint-disable-next-line
-    return () => {
-      document.removeEventListener('click', clickEventHandler);
-    };
-  }, []);
-
-  const onRootElementMouted = () => {
+  const onRootElementMouted = throttle(() => {
     const result = getStylesAndLocation({
       childrenRef,
       arrowDirection,
@@ -107,7 +98,28 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
       setArrowLocation(newArrowLocation);
     }
     setTooltyles(styles);
+  }, 100);
+
+  const bindEvent = () => {
+    if (!controlByUser) {
+      document.addEventListener('click', clickEventHandler);
+    }
+    window.addEventListener('resize', onRootElementMouted);
   };
+
+  const unbindEvent = () => {
+    if (!controlByUser) {
+      document.removeEventListener('click', clickEventHandler);
+    }
+    window.removeEventListener('resize', onRootElementMouted);
+  };
+
+  useEffect(() => {
+    bindEvent();
+    return () => {
+      unbindEvent();
+    };
+  }, []);
 
   if (!title && !content) return null;
 
@@ -128,11 +140,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   return (
     <>
       {open || openStatus ? (
-        <Portal
-          onRootElementMouted={onRootElementMouted}
-          {...PortalProps}
-          ref={ref}
-        >
+        <Portal onRootElementMouted={onRootElementMouted} ref={ref}>
           <div
             className={clsx(prefixCls, className, `popover-${arrowDirection}`, {
               'bui-popover-arrow-hide': hideArrow,
