@@ -16,13 +16,12 @@ Clicking with the mouse will display a prompt, and clicking again will disappear
 ```tsx
 import { Popover } from '@bifrostui/react';
 import React from 'react';
-import './md.css';
 
 export default () => {
   return (
     <Popover
-      title={<div className="pop-style">This is a title</div>}
-      content={<div className="pop-style">This is a content</div>}
+      title={<div style={{ padding: '2px 8px' }}>This is a title</div>}
+      content={<div style={{ padding: '2px 8px' }}>This is a content</div>}
     >
       <span>click显示</span>
     </Popover>
@@ -42,7 +41,7 @@ export default () => {
   const [open, setOpen] = useState(true);
   return (
     <Popover
-      title={<div className="pop-style">This is a popover</div>}
+      title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
       open={open}
     >
       <span onClick={() => setOpen(!open)}>open控制显隐</span>
@@ -58,12 +57,11 @@ You can set defaultOpen to true to display bubble floating layers by default
 ```tsx
 import { Popover } from '@bifrostui/react';
 import React from 'react';
-import './md.css';
 
 export default () => {
   return (
     <Popover
-      title={<div className="pop-style">This is a popover</div>}
+      title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
       defaultOpen
     >
       <span>defaultOpen默认显示</span>
@@ -79,12 +77,11 @@ You can set 'hideArrow' to true to hide arrows
 ```tsx
 import { Popover } from '@bifrostui/react';
 import React from 'react';
-import './md.css';
 
 export default () => {
   return (
     <Popover
-      title={<div className="pop-style">This is a popover</div>}
+      title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
       defaultOpen
       hideArrow
     >
@@ -101,7 +98,6 @@ Placement: Set the position of the bubble float layer. The optional values are: 
 ```tsx
 import { Popover, Button } from '@bifrostui/react';
 import React from 'react';
-import './md.css';
 
 export default () => {
   const packageButton = (inner) => {
@@ -124,21 +120,21 @@ export default () => {
       >
         <Popover
           trigger="hover"
-          title={<div className="pop-style">This is a popover</div>}
+          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
           placement="topLeft"
         >
           {packageButton(<span>topLeft</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title={<div className="pop-style">This is a popover</div>}
+          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
           placement="top"
         >
           {packageButton(<span>top</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title={<div className="pop-style">This is a popover</div>}
+          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
           placement="topRight"
         >
           {packageButton(<span>topRight</span>)}
@@ -154,21 +150,21 @@ export default () => {
       >
         <Popover
           trigger="hover"
-          title={<div className="pop-style">This is a popover</div>}
+          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
           placement="leftTop"
         >
           {packageButton(<span>leftTop</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title={<div className="pop-style">This is a popover</div>}
+          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
           placement="left"
         >
           {packageButton(<span>left</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title={<div className="pop-style">This is a popover</div>}
+          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
           placement="leftBottom"
         >
           {packageButton(<span>leftBottom</span>)}
@@ -184,21 +180,21 @@ export default () => {
       >
         <Popover
           trigger="hover"
-          title={<div className="pop-style">This is a popover</div>}
+          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
           placement="rightTop"
         >
           {packageButton(<span>rightTop</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title={<div className="pop-style">This is a popover</div>}
+          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
           placement="right"
         >
           {packageButton(<span>right</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title={<div className="pop-style">This is a popover</div>}
+          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
           placement="rightBottom"
         >
           {packageButton(<span>rightBottom</span>)}
@@ -215,21 +211,21 @@ export default () => {
       >
         <Popover
           trigger="hover"
-          title={<div className="pop-style">This is a popover</div>}
+          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
           placement="bottomLeft"
         >
           {packageButton(<span>bottomLeft</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title={<div className="pop-style">This is a popover</div>}
+          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
           placement="bottom"
         >
           {packageButton(<span>bottom</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title={<div className="pop-style">This is a popover</div>}
+          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
           placement="bottomRight"
         >
           {packageButton(<span>bottomRight</span>)}
@@ -247,12 +243,11 @@ The triggering method for displaying bubbles is "click" or "hover", with the def
 ```tsx
 import { Popover } from '@bifrostui/react';
 import React from 'react';
-import './md.css';
 
 export default () => {
   return (
     <Popover
-      title={<div className="pop-style">This is a popover</div>}
+      title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
       trigger="hover"
     >
       <span>hover触发方式</span>
@@ -266,7 +261,6 @@ export default () => {
 ```tsx
 import { Popover } from '@bifrostui/react';
 import React from 'react';
-import './md.css';
 
 export default () => {
   const onOpenChange = (event, data) => {
@@ -274,7 +268,7 @@ export default () => {
   };
   return (
     <Popover
-      title={<div className="pop-style">This is a popover</div>}
+      title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
       trigger="hover"
       onOpenChange={onOpenChange}
     >
