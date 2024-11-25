@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, renderHook, waitFor } from '@testing-library/react';
 import { Button } from '@bifrostui/react';
 import { render, screen, act } from 'testing';
 import Dialog from '../FunctionalDialog';
@@ -7,9 +7,14 @@ import '@testing-library/jest-dom/extend-expect';
 
 describe('Dialog Functional Calls', () => {
   const rootClass = 'bui-dialog';
+  let dialogHook;
+
   beforeEach(() => {
     document.body.innerHTML = '';
     jest.useFakeTimers();
+    renderHook(() => {
+      dialogHook = Dialog.useDialog();
+    });
   });
 
   afterEach(() => {
@@ -142,4 +147,22 @@ describe('Dialog Functional Calls', () => {
     fireEvent.click(screen.getByText('Delete'));
     await waitFor(() => expect(promptPromise).resolves.toBe(false));
   });
+
+  it.each(['confirm', 'prompt'])(
+    'should support basic api with useDialog',
+    async (type) => {
+      const dialog = dialogHook?.[0];
+      render(
+        <Button
+          onClick={() => {
+            dialog[type](`${type} message`);
+          }}
+        >
+          dialog button
+        </Button>,
+      );
+      fireEvent.click(screen.getByText('dialog button'));
+      expect(screen.getByText(`${type} message`)).toBeInTheDocument();
+    },
+  );
 });
