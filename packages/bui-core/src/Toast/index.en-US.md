@@ -602,4 +602,3 @@ export default () => {
 | --border-radius    | fillet                                                   | --bui-shape-radius-default | --bui-toast-border-radius   |
 | --icon-margin      | Icon margin                                              | 0 0 8px                    | --bui-toast-icon-margin     |
 | --icon-font-size   | Icon font size                                           | 30px                       | --bui-toast-icon-font-size  |
-| --text-align       | Text position                                            | center                     | -                           |
