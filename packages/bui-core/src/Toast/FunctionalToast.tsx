@@ -162,7 +162,7 @@ const useToast = () => {
       functionalToast({
         type: methodName,
         ...formatProps(options),
-        theme: holderRef.current.theme,
+        theme: holderRef.current?.theme,
       });
   });
 
