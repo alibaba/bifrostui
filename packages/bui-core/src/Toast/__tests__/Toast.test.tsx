@@ -1,15 +1,20 @@
 import React from 'react';
-import { act, fireEvent, render } from 'testing';
+import { act, fireEvent, render, screen } from 'testing';
 import { Button } from '@bifrostui/react';
 import { ErrorCircleFilledBoldIcon } from '@bifrostui/icons';
+import { renderHook } from '@testing-library/react';
 import { Toast } from '../index';
 
 describe('Toast', () => {
   const rootClass = 'bui-toast';
+  let toastHook;
 
   beforeEach(() => {
     document.body.innerHTML = '';
     jest.useFakeTimers();
+    renderHook(() => {
+      toastHook = Toast.useToast();
+    });
   });
 
   afterEach(() => {
@@ -346,4 +351,69 @@ describe('Toast', () => {
     });
     expect(document.body.innerHTML.includes('提示内容')).toBeFalsy();
   });
+  it.each(['warning', 'loading', 'success', 'fail', 'clear'])(
+    'should support basic api with useToast',
+    async (type) => {
+      const toast = toastHook?.[0];
+      if (type === 'clear') {
+        render(
+          <>
+            <Button
+              onClick={() => {
+                toast({
+                  message: '提示内容',
+                  allowMultiple: true,
+                  duration: 0,
+                });
+              }}
+            >
+              button one
+            </Button>
+            <Button
+              onClick={() => {
+                toast({
+                  message: '提示内容',
+                  allowMultiple: true,
+                  duration: 0,
+                });
+              }}
+            >
+              button two
+            </Button>
+            <Button
+              onClick={() => {
+                toast.clear();
+              }}
+            >
+              button three
+            </Button>
+          </>,
+        );
+        fireEvent.click(screen.getByText('button one'));
+        fireEvent.click(screen.getByText('button two'));
+        expect(document.body.innerHTML.split('提示内容').length - 1).toBe(2);
+        fireEvent.click(screen.getByText('button three'));
+        await act(async () => {
+          await jest.runAllTimers();
+        });
+        expect(document.body.innerHTML.includes('提示内容')).toBeFalsy();
+      } else {
+        render(
+          <Button
+            onClick={() => {
+              toast[type](`校验${type}`);
+            }}
+          >
+            {`${type} button`}
+          </Button>,
+        );
+        fireEvent.click(screen.getByText(`${type} button`));
+        expect(
+          document.body.querySelector('.bui-svg-icon'),
+        ).toBeInTheDocument();
+        const toastDom = document.body.querySelector(`.${rootClass}`);
+        expect(toastDom.innerHTML.includes(`校验${type}`)).toBeTruthy();
+      }
+    },
+  );
 });
