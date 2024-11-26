@@ -147,15 +147,54 @@ describe('Dialog Functional Calls', () => {
     fireEvent.click(screen.getByText('Delete'));
     await waitFor(() => expect(promptPromise).resolves.toBe(false));
   });
+  it('the default type of useDialog is confirm', async () => {
+    const onConfirm = jest.fn();
+    const onCancel = jest.fn();
+    const { getByTestId } = render(
+      <Button
+        data-testid="emit-button"
+        onClick={() => {
+          dialogHook[0]({
+            header: '标题',
+            message: '描述内容',
+            onConfirm,
+            onCancel,
+          });
+        }}
+      >
+        test
+      </Button>,
+    );
+    fireEvent.click(getByTestId('emit-button'));
+    expect(
+      document.body.querySelector(`.${rootClass}-body-desc`),
+    ).toBeInTheDocument();
+    expect(screen.getByText('描述内容')).toBeInTheDocument();
+    fireEvent.click(screen.getByText('取消'));
+    await waitFor(async () => {
+      expect(onCancel).toHaveBeenCalled();
+      fireEvent.click(screen.getByText('确定'));
+      await waitFor(() => {
+        expect(onConfirm).toHaveBeenCalled();
+      });
+    });
+  });
 
   it.each(['confirm', 'prompt'])(
     'should support basic api with useDialog',
     async (type) => {
       const dialog = dialogHook?.[0];
+      const onConfirm = jest.fn();
+      const onCancel = jest.fn();
+
       render(
         <Button
           onClick={() => {
-            dialog[type](`${type} message`);
+            dialog[type]({
+              message: `${type} message`,
+              onConfirm,
+              onCancel,
+            });
           }}
         >
           dialog button
@@ -163,6 +202,14 @@ describe('Dialog Functional Calls', () => {
       );
       fireEvent.click(screen.getByText('dialog button'));
       expect(screen.getByText(`${type} message`)).toBeInTheDocument();
+      fireEvent.click(screen.getByText('取消'));
+      await waitFor(async () => {
+        expect(onCancel).toHaveBeenCalled();
+        fireEvent.click(screen.getByText('确定'));
+        await waitFor(() => {
+          expect(onConfirm).toHaveBeenCalled();
+        });
+      });
     },
   );
 });

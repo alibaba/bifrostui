@@ -87,7 +87,7 @@ export default () => {
   const theme = useTheme();
 
   return (
-    <ThemeProvider locale={theme}>
+    <ThemeProvider locale={theme.locale}>
       {contextHolder}
       <Stack direction="row" spacing="10px">
         <Button
@@ -468,7 +468,7 @@ export default () => {
   const theme = useTheme();
 
   return (
-    <ThemeProvider locale={theme}>
+    <ThemeProvider locale={theme.locale}>
       {contextHolder}
       <Stack direction="row" spacing="10px">
         <Button
@@ -528,7 +528,7 @@ export default () => {
   const theme = useTheme();
 
   return (
-    <ThemeProvider locale={theme}>
+    <ThemeProvider locale={theme.locale}>
       {contextHolder}
       <Stack direction="row" spacing="10px">
         <Button
