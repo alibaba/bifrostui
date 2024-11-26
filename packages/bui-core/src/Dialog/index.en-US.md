@@ -158,7 +158,7 @@ export default () => {
   };
 
   return (
-    <ThemeProvider locale={theme}>
+    <ThemeProvider locale={theme.locale}>
       {contextHolder}
       <Stack direction="row" spacing="10px">
         <Button onClick={handleClickConfirm}>异步操作执行成功</Button>
@@ -188,7 +188,7 @@ export default () => {
   const [dialog, contextHolder] = Dialog.useDialog();
 
   return (
-    <ThemeProvider locale={theme}>
+    <ThemeProvider locale={theme.locale}>
       {contextHolder}
       <Stack direction="row" spacing="10px">
         <Button
@@ -251,7 +251,7 @@ export default () => {
   };
 
   return (
-    <ThemeProvider locale={theme}>
+    <ThemeProvider locale={theme.locale}>
       {contextHolder}
       <Stack direction="row" spacing="10px">
         <Button onClick={handleClickPrompt}>prompt</Button>
