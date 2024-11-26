@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react';
-import { render, isConformant, userEvent, screen } from 'testing';
+import { render, isConformant, userEvent, screen, waitFor } from 'testing';
 import CollapsePanel, { CollapsePanelItem, CollapsePanelProps } from '../index';
 
 const setup = (props: CollapsePanelProps, children?: ReactElement) => {
@@ -86,7 +86,7 @@ describe('CollapsePanel', () => {
     expect(firstPanel).toHaveClass('bui-collapse-panel-item-active');
     expect(secondPanel).not.toHaveClass('bui-collapse-panel-item-active');
   });
-  it('should only open one panel when use accordion', () => {
+  it('should only open one panel when use accordion', async () => {
     const { container } = setup({
       defaultActiveKeys: ['1'],
       accordion: true,
@@ -100,8 +100,10 @@ describe('CollapsePanel', () => {
     )[1];
 
     userEvent.click(screen.getByText('这是面板标题2'));
-    expect(firstPanel).not.toHaveClass('bui-collapse-panel-item-active');
-    expect(secondPanel).toHaveClass('bui-collapse-panel-item-active');
+    await waitFor(() => {
+      expect(firstPanel).not.toHaveClass('bui-collapse-panel-item-active');
+      expect(secondPanel).toHaveClass('bui-collapse-panel-item-active');
+    });
   });
   it('should use custom icon', () => {
     const customIcon = <div>custom icon</div>;
@@ -119,7 +121,7 @@ describe('CollapsePanel', () => {
     const icon = screen.getByText('custom icon');
     expect(icon).toBeVisible();
   });
-  it('should use custom icon by function', () => {
+  it('should use custom icon by function', async () => {
     setup({
       arrowIcon: (active) => {
         if (active) {
@@ -138,10 +140,12 @@ describe('CollapsePanel', () => {
     const unactivedIcon = screen.getByText('unactived icon');
     expect(unactivedIcon).toBeVisible();
     userEvent.click(screen.getByText('这是面板标题1'));
-    const activeIcon = screen.getByText('active icon');
-    expect(activeIcon).toBeVisible();
+    await waitFor(() => {
+      const activeIcon = screen.getByText('active icon');
+      expect(activeIcon).toBeVisible();
+    });
   });
-  it('should call onChange', () => {
+  it('should call onChange', async () => {
     const fakeChange = jest.fn();
     const Component = () => {
       const [activeKeys, setActiveKeys] = useState(['1']);
@@ -167,10 +171,12 @@ describe('CollapsePanel', () => {
     )[1];
 
     userEvent.click(screen.getByText('这是面板标题2'));
-    expect(fakeChange).toBeCalled();
-    expect(fakeChange).toBeCalledWith(['2', '1']);
-    expect(firstPanel).toHaveClass('bui-collapse-panel-item-active');
-    expect(secondPanel).toHaveClass('bui-collapse-panel-item-active');
+    await waitFor(() => {
+      expect(fakeChange).toBeCalled();
+      expect(fakeChange).toBeCalledWith(['2', '1']);
+      expect(firstPanel).toHaveClass('bui-collapse-panel-item-active');
+      expect(secondPanel).toHaveClass('bui-collapse-panel-item-active');
+    });
   });
   it('should return null', () => {
     const { container } = setup({});
@@ -206,7 +212,7 @@ describe('CollapsePanel', () => {
       expect(firstPanel).toHaveClass('bui-collapse-panel-item-active');
       expect(secondPanel).not.toHaveClass('bui-collapse-panel-item-active');
     });
-    it('should only open one panel when use accordion', () => {
+    it('should only open one panel when use accordion', async () => {
       const { container } = setupByElement({
         defaultActiveKeys: ['1'],
         accordion: true,
@@ -219,8 +225,10 @@ describe('CollapsePanel', () => {
       )[1];
 
       userEvent.click(screen.getByText('这是面板标题2'));
-      expect(firstPanel).not.toHaveClass('bui-collapse-panel-item-active');
-      expect(secondPanel).toHaveClass('bui-collapse-panel-item-active');
+      await waitFor(() => {
+        expect(firstPanel).not.toHaveClass('bui-collapse-panel-item-active');
+        expect(secondPanel).toHaveClass('bui-collapse-panel-item-active');
+      });
     });
     it('should use custom icon', () => {
       const customIcon = <div>custom icon</div>;
@@ -236,7 +244,7 @@ describe('CollapsePanel', () => {
       const icon = screen.getByText('custom icon');
       expect(icon).toBeVisible();
     });
-    it('should use custom icon by function', () => {
+    it('should use custom icon by function', async () => {
       setupByElement(
         {
           arrowIcon: (active) => {
@@ -251,10 +259,12 @@ describe('CollapsePanel', () => {
       const unactivedIcon = screen.getByText('unactived icon');
       expect(unactivedIcon).toBeVisible();
       userEvent.click(screen.getByText('这是面板标题1'));
-      const activeIcon = screen.getByText('active icon');
-      expect(activeIcon).toBeVisible();
+      await waitFor(() => {
+        const activeIcon = screen.getByText('active icon');
+        expect(activeIcon).toBeVisible();
+      });
     });
-    it('should call onChange', () => {
+    it('should call onChange', async () => {
       const fakeChange = jest.fn();
       const Component = () => {
         const [activeKeys, setActiveKeys] = useState(['1']);
@@ -283,10 +293,12 @@ describe('CollapsePanel', () => {
       )[1];
 
       userEvent.click(screen.getByText('这是面板标题2'));
-      expect(fakeChange).toBeCalled();
-      expect(fakeChange).toBeCalledWith(['2', '1']);
-      expect(firstPanel).toHaveClass('bui-collapse-panel-item-active');
-      expect(secondPanel).toHaveClass('bui-collapse-panel-item-active');
+      await waitFor(() => {
+        expect(fakeChange).toBeCalled();
+        expect(fakeChange).toBeCalledWith(['2', '1']);
+        expect(firstPanel).toHaveClass('bui-collapse-panel-item-active');
+        expect(secondPanel).toHaveClass('bui-collapse-panel-item-active');
+      });
     });
     it('should return null', () => {
       const { container } = setupByElement({}, 0);

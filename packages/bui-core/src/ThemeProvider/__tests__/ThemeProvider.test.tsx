@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  render,
-  // userEvent,
-  screen,
-} from 'testing';
+import { render, userEvent, screen } from 'testing';
 import dayjs from 'dayjs/esm/index';
 import {
   ThemeProvider,
@@ -11,10 +7,18 @@ import {
   EN,
   CN,
   TW,
-  // Dialog,
+  Dialog,
+  Button,
 } from '@bifrostui/react';
+import { renderHook } from '@testing-library/react';
 
 describe('ThemeProvider', () => {
+  let dialogHook;
+  beforeEach(() => {
+    renderHook(() => {
+      dialogHook = Dialog.useDialog();
+    });
+  });
   it.each([
     { locale: EN, type: 'EN' },
     { locale: CN, type: 'CN' },
@@ -33,21 +37,21 @@ describe('ThemeProvider', () => {
     expect(screen.getByText(placeHolder[theme.type])).toBeTruthy();
   });
 
-  // it('should render function locale theme currently', () => {
-  //   const [dialog, contextHolder] = Dialog.useDialog();
-  //   render(
-  //     <ThemeProvider locale={EN}>
-  //       {contextHolder}
-  //       <Button
-  //         onClick={() => {
-  //           dialog.confirm({ message: '测试' });
-  //         }}
-  //       >
-  //         Dialog
-  //       </Button>
-  //     </ThemeProvider>,
-  //   );
-  //   userEvent.click(screen.getByText(/Dialog/));
-  //   expect(screen.getByText('Cancel')).toBeTruthy();
-  // });
+  it('should render function locale theme currently', () => {
+    const [dialog, contextHolder] = dialogHook;
+    render(
+      <ThemeProvider locale={EN}>
+        {contextHolder}
+        <Button
+          onClick={() => {
+            dialog.confirm({ message: '测试' });
+          }}
+        >
+          Dialog
+        </Button>
+      </ThemeProvider>,
+    );
+    userEvent.click(screen.getByText(/Dialog/));
+    expect(screen.getByText('Cancel')).toBeTruthy();
+  });
 });

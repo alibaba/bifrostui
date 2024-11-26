@@ -222,7 +222,6 @@ export default () => {
 | open         | Used for manually controlling the appearance and concealment of bubble floating layers | boolean                                                                                                                                                                          | -             |
 | placement    | Bubble box position                                                                    | String, the enumeration value is `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` `bottom` | 'top'         |
 | trigger      | Trigger behavior                                                                       | string \|String [], the enumeration value is' click '\|'hover'                                                                                                                   | 'click'       |
-| PortalProps  | Properties of internal Portal components                                               | PortalCoreProps                                                                                                                                                                  | -             |
 | onOpenChange | The callback method for bubble floating layer manifestation and concealment            | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                                             | -             |
 
 ### Style variables

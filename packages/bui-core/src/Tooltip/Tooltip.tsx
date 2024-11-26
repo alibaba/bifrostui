@@ -4,6 +4,7 @@ import {
   getStylesAndLocation,
   triggerEventTransform,
   useUniqueId,
+  throttle,
 } from '@bifrostui/utils';
 import Portal from '../Portal';
 import { TooltipProps } from './Tooltip.types';
@@ -22,7 +23,6 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     trigger = 'click',
     onOpenChange,
     open,
-    PortalProps,
     ...others
   } = props;
 
@@ -79,16 +79,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     hideTooltip(event);
   };
 
-  useEffect(() => {
-    if (controlByUser) return;
-    document.addEventListener('click', clickEventHandler);
-    // eslint-disable-next-line
-    return () => {
-      document.removeEventListener('click', clickEventHandler);
-    };
-  }, []);
-
-  const onRootElementMouted = () => {
+  const onRootElementMouted = throttle(() => {
     const result = getStylesAndLocation({
       childrenRef,
       arrowDirection,
@@ -105,7 +96,28 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
       setArrowLocation(newArrowLocation);
     }
     setTooltyles(styles);
+  }, 100);
+
+  const bindEvent = () => {
+    if (!controlByUser) {
+      document.addEventListener('click', clickEventHandler);
+    }
+    window.addEventListener('resize', onRootElementMouted);
   };
+
+  const unbindEvent = () => {
+    if (!controlByUser) {
+      document.removeEventListener('click', clickEventHandler);
+    }
+    window.removeEventListener('resize', onRootElementMouted);
+  };
+
+  useEffect(() => {
+    bindEvent();
+    return () => {
+      unbindEvent();
+    };
+  }, []);
 
   let triggerEventOption;
   if (!controlByUser) {
@@ -125,11 +137,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   return (
     <>
       {(open || openStatus) && title ? (
-        <Portal
-          onRootElementMouted={onRootElementMouted}
-          {...PortalProps}
-          ref={ref}
-        >
+        <Portal onRootElementMouted={onRootElementMouted} ref={ref}>
           <div
             className={clsx(prefixCls, className, `tooltip-${arrowDirection}`)}
             style={{ ...style, ...tooltyles }}

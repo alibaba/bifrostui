@@ -119,7 +119,7 @@ const useDialog = () => {
   const wrapAPI: DialogFunction = (
     props: DialogOptions | string,
   ): DialogPromise => {
-    const options = { theme: holderRef.current.theme, ...formatProps(props) };
+    const options = { theme: holderRef.current?.theme, ...formatProps(props) };
     const { onConfirm, onCancel, ...rest } = options;
     return new Promise((resolve) => {
       DialogGenerator({
@@ -141,13 +141,13 @@ const useDialog = () => {
     Dialog({
       type: 'confirm',
       ...formatProps(options),
-      theme: holderRef.current.theme,
+      theme: holderRef.current?.theme,
     });
   wrapAPI.prompt = (options: PromptOptions) =>
     Dialog({
       type: 'prompt',
       ...formatProps(options),
-      theme: holderRef.current.theme,
+      theme: holderRef.current?.theme,
     });
   return [wrapAPI, <Popup key="dialog-holder" ref={holderRef} />] as [
     DialogFunction,
