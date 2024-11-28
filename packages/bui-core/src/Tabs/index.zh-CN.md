@@ -333,6 +333,7 @@ export default () => {
 | --active-color | 激活 Tab 字体颜色 | --bui-color-fg-default | --bui-tabs-active-color |
 | --line-width   | 下标线宽度        | 18px                   | --bui-tabs-line-width   |
 | --line-height  | 下标线高度        | 3PX                    | --bui-tabs-line-height  |
+| --mask-width   | 蒙层宽度          | 12px                   | --bui-tabs-mask-width   |
 | --mask-height  | 蒙层高度          | 100%                   | --bui-tabs-mask-height  |
 
 ### Tab

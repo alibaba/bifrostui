@@ -333,6 +333,7 @@ export default () => {
 | --active-color | Activate Tab font color          | --bui-color-fg-default | --bui-tabs-active-color |
 | --line-width   | Width of the lower marking line  | 18px                   | --bui-tabs-line-width   |
 | --line-height  | Height of the lower marking line | 3PX                    | --bui-tabs-line-height  |
+| --mask-width   | Mask width                       | 12px                   | --bui-tabs-mask-width   |
 | --mask-height  | Mask height                      | 100%                   | --bui-tabs-mask-height  |
 
 ### Tab
