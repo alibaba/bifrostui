@@ -136,8 +136,11 @@ $ pnpm --filter @bifrostui/icons build
 
   ```bash
   # 1. 切到你要发布beta版的分支，同步最新main分支代码，v:beta命令只会自动添加patch版本的beta，
-  # 如果需要发布minor或major版本的beta，可在此处执行 pnpm v:online 命令，并务必选择正确的beta版本号
+  # 方式1：自动升级patch的beta版本号，跳过版本询问
   $ pnpm v:beta
+
+  # 方式2：自行选择beta版本号，包括minor、major或正式版，务必选择正确！
+  $ npx lerna version --preid=beta --force-publish --message 'Publish'
 
   # 2. 构建
   $ pnpm build
