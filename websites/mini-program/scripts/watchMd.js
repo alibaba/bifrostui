@@ -22,7 +22,8 @@ class MdWatcher {
       if (fse.lstatSync(componentPath).isDirectory()) {
         const files = fse.readdirSync(componentPath);
         files.forEach((file) => {
-          if (path.extname(file) === '.md') {
+          // 原来的 '.md' 改为 'zh-CN.md'
+          if (file.split('.').slice(1).join('.') === 'zh-CN.md') {
             mdPathList.push(path.resolve(componentPath, file));
           }
         });
@@ -34,7 +35,6 @@ class MdWatcher {
       awaitWriteFinish: true,
     });
   }
-
   watch() {
     this.watcher.on('change', (changePath) => {
       console.log(

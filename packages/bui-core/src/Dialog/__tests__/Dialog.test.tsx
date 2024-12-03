@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, renderHook, waitFor } from '@testing-library/react';
 import { Button } from '@bifrostui/react';
 import { render, screen, act } from 'testing';
 import Dialog from '../FunctionalDialog';
@@ -7,9 +7,14 @@ import '@testing-library/jest-dom/extend-expect';
 
 describe('Dialog Functional Calls', () => {
   const rootClass = 'bui-dialog';
+  let dialogHook;
+
   beforeEach(() => {
     document.body.innerHTML = '';
     jest.useFakeTimers();
+    renderHook(() => {
+      dialogHook = Dialog.useDialog();
+    });
   });
 
   afterEach(() => {
@@ -108,7 +113,7 @@ describe('Dialog Functional Calls', () => {
     expect(screen.getByText('Prompt Title')).toBeInTheDocument();
     expect(screen.getByText('Please enter a value:')).toBeInTheDocument();
 
-    const input = screen.getByPlaceholderText('请在此处输入');
+    const input = screen.getByPlaceholderText('请输入内容');
     fireEvent.change(input, { target: { value: 'Test Input' } });
 
     fireEvent.click(screen.getByText('Confirm'));
@@ -142,4 +147,69 @@ describe('Dialog Functional Calls', () => {
     fireEvent.click(screen.getByText('Delete'));
     await waitFor(() => expect(promptPromise).resolves.toBe(false));
   });
+  it('the default type of useDialog is confirm', async () => {
+    const onConfirm = jest.fn();
+    const onCancel = jest.fn();
+    const { getByTestId } = render(
+      <Button
+        data-testid="emit-button"
+        onClick={() => {
+          dialogHook[0]({
+            header: '标题',
+            message: '描述内容',
+            onConfirm,
+            onCancel,
+          });
+        }}
+      >
+        test
+      </Button>,
+    );
+    fireEvent.click(getByTestId('emit-button'));
+    expect(
+      document.body.querySelector(`.${rootClass}-body-desc`),
+    ).toBeInTheDocument();
+    expect(screen.getByText('描述内容')).toBeInTheDocument();
+    fireEvent.click(screen.getByText('取消'));
+    await waitFor(async () => {
+      expect(onCancel).toHaveBeenCalled();
+      fireEvent.click(screen.getByText('确定'));
+      await waitFor(() => {
+        expect(onConfirm).toHaveBeenCalled();
+      });
+    });
+  });
+
+  it.each(['confirm', 'prompt'])(
+    'should support basic api with useDialog',
+    async (type) => {
+      const dialog = dialogHook?.[0];
+      const onConfirm = jest.fn();
+      const onCancel = jest.fn();
+
+      render(
+        <Button
+          onClick={() => {
+            dialog[type]({
+              message: `${type} message`,
+              onConfirm,
+              onCancel,
+            });
+          }}
+        >
+          dialog button
+        </Button>,
+      );
+      fireEvent.click(screen.getByText('dialog button'));
+      expect(screen.getByText(`${type} message`)).toBeInTheDocument();
+      fireEvent.click(screen.getByText('取消'));
+      await waitFor(async () => {
+        expect(onCancel).toHaveBeenCalled();
+        fireEvent.click(screen.getByText('确定'));
+        await waitFor(() => {
+          expect(onConfirm).toHaveBeenCalled();
+        });
+      });
+    },
+  );
 });

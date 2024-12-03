@@ -7,7 +7,7 @@
   font-family: var(--bui-font-family);
 
   &-label-horizontal {
-    line-height: 1.8;
+    line-height: var(--step-label-horizontal-line-height);
   }
 
   &:last-child {
@@ -20,8 +20,8 @@
 .bui-step-line {
   position: absolute;
   top: 0;
-  width: 1px;
-  height: 100%;
+  width: var(--step-line-width);
+  height: var(--step-line-height);
   box-sizing: border-box;
   left: 13px;
   padding: var(--step-line-padding);
@@ -29,8 +29,8 @@
   &::after {
     display: inline-block;
     content: '';
-    width: 1px;
-    border-left-width: 1px;
+    width: var(--step-line-width);
+    border-left-width: var(--step-line-width);
     border-left-style: dotted;
     height: calc(100% + 11px);
   }
@@ -62,14 +62,14 @@
 
 .bui-step-icon {
   flex-shrink: 0;
-  width: 28px;
+  width: var(--step-icon-width);
   text-align: center;
   margin: var(--step-icon-margin);
-  font-size: var(--bui-title-size-4);
+  font-size: var(--step-icon-font-size);
 
   &-active {
-    width: 12px;
-    height: 12px;
+    width: var(--step-icon-active-width);
+    height: var(--step-icon-active-height);
     position: relative;
     background-color: var(--bui-color-primary);
     border-radius: 50%;
@@ -79,7 +79,7 @@
 }
 
 .bui-step-content {
-  padding: 3px 0;
+  padding: var(--step-content-padding);
   box-sizing: border-box;
   flex: 1 0 0;
   overflow: hidden;
@@ -97,8 +97,8 @@
 }
 
 .bui-step-title {
-  font-size: var(--title-font-size);
-  font-weight: var(--title-font-weight);
+  font-size: var(--bui-title-size-4);
+  font-weight: var(--bui-font-weight-medium);
   .ellipsis();
 
   &-active {
@@ -163,7 +163,7 @@
 
   .bui-step-line {
     display: none;
-    padding: 28px 0 6px;
+    padding: var(--step-horizontal-line-padding);
   }
 
   .bui-step-icon {

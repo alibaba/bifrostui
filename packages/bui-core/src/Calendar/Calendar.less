@@ -1,6 +1,30 @@
 @import '@bifrostui/styles/mixins/index.less';
 
 .bui-calendar {
+  --padding: var(--bui-calendar-padding, 6px 12px 7px);
+  --week-height: var(--bui-calendar-week-height, 30px);
+  --handler-height: var(--bui-calendar-handler-height, 28px);
+  --handler-margin-bottom: var(--bui-calendar-handler-margin-bottom, 7px);
+  --handler-text-width: var(--bui-calendar-handler-text-width, 80px);
+  --handler-btn-width: var(--bui-calendar-handler-btn-width, 46px);
+  --handler-btn-height: var(--bui-calendar-handler-btn-height, 100%);
+  --handler-btn-icon-font-size: var(
+    --bui-calendar-handler-btn-icon-font-size,
+    28px
+  );
+  --day-box-height: var(--bui-calendar-day-box-height, 30px);
+  --day-box-margin-bottom: var(--bui-calendar-day-box-margin-bottom, 7px);
+  --day-disabled-color: var(--bui-calendar-day-disabled-color, #9c9ca5);
+  --middle-color: var(--bui-calendar-middle-color, #000);
+  --middle-background-color: var(
+    --bui-calendar-middle-background-color,
+    #ffeaf1
+  );
+  --range-both-ends-color: var(--bui-calendar-range-both-ends-color, #000);
+  --range-both-ends-background-color: var(
+    --bui-calendar-range-both-ends-background-color,
+    #ffc7da
+  );
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -8,11 +32,11 @@
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  padding: 6px 12px 7px;
+  padding: var(--padding);
   font-family: var(--bui-font-family);
 
   &-week {
-    height: 30px;
+    height: var(--week-height);
     font-size: var(--bui-text-size-2);
     font-weight: var(--bui-font-weight-medium);
     color: var(--bui-color-fg-default);
@@ -34,14 +58,14 @@
   }
 
   &-handler {
-    height: 28px;
+    height: var(--handler-height);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 7px;
+    margin-bottom: var(--handler-margin-bottom);
 
     &-text {
-      width: 80px;
+      width: var(--handler-text-width);
       font-size: var(--bui-title-size-3);
       font-weight: var(--bui-font-weight-medium);
       text-align: center;
@@ -49,15 +73,15 @@
 
     &-btn {
       font-size: 16px;
-      height: 100%;
-      width: 46px;
+      height: var(--handler-btn-height);
+      width: var(--handler-btn-width);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
 
       &-icon {
-        font-size: 28px;
+        font-size: var(--handler-btn-icon-font-size);
       }
     }
   }
@@ -70,8 +94,8 @@
 
   &-day-box {
     width: 14.28%;
-    height: 30px;
-    margin-bottom: 7px;
+    height: var(--day-box-height);
+    margin-bottom: var(--day-box-margin-bottom);
   }
 
   &-highlight-day {
@@ -86,14 +110,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 6px;
+    border-radius: var(--bui-shape-radius-default);
     font-size: var(--bui-title-size-4);
     font-weight: var(--bui-font-weight-medium);
     color: var(--bui-color-fg-default);
     cursor: pointer;
 
     &.bui-calendar-disabled {
-      color: #9c9ca5;
+      color: var(--day-disabled-color);
     }
   }
 
@@ -102,14 +126,14 @@
   }
 
   &-middle {
-    color: #000;
+    color: var(--middle-color);
     border-radius: 0;
-    background-color: #ffeaf1;
+    background-color: var(--middle-background-color);
   }
 
   &-start {
-    color: #000;
-    background-color: #ffc7da;
+    color: var(--range-both-ends-color);
+    background-color: var(--range-both-ends-background-color);
   }
 
   &-range {
@@ -118,8 +142,8 @@
   }
 
   &-end {
-    color: #000;
-    background-color: #ffc7da;
+    color: var(--range-both-ends-color);
+    background-color: var(--range-both-ends-background-color);
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }

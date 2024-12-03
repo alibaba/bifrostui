@@ -103,11 +103,44 @@ $ pnpm --filter @bifrostui/icons build
 
 ### 提交发布
 
+> 按照约定，需要有权限的维护者才能发布，且只能在 `main` 和 `releases/*` 分支上发布。贡献者代码被合并后，我们会在规定发布日进行统一发布。
+
+### 自动发布
+
+开发者只需要进行版本控制，即可触发自动化脚本发布。
+
 - 发布 beta 版
 
   ```bash
-  # 1. 切到你要发布beta版的分支，同步最新main分支代码
+  # 切到你要发布beta版的分支，同步最新main分支代码，v:beta命令只会自动添加patch版本的beta，
+  # 如果需要发布minor或major版本的beta，可在此处执行 pnpm v:online 命令，并务必选择正确的beta版本号
   $ pnpm v:beta
+  ```
+
+- 发布正式版
+
+  ```bash
+  # 切到main分支，拉取最新代码
+  $ pnpm v:online
+  ```
+
+#### 手动发布
+
+目前手动发布仅供处理一些特殊情况才使用，通常情况下请使用自动发布。比如出现以下特殊情况时可使用手动发布：
+
+1. 当执行发布脚本的远程机器较拥挤导致等待时间过长，可先取消发布脚本，再手动发布
+2. 当自动发布脚本出现网络异常导致部分包发成功，部分失败时
+3. 当特殊需求，不在约定的main或releases/\*分支发布时
+
+- 发布 beta 版
+
+  ```bash
+  # 1. 切到你要发布beta版的分支，同步最新main分支代码，v:beta命令只会自动添加patch版本的beta，
+  # 方式1：自动升级patch的beta版本号，跳过版本询问
+  $ pnpm v:beta
+
+  # 方式2：自行选择beta版本号，包括minor、major或正式版，务必选择正确！
+  $ npx lerna version --preid=beta --force-publish --message 'Publish'
 
   # 2. 构建
   $ pnpm build
@@ -141,11 +174,13 @@ $ pnpm --filter @bifrostui/icons build
 
 ## Pull Request 指南
 
-1. 务必保证 `npm run build` 能够编译成功；
-2. 务必保证提交的代码遵循相关包中的 `.eslintrc`, `.stylelintrc`, `.prettierrc` 所规定的规范；
-3. 根目录下运行 `pnpm ci:test` 命令时，必须保证所有测试用例都通过，且新增的组件，单测行覆盖率 90%以上；
-4. 当相关包有测试用例时，请给你提交的代码也添加相应的测试用例。
-5. 提交代码 commit 时，commit 信息需要遵循 [Conventional Commits]标准。
+1. 务必保证 `pnpm build` 能够编译成功；
+2. 非特殊情况（紧急需求仅支持部分渠道的功能），务必保证你的功能在小程序上能正常运行；
+3. 务必保证你改动到的文档支持中英两种语言，可执行 `pnpm md:trans --file <filepath>` 进行机翻，机翻后的文档需要格式化一下；
+4. 务必保证提交的代码遵循相关包中的 `.eslintrc`, `.stylelintrc`, `.prettierrc` 所规定的规范；
+5. 根目录下运行 `pnpm ci:test` 命令时，必须保证所有测试用例都通过，且新增的组件，单测行覆盖率 90%以上；
+6. 当相关包有测试用例时，请给你提交的代码也添加相应的测试用例。
+7. 提交代码 commit 时，commit 信息需要遵循 [Conventional Commits]标准。
 
 ## 最后
 

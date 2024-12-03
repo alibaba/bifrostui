@@ -1,13 +1,26 @@
 @import '@bifrostui/styles/mixins/index.less';
 
 .bui-input {
+  --height: var(--bui-input-height, 32px);
+  --padding: var(--bui-input-padding, 4px 10px);
+  --border-radius: var(
+    --bui-input-border-radius,
+    var(--bui-shape-radius-default)
+  );
+  --icon-start-margin-right: var(--bui-input-icon-start-margin-right, 3px);
+  --icon-end-margin-left: var(--bui-input-icon-end-margin-left, 3px);
+  --background-color: var(--bui-input-background-color, transparent);
+  --disabled-background-color: var(
+    --bui-input-disabled-background-color,
+    rgba(0, 0, 0, 0.04)
+  );
   position: relative;
   display: flex;
   align-items: center;
-  height: 32px;
-  padding: 4px 10px;
+  height: var(--height);
+  padding: var(--padding);
   box-sizing: border-box;
-  border-radius: var(--bui-shape-radius-default);
+  border-radius: var(--border-radius);
   border: 1px solid var(--bui-color-border-default);
   font-family: var(--bui-font-family);
 
@@ -18,11 +31,11 @@
     font-size: var(--bui-title-size-3);
 
     &-start {
-      margin-right: 3px;
+      margin-right: var(--icon-start-margin-right);
     }
 
     &-end {
-      margin-left: 3px;
+      margin-left: var(--icon-end-margin-left);
     }
   }
 
@@ -35,8 +48,9 @@
     color: var(--bui-color-fg-default);
     border: none;
     outline: none;
-    background-color: transparent;
+    background-color: var(--background-color);
     font-size: var(--bui-text-size-2);
+    .ellipsis();
 
     &::placeholder {
       color: var(--bui-color-fg-subtle);
@@ -45,7 +59,7 @@
 
   &-disabled {
     pointer-events: none;
-    background-color: rgba(0, 0, 0, 0.04);
+    background-color: var(--disabled-background-color);
 
     .bui-input-input {
       color: var(--bui-color-fg-disabled);
