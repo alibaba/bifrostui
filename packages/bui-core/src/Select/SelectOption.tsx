@@ -19,6 +19,9 @@ const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(
       if (value === selectValue) {
         setRenderValue(label as SetStateAction<string>);
       }
+      return () => {
+        setRenderValue('');
+      };
     }, [selectValue, label, value]);
 
     return (

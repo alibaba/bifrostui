@@ -7,6 +7,7 @@
     --bui-countdown-font-weight,
     var(--bui-font-weight-normal)
   );
+  --slice-unit-margin: var(--bui-countdown-slice-unit-margin, 0 2px);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -33,7 +34,7 @@
     }
 
     &-unit {
-      margin: 0 2px;
+      margin: var(--slice-unit-margin);
     }
   }
 }

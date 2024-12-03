@@ -16,9 +16,13 @@ export interface PortalCoreProps {
    */
   disablePortal?: boolean;
   /**
-   * 页面跟节点
+   * 页面根节点
    */
   rootElement?: Element;
+  /**
+   * 挂载成功的回调方法
+   */
+  onRootElementMouted?: (e: Element) => void;
 }
 
 export type PortalProps = Omit<PortalCoreProps, 'rootElement'>;

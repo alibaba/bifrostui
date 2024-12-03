@@ -2,11 +2,22 @@
 @transition-duration: 0.3s;
 
 .@{class-prefix-select} {
+  --height: var(--bui-select-height, 27px);
+  --mini-width: var(--bui-select-min-width, 100px);
+  --font-size: var(--bui-select-font-size, var(--bui-title-size-3));
+  --padding: var(--bui-select-selector-container, 0 14px);
+  --option-container-padding: var(--bui-select-option-container-padding, 3px 0);
+  --option-margin-top: var(--bui-select-option-margin-top, 6px);
+  --option-padding: var(--bui-select-option-padding, 0 14px);
+  --option-margin: var(--bui-select-option-margin, 0 3px);
+  --option-height: var(--bui-select-option-height, 27px);
+  --option-active-font-weight: var(--bui-select-option-active-font-weight, 500);
+
   position: relative;
   cursor: pointer;
-  height: 27px;
-  min-width: 100px;
-  font-size: var(--bui-title-size-3);
+  height: var(--height);
+  min-width: var(--mini-width);
+  font-size: var(--font-size);
   border-radius: 5px;
   background-color: var(--bui-color-bg-view);
   font-family: var(--bui-font-family);
@@ -19,7 +30,7 @@
   &-selector-container {
     display: flex;
     align-items: center;
-    padding: 0 14px;
+    padding: var(--padding);
     height: 100%;
   }
 
@@ -39,7 +50,7 @@
     justify-content: space-between;
     align-items: center;
     flex: 1;
-    height: 27px;
+    height: var(--height);
     background-color: transparent;
     outline: none;
     border: 0;
@@ -56,7 +67,8 @@
     left: 0;
     width: 100%;
     z-index: var(--bui-z-index-dropdown);
-    margin-top: 6px;
+    margin-top: var(--option-container-margin-top);
+    border-radius: 3px;
     background-color: var(--bui-color-bg-view);
     padding: 2px;
     overflow: hidden;
@@ -64,7 +76,7 @@
 
   &-option-main {
     border-radius: 3px;
-    padding: 3px 0;
+    padding: var(--option-container-padding);
     box-shadow: 0 0 0 2px var(--bui-color-bg-default);
     overflow: hidden;
   }
@@ -72,10 +84,10 @@
   &-option {
     display: flex;
     align-items: center;
-    height: 27px;
-    padding: 0 14px;
+    height: var(--option-height);
+    padding: var(--option-padding);
     border-radius: 5px;
-    margin: 0 3px;
+    margin: var(--option-margin);
   }
 
   &-option:hover {

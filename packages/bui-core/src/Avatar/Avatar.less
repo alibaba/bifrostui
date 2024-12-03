@@ -1,8 +1,12 @@
 .bui-avatar {
+  --large-size: var(--bui-avatar-large-size, 60px);
+  --medium-size: var(--bui-avatar-medium-size, 42px);
+  --small-size: var(--bui-avatar-small-size, 30px);
+  --xsmall-size: var(--bui-avatar-xsmall-size, 24px);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 12px;
+  font-size: var(--bui-text-size-3);
   background-color: var(--bui-color-bg-default);
   font-family: var(--bui-font-family);
 
@@ -13,23 +17,23 @@
   }
 
   &-large {
-    width: 60px;
-    height: 60px;
+    width: var(--large-size);
+    height: var(--large-size);
   }
 
   &-medium {
-    width: 42px;
-    height: 42px;
+    width: var(--medium-size);
+    height: var(--medium-size);
   }
 
   &-small {
-    width: 30px;
-    height: 30px;
+    width: var(--small-size);
+    height: var(--small-size);
   }
 
   &-xsmall {
-    width: 24px;
-    height: 24px;
+    width: var(--xsmall-size);
+    height: var(--xsmall-size);
   }
 }
 

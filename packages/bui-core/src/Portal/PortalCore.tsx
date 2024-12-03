@@ -13,7 +13,13 @@ function getContainer(container) {
  */
 const PortalCore = React.forwardRef<Element, PortalCoreProps>(
   function Portal(props, ref) {
-    const { children, container, disablePortal = false, rootElement } = props;
+    const {
+      children,
+      container,
+      disablePortal = false,
+      rootElement,
+      onRootElementMouted,
+    } = props;
     const [mountNode, setMountNode] = React.useState(null);
     const handleRef = useForkRef(
       // @ts-expect-error will upstream fix
@@ -30,6 +36,7 @@ const PortalCore = React.forwardRef<Element, PortalCoreProps>(
     useLayoutEffect(() => {
       if (mountNode && !disablePortal) {
         setRef(ref, mountNode);
+        onRootElementMouted?.(mountNode);
         return () => {
           setRef(ref, null);
         };

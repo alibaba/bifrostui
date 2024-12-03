@@ -9,7 +9,7 @@ import {
   ToastReturnType,
 } from './Toast.types';
 
-const toastCloses = [];
+let toastCloses = [];
 
 /**
  * 参数格式化，支持直接传文案
@@ -88,7 +88,13 @@ const functionalToast = (props: ToastProps | string) => {
       toastCloses.push(close);
 
       if (duration !== 0 && typeof duration === 'number') {
-        timer = setTimeout(close, duration);
+        timer = setTimeout(() => {
+          close();
+          // 不允许共存的场景下，当前Toast关闭后，应清空toastCloses
+          if (!allowMultiple) {
+            toastCloses = [];
+          }
+        }, duration);
       }
 
       return () => {
@@ -138,6 +144,43 @@ functionalToast.clear = () => {
     destroyAll();
   });
 };
+
+/**
+ * 适配主题定制等场景下，静态方法获取不到context 上下文
+ */
+const useToast = () => {
+  const holderRef = React.useRef(null);
+
+  /**
+   * Toast.warning(options: ToastOptions)
+   * Toast.loading(options: ToastOptions)
+   * Toast.success(options: ToastOptions)
+   * Toast.fail(options: ToastOptions)
+   */
+  ['warning', 'loading', 'success', 'fail'].forEach((methodName: ToastType) => {
+    functionalToast[methodName] = (options: ToastOptions) =>
+      functionalToast({
+        type: methodName,
+        ...formatProps(options),
+        theme: holderRef.current?.theme,
+      });
+  });
+
+  /**
+   * 清除所有Toast
+   * Toast.clear()
+   */
+  functionalToast.clear = () => {
+    // 处理toast还未弹出就立刻销毁的情况，将销毁放到下一个时间循环中，避免销毁失败
+    setTimeout(() => {
+      destroyAll();
+    });
+  };
+  const wrapAPI = functionalToast;
+
+  return [wrapAPI, <ToastView key="toast-holder" ref={holderRef} />];
+};
+functionalToast.useToast = useToast;
 
 const Toast = functionalToast as ToastInstance;
 

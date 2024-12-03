@@ -1,4 +1,8 @@
 export { default as debounce } from './debounce';
+export {
+  getStylesAndLocation,
+  triggerEventTransform,
+} from './directionLocationUtil';
 export { default as convertHexToRGBA } from './hex2rgba';
 export {
   useDidMountEffect,
@@ -10,6 +14,7 @@ export {
   useSize,
   useDomCss,
   useTouch,
+  useUniqueId,
 } from './hooks';
 export { default as isDev } from './isDev';
 export { isMini, isWeapp, isAlipay, isMiniapp } from './isMini';

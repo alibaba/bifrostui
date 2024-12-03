@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Collapse snapshot Collapse demo snapshot 0 1`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "wrap",
+      "--justify-content": "center",
+      "--spacing": "8px",
+    }
+  }
+>
+  <div
+    className="bui-switch bui-switch-medium bui-switch-primary"
+  >
+    <input
+      checked={false}
+      className="bui-switch-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <div
+    className="bui-collapse undefined"
+    style={
+      Object {
+        "WebKitWidth": "0px",
+        "WebkitTransition": "width 1500ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+        "transition": "width 1500ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+        "width": "0px",
+      }
+    }
+  >
+    <div
+      className="bui-card"
+      style={
+        Object {
+          "background": "#CCCCCC",
+          "height": "100px",
+          "width": "100px",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Collapse snapshot Collapse demo snapshot 0 2`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "wrap",
+      "--justify-content": "center",
+      "--spacing": "8px",
+    }
+  }
+>
+  <div
+    className="bui-switch bui-switch-medium bui-switch-primary bui-switch-checked"
+  >
+    <input
+      checked={true}
+      className="bui-switch-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <div
+    className="bui-collapse undefined"
+    style={
+      Object {
+        "WebKitHeight": "fit-content",
+        "WebkitTransition": "height 1500ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
+        "height": "fit-content",
+        "transition": "height 1500ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
+      }
+    }
+  >
+    <div
+      className="bui-card"
+      style={
+        Object {
+          "background": "#CCCCCC",
+          "height": "100px",
+          "width": "100px",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Collapse snapshot Collapse demo snapshot 0 3`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "wrap",
+      "--justify-content": "center",
+      "--spacing": "8px",
+    }
+  }
+>
+  <div
+    className="bui-switch bui-switch-medium bui-switch-primary bui-switch-checked"
+  >
+    <input
+      checked={true}
+      className="bui-switch-input"
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <div
+    className="bui-collapse undefined"
+    style={
+      Object {
+        "WebKitHeight": "fit-content",
+        "WebkitTransition": "height 1500ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
+        "height": "fit-content",
+        "transition": "height 1500ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
+      }
+    }
+  >
+    <div
+      className="bui-card"
+      style={
+        Object {
+          "background": "#CCCCCC",
+          "height": "100px",
+          "width": "100px",
+        }
+      }
+    />
+  </div>
+</div>
+`;

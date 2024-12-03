@@ -1,16 +1,20 @@
-@holderWidth: 12px;
 @class-prefix-tabs: ~'bui-tabs';
 
 .@{class-prefix-tabs} {
-  --height: 39px;
-  --font-size: var(--bui-text-size-1);
-  --color: var(--bui-color-fg-subtle);
-  --active-color: var(--bui-color-fg-default);
-  --line-color: var(--bui-color-primary);
+  --height: var(--bui-tabs-height, 39px);
+  --color: var(--bui-tabs-color, var(--bui-color-fg-subtle));
+  --active-color: var(--bui-tabs-active-color, var(--bui-color-fg-default));
 
   /* prettier-ignore */
-  --line-height: 3PX;
-  --line-width: 18px;
+  --line-height: var(--bui-tabs-line-height, 3PX);
+  --line-width: var(--bui-tabs-line-width, 18px);
+  --mask-width: var(--bui-tabs-mask-width, 12px);
+  --mask-height: var(--bui-tabs-mask-height, 100%);
+  --tab-height: var(--bui-tab-height, 100%);
+  --tab-padding: var(
+    --bui-tab-padding,
+    var(--bui-spacing-lg) var(--bui-spacing-lg) 10px
+  );
 
   position: relative;
   font-family: var(--bui-font-family);
@@ -37,7 +41,7 @@
 
     height: var(--line-height);
     color: var(--bui-color-primary);
-    background: var(--line-color);
+    background: var(--bui-color-primary);
     border-radius: var(--bui-shape-radius-label);
   }
 
@@ -50,8 +54,8 @@
     top: 0;
     bottom: 0;
     z-index: 1;
-    width: @holderWidth;
-    height: 100%;
+    width: var(--mask-width);
+    height: var(--mask-height);
     pointer-events: none;
   }
 

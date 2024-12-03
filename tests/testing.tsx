@@ -107,7 +107,7 @@ export const isConformant = (testInfo) => {
 export const snapshotTest = async (componentName) => {
   const filePath = path.join(
     __dirname,
-    `../packages/bui-core/src/${componentName}/*.md`,
+    `../packages/bui-core/src/${componentName}/*.zh-CN.md`,
   );
   const files = glob.sync(filePath);
 

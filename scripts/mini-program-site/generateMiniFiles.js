@@ -26,7 +26,8 @@ const generateMiniPages = () => {
       if (fse.lstatSync(componentDir).isDirectory()) {
         const files = fse.readdirSync(componentDir);
         files.forEach((file) => {
-          if (path.extname(file) === '.md') {
+          // 原来的 '.md' 改为 'zh-CN.md'
+          if (file.split('.').slice(1).join('.') === 'zh-CN.md') {
             handleMdFile(componentDir, file);
           }
         });

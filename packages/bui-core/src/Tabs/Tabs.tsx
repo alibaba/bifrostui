@@ -99,6 +99,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   useEffect(() => {
     const handleResize = debounce(() => {
       animate({ transitionInUse: true });
+      updateMask();
     }, 100);
 
     window.addEventListener('resize', handleResize);

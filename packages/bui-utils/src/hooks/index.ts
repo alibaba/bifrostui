@@ -7,6 +7,7 @@ import useDomReady from './useDomReady';
 import useSize from './useSize';
 import useDomCss from './useDomCss';
 import useTouch from './useTouch';
+import useUniqueId from './useUniqueId';
 
 export {
   useValue,
@@ -18,4 +19,5 @@ export {
   useSize,
   useDomCss,
   useTouch,
+  useUniqueId,
 };
