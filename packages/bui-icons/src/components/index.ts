@@ -86,6 +86,7 @@ export { default as ErrorCircleOutlinedIcon } from './ErrorCircleOutlined';
 export { default as ExperimentOutlinedIcon } from './ExperimentOutlined';
 export { default as ExploreCircleFilledIcon } from './ExploreCircleFilled';
 export { default as ExploreCircleOutlinedIcon } from './ExploreCircleOutlined';
+export { default as EyeClosedFilledIcon } from './EyeClosedFilled';
 export { default as EyeFilledIcon } from './EyeFilled';
 export { default as EyeOutlinedIcon } from './EyeOutlined';
 export { default as FemaleOutlinedIcon } from './FemaleOutlined';
