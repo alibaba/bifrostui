@@ -289,15 +289,15 @@ export default () => {
 
 #### Tag
 
-| 属性           | 说明           | 默认值                  | 全局变量               |
-| -------------- | -------------- | ----------------------- | ---------------------- |
-| --bg-color     | Tag 背景色     | --bui-color-gay         | --bui-tag-bg-color     |
-| --border-color | Tag 边框色     | --bui-color-border-gay  | --bui-tag-border-color |
-| --color        | Tag 文案颜色   | --bui-color-gay         | --bui-tag-color        |
-| --height       | Tag 高度       | 15px                    | --bui-tag-height       |
-| --line-height  | Tag 行高       | 15px                    | --bui-tag-line-height  |
-| --padding      | Tag 内边距     | 0 var(--bui-spacing-xs) | --bui-tag-padding      |
-| --bg-color-vip | Tag 会员主题色 | fade(#ff866e, 30%)      | --bui-tag-color-vip    |
+| 属性               | 说明           | 默认值                  | 全局变量               |
+| ------------------ | -------------- | ----------------------- | ---------------------- |
+| --tag-bg-color     | Tag 背景色     | --bui-color-gay         | --bui-tag-bg-color     |
+| --tag-border-color | Tag 边框色     | --bui-color-border-gay  | --bui-tag-border-color |
+| --tag-color        | Tag 文案颜色   | --bui-color-gay         | --bui-tag-color        |
+| --tag-height       | Tag 高度       | 15px                    | --bui-tag-height       |
+| --tag-line-height  | Tag 行高       | 15px                    | --bui-tag-line-height  |
+| --tag-padding      | Tag 内边距     | 0 var(--bui-spacing-xs) | --bui-tag-padding      |
+| --tag-bg-color-vip | Tag 会员主题色 | fade(#ff866e, 30%)      | --bui-tag-color-vip    |
 
 #### TagGroup
 
