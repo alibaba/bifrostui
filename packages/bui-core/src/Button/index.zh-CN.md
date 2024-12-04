@@ -175,6 +175,7 @@ export default () => {
 | ------------------------- | --------------------------------------- | ------------------------------- | ------------------------------------ |
 | --border-radius           | 圆角大小                                | 100px                           | --bui-button-border-radius           |
 | --bg-color                | 背景颜色                                | --bui-color-neutral-5           | --bui-button-default-bg-color        |
+| --text-color              | 按钮默认字体颜色                        | --bui-color-fg-muted            | --bui-button-text-color              |
 | --default-border          | 默认边框，包含text和contained按钮的边框 | 1px solid transparent           | --bui-button-default-border          |
 | --light-border            | light按钮的边框                         | 1px solid transparent           | --bui-button-light-border            |
 | --outlined-default-border | outlined按钮的默认边框                  | 1px solid --bui-color-neutral-4 | --bui-button-outlined-default-border |

@@ -29,6 +29,7 @@
 
 .bui-btn {
   --border-radius: var(--bui-button-border-radius, 100px);
+  --text-color: var(--bui-button-text-color, var(--bui-color-fg-muted));
   --bg-color: var(--bui-button-default-bg-color, var(--bui-color-neutral-5));
   --border-color: var(--bui-button-border-color, var(--bui-color-neutral-4));
   --height: var(--bui-button-height, 27px);
@@ -58,7 +59,7 @@
   outline: 0;
   background-color: transparent;
   cursor: pointer;
-  color: var(--bui-color-fg-muted);
+  color: var(--text-color);
   box-sizing: border-box;
   position: relative;
   display: inline-flex;

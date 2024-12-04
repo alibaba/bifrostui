@@ -1,9 +1,9 @@
 import { useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import React, { forwardRef } from 'react';
-import './Checkbox.less';
 import { CheckboxGroupProps } from './Checkbox.types';
 import { CheckboxContextProvider } from './CheckboxContext';
+import './Checkbox.less';
 
 const prefixCls = 'bui-checkbox-group';
 
