@@ -293,11 +293,11 @@ export default () => {
 
 ### 样式变量
 
-| 属性                 | 说明             | 默认值  | 全局变量                         |
-| -------------------- | ---------------- | ------- | -------------------------------- |
-| --arrow-size         | 箭头大小         | 8PX     | --bui-popover-arrow-size         |
-| --localtion-position | 箭头位置         | 8PX     | --bui-popover-localtion-position |
-| --max-width          | 最大宽度         | 350px   | --bui-popover-max-width          |
-| --content-min-width  | 内容区域最小宽度 | 30px    | --bui-popover-content-min-width  |
-| --content-min-height | 内容区域最小高度 | 32px    | --bui-popover-content-min-height |
-| --content-padding    | 内容区域内边距   | 6px 8px | --bui-popover-content-padding    |
+| 属性                 | 说明             | 默认值 | 全局变量                         |
+| -------------------- | ---------------- | ------ | -------------------------------- |
+| --arrow-size         | 箭头大小         | 8PX    | --bui-popover-arrow-size         |
+| --localtion-position | 箭头位置         | 8PX    | --bui-popover-localtion-position |
+| --max-width          | 最大宽度         | 350px  | --bui-popover-max-width          |
+| --content-min-width  | 内容区域最小宽度 | 30px   | --bui-popover-content-min-width  |
+| --content-min-height | 内容区域最小高度 | 32px   | --bui-popover-content-min-height |
+| --content-padding    | 内容区域内边距   | 0      | --bui-popover-content-padding    |
