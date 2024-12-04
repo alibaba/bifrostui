@@ -8,7 +8,8 @@ name: Swiper 滑块视图容器
 滑块视图容器，用于制作轮播、分页展示等常用布局。
 小程序端直接使用了Taro的Swiper组件，H5端则使用Swiper/react并拉齐了入参。
 
-> 小程序文档参考：<https://taro-docs.jd.com/docs/components/viewContainer/swiper>
+> 小程序文档参考：<https://taro-docs.jd.com/docs/components/viewContainer/swiper>；
+> H5端基于社区 swiper/react v8.x 进行封装，并透传了其属性，文档可参考：<https://v8.swiperjs.com/swiper-api>
 
 ## 代码演示
 
