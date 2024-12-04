@@ -333,12 +333,14 @@ export default () => {
 | --active-color | 激活 Tab 字体颜色 | --bui-color-fg-default | --bui-tabs-active-color |
 | --line-width   | 下标线宽度        | 18px                   | --bui-tabs-line-width   |
 | --line-height  | 下标线高度        | 3PX                    | --bui-tabs-line-height  |
+| --line-color   | 下标线颜色        | --bui-color-primary    | --bui-tabs-line-color   |
 | --mask-width   | 蒙层宽度          | 12px                   | --bui-tabs-mask-width   |
 | --mask-height  | 蒙层高度          | 100%                   | --bui-tabs-mask-height  |
 
 ### Tab
 
-| 属性      | 说明      | 默认值                                           | 全局变量          |
-| --------- | --------- | ------------------------------------------------ | ----------------- |
-| --height  | Tab 高度  | 100%                                             | --bui-tab-height  |
-| --padding | Tab内边距 | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding |
+| 属性        | 说明        | 默认值                                           | 全局变量            |
+| ----------- | ----------- | ------------------------------------------------ | ------------------- |
+| --height    | Tab 高度    | 100%                                             | --bui-tab-height    |
+| --padding   | Tab内边距   | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding   |
+| --font-size | Tab字体大小 | --bui-text-size-1                                | --bui-tab-font-size |
