@@ -289,15 +289,15 @@ export default () => {
 
 #### Tag
 
-| attribute      | explain                | Default value           | global variable        |
-| -------------- | ---------------------- | ----------------------- | ---------------------- |
-| --bg-color     | Tag background color   | --bui-color-gay         | --bui-tag-bg-color     |
-| --border-color | Tag border color       | --bui-color-border-gay  | --bui-tag-border-color |
-| --color        | Tag Text Color         | --bui-color-gay         | --bui-tag-color        |
-| --height       | Tag height             | 15px                    | --bui-tag-height       |
-| --line-height  | Tag row height         | 15px                    | --bui-tag-line-height  |
-| --padding      | Tag inner margin       | 0 var(--bui-spacing-xs) | --bui-tag-padding      |
-| --bg-color-vip | Tag Member Theme Color | fade(#ff866e, 30%)      | --bui-tag-color-vip    |
+| attribute          | explain                | Default value           | global variable        |
+| ------------------ | ---------------------- | ----------------------- | ---------------------- |
+| --tag-bg-color     | Tag background color   | --bui-color-gay         | --bui-tag-bg-color     |
+| --tag-border-color | Tag border color       | --bui-color-border-gay  | --bui-tag-border-color |
+| --tag-color        | Tag Text Color         | --bui-color-gay         | --bui-tag-color        |
+| --tag-height       | Tag height             | 15px                    | --bui-tag-height       |
+| --tag-line-height  | Tag row height         | 15px                    | --bui-tag-line-height  |
+| --tag-padding      | Tag inner margin       | 0 var(--bui-spacing-xs) | --bui-tag-padding      |
+| --tag-bg-color-vip | Tag Member Theme Color | fade(#ff866e, 30%)      | --bui-tag-color-vip    |
 
 #### TagGroup
 
