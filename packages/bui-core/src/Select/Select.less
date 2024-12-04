@@ -7,11 +7,10 @@
   --font-size: var(--bui-select-font-size, var(--bui-title-size-3));
   --padding: var(--bui-select-selector-container, 0 14px);
   --option-container-padding: var(--bui-select-option-container-padding, 3px 0);
-  --option-margin-top: var(--bui-select-option-margin-top, 6px);
+  --option-container-margin-top: var(--bui-select-option-margin-top, 6px);
   --option-padding: var(--bui-select-option-padding, 0 14px);
   --option-margin: var(--bui-select-option-margin, 0 3px);
   --option-height: var(--bui-select-option-height, 27px);
-  --option-active-font-weight: var(--bui-select-option-active-font-weight, 500);
 
   position: relative;
   cursor: pointer;
@@ -96,7 +95,7 @@
   }
 
   &-option-active {
-    font-weight: 500;
+    font-weight: var(--bui-font-weight-medium);
     color: var(--bui-color-primary);
     background-color: var(---bui-select-options-active-bg, #fff2f0);
   }
