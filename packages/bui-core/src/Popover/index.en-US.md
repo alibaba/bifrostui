@@ -300,4 +300,4 @@ export default () => {
 | --max-width          | Maximum width                  | 350px         | --bui-popover-max-width          |
 | --content-min-width  | Minimum width of content area  | 30px          | --bui-popover-content-min-width  |
 | --content-min-height | Minimum height of content area | 32px          | --bui-popover-content-min-height |
-| --content-padding    | Inner margin of content area   | 6px 8px       | --bui-popover-content-padding    |
+| --content-padding    | Inner margin of content area   | 0             | --bui-popover-content-padding    |
