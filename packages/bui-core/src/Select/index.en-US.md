@@ -452,15 +452,14 @@ export default () => {
 
 ### Style variables
 
-| attribute                   | explain                                        | Default value           | global variable                        |
-| --------------------------- | ---------------------------------------------- | ----------------------- | -------------------------------------- |
-| --height                    | Selector height                                | 27px                    | --bui-select-height                    |
-| --mini-width                | Minimum width selector                         | 100px                   | --bui-select-mini-width                |
-| --font-size                 | Select font size                               | var(--bui-title-size-3) | --bui-select-font-size                 |
-| --padding                   | Selector margin                                | 100px                   | --bui-select-mini-width                |
-| --option-container-padding  | Overall inner margin of dropdown box           | 3px 0                   | --bui-select-option-container-padding  |
-| --option-margin-top         | The overall top margin of the dropdown box     | 6px                     | --bui-select-option-margin-top         |
-| --option-padding            | Dropdown box single option margin              | 0 14px                  | --bui-select-option-padding            |
-| --option-margin             | Dropdown box single option margin              | 0 3px                   | --bui-select-option-margin             |
-| --option-height             | Drop down box for individual option height     | 27px                    | --bui-select-option-height             |
-| --option-active-font-weight | Dropdown menu selection options font thickness | 500                     | --bui-select-option-active-font-weight |
+| attribute                     | explain                                    | Default value           | global variable                       |
+| ----------------------------- | ------------------------------------------ | ----------------------- | ------------------------------------- |
+| --height                      | Selector height                            | 27px                    | --bui-select-height                   |
+| --mini-width                  | Minimum width selector                     | 100px                   | --bui-select-mini-width               |
+| --font-size                   | Select font size                           | var(--bui-title-size-3) | --bui-select-font-size                |
+| --padding                     | Selector margin                            | 100px                   | --bui-select-mini-width               |
+| --option-container-padding    | Overall inner margin of dropdown box       | 3px 0                   | --bui-select-option-container-padding |
+| --option-container-margin-top | The overall top margin of the dropdown box | 6px                     | --bui-select-option-margin-top        |
+| --option-padding              | Dropdown box single option margin          | 0 14px                  | --bui-select-option-padding           |
+| --option-margin               | Dropdown box single option margin          | 0 3px                   | --bui-select-option-margin            |
+| --option-height               | Drop down box for individual option height | 27px                    | --bui-select-option-height            |

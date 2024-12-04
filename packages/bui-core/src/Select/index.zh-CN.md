@@ -452,15 +452,14 @@ export default () => {
 
 ### 样式变量
 
-| 属性                        | 说明                   | 默认值                  | 全局变量                               |
-| --------------------------- | ---------------------- | ----------------------- | -------------------------------------- |
-| --height                    | 选择器高度             | 27px                    | --bui-select-height                    |
-| --mini-width                | 选择器最小宽度         | 100px                   | --bui-select-mini-width                |
-| --font-size                 | 选择器字体大小         | var(--bui-title-size-3) | --bui-select-font-size                 |
-| --padding                   | 选择器内边距           | 100px                   | --bui-select-mini-width                |
-| --option-container-padding  | 下拉框整体内边距       | 3px 0                   | --bui-select-option-container-padding  |
-| --option-margin-top         | 下拉框整体顶部外边距   | 6px                     | --bui-select-option-margin-top         |
-| --option-padding            | 下拉框单个选项内边距   | 0 14px                  | --bui-select-option-padding            |
-| --option-margin             | 下拉框单个选项外边距   | 0 3px                   | --bui-select-option-margin             |
-| --option-height             | 下拉框单个选项高度     | 27px                    | --bui-select-option-height             |
-| --option-active-font-weight | 下拉框选择选项字体粗细 | 500                     | --bui-select-option-active-font-weight |
+| 属性                          | 说明                 | 默认值                  | 全局变量                              |
+| ----------------------------- | -------------------- | ----------------------- | ------------------------------------- |
+| --height                      | 选择器高度           | 27px                    | --bui-select-height                   |
+| --mini-width                  | 选择器最小宽度       | 100px                   | --bui-select-mini-width               |
+| --font-size                   | 选择器字体大小       | var(--bui-title-size-3) | --bui-select-font-size                |
+| --padding                     | 选择器内边距         | 100px                   | --bui-select-mini-width               |
+| --option-container-padding    | 下拉框整体内边距     | 3px 0                   | --bui-select-option-container-padding |
+| --option-container-margin-top | 下拉框整体顶部外边距 | 6px                     | --bui-select-option-margin-top        |
+| --option-padding              | 下拉框单个选项内边距 | 0 14px                  | --bui-select-option-padding           |
+| --option-margin               | 下拉框单个选项外边距 | 0 3px                   | --bui-select-option-margin            |
+| --option-height               | 下拉框单个选项高度   | 27px                    | --bui-select-option-height            |
