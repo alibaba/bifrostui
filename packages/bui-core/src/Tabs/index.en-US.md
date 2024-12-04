@@ -333,12 +333,14 @@ export default () => {
 | --active-color | Activate Tab font color          | --bui-color-fg-default | --bui-tabs-active-color |
 | --line-width   | Width of the lower marking line  | 18px                   | --bui-tabs-line-width   |
 | --line-height  | Height of the lower marking line | 3PX                    | --bui-tabs-line-height  |
+| --line-color   | Color of the lower marking line  | --bui-color-primary    | --bui-tabs-line-color   |
 | --mask-width   | Mask width                       | 12px                   | --bui-tabs-mask-width   |
 | --mask-height  | Mask height                      | 100%                   | --bui-tabs-mask-height  |
 
 ### Tab
 
-| attribute | explain          | Default value                                    | global variable   |
-| --------- | ---------------- | ------------------------------------------------ | ----------------- |
-| --height  | Tab height       | 100%                                             | --bui-tab-height  |
-| --padding | Tab inner margin | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding |
+| attribute   | explain          | Default value                                    | global variable     |
+| ----------- | ---------------- | ------------------------------------------------ | ------------------- |
+| --height    | Tab height       | 100%                                             | --bui-tab-height    |
+| --padding   | Tab inner margin | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding   |
+| --font-size | Tab font size    | --bui-text-size-1                                | --bui-tab-font-size |
