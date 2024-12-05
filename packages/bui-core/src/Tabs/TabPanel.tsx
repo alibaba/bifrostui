@@ -6,7 +6,14 @@ import { TabPanelProps } from './TabPanel.types';
 const prefixCls = 'bui-tabpanel';
 
 const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>((props, ref) => {
-  const { className, children, value, index, keepMounted, ...others } = props;
+  const {
+    className,
+    children,
+    value,
+    index,
+    keepMounted = false,
+    ...others
+  } = props;
 
   const keepActiveDom = keepMounted ? children : null;
 
@@ -25,8 +32,5 @@ const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>((props, ref) => {
 });
 
 TabPanel.displayName = 'BuiTabPanel';
-TabPanel.defaultProps = {
-  keepMounted: false,
-};
 
 export default TabPanel;
