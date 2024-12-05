@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { fireEvent, isConformant, render, act } from 'testing';
-import { TabPanel, Tabs } from '..';
+import { TabPanel, Tabs, Tab } from '..';
 
 describe('Tabs', () => {
   const originalModule = jest.requireActual('@bifrostui/utils');
@@ -11,6 +11,7 @@ describe('Tabs', () => {
   };
 
   beforeEach(() => {
+    document.body.innerHTML = '';
     jest.useFakeTimers();
   });
 
@@ -352,5 +353,281 @@ describe('Tabs', () => {
     );
     expect(activeTab).toHaveTextContent('蔬菜');
     expect(activeTabPanel).toHaveTextContent('西红柿');
+  });
+
+  it('should no active Tab when value is invalid', () => {
+    function Component() {
+      const [value, setValue] = useState('2');
+      const defultList = [
+        { title: '长津湖', index: '1' },
+        { title: '战狼2', index: '2' },
+        { title: '你好，李焕英', index: '3' },
+        { title: '哪吒之魔童降世', index: '4' },
+        { title: '流浪地球', index: '5' },
+        { title: '唐人街探案3', index: '6' },
+      ];
+      const [tabList, setTabList] = useState(defultList);
+
+      const handleChange = (e, { index }) => {
+        setValue(index);
+      };
+
+      return (
+        <>
+          <div
+            data-testid="test-invalid-value"
+            onClick={() => {
+              setValue('');
+            }}
+          >
+            置为无效值
+          </div>
+          <div
+            data-testid="test-modify-tablist"
+            onClick={() => {
+              if (tabList.length === 4) {
+                setTabList(defultList);
+              } else {
+                const newTabList = defultList.slice(0, 4);
+                setTabList(newTabList);
+                if (!newTabList.some((item) => item.index === value)) {
+                  setValue('1');
+                }
+              }
+            }}
+          >
+            {tabList.length === 4 ? '增加' : '减少'}TabList长度
+          </div>
+          <div style={{ width: '325px' }}>
+            <Tabs
+              style={{ marginTop: '20px', marginBottom: '12px' }}
+              value={value}
+              onChange={handleChange}
+            >
+              {tabList.map((item) => (
+                <Tab key={item.index} {...item}>
+                  {item.title}
+                </Tab>
+              ))}
+            </Tabs>
+
+            {tabList.map((item) => (
+              <TabPanel key={item.index} value={value} index={item.index}>
+                {item.index}
+              </TabPanel>
+            ))}
+          </div>
+        </>
+      );
+    }
+
+    const { container, getByTestId } = render(<Component />);
+
+    const testInvalidValueBtn = getByTestId('test-invalid-value');
+    const [, , tab3] = container.querySelectorAll(`.bui-tab`);
+    const tabpanels = container.querySelectorAll(`.${rootClass.tabpanel}`);
+
+    tabpanels.forEach((tabpanel, index) => {
+      if (index === 1) {
+        expect(tabpanel).toHaveTextContent('2');
+      } else {
+        expect(tabpanel).toHaveTextContent('');
+      }
+    });
+
+    fireEvent.click(testInvalidValueBtn);
+    tabpanels.forEach((tabpanel) => {
+      expect(tabpanel).toHaveTextContent('');
+    });
+
+    fireEvent.click(tab3);
+    tabpanels.forEach((tabpanel, index) => {
+      if (index === 2) {
+        expect(tabpanel).toHaveTextContent('3');
+      } else {
+        expect(tabpanel).toHaveTextContent('');
+      }
+    });
+  });
+
+  it('should no active Tab when value is invalid by use tabs', () => {
+    function Component() {
+      const [value, setValue] = useState('2');
+      const defultList = [
+        { title: '长津湖', index: '1' },
+        { title: '战狼2', index: '2' },
+        { title: '你好，李焕英', index: '3' },
+        { title: '哪吒之魔童降世', index: '4' },
+        { title: '流浪地球', index: '5' },
+        { title: '唐人街探案3', index: '6' },
+      ];
+      const [tabList, setTabList] = useState(defultList);
+
+      const handleChange = (e, { index }) => {
+        setValue(index);
+      };
+
+      return (
+        <>
+          <div
+            data-testid="test-invalid-value"
+            onClick={() => {
+              setValue('');
+            }}
+          >
+            置为无效值
+          </div>
+          <div
+            data-testid="test-modify-tablist"
+            onClick={() => {
+              if (tabList.length === 4) {
+                setTabList(defultList);
+              } else {
+                const newTabList = defultList.slice(0, 4);
+                setTabList(newTabList);
+                if (!newTabList.some((item) => item.index === value)) {
+                  setValue('1');
+                }
+              }
+            }}
+          >
+            {tabList.length === 4 ? '增加' : '减少'}TabList长度
+          </div>
+          <div style={{ width: '325px' }}>
+            <Tabs
+              style={{ marginTop: '20px', marginBottom: '12px' }}
+              value={value}
+              tabs={tabList}
+              onChange={handleChange}
+            />
+
+            {tabList.map((item) => (
+              <TabPanel key={item.index} value={value} index={item.index}>
+                {item.index}
+              </TabPanel>
+            ))}
+          </div>
+        </>
+      );
+    }
+
+    const { container, getByTestId } = render(<Component />);
+
+    const testInvalidValueBtn = getByTestId('test-invalid-value');
+    const [, , tab3] = container.querySelectorAll(`.bui-tab`);
+    const tabpanels = container.querySelectorAll(`.${rootClass.tabpanel}`);
+
+    tabpanels.forEach((tabpanel, index) => {
+      if (index === 1) {
+        expect(tabpanel).toHaveTextContent('2');
+      } else {
+        expect(tabpanel).toHaveTextContent('');
+      }
+    });
+
+    fireEvent.click(testInvalidValueBtn);
+    tabpanels.forEach((tabpanel) => {
+      expect(tabpanel).toHaveTextContent('');
+    });
+
+    fireEvent.click(tab3);
+    tabpanels.forEach((tabpanel, index) => {
+      if (index === 2) {
+        expect(tabpanel).toHaveTextContent('3');
+      } else {
+        expect(tabpanel).toHaveTextContent('');
+      }
+    });
+  });
+
+  it('should render correctly when TabList changed', async () => {
+    function Component() {
+      const [value, setValue] = useState('2');
+      const defultList = [
+        { title: '长津湖', index: '1' },
+        { title: '战狼2', index: '2' },
+        { title: '你好，李焕英', index: '3' },
+        { title: '哪吒之魔童降世', index: '4' },
+        { title: '流浪地球', index: '5' },
+        { title: '唐人街探案3', index: '6' },
+      ];
+      const [tabList, setTabList] = useState(defultList);
+
+      const handleChange = (e, { index }) => {
+        setValue(index);
+      };
+
+      return (
+        <>
+          <div
+            data-testid="test-modify-tablist2"
+            onClick={() => {
+              if (tabList.length === 4) {
+                setTabList(defultList);
+              } else {
+                const newTabList = defultList.slice(0, 4);
+                setTabList(newTabList);
+                if (!newTabList.some((item) => item.index === value)) {
+                  setValue('1');
+                }
+              }
+            }}
+          >
+            {tabList.length === 4 ? '增加' : '减少'}TabList长度
+          </div>
+          <div style={{ width: '325px' }}>
+            <Tabs
+              style={{ marginTop: '20px', marginBottom: '12px' }}
+              value={value}
+              onChange={handleChange}
+            >
+              {tabList.map((item) => (
+                <Tab key={item.index} {...item}>
+                  {item.title}
+                </Tab>
+              ))}
+            </Tabs>
+
+            {tabList.map((item) => (
+              <TabPanel key={item.index} value={value} index={item.index}>
+                {item.index}
+              </TabPanel>
+            ))}
+          </div>
+        </>
+      );
+    }
+
+    const { container, getByTestId } = render(<Component />);
+
+    const testModifyTablistBtn = getByTestId('test-modify-tablist2');
+    const [tab1, , , , , tab6] = container.querySelectorAll(`.bui-tab`);
+    const tabpanels = container.querySelectorAll(`.${rootClass.tabpanel}`);
+    const [tabpanel1] = tabpanels;
+
+    tabpanels.forEach((tabpanel, index) => {
+      if (index === 1) {
+        expect(tabpanel).toHaveTextContent('2');
+      } else {
+        expect(tabpanel).toHaveTextContent('');
+      }
+    });
+
+    fireEvent.click(tab6);
+    tabpanels.forEach((tabpanel, index) => {
+      if (index === 5) {
+        expect(tabpanel).toHaveTextContent('6');
+      } else {
+        expect(tabpanel).toHaveTextContent('');
+      }
+    });
+
+    fireEvent.click(testModifyTablistBtn);
+    expect(tab1).toHaveClass('bui-tab-active');
+    expect(tabpanel1).toHaveTextContent('1');
+
+    fireEvent.click(testModifyTablistBtn);
+    expect(tab1).toHaveClass('bui-tab-active');
+    expect(tabpanel1).toHaveTextContent('1');
   });
 });
