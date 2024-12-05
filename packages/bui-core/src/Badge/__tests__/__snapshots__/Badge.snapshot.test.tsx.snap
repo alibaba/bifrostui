@@ -65,12 +65,38 @@ exports[`Badge snapshot Badge demo snapshot 0 2`] = `
   }
 >
   <div
-    className="bui-badge"
+    className="bui-badge bui-badge-position"
   >
     <div
       className="bui-badge-primary bui-badge-contained bui-badge-standard"
     >
       1
+    </div>
+    <div
+      className="bui-avatar bui-avatar-medium bui-avatar-rounded"
+    >
+      <div
+        className="bui-image bui-avatar-img"
+        style={
+          Object {
+            "height": undefined,
+            "width": undefined,
+          }
+        }
+      >
+        <img
+          className="bui-image-img bui-image-loaded"
+          loading="eager"
+          onError={[Function]}
+          onLoad={[Function]}
+          src="//perico.damai.cn/userheadphotos/927551/185510204.jpg"
+          style={
+            Object {
+              "objectFit": "cover",
+            }
+          }
+        />
+      </div>
     </div>
   </div>
 </div>
