@@ -20,8 +20,9 @@ import React from 'react';
 export default () => {
   return (
     <Popover
-      title={<div style={{ padding: '2px 8px' }}>This is a title</div>}
-      content={<div style={{ padding: '2px 8px' }}>This is a content</div>}
+      title="This is a title"
+      content="This is a content"
+      placement="topLeft"
     >
       <span>click显示</span>
     </Popover>
@@ -40,10 +41,7 @@ import React, { useState } from 'react';
 export default () => {
   const [open, setOpen] = useState(true);
   return (
-    <Popover
-      title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-      open={open}
-    >
+    <Popover title="This is a popover" open={open}>
       <span onClick={() => setOpen(!open)}>open控制显隐</span>
     </Popover>
   );
@@ -60,10 +58,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <Popover
-      title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-      defaultOpen
-    >
+    <Popover title="This is a popover" defaultOpen>
       <span>defaultOpen默认显示</span>
     </Popover>
   );
@@ -80,11 +75,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <Popover
-      title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-      defaultOpen
-      hideArrow
-    >
+    <Popover title="This is a popover" defaultOpen hideArrow>
       <span>defaultOpen默认显示</span>
     </Popover>
   );
@@ -118,25 +109,13 @@ export default () => {
           justifyContent: 'space-between',
         }}
       >
-        <Popover
-          trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-          placement="topLeft"
-        >
+        <Popover trigger="hover" title="This is a popover" placement="topLeft">
           {packageButton(<span>topLeft</span>)}
         </Popover>
-        <Popover
-          trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-          placement="top"
-        >
+        <Popover trigger="hover" title="This is a popover" placement="top">
           {packageButton(<span>top</span>)}
         </Popover>
-        <Popover
-          trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-          placement="topRight"
-        >
+        <Popover trigger="hover" title="This is a popover" placement="topRight">
           {packageButton(<span>topRight</span>)}
         </Popover>
       </div>
@@ -148,23 +127,15 @@ export default () => {
           flexDirection: 'column',
         }}
       >
-        <Popover
-          trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-          placement="leftTop"
-        >
+        <Popover trigger="hover" title="This is a popover" placement="leftTop">
           {packageButton(<span>leftTop</span>)}
         </Popover>
-        <Popover
-          trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-          placement="left"
-        >
+        <Popover trigger="hover" title="This is a popover" placement="left">
           {packageButton(<span>left</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
+          title="This is a popover"
           placement="leftBottom"
         >
           {packageButton(<span>leftBottom</span>)}
@@ -178,23 +149,15 @@ export default () => {
           flexDirection: 'column',
         }}
       >
-        <Popover
-          trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-          placement="rightTop"
-        >
+        <Popover trigger="hover" title="This is a popover" placement="rightTop">
           {packageButton(<span>rightTop</span>)}
         </Popover>
-        <Popover
-          trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-          placement="right"
-        >
+        <Popover trigger="hover" title="This is a popover" placement="right">
           {packageButton(<span>right</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
+          title="This is a popover"
           placement="rightBottom"
         >
           {packageButton(<span>rightBottom</span>)}
@@ -211,21 +174,17 @@ export default () => {
       >
         <Popover
           trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
+          title="This is a popover"
           placement="bottomLeft"
         >
           {packageButton(<span>bottomLeft</span>)}
         </Popover>
-        <Popover
-          trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-          placement="bottom"
-        >
+        <Popover trigger="hover" title="This is a popover" placement="bottom">
           {packageButton(<span>bottom</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
+          title="This is a popover"
           placement="bottomRight"
         >
           {packageButton(<span>bottomRight</span>)}
@@ -246,10 +205,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <Popover
-      title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-      trigger="hover"
-    >
+    <Popover title="This is a popover" trigger="hover">
       <span>hover触发方式</span>
     </Popover>
   );
@@ -268,7 +224,7 @@ export default () => {
   };
   return (
     <Popover
-      title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
+      title="This is a popover"
       trigger="hover"
       onOpenChange={onOpenChange}
     >
