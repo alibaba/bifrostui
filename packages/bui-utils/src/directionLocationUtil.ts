@@ -85,7 +85,7 @@ export const getDirectionLocationStyle = ({
     document.documentElement.scrollTop;
 
   const scrollLeft =
-    (window.screenX >= 0 && window.screenX) ||
+    (window.scrollX >= 0 && window.scrollX) ||
     document.documentElement.scrollLeft;
 
   const styles: any = {};
