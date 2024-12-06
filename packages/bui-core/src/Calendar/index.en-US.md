@@ -175,38 +175,6 @@ export default () => {
 };
 ```
 
-### Enable direct year switching function
-
-Enable 'enableSelectYear' by clicking on the date text area to open the year floating layer and switch years.
-
-```tsx
-import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
-import React, { useState } from 'react';
-
-export default () => {
-  const [value, setValue] = useState(dayjs().toDate());
-  const handleChange = (e, res) => {
-    console.log('date change:', res);
-    setValue(res.value);
-  };
-
-  return (
-    <Stack>
-      <div style={{ width: '320px' }}>
-        <Calendar
-          minDate={dayjs().subtract(5, 'year').toDate()}
-          maxDate={dayjs().add(5, 'year').toDate()}
-          enableSelectYear
-          value={value}
-          onChange={handleChange}
-        />
-      </div>
-    </Stack>
-  );
-};
-```
-
 ### Customize disable date
 
 You can customize the disable date through 'disabled date'.

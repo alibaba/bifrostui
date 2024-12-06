@@ -175,38 +175,6 @@ export default () => {
 };
 ```
 
-### 开启直接切换年份功能
-
-启用 `enableSelectYear` 通过点击日期文本区域打开年份浮层切换年份。
-
-```tsx
-import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
-import React, { useState } from 'react';
-
-export default () => {
-  const [value, setValue] = useState(dayjs().toDate());
-  const handleChange = (e, res) => {
-    console.log('date change:', res);
-    setValue(res.value);
-  };
-
-  return (
-    <Stack>
-      <div style={{ width: '320px' }}>
-        <Calendar
-          minDate={dayjs().subtract(5, 'year').toDate()}
-          maxDate={dayjs().add(5, 'year').toDate()}
-          enableSelectYear
-          value={value}
-          onChange={handleChange}
-        />
-      </div>
-    </Stack>
-  );
-};
-```
-
 ### 自定义禁用日期
 
 通过 `disabledDate` 可自定义禁用日期。
