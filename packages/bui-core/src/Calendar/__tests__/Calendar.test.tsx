@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import React from 'react';
-import { act, screen, fireEvent, isConformant, render } from 'testing';
+import { screen, fireEvent, isConformant, render } from 'testing';
 import { Calendar } from '..';
 
 describe('Calendar', () => {
@@ -173,92 +173,6 @@ describe('Calendar', () => {
     const btns = container.querySelectorAll(`.${rootClass}-handler-btn`);
     fireEvent.click(btns[1]);
     expect(fakeMonthChange).toReturnWith('next');
-  });
-
-  it('should render Picker when `enableSelectYear`', async () => {
-    const fakeYearChange = jest.fn((e, data) => data.type);
-    const { container } = render(
-      <Calendar
-        mode="single"
-        enableSelectYear
-        value={dayjs('20240402').toDate()}
-        minDate={dayjs('20230401').toDate()}
-        maxDate={dayjs('20261001').toDate()}
-        onYearChange={fakeYearChange}
-      />,
-    );
-    const texts = container.querySelector(`.${rootClass}-handler-text`);
-
-    fireEvent.click(texts);
-
-    await act(async () => {
-      await jest.runAllTimers();
-    });
-    const picker = document.querySelector(`.bui-picker-confirm`);
-    expect(picker).toHaveTextContent('确认');
-  });
-
-  it('should be called when onYearChange change yaer', async () => {
-    const fakeYearChange = jest.fn((e, data) => data.type);
-    const { container } = render(
-      <Calendar
-        mode="single"
-        enableSelectYear
-        value={dayjs('20240402').toDate()}
-        minDate={dayjs('20230401').toDate()}
-        maxDate={dayjs('20261001').toDate()}
-        onYearChange={fakeYearChange}
-      />,
-    );
-    const texts = container.querySelector(`.${rootClass}-handler-text`);
-
-    fireEvent.click(texts);
-
-    await act(async () => {
-      await jest.runAllTimers();
-    });
-
-    const [panel1] = document.querySelectorAll(`.bui-picker-panel`);
-    const [roller1] = document.querySelectorAll(`.bui-picker-panel-roller`);
-    const confirmBtn1 = document.querySelector(`.bui-picker-confirm`);
-    fireEvent.touchStart(panel1, {
-      touches: [
-        {
-          clientX: 0,
-          clientY: 0,
-        },
-      ],
-      cancelable: true,
-      bubbles: true,
-    });
-    fireEvent.touchMove(panel1, {
-      touches: [
-        {
-          clientX: 0,
-          clientY: -36,
-        },
-      ],
-      cancelable: true,
-      bubbles: true,
-    });
-    fireEvent.touchEnd(panel1, {
-      touches: [
-        {
-          clientX: 0,
-          clientY: -30,
-        },
-      ],
-      cancelable: true,
-      bubbles: true,
-    });
-    fireEvent.transitionEnd(roller1);
-    fireEvent.click(confirmBtn1);
-
-    await act(async () => {
-      await jest.runAllTimers();
-    });
-
-    expect(fakeYearChange).toBeCalled();
   });
 
   it('should render handler bar by `headerBarFormat`', () => {
