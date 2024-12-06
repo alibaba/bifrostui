@@ -171,6 +171,9 @@ export const getDirectionLocationStyle = ({
   if (styles.left) {
     styles.left = `${styles.left + scrollLeft}px`;
   }
+  // 此处设置宽高是为了防止left和transform导致气泡宽高显示错误
+  styles.width = `${width}px`;
+  styles.height = `${height}px`;
   return styles;
 };
 
