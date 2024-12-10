@@ -19,6 +19,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     children,
     title,
     defaultOpen,
+    offsetSpacing = 0,
     placement = 'top',
     trigger = 'click',
     onOpenChange,
@@ -84,6 +85,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
       childrenRef,
       arrowDirection,
       arrowLocation,
+      offsetSpacing,
       selector: `[data-id="tt_${ttId}"]`,
     });
     if (!result) return;

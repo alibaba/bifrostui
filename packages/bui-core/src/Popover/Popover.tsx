@@ -20,6 +20,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     title,
     content,
     defaultOpen,
+    offsetSpacing = 0,
     placement = 'top',
     trigger = 'click',
     onOpenChange,
@@ -86,6 +87,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
       childrenRef,
       arrowDirection,
       arrowLocation,
+      offsetSpacing,
       selector: `[data-id="tt_${ttId}"]`,
     });
     if (!result) return;

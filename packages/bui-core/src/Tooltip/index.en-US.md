@@ -61,6 +61,23 @@ export default () => {
 };
 ```
 
+### OffsetSpacing is the interval between the floating layer and the target element
+
+OffsetSpacing can be set to control the distance from the target element
+
+```tsx
+import { Tooltip } from '@bifrostui/react';
+import React from 'react';
+
+export default () => {
+  return (
+    <Tooltip title="This is a tooltip" offsetSpacing={20} defaultOpen>
+      <span>offsetSpacing控制目标间隔（设置20 以便观察）</span>
+    </Tooltip>
+  );
+};
+```
+
 ### Placement Bubble Box Position
 
 placement设置气泡浮层的位置，可选 top left right bottom topLeft topRight bottomLeft bottomRight leftTop leftBottom rightTop rightBottom
@@ -184,7 +201,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <Tooltip title="This is a tooltip" trigger="hover">
+    <Tooltip title="This is a tooltip" trigger={['hover']}>
       <span>hover触发方式</span>
     </Tooltip>
   );
@@ -215,14 +232,15 @@ export default () => {
 
 ### API
 
-| attribute    | explain                                                                                | type                                                                                                                                                                             | Default value |
-| ------------ | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| title        | Bubble floating layer content                                                          | string                                                                                                                                                                           | -             |
-| defaultOpen  | Whether to hide by default                                                             | boolean                                                                                                                                                                          | false         |
-| open         | Used for manually controlling the appearance and concealment of bubble floating layers | boolean                                                                                                                                                                          | -             |
-| placement    | Bubble box position                                                                    | String, the enumeration value is `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` `bottom` | 'top'         |
-| trigger      | Trigger behavior                                                                       | string \|String [], the enumeration value is' click '\|'hover'                                                                                                                   | 'click'       |
-| onOpenChange | The callback method for bubble floating layer manifestation and concealment            | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                                             | -             |
+| attribute     | explain                                                                                | type                                                                                                                                                                              | Default value |
+| ------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| title         | Bubble floating layer content                                                          | string                                                                                                                                                                            | -             |
+| defaultOpen   | Whether to hide by default                                                             | boolean                                                                                                                                                                           | false         |
+| open          | Used for manually controlling the appearance and concealment of bubble floating layers | boolean                                                                                                                                                                           | -             |
+| offsetSpacing | The offset between the floating layer and the target element                           | number                                                                                                                                                                            | 0             |
+| placement     | Bubble box position                                                                    | string， The enumeration value is `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` `bottom` | 'top'         |
+| trigger       | Trigger behavior                                                                       | string \|string[]， The enumeration value is' click '\|'hover'                                                                                                                    | 'click'       |
+| onOpenChange  | The callback method for bubble floating layer manifestation and concealment            | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                                              | -             |
 
 ### Style variables
 

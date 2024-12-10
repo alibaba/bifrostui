@@ -32,6 +32,10 @@ export type PopoverProps<
        */
       hideArrow?: boolean;
       /**
+       * 用于控制浮层和目标元素偏移量
+       */
+      offsetSpacing?: number;
+      /**
        * 气泡框位置
        * @default 'top'
        */

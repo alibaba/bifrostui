@@ -13,6 +13,7 @@ export const getNewDirectionLocation = ({
   arrowDirection,
   tipOffset,
   arrowLocation,
+  offsetSpacing,
 }) => {
   const { left: cLeft, right: cRight, top: cTop, bottom: cBottom } = rootOffset;
   const { width, height } = tipOffset;
@@ -31,11 +32,12 @@ export const getNewDirectionLocation = ({
   const isDirectionRight = arrowDirection === 'right';
 
   if (
-    (isDirectionTop && cTop - height < 0) ||
-    (isDirectionBottom && cBottom + height > pgegHeight) ||
-    (isDirectionLeft && cLeft - width < 0) ||
-    (isDirectionRight && cRight + width > pgegWidth)
+    (isDirectionTop && cTop - height - offsetSpacing < 0) ||
+    (isDirectionBottom && cBottom + height + offsetSpacing > pgegHeight) ||
+    (isDirectionLeft && cLeft - width - offsetSpacing < 0) ||
+    (isDirectionRight && cRight + width + offsetSpacing > pgegWidth)
   ) {
+    // 计算气泡超过编辑之后 到反方向去
     newArrowDirection = directionCssMap[arrowDirection];
   }
 
@@ -79,6 +81,7 @@ export const getDirectionLocationStyle = ({
   arrowDirection,
   tipOffset,
   arrowLocation,
+  offsetSpacing,
 }) => {
   const scrollTop =
     (window.scrollY >= 0 && window.scrollY) ||
@@ -99,7 +102,7 @@ export const getDirectionLocationStyle = ({
   } = rootOffset;
   const { width, height } = tipOffset;
   if (arrowDirection === 'top') {
-    styles.top = cTop;
+    styles.top = cTop - offsetSpacing;
     styles.transform = `translateY(-100%)`;
     switch (arrowLocation) {
       case 'left':
@@ -116,7 +119,7 @@ export const getDirectionLocationStyle = ({
         break;
     }
   } else if (arrowDirection === 'bottom') {
-    styles.top = cBottom;
+    styles.top = cBottom + offsetSpacing;
     switch (arrowLocation) {
       case 'left':
         styles.left = cLeft;
@@ -132,7 +135,7 @@ export const getDirectionLocationStyle = ({
         break;
     }
   } else if (arrowDirection === 'left') {
-    styles.left = cLeft;
+    styles.left = cLeft - offsetSpacing;
     styles.transform = `translateX(-100%)`;
     switch (arrowLocation) {
       case 'top':
@@ -149,7 +152,7 @@ export const getDirectionLocationStyle = ({
         break;
     }
   } else if (arrowDirection === 'right') {
-    styles.left = cRight;
+    styles.left = cRight + offsetSpacing;
     switch (arrowLocation) {
       case 'top':
         styles.top = cTop;
@@ -184,6 +187,7 @@ export const getStylesAndLocation = ({
   childrenRef,
   arrowDirection,
   arrowLocation,
+  offsetSpacing,
   selector,
 }) => {
   if (!childrenRef?.current) {
@@ -201,6 +205,7 @@ export const getStylesAndLocation = ({
     arrowDirection,
     tipOffset,
     arrowLocation,
+    offsetSpacing,
   });
 
   const styles = getDirectionLocationStyle({
@@ -208,6 +213,7 @@ export const getStylesAndLocation = ({
     arrowDirection: newArrowDirection,
     tipOffset,
     arrowLocation: newArrowLocation,
+    offsetSpacing,
   });
   styles.visibility = 'visible';
 
