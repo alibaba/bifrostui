@@ -34,7 +34,7 @@ const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(
         {...others}
         onClick={(e) => {
           // 传递当前选中选项的value、label
-          if (!disabled) handleOptionClick(e, value, label);
+          handleOptionClick(e, value, label, disabled);
         }}
       >
         {children || label}
