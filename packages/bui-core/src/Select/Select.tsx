@@ -1,12 +1,11 @@
 import { CaretDownIcon, CaretUpIcon } from '@bifrostui/icons';
-import { useValue } from '@bifrostui/utils';
+import { useValue, useDelaySetState } from '@bifrostui/utils';
 import clsx from 'clsx';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Fade from '../Fade';
 import Slide from '../Slide';
 import { SelectProps } from './Select.types';
 import BuiSelectContext from './selectContext';
-import Backdrop from '../Backdrop';
 import './Select.less';
 
 const prefixCls = 'bui-select';
@@ -18,7 +17,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     name,
     inputRef,
     inputProps,
-    BackdropProps,
     value,
     defaultValue,
     disabled,
@@ -39,9 +37,14 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   });
 
   // 是否展开下拉框
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [internalOpen, delaySetInternalOpen, cancelDelaySetInternalOpen] =
+    useDelaySetState<boolean>(false);
   // 根选择器展示的内容
   const [renderValue, setRenderValue] = useState<string>('');
+  const isOpen = open !== undefined ? open : internalOpen;
+  const internalInputRef = useRef<HTMLInputElement>(null);
+  const inputEleRef = inputRef || internalInputRef;
+  const isFocusRef = useRef<boolean>(false);
 
   const defaultIcon = isOpen ? (
     <CaretUpIcon className={`${prefixCls}-selector-icon`} htmlColor="#9c9ca5" />
@@ -52,52 +55,76 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     />
   );
 
+  const inputFocus = () => {
+    inputEleRef.current?.focus();
+    isFocusRef.current = true;
+  };
+
+  const inputBlur = () => {
+    inputEleRef.current?.blur();
+    isFocusRef.current = false;
+  };
+
+  const changeOpen = (newOpen: boolean) => {
+    delaySetInternalOpen(newOpen, () => {
+      if (newOpen) {
+        inputFocus();
+        onOpen?.();
+      } else {
+        inputBlur();
+        onClose?.();
+      }
+    });
+  };
+
   // 点击根选择器的回调
   const handleSelectClick = (e) => {
     if (disabled) return;
-    setIsOpen(!isOpen);
-    if (typeof onClick === 'function') onClick(e);
+    if (!isFocusRef.current) {
+      changeOpen(true);
+    }
+    onClick?.(e);
   };
 
   // 点击某个选项的回调
-  const handleOptionClick = (e, optionValue, label) => {
+  const handleOptionClick = (e, optionValue, label, optionDisabled) => {
+    if (optionDisabled) {
+      // 禁用的选项取消收起选择框
+      cancelDelaySetInternalOpen();
+      // 重新聚集，否则后续无法收起选择框
+      inputFocus();
+      return;
+    }
     if (!value) {
       setRenderValue(label);
       selectValueChange(e, optionValue);
     } else {
       onChange?.(e, { value: optionValue });
     }
-    setIsOpen(false);
   };
 
-  const handleBackdropTouchStart = () => {
-    if (isOpen) {
-      setIsOpen(false);
-    }
+  const handleInputFocus = (e) => {
+    inputProps?.onFocus?.(e);
   };
 
-  const selectContext = useMemo(
+  const handleInputBlur = (e) => {
+    changeOpen(false);
+    inputProps?.onBlur?.(e);
+  };
+
+  const selectContextValue = useMemo(
     () => ({ selectValue, setRenderValue, handleOptionClick }),
     [selectValue, onChange, setRenderValue],
   );
 
-  // 监听外部open的改变
   useEffect(() => {
-    if (open !== undefined) setIsOpen(open);
-  }, [open]);
-
-  // 折叠/展开时的处理
-  useEffect(() => {
-    // 非function情况，直接调用会报错
-    if (isOpen) {
-      onOpen?.();
-    } else {
-      onClose?.();
+    if (open) {
+      inputFocus();
     }
-  }, [isOpen]);
+  }, []);
 
   return (
-    <BuiSelectContext.Provider value={selectContext}>
+    <BuiSelectContext.Provider value={selectContextValue}>
       <div
         className={clsx(prefixCls, className, {
           [`${prefixCls}-disabled`]: disabled,
@@ -106,6 +133,12 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
         ref={ref}
         {...others}
         onClick={handleSelectClick}
+        onFocus={(e) => {
+          handleInputFocus(e);
+        }}
+        onBlur={(e) => {
+          handleInputBlur(e);
+        }}
       >
         <div className={`${prefixCls}-selector-container`}>
           <div className={`${prefixCls}-selector`}>
@@ -114,8 +147,9 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           <input
             name={name}
             readOnly
-            ref={inputRef}
+            ref={inputEleRef}
             value={selectValue}
+            tabIndex={-1}
             {...inputProps}
             className={clsx(`${prefixCls}-input`, {
               [inputProps?.className]: inputProps?.className,
@@ -144,17 +178,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           </div>
         </Fade>
       </div>
-      <Backdrop
-        open={isOpen}
-        invisible
-        // onTouchStart 解决需滑动两次透明蒙层才会消失
-        onTouchStart={handleBackdropTouchStart}
-        onClick={handleBackdropTouchStart}
-        {...BackdropProps}
-        className={clsx(`${prefixCls}-backdrop`, {
-          [BackdropProps?.className]: BackdropProps?.className,
-        })}
-      />
     </BuiSelectContext.Provider>
   );
 });

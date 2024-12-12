@@ -82,7 +82,7 @@ export default () => {
 };
 ```
 
-## Initialize default values
+### Initialize default values
 
 Support initial selection value through the 'defaultValue' attribute.
 
@@ -118,7 +118,7 @@ export default () => {
 };
 ```
 
-## Uncontrolled/Uncontrolled
+### controlled/Uncontrolled
 
 Distinguish whether it is a controlled component by passing in 'value':
 Under controlled circumstances, the business retrieves the control component value through 'onChange' callback;
@@ -192,7 +192,7 @@ export default () => {
 };
 ```
 
-## Disable
+### Disable
 
 Provide the 'disabled' attribute to prohibit user operations.
 You can disable all operations by setting 'disabled' on 'Select', or disable operations on a specific option by setting 'disabled' on 'SelectOption'.
@@ -243,11 +243,54 @@ export default () => {
 };
 ```
 
-## customized
+### Controlled open
 
-The following is an example of a customized Select component.
+Provide the 'open' attribute to control the selection box to expand or collapse
+through 'onOpen' or 'onClose' callback;
 
-#### customize icons
+```tsx
+import { Select, SelectOption, Stack } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+const options = [
+  {
+    label: 'option 1',
+    value: 1,
+  },
+  {
+    label: 'option 2',
+    value: 2,
+  },
+  {
+    label: 'option 3',
+    value: 3,
+  },
+];
+
+export default () => {
+  const [open, setOpen] = useState<boolean>(true);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <Stack alignItems="stretch" style={{ background: '#eee', padding: '50px' }}>
+      <Select open={open} onOpen={handleOpen} onClose={handleClose}>
+        {options.map((item, index) => (
+          <SelectOption key={index} value={item.value} label={item.label} />
+        ))}
+      </Select>
+    </Stack>
+  );
+};
+```
+
+### customize icons
 
 Provide the ability to customize icons, which can be customized through the 'icon' attribute.
 

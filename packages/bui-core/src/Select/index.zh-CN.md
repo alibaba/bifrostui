@@ -82,7 +82,7 @@ export default () => {
 };
 ```
 
-## 初始化默认值
+### 初始化默认值
 
 支持通过 `defaultValue` 属性，初始选中值。
 
@@ -118,7 +118,7 @@ export default () => {
 };
 ```
 
-## 非受控/非受控
+### 受控/非受控
 
 通过是否传入`value`来区分是否为受控组件:
 受控情况业务通过 `onChange` 回调控制组件 value;
@@ -192,7 +192,7 @@ export default () => {
 };
 ```
 
-## 禁用
+### 禁用
 
 提供 `disabled` 属性来禁止用户操作。
 您可以通过在`Select`上设置`disabled` 全部禁止操作，也可以在`SelectOption`上设置`disabled`对某个选项禁止操作。
@@ -243,11 +243,53 @@ export default () => {
 };
 ```
 
-## 定制
+### 受控展开/收起
 
-以下是定制 Select 组件示例。
+通过受控open属性来控制选择器展开/收起
 
-#### 定制图标
+```tsx
+import { Select, SelectOption, Stack } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+const options = [
+  {
+    label: 'option 1',
+    value: 1,
+  },
+  {
+    label: 'option 2',
+    value: 2,
+  },
+  {
+    label: 'option 3',
+    value: 3,
+  },
+];
+
+export default () => {
+  const [open, setOpen] = useState<boolean>(true);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <Stack alignItems="stretch" style={{ background: '#eee', padding: '50px' }}>
+      <Select open={open} onOpen={handleOpen} onClose={handleClose}>
+        {options.map((item, index) => (
+          <SelectOption key={index} value={item.value} label={item.label} />
+        ))}
+      </Select>
+    </Stack>
+  );
+};
+```
+
+### 定制图标
 
 提供自定义图标能力，可以通过`icon`属性来定制图标。
 

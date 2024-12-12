@@ -1,6 +1,5 @@
 import { OverrideProps } from '@bifrostui/types';
-import React, { Ref, SyntheticEvent } from 'react';
-import { BackdropProps } from '../Backdrop';
+import React, { RefObject, SyntheticEvent } from 'react';
 
 export type BuiSelectValue = string | number;
 
@@ -20,6 +19,7 @@ export interface BuiSelectContextProps {
     event?: React.MouseEvent<HTMLDivElement>,
     value?: BuiSelectValue,
     label?: React.ReactNode,
+    optionDisabled?: boolean,
   ) => void;
 }
 
@@ -57,15 +57,11 @@ export type SelectProps<
       /**
        * inputRef
        */
-      inputRef?: Ref<HTMLInputElement>;
+      inputRef?: RefObject<HTMLInputElement>;
       /**
        * inputProp
        */
       inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
-      /**
-       * BackdropProp
-       */
-      BackdropProps?: BackdropProps;
       /**
        * input 名称标识
        */

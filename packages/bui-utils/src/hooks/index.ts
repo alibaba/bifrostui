@@ -8,6 +8,7 @@ import useSize from './useSize';
 import useDomCss from './useDomCss';
 import useTouch from './useTouch';
 import useUniqueId from './useUniqueId';
+import useDelaySetState from './useDelaySetState';
 
 export {
   useValue,
@@ -20,4 +21,5 @@ export {
   useDomCss,
   useTouch,
   useUniqueId,
+  useDelaySetState,
 };

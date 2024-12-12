@@ -20,6 +20,7 @@
   border-radius: 5px;
   background-color: var(--bui-color-bg-view);
   font-family: var(--bui-font-family);
+  -webkit-tap-highlight-color: transparent;
 
   &:active,
   &-active {
@@ -38,6 +39,7 @@
     height: 0;
     border: 0;
     opacity: 0;
+    pointer-events: none;
   }
 
   &-placeholder {
@@ -89,7 +91,7 @@
     margin: var(--option-margin);
   }
 
-  &-option:hover {
+  &-option:not(.bui-select-option-disabled):hover {
     background-color: var(---bui-select-options-active-bg, #fff2f0);
     color: var(--bui-color-primary);
   }
@@ -106,9 +108,12 @@
   }
 }
 
+.bui-select.bui-select-disabled {
+  pointer-events: none;
+}
+
 .bui-select.bui-select-disabled,
 .bui-select-option-disabled {
-  pointer-events: none;
   box-shadow: none;
   background-color: var(--bui-color-bg-view);
   color: var(--bui-color-fg-subtle);
