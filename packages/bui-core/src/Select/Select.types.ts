@@ -116,3 +116,5 @@ export type SelectProps<
   },
   D
 >;
+
+export type SelectPlacement = 'bottom' | 'top';

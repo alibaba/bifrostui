@@ -13,8 +13,16 @@ export const getNewDirectionLocation = ({
   arrowDirection,
   tipOffset,
   arrowLocation,
+  offsetSpacing = 0,
 }) => {
-  const { left: cLeft, right: cRight, top: cTop, bottom: cBottom } = rootOffset;
+  const {
+    left: cLeft,
+    right: cRight,
+    top: cTop,
+    bottom: cBottom,
+    width: cWidth,
+    height: cHeight,
+  } = rootOffset;
   const { width, height } = tipOffset;
   const pgegWidth =
     document.documentElement.clientWidth || document.body.clientWidth;
@@ -31,11 +39,12 @@ export const getNewDirectionLocation = ({
   const isDirectionRight = arrowDirection === 'right';
 
   if (
-    (isDirectionTop && cTop - height < 0) ||
-    (isDirectionBottom && cBottom + height > pgegHeight) ||
-    (isDirectionLeft && cLeft - width < 0) ||
-    (isDirectionRight && cRight + width > pgegWidth)
+    (isDirectionTop && cTop - height - offsetSpacing < 0) ||
+    (isDirectionBottom && cBottom + height + offsetSpacing > pgegHeight) ||
+    (isDirectionLeft && cLeft - width - offsetSpacing < 0) ||
+    (isDirectionRight && cRight + width + offsetSpacing > pgegWidth)
   ) {
+    // 计算气泡超过编辑之后 到反方向去
     newArrowDirection = directionCssMap[arrowDirection];
   }
 
@@ -52,15 +61,17 @@ export const getNewDirectionLocation = ({
   const isCenter = arrowLocation === 'center';
   // 箭头在中间的情况，是否超过边界
   if (isCenter && (isDirectionTop || isDirectionBottom)) {
-    if (cLeft + width > pgegWidth) {
+    // cLeft + (cWidth - width) / 2 代表浮层最左侧的坐标
+    if (cLeft + (cWidth - width) / 2 + width > pgegWidth) {
       newArrowLocation = directionCssMap.left;
-    } else if (cRight - width < 0) {
+    } else if (cLeft + (cWidth - width) / 2 < 0) {
       newArrowLocation = directionCssMap.right;
     }
   } else if (isCenter && (isDirectionLeft || isDirectionRight)) {
-    if (cTop + height > pgegHeight) {
+    // cTop + (cHeight - height) / 2 代表浮层最上侧的坐标
+    if (cTop + (cHeight - height) / 2 + cHeight > pgegHeight) {
       newArrowLocation = directionCssMap.top;
-    } else if (cBottom - height < 0) {
+    } else if (cTop + (cHeight - height) / 2 < 0) {
       newArrowLocation = directionCssMap.bottom;
     }
   }
@@ -79,13 +90,14 @@ export const getDirectionLocationStyle = ({
   arrowDirection,
   tipOffset,
   arrowLocation,
+  offsetSpacing = 0,
 }) => {
   const scrollTop =
     (window.scrollY >= 0 && window.scrollY) ||
     document.documentElement.scrollTop;
 
   const scrollLeft =
-    (window.screenX >= 0 && window.screenX) ||
+    (window.scrollX >= 0 && window.scrollX) ||
     document.documentElement.scrollLeft;
 
   const styles: any = {};
@@ -97,9 +109,10 @@ export const getDirectionLocationStyle = ({
     top: cTop,
     bottom: cBottom,
   } = rootOffset;
+  const childrenStyle = { width: `${cWidth}px`, height: `${cHeight}px` };
   const { width, height } = tipOffset;
   if (arrowDirection === 'top') {
-    styles.top = cTop;
+    styles.top = cTop - offsetSpacing;
     styles.transform = `translateY(-100%)`;
     switch (arrowLocation) {
       case 'left':
@@ -116,7 +129,7 @@ export const getDirectionLocationStyle = ({
         break;
     }
   } else if (arrowDirection === 'bottom') {
-    styles.top = cBottom;
+    styles.top = cBottom + offsetSpacing;
     switch (arrowLocation) {
       case 'left':
         styles.left = cLeft;
@@ -132,7 +145,7 @@ export const getDirectionLocationStyle = ({
         break;
     }
   } else if (arrowDirection === 'left') {
-    styles.left = cLeft;
+    styles.left = cLeft - offsetSpacing;
     styles.transform = `translateX(-100%)`;
     switch (arrowLocation) {
       case 'top':
@@ -149,7 +162,7 @@ export const getDirectionLocationStyle = ({
         break;
     }
   } else if (arrowDirection === 'right') {
-    styles.left = cRight;
+    styles.left = cRight + offsetSpacing;
     switch (arrowLocation) {
       case 'top':
         styles.top = cTop;
@@ -171,7 +184,10 @@ export const getDirectionLocationStyle = ({
   if (styles.left) {
     styles.left = `${styles.left + scrollLeft}px`;
   }
-  return styles;
+  // 此处设置宽高是为了防止left和transform导致气泡宽度显示错误
+  styles.width = `${width}px`;
+
+  return { styles, childrenStyle };
 };
 
 /**
@@ -181,6 +197,7 @@ export const getStylesAndLocation = ({
   childrenRef,
   arrowDirection,
   arrowLocation,
+  offsetSpacing,
   selector,
 }) => {
   if (!childrenRef?.current) {
@@ -198,18 +215,21 @@ export const getStylesAndLocation = ({
     arrowDirection,
     tipOffset,
     arrowLocation,
+    offsetSpacing,
   });
 
-  const styles = getDirectionLocationStyle({
+  const { styles, childrenStyle } = getDirectionLocationStyle({
     rootOffset,
     arrowDirection: newArrowDirection,
     tipOffset,
     arrowLocation: newArrowLocation,
+    offsetSpacing,
   });
   styles.visibility = 'visible';
 
   return {
     styles,
+    childrenStyle,
     newArrowDirection,
     newArrowLocation,
   };

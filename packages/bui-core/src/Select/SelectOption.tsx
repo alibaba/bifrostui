@@ -36,6 +36,9 @@ const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(
           // 传递当前选中选项的value、label
           handleOptionClick(e, value, label, disabled);
         }}
+        onMouseDown={(e) => {
+          e.preventDefault();
+        }}
       >
         {children || label}
       </div>

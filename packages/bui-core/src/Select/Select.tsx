@@ -1,10 +1,17 @@
 import { CaretDownIcon, CaretUpIcon } from '@bifrostui/icons';
-import { useValue, useDelaySetState } from '@bifrostui/utils';
+import {
+  useValue,
+  useDelaySetState,
+  throttle,
+  getStylesAndLocation,
+  useUniqueId,
+} from '@bifrostui/utils';
 import clsx from 'clsx';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Fade from '../Fade';
 import Slide from '../Slide';
-import { SelectProps } from './Select.types';
+import Portal from '../Portal';
+import { SelectPlacement, SelectProps } from './Select.types';
 import BuiSelectContext from './selectContext';
 import './Select.less';
 
@@ -41,10 +48,15 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     useDelaySetState<boolean>(false);
   // 根选择器展示的内容
   const [renderValue, setRenderValue] = useState<string>('');
+  const [placement, setPlacement] = useState<SelectPlacement>('bottom');
+  const [optionStyle, setOptionStyle] = useState({});
   const isOpen = open !== undefined ? open : internalOpen;
   const internalInputRef = useRef<HTMLInputElement>(null);
   const inputEleRef = inputRef || internalInputRef;
   const isFocusRef = useRef<boolean>(false);
+  const locatorRef = useRef(null);
+  const ttId = useUniqueId();
+  const dataId = `${prefixCls}-tt-${ttId}`;
 
   const defaultIcon = isOpen ? (
     <CaretUpIcon className={`${prefixCls}-selector-icon`} htmlColor="#9c9ca5" />
@@ -61,13 +73,13 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   };
 
   const inputBlur = () => {
-    inputEleRef.current?.blur();
     isFocusRef.current = false;
   };
 
   const changeOpen = (newOpen: boolean) => {
     delaySetInternalOpen(newOpen, () => {
       if (newOpen) {
+        updateOptionStyle();
         inputFocus();
         onOpen?.();
       } else {
@@ -77,12 +89,26 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     });
   };
 
+  const updateOptionStyle = throttle(() => {
+    const result = getStylesAndLocation({
+      childrenRef: locatorRef,
+      arrowDirection: placement,
+      arrowLocation: 'left',
+      selector: `[data-id="${dataId}"]`,
+      offsetSpacing: 6,
+    });
+    if (!result) return;
+    const { styles, childrenStyle, newArrowDirection } = result;
+    if (newArrowDirection !== placement) {
+      setPlacement(newArrowDirection);
+    }
+    setOptionStyle({ ...styles, width: childrenStyle.width });
+  }, 100);
+
   // 点击根选择器的回调
   const handleSelectClick = (e) => {
     if (disabled) return;
-    if (!isFocusRef.current) {
-      changeOpen(true);
-    }
+    changeOpen(!isOpen);
     onClick?.(e);
   };
 
@@ -101,15 +127,21 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     } else {
       onChange?.(e, { value: optionValue });
     }
+    changeOpen(false);
   };
 
-  const handleInputFocus = (e) => {
+  const handleFocus = (e) => {
     inputProps?.onFocus?.(e);
   };
 
-  const handleInputBlur = (e) => {
+  const handleBlur = (e) => {
     changeOpen(false);
     inputProps?.onBlur?.(e);
+  };
+
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    props.onMouseDown?.(e);
   };
 
   const selectContextValue = useMemo(
@@ -133,14 +165,9 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
         ref={ref}
         {...others}
         onClick={handleSelectClick}
-        onFocus={(e) => {
-          handleInputFocus(e);
-        }}
-        onBlur={(e) => {
-          handleInputBlur(e);
-        }}
+        onMouseDown={handleMouseDown}
       >
-        <div className={`${prefixCls}-selector-container`}>
+        <div className={`${prefixCls}-selector-container`} ref={locatorRef}>
           <div className={`${prefixCls}-selector`}>
             {renderValue || placeholder}
           </div>
@@ -151,13 +178,17 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             value={selectValue}
             tabIndex={-1}
             {...inputProps}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
             className={clsx(`${prefixCls}-input`, {
               [inputProps?.className]: inputProps?.className,
             })}
           />
           {icon || defaultIcon}
         </div>
-        {/* 选项下拉框 */}
+      </div>
+      {/* 选项下拉框 */}
+      <Portal onRootElementMouted={updateOptionStyle}>
         <Fade
           in={isOpen}
           timeout={{
@@ -165,7 +196,13 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             exit: 150,
           }}
         >
-          <div className={clsx(`${prefixCls}-option-container`)}>
+          <div
+            className={clsx(`${prefixCls}-option-container`, {
+              [`${prefixCls}-option-container-hide`]: !isOpen,
+            })}
+            data-id={dataId}
+            style={optionStyle}
+          >
             <Slide
               in={isOpen}
               timeout={{
@@ -177,7 +214,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             </Slide>
           </div>
         </Fade>
-      </div>
+      </Portal>
     </BuiSelectContext.Provider>
   );
 });
