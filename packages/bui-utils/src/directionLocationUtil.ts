@@ -15,7 +15,14 @@ export const getNewDirectionLocation = ({
   arrowLocation,
   offsetSpacing,
 }) => {
-  const { left: cLeft, right: cRight, top: cTop, bottom: cBottom } = rootOffset;
+  const {
+    left: cLeft,
+    right: cRight,
+    top: cTop,
+    bottom: cBottom,
+    width: cWidth,
+    height: cHeight,
+  } = rootOffset;
   const { width, height } = tipOffset;
   const pgegWidth =
     document.documentElement.clientWidth || document.body.clientWidth;
@@ -54,15 +61,17 @@ export const getNewDirectionLocation = ({
   const isCenter = arrowLocation === 'center';
   // 箭头在中间的情况，是否超过边界
   if (isCenter && (isDirectionTop || isDirectionBottom)) {
-    if (cLeft + width > pgegWidth) {
+    // cLeft + (cWidth - width) / 2 代表浮层最左侧的坐标
+    if (cLeft + (cWidth - width) / 2 + width > pgegWidth) {
       newArrowLocation = directionCssMap.left;
-    } else if (cRight - width < 0) {
+    } else if (cLeft + (cWidth - width) / 2 < 0) {
       newArrowLocation = directionCssMap.right;
     }
   } else if (isCenter && (isDirectionLeft || isDirectionRight)) {
-    if (cTop + height > pgegHeight) {
+    // cTop + (cHeight - height) / 2 代表浮层最上侧的坐标
+    if (cTop + (cHeight - height) / 2 + cHeight > pgegHeight) {
       newArrowLocation = directionCssMap.top;
-    } else if (cBottom - height < 0) {
+    } else if (cTop + (cHeight - height) / 2 < 0) {
       newArrowLocation = directionCssMap.bottom;
     }
   }
