@@ -6,11 +6,6 @@
   --mini-width: var(--bui-select-min-width, 100px);
   --font-size: var(--bui-select-font-size, var(--bui-title-size-3));
   --padding: var(--bui-select-selector-container, 0 14px);
-  --option-container-padding: var(--bui-select-option-container-padding, 3px 0);
-  --option-container-margin-top: var(--bui-select-option-margin-top, 6px);
-  --option-padding: var(--bui-select-option-padding, 0 14px);
-  --option-margin: var(--bui-select-option-margin, 0 3px);
-  --option-height: var(--bui-select-option-height, 27px);
 
   position: relative;
   cursor: pointer;
@@ -20,6 +15,7 @@
   border-radius: 5px;
   background-color: var(--bui-color-bg-view);
   font-family: var(--bui-font-family);
+  -webkit-tap-highlight-color: transparent;
 
   &:active,
   &-active {
@@ -38,6 +34,7 @@
     height: 0;
     border: 0;
     opacity: 0;
+    pointer-events: none;
   }
 
   &-placeholder {
@@ -66,16 +63,19 @@
     left: 0;
     width: 100%;
     z-index: var(--bui-z-index-dropdown);
-    margin-top: var(--option-container-margin-top);
     border-radius: 3px;
     background-color: var(--bui-color-bg-view);
     padding: 2px;
     overflow: hidden;
+
+    &-hide {
+      pointer-events: none;
+    }
   }
 
   &-option-main {
     border-radius: 3px;
-    padding: var(--option-container-padding);
+    padding: var(--bui-select-option-container-padding, 3px 0);
     box-shadow: 0 0 0 2px var(--bui-color-bg-default);
     overflow: hidden;
   }
@@ -83,13 +83,13 @@
   &-option {
     display: flex;
     align-items: center;
-    height: var(--option-height);
-    padding: var(--option-padding);
+    height: var(--bui-select-option-height, 27px);
+    padding: var(--bui-select-option-padding, 0 14px);
     border-radius: 5px;
-    margin: var(--option-margin);
+    margin: var(--bui-select-option-margin, 0 3px);
   }
 
-  &-option:hover {
+  &-option:not(.bui-select-option-disabled):hover {
     background-color: var(---bui-select-options-active-bg, #fff2f0);
     color: var(--bui-color-primary);
   }
@@ -106,9 +106,12 @@
   }
 }
 
+.bui-select.bui-select-disabled {
+  pointer-events: none;
+}
+
 .bui-select.bui-select-disabled,
 .bui-select-option-disabled {
-  pointer-events: none;
   box-shadow: none;
   background-color: var(--bui-color-bg-view);
   color: var(--bui-color-fg-subtle);
