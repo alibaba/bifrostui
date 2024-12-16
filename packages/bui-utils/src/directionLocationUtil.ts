@@ -197,7 +197,8 @@ export const getStylesAndLocation = ({
   childrenRef,
   arrowDirection,
   arrowLocation,
-  offsetSpacing,
+  initArrowDirection,
+  offsetSpacing = 0,
   selector,
 }) => {
   if (!childrenRef?.current) {
@@ -206,13 +207,14 @@ export const getStylesAndLocation = ({
     );
     return null;
   }
+  const curArrowDirection = initArrowDirection || arrowDirection;
   const rootOffset = childrenRef.current.getBoundingClientRect();
   const $rtDom = document.querySelector(selector);
   if (!$rtDom) return null;
   const tipOffset = $rtDom.getBoundingClientRect();
   const { newArrowDirection, newArrowLocation } = getNewDirectionLocation({
     rootOffset,
-    arrowDirection,
+    arrowDirection: curArrowDirection,
     tipOffset,
     arrowLocation,
     offsetSpacing,

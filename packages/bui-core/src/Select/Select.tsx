@@ -11,10 +11,15 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Fade from '../Fade';
 import Slide from '../Slide';
 import Portal from '../Portal';
-import { SelectPlacement, SelectProps } from './Select.types';
+import { SelectProps } from './Select.types';
 import BuiSelectContext from './selectContext';
 import './Select.less';
 
+enum SELECT_PLACEMENT {
+  BOTTOM = 'bottom',
+  TOP = 'top',
+}
+const defaultPlacement = SELECT_PLACEMENT.BOTTOM;
 const prefixCls = 'bui-select';
 
 const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
@@ -48,7 +53,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     useDelaySetState<boolean>(false);
   // 根选择器展示的内容
   const [renderValue, setRenderValue] = useState<string>('');
-  const [placement, setPlacement] = useState<SelectPlacement>('bottom');
+  const [placement, setPlacement] =
+    useState<SELECT_PLACEMENT>(defaultPlacement);
   const [optionStyle, setOptionStyle] = useState({});
   const isOpen = open !== undefined ? open : internalOpen;
   const internalInputRef = useRef<HTMLInputElement>(null);
@@ -76,6 +82,23 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     isFocusRef.current = false;
   };
 
+  const updateOptionStyle = throttle(() => {
+    const result = getStylesAndLocation({
+      childrenRef: locatorRef,
+      arrowDirection: placement,
+      arrowLocation: 'left',
+      initArrowDirection: defaultPlacement,
+      selector: `[data-id="${dataId}"]`,
+      offsetSpacing: 6,
+    });
+    if (!result) return;
+    const { styles, childrenStyle, newArrowDirection } = result;
+    if (newArrowDirection !== placement) {
+      setPlacement(newArrowDirection);
+    }
+    setOptionStyle({ ...styles, width: childrenStyle.width });
+  }, 100);
+
   const changeOpen = (newOpen: boolean) => {
     delaySetInternalOpen(newOpen, () => {
       if (newOpen) {
@@ -88,22 +111,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       }
     });
   };
-
-  const updateOptionStyle = throttle(() => {
-    const result = getStylesAndLocation({
-      childrenRef: locatorRef,
-      arrowDirection: placement,
-      arrowLocation: 'left',
-      selector: `[data-id="${dataId}"]`,
-      offsetSpacing: 6,
-    });
-    if (!result) return;
-    const { styles, childrenStyle, newArrowDirection } = result;
-    if (newArrowDirection !== placement) {
-      setPlacement(newArrowDirection);
-    }
-    setOptionStyle({ ...styles, width: childrenStyle.width });
-  }, 100);
 
   // 点击根选择器的回调
   const handleSelectClick = (e) => {
@@ -153,6 +160,13 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     if (open) {
       inputFocus();
     }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('resize', updateOptionStyle);
+    return () => {
+      window.removeEventListener('resize', updateOptionStyle);
+    };
   }, []);
 
   return (
@@ -205,6 +219,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           >
             <Slide
               in={isOpen}
+              direction={placement === SELECT_PLACEMENT.BOTTOM ? 'down' : 'up'}
               timeout={{
                 enter: 150,
                 exit: 150,
