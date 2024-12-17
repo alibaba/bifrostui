@@ -111,8 +111,8 @@ export const getDirectionLocationStyle = ({
   } = rootOffset;
   const { width, height } = tipOffset;
   if (arrowDirection === 'top') {
-    styles.top = cTop - offsetSpacing;
-    styles.transform = `translateY(-100%)`;
+    // 浮层在上方
+    styles.top = cTop - offsetSpacing - height;
     switch (arrowLocation) {
       case 'left':
         styles.left = cLeft;
@@ -121,13 +121,13 @@ export const getDirectionLocationStyle = ({
         styles.left = cLeft + (cWidth - width) / 2;
         break;
       case 'right':
-        styles.left = cRight;
-        styles.transform = `translate(-100%, -100%)`;
+        styles.left = cRight - width;
         break;
       default:
         break;
     }
   } else if (arrowDirection === 'bottom') {
+    // 浮层在下方
     styles.top = cBottom + offsetSpacing;
     switch (arrowLocation) {
       case 'left':
@@ -137,15 +137,14 @@ export const getDirectionLocationStyle = ({
         styles.left = cLeft + (cWidth - width) / 2;
         break;
       case 'right':
-        styles.left = cRight;
-        styles.transform = `translateX(-100%)`;
+        styles.left = cRight - width;
         break;
       default:
         break;
     }
   } else if (arrowDirection === 'left') {
-    styles.left = cLeft - offsetSpacing;
-    styles.transform = `translateX(-100%)`;
+    // 浮层在左方
+    styles.left = cLeft - offsetSpacing - width;
     switch (arrowLocation) {
       case 'top':
         styles.top = cTop;
@@ -154,13 +153,13 @@ export const getDirectionLocationStyle = ({
         styles.top = cTop + (cHeight - height) / 2;
         break;
       case 'bottom':
-        styles.top = cBottom;
-        styles.transform = `translate(-100%, -100%)`;
+        styles.top = cBottom - height;
         break;
       default:
         break;
     }
   } else if (arrowDirection === 'right') {
+    // 浮层在右方
     styles.left = cRight + offsetSpacing;
     switch (arrowLocation) {
       case 'top':
@@ -170,8 +169,7 @@ export const getDirectionLocationStyle = ({
         styles.top = cTop + (cHeight - height) / 2;
         break;
       case 'bottom':
-        styles.top = cBottom;
-        styles.transform = `translateY(-100%)`;
+        styles.top = cBottom - height;
         break;
       default:
         break;
@@ -183,8 +181,6 @@ export const getDirectionLocationStyle = ({
   if (styles.left) {
     styles.left = `${styles.left + scrollLeft}px`;
   }
-  // 此处设置宽高是为了防止left和transform导致气泡宽度显示错误
-  styles.width = `${width}px`;
   return styles;
 };
 
@@ -267,4 +263,22 @@ export const triggerEventTransform = ({ trigger, click, show, hide }) => {
   });
 
   return option;
+};
+/**
+ * for example： placement = 'topLeft'， return { direction: 'top', location: 'left' }
+ * @param placement
+ * @returns
+ */
+export const parsePlacement = (placement) => {
+  const positionArr = placement.split(/([A-Z])/);
+  const direction = positionArr[0];
+  let location;
+  if (positionArr.length > 1) {
+    positionArr.splice(0, 1);
+    location = positionArr.join('').toLowerCase();
+  }
+  return {
+    direction,
+    location,
+  };
 };

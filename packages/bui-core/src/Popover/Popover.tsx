@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import {
   getStylesAndLocation,
   triggerEventTransform,
+  parsePlacement,
   useUniqueId,
   throttle,
 } from '@bifrostui/utils';
@@ -30,16 +31,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   } = props;
 
   const controlByUser = typeof open !== 'undefined';
-  const positionArr = placement.split(/([A-Z])/);
-  const direction = positionArr[0];
-  let location;
-  if (positionArr.length > 1) {
-    positionArr.splice(0, 1);
-    location = positionArr.join('').toLowerCase();
-  } else {
-    location = 'center';
-  }
-
+  const { direction, location = 'center' } = parsePlacement(placement);
   const childrenRef = useRef<Element>();
   const [openStatus, setOpenStatus] = useState(defaultOpen);
   // 气泡所在位置
@@ -83,10 +75,14 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   };
 
   const onRootElementMouted = throttle(() => {
+    const {
+      direction: newParsedDirection,
+      location: newParsedLocation = 'center',
+    } = parsePlacement(placement);
     const result = getStylesAndLocation({
       childrenRef,
-      arrowDirection,
-      arrowLocation,
+      arrowDirection: newParsedDirection,
+      arrowLocation: newParsedLocation,
       offsetSpacing,
       selector: `[data-id="tt_${ttId}"]`,
     });
