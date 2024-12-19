@@ -95,6 +95,12 @@ export type SelectProps<
        */
       open?: boolean;
       /**
+       * 滚动容器
+       * 下拉框元素和children将会被append到scrollContainer中
+       * 默认是页面的根节点
+       */
+      scrollContainer?: () => Element | null;
+      /**
        * 自定义选中后展示的内容
        */
       // valueRender?: (value: IBuiSelectValue) => React.ReactNode;
