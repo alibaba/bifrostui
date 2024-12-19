@@ -5,11 +5,17 @@ const directionCssMap = {
   bottom: 'top',
 };
 
+const isBodyScroll = (scrollRoot) => {
+  return scrollRoot === document.body;
+};
+
 /**
  * 根据元素宽高判断是否超出边界，超出边界则重新定义方向
  */
 export const getNewDirectionLocation = ({
-  rootOffset,
+  scrollRoot,
+  scrollRootOffset,
+  childrenOffset,
   arrowDirection,
   tipOffset,
   arrowLocation,
@@ -22,12 +28,23 @@ export const getNewDirectionLocation = ({
     bottom: cBottom,
     width: cWidth,
     height: cHeight,
-  } = rootOffset;
+  } = childrenOffset;
   const { width, height } = tipOffset;
-  const pgegWidth =
+  const {
+    top: sTop,
+    bottom: sBottom,
+    left: sLeft,
+    right: sRight,
+  } = scrollRootOffset;
+
+  const pageWidth =
     document.documentElement.clientWidth || document.body.clientWidth;
-  const pgegHeight =
+  const pageHeight =
     document.documentElement.clientHeight || document.body.clientHeight;
+  const maxTop = isBodyScroll(scrollRoot) ? 0 : sTop;
+  const maxBottom = isBodyScroll(scrollRoot) ? pageHeight : sBottom;
+  const maxLeft = isBodyScroll(scrollRoot) ? 0 : sLeft;
+  const maxRight = isBodyScroll(scrollRoot) ? pageWidth : sRight;
 
   let newArrowDirection = arrowDirection;
   let newArrowLocation = arrowLocation;
@@ -39,10 +56,10 @@ export const getNewDirectionLocation = ({
   const isDirectionRight = arrowDirection === 'right';
 
   if (
-    (isDirectionTop && cTop - height - offsetSpacing < 0) ||
-    (isDirectionBottom && cBottom + height + offsetSpacing > pgegHeight) ||
-    (isDirectionLeft && cLeft - width - offsetSpacing < 0) ||
-    (isDirectionRight && cRight + width + offsetSpacing > pgegWidth)
+    (isDirectionTop && cTop - height - offsetSpacing < maxTop) ||
+    (isDirectionBottom && cBottom + height + offsetSpacing > maxBottom) ||
+    (isDirectionLeft && cLeft - width - offsetSpacing < maxLeft) ||
+    (isDirectionRight && cRight + width + offsetSpacing > maxRight)
   ) {
     // 计算气泡超过编辑之后 到反方向去
     newArrowDirection = directionCssMap[arrowDirection];
@@ -50,10 +67,10 @@ export const getNewDirectionLocation = ({
 
   // 箭头靠边的情况，是否超过边界
   if (
-    (arrowLocation === 'top' && cTop + height > pgegHeight) ||
-    (arrowLocation === 'bottom' && cBottom - height < 0) ||
-    (arrowLocation === 'left' && cLeft + width > pgegWidth) ||
-    (arrowLocation === 'right' && cRight - width < 0)
+    (arrowLocation === 'top' && cTop + height > maxBottom) ||
+    (arrowLocation === 'bottom' && cBottom - height < maxTop) ||
+    (arrowLocation === 'left' && cLeft + width > maxRight) ||
+    (arrowLocation === 'right' && cRight - width < maxLeft)
   ) {
     newArrowLocation = directionCssMap[arrowLocation];
   }
@@ -62,16 +79,16 @@ export const getNewDirectionLocation = ({
   // 箭头在中间的情况，是否超过边界
   if (isCenter && (isDirectionTop || isDirectionBottom)) {
     // cLeft + (cWidth - width) / 2 代表浮层最左侧的坐标
-    if (cLeft + (cWidth - width) / 2 + width > pgegWidth) {
+    if (cLeft + (cWidth - width) / 2 + width > maxRight) {
       newArrowLocation = directionCssMap.left;
-    } else if (cLeft + (cWidth - width) / 2 < 0) {
+    } else if (cLeft + (cWidth - width) / 2 < maxLeft) {
       newArrowLocation = directionCssMap.right;
     }
   } else if (isCenter && (isDirectionLeft || isDirectionRight)) {
     // cTop + (cHeight - height) / 2 代表浮层最上侧的坐标
-    if (cTop + (cHeight - height) / 2 + cHeight > pgegHeight) {
+    if (cTop + (cHeight - height) / 2 + cHeight > maxBottom) {
       newArrowLocation = directionCssMap.top;
-    } else if (cTop + (cHeight - height) / 2 < 0) {
+    } else if (cTop + (cHeight - height) / 2 < maxTop) {
       newArrowLocation = directionCssMap.bottom;
     }
   }
@@ -86,7 +103,7 @@ export const getNewDirectionLocation = ({
  * 根据新的气泡位置和箭头位置 计算气泡位置以及箭头位置
  */
 export const getDirectionLocationStyle = ({
-  rootOffset,
+  childrenOffset,
   arrowDirection,
   tipOffset,
   arrowLocation,
@@ -108,7 +125,8 @@ export const getDirectionLocationStyle = ({
     right: cRight,
     top: cTop,
     bottom: cBottom,
-  } = rootOffset;
+  } = childrenOffset;
+  const childrenStyle = { width: `${cWidth}px`, height: `${cHeight}px` };
   const { width, height } = tipOffset;
   if (arrowDirection === 'top') {
     // 浮层在上方
@@ -181,13 +199,14 @@ export const getDirectionLocationStyle = ({
   if (styles.left) {
     styles.left = `${styles.left + scrollLeft}px`;
   }
-  return styles;
+  return { styles, childrenStyle };
 };
 
 /**
  * 获取气泡位置和箭头位置
  */
 export const getStylesAndLocation = ({
+  scrollRoot = document.body as Element,
   childrenRef,
   arrowDirection,
   arrowLocation,
@@ -200,20 +219,23 @@ export const getStylesAndLocation = ({
     );
     return null;
   }
-  const rootOffset = childrenRef.current.getBoundingClientRect();
+  const childrenOffset = childrenRef.current.getBoundingClientRect();
   const $rtDom = document.querySelector(selector);
   if (!$rtDom) return null;
   const tipOffset = $rtDom.getBoundingClientRect();
+  const scrollRootOffset = scrollRoot.getBoundingClientRect();
   const { newArrowDirection, newArrowLocation } = getNewDirectionLocation({
-    rootOffset,
+    scrollRoot,
+    scrollRootOffset,
+    childrenOffset,
     arrowDirection,
     tipOffset,
     arrowLocation,
     offsetSpacing,
   });
 
-  const styles = getDirectionLocationStyle({
-    rootOffset,
+  const { styles, childrenStyle } = getDirectionLocationStyle({
+    childrenOffset,
     arrowDirection: newArrowDirection,
     tipOffset,
     arrowLocation: newArrowLocation,
@@ -223,6 +245,7 @@ export const getStylesAndLocation = ({
 
   return {
     styles,
+    childrenStyle,
     newArrowDirection,
     newArrowLocation,
   };

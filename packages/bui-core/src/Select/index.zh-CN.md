@@ -82,7 +82,7 @@ export default () => {
 };
 ```
 
-## 初始化默认值
+### 初始化默认值
 
 支持通过 `defaultValue` 属性，初始选中值。
 
@@ -118,7 +118,7 @@ export default () => {
 };
 ```
 
-## 非受控/非受控
+### 非受控/非受控
 
 通过是否传入`value`来区分是否为受控组件:
 受控情况业务通过 `onChange` 回调控制组件 value;
@@ -192,7 +192,7 @@ export default () => {
 };
 ```
 
-## 禁用
+### 禁用
 
 提供 `disabled` 属性来禁止用户操作。
 您可以通过在`Select`上设置`disabled` 全部禁止操作，也可以在`SelectOption`上设置`disabled`对某个选项禁止操作。
@@ -243,11 +243,7 @@ export default () => {
 };
 ```
 
-## 定制
-
-以下是定制 Select 组件示例。
-
-#### 定制图标
+### 定制图标
 
 提供自定义图标能力，可以通过`icon`属性来定制图标。
 
@@ -375,7 +371,7 @@ export default () => {
 };
 ```
 
-## 事件
+### 事件
 
 Select 组件除了提供基础的`onChange`回调，还提供选项`展开`、`折叠`时的事件回调。
 
@@ -417,6 +413,57 @@ export default () => {
           <SelectOption key={index} value={item.value} label={item.label} />
         ))}
       </Select>
+    </Stack>
+  );
+};
+```
+
+### 指定滚动父容器
+
+通过scrollContainer指定滚动父容器，默认是() => document.body
+指定后，下拉框的展示方向会自动根据滚动父容器进行计算
+
+```tsx
+import { Select, SelectOption, Stack } from '@bifrostui/react';
+import React, { useRef } from 'react';
+
+const options = [
+  {
+    label: 'option 1',
+    value: 1,
+  },
+  {
+    label: 'option 2',
+    value: 2,
+  },
+  {
+    label: 'option 3',
+    value: 3,
+  },
+];
+
+export default () => {
+  const ref = useRef();
+
+  return (
+    <Stack
+      ref={ref}
+      alignItems="stretch"
+      style={{
+        display: 'block',
+        height: '300px',
+        padding: '50px',
+        background: '#eee',
+        overflowY: 'scroll',
+      }}
+    >
+      <div style={{ height: '150px' }}></div>
+      <Select scrollContainer={() => ref.current}>
+        {options.map((item, index) => (
+          <SelectOption key={index} value={item.value} label={item.label} />
+        ))}
+      </Select>
+      <div style={{ height: '500px' }}></div>
     </Stack>
   );
 };
