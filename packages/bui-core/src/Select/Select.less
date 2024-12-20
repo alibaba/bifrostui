@@ -62,20 +62,12 @@
     top: 100%;
     left: 0;
     width: 100%;
+    font-size: var(--bui-select-font-size, var(--bui-title-size-3));
     z-index: var(--bui-z-index-dropdown);
     border-radius: 3px;
     background-color: var(--bui-color-bg-view);
     padding: 2px;
     overflow: hidden;
-
-    --option-container-padding: var(
-      --bui-select-option-container-padding,
-      3px 0
-    );
-    --option-container-margin-top: var(--bui-select-option-margin-top, 6px);
-    --option-padding: var(--bui-select-option-padding, 0 14px);
-    --option-margin: var(--bui-select-option-margin, 0 3px);
-    --option-height: var(--bui-select-option-height, 27px);
 
     &-hide {
       pointer-events: none;
@@ -84,12 +76,15 @@
 
   &-option-main {
     border-radius: 3px;
-    padding: var(--option-container-padding);
+    padding: var(--bui-select-option-container-padding, 3px 0);
     box-shadow: 0 0 0 2px var(--bui-color-bg-default);
     overflow: hidden;
   }
 
   &-option {
+    --option-padding: var(--bui-select-option-padding, 0 14px);
+    --option-margin: var(--bui-select-option-margin, 0 3px);
+    --option-height: var(--bui-select-option-height, 27px);
     display: flex;
     align-items: center;
     height: var(--option-height);
