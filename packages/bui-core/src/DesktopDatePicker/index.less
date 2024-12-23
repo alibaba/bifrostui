@@ -116,12 +116,11 @@
   }
 
   &-table-tr {
-    display: flex;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   &-table-td {
-    flex: 1 1 33%;
     background-color: var(--bui-color-bg-view);
     text-align: center;
     padding: 10px 16px;
