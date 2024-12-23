@@ -46,12 +46,12 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     onChange,
   });
 
-  // 是否展开下拉框
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [internalOpen, setInternalOpen] = useState<boolean>(false);
   // 根选择器展示的内容
   const [renderValue, setRenderValue] = useState<string>('');
   const [placement, setPlacement] = useState<string>(defaultPlacement);
   const [optionStyle, setOptionStyle] = useState({});
+  const isOpen = open !== undefined ? open : internalOpen;
   const locatorRef = useRef(null);
   const ttId = useUniqueId();
   const dataId = `${prefixCls}-tt-${ttId}`;
@@ -62,7 +62,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       scrollRoot,
       childrenRef: locatorRef,
       arrowDirection: defaultPlacement,
-      arrowLocation: 'left',
+      arrowLocation: 'none',
       selector: `[data-id="${dataId}"]`,
       offsetSpacing: 6,
     });
@@ -74,11 +74,20 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     setOptionStyle({ ...styles, width: childrenStyle.width });
   }, 100);
 
+  const changeOpen = (newOpen: boolean) => {
+    if (newOpen) {
+      updateOptionStyle();
+      onOpen?.();
+    } else {
+      onClose?.();
+    }
+    setInternalOpen(newOpen);
+  };
+
   // 点击根选择器的回调
   const handleSelectClick = (e) => {
     if (disabled) return;
-    updateOptionStyle();
-    setIsOpen(!isOpen);
+    changeOpen(!isOpen);
     if (typeof onClick === 'function') onClick(e);
   };
 
@@ -90,11 +99,11 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     } else {
       onChange?.(e, { value: optionValue });
     }
-    setIsOpen(false);
+    changeOpen(false);
   };
 
   const handleBackdropClick = () => {
-    setIsOpen(false);
+    changeOpen(false);
   };
 
   const selectContext = useMemo(
@@ -102,20 +111,12 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     [selectValue, onChange, setRenderValue],
   );
 
-  // 监听外部open的改变
   useEffect(() => {
-    if (open !== undefined) setIsOpen(open);
-  }, [open]);
-
-  // 折叠/展开时的处理
-  useEffect(() => {
-    // 非function情况，直接调用会报错
-    if (isOpen) {
-      onOpen?.();
-    } else {
-      onClose?.();
-    }
-  }, [isOpen]);
+    window.addEventListener('resize', updateOptionStyle);
+    return () => {
+      window.removeEventListener('resize', updateOptionStyle);
+    };
+  }, []);
 
   const defaultIcon = isOpen ? (
     <CaretUpIcon className={`${prefixCls}-selector-icon`} htmlColor="#9c9ca5" />

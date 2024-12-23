@@ -93,6 +93,10 @@ export const getNewDirectionLocation = ({
     }
   }
 
+  if (arrowLocation === 'none') {
+    newArrowLocation = 'none';
+  }
+
   return {
     newArrowDirection,
     newArrowLocation,
@@ -141,6 +145,9 @@ export const getDirectionLocationStyle = ({
       case 'right':
         styles.left = cRight - width;
         break;
+      case 'none':
+        styles.left = cLeft;
+        break;
       default:
         break;
     }
@@ -156,6 +163,9 @@ export const getDirectionLocationStyle = ({
         break;
       case 'right':
         styles.left = cRight - width;
+        break;
+      case 'none':
+        styles.left = cLeft;
         break;
       default:
         break;
@@ -173,6 +183,9 @@ export const getDirectionLocationStyle = ({
       case 'bottom':
         styles.top = cBottom - height;
         break;
+      case 'none':
+        styles.top = cTop;
+        break;
       default:
         break;
     }
@@ -188,6 +201,9 @@ export const getDirectionLocationStyle = ({
         break;
       case 'bottom':
         styles.top = cBottom - height;
+        break;
+      case 'none':
+        styles.top = cTop;
         break;
       default:
         break;
