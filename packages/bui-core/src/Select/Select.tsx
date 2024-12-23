@@ -1,6 +1,7 @@
 import { CaretDownIcon, CaretUpIcon } from '@bifrostui/icons';
 import {
   getStylesAndLocation,
+  isMini,
   throttle,
   useUniqueId,
   useValue,
@@ -58,20 +59,22 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const scrollRoot = scrollContainer();
 
   const updateOptionStyle = throttle(() => {
-    const result = getStylesAndLocation({
-      scrollRoot,
-      childrenRef: locatorRef,
-      arrowDirection: defaultPlacement,
-      arrowLocation: 'none',
-      selector: `[data-id="${dataId}"]`,
-      offsetSpacing: 6,
-    });
-    if (!result) return;
-    const { styles, childrenStyle, newArrowDirection } = result;
-    if (newArrowDirection !== placement) {
-      setPlacement(newArrowDirection);
+    if (!isMini) {
+      const result = getStylesAndLocation({
+        scrollRoot,
+        childrenRef: locatorRef,
+        arrowDirection: defaultPlacement,
+        arrowLocation: 'none',
+        selector: `[data-id="${dataId}"]`,
+        offsetSpacing: 6,
+      });
+      if (!result) return;
+      const { styles, childrenStyle, newArrowDirection } = result;
+      if (newArrowDirection !== placement) {
+        setPlacement(newArrowDirection);
+      }
+      setOptionStyle({ ...styles, width: childrenStyle.width });
     }
-    setOptionStyle({ ...styles, width: childrenStyle.width });
   }, 100);
 
   const changeOpen = (newOpen: boolean) => {
@@ -112,10 +115,13 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   );
 
   useEffect(() => {
-    window.addEventListener('resize', updateOptionStyle);
-    return () => {
-      window.removeEventListener('resize', updateOptionStyle);
-    };
+    if (!isMini) {
+      window.addEventListener('resize', updateOptionStyle);
+      return () => {
+        window.removeEventListener('resize', updateOptionStyle);
+      };
+    }
+    return () => {};
   }, []);
 
   const defaultIcon = isOpen ? (
