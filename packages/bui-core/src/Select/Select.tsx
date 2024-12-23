@@ -185,7 +185,9 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           <div
             className={clsx(
               `${prefixCls}-option-container`,
-              `${prefixCls}-option-container-${className}`,
+              ...(className
+                ?.split(/\s+/)
+                ?.map((cls) => `${prefixCls}-option-container-${cls}`) || []),
               `${prefixCls}-option-container-${placement}`,
               {
                 [`${prefixCls}-option-container-hide`]: !isOpen,
