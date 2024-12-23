@@ -145,6 +145,44 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     />
   );
 
+  const renderOptions = () => {
+    return (
+      <Fade
+        in={isOpen}
+        timeout={{
+          enter: 150,
+          exit: 150,
+        }}
+      >
+        <div
+          className={clsx(
+            `${prefixCls}-option-container`,
+            ...(className
+              ?.split(/\s+/)
+              ?.map((cls) => `${prefixCls}-option-container-${cls}`) || []),
+            `${prefixCls}-option-container-${placement}`,
+            {
+              [`${prefixCls}-option-container-hide`]: !isOpen,
+            },
+          )}
+          data-id={dataId}
+          style={optionStyle}
+        >
+          <Slide
+            in={isOpen}
+            direction={placement === 'bottom' ? 'down' : 'up'}
+            timeout={{
+              enter: 150,
+              exit: 150,
+            }}
+          >
+            <div className={clsx(`${prefixCls}-option-main`)}>{children}</div>
+          </Slide>
+        </div>
+      </Fade>
+    );
+  };
+
   return (
     <BuiSelectContext.Provider value={selectContext}>
       <div
@@ -172,56 +210,24 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           />
           {icon || defaultIcon}
         </div>
+        {isMini && renderOptions()}
       </div>
-      <Portal onRootElementMouted={updateOptionStyle}>
-        {/* 选项下拉框 */}
-        <Fade
-          in={isOpen}
-          timeout={{
-            enter: 150,
-            exit: 150,
-          }}
-        >
-          <div
-            className={clsx(
-              `${prefixCls}-option-container`,
-              ...(className
-                ?.split(/\s+/)
-                ?.map((cls) => `${prefixCls}-option-container-${cls}`) || []),
-              `${prefixCls}-option-container-${placement}`,
-              {
-                [`${prefixCls}-option-container-hide`]: !isOpen,
-              },
-            )}
-            data-id={dataId}
-            style={optionStyle}
-          >
-            <Slide
-              in={isOpen}
-              direction={placement === 'bottom' ? 'down' : 'up'}
-              timeout={{
-                enter: 150,
-                exit: 150,
-              }}
-            >
-              <div className={clsx(`${prefixCls}-option-main`)}>{children}</div>
-            </Slide>
-          </div>
-        </Fade>
-      </Portal>
-      <Portal>
-        <Backdrop
-          open={isOpen}
-          invisible
-          // onTouchStart 解决滑动后仍需点击关闭蒙层，才能点击其它区域的问题
-          onTouchStart={handleBackdropClick}
-          onClick={handleBackdropClick}
-          {...BackdropProps}
-          className={clsx(`${prefixCls}-backdrop`, {
-            [BackdropProps?.className]: BackdropProps?.className,
-          })}
-        />
-      </Portal>
+      {!isMini && (
+        <Portal onRootElementMouted={updateOptionStyle}>
+          {renderOptions()}
+        </Portal>
+      )}
+      <Backdrop
+        open={isOpen}
+        invisible
+        // onTouchStart 解决滑动后仍需点击关闭蒙层，才能点击其它区域的问题
+        onTouchStart={handleBackdropClick}
+        onClick={handleBackdropClick}
+        {...BackdropProps}
+        className={clsx(`${prefixCls}-backdrop`, {
+          [BackdropProps?.className]: BackdropProps?.className,
+        })}
+      />
     </BuiSelectContext.Provider>
   );
 });
