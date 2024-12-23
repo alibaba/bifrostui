@@ -551,7 +551,7 @@ const options = [
 export default () => {
   return (
     <Stack alignItems="stretch" style={{ background: '#eee', padding: '50px' }}>
-      <Select className="custom-classname">
+      <Select className="custom-classname test-classname">
         {options.map((item, index) => (
           <SelectOption key={index} value={item.value} label={item.label} />
         ))}
