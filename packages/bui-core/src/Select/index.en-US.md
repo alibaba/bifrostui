@@ -515,6 +515,52 @@ export default () => {
 };
 ```
 
+### override style with `className` attribute
+
+Provide the ability to override style through `className` attribute.
+className will be mounted on the root component, and mouted on the dropdown container as `bui-select-option-container-${className}`
+
+```tsx
+import { Select, SelectOption, Stack } from '@bifrostui/react';
+import React from 'react';
+
+const options = [
+  {
+    label: 'option 1',
+    value: 1,
+  },
+  {
+    label: 'option 2',
+    value: 2,
+  },
+  {
+    label: 'option 3',
+    value: 3,
+  },
+];
+
+/**
+  .custom-classname {
+    color: red;
+  }
+  .bui-select-option-container-custom-classname {
+    color: blue;
+  }
+*/
+
+export default () => {
+  return (
+    <Stack alignItems="stretch" style={{ background: '#eee', padding: '50px' }}>
+      <Select className="custom-classname">
+        {options.map((item, index) => (
+          <SelectOption key={index} value={item.value} label={item.label} />
+        ))}
+      </Select>
+    </Stack>
+  );
+};
+```
+
 ### API
 
 ##### SelectProps

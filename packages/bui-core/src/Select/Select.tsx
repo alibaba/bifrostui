@@ -68,7 +68,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
         arrowDirection: defaultPlacement,
         arrowLocation: 'none',
         selector: `[data-id="${dataId}"]`,
-        offsetSpacing: 6,
+        offsetSpacing: 0,
       });
       if (!result) return;
       const { styles, childrenStyle, newArrowDirection } = result;
@@ -184,6 +184,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           <div
             className={clsx(
               `${prefixCls}-option-container`,
+              `${prefixCls}-option-container-${className}`,
               `${prefixCls}-option-container-${placement}`,
               {
                 [`${prefixCls}-option-container-hide`]: !isOpen,
