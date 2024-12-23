@@ -126,6 +126,9 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
         // 输入框长度等于format长度, 检查数值有效性
         setInputStr('');
         setRenderInputStr(false);
+        if (disabledDate?.(dayjs(newValue).toDate())) {
+          return;
+        }
         // 大于最大值，赋值最大值
         if (dayjs(newValue).isAfter(maxDate)) {
           triggerChange(e, maxDate);
