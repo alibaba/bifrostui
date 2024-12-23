@@ -1,0 +1,168 @@
+@import '@bifrostui/styles/mixins/index.less';
+@class-prefix-date-picker: ~'bui-date-picker';
+@transition-duration: 0.3s;
+
+.@{class-prefix-date-picker} {
+  position: relative;
+  cursor: pointer;
+  height: var(--bui-input-height, 32px);
+  min-width: 100px;
+  font-size: var(--bui-title-size-3);
+  border-radius: 5px;
+  background-color: var(--bui-color-bg-view);
+  font-family: var(--bui-font-family);
+  box-sizing: border-box;
+  border: 1px solid var(--bui-color-border-default);
+
+  &:active,
+  &-active {
+    box-shadow: 0 0 0 2px var(--bui-color-bg-default);
+  }
+
+  &-icon {
+    display: flex;
+    align-items: center;
+    font-size: var(--bui-title-size-3);
+  }
+
+  &-container {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    height: 100%;
+  }
+
+  &-placeholder {
+    color: var(--bui-color-fg-disabled);
+  }
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: 0;
+  }
+
+  &-calendar-container {
+    position: absolute;
+    box-sizing: border-box;
+    left: 0;
+    width: 100%;
+    min-width: 300px;
+    z-index: var(--bui-z-index-dropdown);
+    background-color: var(--bui-color-bg-view);
+    padding: 2px;
+    overflow: hidden;
+  }
+
+  &-calendar-container-top {
+    bottom: 100%;
+    margin-bottom: 6px;
+  }
+
+  &-calendar-container-bottom {
+    top: 100%;
+    margin-top: 6px;
+  }
+
+  &-calendar-main {
+    border-radius: 3px;
+    padding: 3px 0;
+    box-shadow: 0 0 0 2px var(--bui-color-bg-default);
+    overflow: hidden;
+  }
+
+  &-handler {
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 7px;
+
+    &-text {
+      font-size: var(--bui-title-size-3);
+      font-weight: var(--bui-font-weight-medium);
+      text-align: center;
+    }
+
+    &-btn {
+      font-size: 16px;
+      height: 100%;
+      width: 46px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &-icon {
+        font-size: 28px;
+      }
+    }
+  }
+
+  &-list {
+    max-height: 208px;
+    overflow: auto;
+    padding: 0 var(--bui-spacing-sm);
+
+    & &-table {
+      border: none;
+      border-radius: 0;
+    }
+  }
+
+  &-table-td {
+    background-color: var(--bui-color-bg-view);
+    text-align: center;
+
+    &-content {
+      height: 30px;
+      line-height: 30px;
+      width: 60px;
+      border-radius: var(--bui-shape-radius-default, 6px);
+      display: inline-block;
+      text-align: center;
+      font-size: var(--bui-title-size-4);
+      font-weight: var(--bui-font-weight-medium);
+      color: var(--bui-color-fg-default);
+      font-family: var(--bui-font-family);
+    }
+  }
+
+  &-table-td-active &-table-td {
+    &-content {
+      color: #000;
+      background-color: #ffc7da;
+    }
+  }
+
+  &-table-td-disabled &-table-td {
+    &-content {
+      color: #ccc;
+    }
+  }
+}
+
+.bui-date-picker.bui-date-picker-disabled {
+  pointer-events: none;
+  box-shadow: none;
+  background-color: rgba(188, 188, 188, 0.2);
+  color: var(--bui-color-fg-subtle);
+}
+
+.bui-date-picker-mask {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
