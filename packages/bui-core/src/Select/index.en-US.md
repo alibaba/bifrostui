@@ -467,7 +467,8 @@ export default () => {
 ### customize scroll container
 
 Provide the ability to customize scroll container, which can be customized through the 'scrollContainer' attribute. Default value is '() => document.body'.
-The select option container's display direction will be automatically calculated according to the scroll container
+The select option container's display direction will be automatically calculated according to the scroll container.
+Only support H5.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
@@ -518,7 +519,7 @@ export default () => {
 ### override style with `className` attribute
 
 Provide the ability to override style through `className` attribute.
-className will be mounted on the root component, and mouted on the dropdown container as `bui-select-option-container-${className}`
+className will be mounted on the root component, and mouted on the dropdown container as `bui-select-option-container-className`
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
