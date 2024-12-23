@@ -61,7 +61,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const scrollRoot = scrollContainer();
 
   const updateOptionStyle = throttle(() => {
-    if (!isMini) {
+    if (!isMini && scrollRoot) {
       const result = getStylesAndLocation({
         scrollRoot,
         childrenRef: locatorRef,
@@ -182,9 +182,13 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           }}
         >
           <div
-            className={clsx(`${prefixCls}-option-container`, {
-              [`${prefixCls}-option-container-hide`]: !isOpen,
-            })}
+            className={clsx(
+              `${prefixCls}-option-container`,
+              `${prefixCls}-option-container-${placement}`,
+              {
+                [`${prefixCls}-option-container-hide`]: !isOpen,
+              },
+            )}
             data-id={dataId}
             style={optionStyle}
           >
