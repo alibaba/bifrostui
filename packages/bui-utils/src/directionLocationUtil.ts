@@ -130,7 +130,10 @@ export const getDirectionLocationStyle = ({
     top: cTop,
     bottom: cBottom,
   } = childrenOffset;
-  const childrenStyle = { width: `${cWidth}px`, height: `${cHeight}px` };
+  let childrenStyle: any = {};
+  if (cWidth && cHeight) {
+    childrenStyle = { width: `${cWidth}px`, height: `${cHeight}px` };
+  }
   const { width, height } = tipOffset;
   if (arrowDirection === 'top') {
     // 浮层在上方
