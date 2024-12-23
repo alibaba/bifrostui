@@ -118,7 +118,7 @@ export default () => {
 };
 ```
 
-### Uncontrolled/Uncontrolled
+### controlled/Uncontrolled
 
 Distinguish whether it is a controlled component by passing in 'value':
 Under controlled circumstances, the business retrieves the control component value through 'onChange' callback;
@@ -236,6 +236,52 @@ export default () => {
             label={item.label}
             disabled={index === 2}
           />
+        ))}
+      </Select>
+    </Stack>
+  );
+};
+```
+
+### controlled open
+
+Provide the 'open' attribute to control open status of the selector by yourself.
+
+```tsx
+import { Select, SelectOption, Stack } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+const options = [
+  {
+    label: 'option 1',
+    value: 1,
+  },
+  {
+    label: 'option 2',
+    value: 2,
+  },
+  {
+    label: 'option 3',
+    value: 3,
+  },
+];
+
+export default () => {
+  const [open, setOpen] = useState<boolean>(true);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <Stack alignItems="stretch" style={{ background: '#eee', padding: '50px' }}>
+      <Select open={open} onOpen={handleOpen} onClose={handleClose}>
+        {options.map((item, index) => (
+          <SelectOption key={index} value={item.value} label={item.label} />
         ))}
       </Select>
     </Stack>
