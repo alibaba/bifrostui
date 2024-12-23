@@ -3,6 +3,7 @@ import {
   getStylesAndLocation,
   isMini,
   throttle,
+  useForkRef,
   useUniqueId,
   useValue,
 } from '@bifrostui/utils';
@@ -54,6 +55,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const [optionStyle, setOptionStyle] = useState({});
   const isOpen = open !== undefined ? open : internalOpen;
   const locatorRef = useRef(null);
+  const rootRef = useForkRef(ref, locatorRef);
   const ttId = useUniqueId();
   const dataId = `${prefixCls}-tt-${ttId}`;
   const scrollRoot = scrollContainer();
@@ -70,9 +72,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       });
       if (!result) return;
       const { styles, childrenStyle, newArrowDirection } = result;
-      if (newArrowDirection !== placement) {
-        setPlacement(newArrowDirection);
-      }
+      setPlacement(newArrowDirection);
       setOptionStyle({ ...styles, width: childrenStyle.width });
     }
   }, 100);
@@ -114,6 +114,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     [selectValue, onChange, setRenderValue],
   );
 
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (!isMini) {
       window.addEventListener('resize', updateOptionStyle);
@@ -121,8 +122,18 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
         window.removeEventListener('resize', updateOptionStyle);
       };
     }
-    return () => {};
   }, []);
+
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    if (!isMini && scrollRoot) {
+      const scrollEle = scrollRoot === document.body ? document : scrollRoot;
+      scrollEle.addEventListener('scrollend', updateOptionStyle);
+      return () => {
+        scrollEle.removeEventListener('scrollend', updateOptionStyle);
+      };
+    }
+  }, [scrollRoot]);
 
   const defaultIcon = isOpen ? (
     <CaretUpIcon className={`${prefixCls}-selector-icon`} htmlColor="#9c9ca5" />
@@ -140,11 +151,11 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           [`${prefixCls}-disabled`]: disabled,
           [`${prefixCls}-active`]: isOpen,
         })}
-        ref={ref}
+        ref={rootRef}
         {...others}
         onClick={handleSelectClick}
       >
-        <div className={`${prefixCls}-selector-container`} ref={locatorRef}>
+        <div className={`${prefixCls}-selector-container`}>
           <div className={`${prefixCls}-selector`}>
             {renderValue || placeholder}
           </div>
@@ -210,7 +221,9 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
 Select.displayName = 'BuiSelect';
 Select.defaultProps = {
   defaultValue: '',
-  scrollContainer: () => document.body,
+  scrollContainer: () => {
+    return isMini ? null : document.body;
+  },
 };
 
 export default Select;
