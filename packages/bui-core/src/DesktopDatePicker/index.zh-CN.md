@@ -525,36 +525,6 @@ export default () => {
 };
 ```
 
-### 选择日期后是否立刻关闭todo
-
-启用 `hideDaysOutsideCurrentMonth` 可在选择日时隐藏当前月之外的日期。
-
-```tsx
-import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
-import React, { useState } from 'react';
-
-export default () => {
-  const [value, setValue] = useState(dayjs().toDate());
-  const handleChange = (e, res) => {
-    console.log('date change:', res);
-    setValue(res.value);
-  };
-
-  return (
-    <Stack>
-      <div style={{ width: '320px' }}>
-        <DesktopDatePicker
-          hideDaysOutsideCurrentMonth
-          value={value}
-          onChange={handleChange}
-        />
-      </div>
-    </Stack>
-  );
-};
-```
-
 ### 受控日历组件
 
 通过 `value` 属性控制日历组件。
