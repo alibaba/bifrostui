@@ -118,7 +118,7 @@ export default () => {
 };
 ```
 
-### 非受控/非受控
+### 受控/非受控
 
 通过是否传入`value`来区分是否为受控组件:
 受控情况业务通过 `onChange` 回调控制组件 value;
@@ -236,6 +236,52 @@ export default () => {
             label={item.label}
             disabled={index === 2}
           />
+        ))}
+      </Select>
+    </Stack>
+  );
+};
+```
+
+### 受控展开/收起
+
+通过受控open属性来控制选择器展开/收起
+
+```tsx
+import { Select, SelectOption, Stack } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+const options = [
+  {
+    label: 'option 1',
+    value: 1,
+  },
+  {
+    label: 'option 2',
+    value: 2,
+  },
+  {
+    label: 'option 3',
+    value: 3,
+  },
+];
+
+export default () => {
+  const [open, setOpen] = useState<boolean>(true);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <Stack alignItems="stretch" style={{ background: '#eee', padding: '50px' }}>
+      <Select open={open} onOpen={handleOpen} onClose={handleClose}>
+        {options.map((item, index) => (
+          <SelectOption key={index} value={item.value} label={item.label} />
         ))}
       </Select>
     </Stack>
