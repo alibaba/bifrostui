@@ -61,9 +61,10 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const scrollRoot = scrollContainer();
 
   const updateOptionStyle = throttle(() => {
-    if (!isMini && scrollRoot) {
+    const curScrollRoot = scrollContainer();
+    if (!isMini && curScrollRoot) {
       const result = getStylesAndLocation({
-        scrollRoot,
+        scrollRoot: curScrollRoot,
         childrenRef: locatorRef,
         arrowDirection: defaultPlacement,
         arrowLocation: 'none',
