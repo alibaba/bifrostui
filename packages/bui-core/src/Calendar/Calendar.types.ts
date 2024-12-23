@@ -89,6 +89,10 @@ export type CalendarProps<
        */
       highlightDate?: 'today' | 'weekend';
       /**
+       * 是否隐藏头部
+       */
+      hiddenHeader?: boolean;
+      /**
        * 自定义日期单元格的内容
        */
       dateRender?: (currentDate: ICalendarInstance) => React.ReactNode;

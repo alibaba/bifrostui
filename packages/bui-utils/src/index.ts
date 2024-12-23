@@ -1,6 +1,7 @@
 export { default as debounce } from './debounce';
 export {
   getStylesAndLocation,
+  getNewDirectionLocation,
   triggerEventTransform,
 } from './directionLocationUtil';
 export { default as convertHexToRGBA } from './hex2rgba';
