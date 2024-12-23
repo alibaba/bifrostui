@@ -173,9 +173,6 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
           [`${prefixCls}-disabled`]: disabled,
           [`${prefixCls}-active`]: isOpen,
         })}
-        style={{
-          zIndex: isOpen ? 2 : undefined,
-        }}
         ref={nodeRef}
       >
         <div className={`${prefixCls}-container`}>

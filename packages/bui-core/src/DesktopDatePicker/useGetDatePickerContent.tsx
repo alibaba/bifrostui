@@ -148,7 +148,7 @@ const useGetDatePickerContent = (props) => {
     const dataList = selectType === 'year' ? yearList : mouthList;
     return dataList.map((item, index) => {
       return (
-        <tr key={index + 1} className={clsx(`${prefixCls}-table-tr`)}>
+        <div key={index + 1} className={clsx(`${prefixCls}-table-tr`)}>
           {item.map((its, idx) => {
             let disabledClick = false;
             // 判断年份是否在合理区间
@@ -173,7 +173,7 @@ const useGetDatePickerContent = (props) => {
               }
             }
             return (
-              <td
+              <div
                 key={idx + 1}
                 className={clsx(`${prefixCls}-table-td`, {
                   [`${prefixCls}-table-td-active`]:
@@ -190,10 +190,10 @@ const useGetDatePickerContent = (props) => {
                 }}
               >
                 {renderTd(its, calendarValue)}
-              </td>
+              </div>
             );
           })}
-        </tr>
+        </div>
       );
     });
   };
@@ -246,9 +246,9 @@ const useGetDatePickerContent = (props) => {
           />
         ) : (
           <div className={clsx(`${prefixCls}-list`)}>
-            <table className={clsx(`${prefixCls}-list-table`)}>
-              <tbody>{renderTable()}</tbody>
-            </table>
+            <div className={clsx(`${prefixCls}-list-table`)}>
+              {renderTable()}
+            </div>
           </div>
         )}
       </div>

@@ -30,18 +30,17 @@ const DesktopPicker: React.FC<DesktopPickerProps> = (props) => {
   // 监听滚动和resize事件
   useEffect(() => {
     if (isMini) {
-      return null;
-    }
-    if (isOpen) {
-      window.addEventListener('scroll', getContentDirection);
-      window.addEventListener('resize', getContentDirection);
-    } else {
-      window.removeEventListener('scroll', getContentDirection);
-      window.removeEventListener('resize', getContentDirection);
+      if (isOpen) {
+        window.addEventListener('scroll', getContentDirection);
+        window.addEventListener('resize', getContentDirection);
+      } else {
+        window.removeEventListener('scroll', getContentDirection);
+        window.removeEventListener('resize', getContentDirection);
+      }
     }
     return () => {
-      window.removeEventListener('scroll', getContentDirection);
-      window.removeEventListener('resize', getContentDirection);
+      window?.removeEventListener?.('scroll', getContentDirection);
+      window?.removeEventListener?.('resize', getContentDirection);
     };
   }, [isOpen]);
   return (
@@ -71,9 +70,13 @@ const DesktopPicker: React.FC<DesktopPickerProps> = (props) => {
           </Slide>
         </div>
       </Fade>
-      <Portal>
+      {isMini ? (
         <Backdrop invisible open={isOpen} onClick={() => onClose(false)} />
-      </Portal>
+      ) : (
+        <Portal>
+          <Backdrop invisible open={isOpen} onClick={() => onClose(false)} />
+        </Portal>
+      )}
     </>
   );
 };
