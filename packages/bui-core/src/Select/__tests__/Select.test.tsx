@@ -6,6 +6,9 @@ import SelectOption from '../SelectOption';
 const classPrefix = 'bui-select';
 
 describe('Select', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
   isConformant({
     Component: Select,
     displayName: 'BuiSelect',
@@ -83,6 +86,9 @@ describe('Select', () => {
       );
       await act(async () => {
         userEvent.click(document.querySelector('.bui-select'));
+      });
+      await act(async () => {
+        await jest.runAllTimers();
       });
       expect(onOpen).toHaveBeenCalled();
     });
