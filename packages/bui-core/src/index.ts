@@ -8,6 +8,8 @@ export * from './Calendar';
 export * from './Card';
 export * from './Checkbox';
 export * from './Collapse';
+export * from './DesktopDatePicker';
+export * from './DesktopPicker';
 export * from './Divider';
 export * from './Drawer';
 export * from './Fade';
