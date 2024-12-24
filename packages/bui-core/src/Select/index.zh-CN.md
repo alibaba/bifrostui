@@ -519,7 +519,7 @@ export default () => {
 ### 通过类名复写样式
 
 通过传递`className`属性，可以复写样式
-className除了会挂载在根组件上，还会以`bui-select-option-container-className`的形式挂载在下拉框容器上
+className除了会挂载在根组件上，还会以`className-option-container`的形式挂载在下拉框容器上
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
@@ -544,7 +544,7 @@ const options = [
   .custom-classname {
     color: red;
   }
-  .bui-select-option-container-custom-classname {
+  .custom-classname-option-container {
     color: blue;
   }
 */

@@ -519,7 +519,7 @@ export default () => {
 ### override style with `className` attribute
 
 Provide the ability to override style through `className` attribute.
-className will be mounted on the root component, and mouted on the dropdown container as `bui-select-option-container-className`
+className will be mounted on the root component, and mouted on the dropdown container as `className-option-container`
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
@@ -544,7 +544,7 @@ const options = [
   .custom-classname {
     color: red;
   }
-  .bui-select-option-container-custom-classname {
+  .custom-classname-option-container {
     color: blue;
   }
 */
