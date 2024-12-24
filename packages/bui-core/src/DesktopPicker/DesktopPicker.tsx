@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
-import { getNewDirectionLocation, isMini, throttle } from '@bifrostui/utils';
+import { isMini, throttle } from '@bifrostui/utils';
+import getNewDirection, { directionMap } from './getDirectionLocation';
 import Fade from '../Fade';
 import Slide from '../Slide';
 import { DesktopPickerProps } from './DesktopPicker.types';
@@ -11,38 +12,46 @@ import './index.less';
 const prefixCls = 'bui-desktop-picker';
 
 const DesktopPicker: React.FC<DesktopPickerProps> = (props) => {
-  const { isOpen, parentRef, children, onClose } = props;
+  const {
+    isOpen,
+    containerRef,
+    parentRef,
+    children,
+    defaultDirection = 'bottom',
+    backdrop = true,
+    onClose,
+  } = props;
   const childrenRef = React.useRef<HTMLDivElement>(null);
-
-  const [contentPosition, setContentPosition] = useState('bottom');
+  const [contentPosition, setContentPosition] = useState<'bottom' | 'top'>(
+    'bottom',
+  );
   /**
    * 获取内容方向
    */
   const getContentDirection = throttle(() => {
-    const newDirection = getNewDirectionLocation({
+    const newDirection = getNewDirection({
       rootOffset: parentRef?.current?.getBoundingClientRect(),
-      arrowDirection: 'bottom',
+      arrowDirection: defaultDirection,
       tipOffset: childrenRef?.current?.getBoundingClientRect(),
-      arrowLocation: null,
+      containerOffset: containerRef?.current?.getBoundingClientRect(),
     });
-    setContentPosition(newDirection.newArrowDirection);
+    setContentPosition(newDirection?.newArrowDirection);
   }, 100);
   // 监听滚动和resize事件
   useEffect(() => {
-    if (!isMini) {
-      if (isOpen) {
-        window.addEventListener('scroll', getContentDirection);
-        window.addEventListener('resize', getContentDirection);
-      } else {
-        window.removeEventListener('scroll', getContentDirection);
-        window.removeEventListener('resize', getContentDirection);
-      }
+    getContentDirection();
+    if (containerRef) {
+      containerRef?.current?.addEventListener('scroll', getContentDirection);
+    } else if (!isMini) {
+      window.addEventListener('scroll', getContentDirection);
+      window.addEventListener('resize', getContentDirection);
     }
     return () => {
       window?.removeEventListener?.('scroll', getContentDirection);
       window?.removeEventListener?.('resize', getContentDirection);
+      containerRef?.current?.removeEventListener('scroll', getContentDirection);
     };
-  }, [isOpen]);
+  }, [isOpen, containerRef]);
   return (
     <>
       <Fade
@@ -61,6 +70,7 @@ const DesktopPicker: React.FC<DesktopPickerProps> = (props) => {
         >
           <Slide
             in={isOpen}
+            direction={directionMap[contentPosition] as any}
             timeout={{
               enter: 150,
               exit: 150,
@@ -70,13 +80,14 @@ const DesktopPicker: React.FC<DesktopPickerProps> = (props) => {
           </Slide>
         </div>
       </Fade>
-      {isMini ? (
-        <Backdrop invisible open={isOpen} onClick={() => onClose(false)} />
-      ) : (
-        <Portal>
+      {backdrop &&
+        (isMini ? (
           <Backdrop invisible open={isOpen} onClick={() => onClose(false)} />
-        </Portal>
-      )}
+        ) : (
+          <Portal>
+            <Backdrop invisible open={isOpen} onClick={() => onClose(false)} />
+          </Portal>
+        ))}
     </>
   );
 };
