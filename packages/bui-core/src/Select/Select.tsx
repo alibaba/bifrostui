@@ -58,7 +58,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const rootRef = useForkRef(ref, locatorRef);
   const ttId = useUniqueId();
   const dataId = `${prefixCls}-tt-${ttId}`;
-  const scrollRoot = scrollContainer();
 
   const updateOptionStyle = throttle(() => {
     const curScrollRoot = scrollContainer();
@@ -81,11 +80,15 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const changeOpen = (newOpen: boolean) => {
     if (newOpen) {
       updateOptionStyle();
-      onOpen?.();
+      // 第一次超出边界变化方向时，Slide的动画方向更新时序问题
+      setTimeout(() => {
+        setInternalOpen(newOpen);
+        onOpen?.();
+      }, 100);
     } else {
       onClose?.();
+      setInternalOpen(newOpen);
     }
-    setInternalOpen(newOpen);
   };
 
   // 点击根选择器的回调
@@ -125,17 +128,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     }
   }, []);
 
-  // eslint-disable-next-line consistent-return
-  useEffect(() => {
-    if (!isMini && scrollRoot) {
-      const scrollEle = scrollRoot === document.body ? document : scrollRoot;
-      scrollEle.addEventListener('scrollend', updateOptionStyle);
-      return () => {
-        scrollEle.removeEventListener('scrollend', updateOptionStyle);
-      };
-    }
-  }, [scrollRoot]);
-
   const defaultIcon = isOpen ? (
     <CaretUpIcon className={`${prefixCls}-selector-icon`} htmlColor="#9c9ca5" />
   ) : (
@@ -159,7 +151,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             `${prefixCls}-option-container`,
             ...(className
               ?.split(/\s+/)
-              ?.map((cls) => `${prefixCls}-option-container-${cls}`) || []),
+              ?.map((cls) => `${cls}-option-container`) || []),
             `${prefixCls}-option-container-${placement}`,
             {
               [`${prefixCls}-option-container-hide`]: !isOpen,
