@@ -23,6 +23,10 @@ export type TooltipProps<
        */
       open?: boolean;
       /**
+       * 用于控制气泡浮层和目标元素偏移量
+       */
+      offsetSpacing?: number;
+      /**
        * 气泡框位置
        * @default 'top'
        */

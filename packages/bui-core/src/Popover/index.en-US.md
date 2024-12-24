@@ -20,8 +20,9 @@ import React from 'react';
 export default () => {
   return (
     <Popover
-      title={<div style={{ padding: '2px 8px' }}>This is a title</div>}
-      content={<div style={{ padding: '2px 8px' }}>This is a content</div>}
+      title="This is a title"
+      content="This is a content"
+      placement="topLeft"
     >
       <span>click显示</span>
     </Popover>
@@ -40,10 +41,7 @@ import React, { useState } from 'react';
 export default () => {
   const [open, setOpen] = useState(true);
   return (
-    <Popover
-      title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-      open={open}
-    >
+    <Popover title="This is a popover" open={open}>
       <span onClick={() => setOpen(!open)}>open控制显隐</span>
     </Popover>
   );
@@ -60,11 +58,25 @@ import React from 'react';
 
 export default () => {
   return (
-    <Popover
-      title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-      defaultOpen
-    >
+    <Popover title="This is a popover" defaultOpen>
       <span>defaultOpen默认显示</span>
+    </Popover>
+  );
+};
+```
+
+### OffsetSpacing is the interval between the floating layer and the target element
+
+OffsetSpacing can be set to control the distance from the target element
+
+```tsx
+import { Popover } from '@bifrostui/react';
+import React from 'react';
+
+export default () => {
+  return (
+    <Popover title="This is a popover" offsetSpacing={20} defaultOpen>
+      <span>offsetSpacing控制目标间隔（设置20 以便观察）</span>
     </Popover>
   );
 };
@@ -80,11 +92,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <Popover
-      title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-      defaultOpen
-      hideArrow
-    >
+    <Popover title="This is a popover" defaultOpen hideArrow>
       <span>defaultOpen默认显示</span>
     </Popover>
   );
@@ -93,7 +101,7 @@ export default () => {
 
 ### Placement Bubble Box Position
 
-Placement: Set the position of the bubble float layer. The optional values are: top, left, right, bottom, topLeft, topRight, bottomLeft, bottomRight, leftTop, leftBottom, rightTop, rightBottom
+Placement: Set the position of the bubble float layer. The optional values are: top left right bottom topLeft topRight bottomLeft bottomRight leftTop leftBottom rightTop rightBottom
 
 ```tsx
 import { Popover, Button } from '@bifrostui/react';
@@ -118,25 +126,13 @@ export default () => {
           justifyContent: 'space-between',
         }}
       >
-        <Popover
-          trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-          placement="topLeft"
-        >
+        <Popover trigger="hover" title="This is a popover" placement="topLeft">
           {packageButton(<span>topLeft</span>)}
         </Popover>
-        <Popover
-          trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-          placement="top"
-        >
+        <Popover trigger="hover" title="This is a popover" placement="top">
           {packageButton(<span>top</span>)}
         </Popover>
-        <Popover
-          trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-          placement="topRight"
-        >
+        <Popover trigger="hover" title="This is a popover" placement="topRight">
           {packageButton(<span>topRight</span>)}
         </Popover>
       </div>
@@ -148,23 +144,15 @@ export default () => {
           flexDirection: 'column',
         }}
       >
-        <Popover
-          trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-          placement="leftTop"
-        >
+        <Popover trigger="hover" title="This is a popover" placement="leftTop">
           {packageButton(<span>leftTop</span>)}
         </Popover>
-        <Popover
-          trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-          placement="left"
-        >
+        <Popover trigger="hover" title="This is a popover" placement="left">
           {packageButton(<span>left</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
+          title="This is a popover"
           placement="leftBottom"
         >
           {packageButton(<span>leftBottom</span>)}
@@ -178,23 +166,15 @@ export default () => {
           flexDirection: 'column',
         }}
       >
-        <Popover
-          trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-          placement="rightTop"
-        >
+        <Popover trigger="hover" title="This is a popover" placement="rightTop">
           {packageButton(<span>rightTop</span>)}
         </Popover>
-        <Popover
-          trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-          placement="right"
-        >
+        <Popover trigger="hover" title="This is a popover" placement="right">
           {packageButton(<span>right</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
+          title="This is a popover"
           placement="rightBottom"
         >
           {packageButton(<span>rightBottom</span>)}
@@ -211,21 +191,17 @@ export default () => {
       >
         <Popover
           trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
+          title="This is a popover"
           placement="bottomLeft"
         >
           {packageButton(<span>bottomLeft</span>)}
         </Popover>
-        <Popover
-          trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-          placement="bottom"
-        >
+        <Popover trigger="hover" title="This is a popover" placement="bottom">
           {packageButton(<span>bottom</span>)}
         </Popover>
         <Popover
           trigger="hover"
-          title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
+          title="This is a popover"
           placement="bottomRight"
         >
           {packageButton(<span>bottomRight</span>)}
@@ -246,10 +222,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <Popover
-      title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
-      trigger="hover"
-    >
+    <Popover title="This is a popover" trigger="hover">
       <span>hover触发方式</span>
     </Popover>
   );
@@ -268,7 +241,7 @@ export default () => {
   };
   return (
     <Popover
-      title={<div style={{ padding: '2px 8px' }}>This is a popover</div>}
+      title="This is a popover"
       trigger="hover"
       onOpenChange={onOpenChange}
     >
@@ -280,16 +253,17 @@ export default () => {
 
 ### API
 
-| attribute    | explain                                                                                | type                                                                                                                                                                             | Default value |
-| ------------ | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| title        | Title of Bubble Floating Layer Floating Layer Content                                  | ReactNode                                                                                                                                                                        | -             |
-| content      | Content of Bubble Floating Layer                                                       | ReactNode                                                                                                                                                                        | -             |
-| defaultOpen  | Whether to hide by default                                                             | boolean                                                                                                                                                                          | false         |
-| open         | Used for manually controlling the appearance and concealment of bubble floating layers | boolean                                                                                                                                                                          | -             |
-| hideArrow    | Display arrows or not                                                                  | boolean                                                                                                                                                                          | false         |
-| placement    | Bubble box position                                                                    | String, the enumeration value is `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` `bottom` | 'top'         |
-| trigger      | Trigger behavior                                                                       | string \|String [], the enumeration value is' click '\|'hover'                                                                                                                   | 'click'       |
-| onOpenChange | The callback method for bubble floating layer manifestation and concealment            | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                                             | -             |
+| attribute     | explain                                                                                | type                                                                                                                                                                              | Default value |
+| ------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| title         | Title of Bubble Floating Layer Floating Layer Content                                  | ReactNode                                                                                                                                                                         | -             |
+| content       | Content of Bubble Floating Layer                                                       | ReactNode                                                                                                                                                                         | -             |
+| defaultOpen   | Whether to hide by default                                                             | boolean                                                                                                                                                                           | false         |
+| open          | Used for manually controlling the appearance and concealment of bubble floating layers | boolean                                                                                                                                                                           | -             |
+| hideArrow     | Display arrows or not                                                                  | boolean                                                                                                                                                                           | false         |
+| offsetSpacing | The offset between the floating layer and the target element                           | number                                                                                                                                                                            | 0             |
+| placement     | Bubble box position                                                                    | string， The enumeration value is `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` `bottom` | 'top'         |
+| trigger       | Trigger behavior                                                                       | string \|string[]， The enumeration value is' click '\|'hover'                                                                                                                    | 'click'       |
+| onOpenChange  | The callback method for bubble floating layer manifestation and concealment            | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                                              | -             |
 
 ### Style variables
 

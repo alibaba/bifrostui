@@ -62,7 +62,7 @@ export default () => {
 使用 `tabs` 生成 Tab。
 
 ```tsx
-import { Stack, TabPanel, Tabs } from '@bifrostui/react';
+import { Stack, TabPanel, Tabs, Button } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
@@ -93,6 +93,147 @@ export default () => {
       <TabPanel value={value} index="animals">
         蚂蚁
       </TabPanel>
+    </Stack>
+  );
+};
+```
+
+### value值无效时不选中
+
+value为无效值时不选中任何Tab。
+
+```tsx
+import { Stack, Tab, TabPanel, Tabs, Button } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+export default () => {
+  const [value, setValue] = useState('2');
+  const defultList = [
+    { title: '长津湖', index: '1' },
+    { title: '战狼2', index: '2' },
+    { title: '你好，李焕英', index: '3' },
+    { title: '哪吒之魔童降世', index: '4' },
+    { title: '流浪地球', index: '5' },
+    { title: '唐人街探案3', index: '6' },
+  ];
+  const [tabList, setTabList] = useState(defultList);
+
+  const handleChange = (e, { index }) => {
+    console.log(e, `Tab Change, value index is: ${index}`);
+    setValue(index);
+  };
+
+  return (
+    <Stack>
+      <Button
+        onClick={() => {
+          setValue('');
+        }}
+      >
+        置为无效值
+      </Button>
+      <Button
+        onClick={() => {
+          if (tabList.length === 4) {
+            setTabList(defultList);
+          } else {
+            const newTabList = defultList.slice(0, 4);
+            setTabList(newTabList);
+            if (!newTabList.some((item) => item.index === value)) {
+              setValue('1');
+            }
+          }
+        }}
+      >
+        {tabList.length === 4 ? '增加' : '减少'}TabList长度
+      </Button>
+      <div style={{ width: '325px' }}>
+        <Tabs
+          style={{ marginTop: '20px', marginBottom: '12px' }}
+          value={value}
+          onChange={handleChange}
+        >
+          {tabList.map((item) => (
+            <Tab key={item.index} {...item}>
+              {item.title}
+            </Tab>
+          ))}
+        </Tabs>
+
+        {tabList.map((item) => (
+          <TabPanel key={item.index} value={value} index={item.index}>
+            {item.index}
+          </TabPanel>
+        ))}
+      </div>
+    </Stack>
+  );
+};
+```
+
+### value值无效时不选中（使用tabs）
+
+value为无效值时不选中任何Tab。
+
+```tsx
+import { Stack, Tab, TabPanel, Tabs, Button } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+export default () => {
+  const [value, setValue] = useState('2');
+  const defultList = [
+    { title: '长津湖', index: '1' },
+    { title: '战狼2', index: '2' },
+    { title: '你好，李焕英', index: '3' },
+    { title: '哪吒之魔童降世', index: '4' },
+    { title: '流浪地球', index: '5' },
+    { title: '唐人街探案3', index: '6' },
+  ];
+  const [tabList, setTabList] = useState(defultList);
+
+  const handleChange = (e, { index }) => {
+    console.log(e, `Tab Change, value index is: ${index}`);
+    setValue(index);
+  };
+
+  return (
+    <Stack>
+      <Button
+        onClick={() => {
+          setValue('');
+        }}
+      >
+        置为无效值
+      </Button>
+      <Button
+        onClick={() => {
+          if (tabList.length === 4) {
+            setTabList(defultList);
+          } else {
+            const newTabList = defultList.slice(0, 4);
+            setTabList(newTabList);
+            if (!newTabList.some((item) => item.index === value)) {
+              setValue('1');
+            }
+          }
+        }}
+      >
+        {tabList.length === 4 ? '增加' : '减少'}TabList长度
+      </Button>
+      <div style={{ width: '325px' }}>
+        <Tabs
+          style={{ marginTop: '20px', marginBottom: '12px' }}
+          tabs={tabList}
+          value={value}
+          onChange={handleChange}
+        />
+
+        {tabList.map((item) => (
+          <TabPanel key={item.index} value={value} index={item.index}>
+            {item.index}
+          </TabPanel>
+        ))}
+      </div>
     </Stack>
   );
 };
@@ -147,6 +288,8 @@ export default () => {
 ```
 
 ### 受控 tabs 组件
+
+可通过 `value` 属性控制Tabs组件的选中态。
 
 ```tsx
 import { Button, Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
@@ -239,6 +382,8 @@ export default () => {
 ```
 
 ### 超出可滑动
+
+当Tab过多时，超出可滑动。
 
 ```tsx
 import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';

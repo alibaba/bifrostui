@@ -574,12 +574,12 @@ export default () => {
 
 | Method Name   | explain           | parameter             | Return value    |
 | ------------- | ----------------- | --------------------- | --------------- |
-| Taost         | Display Tips      | ToastOptions \|string | ToastReturnType |
-| Taost.warning | Warning prompt    | ToastOptions \|string | ToastReturnType |
-| Taost.loading | Loading prompt    | ToastOptions \|string | ToastReturnType |
-| Taost.success | Successful prompt | ToastOptions \|string | ToastReturnType |
-| Taost.fail    | Failure prompt    | ToastOptions \|string | ToastReturnType |
-| Taost.clear   | Clear prompt      | -                     | -               |
+| Toast         | Display Tips      | ToastOptions \|string | ToastReturnType |
+| Toast.warning | Warning prompt    | ToastOptions \|string | ToastReturnType |
+| Toast.loading | Loading prompt    | ToastOptions \|string | ToastReturnType |
+| Toast.success | Successful prompt | ToastOptions \|string | ToastReturnType |
+| Toast.fail    | Failure prompt    | ToastOptions \|string | ToastReturnType |
+| Toast.clear   | Clear prompt      | -                     | -               |
 
 ##### ToastReturnType
 

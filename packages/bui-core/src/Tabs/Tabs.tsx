@@ -13,10 +13,10 @@ import React, {
   useState,
 } from 'react';
 import Tab from './Tab';
-import './Tabs.less';
 import { TabsProps } from './Tabs.types';
 import { TabsContextProvider } from './TabsContext';
 import bound from './utils/bound';
+import './Tabs.less';
 
 const prefixCls = 'bui-tabs';
 
@@ -40,15 +40,16 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     if (!container) return;
 
     const activeIndex =
-      !!tabs.length &&
-      tabs.findIndex((item) => item.index === (active || tabs[0]?.index));
-
+      !!tabs.length && tabs.findIndex((item) => item.index === active);
     const activeLine = activeLineRef.current;
     if (!activeLine) return;
 
     let activeTab;
     if (tabs.length) {
-      activeTab = container.childNodes[activeIndex + 1] as HTMLDivElement;
+      activeTab =
+        activeIndex > -1
+          ? (container.childNodes[activeIndex + 1] as HTMLDivElement)
+          : undefined;
     } else {
       activeTab = [...container.childNodes].find((child: any) => {
         if (isMini) {
@@ -59,22 +60,28 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         return [...child.classList].includes('bui-tab-active');
       }) as HTMLDivElement;
     }
-    if (!activeTab) return;
 
-    const activeTabLeft = activeTab.offsetLeft;
-    const activeTabWidth = activeTab.offsetWidth;
-    const containerWidth = container.offsetWidth;
-    const containerScrollWidth = container.scrollWidth;
-    const activeLineWidth = activeLine.offsetWidth;
-    const x = activeTabLeft + (activeTabWidth - activeLineWidth) / 2;
-
+    let activeTabLeft = 0;
+    let activeTabWidth = 0;
+    let containerWidth = 0;
+    let containerScrollWidth = 0;
+    let activeLineWidth = 0;
+    let x = 0;
+    if (activeTab) {
+      activeTabLeft = activeTab.offsetLeft;
+      activeTabWidth = activeTab.offsetWidth;
+      containerWidth = container.offsetWidth;
+      containerScrollWidth = container.scrollWidth;
+      activeLineWidth = activeLine.offsetWidth;
+      x = activeTabLeft + (activeTabWidth - activeLineWidth) / 2;
+    }
     setLineData({
       x,
       transitionInUse,
     });
 
     const maxScrollDistance = containerScrollWidth - containerWidth;
-    if (maxScrollDistance <= 0) return;
+    if (maxScrollDistance <= 0 || !activeTab) return;
 
     const nextScrollLeft = bound(
       activeTabLeft - (containerWidth - activeTabWidth) / 2,
@@ -88,8 +95,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   };
 
   useEffect(() => {
-    const defaultIndex = safeValue();
-    setActive(defaultIndex);
+    setActive(value);
   }, [value]);
 
   useLayoutEffect(() => {
@@ -112,26 +118,6 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   useDidMountEffect(() => {
     animate({ transitionInUse: true });
   }, [active, tabs, children]);
-
-  const safeValue = () => {
-    let defaultIndex = value;
-    const childs = React.Children.toArray(children);
-    const hasSameChild =
-      !!childs.length &&
-      childs.some(
-        (child) => React.isValidElement(child) && child?.props?.index === value,
-      );
-    if (!!tabs.length && !tabs.some((item) => item.index === value)) {
-      defaultIndex = tabs[0]?.index;
-    } else if (children && !hasSameChild) {
-      const childNode = childs[0];
-      if (React.isValidElement(childNode)) {
-        defaultIndex = childNode.props.index;
-      }
-    }
-
-    return defaultIndex;
-  };
 
   const updateMask = useMemo(
     () =>
@@ -178,8 +164,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   };
 
   const providerValue = useMemo(() => {
-    const v = safeValue();
-    return { value: v, align, triggerChange: handleClick };
+    return { value, align, triggerChange: handleClick };
   }, [value, align, children, handleClick]);
 
   return (
@@ -201,7 +186,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         <div
           ref={activeLineRef}
           className={clsx(`${prefixCls}-tabline`, {
-            'bui-tabline-invisible': isMini,
+            'bui-tabline-invisible': isMini || !lineData.x,
           })}
           style={{
             transition: lineData.transitionInUse
