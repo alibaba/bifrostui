@@ -1,5 +1,6 @@
-import { OverrideProps } from '@bifrostui/types';
 import React, { Ref } from 'react';
+import { OverrideProps } from '@bifrostui/types';
+import { CalendarProps } from '../Calendar';
 
 export type IDatePickerValue = Date | null;
 
@@ -167,7 +168,7 @@ export type DatePickerProps<
       /**
        * CalendarProps
        */
-      calendarProps?: ICalendarProps;
+      calendarProps?: CalendarProps;
     };
     defaultComponent: D;
   },

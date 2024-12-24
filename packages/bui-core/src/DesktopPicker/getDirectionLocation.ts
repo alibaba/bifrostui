@@ -16,7 +16,7 @@ const getNewDirection = ({
   containerOffset,
 }) => {
   if (!rootOffset || !tipOffset) {
-    return 'bottom';
+    return { newArrowDirection: arrowDirection || 'bottom' };
   }
   const { top: cTop, bottom: cBottom } = rootOffset;
   const { height } = tipOffset;
