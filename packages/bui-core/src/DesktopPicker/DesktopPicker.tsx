@@ -29,7 +29,7 @@ const DesktopPicker: React.FC<DesktopPickerProps> = (props) => {
   }, 100);
   // 监听滚动和resize事件
   useEffect(() => {
-    if (isMini) {
+    if (!isMini) {
       if (isOpen) {
         window.addEventListener('scroll', getContentDirection);
         window.addEventListener('resize', getContentDirection);
