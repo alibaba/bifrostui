@@ -82,7 +82,7 @@ export default () => {
 };
 ```
 
-## Initialize default values
+### Initialize default values
 
 Support initial selection value through the 'defaultValue' attribute.
 
@@ -118,7 +118,7 @@ export default () => {
 };
 ```
 
-## Uncontrolled/Uncontrolled
+### controlled/Uncontrolled
 
 Distinguish whether it is a controlled component by passing in 'value':
 Under controlled circumstances, the business retrieves the control component value through 'onChange' callback;
@@ -192,7 +192,7 @@ export default () => {
 };
 ```
 
-## Disable
+### Disable
 
 Provide the 'disabled' attribute to prohibit user operations.
 You can disable all operations by setting 'disabled' on 'Select', or disable operations on a specific option by setting 'disabled' on 'SelectOption'.
@@ -243,11 +243,53 @@ export default () => {
 };
 ```
 
-## customized
+### controlled open
 
-The following is an example of a customized Select component.
+Provide the 'open' attribute to control open status of the selector by yourself.
 
-#### customize icons
+```tsx
+import { Select, SelectOption, Stack } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+const options = [
+  {
+    label: 'option 1',
+    value: 1,
+  },
+  {
+    label: 'option 2',
+    value: 2,
+  },
+  {
+    label: 'option 3',
+    value: 3,
+  },
+];
+
+export default () => {
+  const [open, setOpen] = useState<boolean>(true);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <Stack alignItems="stretch" style={{ background: '#eee', padding: '50px' }}>
+      <Select open={open} onOpen={handleOpen} onClose={handleClose}>
+        {options.map((item, index) => (
+          <SelectOption key={index} value={item.value} label={item.label} />
+        ))}
+      </Select>
+    </Stack>
+  );
+};
+```
+
+### customize icons
 
 Provide the ability to customize icons, which can be customized through the 'icon' attribute.
 
@@ -326,7 +368,7 @@ export default () => {
 };
 ```
 
-### Customized selector displays results
+### customize selector displays results
 
 Label 'supports the' ReactNode 'type. When you want to customize the display content of the selector' Select ', you can use the' SelectOption 'component properties:' label 'and' children ', and use them together to achieve customization.
 
@@ -375,7 +417,7 @@ export default () => {
 };
 ```
 
-## event
+### event
 
 The Select component not only provides basic 'onChange' callbacks, but also event callbacks for options such as' unfold 'and' collapse '.
 
@@ -413,6 +455,104 @@ export default () => {
         }}
         placeholder="下拉选择"
       >
+        {options.map((item, index) => (
+          <SelectOption key={index} value={item.value} label={item.label} />
+        ))}
+      </Select>
+    </Stack>
+  );
+};
+```
+
+### customize scroll container
+
+Provide the ability to customize scroll container, which can be customized through the 'scrollContainer' attribute. Default value is '() => document.body'.
+The select option container's display direction will be automatically calculated according to the scroll container.
+Only support H5.
+
+```tsx
+import { Select, SelectOption, Stack } from '@bifrostui/react';
+import React, { useRef } from 'react';
+
+const options = [
+  {
+    label: 'option 1',
+    value: 1,
+  },
+  {
+    label: 'option 2',
+    value: 2,
+  },
+  {
+    label: 'option 3',
+    value: 3,
+  },
+];
+
+export default () => {
+  const ref = useRef();
+
+  return (
+    <Stack
+      ref={ref}
+      alignItems="stretch"
+      style={{
+        display: 'block',
+        height: '300px',
+        padding: '50px',
+        background: '#eee',
+        overflowY: 'scroll',
+      }}
+    >
+      <div style={{ height: '150px' }}></div>
+      <Select scrollContainer={() => ref.current}>
+        {options.map((item, index) => (
+          <SelectOption key={index} value={item.value} label={item.label} />
+        ))}
+      </Select>
+      <div style={{ height: '500px' }}></div>
+    </Stack>
+  );
+};
+```
+
+### override style with `className` attribute
+
+Provide the ability to override style through `className` attribute.
+className will be mounted on the root component, and mouted on the dropdown container as `className-option-container`
+
+```tsx
+import { Select, SelectOption, Stack } from '@bifrostui/react';
+import React from 'react';
+
+const options = [
+  {
+    label: 'option 1',
+    value: 1,
+  },
+  {
+    label: 'option 2',
+    value: 2,
+  },
+  {
+    label: 'option 3',
+    value: 3,
+  },
+];
+
+/**
+  .custom-classname {
+    color: red;
+  }
+  .custom-classname-option-container {
+    color: blue;
+  }
+*/
+
+export default () => {
+  return (
+    <Stack alignItems="stretch" style={{ background: '#eee', padding: '50px' }}>
+      <Select className="custom-classname">
         {options.map((item, index) => (
           <SelectOption key={index} value={item.value} label={item.label} />
         ))}

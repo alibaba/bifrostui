@@ -36,13 +36,15 @@ export default () => {
 ##### 圆形徽章
 
 ```tsx
-import { Badge, Stack } from '@bifrostui/react';
+import { Avatar, Badge, Stack } from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
   return (
     <Stack>
-      <Badge content="1" type="standard" />
+      <Badge content="1" type="standard">
+        <Avatar src="//perico.damai.cn/userheadphotos/927551/185510204.jpg" />
+      </Badge>
     </Stack>
   );
 };

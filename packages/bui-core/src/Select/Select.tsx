@@ -1,15 +1,24 @@
 import { CaretDownIcon, CaretUpIcon } from '@bifrostui/icons';
-import { useValue } from '@bifrostui/utils';
+import {
+  getStylesAndLocation,
+  isMini,
+  throttle,
+  useForkRef,
+  useUniqueId,
+  useValue,
+} from '@bifrostui/utils';
 import clsx from 'clsx';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Fade from '../Fade';
 import Slide from '../Slide';
 import { SelectProps } from './Select.types';
 import BuiSelectContext from './selectContext';
 import Backdrop from '../Backdrop';
+import Portal from '../Portal';
 import './Select.less';
 
 const prefixCls = 'bui-select';
+const defaultPlacement = 'bottom';
 
 const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const {
@@ -25,6 +34,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     placeholder,
     icon,
     open,
+    scrollContainer,
     onChange,
     onClose,
     onOpen,
@@ -38,24 +48,53 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     onChange,
   });
 
-  // 是否展开下拉框
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [internalOpen, setInternalOpen] = useState<boolean>(false);
   // 根选择器展示的内容
   const [renderValue, setRenderValue] = useState<string>('');
+  const [placement, setPlacement] = useState<string>(defaultPlacement);
+  const [optionStyle, setOptionStyle] = useState({});
+  const isOpen = open !== undefined ? open : internalOpen;
+  const locatorRef = useRef(null);
+  const rootRef = useForkRef(ref, locatorRef);
+  const ttId = useUniqueId();
+  const dataId = `${prefixCls}-tt-${ttId}`;
 
-  const defaultIcon = isOpen ? (
-    <CaretUpIcon className={`${prefixCls}-selector-icon`} htmlColor="#9c9ca5" />
-  ) : (
-    <CaretDownIcon
-      className={`${prefixCls}-selector-icon`}
-      htmlColor="#9c9ca5"
-    />
-  );
+  const updateOptionStyle = throttle(() => {
+    const curScrollRoot = scrollContainer();
+    if (!isMini && curScrollRoot) {
+      const result = getStylesAndLocation({
+        scrollRoot: curScrollRoot,
+        childrenRef: locatorRef,
+        arrowDirection: defaultPlacement,
+        arrowLocation: 'none',
+        selector: `[data-id="${dataId}"]`,
+        offsetSpacing: 0,
+      });
+      if (!result) return;
+      const { styles, childrenStyle, newArrowDirection } = result;
+      setPlacement(newArrowDirection);
+      setOptionStyle({ ...styles, width: childrenStyle.width });
+    }
+  }, 100);
+
+  const changeOpen = (newOpen: boolean) => {
+    if (newOpen) {
+      updateOptionStyle();
+      // 第一次超出边界变化方向时，Slide的动画方向更新时序问题
+      setTimeout(() => {
+        setInternalOpen(newOpen);
+        onOpen?.();
+      }, 100);
+    } else {
+      onClose?.();
+      setInternalOpen(newOpen);
+    }
+  };
 
   // 点击根选择器的回调
   const handleSelectClick = (e) => {
     if (disabled) return;
-    setIsOpen(!isOpen);
+    changeOpen(!isOpen);
     if (typeof onClick === 'function') onClick(e);
   };
 
@@ -67,13 +106,11 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     } else {
       onChange?.(e, { value: optionValue });
     }
-    setIsOpen(false);
+    changeOpen(false);
   };
 
-  const handleBackdropTouchStart = () => {
-    if (isOpen) {
-      setIsOpen(false);
-    }
+  const handleBackdropClick = () => {
+    changeOpen(false);
   };
 
   const selectContext = useMemo(
@@ -81,20 +118,62 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     [selectValue, onChange, setRenderValue],
   );
 
-  // 监听外部open的改变
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
-    if (open !== undefined) setIsOpen(open);
-  }, [open]);
-
-  // 折叠/展开时的处理
-  useEffect(() => {
-    // 非function情况，直接调用会报错
-    if (isOpen) {
-      onOpen?.();
-    } else {
-      onClose?.();
+    if (!isMini) {
+      window.addEventListener('resize', updateOptionStyle);
+      return () => {
+        window.removeEventListener('resize', updateOptionStyle);
+      };
     }
-  }, [isOpen]);
+  }, []);
+
+  const defaultIcon = isOpen ? (
+    <CaretUpIcon className={`${prefixCls}-selector-icon`} htmlColor="#9c9ca5" />
+  ) : (
+    <CaretDownIcon
+      className={`${prefixCls}-selector-icon`}
+      htmlColor="#9c9ca5"
+    />
+  );
+
+  const renderOptions = () => {
+    return (
+      <Fade
+        in={isOpen}
+        timeout={{
+          enter: 150,
+          exit: 150,
+        }}
+      >
+        <div
+          className={clsx(
+            `${prefixCls}-option-container`,
+            ...(className
+              ?.split(/\s+/)
+              ?.map((cls) => `${cls}-option-container`) || []),
+            `${prefixCls}-option-container-${placement}`,
+            {
+              [`${prefixCls}-option-container-hide`]: !isOpen,
+            },
+          )}
+          data-id={dataId}
+          style={optionStyle}
+        >
+          <Slide
+            in={isOpen}
+            direction={placement === 'bottom' ? 'down' : 'up'}
+            timeout={{
+              enter: 150,
+              exit: 150,
+            }}
+          >
+            <div className={clsx(`${prefixCls}-option-main`)}>{children}</div>
+          </Slide>
+        </div>
+      </Fade>
+    );
+  };
 
   return (
     <BuiSelectContext.Provider value={selectContext}>
@@ -103,7 +182,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           [`${prefixCls}-disabled`]: disabled,
           [`${prefixCls}-active`]: isOpen,
         })}
-        ref={ref}
+        ref={rootRef}
         {...others}
         onClick={handleSelectClick}
       >
@@ -123,33 +202,19 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           />
           {icon || defaultIcon}
         </div>
-        {/* 选项下拉框 */}
-        <Fade
-          in={isOpen}
-          timeout={{
-            enter: 150,
-            exit: 150,
-          }}
-        >
-          <div className={clsx(`${prefixCls}-option-container`)}>
-            <Slide
-              in={isOpen}
-              timeout={{
-                enter: 150,
-                exit: 150,
-              }}
-            >
-              <div className={clsx(`${prefixCls}-option-main`)}>{children}</div>
-            </Slide>
-          </div>
-        </Fade>
+        {isMini && renderOptions()}
       </div>
+      {!isMini && (
+        <Portal onRootElementMouted={updateOptionStyle}>
+          {renderOptions()}
+        </Portal>
+      )}
       <Backdrop
         open={isOpen}
         invisible
-        // onTouchStart 解决需滑动两次透明蒙层才会消失
-        onTouchStart={handleBackdropTouchStart}
-        onClick={handleBackdropTouchStart}
+        // onTouchStart 解决滑动后仍需点击关闭蒙层，才能点击其它区域的问题
+        onTouchStart={handleBackdropClick}
+        onClick={handleBackdropClick}
         {...BackdropProps}
         className={clsx(`${prefixCls}-backdrop`, {
           [BackdropProps?.className]: BackdropProps?.className,
@@ -162,6 +227,9 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
 Select.displayName = 'BuiSelect';
 Select.defaultProps = {
   defaultValue: '',
+  scrollContainer: () => {
+    return isMini ? null : document.body;
+  },
 };
 
 export default Select;

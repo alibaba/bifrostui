@@ -2,6 +2,7 @@ export { default as debounce } from './debounce';
 export {
   getStylesAndLocation,
   triggerEventTransform,
+  parsePlacement,
 } from './directionLocationUtil';
 export { default as convertHexToRGBA } from './hex2rgba';
 export {

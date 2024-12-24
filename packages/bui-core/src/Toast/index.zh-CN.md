@@ -272,7 +272,7 @@ export default () => {
 
 ### 同时存在多个Toast
 
-使用`allowMultiple`可允许页面中同时存在多个Taost提示，默认每次只展示一个Toast。
+使用`allowMultiple`可允许页面中同时存在多个Toast提示，默认每次只展示一个Toast。
 
 ```tsx
 import {
@@ -574,12 +574,12 @@ export default () => {
 
 | 方法名        | 说明     | 参数                   | 返回值          |
 | ------------- | -------- | ---------------------- | --------------- |
-| Taost         | 展示提示 | ToastOptions \| string | ToastReturnType |
-| Taost.warning | 警告提示 | ToastOptions \| string | ToastReturnType |
-| Taost.loading | 加载提示 | ToastOptions \| string | ToastReturnType |
-| Taost.success | 成功提示 | ToastOptions \| string | ToastReturnType |
-| Taost.fail    | 失败提示 | ToastOptions \| string | ToastReturnType |
-| Taost.clear   | 清空提示 | -                      | -               |
+| Toast         | 展示提示 | ToastOptions \| string | ToastReturnType |
+| Toast.warning | 警告提示 | ToastOptions \| string | ToastReturnType |
+| Toast.loading | 加载提示 | ToastOptions \| string | ToastReturnType |
+| Toast.success | 成功提示 | ToastOptions \| string | ToastReturnType |
+| Toast.fail    | 失败提示 | ToastOptions \| string | ToastReturnType |
+| Toast.clear   | 清空提示 | -                      | -               |
 
 ##### ToastReturnType
 
