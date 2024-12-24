@@ -8,12 +8,15 @@ export type DesktopPickerProps<
   {
     props: P & {
       parentRef?: RefObject<HTMLDivElement>;
+      containerRef?: RefObject<HTMLDivElement>;
       /**
        * 是否打开
        */
       isOpen: boolean;
       children: ReactElement<any, string | JSXElementConstructor<any>>;
       onClose: (data: boolean) => void;
+      backdrop?: boolean;
+      defaultDirection?: 'top' | 'bottom';
     };
     defaultComponent: D;
   },
