@@ -1,6 +1,7 @@
 export { default as debounce } from './debounce';
 export {
   getStylesAndLocation,
+  getNewDirectionLocation,
   triggerEventTransform,
   parsePlacement,
 } from './directionLocationUtil';
