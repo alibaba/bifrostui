@@ -11,31 +11,29 @@ DesktopPicker 组件，常用于浮层的显隐。
 
 ### 基础用法
 
-默认 `isOpen` 应传入 `true`，默认打开该浮层 。
+默认 `open` 应传入 `true`，默认打开该浮层 。
 父元素必须使用 position: relative
 
 ```tsx
 import { DesktopPicker, Stack, Button } from '@bifrostui/react';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 export default () => {
-  const rootRef = useRef(null);
   const [open, setOpen] = useState(false);
   return (
     <Stack>
       <div style={{ width: '320px' }}>
-        <div style={{ position: 'relative' }} ref={rootRef}>
-          <Button onClick={() => setOpen(!open)}>demo</Button>
-          <DesktopPicker
-            isOpen={open}
-            parentRef={rootRef}
-            onClose={() => setOpen(false)}
-          >
+        <DesktopPicker
+          open={open}
+          content={
             <div style={{ border: '1px solid #ccc', height: '100px' }}>
               浮层内容
             </div>
-          </DesktopPicker>
-        </div>
+          }
+          onClose={() => setOpen(false)}
+        >
+          <Button onClick={() => setOpen(!open)}>demo</Button>
+        </DesktopPicker>
       </div>
     </Stack>
   );
@@ -52,7 +50,6 @@ import { DesktopPicker, Stack, Button } from '@bifrostui/react';
 import React, { useRef, useState } from 'react';
 
 export default () => {
-  const rootRef = useRef(null);
   const containerRef = useRef(null);
   const [open, setOpen] = useState(false);
   return (
@@ -69,23 +66,18 @@ export default () => {
         <div style={{ height: '200px', border: '1px solid #ccc' }}>
           上半部分
         </div>
-        <div
-          style={{ position: 'relative', border: '1px solid #ccc' }}
-          ref={rootRef}
-        >
-          <Button onClick={() => setOpen(!open)}>demo</Button>
-          <DesktopPicker
-            isOpen={open}
-            containerRef={containerRef}
-            parentRef={rootRef}
-            backdrop={false}
-            onClose={() => setOpen(false)}
-          >
+        <DesktopPicker
+          open={open}
+          container={() => containerRef.current}
+          content={
             <div style={{ border: '1px solid #ccc', height: '100px' }}>
               浮层内容
             </div>
-          </DesktopPicker>
-        </div>
+          }
+          onClose={() => setOpen(false)}
+        >
+          <Button onClick={() => setOpen(!open)}>demo</Button>
+        </DesktopPicker>
         <div style={{ height: '200px', border: '1px solid #ccc' }}>
           下半部分
         </div>
@@ -98,10 +90,9 @@ export default () => {
 ### API
 
 | 属性             | 说明           | 类型                    | 默认值   |
-| ---------------- | -------------- | ----------------------- | -------- |
-| isOpen           | 打开关闭该浮层 | boolean                 | false    |
-| backdrop         | 背景遮罩       | boolean                 | true     |
+| ---------------- | -------------- | ----------------------- | -------- | ---- |
+| open             | 打开关闭该浮层 | boolean                 | false    |
 | defaultDirection | 默认方向       | 'top' \| 'bottom'       | 'bottom' |
-| containerRef     | 容器元素       | HTMLElement             | 视觉窗口 |
-| parentRef        | 父级元素       | HTMLElement             | -        |
+| container        | 容器元素       | HTMLElement             | null     | body |
 | onClose          | 关闭回调       | (data: boolean) => void | -        |
+| content          | 浮层内容       | React.ReactNode         | -        |

@@ -2,16 +2,16 @@ import React, { Ref } from 'react';
 import { OverrideProps } from '@bifrostui/types';
 import { CalendarProps } from '../Calendar';
 
-export type IDatePickerValue = Date | null;
+export type IDateTimePickerValue = Date | null;
 
-export interface IDatePickerInstance {
+export interface IDateTimePickerInstance {
   /** 日期对象 */
   day: Date;
   /** 是否禁用 */
   disabled: boolean;
 }
 
-export interface IDatePickerCustomIconProps {
+export interface IDateTimePickerCustomIconProps {
   /**
    * 是否是最小时间
    */
@@ -26,7 +26,7 @@ export interface IDesktopPickerProps {
   orientation?: 'bottom' | 'top';
 }
 
-export interface IDatePickerCalendarProps {
+export interface IDateTimePickerCalendarProps {
   /**
    * 是否隐藏当前月之外的日期，默认为false
    */
@@ -40,14 +40,14 @@ export interface IDatePickerCalendarProps {
   /**
    * 自定义日期单元格的内容
    */
-  dateRender?: (currentDate: IDatePickerInstance) => React.ReactNode;
+  dateRender?: (currentDate: IDateTimePickerInstance) => React.ReactNode;
   /**
    * 自定义周单元格的内容
    */
   weekRender?: (week: string) => React.ReactNode;
 }
 
-export type DatePickerProps<
+export type DateTimePickerProps<
   D extends React.ElementType = 'div',
   P = {},
 > = OverrideProps<
@@ -64,11 +64,11 @@ export type DatePickerProps<
       /**
        * 默认选中的值，当组件非受控时使用
        */
-      defaultValue?: IDatePickerValue;
+      defaultValue?: IDateTimePickerValue;
       /**
        * 选中的值，当组件受控时使用
        */
-      value?: IDatePickerValue;
+      value?: IDateTimePickerValue;
       /**
        * 输入框占位内容
        */
@@ -106,13 +106,13 @@ export type DatePickerProps<
        * 头部操作栏左边图标
        */
       headerBarLeftIcon?: (
-        options: IDatePickerCustomIconProps,
+        options: IDateTimePickerCustomIconProps,
       ) => React.ReactNode;
       /**
        * 头部操作栏右边图标
        */
       headerBarRightIcon?: (
-        options: IDatePickerCustomIconProps,
+        options: IDateTimePickerCustomIconProps,
       ) => React.ReactNode;
       /**
        * 是否禁用日期选择器
@@ -125,17 +125,17 @@ export type DatePickerProps<
       /**
        * 自定义月份单元格的内容
        */
-      monthRender?: (currentDate: IDatePickerInstance) => React.ReactNode;
+      monthRender?: (currentDate: IDateTimePickerInstance) => React.ReactNode;
       /**
        * 自定义年份单元格的内容
        */
-      yearRender?: (currentDate: IDatePickerInstance) => React.ReactNode;
+      yearRender?: (currentDate: IDateTimePickerInstance) => React.ReactNode;
       /**
        * 日期发生变化的回调
        */
       onChange?: (
         e: React.SyntheticEvent,
-        data: { value: IDatePickerValue },
+        data: { value: IDateTimePickerValue },
       ) => void;
       /**
        * 选择日期后是否立刻关闭

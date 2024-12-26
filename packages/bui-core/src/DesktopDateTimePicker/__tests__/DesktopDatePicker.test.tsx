@@ -1,15 +1,15 @@
 import dayjs from 'dayjs';
 import React, { act } from 'react';
 import { fireEvent, isConformant, render, userEvent } from 'testing';
-import { DesktopDatePicker } from '..';
+import { DesktopDateTimePicker } from '..';
 
-describe('DesktopDatePicker', () => {
+describe('DesktopDateTimePicker', () => {
   const rootClass = 'bui-date-picker';
 
   isConformant({
     classNames: rootClass,
     displayName: 'BUIDatePicker',
-    Component: DesktopDatePicker,
+    Component: DesktopDateTimePicker,
     requiredProps: {
       value: dayjs(),
       minDate: dayjs('20230401').toDate(),
@@ -28,7 +28,7 @@ describe('DesktopDatePicker', () => {
       return dayjs(res.value).format('YYYYMMDD');
     });
     const { container, getAllByText } = render(
-      <DesktopDatePicker
+      <DesktopDateTimePicker
         value={dayjs('20230401').toDate()}
         minDate={dayjs('20200401').toDate()}
         maxDate={dayjs('20230429').toDate()}
@@ -79,7 +79,7 @@ describe('DesktopDatePicker', () => {
 
   it('should 2024 year', async () => {
     const { container, getAllByText } = render(
-      <DesktopDatePicker
+      <DesktopDateTimePicker
         picker="year"
         format="YYYY"
         defaultValue={dayjs('20230401').toDate()}
@@ -101,7 +101,7 @@ describe('DesktopDatePicker', () => {
 
   it('should 2024/06', async () => {
     const { container, getAllByText } = render(
-      <DesktopDatePicker
+      <DesktopDateTimePicker
         picker="month"
         format="YYYY/MM"
         defaultValue={dayjs('20230401').toDate()}
@@ -126,7 +126,7 @@ describe('DesktopDatePicker', () => {
 
   it('should not fill last or next month', async () => {
     const { container, getAllByText } = render(
-      <DesktopDatePicker
+      <DesktopDateTimePicker
         value={dayjs('20230401').toDate()}
         minDate={dayjs('20200401').toDate()}
         maxDate={dayjs('20230529').toDate()}
@@ -151,7 +151,7 @@ describe('DesktopDatePicker', () => {
 
   it('should render disabled year by `disabledDate` property', async () => {
     const { container, getAllByText } = render(
-      <DesktopDatePicker
+      <DesktopDateTimePicker
         picker="year"
         format="YYYY"
         defaultValue={dayjs('20230401').toDate()}
@@ -177,7 +177,7 @@ describe('DesktopDatePicker', () => {
 
   it('should render disabled date by `disabledDate` property', async () => {
     const { container, getAllByText } = render(
-      <DesktopDatePicker
+      <DesktopDateTimePicker
         value={dayjs('20230401').toDate()}
         minDate={dayjs('20200401').toDate()}
         maxDate={dayjs('20230529').toDate()}
@@ -209,7 +209,7 @@ describe('DesktopDatePicker', () => {
 
   it('should render high light today date', async () => {
     const { container, getAllByText } = render(
-      <DesktopDatePicker
+      <DesktopDateTimePicker
         value={dayjs().toDate()}
         minDate={dayjs().startOf('month').toDate()}
         maxDate={dayjs().endOf('month').toDate()}
@@ -233,7 +233,7 @@ describe('DesktopDatePicker', () => {
 
   it('should render high light today date', async () => {
     const { container, getAllByText } = render(
-      <DesktopDatePicker
+      <DesktopDateTimePicker
         minDate={dayjs().startOf('month').toDate()}
         maxDate={dayjs().endOf('month').toDate()}
         value={dayjs().toDate()}
@@ -269,7 +269,7 @@ describe('DesktopDatePicker', () => {
       </span>
     ));
     const { container, getAllByText } = render(
-      <DesktopDatePicker
+      <DesktopDateTimePicker
         value={dayjs('20230401').toDate()}
         minDate={dayjs('20230401').toDate()}
         maxDate={dayjs('20230429').toDate()}
@@ -294,7 +294,7 @@ describe('DesktopDatePicker', () => {
 
   it('should be called when change prev month', async () => {
     const { container, getAllByText } = render(
-      <DesktopDatePicker
+      <DesktopDateTimePicker
         defaultValue={dayjs('20230602').toDate()}
         minDate={dayjs('20230401').toDate()}
         maxDate={dayjs('20231001').toDate()}
@@ -317,7 +317,7 @@ describe('DesktopDatePicker', () => {
 
   it('should be called when change next month', async () => {
     const { container, getAllByText } = render(
-      <DesktopDatePicker
+      <DesktopDateTimePicker
         defaultValue={dayjs('20230602').toDate()}
         minDate={dayjs('20230401').toDate()}
         maxDate={dayjs('20231001').toDate()}

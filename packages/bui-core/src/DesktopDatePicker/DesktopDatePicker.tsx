@@ -13,7 +13,8 @@ const prefixCls = 'bui-date-picker';
 const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
   (props, ref) => {
     const {
-      className,
+      style,
+      classNames,
       inputRef,
       inputProps,
       value,
@@ -171,46 +172,46 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       return 'YYYY/MM/DD';
     }, [calendarValue, inputStr, renderInputStr, format]);
     return (
-      <div
-        className={clsx(prefixCls, className, {
-          [`${prefixCls}-disabled`]: disabled,
-          [`${prefixCls}-active`]: isOpen,
-        })}
-        ref={nodeRef}
+      <DesktopPicker
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        content={desktopDatePicker()}
+        {...desktopPickerProps}
       >
-        <div className={`${prefixCls}-container`}>
-          <input
-            aria-invalid
-            autoComplete="off"
-            placeholder={showPlaceholder}
-            type="text"
-            inputMode="text"
-            ref={inputRef}
-            className={clsx(`${prefixCls}-content`, {
-              [inputProps?.className]: inputProps?.className,
-            })}
-            onBlur={() => setRenderInputStr(false)}
-            {...inputProps}
-            onClick={handleDatePickerInputClick}
-            onChange={onInputChange}
-            value={renderValue}
-          />
-          <div
-            onClick={handleDatePickerIconClick}
-            className={`${prefixCls}-icon`}
-          >
-            {icon || <DateOutlinedIcon htmlColor="#9c9ca5" />}
+        <div
+          className={clsx(prefixCls, classNames, {
+            [`${prefixCls}-disabled`]: disabled,
+            [`${prefixCls}-active`]: isOpen,
+          })}
+          style={style}
+          ref={nodeRef}
+        >
+          <div className={`${prefixCls}-container`}>
+            <input
+              aria-invalid
+              autoComplete="off"
+              placeholder={showPlaceholder}
+              type="text"
+              inputMode="text"
+              ref={inputRef}
+              className={clsx(`${prefixCls}-content`, {
+                [inputProps?.className]: inputProps?.className,
+              })}
+              onBlur={() => setRenderInputStr(false)}
+              {...inputProps}
+              onClick={handleDatePickerInputClick}
+              onChange={onInputChange}
+              value={renderValue}
+            />
+            <div
+              onClick={handleDatePickerIconClick}
+              className={`${prefixCls}-icon`}
+            >
+              {icon || <DateOutlinedIcon htmlColor="#9c9ca5" />}
+            </div>
           </div>
         </div>
-        <DesktopPicker
-          isOpen={isOpen}
-          parentRef={rootRef}
-          onClose={() => setIsOpen(false)}
-          {...desktopPickerProps}
-        >
-          {desktopDatePicker()}
-        </DesktopPicker>
-      </div>
+      </DesktopPicker>
     );
   },
 );
