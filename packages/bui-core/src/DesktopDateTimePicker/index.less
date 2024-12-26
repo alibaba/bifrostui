@@ -1,8 +1,8 @@
 @import '@bifrostui/styles/mixins/index.less';
-@class-prefix-date-picker: ~'bui-date-picker';
+@class-prefix-datetime-picker: ~'bui-datetime-picker';
 @transition-duration: 0.3s;
 
-.@{class-prefix-date-picker} {
+.@{class-prefix-datetime-picker} {
   position: relative;
   cursor: pointer;
   height: var(--bui-input-height, 32px);
@@ -153,7 +153,7 @@
   }
 }
 
-.bui-date-picker.bui-date-picker-disabled {
+.@{class-prefix-datetime-picker}.@{class-prefix-datetime-picker}-disabled {
   pointer-events: none;
   box-shadow: none;
   background-color: rgba(188, 188, 188, 0.2);
