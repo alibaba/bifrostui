@@ -1,7 +1,7 @@
 import { DateOutlinedIcon } from '@bifrostui/icons';
 import dayjs from 'dayjs';
 import clsx from 'clsx';
-import React, { useMemo, useState, useRef } from 'react';
+import React, { useMemo, useState, useRef, useEffect } from 'react';
 import { useValue, useForkRef, useDidMountEffect } from '@bifrostui/utils';
 import { DatePickerProps } from './DesktopDatePicker.types';
 import './index.less';
@@ -171,6 +171,10 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       }
       return 'YYYY/MM/DD';
     }, [calendarValue, inputStr, renderInputStr, format]);
+
+    useEffect(() => {
+      setRenderInputStr(false);
+    }, [calendarValue]);
     return (
       <DesktopPicker
         open={isOpen}

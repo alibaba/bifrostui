@@ -391,7 +391,7 @@ export default () => {
 
 ### 自定义年份单元格的内容
 
-启用 `yearRender` 可在选择日时隐藏当前月之外的日期。
+启用 `monthRender` 可自定义年份单元格的内容。
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
