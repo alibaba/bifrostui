@@ -39,11 +39,11 @@ export default () => {
 
 ### 基础用法
 
+在容器根据滚动位置进行自动定位。
+
 ```tsx
 import { DesktopPicker, Stack, Button } from '@bifrostui/react';
 import React, { useRef, useState } from 'react';
-// getRootElement存在bug，复现步骤，先下滑到最底部，打开浮层，然后关闭浮层，将鼠标放在刚才浮层出现的位置滚动容器，会滚动整个页面
-// 问题是收起只是将opacity设置为0
 export default () => {
   const containerRef = useRef(null);
   const [open, setOpen] = useState(false);
@@ -81,9 +81,9 @@ export default () => {
 ### API
 
 | 属性             | 说明           | 类型                    | 默认值   |
-| ---------------- | -------------- | ----------------------- | -------- | ---- |
+| ---------------- | -------------- | ----------------------- | -------- | ------ |
 | open             | 打开关闭该浮层 | boolean                 | false    |
 | defaultDirection | 默认方向       | 'top' \| 'bottom'       | 'bottom' |
-| container        | 容器元素       | HTMLElement             | null     | body |
+| container        | 容器元素       | HTMLElement             | null     | window |
 | onClose          | 关闭回调       | (data: boolean) => void | -        |
 | content          | 浮层内容       | React.ReactNode         | -        |
