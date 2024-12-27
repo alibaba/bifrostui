@@ -1,7 +1,8 @@
 @import '@bifrostui/styles/mixins/index.less';
 @class-prefix-desktop-picker: ~'bui-desktop-picker';
-@transition-duration: 0.3s;
+@transition-duration: 0.3s; // TODO 没用到
 
+// TODO 使用者大概率需要微调的变量抽成css变量，方便自定义，如padding: 2px;
 .@{class-prefix-desktop-picker} {
   position: relative;
 
@@ -10,6 +11,7 @@
     box-sizing: border-box;
     left: 0;
     width: 100%;
+    // TODO  --bui-z-index-dropdown语意场景不对
     z-index: var(--bui-z-index-dropdown);
     background-color: var(--bui-color-bg-view);
     padding: 2px;
@@ -18,11 +20,13 @@
 
   &-container-top {
     bottom: 100%;
+    // TODO 有全局距离变量
     margin-bottom: 6px;
   }
 
   &-container-bottom {
     top: 100%;
+    // TODO 有全局距离变量
     margin-top: 6px;
   }
 }
