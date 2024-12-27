@@ -9,12 +9,9 @@ DesktopPicker 组件，常用于浮层的显隐。
 
 ## 代码演示
 
-<!-- TODO 文档过于潦草，需优化 -->
-
 ### 基础用法
 
 默认 `open` 应传入 `true`，默认打开该浮层 。
-父元素必须使用 position: relative
 
 ```tsx
 import { DesktopPicker, Stack, Button } from '@bifrostui/react';
@@ -27,14 +24,12 @@ export default () => {
       <div style={{ width: '320px' }}>
         <DesktopPicker
           open={open}
-          content={
-            <div style={{ border: '1px solid #ccc', height: '100px' }}>
-              浮层内容
-            </div>
-          }
+          content={<div style={{ height: '100px' }}>浮层内容</div>}
           onClose={() => setOpen(false)}
         >
-          <Button onClick={() => setOpen(!open)}>demo</Button>
+          <Button style={{ width: '100px' }} onClick={() => setOpen(!open)}>
+            demo
+          </Button>
         </DesktopPicker>
       </div>
     </Stack>
@@ -44,13 +39,11 @@ export default () => {
 
 ### 基础用法
 
-使用containerRef传入容器元素，可在容器内滚动，需要关闭遮罩层 `backdrop`。
-父元素必须使用 position: relative
-
 ```tsx
 import { DesktopPicker, Stack, Button } from '@bifrostui/react';
 import React, { useRef, useState } from 'react';
-
+// getRootElement存在bug，复现步骤，先下滑到最底部，打开浮层，然后关闭浮层，将鼠标放在刚才浮层出现的位置滚动容器，会滚动整个页面
+// 问题是收起只是将opacity设置为0
 export default () => {
   const containerRef = useRef(null);
   const [open, setOpen] = useState(false);
@@ -61,28 +54,24 @@ export default () => {
         style={{
           width: '320px',
           height: '300px',
-          border: '1px solid #ccc',
           overflow: 'auto',
+          borderRadius: 3,
+          padding: '3px 0',
+          boxShadow: '0 0 0 2px #f4f5f6',
         }}
       >
-        <div style={{ height: '200px', border: '1px solid #ccc' }}>
-          上半部分
-        </div>
+        <div style={{ height: '200px' }}>上半部分</div>
         <DesktopPicker
           open={open}
           container={() => containerRef.current}
-          content={
-            <div style={{ border: '1px solid #ccc', height: '100px' }}>
-              浮层内容
-            </div>
-          }
+          content={<div style={{ height: '100px' }}>浮层内容</div>}
           onClose={() => setOpen(false)}
         >
-          <Button onClick={() => setOpen(!open)}>demo</Button>
+          <Button style={{ width: '320px' }} onClick={() => setOpen(!open)}>
+            demo
+          </Button>
         </DesktopPicker>
-        <div style={{ height: '200px', border: '1px solid #ccc' }}>
-          下半部分
-        </div>
+        <div style={{ padding: '3px 0', height: '200px' }}>下半部分</div>
       </div>
     </Stack>
   );
