@@ -6,6 +6,7 @@ import {
   throttle,
   useForkRef,
   useUniqueId,
+  getRootElement,
 } from '@bifrostui/utils';
 import Fade from '../Fade';
 import Slide from '../Slide';
@@ -14,21 +15,25 @@ import Backdrop from '../Backdrop';
 import Portal from '../Portal';
 import './index.less';
 
+// TODO 放到utils库
 function getContainer(container) {
   return typeof container === 'function' ? container() : container;
 }
 
 const prefixCls = 'bui-desktop-picker';
 
+// TODO 需要export?
 export const directionMap = {
   top: 'up',
   bottom: 'down',
 };
 
+// TODO 下拉框应与锚定元素等宽，参考Select optionStyle
 const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
   (props, ref) => {
+    // TODO others 未透传
     const {
-      classNames,
+      classNames, // TODO 删除
       open,
       container,
       children,
@@ -45,6 +50,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
     const [contentPosition, setContentPosition] = useState<'bottom' | 'top'>(
       'bottom',
     );
+
     /**
      * 获取内容方向
      */
@@ -59,28 +65,28 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
         offsetSpacing: 0,
       });
       if (!result) return;
+
       const { newArrowDirection } = result;
       setContentPosition(newArrowDirection);
     }, 100);
+
     // 监听滚动和resize事件
+    // TODO 删除eslint注释
     // eslint-disable-next-line consistent-return
     useEffect(() => {
       if (!isMini && open) {
         getContentDirection();
-        const containerDom = getContainer(container);
-        if (containerDom) {
-          containerDom?.addEventListener('scroll', getContentDirection);
-        } else {
-          window.addEventListener('scroll', getContentDirection);
-          window.addEventListener('resize', getContentDirection);
-        }
+        // TODO 类型
+        const containerDom = getRootElement(container || window);
+        containerDom.addEventListener('scroll', getContentDirection);
+        window.addEventListener('resize', getContentDirection);
         return () => {
-          window?.removeEventListener?.('scroll', getContentDirection);
           window?.removeEventListener?.('resize', getContentDirection);
-          containerDom?.removeEventListener('scroll', getContentDirection);
+          containerDom.removeEventListener('scroll', getContentDirection);
         };
       }
     }, [open, container]);
+
     return (
       <div ref={rootRef} className={clsx(prefixCls, classNames)}>
         {children}
@@ -104,6 +110,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
                 `${prefixCls}-container`,
                 `${prefixCls}-container-${contentPosition}`,
               )}
+              // TODO 等北异重构完，改为ref
               data-id={dataId}
               ref={childrenRef}
             >
@@ -111,6 +118,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
             </div>
           </Slide>
         </Fade>
+        {/* TODO Backdrop和下拉框（container）都需要Portal到根元素，参考Select */}
         {isMini ? (
           <Backdrop invisible open={open} onClick={() => onClose(false)} />
         ) : (
