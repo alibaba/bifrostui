@@ -1,4 +1,6 @@
-const getRootElement = (rootEle?: HTMLElement | (() => HTMLElement)) => {
+const getRootElement = (
+  rootEle?: HTMLElement | (() => HTMLElement) | Window,
+) => {
   const rootElement = typeof rootEle === 'function' ? rootEle() : rootEle;
   const defaultRootElement = document.body;
 
