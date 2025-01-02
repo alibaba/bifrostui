@@ -19,7 +19,7 @@ import scrollLeftTo from './utils/scroll';
 import './Tabs.less';
 
 const prefixCls = 'bui-tabs';
-const duration = 250;
+const duration = 300;
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const { children, className, value, tabs, align, onChange, ...others } =
