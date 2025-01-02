@@ -4,6 +4,7 @@
 
 .@{class-prefix-desktop-picker} {
   position: relative;
+  height: inherit;
 
   &-container {
     position: absolute;
@@ -13,7 +14,6 @@
     z-index: var(--bui-z-index-tooltip);
     background-color: var(--bui-color-bg-view);
     border-radius: 3px;
-    padding: var(--bui-select-option-container-padding, 3px 0);
     box-shadow: 0 0 0 2px var(--bui-color-bg-default);
     overflow: hidden;
   }

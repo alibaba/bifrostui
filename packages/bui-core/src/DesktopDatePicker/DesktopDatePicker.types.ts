@@ -54,14 +54,6 @@ export type DatePickerProps<
   {
     props: P & {
       /**
-       * 样式类名
-       */
-      classNames?: string;
-      /**
-       * 样式
-       */
-      style?: React.CSSProperties;
-      /**
        * 默认选中的值，当组件非受控时使用
        */
       defaultValue?: IDatePickerValue;
@@ -152,11 +144,11 @@ export type DatePickerProps<
       /**
        * 弹层关闭的回调
        */
-      onClose?: (e: React.SyntheticEvent) => void;
+      onClose?: () => void;
       /**
        * 弹层打开的回调
        */
-      onOpen?: (e: React.SyntheticEvent) => void;
+      onOpen?: () => void;
       /**
        * 月份切换的回调
        */
