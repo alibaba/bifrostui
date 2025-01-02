@@ -15,10 +15,11 @@ import React, {
 import Tab from './Tab';
 import { TabsProps } from './Tabs.types';
 import { TabsContextProvider } from './TabsContext';
-import bound from './utils/bound';
+import scrollLeftTo from './utils/scroll';
 import './Tabs.less';
 
 const prefixCls = 'bui-tabs';
+const duration = 250;
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const { children, className, value, tabs, align, onChange, ...others } =
@@ -35,16 +36,14 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     rightMaskOpacity: 0,
   });
 
-  const animate = ({ transitionInUse }: { transitionInUse: boolean }) => {
+  const getActiveTabElement = () => {
     const container = tabsRef.current;
-    if (!container) return;
+    if (!container) return undefined;
 
     const activeIndex =
       !!tabs.length && tabs.findIndex((item) => item.index === active);
-    const activeLine = activeLineRef.current;
-    if (!activeLine) return;
-
     let activeTab;
+
     if (tabs.length) {
       activeTab =
         activeIndex > -1
@@ -60,6 +59,31 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         return [...child.classList].includes('bui-tab-active');
       }) as HTMLDivElement;
     }
+
+    return activeTab;
+  };
+
+  const scrollIntoView = () => {
+    const tabsContainer = tabsRef.current;
+    const activeTab = getActiveTabElement();
+    if (!tabsContainer || !activeTab) {
+      return;
+    }
+
+    const to =
+      activeTab.offsetLeft -
+      (tabsContainer.offsetWidth - activeTab.offsetWidth) / 2;
+    scrollLeftTo(tabsContainer, to, duration);
+  };
+
+  const animate = ({ transitionInUse }: { transitionInUse: boolean }) => {
+    const container = tabsRef.current;
+    if (!container) return;
+
+    const activeLine = activeLineRef.current;
+    if (!activeLine) return;
+
+    const activeTab = getActiveTabElement();
 
     let activeTabLeft = 0;
     let activeTabWidth = 0;
@@ -83,14 +107,8 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     const maxScrollDistance = containerScrollWidth - containerWidth;
     if (maxScrollDistance <= 0 || !activeTab) return;
 
-    const nextScrollLeft = bound(
-      activeTabLeft - (containerWidth - activeTabWidth) / 2,
-      0,
-      containerScrollWidth - containerWidth,
-    );
-
-    if (tabsRef.current) {
-      tabsRef.current.scrollLeft = nextScrollLeft;
+    if (!isMini) {
+      scrollIntoView();
     }
   };
 
@@ -190,7 +208,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
           })}
           style={{
             transition: lineData.transitionInUse
-              ? 'transform 0.25s ease-in-out'
+              ? `transform ${duration / 1000}s ease`
               : undefined,
             transform: `translate3d(${lineData.x}px, 0px, 0px)`,
           }}
