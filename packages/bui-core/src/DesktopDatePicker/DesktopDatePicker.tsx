@@ -13,8 +13,7 @@ const prefixCls = 'bui-date-picker';
 const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
   (props, ref) => {
     const {
-      style,
-      classNames,
+      className,
       inputRef,
       inputProps,
       value,
@@ -41,6 +40,7 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       onYearChange,
       desktopPickerProps,
       calendarProps,
+      ...others
     } = props;
     const rootRef = useRef(null);
     const nodeRef = useForkRef(ref, rootRef);
@@ -176,19 +176,19 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       setRenderInputStr(false);
     }, [calendarValue]);
     return (
-      <DesktopPicker
-        open={isOpen}
-        onClose={() => setIsOpen(false)}
-        content={desktopDatePicker()}
-        {...desktopPickerProps}
+      <div
+        {...others}
+        className={clsx(prefixCls, className, {
+          [`${prefixCls}-disabled`]: disabled,
+          [`${prefixCls}-active`]: isOpen,
+        })}
+        ref={nodeRef}
       >
-        <div
-          className={clsx(prefixCls, classNames, {
-            [`${prefixCls}-disabled`]: disabled,
-            [`${prefixCls}-active`]: isOpen,
-          })}
-          style={style}
-          ref={nodeRef}
+        <DesktopPicker
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+          content={desktopDatePicker()}
+          {...desktopPickerProps}
         >
           <div className={`${prefixCls}-container`}>
             <input
@@ -214,8 +214,8 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
               {icon || <DateOutlinedIcon htmlColor="#9c9ca5" />}
             </div>
           </div>
-        </div>
-      </DesktopPicker>
+        </DesktopPicker>
+      </div>
     );
   },
 );
