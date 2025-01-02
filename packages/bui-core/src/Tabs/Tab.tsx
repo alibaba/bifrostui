@@ -8,7 +8,14 @@ import './Tab.less';
 const prefixCls = 'bui-tab';
 
 const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
-  const { className, children, index, disabled, onClick, ...others } = props;
+  const {
+    className,
+    children,
+    index,
+    disabled = false,
+    onClick,
+    ...others
+  } = props;
   const tabsContext = React.useContext(TabsContext);
   const { value, align, triggerChange } = tabsContext;
 
@@ -46,8 +53,5 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
 });
 
 Tab.displayName = 'BuiTab';
-Tab.defaultProps = {
-  disabled: false,
-};
 
 export default Tab;
