@@ -124,7 +124,7 @@ describe('DesktopDatePicker', () => {
     expect(contentNodes.value).toBe('2024/06');
   });
 
-  it('should not fill last or next month', async () => {
+  it('node length should be 30', async () => {
     const { container, getAllByText } = render(
       <DesktopDatePicker
         value={dayjs('20230401').toDate()}
@@ -144,8 +144,8 @@ describe('DesktopDatePicker', () => {
     await act(async () => {
       fireEvent.click(getAllByText('4')[0]);
     });
-    const dayNodes = container.querySelectorAll(`.bui-calendar-day`);
-    const enableDayNodes = [...dayNodes].filter((item) => item.innerHTML);
+    const elements = document.getElementsByClassName('bui-calendar-day');
+    const enableDayNodes = [...elements].filter((item) => item.innerHTML);
     expect(enableDayNodes.length).toBe(30);
   });
 
@@ -171,7 +171,7 @@ describe('DesktopDatePicker', () => {
       'bui-date-picker-table-td-disabled',
     );
     expect(
-      container.querySelector(`.bui-date-picker-handler-text`).innerHTML,
+      document.querySelector(`.bui-date-picker-handler-text`).innerHTML,
     ).toBe('2023');
   });
 
@@ -198,7 +198,7 @@ describe('DesktopDatePicker', () => {
     await act(async () => {
       fireEvent.click(getAllByText('4')[0]);
     });
-    const dayNodes = container.querySelectorAll(`.bui-calendar-day`);
+    const dayNodes = document.querySelectorAll(`.bui-calendar-day`);
     const disableDayNodes = [...dayNodes].filter(
       (item) => item.className.includes('disable') && item.innerHTML,
     );
@@ -208,7 +208,7 @@ describe('DesktopDatePicker', () => {
   });
 
   it('should render high light today date', async () => {
-    const { container, getAllByText } = render(
+    const { container } = render(
       <DesktopDatePicker
         value={dayjs().toDate()}
         minDate={dayjs().startOf('month').toDate()}
@@ -221,18 +221,25 @@ describe('DesktopDatePicker', () => {
     await act(async () => {
       userEvent.click(container.querySelector(`.${rootClass}`));
     });
+    const yearNode = document.getElementsByClassName(
+      'bui-date-picker-table-td',
+    );
     await act(async () => {
-      fireEvent.click(getAllByText(dayjs().format('YYYY'))[0]);
+      fireEvent.click(yearNode[0]);
     });
+    const monthNode = document.getElementsByClassName(
+      'bui-date-picker-table-td',
+    );
+    const index = Number(dayjs().format('MM')) - 1;
     await act(async () => {
-      fireEvent.click(getAllByText(dayjs().format('MM'))[0]);
+      fireEvent.click(monthNode[index]);
     });
-    const today = container.querySelector(`.bui-calendar-start`);
+    const today = document.querySelector(`.bui-calendar-start`);
     expect(today.innerHTML).toBe(dayjs().format('D'));
   });
 
-  it('should render high light today date', async () => {
-    const { container, getAllByText } = render(
+  it('should render 今天 today date', async () => {
+    const { container } = render(
       <DesktopDatePicker
         minDate={dayjs().startOf('month').toDate()}
         maxDate={dayjs().endOf('month').toDate()}
@@ -252,13 +259,21 @@ describe('DesktopDatePicker', () => {
     await act(async () => {
       userEvent.click(container.querySelector(`.${rootClass}`));
     });
+    const yearNode = document.getElementsByClassName(
+      'bui-date-picker-table-td',
+    );
     await act(async () => {
-      fireEvent.click(getAllByText(dayjs().format('YYYY'))[0]);
+      fireEvent.click(yearNode[0]);
     });
+    const monthNode = document.getElementsByClassName(
+      'bui-date-picker-table-td',
+    );
+    const index = Number(dayjs().format('MM')) - 1;
     await act(async () => {
-      fireEvent.click(getAllByText(dayjs().format('MM'))[0]);
+      fireEvent.click(monthNode[index]);
     });
-    const today = container.querySelector(`.${rootClass}-today`);
+
+    const today = document.querySelector(`.${rootClass}-today`);
     expect(today.innerHTML).toBe('今天');
   });
 
@@ -287,7 +302,7 @@ describe('DesktopDatePicker', () => {
     await act(async () => {
       fireEvent.click(getAllByText('4')[0]);
     });
-    const weekItems = container.querySelectorAll('.week-custom-item');
+    const weekItems = document.querySelectorAll('.week-custom-item');
     expect(fakeWeekItemRender).toBeCalledTimes(7);
     expect(weekItems.length).toBe(7);
   });
@@ -306,12 +321,12 @@ describe('DesktopDatePicker', () => {
     await act(async () => {
       fireEvent.click(getAllByText(dayjs('20230602').format('YYYY'))[0]);
     });
-    const btns = container.querySelectorAll(`.bui-date-picker-handler-btn`);
+    const btns = document.querySelectorAll(`.bui-date-picker-handler-btn`);
     await act(async () => {
       fireEvent.click(btns[0]);
     });
     expect(
-      container.querySelector('.bui-date-picker-handler-text'),
+      document.querySelector('.bui-date-picker-handler-text'),
     ).toHaveTextContent('2023/05');
   });
 
@@ -329,12 +344,12 @@ describe('DesktopDatePicker', () => {
     await act(async () => {
       fireEvent.click(getAllByText(dayjs('20230602').format('YYYY'))[0]);
     });
-    const btns = container.querySelectorAll(`.bui-date-picker-handler-btn`);
+    const btns = document.querySelectorAll(`.bui-date-picker-handler-btn`);
     await act(async () => {
       fireEvent.click(btns[1]);
     });
     expect(
-      container.querySelector('.bui-date-picker-handler-text'),
+      document.querySelector('.bui-date-picker-handler-text'),
     ).toHaveTextContent('2023/07');
   });
 });
