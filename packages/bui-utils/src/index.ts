@@ -31,5 +31,6 @@ export {
 } from './transitions';
 export { default as getRootElement } from './getRootElement';
 export { default as getBoundingClientRect } from './getBoundingClientRect';
+export { default as getScrollRect } from './domUtils';
 export * from './isType';
 export * from './render';
