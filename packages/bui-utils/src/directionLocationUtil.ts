@@ -1,3 +1,6 @@
+import { isMini } from './isMini';
+import getScrollRect from './domUtils';
+
 const directionCssMap = {
   left: 'right',
   right: 'left',
@@ -35,12 +38,14 @@ export const getNewDirectionLocation = ({
     bottom: sBottom,
     left: sLeft,
     right: sRight,
+    width: pageWidth,
+    height: pageHeight,
   } = scrollRootOffset;
 
-  const pageWidth =
-    document.documentElement.clientWidth || document.body.clientWidth;
-  const pageHeight =
-    document.documentElement.clientHeight || document.body.clientHeight;
+  // const pageWidth =
+  //   document.documentElement.clientWidth || document.body.clientWidth;
+  // const pageHeight =
+  //   document.documentElement.clientHeight || document.body.clientHeight;
   const maxTop = isBodyScroll(scrollRoot) ? 0 : sTop;
   const maxBottom = isBodyScroll(scrollRoot) ? pageHeight : sBottom;
   const maxLeft = isBodyScroll(scrollRoot) ? 0 : sLeft;
@@ -106,20 +111,14 @@ export const getNewDirectionLocation = ({
 /**
  * 根据新的气泡位置和箭头位置 计算气泡位置以及箭头位置
  */
-export const getDirectionLocationStyle = ({
+export const getDirectionLocationStyle = async ({
   childrenOffset,
   arrowDirection,
   tipOffset,
   arrowLocation,
   offsetSpacing,
 }) => {
-  const scrollTop =
-    (window.scrollY >= 0 && window.scrollY) ||
-    document.documentElement.scrollTop;
-
-  const scrollLeft =
-    (window.scrollX >= 0 && window.scrollX) ||
-    document.documentElement.scrollLeft;
+  const { top: scrollTop, left: scrollLeft } = await getScrollRect();
 
   const styles: any = {};
   const {
@@ -224,13 +223,13 @@ export const getDirectionLocationStyle = ({
 /**
  * 获取气泡位置和箭头位置
  */
-export const getStylesAndLocation = ({
-  scrollRoot = document.body as Element,
+export const getStylesAndLocation = async ({
+  scrollRoot,
   childrenRef,
+  tipRef,
   arrowDirection,
   arrowLocation,
   offsetSpacing,
-  selector,
 }) => {
   if (!childrenRef?.current) {
     console.error(
@@ -238,22 +237,41 @@ export const getStylesAndLocation = ({
     );
     return null;
   }
-  const childrenOffset = childrenRef.current.getBoundingClientRect();
-  const $rtDom = document.querySelector(selector);
-  if (!$rtDom) return null;
-  const tipOffset = $rtDom.getBoundingClientRect();
-  const scrollRootOffset = scrollRoot.getBoundingClientRect();
-  const { newArrowDirection, newArrowLocation } = getNewDirectionLocation({
-    scrollRoot,
-    scrollRootOffset,
-    childrenOffset,
-    arrowDirection,
-    tipOffset,
-    arrowLocation,
-    offsetSpacing,
-  });
 
-  const { styles, childrenStyle } = getDirectionLocationStyle({
+  let newArrowDirection = arrowDirection;
+  let newArrowLocation = arrowLocation;
+
+  const childrenOffset = await childrenRef.current.getBoundingClientRect();
+  const tipOffset = await tipRef.current.getBoundingClientRect();
+  if (!tipOffset || !childrenOffset) {
+    return {
+      styles: {},
+      childrenStyle: {},
+      newArrowDirection,
+      newArrowLocation,
+    };
+  }
+
+  let sr = scrollRoot;
+  // 在H5中进行默认赋值
+  if (!sr && !isMini) {
+    sr = document.body;
+  }
+
+  if (sr) {
+    const scrollRootOffset = await sr.getBoundingClientRect();
+    ({ newArrowDirection, newArrowLocation } = getNewDirectionLocation({
+      scrollRoot: sr,
+      scrollRootOffset,
+      childrenOffset,
+      arrowDirection,
+      tipOffset,
+      arrowLocation,
+      offsetSpacing,
+    }));
+  }
+
+  const { styles, childrenStyle } = await getDirectionLocationStyle({
     childrenOffset,
     arrowDirection: newArrowDirection,
     tipOffset,

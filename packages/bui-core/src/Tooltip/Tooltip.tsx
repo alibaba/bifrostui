@@ -4,8 +4,9 @@ import {
   getStylesAndLocation,
   triggerEventTransform,
   parsePlacement,
-  useUniqueId,
   throttle,
+  useForkRef,
+  isMini,
 } from '@bifrostui/utils';
 import Portal from '../Portal';
 import { TooltipProps } from './Tooltip.types';
@@ -23,8 +24,9 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     offsetSpacing = 0,
     placement = 'top',
     trigger = 'click',
-    onOpenChange,
     open,
+    getScrollRoot,
+    onOpenChange,
     ...others
   } = props;
 
@@ -38,10 +40,28 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   // 箭头位置
   const [arrowLocation, setArrowLocation] = useState(location);
   const [tooltyles, setTooltyles] = useState({});
-  const ttId = useUniqueId();
+  const tipRef = useRef(null);
+  const nodeRef = useForkRef(ref, tipRef);
+
+  const getRoot = () => {
+    let root = getScrollRoot?.();
+    if (!root && !isMini) {
+      root = document.body;
+    }
+    return root;
+  };
+
+  const clearRef = (status) => {
+    // 隐藏时 清空tipRef
+    if (status === false) {
+      tipRef.current = null;
+    }
+  };
 
   const changeOpenStatus = (event, status) => {
     if (controlByUser) return;
+    // 隐藏时 清空tipRef
+    clearRef(status);
     setOpenStatus(status);
     onOpenChange?.(event, { open: status });
   };
@@ -61,6 +81,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   useEffect(() => {
     if (!controlByUser) return;
     setOpenStatus(open);
+    clearRef(open);
   }, [open]);
 
   const clickEventHandler = (event) => {
@@ -73,17 +94,18 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     hideTooltip(event);
   };
 
-  const onRootElementMouted = throttle(() => {
+  const onRootElementMouted = throttle(async () => {
     const {
       direction: newParsedDirection,
       location: newParsedLocation = 'center',
     } = parsePlacement(placement);
-    const result = getStylesAndLocation({
+    const result = await getStylesAndLocation({
+      scrollRoot: getRoot(),
       childrenRef,
       arrowDirection: newParsedDirection,
       arrowLocation: newParsedLocation,
       offsetSpacing,
-      selector: `[data-id="tt_${ttId}"]`,
+      tipRef,
     });
     if (!result) return;
     const { styles, newArrowDirection, newArrowLocation } = result;
@@ -97,18 +119,35 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     setTooltyles(styles);
   }, 100);
 
+  /**
+   * 绑定全局事件
+   * click 全局点击隐藏
+   * resize 仅支持H5
+   * @returns
+   */
   const bindEvent = () => {
+    if (!tipRef.current) return;
+
+    const rootElement = getRoot();
+    if (!rootElement) return;
     if (!controlByUser) {
-      document.addEventListener('click', clickEventHandler);
+      rootElement.addEventListener('click', clickEventHandler);
     }
-    window.addEventListener('resize', onRootElementMouted);
+    if (!isMini) {
+      window.addEventListener('resize', onRootElementMouted);
+    }
   };
 
   const unbindEvent = () => {
+    const rootElement = getRoot();
+    if (!rootElement) return;
+
     if (!controlByUser) {
-      document.removeEventListener('click', clickEventHandler);
+      rootElement.removeEventListener('click', clickEventHandler);
     }
-    window.removeEventListener('resize', onRootElementMouted);
+    if (!isMini) {
+      window.removeEventListener('resize', onRootElementMouted);
+    }
   };
 
   useEffect(() => {
@@ -116,7 +155,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     return () => {
       unbindEvent();
     };
-  }, []);
+  }, [tipRef.current]);
 
   let triggerEventOption;
   if (!controlByUser) {
@@ -136,11 +175,11 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   return (
     <>
       {(open || openStatus) && title ? (
-        <Portal onRootElementMouted={onRootElementMouted} ref={ref}>
+        <Portal onRootElementMouted={onRootElementMouted}>
           <div
             className={clsx(prefixCls, className, `tooltip-${arrowDirection}`)}
             style={{ ...style, ...tooltyles }}
-            data-id={`tt_${ttId}`}
+            ref={nodeRef}
             {...others}
           >
             <div
