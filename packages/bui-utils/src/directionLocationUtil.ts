@@ -1,15 +1,10 @@
-import { isMini } from './isMini';
-import getScrollRect from './domUtils';
+import { getScrollRect, getClientRect } from './domUtils';
 
 const directionCssMap = {
   left: 'right',
   right: 'left',
   top: 'bottom',
   bottom: 'top',
-};
-
-const isBodyScroll = (scrollRoot) => {
-  return scrollRoot === document.body;
 };
 
 /**
@@ -42,14 +37,13 @@ export const getNewDirectionLocation = ({
     height: pageHeight,
   } = scrollRootOffset;
 
-  // const pageWidth =
-  //   document.documentElement.clientWidth || document.body.clientWidth;
-  // const pageHeight =
-  //   document.documentElement.clientHeight || document.body.clientHeight;
-  const maxTop = isBodyScroll(scrollRoot) ? 0 : sTop;
-  const maxBottom = isBodyScroll(scrollRoot) ? pageHeight : sBottom;
-  const maxLeft = isBodyScroll(scrollRoot) ? 0 : sLeft;
-  const maxRight = isBodyScroll(scrollRoot) ? pageWidth : sRight;
+  // 是否是全局容器
+  const isBodyRoot = !scrollRoot;
+
+  const maxTop = isBodyRoot ? 0 : sTop;
+  const maxBottom = isBodyRoot ? pageHeight : sBottom;
+  const maxLeft = isBodyRoot ? 0 : sLeft;
+  const maxRight = isBodyRoot ? pageWidth : sRight;
 
   let newArrowDirection = arrowDirection;
   let newArrowLocation = arrowLocation;
@@ -119,8 +113,6 @@ export const getDirectionLocationStyle = async ({
   offsetSpacing,
 }) => {
   const { top: scrollTop, left: scrollLeft } = await getScrollRect();
-
-  const styles: any = {};
   const {
     width: cWidth,
     height: cHeight,
@@ -134,89 +126,96 @@ export const getDirectionLocationStyle = async ({
     childrenStyle = { width: `${cWidth}px`, height: `${cHeight}px` };
   }
   const { width, height } = tipOffset;
+  let styleTop;
+  let styleLeft;
   if (arrowDirection === 'top') {
     // 浮层在上方
-    styles.top = cTop - offsetSpacing - height;
+    styleTop = cTop - offsetSpacing - height;
     switch (arrowLocation) {
       case 'left':
-        styles.left = cLeft;
+        styleLeft = cLeft;
         break;
       case 'center':
-        styles.left = cLeft + (cWidth - width) / 2;
+        styleLeft = cLeft + (cWidth - width) / 2;
         break;
       case 'right':
-        styles.left = cRight - width;
+        styleLeft = cRight - width;
         break;
       case 'none':
-        styles.left = cLeft;
+        styleLeft = cLeft;
         break;
       default:
         break;
     }
   } else if (arrowDirection === 'bottom') {
     // 浮层在下方
-    styles.top = cBottom + offsetSpacing;
+    styleTop = cBottom + offsetSpacing;
     switch (arrowLocation) {
       case 'left':
-        styles.left = cLeft;
+        styleLeft = cLeft;
         break;
       case 'center':
-        styles.left = cLeft + (cWidth - width) / 2;
+        styleLeft = cLeft + (cWidth - width) / 2;
         break;
       case 'right':
-        styles.left = cRight - width;
+        styleLeft = cRight - width;
         break;
       case 'none':
-        styles.left = cLeft;
+        styleLeft = cLeft;
         break;
       default:
         break;
     }
   } else if (arrowDirection === 'left') {
     // 浮层在左方
-    styles.left = cLeft - offsetSpacing - width;
+    styleLeft = cLeft - offsetSpacing - width;
     switch (arrowLocation) {
       case 'top':
-        styles.top = cTop;
+        styleTop = cTop;
         break;
       case 'center':
-        styles.top = cTop + (cHeight - height) / 2;
+        styleTop = cTop + (cHeight - height) / 2;
         break;
       case 'bottom':
-        styles.top = cBottom - height;
+        styleTop = cBottom - height;
         break;
       case 'none':
-        styles.top = cTop;
+        styleTop = cTop;
         break;
       default:
         break;
     }
   } else if (arrowDirection === 'right') {
     // 浮层在右方
-    styles.left = cRight + offsetSpacing;
+    styleLeft = cRight + offsetSpacing;
     switch (arrowLocation) {
       case 'top':
-        styles.top = cTop;
+        styleTop = cTop;
         break;
       case 'center':
-        styles.top = cTop + (cHeight - height) / 2;
+        styleTop = cTop + (cHeight - height) / 2;
         break;
       case 'bottom':
-        styles.top = cBottom - height;
+        styleTop = cBottom - height;
         break;
       case 'none':
-        styles.top = cTop;
+        styleTop = cTop;
         break;
       default:
         break;
     }
   }
-  if (styles.top) {
-    styles.top = `${styles.top + scrollTop}px`;
+  if (styleTop) {
+    styleTop = `${styleTop + scrollTop}px`;
   }
-  if (styles.left) {
-    styles.left = `${styles.left + scrollLeft}px`;
+  if (styleLeft) {
+    styleLeft = `${styleLeft + scrollLeft}px`;
   }
+  const styles = {
+    top: 0,
+    left: 0,
+    transform: `translate3d(${styleLeft}, ${styleTop}, 0)`,
+  };
   return { styles, childrenStyle };
 };
 
@@ -227,9 +226,16 @@ export const getStylesAndLocation = async ({
   scrollRoot,
   childrenRef,
   tipRef,
-  arrowDirection,
-  arrowLocation,
-  offsetSpacing,
+  arrowDirection = 'top',
+  arrowLocation = 'center',
+  offsetSpacing = 0,
+}: {
+  scrollRoot?: Element;
+  childrenRef?: React.RefObject<any>;
+  tipRef?: React.RefObject<any>;
+  arrowDirection: string;
+  arrowLocation: string;
+  offsetSpacing?: number;
 }) => {
   if (!childrenRef?.current) {
     console.error(
@@ -238,38 +244,33 @@ export const getStylesAndLocation = async ({
     return null;
   }
 
-  let newArrowDirection = arrowDirection;
-  let newArrowLocation = arrowLocation;
-
   const childrenOffset = await childrenRef.current.getBoundingClientRect();
   const tipOffset = await tipRef.current.getBoundingClientRect();
   if (!tipOffset || !childrenOffset) {
     return {
       styles: {},
       childrenStyle: {},
-      newArrowDirection,
-      newArrowLocation,
+      arrowDirection,
+      arrowLocation,
     };
   }
 
-  let sr = scrollRoot;
-  // 在H5中进行默认赋值
-  if (!sr && !isMini) {
-    sr = document.body;
+  let scrollRootOffset;
+  if (scrollRoot) {
+    scrollRootOffset = await scrollRoot.getBoundingClientRect();
+  } else {
+    scrollRootOffset = await getClientRect();
   }
 
-  if (sr) {
-    const scrollRootOffset = await sr.getBoundingClientRect();
-    ({ newArrowDirection, newArrowLocation } = getNewDirectionLocation({
-      scrollRoot: sr,
-      scrollRootOffset,
-      childrenOffset,
-      arrowDirection,
-      tipOffset,
-      arrowLocation,
-      offsetSpacing,
-    }));
-  }
+  const { newArrowDirection, newArrowLocation } = getNewDirectionLocation({
+    scrollRoot,
+    scrollRootOffset,
+    childrenOffset,
+    arrowDirection,
+    tipOffset,
+    arrowLocation,
+    offsetSpacing,
+  });
 
   const { styles, childrenStyle } = await getDirectionLocationStyle({
     childrenOffset,

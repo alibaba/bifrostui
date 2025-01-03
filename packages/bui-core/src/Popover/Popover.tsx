@@ -27,7 +27,6 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     trigger = 'click',
     open,
     hideArrow,
-    getScrollRoot,
     onOpenChange,
     ...others
   } = props;
@@ -43,14 +42,6 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   const [tooltyles, setTooltyles] = useState({});
   const tipRef = useRef(null);
   const nodeRef = useForkRef(ref, tipRef);
-
-  const getRoot = () => {
-    let root = getScrollRoot?.();
-    if (!root && !isMini) {
-      root = document.body;
-    }
-    return root;
-  };
 
   const clearRef = (status) => {
     // 隐藏时 清空tipRef
@@ -101,7 +92,6 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
       location: newParsedLocation = 'center',
     } = parsePlacement(placement);
     const result = await getStylesAndLocation({
-      scrollRoot: getRoot(),
       childrenRef,
       arrowDirection: newParsedDirection,
       arrowLocation: newParsedLocation,
@@ -129,10 +119,8 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   const bindEvent = () => {
     if (!tipRef.current) return;
 
-    const rootElement = getRoot();
-    if (!rootElement) return;
     if (!controlByUser) {
-      rootElement.addEventListener('click', clickEventHandler);
+      document.addEventListener('click', clickEventHandler);
     }
     if (!isMini) {
       window.addEventListener('resize', onRootElementMouted);
@@ -140,11 +128,8 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   };
 
   const unbindEvent = () => {
-    const rootElement = getRoot();
-    if (!rootElement) return;
-
     if (!controlByUser) {
-      rootElement.removeEventListener('click', clickEventHandler);
+      document.removeEventListener('click', clickEventHandler);
     }
     if (!isMini) {
       window.removeEventListener('resize', onRootElementMouted);

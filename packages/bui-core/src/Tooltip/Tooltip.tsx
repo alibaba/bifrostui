@@ -25,7 +25,6 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     placement = 'top',
     trigger = 'click',
     open,
-    getScrollRoot,
     onOpenChange,
     ...others
   } = props;
@@ -42,14 +41,6 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   const [tooltyles, setTooltyles] = useState({});
   const tipRef = useRef(null);
   const nodeRef = useForkRef(ref, tipRef);
-
-  const getRoot = () => {
-    let root = getScrollRoot?.();
-    if (!root && !isMini) {
-      root = document.body;
-    }
-    return root;
-  };
 
   const clearRef = (status) => {
     // 隐藏时 清空tipRef
@@ -100,7 +91,6 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
       location: newParsedLocation = 'center',
     } = parsePlacement(placement);
     const result = await getStylesAndLocation({
-      scrollRoot: getRoot(),
       childrenRef,
       arrowDirection: newParsedDirection,
       arrowLocation: newParsedLocation,
@@ -127,11 +117,8 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
    */
   const bindEvent = () => {
     if (!tipRef.current) return;
-
-    const rootElement = getRoot();
-    if (!rootElement) return;
     if (!controlByUser) {
-      rootElement.addEventListener('click', clickEventHandler);
+      document.addEventListener('click', clickEventHandler);
     }
     if (!isMini) {
       window.addEventListener('resize', onRootElementMouted);
@@ -139,11 +126,8 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   };
 
   const unbindEvent = () => {
-    const rootElement = getRoot();
-    if (!rootElement) return;
-
     if (!controlByUser) {
-      rootElement.removeEventListener('click', clickEventHandler);
+      document.removeEventListener('click', clickEventHandler);
     }
     if (!isMini) {
       window.removeEventListener('resize', onRootElementMouted);
