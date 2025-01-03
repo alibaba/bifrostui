@@ -1,6 +1,24 @@
 import Taro from '@tarojs/taro';
 
-const getScrollRect = () => {
+export const getClientRect = () => {
+  return new Promise((resolve, reject) => {
+    try {
+      const res = Taro.getSystemInfoSync();
+      const clientInfo = {
+        ...res,
+        left: 0,
+        top: 0,
+        right: res.windowWidth,
+        bottom: res.windowHeight,
+      };
+      resolve(clientInfo);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+export const getScrollRect = () => {
   return new Promise((resolve) => {
     Taro.createSelectorQuery()
       .selectViewport() // 选择整个视口
@@ -13,5 +31,3 @@ const getScrollRect = () => {
       });
   });
 };
-
-export default getScrollRect;
