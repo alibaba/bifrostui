@@ -66,7 +66,6 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
 
     // 点击时间选择器icon
     const handleDatePickerIconClick = (e) => {
-      e.stopPropagation();
       // 禁用或者禁用打开日期选择器,点击icon无反馈
       if (disabled || disableOpenPicker) return;
       setIsOpen(!isOpen);

@@ -71,9 +71,17 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
         const containerDom = getRootElement(container || window);
         containerDom.addEventListener('scroll', getContentDirection);
         window.addEventListener('resize', getContentDirection);
+        window?.addEventListener?.('click', (e) => {
+          if (!nodeRef.current?.contains(e.target as Node)) {
+            onClose(null, { value: !open });
+          }
+        });
         return () => {
-          window?.removeEventListener?.('resize', getContentDirection);
           containerDom.removeEventListener('scroll', getContentDirection);
+          window?.removeEventListener?.('resize', getContentDirection);
+          window?.removeEventListener?.('click', () => {
+            onClose(null, { value: !open });
+          });
         };
       }
     }, [container, open]);
