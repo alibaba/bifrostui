@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Drawer from '../Drawer';
 import PickerPanel from './PickerPanel';
 import { useLocaleText } from '../locales';
-import { PickerProps } from './Picker.types';
+import { IPickerOptionItem, PickerProps } from './Picker.types';
 import { formatOptions, pickerPanelType, safeData } from './utils';
 import './Picker.less';
 
@@ -127,7 +127,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
         setInternalValue(result);
         onOptionChange?.(e, {
           value: result,
-          options,
+          options: options as IPickerOptionItem[][],
           currentOption: columnOption,
         });
       }

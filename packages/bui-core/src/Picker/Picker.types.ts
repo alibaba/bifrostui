@@ -13,11 +13,18 @@ export interface IPickerOptionItem {
   value: string | number;
 }
 
+export type ICascadePickerChildOptionItem = IPickerOptionItem & {
+  /**
+   * 用于级联选项，子节点可能没有children属性
+   */
+  children?: ICascadePickerChildOptionItem[];
+};
+
 export type ICascadePickerOptionItem = IPickerOptionItem & {
   /**
-   * 用于级联选项
+   * 用于级联选项，根节点必须含有children属性
    */
-  children?: ICascadePickerOptionItem[];
+  children: ICascadePickerChildOptionItem[];
 };
 
 export type PickerProps<
@@ -55,7 +62,7 @@ export type PickerProps<
         e: React.SyntheticEvent,
         data: {
           value: (string | number)[];
-          options: ICascadePickerOptionItem[];
+          options: IPickerOptionItem[][];
         },
       ) => void;
       /**
@@ -65,7 +72,7 @@ export type PickerProps<
         e: React.SyntheticEvent,
         data: {
           value: (string | number)[];
-          options: IPickerOptionItem[][] | ICascadePickerOptionItem[];
+          options: IPickerOptionItem[][];
           currentOption: ICascadePickerOptionItem;
         },
       ) => void;
@@ -81,7 +88,7 @@ export type PickerProps<
         data: {
           from: string;
           value: (string | number)[];
-          options: IPickerOptionItem[][] | ICascadePickerOptionItem[];
+          options: IPickerOptionItem[][];
         },
       ) => void;
     };
