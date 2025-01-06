@@ -1,7 +1,7 @@
 import { DateOutlinedIcon } from '@bifrostui/icons';
 import dayjs from 'dayjs';
 import clsx from 'clsx';
-import React, { useMemo, useState, useRef } from 'react';
+import React, { useMemo, useState, useRef, useEffect } from 'react';
 import { useValue, useForkRef, useDidMountEffect } from '@bifrostui/utils';
 import { DateTimePickerProps } from './DesktopDateTimePicker.types';
 import './index.less';
@@ -15,8 +15,7 @@ const DesktopDateTimePicker = React.forwardRef<
   DateTimePickerProps
 >((props, ref) => {
   const {
-    style,
-    classNames,
+    className,
     inputRef,
     inputProps,
     value,
@@ -24,7 +23,7 @@ const DesktopDateTimePicker = React.forwardRef<
     disabled,
     disableOpenPicker,
     placeholder,
-    format = 'YYYY/MM/DD HH:mm:ss',
+    format = 'YYYY/MM/DD',
     open,
     disabledDate,
     picker,
@@ -43,6 +42,7 @@ const DesktopDateTimePicker = React.forwardRef<
     onYearChange,
     desktopPickerProps,
     calendarProps,
+    ...others
   } = props;
   const rootRef = useRef(null);
   const nodeRef = useForkRef(ref, rootRef);
@@ -68,7 +68,6 @@ const DesktopDateTimePicker = React.forwardRef<
 
   // 点击时间选择器icon
   const handleDatePickerIconClick = (e) => {
-    e.stopPropagation();
     // 禁用或者禁用打开日期选择器,点击icon无反馈
     if (disabled || disableOpenPicker) return;
     setIsOpen(!isOpen);
@@ -173,25 +172,24 @@ const DesktopDateTimePicker = React.forwardRef<
     }
     return 'YYYY/MM/DD';
   }, [calendarValue, inputStr, renderInputStr, format]);
+
+  useEffect(() => {
+    setRenderInputStr(false);
+  }, [calendarValue]);
   return (
-    <DesktopPicker
-      open={isOpen}
-      onClose={() => setIsOpen(false)}
-      content={
-        <div>
-          {desktopDatePicker()}
-          <div>1111111111</div>
-        </div>
-      }
-      {...desktopPickerProps}
+    <div
+      {...others}
+      className={clsx(prefixCls, className, {
+        [`${prefixCls}-disabled`]: disabled,
+        [`${prefixCls}-active`]: isOpen,
+      })}
+      ref={nodeRef}
     >
-      <div
-        className={clsx(prefixCls, classNames, {
-          [`${prefixCls}-disabled`]: disabled,
-          [`${prefixCls}-active`]: isOpen,
-        })}
-        style={style}
-        ref={nodeRef}
+      <DesktopPicker
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        content={desktopDatePicker()}
+        {...desktopPickerProps}
       >
         <div className={`${prefixCls}-container`}>
           <input
@@ -217,8 +215,8 @@ const DesktopDateTimePicker = React.forwardRef<
             {icon || <DateOutlinedIcon htmlColor="#9c9ca5" />}
           </div>
         </div>
-      </div>
-    </DesktopPicker>
+      </DesktopPicker>
+    </div>
   );
 });
 

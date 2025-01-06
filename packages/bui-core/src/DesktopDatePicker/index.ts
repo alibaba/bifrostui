@@ -1,2 +1,2 @@
-export { default as DesktopDatePicker, default } from './DesktopDatePicker';
+export { default, default as DesktopDatePicker } from './DesktopDatePicker';
 export * from './DesktopDatePicker.types';

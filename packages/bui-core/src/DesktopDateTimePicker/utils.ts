@@ -1,5 +1,5 @@
 import dayjs from 'dayjs/esm/index';
-import { IDatePickerValue } from './DesktopDateTimePicker.types';
+import { IDateTimePickerValue } from './DesktopDateTimePicker.types';
 
 /**
  * 计算日期差
@@ -29,7 +29,7 @@ export const isRange = (current: Date, start: Date, end: Date) => {
  * @return undefined | Array<Date|null>
  */
 export const formatDate = (
-  value: IDatePickerValue,
+  value: IDateTimePickerValue,
   minDate: Date,
   maxDate: Date,
 ) => {
