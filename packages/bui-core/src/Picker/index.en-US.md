@@ -1210,26 +1210,26 @@ export default () => {
 
 ### Picker
 
-| attribute      | explain                                   | type                                                                                                                                                                      | Default value |
-| -------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| open           | Do you want to display the selector       | boolean                                                                                                                                                                   | false         |
-| title          | title                                     | string                                                                                                                                                                    | -             |
-| options        | List data                                 | IPickerOptionItem[][] \|ICascadePickerOptionItem[]                                                                                                                        | []            |
-| value          | Selected values                           | (string \|number)[]                                                                                                                                                       | -             |
-| contentProps   | Props on drawer content DOM node          | React.HTMLAttributes\<HTMLDivElement\>                                                                                                                                    | -             |
-| onConfirm      | Callback when clicking the confirm button | (e: React.SyntheticEvent,data: { value: (string \|number)[]; options: ICascadePickerOptionItem[]}) => void                                                                | -             |
-| onOptionChange | Callback when option value changes        | (e: React.SyntheticEvent,data: { value: (string \|number)[];options: IPickerOptionItem[][] \|ICascadePickerOptionItem[];currentOption: ICascadePickerOptionItem}) => void | -             |
-| onCancel       | Callback when clicking the cancel button  | (e: React.SyntheticEvent) => void                                                                                                                                         | -             |
-| onClose        | Execute when closing the selector         | (e: React.SyntheticEvent,data: {from: string;value: (string \|number)[];options: IPickerOptionItem[][] \|ICascadePickerOptionItem[]}) => void                             | -             |
+| attribute      | explain                                   | type                                                                                                                                                                            | Default value |
+| -------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| open           | Do you want to display the selector       | boolean                                                                                                                                                                         | false         |
+| title          | title                                     | string                                                                                                                                                                          | -             |
+| options        | List data                                 | IPickerOptionItem[][] \|ICascadePickerOptionItem[]                                                                                                                              | []            |
+| value          | Selected values                           | (string \|number)[]                                                                                                                                                             | -             |
+| contentProps   | Props on drawer content DOM node          | React.HTMLAttributes\<HTMLDivElement\>                                                                                                                                          | -             |
+| onConfirm      | Callback when clicking the confirm button | (e: React.MouseEvent<HTMLDivElement\>,data: { value: (string \|number)[]; options: ICascadePickerChildOptionItem[][]}) => void                                                  | -             |
+| onOptionChange | Callback when option value changes        | (e: React.TransitionEvent<HTMLDivElement\>,data: { value: (string \|number)[];options: ICascadePickerChildOptionItem[][];currentOption: ICascadePickerChildOptionItem}) => void | -             |
+| onCancel       | Callback when clicking the cancel button  | (e: React.MouseEvent<HTMLDivElement\>) => void                                                                                                                                  | -             |
+| onClose        | Execute when closing the selector         | (e: React.MouseEvent<HTMLDivElement\>,data: {from: string;value: (string \|number)[];options: ICascadePickerChildOptionItem[][]}) => void                                       | -             |
 
 ### PickerPanel
 
-| attribute    | explain                                 | type                                                                                                                       | Default value |
-| ------------ | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| options      | List data of a single column panel      | IPickerOptionItem[][] \|ICascadePickerOptionItem[]                                                                         | []            |
-| defaultValue | Default values for single column panels | string \|number                                                                                                            | -             |
-| columnIndex  | Li Suo Yin                              | number                                                                                                                     | -             |
-| onSelect     | Callback when clicking on an option     | (e: React.SyntheticEvent,data: {columnOption: IPickerOptionItem[] \|ICascadePickerOptionItem;columnIndex: number}) => void | -             |
+| attribute    | explain                                 | type                                                                                                                        | Default value |
+| ------------ | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| options      | List data of a single column panel      | ICascadePickerChildOptionItem[]                                                                                             | []            |
+| defaultValue | Default values for single column panels | string \|number                                                                                                             | -             |
+| columnIndex  | Li Suo Yin                              | number                                                                                                                      | -             |
+| onSelect     | Callback when clicking on an option     | (e: React.TransitionEvent<HTMLDivElement\>,data: {columnOption: ICascadePickerChildOptionItem;columnIndex: number}) => void | -             |
 
 #### IPickerOptionItem
 
@@ -1240,11 +1240,19 @@ export default () => {
 
 #### ICascadePickerOptionItem
 
-| attribute | explain                             | type                       | Default value |
-| --------- | ----------------------------------- | -------------------------- | ------------- |
-| label     | Text content of options             | string \|number            | -             |
-| value     | Options correspond to unique values | string \|number            | -             |
-| children  | Used for cascading options          | ICascadePickerOptionItem[] | -             |
+| attribute | explain                              | type                       | Default value |
+| --------- | ------------------------------------ | -------------------------- | ------------- |
+| label     | Text content of options              | string \|number            | -             |
+| value     | Options correspond to unique values  | string \|number            | -             |
+| children  | Used for cascading options, required | ICascadePickerOptionItem[] | -             |
+
+#### ICascadePickerChildOptionItem
+
+| attribute | explain                                  | type                       | Default value |
+| --------- | ---------------------------------------- | -------------------------- | ------------- |
+| label     | Text content of options                  | string \|number            | -             |
+| value     | Options correspond to unique values      | string \|number            | -             |
+| children  | Used for cascading options, not required | ICascadePickerOptionItem[] | -             |
 
 Picker inherits from Drawer. Other properties can be found in the Drawer API (/ores/Drawer? # API)
 
