@@ -120,11 +120,13 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
           {renderChildren}
           {isMini && renderContent()}
         </div>
-        <Backdrop
-          invisible
-          open={open}
-          onClick={(e) => onClose(e, { value: false })}
-        />
+        {isMini && (
+          <Backdrop
+            invisible
+            open={open}
+            onClick={(e) => onClose(e, { value: false })}
+          />
+        )}
         {!isMini && <Portal>{renderContent()}</Portal>}
       </>
     );
