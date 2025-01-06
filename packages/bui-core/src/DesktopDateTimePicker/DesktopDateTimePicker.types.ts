@@ -22,7 +22,7 @@ export interface IDateTimePickerCustomIconProps {
   isMaxMonth?: boolean;
 }
 
-export interface IDesktopPickerProps {
+export interface IDesktopTimePickerProps {
   orientation?: 'bottom' | 'top';
 }
 
@@ -168,7 +168,7 @@ export type DateTimePickerProps<
       /**
        * DesktopPickerProps
        */
-      desktopPickerProps?: IDesktopPickerProps;
+      desktopPickerProps?: IDesktopTimePickerProps;
       /**
        * CalendarProps
        */
