@@ -203,7 +203,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       };
     });
 
-    const onTransitionEnd = (e: React.SyntheticEvent) => {
+    const onTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
       isVerticalMoving.current = false;
       setTouchTime(0);
       onSelect?.(e, {

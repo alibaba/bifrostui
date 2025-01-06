@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Drawer from '../Drawer';
 import PickerPanel from './PickerPanel';
 import { useLocaleText } from '../locales';
-import { IPickerOptionItem, PickerProps } from './Picker.types';
+import { PickerProps, ICascadePickerChildOptionItem } from './Picker.types';
 import { formatOptions, pickerPanelType, safeData } from './utils';
 import './Picker.less';
 
@@ -51,7 +51,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
     }
   }, [value, options]);
 
-  const confirm = (e) => {
+  const confirm = (e: React.MouseEvent<HTMLDivElement>) => {
     const isMoving = rollerRefs.current.some((roller) => roller?.isMoving);
     // 处于惯性滚动中，不允许确认关闭选择器
     if (isMoving) return;
@@ -73,7 +73,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
     });
   };
 
-  const cancel = (e) => {
+  const cancel = (e: React.MouseEvent<HTMLDivElement>) => {
     onCancel?.(e);
     const { safeValue } = safeData({
       value: internalValue,
@@ -90,7 +90,11 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
     });
   };
 
-  const updateItem = (e, columnOption, columnIndex) => {
+  const updateItem = (
+    e: React.TransitionEvent<HTMLDivElement>,
+    columnOption: ICascadePickerChildOptionItem,
+    columnIndex: number,
+  ) => {
     const columnValues = internalValue?.slice(0, columnIndex) || [];
     let colIndex = columnIndex;
     let colOption = columnOption;
@@ -102,7 +106,9 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
         while (colOption?.children?.[0]) {
           columnValues[colIndex + 1] = colOption.children[0].value;
           colIndex += 1;
-          colOption = { ...(colOption?.children?.[0] || {}) };
+          colOption = {
+            ...(colOption?.children?.[0] || {}),
+          } as ICascadePickerChildOptionItem;
         }
         // 当前改变列的下一列 children 值为空
         if (colOption?.children?.length) {
@@ -127,18 +133,24 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
         setInternalValue(result);
         onOptionChange?.(e, {
           value: result,
-          options: options as IPickerOptionItem[][],
+          options: options as ICascadePickerChildOptionItem[][],
           currentOption: columnOption,
         });
       }
     }
   };
 
-  const handleSelect = (e, { columnIndex, columnOption }) => {
+  const handleSelect = (
+    e: React.TransitionEvent<HTMLDivElement>,
+    {
+      columnIndex,
+      columnOption,
+    }: { columnIndex: number; columnOption: ICascadePickerChildOptionItem },
+  ) => {
     updateItem(e, columnOption, columnIndex);
   };
 
-  const handleClose = (e, data) => {
+  const handleClose = (e: React.MouseEvent<HTMLDivElement>, data) => {
     const { safeValue } = safeData({
       value: internalValue,
       formatted: columns,
