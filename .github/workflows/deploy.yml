@@ -3,9 +3,6 @@ name: Build and Deploy Docs Website
 
 on:
   push:
-    branches:
-      - main
-      - 'releases/**'
     tags:
       - 'v*'
 
