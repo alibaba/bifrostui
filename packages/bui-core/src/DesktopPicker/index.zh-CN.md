@@ -81,9 +81,9 @@ export default () => {
 ### API
 
 | 属性             | 说明           | 类型                    | 默认值   |
-| ---------------- | -------------- | ----------------------- | -------- | ------ |
+| ---------------- | -------------- | ----------------------- | -------- |
 | open             | 打开关闭该浮层 | boolean                 | false    |
 | defaultDirection | 默认方向       | 'top' \| 'bottom'       | 'bottom' |
-| container        | 容器元素       | HTMLElement             | null     | window |
+| container        | 容器元素       | HTMLElement             | null     |
 | onClose          | 关闭回调       | (data: boolean) => void | -        |
 | content          | 浮层内容       | React.ReactNode         | -        |
