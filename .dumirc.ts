@@ -1,8 +1,11 @@
 import { defineConfig } from 'dumi';
 
+console.log('process.env.BASE_PATH', process.env.BASE_PATH);
+
 export default defineConfig({
   outputPath: 'dist',
   title: 'bifrostui',
+  base: process.env.BASE_PATH,
   themeConfig: {
     nav: {
       'zh-CN': [
