@@ -3,17 +3,13 @@ import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import {
   getStylesAndLocation,
   isMini,
-  throttle,
   useForkRef,
-  useUniqueId,
   getRootElement,
 } from '@bifrostui/utils';
-import Fade from '../Fade';
 import { DesktopPickerProps } from './DesktopPicker.types';
 import Backdrop from '../Backdrop';
 import Portal from '../Portal';
 import './index.less';
-import Slide from '../Slide';
 
 const prefixCls = 'bui-desktop-picker';
 
@@ -36,8 +32,6 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
     const renderChildren = React.cloneElement(children as ReactElement, {
       ref: nodeRef,
     });
-    const ttId = useUniqueId();
-    const dataId = `${prefixCls}-tt-${ttId}`;
     const [contentPosition, setContentPosition] = useState<'bottom' | 'top'>(
       'bottom',
     );
@@ -46,22 +40,23 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
     /**
      * 获取内容方向
      */
-    const getContentDirection = throttle(() => {
+    const getContentDirection = async () => {
       const curScrollRoot = getRootElement(container);
-      const result = getStylesAndLocation({
-        scrollRoot: curScrollRoot as Element,
+
+      const result = await getStylesAndLocation({
+        scrollRoot: (container && curScrollRoot) as Element,
         childrenRef: nodeRef,
         arrowDirection: defaultDirection,
         arrowLocation: 'none',
-        selector: `[data-id="${dataId}"]`,
         offsetSpacing: 0,
+        tipRef: contentRef,
       });
-      if (!result) return;
 
+      if (!result) return;
       const { newArrowDirection, styles, childrenStyle } = result;
-      setLayerStyle({ ...styles, width: childrenStyle.width });
+      setLayerStyle({ ...styles, width: childrenStyle?.width });
       setContentPosition(newArrowDirection);
-    }, 100);
+    };
 
     // 监听滚动和resize事件
     // eslint-disable-next-line consistent-return
@@ -88,38 +83,19 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
 
     const renderContent = () => {
       return (
-        <Fade
-          in={open}
-          timeout={{
-            enter: 150,
-            exit: 0,
+        <div
+          className={clsx(
+            `${prefixCls}-container`,
+            `${prefixCls}-container-${contentPosition}`,
+          )}
+          style={{
+            ...layerStyle,
+            display: open ? 'block' : 'none',
           }}
+          ref={contentRef}
         >
-          <Slide
-            in={open}
-            direction={contentPosition === 'bottom' ? 'down' : 'up'}
-            timeout={{
-              enter: 150,
-              exit: 150,
-            }}
-          >
-            <div
-              className={clsx(
-                `${prefixCls}-container`,
-                `${prefixCls}-container-${contentPosition}`,
-              )}
-              style={{
-                ...layerStyle,
-                display: open ? 'block' : 'none',
-              }}
-              // TODO 等北异重构完，改为ref
-              data-id={dataId}
-              ref={contentRef}
-            >
-              {content}
-            </div>
-          </Slide>
-        </Fade>
+          {content}
+        </div>
       );
     };
     return (
