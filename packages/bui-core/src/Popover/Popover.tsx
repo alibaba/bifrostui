@@ -4,8 +4,9 @@ import {
   getStylesAndLocation,
   triggerEventTransform,
   parsePlacement,
-  useUniqueId,
   throttle,
+  useForkRef,
+  isMini,
 } from '@bifrostui/utils';
 import Portal from '../Portal';
 import './Popover.less';
@@ -24,9 +25,9 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     offsetSpacing = 0,
     placement = 'top',
     trigger = 'click',
-    onOpenChange,
     open,
     hideArrow,
+    onOpenChange,
     ...others
   } = props;
 
@@ -39,10 +40,20 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   // 箭头位置
   const [arrowLocation, setArrowLocation] = useState(location);
   const [tooltyles, setTooltyles] = useState({});
-  const ttId = useUniqueId();
+  const tipRef = useRef(null);
+  const nodeRef = useForkRef(ref, tipRef);
+
+  const clearRef = (status) => {
+    // 隐藏时 清空tipRef
+    if (status === false) {
+      tipRef.current = null;
+    }
+  };
 
   const changeOpenStatus = (event, status) => {
     if (controlByUser) return;
+    // 隐藏时 清空tipRef
+    clearRef(status);
     setOpenStatus(status);
     onOpenChange?.(event, { open: status });
   };
@@ -62,6 +73,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   useEffect(() => {
     if (!controlByUser) return;
     setOpenStatus(open);
+    clearRef(open);
   }, [open]);
 
   const clickEventHandler = (event) => {
@@ -74,17 +86,17 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     hidePopover(event);
   };
 
-  const onRootElementMouted = throttle(() => {
+  const onRootElementMouted = throttle(async () => {
     const {
       direction: newParsedDirection,
       location: newParsedLocation = 'center',
     } = parsePlacement(placement);
-    const result = getStylesAndLocation({
+    const result = await getStylesAndLocation({
       childrenRef,
       arrowDirection: newParsedDirection,
       arrowLocation: newParsedLocation,
       offsetSpacing,
-      selector: `[data-id="tt_${ttId}"]`,
+      tipRef,
     });
     if (!result) return;
     const { styles, newArrowDirection, newArrowLocation } = result;
@@ -98,18 +110,30 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     setTooltyles(styles);
   }, 100);
 
+  /**
+   * 绑定全局事件
+   * click 全局点击隐藏
+   * resize 仅支持H5
+   * @returns
+   */
   const bindEvent = () => {
+    if (!tipRef.current) return;
+
     if (!controlByUser) {
       document.addEventListener('click', clickEventHandler);
     }
-    window.addEventListener('resize', onRootElementMouted);
+    if (!isMini) {
+      window.addEventListener('resize', onRootElementMouted);
+    }
   };
 
   const unbindEvent = () => {
     if (!controlByUser) {
       document.removeEventListener('click', clickEventHandler);
     }
-    window.removeEventListener('resize', onRootElementMouted);
+    if (!isMini) {
+      window.removeEventListener('resize', onRootElementMouted);
+    }
   };
 
   useEffect(() => {
@@ -117,7 +141,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     return () => {
       unbindEvent();
     };
-  }, []);
+  }, [tipRef.current]);
 
   if (!title && !content) return null;
 
@@ -138,13 +162,13 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   return (
     <>
       {open || openStatus ? (
-        <Portal onRootElementMouted={onRootElementMouted} ref={ref}>
+        <Portal onRootElementMouted={onRootElementMouted}>
           <div
             className={clsx(prefixCls, className, `popover-${arrowDirection}`, {
               'bui-popover-arrow-hide': hideArrow,
             })}
-            data-id={`tt_${ttId}`}
             style={{ ...style, ...tooltyles }}
+            ref={nodeRef}
             {...others}
           >
             {!hideArrow ? (
