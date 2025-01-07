@@ -42,7 +42,6 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
      */
     const getContentDirection = async () => {
       const curScrollRoot = getRootElement(container);
-
       const result = await getStylesAndLocation({
         scrollRoot: (container && curScrollRoot) as Element,
         childrenRef: nodeRef,
@@ -51,7 +50,6 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
         offsetSpacing: 0,
         tipRef: contentRef,
       });
-
       if (!result) return;
       const { newArrowDirection, styles, childrenStyle } = result;
       setLayerStyle({ ...styles, width: childrenStyle?.width });
@@ -78,6 +76,9 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
             onClose(null, { value: !open });
           });
         };
+      }
+      if (isMini && open) {
+        getContentDirection();
       }
     }, [container, open]);
 
