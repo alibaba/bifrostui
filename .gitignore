@@ -9,6 +9,7 @@ node_modules
 dist
 es
 /docs-dist
+/doc
 .history
 /website/pages/dist/**
 # misc
