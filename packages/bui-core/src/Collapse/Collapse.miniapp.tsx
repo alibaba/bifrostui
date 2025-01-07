@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import Taro from '@tarojs/taro';
 import {
   useForkRef,
   duration,
@@ -39,6 +40,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
   const wrapperRef = useRef(null);
   const collapseRef = useForkRef(wrapperRef, ref);
   const transitions = createTransitions();
+  const wrapperSizeRef = useRef({});
   const isHorizontal = direction === 'horizontal';
   const collapsedSize =
     typeof collapsedSizeProp === 'number'
@@ -47,9 +49,28 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
   const size = isHorizontal ? 'width' : 'height';
 
   const getCollapseWrapperSize = (reactNode) => {
-    return reactNode
-      ? `${reactNode[isHorizontal ? 'clientWidth' : 'clientHeight']}px`
-      : 'fit-content';
+    return new Promise((resolve) => {
+      const reactNodeChild = reactNode?.children?.[0];
+
+      if (!reactNodeChild) {
+        resolve('fit-content');
+      }
+      const query = Taro.createSelectorQuery();
+      query
+        .select(`.${reactNode?.props?.class} .${reactNodeChild?.props?.class}`)
+        .boundingClientRect();
+      query.exec((res) => {
+        if (!res[0]) {
+          resolve('fit-content');
+        } else {
+          resolve(
+            isHorizontal
+              ? `${res[0].width}px`
+              : `${res[0].right - res[0].left}px`,
+          );
+        }
+      });
+    });
   };
 
   useEffect(() => {
@@ -59,9 +80,9 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
       inProp === true &&
       wrapperRef.current?.style?.[size] === 'fit-content'
     ) {
-      wrapperRef.current.style[size] = getCollapseWrapperSize(
-        wrapperRef.current?.children?.[0],
-      );
+      getCollapseWrapperSize(wrapperRef.current).then((res) => {
+        wrapperRef.current.style[size] = res;
+      });
     }
   }, [appear, inProp]);
 
@@ -84,21 +105,30 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
             { mode: state },
           ),
         );
-        const wrapperSize = () => {
-          const collapseWrapperSize =
-            state === 'entering' || state === 'entered'
-              ? getCollapseWrapperSize(wrapperRef.current?.children?.[0])
-              : collapsedSize;
-          return isHorizontal
+
+        if (state === 'entering' || state === 'entered') {
+          getCollapseWrapperSize(wrapperRef.current).then((res) => {
+            wrapperSizeRef.current = isHorizontal
+              ? {
+                  width: res,
+                  WebKitWidth: res,
+                }
+              : {
+                  height: res,
+                  WebKitHeight: res,
+                };
+          });
+        } else {
+          wrapperSizeRef.current = isHorizontal
             ? {
-                width: collapseWrapperSize,
-                WebKitWidth: collapseWrapperSize,
+                width: collapsedSize,
+                WebKitWidth: collapsedSize,
               }
             : {
-                height: collapseWrapperSize,
-                WebKitHeight: collapseWrapperSize,
+                height: collapsedSize,
+                WebKitHeight: collapsedSize,
               };
-        };
+        }
         return React.createElement(
           'div',
           {
@@ -107,7 +137,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
               ...style,
               transition,
               WebkitTransition: transition,
-              ...wrapperSize(),
+              ...wrapperSizeRef.current,
             },
             ref: collapseRef,
           },
