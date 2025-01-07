@@ -37,12 +37,21 @@ jobs:
         if: contains(env.TAG, 'beta') == true
         run: pnpm docs:build beta
 
-      - name: Build Docs for Current
-        if: contains(env.TAG, 'beta') == false
-        run: pnpm docs:build
-
-      - name: Deploy to GitHub Pages
+      - name: Deploy Beta to GitHub Pages
+        if: contains(env.TAG, 'beta') == true
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: doc
+          folder: doc/beta
+          target-folder: beta
+
+      - name: Build Docs for Current
+        if: contains(env.TAG, 'beta') == false
+        run: pnpm docs:build v1
+
+      - name: Deploy Latest to GitHub Pages
+        if: contains(env.TAG, 'beta') == false
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: doc/v1
