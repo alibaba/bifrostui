@@ -35,7 +35,7 @@ jobs:
 
       - name: Build Docs for Beta
         if: contains(env.TAG, 'beta') == true
-        run: pnpm docs:build beta
+        run: pnpm docs:build:beta beta
 
       - name: Deploy Beta to GitHub Pages
         if: contains(env.TAG, 'beta') == true
