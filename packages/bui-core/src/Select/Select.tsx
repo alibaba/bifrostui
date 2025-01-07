@@ -4,7 +4,6 @@ import {
   isMini,
   throttle,
   useForkRef,
-  useUniqueId,
   useValue,
 } from '@bifrostui/utils';
 import clsx from 'clsx';
@@ -56,24 +55,23 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const isOpen = open !== undefined ? open : internalOpen;
   const locatorRef = useRef(null);
   const rootRef = useForkRef(ref, locatorRef);
-  const ttId = useUniqueId();
-  const dataId = `${prefixCls}-tt-${ttId}`;
+  const optionContainerRef = useRef(null);
 
-  const updateOptionStyle = throttle(() => {
+  const updateOptionStyle = throttle(async () => {
     const curScrollRoot = scrollContainer();
     if (!isMini && curScrollRoot) {
-      const result = getStylesAndLocation({
+      const result = await getStylesAndLocation({
         scrollRoot: curScrollRoot,
         childrenRef: locatorRef,
+        tipRef: optionContainerRef,
         arrowDirection: defaultPlacement,
         arrowLocation: 'none',
-        selector: `[data-id="${dataId}"]`,
         offsetSpacing: 0,
       });
       if (!result) return;
       const { styles, childrenStyle, newArrowDirection } = result;
       setPlacement(newArrowDirection);
-      setOptionStyle({ ...styles, width: childrenStyle.width });
+      setOptionStyle({ ...styles, width: childrenStyle?.width });
     }
   }, 100);
 
@@ -157,7 +155,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
               [`${prefixCls}-option-container-hide`]: !isOpen,
             },
           )}
-          data-id={dataId}
+          ref={optionContainerRef}
           style={optionStyle}
         >
           <Slide
