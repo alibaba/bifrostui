@@ -1,6 +1,6 @@
 ---
 group: 动效
-name: collapse 折叠动效
+name: Collapse 折叠动效
 ---
 
 # Collapse 折叠动效
