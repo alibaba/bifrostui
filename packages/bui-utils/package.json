@@ -1,6 +1,6 @@
 {
   "name": "@bifrostui/utils",
-  "version": "1.4.4-beta.2",
+  "version": "1.4.4-beta.3",
   "description": "BUI React utilities for building components.",
   "main": "src/index.ts",
   "module": "src/index.ts",
