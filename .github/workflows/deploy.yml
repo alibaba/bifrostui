@@ -26,9 +26,6 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Build Docs
-        run: pnpm docs:build
-
       - name: Check Tag for Beta
         id: check_tag
         run: |
@@ -36,18 +33,17 @@ jobs:
           echo "TAG=${TAG}" >> $GITHUB_ENV
           echo "Current TAG: ${TAG}"
 
-      - name: Sync to GitLab for Beta
+      - name: Build Docs for Beta
         if: contains(env.TAG, 'beta') == true
-        uses: wearerequired/git-mirror-action@v1
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.BUI_BETA_SSH_PRIVATE_KEY }}
-        with:
-          source-repo: 'git@github.com:alibaba/bifrostui.git'
-          destination-repo: 'git@gitlab.alibaba-inc.com:alipay-movie-client/bifrostui-pre-release.git'
+        run: pnpm docs:build beta
+
+      - name: Build Docs for Current
+        if: contains(env.TAG, 'beta') == false
+        run: pnpm docs:build
 
       - name: Deploy to GitHub Pages
         if: contains(env.TAG, 'beta') == false
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: docs-dist
+          folder: doc
