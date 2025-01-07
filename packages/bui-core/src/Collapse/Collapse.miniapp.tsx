@@ -40,7 +40,12 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
   const wrapperRef = useRef(null);
   const collapseRef = useForkRef(wrapperRef, ref);
   const transitions = createTransitions();
-  const wrapperSizeRef = useRef({});
+  const wrapperSizeRef = useRef<Record<string, any>>({
+    width: 'fit-content',
+    height: 'fit-content',
+    WebKitWidth: 'fit-content',
+    WebKitHeight: 'fit-content',
+  });
   const isHorizontal = direction === 'horizontal';
   const collapsedSize =
     typeof collapsedSizeProp === 'number'
@@ -110,12 +115,12 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
           getCollapseWrapperSize(wrapperRef.current).then((res) => {
             wrapperSizeRef.current = isHorizontal
               ? {
-                  width: res,
-                  WebKitWidth: res,
+                  width: res || 'fit-content',
+                  WebKitWidth: res || 'fit-content',
                 }
               : {
-                  height: res,
-                  WebKitHeight: res,
+                  height: res || 'fit-content',
+                  WebKitHeight: res || 'fit-content',
                 };
           });
         } else {
