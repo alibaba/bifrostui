@@ -8,8 +8,8 @@ node_modules
 # production
 dist
 es
+/dist
 /docs-dist
-/doc
 .history
 /website/pages/dist/**
 # misc

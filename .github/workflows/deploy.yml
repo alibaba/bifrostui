@@ -42,8 +42,9 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: doc/beta
-          target-folder: beta
+          folder: docs-dist/docs/beta
+          target-folder: docs/beta
+          force: false
 
       - name: Build Docs for Current
         if: contains(env.TAG, 'beta') == false
@@ -54,4 +55,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: doc/v1
+          folder: docs-dist/docs/v1
+          target-folder: docs/v1
+          force: false
