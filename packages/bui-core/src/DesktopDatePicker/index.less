@@ -1,18 +1,21 @@
 @import '@bifrostui/styles/mixins/index.less';
 @class-prefix-date-picker: ~'bui-date-picker';
-@transition-duration: 0.3s;
+@date-picker-content-padding: 10px 16px;
 
 .@{class-prefix-date-picker} {
+  --height: var(--bui-input-height, 32px);
+  --min-width: var(--bui-input-min-width, 100px);
+  --icon-size: var(--bui-title-size-3, 16px);
+  --container-padding: var(--bui-spacing-md, 9px);
   position: relative;
   cursor: pointer;
   vertical-align: middle;
-  height: var(--bui-input-height, 32px);
-  min-width: 100px;
+  height: var(--height);
+  min-width: var(--min-width);
   font-size: var(--bui-title-size-3);
   border-radius: 5px;
   background-color: var(--bui-color-bg-view);
   font-family: var(--bui-font-family);
-  box-sizing: border-box;
   border: 1px solid var(--bui-color-border-default);
 
   &:active,
@@ -23,13 +26,13 @@
   &-icon {
     display: flex;
     align-items: center;
-    font-size: var(--bui-title-size-3);
+    font-size: var(--icon-size);
   }
 
   &-container {
     display: flex;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 var(--container-padding);
     height: 100%;
   }
 
@@ -60,18 +63,13 @@
     overflow: hidden;
   }
 
-  &-calendar-container-top {
-    bottom: 100%;
-    margin-bottom: 6px;
-  }
-
-  &-calendar-container-bottom {
-    top: 100%;
-    margin-top: 6px;
-  }
-
   &-calendar-main {
-    border-radius: 3px;
+    --container-main-radius: 3px;
+    --container-content-padding: 10px 16px;
+    --container-content-height: 30px;
+    --container-content-line-height: 30px;
+    --container-content-width: 60px;
+    border-radius: var(--container-main-radius);
     padding: 3px 0;
     box-shadow: 0 0 0 2px var(--bui-color-bg-default);
     overflow: hidden;
@@ -124,12 +122,13 @@
   &-table-td {
     background-color: var(--bui-color-bg-view);
     text-align: center;
-    padding: 10px 16px;
+    padding: var(--container-content-padding);
+    cursor: pointer;
 
     &-content {
-      height: 30px;
-      line-height: 30px;
-      width: 60px;
+      height: var(--container-content-height, 30px);
+      line-height: var(--container-content-line-height, 30px);
+      width: var(--container-content-width, 60px);
       border-radius: var(--bui-shape-radius-default, 6px);
       display: inline-block;
       text-align: center;

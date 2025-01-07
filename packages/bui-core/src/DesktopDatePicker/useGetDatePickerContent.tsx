@@ -60,6 +60,7 @@ const useGetDatePickerContent = (props) => {
    * 切换上一个月
    */
   const onClickPrev = (e) => {
+    e.stopPropagation();
     if (!isMinMonth) {
       const month = dayjs(calendarValue).subtract(1, 'month').toDate();
       triggerChange(e, month);
@@ -70,6 +71,7 @@ const useGetDatePickerContent = (props) => {
    * 切换下一个月
    */
   const onClickNext = (e) => {
+    e.stopPropagation();
     if (!isMaxMonth) {
       const month = dayjs(calendarValue).add(1, 'month').toDate();
       triggerChange(e, month);
@@ -88,6 +90,7 @@ const useGetDatePickerContent = (props) => {
   };
   // 点击年，月表格回调
   const handleTdClick = (e, data) => {
+    e.stopPropagation();
     // 当前选择数据是年
     if (selectType === 'year') {
       triggerChange(
@@ -199,7 +202,12 @@ const useGetDatePickerContent = (props) => {
   };
   const desktopDatePicker = () => {
     return (
-      <div className={clsx(`${prefixCls}-calendar-main`)}>
+      <div
+        className={clsx(`${prefixCls}-calendar-main`)}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
         <div className={`${prefixCls}-handler`}>
           {selectType !== 'year' && (
             <div onClick={onClickPrev} className={`${prefixCls}-handler-btn`}>
@@ -215,7 +223,10 @@ const useGetDatePickerContent = (props) => {
           )}
           <div
             className={`${prefixCls}-handler-text`}
-            onClick={() => setSelectType('year')}
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectType('year');
+            }}
           >
             {calendarValue
               ? dayjs(calendarValue as Date).format(format)

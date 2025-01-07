@@ -631,3 +631,22 @@ export default () => {
 | ---------- | -------------- | ------- |
 | isMinMonth | 是否是最小月份 | boolean |
 | isMaxMonth | 是否是最大月份 | boolean |
+
+### 组件样式变量
+
+| 属性                | 说明           | 默认值 | 全局变量                |
+| ------------------- | -------------- | ------ | ----------------------- |
+| --height            | 组件高度       | 32px   | --bui-input-height      |
+| --mini-width        | 选择器最小宽度 | 100px  | --bui-select-mini-width |
+| --icon-size         | 输入框icon大小 | 16px   | --bui-icon-size-3       |
+| --container-padding | 输入框左右边距 | 9px    | --bui-spacing-md        |
+
+### 浮层样式变量（由于浮层节点在H5/web渲染在 body 节点中，所以需要单独维护）
+
+| 属性                            | 说明                   | 默认值    | 全局变量 |
+| ------------------------------- | ---------------------- | --------- | -------- |
+| --container-main-radius         | 浮层容器圆角           | 3px       | -        |
+| --container-content-padding     | 浮层容器内元素左右边距 | 10px 16px | -        |
+| --container-content-height      | 浮层容器内元素高度     | 30px      | -        |
+| --container-content-line-height | 浮层容器内元素行高     | 30px      | -        |
+| --container-content-width       | 浮层容器内元素宽度     | 60px      | -        |
