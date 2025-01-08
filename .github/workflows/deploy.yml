@@ -33,7 +33,7 @@ jobs:
           echo "TAG=${TAG}" >> $GITHUB_ENV
           echo "VERSION_MAJOR=${TAG%%.*}" >> $GITHUB_ENV
           echo "Current TAG: ${TAG}"
-          echo "Major Version: $VERSION_MAJOR"
+          echo "Major Version: ${{ env.VERSION_MAJOR }}"
 
       - name: Build Docs for Beta
         if: contains(env.TAG, 'beta') == true
