@@ -8,7 +8,7 @@
     "v:beta": "npx lerna version prerelease --preid=beta --force-publish --message 'Publish'",
     "pub:online": "pnpm -r publish",
     "pub:beta": "pnpm -r publish --tag beta",
-    "start:h5": "dumi dev",
+    "start:h5": "cross-env PUBLIC_PATH=/ dumi dev",
     "start:weapp": "node scripts/mini-program-site/index.js --type weapp",
     "start:alipay": "node scripts/mini-program-site/index.js --type alipay",
     "start:tt": "node scripts/mini-program-site/index.js --type tt",
