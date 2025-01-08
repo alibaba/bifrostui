@@ -5,6 +5,7 @@ console.log('process.env.PUBLIC_PATH', process.env.PUBLIC_PATH);
 export default defineConfig({
   outputPath: 'dist',
   title: 'bifrostui',
+  base: `${process.env.PUBLIC_PATH}`,
   publicPath: `${process.env.PUBLIC_PATH}`,
   themeConfig: {
     nav: {
