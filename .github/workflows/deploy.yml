@@ -30,10 +30,12 @@ jobs:
         id: check_tag
         run: |
           TAG=$(echo ${GITHUB_REF} | sed 's|refs/tags/||')
+          MAJOR=$(echo ${TAG} | sed -E 's|^v([0-9]+)\..*|\1|')
+          MAJOR_TAG="v${MAJOR}"
           echo "TAG=${TAG}" >> $GITHUB_ENV
-          echo "VERSION_MAJOR=${TAG%%.*}" >> $GITHUB_ENV
+          echo "MAJOR_TAG=${MAJOR_TAG}" >> $GITHUB_ENV
           echo "Current TAG: ${TAG}"
-          echo "Major Version: ${{ env.VERSION_MAJOR }}"
+          echo "Major TAG: ${MAJOR_TAG}"
 
       - name: Build Docs for Beta
         if: contains(env.TAG, 'beta') == true
