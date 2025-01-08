@@ -215,6 +215,7 @@ export const getDirectionLocationStyle = async ({
     top: 0,
     left: 0,
     transform: `translate3d(${styleLeft}, ${styleTop}, 0)`,
+    visibility: '',
   };
   return { styles, childrenStyle };
 };

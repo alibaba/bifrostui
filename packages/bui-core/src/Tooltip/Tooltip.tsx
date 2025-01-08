@@ -75,6 +75,14 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     clearRef(open);
   }, [open]);
 
+  useEffect(() => {
+    if (!openStatus) {
+      setTooltyles({
+        visibility: 'hidden',
+      });
+    }
+  }, [openStatus]);
+
   const clickEventHandler = (event) => {
     if (
       trigger === 'hover' ||
@@ -155,6 +163,8 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     ref: childrenRef,
     ...triggerEventOption,
   };
+
+  console.log('tooltyles===', tooltyles);
 
   return (
     <>
