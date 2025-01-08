@@ -63,6 +63,6 @@ jobs:
           folder: docs-dist/v1
           force: false
           clean: true
-          # 若存在老版本，需要在此添加改目录
+          # 若存在老版本，需要在此添加老版本目录
           clean-exclude: |
             beta/**
