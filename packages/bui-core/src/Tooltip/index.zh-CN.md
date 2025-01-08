@@ -223,6 +223,7 @@ export default () => {
       title="This is a tooltip"
       trigger="click"
       onOpenChange={onOpenChange}
+      placement="bottom"
     >
       <span>onOpenChange 回调方法</span>
     </Tooltip>
