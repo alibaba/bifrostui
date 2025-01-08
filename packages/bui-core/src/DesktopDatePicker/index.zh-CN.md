@@ -641,7 +641,7 @@ export default () => {
 | --icon-size         | 输入框icon大小 | 16px   | --bui-icon-size-3       |
 | --container-padding | 输入框左右边距 | 9px    | --bui-spacing-md        |
 
-### 浮层样式变量（由于浮层节点在H5/web渲染在 body 节点中，所以需要单独维护）
+### 浮层样式变量（由于浮层节点在H5/web渲染在 body 节点中，所以需要单独维护）,需定义在bui-date-picker-calendar-main内
 
 | 属性                            | 说明                   | 默认值    | 全局变量 |
 | ------------------------------- | ---------------------- | --------- | -------- |
