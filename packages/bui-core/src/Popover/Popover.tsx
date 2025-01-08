@@ -76,6 +76,14 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     clearRef(open);
   }, [open]);
 
+  useEffect(() => {
+    if (!openStatus) {
+      setTooltyles({
+        visibility: 'hidden',
+      });
+    }
+  }, [openStatus]);
+
   const clickEventHandler = (event) => {
     if (
       trigger === 'hover' ||
