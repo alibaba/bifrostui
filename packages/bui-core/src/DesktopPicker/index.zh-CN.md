@@ -87,3 +87,4 @@ export default () => {
 | container        | 容器元素       | HTMLElement             | null     |
 | onClose          | 关闭回调       | (data: boolean) => void | -        |
 | content          | 浮层内容       | React.ReactNode         | -        |
+| inheritWidth     | 继承容器宽度   | boolean                 | true     |
