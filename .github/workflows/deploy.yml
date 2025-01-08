@@ -47,6 +47,7 @@ jobs:
           folder: docs-dist/beta
           target-folder: beta
           force: false
+          clean: true
 
       - name: Build Docs for Current
         if: contains(env.TAG, 'beta') == false
@@ -59,3 +60,7 @@ jobs:
           branch: gh-pages
           folder: docs-dist/v1
           force: false
+          clean: true
+          # 若存在老版本，需要在此添加改目录
+          clean-exclude: |
+            beta/**
