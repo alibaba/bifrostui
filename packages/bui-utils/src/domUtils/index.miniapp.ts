@@ -4,12 +4,16 @@ export const getClientRect = () => {
   return new Promise((resolve, reject) => {
     try {
       const res = Taro.getSystemInfoSync();
+      const width = res.windowWidth;
+      const height = res.windowHeight;
       const clientInfo = {
         ...res,
+        width,
+        height,
         left: 0,
         top: 0,
-        right: res.windowWidth,
-        bottom: res.windowHeight,
+        right: width,
+        bottom: height,
       };
       resolve(clientInfo);
     } catch (error) {
