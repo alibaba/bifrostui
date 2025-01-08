@@ -12,9 +12,9 @@ echo "🚀Currently built documentation version is: $DOC_VERSION"
 
 CNAME_FILE="CNAME"
 SOURCE_FOLDER="dist"
-DESTINATION_FOLDER="docs-dist/docs/$DOC_VERSION"
+DESTINATION_FOLDER="docs-dist/$DOC_VERSION"
 
-# 将站点静态资源产物（dist）移动到 docs-dist/docs/[beta|v*] 目录下
+# 将站点静态资源产物（dist）移动到 docs-dist/[beta|v*] 目录下
 if [ -d "$SOURCE_FOLDER" ]; then
     mkdir -p "$DESTINATION_FOLDER"
 
