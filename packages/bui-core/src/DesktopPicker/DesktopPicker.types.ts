@@ -9,6 +9,10 @@ export type DesktopPickerProps<
   {
     props: P & {
       /**
+       * 是否继承宽度
+       */
+      inheritWidth?: boolean;
+      /**
        * 是否打开
        */
       open: boolean;

@@ -21,6 +21,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
       container,
       children,
       defaultDirection = 'bottom',
+      inheritWidth = true,
       content,
       onClose,
       ...others
@@ -36,7 +37,6 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
       'bottom',
     );
 
-    const [layerStyle, setLayerStyle] = useState({});
     /**
      * 获取内容方向
      */
@@ -51,8 +51,15 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
         tipRef: contentRef,
       });
       if (!result) return;
-      const { newArrowDirection, styles, childrenStyle } = result;
-      setLayerStyle({ ...styles, width: childrenStyle?.width });
+      const { newArrowDirection, styles, childrenStyle }: any = result;
+      const element = contentRef.current;
+      element.style.transform = styles?.transform;
+      element.style.visibility = styles?.visibility;
+      element.style.top = styles?.top;
+      element.style.left = styles?.left;
+      if (inheritWidth) {
+        element.style.width = childrenStyle?.width;
+      }
       setContentPosition(newArrowDirection);
     };
 
@@ -89,10 +96,9 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
             `${prefixCls}-container`,
             `${prefixCls}-container-${contentPosition}`,
           )}
-          style={{
-            ...layerStyle,
-            display: open ? 'block' : 'none',
-          }}
+          // style={{
+          //   opacity: open ? 1 : 0,
+          // }}
           ref={contentRef}
         >
           {content}
@@ -103,16 +109,19 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
       <>
         <div ref={rootRef} className={clsx(prefixCls, className)} {...others}>
           {renderChildren}
-          {isMini && renderContent()}
         </div>
-        {isMini && (
-          <Backdrop
-            invisible
-            open={open}
-            onClick={(e) => onClose(e, { value: false })}
-          />
+        {open && (
+          <Portal>
+            {renderContent()}
+            {isMini && (
+              <Backdrop
+                invisible
+                open={open}
+                onClick={(e) => onClose(e, { value: false })}
+              />
+            )}
+          </Portal>
         )}
-        {!isMini && <Portal>{renderContent()}</Portal>}
       </>
     );
   },
