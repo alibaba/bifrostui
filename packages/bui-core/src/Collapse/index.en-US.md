@@ -15,7 +15,7 @@ The Collapse component supports two folding directions, which are passed in thro
 
 #### transverse
 
-The folding direction starts from the left side of the element and unfolds
+The folding direction starts from the transverse of the element and unfolds
 
 ```tsx
 import React, { useState } from 'react';
@@ -47,7 +47,7 @@ export default () => {
 
 #### portrait
 
-The folding direction starts from the top of the element and unfolds
+The folding direction starts from the portrait of the element and unfolds
 
 ```tsx
 import React, { useState } from 'react';
