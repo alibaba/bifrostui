@@ -140,8 +140,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       <Fade
         in={isOpen}
         timeout={{
-          enter: 150,
-          exit: 150,
+          enter: 167,
+          exit: 167,
         }}
       >
         <div
@@ -162,8 +162,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             in={isOpen}
             direction={placement === 'bottom' ? 'down' : 'up'}
             timeout={{
-              enter: 150,
-              exit: 150,
+              enter: 167,
+              exit: 167,
             }}
           >
             <div className={clsx(`${prefixCls}-option-main`)}>{children}</div>
