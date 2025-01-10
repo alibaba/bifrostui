@@ -11,17 +11,25 @@ The Portal component provides the ability to render its child nodes into DOM nod
 
 ### Basic usage
 
-By default, Portal components will mount sub components to the root node of the page. H5 is' document. body ', and the mini program is the' page node '
+By default, the Portal component will mount its child components to the root node of the page. H5 is' document. body ', and the mini program is the' page node '. In the mini program, when entering the page and directly rendering the Portal component, its child nodes will not be mounted to the root node. Users need to trigger it actively to mount it correctly, such as changing the state by clicking a button to control the rendering of the Portal component.
 
-```tsx | pure
-import React from 'react';
-import { Portal } from '@bifrostui/react';
+```tsx
+import React, { useState } from 'react';
+import { Portal, Button } from '@bifrostui/react';
 
 export default () => {
+  const [rederPortal, setRederPortal] = useState(false);
   return (
-    <Portal>
-      <div>挂载在页面根节点上</div>
-    </Portal>
+    <>
+      <Button onClick={() => setRederPortal(!rederPortal)}>
+        {rederPortal ? '卸载' : '挂载'}Portal子节点
+      </Button>
+      {rederPortal && (
+        <Portal>
+          <div>挂载在页面根节点上</div>
+        </Portal>
+      )}
+    </>
   );
 };
 ```
@@ -86,8 +94,8 @@ export default () => {
 
 ## API
 
-| attribute     | explain                                                       | type                                    | Default value   |
-| ------------- | ------------------------------------------------------------- | --------------------------------------- | --------------- |
-| children      | Sub elements of Portal components                             | React.ReactNode                         | -               |
-| container     | The children content will be appended to the container        | Element \|(() => Element \|null) \|null | Pages and Nodes |
-| disablePortal | Prohibit Portal, children will be rendered in the parent node | boolean                                 | false           |
+| attribute     | explain                                                       | type                                    | Default value  |
+| ------------- | ------------------------------------------------------------- | --------------------------------------- | -------------- |
+| children      | Sub elements of Portal components                             | React.ReactNode                         | -              |
+| container     | The children content will be appended to the container        | Element \|(() => Element \|null) \|null | Page root node |
+| disablePortal | Prohibit Portal, children will be rendered in the parent node | boolean                                 | false          |
