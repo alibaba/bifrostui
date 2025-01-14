@@ -150,7 +150,7 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
     const onmount = () => {
       onOpen?.();
     };
-    const unMount = () => {
+    const unMounted = () => {
       onClose?.();
       setSelectType('year');
     };
@@ -194,7 +194,7 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
             setIsOpen(data?.value);
           }}
           onMount={onmount}
-          onUnmounted={unMount}
+          onUnmounted={unMounted}
           content={desktopDatePicker()}
           {...desktopPickerProps}
         >
