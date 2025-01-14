@@ -597,7 +597,7 @@ export default () => {
 | placeholder        | 输入框提示文字                   | string                                                   | -                   |
 | minDate            | 可选择的最小日期                 | Date                                                     | 当前日期的十年前    |
 | maxDate            | 可选择的最大日期                 | Date                                                     | 当前日期的十年后    |
-| open               | 弹层是否打开                     | boolean                                                  | false               |
+| open               | 弹层是否打开                     | boolean                                                  | -                   |
 | icon               | 输入框icon                       | React.ReactNode                                          | -                   |
 | inputRef           | 输入框Ref                        | Ref                                                      | -                   |
 | inputProps         | \<input/> 标签透传属性           | React.InputHTMLAttributes                                | -                   |

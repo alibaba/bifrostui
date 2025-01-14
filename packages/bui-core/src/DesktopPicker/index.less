@@ -10,10 +10,27 @@
     box-sizing: border-box;
     visibility: hidden;
     z-index: var(--bui-z-index-tooltip);
-    background-color: var(--bui-color-bg-view);
-    border-radius: 3px;
-    box-shadow: 0 0 0 2px var(--bui-color-bg-default);
-    overflow: hidden;
+
+    &-content {
+      border-radius: 3px;
+      background-color: var(--bui-color-bg-view);
+      box-shadow: 0 0 0 2px var(--bui-color-bg-default);
+    }
+
+    &-open {
+      transform: none;
+      transition:
+        opacity 321ms cubic-bezier(0.4, 0, 0.2, 1),
+        transform 214ms cubic-bezier(0.4, 0, 0.2, 1) 107ms;
+    }
+
+    &-close {
+      opacity: 0;
+      transform: scale(0.75, 0.5625);
+      transition:
+        opacity 321ms cubic-bezier(0.4, 0, 0.2, 1),
+        transform 214ms cubic-bezier(0.4, 0, 0.2, 1) 107ms;
+    }
   }
 }
 .@{class-prefix-desktop-picker}-container-top {

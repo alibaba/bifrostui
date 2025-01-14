@@ -23,7 +23,7 @@ const DesktopDateTimePicker = React.forwardRef<
     disabled,
     disableOpenPicker,
     placeholder,
-    format = 'YYYY/MM/DD',
+    format = 'YYYY/MM/DD HH:mm:ss',
     open,
     disabledDate,
     picker,
@@ -69,7 +69,7 @@ const DesktopDateTimePicker = React.forwardRef<
   // 点击时间选择器icon
   const handleDatePickerIconClick = (e) => {
     // 禁用或者禁用打开日期选择器,点击icon无反馈
-    if (disabled || disableOpenPicker) return;
+    if (disabled || disableOpenPicker || open !== undefined) return;
     setIsOpen(!isOpen);
   };
   // 点击输入框
@@ -187,8 +187,18 @@ const DesktopDateTimePicker = React.forwardRef<
     >
       <DesktopPicker
         open={isOpen}
-        onClose={() => setIsOpen(false)}
-        content={desktopDatePicker()}
+        onClose={(e, data) => setIsOpen(data?.value)}
+        inheritWidth={false}
+        content={
+          <div
+            style={{
+              display: 'flex',
+            }}
+          >
+            {desktopDatePicker()}
+            <div>asdadada</div>
+          </div>
+        }
         {...desktopPickerProps}
       >
         <div className={`${prefixCls}-container`}>

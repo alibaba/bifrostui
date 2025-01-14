@@ -25,9 +25,21 @@ export type DesktopPickerProps<
        */
       container?: HTMLElement | (() => HTMLElement);
       /**
+       * 小程序是否使用backdrop
+       */
+      miniBackdrop?: boolean;
+      /**
        * 关闭浮层
        */
       onClose?: (e: React.MouseEvent<any>, data: { value: boolean }) => void;
+      /**
+       * 打开后的回调
+       */
+      onMount?: () => void;
+      /**
+       * 卸载后的回调
+       */
+      onUnmounted?: () => void;
       /**
        * 默认的浮层位置
        */
