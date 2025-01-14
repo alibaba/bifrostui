@@ -1,17 +1,17 @@
 import { CaretLeftIcon, CaretRightIcon } from '@bifrostui/icons';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import Calendar from '../Calendar';
+import './deskTopPickerContainer.less';
 
+const prefixCls = 'bui-date-picker-container';
 const useGetDatePickerContent = (props) => {
   const {
-    prefixCls,
     format,
     minDate,
     maxDate,
     picker,
-    isOpen,
     setIsOpen,
     disabledDate,
     calendarValue,
@@ -20,8 +20,6 @@ const useGetDatePickerContent = (props) => {
     headerBarLeftIcon,
     headerBarRightIcon,
     closeOnSelect,
-    onClose,
-    onOpen,
     monthRender,
     yearRender,
     onMonthChange,
@@ -203,7 +201,7 @@ const useGetDatePickerContent = (props) => {
   const desktopDatePicker = () => {
     return (
       <div
-        className={clsx(`${prefixCls}-calendar-main`)}
+        className={clsx(`${prefixCls}-main`)}
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -265,15 +263,6 @@ const useGetDatePickerContent = (props) => {
       </div>
     );
   };
-  // 监听关闭将选择状态重制为year
-  useEffect(() => {
-    if (!isOpen) {
-      setSelectType('year');
-      onClose?.();
-    } else {
-      onOpen?.();
-    }
-  }, [isOpen]);
   return {
     desktopDatePicker,
   };

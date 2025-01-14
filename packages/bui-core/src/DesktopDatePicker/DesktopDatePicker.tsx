@@ -2,7 +2,7 @@ import { DateOutlinedIcon } from '@bifrostui/icons';
 import dayjs from 'dayjs';
 import clsx from 'clsx';
 import React, { useMemo, useState, useRef, useEffect } from 'react';
-import { useValue, useForkRef, useDidMountEffect } from '@bifrostui/utils';
+import { useValue, useForkRef } from '@bifrostui/utils';
 import { DatePickerProps } from './DesktopDatePicker.types';
 import './index.less';
 import { formatDate } from './utils';
@@ -45,7 +45,7 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
     const rootRef = useRef(null);
     const nodeRef = useForkRef(ref, rootRef);
     // 是否展开日期选择
-    const [isOpen, setIsOpen] = useState<boolean>(open);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     // 选择类型，year，month，day
     const [selectType, setSelectType] = useState<'year' | 'month' | 'day'>(
@@ -67,7 +67,7 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
     // 点击时间选择器icon
     const handleDatePickerIconClick = (e) => {
       // 禁用或者禁用打开日期选择器,点击icon无反馈
-      if (disabled || disableOpenPicker) return;
+      if (disabled || disableOpenPicker || open !== undefined) return;
       setIsOpen(!isOpen);
     };
     // 点击输入框
@@ -134,7 +134,7 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
           triggerChange(e, maxDate);
           return;
         }
-        // 小于最大值，赋值最小值
+        // 小于最小值，赋值最小值
         if (dayjs(newValue).isBefore(minDate)) {
           triggerChange(e, minDate);
           return;
@@ -147,9 +147,13 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       }
     };
 
-    useDidMountEffect(() => {
-      if (open !== undefined) setIsOpen(open);
-    }, [open]);
+    const onmount = () => {
+      onOpen?.();
+    };
+    const unMount = () => {
+      onClose?.();
+      setSelectType('year');
+    };
     // placeholder优先级最高，format次之，最后兜底YYYY/MM/DD
     const showPlaceholder = useMemo(() => {
       if (placeholder) {
@@ -184,8 +188,13 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
         ref={nodeRef}
       >
         <DesktopPicker
-          open={isOpen}
-          onClose={() => setIsOpen(false)}
+          open={open ?? isOpen}
+          miniBackdrop={open === undefined}
+          onClose={(e, data) => {
+            setIsOpen(data?.value);
+          }}
+          onMount={onmount}
+          onUnmounted={unMount}
           content={desktopDatePicker()}
           {...desktopPickerProps}
         >
@@ -226,7 +235,6 @@ DesktopDatePicker.defaultProps = {
   inputProps: {
     readOnly: false,
   },
-  open: false,
   minDate: dayjs(dayjs().format('YYYYMMDD')).subtract(10, 'year').toDate(),
   maxDate: dayjs(dayjs().format('YYYYMMDD')).add(10, 'year').toDate(),
   picker: 'day',
