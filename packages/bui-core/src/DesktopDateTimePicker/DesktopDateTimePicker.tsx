@@ -2,7 +2,7 @@ import { DateOutlinedIcon } from '@bifrostui/icons';
 import dayjs from 'dayjs';
 import clsx from 'clsx';
 import React, { useMemo, useState, useRef, useEffect } from 'react';
-import { useValue, useForkRef, useDidMountEffect } from '@bifrostui/utils';
+import { useValue, useForkRef } from '@bifrostui/utils';
 import { DateTimePickerProps } from './DesktopDateTimePicker.types';
 import './index.less';
 import { formatDate } from './utils';
@@ -148,10 +148,13 @@ const DesktopDateTimePicker = React.forwardRef<
       setInputStr(e.target.value);
     }
   };
-
-  useDidMountEffect(() => {
-    if (open !== undefined) setIsOpen(open);
-  }, [open]);
+  const onmount = () => {
+    onOpen?.();
+  };
+  const unMounted = () => {
+    onClose?.();
+    setSelectType('year');
+  };
   // placeholder优先级最高，format次之，最后兜底YYYY/MM/DD
   const showPlaceholder = useMemo(() => {
     if (placeholder) {
@@ -186,8 +189,13 @@ const DesktopDateTimePicker = React.forwardRef<
       ref={nodeRef}
     >
       <DesktopPicker
-        open={isOpen}
-        onClose={(e, data) => setIsOpen(data?.value)}
+        open={open ?? isOpen}
+        miniBackdrop={open === undefined}
+        onClose={(e, data) => {
+          setIsOpen(data?.value);
+        }}
+        onMount={onmount}
+        onUnmounted={unMounted}
         inheritWidth={false}
         content={
           <div
@@ -237,7 +245,6 @@ DesktopDateTimePicker.defaultProps = {
   inputProps: {
     readOnly: false,
   },
-  open: false,
   minDate: dayjs(dayjs().format('YYYYMMDD')).subtract(10, 'year').toDate(),
   maxDate: dayjs(dayjs().format('YYYYMMDD')).add(10, 'year').toDate(),
   picker: 'day',

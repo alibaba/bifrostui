@@ -152,11 +152,11 @@ export type DateTimePickerProps<
       /**
        * 弹层关闭的回调
        */
-      onClose?: (e: React.SyntheticEvent) => void;
+      onClose?: () => void;
       /**
        * 弹层打开的回调
        */
-      onOpen?: (e: React.SyntheticEvent) => void;
+      onOpen?: () => void;
       /**
        * 月份切换的回调
        */
