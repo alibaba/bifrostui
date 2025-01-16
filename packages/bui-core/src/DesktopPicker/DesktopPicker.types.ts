@@ -27,22 +27,24 @@ export type DesktopPickerProps<
       /**
        * 小程序是否使用backdrop
        */
+      // TODO miniBackdropInvisible: false
       miniBackdrop?: boolean;
       /**
        * 关闭浮层
        */
       onClose?: (e: React.MouseEvent<any>, data: { value: boolean }) => void;
       /**
-       * 打开后的回调
+       * 打开后动画开始的回调
        */
       onMount?: () => void;
       /**
-       * 卸载后的回调
+       * 卸载后动画结束的回调
        */
       onUnmounted?: () => void;
       /**
        * 默认的浮层位置
        */
+      // TODO default
       defaultDirection?: 'top' | 'bottom';
       /**
        * 透传浮层的Props

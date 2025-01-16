@@ -20,6 +20,7 @@ const defaultTimeout = {
   exit: duration.leavingScreen,
 };
 
+// TODO check unknown
 const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
   const {
     appear = false,
@@ -102,6 +103,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
         return React.createElement(
           'div',
           {
+            // TODO clsx
             className: `bui-collapse ${className || ''}`,
             style: {
               ...style,

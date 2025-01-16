@@ -21,6 +21,7 @@ const defaultTimeout = {
   exit: duration.leavingScreen,
 };
 
+// TODO 动画慢看下有没有优化空间
 const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
   const {
     appear = false,
@@ -36,6 +37,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
     ...other
   } = props;
 
+  // TODO delete
   const nodeRef = useForkRef(ref);
   const wrapperRef = useRef(null);
   const collapseRef = useForkRef(wrapperRef, ref);
@@ -60,11 +62,13 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
       if (!reactNodeChild) {
         resolve('fit-content');
       }
+      // TODO 使用utils getBoundingClientRect
       const query = Taro.createSelectorQuery();
       query
         .select(`.${reactNode?.props?.class} .${reactNodeChild?.props?.class}`)
         .boundingClientRect();
       query.exec((res) => {
+        // TODO res[0]保护
         if (!res[0]) {
           resolve('fit-content');
         } else {
@@ -81,6 +85,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
   useEffect(() => {
     // 修复未挂载时获取不到children元素宽高，动画异常
     if (
+      // TODO 判断
       appear === false &&
       inProp === true &&
       wrapperRef.current?.style?.[size] === 'fit-content'
@@ -115,6 +120,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
           getCollapseWrapperSize(wrapperRef.current).then((res) => {
             wrapperSizeRef.current = isHorizontal
               ? {
+                  // TODO 抽变量 fit-content
                   width: res || 'fit-content',
                   WebKitWidth: res || 'fit-content',
                 }
@@ -150,6 +156,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
             style: {
               ...children.props?.style,
             },
+            // TODO 透传到div & check
             ...childProps,
           }),
         );
