@@ -83,7 +83,6 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
     };
 
     const { desktopDatePicker } = useGetDatePickerContent({
-      prefixCls,
       format,
       minDate,
       maxDate,
@@ -93,14 +92,11 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       calendarValue,
       setSelectType,
       picker,
-      isOpen,
       selectType,
       headerBarLeftIcon,
       headerBarRightIcon,
-      desktopPickerProps,
       calendarProps,
       onClose,
-      onOpen,
       monthRender,
       yearRender,
       onMonthChange,

@@ -32,7 +32,7 @@ const DesktopDateTimePicker = React.forwardRef<
     icon,
     headerBarLeftIcon,
     headerBarRightIcon,
-    closeOnSelect = true,
+    closeOnSelect = false,
     onChange,
     onClose,
     onOpen,
@@ -85,7 +85,6 @@ const DesktopDateTimePicker = React.forwardRef<
   };
 
   const { desktopDatePicker } = useGetDatePickerContent({
-    prefixCls,
     format,
     minDate,
     maxDate,
@@ -95,19 +94,18 @@ const DesktopDateTimePicker = React.forwardRef<
     calendarValue,
     setSelectType,
     picker,
-    isOpen,
     selectType,
     headerBarLeftIcon,
     headerBarRightIcon,
-    desktopPickerProps,
     calendarProps,
-    onClose,
-    onOpen,
     monthRender,
     yearRender,
     onMonthChange,
     onYearChange,
     closeOnSelect,
+    style: {
+      borderRadius: 0,
+    },
   });
 
   const onInputChange = (e) => {
@@ -196,11 +194,14 @@ const DesktopDateTimePicker = React.forwardRef<
         }}
         onMount={onmount}
         onUnmounted={unMounted}
-        inheritWidth={false}
+        inheritWidth
         content={
           <div
             style={{
               display: 'flex',
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
             }}
           >
             {desktopDatePicker()}
