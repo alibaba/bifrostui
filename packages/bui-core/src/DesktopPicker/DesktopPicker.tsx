@@ -26,6 +26,7 @@ const directionMap = {
   top: 'bottom',
 };
 
+// TODO 生成英文md
 const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
   (props, ref) => {
     const {
@@ -40,8 +41,10 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
       onClose,
       onMount,
       onUnmounted,
+      // TODO  add BackdropProps,
       ...others
     } = props;
+    // TODO delete
     const locatorRef = useRef<HTMLDivElement>(null);
     const rootRef = useForkRef(ref, locatorRef);
     const contentRef = useRef<HTMLDivElement>(null);
@@ -56,6 +59,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
 
     /**
      * 获取内容方向
+     * TODO 参照原点根据方向变化
      */
     const getContentDirection = async () => {
       const curScrollRoot = getRootElement(container);
@@ -93,6 +97,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
         const containerDom = getRootElement(container || window);
         containerDom.addEventListener('scroll', getContentDirection);
         window.addEventListener('resize', getContentDirection);
+        // TODO delete ?.
         window?.addEventListener?.('click', addEventListenerClick);
         return () => {
           containerDom.removeEventListener('scroll', getContentDirection);
@@ -118,6 +123,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
           <div
             className={`${prefixCls}-container-${transform && open ? 'open' : 'close'} ${prefixCls}-container-content`}
             style={{
+              // TODO
               transformOrigin: `${directionMap[contentPosition]} center`,
             }}
             onTransitionEnd={() => {

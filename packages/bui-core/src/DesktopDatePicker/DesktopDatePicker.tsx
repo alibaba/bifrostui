@@ -4,11 +4,17 @@ import clsx from 'clsx';
 import React, { useMemo, useState, useRef, useEffect } from 'react';
 import { useValue, useForkRef } from '@bifrostui/utils';
 import { DatePickerProps } from './DesktopDatePicker.types';
-import './index.less';
 import { formatDate } from './utils';
 import DesktopPicker from '../DesktopPicker';
 import useGetDatePickerContent from './useGetDatePickerContent';
-
+import './index.less';
+// TODO
+// 1. YYYY/MM/DD不能当成默认值
+// 2. 展开默认展示picker
+// 3. 头部高亮，分段点击
+// 4. disable 字体样式
+// 5. check 跨年disable交互
+// 6. 面板padding样式保持一致
 const prefixCls = 'bui-date-picker';
 const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
   (props, ref) => {
@@ -42,6 +48,7 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       calendarProps,
       ...others
     } = props;
+    // TODO del
     const rootRef = useRef(null);
     const nodeRef = useForkRef(ref, rootRef);
     // 是否展开日期选择
@@ -57,7 +64,6 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
 
     const [inputStr, setInputStr] = useState<string>('');
     const [renderInputStr, setRenderInputStr] = useState<boolean>(false);
-    // 选中日期，value和defaultValue优先级高于onChange
     const [calendarValue, triggerChange] = useValue({
       value: formattedValue,
       defaultValue: formattedDefaultValue,
@@ -114,6 +120,7 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
         triggerChange(e, null);
         return;
       }
+      // TODO del
       // 输入框长度小于format长度, 设置输入框
       if (newValue.length > 0 && newValue.length !== format.length) {
         setInputStr(e.target.value);
@@ -143,13 +150,16 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       }
     };
 
+    // TODO 命名规范
     const onmount = () => {
       onOpen?.();
     };
+
     const unMounted = () => {
       onClose?.();
       setSelectType('year');
     };
+
     // placeholder优先级最高，format次之，最后兜底YYYY/MM/DD
     const showPlaceholder = useMemo(() => {
       if (placeholder) {
@@ -168,12 +178,14 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       if (calendarValue) {
         return dayjs(calendarValue as Date).format(format);
       }
+      // TODO
       return 'YYYY/MM/DD';
     }, [calendarValue, inputStr, renderInputStr, format]);
 
     useEffect(() => {
       setRenderInputStr(false);
     }, [calendarValue]);
+
     return (
       <div
         {...others}
@@ -196,6 +208,7 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
         >
           <div className={`${prefixCls}-container`}>
             <input
+              {...inputProps}
               aria-invalid
               autoComplete="off"
               placeholder={showPlaceholder}
@@ -206,7 +219,6 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 [inputProps?.className]: inputProps?.className,
               })}
               onBlur={() => setRenderInputStr(false)}
-              {...inputProps}
               onClick={handleDatePickerInputClick}
               onChange={onInputChange}
               value={renderValue}
@@ -225,6 +237,8 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
 );
 
 DesktopDatePicker.displayName = 'BUIDatePicker';
+
+// TODO
 DesktopDatePicker.defaultProps = {
   disabled: false,
   disableOpenPicker: false,
