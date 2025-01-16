@@ -128,8 +128,11 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
 
           const scrollLeft = container?.scrollLeft;
           const showLeftMask = scrollLeft > 0;
-          const showRightMask =
-            scrollLeft + container.offsetWidth < container.scrollWidth;
+          const rightRange = Math.abs(
+            container.scrollWidth - (scrollLeft + container.offsetWidth),
+          );
+          // 右侧遮罩rightRange在0-1范围内即可隐藏，处理浏览器兼容问题
+          const showRightMask = rightRange > 1;
 
           setMaskData({
             leftMaskOpacity: showLeftMask ? 1 : 0,
