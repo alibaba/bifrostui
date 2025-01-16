@@ -10,7 +10,7 @@ import {
   getStylesAndLocation,
   isMini,
   useForkRef,
-  getRootElement,
+  getRootContainer,
   useDidMountEffect,
 } from '@bifrostui/utils';
 import { DesktopPickerProps } from './DesktopPicker.types';
@@ -62,7 +62,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
      * TODO 参照原点根据方向变化
      */
     const getContentDirection = async () => {
-      const curScrollRoot = getRootElement(container);
+      const curScrollRoot = getRootContainer(container);
       const result = await getStylesAndLocation({
         scrollRoot: (container && curScrollRoot) as Element,
         childrenRef: nodeRef,
@@ -94,7 +94,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
           }
         };
         getContentDirection();
-        const containerDom = getRootElement(container || window);
+        const containerDom = getRootContainer(container, window);
         containerDom.addEventListener('scroll', getContentDirection);
         window.addEventListener('resize', getContentDirection);
         // TODO delete ?.

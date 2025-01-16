@@ -30,7 +30,7 @@ export {
   getTransitionProps,
   createTransitions,
 } from './transitions';
-export { default as getRootElement } from './getRootElement';
+export { default as getRootContainer } from './getRootContainer';
 export { default as getBoundingClientRect } from './getBoundingClientRect';
 export { getScrollRect, getClientRect } from './domUtils';
 export * from './isType';
