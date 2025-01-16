@@ -26,6 +26,7 @@ const useGetDatePickerContent = (props) => {
     onYearChange,
     triggerChange,
     calendarProps,
+    ...others
   } = props;
   // 判断是否是最小月份，最大月份
   const isMinMonth = dayjs(minDate).isSame(calendarValue, 'month');
@@ -142,7 +143,14 @@ const useGetDatePickerContent = (props) => {
     if (monthRender && selectType === 'month') {
       return monthRender(its, currentData);
     }
-    return <div className={clsx(`${prefixCls}-table-td-content`)}>{its}</div>;
+    return (
+      <div className={clsx(`${prefixCls}-table-td-content`)}>
+        <span className={clsx(`${prefixCls}-table-td-content-text`)}>
+          {its}
+          {selectType === 'month' && '月'}
+        </span>
+      </div>
+    );
   };
   // 渲染年，月表格
   const renderTable = () => {
@@ -202,6 +210,7 @@ const useGetDatePickerContent = (props) => {
     return (
       <div
         className={clsx(`${prefixCls}-main`)}
+        {...others}
         onClick={(e) => {
           e.stopPropagation();
         }}

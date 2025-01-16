@@ -10,7 +10,7 @@
     --container-content-width: 60px;
     border-radius: var(--container-main-radius);
     padding: 3px 0;
-    height: 275px;
+    box-shadow: 0 0 0 2px var(--bui-color-bg-default);
     overflow: hidden;
   }
 
@@ -22,6 +22,7 @@
     margin-bottom: 7px;
 
     &-text {
+      white-space: nowrap;
       font-size: var(--bui-title-size-3);
       font-weight: var(--bui-font-weight-medium);
       text-align: center;
@@ -59,22 +60,28 @@
   }
 
   &-table-td {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--bui-color-bg-view);
-    text-align: center;
-    padding: var(--container-content-padding);
     cursor: pointer;
 
     &-content {
-      height: var(--container-content-height, 30px);
-      line-height: var(--container-content-line-height, 30px);
-      width: var(--container-content-width, 60px);
+      margin: 6px 8px;
+      padding: 4px 12px;
       border-radius: var(--bui-shape-radius-default, 6px);
       display: inline-block;
       text-align: center;
-      font-size: var(--bui-title-size-4);
       font-weight: var(--bui-font-weight-medium);
       color: var(--bui-color-fg-default);
       font-family: var(--bui-font-family);
+
+      &-text {
+        display: inline-block;
+        width: 36px;
+        font-size: var(--bui-title-size-4);
+        line-height: 1;
+      }
     }
   }
 
