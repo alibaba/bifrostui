@@ -8,6 +8,7 @@ import './index.less';
 import { formatDate } from './utils';
 import DesktopPicker from '../DesktopPicker';
 import useGetDatePickerContent from '../DesktopDatePicker/useGetDatePickerContent';
+import useGetTimePickerContent from '../DesktopTimePicker/useGetTimePickerContent';
 
 const prefixCls = 'bui-datetime-picker';
 const DesktopDateTimePicker = React.forwardRef<
@@ -107,6 +108,14 @@ const DesktopDateTimePicker = React.forwardRef<
       borderRadius: 0,
     },
   });
+  const { desktopTimePicker } = useGetTimePickerContent({
+    format,
+    minTime: dayjs(minDate),
+    maxTime: dayjs(maxDate),
+    setIsOpen,
+    triggerChange,
+    timeValue: dayjs(calendarValue),
+  });
 
   const onInputChange = (e) => {
     e.stopPropagation();
@@ -205,7 +214,7 @@ const DesktopDateTimePicker = React.forwardRef<
             }}
           >
             {desktopDatePicker()}
-            <div>asdadada</div>
+            {desktopTimePicker()}
           </div>
         }
         {...desktopPickerProps}
