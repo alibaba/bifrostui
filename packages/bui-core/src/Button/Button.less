@@ -30,6 +30,10 @@
 .bui-btn {
   --border-radius: var(--bui-button-border-radius, 100px);
   --text-color: var(--bui-button-text-color, var(--bui-color-fg-muted));
+  --contained-text-color: var(
+    --bui-button-contained-text-color,
+    var(--bui-color-fg-muted)
+  );
   --bg-color: var(--bui-button-default-bg-color, var(--bui-color-neutral-5));
   --border-color: var(--bui-button-border-color, var(--bui-color-neutral-4));
   --height: var(--bui-button-height, 27px);
@@ -41,8 +45,8 @@
     --bui-button-icon-start-margin-left,
     var(--bui-spacing-xs)
   );
-  --default-border: var(--bui-button-default-border, 1px solid transparent);
-  --light-border: var(--bui-button-light-border, 1px solid transparent);
+  --default-border: var(--bui-button-default-border, 1px none transparent);
+  --light-border: var(--bui-button-light-border, 1px none transparent);
   --outlined-default-border: var(
     --bui-button-outlined-default-border,
     1px solid var(--bui-color-neutral-4)
@@ -173,6 +177,7 @@
 
   &-contained {
     background-color: var(--bg-color);
+    color: var(--contained-text-color);
 
     &.bui-btn-primary {
       .btn-contained(primary);

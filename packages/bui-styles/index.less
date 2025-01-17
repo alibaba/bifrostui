@@ -4,6 +4,13 @@
 @import './mixins/index.less';
 
 @media (prefers-color-scheme: light) {
+  [data-color-mode='auto'][data-theme='pioneer'] {
+    .pioneer-light();
+    .pioneer-components();
+  }
+}
+
+@media (prefers-color-scheme: light) {
   [data-color-mode='auto'][data-theme='dm'] {
     .dm-light();
   }
@@ -29,16 +36,23 @@ xhs-page,
   .dark();
 }
 
-/** 大麦主题 */
+/** 大麦主题-高亮 */
 .bui-dm-light,
 [data-color-mode='light'][data-theme='dm'] {
   .dm-light();
 }
 
-/** 大麦主题 */
+/** 大麦主题-暗黑 */
 .bui-dm-dark,
 [data-color-mode='dark'][data-theme='dm'] {
   .dm-dark();
+}
+
+/** 大麦主题-高亮 */
+.bui-pioneer-light,
+[data-color-mode='light'][data-theme='pioneer'] {
+  .pioneer-light();
+  .pioneer-components();
 }
 
 @media (prefers-color-scheme: light) {

@@ -176,6 +176,7 @@ export default () => {
 | --border-radius           | Rounded corner size                                              | 100px                           | --bui-button-border-radius           |
 | --bg-color                | background color                                                 | --bui-color-neutral-5           | --bui-button-default-bg-color        |
 | --text-color              | Button Default text color                                        | --bui-color-fg-muted            | --bui-button-text-color              |
+| --contained-text-color    | Fill button default font color                                   | --bui-color-fg-muted            | --bui-button-contained-text-color    |
 | --default-border          | Default border, including borders for text and contained buttons | 1px solid transparent           | --bui-button-default-border          |
 | --light-border            | The border of the light button                                   | 1px solid transparent           | --bui-button-light-border            |
 | --outlined-default-border | The default border for the outlined button                       | 1px solid --bui-color-neutral-4 | --bui-button-outlined-default-border |
