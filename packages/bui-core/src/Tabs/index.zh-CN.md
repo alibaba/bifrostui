@@ -471,21 +471,20 @@ export default () => {
 
 ### Tabs
 
-| 属性           | 说明              | 默认值                 | 全局变量                |
-| -------------- | ----------------- | ---------------------- | ----------------------- |
-| --height       | Tabs 高度         | 39px                   | --bui-tabs-height       |
-| --color        | 字体颜色          | --bui-color-fg-subtle  | --bui-tabs-color        |
-| --active-color | 激活 Tab 字体颜色 | --bui-color-fg-default | --bui-tabs-active-color |
-| --line-width   | 下标线宽度        | 18px                   | --bui-tabs-line-width   |
-| --line-height  | 下标线高度        | 3PX                    | --bui-tabs-line-height  |
-| --line-color   | 下标线颜色        | --bui-color-primary    | --bui-tabs-line-color   |
-| --mask-width   | 蒙层宽度          | 12px                   | --bui-tabs-mask-width   |
-| --mask-height  | 蒙层高度          | 100%                   | --bui-tabs-mask-height  |
-
-### Tab
-
-| 属性        | 说明        | 默认值                                           | 全局变量            |
-| ----------- | ----------- | ------------------------------------------------ | ------------------- |
-| --height    | Tab 高度    | 100%                                             | --bui-tab-height    |
-| --padding   | Tab内边距   | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding   |
-| --font-size | Tab字体大小 | --bui-text-size-1                                | --bui-tab-font-size |
+| 属性                 | 说明               | 默认值                                           | 全局变量                      |
+| -------------------- | ------------------ | ------------------------------------------------ | ----------------------------- |
+| --height             | Tabs 高度          | 39px                                             | --bui-tabs-height             |
+| --color              | 字体颜色           | --bui-color-fg-subtle                            | --bui-tabs-color              |
+| --active-color       | 激活 Tab 字体颜色  | --bui-color-fg-default                           | --bui-tabs-active-color       |
+| --line-width         | 下标线宽度         | 18px                                             | --bui-tabs-line-width         |
+| --line-border-radius | 下标线圆角         | 3px                                              | --bui-tabs-line-border-radius |
+| --line-bottom        | 下标线底部定位位置 | 0                                                | --bui-tabs-line-bottom        |
+| --line-height        | 下标线高度         | 3PX                                              | --bui-tabs-line-height        |
+| --line-color         | 下标线颜色         | --bui-color-primary                              | --bui-tabs-line-color         |
+| --line-box-shadow    | 下标线阴影         | none                                             | --bui-tabs-line-box-shadow    |
+| --mask-width         | 蒙层宽度           | 12px                                             | --bui-tabs-mask-width         |
+| --mask-height        | 蒙层高度           | 100%                                             | --bui-tabs-mask-height        |
+| --tab-height         | Tab 高度           | 100%                                             | --bui-tab-height              |
+| --tab-padding        | Tab内边距          | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding             |
+| --font-size          | Tab字体大小        | --bui-text-size-1                                | --bui-tab-font-size           |
+| --active-font-size   | 激活Tab字体大小    | --bui-text-size-1                                | --bui-tab-active-font-size    |

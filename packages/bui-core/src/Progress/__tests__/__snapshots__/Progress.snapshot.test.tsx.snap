@@ -247,7 +247,7 @@ exports[`Progress demo snapshot Progress demo snapshot 0 4`] = `
         className="bui-progress-bg"
         style={
           Object {
-            "backgroundImage": "linear-gradient(to right, var(--bui-color-red), var(--bui-color-red-light))",
+            "backgroundImage": "linear-gradient(to right, var(--bui-color-primary), var(--bui-color-primary-light))",
             "height": undefined,
             "width": "60%",
           }
@@ -289,7 +289,7 @@ exports[`Progress demo snapshot Progress demo snapshot 0 5`] = `
     className="bui-progress-inner"
     style={
       Object {
-        "background": "var(--bui-color-red-light)",
+        "background": "var(--bui-color-primary-light)",
       }
     }
   >
