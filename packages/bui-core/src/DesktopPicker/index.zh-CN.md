@@ -80,14 +80,14 @@ export default () => {
 
 ### API
 
-| 属性             | 说明                     | 类型                    | 默认值   |
-| ---------------- | ------------------------ | ----------------------- | -------- |
-| open             | 打开关闭该浮层           | boolean                 | false    |
-| defaultDirection | 默认方向                 | 'top' \| 'bottom'       | 'bottom' |
-| container        | 容器元素                 | HTMLElement             | null     |
-| onClose          | 关闭回调                 | (data: boolean) => void | -        |
-| content          | 浮层内容                 | React.ReactNode         | -        |
-| inheritWidth     | 继承容器宽度             | boolean                 | true     |
-| miniBackdrop     | 小程序中是否需要Backdrop | boolean                 | true     |
-| onMount          | 挂载回调                 | () => void              | -        |
-| onUnmounted      | 卸载回调                 | () => void              | -        |
+| 属性             | 说明                                                                                   | 类型                    | 默认值   |
+| ---------------- | -------------------------------------------------------------------------------------- | ----------------------- | -------- |
+| open             | 打开关闭该浮层                                                                         | boolean                 | false    |
+| defaultDirection | 默认方向                                                                               | 'top' \| 'bottom'       | 'bottom' |
+| container        | 容器元素                                                                               | HTMLElement             | null     |
+| onClose          | 关闭回调                                                                               | (data: boolean) => void | -        |
+| content          | 浮层内容                                                                               | React.ReactNode         | -        |
+| inheritWidth     | 继承容器宽度                                                                           | boolean                 | true     |
+| miniBackdrop     | 小程序中是否需要Backdrop, 该属性仅在小程序中生效，避免遮罩层出现影响主动控制浮层的能力 | boolean                 | true     |
+| onMount          | 挂载回调                                                                               | () => void              | -        |
+| onUnmounted      | 卸载回调                                                                               | () => void              | -        |
