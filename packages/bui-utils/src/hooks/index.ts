@@ -1,7 +1,7 @@
 import useDidMountEffect from './useDidMountEffect';
 import useEventCallback from './useEventCallback';
 import useForkRef from './useForkRef';
-import useTouchEmulator from './useTouchEmulator';
+import useTouchEmulator, { touchEmulator } from './useTouchEmulator';
 import useValue from './useValue';
 import useDomReady from './useDomReady';
 import useSize from './useSize';
@@ -15,6 +15,7 @@ export {
   useEventCallback,
   useDidMountEffect,
   useTouchEmulator,
+  touchEmulator,
   useDomReady,
   useSize,
   useDomCss,
