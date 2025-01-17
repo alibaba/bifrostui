@@ -188,7 +188,7 @@ const DesktopDateTimePicker = React.forwardRef<
     >
       <DesktopPicker
         open={open ?? isOpen}
-        miniBackdrop={open === undefined}
+        miniBackdropInvisible={open !== undefined}
         onClose={(e, data) => {
           setIsOpen(data?.value);
         }}

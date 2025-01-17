@@ -7,6 +7,9 @@ import './deskTopPickerContainer.less';
 
 const prefixCls = 'bui-date-picker-container';
 const useGetDatePickerContent = (props) => {
+  const yPatterns = ['YYYY', 'YY'];
+  const mPatterns = ['MM', 'M', 'MMM', 'MMMM'];
+  const dPatterns = ['D', 'DD'];
   const {
     format,
     minDate,
@@ -138,10 +141,18 @@ const useGetDatePickerContent = (props) => {
   // renderMonth
   const renderTd = (its, currentData) => {
     if (yearRender && selectType === 'year') {
-      return yearRender(its, currentData);
+      return (
+        <div className={clsx(`${prefixCls}-table-td-content`)}>
+          {yearRender({ year: its, currentData })}
+        </div>
+      );
     }
     if (monthRender && selectType === 'month') {
-      return monthRender(its, currentData);
+      return (
+        <div className={clsx(`${prefixCls}-table-td-content`)}>
+          {monthRender({ month: its, currentData })}
+        </div>
+      );
     }
     return (
       <div className={clsx(`${prefixCls}-table-td-content`)}>
@@ -206,6 +217,48 @@ const useGetDatePickerContent = (props) => {
       );
     });
   };
+
+  const handleClickTitle = (e, data) => {
+    e.stopPropagation();
+    if (yPatterns.indexOf(data) > -1) {
+      setSelectType('year');
+    }
+    if (mPatterns.indexOf(data) > -1) {
+      setSelectType('month');
+    }
+    if (dPatterns.indexOf(data) > -1) {
+      setSelectType('day');
+    }
+  };
+
+  const renderTitle = (formate, value) => {
+    const allType = [...yPatterns, ...mPatterns, ...dPatterns];
+    const formattingTokens =
+      /(\[[^[]*\])|([-_?:/.,()\s{0-9}]+)|(A|a|Q|YYYY|YY?|ww?|MM?M?M?|Do|DD?|hh?|HH?|mm?|ss?|S{1,3}|z|ZZ?)/g;
+    const matchArr = formate.match(formattingTokens);
+    const domArr = [];
+    let str = '';
+    for (let i = 0; i <= matchArr.length; i += 1) {
+      if (allType.indexOf(matchArr[i]) > -1) {
+        if (str !== '') {
+          domArr.push(<span>{str}</span>);
+          str = '';
+        }
+        domArr.push(
+          <div
+            className={clsx(`${prefixCls}-handler-box-text`)}
+            onClick={(e) => handleClickTitle(e, matchArr[i])}
+          >
+            {dayjs(value).format(matchArr[i])}
+          </div>,
+        );
+      } else {
+        str = `${matchArr[i]}${str}`;
+      }
+    }
+    return domArr;
+  };
+
   const desktopDatePicker = () => {
     return (
       <div
@@ -228,16 +281,8 @@ const useGetDatePickerContent = (props) => {
               )}
             </div>
           )}
-          <div
-            className={`${prefixCls}-handler-text`}
-            onClick={(e) => {
-              e.stopPropagation();
-              setSelectType('year');
-            }}
-          >
-            {calendarValue
-              ? dayjs(calendarValue as Date).format(format)
-              : format}
+          <div className={`${prefixCls}-handler-box`}>
+            {calendarValue ? renderTitle(format, calendarValue) : format}
           </div>
           {selectType !== 'year' && (
             <div onClick={onClickNext} className={`${prefixCls}-handler-btn`}>

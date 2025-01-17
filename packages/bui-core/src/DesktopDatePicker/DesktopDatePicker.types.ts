@@ -117,12 +117,23 @@ export type DatePickerProps<
       /**
        * 自定义月份单元格的内容
        */
-      // TODO {}
-      monthRender?: (currentDate: IDatePickerInstance) => React.ReactNode;
+      monthRender?: ({
+        month,
+        currentDate,
+      }: {
+        month: string | number;
+        currentDate: IDatePickerInstance;
+      }) => React.ReactNode;
       /**
        * 自定义年份单元格的内容
        */
-      yearRender?: (currentDate: IDatePickerInstance) => React.ReactNode;
+      yearRender?: ({
+        year,
+        currentDate,
+      }: {
+        year: string | number;
+        currentDate: IDatePickerInstance;
+      }) => React.ReactNode;
       /**
        * 日期发生变化的回调
        */
@@ -161,13 +172,11 @@ export type DatePickerProps<
       /**
        * DesktopPickerProps
        */
-      // TODO 大写
-      desktopPickerProps?: IDesktopPickerProps;
+      DesktopPickerProps?: IDesktopPickerProps;
       /**
        * CalendarProps
        */
-      // TODO 大写
-      calendarProps?: CalendarProps;
+      CalendarProps?: CalendarProps;
     };
     defaultComponent: D;
   },

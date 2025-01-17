@@ -10,6 +10,7 @@ export type DesktopPickerProps<
     props: P & {
       /**
        * 是否继承宽度
+       * @default true
        */
       inheritWidth?: boolean;
       /**
@@ -26,9 +27,9 @@ export type DesktopPickerProps<
       container?: HTMLElement | (() => HTMLElement);
       /**
        * 小程序是否使用backdrop
+       * @default false
        */
-      // TODO miniBackdropInvisible: false
-      miniBackdrop?: boolean;
+      miniBackdropInvisible?: boolean;
       /**
        * 关闭浮层
        */
@@ -43,8 +44,8 @@ export type DesktopPickerProps<
       onUnmounted?: () => void;
       /**
        * 默认的浮层位置
+       * @default bottom
        */
-      // TODO default
       defaultDirection?: 'top' | 'bottom';
       /**
        * 透传浮层的Props
