@@ -27,7 +27,7 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <DesktopDateTimePicker value={value} onChange={handleChange} />
       </div>
     </Stack>
@@ -53,7 +53,7 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <DesktopDateTimePicker
           disableOpenPicker
           value={value}
@@ -83,7 +83,7 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <DesktopDateTimePicker disabled value={value} onChange={handleChange} />
       </div>
     </Stack>
@@ -116,7 +116,7 @@ export default () => {
   };
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <DesktopDateTimePicker
           disabledDate={disabledDate}
           value={value}
@@ -146,7 +146,7 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <DesktopDateTimePicker
           closeOnSelect={false}
           value={value}
@@ -176,7 +176,7 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <DesktopDateTimePicker
           format="YYYY-MM-DD"
           value={value}
@@ -207,7 +207,7 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <Button onClick={() => setOpen(!open)}>{open ? '关闭' : '打开'}</Button>
         <DesktopDateTimePicker
           open={open}
@@ -235,7 +235,7 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <DesktopDateTimePicker
           value={value}
           minDate={dayjs('20200401').toDate()}
@@ -266,7 +266,7 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <DesktopDateTimePicker
           value={value}
           icon={<HelpCircleOutlinedIcon />}
@@ -295,7 +295,7 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <DesktopDateTimePicker
           value={value}
           picker="year"
@@ -333,7 +333,7 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <DesktopDateTimePicker
           headerBarLeftIcon={({ isMinMonth }) => {
             return (
@@ -377,7 +377,7 @@ export default () => {
   };
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <DesktopDateTimePicker
           value={value}
           monthRender={monthRender}
@@ -411,7 +411,7 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <DesktopDateTimePicker
           yearRender={yearRender}
           value={value}
@@ -448,7 +448,7 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <DesktopDateTimePicker
           onClose={onClose}
           onOpen={onOpen}
@@ -482,7 +482,7 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <DesktopDateTimePicker
           onMonthChange={onMonthChange}
           value={value}
@@ -513,7 +513,7 @@ export default () => {
   };
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <DesktopDateTimePicker
           onYearChange={onYearChange}
           value={value}
@@ -547,7 +547,7 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <Button onClick={onSingleClick}>回到今天</Button>
         <DesktopDateTimePicker
           mode="single"
@@ -577,7 +577,7 @@ export default () => {
     <Stack>
       <Button onClick={() => setDate(inputRef.current?.value)}>获取日期</Button>
       <div>组件内部的日期：{date}</div>
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '500px' }}>
         <DesktopDateTimePicker
           inputRef={inputRef}
           defaultValue={dayjs().add(1, 'day').toDate()}
