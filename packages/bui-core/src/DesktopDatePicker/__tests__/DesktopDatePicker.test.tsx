@@ -130,7 +130,7 @@ describe('DesktopDatePicker', () => {
         value={dayjs('20230401').toDate()}
         minDate={dayjs('20200401').toDate()}
         maxDate={dayjs('20230529').toDate()}
-        calendarProps={{
+        CalendarProps={{
           hideDaysOutsideCurrentMonth: true,
         }}
       />,
@@ -184,7 +184,7 @@ describe('DesktopDatePicker', () => {
         disabledDate={(current) =>
           ['0402', '0413'].includes(dayjs(current).format('MMDD'))
         }
-        calendarProps={{
+        CalendarProps={{
           hideDaysOutsideCurrentMonth: true,
         }}
       />,
@@ -213,7 +213,7 @@ describe('DesktopDatePicker', () => {
         value={dayjs().toDate()}
         minDate={dayjs().startOf('month').toDate()}
         maxDate={dayjs().endOf('month').toDate()}
-        calendarProps={{
+        CalendarProps={{
           highlightDate: 'today',
         }}
       />,
@@ -244,7 +244,7 @@ describe('DesktopDatePicker', () => {
         minDate={dayjs().startOf('month').toDate()}
         maxDate={dayjs().endOf('month').toDate()}
         value={dayjs().toDate()}
-        calendarProps={{
+        CalendarProps={{
           highlightDate: 'today',
           dateRender: ({ day }) => {
             return dayjs().format('D') === dayjs(day).format('D') ? (
@@ -288,7 +288,7 @@ describe('DesktopDatePicker', () => {
         value={dayjs('20230401').toDate()}
         minDate={dayjs('20230401').toDate()}
         maxDate={dayjs('20230429').toDate()}
-        calendarProps={{
+        CalendarProps={{
           weekRender: fakeWeekItemRender,
         }}
       />,

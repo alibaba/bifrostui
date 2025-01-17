@@ -21,7 +21,7 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       disabled = false,
       disableOpenPicker = false,
       placeholder,
-      format = 'YYYY-MM-DD',
+      format = 'YYYY/MM/DD',
       open,
       disabledDate,
       picker = 'day',
