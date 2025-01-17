@@ -9,6 +9,7 @@ export * from './Card';
 export * from './Checkbox';
 export * from './Collapse';
 export * from './DesktopDatePicker';
+export * from './DesktopTimePicker';
 export * from './DesktopDateTimePicker';
 export * from './DesktopPicker';
 export * from './Divider';
