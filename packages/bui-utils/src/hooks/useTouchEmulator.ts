@@ -36,6 +36,7 @@ const Touch = function Touch(target, identifier, pos, deltaX, deltaY) {
  * @returns touchList
  */
 function TouchList() {
+  /* eslint-disable */
   const touchList: any = [];
 
   touchList.item = (index) => {
@@ -99,6 +100,7 @@ function onMouse(touchType) {
  * @param mouseEv
  */
 function triggerTouch(eventName, mouseEv) {
+  /* eslint-disable */
   const touchEvent: any = document.createEvent('Event');
   touchEvent.initEvent(eventName, true, false);
 
@@ -159,3 +161,21 @@ export default function useTouchEmulator(dom: HTMLElement | Window = window) {
     };
   }, [dom]);
 }
+
+export const touchEmulator = (dom: HTMLElement | Window = window) => {
+  const touchStart = onMouse('touchstart');
+  const touchMove = onMouse('touchmove');
+  const touchEnd = onMouse('touchend');
+  if (dom) {
+    dom.addEventListener('mousedown', touchStart, true);
+    dom.addEventListener('mousemove', touchMove, true);
+    dom.addEventListener('mouseup', touchEnd, true);
+  }
+  return function () {
+    if (dom) {
+      dom.removeEventListener('mousedown', touchStart, true);
+      dom.removeEventListener('mousemove', touchMove, true);
+      dom.removeEventListener('mouseup', touchEnd, true);
+    }
+  };
+};
