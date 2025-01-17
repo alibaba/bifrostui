@@ -530,7 +530,7 @@ export default () => {
 通过 `value` 属性控制日历组件。
 
 ```tsx
-import { Button, DesktopDatePicker, Stack } from '@bifrostui/react';
+import { Button, DesktopDatePicker, Input, Stack } from '@bifrostui/react';
 import dayjs from 'dayjs/esm/index';
 import React, { useState } from 'react';
 
@@ -548,12 +548,14 @@ export default () => {
   return (
     <Stack>
       <div style={{ width: '320px' }}>
-        <Button onClick={onSingleClick}>回到今天</Button>
+        输入时间
+        <Input onChange={(e) => setValue(e.target.value)} />
         <DesktopDatePicker
           mode="single"
           onChange={handleChange}
           value={value}
         />
+        <Button onClick={onSingleClick}>回到今天</Button>
       </div>
     </Stack>
   );
@@ -570,18 +572,20 @@ import dayjs from 'dayjs/esm/index';
 import React, { useState } from 'react';
 
 export default () => {
-  const [date, setDate] = useState();
+  const [date, setDate] = useState(dayjs().add(1, 'day').toDate());
+  const [defaultValue, setDefault] = useState(dayjs().add(1, 'day').toDate());
   const inputRef = React.useRef(null);
 
   return (
     <Stack>
-      <Button onClick={() => setDate(inputRef.current?.value)}>获取日期</Button>
-      <div>组件内部的日期：{date}</div>
+      <Button onClick={() => setDate(inputRef.current?.value)}>
+        获取组件内部日期
+      </Button>
+      <Button onClick={() => setDefault(dayjs().toDate())}>回到今天</Button>
+      <div>defaultValue: {dayjs(defaultValue).format('YYYY/MM/DD')}</div>
+      <div>组件内部日期: {dayjs(date).format('YYYY/MM/DD')}</div>
       <div style={{ width: '320px' }}>
-        <DesktopDatePicker
-          inputRef={inputRef}
-          defaultValue={dayjs().add(1, 'day').toDate()}
-        />
+        <DesktopDatePicker inputRef={inputRef} defaultValue={defaultValue} />
       </div>
     </Stack>
   );
