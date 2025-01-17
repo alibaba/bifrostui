@@ -9,7 +9,6 @@ import React, {
 import {
   getStylesAndLocation,
   isMini,
-  useForkRef,
   getRootElement,
   useDidMountEffect,
 } from '@bifrostui/utils';
@@ -20,7 +19,7 @@ import './index.less';
 
 const prefixCls = 'bui-desktop-picker';
 
-// transform方向映射
+// transform方向映射, 向上向下原点位置会变
 const directionMap = {
   bottom: 'top',
   top: 'bottom',
@@ -37,16 +36,13 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
       defaultDirection = 'bottom',
       inheritWidth = true,
       content,
-      miniBackdrop = true,
+      miniBackdropInvisible = false,
       onClose,
       onMount,
       onUnmounted,
-      // TODO  add BackdropProps,
+      BackdropProps,
       ...others
     } = props;
-    // TODO delete
-    const locatorRef = useRef<HTMLDivElement>(null);
-    const rootRef = useForkRef(ref, locatorRef);
     const contentRef = useRef<HTMLDivElement>(null);
     const nodeRef = useRef<HTMLDivElement>(null);
     const renderChildren = React.cloneElement(children as ReactElement, {
@@ -59,7 +55,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
 
     /**
      * 获取内容方向
-     * TODO 参照原点根据方向变化
+     * TODO 参照原点根据方向变化,等待getStylesAndLocation返回正确的原点
      */
     const getContentDirection = async () => {
       const curScrollRoot = getRootElement(container);
@@ -97,12 +93,11 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
         const containerDom = getRootElement(container || window);
         containerDom.addEventListener('scroll', getContentDirection);
         window.addEventListener('resize', getContentDirection);
-        // TODO delete ?.
-        window?.addEventListener?.('click', addEventListenerClick);
+        window.addEventListener('click', addEventListenerClick);
         return () => {
           containerDom.removeEventListener('scroll', getContentDirection);
-          window?.removeEventListener?.('resize', getContentDirection);
-          window?.removeEventListener?.('click', addEventListenerClick);
+          window.removeEventListener('resize', getContentDirection);
+          window.removeEventListener('click', addEventListenerClick);
         };
       }
       if (isMini && open) {
@@ -123,7 +118,6 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
           <div
             className={`${prefixCls}-container-${transform && open ? 'open' : 'close'} ${prefixCls}-container-content`}
             style={{
-              // TODO
               transformOrigin: `${directionMap[contentPosition]} center`,
             }}
             onTransitionEnd={() => {
@@ -164,15 +158,16 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
 
     return (
       <>
-        <div ref={rootRef} className={clsx(prefixCls, className)} {...others}>
+        <div ref={ref} className={clsx(prefixCls, className)} {...others}>
           {renderChildren}
         </div>
         {!isMini && renderContainer && <Portal>{renderContent()}</Portal>}
         {isMini && renderContainer && (
           <Portal>
             {renderContent()}
-            {miniBackdrop && (
+            {!miniBackdropInvisible && (
               <Backdrop
+                {...BackdropProps}
                 invisible
                 open={open}
                 onClick={(e) => onClose(e, { value: !open })}

@@ -109,7 +109,7 @@ export default () => {
 
   const disabledDate = (currentDate) => {
     return (
-      ['2024-12-20', '2024-12-21'].indexOf(
+      ['2024-12-20', '2025-01-21'].indexOf(
         dayjs(currentDate).format('YYYY-MM-DD'),
       ) > -1 || ['2023', '2022'].indexOf(dayjs(currentDate).format('YYYY')) > -1
     );
@@ -372,8 +372,8 @@ export default () => {
     setValue(res.value);
   };
 
-  const monthRender = (value, date) => {
-    return <div style={{ background: 'gray' }}>{value}</div>;
+  const monthRender = ({ month, currentData }) => {
+    return <div style={{ color: 'red' }}>{month}</div>;
   };
   return (
     <Stack>
@@ -391,7 +391,7 @@ export default () => {
 
 ### 自定义年份单元格的内容
 
-启用 `monthRender` 可自定义年份单元格的内容。
+启用 `yearRender` 可自定义年份单元格的内容。
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -405,8 +405,8 @@ export default () => {
     setValue(res.value);
   };
 
-  const yearRender = (value, date) => {
-    return <div style={{ background: 'gray' }}>{value}</div>;
+  const yearRender = ({ year, currentData }) => {
+    return <div style={{ color: 'red' }}>{year}</div>;
   };
 
   return (
@@ -601,7 +601,7 @@ export default () => {
 | icon               | 输入框icon                       | React.ReactNode                                          | -                   |
 | inputRef           | 输入框Ref                        | Ref                                                      | -                   |
 | inputProps         | \<input/> 标签透传属性           | React.InputHTMLAttributes                                | -                   |
-| picker             | 日期选择器类型                   | year \| month \| day                                     | year                |
+| picker             | 日期选择器类型                   | year \| month \| day                                     | day                 |
 | headerBarLeftIcon  | 头部操作栏左边图标               | (options: IDatePickerCustomIconProps) => React.ReactNode | \<CaretLeftIcon />  |
 | headerBarRightIcon | 头部操作栏右边图标               | (options: IDatePickerCustomIconProps) => React.ReactNode | \<CaretRightIcon /> |
 | disabled           | 日期选择器是否不可点击           | boolean                                                  | false               |

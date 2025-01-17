@@ -3,6 +3,7 @@ import { useDidMountEffect, useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import React, { SyntheticEvent, useMemo, useState } from 'react';
 import { CalendarProps, ICalendarInstance } from './Calendar.types';
 import { formatDate, isRange, isSame } from './utils';
@@ -10,6 +11,7 @@ import { useLocaleText } from '../locales';
 import './Calendar.less';
 
 dayjs.extend(isoWeek);
+dayjs.extend(customParseFormat);
 
 const classes = {
   root: 'bui-calendar',

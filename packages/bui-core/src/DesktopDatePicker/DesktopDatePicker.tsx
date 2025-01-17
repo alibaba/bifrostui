@@ -1,20 +1,14 @@
 import { DateOutlinedIcon } from '@bifrostui/icons';
 import dayjs from 'dayjs';
 import clsx from 'clsx';
-import React, { useMemo, useState, useRef, useEffect } from 'react';
-import { useValue, useForkRef } from '@bifrostui/utils';
+import React, { useMemo, useState, useEffect } from 'react';
+import { useValue } from '@bifrostui/utils';
 import { DatePickerProps } from './DesktopDatePicker.types';
 import { formatDate } from './utils';
 import DesktopPicker from '../DesktopPicker';
 import useGetDatePickerContent from './useGetDatePickerContent';
 import './index.less';
-// TODO
-// 1. YYYY/MM/DD不能当成默认值
-// 2. 展开默认展示picker
-// 3. 头部高亮，分段点击
-// 4. disable 字体样式
-// 5. check 跨年disable交互
-// 6. 面板padding样式保持一致
+
 const prefixCls = 'bui-date-picker';
 const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
   (props, ref) => {
@@ -24,15 +18,15 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       inputProps,
       value,
       defaultValue,
-      disabled,
-      disableOpenPicker,
+      disabled = false,
+      disableOpenPicker = false,
       placeholder,
-      format = 'YYYY/MM/DD',
+      format = 'YYYY-MM-DD',
       open,
       disabledDate,
-      picker,
-      minDate,
-      maxDate,
+      picker = 'day',
+      minDate = dayjs(dayjs().format('YYYYMMDD')).subtract(10, 'year').toDate(),
+      maxDate = dayjs(dayjs().format('YYYYMMDD')).add(10, 'year').toDate(),
       icon,
       headerBarLeftIcon,
       headerBarRightIcon,
@@ -44,26 +38,23 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       yearRender,
       onMonthChange,
       onYearChange,
-      desktopPickerProps,
-      calendarProps,
+      DesktopPickerProps,
+      CalendarProps,
       ...others
     } = props;
-    // TODO del
-    const rootRef = useRef(null);
-    const nodeRef = useForkRef(ref, rootRef);
     // 是否展开日期选择
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     // 选择类型，year，month，day
     const [selectType, setSelectType] = useState<'year' | 'month' | 'day'>(
-      'year',
+      picker,
     );
 
     const formattedValue = formatDate(value, minDate, maxDate);
     const formattedDefaultValue = formatDate(defaultValue, minDate, maxDate);
 
     const [inputStr, setInputStr] = useState<string>('');
-    const [renderInputStr, setRenderInputStr] = useState<boolean>(false);
+    const [useUserStr, setUseUserStr] = useState<boolean>(false);
     const [calendarValue, triggerChange] = useValue({
       value: formattedValue,
       defaultValue: formattedDefaultValue,
@@ -101,7 +92,7 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       selectType,
       headerBarLeftIcon,
       headerBarRightIcon,
-      calendarProps,
+      CalendarProps,
       onClose,
       monthRender,
       yearRender,
@@ -116,19 +107,15 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       // 输入框清空
       if (newValue.length === 0) {
         setInputStr('');
-        setRenderInputStr(true);
+        setUseUserStr(true);
         triggerChange(e, null);
         return;
       }
-      // TODO del
-      // 输入框长度小于format长度, 设置输入框
-      if (newValue.length > 0 && newValue.length !== format.length) {
-        setInputStr(e.target.value);
-        setRenderInputStr(true);
-      } else if (dayjs(newValue).isValid()) {
+
+      if (dayjs(newValue, format, true).isValid()) {
         // 输入框长度等于format长度, 检查数值有效性
         setInputStr('');
-        setRenderInputStr(false);
+        setUseUserStr(false);
         if (disabledDate?.(dayjs(newValue).toDate())) {
           return;
         }
@@ -145,19 +132,18 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
         triggerChange(e, dayjs(e.target.value).toDate());
       } else {
         // 输入框长度等于format长度, 输入无效
-        setRenderInputStr(true);
+        setUseUserStr(true);
         setInputStr(e.target.value);
       }
     };
 
-    // TODO 命名规范
-    const onmount = () => {
+    const onMount = () => {
       onOpen?.();
     };
 
     const unMounted = () => {
       onClose?.();
-      setSelectType('year');
+      setSelectType(picker);
     };
 
     // placeholder优先级最高，format次之，最后兜底YYYY/MM/DD
@@ -172,18 +158,17 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
     }, [placeholder, format]);
 
     const renderValue = useMemo(() => {
-      if (renderInputStr) {
+      if (useUserStr) {
         return inputStr;
       }
       if (calendarValue) {
         return dayjs(calendarValue as Date).format(format);
       }
-      // TODO
-      return 'YYYY/MM/DD';
-    }, [calendarValue, inputStr, renderInputStr, format]);
+      return '';
+    }, [calendarValue, inputStr, useUserStr, format]);
 
     useEffect(() => {
-      setRenderInputStr(false);
+      setUseUserStr(false);
     }, [calendarValue]);
 
     return (
@@ -193,18 +178,18 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
           [`${prefixCls}-disabled`]: disabled,
           [`${prefixCls}-active`]: isOpen,
         })}
-        ref={nodeRef}
+        ref={ref}
       >
         <DesktopPicker
           open={open ?? isOpen}
-          miniBackdrop={open === undefined}
+          miniBackdropInvisible={open !== undefined}
           onClose={(e, data) => {
             setIsOpen(data?.value);
           }}
-          onMount={onmount}
+          onMount={onMount}
           onUnmounted={unMounted}
           content={desktopDatePicker()}
-          {...desktopPickerProps}
+          {...DesktopPickerProps}
         >
           <div className={`${prefixCls}-container`}>
             <input
@@ -218,7 +203,7 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
               className={clsx(`${prefixCls}-content`, {
                 [inputProps?.className]: inputProps?.className,
               })}
-              onBlur={() => setRenderInputStr(false)}
+              onBlur={() => setUseUserStr(false)}
               onClick={handleDatePickerInputClick}
               onChange={onInputChange}
               value={renderValue}
@@ -237,17 +222,5 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
 );
 
 DesktopDatePicker.displayName = 'BUIDatePicker';
-
-// TODO
-DesktopDatePicker.defaultProps = {
-  disabled: false,
-  disableOpenPicker: false,
-  inputProps: {
-    readOnly: false,
-  },
-  minDate: dayjs(dayjs().format('YYYYMMDD')).subtract(10, 'year').toDate(),
-  maxDate: dayjs(dayjs().format('YYYYMMDD')).add(10, 'year').toDate(),
-  picker: 'day',
-};
 
 export default DesktopDatePicker;
