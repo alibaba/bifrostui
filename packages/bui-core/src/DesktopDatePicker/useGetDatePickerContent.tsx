@@ -299,7 +299,7 @@ const useGetDatePickerContent = (props) => {
         </div>
         {selectType === 'day' ? (
           <Calendar
-            hiddenHeader
+            headerVisible
             minDate={minDate}
             maxDate={maxDate}
             disabledDate={disabledDate}
