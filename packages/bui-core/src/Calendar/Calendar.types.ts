@@ -86,10 +86,9 @@ export type CalendarProps<
       highlightDate?: 'today' | 'weekend';
       /**
        * 是否隐藏头部
+       * default: false
        */
-      // TODO 命名xxxVisible 说明默认值false
-      // 中英文档没改，单测没加
-      hiddenHeader?: boolean;
+      headerVisible?: boolean;
       /**
        * 自定义日期单元格的内容
        */

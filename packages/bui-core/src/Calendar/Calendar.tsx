@@ -36,7 +36,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       headerBarRightIcon,
       disabledDate,
       highlightDate,
-      hiddenHeader,
+      headerVisible = false,
       dateRender,
       weekRender,
       onMonthChange,
@@ -333,7 +333,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         {...data}
       >
         {/* 顶部操作栏 */}
-        {!hiddenHeader && (
+        {!headerVisible && (
           <div className={classes.handler}>
             <div onClick={onClickPrev} className={`${classes.handler}-btn`}>
               {headerBarIcon.left}
