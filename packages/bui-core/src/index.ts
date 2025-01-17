@@ -51,3 +51,4 @@ export * from './Toast';
 export * from './Dialog';
 export * from './ThemeProvider';
 export * from './locales';
+export * from './SwipeAction';

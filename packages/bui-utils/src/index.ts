@@ -11,6 +11,7 @@ export {
   useEventCallback,
   useForkRef,
   useTouchEmulator,
+  touchEmulator,
   useValue,
   useDomReady,
   useSize,
