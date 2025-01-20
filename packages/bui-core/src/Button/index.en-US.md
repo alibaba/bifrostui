@@ -181,6 +181,7 @@ export default () => {
 | --light-border            | The border of the light button                                   | 1px solid transparent           | --bui-button-light-border            |
 | --outlined-default-border | The default border for the outlined button                       | 1px solid --bui-color-neutral-4 | --bui-button-outlined-default-border |
 | --height                  | Default height of button                                         | 27px                            | --bui-button-height                  |
+| --font-weight             | Button Default font weight                                       | --bui-font-weight-medium        | --bui-button-font-weight             |
 | --icon-start-margin-right | Right margin of front label                                      | --bui-spacing-xs                | --bui-button-icon-start-margin-right |
 | --icon-end-margin-left    | Left margin of front label                                       | --bui-spacing-xs                | --bui-button-icon-end-margin-left    |
 | --disabled-opacity        | Disable transparency status                                      | 0.5                             | --bui-button-disabled-opacity        |

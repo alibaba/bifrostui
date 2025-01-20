@@ -476,6 +476,7 @@ export default () => {
 | --height             | Tabs 高度          | 39px                                             | --bui-tabs-height             |
 | --color              | 字体颜色           | --bui-color-fg-subtle                            | --bui-tabs-color              |
 | --active-color       | 激活 Tab 字体颜色  | --bui-color-fg-default                           | --bui-tabs-active-color       |
+| --active-font-weight | 激活 Tab 字重      | --bui-font-weight-medium                         | --bui-tabs-active-font-weight |
 | --line-width         | 下标线宽度         | 18px                                             | --bui-tabs-line-width         |
 | --line-border-radius | 下标线圆角         | 3px                                              | --bui-tabs-line-border-radius |
 | --line-bottom        | 下标线底部定位位置 | 0                                                | --bui-tabs-line-bottom        |
