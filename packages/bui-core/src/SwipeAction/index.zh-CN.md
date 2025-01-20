@@ -15,6 +15,8 @@ name: SwipeAction 滑动操作
 
 ### 基础使用
 
+<!-- TODO closeOnTouchContainer属性单独写一下demo，基础使用第2行有bug：点击Container也可关闭 -->
+
 ```tsx
 import {
   SwipeAction,
@@ -28,6 +30,7 @@ import { PhoneFilledIcon } from '@bifrostui/icons';
 import React from 'react';
 
 export default () => {
+  // TODO Action 未引入
   const leftActions: Action[] = [
     {
       key: 'delete-left',
@@ -118,6 +121,7 @@ export default () => {
             </SwipeActionItem>
           ))}
         >
+          {/* TODO padding: '3px 10px' 的样式收敛到组件里，提供css变量用户可自定义即可 */}
           <p style={{ padding: '3px 10px' }}>禁用滑动</p>
         </SwipeAction>
       </List>
@@ -152,17 +156,19 @@ export default () => {
   ];
   const rightActions: Action[] = [
     {
-      key: 'delete-left',
+      key: 'right-delete',
       text: '删除',
       color: 'danger',
+      // TODO e 未传入
       onClick: (e) => {
         Toast({ message: '点击了删除' });
       },
     },
     {
-      key: 'delete-left2',
+      key: 'right-setting',
       text: '设置',
       color: 'success',
+      // TODO e 未传入
       onClick: (e) => {
         Toast({ message: '点击了设置' });
       },
@@ -243,6 +249,7 @@ export default () => {
       text: '置顶',
       color: 'info',
       onClick: async () => {
+        // TODO 删除多余的 async await，res
         const res = await dialog.confirm({
           message: '定要置顶吗？',
           onConfirm: async () => {
