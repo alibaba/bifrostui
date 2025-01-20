@@ -62,21 +62,19 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
       if (!reactNodeChild) {
         resolve('fit-content');
       }
+      console.log('走到这里测试');
       // TODO 使用utils getBoundingClientRect
       const query = Taro.createSelectorQuery();
       query
         .select(`.${reactNode?.props?.class} .${reactNodeChild?.props?.class}`)
         .boundingClientRect();
       query.exec((res) => {
+        console.log(res, '测试看看res');
         // TODO res[0]保护
         if (!res[0]) {
           resolve('fit-content');
         } else {
-          resolve(
-            isHorizontal
-              ? `${res[0].width}px`
-              : `${res[0].right - res[0].left}px`,
-          );
+          resolve(isHorizontal ? `${res[0].width}px` : `${res[0].height}px`);
         }
       });
     });
@@ -90,6 +88,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
       inProp === true &&
       wrapperRef.current?.style?.[size] === 'fit-content'
     ) {
+      console.log('useEffect 测试');
       getCollapseWrapperSize(wrapperRef.current).then((res) => {
         wrapperRef.current.style[size] = res;
       });
@@ -140,6 +139,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
                 WebKitHeight: collapsedSize,
               };
         }
+        console.log(collapseRef, '测试看看ref');
         return React.createElement(
           'div',
           {
