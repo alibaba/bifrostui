@@ -173,6 +173,10 @@ export type DateTimePickerProps<
        * CalendarProps
        */
       calendarProps?: CalendarProps;
+      /**
+       * 浮层宽度
+       */
+      containerWidth?: number;
     };
     defaultComponent: D;
   },
