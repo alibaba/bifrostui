@@ -5,11 +5,16 @@ import React, {
   useEffect,
   useMemo,
 } from 'react';
-import { SwipeActionProps, SwipeActionRef } from './SwipeAction.types';
-import { useTouch, touchEmulator, isMini } from '@bifrostui/utils';
-import BuiSwipeActionContext from './SwipeActionContext';
-import Taro from '@tarojs/taro';
 import clsx from 'clsx';
+import Taro from '@tarojs/taro';
+import {
+  useTouch,
+  touchEmulator,
+  isMini,
+  getBoundingClientRect,
+} from '@bifrostui/utils';
+import BuiSwipeActionContext from './SwipeActionContext';
+import { SwipeActionProps, SwipeActionRef } from './SwipeAction.types';
 import './SwipeAction.less';
 
 const classPrefix = 'bui-swipe-action';
@@ -18,17 +23,18 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
   (props, ref) => {
     const {
       className,
-      style,
       children,
       rightActions,
       leftActions,
       disabled,
+      // TODO 未定义
       closeOnAction = true,
       closeOnTouchContainer = false,
       onActionsReveal = () => {},
       ...others
     } = props;
     const touch = useTouch();
+    // TODO 删除
     const componentId = useRef(Math.random().toString(36).substr(2, 9));
     const rootRef = useRef(null);
     const leftRef = useRef(null);
@@ -80,12 +86,15 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
       } else if (currentX < -rightWidth * threshold) {
         targetX = -rightWidth;
       }
+      // TODO check 小程序是否可用
       requestAnimationFrame(() => {
         setTranslateX(targetX);
       });
       // targetX > 5 才认为是有效拖动
       if (Math.abs(targetX) < 5) return;
+      // TODO 'left' ， 'right' 抽成枚举
       setOnActionsRevealRes(targetX > 0 ? 'left' : 'right');
+      // TODO 有动效？需要setTimeout？
       timer = setTimeout(() => {
         touch.reset();
       }, 100);
@@ -107,16 +116,20 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
     useEffect(() => {
       // 拖动结束 通过判断translateX的值是否为0来判断是否打开
       if (!isDragging) {
+        // TODO isOpen与translateX完全等效
         setIsOpen(translateX !== 0);
       } else {
         setIsOpen(false);
       }
+      // TODO isDragging 非状态，监听不生效
     }, [translateX, isDragging]);
 
     useEffect(() => {
       // 拖动结束 通过判断translateX的值是否为0来判断是否打开
+      // TODO setTimeout delete
       setTimeout(() => {
-        if (isOpen && onActionsRevealRes) {
+        // TODO onActionsRevealRes是冗余状态，可以使用 translateX 替代
+        if (isOpen) {
           onActionsReveal?.(onActionsRevealRes);
         }
       }, 300);
@@ -129,6 +142,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
       contentRef?.current?.addEventListener('touchcancel', handleTouchEnd);
       if (!isMini && document) {
         // 监听鼠标抬起事件
+        // TODO 类型错误 handleTouchEnd
         document.addEventListener('mouseup', handleTouchEnd);
       }
       return () => {
@@ -161,17 +175,19 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
     }));
 
     const getWidth = (ref: React.RefObject<HTMLDivElement>) => {
+      // TODO return 类型不一致
       if (!ref.current) return 0;
-      return new Promise((resolve) => {
+      return new Promise(async (resolve) => {
         if (isMini) {
-          let refSizeRes = {};
+          // TODO 调用utils中的 getBoundingClientRect
           const query = Taro.createSelectorQuery();
           query
             .select(`#${ref.current.id}`)
             .boundingClientRect()
             .exec((rect) => {
               if (rect[0]) {
-                refSizeRes = rect[0];
+                // TODO ts 报错 类型“{}”上不存在属性“width” & 保护
+                const refSizeRes = rect[0];
                 resolve(refSizeRes.width);
               }
             });
@@ -199,7 +215,6 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
         <div
           className={clsx(`${classPrefix}`, className)}
           ref={rootRef}
-          style={style}
           {...others}
         >
           <div
@@ -212,6 +227,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
             <div
               className={`${classPrefix}-actions ${classPrefix}-actions-left`}
               ref={leftRef}
+              // TODO 作用是什么，删除?
               id={`leftRefId-${componentId.current}`}
             >
               {leftActions}
@@ -223,7 +239,13 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
               onTouchCancel={handleTouchEnd}
+              // onClick={(e) => {
+              //   if (isOpen && closeOnTouchContainer) {
+              //     outClickHandle(e);
+              //   }
+              // }}
             >
+              {/* TODO 多余的dom，删除，事件绑定到`${classPrefix}-content-container` */}
               {isOpen && closeOnTouchContainer ? (
                 <div
                   className={`${classPrefix}-content-mask`}
@@ -231,6 +253,8 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
                   onClick={outClickHandle}
                 ></div>
               ) : null}
+
+              {/* TODO 多余的DOM 删除 */}
               <div
                 className={`${classPrefix}-content`}
                 style={{ pointerEvents: translateX !== 0 ? 'none' : 'auto' }}
