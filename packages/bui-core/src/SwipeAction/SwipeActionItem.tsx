@@ -7,8 +7,8 @@ import './SwipeActionItem.less';
 // TODO 修改
 const prefixCls = 'bui-btn';
 
-// TODO HTMLLIElement 类型错误
-const SwipeActionItem = React.forwardRef<HTMLLIElement, SwipeActionItemProps>(
+// TODO HTMLDivElement 类型错误
+const SwipeActionItem = React.forwardRef<HTMLDivElement, SwipeActionItemProps>(
   (props: SwipeActionItemProps, ref) => {
     const {
       className,
@@ -29,19 +29,16 @@ const SwipeActionItem = React.forwardRef<HTMLLIElement, SwipeActionItemProps>(
     };
 
     return (
-      // TODO <></> del
-      <>
-        <div
-          className={clsx('bui-swipe-action-button', className, {
-            [`${prefixCls}-${color}`]: color,
-          })}
-          ref={ref}
-          onClick={onClickHandle}
-          {...others}
-        >
-          {children}
-        </div>
-      </>
+      <div
+        className={clsx('bui-swipe-action-button', className, {
+          [`${prefixCls}-${color}`]: color,
+        })}
+        ref={ref}
+        onClick={onClickHandle}
+        {...others}
+      >
+        {children}
+      </div>
     );
   },
 );
