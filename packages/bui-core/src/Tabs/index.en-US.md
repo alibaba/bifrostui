@@ -476,6 +476,7 @@ export default () => {
 | --height             | Tabs height                                                  | 39px                                             | --bui-tabs-height             |
 | --color              | Font color                                                   | --bui-color-fg-subtle                            | --bui-tabs-color              |
 | --active-color       | Activate Tab font color                                      | --bui-color-fg-default                           | --bui-tabs-active-color       |
+| --active-font-weight | Activate Tab font weight                                     | --bui-font-weight-medium                         | --bui-tabs-active-font-weight |
 | --line-width         | Width of the lower marking line                              | 18px                                             | --bui-tabs-line-width         |
 | --line-border-radius | Rounded corner of lower marking line                         | 3px                                              | --bui-tabs-line-border-radius |
 | --line-bottom        | Positioning position at the bottom of the lower marking line | 0                                                | --bui-tabs-line-bottom        |

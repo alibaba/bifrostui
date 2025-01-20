@@ -181,6 +181,7 @@ export default () => {
 | --light-border            | light按钮的边框                         | 1px solid transparent           | --bui-button-light-border            |
 | --outlined-default-border | outlined按钮的默认边框                  | 1px solid --bui-color-neutral-4 | --bui-button-outlined-default-border |
 | --height                  | 按钮默认高度                            | 27px                            | --bui-button-height                  |
+| --font-weight             | 按钮字重                                | --bui-font-weight-medium        | --bui-button-font-weight             |
 | --icon-start-margin-right | 前置标签右边距                          | --bui-spacing-xs                | --bui-button-icon-start-margin-right |
 | --icon-end-margin-left    | 前置标签左边距                          | --bui-spacing-xs                | --bui-button-icon-end-margin-left    |
 | --disabled-opacity        | 禁用状态透明度                          | 0.5                             | --bui-button-disabled-opacity        |
