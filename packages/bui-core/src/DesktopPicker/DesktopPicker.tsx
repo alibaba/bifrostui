@@ -40,6 +40,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
       onClose,
       onMount,
       onUnmounted,
+      containerWidth = 'auto',
       BackdropProps,
       ...others
     } = props;
@@ -113,6 +114,9 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
             `${prefixCls}-container`,
             `${prefixCls}-container-${contentPosition}`,
           )}
+          style={{
+            width: containerWidth,
+          }}
           ref={contentRef}
         >
           <div

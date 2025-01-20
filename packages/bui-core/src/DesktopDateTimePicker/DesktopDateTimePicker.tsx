@@ -31,6 +31,7 @@ const DesktopDateTimePicker = React.forwardRef<
     minDate,
     maxDate,
     icon,
+    containerWidth = 400,
     headerBarLeftIcon,
     headerBarRightIcon,
     closeOnSelect = false,
@@ -203,7 +204,8 @@ const DesktopDateTimePicker = React.forwardRef<
         }}
         onMount={onmount}
         onUnmounted={unMounted}
-        inheritWidth
+        inheritWidth={false}
+        containerWidth={containerWidth}
         content={
           <div
             style={{

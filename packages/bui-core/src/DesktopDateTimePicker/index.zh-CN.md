@@ -27,7 +27,7 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '500px' }}>
+      <div style={{ width: '300px' }}>
         <DesktopDateTimePicker value={value} onChange={handleChange} />
       </div>
     </Stack>
@@ -617,6 +617,7 @@ export default () => {
 | onYearChange       | 年份切换的回调                   | () => void                                               | -                   |
 | desktopPickerProps | 透传给 DesktopPicker 的属性      | IdesktopPickerProps                                      | -                   |
 | calendarProps      | 透传给 Calendar 的属性           | IcalendarProps                                           | -                   |
+| containerWidth     | 容器宽度                         | string                                                   | 400px               |
 
 ### ICalendarInstance
 

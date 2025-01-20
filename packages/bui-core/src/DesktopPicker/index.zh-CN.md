@@ -91,3 +91,4 @@ export default () => {
 | miniBackdrop     | 小程序中是否需要Backdrop, 该属性仅在小程序中生效，避免遮罩层出现影响主动控制浮层的能力 | boolean                 | true     |
 | onMount          | 挂载回调                                                                               | () => void              | -        |
 | onUnmounted      | 卸载回调                                                                               | () => void              | -        |
+| containerWidth   | 容器宽度                                                                               | string                  | auto     |

@@ -22,6 +22,10 @@ export type DesktopPickerProps<
        */
       content?: React.ReactNode;
       /**
+       * 浮层宽度
+       */
+      containerWidth?: number;
+      /**
        * 是否指定滚动容器
        */
       container?: HTMLElement | (() => HTMLElement);
