@@ -60,12 +60,33 @@ import React from 'react';
 export default () => {
   return (
     <Stack spacing="8px">
-      <Stack direction="row" spacing="8px">
+      <Stack direction="row" spacing="8px" style={{ width: '350px' }}>
         <Button size="small">小号按钮</Button>
         <Button size="medium">中号按钮</Button>
         <Button size="large">大号按钮</Button>
       </Stack>
-      <Button size="full">通栏按钮</Button>
+      <Button size="full" style={{ width: '350px' }}>
+        通栏按钮
+      </Button>
+      <Stack direction="row" spacing="8px" style={{ width: '350px' }}>
+        <Button size="small" variant="contained" color="primary">
+          小号按钮
+        </Button>
+        <Button size="medium" variant="contained" color="primary">
+          中号按钮
+        </Button>
+        <Button size="large" variant="contained" color="primary">
+          大号按钮
+        </Button>
+      </Stack>
+      <Button
+        size="full"
+        variant="contained"
+        color="primary"
+        style={{ width: '350px' }}
+      >
+        通栏按钮
+      </Button>
     </Stack>
   );
 };
@@ -73,7 +94,7 @@ export default () => {
 
 ### Button color
 
-The button supports defining themes such as' primary ',' success', 'info', 'warning', 'danger', and 'vip'. If color is not set, it defaults to 'default'
+The button supports' primary ' Definition of themes such as success, information, warning, danger, and VIP. If color is not set, it defaults to 'default'
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
@@ -131,7 +152,7 @@ export default () => {
 
 ### Button with icon
 
-Because users are more sensitive to icons compared to plain text, sometimes you may want to set icons for certain buttons to enhance the user experience of the application. For example, if you have a date button, you can use a date icon to mark it StartIcon is located before the child element, and endIcon is located after the child element.
+Because users are more sensitive to icons compared to plain text, sometimes you may want to set icons for certain buttons to enhance the user experience of the application. For example, if you have a date button, you can use a date icon to mark it StartIcon 'is located in front of the child element EndIcon 'is located after the child element.
 
 ```tsx
 import React from 'react';
@@ -167,7 +188,7 @@ export default () => {
 | openType  | WeChat Open Capability                      | string                                                                    | -             |
 | onClick   | Callback when clicking a button             | (event: MouseEvent) => void                                               | -             |
 
-[UNK][UNK]属[UNK]见 [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes)
+For other properties see [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes)
 
 ## Style variables
 
@@ -175,16 +196,16 @@ export default () => {
 | ------------------------- | ---------------------------------------------------------------- | ------------------------------- | ------------------------------------ |
 | --border-radius           | Rounded corner size                                              | 100px                           | --bui-button-border-radius           |
 | --bg-color                | background color                                                 | --bui-color-neutral-5           | --bui-button-default-bg-color        |
-| --text-color              | Button Default text color                                        | --bui-color-fg-muted            | --bui-button-text-color              |
+| --text-color              | Default font color for buttons                                   | --bui-color-fg-muted            | --bui-button-text-color              |
 | --contained-text-color    | Fill button default font color                                   | --bui-color-fg-muted            | --bui-button-contained-text-color    |
 | --default-border          | Default border, including borders for text and contained buttons | 1px solid transparent           | --bui-button-default-border          |
 | --light-border            | The border of the light button                                   | 1px solid transparent           | --bui-button-light-border            |
 | --outlined-default-border | The default border for the outlined button                       | 1px solid --bui-color-neutral-4 | --bui-button-outlined-default-border |
 | --height                  | Default height of button                                         | 27px                            | --bui-button-height                  |
-| --font-weight             | Button Default font weight                                       | --bui-font-weight-medium        | --bui-button-font-weight             |
+| --font-weight             | Button word weight                                               | --bui-font-weight-medium        | --bui-button-font-weight             |
 | --icon-start-margin-right | Right margin of front label                                      | --bui-spacing-xs                | --bui-button-icon-start-margin-right |
 | --icon-end-margin-left    | Left margin of front label                                       | --bui-spacing-xs                | --bui-button-icon-end-margin-left    |
-| --disabled-opacity        | Disable transparency status                                      | 0.5                             | --bui-button-disabled-opacity        |
+| --disabled-opacity        | Disable state transparency                                       | 0.5                             | --bui-button-disabled-opacity        |
 | --small-padding           | Inner margin of small button                                     | 0 11px                          | --bui-button-small-padding           |
 | --small-height            | Small button height                                              | 24px                            | --bui-button-small-height            |
 | --medium-padding          | Inner margin of middle button                                    | 0 14px                          | --bui-button-medium-padding          |
