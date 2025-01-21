@@ -62,6 +62,7 @@ exports[`Button demo snapshot Button demo snapshot 0 2`] = `
         "--flex-wrap": "nowrap",
         "--justify-content": "center",
         "--spacing": "8px",
+        "width": "350px",
       }
     }
   >
@@ -86,6 +87,54 @@ exports[`Button demo snapshot Button demo snapshot 0 2`] = `
   </div>
   <button
     className="bui-btn bui-btn-outlined bui-btn-full bui-btn-default"
+    style={
+      Object {
+        "width": "350px",
+      }
+    }
+    type="button"
+  >
+    通栏按钮
+  </button>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "row",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "8px",
+        "width": "350px",
+      }
+    }
+  >
+    <button
+      className="bui-btn bui-btn-contained bui-btn-small bui-btn-primary"
+      type="button"
+    >
+      小号按钮
+    </button>
+    <button
+      className="bui-btn bui-btn-contained bui-btn-medium bui-btn-primary"
+      type="button"
+    >
+      中号按钮
+    </button>
+    <button
+      className="bui-btn bui-btn-contained bui-btn-large bui-btn-primary"
+      type="button"
+    >
+      大号按钮
+    </button>
+  </div>
+  <button
+    className="bui-btn bui-btn-contained bui-btn-full bui-btn-primary"
+    style={
+      Object {
+        "width": "350px",
+      }
+    }
     type="button"
   >
     通栏按钮
