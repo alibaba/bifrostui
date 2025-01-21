@@ -9,20 +9,37 @@
     --bui-button-font-weight: 700;
     --bui-button-default-bg-color: #171717;
     --bui-button-contained-text-color: var(--bui-color-white);
+    --bui-button-full-height: 45px;
 
     &.bui-btn-contained {
       &.bui-btn-primary {
-        background-image: radial-gradient(
-            circle at 2% 110%,
-            #fffe1e 0%,
-            rgba(255, 135, 42, 0) 99%
-          ),
-          radial-gradient(
-            circle at 100% 120%,
-            #ff3018 0%,
-            rgba(255, 48, 24, 0) 92%
-          ),
-          linear-gradient(90deg, #fc8622 0%, #ff5000 100%);
+        &.bui-btn-large {
+          background-image: radial-gradient(
+              35px 25px ellipse at 2% 110%,
+              #fffe1e 0%,
+              rgba(251, 134, 35, 0) 99%
+            ),
+            radial-gradient(
+              35px 25px ellipse at 110% 120%,
+              #ff3018 0%,
+              rgba(0, 48, 24, 0) 92%
+            ),
+            linear-gradient(90deg, #fc8622 0%, #ff5000 100%);
+        }
+
+        &.bui-btn-full {
+          background-image: radial-gradient(
+              93px 50px ellipse at 2% 110%,
+              #fffe1e 0%,
+              rgba(251, 134, 35, 0) 100%
+            ),
+            radial-gradient(
+              93px 50px ellipse at 98% 110%,
+              #ff3018 0%,
+              rgba(0, 48, 24, 0) 92%
+            ),
+            linear-gradient(90deg, #fc8622 0%, #ff5000 100%);
+        }
       }
     }
   }
@@ -39,7 +56,7 @@
     --bui-tabs-line-height: 7PX;
     --bui-tabs-line-border-radius: 2px;
     --bui-tabs-line-bottom: 6px;
-    --bui-tabs-line-box-shadow: 0 2px 10px 0 rgba(255, 98, 0, 0.6);
+    --bui-tabs-line-box-shadow: 0 1px 5px 0 rgba(255, 98, 0, 0.6);
 
     .bui-tabs-tabline {
       background-image: linear-gradient(

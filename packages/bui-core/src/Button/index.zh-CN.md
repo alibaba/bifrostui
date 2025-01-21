@@ -60,12 +60,33 @@ import React from 'react';
 export default () => {
   return (
     <Stack spacing="8px">
-      <Stack direction="row" spacing="8px">
+      <Stack direction="row" spacing="8px" style={{ width: '350px' }}>
         <Button size="small">小号按钮</Button>
         <Button size="medium">中号按钮</Button>
         <Button size="large">大号按钮</Button>
       </Stack>
-      <Button size="full">通栏按钮</Button>
+      <Button size="full" style={{ width: '350px' }}>
+        通栏按钮
+      </Button>
+      <Stack direction="row" spacing="8px" style={{ width: '350px' }}>
+        <Button size="small" variant="contained" color="primary">
+          小号按钮
+        </Button>
+        <Button size="medium" variant="contained" color="primary">
+          中号按钮
+        </Button>
+        <Button size="large" variant="contained" color="primary">
+          大号按钮
+        </Button>
+      </Stack>
+      <Button
+        size="full"
+        variant="contained"
+        color="primary"
+        style={{ width: '350px' }}
+      >
+        通栏按钮
+      </Button>
     </Stack>
   );
 };
