@@ -613,10 +613,11 @@ export default () => {
 | format             | 日期格式                         | string                                                   | YYYY/MM/DD          |
 | onClose            | 关闭的回调                       | () => void                                               | -                   |
 | onOpen             | 打开的回调                       | () => void                                               | -                   |
-| onMonthChange      | 月份切换的回调                   | () => void                                               | -                   |
-| onYearChange       | 年份切换的回调                   | () => void                                               | -                   |
-| desktopPickerProps | 透传给 DesktopPicker 的属性      | IdesktopPickerProps                                      | -                   |
-| calendarProps      | 透传给 Calendar 的属性           | IcalendarProps                                           | -                   |
+| onMonthChange      | 月份切换的回调                   | (e: React.SyntheticEvent, data: { value: Date }) => void | -                   |
+| onYearChange       | 年份切换的回调                   | (e: React.SyntheticEvent, data: { value: Date }) => void | -                   |
+| onChange           | 选中日期的回调                   | (e: React.SyntheticEvent, data: { value: Date }) => void | -                   |
+| desktopPickerProps | 透传给 DesktopPicker 的属性      | IDesktopPickerProps                                      | -                   |
+| calendarProps      | 透传给 Calendar 的属性           | ICalendarProps                                           | -                   |
 | containerWidth     | 容器宽度                         | string                                                   | 400px               |
 
 ### ICalendarInstance
