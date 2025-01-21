@@ -619,8 +619,9 @@ export default () => {
 | onOpen             | 打开的回调                       | () => void                                                    | -                   |
 | onMonthChange      | 月份切换的回调                   | (e: React.SyntheticEvent, data: { value: Date }) => void      | -                   |
 | onYearChange       | 年份切换的回调                   | (e: React.SyntheticEvent, data: { value: Date }) => void      | -                   |
-| DesktopPickerProps | 透传给 DesktopPicker 的属性      | IdesktopPickerProps                                           | -                   |
-| CalendarProps      | 透传给 Calendar 的属性           | IcalendarProps                                                | -                   |
+| onChange           | 选中日期的回调                   | (e: React.SyntheticEvent, data: { value: Date }) => void      | -                   |
+| DesktopPickerProps | 透传给 DesktopPicker 的属性      | IDesktopPickerProps                                           | -                   |
+| CalendarProps      | 透传给 Calendar 的属性           | ICalendarProps                                                | -                   |
 
 ### ICalendarInstance
 
