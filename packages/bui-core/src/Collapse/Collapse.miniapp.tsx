@@ -21,8 +21,10 @@ const defaultTimeout = {
   exit: duration.leavingScreen,
 };
 
+const FIT_CONTENT = 'fit-content';
+
 // TODO 动画慢看下有没有优化空间
-const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
+const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
   const {
     appear = false,
     in: inProp,
@@ -37,16 +39,14 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
     ...other
   } = props;
 
-  // TODO delete
-  const nodeRef = useForkRef(ref);
   const wrapperRef = useRef(null);
   const collapseRef = useForkRef(wrapperRef, ref);
   const transitions = createTransitions();
   const wrapperSizeRef = useRef<Record<string, any>>({
-    width: 'fit-content',
-    height: 'fit-content',
-    WebKitWidth: 'fit-content',
-    WebKitHeight: 'fit-content',
+    width: FIT_CONTENT,
+    height: FIT_CONTENT,
+    WebKitWidth: FIT_CONTENT,
+    WebKitHeight: FIT_CONTENT,
   });
   const isHorizontal = direction === 'horizontal';
   const collapsedSize =
@@ -60,7 +60,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
       const reactNodeChild = reactNode?.children?.[0];
 
       if (!reactNodeChild) {
-        resolve('fit-content');
+        resolve(FIT_CONTENT);
       }
       // TODO 使用utils getBoundingClientRect
       const query = Taro.createSelectorQuery();
@@ -68,15 +68,10 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
         .select(`.${reactNode?.props?.class} .${reactNodeChild?.props?.class}`)
         .boundingClientRect();
       query.exec((res) => {
-        // TODO res[0]保护
         if (!res[0]) {
-          resolve('fit-content');
+          resolve(FIT_CONTENT);
         } else {
-          resolve(
-            isHorizontal
-              ? `${res[0].width}px`
-              : `${res[0].right - res[0].left}px`,
-          );
+          resolve(isHorizontal ? `${res[0]?.width}px` : `${res[0]?.height}px`);
         }
       });
     });
@@ -88,7 +83,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
       // TODO 判断
       appear === false &&
       inProp === true &&
-      wrapperRef.current?.style?.[size] === 'fit-content'
+      wrapperRef.current?.style?.[size] === FIT_CONTENT
     ) {
       getCollapseWrapperSize(wrapperRef.current).then((res) => {
         wrapperRef.current.style[size] = res;
@@ -101,7 +96,6 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
   return (
     <Transition
       {...other}
-      ref={nodeRef}
       in={inProp}
       timeout={timeout}
       delay={delay}
@@ -120,13 +114,12 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
           getCollapseWrapperSize(wrapperRef.current).then((res) => {
             wrapperSizeRef.current = isHorizontal
               ? {
-                  // TODO 抽变量 fit-content
-                  width: res || 'fit-content',
-                  WebKitWidth: res || 'fit-content',
+                  width: res || FIT_CONTENT,
+                  WebKitWidth: res || FIT_CONTENT,
                 }
               : {
-                  height: res || 'fit-content',
-                  WebKitHeight: res || 'fit-content',
+                  height: res || FIT_CONTENT,
+                  WebKitHeight: res || FIT_CONTENT,
                 };
           });
         } else {
@@ -150,14 +143,13 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
               WebkitTransition: transition,
               ...wrapperSizeRef.current,
             },
+            ...childProps,
             ref: collapseRef,
           },
           React.cloneElement(children, {
             style: {
               ...children.props?.style,
             },
-            // TODO 透传到div & check
-            ...childProps,
           }),
         );
       }}
