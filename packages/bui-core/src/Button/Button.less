@@ -46,8 +46,8 @@
     --bui-button-icon-start-margin-left,
     var(--bui-spacing-xs)
   );
-  --default-border: var(--bui-button-default-border, 1px none transparent);
-  --light-border: var(--bui-button-light-border, 1px none transparent);
+  --default-border: var(--bui-button-default-border, 1px solid transparent);
+  --light-border: var(--bui-button-light-border, 1px solid transparent);
   --outlined-default-border: var(
     --bui-button-outlined-default-border,
     1px solid var(--bui-color-neutral-4)
@@ -60,6 +60,7 @@
   --large-height: var(--bui-button-large-height, 33px);
   --full-font-size: var(--bui-button-full-font-size, var(--bui-title-size-4));
   --full-height: var(--bui-button-full-height, 42px);
+  background-origin: border-box;
   border: var(--default-border);
   outline: 0;
   background-color: transparent;
