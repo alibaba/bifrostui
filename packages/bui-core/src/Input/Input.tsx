@@ -112,7 +112,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
       {/* 清除按钮 */}
       {clearable && !!inputValue && hasFocus && (
         <div className={`${prefixCls}-clear`} onClick={handleClear}>
-          <ErrorCircleFilledIcon htmlColor="#959aa5" />
+          <ErrorCircleFilledIcon htmlColor="var(--bui-color-fg-subtle)" />
         </div>
       )}
 

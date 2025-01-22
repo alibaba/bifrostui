@@ -16,14 +16,14 @@ const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
     const chevron = (() => {
       if (typeof endIcon === 'boolean') {
         return endIcon ? (
-          <ArrowForwardIcon size="small" htmlColor="#ced1d6" />
+          <ArrowForwardIcon size="small" color="disabled" />
         ) : null;
       }
       if (React.isValidElement(endIcon)) {
         return endIcon;
       }
       if (onClick) {
-        return <ArrowForwardIcon size="small" htmlColor="#ced1d6" />;
+        return <ArrowForwardIcon size="small" color="disabled" />;
       }
       return null;
     })();

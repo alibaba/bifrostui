@@ -27,7 +27,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 1`] = `
     >
       <svg
         className="bui-svg-icon"
-        color="#ced1d6"
+        color="var(--bui-color-fg-subtle)"
         dangerouslySetInnerHTML={
           Object {
             "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
@@ -73,7 +73,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 2`] = `
     >
       <svg
         className="bui-svg-icon"
-        color="#ced1d6"
+        color="var(--bui-color-fg-subtle)"
         dangerouslySetInnerHTML={
           Object {
             "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
@@ -121,7 +121,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 3`] = `
     >
       <svg
         className="bui-svg-icon"
-        color="#ced1d6"
+        color="var(--bui-color-fg-subtle)"
         dangerouslySetInnerHTML={
           Object {
             "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
@@ -174,7 +174,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 4`] = `
       >
         <svg
           className="bui-svg-icon"
-          color="#ced1d6"
+          color="var(--bui-color-fg-subtle)"
           dangerouslySetInnerHTML={
             Object {
               "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
@@ -204,7 +204,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 4`] = `
       >
         <svg
           className="bui-svg-icon"
-          color="#ced1d6"
+          color="var(--bui-color-fg-subtle)"
           dangerouslySetInnerHTML={
             Object {
               "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
@@ -234,7 +234,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 4`] = `
       >
         <svg
           className="bui-svg-icon"
-          color="#ced1d6"
+          color="var(--bui-color-fg-subtle)"
           dangerouslySetInnerHTML={
             Object {
               "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
@@ -264,7 +264,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 4`] = `
       >
         <svg
           className="bui-svg-icon"
-          color="#ced1d6"
+          color="var(--bui-color-fg-subtle)"
           dangerouslySetInnerHTML={
             Object {
               "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
@@ -358,7 +358,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 6`] = `
     >
       <svg
         className="bui-svg-icon"
-        color="#ced1d6"
+        color="var(--bui-color-fg-subtle)"
         dangerouslySetInnerHTML={
           Object {
             "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
@@ -409,7 +409,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 7`] = `
       >
         <svg
           className="bui-svg-icon"
-          color="#ced1d6"
+          color="var(--bui-color-fg-subtle)"
           dangerouslySetInnerHTML={
             Object {
               "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
@@ -441,7 +441,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 7`] = `
       >
         <svg
           className="bui-svg-icon"
-          color="#ced1d6"
+          color="var(--bui-color-fg-subtle)"
           dangerouslySetInnerHTML={
             Object {
               "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
@@ -473,7 +473,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 7`] = `
       >
         <svg
           className="bui-svg-icon"
-          color="#ced1d6"
+          color="var(--bui-color-fg-subtle)"
           dangerouslySetInnerHTML={
             Object {
               "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
@@ -540,7 +540,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 8`] = `
         >
           <svg
             className="bui-svg-icon"
-            color="#ff335c"
+            color="var(--bui-color-primary)"
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<path d=\\"M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm17.1 27.9c-1.2-1.2-3.1-1.2-4.2 0L43 53.8l-7.9-7.9c-1.2-1.2-3.1-1.2-4.2 0s-1.2 3.1 0 4.2l10 10c1.2 1.2 3.1 1.2 4.2 0l20-20c1.2-1.2 1.2-3.1 0-4.2z\\"/>",
@@ -572,7 +572,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 8`] = `
         >
           <svg
             className="bui-svg-icon"
-            color="#ff335c"
+            color="var(--bui-color-primary)"
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<path d=\\"M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm17.1 27.9c-1.2-1.2-3.1-1.2-4.2 0L43 53.8l-7.9-7.9c-1.2-1.2-3.1-1.2-4.2 0s-1.2 3.1 0 4.2l10 10c1.2 1.2 3.1 1.2 4.2 0l20-20c1.2-1.2 1.2-3.1 0-4.2z\\"/>",
@@ -604,7 +604,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 8`] = `
         >
           <svg
             className="bui-svg-icon"
-            color="#ff335c"
+            color="var(--bui-color-primary)"
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<path d=\\"M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm17.1 27.9c-1.2-1.2-3.1-1.2-4.2 0L43 53.8l-7.9-7.9c-1.2-1.2-3.1-1.2-4.2 0s-1.2 3.1 0 4.2l10 10c1.2 1.2 3.1 1.2 4.2 0l20-20c1.2-1.2 1.2-3.1 0-4.2z\\"/>",
@@ -650,7 +650,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 8`] = `
       >
         <svg
           className="bui-svg-icon"
-          color="#ff335c"
+          color="var(--bui-color-primary)"
           dangerouslySetInnerHTML={
             Object {
               "__html": "<path d=\\"M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm17.1 27.9c-1.2-1.2-3.1-1.2-4.2 0L43 53.8l-7.9-7.9c-1.2-1.2-3.1-1.2-4.2 0s-1.2 3.1 0 4.2l10 10c1.2 1.2 3.1 1.2 4.2 0l20-20c1.2-1.2 1.2-3.1 0-4.2z\\"/>",
@@ -712,7 +712,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 9`] = `
         >
           <svg
             className="bui-svg-icon"
-            color="#ff335c"
+            color="var(--bui-color-primary)"
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<path d=\\"M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm17.1 27.9c-1.2-1.2-3.1-1.2-4.2 0L43 53.8l-7.9-7.9c-1.2-1.2-3.1-1.2-4.2 0s-1.2 3.1 0 4.2l10 10c1.2 1.2 3.1 1.2 4.2 0l20-20c1.2-1.2 1.2-3.1 0-4.2z\\"/>",
@@ -744,7 +744,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 9`] = `
         >
           <svg
             className="bui-svg-icon"
-            color="#ff335c"
+            color="var(--bui-color-primary)"
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<path d=\\"M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm17.1 27.9c-1.2-1.2-3.1-1.2-4.2 0L43 53.8l-7.9-7.9c-1.2-1.2-3.1-1.2-4.2 0s-1.2 3.1 0 4.2l10 10c1.2 1.2 3.1 1.2 4.2 0l20-20c1.2-1.2 1.2-3.1 0-4.2z\\"/>",
@@ -776,7 +776,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 9`] = `
         >
           <svg
             className="bui-svg-icon"
-            color="#ff335c"
+            color="var(--bui-color-primary)"
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<path d=\\"M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm17.1 27.9c-1.2-1.2-3.1-1.2-4.2 0L43 53.8l-7.9-7.9c-1.2-1.2-3.1-1.2-4.2 0s-1.2 3.1 0 4.2l10 10c1.2 1.2 3.1 1.2 4.2 0l20-20c1.2-1.2 1.2-3.1 0-4.2z\\"/>",
@@ -812,7 +812,7 @@ exports[`Checkbox snapshot Checkbox demo snapshot 0 9`] = `
       >
         <svg
           className="bui-svg-icon"
-          color="#ff335c"
+          color="var(--bui-color-primary)"
           dangerouslySetInnerHTML={
             Object {
               "__html": "<path d=\\"M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm17.1 27.9c-1.2-1.2-3.1-1.2-4.2 0L43 53.8l-7.9-7.9c-1.2-1.2-3.1-1.2-4.2 0s-1.2 3.1 0 4.2l10 10c1.2 1.2 3.1 1.2 4.2 0l20-20c1.2-1.2 1.2-3.1 0-4.2z\\"/>",
