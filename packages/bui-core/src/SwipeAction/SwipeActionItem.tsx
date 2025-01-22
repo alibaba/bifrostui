@@ -3,34 +3,35 @@ import clsx from 'clsx';
 import { SwipeActionItemProps } from './SwipeAction.types';
 import BuiSwipeActionContext from './SwipeActionContext';
 import './SwipeActionItem.less';
+const prefixCls = 'bui-swipe-action-button';
 
-// TODO 修改
-const prefixCls = 'bui-btn';
-
-// TODO HTMLDivElement 类型错误
 const SwipeActionItem = React.forwardRef<HTMLDivElement, SwipeActionItemProps>(
   (props: SwipeActionItemProps, ref) => {
     const {
       className,
       children,
-      // TODO 需要回调 （e, {...item}),增加编码灵活性，删除默认赋值
-      onClick = () => {},
+      onClick,
       color = 'primary',
+      id = '',
       ...others
     } = props;
-    const { closeOnAction, close } = useContext(BuiSwipeActionContext);
+    const { closeOnClickActionItem, close } = useContext(BuiSwipeActionContext);
 
     const onClickHandle = (e: React.MouseEvent<HTMLDivElement>) => {
       e.stopPropagation();
-      if (closeOnAction) {
+      if (closeOnClickActionItem) {
         close?.();
       }
-      onClick?.(e);
+      onClick?.(e, {
+        color,
+        id,
+        text: children,
+      });
     };
 
     return (
       <div
-        className={clsx('bui-swipe-action-button', className, {
+        className={clsx(prefixCls, className, {
           [`${prefixCls}-${color}`]: color,
         })}
         ref={ref}

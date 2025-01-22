@@ -9,29 +9,29 @@
   color: #fff;
   box-sizing: content-box;
   white-space: nowrap;
-  // TODO 缺少font-family
+  font-family: var(--bui-font-family);
 }
 
 .btn-bg(@color) {
   background-color: var(~'--bui-color-@{color}');
 }
-// TODO .bui-btn-?
-.bui-swipe-action-button.bui-btn-primary {
+
+.bui-swipe-action-button-primary {
   .btn-bg(primary);
 }
 
-.bui-swipe-action-button.bui-btn-success {
+.bui-swipe-action-button-success {
   .btn-bg(success);
 }
 
-.bui-swipe-action-button.bui-btn-info {
+.bui-swipe-action-button-info {
   .btn-bg(info);
 }
 
-.bui-swipe-action-button.bui-btn-warning {
+.bui-swipe-action-button-warning {
   .btn-bg(warning);
 }
 
-.bui-swipe-action-button.bui-btn-danger {
+.bui-swipe-action-button-danger {
   .btn-bg(danger);
 }

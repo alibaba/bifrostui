@@ -15,8 +15,6 @@ name: SwipeAction 滑动操作
 
 ### 基础使用
 
-<!-- TODO closeOnTouchContainer属性单独写一下demo，基础使用第2行有bug：点击Container也可关闭 -->
-
 ```tsx
 import {
   SwipeAction,
@@ -30,15 +28,14 @@ import { PhoneFilledIcon } from '@bifrostui/icons';
 import React from 'react';
 
 export default () => {
-  // TODO Action 未引入
-  const leftActions: Action[] = [
+  const leftActions = [
     {
       key: 'delete-left',
       text: '删除',
       color: 'danger',
     },
   ];
-  const rightActions: Action[] = [
+  const rightActions = [
     {
       key: 'delete-right',
       color: 'info',
@@ -56,24 +53,73 @@ export default () => {
         header={<ListItem disabled>基础使用</ListItem>}
       >
         <SwipeAction
-          closeOnTouchContainer
           leftActions={leftActions.map((item) => (
-            <SwipeActionItem color={item.color} key={item.key}>
+            <SwipeActionItem color={item.color} key={item.key} id={item.key}>
               {item.text}
             </SwipeActionItem>
           ))}
         >
-          <p style={{ padding: '3px 10px' }}>右滑</p>
+          <span>右滑</span>
         </SwipeAction>
         <Divider direction="horizontal" />
         <SwipeAction
           rightActions={rightActions.map((item) => (
-            <SwipeActionItem color={item.color} key={item.key}>
+            <SwipeActionItem color={item.color} key={item.key} id={item.key}>
               {item.text}
             </SwipeActionItem>
           ))}
         >
-          <p style={{ padding: '3px 10px' }}>左滑</p>
+          <span>左滑</span>
+        </SwipeAction>
+      </List>
+    </Stack>
+  );
+};
+```
+
+### 点击关闭
+
+通过`closeOnClickContainer`属性来控制通过点击主体内容容器时关闭。
+
+```tsx
+import {
+  SwipeAction,
+  Stack,
+  List,
+  ListItem,
+  SwipeActionItem,
+} from '@bifrostui/react';
+import { DeleteOutlinedIcon } from '@bifrostui/icons';
+import React from 'react';
+
+export default () => {
+  const rightActions = [
+    {
+      key: 'delete-left',
+      text: '删除',
+      color: 'danger',
+    },
+  ];
+
+  return (
+    <Stack
+      direction="row"
+      style={{ backgroundColor: 'rgb(238, 238, 238)', padding: '20px 10px' }}
+    >
+      <List
+        style={{ width: '350px' }}
+        header={<ListItem disabled>点击关闭</ListItem>}
+      >
+        <SwipeAction
+          closeOnClickContainer
+          rightActions={rightActions.map((item) => (
+            <SwipeActionItem color={item.color} key={item.key} id={item.key}>
+              <DeleteOutlinedIcon size="large" />
+              {item.text}
+            </SwipeActionItem>
+          ))}
+        >
+          <span>打开后点击主体这可关闭</span>
         </SwipeAction>
       </List>
     </Stack>
@@ -96,7 +142,7 @@ import {
 import React from 'react';
 
 export default () => {
-  const rightActions: Action[] = [
+  const rightActions = [
     {
       key: 'delete-left',
       text: '删除',
@@ -116,13 +162,12 @@ export default () => {
         <SwipeAction
           disabled
           rightActions={rightActions.map((item) => (
-            <SwipeActionItem color={item.color} key={item.key}>
+            <SwipeActionItem color={item.color} key={item.key} id={item.key}>
               {item.text}
             </SwipeActionItem>
           ))}
         >
-          {/* TODO padding: '3px 10px' 的样式收敛到组件里，提供css变量用户可自定义即可 */}
-          <p style={{ padding: '3px 10px' }}>禁用滑动</p>
+          <span>禁用滑动</span>
         </SwipeAction>
       </List>
     </Stack>
@@ -147,20 +192,19 @@ import {
 import React from 'react';
 
 export default () => {
-  const leftActions: Action[] = [
+  const leftActions = [
     {
       key: 'pin',
       text: '置顶',
       color: 'info',
     },
   ];
-  const rightActions: Action[] = [
+  const rightActions = [
     {
       key: 'right-delete',
       text: '删除',
       color: 'danger',
-      // TODO e 未传入
-      onClick: (e) => {
+      onClick: () => {
         Toast({ message: '点击了删除' });
       },
     },
@@ -168,8 +212,7 @@ export default () => {
       key: 'right-setting',
       text: '设置',
       color: 'success',
-      // TODO e 未传入
-      onClick: (e) => {
+      onClick: () => {
         Toast({ message: '点击了设置' });
       },
     },
@@ -190,6 +233,7 @@ export default () => {
               <SwipeActionItem
                 color={item.color}
                 key={item.key}
+                id={item.key}
                 onClick={() => {
                   item.onClick?.();
                 }}
@@ -198,15 +242,17 @@ export default () => {
               </SwipeActionItem>
             );
           })}
-          onActionsReveal={(side) => {
-            Toast({ message: side === 'left' ? '左侧打开' : '右侧打开' });
+          onActionsReveal={(data) => {
+            Toast({ message: data.side === 'left' ? '左侧打开' : '右侧打开' });
           }}
           leftActions={leftActions.map((item) => {
             return (
               <SwipeActionItem
                 color={item.color}
                 key={item.key}
-                onClick={() => {
+                id={item.key}
+                onClick={(e, data) => {
+                  console.log(data);
                   Toast({ message: '点击了置顶' });
                 }}
               >
@@ -215,7 +261,7 @@ export default () => {
             );
           })}
         >
-          <p style={{ padding: '3px 10px' }}>滑动</p>
+          <span>滑动</span>
         </SwipeAction>
       </List>
     </Stack>
@@ -243,14 +289,13 @@ import React from 'react';
 export default () => {
   let swipeActionRef = React.createRef<SwipeAction>();
   const [dialog, contextHolder] = Dialog.useDialog();
-  const leftActions: Action[] = [
+  const leftActions = [
     {
       key: 'pin',
       text: '置顶',
       color: 'info',
-      onClick: async () => {
-        // TODO 删除多余的 async await，res
-        const res = await dialog.confirm({
+      onClick: () => {
+        dialog.confirm({
           message: '定要置顶吗？',
           onConfirm: async () => {
             swipeActionRef.current?.close();
@@ -259,7 +304,7 @@ export default () => {
       },
     },
   ];
-  const rightActions: Action[] = [
+  const rightActions = [
     {
       key: 'delete',
       text: '删除',
@@ -285,14 +330,16 @@ export default () => {
         header={<ListItem disabled>手动控制归位逻辑</ListItem>}
       >
         <SwipeAction
+          style={{ '--bui-swipe-action-container-padding': '0px' }}
           disabled
           ref={swipeActionRef}
-          closeOnAction={false}
+          closeOnClickActionItem={false}
           leftActions={leftActions.map((item) => {
             return (
               <SwipeActionItem
                 color={item.color}
                 key={item.key}
+                id={item.key}
                 onClick={() => {
                   item.onClick();
                 }}
@@ -306,6 +353,7 @@ export default () => {
               <SwipeActionItem
                 color={item.color}
                 key={item.key}
+                id={item.key}
                 onClick={() => {
                   item.onClick();
                 }}
@@ -358,7 +406,7 @@ import { DeleteOutlinedIcon } from '@bifrostui/icons';
 import React from 'react';
 
 export default () => {
-  const rightActions: Action[] = [
+  const rightActions = [
     {
       key: 'delete-left',
       text: '删除',
@@ -378,9 +426,10 @@ export default () => {
         header={<ListItem disabled>搭配图片使用</ListItem>}
       >
         <SwipeAction
+          style={{ '--bui-swipe-action-container-padding': '0px' }}
           rightActions={rightActions.map((item) => {
             return (
-              <SwipeActionItem color={item.color} key={item.key}>
+              <SwipeActionItem color={item.color} key={item.key} id={item.key}>
                 <DeleteOutlinedIcon size="large" />
                 {item.text}
               </SwipeActionItem>
@@ -410,14 +459,14 @@ import {
 import React from 'react';
 
 export default () => {
-  const leftActions: Action[] = [
+  const leftActions = [
     {
       key: 'pin',
       text: '置顶',
       color: 'info',
     },
   ];
-  const rightActions: Action[] = [
+  const rightActions = [
     {
       key: 'unsubscribe',
       text: '取消关注',
@@ -440,22 +489,30 @@ export default () => {
       >
         {items.map((item) => (
           <SwipeAction
+            style={{ '--bui-swipe-action-container-padding': '0px' }}
             key={item}
             leftActions={leftActions.map((item) => {
               return (
-                <SwipeActionItem color={item.color} key={item.key}>
+                <SwipeActionItem
+                  color={item.color}
+                  key={item.key}
+                  id={item.key}
+                >
                   {item.text}
                 </SwipeActionItem>
               );
             })}
             rightActions={rightActions.map((item) => {
               return (
-                <SwipeActionItem color={item.color} key={item.key}>
+                <SwipeActionItem
+                  color={item.color}
+                  key={item.key}
+                  id={item.key}
+                >
                   {item.text}
                 </SwipeActionItem>
               );
             })}
-            closeOnTouchContainer
           >
             <ListItem>{item}</ListItem>
             <Divider direction="horizontal" />
@@ -471,14 +528,14 @@ export default () => {
 
 ### SwipeAction属性
 
-| 属性                  | 说明                                          | 类型                              | 默认值 |
-| --------------------- | --------------------------------------------- | --------------------------------- | ------ |
-| closeOnAction         | 是否在点击操作按钮时自动归位                  | boolean                           | true   |
-| closeOnTouchContainer | 是否仅在点击主体区域时自动归位                | boolean                           | false  |
-| leftActions           | 左侧的操作按钮列表（搭配SwipeActionItem使用） | React.ReactNode                   | -      |
-| rightActions          | 右侧的操作按钮列表（搭配SwipeActionItem使用） | React.ReactNode                   | -      |
-| onActionsReveal       | 按钮完全出现时触发                            | (side: 'left' \| 'right') => void | -      |
-| disabled              | 是否禁用滑动                                  | boolean                           | false  |
+| 属性                   | 说明                                          | 类型                                | 默认值 |
+| ---------------------- | --------------------------------------------- | ----------------------------------- | ------ |
+| closeOnClickActionItem | 是否在点击操作按钮时自动归位                  | boolean                             | true   |
+| closeOnClickContainer  | 是否在点击主体区域时自动归位                  | boolean                             | false  |
+| leftActions            | 左侧的操作按钮列表（搭配SwipeActionItem使用） | React.ReactNode                     | -      |
+| rightActions           | 右侧的操作按钮列表（搭配SwipeActionItem使用） | React.ReactNode                     | -      |
+| onActionsReveal        | 按钮完全出现时触发                            | ({side: 'left' \| 'right'}) => void | -      |
+| disabled               | 是否禁用滑动                                  | boolean                             | false  |
 
 ### SwipeActionItem属性
 
@@ -493,3 +550,9 @@ export default () => {
 | ----- | ------------------------------------- | --------------------------------- |
 | close | 让滑动条归位                          | () => void                        |
 | show  | 滑动出操作按钮，side 参数默认为 right | (side?: 'left'\| 'right') => void |
+
+## 样式变量
+
+| 属性                | 说明          | 默认值 | 全局变量                             |
+| ------------------- | ------------- | ------ | ------------------------------------ |
+| --container-padding | container边距 | 10px   | --bui-swipe-action-container-padding |

@@ -16,17 +16,18 @@ export type SwipeActionProps<
        * 左侧的操作按钮列表区域
        */
       leftActions?: React.ReactNode;
-      // closeOnAction
+      /**
+       * 是否在点击按钮区自动归位
+       */
+      closeOnClickActionItem?: boolean;
       /**
        * 是否在点击其他区域时自动归位
-       * TODO closeOnClickContainer & closeOnClickActionItem
        */
-      closeOnTouchContainer?: boolean;
+      closeOnClickContainer?: boolean;
       /**
        * 操作按钮展开时触发
        */
-      // TODO 参数使用对象
-      onActionsReveal?: (side: SideType) => void;
+      onActionsReveal?: ({ side: SideType }) => void;
       /**
        * 是否禁用拖动
        */
@@ -48,15 +49,20 @@ export type SwipeActionItemProps<
        */
       color?: ThemeColor;
       /**
-       * body 区域内容
+       * id
        */
-      //  TODO delete
-      children?: React.ReactNode;
+      id?: string | number;
       /**
        * 点击事件
        */
-      // TODO 添加第二个参数，将item的数据回调出去
-      onClick?: (e: React.SyntheticEvent) => void;
+      onClick?: (
+        e: React.SyntheticEvent,
+        item: {
+          key: string | number;
+          color: ThemeColor;
+          text: string;
+        },
+      ) => void;
     };
     defaultComponent: D;
   },
@@ -69,11 +75,21 @@ export interface BuiSwipeActionContextProps {
   /**
    * 是否在点击操作按钮时自动归位
    */
-  closeOnAction?: boolean;
+  closeOnClickActionItem?: boolean;
+  /**
+   * 关闭函数
+   */
+  close: () => void;
 }
 
-// TODO 与实现不一致, show参数{}
 export type SwipeActionRef = {
   close: () => void;
   show: (side?: SideType) => void;
+  open: boolean;
+  ref: React.RefObject<HTMLDivElement>;
 };
+
+export enum SideTypeEnum {
+  LEFT = 'left',
+  RIGHT = 'right',
+}
