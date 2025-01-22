@@ -1,14 +1,13 @@
 .bui-swipe-action {
+  --container-padding: var(--bui-swipe-action-container-padding, 10px);
   background: var(--bui-color-bg-view);
   font-family: var(--bui-font-family);
   overflow: hidden;
-  // TODO pan-y ? check
-  touch-action: pan-y;
+  touch-action: pan-x;
 
   &-track {
     position: relative;
-    // TODO style中已经写了 删除
-    transition: transform 0.3s ease;
+    transition: transform 200ms ease;
   }
 
   &-actions {
@@ -27,7 +26,6 @@
       user-select: none;
       display: flex;
       align-items: center;
-      // TODO check box-sizing 是否可以换成 border-box
       box-sizing: content-box;
     }
 
@@ -62,15 +60,11 @@
     cursor: grab;
     // 禁止选中
     user-select: none;
+    padding: var(--container-padding);
 
     &:active {
       cursor: grabbing;
     }
-  }
-
-  // TODO delete
-  &-content {
-    // 其他相关样式
   }
 
   &-content-mask {
