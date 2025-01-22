@@ -113,7 +113,7 @@ export default () => {
   const disabledTimeView = () => ({
     hour: () => {
       return Array.from({ length: 24 }, (_, i) => i).filter(
-        (hour) => hour > 17,
+        (hour) => hour < 17,
       );
     },
     minute: (selectedHour) => {
@@ -172,7 +172,7 @@ export default () => {
 
 ### 指定时间格式
 
-使用 `format` 指定时间显示格式， 默认 `hh:mm:ss a`
+使用 `format` 指定时间显示格式， 默认 `HH:mm:ss`。如果 `ampm` 为 `true` ，则默认 `hh:mm:ss a`
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
@@ -249,6 +249,7 @@ export default () => {
     <Stack>
       <div style={{ width: '320px' }}>
         <DesktopTimePicker
+          closeOnSelect={false}
           value={value}
           minTime={dayjs().set('hour', 10).set('minute', 10).set('second', 0)}
           maxTime={dayjs().set('hour', 15).set('minute', 10).set('second', 0)}
@@ -293,40 +294,6 @@ export default () => {
 };
 ```
 
-### 自定义年份单元格的内容
-
-启用 `monthRender` 可自定义年份单元格的内容。
-
-```tsx
-import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
-import React, { useState } from 'react';
-
-export default () => {
-  const [value, setValue] = useState(dayjs());
-  const handleChange = (e, res) => {
-    console.log('date change:', res);
-    setValue(res.value);
-  };
-
-  const yearRender = (value, date) => {
-    return <div style={{ background: 'gray' }}>{value}</div>;
-  };
-
-  return (
-    <Stack>
-      <div style={{ width: '320px' }}>
-        <DesktopTimePicker
-          yearRender={yearRender}
-          value={value}
-          onChange={handleChange}
-        />
-      </div>
-    </Stack>
-  );
-};
-```
-
 ### 关闭/开启的回调
 
 `onClose`， `onOpen` 可自定义关闭开启的回调。
@@ -356,37 +323,6 @@ export default () => {
         <DesktopTimePicker
           onClose={onClose}
           onOpen={onOpen}
-          value={value}
-          onChange={handleChange}
-        />
-      </div>
-    </Stack>
-  );
-};
-```
-
-### 年份切换的回调
-
-启用 `onYearChange` 可自定义年份切换的回调。
-
-```tsx
-import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
-import React, { useState } from 'react';
-export default () => {
-  const [value, setValue] = useState(dayjs());
-  const handleChange = (e, res) => {
-    console.log('date change:', res);
-    setValue(res.value);
-  };
-  const onYearChange = (e, res) => {
-    console.log('year change:', res);
-  };
-  return (
-    <Stack>
-      <div style={{ width: '320px' }}>
-        <DesktopTimePicker
-          onYearChange={onYearChange}
           value={value}
           onChange={handleChange}
         />
@@ -458,26 +394,27 @@ export default () => {
 
 ### API
 
-| 属性               | 说明                             | 类型                                                                 | 默认值           |
-| ------------------ | -------------------------------- | -------------------------------------------------------------------- | ---------------- |
-| defaultValue       | 默认选中的值，当组件非受控时使用 | Dayjs \| null                                                        | -                |
-| value              | 选中的值，当组件受控时使用       | Dayjs \| null                                                        | -                |
-| placeholder        | 输入框占位内容                   | string                                                               | -                |
-| minTime            | 可选择的最小时间                 | Dayjs                                                                | 当前时间的十年前 |
-| maxTime            | 可选择的最大时间                 | Dayjs                                                                | 当前时间的十年后 |
-| open               | 弹层是否打开                     | boolean                                                              | false            |
-| icon               | 输入框icon                       | React.ReactNode                                                      | -                |
-| inputRef           | 输入框Ref                        | Ref                                                                  | -                |
-| inputProps         | \<input/> 标签透传属性           | React.InputHTMLAttributes                                            | -                |
-| views              | 打开浮层的视图                   | Views                                                                | -                |
-| timeSteps          | 时间间隔                         | TimeSteps                                                            | -                |
-| ampm               | 是否使用十二小时制模式           | boolean                                                              | false            |
-| disabledTimeView   | 禁止选择的时间                   | DisabledTimeView                                                     | -                |
-| disableOpenPicker  | 禁用弹层选择功能                 | boolean                                                              | false            |
-| disabled           | 是否禁用时间选择器               | boolean                                                              | false            |
-| closeOnSelect      | 选择时间后是否立刻关闭           | boolean                                                              | true             |
-| format             | 时间格式化                       | string                                                               | YYYY/MM/DD       |
-| onClose            | 弹层关闭的回调                   | () => void                                                           | -                |
-| onOpen             | 弹层打开的回调                   | () => void                                                           | -                |
-| onChange           | 时间发生变化的回调               | (e: React.SyntheticEvent, data: { value: ITimePickerValue }) => void | -                |
-| DesktopPickerProps | 透传给 DesktopPicker 的属性      | IDesktopPickerProps                                                  | -                |
+| 属性                | 说明                             | 类型                                                                                                                                        | 默认值                                                                           |
+| ------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| defaultValue        | 默认选中的值，当组件非受控时使用 | Dayjs \| null                                                                                                                               | -                                                                                |
+| value               | 选中的值，当组件受控时使用       | Dayjs \| null                                                                                                                               | -                                                                                |
+| placeholder         | 输入框占位内容                   | string                                                                                                                                      | -                                                                                |
+| minTime             | 可选择的最小时间                 | Dayjs                                                                                                                                       | -                                                                                |
+| maxTime             | 可选择的最大时间                 | Dayjs                                                                                                                                       | -                                                                                |
+| open                | 弹层是否打开                     | boolean                                                                                                                                     | false                                                                            |
+| icon                | 输入框icon                       | React.ReactNode                                                                                                                             | -                                                                                |
+| views               | 打开浮层的视图                   | Array<'hour' \| 'minute' \| 'second'>                                                                                                       | ['hour', 'minute', 'second']                                                     |
+| timeSteps           | 时间间隔                         | {hour?: number;minute?: number; second?: number}                                                                                            | { hour: 1, minute: 1, second: 1 }                                                |
+| ampm                | 是否使用十二小时制模式           | boolean                                                                                                                                     | false                                                                            |
+| disabledTimeView    | 禁止选择的时间                   | () => {hour?: () => number[];minute?:(selectedHour: number) => number[];second?: (selectedHour: number, selectedMinute: number) =>number[]} | () => ({hour: () => {return [];}, minute: () => { return [];},second: () => []}) |
+| disableOpenPicker   | 禁用弹层选择功能                 | boolean                                                                                                                                     | false                                                                            |
+| disabled            | 是否禁用时间选择器               | boolean                                                                                                                                     | false                                                                            |
+| closeOnSelect       | 选择时间后是否立刻关闭           | boolean                                                                                                                                     | true                                                                             |
+| format              | 时间格式化                       | string                                                                                                                                      | HH:mm:ss                                                                         |
+| onClose             | 弹层关闭的回调                   | () => void                                                                                                                                  | -                                                                                |
+| onOpen              | 弹层打开的回调                   | () => void                                                                                                                                  | -                                                                                |
+| onChange            | 时间发生变化的回调               | (e: React.SyntheticEvent, data: { value: ITimePickerValue }) => void                                                                        | -                                                                                |
+| DesktopPickerProps  | 透传给 DesktopPicker 的属性      |
+| inputRef            | 输入框Ref                        | Ref                                                                                                                                         | -                                                                                |
+| inputProps          | \<input/> 标签透传属性           | React.InputHTMLAttributes                                                                                                                   | -                                                                                |
+| IDesktopPickerProps | -                                |

@@ -6,7 +6,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { useValue } from '@bifrostui/utils';
 import { TimePickerProps, TimeSteps } from './DesktopTimePicker.types';
 import './index.less';
-import { formatTime, isDisabledViewTime, isDisabledTime } from './utils';
+import { formatTime, isDisabledTime } from './utils';
 import DesktopPicker from '../DesktopPicker';
 import useGetTimePickerContent from './useGetTimePickerContent';
 
@@ -28,7 +28,7 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       disableOpenPicker = false,
       placeholder,
       open,
-      format = 'HH:mm:ss',
+      format = ampm ? 'hh:mm:ss a' : 'HH:mm:ss',
       disabledTimeView = () => ({
         hour: () => {
           return [];
@@ -128,19 +128,15 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
         setInputStr('');
         setUseUserStr(false);
 
-        // 回退上次有效值
-        if (isDisabledViewTime(dayjs(newValue, format), disabledTimeView)) {
-          return;
-        }
-
-        // 大于最大值，赋值最大值
-        if (maxTime && dayjs(newValue, format).isAfter(maxTime)) {
-          triggerChange(e, maxTime);
-          return;
-        }
-        // 小于最大值，赋值最小值
-        if (minTime && dayjs(newValue, format).isBefore(minTime)) {
-          triggerChange(e, minTime);
+        // 在disabledTime区间内，回退上次有效值
+        if (
+          isDisabledTime(
+            dayjs(newValue, format),
+            minTime,
+            maxTime,
+            disabledTimeView,
+          )
+        ) {
           return;
         }
 
@@ -170,16 +166,13 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
         timeValue &&
         !isDisabledTime(dayjs(timeValue), minTime, maxTime, disabledTimeView)
       ) {
-        return dayjs(timeValue as Dayjs).format(
-          format.replace(/h/g, ampm ? 'h' : 'H'),
-        );
+        return dayjs(timeValue as Dayjs).format(format);
       }
-
-      return showPlaceholder;
+      // 校验不通过，返回空值
+      return '';
     }, [timeValue, inputStr, useUserStr, format]);
 
     useEffect(() => {
-      // todo
       setUseUserStr(false);
     }, [timeValue]);
 
