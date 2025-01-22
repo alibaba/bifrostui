@@ -89,11 +89,11 @@
     overflow: hidden;
     display: flex;
 
-    &-ul {
-      &-hour,
-      &-minute,
-      &-second,
-      &-meridiem {
+    &-hour,
+    &-minute,
+    &-second,
+    &-meridiem {
+      &-ul {
         padding: 0;
         margin: 4px 0;
         border-radius: 0;
@@ -141,7 +141,8 @@
         }
 
         & &-li-disabled:hover {
-          background-color: var(--bui-color-bg-view);
+          opacity: 0.38;
+          // background-color: var(--bui-color-bg-view);
           cursor: default;
         }
       }
@@ -149,9 +150,13 @@
   }
 }
 
+// todo 滚动条样式
 .@{class-prefix-time-picker}.@{class-prefix-time-picker}-disabled {
   pointer-events: none;
   box-shadow: none;
   background-color: rgba(188, 188, 188, 0.2);
-  color: var(--bui-color-fg-subtle);
+
+  & input {
+    color: var(--bui-color-fg-subtle);
+  }
 }

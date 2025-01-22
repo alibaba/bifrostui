@@ -113,7 +113,6 @@ export type TimePickerProps<
   D
 >;
 
-// todo add Time?
 // type DisabledTime = (selectedDate: Dayjs) => {
 export type DisabledTimeView = () => {
   hour?: () => number[];
@@ -122,7 +121,6 @@ export type DisabledTimeView = () => {
 };
 
 export interface TimePickerContentProps {
-  format: string;
   setIsOpen: Function;
   triggerChange: Function;
   disabledTimeView: DisabledTimeView;
@@ -170,8 +168,14 @@ export interface ITimeItemInstance {
   value: number | string;
   label: string;
 }
+/** 时分秒面板单元格对象 */
+export interface ITimeItemNumberInstance {
+  value: number;
+  label: string;
+}
 
 export interface DesktopTimePickerListProps {
+  timeValue: Dayjs;
   type: ViewTypeWithMeridiem;
   dataList: ITimeItemInstance[];
   disabledTime: (number | string)[];

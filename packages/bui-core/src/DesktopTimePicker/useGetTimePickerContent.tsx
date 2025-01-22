@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import dayjs from 'dayjs';
 import React from 'react';
 import {
   ViewTypeWithMeridiem,
@@ -9,7 +8,7 @@ import DesktopTimePickerList from './DesktopTimePickerList';
 
 // import './deskTopTimePickerContainer.less';
 
-import { getdisabledTime, isDisabledViewTime, isDisabledTime } from './utils';
+import { getdisabledTime, calculateValidMinTime } from './utils';
 
 const prefixCls = 'bui-time-picker';
 
@@ -22,7 +21,6 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
       second: 1,
     },
     ampm = false,
-    format = 'HH:mm:ss',
     disabledTimeView = () => ({
       hour: () => {
         return [];
@@ -56,13 +54,15 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
       maxNum = 60;
     }
 
-    let list = [];
-    list = Array.from({ length: maxNum }, (_, i) => {
-      const value = type === 'hour' && ampm && i === 0 ? 12 : i;
-      const label = value < 10 ? `0${value}` : `${value}`;
-      return { label, value };
-    });
-
+    const list = [];
+    for (let i = 0; i < maxNum; i += timeStep) {
+      const value = i;
+      let label = value < 10 ? `0${value}` : `${value}`;
+      if (type === 'hour' && ampm && value === 0) {
+        label = '12';
+      }
+      list.push({ label, value });
+    }
     return list;
   };
 
@@ -72,6 +72,19 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
     return lists.map((type: ViewTypeWithMeridiem, index) => {
       const dataList = getViewListData(type, timeSteps[type]);
       const isLastList = index === lists.length - 1;
+
+      // 当timeValue存在时，渲染选中的时间
+      let selectedValue;
+      if (timeValue) {
+        if (type === 'meridiem') {
+          selectedValue = timeValue.format('A');
+        } else if (type === 'hour' && ampm) {
+          selectedValue = timeValue.hour() % 12;
+        } else {
+          selectedValue = timeValue[type]?.();
+        }
+      }
+
       const disabledTime = getdisabledTime(
         type,
         timeValue,
@@ -79,20 +92,10 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
         maxTime,
         dataList,
         disabledTimeView,
+        ampm,
       );
 
-      const parsedTime = dayjs(timeValue, format);
-
-      let selectedValue;
-      if (type === 'meridiem') {
-        selectedValue = parsedTime.format('A');
-      } else if (type === 'hour' && ampm) {
-        selectedValue = parsedTime.hour() % 12 || 12;
-      } else {
-        selectedValue = parsedTime[type]?.();
-      }
-
-      const handleClick = (e, disabled, item) => {
+      const handleClick = (e, disabled: boolean, item) => {
         // Keep the overlay open
         e.stopPropagation();
         if (disabled || selectedValue === item.value) return;
@@ -100,80 +103,48 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
         const ulElement = e.currentTarget.parentElement;
         if (!ulElement) return;
 
-        requestAnimationFrame(() => {
-          ulElement.scrollTo({
-            top: e.target.offsetTop - ulElement.offsetTop,
-            behavior: 'smooth',
-          });
+        // 获取符合条件的最小时间
+        const validMinTime = calculateValidMinTime(disabledTimeView, minTime);
+        // 兼容timeValue为空时，避免点击后值invalid
+        const validTime = timeValue ?? validMinTime;
 
-          const onScroll = () => {
-            if (
-              ulElement.scrollTop ===
-              e.target.offsetTop - ulElement.offsetTop
-            ) {
-              ulElement.removeEventListener('scroll', onScroll);
-              if (isLastList && closeOnSelect) setIsOpen(false);
-            }
+        if (type !== 'meridiem') {
+          const updateHour = (hour: number) => {
+            return validTime.format('A') === 'PM' ? hour + 12 : hour;
           };
 
-          const updateHour = (hour) => {
-            const newHour = hour === 12 ? 0 : hour;
-            return parsedTime.format('A') === 'PM' ? newHour + 12 : newHour;
-          };
+          const newValue =
+            type === 'hour' && ampm ? updateHour(item.value) : item.value;
+          const newTimeValue = validTime.set(type, newValue);
 
-          if (type !== 'meridiem') {
-            const newValue =
-              type === 'hour' && ampm ? updateHour(item.value) : item.value;
+          triggerChange(e, newTimeValue);
+        } else {
+          // 点击ampm
+          const newHour =
+            item.value === 'PM' ? validTime.hour() + 12 : validTime.hour() - 12;
+          const newTimeValue = validTime.set('hour', newHour);
+          triggerChange(e, newTimeValue);
+        }
 
-            const newTimeValue = parsedTime.set(type, newValue);
-
-            // 在时间面板内点击时，进行校验：如果时间值在disabled区间内，则到符合要求的最小时间；如果没有可选择的时间，保持原状
-            if (
-              isDisabledTime(newTimeValue, minTime, maxTime, disabledTimeView)
-            ) {
-              if (
-                minTime &&
-                !isDisabledViewTime(newTimeValue, disabledTimeView)
-              ) {
-                triggerChange(e, minTime);
-              }
-            } else {
-              triggerChange(e, newTimeValue);
-            }
-          } else {
-            const newHour =
-              item.value === 'PM'
-                ? parsedTime.hour() + 12
-                : parsedTime.hour() - 12;
-            triggerChange(e, parsedTime.set('hour', newHour));
-          }
-
-          if (ulElement.scrollHeight > ulElement.clientHeight) {
-            ulElement.addEventListener('scroll', onScroll);
-          } else if (isLastList && closeOnSelect) {
-            setIsOpen(false);
-          }
-        });
+        if (isLastList && closeOnSelect) {
+          setIsOpen(false);
+        }
       };
 
       // 初次滚动到选中位置
       const handleScrollToSelected = (ulElement, selectedLi) => {
-        console.log(ulElement, selectedLi, 'handleScrollToSelected');
-        ulElement.scrollTo({
+        ulElement?.scrollTo?.({
           top:
             (selectedLi as HTMLDivElement).offsetTop -
             (ulElement as HTMLDivElement).offsetTop,
-          behavior: 'auto',
+          behavior: 'smooth',
         });
-        ulElement.style.overflow = 'hidden';
-        setTimeout(() => {
-          ulElement.style.overflow = 'auto';
-        }, 0);
       };
 
       return (
-        <ul className={clsx(`${prefixCls}-table-ul-${type}`)} key={type}>
+        <ul className={clsx(`${prefixCls}-table-${type}-ul`)} key={type}>
           <DesktopTimePickerList
+            timeValue={timeValue}
             type={type}
             dataList={dataList}
             disabledTime={disabledTime}
