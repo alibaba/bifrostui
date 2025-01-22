@@ -45,7 +45,8 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
                 color: children.props?.color || color,
               }),
               ...(isContainedVariant && {
-                htmlColor: children.props?.htmlColor || '#fff',
+                htmlColor:
+                  children.props?.htmlColor || 'var(--bui-color-white)',
               }),
             })
           : children}

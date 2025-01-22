@@ -45,7 +45,7 @@ const Step = forwardRef<HTMLDivElement, StepProps>(
     const renderIcon = () => {
       const icons = {
         active: <div className={`${classes.icon}-active`} />,
-        wait: <CircleOutlinedIcon htmlColor="#ced1d6" />,
+        wait: <CircleOutlinedIcon color="disabled" />,
         finish: <SuccessCircleFilledIcon color="primary" />,
         error: <ErrorCircleFilledIcon color="primary" />,
       };

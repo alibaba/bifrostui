@@ -71,7 +71,9 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const beforeMoveValue = useRef([0, 0]);
 
   // 默认图标
-  const defaultIcon = <GripperBarVerticalIcon htmlColor="#2e333e" />;
+  const defaultIcon = (
+    <GripperBarVerticalIcon htmlColor="var(--bui-color-fg-default)" />
+  );
   // 根据初始化时的数据判断是否为双滑块
   const initialRange = useRef(
     (value !== undefined && Array.isArray(value)) ||

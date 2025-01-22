@@ -21,13 +21,13 @@ export default function SvgIcon(props: ISvgIconProps) {
   } = props;
 
   const colorMap = {
-    default: '#959aa5',
-    primary: '#ff335c',
-    info: '#148aff',
-    danger: '#ff335c',
-    success: '#00d68f',
-    warning: '#ff8533',
-    disabled: '#ced1d6',
+    default: 'var(--bui-color-fg-subtle)',
+    primary: 'var(--bui-color-primary)',
+    info: 'var(--bui-color-info)',
+    danger: 'var(--bui-color-danger)',
+    success: 'var(--bui-color-success)',
+    warning: 'var(--bui-color-warning)',
+    disabled: 'var(--bui-color-fg-disabled)',
   };
 
   const svgColor = colorMap[color] || htmlColor || style?.color;

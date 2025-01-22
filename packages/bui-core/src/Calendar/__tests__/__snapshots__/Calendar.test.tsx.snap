@@ -15,7 +15,7 @@ exports[`Calendar range mode value should be a range date 1`] = `
     >
       <svg
         class="bui-svg-icon bui-calendar-handler-btn-icon"
-        color="#cccccc"
+        color="var(--bui-color-fg-disabled)"
         focusable="false"
         viewBox="0 0 96 96"
       >
@@ -482,7 +482,7 @@ exports[`Calendar should not fill last or next month 1`] = `
     >
       <svg
         class="bui-svg-icon bui-calendar-handler-btn-icon"
-        color="#cccccc"
+        color="var(--bui-color-fg-disabled)"
         focusable="false"
         viewBox="0 0 96 96"
       >
@@ -924,7 +924,7 @@ exports[`Calendar should render disabled date by \`disabledDate\` property 1`] =
     >
       <svg
         class="bui-svg-icon bui-calendar-handler-btn-icon"
-        color="#cccccc"
+        color="var(--bui-color-fg-disabled)"
         focusable="false"
         viewBox="0 0 96 96"
       >
@@ -943,7 +943,7 @@ exports[`Calendar should render disabled date by \`disabledDate\` property 1`] =
     >
       <svg
         class="bui-svg-icon bui-calendar-handler-btn-icon"
-        color="#cccccc"
+        color="var(--bui-color-fg-disabled)"
         focusable="false"
         viewBox="0 0 96 96"
       >
@@ -1367,7 +1367,7 @@ exports[`Calendar single mode should selected date by \`value\` property 1`] = `
     >
       <svg
         class="bui-svg-icon bui-calendar-handler-btn-icon"
-        color="#cccccc"
+        color="var(--bui-color-fg-disabled)"
         focusable="false"
         viewBox="0 0 96 96"
       >

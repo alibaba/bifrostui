@@ -131,12 +131,9 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   }, []);
 
   const defaultIcon = isOpen ? (
-    <CaretUpIcon className={`${prefixCls}-selector-icon`} htmlColor="#9c9ca5" />
+    <CaretUpIcon className={`${prefixCls}-selector-icon`} color="default" />
   ) : (
-    <CaretDownIcon
-      className={`${prefixCls}-selector-icon`}
-      htmlColor="#9c9ca5"
-    />
+    <CaretDownIcon className={`${prefixCls}-selector-icon`} color="default" />
   );
 
   const renderOptions = () => {

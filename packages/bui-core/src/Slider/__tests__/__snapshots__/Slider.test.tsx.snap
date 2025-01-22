@@ -21,7 +21,7 @@ exports[`Slider should render with default properties 1`] = `
   >
     <svg
       class="bui-svg-icon"
-      color="#2e333e"
+      color="var(--bui-color-fg-default)"
       focusable="false"
       viewBox="0 0 96 96"
     >
