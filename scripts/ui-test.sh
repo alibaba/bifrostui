@@ -1,9 +1,5 @@
 # 捕获到异常 则抛出
 trap "exit 1" ERR
-# 跑本地服务
-if !(lsof -i:8000); then
-  dumi dev
-fi
 
 while :
   do
