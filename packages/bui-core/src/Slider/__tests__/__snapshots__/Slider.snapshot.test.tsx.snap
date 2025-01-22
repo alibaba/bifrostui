@@ -49,7 +49,7 @@ exports[`Slider snapshot Slider demo snapshot 0 1`] = `
     >
       <svg
         className="bui-svg-icon"
-        color="#2e333e"
+        color="var(--bui-color-fg-default)"
         dangerouslySetInnerHTML={
           Object {
             "__html": "<path d=\\"M34.4 30c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm28 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm-14 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2z\\"/>",
@@ -122,7 +122,7 @@ exports[`Slider snapshot Slider demo snapshot 0 2`] = `
     >
       <svg
         className="bui-svg-icon"
-        color="#2e333e"
+        color="var(--bui-color-fg-default)"
         dangerouslySetInnerHTML={
           Object {
             "__html": "<path d=\\"M34.4 30c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm28 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm-14 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2z\\"/>",
@@ -195,7 +195,7 @@ exports[`Slider snapshot Slider demo snapshot 0 3`] = `
     >
       <svg
         className="bui-svg-icon"
-        color="#2e333e"
+        color="var(--bui-color-fg-default)"
         dangerouslySetInnerHTML={
           Object {
             "__html": "<path d=\\"M34.4 30c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm28 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm-14 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2z\\"/>",
@@ -268,7 +268,7 @@ exports[`Slider snapshot Slider demo snapshot 0 4`] = `
     >
       <svg
         className="bui-svg-icon"
-        color="#2e333e"
+        color="var(--bui-color-fg-default)"
         dangerouslySetInnerHTML={
           Object {
             "__html": "<path d=\\"M34.4 30c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm28 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm-14 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2z\\"/>",
@@ -341,7 +341,7 @@ exports[`Slider snapshot Slider demo snapshot 0 5`] = `
     >
       <svg
         className="bui-svg-icon"
-        color="#2e333e"
+        color="var(--bui-color-fg-default)"
         dangerouslySetInnerHTML={
           Object {
             "__html": "<path d=\\"M34.4 30c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm28 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm-14 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2z\\"/>",
@@ -371,7 +371,7 @@ exports[`Slider snapshot Slider demo snapshot 0 5`] = `
     >
       <svg
         className="bui-svg-icon"
-        color="#2e333e"
+        color="var(--bui-color-fg-default)"
         dangerouslySetInnerHTML={
           Object {
             "__html": "<path d=\\"M34.4 30c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm28 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm-14 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2z\\"/>",
@@ -444,7 +444,7 @@ exports[`Slider snapshot Slider demo snapshot 0 6`] = `
     >
       <svg
         className="bui-svg-icon"
-        color="#2e333e"
+        color="var(--bui-color-fg-default)"
         dangerouslySetInnerHTML={
           Object {
             "__html": "<path d=\\"M34.4 30c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm28 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm-14 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2z\\"/>",
@@ -474,7 +474,7 @@ exports[`Slider snapshot Slider demo snapshot 0 6`] = `
     >
       <svg
         className="bui-svg-icon"
-        color="#2e333e"
+        color="var(--bui-color-fg-default)"
         dangerouslySetInnerHTML={
           Object {
             "__html": "<path d=\\"M34.4 30c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm28 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm-14 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2z\\"/>",
@@ -650,7 +650,7 @@ exports[`Slider snapshot Slider demo snapshot 0 8`] = `
     >
       <svg
         className="bui-svg-icon"
-        color="#2e333e"
+        color="var(--bui-color-fg-default)"
         dangerouslySetInnerHTML={
           Object {
             "__html": "<path d=\\"M34.4 30c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm28 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm-14 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2z\\"/>",
@@ -723,7 +723,7 @@ exports[`Slider snapshot Slider demo snapshot 0 9`] = `
     >
       <svg
         className="bui-svg-icon"
-        color="#2e333e"
+        color="var(--bui-color-fg-default)"
         dangerouslySetInnerHTML={
           Object {
             "__html": "<path d=\\"M34.4 30c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm28 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm-14 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2z\\"/>",

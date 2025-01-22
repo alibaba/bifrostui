@@ -103,7 +103,7 @@ Rating.displayName = 'BuiRating';
 Rating.defaultProps = {
   size: 'medium',
   count: 5,
-  icon: <StarFilledIcon htmlColor="#ced1d6" />,
+  icon: <StarFilledIcon color="disabled" />,
   checkedIcon: <StarFilledIcon color="warning" />,
   readOnly: false,
   disabled: false,

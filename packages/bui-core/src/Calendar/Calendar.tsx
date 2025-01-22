@@ -97,7 +97,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       ) : (
         <CaretLeftIcon
           className={`${classes.handler}-btn-icon`}
-          htmlColor={isMinMonth && '#cccccc'}
+          htmlColor={isMinMonth && 'var(--bui-color-fg-disabled)'}
         />
       ),
       right: headerBarRightIcon ? (
@@ -105,7 +105,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       ) : (
         <CaretRightIcon
           className={`${classes.handler}-btn-icon`}
-          htmlColor={isMaxMonth && '#cccccc'}
+          htmlColor={isMaxMonth && 'var(--bui-color-fg-disabled)'}
         />
       ),
     };
