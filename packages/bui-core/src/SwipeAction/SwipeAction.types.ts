@@ -27,7 +27,7 @@ export type SwipeActionProps<
       /**
        * 操作按钮展开时触发
        */
-      onActionsReveal?: ({ side: SideType }) => void;
+      onActionsReveal?: (params: RevealParams) => void;
       /**
        * 是否禁用拖动
        */
@@ -37,6 +37,10 @@ export type SwipeActionProps<
   },
   D
 >;
+
+interface RevealParams {
+  side: SideTypeEnum | '';
+}
 
 export type SwipeActionItemProps<
   D extends React.ElementType = 'div',
@@ -58,9 +62,9 @@ export type SwipeActionItemProps<
       onClick?: (
         e: React.SyntheticEvent,
         item: {
-          key: string | number;
+          id: string | number;
           color: ThemeColor;
-          text: string;
+          text: React.ReactNode;
         },
       ) => void;
     };
@@ -68,8 +72,6 @@ export type SwipeActionItemProps<
   },
   D
 >;
-
-type SideType = 'left' | 'right';
 
 export interface BuiSwipeActionContextProps {
   /**
@@ -84,7 +86,7 @@ export interface BuiSwipeActionContextProps {
 
 export type SwipeActionRef = {
   close: () => void;
-  show: (side?: SideType) => void;
+  show: (side?: SideTypeEnum) => void;
   open: boolean;
   ref: React.RefObject<HTMLDivElement>;
 };

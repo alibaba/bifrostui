@@ -76,7 +76,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
       // console.log('handleTouchStart', isOpen, closeOnClickContainer);
       dragPhase = 1;
       // 判断e.target的id是否是content-mask
-      const isMaskEle = e.target.id === 'content-mask';
+      const isMaskEle = (e.target as HTMLElement).id === 'content-mask';
       if (isDragging.current || disabled || isMaskEle) return;
       touch.start(e);
       isDragging.current = true;
@@ -109,7 +109,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
       const isSpecial = targetX === pretranslateX && targetX !== 0;
       // 如果当前不需要触发任何操作，直接返回
       if ((targetX === pretranslateX && !isSpecial) || stop) return;
-      let resStr: string | null = null;
+      let resStr: SideTypeEnum | null = null;
       const shouldOpen =
         (targetX > 0 && pretranslateX <= 0) ||
         (targetX < 0 && pretranslateX >= 0) ||
@@ -127,7 +127,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
       }
       // 如果结果字符串为空，并且 targetX 为 0 且 pretranslateX 不为 0 时，保持 resStr 为 null 以不触发 onActionsReveal
       if (resStr || (targetX === 0 && pretranslateX !== 0)) {
-        onActionsReveal?.({ side: resStr || '' });
+        onActionsReveal?.({ side: resStr });
       }
     };
 
@@ -199,9 +199,9 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
     }, []);
 
     useImperativeHandle(ref, () => ({
-      show: async (side = 'right') => {
+      show: async (side = SideTypeEnum.RIGHT) => {
         let targetX = 0;
-        if (side === 'right') {
+        if (side === SideTypeEnum.RIGHT) {
           targetX = -(await getWidth(rightRef));
         } else {
           targetX = await getWidth(leftRef);
