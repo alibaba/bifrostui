@@ -28,7 +28,7 @@ const useGetDatePickerContent = (props) => {
     onMonthChange,
     onYearChange,
     triggerChange,
-    calendarProps,
+    CalendarProps,
     ...others
   } = props;
   // 判断是否是最小月份，最大月份
@@ -247,6 +247,7 @@ const useGetDatePickerContent = (props) => {
         domArr.push(
           <div
             className={clsx(`${prefixCls}-handler-box-text`)}
+            key={i}
             onClick={(e) => handleClickTitle(e, matchArr[i])}
           >
             {dayjs(value).format(matchArr[i])}
@@ -305,7 +306,7 @@ const useGetDatePickerContent = (props) => {
             disabledDate={disabledDate}
             value={calendarValue}
             onChange={calendarChange}
-            {...calendarProps}
+            {...CalendarProps}
           />
         ) : (
           <div className={clsx(`${prefixCls}-list`)}>
