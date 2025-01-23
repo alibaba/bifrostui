@@ -616,8 +616,8 @@ export default () => {
 | onMonthChange      | 月份切换的回调                   | (e: React.SyntheticEvent, data: { value: Date }) => void | -                   |
 | onYearChange       | 年份切换的回调                   | (e: React.SyntheticEvent, data: { value: Date }) => void | -                   |
 | onChange           | 选中日期的回调                   | (e: React.SyntheticEvent, data: { value: Date }) => void | -                   |
-| desktopPickerProps | 透传给 DesktopPicker 的属性      | IDesktopPickerProps                                      | -                   |
-| calendarProps      | 透传给 Calendar 的属性           | ICalendarProps                                           | -                   |
+| DesktopPickerProps | 透传给 DesktopPicker 的属性      | IDesktopPickerProps                                      | -                   |
+| CalendarProps      | 透传给 Calendar 的属性           | ICalendarProps                                           | -                   |
 | containerWidth     | 容器宽度                         | string                                                   | 400px               |
 
 ### ICalendarInstance

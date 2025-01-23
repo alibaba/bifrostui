@@ -43,7 +43,7 @@ const DesktopDateTimePicker = React.forwardRef<
     onMonthChange,
     onYearChange,
     desktopPickerProps,
-    calendarProps,
+    CalendarProps,
     ...others
   } = props;
   const rootRef = useRef(null);
@@ -99,7 +99,7 @@ const DesktopDateTimePicker = React.forwardRef<
     selectType,
     headerBarLeftIcon,
     headerBarRightIcon,
-    calendarProps,
+    CalendarProps,
     monthRender,
     yearRender,
     onMonthChange,

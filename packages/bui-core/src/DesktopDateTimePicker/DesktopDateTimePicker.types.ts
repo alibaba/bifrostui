@@ -172,7 +172,7 @@ export type DateTimePickerProps<
       /**
        * CalendarProps
        */
-      calendarProps?: CalendarProps;
+      CalendarProps?: CalendarProps;
       /**
        * 浮层宽度
        */
