@@ -4,7 +4,6 @@ trap "exit 1" ERR
 while :
   do
     if lsof -i:8000; then
-      sleep 30
       # 判断是否已经有reference
       if [ ! -d "backstop_data/bitmaps_reference" ];then
        backstop reference
@@ -16,5 +15,5 @@ while :
         break;
       fi
     fi
-  sleep 3
+  sleep 10
 done
