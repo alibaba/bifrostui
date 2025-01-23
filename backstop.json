@@ -16,7 +16,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/action-sheet",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -27,7 +27,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/alert",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -38,7 +38,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/avatar",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -49,7 +49,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/backdrop",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -60,7 +60,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/badge",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -71,7 +71,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/button",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -82,7 +82,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/calendar",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -93,7 +93,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/card",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -104,7 +104,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/checkbox",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -115,7 +115,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/divider",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -126,7 +126,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/drawer",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -137,7 +137,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/fade",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -148,7 +148,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/icon-button",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -159,7 +159,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/image",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -170,7 +170,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/input",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -181,7 +181,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/list",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -192,7 +192,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/modal",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -203,7 +203,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/portal",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -214,7 +214,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/progress",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -225,7 +225,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/radio",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -236,7 +236,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/rating",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -247,7 +247,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/scroll-view",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -258,7 +258,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/select",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -269,7 +269,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/skeleton",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -280,7 +280,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/slide",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -291,7 +291,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/slider",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -302,7 +302,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/stack",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -313,7 +313,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/steps",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -324,7 +324,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/swiper",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -335,7 +335,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/switch",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -346,7 +346,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/tabs",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -357,7 +357,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/tag",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -368,7 +368,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/text-area",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -379,7 +379,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/transition",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -390,7 +390,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/nav-bar",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -401,7 +401,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/loading",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -412,7 +412,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/tab-bar",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -423,7 +423,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/countdown",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -434,7 +434,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/city-selector",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -445,7 +445,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/cores/picker",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
@@ -456,7 +456,7 @@
       "referenceUrl": "https://bui.taopiaopiao.com/icons",
       "readySelector": ".dumi-default-previewer-demo",
       "delay": 0,
-      "readTimeout": 100000,
+      "readyTimeout": 300000,
       "selectorExpansion": true,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
