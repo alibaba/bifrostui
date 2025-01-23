@@ -469,7 +469,7 @@ export default () => {
   const rightActions = [
     {
       key: 'unsubscribe',
-      text: '取消关注',
+      text: '关注',
       color: 'warning',
     },
     {
