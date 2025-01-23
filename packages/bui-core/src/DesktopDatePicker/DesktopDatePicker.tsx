@@ -151,10 +151,7 @@ const DesktopDatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       if (placeholder) {
         return placeholder;
       }
-      if (format) {
-        return format;
-      }
-      return 'YYYY/MM/DD';
+      return format;
     }, [placeholder, format]);
 
     const renderValue = useMemo(() => {

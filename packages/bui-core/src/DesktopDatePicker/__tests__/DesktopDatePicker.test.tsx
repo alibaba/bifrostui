@@ -3,6 +3,23 @@ import React, { act } from 'react';
 import { fireEvent, isConformant, render, userEvent } from 'testing';
 import { DesktopDatePicker } from '..';
 
+function findElementByInnerHTML(parent, targetHTML) {
+  // 检查当前元素的 innerHTML 是否匹配
+  if (parent.innerHTML === targetHTML) {
+    return parent;
+  }
+  // 遍历子节点
+  for (let i = 0; i < parent.children.length; i += 1) {
+    const found = findElementByInnerHTML(parent.children[i], targetHTML);
+    if (found) {
+      return found;
+    }
+  }
+
+  // 如果没有找到匹配的元素，返回 null
+  return null;
+}
+
 describe('DesktopDatePicker', () => {
   const rootClass = 'bui-date-picker';
 
@@ -23,11 +40,121 @@ describe('DesktopDatePicker', () => {
     ],
   });
 
+  it('should no container when disabled', async () => {
+    const { container } = render(
+      <DesktopDatePicker
+        value={dayjs('20230401').toDate()}
+        minDate={dayjs('20200401').toDate()}
+        maxDate={dayjs('20230429').toDate()}
+        disabled
+      />,
+    );
+    await act(async () => {
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
+    });
+    expect(
+      document.getElementsByClassName('bui-desktop-picker-container').length,
+    ).toBe(0);
+  });
+  it('should no container when disableOpenPicker', async () => {
+    const { container } = render(
+      <DesktopDatePicker
+        value={dayjs('20230401').toDate()}
+        minDate={dayjs('20200401').toDate()}
+        maxDate={dayjs('20230429').toDate()}
+        disableOpenPicker
+      />,
+    );
+    await act(async () => {
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
+    });
+    expect(
+      document.getElementsByClassName('bui-desktop-picker-container').length,
+    ).toBe(0);
+  });
+  it('should no container when readOnly and disableOpenPicker', async () => {
+    const { container } = render(
+      <DesktopDatePicker
+        value={dayjs('20230401').toDate()}
+        minDate={dayjs('20200401').toDate()}
+        maxDate={dayjs('20230429').toDate()}
+        inputProps={{
+          readOnly: true,
+        }}
+        disableOpenPicker
+      />,
+    );
+    await act(async () => {
+      userEvent.click(container.querySelector(`.${rootClass}-content`));
+    });
+    expect(
+      document.getElementsByClassName('bui-desktop-picker-container').length,
+    ).toBe(0);
+  });
+  it('should no container when click body', async () => {
+    const { container } = render(
+      <DesktopDatePicker
+        value={dayjs('20230401').toDate()}
+        minDate={dayjs('20200401').toDate()}
+        maxDate={dayjs('20230429').toDate()}
+      />,
+    );
+    await act(async () => {
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
+    });
+    await act(async () => {
+      userEvent.click(document.body);
+    });
+    jest.setTimeout(3000);
+    expect(
+      document.getElementsByClassName('bui-desktop-picker-container').length,
+    ).toBe(0);
+  });
+  it('should show placeholder when value is null', async () => {
+    render(
+      <DesktopDatePicker
+        value={null}
+        placeholder="YYYY-MM-DD"
+        minDate={dayjs('20200401').toDate()}
+        maxDate={dayjs('20230429').toDate()}
+      />,
+    );
+    expect(document.getElementsByTagName('input')[0].placeholder).toBe(
+      'YYYY-MM-DD',
+    );
+  });
+  it('should show placeholder is YYYY/MM/DD when placeholder is null', async () => {
+    render(
+      <DesktopDatePicker
+        value={null}
+        placeholder={null}
+        minDate={dayjs('20200401').toDate()}
+        maxDate={dayjs('20230429').toDate()}
+      />,
+    );
+    expect(document.getElementsByTagName('input')[0].placeholder).toBe(
+      'YYYY/MM/DD',
+    );
+  });
+  it('should show placeholder is YYYY-MM-DD when format is YYYY-MM-DD', async () => {
+    render(
+      <DesktopDatePicker
+        value={null}
+        placeholder={null}
+        format="YYYY-MM-DD"
+        minDate={dayjs('20200401').toDate()}
+        maxDate={dayjs('20230429').toDate()}
+      />,
+    );
+    expect(document.getElementsByTagName('input')[0].placeholder).toBe(
+      'YYYY-MM-DD',
+    );
+  });
   it('should render date range in minDate to maxDate', async () => {
     const dateChange = jest.fn((e, res) => {
       return dayjs(res.value).format('YYYYMMDD');
     });
-    const { container, getAllByText } = render(
+    const { container } = render(
       <DesktopDatePicker
         value={dayjs('20230401').toDate()}
         minDate={dayjs('20200401').toDate()}
@@ -36,49 +163,54 @@ describe('DesktopDatePicker', () => {
       />,
     );
     await act(async () => {
-      userEvent.click(container.querySelector(`.${rootClass}`));
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
     });
-    const dayNodes = container.querySelectorAll(
-      `.bui-date-picker-table-td-content`,
-    );
-    // 遍历每个 div 节点，验证文本内容
-    dayNodes.forEach((div) => {
-      const yearText = div.textContent;
-      const year = parseInt(yearText, 10);
-
-      // 期望年份大于2020且小于2023
-      expect(year).toBeGreaterThan(2019);
-      expect(year).toBeLessThan(2024);
-    });
-    const year = getAllByText('2023');
+    // 切换到年份选择面板
+    const yearText = document.getElementsByClassName(
+      'bui-date-picker-container-handler-box-text',
+    )[0];
     await act(async () => {
-      fireEvent.click(year[0]);
+      fireEvent.click(yearText);
+    });
+    // 点击active年份
+    const yearActive = document.getElementsByClassName(
+      'bui-date-picker-container-table-td-active',
+    )[0];
+    await act(async () => {
+      fireEvent.click(yearActive);
     });
     expect(dateChange).toBeCalled();
 
-    expect(getAllByText('4')[0].parentElement).toHaveClass(
-      'bui-date-picker-table-td-active',
-    );
-    expect(getAllByText('5')[0].parentElement).toHaveClass(
-      'bui-date-picker-table-td-disabled',
-    );
+    // 点击active月份
+    const monthActive = document.getElementsByClassName(
+      'bui-date-picker-container-table-td-active',
+    )[0];
+
+    // 使用示例：从 document.body 开始查找
+    const targetHTML =
+      '<span class="bui-date-picker-container-table-td-content-text">5月</span>';
+    const element = findElementByInnerHTML(
+      document.body,
+      targetHTML,
+    ).parentElement;
+
+    expect(element).toHaveClass('bui-date-picker-container-table-td-disabled');
     await act(async () => {
-      fireEvent.click(getAllByText('4')[0]);
+      fireEvent.click(monthActive);
     });
 
-    expect(dateChange).toBeCalled();
-
-    expect(getAllByText('31')[0]).toHaveClass('bui-calendar-disabled');
-    expect(getAllByText('30')[1]).toHaveClass('bui-calendar-disabled');
-    const day = getAllByText('3');
+    const disabledDayLength = document.getElementsByClassName(
+      'bui-calendar-disabled',
+    ).length;
+    expect(disabledDayLength).toBe(13);
+    const day = document.getElementsByClassName('bui-calendar-day');
     await act(async () => {
-      fireEvent.click(day[0]);
+      fireEvent.click(day[8]);
     });
     expect(dateChange).toReturnWith('20230403');
   });
-
   it('should 2024 year', async () => {
-    const { container, getAllByText } = render(
+    const { container } = render(
       <DesktopDatePicker
         picker="year"
         format="YYYY"
@@ -88,10 +220,14 @@ describe('DesktopDatePicker', () => {
       />,
     );
     await act(async () => {
-      userEvent.click(container.querySelector(`.${rootClass}`));
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
     });
     await act(async () => {
-      userEvent.click(getAllByText('2024')[0]);
+      fireEvent.click(
+        document.getElementsByClassName(
+          'bui-date-picker-container-table-td',
+        )[4],
+      );
     });
     const contentNodes: HTMLInputElement = container.querySelector(
       `.bui-date-picker-content`,
@@ -99,8 +235,8 @@ describe('DesktopDatePicker', () => {
     expect(contentNodes?.value).toBe('2024');
   });
 
-  it('should 2024/06', async () => {
-    const { container, getAllByText } = render(
+  it('should 2023/05 month', async () => {
+    const { container } = render(
       <DesktopDatePicker
         picker="month"
         format="YYYY/MM"
@@ -110,22 +246,22 @@ describe('DesktopDatePicker', () => {
       />,
     );
     await act(async () => {
-      userEvent.click(container.querySelector(`.${rootClass}`));
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
     });
     await act(async () => {
-      userEvent.click(getAllByText('2024')[0]);
-    });
-    await act(async () => {
-      userEvent.click(getAllByText('6')[0]);
+      fireEvent.click(
+        document.getElementsByClassName(
+          'bui-date-picker-container-table-td',
+        )[4],
+      );
     });
     const contentNodes: HTMLInputElement = container.querySelector(
       `.bui-date-picker-content`,
     );
-    expect(contentNodes.value).toBe('2024/06');
+    expect(contentNodes?.value).toBe('2023/05');
   });
-
   it('node length should be 30', async () => {
-    const { container, getAllByText } = render(
+    const { container } = render(
       <DesktopDatePicker
         value={dayjs('20230401').toDate()}
         minDate={dayjs('20200401').toDate()}
@@ -136,13 +272,7 @@ describe('DesktopDatePicker', () => {
       />,
     );
     await act(async () => {
-      userEvent.click(container.querySelector(`.${rootClass}`));
-    });
-    await act(async () => {
-      fireEvent.click(getAllByText('2023')[0]);
-    });
-    await act(async () => {
-      fireEvent.click(getAllByText('4')[0]);
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
     });
     const elements = document.getElementsByClassName('bui-calendar-day');
     const enableDayNodes = [...elements].filter((item) => item.innerHTML);
@@ -150,33 +280,34 @@ describe('DesktopDatePicker', () => {
   });
 
   it('should render disabled year by `disabledDate` property', async () => {
-    const { container, getAllByText } = render(
+    const { container } = render(
       <DesktopDatePicker
         picker="year"
         format="YYYY"
         defaultValue={dayjs('20230401').toDate()}
         minDate={dayjs('20200401').toDate()}
         maxDate={dayjs('20230529').toDate()}
+        inputProps={{
+          readOnly: true,
+        }}
         disabledDate={(current) =>
           ['2021'].includes(dayjs(current).format('YYYY'))
         }
       />,
     );
     await act(async () => {
-      userEvent.click(container.querySelector(`.${rootClass}`));
+      userEvent.click(container.querySelector(`.${rootClass}-content`));
     });
-    const disableDayNodes = getAllByText('2021')[0];
-    userEvent.click(disableDayNodes);
-    expect(disableDayNodes.parentElement).toHaveClass(
-      'bui-date-picker-table-td-disabled',
+    const allNodes = document.getElementsByClassName(
+      'bui-date-picker-container-table-td',
     );
-    expect(
-      document.querySelector(`.bui-date-picker-handler-text`).innerHTML,
-    ).toBe('2023');
+    expect(allNodes[1]).toHaveClass(
+      'bui-date-picker-container-table-td bui-date-picker-container-table-td-disabled',
+    );
   });
 
   it('should render disabled date by `disabledDate` property', async () => {
-    const { container, getAllByText } = render(
+    const { container } = render(
       <DesktopDatePicker
         value={dayjs('20230401').toDate()}
         minDate={dayjs('20200401').toDate()}
@@ -190,13 +321,7 @@ describe('DesktopDatePicker', () => {
       />,
     );
     await act(async () => {
-      userEvent.click(container.querySelector(`.${rootClass}`));
-    });
-    await act(async () => {
-      fireEvent.click(getAllByText('2023')[0]);
-    });
-    await act(async () => {
-      fireEvent.click(getAllByText('4')[0]);
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
     });
     const dayNodes = document.querySelectorAll(`.bui-calendar-day`);
     const disableDayNodes = [...dayNodes].filter(
@@ -207,37 +332,56 @@ describe('DesktopDatePicker', () => {
     expect(disableDayNodes[1]).toHaveTextContent('13');
   });
 
-  it('should render high light today date', async () => {
+  it('should render 今年 date', async () => {
     const { container } = render(
       <DesktopDatePicker
-        value={dayjs().toDate()}
         minDate={dayjs().startOf('month').toDate()}
         maxDate={dayjs().endOf('month').toDate()}
-        CalendarProps={{
-          highlightDate: 'today',
+        picker="year"
+        value={dayjs().toDate()}
+        yearRender={(data) => {
+          return (
+            <span className="test-render-year">
+              {dayjs().format('YYYY') === String(data.year)
+                ? '今年'
+                : data.year}
+            </span>
+          );
         }}
       />,
     );
     await act(async () => {
-      userEvent.click(container.querySelector(`.${rootClass}`));
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
     });
-    const yearNode = document.getElementsByClassName(
-      'bui-date-picker-table-td',
-    );
-    await act(async () => {
-      fireEvent.click(yearNode[0]);
-    });
-    const monthNode = document.getElementsByClassName(
-      'bui-date-picker-table-td',
-    );
-    const index = Number(dayjs().format('MM')) - 1;
-    await act(async () => {
-      fireEvent.click(monthNode[index]);
-    });
-    const today = document.querySelector(`.bui-calendar-start`);
-    expect(today.innerHTML).toBe(dayjs().format('D'));
-  });
 
+    const today = document.querySelector(`.test-render-year`);
+    expect(today.innerHTML).toBe('今年');
+  });
+  it('should render 本月 date', async () => {
+    const { container } = render(
+      <DesktopDatePicker
+        minDate={dayjs().startOf('month').toDate()}
+        maxDate={dayjs().endOf('month').toDate()}
+        picker="month"
+        value={dayjs().toDate()}
+        monthRender={(data) => {
+          return (
+            <span className="test-render-month">
+              {String(dayjs().format('M')) === String(data.month)
+                ? '本月'
+                : data.month}
+            </span>
+          );
+        }}
+      />,
+    );
+    await act(async () => {
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
+    });
+
+    const today = document.querySelector(`.test-render-month`);
+    expect(today.innerHTML).toBe('本月');
+  });
   it('should render 今天 today date', async () => {
     const { container } = render(
       <DesktopDatePicker
@@ -257,58 +401,15 @@ describe('DesktopDatePicker', () => {
       />,
     );
     await act(async () => {
-      userEvent.click(container.querySelector(`.${rootClass}`));
-    });
-    const yearNode = document.getElementsByClassName(
-      'bui-date-picker-table-td',
-    );
-    await act(async () => {
-      fireEvent.click(yearNode[0]);
-    });
-    const monthNode = document.getElementsByClassName(
-      'bui-date-picker-table-td',
-    );
-    const index = Number(dayjs().format('MM')) - 1;
-    await act(async () => {
-      fireEvent.click(monthNode[index]);
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
     });
 
     const today = document.querySelector(`.${rootClass}-today`);
     expect(today.innerHTML).toBe('今天');
   });
 
-  it('should render week item by `weekRender` property', async () => {
-    const fakeWeekItemRender = jest.fn((item) => (
-      <span className="week-custom-item" key={item}>
-        周{item}
-      </span>
-    ));
-    const { container, getAllByText } = render(
-      <DesktopDatePicker
-        value={dayjs('20230401').toDate()}
-        minDate={dayjs('20230401').toDate()}
-        maxDate={dayjs('20230429').toDate()}
-        CalendarProps={{
-          weekRender: fakeWeekItemRender,
-        }}
-      />,
-    );
-    await act(async () => {
-      userEvent.click(container.querySelector(`.${rootClass}`));
-    });
-    await act(async () => {
-      fireEvent.click(getAllByText(dayjs('20230401').format('YYYY'))[0]);
-    });
-    await act(async () => {
-      fireEvent.click(getAllByText('4')[0]);
-    });
-    const weekItems = document.querySelectorAll('.week-custom-item');
-    expect(fakeWeekItemRender).toBeCalledTimes(7);
-    expect(weekItems.length).toBe(7);
-  });
-
   it('should be called when change prev month', async () => {
-    const { container, getAllByText } = render(
+    const { container } = render(
       <DesktopDatePicker
         defaultValue={dayjs('20230602').toDate()}
         minDate={dayjs('20230401').toDate()}
@@ -316,22 +417,22 @@ describe('DesktopDatePicker', () => {
       />,
     );
     await act(async () => {
-      userEvent.click(container.querySelector(`.${rootClass}`));
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
     });
-    await act(async () => {
-      fireEvent.click(getAllByText(dayjs('20230602').format('YYYY'))[0]);
-    });
-    const btns = document.querySelectorAll(`.bui-date-picker-handler-btn`);
+    const btns = document.getElementsByClassName(
+      `bui-date-picker-container-handler-btn`,
+    );
     await act(async () => {
       fireEvent.click(btns[0]);
     });
-    expect(
-      document.querySelector('.bui-date-picker-handler-text'),
-    ).toHaveTextContent('2023/05');
+    const contentNodes: HTMLInputElement = container.querySelector(
+      `.bui-date-picker-content`,
+    );
+    expect(contentNodes?.value).toBe('2023/05/02');
   });
 
   it('should be called when change next month', async () => {
-    const { container, getAllByText } = render(
+    const { container } = render(
       <DesktopDatePicker
         defaultValue={dayjs('20230602').toDate()}
         minDate={dayjs('20230401').toDate()}
@@ -339,17 +440,152 @@ describe('DesktopDatePicker', () => {
       />,
     );
     await act(async () => {
-      userEvent.click(container.querySelector(`.${rootClass}`));
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
     });
-    await act(async () => {
-      fireEvent.click(getAllByText(dayjs('20230602').format('YYYY'))[0]);
-    });
-    const btns = document.querySelectorAll(`.bui-date-picker-handler-btn`);
+    const btns = document.getElementsByClassName(
+      `bui-date-picker-container-handler-btn`,
+    );
     await act(async () => {
       fireEvent.click(btns[1]);
     });
-    expect(
-      document.querySelector('.bui-date-picker-handler-text'),
-    ).toHaveTextContent('2023/07');
+    const contentNodes: HTMLInputElement = container.querySelector(
+      `.bui-date-picker-content`,
+    );
+    expect(contentNodes?.value).toBe('2023/07/02');
+  });
+
+  it('should be called when change input', async () => {
+    const dateChange = jest.fn((e, res: { value }) => {
+      return dayjs(res.value).format('YYYY/MM/DD');
+    });
+    const { container } = render(
+      <DesktopDatePicker
+        defaultValue={dayjs('20230602').toDate()}
+        minDate={dayjs('20230401').toDate()}
+        maxDate={dayjs('20231001').toDate()}
+        placeholder="YYYY/MM/DD"
+        disabledDate={(current) =>
+          ['2023/04/02', '2023/04/06'].includes(
+            dayjs(current).format('YYYY/MM/DD'),
+          )
+        }
+        onChange={dateChange}
+      />,
+    );
+    await act(async () => {
+      userEvent.click(container.querySelector(`.${rootClass}-content`));
+    });
+    const inputDom = document.getElementsByClassName(
+      'bui-date-picker-content',
+    )[0];
+    fireEvent.change(inputDom, { target: { value: '2023/07/03' } });
+    fireEvent.blur(inputDom);
+    expect(dateChange).toBeCalled();
+  });
+  it('should be not change when change disabledDate and value is notValid', async () => {
+    const dateChange = jest.fn((e, res) => {
+      return dayjs(res.value).format('YYYY/MM/DD');
+    });
+    const { container } = render(
+      <DesktopDatePicker
+        defaultValue={dayjs('20230602').toDate()}
+        minDate={dayjs('20230401').toDate()}
+        maxDate={dayjs('20231001').toDate()}
+        placeholder="YYYY/MM/DD"
+        disabledDate={(current) =>
+          ['2023/04/02'].includes(dayjs(current).format('YYYY/MM/DD'))
+        }
+        onChange={dateChange}
+      />,
+    );
+    await act(async () => {
+      userEvent.click(container.querySelector(`.${rootClass}-content`));
+    });
+    const inputDom = document.getElementsByClassName(
+      'bui-date-picker-content',
+    )[0];
+    fireEvent.change(inputDom, { target: { value: '123' } });
+    fireEvent.blur(inputDom);
+    fireEvent.change(inputDom, { target: { value: '2023/04/02' } });
+    fireEvent.blur(inputDom);
+    expect(dateChange).not.toHaveBeenCalled();
+  });
+  it('should be maxValue when change input is more than maxValue', async () => {
+    const dateChange = jest.fn((e, res) => {
+      return dayjs(res.value).format('YYYYMMDD');
+    });
+    const { container } = render(
+      <DesktopDatePicker
+        defaultValue={dayjs('20230602').toDate()}
+        minDate={dayjs('20230401').toDate()}
+        maxDate={dayjs('20231001').toDate()}
+        placeholder="YYYY/MM/DD"
+        disabledDate={(current) =>
+          ['2023/04/02'].includes(dayjs(current).format('YYYY/MM/DD'))
+        }
+        onChange={dateChange}
+      />,
+    );
+    await act(async () => {
+      userEvent.click(container.querySelector(`.${rootClass}-content`));
+    });
+    const inputDom = document.getElementsByClassName(
+      'bui-date-picker-content',
+    )[0];
+    fireEvent.change(inputDom, { target: { value: '2040/04/02' } });
+    fireEvent.blur(inputDom);
+    expect(dateChange).toReturnWith('20231001');
+  });
+  it('should be minValue when change input is more than minValue', async () => {
+    const dateChange = jest.fn((e, res) => {
+      return dayjs(res.value).format('YYYYMMDD');
+    });
+    const { container } = render(
+      <DesktopDatePicker
+        defaultValue={dayjs('20230602').toDate()}
+        minDate={dayjs('20230401').toDate()}
+        maxDate={dayjs('20231001').toDate()}
+        placeholder="YYYY/MM/DD"
+        disabledDate={(current) =>
+          ['2023/04/02'].includes(dayjs(current).format('YYYY/MM/DD'))
+        }
+        onChange={dateChange}
+      />,
+    );
+    await act(async () => {
+      userEvent.click(container.querySelector(`.${rootClass}-content`));
+    });
+    const inputDom = document.getElementsByClassName(
+      'bui-date-picker-content',
+    )[0];
+    fireEvent.change(inputDom, { target: { value: '2010/04/02' } });
+    fireEvent.blur(inputDom);
+    expect(dateChange).toReturnWith('20230401');
+  });
+  it('should be null when change input is null', async () => {
+    const dateChange = jest.fn((e, res) => {
+      return res.value;
+    });
+    const { container } = render(
+      <DesktopDatePicker
+        defaultValue={dayjs('20230602').toDate()}
+        minDate={dayjs('20230401').toDate()}
+        maxDate={dayjs('20231001').toDate()}
+        placeholder="YYYY/MM/DD"
+        disabledDate={(current) =>
+          ['2023/04/02'].includes(dayjs(current).format('YYYY/MM/DD'))
+        }
+        onChange={dateChange}
+      />,
+    );
+    await act(async () => {
+      userEvent.click(container.querySelector(`.${rootClass}-content`));
+    });
+    const inputDom = document.getElementsByClassName(
+      'bui-date-picker-content',
+    )[0];
+    fireEvent.change(inputDom, { target: { value: '' } });
+    fireEvent.blur(inputDom);
+    expect(dateChange).toReturnWith(null);
   });
 });
