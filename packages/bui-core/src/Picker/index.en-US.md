@@ -1,17 +1,17 @@
 ---
-group: feedback
-name: Picker selector
+group: Feedback
+name: Picker Selector
 ---
 
-# Picker selector
+# Picker Selector
 
-Provide multiple sets of options for users to choose from. It should be noted that it is not allowed to confirm the closure of the selector during inertial scrolling.
+Provides a set of multiple options for users to choose one. Note that during inertial scrolling, it is not allowed to confirm and close the selector.
 
-## Code demonstration
+## Code Demonstrations
 
-### Basic selector
+### Basic Selector
 
-Use 'open' to control the selector's on/off, and events such as clicking on the mask layer to close it will be returned through the 'onClose' callback
+Use `open` to control the opening/closing of the selector. Clicking events like closing via the mask layer will return through the `onClose` callback.
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -32,7 +32,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        打开选择器
+        Open Selector
       </Button>
       <Picker
         open={open}
@@ -45,31 +45,31 @@ export default () => {
           [
             {
               value: 1,
-              label: '周一',
+              label: 'Monday',
             },
             {
               value: 2,
-              label: '周二',
+              label: 'Tuesday',
             },
             {
               value: 3,
-              label: '周三',
+              label: 'Wednesday',
             },
             {
               value: 4,
-              label: '周四',
+              label: 'Thursday',
             },
             {
               value: 5,
-              label: '周五',
+              label: 'Friday',
             },
             {
               value: 6,
-              label: '周六',
+              label: 'Saturday',
             },
             {
               value: 7,
-              label: '周日',
+              label: 'Sunday',
             },
           ],
         ]}
@@ -79,9 +79,9 @@ export default () => {
 };
 ```
 
-### Set Title
+### Setting Title
 
-Use the 'title' attribute to specify the selector title.
+The `title` attribute can be used to specify the title of the selector.
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -96,11 +96,11 @@ export default () => {
           setOpen(true);
         }}
       >
-        打开选择器
+        Open Selector
       </Button>
       <Picker
         open={open}
-        title="请选择"
+        title="Please Select"
         onClose={(e, data) => {
           setOpen(false);
           console.log('onClose', e, data);
@@ -109,31 +109,31 @@ export default () => {
           [
             {
               value: 1,
-              label: '周一',
+              label: 'Monday',
             },
             {
               value: 2,
-              label: '周二',
+              label: 'Tuesday',
             },
             {
               value: 3,
-              label: '周三',
+              label: 'Wednesday',
             },
             {
               value: 4,
-              label: '周四',
+              label: 'Thursday',
             },
             {
               value: 5,
-              label: '周五',
+              label: 'Friday',
             },
             {
               value: 6,
-              label: '周六',
+              label: 'Saturday',
             },
             {
               value: 7,
-              label: '周日',
+              label: 'Sunday',
             },
           ],
         ]}
@@ -143,9 +143,9 @@ export default () => {
 };
 ```
 
-### Multi column mode
+### Multi-column Mode
 
-By passing the 'options' property into a two-dimensional array, a multi column selector can be implemented.
+By passing a two-dimensional array via the `options` property, you can implement a multi-column selector.
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -160,7 +160,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        打开选择器
+        Open Selector
       </Button>
       <Picker
         open={open}
@@ -172,45 +172,45 @@ export default () => {
           [
             {
               value: 1,
-              label: '周一',
+              label: 'Monday',
             },
             {
               value: 2,
-              label: '周二',
+              label: 'Tuesday',
             },
             {
               value: 3,
-              label: '周三',
+              label: 'Wednesday',
             },
             {
               value: 4,
-              label: '周四',
+              label: 'Thursday',
             },
             {
               value: 5,
-              label: '周五',
+              label: 'Friday',
             },
             {
               value: 6,
-              label: '周六',
+              label: 'Saturday',
             },
             {
               value: 7,
-              label: '周日',
+              label: 'Sunday',
             },
           ],
           [
             {
               value: 1,
-              label: '上午',
+              label: 'Morning',
             },
             {
               value: 2,
-              label: '中午',
+              label: 'Noon',
             },
             {
               value: 3,
-              label: '下午',
+              label: 'Afternoon',
             },
           ],
         ]}
@@ -220,9 +220,9 @@ export default () => {
 };
 ```
 
-### concatenated mode
+### Cascading Mode
 
-Cascade selectors can be implemented through the 'children' field in the 'options' attribute sub item.
+Using the `children` field in the sub-items of the `options` property can achieve cascading selectors.
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -237,7 +237,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        打开选择器
+        Open Selector
       </Button>
       <Picker
         open={open}
@@ -248,75 +248,75 @@ export default () => {
         options={[
           {
             value: 1,
-            label: '北京',
+            label: 'Beijing',
             children: [
               {
                 value: 1,
-                label: '朝阳区',
+                label: 'Chaoyang District',
                 children: [
                   {
                     value: 1,
-                    label: '朝阳街',
+                    label: 'Chaoyang Street',
                   },
                 ],
               },
               {
                 value: 2,
-                label: '海淀区',
+                label: 'Haidian District',
               },
               {
                 value: 3,
-                label: '大兴区',
+                label: 'Daxing District',
               },
               {
                 value: 4,
-                label: '东城区',
+                label: 'Dongcheng District',
               },
               {
                 value: 5,
-                label: '西城区',
+                label: 'Xicheng District',
               },
               {
                 value: 6,
-                label: '丰台区',
+                label: 'Fengtai District',
               },
             ],
           },
           {
             value: 2,
-            label: '上海',
+            label: 'Shanghai',
             children: [
               {
                 value: 1,
-                label: '黄埔区',
+                label: 'Huangpu District',
               },
               {
                 value: 2,
-                label: '长宁区',
+                label: 'Changning District',
               },
               {
                 value: 3,
-                label: '普陀区',
+                label: 'Putuo District',
               },
               {
                 value: 4,
-                label: '杨浦区',
+                label: 'Yangpu District',
               },
               {
                 value: 5,
-                label: '浦东新区',
+                label: 'Pudong New Area',
               },
               {
                 value: 6,
-                label: '徐汇区',
+                label: 'Xuhui District',
                 children: [
                   {
                     value: 1,
-                    label: '龙耀路',
+                    label: 'Longyao Road',
                   },
                   {
                     value: 2,
-                    label: '云锦路',
+                    label: 'Yunjing Road',
                   },
                 ],
               },
@@ -329,9 +329,9 @@ export default () => {
 };
 ```
 
-### Asynchronous acquisition of data source
+### Asynchronous Data Source Retrieval
 
-Asynchronous retrieval of 'options' data source.
+Asynchronously retrieve the `options` data source.
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -341,43 +341,43 @@ export default () => {
   const mockData = [
     {
       value: 1,
-      label: '北京',
+      label: 'Beijing',
       children: [
         {
           value: 1,
-          label: '朝阳区',
+          label: 'Chaoyang District',
           children: [
             {
               value: 1,
-              label: '朝阳街',
+              label: 'Chaoyang Street',
             },
           ],
         },
         {
           value: 2,
-          label: '海淀区',
+          label: 'Haidian District',
         },
         {
           value: 3,
-          label: '大兴区',
+          label: 'Daxing District',
         },
         {
           value: 4,
-          label: '东城区',
+          label: 'Dongcheng District',
         },
         {
           value: 5,
-          label: '西城区',
+          label: 'Xicheng District',
         },
         {
           value: 6,
-          label: '丰台区',
+          label: 'Fengtai District',
         },
       ],
     },
     {
       value: 2,
-      label: '上海',
+      label: 'Shanghai',
     },
   ];
   const [val, setVal] = useState<(string | number)[]>([]);
@@ -394,35 +394,35 @@ export default () => {
     const shanghai = [
       {
         value: 1,
-        label: '黄埔区',
+        label: 'Huangpu District',
       },
       {
         value: 2,
-        label: '长宁区',
+        label: 'Changning District',
       },
       {
         value: 3,
-        label: '普陀区',
+        label: 'Putuo District',
       },
       {
         value: 4,
-        label: '杨浦区',
+        label: 'Yangpu District',
       },
       {
         value: 5,
-        label: '浦东新区',
+        label: 'Pudong New Area',
       },
       {
         value: 6,
-        label: '徐汇区',
+        label: 'Xuhui District',
         children: [
           {
             value: 1,
-            label: '龙耀路',
+            label: 'Longyao Road',
           },
           {
             value: 2,
-            label: '云锦路',
+            label: 'Yunjing Road',
           },
         ],
       },
@@ -446,7 +446,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        打开选择器
+        Open Selector
       </Button>
       <Picker
         open={open}
@@ -463,9 +463,9 @@ export default () => {
 };
 ```
 
-### Select the specified option
+### Selecting Specific Options
 
-The 'value' attribute allows you to specify the default selected option.
+You can specify the default selected option using the `value` property.
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -480,7 +480,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        打开选择器
+        Open Selector
       </Button>
       <Picker
         open={open}
@@ -492,75 +492,75 @@ export default () => {
         options={[
           {
             value: 1,
-            label: '北京',
+            label: 'Beijing',
             children: [
               {
                 value: 1,
-                label: '朝阳区',
+                label: 'Chaoyang District',
                 children: [
                   {
                     value: 1,
-                    label: '朝阳街',
+                    label: 'Chaoyang Street',
                   },
                 ],
               },
               {
                 value: 2,
-                label: '海淀区',
+                label: 'Haidian District',
               },
               {
                 value: 3,
-                label: '大兴区',
+                label: 'Daxing District',
               },
               {
                 value: 4,
-                label: '东城区',
+                label: 'Dongcheng District',
               },
               {
                 value: 5,
-                label: '西城区',
+                label: 'Xicheng District',
               },
               {
                 value: 6,
-                label: '丰台区',
+                label: 'Fengtai District',
               },
             ],
           },
           {
             value: 2,
-            label: '上海',
+            label: 'Shanghai',
             children: [
               {
                 value: 1,
-                label: '黄埔区',
+                label: 'Huangpu District',
               },
               {
                 value: 2,
-                label: '长宁区',
+                label: 'Changning District',
               },
               {
                 value: 3,
-                label: '普陀区',
+                label: 'Putuo District',
               },
               {
                 value: 4,
-                label: '杨浦区',
+                label: 'Yangpu District',
               },
               {
                 value: 5,
-                label: '浦东新区',
+                label: 'Pudong New Area',
               },
               {
                 value: 6,
-                label: '徐汇区',
+                label: 'Xuhui District',
                 children: [
                   {
                     value: 1,
-                    label: '龙耀路',
+                    label: 'Longyao Road',
                   },
                   {
                     value: 2,
-                    label: '云锦路',
+                    label: 'Yunjing Road',
                   },
                 ],
               },
@@ -573,9 +573,9 @@ export default () => {
 };
 ```
 
-### Translucent attributes to the content DOM
+### Passing Attributes to Content DOM
 
-Legitimate attributes can be passed transparently to internal content DOM elements through the 'contentProps' attribute.
+You can pass valid attributes to internal content DOM elements via the `contentProps` attribute.
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -590,7 +590,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        打开选择器
+        Open Selector
       </Button>
       <Picker
         open={open}
@@ -607,31 +607,31 @@ export default () => {
           [
             {
               value: 1,
-              label: '周一',
+              label: 'Monday',
             },
             {
               value: 2,
-              label: '周二',
+              label: 'Tuesday',
             },
             {
               value: 3,
-              label: '周三',
+              label: 'Wednesday',
             },
             {
               value: 4,
-              label: '周四',
+              label: 'Thursday',
             },
             {
               value: 5,
-              label: '周五',
+              label: 'Friday',
             },
             {
               value: 6,
-              label: '周六',
+              label: 'Saturday',
             },
             {
               value: 7,
-              label: '周日',
+              label: 'Sunday',
             },
           ],
         ]}
@@ -641,9 +641,9 @@ export default () => {
 };
 ```
 
-### Confirm selection
+### Confirm Selection
 
-By listening to 'onConfirm', the callback event for clicking the confirm button can be obtained, and the 'onClose' event will be triggered after the event ends.
+By listening to `onConfirm`, you can obtain the callback event when the confirmation button is clicked. After this event ends, the `onClose` event will be triggered.
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -659,7 +659,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        打开选择器
+        Open Selector
       </Button>
       <Picker
         open={open}
@@ -675,75 +675,75 @@ export default () => {
         options={[
           {
             value: 1,
-            label: '北京',
+            label: 'Beijing',
             children: [
               {
                 value: 1,
-                label: '朝阳区',
+                label: 'Chaoyang District',
                 children: [
                   {
                     value: 1,
-                    label: '朝阳街',
+                    label: 'Chaoyang Street',
                   },
                 ],
               },
               {
                 value: 2,
-                label: '海淀区',
+                label: 'Haidian District',
               },
               {
                 value: 3,
-                label: '大兴区',
+                label: 'Daxing District',
               },
               {
                 value: 4,
-                label: '东城区',
+                label: 'Dongcheng District',
               },
               {
                 value: 5,
-                label: '西城区',
+                label: 'Xicheng District',
               },
               {
                 value: 6,
-                label: '丰台区',
+                label: 'Fengtai District',
               },
             ],
           },
           {
             value: 2,
-            label: '上海',
+            label: 'Shanghai',
             children: [
               {
                 value: 1,
-                label: '黄埔区',
+                label: 'Huangpu District',
               },
               {
                 value: 2,
-                label: '长宁区',
+                label: 'Changning District',
               },
               {
                 value: 3,
-                label: '普陀区',
+                label: 'Putuo District',
               },
               {
                 value: 4,
-                label: '杨浦区',
+                label: 'Yangpu District',
               },
               {
                 value: 5,
-                label: '浦东新区',
+                label: 'Pudong New Area',
               },
               {
                 value: 6,
-                label: '徐汇区',
+                label: 'Xuhui District',
                 children: [
                   {
                     value: 1,
-                    label: '龙耀路',
+                    label: 'Longyao Road',
                   },
                   {
                     value: 2,
-                    label: '云锦路',
+                    label: 'Yunjing Road',
                   },
                 ],
               },
@@ -756,9 +756,9 @@ export default () => {
 };
 ```
 
-### Correct the parameters in the callback function
+### Correcting Parameters in Callbacks
 
-If the passed 'value' is not an equal subset of 'options', the' value 'field in the callback function will be automatically corrected when the selector is closed, making it an option that exists in' options'.
+If the passed `value` is not a subset of equal length to `options`, the `value` field in callbacks will be automatically corrected upon closing the selector to match an existing option in `options`.
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -774,7 +774,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        打开选择器
+        Open Selector
       </Button>
       <Picker
         open={open}
@@ -790,75 +790,75 @@ export default () => {
         options={[
           {
             value: 1,
-            label: '北京',
+            label: 'Beijing',
             children: [
               {
                 value: 1,
-                label: '朝阳区',
+                label: 'Chaoyang District',
                 children: [
                   {
                     value: 1,
-                    label: '朝阳街',
+                    label: 'Chaoyang Street',
                   },
                 ],
               },
               {
                 value: 2,
-                label: '海淀区',
+                label: 'Haidian District',
               },
               {
                 value: 3,
-                label: '大兴区',
+                label: 'Daxing District',
               },
               {
                 value: 4,
-                label: '东城区',
+                label: 'Dongcheng District',
               },
               {
                 value: 5,
-                label: '西城区',
+                label: 'Xicheng District',
               },
               {
                 value: 6,
-                label: '丰台区',
+                label: 'Fengtai District',
               },
             ],
           },
           {
             value: 2,
-            label: '上海',
+            label: 'Shanghai',
             children: [
               {
                 value: 1,
-                label: '黄埔区',
+                label: 'Huangpu District',
               },
               {
                 value: 2,
-                label: '长宁区',
+                label: 'Changning District',
               },
               {
                 value: 3,
-                label: '普陀区',
+                label: 'Putuo District',
               },
               {
                 value: 4,
-                label: '杨浦区',
+                label: 'Yangpu District',
               },
               {
                 value: 5,
-                label: '浦东新区',
+                label: 'Pudong New Area',
               },
               {
                 value: 6,
-                label: '徐汇区',
+                label: 'Xuhui District',
                 children: [
                   {
                     value: 1,
-                    label: '龙耀路',
+                    label: 'Longyao Road',
                   },
                   {
                     value: 2,
-                    label: '云锦路',
+                    label: 'Yunjing Road',
                   },
                 ],
               },
@@ -871,9 +871,9 @@ export default () => {
 };
 ```
 
-### Callback when value changes
+### Callback on Value Change
 
-By monitoring 'onOptionChange', real-time callback events can be obtained for each column value change.
+By listening to `onOptionChange`, you can obtain real-time callbacks whenever the value of each column changes.
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -888,7 +888,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        打开选择器
+        Open Selector
       </Button>
       <Picker
         open={open}
@@ -901,75 +901,75 @@ export default () => {
         options={[
           {
             value: 1,
-            label: '北京',
+            label: 'Beijing',
             children: [
               {
                 value: 1,
-                label: '朝阳区',
+                label: 'Chaoyang District',
                 children: [
                   {
                     value: 1,
-                    label: '朝阳街',
+                    label: 'Chaoyang Street',
                   },
                 ],
               },
               {
                 value: 2,
-                label: '海淀区',
+                label: 'Haidian District',
               },
               {
                 value: 3,
-                label: '大兴区',
+                label: 'Daxing District',
               },
               {
                 value: 4,
-                label: '东城区',
+                label: 'Dongcheng District',
               },
               {
                 value: 5,
-                label: '西城区',
+                label: 'Xicheng District',
               },
               {
                 value: 6,
-                label: '丰台区',
+                label: 'Fengtai District',
               },
             ],
           },
           {
             value: 2,
-            label: '上海',
+            label: 'Shanghai',
             children: [
               {
                 value: 1,
-                label: '黄埔区',
+                label: 'Huangpu District',
               },
               {
                 value: 2,
-                label: '长宁区',
+                label: 'Changning District',
               },
               {
                 value: 3,
-                label: '普陀区',
+                label: 'Putuo District',
               },
               {
                 value: 4,
-                label: '杨浦区',
+                label: 'Yangpu District',
               },
               {
                 value: 5,
-                label: '浦东新区',
+                label: 'Pudong New Area',
               },
               {
                 value: 6,
-                label: '徐汇区',
+                label: 'Xuhui District',
                 children: [
                   {
                     value: 1,
-                    label: '龙耀路',
+                    label: 'Longyao Road',
                   },
                   {
                     value: 2,
-                    label: '云锦路',
+                    label: 'Yunjing Road',
                   },
                 ],
               },
@@ -982,9 +982,9 @@ export default () => {
 };
 ```
 
-### Cancel selection
+### Cancel Selection
 
-By monitoring 'onCancel', the callback event for the cancel button click can be obtained, and the 'onClose' event will be triggered after the event ends.
+By listening to `onCancel`, you can obtain the callback event when the cancel button is clicked. This event ends with the triggering of the `onClose` event.
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -999,7 +999,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        打开选择器
+        Open Selector
       </Button>
       <Picker
         open={open}
@@ -1012,75 +1012,75 @@ export default () => {
         options={[
           {
             value: 1,
-            label: '北京',
+            label: 'Beijing',
             children: [
               {
                 value: 1,
-                label: '朝阳区',
+                label: 'Chaoyang District',
                 children: [
                   {
                     value: 1,
-                    label: '朝阳街',
+                    label: 'Chaoyang Street',
                   },
                 ],
               },
               {
                 value: 2,
-                label: '海淀区',
+                label: 'Haidian District',
               },
               {
                 value: 3,
-                label: '大兴区',
+                label: 'Daxing District',
               },
               {
                 value: 4,
-                label: '东城区',
+                label: 'Dongcheng District',
               },
               {
                 value: 5,
-                label: '西城区',
+                label: 'Xicheng District',
               },
               {
                 value: 6,
-                label: '丰台区',
+                label: 'Fengtai District',
               },
             ],
           },
           {
             value: 2,
-            label: '上海',
+            label: 'Shanghai',
             children: [
               {
                 value: 1,
-                label: '黄埔区',
+                label: 'Huangpu District',
               },
               {
                 value: 2,
-                label: '长宁区',
+                label: 'Changning District',
               },
               {
                 value: 3,
-                label: '普陀区',
+                label: 'Putuo District',
               },
               {
                 value: 4,
-                label: '杨浦区',
+                label: 'Yangpu District',
               },
               {
                 value: 5,
-                label: '浦东新区',
+                label: 'Pudong New Area',
               },
               {
                 value: 6,
-                label: '徐汇区',
+                label: 'Xuhui District',
                 children: [
                   {
                     value: 1,
-                    label: '龙耀路',
+                    label: 'Longyao Road',
                   },
                   {
                     value: 2,
-                    label: '云锦路',
+                    label: 'Yunjing Road',
                   },
                 ],
               },
@@ -1093,9 +1093,9 @@ export default () => {
 };
 ```
 
-### custom style
+### Customizing Styles
 
-Custom styles can be achieved through the Tokens provided by [Style Variables] (# Style Variables).
+Through the Tokens provided by [style variables](#style-variables), you can customize styles.
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -1110,7 +1110,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        打开选择器
+        Open Selector
       </Button>
       <Picker
         style={{
@@ -1125,75 +1125,75 @@ export default () => {
         options={[
           {
             value: 1,
-            label: '北京',
+            label: 'Beijing',
             children: [
               {
                 value: 1,
-                label: '朝阳区',
+                label: 'Chaoyang District',
                 children: [
                   {
                     value: 1,
-                    label: '朝阳街',
+                    label: 'Chaoyang Street',
                   },
                 ],
               },
               {
                 value: 2,
-                label: '海淀区',
+                label: 'Haidian District',
               },
               {
                 value: 3,
-                label: '大兴区',
+                label: 'Daxing District',
               },
               {
                 value: 4,
-                label: '东城区',
+                label: 'Dongcheng District',
               },
               {
                 value: 5,
-                label: '西城区',
+                label: 'Xicheng District',
               },
               {
                 value: 6,
-                label: '丰台区',
+                label: 'Fengtai District',
               },
             ],
           },
           {
             value: 2,
-            label: '上海',
+            label: 'Shanghai',
             children: [
               {
                 value: 1,
-                label: '黄埔区',
+                label: 'Huangpu District',
               },
               {
                 value: 2,
-                label: '长宁区',
+                label: 'Changning District',
               },
               {
                 value: 3,
-                label: '普陀区',
+                label: 'Putuo District',
               },
               {
                 value: 4,
-                label: '杨浦区',
+                label: 'Yangpu District',
               },
               {
                 value: 5,
-                label: '浦东新区',
+                label: 'Pudong New Area',
               },
               {
                 value: 6,
-                label: '徐汇区',
+                label: 'Xuhui District',
                 children: [
                   {
                     value: 1,
-                    label: '龙耀路',
+                    label: 'Longyao Road',
                   },
                   {
                     value: 2,
-                    label: '云锦路',
+                    label: 'Yunjing Road',
                   },
                 ],
               },
@@ -1210,67 +1210,67 @@ export default () => {
 
 ### Picker
 
-| attribute      | explain                                   | type                                                                                                                                                                            | Default value |
-| -------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| open           | Do you want to display the selector       | boolean                                                                                                                                                                         | false         |
-| title          | title                                     | string                                                                                                                                                                          | -             |
-| options        | List data                                 | IPickerOptionItem[][] \|ICascadePickerOptionItem[]                                                                                                                              | []            |
-| value          | Selected values                           | (string \|number)[]                                                                                                                                                             | -             |
-| contentProps   | Props on drawer content DOM node          | React.HTMLAttributes\<HTMLDivElement\>                                                                                                                                          | -             |
-| onConfirm      | Callback when clicking the confirm button | (e: React.MouseEvent<HTMLDivElement\>,data: { value: (string \|number)[]; options: ICascadePickerChildOptionItem[][]}) => void                                                  | -             |
-| onOptionChange | Callback when option value changes        | (e: React.TransitionEvent<HTMLDivElement\>,data: { value: (string \|number)[];options: ICascadePickerChildOptionItem[][];currentOption: ICascadePickerChildOptionItem}) => void | -             |
-| onCancel       | Callback when clicking the cancel button  | (e: React.MouseEvent<HTMLDivElement\>) => void                                                                                                                                  | -             |
-| onClose        | Execute when closing the selector         | (e: React.MouseEvent<HTMLDivElement\>,data: {from: string;value: (string \|number)[];options: ICascadePickerChildOptionItem[][]}) => void                                       | -             |
+| Property       | Description                             | Type                                                                                                                                                                        | Default |
+| -------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| open           | Whether to display the selector         | boolean                                                                                                                                                                     | false   |
+| title          | Title                                   | string                                                                                                                                                                      | -       |
+| options        | List data                               | IPickerOptionItem[][] \| ICascadePickerOptionItem[]                                                                                                                         | []      |
+| value          | Selected value                          | (string \| number)[]                                                                                                                                                        | -       |
+| contentProps   | Props on the drawer content DOM         | React.HTMLAttributes\<HTMLDivElement\>                                                                                                                                      | -       |
+| onConfirm      | Callback when confirm button is clicked | (e: React.MouseEvent<HTMLDivElement\>,data: { value: (string \| number)[]; options: ICascadePickerChildOptionItem[][]}) => void                                             | -       |
+| onOptionChange | Callback when option value changes      | (e: React.TransitionEvent<HTMLDivElement\>,data: { value: (string \| number)[];options: ICascadePickerChildOptionItem[][];currentOption: ICascadePickerOptionItem}) => void | -       |
+| onCancel       | Callback when cancel button is clicked  | (e: React.MouseEvent<HTMLDivElement\>) => void                                                                                                                              | -       |
+| onClose        | Executed when closing the selector      | (e: React.MouseEvent<HTMLDivElement\>,data: {from: string;value: (string \| number)[];options: ICascadePickerChildOptionItem[][]}) => void                                  | -       |
 
 ### PickerPanel
 
-| attribute    | explain                                 | type                                                                                                                        | Default value |
-| ------------ | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| options      | List data of a single column panel      | ICascadePickerChildOptionItem[]                                                                                             | []            |
-| defaultValue | Default values for single column panels | string \|number                                                                                                             | -             |
-| columnIndex  | Li Suo Yin                              | number                                                                                                                      | -             |
-| onSelect     | Callback when clicking on an option     | (e: React.TransitionEvent<HTMLDivElement\>,data: {columnOption: ICascadePickerChildOptionItem;columnIndex: number}) => void | -             |
+| Property     | Description                       | Type                                                                                                                        | Default |
+| ------------ | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
+| options      | Single-column panel list data     | ICascadePickerChildOptionItem[]                                                                                             | []      |
+| defaultValue | Single-column panel default value | string \| number                                                                                                            | -       |
+| columnIndex  | Column index                      | number                                                                                                                      | -       |
+| onSelect     | Callback when option is clicked   | (e: React.TransitionEvent<HTMLDivElement\>,data: {columnOption: ICascadePickerChildOptionItem;columnIndex: number}) => void | -       |
 
 #### IPickerOptionItem
 
-| attribute | explain                             | type            | Default value |
-| --------- | ----------------------------------- | --------------- | ------------- |
-| label     | Text content of options             | string \|number | -             |
-| value     | Options correspond to unique values | string \|number | -             |
+| Property | Description                 | Type             | Default |
+| -------- | --------------------------- | ---------------- | ------- |
+| label    | Option text content         | string \| number | -       |
+| value    | Unique value for the option | string \| number | -       |
 
 #### ICascadePickerOptionItem
 
-| attribute | explain                              | type                       | Default value |
-| --------- | ------------------------------------ | -------------------------- | ------------- |
-| label     | Text content of options              | string \|number            | -             |
-| value     | Options correspond to unique values  | string \|number            | -             |
-| children  | Used for cascading options, required | ICascadePickerOptionItem[] | -             |
+| Property | Description                   | Type                       | Default |
+| -------- | ----------------------------- | -------------------------- | ------- |
+| label    | Option text content           | string \| number           | -       |
+| value    | Unique value for the option   | string \| number           | -       |
+| children | For cascade options, required | ICascadePickerOptionItem[] | -       |
 
 #### ICascadePickerChildOptionItem
 
-| attribute | explain                                  | type                       | Default value |
-| --------- | ---------------------------------------- | -------------------------- | ------------- |
-| label     | Text content of options                  | string \|number            | -             |
-| value     | Options correspond to unique values      | string \|number            | -             |
-| children  | Used for cascading options, not required | ICascadePickerOptionItem[] | -             |
+| Property | Description                   | Type                       | Default |
+| -------- | ----------------------------- | -------------------------- | ------- |
+| label    | Option text content           | string \| number           | -       |
+| value    | Unique value for the option   | string \| number           | -       |
+| children | For cascade options, optional | ICascadePickerOptionItem[] | -       |
 
-Picker inherits from Drawer. Other properties can be found in the Drawer API (/ores/Drawer? # API)
+`Picker` inherits other properties from `Drawer`. See [Drawer API](/cores/drawer?#API)
 
-### Style variables
+### Style Variables
 
-| attribute                | explain                                                                      | Default value              | global variable                     |
-| ------------------------ | ---------------------------------------------------------------------------- | -------------------------- | ----------------------------------- |
-| --header-height          | Selector head height                                                         | 50px                       | --bui-picker-header-height          |
-| --header-padding         | Select the inner margin of the head of the selector                          | 0 var(--bui-spacing-lg)    | --bui-picker-header-padding         |
-| --cancel-height          | Cancel button height                                                         | 100%                       | --bui-picker-cancel-height          |
-| --cancel-line-height     | Cancel button row height                                                     | 50px                       | --bui-picker-cancel-line-height     |
-| --confirm-height         | Confirm button height                                                        | 100%                       | --bui-picker-confirm-height         |
-| --confirm-line-height    | Confirm button row height                                                    | 50px                       | --bui-picker-confirm-line-height    |
-| --panel-container-height | Select container height                                                      | 260px                      | --bui-picker-panel-height           |
-| --indicator-top          | Indicator distance from top                                                  | 108px                      | --bui-picker-indicator-top          |
-| --indicator-border-color | Indicator stroke color                                                       | --bui-color-border-default | --bui-picker-indicator-border-color |
-| --option-height          | Option height, at the same height as the indicator, must be passed in inline | 36px                       | --bui-picker-option-height          |
+| Property                 | Description                                             | Default Value              | Global Variable                     |
+| ------------------------ | ------------------------------------------------------- | -------------------------- | ----------------------------------- |
+| --header-height          | Selector header height                                  | 50px                       | --bui-picker-header-height          |
+| --header-padding         | Selector header padding                                 | 0 var(--bui-spacing-lg)    | --bui-picker-header-padding         |
+| --cancel-height          | Cancel button height                                    | 100%                       | --bui-picker-cancel-height          |
+| --cancel-line-height     | Cancel button line height                               | 50px                       | --bui-picker-cancel-line-height     |
+| --confirm-height         | Confirm button height                                   | 100%                       | --bui-picker-confirm-height         |
+| --confirm-line-height    | Confirm button line height                              | 50px                       | --bui-picker-confirm-line-height    |
+| --panel-container-height | Selector container height                               | 260px                      | --bui-picker-panel-height           |
+| --indicator-top          | Distance from top to indicator                          | 108px                      | --bui-picker-indicator-top          |
+| --indicator-border-color | Indicator border color                                  | --bui-color-border-default | --bui-picker-indicator-border-color |
+| --option-height          | Option height, same as indicator height, must be inline | 36px                       | --bui-picker-option-height          |
 
-#### --Why is option height passed in inline
+#### Why Use Inline Style for `--option-height`
 
-The logic layer of the Picker component needs to dynamically obtain the value of '--option-height' to calculate the height of the sliding panel. If it is not passed in the inline style, this value cannot be obtained in tsx.
+The Picker component's logic layer needs to dynamically retrieve the value of `--option-height` to calculate the scrollable panel height. If it is not passed inline in the style, the value cannot be obtained in tsx.
