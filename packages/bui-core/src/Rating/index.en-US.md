@@ -1,15 +1,15 @@
 ---
-group: Basic input
-name: Rating rating
+group: Basic Input
+name: Rating
 ---
 
-# Rating rating
+# Rating
 
-The rating component provides a display of evaluations. It also allows users to quickly rate operations.
+The rating component provides a way to display ratings and allows users to quickly rate items.
 
-## Code demonstration
+## Code Examples
 
-### Basic usage
+### Basic Usage
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -25,9 +25,9 @@ export default () => {
 };
 ```
 
-### Controlled use
+### Controlled Usage
 
-Customize ratings through 'value' and 'onChange' to select values
+Customize the selected rating value using `value` and `onChange`.
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -47,9 +47,9 @@ export default () => {
 };
 ```
 
-### Half Selected
+### Half Selection
 
-Specify 'Rating' through 'allowHalf' to support half selection state.
+Enable half selection by setting `allowHalf`.
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -64,9 +64,9 @@ export default () => {
 };
 ```
 
-### read-only
+### Read-Only
 
-Specify 'Rating' as read-only through 'readOnly'.
+Set `readOnly` to make the `Rating` read-only.
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -81,9 +81,9 @@ export default () => {
 };
 ```
 
-### size
+### Size
 
-Specify the size of 'Rating' through 'size'
+Adjust the size of the `Rating` using the `size` prop.
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -100,9 +100,9 @@ export default () => {
 };
 ```
 
-### quantity
+### Count
 
-Specify the number of display icons for 'Rating' through 'count'
+Specify the number of icons displayed in the `Rating` with `count`.
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -116,9 +116,9 @@ export default () => {
 };
 ```
 
-### Disable
+### Disabled
 
-Specify 'Rating' as disabled through 'disabled'
+Set `disabled` to disable the `Rating`.
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -132,9 +132,9 @@ export default () => {
 };
 ```
 
-### Customize icons
+### Custom Icons
 
-By using 'icon' and 'emptyIcon', stars can be replaced with other characters such as emoticons, letters, numbers, font icons, and even Chinese. 'icon' is a selected icon, while 'emptyIcon' is an unselected icon
+Use `icon` and `emptyIcon` to replace stars with other characters like emojis, letters, numbers, font icons, or even Chinese characters. `icon` is for unselected state, `checkedIcon` is for selected state.
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -158,26 +158,26 @@ export default () => {
 
 ## API
 
-| attribute    | explain                                      | type                                                                          | Default value                           |
-| ------------ | -------------------------------------------- | ----------------------------------------------------------------------------- | --------------------------------------- |
-| count        | Total number of ratings                      | number                                                                        | 5                                       |
-| value        | Current rating                               | number                                                                        | -                                       |
-| defaultValue | Default rating for uncontrolled use          | number                                                                        | -                                       |
-| size         | size                                         | `xsmall`\|`small` \|`medium` \|`large`                                        | `medium`                                |
-| disabled     | Do you want to disable it                    | boolean                                                                       | false                                   |
-| readOnly     | Read only or not                             | boolean                                                                       | false                                   |
-| allowHalf    | Is half selection allowed                    | boolean                                                                       | false                                   |
-| icon         | Unchecked icon                               | React.ReactNode                                                               | <StarFilledIcon htmlColor="#ced1d6" \/> |
-| checkedIcon  | Selected icon                                | React.ReactNode                                                               | <StarFilledIcon color="warning" \/>     |
-| disableClear | Do you prohibit clearing after clicking      | boolean                                                                       | false                                   |
-| name         | Single choice input element's name attribute | string                                                                        | -                                       |
-| onChange     | Select the callback for rating selection     | (ev?: React.ChangeEvent<HTMLInputElement\>\,data?: { value: number }) => void | -                                       |
+| Property     | Description                       | Type                                                                          | Default Value                          |
+| ------------ | --------------------------------- | ----------------------------------------------------------------------------- | -------------------------------------- |
+| count        | Total number of ratings           | number                                                                        | 5                                      |
+| value        | Current rating                    | number                                                                        | -                                      |
+| defaultValue | Default rating (for uncontrolled) | number                                                                        | -                                      |
+| size         | Size                              | `xsmall`\| `small` \| `medium` \| `large`                                     | `medium`                               |
+| disabled     | Whether it is disabled            | boolean                                                                       | false                                  |
+| readOnly     | Whether it is read-only           | boolean                                                                       | false                                  |
+| allowHalf    | Allow half selection              | boolean                                                                       | false                                  |
+| icon         | Unselected icon                   | React.ReactNode                                                               | <StarFilledIcon htmlColor="#ced1d6" /> |
+| checkedIcon  | Selected icon                     | React.ReactNode                                                               | <StarFilledIcon color="warning" />     |
+| disableClear | Prevent clearing after clicking   | boolean                                                                       | false                                  |
+| name         | Name attribute for input element  | string                                                                        | -                                      |
+| onChange     | Callback when rating is changed   | (ev?: React.ChangeEvent<HTMLInputElement\>\,data?: { value: number }) => void | -                                      |
 
-## Style variables
+## Style Variables
 
-| attribute             | explain                     | Default value | global variable                  |
-| --------------------- | --------------------------- | ------------- | -------------------------------- |
-| --small-margin-right  | Small rating right margin   | 0.5px         | --bui-rating-small-margin-right  |
-| --medium-margin-right | Medium rating, right margin | 1px           | --bui-rating-medium-margin-right |
-| --large-margin-right  | Large rating right margin   | 2px           | --bui-rating-large-margin-right  |
-| --large-font-size     | Large rating font size      | 22px          | --bui-rating-large-font-size     |
+| Property              | Description                  | Default Value | Global Variable                  |
+| --------------------- | ---------------------------- | ------------- | -------------------------------- |
+| --small-margin-right  | Right margin for small size  | 0.5px         | --bui-rating-small-margin-right  |
+| --medium-margin-right | Right margin for medium size | 1px           | --bui-rating-medium-margin-right |
+| --large-margin-right  | Right margin for large size  | 2px           | --bui-rating-large-margin-right  |
+| --large-font-size     | Font size for large size     | 22px          | --bui-rating-large-font-size     |
