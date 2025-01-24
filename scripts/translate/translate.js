@@ -1,5 +1,5 @@
 /**
- * 翻译单个md文件
+ * 使用LLM翻译md文件
  * 1. 通过 --component 指定
  * 如 node scripts/translate/translate.js --component Button 表示翻译 Button 组件下的 index.zh-CN.md 文件，并写入 index.en-US.md
  * 等价于运行 pnpm run md:trans --component Button
@@ -20,10 +20,12 @@ const openai = new OpenAI({
   baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
 });
 
-async function translateMarkdownFile(filePath, outputFilePath) {
+async function translateMarkdownFile(inputFilePath, outputFilePath) {
   try {
-    const markdownContent = fs.readFileSync(filePath, 'utf-8');
-    const completion = await openai.chat.completions.create({
+    const markdownContent = fs.readFileSync(inputFilePath, 'utf-8');
+    fs.writeFileSync(outputFilePath, '');
+
+    const completionStream = await openai.chat.completions.create({
       model: 'qwen-plus',
       messages: [
         {
@@ -33,11 +35,20 @@ async function translateMarkdownFile(filePath, outputFilePath) {
         },
         { role: 'user', content: `Input text: ${markdownContent}` },
       ],
+      stream: true,
     });
-    const translatedText = completion.choices[0].message.content;
-    fs.writeFileSync(outputFilePath, translatedText);
-
-    console.log(`翻译成功并已保存到 ${filePath}`);
+    for await (const chunk of completionStream) {
+      if (
+        chunk &&
+        chunk.choices &&
+        chunk.choices.length > 0 &&
+        chunk.choices[0].delta.content
+      ) {
+        const deltaText = chunk.choices[0].delta.content;
+        fs.appendFileSync(outputFilePath, deltaText);
+      }
+    }
+    console.log(`翻译成功并已追加到 ${outputFilePath}`);
   } catch (error) {
     console.error('翻译过程中发生错误:', error);
   }
