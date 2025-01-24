@@ -1,19 +1,19 @@
 ---
-group: feedback
-name: Modal pop-up window
+group: Feedback
+name: Modal Popup
 ---
 
-# Modal pop-up window
+# Modal Popup
 
-Basic floating layer components.
-Provides the ability to draw custom content at the top of the main view and isolate interaction with lower level content.
+A basic floating layer component.
+It provides the ability to draw custom content on top of the main view and isolate interaction with underlying content.
 
-## Code demonstration
+## Code Demos
 
-### Basic pop-up window
+### Basic Popup
 
-Use open to control the opening/closing of pop ups
-Clicking on the pop-up mask layer and other events to close will be returned through the onClose callback
+Use `open` to control the opening/closing of the popup.
+Clicking events like closing the popup by clicking outside or on the backdrop will be returned via the `onClose` callback.
 
 ```tsx
 import { Button, Modal, Stack } from '@bifrostui/react';
@@ -28,7 +28,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        打开弹窗
+        Open Popup
       </Button>
       <Modal
         open={open}
@@ -51,7 +51,7 @@ export default () => {
             overflowY: 'auto',
           }}
         >
-          <div style={{ textAlign: 'center' }}>测试弹窗</div>
+          <div style={{ textAlign: 'center' }}>Test Popup</div>
         </div>
       </Modal>
     </Stack>
@@ -59,10 +59,10 @@ export default () => {
 };
 ```
 
-### Control the bottom mask
+### Controlling the Bottom Backdrop
 
-Use 'hideBackdrop' to not render the bottom mask (without triggering a click, you need to implement the shutdown logic yourself)
-Use the 'invisible' feature of BackdropProps to make the mask layer invisible (still triggering clicks)
+Use `hideBackdrop` to not render the bottom backdrop (does not trigger clicks, you need to implement your own close logic).
+Use `BackdropProps` with `invisible` to make the backdrop invisible (still triggers clicks).
 
 ```tsx
 import { Button, Modal, Stack } from '@bifrostui/react';
@@ -78,14 +78,14 @@ export default () => {
           setOpen(true);
         }}
       >
-        打开无遮罩的弹窗
+        Open Popup Without Backdrop
       </Button>
       <Button
         onClick={() => {
           setOpen1(true);
         }}
       >
-        打开隐藏遮罩的弹窗
+        Open Popup With Hidden Backdrop
       </Button>
       <Modal
         open={open}
@@ -111,7 +111,7 @@ export default () => {
           onClick={() => setOpen(false)}
         >
           <div style={{ textAlign: 'center' }}>
-            无遮罩的弹窗（需自行实现点击关闭）
+            Popup Without Backdrop (need to implement click-to-close)
           </div>
         </div>
       </Modal>
@@ -138,7 +138,7 @@ export default () => {
           }}
         >
           <div style={{ textAlign: 'center' }}>
-            隐藏遮罩的弹窗（点击外部任意区域关闭）
+            Popup With Hidden Backdrop (click outside to close)
           </div>
         </div>
       </Modal>
@@ -147,10 +147,10 @@ export default () => {
 };
 ```
 
-### Slide/Roll Penetration
+### Scroll/Pan Through
 
-Modal distinguishes the target of each sliding/scrolling event and prevents manipulation of the page below the pop-up layer during its display.
-If this behavior causes trouble, use 'disableScrollLock' to disable this feature
+The Modal distinguishes each scroll/pan event target and prevents operations on the page below the modal while it is displayed.
+If this behavior causes issues, use `disableScrollLock` to disable this feature.
 
 ```tsx
 import { Button, Modal, Stack } from '@bifrostui/react';
@@ -166,14 +166,14 @@ export default () => {
           setOpen(true);
         }}
       >
-        打开弹窗
+        Open Popup
       </Button>
       <Button
         onClick={() => {
           setScrollLock((o) => !o);
         }}
       >
-        滑动/滚动穿透保护{scrollLock ? '关' : '开'}
+        Scroll/Pan Through Protection {scrollLock ? 'Off' : 'On'}
       </Button>
       <Modal
         open={open}
@@ -198,16 +198,14 @@ export default () => {
           }}
         >
           <div style={{ textAlign: 'center' }}>
-            测试弹窗
+            Test Popup
             <br />
-            点击遮罩层关闭弹窗
-            <br />
-            <br />
-            滚动穿透阻止↓
-            <br />
-            （直接使用滚轮或者在移动端触摸拖动测试）
+            Click backdrop to close popup
             <br />
             <br />
+            Scroll/Pan Through Prevention ↓
+            <br />
+            (test using scroll wheel or touch drag on mobile)
             <br />
             <br />
             <br />
@@ -216,7 +214,9 @@ export default () => {
             <br />
             <br />
             <br />
-            滚动穿透阻止↑
+            <br />
+            <br />
+            Scroll/Pan Through Prevention ↑
           </div>
         </div>
       </Modal>
@@ -225,10 +225,10 @@ export default () => {
 };
 ```
 
-### Control component uninstallation
+### Control Component Unmounting
 
-Control the overall uninstallation timing of components when 'open' becomes false through 'keepMounted' to handle possible animation scenes (e.g. the sliding motion effect of the drawer section of the [Drawer component] (/cores/drawer)).
-Passing 'true' indicates that the mod should not be uninstalled yet (e.g. the exit animation for internal elements is still in progress).
+Use `keepMounted` to control when the component should unmount after `open` becomes false, useful for handling potential animation scenarios (e.g., Drawer component's slide-out animation).
+Passing `true` indicates that the modal should not yet be unmounted (e.g., internal elements are still animating out).
 
 ```tsx
 import { Button, Modal, Stack } from '@bifrostui/react';
@@ -245,7 +245,7 @@ export default () => {
           setMount(true);
         }}
       >
-        打开弹窗
+        Open Popup
       </Button>
       <Modal
         open={open}
@@ -271,22 +271,28 @@ export default () => {
         >
           <p>open:{open ? 'T' : 'F'}</p>
           <p>keepMounted:{mount ? 'T' : 'F'}</p>
-          <p>点击退出后open变为False，此时Backdrop开始执行退出动效</p>
-          <p>点击确定退出后keepMounted变为False</p>
-          <p>两者均为False且Backdrop退出动效结束后组件整体卸载</p>
+          <p>
+            Click to exit, setting open to False, at which point the Backdrop
+            starts its exit animation.
+          </p>
+          <p>Click to confirm exit, setting keepMounted to False.</p>
+          <p>
+            Both being False and the Backdrop's exit animation ending results in
+            the entire component unmounting.
+          </p>
           <Button
             onClick={() => {
               setOpen(false);
             }}
           >
-            退出
+            Exit
           </Button>
           <Button
             onClick={() => {
               setMount(false);
             }}
           >
-            确定退出
+            Confirm Exit
           </Button>
         </div>
       </Modal>
@@ -297,13 +303,13 @@ export default () => {
 
 ## API
 
-| attribute         | explain                                     | type                     | Default value |
-| ----------------- | ------------------------------------------- | ------------------------ | ------------- |
-| open              | Elastic layer display                       | boolean                  | false         |
-| container         | Portal Target Container                     | PortalProps['container'] | -             |
-| hideBackdrop      | Do not render Backdrop                      | boolean                  | false         |
-| BackdropProps     | Parameters transparently passed to Backdrop | BackdropProps            | -             |
-| onClose           | Close callback                              | (event, reason) => void  | -             |
-| disableScrollLock | Disable rolling penetration protection      | boolean                  | false         |
-| disablePortal     | Disable Portal                              | boolean                  | false         |
-| keepMounted       | Maintain component mounting                 | boolean                  | false         |
+| Property          | Description                 | Type                     | Default |
+| ----------------- | --------------------------- | ------------------------ | ------- |
+| open              | Display the modal           | boolean                  | false   |
+| container         | Portal target container     | PortalProps['container'] | -       |
+| hideBackdrop      | Do not render the backdrop  | boolean                  | false   |
+| BackdropProps     | Props passed to Backdrop    | BackdropProps            | -       |
+| onClose           | Close callback              | (event, reason) => void  | -       |
+| disableScrollLock | Disable scroll-through lock | boolean                  | false   |
+| disablePortal     | Disable Portal              | boolean                  | false   |
+| keepMounted       | Keep component mounted      | boolean                  | false   |

@@ -1,17 +1,17 @@
 ---
-group: Basic input
-name: Radio radio button
+group: Basic Input
+name: Radio Checkbox
 ---
 
-# Radio radio button
+# Radio Checkbox
 
-A radio button that allows users to select an option from a set of options.
+Radio checkboxes allow users to select one option from a set of options.
 
-## Code demonstration
+## Code Examples
 
 ### Basic Usage
 
-Control the status through 'checked' and 'onChange'.
+Control the state using `checked` and `onChange`.
 
 ```tsx
 import { Radio, Stack } from '@bifrostui/react';
@@ -34,9 +34,9 @@ export default () => {
 };
 ```
 
-### Transmitting attributes transparently to internal input tags
+### Passing Properties to Internal Input Tag
 
-The input property passed through 'inputProps' can be passed transparently to the internal' input 'tag.
+Properties passed via `inputProps` can be forwarded to the internal `<input>` tag.
 
 ```tsx
 import { Radio, Stack } from '@bifrostui/react';
@@ -62,9 +62,9 @@ export default () => {
 };
 ```
 
-### Internal input tags name and value
+### Internal Input Tag Name and Value
 
-Name 'and' value 'can be directly passed through to the internal' input 'tag without being overwritten by the same named attribute passed in by' inputProps'.
+`name` and `value` can be directly passed to the internal `<input>` tag and will not be overridden by properties with the same name in `inputProps`.
 
 ```tsx
 import { Radio, Stack } from '@bifrostui/react';
@@ -89,9 +89,9 @@ export default () => {
 };
 ```
 
-### Copy position
+### Label Position
 
-The position of the text in the checkbox icon can be controlled through 'labelPlacement'.
+The position of the label relative to the checkbox icon can be controlled using `labelPlacement`.
 
 ```tsx
 import { Radio, Stack } from '@bifrostui/react';
@@ -112,7 +112,7 @@ export default () => {
             setChecked1(checked);
           }}
         >
-          文案在上边
+          Label on top
         </Radio>
         <Radio
           labelPlacement="right"
@@ -121,7 +121,7 @@ export default () => {
             setChecked2(checked);
           }}
         >
-          文案在右边
+          Label on right
         </Radio>
         <Radio
           labelPlacement="bottom"
@@ -130,7 +130,7 @@ export default () => {
             setChecked3(checked);
           }}
         >
-          文案在下边
+          Label on bottom
         </Radio>
         <Radio
           labelPlacement="left"
@@ -139,7 +139,7 @@ export default () => {
             setChecked4(checked);
           }}
         >
-          文案在左边
+          Label on left
         </Radio>
       </div>
     </Stack>
@@ -147,9 +147,9 @@ export default () => {
 };
 ```
 
-### Customize icons
+### Custom Icons
 
-The 'icon' can be customized as a selected status icon, and the 'checkedIcon' can be customized as a selected status icon.
+Customize icons for checked and unchecked states using `icon` and `checkedIcon`.
 
 ```tsx
 import React, { useState } from 'react';
@@ -175,9 +175,9 @@ export default () => {
 };
 ```
 
-### Disabled status
+### Disabled State
 
-Use 'disabled' to disable components, and 'RadioGroup. disabled' can disable the entire group.
+Use `disabled` to disable the component. `RadioGroup.disabled` can disable the entire group.
 
 ```tsx
 import { Radio, Stack } from '@bifrostui/react';
@@ -197,7 +197,7 @@ export default () => {
 
 #### Radio Group
 
-The combination of RadioGroup and Radio can implement a checkbox group, and the 'Radio' should pass in the 'value' attribute at this time.
+Combine `RadioGroup` and `Radio` to create a radio button group. Each `Radio` should have a `value` attribute.
 
 ```tsx
 import { Radio, RadioGroup, Stack } from '@bifrostui/react';
@@ -212,9 +212,9 @@ export default () => {
   return (
     <Stack>
       <RadioGroup value={value} onChange={handleGroupChange}>
-        <Radio value="水门桥">水门桥</Radio>
-        <Radio value="淘票票">淘票票</Radio>
-        <Radio value="喜洋洋">喜洋洋</Radio>
+        <Radio value="Watergate Bridge">Watergate Bridge</Radio>
+        <Radio value="Taobao Movie">Taobao Movie</Radio>
+        <Radio value="Happy Sheep">Happy Sheep</Radio>
       </RadioGroup>
     </Stack>
   );
@@ -223,30 +223,30 @@ export default () => {
 
 ### Controlled Radio
 
-Control the RadioGroup component through 'value' and the Radio component through 'checked'.
+Control `RadioGroup` with `value` and `Radio` with `checked`.
 
 ```tsx
 import { Button, Radio, RadioGroup, Stack } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState('淘票票');
+  const [value, setValue] = useState('Taobao Movie');
   const [checked, setChecked] = useState(true);
   return (
     <Stack>
       <div style={{ width: '100px' }}>
         <Button
           onClick={() => {
-            const data = value ? '' : '淘票票';
+            const data = value ? '' : 'Taobao Movie';
             setValue(data);
           }}
         >
-          {value.length ? '取消' : '选择'} 淘票票
+          {value.length ? 'Unselect' : 'Select'} Taobao Movie
         </Button>
         <RadioGroup value={value}>
-          <Radio value="水门桥">水门桥</Radio>
-          <Radio value="淘票票">淘票票</Radio>
-          <Radio value="喜洋洋">喜洋洋</Radio>
+          <Radio value="Watergate Bridge">Watergate Bridge</Radio>
+          <Radio value="Taobao Movie">Taobao Movie</Radio>
+          <Radio value="Happy Sheep">Happy Sheep</Radio>
         </RadioGroup>
       </div>
       <div style={{ width: '100px' }}>
@@ -255,18 +255,18 @@ export default () => {
             setChecked(!checked);
           }}
         >
-          {checked ? '取消' : '选中'}
+          {checked ? 'Uncheck' : 'Check'}
         </Button>
-        <Radio checked={checked}>淘票票</Radio>
+        <Radio checked={checked}>Taobao Movie</Radio>
       </div>
     </Stack>
   );
 };
 ```
 
-### Use default values
+### Using Default Values
 
-Use 'defaultValue' to specify the default value for the 'RadioGroup' component, and use 'defaultChecked' to specify the default value for the 'Radio' component.
+Use `defaultValue` to specify the default value for `RadioGroup`, and `defaultChecked` for `Radio`.
 
 ```tsx
 import { Radio, RadioGroup, Stack } from '@bifrostui/react';
@@ -276,17 +276,17 @@ export default () => {
   return (
     <Stack>
       <div style={{ width: '100px' }}>
-        <div>RadioGroup：</div>
-        <RadioGroup defaultValue="淘票票">
-          <Radio value="水门桥">水门桥</Radio>
-          <Radio value="淘票票">淘票票</Radio>
-          <Radio value="喜洋洋">喜洋洋</Radio>
+        <div>RadioGroup:</div>
+        <RadioGroup defaultValue="Taobao Movie">
+          <Radio value="Watergate Bridge">Watergate Bridge</Radio>
+          <Radio value="Taobao Movie">Taobao Movie</Radio>
+          <Radio value="Happy Sheep">Happy Sheep</Radio>
         </RadioGroup>
       </div>
 
       <div>
-        <div>Radio：</div>
-        <Radio defaultChecked>淘票票</Radio>
+        <div>Radio:</div>
+        <Radio defaultChecked>Taobao Movie</Radio>
       </div>
     </Stack>
   );
@@ -297,34 +297,34 @@ export default () => {
 
 ### RadioGroup
 
-| attribute    | explain                                                                 | type                                                    | Default value |
-| ------------ | ----------------------------------------------------------------------- | ------------------------------------------------------- | ------------- |
-| defaultValue | The default selected option, used when the component is uncontrolled    | string                                                  | -             |
-| value        | Specify the selected option to be used when the component is controlled | string                                                  | -             |
-| disabled     | Is the entire group disabled                                            | boolean                                                 | false         |
-| onChange     | The callback function during changes                                    | (e: React.SyntheticEvent,data: {value: string}) => void | -             |
+| Property     | Description                               | Type                                                     | Default |
+| ------------ | ----------------------------------------- | -------------------------------------------------------- | ------- |
+| defaultValue | Default selected option when uncontrolled | string                                                   | -       |
+| value        | Selected option when controlled           | string                                                   | -       |
+| disabled     | Whether the entire group is disabled      | boolean                                                  | false   |
+| onChange     | Callback function for changes             | (e: React.SyntheticEvent, data: {value: string}) => void | -       |
 
 ### Radio
 
-| attribute      | explain                                                                    | type                                                       | Default value |
-| -------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------- | ------------- |
-| defaultChecked | Whether it is selected by default, used when the component is uncontrolled | boolean                                                    | -             |
-| checked        | Is it selected to be used when the component is controlled                 | boolean                                                    | -             |
-| inputProps     | inside `<input>` Standard attributes of tags                               | React.InputHTMLAttributes<HTMLInputElement\>               | -             |
-| inputRef       | inside `<input>` Label's ref                                               | React.Ref<HTMLInputElement\>                               | -             |
-| name           | `<input>` Name identification                                              | string                                                     | -             |
-| value          | The value of the component should be passed in if RadioGroup is used       | string                                                     | -             |
-| disabled       | Do you want to disable it                                                  | boolean                                                    | false         |
-| icon           | Unchecked status icon                                                      | ReactNode                                                  | -             |
-| checkedIcon    | Select status icon                                                         | ReactNode                                                  | -             |
-| labelPlacement | Copy position                                                              | `left` \|`top` \|`right` \|`bottom`                        | `right`       |
-| onChange       | The callback function during changes                                       | (e: React.SyntheticEvent,data: {checked: boolean}) => void | -             |
+| Property       | Description                                       | Type                                                        | Default |
+| -------------- | ------------------------------------------------- | ----------------------------------------------------------- | ------- |
+| defaultChecked | Default checked status when uncontrolled          | boolean                                                     | -       |
+| checked        | Checked status when controlled                    | boolean                                                     | -       |
+| inputProps     | Standard attributes for the internal `<input>`    | React.InputHTMLAttributes<HTMLInputElement\>                | -       |
+| inputRef       | Ref for the internal `<input>`                    | React.Ref<HTMLInputElement\>                                | -       |
+| name           | Name attribute for the `<input>`                  | string                                                      | -       |
+| value          | Component's value; required if used in RadioGroup | string                                                      | -       |
+| disabled       | Whether it is disabled                            | boolean                                                     | false   |
+| icon           | Icon for unchecked state                          | ReactNode                                                   | -       |
+| checkedIcon    | Icon for checked state                            | ReactNode                                                   | -       |
+| labelPlacement | Position of the label                             | `left` \| `top` \| `right` \| `bottom`                      | `right` |
+| onChange       | Callback function for changes                     | (e: React.SyntheticEvent, data: {checked: boolean}) => void | -       |
 
-### Style variables
+### Style Variables
 
-| attribute         | explain           | Default value            | global variable             |
-| ----------------- | ----------------- | ------------------------ | --------------------------- |
-| --label-color     | Text font color   | --bui-color-fg-default   | --bui-radio-label-color     |
-| --label-font-size | Copy font size    | --bui-text-size-1        | --bui-radio-label-font-size |
-| --icon-font-size  | Icon font size    | --bui-title-size-2       | --bui-radio-icon-font-size  |
-| --icon-padding    | Icon inner margin | --bui-radio-icon-padding | 5px                         |
+| Property          | Description      | Default Value            | Global Variable             |
+| ----------------- | ---------------- | ------------------------ | --------------------------- |
+| --label-color     | Label text color | --bui-color-fg-default   | --bui-radio-label-color     |
+| --label-font-size | Label font size  | --bui-text-size-1        | --bui-radio-label-font-size |
+| --icon-font-size  | Icon font size   | --bui-title-size-2       | --bui-radio-icon-font-size  |
+| --icon-padding    | Icon padding     | --bui-radio-icon-padding | 5px                         |

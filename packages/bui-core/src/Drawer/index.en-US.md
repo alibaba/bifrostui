@@ -1,17 +1,17 @@
 ---
-group: feedback
-name: Drawer drawer
+group: Feedback
+name: Drawer
 ---
 
-# Drawer drawer
+# Drawer
 
 A floating panel that slides out from the edge of the screen.
 
-## Code demonstration
+## Code Demos
 
-### Basic usage
+### Basic Usage
 
-Control whether the drawer is displayed through 'open' and 'onClose'
+Control the visibility of the drawer using `open` and `onClose`.
 
 ```tsx
 import { Button, Drawer, Stack } from '@bifrostui/react';
@@ -26,7 +26,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        基础用法
+        Basic Usage
       </Button>
       <Drawer
         open={open}
@@ -35,16 +35,16 @@ export default () => {
         }}
         contentProps={{ style: { lineHeight: '20vh', textAlign: 'center' } }}
       >
-        抽屉正文
+        Drawer Content
       </Drawer>
     </Stack>
   );
 };
 ```
 
-### Direction of appearance
+### Direction of Appearance
 
-By default, it appears from the bottom and supports controlling the appearance direction through setting 'anchor'. It appears from the bottom by default
+By default, it appears from the bottom. You can control the appearance direction by setting the `anchor` property.
 
 ```tsx
 import { Button, Drawer, Stack } from '@bifrostui/react';
@@ -55,10 +55,10 @@ export default () => {
   return (
     <>
       <Stack direction="row" spacing="8px">
-        <Button onClick={() => setOpenDirection('bottom')}>底部弹出</Button>
-        <Button onClick={() => setOpenDirection('top')}>顶部弹出</Button>
-        <Button onClick={() => setOpenDirection('left')}>左侧弹出</Button>
-        <Button onClick={() => setOpenDirection('right')}>右侧弹出</Button>
+        <Button onClick={() => setOpenDirection('bottom')}>Bottom</Button>
+        <Button onClick={() => setOpenDirection('top')}>Top</Button>
+        <Button onClick={() => setOpenDirection('left')}>Left</Button>
+        <Button onClick={() => setOpenDirection('right')}>Right</Button>
       </Stack>
       <Drawer
         anchor="bottom"
@@ -66,14 +66,14 @@ export default () => {
         onClose={() => setOpenDirection('')}
         contentProps={{ style: { lineHeight: '20vh', textAlign: 'center' } }}
       >
-        底部弹出
+        Bottom
       </Drawer>
       <Drawer
         anchor="top"
         open={openDirection === 'top'}
         onClose={() => setOpenDirection('')}
       >
-        <div style={{ lineHeight: '20vh', textAlign: 'center' }}>顶部弹出</div>
+        <div style={{ lineHeight: '20vh', textAlign: 'center' }}>Top</div>
       </Drawer>
       <Drawer
         anchor="left"
@@ -83,21 +83,21 @@ export default () => {
           style: { width: '50vw', textAlign: 'center', paddingTop: '50vh' },
         }}
       >
-        左侧弹出
+        Left
       </Drawer>
       <Drawer
         anchor="right"
         open={openDirection === 'right'}
         onClose={() => setOpenDirection('')}
       >
-        <Stack style={{ width: '50vw', height: '100%' }}>right</Stack>
+        <Stack style={{ width: '50vw', height: '100%' }}>Right</Stack>
       </Drawer>
     </>
   );
 };
 ```
 
-### Dynamic effect delay
+### Transition Delay
 
 ```tsx
 import { Button, Drawer, Stack } from '@bifrostui/react';
@@ -106,14 +106,14 @@ export default () => {
   const [open, setOpen] = useState(false);
   return (
     <Stack direction="row">
-      <Button onClick={() => setOpen(true)}>动态效果延时</Button>
+      <Button onClick={() => setOpen(true)}>Transition Delay</Button>
       <Drawer
         transitionDuration={1000}
         open={open}
         onClose={() => setOpen(false)}
       >
         <div style={{ lineHeight: '20vh', textAlign: 'center' }}>
-          动态效果延时
+          Transition Delay
         </div>
       </Drawer>
     </Stack>
@@ -121,9 +121,9 @@ export default () => {
 };
 ```
 
-### Specify container
+### Specified Container
 
-By default, Drawer is rendered to the root node of the page, H5 is' document. body ', and the mini program is the' page node '.
+By default, the Drawer is rendered in the root node of the page (`document.body` for H5, `page node` for mini-programs).
 
 ```tsx
 import { Button, Drawer, Stack } from '@bifrostui/react';
@@ -138,7 +138,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        指定容器
+        Specified Container
       </Button>
       <Drawer
         container={document.getElementById('draw-container')}
@@ -151,7 +151,7 @@ export default () => {
           className="content"
           style={{ lineHeight: '20vh', textAlign: 'center' }}
         >
-          浮层dom在`draw-container`element中渲染
+          Floating layer DOM is rendered within the `draw-container` element.
         </div>
       </Drawer>
     </Stack>
@@ -161,16 +161,16 @@ export default () => {
 
 ### API
 
-| attribute          | explain                               | type                                                        | Default value   |
-| ------------------ | ------------------------------------- | ----------------------------------------------------------- | --------------- |
-| anchor             | The position where the Drawer appears | `left` \|`top` \|`right` \|`bottom`                         | `text`          |
-| open               | Is it displayed                       | boolean                                                     | false           |
-| hideBackdrop       | Do you want to hide the mask layer    | boolean                                                     | false           |
-| container          | Element nodes mounted on drawers      | ModalProps['container']                                     | Pages and Nodes |
-| SlideProps         | Props for Slide Animation             | Partial<SlideProps\>                                        | -               |
-| transitionDuration | Animation execution time              | number \|{ appear?: number, enter?: number, exit?: number } | -               |
-| onClose            | Close drawer callback                 | ModalProps['onClose']                                       | -               |
-| disablePortal      | Prohibit Portal Capability            | boolean                                                     | false           |
-| contentProps       | Props of drawer content element nodes | React.HTMLAttributes<HTMLDivElement\>                       | -               |
+| Property           | Description                  | Type                                                         | Default Value |
+| ------------------ | ---------------------------- | ------------------------------------------------------------ | ------------- |
+| anchor             | Position of the Drawer       | `left` \| `top` \| `right` \| `bottom`                       | `bottom`      |
+| open               | Whether to display           | boolean                                                      | false         |
+| hideBackdrop       | Whether to hide the backdrop | boolean                                                      | false         |
+| container          | Element node for mounting    | ModalProps['container']                                      | Root Node     |
+| SlideProps         | Props for Slide animation    | Partial<SlideProps>                                          | -             |
+| transitionDuration | Duration of the animation    | number \| { appear?: number, enter?: number, exit?: number } | -             |
+| onClose            | Callback on closing          | ModalProps['onClose']                                        | -             |
+| disablePortal      | Disable Portal functionality | boolean                                                      | false         |
+| contentProps       | Props for the content node   | React.HTMLAttributes<HTMLDivElement>                         | -             |
 
-Drawer inherits from Modal. Other properties can be found in the Modal API (/cores/modal? # API)
+The `Drawer` inherits other properties from `Modal`. See [Modal API](/cores/modal?#API) for more details.
