@@ -465,25 +465,25 @@ export default () => {
 | index       | 对应 tabs 切换面板的数据中的 index    | string  | -      |
 | keepMounted | 当 TabPanel 被隐藏时是否渲染 DOM 结构 | boolean | false  |
 
-## 样式变量
+<!-- ## 样式变量
 
 ### Tabs
 
 | 属性                 | 说明               | 默认值                                           | 全局变量                      |
 | -------------------- | ------------------ | ------------------------------------------------ | ----------------------------- |
-| --height             | Tabs 高度          | 39px                                             | --bui-tabs-height             |
-| --color              | 字体颜色           | --bui-color-fg-subtle                            | --bui-tabs-color              |
-| --active-color       | 激活 Tab 字体颜色  | --bui-color-fg-default                           | --bui-tabs-active-color       |
-| --active-font-weight | 激活 Tab 字重      | --bui-font-weight-medium                         | --bui-tabs-active-font-weight |
-| --line-width         | 下标线宽度         | 18px                                             | --bui-tabs-line-width         |
-| --line-border-radius | 下标线圆角         | 3px                                              | --bui-tabs-line-border-radius |
-| --line-bottom        | 下标线底部定位位置 | 0                                                | --bui-tabs-line-bottom        |
-| --line-height        | 下标线高度         | 3PX                                              | --bui-tabs-line-height        |
-| --line-color         | 下标线颜色         | --bui-color-primary                              | --bui-tabs-line-color         |
-| --line-box-shadow    | 下标线阴影         | none                                             | --bui-tabs-line-box-shadow    |
-| --mask-width         | 蒙层宽度           | 12px                                             | --bui-tabs-mask-width         |
-| --mask-height        | 蒙层高度           | 100%                                             | --bui-tabs-mask-height        |
-| --tab-height         | Tab 高度           | 100%                                             | --bui-tab-height              |
-| --tab-padding        | Tab内边距          | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding             |
-| --font-size          | Tab字体大小        | --bui-text-size-1                                | --bui-tab-font-size           |
-| --active-font-size   | 激活Tab字体大小    | --bui-text-size-1                                | --bui-tab-active-font-size    |
+| --bui-tabs-height             | Tabs 高度          | 39px                                             | --bui-tabs-height             |
+| --bui-tabs-color              | 字体颜色           | --bui-color-fg-subtle                            | --bui-tabs-color              |
+| --bui-tabs-active-color       | 激活 Tab 字体颜色  | --bui-color-fg-default                           | --bui-tabs-active-color       |
+| --bui-tabs-active-font-weight | 激活 Tab 字重      | --bui-font-weight-medium                         | --bui-tabs-active-font-weight |
+| --bui-tabs-line-width         | 下标线宽度         | 18px                                             | --bui-tabs-line-width         |
+| --bui-tabs-line-border-radius | 下标线圆角         | 3px                                              | --bui-tabs-line-border-radius |
+| --bui-tabs-line-bottom        | 下标线底部定位位置 | 0                                                | --bui-tabs-line-bottom        |
+| --bui-tabs-active-color        | 下标线高度         | 3PX                                              | --bui-tabs-line-height        |
+| --bui-tabs-line-color         | 下标线颜色         | --bui-color-primary                              | --bui-tabs-line-color         |
+| --bui-tabs-line-box-shadow    | 下标线阴影         | none                                             | --bui-tabs-line-box-shadow    |
+| --bui-tabs-mask-width         | 蒙层宽度           | 12px                                             | --bui-tabs-mask-width         |
+| --bui-tabs-mask-height        | 蒙层高度           | 100%                                             | --bui-tabs-mask-height        |
+| --bui-tab-height         | Tab 高度           | 100%                                             | --bui-tab-height              |
+| --bui-tab-padding        | Tab内边距          | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding             |
+| --bui-tab-font-size          | Tab字体大小        | --bui-text-size-1                                | --bui-tab-font-size           |
+| --bui-tab-active-font-size   | 激活Tab字体大小    | --bui-text-size-1                                | --bui-tab-active-font-size    | -->
