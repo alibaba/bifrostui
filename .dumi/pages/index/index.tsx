@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import React from 'react';
 import { Button } from '@bifrostui/react';
-import { usePrefersColor, useNavigate, useIntl, useLocale } from 'dumi';
+import { usePrefersColor, useNavigate, useIntl } from 'dumi';
 import { ToTopOutlinedIcon } from '@bifrostui/icons';
 import Tpp from './user-icon/tpp';
 import Dm from './user-icon/dm';
@@ -80,15 +80,15 @@ export default () => {
       <div className="main-resource">
         <div className="resource-item">
           <div className="resource-title">
-            {locales[current].subTitle[0].title}
+            {locales[current].subtitle[0].title}
           </div>
           <div className="resource-content">
             <div>
               <div className="content-title">
-                {locales[current].subTitle[0].title}
+                {locales[current].subtitle[0].title}
               </div>
               <div className="content-desc">
-                {locales[current].subTitle[0].desc}
+                {locales[current].subtitle[0].desc}
               </div>
               <Button
                 size="large"
@@ -99,7 +99,7 @@ export default () => {
                   navigate('/design/colors', { replace: true });
                 }}
               >
-                {locales[current].subTitle[0].btn}
+                {locales[current].subtitle[0].btn}
               </Button>
             </div>
             <img
@@ -110,15 +110,15 @@ export default () => {
         </div>
         <div className="resource-item">
           <div className="resource-title">
-            {locales[current].subTitle[1].title}
+            {locales[current].subtitle[1].title}
           </div>
           <div className="resource-content">
             <div>
               <div className="content-title">
-                {locales[current].subTitle[1].title}
+                {locales[current].subtitle[1].title}
               </div>
               <div className="content-desc">
-                {locales[current].subTitle[1].desc}
+                {locales[current].subtitle[1].desc}
               </div>
               <Button
                 size="large"
@@ -129,7 +129,7 @@ export default () => {
                   navigate('/cores/button', { replace: true });
                 }}
               >
-                {locales[current].subTitle[1].btn}
+                {locales[current].subtitle[1].btn}
               </Button>
             </div>
             <img
@@ -141,7 +141,7 @@ export default () => {
       </div>
 
       <div className="main-users">
-        <div className="users-title">{locales[current].subTitle[2].title}</div>
+        <div className="users-title">{locales[current].subtitle[2].title}</div>
         <div className="user-list">
           <Tpp color={color === 'light' ? '#eee' : '#5F6672'} />
           <Dm color={color === 'light' ? '#eee' : '#5F6672'} />

@@ -74,7 +74,7 @@ describe('Tabs', () => {
     const tabLine = container.querySelector(`.${rootClass.tabs}-tabline`);
     expect(tabLine).toHaveStyle({
       transform: 'translate3d(0px, 0px, 0px)',
-      transition: 'transform 0.25s ease-in-out',
+      transition: 'transform 0.3s ease-in-out',
     });
   });
 

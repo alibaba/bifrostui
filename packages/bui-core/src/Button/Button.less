@@ -30,10 +30,6 @@
 .bui-btn {
   --border-radius: var(--bui-button-border-radius, 100px);
   --text-color: var(--bui-button-text-color, var(--bui-color-fg-muted));
-  --contained-text-color: var(
-    --bui-button-contained-text-color,
-    var(--bui-color-fg-muted)
-  );
   --bg-color: var(--bui-button-default-bg-color, var(--bui-color-neutral-5));
   --border-color: var(--bui-button-border-color, var(--bui-color-neutral-4));
   --height: var(--bui-button-height, 27px);
@@ -179,7 +175,7 @@
 
   &-contained {
     background-color: var(--bg-color);
-    color: var(--contained-text-color);
+    color: var(--text-color);
 
     &.bui-btn-primary {
       .btn-contained(primary);

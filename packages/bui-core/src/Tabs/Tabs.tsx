@@ -19,10 +19,16 @@ import bound from './utils/bound';
 import './Tabs.less';
 
 const prefixCls = 'bui-tabs';
+const defaultProps = {
+  align: 'center',
+  tabs: [],
+} satisfies Partial<TabsProps>;
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
-  const { children, className, value, tabs, align, onChange, ...others } =
-    props;
+  const { children, className, value, tabs, align, onChange, ...others } = {
+    ...defaultProps,
+    ...props,
+  };
   const [active, setActive] = useState('');
   const tabsRef = useRef<HTMLDivElement>(null);
   const activeLineRef = useRef<HTMLDivElement>(null);
@@ -96,31 +102,6 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     }
   };
 
-  useEffect(() => {
-    setActive(value);
-  }, [value]);
-
-  useLayoutEffect(() => {
-    animate({ transitionInUse: false });
-  }, []);
-
-  useEffect(() => {
-    const handleResize = debounce(() => {
-      animate({ transitionInUse: true });
-      updateMask();
-    }, 100);
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [active]);
-
-  useDidMountEffect(() => {
-    animate({ transitionInUse: true });
-  }, [active, tabs, children]);
-
   const updateMask = useMemo(
     () =>
       throttle(
@@ -146,6 +127,31 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
       ),
     [],
   );
+
+  useEffect(() => {
+    setActive(value);
+  }, [value]);
+
+  useLayoutEffect(() => {
+    animate({ transitionInUse: false });
+  }, []);
+
+  useEffect(() => {
+    const handleResize = debounce(() => {
+      animate({ transitionInUse: true });
+      updateMask();
+    }, 100);
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [active]);
+
+  useDidMountEffect(() => {
+    animate({ transitionInUse: true });
+  }, [active, tabs, children]);
 
   useLayoutEffect(() => {
     updateMask();
@@ -192,7 +198,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
           })}
           style={{
             transition: lineData.transitionInUse
-              ? 'transform 0.25s ease-in-out'
+              ? 'transform 0.3s ease-in-out'
               : undefined,
             transform: `translate3d(${lineData.x}px, 0px, 0px)`,
           }}
@@ -221,9 +227,5 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
 });
 
 Tabs.displayName = 'BuiTabs';
-Tabs.defaultProps = {
-  align: 'center',
-  tabs: [],
-};
 
 export default Tabs;

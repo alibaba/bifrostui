@@ -36,7 +36,7 @@
   "dependencies": {
     "@bifrostui/types": "workspace:*",
     "@bifrostui/utils": "workspace:*",
-    "clsx": "^1.2.1"
+    "clsx": "^2.1.1"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0"
