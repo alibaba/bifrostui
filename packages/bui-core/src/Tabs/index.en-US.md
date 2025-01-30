@@ -7,14 +7,12 @@ name: Tabs tab
 
 Tab switching component.
 
-## There are two differences between mini programs and H5:
+## Differences between mini programs and H5:
 
 1. The mini program switches between using gradient animation for the bottom line of the tab and displacement animation for H5;
 2. The mini program cannot move to the middle position of the view for tabs that are beyond scrollable when clicked to activate.
 
-## Code demonstration
-
-### Basic usage
+## Basic Tabs
 
 Complete layout with Tab component
 
@@ -57,7 +55,7 @@ export default () => {
 };
 ```
 
-### Support the use of tabs
+## Support the use of tabs
 
 Generate tabs using 'tabs'.
 
@@ -98,7 +96,7 @@ export default () => {
 };
 ```
 
-### Uncheck when value value is invalid
+## Uncheck when value value is invalid
 
 When the value is invalid, do not select any tabs.
 
@@ -171,7 +169,7 @@ export default () => {
 };
 ```
 
-### Uncheck when value value is invalid (using tabs)
+## Uncheck when value value is invalid (using tabs)
 
 When the value is invalid, do not select any tabs.
 
@@ -239,7 +237,7 @@ export default () => {
 };
 ```
 
-### Disabled status
+## Disabled status
 
 Disable Tab from triggering clicks through 'disabled'.
 
@@ -287,7 +285,7 @@ export default () => {
 };
 ```
 
-### Controlled Tabs Component
+## Controlled Tabs Component
 
 The selection status of Tabs components can be controlled through the 'value' attribute.
 
@@ -381,7 +379,7 @@ export default () => {
 };
 ```
 
-### Beyond sliding
+## Beyond sliding
 
 When there are too many tabs, it exceeds the limit for sliding.
 

@@ -8,9 +8,7 @@ name: Calendar 日历
 
 用于选择日期或日期区间。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 默认为单选模式，对应 `value` 应传入单个 `Date`，默认可选范围为包含当前月份在内的一年。
 
@@ -36,7 +34,7 @@ export default () => {
 };
 ```
 
-### 指定可选范围
+## 指定可选范围
 
 通过 `minDate` 和 `maxDate` 指定可选范围，渲染指定月时：value=null 并指定 `minDate`。
 
@@ -66,7 +64,7 @@ export default () => {
 };
 ```
 
-### 隐藏当前月之外的日期
+## 隐藏当前月之外的日期
 
 启用 `hideDaysOutsideCurrentMonth` 可隐藏当前月之外的日期。
 
@@ -96,7 +94,7 @@ export default () => {
 };
 ```
 
-### 自定义头部栏日期格式
+## 自定义头部栏日期格式
 
 使用 `headerBarFormat` 可自定义头部栏日期格式，默认格式为 `YYYY/MM`。
 
@@ -130,7 +128,7 @@ export default () => {
 };
 ```
 
-### 自定义头部栏左右按钮
+## 自定义头部栏左右按钮
 
 使用 `headerBarLeftIcon` 和 `headerBarRightIcon` 可自定义头部栏左右图标。
 
@@ -175,7 +173,7 @@ export default () => {
 };
 ```
 
-### 自定义禁用日期
+## 自定义禁用日期
 
 通过 `disabledDate` 可自定义禁用日期。
 
@@ -214,7 +212,7 @@ export default () => {
 };
 ```
 
-### 高亮日期
+## 高亮日期
 
 通过 `highlightDate` 可高亮某天或周末。
 
@@ -243,7 +241,7 @@ export default () => {
 };
 ```
 
-### 选择日期范围
+## 选择日期范围
 
 `mode` 指定为 `range`，可以实现选择日期范围。
 
@@ -275,7 +273,7 @@ export default () => {
 };
 ```
 
-### 受控日历组件
+## 受控日历组件
 
 通过 `value` 属性控制日历组件。
 
@@ -286,7 +284,7 @@ import React, { useState } from 'react';
 
 export default () => {
   const [value, setValue] = useState(dayjs().add(1, 'month').toDate());
-  const [rangevalue, setRangeValue] = useState([
+  const [rangeValue, setRangeValue] = useState([
     dayjs().add(30, 'day').toDate(),
     dayjs().add(33, 'day').toDate(),
   ]);
@@ -305,14 +303,14 @@ export default () => {
         <Button onClick={onSingleClick}>回到今天</Button>
         <Calendar mode="single" value={value} />
         <Button onClick={onRangeClick}>选中最近一周</Button>
-        <Calendar mode="range" value={rangevalue} />
+        <Calendar mode="range" value={rangeValue} />
       </div>
     </Stack>
   );
 };
 ```
 
-### 非受控日历组件
+## 非受控日历组件
 
 通过 `defaultValue` 属性渲染组件，日历的选中态会体现在最外层 dom 的 `data-selected` 或 `data-start` 和 `data-end` 属性中。
 
@@ -338,7 +336,7 @@ export default () => {
 };
 ```
 
-### 自定义日期单元格的内容
+## 自定义日期单元格的内容
 
 使用 `dateRender` 可以绘制出自定义日期样式。
 
@@ -385,7 +383,7 @@ export default () => {
 };
 ```
 
-### 自定义周单元格的内容
+## 自定义周单元格的内容
 
 使用 `weekRender` 可以绘制出自定义周单元格样式。
 

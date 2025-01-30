@@ -7,9 +7,7 @@ name: Steps 步骤条
 
 步骤流程导航条。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 默认方向为纵向，若未指定 current，则默认为 0，即第一步
 
@@ -36,7 +34,7 @@ export default () => {
 };
 ```
 
-### 横向展示
+## 横向展示
 
 通过`direction`改变步骤条方向
 
@@ -57,7 +55,7 @@ export default () => {
 };
 ```
 
-### 改变副标题排列位置
+## 改变副标题排列位置
 
 若有副标题，可以通过`labelPlacement`改变其展示位置
 
@@ -83,7 +81,7 @@ export default () => {
 };
 ```
 
-### 展示描述文案
+## 展示描述文案
 
 传入`description`可添加描述说明。
 
@@ -125,7 +123,7 @@ export default () => {
 };
 ```
 
-### 控制步骤状态
+## 控制步骤状态
 
 可通过 status 控制步骤状态，`wait`为等待中， `active`为当前激活， `finish`为已完成， `error`为失败已完成
 
@@ -171,7 +169,7 @@ export default () => {
 };
 ```
 
-### 自定义图标
+## 自定义图标
 
 通过`icon`可以自定义各个状态的图标。
 
@@ -226,7 +224,7 @@ export default () => {
 };
 ```
 
-#### 禁用点击
+## 禁用点击
 
 通过`disabled`使步骤台不可点击
 
@@ -263,7 +261,7 @@ export default () => {
 };
 ```
 
-### 复杂布局
+## 复杂布局
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
@@ -332,7 +330,7 @@ export default () => {
 };
 ```
 
-### 使用 css 变量修改样式
+## 使用 css 变量修改样式
 
 可通过常用的 css 变量改变组件样式
 

@@ -1,6 +1,6 @@
-# 定制主题
+# Design Tokens
 
-> 点击[前往定制](/guide/theme-editor)
+> 点击[前往定制](/guide/theme-designer)
 
 BUI 的样式使用了 [less](https://lesscss.org/) 和 [CSS 变量](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Using_CSS_custom_properties) 相结合做为开发语言，并定义了一系列全局/组件的样式变量，我们称之为Tokens，你可以根据需求调整Tokens的值，实现定制主题的能力。
 

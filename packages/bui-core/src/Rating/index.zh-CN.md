@@ -7,9 +7,7 @@ name: Rating 评分
 
 评分组件提供对评价进行展示。也允许用户快速的评分操作。
 
-## 代码演示
-
-### 基础使用
+## 基础使用
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -25,7 +23,7 @@ export default () => {
 };
 ```
 
-### 受控使用
+## 受控使用
 
 通过`value` 和 `onChange` 自定义评分选中值
 
@@ -47,7 +45,7 @@ export default () => {
 };
 ```
 
-### 半选
+## 半选
 
 通过 `allowHalf` 指定 `Rating` 支持半选状态。
 
@@ -58,13 +56,13 @@ export default () => {
   return (
     <Stack spacing="8px">
       <Rating allowHalf />
-      <Rating defaultValue={3} allowHalf />
+      <Rating defaultValue={3.5} allowHalf />
     </Stack>
   );
 };
 ```
 
-### 只读
+## 只读
 
 通过 `readOnly` 指定 `Rating` 为只读。
 
@@ -81,7 +79,7 @@ export default () => {
 };
 ```
 
-### 大小
+## 大小
 
 通过 `size` 指定 `Rating` 的大小
 
@@ -100,7 +98,7 @@ export default () => {
 };
 ```
 
-### 数量
+## 数量
 
 通过 `count` 指定 `Rating` 的展示图标个数
 
@@ -116,7 +114,7 @@ export default () => {
 };
 ```
 
-### 禁用
+## 禁用
 
 通过 `disabled` 指定 `Rating` 为禁用状态
 
@@ -132,7 +130,7 @@ export default () => {
 };
 ```
 
-### 自定义图标
+## 自定义图标
 
 通过`icon` 和 `emptyIcon` 可以将星星替换为其他字符，比如表情、字母，数字，字体图标甚至中文，`icon`为选中态图标，`emptyIcon`为未选中态图标
 

@@ -7,9 +7,7 @@ name: Alert 警告提示
 
 Alert 组件，常用于展示简短的需要关注的信息，常用于向用户显示警告提示或者成功提示等信息。
 
-## 代码演示
-
-### 基本用法
+## 基本用法
 
 Alert 组件可通过使用 `children` 设置 Alert 组件内容。
 
@@ -26,7 +24,7 @@ export default () => {
 };
 ```
 
-### 警示框图标
+## 警示框图标
 
 `icon` 允许您将图标添加到 Alert 组件头部，这将覆盖 Alert 默认图标。
 您也可以通过设置 `icon` 属性为 `false` 来删除 Alert 默认图标。
@@ -53,7 +51,7 @@ export default () => {
 };
 ```
 
-### 警示框滚动
+## 警示框滚动
 
 `marquee` 属性允许您将 Alert 组件内容滚动。
 
@@ -80,7 +78,7 @@ export default () => {
 };
 ```
 
-### 警示框主题
+## 警示框主题
 
 Alert 组件提供了 5 种颜色主题：`warning`、`success`、 `error`、`info` 、`primary`，您可以通过 `color` 属性设置组件主题色。
 color 属性默认值：`primary`。
@@ -106,13 +104,13 @@ export default () => {
 };
 ```
 
-### 警告框模式
+## 警告框模式
 
 Alert 组件支持两种模式：填充`standard`、轮廓`outlined`。
 您可以通过 `variant` 属性设置组件模式。
 `variant` 属性默认值：`standard`。
 
-##### standard
+### standard
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
@@ -144,7 +142,7 @@ export default () => {
 };
 ```
 
-##### outlined
+### outlined
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
@@ -175,7 +173,7 @@ export default () => {
 };
 ```
 
-### 操作区
+## 操作区
 
 Alert 组件提供了 `action` 属性，用于关闭或撤销 Alert。
 Alert 提供了 onClose 回调，如果业务配置了 onClose 并且 action 没有设置属性，Alert 组件尾部会显示一个关闭图标。
@@ -220,9 +218,9 @@ export default () => {
 };
 ```
 
-### API
+## API
 
-#### AlertProps
+### AlertProps
 
 | 属性    | 说明                                 | 类型                                                      | 默认值     |
 | ------- | ------------------------------------ | --------------------------------------------------------- | ---------- |
