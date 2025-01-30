@@ -189,26 +189,3 @@ export default () => {
 | onClick   | Callback when clicking a button             | (event: MouseEvent) => void                                               | -             |
 
 For other properties see [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes)
-
-## Style variables
-
-| attribute                 | explain                                                          | Default value                   | global variable                      |
-| ------------------------- | ---------------------------------------------------------------- | ------------------------------- | ------------------------------------ |
-| --border-radius           | Rounded corner size                                              | 100px                           | --bui-button-border-radius           |
-| --bg-color                | background color                                                 | --bui-color-neutral-5           | --bui-button-default-bg-color        |
-| --text-color              | Default font color for buttons                                   | --bui-color-fg-muted            | --bui-button-text-color              |
-| --default-border          | Default border, including borders for text and contained buttons | 1px solid transparent           | --bui-button-default-border          |
-| --light-border            | The border of the light button                                   | 1px solid transparent           | --bui-button-light-border            |
-| --outlined-default-border | The default border for the outlined button                       | 1px solid --bui-color-neutral-4 | --bui-button-outlined-default-border |
-| --height                  | Default height of button                                         | 27px                            | --bui-button-height                  |
-| --font-weight             | Button word weight                                               | --bui-font-weight-medium        | --bui-button-font-weight             |
-| --icon-start-margin-right | Right margin of front label                                      | --bui-spacing-xs                | --bui-button-icon-start-margin-right |
-| --icon-end-margin-left    | Left margin of front label                                       | --bui-spacing-xs                | --bui-button-icon-end-margin-left    |
-| --disabled-opacity        | Disable state transparency                                       | 0.5                             | --bui-button-disabled-opacity        |
-| --small-padding           | Inner margin of small button                                     | 0 11px                          | --bui-button-small-padding           |
-| --small-height            | Small button height                                              | 24px                            | --bui-button-small-height            |
-| --medium-padding          | Inner margin of middle button                                    | 0 14px                          | --bui-button-medium-padding          |
-| --large-padding           | Large button margin                                              | 0 14px                          | --bui-button-large-padding           |
-| --large-height            | Height of large button                                           | 33px                            | --bui-button-large-height            |
-| --full-font-size          | Full screen button font size                                     | --bui-title-size-4              | --bui-button-full-font-size          |
-| --full-height             | Full screen button height                                        | 42px                            | --bui-button-full-height             |

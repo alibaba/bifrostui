@@ -324,5 +324,4 @@ export default () => {
 | ----------------- | ------------ | ------------------------ | -------------------------- |
 | --label-color     | 文案字体颜色 | --bui-color-fg-default   | --bui-radio-label-color    |
 | --label-font-size | 文案字体大小 | --bui-text-size-1        | -bui-radio-label-font-size |
-| --icon-font-size  | 图标字体大小 | --bui-title-size-2       | --bui-radio-icon-font-size |
 | --icon-padding    | 图标内边距   | --bui-radio-icon-padding | 5px                        |

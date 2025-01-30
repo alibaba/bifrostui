@@ -61,7 +61,7 @@
   --bui-title-size-1: 21px;
   --bui-title-size-2: 18px;
   --bui-title-size-3: 16px;
-  --bui-title-size-4: 15px;
+  --bui-title-size-4: 14px;
   --bui-text-size-1: 14px;
   --bui-text-size-2: 13px;
   --bui-text-size-3: 12px;
@@ -70,13 +70,13 @@
 
   // 前景色，通常用于文字
   // default是最通用的色彩，比如标题和一级信息
-  --bui-color-fg-default: #171717;
+  --bui-color-fg-default: #181818;
   // 柔和色，通常用于次级及补充说明信息
   --bui-color-fg-muted: var(--bui-color-neutral-2);
   // 淡色，很细微的色彩，用于辅助和需要弱化的信息
   --bui-color-fg-subtle: var(--bui-color-neutral-3);
   // 用于失效、不可用等状态
-  --bui-color-fg-disabled: fade(#171717, 50%);
+  --bui-color-fg-disabled: fade(#181818, 50%);
 
   // 默认背景色
   --bui-color-bg-default: var(--bui-color-neutral-6);
@@ -122,33 +122,28 @@
   // 形状定义
   // 页面级浮层
   --bui-shape-radius-popover: 18px;
-  --bui-shape-radius-drawer: 12px;
+  --bui-shape-radius-drawer: 15px;
   // 卡片、普通视图、抽屉、action sheet，常用于信息密度较低的视图
   --bui-shape-radius-card: 12px;
   // 独立海报、卡片，常用于信息密度较高的视图
-  --bui-shape-radius-default: 6px;
+  --bui-shape-radius-default: 9px;
   // 容器内海报
   --bui-shape-radius-poster: 4px;
   // 标签
   --bui-shape-radius-label: 3px;
 
-  // 空间定义
-  --bui-spacing-xl: 15px;
-  --bui-spacing-lg: 12px;
-  --bui-spacing-md: 9px;
-  --bui-spacing-sm: 6px;
-  --bui-spacing-xs: 4px;
-  --bui-line-height: 1.5;
-  --bui-z-index-dropdown: 1000; // dropdown 、cascader、DatePicker、select、TimePicker、treeSelect
-  --bui-z-index-affix: 1100; // 吸顶元素、固定元素fixed
-  --bui-z-index-modal-backdrop: 1200;
-  --bui-z-index-modal: 1200; // drawer、 model
-  --bui-z-index-popover: 1300;
-  --bui-z-index-tooltip: 1400;
-  --bui-z-index-toast: 1500; // 反馈提示，高于所有元素
+  .bui-btn-full {
+    --bui-btn-border-radius: 14px;
+    --bui-btn-height: 45px;
+    --bui-btn-font-size: 18px;
+  }
 
-  // 字体
-  --bui-font-family: 'PingFang SC', 'Chinese Quote', 'Segoe UI', roboto,
-    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', helvetica, arial,
-    sans-serif;
+  .bui-btn-large {
+    --bui-btn-border-radius: 7px;
+    --bui-btn-height: 30px;
+  }
+
+  .bui-btn-medium {
+    --bui-btn-border-radius: 6px;
+  }
 }
