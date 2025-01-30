@@ -1,6 +1,5 @@
 import { ReactComponent as IconCheck } from '@ant-design/icons-svg/inline-svg/outlined/check.svg';
-import { ReactComponent as IconCopy } from '@ant-design/icons-svg/inline-svg/outlined/copy.svg';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { useSiteData } from 'dumi';
 import Highlight, { defaultProps, type Language } from 'prism-react-renderer';
 import 'prism-themes/themes/prism-one-light.css';
@@ -62,7 +61,7 @@ const SourceCode: FC<SourceCodeProps> = (props) => {
             {tokens.map((line, i) => (
               <div
                 key={String(i)}
-                className={classNames({
+                className={clsx({
                   highlighted: highlightLines.includes(i + 1),
                   wrap: themeConfig.showLineNum,
                 })}
@@ -75,7 +74,7 @@ const SourceCode: FC<SourceCodeProps> = (props) => {
                     line,
                     key: i,
                   })}
-                  className={classNames({
+                  className={clsx({
                     'line-cell': themeConfig.showLineNum,
                   })}
                 >

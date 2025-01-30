@@ -39,7 +39,7 @@
     "@bifrostui/styles": "workspace:*",
     "@bifrostui/types": "workspace:*",
     "@bifrostui/utils": "workspace:*",
-    "clsx": "^1.2.1",
+    "clsx": "^2.1.1",
     "dayjs": "^1.11.7",
     "swiper": "^8.1.5"
   },

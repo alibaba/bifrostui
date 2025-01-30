@@ -1,6 +1,6 @@
 export default {
   zhCN: {
-    description: '一款简洁灵活的跨端组件库',
+    description: '一款简洁优雅的跨端组件库',
     start: '开始体验',
     features: [
       {
@@ -16,7 +16,7 @@ export default {
         desc: '完善的配套，丰富的组件，开箱即用',
       },
     ],
-    subTitle: [
+    subtitle: [
       {
         title: '设计语言',
         desc: '基于阿里影业的众多业务实践沉淀的设计语言和设计系统',
@@ -49,7 +49,7 @@ export default {
         desc: 'Complete supporting facilities, rich components, ready to use',
       },
     ],
-    subTitle: [
+    subtitle: [
       {
         title: 'Design language',
         desc: 'Design language and design system based on the numerous business practices of Alibaba Pictures',

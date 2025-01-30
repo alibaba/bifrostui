@@ -20,7 +20,7 @@ exports[`Tabs test with TabPanel should be actived by \`value\` property 1`] = `
     >
       <div
         class="bui-tabs-tabline"
-        style="transform: translate3d(0px, 0px, 0px); transition: transform 0.25s ease-in-out;"
+        style="transform: translate3d(0px, 0px, 0px); transition: transform 0.3s ease-in-out;"
       />
       <div
         class="bui-tab bui-tab-center"
