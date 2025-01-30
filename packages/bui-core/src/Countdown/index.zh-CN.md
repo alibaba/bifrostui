@@ -7,9 +7,7 @@ name: Countdown 倒计时
 
 用于实时展示倒计时数值。
 
-## 代码演示
-
-### 基本用法
+## 基本用法
 
 通过 `remainingTime` 控制倒计时剩余时长，与 `endTimestamp` 字段二选一。
 

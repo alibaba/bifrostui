@@ -8,8 +8,6 @@ name: ThemeProvider 主题配置
 主题配置，可以用来指定组件颜色、尺寸、语言等。
 `ThemeProvider`依赖React的`context`将主题、国际化传递给组件，因此您需要确保`ThemeProvider` 是您尝试自定义组件的父级。
 
-## 代码演示
-
 ## 主题定制
 
 **开发者在自定义Tokens时，需注意以下两点**，关于主题定制的详细信息请参考[定制主题](/guide/theme)。

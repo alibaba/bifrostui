@@ -7,9 +7,7 @@ name: Fade 淡入淡出
 
 使用Transition封装的基础淡入淡出动画
 
-## 代码演示
-
-### 基础使用
+## 基础使用
 
 ```tsx
 import { Button, Fade, Stack } from '@bifrostui/react';
@@ -35,7 +33,6 @@ export default () => {
           enter: 2000,
           exit: 1000,
         }}
-        className="test-clsnm"
       >
         <div ref={ref}>淡入淡出In</div>
       </Fade>
@@ -44,7 +41,7 @@ export default () => {
 };
 ```
 
-### 进入时播放动画
+## 进入时播放动画
 
 当`appear`和`in`都为`true`时
 组件会在挂载时立即播放动画
@@ -74,7 +71,7 @@ export default () => {
 };
 ```
 
-### 延迟挂载/退出卸载
+## 延迟挂载/退出卸载
 
 使用`mountOnEnter`使得首次in时才挂载组件
 使用`unmountOnExit`使得每次退出时都卸载组件
@@ -121,7 +118,7 @@ export default () => {
 };
 ```
 
-### 事件及其他属性
+## 事件及其他属性
 
 `Fade` 继承自 `Transition` 其他属性见 [Transition](/cores/transition)
 

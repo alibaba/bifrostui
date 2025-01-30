@@ -7,9 +7,7 @@ name: Portal 传送门
 
 Portal组件提供了将其子节点渲染到当前 DOM 结构之外的DOM节点中。组件底层使用的是[React createPortal](https://react.dev/reference/react-dom/createPortal)
 
-## 代码演示
-
-### 基础使用
+## 基础使用
 
 默认情况Portal组件会将子组件挂载到页面的根节点上，H5是`document.body`, 小程序是`page节点`
 

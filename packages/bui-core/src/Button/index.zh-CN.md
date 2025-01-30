@@ -11,9 +11,7 @@ name: Button 按钮
 
 按钮用于触发一个操作，做出选择，例如提交表单，打开对话框，取消操作或执行删除操作。
 
-## 代码演示
-
-### 基础按钮
+## 基础按钮
 
 按钮支持 `文字按钮`、`描边按钮`、`填充按钮`、`浅亮按钮` 四种展示形态，默认是描边按钮。
 
@@ -47,7 +45,7 @@ export default () => {
 };
 ```
 
-### 按钮大小
+## 按钮大小
 
 按钮有大、中、小三种尺寸。
 
@@ -92,7 +90,7 @@ export default () => {
 };
 ```
 
-### 按钮色彩
+## 按钮色彩
 
 按钮支持 `primary`、`success`、`info`、`warning`、`danger`、 `vip` 主题定义。若不设置color，则默认为`default`
 
@@ -127,7 +125,7 @@ export default () => {
 };
 ```
 
-### 禁用状态
+## 禁用状态
 
 通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
 
@@ -150,7 +148,7 @@ export default () => {
 };
 ```
 
-### 按钮带图标
+## 按钮带图标
 
 因为相比纯文本来说用户对图标更敏感，所以有些时候你可能希望为某些按钮设置图标，以增强应用程序的用户体验。 例如，如果您有日期按钮，则可以使用日期图标对其进行标记。`startIcon` 位于子元素的前面，`endIcon` 位于子元素的后面。
 
@@ -197,7 +195,6 @@ export default () => {
 | --border-radius           | 圆角大小                                | 100px                           | --bui-button-border-radius           |
 | --bg-color                | 背景颜色                                | --bui-color-neutral-5           | --bui-button-default-bg-color        |
 | --text-color              | 按钮默认字体颜色                        | --bui-color-fg-muted            | --bui-button-text-color              |
-| --contained-text-color    | 填充按钮默认字体颜色                    | --bui-color-fg-muted            | --bui-button-contained-text-color    |
 | --default-border          | 默认边框，包含text和contained按钮的边框 | 1px solid transparent           | --bui-button-default-border          |
 | --light-border            | light按钮的边框                         | 1px solid transparent           | --bui-button-light-border            |
 | --outlined-default-border | outlined按钮的默认边框                  | 1px solid --bui-color-neutral-4 | --bui-button-outlined-default-border |

@@ -7,14 +7,12 @@ name: Tabs 标签页
 
 标签页切换组件。
 
-## 小程序与 H5 存在两点差异：
+## 小程序与H5差异
 
 1. 小程序切换 Tab 底部 Line 使用渐变动画，H5 使用位移动画;
 2. 小程序对于超出可滚动的 Tabs，点击激活无法移动到视图中间位置。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 搭配 Tab 组件完成布局
 
@@ -57,7 +55,7 @@ export default () => {
 };
 ```
 
-### 支持使用 tabs
+## 支持使用 tabs
 
 使用 `tabs` 生成 Tab。
 
@@ -98,7 +96,7 @@ export default () => {
 };
 ```
 
-### value值无效时不选中
+## value值无效时不选中
 
 value为无效值时不选中任何Tab。
 
@@ -108,7 +106,7 @@ import React, { useState } from 'react';
 
 export default () => {
   const [value, setValue] = useState('2');
-  const defultList = [
+  const tabs = [
     { title: '长津湖', index: '1' },
     { title: '战狼2', index: '2' },
     { title: '你好，李焕英', index: '3' },
@@ -116,7 +114,7 @@ export default () => {
     { title: '流浪地球', index: '5' },
     { title: '唐人街探案3', index: '6' },
   ];
-  const [tabList, setTabList] = useState(defultList);
+  const [tabList, setTabList] = useState(tabs);
 
   const handleChange = (e, { index }) => {
     console.log(e, `Tab Change, value index is: ${index}`);
@@ -135,9 +133,9 @@ export default () => {
       <Button
         onClick={() => {
           if (tabList.length === 4) {
-            setTabList(defultList);
+            setTabList(tabs);
           } else {
-            const newTabList = defultList.slice(0, 4);
+            const newTabList = tabs.slice(0, 4);
             setTabList(newTabList);
             if (!newTabList.some((item) => item.index === value)) {
               setValue('1');
@@ -171,17 +169,17 @@ export default () => {
 };
 ```
 
-### value值无效时不选中（使用tabs）
+## value值无效时不选中（使用tabs）
 
 value为无效值时不选中任何Tab。
 
 ```tsx
-import { Stack, Tab, TabPanel, Tabs, Button } from '@bifrostui/react';
+import { Stack, TabPanel, Tabs, Button } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
   const [value, setValue] = useState('2');
-  const defultList = [
+  const tabs = [
     { title: '长津湖', index: '1' },
     { title: '战狼2', index: '2' },
     { title: '你好，李焕英', index: '3' },
@@ -189,7 +187,7 @@ export default () => {
     { title: '流浪地球', index: '5' },
     { title: '唐人街探案3', index: '6' },
   ];
-  const [tabList, setTabList] = useState(defultList);
+  const [tabList, setTabList] = useState(tabs);
 
   const handleChange = (e, { index }) => {
     console.log(e, `Tab Change, value index is: ${index}`);
@@ -208,9 +206,9 @@ export default () => {
       <Button
         onClick={() => {
           if (tabList.length === 4) {
-            setTabList(defultList);
+            setTabList(tabs);
           } else {
-            const newTabList = defultList.slice(0, 4);
+            const newTabList = tabs.slice(0, 4);
             setTabList(newTabList);
             if (!newTabList.some((item) => item.index === value)) {
               setValue('1');
@@ -239,7 +237,7 @@ export default () => {
 };
 ```
 
-### 禁用状态
+## 禁用状态
 
 通过 `disabled` 禁止 Tab 触发点击。
 
@@ -287,7 +285,7 @@ export default () => {
 };
 ```
 
-### 受控 tabs 组件
+## 受控 tabs 组件
 
 可通过 `value` 属性控制Tabs组件的选中态。
 
@@ -381,7 +379,7 @@ export default () => {
 };
 ```
 
-### 超出可滑动
+## 超出可滑动
 
 当Tab过多时，超出可滑动。
 

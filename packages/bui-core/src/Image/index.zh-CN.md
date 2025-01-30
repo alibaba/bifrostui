@@ -7,9 +7,7 @@ name: Image 图片
 
 在img标签的基础上增加了Placeholder和Fallback能力，兼容多端原生懒加载，更完善的图片组件。
 
-## 代码演示
-
-### 基础使用
+## 基础使用
 
 ```tsx
 import React from 'react';

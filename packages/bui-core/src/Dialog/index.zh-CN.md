@@ -8,11 +8,9 @@ name: Dialog 对话框
 用于重要信息的告知或操作的反馈，支持`Dialog`,`Dialog.confirm`和`Dialog.prompt`。
 推荐Hooks调用方式，静态方法无法获取上下文，ThemeProvider数据不会生效，因此推荐`Dialog.useDialog`创建支持读取context的contextHolder，通过顶层注册方法代替`Dialog`静态方法。
 
-## 代码演示
+## 确认框
 
-### 确认框
-
-#### 静态方法（不推荐）
+### 静态方法（不推荐）
 
 使用`Dialog`（默认类型是confirm）或`Dialog.confirm`来展示确认框。`Dialog.confirm` 返回`Promise`，你可以通过返回值来判断用户是点击的确认还是取消
 
@@ -52,7 +50,7 @@ export default () => {
 };
 ```
 
-#### Hooks调用（推荐）
+### Hooks调用（推荐）
 
 ```tsx
 import {
@@ -103,7 +101,7 @@ export default () => {
 };
 ```
 
-### 异步操作执行成功/失败
+## 异步操作执行成功/失败
 
 使用`onConfirm`来定义点击确认时回调。
 
@@ -169,7 +167,7 @@ export default () => {
 };
 ```
 
-### 自定义内容区域
+## 自定义内容区域
 
 可以使用`header`, `message`来分别自定义标题、内容区域。也可以使用`confirmText`和`cancelText`来自定义取消和确定按钮内容。
 
@@ -224,7 +222,7 @@ export default () => {
 };
 ```
 
-### 提示对话框
+## 提示对话框
 
 使用`dialog.prompt`来展示提示对话框。可以使用`placeholder`来自定义占位文本。同时支持`InputProps`透传到内部`Input`组件中，参考[Input](/cores/input#api)。
 
@@ -274,9 +272,9 @@ export default () => {
 };
 ```
 
-### API
+## API
 
-#### DialogOptions
+### DialogOptions
 
 | 属性        | 说明         | 类型                                       | 默认值 |
 | ----------- | ------------ | ------------------------------------------ | ------ |
@@ -291,7 +289,7 @@ export default () => {
 
 `DialogOptions` 继承自 `ModalProps`, 其他属性见 [Modal API](/cores/modal?#API)
 
-#### PromptOptions
+### PromptOptions
 
 `Dialog.prompt` 接受的参数同 `Dialog.confirm`, 此外，它还额外支持以下属性：
 
@@ -300,7 +298,7 @@ export default () => {
 | placeholder | 输入框占位文本              | string                | 请在此处输入 |
 | InputProps  | 透传给内部`Input`组件的属性 | `Partial<InputProps>` | -            |
 
-#### 方法
+### 方法
 
 | 方法名         | 说明           | 参数                     | 返回值        |
 | -------------- | -------------- | ------------------------ | ------------- |
@@ -308,7 +306,7 @@ export default () => {
 | Dialog.confirm | 展示确认框     | ConfirmOptions \| string | DialogPromise |
 | Dialog.prompt  | 展示提示对话框 | PromptOptions \| string  | DialogPromise |
 
-### 样式变量
+## 样式变量
 
 | 属性                             | 说明               | 默认值                        | 全局变量                                    |
 | -------------------------------- | ------------------ | ----------------------------- | ------------------------------------------- |

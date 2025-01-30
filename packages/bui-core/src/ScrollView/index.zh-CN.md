@@ -10,9 +10,7 @@ name: ScrollView 滚动视图
 
 > 小程序文档参考：<https://docs.taro.zone/docs/components/viewContainer/scroll-view>
 
-## 代码演示
-
-### 基础使用
+## 基础使用
 
 ```tsx
 import { ScrollView, Button, Stack } from '@bifrostui/react';
@@ -33,7 +31,7 @@ export default () => {
 };
 ```
 
-### 横向滚动
+## 横向滚动
 
 传入scrollX以进行横向滚动
 
@@ -61,7 +59,7 @@ export default () => {
 };
 ```
 
-### 事件和控制
+## 事件和控制
 
 使用`onScrollToLower`, `onScrollToUpper`接收滚动到头尾的回调
 传入`scrollTop`/`scrollLeft`,`scrollIntoView`以滚动到对应坐标/对应id的元素处

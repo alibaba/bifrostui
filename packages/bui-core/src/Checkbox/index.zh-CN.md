@@ -7,9 +7,7 @@ name: Checkbox 复选框
 
 复选框，在展示一系列选项时，为用户提供可选多项或取消已选项。
 
-## 代码演示
-
-### 基本用法
+## 基本用法
 
 通过 `checked` 和 `onChange` 控制状态。
 
@@ -34,7 +32,7 @@ export default () => {
 };
 ```
 
-### 给内部 input 标签透传属性
+## 给内部 input 标签透传属性
 
 通过 `inputProps` 传入的 input 属性可透传至内部`input`标签。
 
@@ -62,7 +60,7 @@ export default () => {
 };
 ```
 
-### 内部 input 标签 name 和 value
+## 内部 input 标签 name 和 value
 
 `name` 和 `value` 可直接透传至内部`input`标签，不会被 `inputProps` 传入的同名属性覆盖。
 
@@ -89,7 +87,7 @@ export default () => {
 };
 ```
 
-### 文案位置
+## 文案位置
 
 通过 `labelPlacement` 可控制文案在复选框图标的位置。
 
@@ -147,7 +145,7 @@ export default () => {
 };
 ```
 
-### 自定义图标
+## 自定义图标
 
 通过 `icon` 可自定义为选中状态图标，`checkedIcon` 可自定义选中状态图标。
 
@@ -175,7 +173,7 @@ export default () => {
 };
 ```
 
-### 禁用状态
+## 禁用状态
 
 使用`disabled`禁用组件，`CheckboxGroup.disabled` 可整组禁用。
 
@@ -221,7 +219,7 @@ export default () => {
 };
 ```
 
-### 受控的 Checkbox
+## 受控的 Checkbox
 
 通过 `value` 控制 `CheckboxGroup` 组件，通过 `checked` 控制 `Checkbox` 组件。
 
@@ -264,7 +262,7 @@ export default () => {
 };
 ```
 
-### 使用默认值
+## 使用默认值
 
 使用 `defaultValue` 指定 `CheckboxGroup` 组件默认值，使用 `defaultChecked` 指定 `Checkbox` 组件默认值。
 
