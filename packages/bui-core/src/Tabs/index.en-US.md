@@ -465,25 +465,25 @@ export default () => {
 | index       | Corresponding to the index in the data of the tab switching panel | string  | -             |
 | keepMounted | Whether to render DOM structure when TabPanel is hidden           | boolean | false         |
 
-## Style variables
+<!-- ## Style variables
 
 ### Tabs
 
 | attribute            | explain                                                      | Default value                                    | global variable               |
 | -------------------- | ------------------------------------------------------------ | ------------------------------------------------ | ----------------------------- |
-| --height             | Tabs height                                                  | 39px                                             | --bui-tabs-height             |
-| --color              | Font color                                                   | --bui-color-fg-subtle                            | --bui-tabs-color              |
-| --active-color       | Activate Tab font color                                      | --bui-color-fg-default                           | --bui-tabs-active-color       |
-| --active-font-weight | Activate Tab font weight                                     | --bui-font-weight-medium                         | --bui-tabs-active-font-weight |
-| --line-width         | Width of the lower marking line                              | 18px                                             | --bui-tabs-line-width         |
-| --line-border-radius | Rounded corner of lower marking line                         | 3px                                              | --bui-tabs-line-border-radius |
-| --line-bottom        | Positioning position at the bottom of the lower marking line | 0                                                | --bui-tabs-line-bottom        |
-| --line-height        | Height of the lower marking line                             | 3PX                                              | --bui-tabs-line-height        |
-| --line-color         | Index line color                                             | --bui-color-primary                              | --bui-tabs-line-color         |
-| --line-box-shadow    | Index line shadow                                            | none                                             | --bui-tabs-line-box-shadow    |
-| --mask-width         | Mask width                                                   | 12px                                             | --bui-tabs-mask-width         |
-| --mask-height        | Mask height                                                  | 100%                                             | --bui-tabs-mask-height        |
-| --tab-height         | Tab height                                                   | 100%                                             | --bui-tab-height              |
-| --tab-padding        | Tab inner margin                                             | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding             |
-| --font-size          | Tab font size                                                | --bui-text-size-1                                | --bui-tab-font-size           |
-| --active-font-size   | Activate Tab font size                                       | --bui-text-size-1                                | --bui-tab-active-font-size    |
+| --bui-tabs-height             | Tabs height                                                  | 39px                                             | --bui-tabs-height             |
+| --bui-tabs-color             | Font color                                                   | --bui-color-fg-subtle                            | --bui-tabs-color              |
+| --bui-tabs-active-color       | Activate Tab font color                                      | --bui-color-fg-default                           | --bui-tabs-active-color       |
+| --bui-tabs-active-font-weight | Activate Tab font weight                                     | --bui-font-weight-medium                         | --bui-tabs-active-font-weight |
+| --bui-tabs-line-width         | Width of the lower marking line                              | 18px                                             | --bui-tabs-line-width         |
+| --bui-tabs-line-border-radius | Rounded corner of lower marking line                         | 3px                                              | --bui-tabs-line-border-radius |
+| --bui-tabs-line-bottom        | Positioning position at the bottom of the lower marking line | 0                                                | --bui-tabs-line-bottom        |
+| --bui-tabs-active-color        | Height of the lower marking line                             | 3PX                                              | --bui-tabs-line-height        |
+| --bui-tabs-line-color         | Index line color                                             | --bui-color-primary                              | --bui-tabs-line-color         |
+| --bui-tabs-line-box-shadow    | Index line shadow                                            | none                                             | --bui-tabs-line-box-shadow    |
+| --bui-tabs-mask-width         | Mask width                                                   | 12px                                             | --bui-tabs-mask-width         |
+| --bui-tabs-mask-height        | Mask height                                                  | 100%                                             | --bui-tabs-mask-height        |
+| --bui-tab-height         | Tab height                                                   | 100%                                             | --bui-tab-height              |
+| --bui-tab-padding        | Tab inner margin                                             | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding             |
+| --bui-tab-font-size         | Tab font size                                                | --bui-text-size-1                                | --bui-tab-font-size           |
+| --bui-tab-active-font-size   | Activate Tab font size                                       | --bui-text-size-1                                | --bui-tab-active-font-size    | -->
