@@ -14,8 +14,9 @@ import {
 } from '@bifrostui/react';
 import { themes, tabList } from './constants';
 import './index.less';
+import { Typography } from './Typography';
 
-export default () => {
+const ThemeDesigner = () => {
   const [theme, setTheme] = useState('default');
   const [activeTab, setActiveTab] = useState('fruits');
 
@@ -35,6 +36,8 @@ export default () => {
           ))}
         </RadioGroup>
       </div>
+
+      <Typography />
 
       <h2>主题预览</h2>
       <div className="editor-preview">
@@ -91,3 +94,5 @@ export default () => {
     </div>
   );
 };
+
+export default ThemeDesigner;

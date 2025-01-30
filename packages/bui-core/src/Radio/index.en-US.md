@@ -326,5 +326,4 @@ export default () => {
 | ----------------- | ----------------- | ------------------------ | --------------------------- |
 | --label-color     | Text font color   | --bui-color-fg-default   | --bui-radio-label-color     |
 | --label-font-size | Copy font size    | --bui-text-size-1        | --bui-radio-label-font-size |
-| --icon-font-size  | Icon font size    | --bui-title-size-2       | --bui-radio-icon-font-size  |
 | --icon-padding    | Icon inner margin | --bui-radio-icon-padding | 5px                         |

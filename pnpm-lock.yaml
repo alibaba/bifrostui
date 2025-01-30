@@ -7,7 +7,31 @@ settings:
 importers:
 
   .:
-    dependencies:
+    devDependencies:
+      '@ant-design/icons-svg':
+        specifier: 4.4.2
+        version: 4.4.2
+      '@babel/plugin-transform-runtime':
+        specifier: ^7.25.4
+        version: 7.25.4(@babel/core@7.25.2)
+      '@babel/preset-env':
+        specifier: ^7.16.4
+        version: 7.25.4(@babel/core@7.25.2)
+      '@babel/preset-react':
+        specifier: ^7.16.0
+        version: 7.24.7(@babel/core@7.25.2)
+      '@babel/preset-typescript':
+        specifier: ^7.16.0
+        version: 7.24.7(@babel/core@7.25.2)
+      '@commitlint/cli':
+        specifier: ^17.6.3
+        version: 17.8.1(@swc/core@1.9.2(@swc/helpers@0.5.1))
+      '@commitlint/config-conventional':
+        specifier: ^17.6.3
+        version: 17.8.1
+      '@makotot/ghostui':
+        specifier: 2.0.0
+        version: 2.0.0(react@18.3.1)
       '@tarojs/components':
         specifier: ^3.0.0
         version: 3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@tarojs/shared@3.6.31)(@types/react@18.3.9)(postcss@8.4.47)(react@18.3.1)
@@ -50,37 +74,6 @@ importers:
       '@tarojs/taro-h5':
         specifier: ^3.0.0
         version: 3.6.31(@tarojs/components@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@tarojs/shared@3.6.31)(@types/react@18.3.9)(postcss@8.4.47)(react@18.3.1))(@tarojs/taro@3.6.31(@tarojs/helper@3.6.31(@swc/helpers@0.5.1))(@tarojs/runtime@3.6.31(@tarojs/shared@3.6.31))(@types/react@18.3.9)(postcss@8.4.47))
-      react:
-        specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.1
-      react-dom:
-        specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.1(react@18.3.1)
-    devDependencies:
-      '@ant-design/icons-svg':
-        specifier: 4.4.2
-        version: 4.4.2
-      '@babel/plugin-transform-runtime':
-        specifier: ^7.25.4
-        version: 7.25.4(@babel/core@7.25.2)
-      '@babel/preset-env':
-        specifier: ^7.16.4
-        version: 7.25.4(@babel/core@7.25.2)
-      '@babel/preset-react':
-        specifier: ^7.16.0
-        version: 7.24.7(@babel/core@7.25.2)
-      '@babel/preset-typescript':
-        specifier: ^7.16.0
-        version: 7.24.7(@babel/core@7.25.2)
-      '@commitlint/cli':
-        specifier: ^17.6.3
-        version: 17.8.1(@swc/core@1.9.2(@swc/helpers@0.5.1))
-      '@commitlint/config-conventional':
-        specifier: ^17.6.3
-        version: 17.8.1
-      '@makotot/ghostui':
-        specifier: 2.0.0
-        version: 2.0.0(react@18.3.1)
       '@testing-library/jest-dom':
         specifier: ^5.15.1
         version: 5.17.0
@@ -240,9 +233,15 @@ importers:
       rc-tree:
         specifier: 5.9.0
         version: 5.9.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
       react-copy-to-clipboard:
         specifier: 5.1.0
         version: 5.1.0(react@18.3.1)
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
       react-test-renderer:
         specifier: ^18.0.0
         version: 18.3.1(react@18.3.1)
