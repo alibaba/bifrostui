@@ -178,9 +178,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     beforeMoveValue.current = internalValue;
     tooltipRef.current = internalValue;
     // 补偿获取宽度，隐藏元素getBoundingClientRect获取不到dom信息
-    if (!sliderRect.current.width) {
-      getLineWidth();
-    }
+    getLineWidth();
     // currentTarget只存在于事件触发到事件处理结束之间，须在异步操作之前保存下来
     const currentTarget = isMini ? e.mpEvent.currentTarget : e.currentTarget;
     touchStartPageX.current = e.touches[0].pageX;
