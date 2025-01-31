@@ -40,7 +40,7 @@ export default () => {
   return (
     <Stack direction="row" spacing="10px">
       <Avatar>UC</Avatar>
-      <Avatar>UFCEAEF</Avatar>
+      <Avatar>MK</Avatar>
     </Stack>
   );
 };
