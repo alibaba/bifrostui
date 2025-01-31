@@ -136,6 +136,9 @@
     --bui-btn-border-radius: 14px;
     --bui-btn-height: 45px;
     --bui-btn-font-size: 18px;
+    --bui-btn-font-family: alibabapuhuiti-heavy, chinese quote, segoe ui, roboto,
+      pingfang sc, hiragino sans gb, microsoft yahei, helvetica neue, helvetica,
+      arial, sans-serif;
   }
 
   .bui-btn-large {
@@ -145,5 +148,15 @@
 
   .bui-btn-medium {
     --bui-btn-border-radius: 6px;
+  }
+
+  .bui-btn-outlined {
+    --bui-btn-border: solid 1px var(--bui-color-fg-default);
+    --bui-btn-color: var(--bui-color-fg-default);
+  }
+
+  .bui-btn-contained {
+    --bui-btn-color: var(--bui-color-bg-view);
+    --bui-btn-bg: var(--bui-color-fg-default);
   }
 }

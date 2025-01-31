@@ -1,3 +1,49 @@
 .bui-theme-editor {
+  padding: var(--bui-spacing-md) var(--bui-spacing-lg);
+  border-radius: var(--bui-shape-radius-card);
   background: var(--bui-color-bg-default);
+
+  display: grid;
+  gap: var(--bui-spacing-md);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.grid {
+  display: grid;
+  gap: var(--bui-spacing-md);
+}
+
+.grid-cols-12 {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+
+.col-span-4 {
+  grid-column: span 4 / span 4;
+}
+
+.col-span-6 {
+  grid-column: span 6 / span 6;
+}
+
+.col-span-8 {
+  grid-column: span 8 / span 8;
+}
+
+.col-span-12 {
+  grid-column: span 12 / span 12;
+}
+
+.card-btn-variations {
+  display: flex;
+
+  .bui-card-content {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
