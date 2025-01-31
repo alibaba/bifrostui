@@ -5,7 +5,7 @@ export const themes = [
 ];
 
 export const tabList = [
-  { title: '水果', index: 'fruits' },
-  { title: '蔬菜', index: 'vegetables' },
-  { title: '动物', index: 'animals' },
+  { title: '选中的Tab', index: 'tab0' },
+  { title: 'Tab 1', index: 'tab1' },
+  { title: 'Tab 2', index: 'tab2' },
 ];
