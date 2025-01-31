@@ -2,7 +2,9 @@ import { GripperBarVerticalIcon } from '@bifrostui/icons';
 import {
   isMini,
   useForkRef,
-  useTouchEmulator,
+  emulateTouchStart,
+  emulateTouchMove,
+  emulateTouchEnd,
   useValue,
   getBoundingClientRect,
 } from '@bifrostui/utils';
@@ -57,7 +59,6 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
 
   const [rootRef, setRootRef] = useState(null);
   const handleRef = useForkRef(ref, setRootRef);
-  useTouchEmulator(rootRef);
 
   // Slider BoundingClientRect
   const sliderRect = useRef<Record<string, any>>();
@@ -266,6 +267,18 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     setEndTooltipVisible(false);
   };
 
+  const onMouseUp = (e) => {
+    emulateTouchEnd(e);
+    document.removeEventListener('mousemove', emulateTouchMove);
+    document.removeEventListener('mouseup', onMouseUp);
+  };
+
+  const onMouseDown = (e) => {
+    emulateTouchStart(e);
+    document.addEventListener('mousemove', emulateTouchMove);
+    document.addEventListener('mouseup', onMouseUp);
+  };
+
   const renderButton = (index: number) => {
     const valuenow = internalValue[index];
 
@@ -289,6 +302,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
         onTouchCancel={onTouchEnd}
+        onMouseDown={onMouseDown}
       >
         {index === SLIDER_BUTTON.FRONT
           ? startIcon || defaultIcon
