@@ -158,7 +158,7 @@ exports[`Input snapshot Input demo snapshot 0 6`] = `
   >
     受控组件：
     <button
-      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+      className="bui-btn bui-btn-outlined bui-btn-medium"
       onClick={[Function]}
       type="button"
     >
@@ -191,7 +191,7 @@ exports[`Input snapshot Input demo snapshot 0 6`] = `
     非受控组件：
     <br />
     <button
-      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+      className="bui-btn bui-btn-outlined bui-btn-medium"
       onClick={[Function]}
       type="button"
     >
@@ -199,7 +199,7 @@ exports[`Input snapshot Input demo snapshot 0 6`] = `
     </button>
     <br />
     <button
-      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+      className="bui-btn bui-btn-outlined bui-btn-medium"
       onClick={[Function]}
       type="button"
     >

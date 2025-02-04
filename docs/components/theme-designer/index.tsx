@@ -47,11 +47,15 @@ const ThemeDesigner = () => {
       <Typography />
 
       <div className="grid col-span-2">
-        <Card className="card-btn-variations">
+        <Card className="card-center">
           <CardContent>
-            <Stack direction="column" spacing="8px">
-              <Button>取消</Button>
-              <Button variant="contained">确认</Button>
+            <Stack direction="column" spacing="9px">
+              <Button>浅色</Button>
+              <Button color="dark">深色</Button>
+              <Button variant="contained">浅色</Button>
+              <Button color="dark" variant="contained">
+                深色
+              </Button>
               <Button variant="contained" color="primary">
                 购票
               </Button>
@@ -67,12 +71,12 @@ const ThemeDesigner = () => {
       </div>
 
       <div className="grid col-span-6">
-        <Card>
+        <Card className="card-center">
           <CardContent>
             <Stack
               className="editor-preview-column"
               direction="column"
-              spacing="8px"
+              spacing="9px"
             >
               <Button size="small" variant="contained" color="primary">
                 小按钮
@@ -116,7 +120,7 @@ const ThemeDesigner = () => {
       </div>
 
       <div className="grid col-span-4">
-        <Card>
+        <Card className="card-center">
           <CardContent>
             <Slider defaultValue={37.5} tipVisible />
           </CardContent>

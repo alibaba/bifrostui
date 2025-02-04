@@ -43,7 +43,15 @@ export type StandardProps<
   style?: React.CSSProperties;
 };
 
-export type ThemeColor = 'primary' | 'info' | 'success' | 'warning' | 'danger';
+export type ThemeColor =
+  | 'primary'
+  | 'info'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'light'
+  | 'neutral'
+  | 'dark';
 
 export type IClickEvent = React.MouseEvent<HTMLElement>;
 

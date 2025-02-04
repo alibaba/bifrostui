@@ -3,92 +3,32 @@
 @import './theme/index.less';
 @import './mixins/index.less';
 
-@media (prefers-color-scheme: light) {
-  [data-color-mode='auto'][data-theme='pioneer'] {
-    .pioneer-light();
-    .pioneer-components();
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  [data-color-mode='auto'][data-theme='dm'] {
-    .dm-light();
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  [data-color-mode='auto'][data-theme='dm'] {
-    .dm-dark();
-  }
-}
-
-/* default theme */
+/* 经典 */
 :root,
 page,
 xhs-page,
 .bui-default-light,
-[data-color-mode='light'][data-theme='default'] {
+[data-color-mode='light'][data-theme] {
   .light();
-}
-
-.bui-dark,
-[data-color-mode='dark'][data-theme='default'] {
-  .dark();
 }
 
 /** 大麦主题-高亮 */
 .bui-dm-light,
-[data-color-mode='light'][data-theme='dm'] {
+[data-color-mode][data-theme='dm'] {
   .dm-light();
 }
 
-/** 大麦主题-暗黑 */
-.bui-dm-dark,
-[data-color-mode='dark'][data-theme='dm'] {
-  .dm-dark();
-}
-
-/** 大麦主题-高亮 */
+/** 先锋主题 */
 .bui-pioneer-light,
-[data-color-mode='light'][data-theme='pioneer'] {
+[data-color-mode][data-theme='pioneer'] {
   .pioneer-light();
-  .pioneer-components();
 }
 
-@media (prefers-color-scheme: light) {
-  [data-color-mode='auto'] {
-    .light();
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  [data-color-mode='auto'] {
-    .dark();
-  }
-}
-
-/* set color-scheme */
+/** 暗黑模式 */
 :root,
-page,
-xhs-page,
-[data-color-mode='light'] {
-  color-scheme: light;
-}
-
-[data-color-mode='dark'] {
-  color-scheme: dark;
-}
-
-@media (prefers-color-scheme: light) {
-  [data-color-mode='auto'] {
-    color-scheme: light;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  [data-color-mode='auto'] {
-    color-scheme: dark;
-  }
+.bui-dark,
+[data-color-mode='dark'][data-theme] {
+  .dark();
 }
 
 [data-color-mode] {

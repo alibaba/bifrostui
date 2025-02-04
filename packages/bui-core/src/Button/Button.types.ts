@@ -21,19 +21,20 @@ export type ButtonProps<
        * @default 'medium'
        */
       size?: 'small' | 'medium' | 'large' | 'full';
-      /** 按钮颜色
-       * @default 'default'
+      /**
+       * 按钮颜色
+       * @default 'neutral'
        */
-      color?: ThemeColor | 'default' | 'vip';
+      color?: ThemeColor | 'vip';
       /**
        * 按钮类型
        * - text: 文字按钮
-       * - outlined: 描边按钮
-       * - contained: 实心填充按钮
-       * - light: 浅亮填充按钮
+       * - outlined: 线框按钮
+       * - contained: 填充按钮
+       * - subtle: 柔和按钮
        * @default 'outlined'
        */
-      variant?: 'outlined' | 'text' | 'contained' | 'light';
+      variant?: 'outlined' | 'text' | 'contained' | 'subtle';
       /**
        * 在子元素前放在的内容
        */

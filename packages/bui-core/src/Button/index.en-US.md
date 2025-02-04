@@ -39,7 +39,7 @@ export default () => {
       <Button color="primary" variant="contained">
         填充按钮
       </Button>
-      <Button color="primary" variant="light">
+      <Button color="primary" variant="subtle">
         浅亮按钮
       </Button>
     </Stack>

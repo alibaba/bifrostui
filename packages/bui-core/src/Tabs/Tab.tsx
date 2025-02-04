@@ -43,7 +43,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
       {isMini && (
         <div
           className={clsx(`${prefixCls}-miniapp-active-line`, {
-            'bui-tabline-invisible': index !== value,
+            'bui-indicator-invisible': index !== value,
           })}
         />
       )}

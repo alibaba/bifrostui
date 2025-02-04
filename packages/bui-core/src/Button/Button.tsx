@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
-import './Button.less';
 import { ButtonProps } from './Button.types';
+import './Button.less';
 
 const prefixCls = 'bui-btn';
 
@@ -55,7 +55,6 @@ Button.displayName = 'BuiButton';
 Button.defaultProps = {
   size: 'medium',
   variant: 'outlined',
-  color: 'default',
   disabled: false,
 };
 

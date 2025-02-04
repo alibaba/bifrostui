@@ -37,8 +37,4 @@ function RadioButtonIcon(props: IRadioButtonIconProps) {
   );
 }
 
-// RadioButtonIcon.defaultProps = {
-//   checked: false,
-// };
-
 export default RadioButtonIcon;

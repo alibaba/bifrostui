@@ -310,18 +310,3 @@ export default () => {
 | subtitle | 子标题         | ReactNode            | -      |
 | extra    | 卡片右侧操作区 | ReactNode            | -      |
 | endIcon  | 卡片右侧图标   | ReactNode ｜ boolean | -      |
-
-## 样式变量
-
-### CardHeader
-
-| 属性                   | 说明           | 默认值                            | 全局变量                               |
-| ---------------------- | -------------- | --------------------------------- | -------------------------------------- |
-| --padding              | 内边距         | --bui-spacing-md --bui-spacing-lg | --bui-card-header-padding              |
-| --end-icon-margin-left | 尾部图标左边距 | 2px                               | --bui-card-header-end-icon-margin-left |
-
-### CardFooter
-
-| 属性      | 说明   | 默认值                            | 全局变量                  |
-| --------- | ------ | --------------------------------- | ------------------------- |
-| --padding | 内边距 | --bui-spacing-md --bui-spacing-lg | --bui-card-footer-padding |

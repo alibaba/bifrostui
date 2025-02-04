@@ -1,8 +1,8 @@
 @import (reference) '../../styles/variables.less';
 
 .@{prefix}-previewer {
+  max-width: 100%;
   margin: 24px 0 32px;
-  // border: 1px solid @c-border-light;
   border-radius: 16px;
   background-color: inherit;
 
@@ -22,12 +22,16 @@
     }
   }
 
+  &-action-btn {
+    margin-bottom: 0;
+  }
+
   &-actions {
     position: absolute;
     right: 0;
     bottom: 0;
     display: flex;
-    height: 32px;
+    padding: var(--bui-spacing-md, 9px);
     align-items: center;
     justify-content: flex-end;
 
@@ -62,15 +66,17 @@
 
   &-demo {
     position: relative;
-    border-radius: 8px;
-    padding: 40px 24px 82px;
+    border-radius: var(--bui-shape-radius-card, 9px);
+    padding: 12px 12px 42px;
     border: 1px solid @c-border;
     @{dark-selector} & {
       border-color: @c-border-dark;
     }
 
     @media @mobile {
-      padding: 40px 8px 82px;
+      margin: 24px -12px 0;
+      border-radius: 0;
+      border-width: 1px 0;
     }
 
     > iframe {
@@ -91,10 +97,6 @@
         display: block;
         height: 24px;
         background-color: @c-border-light;
-
-        @{dark-selector} & {
-          // background-color: @c-border-less-dark;
-        }
       }
 
       &::after {
@@ -122,16 +124,6 @@
     &[data-compact] {
       padding: 0;
     }
-  }
-
-  &-meta {
-    // margin-top: 24px;
-
-    // border-top: 1px solid @c-border-light;
-
-    // @{dark-selector} & {
-    //   border-top-color: @c-border-less-dark;
-    // }
   }
 
   &-desc {

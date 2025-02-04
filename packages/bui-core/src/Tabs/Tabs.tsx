@@ -193,8 +193,8 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
       <div className={`${prefixCls}-tabs`} ref={tabsRef} onScroll={updateMask}>
         <div
           ref={activeLineRef}
-          className={clsx(`${prefixCls}-tabline`, {
-            'bui-tabline-invisible': isMini || !lineData.hasActiveTab,
+          className={clsx(`${prefixCls}-indicator`, {
+            'bui-indicator-invisible': isMini || !lineData.hasActiveTab,
           })}
           style={{
             transition: lineData.transitionInUse

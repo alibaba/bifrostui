@@ -11,17 +11,17 @@ name: Button 按钮
 
 按钮用于触发一个操作，做出选择，例如提交表单，打开对话框，取消操作或执行删除操作。
 
-## 基础按钮
+## 按钮变体
 
-按钮支持 `文字按钮`、`描边按钮`、`填充按钮`、`浅亮按钮` 四种展示形态，默认是描边按钮。
+按钮支持`文字按钮`、`线框按钮`、`填充按钮`、`浅亮按钮`四种变体，默认`线框按钮`。
 
-`文字按钮`: 直接使用文字作为按钮。是视觉吸引力最弱的一个按钮，通常出现在表格操作栏、标题和字段旁等。
+`文字按钮`: 低调、灵活性。适用內联操作、简洁界面、轻量级操作。
 
-`填充按钮`: 一般用于主按钮，是用户在整个页面需要关注优先级最高的操作，引导用户关注并操作。
+`填充按钮`: 突出、重要性。适用强视觉焦点、高优先级操作、主要操作。
 
-`描边按钮`: 常见白底加文字的形式，在视觉强调程度上弱于填充按钮，通常与填充按钮搭配成组使用
+`线框按钮`: 中性、灵活性，适用透明背景、视觉平衡、中等优先级操作。
 
-`浅亮按钮`: 浅亮状态的文字为按钮背景颜色，背景则为对应的浅色。
+`柔和按钮`: 低调、非焦点，适用柔和界面、低对比度设计、次要操作。
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
@@ -29,16 +29,16 @@ import React from 'react';
 
 export default () => {
   return (
-    <Stack direction="row" spacing="8px" flexWrap="wrap">
+    <Stack direction="row" spacing="9px" flexWrap="wrap">
       <Button color="primary" variant="text">
-        文字按钮
+        Text
       </Button>
-      <Button color="primary">描边按钮</Button>
+      <Button color="primary">Outlined</Button>
       <Button color="primary" variant="contained">
-        填充按钮
+        Contained
       </Button>
-      <Button color="primary" variant="light">
-        浅亮按钮
+      <Button color="primary" variant="subtle">
+        Subtle
       </Button>
     </Stack>
   );
@@ -57,24 +57,24 @@ import React from 'react';
 
 export default () => {
   return (
-    <Stack spacing="8px">
-      <Stack direction="row" spacing="8px" style={{ width: '350px' }}>
-        <Button size="small">小号按钮</Button>
-        <Button size="medium">中号按钮</Button>
-        <Button size="large">大号按钮</Button>
+    <Stack spacing="9px">
+      <Stack direction="row" spacing="9px" style={{ width: '350px' }}>
+        <Button size="small">Small</Button>
+        <Button size="medium">Medium</Button>
+        <Button size="large">Large</Button>
       </Stack>
       <Button size="full" style={{ width: '350px' }}>
-        通栏按钮
+        Full
       </Button>
-      <Stack direction="row" spacing="8px" style={{ width: '350px' }}>
+      <Stack direction="row" spacing="9px" style={{ width: '350px' }}>
         <Button size="small" variant="contained" color="primary">
-          小号按钮
+          Small
         </Button>
         <Button size="medium" variant="contained" color="primary">
-          中号按钮
+          Medium
         </Button>
         <Button size="large" variant="contained" color="primary">
-          大号按钮
+          Large
         </Button>
       </Stack>
       <Button
@@ -83,7 +83,7 @@ export default () => {
         color="primary"
         style={{ width: '350px' }}
       >
-        通栏按钮
+        Full
       </Button>
     </Stack>
   );
@@ -92,7 +92,14 @@ export default () => {
 
 ## 按钮色彩
 
-按钮支持 `primary`、`success`、`info`、`warning`、`danger`、 `vip` 主题定义。若不设置color，则默认为`default`
+按钮支持 `primary`、`success`、`info`、`warning`、`danger`、 `vip` 主题定义。若不设置color，则默认为`default`。
+
+- primary: 主按钮，传递品牌主题
+- info: 信息提示或中性操作
+- success: 成功或正向操作（如完成、通过）
+- waring: 警告或需要谨慎的操作（如提醒、修改）
+- danger: 危险、强调，关键、核心或破坏性操作（如删除、注销）
+- vip: 尊贵、尊享、专属或高级感
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
@@ -100,27 +107,186 @@ import React from 'react';
 
 export default () => {
   return (
-    <Stack direction="row" spacing="8px" flexWrap="wrap">
-      <Button variant="contained">取消</Button>
-      <Button color="primary" variant="contained">
-        购票
-      </Button>
-      <Button color="success" variant="contained">
-        影城
-      </Button>
-      <Button color="info" variant="contained">
-        电影
-      </Button>
-      <Button color="warning" variant="contained">
-        想看
-      </Button>
-      <Button color="danger" variant="contained">
-        特惠
-      </Button>
-      <Button color="vip" variant="contained">
-        会员
-      </Button>
-    </Stack>
+    <div
+      className="btn-colors"
+      style={{
+        borderRadius: 'var(--bui-shape-radius-card)',
+        background: 'var(--bui-color-bg-default)',
+        padding: '24px',
+      }}
+    >
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button variant="text">Button</Button>
+        <Button variant="outlined">Button</Button>
+        <Button variant="contained">Button</Button>
+        <Button variant="subtle">Button</Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button color="light" variant="text">
+          Button
+        </Button>
+        <Button color="light" variant="outlined">
+          Button
+        </Button>
+        <Button color="light" variant="contained">
+          Button
+        </Button>
+        <Button color="light" variant="subtle">
+          Button
+        </Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button color="dark" variant="text">
+          Button
+        </Button>
+        <Button color="dark" variant="outlined">
+          Button
+        </Button>
+        <Button color="dark" variant="contained">
+          Button
+        </Button>
+        <Button color="dark" variant="subtle">
+          Button
+        </Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button color="primary" variant="text">
+          Button
+        </Button>
+        <Button color="primary" variant="outlined">
+          Button
+        </Button>
+        <Button color="primary" variant="contained">
+          Button
+        </Button>
+        <Button color="primary" variant="subtle">
+          Button
+        </Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button color="success" variant="text">
+          Button
+        </Button>
+        <Button color="success" variant="outlined">
+          Button
+        </Button>
+        <Button color="success" variant="contained">
+          Button
+        </Button>
+        <Button color="success" variant="subtle">
+          Button
+        </Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button color="info" variant="text">
+          Button
+        </Button>
+        <Button color="info" variant="outlined">
+          Button
+        </Button>
+        <Button color="info" variant="contained">
+          Button
+        </Button>
+        <Button color="info" variant="subtle">
+          Button
+        </Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button color="warning" variant="text">
+          Button
+        </Button>
+        <Button color="warning" variant="outlined">
+          Button
+        </Button>
+        <Button color="warning" variant="contained">
+          Button
+        </Button>
+        <Button color="warning" variant="subtle">
+          Button
+        </Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button color="danger" variant="text">
+          Button
+        </Button>
+        <Button color="danger" variant="outlined">
+          Button
+        </Button>
+        <Button color="danger" variant="contained">
+          Button
+        </Button>
+        <Button color="danger" variant="subtle">
+          Button
+        </Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button color="vip" variant="text">
+          Button
+        </Button>
+        <Button color="vip" variant="outlined">
+          Button
+        </Button>
+        <Button color="vip" variant="contained">
+          Button
+        </Button>
+        <Button color="vip" variant="subtle">
+          Button
+        </Button>
+      </Stack>
+    </div>
   );
 };
 ```
@@ -135,7 +301,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <Stack direction="row" spacing="8px">
+    <Stack direction="row" spacing="9px">
       <Button variant="text" disabled>
         文字禁用
       </Button>
@@ -159,7 +325,7 @@ import { CalendarOutlinedIcon, HeartFilledIcon } from '@bifrostui/icons';
 
 export default () => {
   return (
-    <Stack direction="row" spacing="8px">
+    <Stack direction="row" spacing="9px">
       <Button
         startIcon={
           <HeartFilledIcon htmlColor="linear-gradient(150deg, #FFFDFC 0%, #D5B198 100%)" />
