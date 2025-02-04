@@ -8,17 +8,17 @@ export const Typography = () => {
       <Card className="card-typography">
         <CardHeader title="文本" />
         <CardContent>
-          <h3>标题</h3>
-          <div className="title-1">BUI Title 1</div>
-          <div className="title-2">BUI Title 2</div>
-          <div className="title-3">BUI Title 3</div>
-          <div className="title-4">BUI Title 4</div>
+          <strong>标题</strong>
+          <div className="pioneer-title title-1">Bifrost UI Title 1</div>
+          <div className="pioneer-title title-2">Bifrost UI Title 2</div>
+          <div className="pioneer-title title-3">Bifrost UI Title 3</div>
+          <div className="pioneer-title title-4">Bifrost UI Title 4</div>
 
-          <h3>正文</h3>
-          <div className="text-1">BUI Content 1</div>
-          <div className="text-2">BUI Content 2</div>
-          <div className="text-3">BUI Content 3</div>
-          <div className="text-4">BUI Content 4</div>
+          <strong>正文</strong>
+          <div className="text-1">Bifrost UI Content 1</div>
+          <div className="text-2">Bifrost UI Content 2</div>
+          <div className="text-3">Bifrost UI Content 3</div>
+          <div className="text-4">Bifrost UI Content 4</div>
         </CardContent>
       </Card>
     </div>

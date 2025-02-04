@@ -9,7 +9,7 @@ exports[`Button demo snapshot Button demo snapshot 0 1`] = `
       "--flex-direction": "row",
       "--flex-wrap": "wrap",
       "--justify-content": "center",
-      "--spacing": "8px",
+      "--spacing": "9px",
     }
   }
 >
@@ -17,25 +17,25 @@ exports[`Button demo snapshot Button demo snapshot 0 1`] = `
     className="bui-btn bui-btn-text bui-btn-medium bui-btn-primary"
     type="button"
   >
-    文字按钮
+    Text
   </button>
   <button
     className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-primary"
     type="button"
   >
-    描边按钮
+    Outlined
   </button>
   <button
     className="bui-btn bui-btn-contained bui-btn-medium bui-btn-primary"
     type="button"
   >
-    填充按钮
+    Contained
   </button>
   <button
-    className="bui-btn bui-btn-light bui-btn-medium bui-btn-primary"
+    className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-primary"
     type="button"
   >
-    浅亮按钮
+    Subtle
   </button>
 </div>
 `;
@@ -49,7 +49,7 @@ exports[`Button demo snapshot Button demo snapshot 0 2`] = `
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
       "--justify-content": "center",
-      "--spacing": "8px",
+      "--spacing": "9px",
     }
   }
 >
@@ -61,32 +61,32 @@ exports[`Button demo snapshot Button demo snapshot 0 2`] = `
         "--flex-direction": "row",
         "--flex-wrap": "nowrap",
         "--justify-content": "center",
-        "--spacing": "8px",
+        "--spacing": "9px",
         "width": "350px",
       }
     }
   >
     <button
-      className="bui-btn bui-btn-outlined bui-btn-small bui-btn-default"
+      className="bui-btn bui-btn-outlined bui-btn-small"
       type="button"
     >
-      小号按钮
+      Small
     </button>
     <button
-      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+      className="bui-btn bui-btn-outlined bui-btn-medium"
       type="button"
     >
-      中号按钮
+      Medium
     </button>
     <button
-      className="bui-btn bui-btn-outlined bui-btn-large bui-btn-default"
+      className="bui-btn bui-btn-outlined bui-btn-large"
       type="button"
     >
-      大号按钮
+      Large
     </button>
   </div>
   <button
-    className="bui-btn bui-btn-outlined bui-btn-full bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-full"
     style={
       Object {
         "width": "350px",
@@ -94,7 +94,7 @@ exports[`Button demo snapshot Button demo snapshot 0 2`] = `
     }
     type="button"
   >
-    通栏按钮
+    Full
   </button>
   <div
     className="bui-stack"
@@ -104,7 +104,7 @@ exports[`Button demo snapshot Button demo snapshot 0 2`] = `
         "--flex-direction": "row",
         "--flex-wrap": "nowrap",
         "--justify-content": "center",
-        "--spacing": "8px",
+        "--spacing": "9px",
         "width": "350px",
       }
     }
@@ -113,19 +113,19 @@ exports[`Button demo snapshot Button demo snapshot 0 2`] = `
       className="bui-btn bui-btn-contained bui-btn-small bui-btn-primary"
       type="button"
     >
-      小号按钮
+      Small
     </button>
     <button
       className="bui-btn bui-btn-contained bui-btn-medium bui-btn-primary"
       type="button"
     >
-      中号按钮
+      Medium
     </button>
     <button
       className="bui-btn bui-btn-contained bui-btn-large bui-btn-primary"
       type="button"
     >
-      大号按钮
+      Large
     </button>
   </div>
   <button
@@ -137,66 +137,364 @@ exports[`Button demo snapshot Button demo snapshot 0 2`] = `
     }
     type="button"
   >
-    通栏按钮
+    Full
   </button>
 </div>
 `;
 
 exports[`Button demo snapshot Button demo snapshot 0 3`] = `
 <div
-  className="bui-stack"
+  className="btn-colors"
   style={
     Object {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "wrap",
-      "--justify-content": "center",
-      "--spacing": "8px",
+      "background": "var(--bui-color-bg-default)",
+      "borderRadius": "var(--bui-shape-radius-card)",
+      "padding": "24px",
     }
   }
 >
-  <button
-    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-default"
-    type="button"
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "row",
+        "--flex-wrap": "wrap",
+        "--justify-content": "center",
+        "--spacing": "9px",
+        "marginBottom": "9px",
+      }
+    }
   >
-    取消
-  </button>
-  <button
-    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-primary"
-    type="button"
+    <button
+      className="bui-btn bui-btn-text bui-btn-medium"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-contained bui-btn-medium"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-subtle bui-btn-medium"
+      type="button"
+    >
+      Button
+    </button>
+  </div>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "row",
+        "--flex-wrap": "wrap",
+        "--justify-content": "center",
+        "--spacing": "9px",
+        "marginBottom": "9px",
+      }
+    }
   >
-    购票
-  </button>
-  <button
-    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-success"
-    type="button"
+    <button
+      className="bui-btn bui-btn-text bui-btn-medium bui-btn-light"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-light"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-contained bui-btn-medium bui-btn-light"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-light"
+      type="button"
+    >
+      Button
+    </button>
+  </div>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "row",
+        "--flex-wrap": "wrap",
+        "--justify-content": "center",
+        "--spacing": "9px",
+        "marginBottom": "9px",
+      }
+    }
   >
-    影城
-  </button>
-  <button
-    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-info"
-    type="button"
+    <button
+      className="bui-btn bui-btn-text bui-btn-medium bui-btn-dark"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-dark"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-contained bui-btn-medium bui-btn-dark"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-dark"
+      type="button"
+    >
+      Button
+    </button>
+  </div>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "row",
+        "--flex-wrap": "wrap",
+        "--justify-content": "center",
+        "--spacing": "9px",
+        "marginBottom": "9px",
+      }
+    }
   >
-    电影
-  </button>
-  <button
-    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-warning"
-    type="button"
+    <button
+      className="bui-btn bui-btn-text bui-btn-medium bui-btn-primary"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-primary"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-contained bui-btn-medium bui-btn-primary"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-primary"
+      type="button"
+    >
+      Button
+    </button>
+  </div>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "row",
+        "--flex-wrap": "wrap",
+        "--justify-content": "center",
+        "--spacing": "9px",
+        "marginBottom": "9px",
+      }
+    }
   >
-    想看
-  </button>
-  <button
-    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-danger"
-    type="button"
+    <button
+      className="bui-btn bui-btn-text bui-btn-medium bui-btn-success"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-success"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-contained bui-btn-medium bui-btn-success"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-success"
+      type="button"
+    >
+      Button
+    </button>
+  </div>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "row",
+        "--flex-wrap": "wrap",
+        "--justify-content": "center",
+        "--spacing": "9px",
+        "marginBottom": "9px",
+      }
+    }
   >
-    特惠
-  </button>
-  <button
-    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-vip"
-    type="button"
+    <button
+      className="bui-btn bui-btn-text bui-btn-medium bui-btn-info"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-info"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-contained bui-btn-medium bui-btn-info"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-info"
+      type="button"
+    >
+      Button
+    </button>
+  </div>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "row",
+        "--flex-wrap": "wrap",
+        "--justify-content": "center",
+        "--spacing": "9px",
+        "marginBottom": "9px",
+      }
+    }
   >
-    会员
-  </button>
+    <button
+      className="bui-btn bui-btn-text bui-btn-medium bui-btn-warning"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-warning"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-contained bui-btn-medium bui-btn-warning"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-warning"
+      type="button"
+    >
+      Button
+    </button>
+  </div>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "row",
+        "--flex-wrap": "wrap",
+        "--justify-content": "center",
+        "--spacing": "9px",
+        "marginBottom": "9px",
+      }
+    }
+  >
+    <button
+      className="bui-btn bui-btn-text bui-btn-medium bui-btn-danger"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-danger"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-contained bui-btn-medium bui-btn-danger"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-danger"
+      type="button"
+    >
+      Button
+    </button>
+  </div>
+  <div
+    className="bui-stack"
+    style={
+      Object {
+        "--align-items": "center",
+        "--flex-direction": "row",
+        "--flex-wrap": "wrap",
+        "--justify-content": "center",
+        "--spacing": "9px",
+        "marginBottom": "9px",
+      }
+    }
+  >
+    <button
+      className="bui-btn bui-btn-text bui-btn-medium bui-btn-vip"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-vip"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-contained bui-btn-medium bui-btn-vip"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-vip"
+      type="button"
+    >
+      Button
+    </button>
+  </div>
 </div>
 `;
 
@@ -209,24 +507,24 @@ exports[`Button demo snapshot Button demo snapshot 0 4`] = `
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
       "--justify-content": "center",
-      "--spacing": "8px",
+      "--spacing": "9px",
     }
   }
 >
   <button
-    className="bui-btn bui-btn-text bui-btn-medium bui-btn-default bui-btn-disabled"
+    className="bui-btn bui-btn-text bui-btn-medium bui-btn-disabled"
     type="button"
   >
     文字禁用
   </button>
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default bui-btn-disabled"
+    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-disabled"
     type="button"
   >
     描边禁用
   </button>
   <button
-    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-default bui-btn-disabled"
+    className="bui-btn bui-btn-contained bui-btn-medium bui-btn-disabled"
     type="button"
   >
     填充禁用
@@ -243,12 +541,12 @@ exports[`Button demo snapshot Button demo snapshot 0 5`] = `
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
       "--justify-content": "center",
-      "--spacing": "8px",
+      "--spacing": "9px",
     }
   }
 >
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-medium"
     type="button"
   >
     <span
@@ -269,7 +567,7 @@ exports[`Button demo snapshot Button demo snapshot 0 5`] = `
     Heart
   </button>
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-medium"
     type="button"
   >
     Date

@@ -71,7 +71,7 @@ describe('Tabs', () => {
     }
     const { container } = render(<Component />);
 
-    const tabLine = container.querySelector(`.${rootClass.tabs}-tabline`);
+    const tabLine = container.querySelector(`.${rootClass.tabs}-indicator`);
     expect(tabLine).toHaveStyle({
       transform: 'translate3d(0px, 0px, 0px)',
       transition: 'transform 0.3s ease-in-out',
@@ -131,7 +131,7 @@ describe('Tabs', () => {
       }
       const { container, getByTestId } = render(<Component />);
 
-      const tabLine = container.querySelector(`.${rootClass.tabs}-tabline`);
+      const tabLine = container.querySelector(`.${rootClass.tabs}-indicator`);
       const activePabel = container.querySelector(
         `.${rootClass.tabpanel}-active`,
       );
@@ -291,8 +291,8 @@ describe('Tabs', () => {
       }
 
       const { container } = render(<Component />);
-      const tabline = container.querySelector(`.bui-tabs-tabline`);
-      expect(tabline).toHaveClass('bui-tabs-tabline');
+      const indicator = container.querySelector(`.bui-tabs-indicator`);
+      expect(indicator).toHaveClass('bui-tabs-indicator');
     });
   });
 

@@ -1,7 +1,7 @@
 export const themes = [
   { text: '默认', value: 'default' },
   { text: '大麦', value: 'dm' },
-  { text: '荧光橙', value: 'pioneer' },
+  { text: '活力橙', value: 'pioneer' },
 ];
 
 export const tabList = [

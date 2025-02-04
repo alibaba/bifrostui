@@ -691,7 +691,7 @@ exports[`Radio snapshot Radio demo snapshot 0 8`] = `
     }
   >
     <button
-      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+      className="bui-btn bui-btn-outlined bui-btn-medium"
       onClick={[Function]}
       type="button"
     >
@@ -855,7 +855,7 @@ exports[`Radio snapshot Radio demo snapshot 0 8`] = `
     }
   >
     <button
-      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+      className="bui-btn bui-btn-outlined bui-btn-medium"
       onClick={[Function]}
       type="button"
     >

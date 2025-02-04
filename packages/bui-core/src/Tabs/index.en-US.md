@@ -473,17 +473,13 @@ export default () => {
 | -------------------- | ------------------------------------------------------------ | ------------------------------------------------ | ----------------------------- |
 | --bui-tabs-height             | Tabs height                                                  | 39px                                             | --bui-tabs-height             |
 | --bui-tabs-color             | Font color                                                   | --bui-color-fg-subtle                            | --bui-tabs-color              |
-| --bui-tabs-active-color       | Activate Tab font color                                      | --bui-color-fg-default                           | --bui-tabs-active-color       |
-| --bui-tabs-active-font-weight | Activate Tab font weight                                     | --bui-font-weight-medium                         | --bui-tabs-active-font-weight |
-| --bui-tabs-line-width         | Width of the lower marking line                              | 18px                                             | --bui-tabs-line-width         |
-| --bui-tabs-line-border-radius | Rounded corner of lower marking line                         | 3px                                              | --bui-tabs-line-border-radius |
-| --bui-tabs-line-bottom        | Positioning position at the bottom of the lower marking line | 0                                                | --bui-tabs-line-bottom        |
-| --bui-tabs-active-color        | Height of the lower marking line                             | 3PX                                              | --bui-tabs-line-height        |
-| --bui-tabs-line-color         | Index line color                                             | --bui-color-primary                              | --bui-tabs-line-color         |
-| --bui-tabs-line-box-shadow    | Index line shadow                                            | none                                             | --bui-tabs-line-box-shadow    |
+| --bui-tabs-indicator-width         | Width of the lower marking line                              | 18px                                             | --bui-tabs-indicator-width         |
+| --bui-tabs-indicator-border-radius | Rounded corner of lower marking line                         | 3px                                              | --bui-tabs-indicator-border-radius |
+| --bui-tabs-indicator-bottom        | Positioning position at the bottom of the lower marking line | 0                                                | --bui-tabs-indicator-bottom        |
+| --bui-tabs-indicator-color        | Height of the lower marking line                             | 3PX                                              | --bui-tabs-indicator-height        |
+| --bui-tabs-indicator-bg         | Index line color                                             | --bui-color-primary                              | --bui-tabs-indicator-bg         |
+| --bui-tabs-indicator-box-shadow    | Index line shadow                                            | none                                             | --bui-tabs-indicator-box-shadow    |
 | --bui-tabs-mask-width         | Mask width                                                   | 12px                                             | --bui-tabs-mask-width         |
 | --bui-tabs-mask-height        | Mask height                                                  | 100%                                             | --bui-tabs-mask-height        |
-| --bui-tab-height         | Tab height                                                   | 100%                                             | --bui-tab-height              |
 | --bui-tab-padding        | Tab inner margin                                             | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding             |
-| --bui-tab-font-size         | Tab font size                                                | --bui-text-size-1                                | --bui-tab-font-size           |
-| --bui-tab-active-font-size   | Activate Tab font size                                       | --bui-text-size-1                                | --bui-tab-active-font-size    | -->
+| --bui-tabs-font-size         | Tab font size                                                | --bui-text-size-1                                | --bui-tabs-font-size           |

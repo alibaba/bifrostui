@@ -17,13 +17,12 @@
 }
 
 .btn-light(@color) {
-  background-image: none;
   color: var(~'--bui-color-@{color}');
-  background-color: var(~'--bui-color-@{color}-light');
+  background: var(~'--bui-color-@{color}-light');
 }
 
 .btn-text(@color) {
-  color: var(~'--bui-color-@{color}');
+  --bui-btn-color: var(~'--bui-color-@{color}');
 }
 
 .bui-btn {
@@ -126,28 +125,38 @@
   }
 
   &-text {
+    --bui-btn-bg: none;
+
     &.bui-btn-primary {
-      .btn-text(primary);
+      --bui-btn-color: var(--bui-color-primary);
     }
 
     &.bui-btn-success {
-      .btn-text(success);
+      --bui-btn-color: var(--bui-color-success);
     }
 
     &.bui-btn-info {
-      .btn-text(info);
+      --bui-btn-color: var(--bui-color-info);
     }
 
     &.bui-btn-warning {
-      .btn-text(warning);
+      --bui-btn-color: var(--bui-color-warning);
     }
 
     &.bui-btn-danger {
-      .btn-text(danger);
+      --bui-btn-color: var(--bui-color-danger);
+    }
+
+    &.bui-btn-light {
+      --bui-btn-color: var(--bui-color-bg-view);
+    }
+
+    &.bui-btn-dark {
+      --bui-btn-color: var(--bui-color-fg-default);
     }
 
     &.bui-btn-vip {
-      .btn-text(vip);
+      --bui-btn-color: var(--bui-color-vip);
     }
   }
 
@@ -174,6 +183,16 @@
       .btn-contained(danger);
     }
 
+    &.bui-btn-light {
+      --bui-btn-color: var(--bui-color-fg-default);
+      --bui-btn-bg: var(--bui-color-bg-view);
+    }
+
+    &.bui-btn-dark {
+      --bui-btn-color: var(--bui-color-bg-view);
+      --bui-btn-bg: var(--bui-color-fg-default);
+    }
+
     &.bui-btn-vip {
       --bui-btn-color: #582331;
       --bui-btn-bg: linear-gradient(
@@ -185,6 +204,7 @@
   }
 
   &-outlined {
+    --bui-btn-bg: transparent;
     --bui-btn-border: 1px solid var(--bui-color-neutral-4);
 
     &.bui-btn-primary {
@@ -207,12 +227,22 @@
       .btn-outline(danger);
     }
 
+    &.bui-btn-light {
+      --bui-btn-color: var(--bui-color-bg-view);
+      --bui-btn-border: solid 1px var(--bui-color-bg-view);
+    }
+
+    &.bui-btn-dark {
+      --bui-btn-color: var(--bui-color-fg-default);
+      --bui-btn-border: solid 1px var(--bui-color-fg-default);
+    }
+
     &.bui-btn-vip {
       .btn-outline(vip);
     }
   }
 
-  &-light {
+  &-subtle {
     --bui-btn-bg: var(--bui-color-gray-light);
 
     &.bui-btn-warning {
@@ -233,6 +263,14 @@
 
     &.bui-btn-danger {
       .btn-light(danger);
+    }
+
+    &.bui-btn-light {
+      --bui-btn-color: var(--bui-color-bg-view);
+    }
+
+    &.bui-btn-dark {
+      --bui-btn-color: var(--bui-color-fg-default);
     }
 
     &.bui-btn-vip {

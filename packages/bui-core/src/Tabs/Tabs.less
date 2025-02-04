@@ -1,25 +1,23 @@
 @class-prefix-tabs: ~'bui-tabs';
 
 .@{class-prefix-tabs} {
+  --bui-tabs-font-family: var(--bui-font-family);
+  --bui-tabs-font-size: var(--bui-text-size-1);
   --bui-tabs-height: 39px;
   --bui-tabs-color: var(--bui-color-fg-subtle);
-  --bui-tabs-active-color: var(--bui-color-fg-default);
-  --bui-tabs-line-color: var(--bui-color-primary);
-  --bui-tabs-line-height: 3px;
-  --bui-tabs-line-width: 18px;
-  --bui-tabs-line-border-radius: 3px;
-  --bui-tabs-line-bottom: 0;
-  --bui-tabs-line-box-shadow: none;
+  --bui-tabs-font-weight: var(--bui-font-weight-medium);
+  --bui-tabs-indicator-bg: var(--bui-color-primary);
+  --bui-tabs-indicator-height: 3px;
+  --bui-tabs-indicator-width: 18px;
+  --bui-tabs-indicator-border-radius: 3px;
+  --bui-tabs-indicator-bottom: 0;
+  --bui-tabs-indicator-box-shadow: none;
   --bui-tabs-mask-width: 12px;
   --bui-tabs-mask-height: 100%;
-  --bui-tab-height: 100%;
   --bui-tab-padding: var(--bui-spacing-lg) var(--bui-spacing-lg) 10px;
-  --bui-tab-font-size: var(--bui-text-size-1);
-  --bui-tab-active-font-size: var(--bui-text-size-1);
-  --bui-tabs-active-font-weight: var(--bui-font-weight-medium);
 
   position: relative;
-  font-family: var(--bui-font-family);
+  font-family: var(--bui-tabs-font-family);
 
   &-tabs {
     height: var(--bui-tabs-height);
@@ -29,6 +27,7 @@
     align-items: center;
     position: relative;
     overflow-x: scroll;
+    font-weight: var(--bui-tabs-font-weight);
 
     &::-webkit-scrollbar {
       display: none;
@@ -36,16 +35,15 @@
     scrollbar-width: none;
   }
 
-  &-tabline {
+  &-indicator {
     position: absolute;
-    width: var(--bui-tabs-line-width);
-    bottom: var(--bui-tabs-line-bottom);
-
-    height: var(--bui-tabs-line-height);
+    width: var(--bui-tabs-indicator-width);
+    bottom: var(--bui-tabs-indicator-bottom);
+    height: var(--bui-tabs-indicator-height);
     color: var(--bui-color-primary);
-    background: var(--bui-tabs-line-color);
-    border-radius: var(--bui-tabs-line-border-radius);
-    box-shadow: var(--bui-tabs-line-box-shadow);
+    background: var(--bui-tabs-indicator-bg);
+    border-radius: var(--bui-tabs-indicator-border-radius);
+    box-shadow: var(--bui-tabs-indicator-box-shadow);
   }
 
   &-content {
@@ -81,7 +79,7 @@
   }
 }
 
-.bui-tabline-invisible {
+.bui-indicator-invisible {
   visibility: hidden;
   background-color: transparent;
 }

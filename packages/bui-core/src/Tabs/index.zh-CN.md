@@ -473,17 +473,13 @@ export default () => {
 | -------------------- | ------------------ | ------------------------------------------------ | ----------------------------- |
 | --bui-tabs-height             | Tabs 高度          | 39px                                             | --bui-tabs-height             |
 | --bui-tabs-color              | 字体颜色           | --bui-color-fg-subtle                            | --bui-tabs-color              |
-| --bui-tabs-active-color       | 激活 Tab 字体颜色  | --bui-color-fg-default                           | --bui-tabs-active-color       |
-| --bui-tabs-active-font-weight | 激活 Tab 字重      | --bui-font-weight-medium                         | --bui-tabs-active-font-weight |
-| --bui-tabs-line-width         | 下标线宽度         | 18px                                             | --bui-tabs-line-width         |
-| --bui-tabs-line-border-radius | 下标线圆角         | 3px                                              | --bui-tabs-line-border-radius |
-| --bui-tabs-line-bottom        | 下标线底部定位位置 | 0                                                | --bui-tabs-line-bottom        |
-| --bui-tabs-active-color        | 下标线高度         | 3PX                                              | --bui-tabs-line-height        |
-| --bui-tabs-line-color         | 下标线颜色         | --bui-color-primary                              | --bui-tabs-line-color         |
-| --bui-tabs-line-box-shadow    | 下标线阴影         | none                                             | --bui-tabs-line-box-shadow    |
+| --bui-tabs-indicator-width         | 下标线宽度         | 18px                                             | --bui-tabs-indicator-width         |
+| --bui-tabs-indicator-border-radius | 下标线圆角         | 3px                                              | --bui-tabs-indicator-border-radius |
+| --bui-tabs-indicator-bottom        | 下标线底部定位位置 | 0                                                | --bui-tabs-indicator-bottom        |
+| --bui-tabs-indicator-color        | 下标线高度         | 3PX                                              | --bui-tabs-indicator-height        |
+| --bui-tabs-indicator-bg         | 下标线颜色         | --bui-color-primary                              | --bui-tabs-indicator-bg         |
+| --bui-tabs-indicator-box-shadow    | 下标线阴影         | none                                             | --bui-tabs-indicator-box-shadow    |
 | --bui-tabs-mask-width         | 蒙层宽度           | 12px                                             | --bui-tabs-mask-width         |
 | --bui-tabs-mask-height        | 蒙层高度           | 100%                                             | --bui-tabs-mask-height        |
-| --bui-tab-height         | Tab 高度           | 100%                                             | --bui-tab-height              |
 | --bui-tab-padding        | Tab内边距          | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding             |
-| --bui-tab-font-size          | Tab字体大小        | --bui-text-size-1                                | --bui-tab-font-size           |
-| --bui-tab-active-font-size   | 激活Tab字体大小    | --bui-text-size-1                                | --bui-tab-active-font-size    | -->
+| --bui-tabs-font-size          | Tab字体大小        | --bui-text-size-1                                | --bui-tabs-font-size           |

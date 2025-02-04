@@ -14,7 +14,7 @@ exports[`Picker snapshot Picker demo snapshot 0 1`] = `
   }
 >
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-medium"
     onClick={[Function]}
     type="button"
   >
@@ -37,7 +37,7 @@ exports[`Picker snapshot Picker demo snapshot 0 2`] = `
   }
 >
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-medium"
     onClick={[Function]}
     type="button"
   >
@@ -60,7 +60,7 @@ exports[`Picker snapshot Picker demo snapshot 0 3`] = `
   }
 >
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-medium"
     onClick={[Function]}
     type="button"
   >
@@ -83,7 +83,7 @@ exports[`Picker snapshot Picker demo snapshot 0 4`] = `
   }
 >
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-medium"
     onClick={[Function]}
     type="button"
   >
@@ -106,7 +106,7 @@ exports[`Picker snapshot Picker demo snapshot 0 5`] = `
   }
 >
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-medium"
     onClick={[Function]}
     type="button"
   >
@@ -129,7 +129,7 @@ exports[`Picker snapshot Picker demo snapshot 0 6`] = `
   }
 >
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-medium"
     onClick={[Function]}
     type="button"
   >
@@ -152,7 +152,7 @@ exports[`Picker snapshot Picker demo snapshot 0 7`] = `
   }
 >
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-medium"
     onClick={[Function]}
     type="button"
   >
@@ -175,7 +175,7 @@ exports[`Picker snapshot Picker demo snapshot 0 8`] = `
   }
 >
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-medium"
     onClick={[Function]}
     type="button"
   >
@@ -198,7 +198,7 @@ exports[`Picker snapshot Picker demo snapshot 0 9`] = `
   }
 >
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-medium"
     onClick={[Function]}
     type="button"
   >
@@ -221,7 +221,7 @@ exports[`Picker snapshot Picker demo snapshot 0 10`] = `
   }
 >
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-medium"
     onClick={[Function]}
     type="button"
   >
@@ -244,7 +244,7 @@ exports[`Picker snapshot Picker demo snapshot 0 11`] = `
   }
 >
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-medium"
     onClick={[Function]}
     type="button"
   >
@@ -267,7 +267,7 @@ exports[`Picker snapshot Picker demo snapshot 0 12`] = `
   }
 >
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-medium"
     onClick={[Function]}
     type="button"
   >
