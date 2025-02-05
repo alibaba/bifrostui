@@ -468,7 +468,6 @@ export default () => {
 
 Provide the ability to customize scroll container, which can be customized through the 'scrollContainer' attribute. Default value is '() => document.body'.
 The select option container's display direction will be automatically calculated according to the scroll container.
-Only support H5.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
@@ -498,19 +497,19 @@ export default () => {
       alignItems="stretch"
       style={{
         display: 'block',
-        height: '300px',
-        padding: '50px',
+        height: '150px',
+        padding: '10px 50px',
         background: '#eee',
         overflowY: 'scroll',
       }}
     >
-      <div style={{ height: '150px' }}></div>
+      <div style={{ height: '50px' }}></div>
       <Select scrollContainer={() => ref.current}>
         {options.map((item, index) => (
           <SelectOption key={index} value={item.value} label={item.label} />
         ))}
       </Select>
-      <div style={{ height: '500px' }}></div>
+      <div style={{ height: '200px' }}></div>
     </Stack>
   );
 };
