@@ -20,12 +20,11 @@ import './Tabs.less';
 
 const prefixCls = 'bui-tabs';
 const defaultProps = {
-  align: 'center',
   tabs: [],
 } satisfies Partial<TabsProps>;
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
-  const { children, className, value, tabs, align, onChange, ...others } = {
+  const { children, className, value, tabs, onChange, ...others } = {
     ...defaultProps,
     ...props,
   };
@@ -172,8 +171,8 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   };
 
   const providerValue = useMemo(() => {
-    return { value, align, triggerChange: handleClick };
-  }, [value, align, children, handleClick]);
+    return { value, triggerChange: handleClick };
+  }, [value, children, handleClick]);
 
   return (
     <div ref={ref} className={clsx(prefixCls, className)} {...others}>
