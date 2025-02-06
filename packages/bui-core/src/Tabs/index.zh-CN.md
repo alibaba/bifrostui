@@ -17,15 +17,15 @@ name: Tabs 标签页
 搭配 Tab 组件完成布局
 
 ```tsx
-import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
+import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
 
 export default () => {
-  const [value, setValue] = useState('fruits');
+  const [value, setValue] = useState('one');
   const tabList = [
-    { title: '水果', index: 'fruits' },
-    { title: '蔬菜', index: 'vegetables' },
-    { title: '动物', index: 'animals' },
+    { title: 'TAB ONE', index: 'one' },
+    { title: 'TAB TWO', index: 'two' },
+    { title: 'TAB THREE', index: 'three' },
   ];
   const handleClick = (e, { index }) => {
     console.log(`Click Tab, value index is: ${index}`);
@@ -41,14 +41,14 @@ export default () => {
           </Tab>
         ))}
       </Tabs>
-      <TabPanel value={value} index="fruits">
-        菠萝
+      <TabPanel value={value} index="one">
+        Tab Panel 1
       </TabPanel>
-      <TabPanel value={value} index="vegetables">
-        西红柿
+      <TabPanel value={value} index="two">
+        Tab Panel 2
       </TabPanel>
-      <TabPanel value={value} index="animals">
-        蚂蚁
+      <TabPanel value={value} index="three">
+        Tab Panel 3
       </TabPanel>
     </Stack>
   );
@@ -60,11 +60,11 @@ export default () => {
 使用 `tabs` 生成 Tab。
 
 ```tsx
-import { Stack, TabPanel, Tabs, Button } from '@bifrostui/react';
+import { Stack, TabPanel, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState('fruits');
+  const [value, setValue] = useState('one');
   const handleChange = (e, { index }) => {
     console.log(`Tabs change, value index is: ${index}`);
     setValue(index);
@@ -77,161 +77,20 @@ export default () => {
         onChange={handleChange}
         value={value}
         tabs={[
-          { title: '水果', index: 'fruits' },
-          { title: '蔬菜', index: 'vegetables', disabled: true },
-          { title: '动物', index: 'animals' },
+          { title: 'TAB ONE', index: 'one' },
+          { title: 'TAB TWO', index: 'two' },
+          { title: 'TAB THREE', index: 'three' },
         ]}
       />
-      <TabPanel value={value} index="fruits">
-        菠萝
+      <TabPanel value={value} index="one">
+        Tab Panel 1
       </TabPanel>
-      <TabPanel value={value} index="vegetables">
-        西红柿
+      <TabPanel value={value} index="two">
+        Tab Panel 2
       </TabPanel>
-      <TabPanel value={value} index="animals">
-        蚂蚁
+      <TabPanel value={value} index="three">
+        Tab Panel 3
       </TabPanel>
-    </Stack>
-  );
-};
-```
-
-## value值无效时不选中
-
-value为无效值时不选中任何Tab。
-
-```tsx
-import { Stack, Tab, TabPanel, Tabs, Button } from '@bifrostui/react';
-import React, { useState } from 'react';
-
-export default () => {
-  const [value, setValue] = useState('2');
-  const tabs = [
-    { title: '长津湖', index: '1' },
-    { title: '战狼2', index: '2' },
-    { title: '你好，李焕英', index: '3' },
-    { title: '哪吒之魔童降世', index: '4' },
-    { title: '流浪地球', index: '5' },
-    { title: '唐人街探案3', index: '6' },
-  ];
-  const [tabList, setTabList] = useState(tabs);
-
-  const handleChange = (e, { index }) => {
-    console.log(e, `Tab Change, value index is: ${index}`);
-    setValue(index);
-  };
-
-  return (
-    <Stack>
-      <Button
-        onClick={() => {
-          setValue('');
-        }}
-      >
-        置为无效值
-      </Button>
-      <Button
-        onClick={() => {
-          if (tabList.length === 4) {
-            setTabList(tabs);
-          } else {
-            const newTabList = tabs.slice(0, 4);
-            setTabList(newTabList);
-            if (!newTabList.some((item) => item.index === value)) {
-              setValue('1');
-            }
-          }
-        }}
-      >
-        {tabList.length === 4 ? '增加' : '减少'}TabList长度
-      </Button>
-      <div style={{ width: '325px' }}>
-        <Tabs
-          style={{ marginTop: '20px', marginBottom: '12px' }}
-          value={value}
-          onChange={handleChange}
-        >
-          {tabList.map((item) => (
-            <Tab key={item.index} {...item}>
-              {item.title}
-            </Tab>
-          ))}
-        </Tabs>
-
-        {tabList.map((item) => (
-          <TabPanel key={item.index} value={value} index={item.index}>
-            {item.index}
-          </TabPanel>
-        ))}
-      </div>
-    </Stack>
-  );
-};
-```
-
-## value值无效时不选中（使用tabs）
-
-value为无效值时不选中任何Tab。
-
-```tsx
-import { Stack, TabPanel, Tabs, Button } from '@bifrostui/react';
-import React, { useState } from 'react';
-
-export default () => {
-  const [value, setValue] = useState('2');
-  const tabs = [
-    { title: '长津湖', index: '1' },
-    { title: '战狼2', index: '2' },
-    { title: '你好，李焕英', index: '3' },
-    { title: '哪吒之魔童降世', index: '4' },
-    { title: '流浪地球', index: '5' },
-    { title: '唐人街探案3', index: '6' },
-  ];
-  const [tabList, setTabList] = useState(tabs);
-
-  const handleChange = (e, { index }) => {
-    console.log(e, `Tab Change, value index is: ${index}`);
-    setValue(index);
-  };
-
-  return (
-    <Stack>
-      <Button
-        onClick={() => {
-          setValue('');
-        }}
-      >
-        置为无效值
-      </Button>
-      <Button
-        onClick={() => {
-          if (tabList.length === 4) {
-            setTabList(tabs);
-          } else {
-            const newTabList = tabs.slice(0, 4);
-            setTabList(newTabList);
-            if (!newTabList.some((item) => item.index === value)) {
-              setValue('1');
-            }
-          }
-        }}
-      >
-        {tabList.length === 4 ? '增加' : '减少'}TabList长度
-      </Button>
-      <div style={{ width: '325px' }}>
-        <Tabs
-          style={{ marginTop: '20px', marginBottom: '12px' }}
-          tabs={tabList}
-          value={value}
-          onChange={handleChange}
-        />
-
-        {tabList.map((item) => (
-          <TabPanel key={item.index} value={value} index={item.index}>
-            {item.index}
-          </TabPanel>
-        ))}
-      </div>
     </Stack>
   );
 };
@@ -242,16 +101,11 @@ export default () => {
 通过 `disabled` 禁止 Tab 触发点击。
 
 ```tsx
-import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
+import { Stack, TabPanel, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState('fruits');
-  const tabList = [
-    { title: '水果', index: 'fruits' },
-    { title: '蔬菜', index: 'vegetables' },
-    { title: '动物', index: 'animals' },
-  ];
+  const [value, setValue] = useState('one');
   const handleClick = (e, { index }) => {
     console.log(`Click Tab, value index is: ${index}`);
     setValue(index);
@@ -259,26 +113,24 @@ export default () => {
 
   return (
     <Stack>
-      <Tabs style={{ marginBottom: '12px' }} value={value}>
-        {tabList.map((item) => (
-          <Tab
-            key={item.index}
-            index={item.index}
-            disabled
-            onClick={handleClick}
-          >
-            {item.title}
-          </Tab>
-        ))}
-      </Tabs>
-      <TabPanel value={value} index="fruits">
-        菠萝
+      <Tabs
+        style={{ marginBottom: '12px' }}
+        value={value}
+        tabs={[
+          { title: 'TAB ONE', index: 'one' },
+          { title: 'TAB DISABLED', index: 'two', disabled: true },
+          { title: 'TAB THREE', index: 'three' },
+        ]}
+        onChange={handleClick}
+      />
+      <TabPanel value={value} index="one">
+        Tab Panel 1
       </TabPanel>
-      <TabPanel value={value} index="vegetables">
-        西红柿
+      <TabPanel value={value} index="two">
+        Tab Panel 2
       </TabPanel>
-      <TabPanel value={value} index="animals">
-        蚂蚁
+      <TabPanel value={value} index="three">
+        Tab Panel 3
       </TabPanel>
     </Stack>
   );
@@ -294,11 +146,11 @@ import { Button, Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState('fruits');
+  const [value, setValue] = useState('one');
   const tabList = [
-    { title: '水果', index: 'fruits' },
-    { title: '蔬菜', index: 'vegetables' },
-    { title: '动物', index: 'animals' },
+    { title: 'TAB ONE', index: 'one' },
+    { title: 'TAB TWO', index: 'two' },
+    { title: 'TAB THREE', index: 'three' },
   ];
   const handleChange = (e, { index }) => {
     console.log(e, `Tab change, value index is: ${index}`);
@@ -323,55 +175,55 @@ export default () => {
           </Tab>
         ))}
       </Tabs>
-      <TabPanel value={value} index="fruits">
-        <div>菠萝</div>
+      <TabPanel value={value} index="one">
+        <div>Tab Panel 1</div>
         <Button
           onClick={() => {
-            handleButton('animals');
+            handleButton('three');
           }}
         >
-          我要蚂蚁
+          GOTO TAB THREE
         </Button>
         <Button
           onClick={() => {
-            handleButton('vegetables');
+            handleButton('two');
           }}
         >
-          我要西红柿
-        </Button>
-      </TabPanel>
-      <TabPanel value={value} index="vegetables">
-        <div>西红柿</div>
-        <Button
-          onClick={() => {
-            handleButton('fruits');
-          }}
-        >
-          我要菠萝
-        </Button>
-        <Button
-          onClick={() => {
-            handleButton('animals');
-          }}
-        >
-          我要蚂蚁
+          GOTO TAB TWO
         </Button>
       </TabPanel>
-      <TabPanel value={value} index="animals">
-        <div>蚂蚁</div>
+      <TabPanel value={value} index="two">
+        <div>Tab Panel 2</div>
         <Button
           onClick={() => {
-            handleButton('fruits');
+            handleButton('one');
           }}
         >
-          我要菠萝
+          GOTO TAB ONE
         </Button>
         <Button
           onClick={() => {
-            handleButton('vegetables');
+            handleButton('three');
           }}
         >
-          我要西红柿
+          GOTO TAB THREE
+        </Button>
+      </TabPanel>
+      <TabPanel value={value} index="three">
+        <div>Tab Panel 3</div>
+        <Button
+          onClick={() => {
+            handleButton('one');
+          }}
+        >
+          GOTO TAB ONE
+        </Button>
+        <Button
+          onClick={() => {
+            handleButton('two');
+          }}
+        >
+          GOTO TAB TWO
         </Button>
       </TabPanel>
     </Stack>
@@ -390,15 +242,15 @@ import React, { useState } from 'react';
 export default () => {
   const [value, setValue] = useState('2');
   const tabList = [
-    { title: '长津湖', index: '1' },
-    { title: '战狼2', index: '2' },
-    { title: '你好，李焕英', index: '3' },
-    { title: '哪吒之魔童降世', index: '4' },
-    { title: '流浪地球', index: '5' },
-    { title: '唐人街探案3', index: '6' },
-    { title: '复仇者联盟4：终局之战', index: '7' },
-    { title: '长津湖之水门桥', index: '8' },
-    { title: '红海行动', index: '9' },
+    { title: 'Item 1', index: '1' },
+    { title: 'Item 3', index: '2' },
+    { title: 'Item 3', index: '3' },
+    { title: 'Item 4', index: '4' },
+    { title: 'Item 5', index: '5' },
+    { title: 'Item 6', index: '6' },
+    { title: 'Item 7', index: '7' },
+    { title: 'Item 8', index: '8' },
+    { title: 'Item 9', index: '9' },
   ];
   const handleChange = (e, { index }) => {
     console.log(e, `Tab Change, value index is: ${index}`);
@@ -434,12 +286,11 @@ export default () => {
 
 ### Tabs
 
-| 属性     | 说明                                     | 类型                                               | 默认值   |
-| -------- | ---------------------------------------- | -------------------------------------------------- | -------- |
-| value    | 当前选中面板的索引值，与 tabs.index 对应 | string                                             | -        |
-| tabs     | 切换面板的数据                           | ITabItem[]                                         | -        |
-| align    | 对齐方式                                 | `start` \| `center`                                | `center` |
-| onChange | 切换面板的回调                           | (e?: SyntheticEvent,data?:{index: string}) => void | -        |
+| 属性     | 说明                                     | 类型                                               | 默认值 |
+| -------- | ---------------------------------------- | -------------------------------------------------- | ------ |
+| value    | 当前选中面板的索引值，与 tabs.index 对应 | string                                             | -      |
+| tabs     | 切换面板的数据                           | ITabItem[]                                         | -      |
+| onChange | 切换面板的回调                           | (e?: SyntheticEvent,data?:{index: string}) => void | -      |
 
 ### ITabItem
 

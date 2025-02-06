@@ -16,14 +16,13 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
     ...props,
   };
   const tabsContext = React.useContext(TabsContext);
-  const { value, align, triggerChange } = tabsContext;
+  const { value, triggerChange } = tabsContext;
 
   return (
     <div
       ref={ref}
       className={clsx(
         prefixCls,
-        align !== 'start' && `${prefixCls}-${align}`,
         {
           [`${prefixCls}-active`]: !isMini && index === value,
           [`${prefixCls}-miniapp-active`]: isMini && index === value,

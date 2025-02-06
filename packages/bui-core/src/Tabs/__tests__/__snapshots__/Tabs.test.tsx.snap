@@ -23,17 +23,17 @@ exports[`Tabs test with TabPanel should be actived by \`value\` property 1`] = `
         style="transform: translate3d(0px, 0px, 0px); transition: transform 0.3s ease-in-out;"
       />
       <div
-        class="bui-tab bui-tab-center"
+        class="bui-tab"
       >
         水果
       </div>
       <div
-        class="bui-tab bui-tab-center bui-tab-active"
+        class="bui-tab bui-tab-active"
       >
         蔬菜
       </div>
       <div
-        class="bui-tab bui-tab-center"
+        class="bui-tab"
       >
         动物
       </div>

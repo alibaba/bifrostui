@@ -40,10 +40,6 @@ export type TabsProps<
        */
       tabs?: ITabItem[];
       /**
-       * 对齐方式，默认为center
-       */
-      align?: ITabAlign;
-      /**
        * 切换面板的回调
        */
       onChange?: TabChangeEvent;
