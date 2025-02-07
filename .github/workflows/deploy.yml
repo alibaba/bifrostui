@@ -3,9 +3,8 @@ name: Build and Deploy Docs Website
 
 on:
   push:
-    branches:
-      - main
-      - 'releases/**'
+    tags:
+      - 'v*'
 
 jobs:
   build-and-deploy:
@@ -27,11 +26,43 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Build Docs
-        run: pnpm docs:build
+      - name: Check Tag for Beta
+        id: check_tag
+        run: |
+          TAG=$(echo ${GITHUB_REF} | sed 's|refs/tags/||')
+          MAJOR=$(echo ${TAG} | sed -E 's|^v([0-9]+)\..*|\1|')
+          MAJOR_TAG="v${MAJOR}"
+          echo "TAG=${TAG}" >> $GITHUB_ENV
+          echo "MAJOR_TAG=${MAJOR_TAG}" >> $GITHUB_ENV
+          echo "Current TAG: ${TAG}"
+          echo "Major TAG: ${MAJOR_TAG}"
 
-      - name: Deploy to GitHub Pages
+      - name: Build Docs for Beta
+        if: contains(env.TAG, 'beta') == true
+        run: pnpm docs:build:beta beta
+
+      - name: Deploy Beta to GitHub Pages
+        if: contains(env.TAG, 'beta') == true
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: docs-dist
+          folder: docs-dist/beta
+          target-folder: beta
+          force: false
+          clean: true
+
+      - name: Build Docs for Current
+        if: contains(env.TAG, 'beta') == false
+        run: pnpm docs:build v1
+
+      - name: Deploy Latest to GitHub Pages
+        if: contains(env.TAG, 'beta') == false
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: docs-dist/v1
+          force: false
+          clean: true
+          # 若存在老版本，需要在此添加老版本目录
+          clean-exclude: |
+            beta/**

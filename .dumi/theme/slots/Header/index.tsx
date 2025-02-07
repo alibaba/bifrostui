@@ -6,6 +6,7 @@ import ColorSwitch from 'dumi/theme/slots/ColorSwitch';
 import HeaderExtra from 'dumi/theme/slots/HeaderExtra';
 import LangSwitch from 'dumi/theme/slots/LangSwitch';
 import Logo from 'dumi/theme/slots/Logo';
+import VersionSelect from 'dumi/theme/slots/VersionSelect';
 import Navbar from 'dumi/theme/slots/Navbar';
 import RtlSwitch from 'dumi/theme/slots/RtlSwitch';
 import SearchBar from 'dumi/theme/slots/SearchBar';
@@ -40,6 +41,7 @@ const Header: FC = () => {
       <div className="dumi-default-header-content">
         <section className="dumi-default-header-left">
           <Logo />
+          <VersionSelect />
         </section>
         <section className="dumi-default-header-right">
           {/* <div className="dumi-default-header-right-aside"> */}
