@@ -164,8 +164,6 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     ...triggerEventOption,
   };
 
-  console.log('tooltyles===', tooltyles);
-
   return (
     <>
       {(open || openStatus) && title ? (
