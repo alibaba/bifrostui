@@ -1,7 +1,7 @@
 /**
  * 使用llm生成组件markdown文档
- * 通过--component指定组件，--md指定参考markdown（默认参考Rating的markdown文档规范）
- * @example node scripts/generate-md/generateMd.mjs --component Button
+ * 通过--md指定参考markdown（默认参考Rating的markdown文档规范）
+ * @example node scripts/generate-md/generateMd.mjs
  */
 
 import OpenAI from 'openai';
@@ -9,6 +9,8 @@ import dotenv from 'dotenv';
 import fs from 'node:fs';
 import path from 'path';
 import minimist from 'minimist';
+import ora from 'ora';
+import { input } from '@inquirer/prompts';
 import { fileURLToPath } from 'url';
 
 dotenv.config();
@@ -16,8 +18,7 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const args = minimist(process.argv.slice(2));
-const componentName = args.component;
-const mdFileName = args.md || 'Rating';
+const mdFileName = args.md || 'Switch';
 
 async function readFileContent(filePath) {
   try {
@@ -30,6 +31,10 @@ async function readFileContent(filePath) {
 
 async function main() {
   try {
+    let componentName = '';
+    while (!componentName) {
+      componentName = await input({ message: '组件名称' });
+    }
     const componentDir = path.resolve(
       __dirname,
       '../../packages/bui-core/src',
@@ -54,17 +59,19 @@ async function main() {
       path.join(mdFilePath, `index.zh-CN.md`),
     );
 
+    const spinner = ora('AI 生成markdown文档中...').start();
+
     const client = new OpenAI({
       apiKey: process.env.DASHSCOPE_API_KEY,
       baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
     });
 
     const stream = await client.chat.completions.create({
-      model: 'qwen-plus',
+      model: 'qwen-max',
       messages: [
         {
           role: 'system',
-          content: `你是一个专业的技术文档编写者。请根据提供的React组件代码生成一个详细的markdown文档，markdown示例参考：${mdFormat}`,
+          content: `你是一个专业的组件库文档编写者。请根据提供的React组件代码生成一个详细的组件markdown描述文档，markdown示例参考：${mdFormat}`,
         },
         {
           role: 'user',
@@ -95,12 +102,14 @@ async function main() {
       ],
     });
 
+    spinner.stop();
+
     // 获取返回内容
     const functionCall = stream.choices[0].message.tool_calls[0];
     let markdown;
 
     try {
-      // 尝试解析 JSON
+      // 解析 JSON
       const parsedArgs = JSON.parse(functionCall.function.arguments);
       markdown = parsedArgs.markdown;
     } catch (error) {
