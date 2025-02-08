@@ -1,19 +1,23 @@
 /**
  * 使用LLM翻译md文件
  * 1. 通过 --component 指定
- * 如 node scripts/translate/translate.js --component Button 表示翻译 Button 组件下的 index.zh-CN.md 文件，并写入 index.en-US.md
+ * 如 node scripts/translate/translate.mjs --component Button 表示翻译 Button 组件下的 index.zh-CN.md 文件，并写入 index.en-US.md
  * 等价于运行 pnpm run md:trans --component Button
  * 2. 通过 --file 指定
- * 如 node scripts/translate/translate.js --file ./packages/bui-icons/src/index.zh-CN.md
+ * 如 node scripts/translate/translate.mjs --file ./packages/bui-icons/src/index.zh-CN.md
  */
 
-const fs = require('fs');
-const path = require('path');
-const minimist = require('minimist');
-const OpenAI = require('openai');
-const dotenv = require('dotenv');
+import OpenAI from 'openai';
+import dotenv from 'dotenv';
+import fs from 'node:fs';
+import path from 'path';
+import minimist from 'minimist';
+import ora from 'ora';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const openai = new OpenAI({
   apiKey: process.env.DASHSCOPE_API_KEY,
@@ -25,8 +29,9 @@ async function translateMarkdownFile(inputFilePath, outputFilePath) {
     const markdownContent = fs.readFileSync(inputFilePath, 'utf-8');
     fs.writeFileSync(outputFilePath, '');
 
+    const spinner = ora('AI 翻译markdown文档中...').start();
     const completionStream = await openai.chat.completions.create({
-      model: 'qwen-plus',
+      model: 'qwen-max',
       messages: [
         {
           role: 'system',
@@ -49,6 +54,7 @@ async function translateMarkdownFile(inputFilePath, outputFilePath) {
       }
     }
     console.log(`翻译成功并已追加到 ${outputFilePath}`);
+    spinner.stop();
   } catch (error) {
     console.error('翻译过程中发生错误:', error);
   }
