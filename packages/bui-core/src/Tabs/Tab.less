@@ -17,16 +17,17 @@
   font-family: var(--bui-tabs-font-family);
 
   &-active {
-    line-height: var(--bui-line-height);
-
+    --bui-tabs-font-family: var(--bui-font-family-accent, inherit);
     --bui-tabs-color: var(--bui-color-fg-default);
+
+    font-weight: 600;
   }
 
   &-miniapp-active {
+    --bui-tabs-color: var(--bui-color-fg-default);
+
     line-height: 1.5;
     font-weight: var(--bui-font-weight-medium);
-
-    --bui-tabs-color: var(--bui-color-fg-default);
     position: relative;
 
     &-line {
