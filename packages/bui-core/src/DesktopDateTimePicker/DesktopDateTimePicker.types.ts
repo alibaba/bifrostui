@@ -1,5 +1,6 @@
 import React, { Ref } from 'react';
 import { OverrideProps } from '@bifrostui/types';
+import { DesktopPickerProps } from '../DesktopPicker';
 import { CalendarProps } from '../Calendar';
 
 export type IDateTimePickerValue = Date | null;
@@ -21,11 +22,6 @@ export interface IDateTimePickerCustomIconProps {
    */
   isMaxMonth?: boolean;
 }
-
-export interface IDesktopTimePickerProps {
-  orientation?: 'bottom' | 'top';
-}
-
 export interface IDateTimePickerCalendarProps {
   /**
    * 是否隐藏当前月之外的日期，默认为false
@@ -172,7 +168,7 @@ export type DateTimePickerProps<
       /**
        * DesktopPickerProps
        */
-      DesktopPickerProps?: IDesktopTimePickerProps;
+      DesktopPickerProps?: DesktopPickerProps;
       /**
        * CalendarProps
        */
