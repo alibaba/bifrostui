@@ -52,7 +52,7 @@ const DesktopDateTimePicker = React.forwardRef<
 
   // 选择类型，year，month，day
   const [selectType, setSelectType] = useState<'year' | 'month' | 'day'>(
-    'year',
+    picker,
   );
 
   const formattedValue = formatDate(value, minDate, maxDate);
@@ -248,7 +248,7 @@ const DesktopDateTimePicker = React.forwardRef<
   );
 });
 
-DesktopDateTimePicker.displayName = 'BUIDateTimePicker';
+DesktopDateTimePicker.displayName = 'BUIDesktopDateTimePicker';
 DesktopDateTimePicker.defaultProps = {
   disabled: false,
   disableOpenPicker: false,

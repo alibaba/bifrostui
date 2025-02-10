@@ -241,7 +241,7 @@ const useGetDatePickerContent = (props) => {
     for (let i = 0; i <= matchArr.length; i += 1) {
       if (allType.indexOf(matchArr[i]) > -1) {
         if (str !== '') {
-          domArr.push(<span>{str}</span>);
+          domArr.push(str);
           str = '';
         }
         domArr.push(
