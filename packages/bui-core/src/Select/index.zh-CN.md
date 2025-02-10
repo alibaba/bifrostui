@@ -466,7 +466,7 @@ export default () => {
 
 ### 指定滚动父容器
 
-通过scrollContainer指定滚动父容器，默认是() => document.body。
+通过scrollContainer指定滚动父容器，默认滚动父容器是页面。
 指定后，下拉框的展示方向会自动根据滚动父容器进行计算。
 
 ```tsx

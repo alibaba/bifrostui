@@ -466,7 +466,7 @@ export default () => {
 
 ### customize scroll container
 
-Provide the ability to customize scroll container, which can be customized through the 'scrollContainer' attribute. Default value is '() => document.body'.
+Provide the ability to customize scroll container, which can be customized through the 'scrollContainer' attribute. Default scroll container is page.
 The select option container's display direction will be automatically calculated according to the scroll container.
 
 ```tsx
