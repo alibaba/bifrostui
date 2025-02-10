@@ -67,7 +67,6 @@ const SwipeAction = React.forwardRef<CombinedRef, SwipeActionProps>(
             }
           });
         } else {
-          // console.log('ref.current.offsetWidth===>', ref.current.offsetWidth);
           resolve(ref.current.offsetWidth);
         }
       });
@@ -129,7 +128,7 @@ const SwipeAction = React.forwardRef<CombinedRef, SwipeActionProps>(
         setIsOpen(false);
       }
       // 如果结果字符串为空，并且 targetX 为 0 且 pretranslateX 不为 0 时，保持 resStr 为 null 以不触发 onActionsReveal
-      if (resStr || (targetX === 0 && pretranslateX !== 0)) {
+      if (resStr) {
         onActionsReveal?.({ side: resStr });
       }
     };
