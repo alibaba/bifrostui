@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, isConformant, fireEvent, act } from 'testing';
+import { render, isConformant, fireEvent, act, screen } from 'testing';
 import SwipeAction from '../SwipeAction';
 import SwipeActionItem from '../SwipeActionItem';
 
@@ -12,6 +12,14 @@ describe('SwipeAction', () => {
   // 在每个测试用例之后，恢复真实定时器
   afterEach(() => {
     jest.useRealTimers(); // 恢复真实定时器
+    jest.clearAllTimers();
+  });
+
+  beforeAll(() => {
+    Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+      configurable: true,
+      value: 62,
+    });
   });
 
   // 测试SwipeAction组件是否符合规范
@@ -27,33 +35,41 @@ describe('SwipeAction', () => {
     direction: 'left' | 'right',
     distance: number,
   ) => {
-    const touchStartEvent = {
-      touches: [{ clientX: direction === 'right' ? 0 : distance, clientY: 0 }],
-    };
-
-    const touchMoveEvent = {
-      touches: [
-        {
-          clientX: direction === 'right' ? distance : -distance,
-          clientY: 0,
-        },
-      ],
-    };
-
-    const touchEndEvent = {
-      changedTouches: [
-        {
-          clientX: direction === 'right' ? distance : -distance,
-          clientY: 0,
-        },
-      ],
-    };
-
     await act(async () => {
+      const touchStartEvent = {
+        touches: [
+          { clientX: direction === 'right' ? 0 : distance * 2, clientY: 0 },
+        ],
+        cancelable: true,
+        bubbles: true,
+      };
+
+      const touchMoveEvent = {
+        touches: [
+          {
+            clientX: distance,
+            clientY: 0,
+          },
+        ],
+        cancelable: true,
+        bubbles: true,
+      };
+
+      const touchEndEvent = {
+        touches: [
+          {
+            clientX: distance,
+            clientY: 0,
+          },
+        ],
+        cancelable: true,
+        bubbles: true,
+      };
+
       fireEvent.touchStart(element, touchStartEvent);
-      jest.advanceTimersByTime(10); // 给动画时间
+      jest.advanceTimersByTime(100); // 给动画时间
       fireEvent.touchMove(element, touchMoveEvent);
-      jest.advanceTimersByTime(10); // 给动画时间
+      jest.advanceTimersByTime(300); // 给动画时间
       fireEvent.touchEnd(element, touchEndEvent);
       jest.advanceTimersByTime(500); // 等待状态更新
     });
@@ -85,53 +101,39 @@ describe('SwipeAction', () => {
       const leftAction = (
         <SwipeActionItem key="left">Left Action</SwipeActionItem>
       );
-      const rightAction = (
-        <SwipeActionItem key="right">Right Action</SwipeActionItem>
-      );
       const component = (
-        <SwipeAction leftActions={[leftAction]} rightActions={[rightAction]}>
-          Swipe me
-        </SwipeAction>
+        <SwipeAction leftActions={[leftAction]}>Swipe me</SwipeAction>
       );
       const { container } = render(component);
       const content = container.querySelector(
         '.bui-swipe-action-content-container',
       ) as HTMLElement;
       expect(content).not.toBeNull();
+      expect(screen.getByText('Left Action')).toBeVisible();
 
-      await simulateSwipe(content, 'right', 100);
-
+      await simulateSwipe(content, 'right', 50);
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
-        'transform: translate3d(100px, 0, 0)',
+        'transform: translate3d(62px, 0, 0)',
       );
-      expect(container).toHaveTextContent('Left Action');
     });
 
     // 测试向左滑动时打开右滑动操作
     it('should open right action when swiped left', async () => {
-      const leftAction = (
-        <SwipeActionItem key="left">Left Action</SwipeActionItem>
-      );
       const rightAction = (
         <SwipeActionItem key="right">Right Action</SwipeActionItem>
       );
       const component = (
-        <SwipeAction leftActions={[leftAction]} rightActions={[rightAction]}>
-          Swipe me
-        </SwipeAction>
+        <SwipeAction rightActions={[rightAction]}>Swipe me</SwipeAction>
       );
       const { container } = render(component);
       const content = container.querySelector(
         '.bui-swipe-action-content-container',
       ) as HTMLElement;
       expect(content).not.toBeNull();
-
-      await simulateSwipe(content, 'left', 100);
-
+      await simulateSwipe(content, 'left', 50);
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
-        'transform: translate3d(-100px, 0, 0)',
+        'transform: translate3d(-62px, 0, 0)',
       );
-      expect(container).toHaveTextContent('Right Action');
     });
 
     // 测试滑动操作时调用onActionsReveal函数
@@ -153,9 +155,7 @@ describe('SwipeAction', () => {
         '.bui-swipe-action-content-container',
       ) as HTMLElement;
       expect(content).not.toBeNull();
-
-      await simulateSwipe(content, 'left', 100);
-
+      await simulateSwipe(content, 'left', 50);
       expect(onActionsReveal).toHaveBeenCalledWith({ side: 'right' });
     });
 
@@ -174,20 +174,16 @@ describe('SwipeAction', () => {
         '.bui-swipe-action-content-container',
       ) as HTMLElement;
       expect(content).not.toBeNull();
-
-      await simulateSwipe(content, 'left', 100);
-
+      await simulateSwipe(content, 'left', 50);
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
-        'transform: translate3d(-100px, 0, 0)',
+        'transform: translate3d(-62px, 0, 0)',
       );
-
       await act(async () => {
         fireEvent.click(
           container.querySelector('.bui-swipe-action-content-mask'),
         );
         jest.advanceTimersByTime(500);
       });
-
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
         'transform: translate3d(0px, 0, 0)',
       );
@@ -213,9 +209,7 @@ describe('SwipeAction', () => {
         '.bui-swipe-action-content-container',
       ) as HTMLElement;
       expect(content).not.toBeNull();
-
-      await simulateSwipe(content, 'left', 100);
-
+      await simulateSwipe(content, 'left', 50);
       expect(onActionsReveal).not.toHaveBeenCalled();
     });
   });
@@ -239,20 +233,14 @@ describe('SwipeAction', () => {
         '.bui-swipe-action-content-container',
       ) as HTMLElement;
       expect(content).not.toBeNull();
-
-      await simulateSwipe(content, 'left', 100);
-
+      await simulateSwipe(content, 'left', 50);
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
-        'transform: translate3d(-100px, 0, 0)',
+        'transform: translate3d(-62px, 0, 0)',
       );
-
       await act(async () => {
-        fireEvent.click(
-          container.querySelector('.bui-swipe-action-button-right'),
-        );
+        fireEvent.click(container.querySelector('.bui-swipe-action-button'));
         jest.advanceTimersByTime(500);
       });
-
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
         'transform: translate3d(0px, 0, 0)',
       );
@@ -278,22 +266,16 @@ describe('SwipeAction', () => {
         '.bui-swipe-action-content-container',
       ) as HTMLElement;
       expect(content).not.toBeNull();
-
-      await simulateSwipe(content, 'left', 100);
-
+      await simulateSwipe(content, 'left', 50);
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
-        'transform: translate3d(-100px, 0, 0)',
+        'transform: translate3d(-62px, 0, 0)',
       );
-
       await act(async () => {
-        fireEvent.click(
-          container.querySelector('.bui-swipe-action-button-right'),
-        );
+        fireEvent.click(container.querySelector('.bui-swipe-action-button'));
         jest.advanceTimersByTime(500);
       });
-
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
-        'transform: translate3d(-100px, 0, 0)',
+        'transform: translate3d(-62px, 0, 0)',
       );
     });
   });

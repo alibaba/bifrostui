@@ -84,12 +84,14 @@ export interface BuiSwipeActionContextProps {
   close: () => void;
 }
 
-export type SwipeActionRef = {
+type SwipeActionRef = {
   close: () => void;
   show: (side?: SideTypeEnum) => void;
   open: boolean;
-  ref: React.RefObject<HTMLDivElement>;
+  ref?: HTMLDivElement;
 };
+
+export type CombinedRef = SwipeActionRef | HTMLDivElement;
 
 export enum SideTypeEnum {
   LEFT = 'left',
