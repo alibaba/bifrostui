@@ -67,7 +67,6 @@ const SwipeAction = React.forwardRef<CombinedRef, SwipeActionProps>(
             }
           });
         } else {
-          // console.log('ref.current.offsetWidth===>', ref.current.offsetWidth);
           resolve(ref.current.offsetWidth);
         }
       });
@@ -82,7 +81,6 @@ const SwipeAction = React.forwardRef<CombinedRef, SwipeActionProps>(
       touch.start(e);
       isDragging.current = true;
       startingX.current = touch.deltaX.current - translateX;
-      // console.log('handleTouchStart===>', translateX, touch.deltaX);
     }, 100);
 
     const handleTouchMove = throttle(
@@ -93,7 +91,6 @@ const SwipeAction = React.forwardRef<CombinedRef, SwipeActionProps>(
         }
         touch.move(e);
         currentX.current = touch.deltaX.current - startingX.current;
-        // console.log('handleTouchMove1', currentX.current, touch.deltaX);
         if (Math.abs(currentX.current) < dragThreshold) return;
         const leftWidth = await getWidth(leftRef);
         const rightWidth = await getWidth(rightRef);
@@ -102,7 +99,6 @@ const SwipeAction = React.forwardRef<CombinedRef, SwipeActionProps>(
           -rightWidth,
           Math.min(leftWidth, currentX.current),
         );
-        // console.log('handleTouchMove', touch.deltaX, leftWidth, rightWidth, currentX.current);
         setTranslateX(currentX.current);
       },
       100,
@@ -129,7 +125,7 @@ const SwipeAction = React.forwardRef<CombinedRef, SwipeActionProps>(
         setIsOpen(false);
       }
       // 如果结果字符串为空，并且 targetX 为 0 且 pretranslateX 不为 0 时，保持 resStr 为 null 以不触发 onActionsReveal
-      if (resStr || (targetX === 0 && pretranslateX !== 0)) {
+      if (resStr) {
         onActionsReveal?.({ side: resStr });
       }
     };
@@ -145,15 +141,12 @@ const SwipeAction = React.forwardRef<CombinedRef, SwipeActionProps>(
         const threshold = 0.5; // 超过50%宽度即认为是打开状态
         let targetX = 0;
         isDragging.current = false;
-        // console.log('handleTouchEnd===>12', currentX.current, dragThreshold);
         if (Math.abs(currentX.current) < dragThreshold) return;
-        // console.log('handleTouchEnd===>13');
         if (currentX.current > leftWidth * threshold) {
           targetX = leftWidth;
         } else if (currentX.current < -rightWidth * threshold) {
           targetX = -rightWidth;
         }
-        // console.log('handleTouchEnd===>', targetX, pretranslateX, dragPhase);
         if (dragPhase === 3 || isMini) {
           emitActionsReveal(targetX);
           console.log('handleTouchEnd：', targetX, e);

@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import Taro from '@tarojs/taro';
 import {
   useForkRef,
   duration,
   easing,
   getTransitionProps,
   createTransitions,
+  getBoundingClientRect,
 } from '@bifrostui/utils';
 import { Transition } from '../Transition';
 import { CollapseProps } from './Collapse.types';
@@ -62,16 +62,12 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
       if (!reactNodeChild) {
         resolve(FIT_CONTENT);
       }
-      // TODO 使用utils getBoundingClientRect
-      const query = Taro.createSelectorQuery();
-      query
-        .select(`.${reactNode?.props?.class} .${reactNodeChild?.props?.class}`)
-        .boundingClientRect();
-      query.exec((res) => {
-        if (!res[0]) {
+
+      getBoundingClientRect(reactNodeChild).then((res) => {
+        if (!res) {
           resolve(FIT_CONTENT);
         } else {
-          resolve(isHorizontal ? `${res[0]?.width}px` : `${res[0]?.height}px`);
+          resolve(isHorizontal ? `${res?.width}px` : `${res?.height}px`);
         }
       });
     });
