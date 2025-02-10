@@ -47,7 +47,7 @@ export interface IDatePickerCalendarProps {
   weekRender?: (week: string) => React.ReactNode;
 }
 
-export type DatePickerProps<
+export type DesktopDatePickerProps<
   D extends React.ElementType = 'div',
   P = {},
 > = OverrideProps<

@@ -54,14 +54,6 @@ export type DateTimePickerProps<
   {
     props: P & {
       /**
-       * 样式类名
-       */
-      classNames?: string;
-      /**
-       * 样式
-       */
-      style?: React.CSSProperties;
-      /**
        * 默认选中的值，当组件非受控时使用
        */
       defaultValue?: IDateTimePickerValue;
@@ -125,11 +117,23 @@ export type DateTimePickerProps<
       /**
        * 自定义月份单元格的内容
        */
-      monthRender?: (currentDate: IDateTimePickerInstance) => React.ReactNode;
+      monthRender?: ({
+        month,
+        currentDate,
+      }: {
+        month: string | number;
+        currentDate: IDateTimePickerInstance;
+      }) => React.ReactNode;
       /**
        * 自定义年份单元格的内容
        */
-      yearRender?: (currentDate: IDateTimePickerInstance) => React.ReactNode;
+      yearRender?: ({
+        year,
+        currentDate,
+      }: {
+        year: string | number;
+        currentDate: IDateTimePickerInstance;
+      }) => React.ReactNode;
       /**
        * 日期发生变化的回调
        */
@@ -168,15 +172,11 @@ export type DateTimePickerProps<
       /**
        * DesktopPickerProps
        */
-      desktopPickerProps?: IDesktopTimePickerProps;
+      DesktopPickerProps?: IDesktopTimePickerProps;
       /**
        * CalendarProps
        */
       CalendarProps?: CalendarProps;
-      /**
-       * 浮层宽度
-       */
-      containerWidth?: number;
     };
     defaultComponent: D;
   },

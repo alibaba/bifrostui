@@ -41,6 +41,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
       onMount,
       onUnmounted,
       containerWidth = 'auto',
+      containerMinWidth,
       BackdropProps,
       ...others
     } = props;
@@ -77,6 +78,9 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
       element.style.left = styles?.left;
       if (inheritWidth) {
         element.style.width = childrenStyle?.width;
+      }
+      if (containerMinWidth) {
+        element.style.minWidth = containerMinWidth;
       }
       setContentPosition(newArrowDirection);
     };
