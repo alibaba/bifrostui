@@ -5,7 +5,7 @@ import React, { useMemo } from 'react';
 import Calendar from '../Calendar';
 import './deskTopPickerContainer.less';
 
-const prefixCls = 'bui-date-picker-container';
+const prefixCls = 'bui-desktop-date-picker-container';
 const useGetDatePickerContent = (props) => {
   const yPatterns = ['YYYY', 'YY'];
   const mPatterns = ['MM', 'M', 'MMM', 'MMMM'];

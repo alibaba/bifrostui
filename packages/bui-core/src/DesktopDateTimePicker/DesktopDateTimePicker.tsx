@@ -31,7 +31,6 @@ const DesktopDateTimePicker = React.forwardRef<
     minDate,
     maxDate,
     icon,
-    containerWidth = 400,
     headerBarLeftIcon,
     headerBarRightIcon,
     closeOnSelect = false,
@@ -42,7 +41,7 @@ const DesktopDateTimePicker = React.forwardRef<
     yearRender,
     onMonthChange,
     onYearChange,
-    desktopPickerProps,
+    DesktopPickerProps,
     CalendarProps,
     ...others
   } = props;
@@ -204,8 +203,7 @@ const DesktopDateTimePicker = React.forwardRef<
         }}
         onMount={onmount}
         onUnmounted={unMounted}
-        inheritWidth={false}
-        containerWidth={containerWidth}
+        containerMinWidth="400px"
         content={
           <div
             style={{
@@ -219,7 +217,7 @@ const DesktopDateTimePicker = React.forwardRef<
             {desktopTimePicker()}
           </div>
         }
-        {...desktopPickerProps}
+        {...DesktopPickerProps}
       >
         <div className={`${prefixCls}-container`}>
           <input
