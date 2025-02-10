@@ -13,12 +13,13 @@ import ora from 'ora';
 import { input } from '@inquirer/prompts';
 import { fileURLToPath } from 'url';
 
-dotenv.config();
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+dotenv.config();
+
 const args = minimist(process.argv.slice(2));
-const mdFileName = args.md || 'Switch';
+const mdFileName = args.md || 'TabBar';
 
 async function readFileContent(filePath) {
   try {
@@ -35,28 +36,55 @@ async function main() {
     while (!componentName) {
       componentName = await input({ message: '组件名称' });
     }
+
     const componentDir = path.resolve(
       __dirname,
       '../../packages/bui-core/src',
-      `${componentName}`,
-    );
-    const mdFilePath = path.resolve(
-      __dirname,
-      '../../packages/bui-core/src',
-      `${mdFileName}`,
+      componentName,
     );
 
-    const componentCode = await readFileContent(
-      path.join(componentDir, `${componentName}.tsx`),
-    );
-    const typesCode = await readFileContent(
-      path.join(componentDir, `${componentName}.types.ts`),
-    );
-    const styleCode = await readFileContent(
-      path.join(componentDir, `${componentName}.less`),
-    );
+    const tsxFiles = [];
+    const typesFiles = [];
+    const styleFiles = [];
+
+    const filesInDir = fs
+      .readdirSync(componentDir)
+      .filter(
+        (file) =>
+          file.endsWith('.tsx') ||
+          file.endsWith('.types.ts') ||
+          file.endsWith('.less'),
+      );
+
+    for (const file of filesInDir) {
+      const filePath = path.join(componentDir, file);
+
+      if (file.endsWith('.tsx')) {
+        tsxFiles.push(
+          `${file}\n\n---\n\n${await readFileContent(filePath)}\n\n---\n\n`,
+        );
+      } else if (file.endsWith('.types.ts')) {
+        typesFiles.push(
+          `${file}\n\n---\n\n${await readFileContent(filePath)}\n\n---\n\n`,
+        );
+      } else if (file.endsWith('.less')) {
+        styleFiles.push(
+          `${file}\n\n---\n\n${await readFileContent(filePath)}\n\n---\n\n`,
+        );
+      }
+    }
+
+    const componentCode = tsxFiles.join('');
+    const typesCode = typesFiles.join('');
+    const styleCode = styleFiles.join('');
+
     const mdFormat = await readFileContent(
-      path.join(mdFilePath, `index.zh-CN.md`),
+      path.resolve(
+        __dirname,
+        '../../packages/bui-core/src',
+        `${mdFileName}`,
+        `index.zh-CN.md`,
+      ),
     );
 
     const spinner = ora('AI 生成markdown文档中...').start();
@@ -67,7 +95,7 @@ async function main() {
     });
 
     const stream = await client.chat.completions.create({
-      model: 'qwen-max',
+      model: 'qwen-long',
       messages: [
         {
           role: 'system',
@@ -76,9 +104,12 @@ async function main() {
         {
           role: 'user',
           content: `请根据以下React组件代码生成markdown文档：
-          组件代码：${componentCode}
-          类型定义：${typesCode}
-          样式代码：${styleCode}`,
+          组件代码：${componentCode}，
+          根据组件代码生成代码演示部分。
+          类型定义：${typesCode}，
+          根据类型定义生成API部分。
+          样式代码：${styleCode}，
+          根据样式代码生成css样式变量部分`,
         },
       ],
       tools: [
@@ -104,23 +135,19 @@ async function main() {
 
     spinner.stop();
 
-    // 获取返回内容
     const functionCall = stream.choices[0].message.tool_calls[0];
     let markdown;
 
     try {
-      // 解析 JSON
       const parsedArgs = JSON.parse(functionCall.function.arguments);
       markdown = parsedArgs.markdown;
     } catch (error) {
-      // 如果 JSON 解析失败，直接使用返回的文本
       markdown = functionCall.function.arguments;
       if (
         typeof markdown === 'string' &&
         markdown.startsWith('{') &&
         markdown.endsWith('}')
       ) {
-        // 如果是 JSON 字符串，尝试提取 markdown 内容
         try {
           const match = markdown.match(/"markdown"\s*:\s*"((?:[^"\\]|\\.)*)"/);
           if (match) {
@@ -141,7 +168,6 @@ async function main() {
     console.log(`Markdown文档已生成: ${outputPath}`);
   } catch (error) {
     console.error('生成文档失败:', error);
-    // 打印更详细的错误信息
     if (error.response) {
       console.error('API 响应:', error.response.data);
     }
