@@ -21,15 +21,15 @@ const DesktopDateTimePicker = React.forwardRef<
     inputProps,
     value,
     defaultValue,
-    disabled,
-    disableOpenPicker,
+    disabled = false,
+    disableOpenPicker = false,
     placeholder,
     format = 'YYYY/MM/DD HH:mm:ss',
     open,
     disabledDate,
-    picker,
-    minDate,
-    maxDate,
+    picker = 'day',
+    minDate = dayjs(dayjs().format('YYYYMMDD')).subtract(10, 'year').toDate(),
+    maxDate = dayjs(dayjs().format('YYYYMMDD')).add(10, 'year').toDate(),
     icon,
     headerBarLeftIcon,
     headerBarRightIcon,
@@ -249,15 +249,5 @@ const DesktopDateTimePicker = React.forwardRef<
 });
 
 DesktopDateTimePicker.displayName = 'BUIDesktopDateTimePicker';
-DesktopDateTimePicker.defaultProps = {
-  disabled: false,
-  disableOpenPicker: false,
-  inputProps: {
-    readOnly: false,
-  },
-  minDate: dayjs(dayjs().format('YYYYMMDD')).subtract(10, 'year').toDate(),
-  maxDate: dayjs(dayjs().format('YYYYMMDD')).add(10, 'year').toDate(),
-  picker: 'day',
-};
 
 export default DesktopDateTimePicker;
