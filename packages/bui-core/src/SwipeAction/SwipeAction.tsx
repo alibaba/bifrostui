@@ -16,14 +16,14 @@ import {
 import BuiSwipeActionContext from './SwipeActionContext';
 import {
   SwipeActionProps,
-  SwipeActionRef,
+  CombinedRef,
   SideTypeEnum,
 } from './SwipeAction.types';
 import './SwipeAction.less';
 
 const classPrefix = 'bui-swipe-action';
 
-const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
+const SwipeAction = React.forwardRef<CombinedRef, SwipeActionProps>(
   (props, ref) => {
     const {
       className,
@@ -67,6 +67,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
             }
           });
         } else {
+          // console.log('ref.current.offsetWidth===>', ref.current.offsetWidth);
           resolve(ref.current.offsetWidth);
         }
       });
@@ -81,6 +82,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
       touch.start(e);
       isDragging.current = true;
       startingX.current = touch.deltaX.current - translateX;
+      // console.log('handleTouchStart===>', translateX, touch.deltaX);
     }, 100);
 
     const handleTouchMove = throttle(
@@ -91,8 +93,8 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
         }
         touch.move(e);
         currentX.current = touch.deltaX.current - startingX.current;
+        // console.log('handleTouchMove1', currentX.current, touch.deltaX);
         if (Math.abs(currentX.current) < dragThreshold) return;
-        // console.log('handleTouchMove', isOpen)
         const leftWidth = await getWidth(leftRef);
         const rightWidth = await getWidth(rightRef);
         // 限制最多拖动到各自方向的宽度
@@ -100,6 +102,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
           -rightWidth,
           Math.min(leftWidth, currentX.current),
         );
+        // console.log('handleTouchMove', touch.deltaX, leftWidth, rightWidth, currentX.current);
         setTranslateX(currentX.current);
       },
       100,
@@ -142,8 +145,9 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
         const threshold = 0.5; // 超过50%宽度即认为是打开状态
         let targetX = 0;
         isDragging.current = false;
-        console.log('handleTouchEnd：', e);
+        // console.log('handleTouchEnd===>12', currentX.current, dragThreshold);
         if (Math.abs(currentX.current) < dragThreshold) return;
+        // console.log('handleTouchEnd===>13');
         if (currentX.current > leftWidth * threshold) {
           targetX = leftWidth;
         } else if (currentX.current < -rightWidth * threshold) {
@@ -152,6 +156,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
         // console.log('handleTouchEnd===>', targetX, pretranslateX, dragPhase);
         if (dragPhase === 3 || isMini) {
           emitActionsReveal(targetX);
+          console.log('handleTouchEnd：', targetX, e);
           setTranslateX(targetX);
           pretranslateX = targetX;
         }
@@ -213,7 +218,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
       close,
       // 获取当前是否打开
       open: isOpen,
-      ref: rootRef,
+      ref: rootRef.current,
     }));
 
     const outClickHandle = (e: React.MouseEvent<HTMLDivElement>) => {
