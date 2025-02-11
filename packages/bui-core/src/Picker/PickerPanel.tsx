@@ -75,7 +75,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       return () => {
         clearTimeout(timer);
       };
-    }, [options]);
+    }, [options, defaultValue]);
 
     const setTransform = (
       type: string,
