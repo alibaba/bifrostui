@@ -11,7 +11,7 @@ const ListItemContent = React.forwardRef<HTMLElement, ListItemContentProps>(
     const {
       children,
       className,
-      component: Component,
+      component: Component = 'div',
       primary,
       secondary,
       ...others
@@ -34,8 +34,5 @@ const ListItemContent = React.forwardRef<HTMLElement, ListItemContentProps>(
 );
 
 ListItemContent.displayName = 'BuiListItemContent';
-ListItemContent.defaultProps = {
-  component: 'div',
-};
 
 export default ListItemContent;

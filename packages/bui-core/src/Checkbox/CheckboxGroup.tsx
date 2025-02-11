@@ -8,16 +8,18 @@ import './Checkbox.less';
 const prefixCls = 'bui-checkbox-group';
 
 const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
-  (props, ref) => {
-    const {
+  (
+    {
       className,
       children,
       defaultValue,
       value,
-      disabled,
+      disabled = false,
       onChange,
       ...others
-    } = props;
+    },
+    ref,
+  ) => {
     const [groupValue, triggerChange] = useValue({
       defaultValue,
       value,
@@ -53,8 +55,5 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
 );
 
 CheckboxGroup.displayName = 'CheckboxGroup';
-CheckboxGroup.defaultProps = {
-  disabled: false,
-};
 
 export default CheckboxGroup;

@@ -8,7 +8,12 @@ const prefixCls = 'bui-list-item-footer';
 
 const ListItemFooter = React.forwardRef<HTMLElement, ListItemFooterProps>(
   (props, ref) => {
-    const { children, className, component: Component, ...others } = props;
+    const {
+      children,
+      className,
+      component: Component = 'div',
+      ...others
+    } = props;
 
     return (
       <Component className={clsx(prefixCls, className)} ref={ref} {...others}>
@@ -19,8 +24,5 @@ const ListItemFooter = React.forwardRef<HTMLElement, ListItemFooterProps>(
 );
 
 ListItemFooter.displayName = 'BuiListItemFooter';
-ListItemFooter.defaultProps = {
-  component: 'div',
-};
 
 export default ListItemFooter;

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tabs test with TabPanel should be actived by \`value\` property 1`] = `
+exports[`Tabs test with TabPanel should be active by \`value\` property 1`] = `
 <div
   data-testid="test-wrapper"
 >

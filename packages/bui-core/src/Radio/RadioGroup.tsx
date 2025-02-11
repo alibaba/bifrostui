@@ -44,8 +44,5 @@ const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
 });
 
 RadioGroup.displayName = 'BuiRadioGroup';
-RadioGroup.defaultProps = {
-  disabled: false,
-};
 
 export default RadioGroup;

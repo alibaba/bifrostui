@@ -11,7 +11,7 @@ const prefixCls = 'bui-radio';
 const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
   const {
     className,
-    defaultChecked,
+    defaultChecked = false,
     checked,
     inputProps,
     inputRef,
@@ -20,7 +20,7 @@ const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
     disabled,
     icon,
     checkedIcon,
-    labelPlacement,
+    labelPlacement = 'right',
     onChange,
     children,
     ...others
@@ -118,9 +118,5 @@ const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
 });
 
 Radio.displayName = 'BuiRadio';
-Radio.defaultProps = {
-  defaultChecked: false,
-  labelPlacement: 'right',
-};
 
 export default Radio;

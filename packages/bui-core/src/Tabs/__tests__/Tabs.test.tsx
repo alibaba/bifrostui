@@ -104,7 +104,7 @@ describe('Tabs', () => {
   });
 
   describe('test with TabPanel', () => {
-    it('should be actived by `value` property', () => {
+    it('should be active by `value` property', () => {
       function Component() {
         const [value] = useState('vegetables');
         return (
@@ -132,11 +132,11 @@ describe('Tabs', () => {
       const { container, getByTestId } = render(<Component />);
 
       const tabLine = container.querySelector(`.${rootClass.tabs}-indicator`);
-      const activePabel = container.querySelector(
+      const activePanel = container.querySelector(
         `.${rootClass.tabpanel}-active`,
       );
       expect(tabLine).toBeVisible();
-      expect(activePabel).toHaveTextContent('西红柿');
+      expect(activePanel).toHaveTextContent('西红柿');
       expect(getByTestId('test-wrapper')).toMatchSnapshot();
     });
 
@@ -358,7 +358,7 @@ describe('Tabs', () => {
   it('should no active Tab when value is invalid', () => {
     function Component() {
       const [value, setValue] = useState('2');
-      const defultList = [
+      const tabs = [
         { title: '长津湖', index: '1' },
         { title: '战狼2', index: '2' },
         { title: '你好，李焕英', index: '3' },
@@ -366,7 +366,7 @@ describe('Tabs', () => {
         { title: '流浪地球', index: '5' },
         { title: '唐人街探案3', index: '6' },
       ];
-      const [tabList, setTabList] = useState(defultList);
+      const [tabList, setTabList] = useState(tabs);
 
       const handleChange = (e, { index }) => {
         setValue(index);
@@ -386,9 +386,9 @@ describe('Tabs', () => {
             data-testid="test-modify-tablist"
             onClick={() => {
               if (tabList.length === 4) {
-                setTabList(defultList);
+                setTabList(tabs);
               } else {
-                const newTabList = defultList.slice(0, 4);
+                const newTabList = tabs.slice(0, 4);
                 setTabList(newTabList);
                 if (!newTabList.some((item) => item.index === value)) {
                   setValue('1');
@@ -453,7 +453,7 @@ describe('Tabs', () => {
   it('should no active Tab when value is invalid by use tabs', () => {
     function Component() {
       const [value, setValue] = useState('2');
-      const defultList = [
+      const tabs = [
         { title: '长津湖', index: '1' },
         { title: '战狼2', index: '2' },
         { title: '你好，李焕英', index: '3' },
@@ -461,7 +461,7 @@ describe('Tabs', () => {
         { title: '流浪地球', index: '5' },
         { title: '唐人街探案3', index: '6' },
       ];
-      const [tabList, setTabList] = useState(defultList);
+      const [tabList, setTabList] = useState(tabs);
 
       const handleChange = (e, { index }) => {
         setValue(index);
@@ -481,9 +481,9 @@ describe('Tabs', () => {
             data-testid="test-modify-tablist"
             onClick={() => {
               if (tabList.length === 4) {
-                setTabList(defultList);
+                setTabList(tabs);
               } else {
-                const newTabList = defultList.slice(0, 4);
+                const newTabList = tabs.slice(0, 4);
                 setTabList(newTabList);
                 if (!newTabList.some((item) => item.index === value)) {
                   setValue('1');
@@ -543,7 +543,7 @@ describe('Tabs', () => {
   it('should render correctly when TabList changed', async () => {
     function Component() {
       const [value, setValue] = useState('2');
-      const defultList = [
+      const tabs = [
         { title: '长津湖', index: '1' },
         { title: '战狼2', index: '2' },
         { title: '你好，李焕英', index: '3' },
@@ -551,7 +551,7 @@ describe('Tabs', () => {
         { title: '流浪地球', index: '5' },
         { title: '唐人街探案3', index: '6' },
       ];
-      const [tabList, setTabList] = useState(defultList);
+      const [tabList, setTabList] = useState(tabs);
 
       const handleChange = (e, { index }) => {
         setValue(index);
@@ -563,9 +563,9 @@ describe('Tabs', () => {
             data-testid="test-modify-tablist2"
             onClick={() => {
               if (tabList.length === 4) {
-                setTabList(defultList);
+                setTabList(tabs);
               } else {
-                const newTabList = defultList.slice(0, 4);
+                const newTabList = tabs.slice(0, 4);
                 setTabList(newTabList);
                 if (!newTabList.some((item) => item.index === value)) {
                   setValue('1');

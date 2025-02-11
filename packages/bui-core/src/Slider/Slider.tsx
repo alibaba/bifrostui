@@ -35,15 +35,15 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     className,
     defaultValue,
     value: valueProp,
-    min,
-    max,
-    step,
-    tipVisible,
-    tooltipRender,
+    min = 0,
+    max = 100,
+    step = 1,
+    tipVisible = false,
+    tooltipRender = (value) => value,
     disabled,
     startIcon,
     endIcon,
-    disableSwap,
+    disableSwap = false,
     onChange,
     ...others
   } = props;
@@ -334,13 +334,5 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
 });
 
 Slider.displayName = 'BuiSlider';
-Slider.defaultProps = {
-  min: 0,
-  max: 100,
-  step: 1,
-  disableSwap: false,
-  tipVisible: false,
-  tooltipRender: (value) => value,
-};
 
 export default Slider;

@@ -8,7 +8,12 @@ const prefixCls = 'bui-list-item-header';
 
 const ListItemHeader = React.forwardRef<HTMLDivElement, ListItemHeaderProps>(
   (props, ref) => {
-    const { children, className, component: Component, ...others } = props;
+    const {
+      children,
+      className,
+      component: Component = 'div',
+      ...others
+    } = props;
 
     return (
       <Component className={clsx(prefixCls, className)} ref={ref} {...others}>
@@ -19,8 +24,5 @@ const ListItemHeader = React.forwardRef<HTMLDivElement, ListItemHeaderProps>(
 );
 
 ListItemHeader.displayName = 'BuiListItemHeader';
-ListItemHeader.defaultProps = {
-  component: 'div',
-};
 
 export default ListItemHeader;

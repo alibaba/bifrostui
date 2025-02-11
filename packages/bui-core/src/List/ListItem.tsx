@@ -9,50 +9,49 @@ import './ListItem.less';
 
 const prefixCls = 'bui-list-item';
 
-const ListItem = React.forwardRef<HTMLElement, ListItemProps>((props, ref) => {
-  const {
-    children,
-    className,
-    hideDivider,
-    disabled,
-    onClick,
-    endIcon,
-    component: Component,
-    ...others
-  } = props;
+const ListItem = React.forwardRef<HTMLElement, ListItemProps>(
+  (
+    {
+      children,
+      className,
+      hideDivider = false,
+      disabled,
+      onClick,
+      endIcon,
+      component: Component = 'div',
+      ...others
+    },
+    ref,
+  ) => {
+    // 列表条目尾部箭头icon
+    let chevron;
+    if (typeof endIcon === 'boolean') {
+      chevron = endIcon && <ArrowForwardIcon size="small" />;
+    } else if (React.isValidElement(endIcon)) {
+      chevron = endIcon;
+    } else {
+      chevron = onClick && <ArrowForwardIcon size="small" />;
+    }
+    // 传递divider
+    const context = React.useContext(ListContext);
 
-  // 列表条目尾部箭头icon
-  let chevron;
-  if (typeof endIcon === 'boolean') {
-    chevron = endIcon && <ArrowForwardIcon size="small" />;
-  } else if (React.isValidElement(endIcon)) {
-    chevron = endIcon;
-  } else {
-    chevron = onClick && <ArrowForwardIcon size="small" />;
-  }
-  // 传递divider
-  const context = React.useContext(ListContext);
-
-  return (
-    <Component
-      className={clsx(prefixCls, className, {
-        [`${prefixCls}-divider`]: !(hideDivider || context.hideDivider),
-        [`${prefixCls}-disabled`]: disabled,
-      })}
-      onClick={onClick}
-      ref={ref}
-      {...others}
-    >
-      {children}
-      {chevron && <ListItemFooter>{chevron}</ListItemFooter>}
-    </Component>
-  );
-});
+    return (
+      <Component
+        className={clsx(prefixCls, className, {
+          [`${prefixCls}-divider`]: !(hideDivider || context.hideDivider),
+          [`${prefixCls}-disabled`]: disabled,
+        })}
+        onClick={onClick}
+        ref={ref}
+        {...others}
+      >
+        {children}
+        {chevron && <ListItemFooter>{chevron}</ListItemFooter>}
+      </Component>
+    );
+  },
+);
 
 ListItem.displayName = 'BuiListItem';
-ListItem.defaultProps = {
-  component: 'div',
-  hideDivider: false,
-};
 
 export default ListItem;

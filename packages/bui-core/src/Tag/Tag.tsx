@@ -30,9 +30,9 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   const {
     className,
     style,
-    color,
+    color = 'default',
     htmlColor,
-    variant,
+    variant = 'outlined',
     onClick,
     children,
     ...others
@@ -78,9 +78,5 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>((props, ref) => {
 });
 
 Tag.displayName = 'BuiTag';
-Tag.defaultProps = {
-  variant: 'outlined',
-  color: 'default',
-};
 
 export default Tag;
