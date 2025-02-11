@@ -1,6 +1,6 @@
 @class-prefix-tabs: ~'bui-tabs';
 
-.@{class-prefix-tabs} {
+:root {
   --bui-tabs-font-family: var(--bui-font-family);
   --bui-tabs-font-size: var(--bui-text-size-1);
   --bui-tabs-height: 39px;
@@ -8,14 +8,16 @@
   --bui-tabs-font-weight: var(--bui-font-weight-medium);
   --bui-tabs-indicator-bg: var(--bui-color-primary);
   --bui-tabs-indicator-height: 3px;
-  --bui-tabs-indicator-width: 18px;
-  --bui-tabs-indicator-border-radius: 3px;
+  --bui-tabs-indicator-width: 24px;
+  --bui-tabs-indicator-border-radius: 3px 3px 0 0;
   --bui-tabs-indicator-bottom: 0;
   --bui-tabs-indicator-box-shadow: none;
   --bui-tabs-mask-width: 12px;
   --bui-tabs-mask-height: 100%;
   --bui-tab-padding: var(--bui-spacing-lg) var(--bui-spacing-lg) 10px;
+}
 
+.@{class-prefix-tabs} {
   position: relative;
   font-family: var(--bui-tabs-font-family);
   font-weight: var(--bui-tabs-font-weight);
