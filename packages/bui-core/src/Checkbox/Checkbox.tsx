@@ -11,7 +11,7 @@ const prefixCls = 'bui-checkbox';
 const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
   const {
     className,
-    defaultChecked,
+    defaultChecked = false,
     checked,
     inputProps,
     inputRef,
@@ -20,7 +20,7 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
     disabled,
     icon,
     checkedIcon,
-    labelPlacement,
+    labelPlacement = 'right',
     onChange,
     children,
     ...others
@@ -101,9 +101,5 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
 });
 
 Checkbox.displayName = 'BuiCheckbox';
-Checkbox.defaultProps = {
-  defaultChecked: false,
-  labelPlacement: 'right',
-};
 
 export default Checkbox;

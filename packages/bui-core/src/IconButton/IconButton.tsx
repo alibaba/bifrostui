@@ -11,11 +11,11 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     const {
       className,
       children,
-      color,
-      disabled,
-      size,
-      variant,
-      shape,
+      color = 'default',
+      disabled = false,
+      size = 'medium',
+      variant = 'default',
+      shape = 'circular',
       ...others
     } = props;
 
@@ -55,12 +55,5 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
 );
 
 IconButton.displayName = 'BuiIconButton';
-IconButton.defaultProps = {
-  size: 'medium',
-  variant: 'default',
-  shape: 'circular',
-  color: 'default',
-  disabled: false,
-};
 
 export default IconButton;

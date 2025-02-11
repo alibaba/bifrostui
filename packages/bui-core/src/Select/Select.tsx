@@ -29,12 +29,14 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     inputProps,
     BackdropProps,
     value,
-    defaultValue,
+    defaultValue = '',
     disabled,
     placeholder,
     icon,
     open,
-    scrollContainer,
+    scrollContainer = () => {
+      return isMini ? null : document.body;
+    },
     onChange,
     onClose,
     onOpen,
@@ -225,11 +227,5 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
 });
 
 Select.displayName = 'BuiSelect';
-Select.defaultProps = {
-  defaultValue: '',
-  scrollContainer: () => {
-    return isMini ? null : document.body;
-  },
-};
 
 export default Select;

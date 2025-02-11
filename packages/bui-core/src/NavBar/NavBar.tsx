@@ -94,6 +94,4 @@ const NavBar = React.forwardRef<HTMLDivElement, NavBarProps>((props, ref) => {
 });
 
 NavBar.displayName = 'BuiNavBar';
-NavBar.defaultProps = {};
-
 export default NavBar;

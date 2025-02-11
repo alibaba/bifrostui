@@ -12,17 +12,17 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
     const {
       className,
       value,
-      defaultValue,
+      defaultValue = '',
       textareaProps,
       textareaRef,
       name,
       placeholder,
       disabled,
-      rows,
+      rows = DEFAULT_ROWS,
       maxLength,
-      autoSize,
-      autoFocus,
-      showCount,
+      autoSize = false,
+      autoFocus = false,
+      showCount = false,
       onChange,
       ...others
     } = props;
@@ -148,12 +148,5 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
 );
 
 TextArea.displayName = 'BuiTextArea';
-TextArea.defaultProps = {
-  defaultValue: '',
-  rows: DEFAULT_ROWS,
-  autoSize: false,
-  autoFocus: false,
-  showCount: false,
-};
 
 export default TextArea;

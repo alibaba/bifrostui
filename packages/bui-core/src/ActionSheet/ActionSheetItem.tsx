@@ -11,9 +11,9 @@ const ActionSheetItem = React.forwardRef<HTMLDivElement, ActionSheetItemProps>(
     const {
       className,
       children,
-      disabled,
-      bold,
-      color,
+      disabled = false,
+      bold = false,
+      color = 'default',
       description,
       onClick,
       index,
@@ -52,10 +52,5 @@ const ActionSheetItem = React.forwardRef<HTMLDivElement, ActionSheetItemProps>(
 );
 
 ActionSheetItem.displayName = 'BuiActionSheetItem';
-ActionSheetItem.defaultProps = {
-  color: 'default',
-  disabled: false,
-  bold: false,
-};
 
 export default ActionSheetItem;
