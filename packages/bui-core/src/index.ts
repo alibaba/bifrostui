@@ -8,6 +8,7 @@ export * from './Calendar';
 export * from './Card';
 export * from './Checkbox';
 export * from './Collapse';
+export * from './DatePicker';
 export * from './DesktopDatePicker';
 export * from './DesktopTimePicker';
 export * from './DesktopDateTimePicker';
