@@ -21,10 +21,11 @@ import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
-  const handleClickConfirm = async () => {
+  const handleClickConfirm = async (showCancel) => {
     const res = await Dialog({
       header: '标题',
       message: '这是描述内容',
+      showCancel,
     });
     if (res) {
       Toast({ message: '点击了确认', position: 'bottom' });
@@ -47,6 +48,9 @@ export default () => {
         confirm
       </Button>
       <Button onClick={handleClickConfirm}>等待confirm完成</Button>
+      <Button onClick={() => handleClickConfirm(false)}>
+        等待confirm完成且不展示取消按钮
+      </Button>
     </Stack>
   );
 };
@@ -69,10 +73,11 @@ export default () => {
   const theme = useTheme();
   const [dialog, contextHolder] = Dialog.useDialog();
 
-  const handleClickConfirm = async () => {
+  const handleClickConfirm = async (showCancel) => {
     const res = await dialog({
       header: '标题',
       message: '这是描述内容',
+      showCancel,
     });
     if (res) {
       Toast({ message: '点击了确认', position: 'bottom' });
@@ -97,6 +102,9 @@ export default () => {
           confirm
         </Button>
         <Button onClick={handleClickConfirm}>等待confirm完成</Button>
+        <Button onClick={() => handleClickConfirm(false)}>
+          等待confirm完成且不展示取消按钮
+        </Button>
       </Stack>
     </ThemeProvider>
   );
@@ -218,6 +226,16 @@ export default () => {
         >
           自定义确认按钮文本
         </Button>
+        <Button
+          onClick={() => {
+            dialog.confirm({
+              header: '不展示取消按钮',
+              showCancel: false,
+            });
+          }}
+        >
+          不展示取消按钮
+        </Button>
       </Stack>
     </ThemeProvider>
   );
@@ -278,14 +296,15 @@ export default () => {
 
 #### DialogOptions
 
-| 属性        | 说明         | 类型                                       | 默认值 |
-| ----------- | ------------ | ------------------------------------------ | ------ |
-| header      | 自定义页头   | `React.ReactNode`                          | -      |
-| message     | 自定义消息   | `React.ReactNode`                          | -      |
-| confirmText | 确认按钮文案 | `React.ReactNode`                          | 确认   |
-| cancelText  | 取消按钮文案 | `React.ReactNode`                          | 取消   |
-| onConfirm   | 确定按钮回调 | `(val?: string) => void \| Promise<void>;` | -      |
-| onCancel    | 取消按钮回调 | `() =>void \| Promise<void>`               | -      |
+| 属性        | 说明             | 类型                                       | 默认值 |
+| ----------- | ---------------- | ------------------------------------------ | ------ |
+| header      | 自定义页头       | `React.ReactNode`                          | -      |
+| message     | 自定义消息       | `React.ReactNode`                          | -      |
+| confirmText | 确认按钮文案     | `React.ReactNode`                          | 确认   |
+| cancelText  | 取消按钮文案     | `React.ReactNode`                          | 取消   |
+| onConfirm   | 确定按钮回调     | `(val?: string) => void \| Promise<void>;` | -      |
+| onCancel    | 取消按钮回调     | `() =>void \| Promise<void>`               | -      |
+| showCancel  | 是否展示取消按钮 | boolean                                    | true   |
 
 `ConfirmOptions`的取值同`DialogOptions`
 

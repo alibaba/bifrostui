@@ -43,6 +43,10 @@ export interface DialogProps extends ModalProps {
    */
   cancelText?: ReactNode;
   /**
+   * 是否展示取消按钮
+   */
+  showCancel?: boolean;
+  /**
    * theme 主题定制
    */
   theme?: ThemeProps;
