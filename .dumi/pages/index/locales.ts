@@ -9,11 +9,11 @@ export default {
       },
       {
         title: '高定制',
-        desc: '一致优雅的API帮助您快速创造新主题',
+        desc: '一致优雅的API帮助您快速创建新主题',
       },
       {
         title: '高可用',
-        desc: '完善的配套，丰富的组件，开箱即用',
+        desc: '配套完善，组件丰富，开箱即用',
       },
     ],
     subtitle: [

@@ -330,7 +330,5 @@ export default () => {
 | --bui-tabs-indicator-color        | 下标线高度         | 3PX                                              | --bui-tabs-indicator-height        |
 | --bui-tabs-indicator-bg         | 下标线颜色         | --bui-color-primary                              | --bui-tabs-indicator-bg         |
 | --bui-tabs-indicator-box-shadow    | 下标线阴影         | none                                             | --bui-tabs-indicator-box-shadow    |
-| --bui-tabs-mask-width         | 蒙层宽度           | 12px                                             | --bui-tabs-mask-width         |
-| --bui-tabs-mask-height        | 蒙层高度           | 100%                                             | --bui-tabs-mask-height        |
 | --bui-tab-padding        | Tab内边距          | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding             |
 | --bui-tabs-font-size          | Tab字体大小        | --bui-text-size-1                                | --bui-tabs-font-size           |

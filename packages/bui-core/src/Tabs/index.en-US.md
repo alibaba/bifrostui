@@ -479,7 +479,5 @@ export default () => {
 | --bui-tabs-indicator-color        | Height of the lower marking line                             | 3PX                                              | --bui-tabs-indicator-height        |
 | --bui-tabs-indicator-bg         | Index line color                                             | --bui-color-primary                              | --bui-tabs-indicator-bg         |
 | --bui-tabs-indicator-box-shadow    | Index line shadow                                            | none                                             | --bui-tabs-indicator-box-shadow    |
-| --bui-tabs-mask-width         | Mask width                                                   | 12px                                             | --bui-tabs-mask-width         |
-| --bui-tabs-mask-height        | Mask height                                                  | 100%                                             | --bui-tabs-mask-height        |
 | --bui-tab-padding        | Tab inner margin                                             | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding             |
 | --bui-tabs-font-size         | Tab font size                                                | --bui-text-size-1                                | --bui-tabs-font-size           |
