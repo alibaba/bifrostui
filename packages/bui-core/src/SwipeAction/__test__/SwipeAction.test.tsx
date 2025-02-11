@@ -44,18 +44,7 @@ describe('SwipeAction', () => {
         bubbles: true,
       };
 
-      const touchMoveEvent = {
-        touches: [
-          {
-            clientX: distance,
-            clientY: 0,
-          },
-        ],
-        cancelable: true,
-        bubbles: true,
-      };
-
-      const touchEndEvent = {
+      const touchMoveEndEvent = {
         touches: [
           {
             clientX: distance,
@@ -68,9 +57,9 @@ describe('SwipeAction', () => {
 
       fireEvent.touchStart(element, touchStartEvent);
       jest.advanceTimersByTime(100); // 给动画时间
-      fireEvent.touchMove(element, touchMoveEvent);
+      fireEvent.touchMove(element, touchMoveEndEvent);
       jest.advanceTimersByTime(300); // 给动画时间
-      fireEvent.touchEnd(element, touchEndEvent);
+      fireEvent.touchEnd(element, touchMoveEndEvent);
       jest.advanceTimersByTime(500); // 等待状态更新
     });
   };
