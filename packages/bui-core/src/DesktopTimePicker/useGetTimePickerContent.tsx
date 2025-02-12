@@ -1,5 +1,8 @@
 import clsx from 'clsx';
 import React from 'react';
+import Taro from '@tarojs/taro';
+import { isMini } from '@bifrostui/utils';
+
 import {
   ViewTypeWithMeridiem,
   TimePickerContentProps,
@@ -99,8 +102,13 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
         // Keep the overlay open
         e.stopPropagation();
         if (disabled || selectedValue === item.value) return;
-
-        const ulElement = e.currentTarget.parentElement;
+        let ulElement;
+        if (isMini) {
+          const query = Taro.createSelectorQuery();
+          ulElement = query.select(`.${prefixCls}-table-${type}-ul`);
+        } else {
+          ulElement = e.currentTarget.parentElement;
+        }
         if (!ulElement) return;
 
         // 获取符合条件的最小时间
@@ -131,29 +139,17 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
         }
       };
 
-      // 初次滚动到选中位置
-      const handleScrollToSelected = (ulElement, selectedLi) => {
-        ulElement?.scrollTo?.({
-          top:
-            (selectedLi as HTMLDivElement).offsetTop -
-            (ulElement as HTMLDivElement).offsetTop,
-          behavior: 'smooth',
-        });
-      };
-
       return (
-        <ul className={clsx(`${prefixCls}-table-${type}-ul`)} key={type}>
-          <DesktopTimePickerList
-            timeValue={timeValue}
-            type={type}
-            dataList={dataList}
-            disabledTime={disabledTime}
-            selectedValue={selectedValue}
-            prefixCls={prefixCls}
-            handleClick={handleClick}
-            handleScrollToSelected={handleScrollToSelected}
-          />
-        </ul>
+        <DesktopTimePickerList
+          timeValue={timeValue}
+          type={type}
+          dataList={dataList}
+          disabledTime={disabledTime}
+          selectedValue={selectedValue}
+          prefixCls={prefixCls}
+          handleClick={handleClick}
+          key={type}
+        />
       );
     });
   };
