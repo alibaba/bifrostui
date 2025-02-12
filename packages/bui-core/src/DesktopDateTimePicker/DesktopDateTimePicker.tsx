@@ -203,12 +203,9 @@ const DesktopDateTimePicker = React.forwardRef<
         }}
         onMount={onmount}
         onUnmounted={unMounted}
-        containerMinWidth="400px"
         content={
           <div
-            style={{
-              display: 'flex',
-            }}
+            className={`${prefixCls}-box`}
             onClick={(e) => {
               e.stopPropagation();
             }}
@@ -218,6 +215,7 @@ const DesktopDateTimePicker = React.forwardRef<
           </div>
         }
         {...DesktopPickerProps}
+        inheritWidth={false}
       >
         <div className={`${prefixCls}-container`}>
           <input
