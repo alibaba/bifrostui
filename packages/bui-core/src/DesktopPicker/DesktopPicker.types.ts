@@ -14,10 +14,6 @@ export type DesktopPickerProps<
        */
       inheritWidth?: boolean;
       /**
-       * 最小宽度
-       */
-      containerMinWidth?: string;
-      /**
        * 是否打开
        */
       open: boolean;

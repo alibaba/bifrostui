@@ -15,6 +15,7 @@ import {
 import { DesktopPickerProps } from './DesktopPicker.types';
 import Backdrop from '../Backdrop';
 import Portal from '../Portal';
+import calcAfterMounted from './utils/calcAfterMounted';
 import './index.less';
 
 const prefixCls = 'bui-desktop-picker';
@@ -41,7 +42,6 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
       onMount,
       onUnmounted,
       containerWidth = 'auto',
-      containerMinWidth,
       BackdropProps,
       ...others
     } = props;
@@ -79,9 +79,6 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
       if (inheritWidth) {
         element.style.width = childrenStyle?.width;
       }
-      if (containerMinWidth) {
-        element.style.minWidth = containerMinWidth;
-      }
       setContentPosition(newArrowDirection);
     };
 
@@ -106,7 +103,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
         };
       }
       if (isMini && open) {
-        getContentDirection();
+        calcAfterMounted(getContentDirection);
       }
     }, [container, open]);
 
@@ -144,9 +141,9 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
     useEffect(() => {
       if (open) {
         // 小程序渲染不稳定
-        setTimeout(() => {
+        calcAfterMounted(() => {
           setTransform(true);
-        }, 16);
+        });
       }
     }, [open]);
 
