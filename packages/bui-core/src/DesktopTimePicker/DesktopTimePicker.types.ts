@@ -1,6 +1,7 @@
 import React, { Ref } from 'react';
 import { OverrideProps } from '@bifrostui/types';
 import { Dayjs } from 'dayjs';
+import { DesktopPickerProps } from '../DesktopPicker';
 
 export type ITimePickerValue = Dayjs | null;
 
@@ -9,10 +10,6 @@ export type ViewType = 'hour' | 'minute' | 'second';
 export type ViewTypeWithMeridiem = ViewType | 'meridiem';
 
 export type TimeSteps = { hours?: number; minutes?: number; seconds?: number };
-
-export interface IDesktopPickerProps {
-  orientation?: 'bottom' | 'top';
-}
 
 export type TimePickerProps<
   D extends React.ElementType = 'div',
@@ -106,7 +103,7 @@ export type TimePickerProps<
       /**
        * DesktopPickerProps
        */
-      DesktopPickerProps?: IDesktopPickerProps;
+      DesktopPickerProps?: DesktopPickerProps;
     };
     defaultComponent: D;
   },
@@ -182,5 +179,4 @@ export interface DesktopTimePickerListProps {
   selectedValue: string | number;
   prefixCls: string;
   handleClick: Function;
-  handleScrollToSelected: Function;
 }
