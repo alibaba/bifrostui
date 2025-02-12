@@ -1,17 +1,6 @@
-import {
-  debounce,
-  isMini,
-  throttle,
-  useDidMountEffect,
-} from '@bifrostui/utils';
+import { debounce, isMini, throttle, useEventCallback } from '@bifrostui/utils';
 import clsx from 'clsx';
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Tab from './Tab';
 import { TabsProps } from './Tabs.types';
 import { TabsContextProvider } from './TabsContext';
@@ -19,21 +8,13 @@ import bound from './utils/bound';
 import './Tabs.less';
 
 const prefixCls = 'bui-tabs';
-const defaultProps = {
-  tabs: [],
-} satisfies Partial<TabsProps>;
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
-  const { children, className, value, tabs, onChange, ...others } = {
-    ...defaultProps,
-    ...props,
-  };
-  const [active, setActive] = useState('');
+  const { children, className, value, tabs = [], onChange, ...others } = props;
   const tabsRef = useRef<HTMLDivElement>(null);
   const activeLineRef = useRef<HTMLDivElement>(null);
-  const [lineData, setLineData] = useState({
+  const [indicatorData, setIndicatorData] = useState({
     x: 0,
-    transitionInUse: false,
     hasActiveTab: false,
   });
   const [maskData, setMaskData] = useState({
@@ -41,12 +22,12 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     rightMaskOpacity: 0,
   });
 
-  const animate = ({ transitionInUse }: { transitionInUse: boolean }) => {
+  const animate = useEventCallback(() => {
     const container = tabsRef.current;
     if (!container) return;
 
     const activeIndex =
-      !!tabs.length && tabs.findIndex((item) => item.index === active);
+      !!tabs.length && tabs.findIndex((item) => item.index === value);
     const activeLine = activeLineRef.current;
     if (!activeLine) return;
 
@@ -81,9 +62,8 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
       activeLineWidth = activeLine.offsetWidth;
       x = activeTabLeft + (activeTabWidth - activeLineWidth) / 2;
     }
-    setLineData({
+    setIndicatorData({
       x,
-      transitionInUse,
       hasActiveTab: !!activeTab,
     });
 
@@ -99,7 +79,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     if (tabsRef.current) {
       tabsRef.current.scrollLeft = nextScrollLeft;
     }
-  };
+  });
 
   const updateMask = useMemo(
     () =>
@@ -128,16 +108,12 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   );
 
   useEffect(() => {
-    setActive(value);
+    animate();
   }, [value]);
-
-  useLayoutEffect(() => {
-    animate({ transitionInUse: false });
-  }, []);
 
   useEffect(() => {
     const handleResize = debounce(() => {
-      animate({ transitionInUse: true });
+      animate();
       updateMask();
     }, 100);
 
@@ -146,13 +122,9 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [active]);
+  }, []);
 
-  useDidMountEffect(() => {
-    animate({ transitionInUse: true });
-  }, [active, tabs, children]);
-
-  useLayoutEffect(() => {
+  useEffect(() => {
     updateMask();
   }, []);
 
@@ -162,9 +134,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     if (index === undefined || index === null) {
       return;
     }
-    if (active !== value) {
-      setActive(index);
-    }
+
     if (index !== value) {
       onChange?.(e, { index });
     }
@@ -193,13 +163,11 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         <div
           ref={activeLineRef}
           className={clsx(`${prefixCls}-indicator`, {
-            'bui-indicator-invisible': isMini || !lineData.hasActiveTab,
+            'bui-indicator-invisible': isMini || !indicatorData.hasActiveTab,
           })}
           style={{
-            transition: lineData.transitionInUse
-              ? 'transform 0.3s ease-in-out'
-              : undefined,
-            transform: `translate3d(${lineData.x}px, 0px, 0px)`,
+            transition: 'transform 0.3s ease-in-out',
+            transform: `translate3d(${indicatorData.x}px, 0px, 0px)`,
           }}
         />
 
