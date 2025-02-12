@@ -6,33 +6,28 @@
   justify-content: center;
   white-space: nowrap;
   width: min-content;
-  height: var(--tab-height);
+  height: 100%;
   box-sizing: border-box;
   position: relative;
   cursor: pointer;
-  font-size: var(--font-size);
+  font-size: var(--bui-tabs-font-size);
   line-height: var(--bui-line-height);
-  color: var(--color);
-  padding: var(--tab-padding);
-  font-family: var(--bui-font-family);
+  color: var(--bui-tabs-color);
+  padding: var(--bui-tab-padding);
+  font-family: var(--bui-tabs-font-family);
 
   &-active {
-    font-size: var(--font-size);
-    line-height: var(--bui-line-height);
-    font-weight: var(--bui-font-weight-medium);
-    color: var(--active-color);
-  }
+    --bui-tabs-font-family: var(--bui-font-family-accent, inherit);
+    --bui-tabs-color: var(--bui-color-fg-default);
 
-  &-center {
-    flex: 1 0 0;
-    margin: 0 auto;
+    font-weight: 600;
   }
 
   &-miniapp-active {
-    font-size: var(--font-size);
+    --bui-tabs-color: var(--bui-color-fg-default);
+
     line-height: 1.5;
     font-weight: var(--bui-font-weight-medium);
-    color: var(--active-color);
     position: relative;
 
     &-line {
@@ -54,7 +49,7 @@
   }
 }
 
-.bui-tabline-invisible {
+.bui-indicator-invisible {
   visibility: hidden;
   background-color: transparent;
 }

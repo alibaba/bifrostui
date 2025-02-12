@@ -12,8 +12,8 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
       maxCount,
       variant,
       spacing,
-      size,
-      orientation,
+      size = 'medium',
+      orientation = 'right',
       children,
       onClick,
       ...others
@@ -65,9 +65,5 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
 );
 
 AvatarGroup.displayName = 'BuiAvatarGroup';
-AvatarGroup.defaultProps = {
-  size: 'medium',
-  orientation: 'right',
-};
 
 export default AvatarGroup;

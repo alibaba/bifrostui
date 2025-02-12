@@ -10,8 +10,8 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       children,
       mountOnEnter,
       unmountOnExit,
-      enter,
-      exit,
+      enter = true,
+      exit = true,
       timeout: _timeout,
       delay: _delay,
       onEnter,
@@ -20,7 +20,7 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       onExit,
       onExiting,
       onExited,
-      nextTick,
+      nextTick = setTimeout,
       ...childProps
     } = props;
     const UNMOUNTED = 'unmounted';
@@ -175,9 +175,5 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
 );
 
 TransitionCore.displayName = 'BuiTransitionCore';
-TransitionCore.defaultProps = {
-  enter: true,
-  exit: true,
-  nextTick: setTimeout,
-};
+
 export default TransitionCore;

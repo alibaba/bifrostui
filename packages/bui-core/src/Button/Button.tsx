@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
-import './Button.less';
 import { ButtonProps } from './Button.types';
+import './Button.less';
 
 const prefixCls = 'bui-btn';
 
@@ -21,10 +21,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       startIcon,
       endIcon,
-      size,
-      variant,
+      size = 'medium',
+      variant = 'outlined',
       color,
-      disabled,
+      disabled = false,
       ...others
     } = props;
     return (
@@ -52,11 +52,5 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = 'BuiButton';
-Button.defaultProps = {
-  size: 'medium',
-  variant: 'outlined',
-  color: 'default',
-  disabled: false,
-};
 
 export default Button;
