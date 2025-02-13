@@ -20,11 +20,11 @@ export type TimePickerProps<
       /**
        * 默认选中的值，当组件非受控时使用
        */
-      defaultValue?: Dayjs;
+      defaultValue?: Date;
       /**
        * 选中的值，当组件受控时使用
        */
-      value?: Dayjs;
+      value?: Date;
       /**
        * 输入框占位内容
        */
@@ -48,11 +48,11 @@ export type TimePickerProps<
       /**
        * 可选择的最小时间
        */
-      minTime?: Dayjs;
+      minTime?: Date;
       /**
        * 可选择的最大时间
        */
-      maxTime?: Dayjs;
+      maxTime?: Date;
       /**
        * 禁止选择的时间
        */
@@ -82,7 +82,7 @@ export type TimePickerProps<
        */
       onChange?: (
         e: React.SyntheticEvent,
-        data: { value: ITimePickerValue },
+        data: { value: Date | null },
       ) => void;
       /**
        * 弹层关闭的回调

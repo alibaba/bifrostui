@@ -113,13 +113,13 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
             type === 'hour' && ampm ? updateHour(item.value) : item.value;
           const newTimeValue = validTime.set(type, newValue);
 
-          triggerChange(e, newTimeValue);
+          triggerChange(e, newTimeValue.toDate());
         } else {
           // 点击ampm
           const newHour =
             item.value === 'PM' ? validTime.hour() + 12 : validTime.hour() - 12;
           const newTimeValue = validTime.set('hour', newHour);
-          triggerChange(e, newTimeValue);
+          triggerChange(e, newTimeValue.toDate());
         }
 
         if (isLastList && closeOnSelect) {

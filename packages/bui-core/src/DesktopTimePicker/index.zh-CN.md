@@ -11,7 +11,7 @@ DesktopTimePicker 组件，常用于选择时间，包括时分秒。
 
 ### 基础用法
 
-默认 `value` 应传入 `Dayjs`。
+默认 `value` 应传入 `Date`。
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
@@ -21,10 +21,8 @@ import React, { useState } from 'react';
 dayjs.extend(customParseFormat);
 
 export default () => {
-  const [value, setValue] = useState(dayjs().hour(2).minute(3).second(40));
-
+  const [value, setValue] = useState(new Date());
   const handleChange = (e, res) => {
-    console.log('time change:', res);
     setValue(res.value);
   };
 
@@ -94,7 +92,7 @@ export default () => {
 };
 ```
 
-### 禁用指定时间面板
+### 自定义禁用时间
 
 通过 `disabledTimeView` 可自定义禁用时间。
 
@@ -396,11 +394,11 @@ export default () => {
 
 | 属性               | 说明                             | 类型                                                                                                                                        | 默认值                                                                           |
 | ------------------ | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| defaultValue       | 默认选中的值，当组件非受控时使用 | Dayjs \| null                                                                                                                               | -                                                                                |
-| value              | 选中的值，当组件受控时使用       | Dayjs \| null                                                                                                                               | -                                                                                |
+| defaultValue       | 默认选中的值，当组件非受控时使用 | Date \| null                                                                                                                                | -                                                                                |
+| value              | 选中的值，当组件受控时使用       | Date \| null                                                                                                                                | -                                                                                |
 | placeholder        | 输入框占位内容                   | string                                                                                                                                      | -                                                                                |
-| minTime            | 可选择的最小时间                 | Dayjs                                                                                                                                       | -                                                                                |
-| maxTime            | 可选择的最大时间                 | Dayjs                                                                                                                                       | -                                                                                |
+| minTime            | 可选择的最小时间                 | Date                                                                                                                                        | -                                                                                |
+| maxTime            | 可选择的最大时间                 | Date                                                                                                                                        | -                                                                                |
 | open               | 弹层是否打开                     | boolean                                                                                                                                     | false                                                                            |
 | icon               | 输入框icon                       | React.ReactNode                                                                                                                             | -                                                                                |
 | views              | 打开浮层的视图                   | Array<'hour' \| 'minute' \| 'second'>                                                                                                       | ['hour', 'minute', 'second']                                                     |
