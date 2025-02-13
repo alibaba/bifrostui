@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Taro from '@tarojs/taro';
-// import useDomReady from '@bifrostui/utils/src/hooks/useDomReady/index';
 import { isMini } from '@bifrostui/utils';
 import clsx from 'clsx';
 
 import { ScrollView } from '../ScrollView';
+import handleScroll from './utils/scrollUtil';
 
 import { DesktopTimePickerListProps } from './DesktopTimePicker.types';
 
@@ -20,6 +19,7 @@ const DesktopTimePickerList = React.forwardRef<
     selectedValue,
     prefixCls,
     handleClick,
+    renderItem,
   } = props;
 
   const ulRef = useRef<HTMLDivElement | null>(null);
@@ -27,34 +27,16 @@ const DesktopTimePickerList = React.forwardRef<
 
   useEffect(() => {
     if (!ulRef.current) return;
+    const elementName = `.${prefixCls}-table-${type}-ul-li-active`;
+
     if (!isMini) {
-      const ulElement = document.querySelector(
-        `.${prefixCls}-table-${type}-ul`,
-      );
-      const selectedLi = document.querySelector(
-        `.${prefixCls}-table-${type}-ul-li-active`,
-      );
-      ulElement.scrollTo?.({
-        top: (selectedLi as HTMLDivElement).offsetTop,
-        behavior: 'smooth',
-      });
-      // setScrollTop((selectedLi as HTMLDivElement).offsetTop);
+      handleScroll(elementName, setScrollTop);
     } else {
       const index = dataList.findIndex((item) => item.value === selectedValue);
       if (index === -1) return;
-      // 确保在dom渲染完成之后再滚动
-      requestAnimationFrame(() => {
-        const query = Taro.createSelectorQuery();
-        query.select(`.${prefixCls}-table-${type}-ul-li`)?.boundingClientRect();
-        query.exec((res) => {
-          if (!res[0]) return;
-          const { height } = res[0];
-          console.log(height, 'inswz');
-          setScrollTop(index * height);
-        });
-      });
+      handleScroll(elementName, setScrollTop, index);
     }
-  }, [timeValue, ulRef.current]);
+  }, [timeValue]);
 
   return (
     <ScrollView
@@ -63,7 +45,7 @@ const DesktopTimePickerList = React.forwardRef<
       className={clsx(`${prefixCls}-table-${type}-ul`)}
       key={type}
       scrollTop={scrollTop}
-      scrollAnimationDuration={100}
+      scrollAnimationDuration={200}
       ref={ulRef}
     >
       {dataList.map((item, index) => {
@@ -71,20 +53,21 @@ const DesktopTimePickerList = React.forwardRef<
         const disabled = disabledTime?.includes(value);
 
         return (
-          <div
-            key={index}
-            id={`index-${index}`}
-            className={clsx(`${prefixCls}-table-${type}-ul-li`, {
-              [`${prefixCls}-table-${type}-ul-li-active`]:
-                value === selectedValue,
-              [`${prefixCls}-table-${type}-ul-li-disabled`]: disabled,
-            })}
-            onClick={(e) => {
-              handleClick(e, disabled, item);
-            }}
-          >
-            {label}
-          </div>
+          renderItem?.(item) || (
+            <div
+              key={index}
+              className={clsx(`${prefixCls}-table-${type}-ul-li`, {
+                [`${prefixCls}-table-${type}-ul-li-active`]:
+                  value === selectedValue,
+                [`${prefixCls}-table-${type}-ul-li-disabled`]: disabled,
+              })}
+              onClick={(e) => {
+                handleClick(e, disabled, item);
+              }}
+            >
+              {label}
+            </div>
+          )
         );
       })}
     </ScrollView>

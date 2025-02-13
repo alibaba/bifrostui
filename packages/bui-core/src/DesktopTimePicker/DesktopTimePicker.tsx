@@ -6,7 +6,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { useValue } from '@bifrostui/utils';
 import { TimePickerProps, TimeSteps } from './DesktopTimePicker.types';
 import './index.less';
-import { formatTime, isDisabledTime } from './utils';
+import { formatTime, isDisabledTime } from './utils/utils';
 import DesktopPicker from '../DesktopPicker';
 import useGetTimePickerContent from './useGetTimePickerContent';
 
@@ -46,6 +46,7 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       onClose,
       onOpen,
       DesktopPickerProps,
+      renderItem,
       ...others
     } = props;
 
@@ -97,7 +98,6 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       views,
       timeSteps,
       ampm,
-      format,
       minTime,
       maxTime,
       setIsOpen,
@@ -107,6 +107,7 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       onClose,
       onOpen,
       closeOnSelect,
+      renderItem,
     });
 
     const onInputChange = (e) => {
