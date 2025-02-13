@@ -30,7 +30,7 @@ export type TimePickerProps<
        */
       placeholder?: string;
       /**
-       * 打开浮层的视图
+       * 面板视图选择
        */
       views?: Views;
       /**
@@ -104,6 +104,10 @@ export type TimePickerProps<
        * DesktopPickerProps
        */
       DesktopPickerProps?: DesktopPickerProps;
+      /**
+       * renderItem
+       */
+      renderItem?: (item: ITimeItemInstance) => React.ReactNode;
     };
     defaultComponent: D;
   },
@@ -158,6 +162,10 @@ export interface TimePickerContentProps {
    * 可选择的最大时间
    */
   maxTime?: Dayjs;
+  /**
+   * 自定义渲染
+   */
+  renderItem?: (item: ITimeItemInstance) => React.ReactNode;
 }
 
 /** 时间面板单元格对象 */
@@ -179,4 +187,5 @@ export interface DesktopTimePickerListProps {
   selectedValue: string | number;
   prefixCls: string;
   handleClick: Function;
+  renderItem: (item: ITimeItemInstance) => React.ReactNode;
 }
