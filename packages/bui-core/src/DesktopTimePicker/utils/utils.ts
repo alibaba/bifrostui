@@ -430,3 +430,8 @@ export const calculateValidMinTime = (
   }
   return validTime;
 };
+
+export const dateToDayjs = (date: Date) => {
+  if (!date) return undefined;
+  return dayjs(date);
+};
