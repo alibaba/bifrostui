@@ -120,7 +120,7 @@ export type DisabledTimeView = () => {
 export interface TimePickerContentProps {
   setIsOpen: Function;
   triggerChange: Function;
-  disabledTimeView: DisabledTimeView;
+  disabledTimeView?: DisabledTimeView;
   timeValue: Dayjs;
   /**
    * 关闭浮层

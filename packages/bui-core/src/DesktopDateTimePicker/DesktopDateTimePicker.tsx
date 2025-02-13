@@ -27,7 +27,7 @@ const DesktopDateTimePicker = React.forwardRef<
     format = 'YYYY/MM/DD HH:mm:ss',
     open,
     disabledDate,
-    picker = 'day',
+    views = ['year', 'month', 'day', 'hour', 'minute', 'second'],
     minDate = dayjs(dayjs().format('YYYYMMDD')).subtract(10, 'year').toDate(),
     maxDate = dayjs(dayjs().format('YYYYMMDD')).add(10, 'year').toDate(),
     icon,
@@ -50,9 +50,22 @@ const DesktopDateTimePicker = React.forwardRef<
   // 是否展开日期选择
   const [isOpen, setIsOpen] = useState<boolean>(open);
 
+  // 获取选择类型
+  const getPicker = useMemo(() => {
+    if (views.includes('day')) {
+      return 'day';
+    }
+    if (views.includes('month')) {
+      return 'month';
+    }
+    if (views.includes('year')) {
+      return 'year';
+    }
+    return 'day';
+  }, [views]);
   // 选择类型，year，month，day
   const [selectType, setSelectType] = useState<'year' | 'month' | 'day'>(
-    picker,
+    getPicker,
   );
 
   const formattedValue = formatDate(value, minDate, maxDate);
@@ -94,7 +107,7 @@ const DesktopDateTimePicker = React.forwardRef<
     disabledDate,
     calendarValue,
     setSelectType,
-    picker,
+    picker: getPicker,
     selectType,
     headerBarLeftIcon,
     headerBarRightIcon,
@@ -109,7 +122,9 @@ const DesktopDateTimePicker = React.forwardRef<
     },
   });
   const { desktopTimePicker } = useGetTimePickerContent({
-    format,
+    views: views.filter(
+      (item) => item !== 'day' && item !== 'month' && item !== 'year',
+    ),
     minTime: dayjs(minDate),
     maxTime: dayjs(maxDate),
     setIsOpen,
@@ -160,7 +175,7 @@ const DesktopDateTimePicker = React.forwardRef<
   };
   const unMounted = () => {
     onClose?.();
-    setSelectType('year');
+    setSelectType(getPicker);
   };
   // placeholder优先级最高，format次之，最后兜底YYYY/MM/DD
   const showPlaceholder = useMemo(() => {
