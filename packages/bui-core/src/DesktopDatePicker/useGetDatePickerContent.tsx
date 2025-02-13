@@ -83,8 +83,14 @@ const useGetDatePickerContent = (props) => {
   const calendarChange = (e, data) => {
     e.stopPropagation();
     if (data.value) {
+      const ymd = dayjs(data.value);
+      const hms = dayjs(calendarValue);
+      const newValue = ymd
+        .hour(hms.hour())
+        .minute(hms.minute())
+        .second(hms.second());
       // 非受控需要更新value
-      triggerChange(e, dayjs(data.value).toDate());
+      triggerChange(e, dayjs(newValue).toDate());
     }
     if (closeOnSelect) {
       setIsOpen(false);
