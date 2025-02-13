@@ -1,12 +1,12 @@
 import { AccessTimeCircleOutlinedIcon } from '@bifrostui/icons';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import clsx from 'clsx';
 import React, { useMemo, useState, useEffect } from 'react';
 import { useValue } from '@bifrostui/utils';
 import { TimePickerProps, TimeSteps } from './DesktopTimePicker.types';
 import './index.less';
-import { formatTime, isDisabledTime } from './utils';
+import { formatTime, isDisabledTime, dateToDayjs } from './utils/utils';
 import DesktopPicker from '../DesktopPicker';
 import useGetTimePickerContent from './useGetTimePickerContent';
 
@@ -46,6 +46,7 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       onClose,
       onOpen,
       DesktopPickerProps,
+      renderItem,
       ...others
     } = props;
 
@@ -53,15 +54,16 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const formattedValue = formatTime(
-      value,
-      minTime,
-      maxTime,
+      dateToDayjs(value),
+      dateToDayjs(minTime),
+      dateToDayjs(maxTime),
       disabledTimeView,
     );
+
     const formattedDefaultValue = formatTime(
-      defaultValue,
-      minTime,
-      maxTime,
+      dateToDayjs(defaultValue),
+      dateToDayjs(minTime),
+      dateToDayjs(maxTime),
       disabledTimeView,
     );
 
@@ -97,16 +99,16 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       views,
       timeSteps,
       ampm,
-      format,
-      minTime,
-      maxTime,
+      minTime: dateToDayjs(minTime),
+      maxTime: dateToDayjs(maxTime),
       setIsOpen,
       triggerChange,
       disabledTimeView,
-      timeValue,
+      timeValue: dateToDayjs(timeValue),
       onClose,
       onOpen,
       closeOnSelect,
+      renderItem,
     });
 
     const onInputChange = (e) => {
@@ -132,15 +134,15 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
         if (
           isDisabledTime(
             dayjs(newValue, format),
-            minTime,
-            maxTime,
+            dateToDayjs(minTime),
+            dateToDayjs(maxTime),
             disabledTimeView,
           )
         ) {
           return;
         }
 
-        triggerChange(e, dayjs(e.target.value, format));
+        triggerChange(e, dayjs(e.target.value, format).toDate());
       }
     };
 
@@ -164,9 +166,14 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
 
       if (
         timeValue &&
-        !isDisabledTime(dayjs(timeValue), minTime, maxTime, disabledTimeView)
+        !isDisabledTime(
+          dayjs(timeValue),
+          dateToDayjs(minTime),
+          dateToDayjs(maxTime),
+          disabledTimeView,
+        )
       ) {
-        return dayjs(timeValue as Dayjs).format(format);
+        return dayjs(timeValue).format(format);
       }
       // 校验不通过，返回空值
       return '';
