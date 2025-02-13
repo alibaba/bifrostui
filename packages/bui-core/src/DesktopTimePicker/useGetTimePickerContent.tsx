@@ -1,17 +1,12 @@
 import clsx from 'clsx';
 import React from 'react';
-import Taro from '@tarojs/taro';
-import { isMini } from '@bifrostui/utils';
-
 import {
   ViewTypeWithMeridiem,
   TimePickerContentProps,
 } from './DesktopTimePicker.types';
 import DesktopTimePickerList from './DesktopTimePickerList';
 
-// import './deskTopTimePickerContainer.less';
-
-import { getdisabledTime, calculateValidMinTime } from './utils';
+import { getdisabledTime, calculateValidMinTime } from './utils/utils';
 
 const prefixCls = 'bui-time-picker';
 
@@ -39,6 +34,7 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
     closeOnSelect,
     setIsOpen,
     triggerChange,
+    renderItem,
   } = props;
 
   // 获取时间面板数据
@@ -102,14 +98,6 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
         // Keep the overlay open
         e.stopPropagation();
         if (disabled || selectedValue === item.value) return;
-        let ulElement;
-        if (isMini) {
-          const query = Taro.createSelectorQuery();
-          ulElement = query.select(`.${prefixCls}-table-${type}-ul`);
-        } else {
-          ulElement = e.currentTarget.parentElement;
-        }
-        if (!ulElement) return;
 
         // 获取符合条件的最小时间
         const validMinTime = calculateValidMinTime(disabledTimeView, minTime);
@@ -125,13 +113,13 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
             type === 'hour' && ampm ? updateHour(item.value) : item.value;
           const newTimeValue = validTime.set(type, newValue);
 
-          triggerChange(e, newTimeValue);
+          triggerChange(e, newTimeValue.toDate());
         } else {
           // 点击ampm
           const newHour =
             item.value === 'PM' ? validTime.hour() + 12 : validTime.hour() - 12;
           const newTimeValue = validTime.set('hour', newHour);
-          triggerChange(e, newTimeValue);
+          triggerChange(e, newTimeValue.toDate());
         }
 
         if (isLastList && closeOnSelect) {
@@ -149,6 +137,7 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
           prefixCls={prefixCls}
           handleClick={handleClick}
           key={type}
+          renderItem={renderItem}
         />
       );
     });

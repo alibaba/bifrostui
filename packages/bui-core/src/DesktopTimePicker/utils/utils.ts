@@ -7,7 +7,7 @@ import {
   ViewTypeWithMeridiem,
   ITimeItemInstance,
   ITimeItemNumberInstance,
-} from './DesktopTimePicker.types';
+} from '../DesktopTimePicker.types';
 
 /**
  * 格式化初始时间
@@ -108,7 +108,7 @@ export const isDisabledTime = (
 };
 
 /**
- * 时间面板分钟 是否小于minTime分钟
+ * 获取分钟时间面板 是否小于minTime分钟
  */
 export const getOutOfMinRangeMinutes = (
   hourValue: number,
@@ -368,7 +368,7 @@ export const getdisabledTime = (
   return [...new Set([...disabledViewTime, ...outOfMaxRangeTime])];
 };
 
-// 计算!disabledTimeView && >=minTime 的最小时间
+// 计算!disabledTimeView && >=minTime 的最小合理时间
 export const calculateValidMinTime = (
   disabledTimeView: DisabledTimeView,
   minTime?: Dayjs,
@@ -429,4 +429,9 @@ export const calculateValidMinTime = (
     validTime = validTime.set('second', minValue);
   }
   return validTime;
+};
+
+export const dateToDayjs = (date: Date) => {
+  if (!date) return undefined;
+  return dayjs(date);
 };
