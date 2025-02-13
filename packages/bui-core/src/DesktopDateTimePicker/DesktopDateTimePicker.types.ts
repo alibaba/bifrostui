@@ -87,9 +87,9 @@ export type DateTimePickerProps<
        */
       inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
       /**
-       * 日期选择器类型
+       * 选择器类型
        */
-      picker?: 'year' | 'month' | 'day';
+      views?: Array<'year' | 'month' | 'day' | 'hour' | 'minute' | 'second'>;
       /**
        * 头部操作栏左边图标
        */

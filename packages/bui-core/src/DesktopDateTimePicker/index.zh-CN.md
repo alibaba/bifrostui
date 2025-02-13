@@ -283,7 +283,7 @@ export default () => {
 
 ### 日期选择器类型
 
-通过 `picker` 指定可选范围。
+通过 `views` 指定可选范围。
 
 ```tsx
 import { DesktopDateTimePicker, Stack } from '@bifrostui/react';
@@ -298,7 +298,7 @@ export default () => {
       <div style={{ width: '500px' }}>
         <DesktopDateTimePicker
           value={value}
-          picker="year"
+          views={['year', 'month', 'hour', 'minute', 'second']}
           format="YYYY"
           onChange={(e, res) => {
             console.log('日期变化：', res);
@@ -601,7 +601,7 @@ export default () => {
 | icon               | 输入框icon                       | React.ReactNode                                               | -                   |
 | inputRef           | 输入框Ref                        | Ref                                                           | -                   |
 | inputProps         | \<input/> 标签透传属性           | React.InputHTMLAttributes                                     | -                   |
-| picker             | 日期选择器类型                   | year \| month \| day                                          | day                 |
+| views              | 选择器类型                       | year \| month \| day \| hour \| minute \| second              | -                   |
 | headerBarLeftIcon  | 头部操作栏左边图标               | (options: IDatePickerCustomIconProps) => React.ReactNode      | \<CaretLeftIcon />  |
 | headerBarRightIcon | 头部操作栏右边图标               | (options: IDatePickerCustomIconProps) => React.ReactNode      | \<CaretRightIcon /> |
 | disabled           | 日期选择器是否不可点击           | boolean                                                       | false               |
