@@ -57,6 +57,19 @@ const useGetDatePickerContent = (props) => {
     [7, 8, 9],
     [10, 11, 12],
   ];
+  const validateAndAdjustDate = (value) => {
+    const dateValue = dayjs(value);
+    const minValue = dayjs(minDate);
+    const maxValue = dayjs(maxDate);
+
+    if (dateValue.isBefore(minValue)) {
+      return minValue;
+    }
+    if (dateValue.isAfter(maxValue)) {
+      return maxValue;
+    }
+    return dateValue;
+  };
 
   /**
    * 切换上一个月
@@ -65,7 +78,7 @@ const useGetDatePickerContent = (props) => {
     e.stopPropagation();
     if (!isMinMonth) {
       const month = dayjs(calendarValue).subtract(1, 'month').toDate();
-      triggerChange(e, month);
+      triggerChange(e, validateAndAdjustDate(month).toDate());
     }
   };
 
@@ -76,7 +89,7 @@ const useGetDatePickerContent = (props) => {
     e.stopPropagation();
     if (!isMaxMonth) {
       const month = dayjs(calendarValue).add(1, 'month').toDate();
-      triggerChange(e, month);
+      triggerChange(e, validateAndAdjustDate(month).toDate());
     }
   };
   // 日历选择回调
@@ -90,7 +103,7 @@ const useGetDatePickerContent = (props) => {
         .minute(hms.minute())
         .second(hms.second());
       // 非受控需要更新value
-      triggerChange(e, dayjs(newValue).toDate());
+      triggerChange(e, validateAndAdjustDate(newValue).toDate());
     }
     if (closeOnSelect) {
       setIsOpen(false);
@@ -103,15 +116,15 @@ const useGetDatePickerContent = (props) => {
     if (selectType === 'year') {
       triggerChange(
         e,
-        dayjs((calendarValue || new Date()) as Date)
-          .year(data)
-          .toDate(),
+        validateAndAdjustDate(
+          dayjs((calendarValue || new Date()) as Date).year(data),
+        ).toDate(),
       );
       onYearChange?.(
         e,
-        dayjs((calendarValue || new Date()) as Date)
-          .year(data)
-          .toDate(),
+        validateAndAdjustDate(
+          dayjs((calendarValue || new Date()) as Date).year(data),
+        ).toDate(),
       );
       // 仅支持到年份选择
       if (picker === 'year' && closeOnSelect) {
@@ -124,15 +137,15 @@ const useGetDatePickerContent = (props) => {
     if (selectType === 'month') {
       triggerChange(
         e,
-        dayjs((calendarValue || new Date()) as Date)
-          .month(data - 1)
-          .toDate(),
+        validateAndAdjustDate(
+          dayjs((calendarValue || new Date()) as Date).month(data - 1),
+        ).toDate(),
       );
       onMonthChange?.(
         e,
-        dayjs((calendarValue || new Date()) as Date)
-          .month(data - 1)
-          .toDate(),
+        validateAndAdjustDate(
+          dayjs((calendarValue || new Date()) as Date).month(data - 1),
+        ).toDate(),
       );
       // 支持到日期选择
       if (picker === 'day') {

@@ -1,14 +1,14 @@
 import { DateOutlinedIcon } from '@bifrostui/icons';
 import dayjs from 'dayjs';
 import clsx from 'clsx';
-import React, { useMemo, useState, useRef, useEffect } from 'react';
-import { useValue, useForkRef } from '@bifrostui/utils';
+import React, { useMemo, useState, useEffect } from 'react';
+import { useValue } from '@bifrostui/utils';
 import { DateTimePickerProps } from './DesktopDateTimePicker.types';
-import './index.less';
 import { formatDate } from './utils';
 import DesktopPicker from '../DesktopPicker';
 import useGetDatePickerContent from '../DesktopDatePicker/useGetDatePickerContent';
 import useGetTimePickerContent from '../DesktopTimePicker/useGetTimePickerContent';
+import './index.less';
 
 const prefixCls = 'bui-datetime-picker';
 const DesktopDateTimePicker = React.forwardRef<
@@ -33,7 +33,7 @@ const DesktopDateTimePicker = React.forwardRef<
     icon,
     headerBarLeftIcon,
     headerBarRightIcon,
-    closeOnSelect = false,
+    closeOnSelect = true,
     onChange,
     onClose,
     onOpen,
@@ -45,8 +45,6 @@ const DesktopDateTimePicker = React.forwardRef<
     CalendarProps,
     ...others
   } = props;
-  const rootRef = useRef(null);
-  const nodeRef = useForkRef(ref, rootRef);
   // 是否展开日期选择
   const [isOpen, setIsOpen] = useState<boolean>(open);
 
@@ -72,8 +70,7 @@ const DesktopDateTimePicker = React.forwardRef<
   const formattedDefaultValue = formatDate(defaultValue, minDate, maxDate);
 
   const [inputStr, setInputStr] = useState<string>('');
-  const [renderInputStr, setRenderInputStr] = useState<boolean>(false);
-  // 选中日期，value和defaultValue优先级高于onChange
+  const [useUserStr, setUseUserStr] = useState<boolean>(false);
   const [calendarValue, triggerChange] = useValue({
     value: formattedValue,
     defaultValue: formattedDefaultValue,
@@ -112,13 +109,14 @@ const DesktopDateTimePicker = React.forwardRef<
     headerBarLeftIcon,
     headerBarRightIcon,
     CalendarProps,
+    onClose,
     monthRender,
     yearRender,
     onMonthChange,
     onYearChange,
-    closeOnSelect,
+    closeOnSelect: false,
     style: {
-      borderRadius: 0,
+      borderRadius: '3px 0px 0px 3px',
     },
   });
   const { desktopTimePicker } = useGetTimePickerContent({
@@ -129,6 +127,7 @@ const DesktopDateTimePicker = React.forwardRef<
     maxTime: dayjs(maxDate),
     setIsOpen,
     triggerChange,
+    closeOnSelect,
     timeValue: dayjs(calendarValue),
   });
 
@@ -138,18 +137,14 @@ const DesktopDateTimePicker = React.forwardRef<
     // 输入框清空
     if (newValue.length === 0) {
       setInputStr('');
-      setRenderInputStr(true);
+      setUseUserStr(true);
       triggerChange(e, null);
       return;
     }
-    // 输入框长度小于format长度, 设置输入框
-    if (newValue.length > 0 && newValue.length !== format.length) {
-      setInputStr(e.target.value);
-      setRenderInputStr(true);
-    } else if (dayjs(newValue).isValid()) {
+    if (dayjs(newValue, format, true).isValid()) {
       // 输入框长度等于format长度, 检查数值有效性
       setInputStr('');
-      setRenderInputStr(false);
+      setUseUserStr(false);
       if (disabledDate?.(dayjs(newValue).toDate())) {
         return;
       }
@@ -158,7 +153,7 @@ const DesktopDateTimePicker = React.forwardRef<
         triggerChange(e, maxDate);
         return;
       }
-      // 小于最大值，赋值最小值
+      // 小于最小值，赋值最小值
       if (dayjs(newValue).isBefore(minDate)) {
         triggerChange(e, minDate);
         return;
@@ -166,7 +161,7 @@ const DesktopDateTimePicker = React.forwardRef<
       triggerChange(e, dayjs(e.target.value).toDate());
     } else {
       // 输入框长度等于format长度, 输入无效
-      setRenderInputStr(true);
+      setUseUserStr(true);
       setInputStr(e.target.value);
     }
   };
@@ -182,24 +177,21 @@ const DesktopDateTimePicker = React.forwardRef<
     if (placeholder) {
       return placeholder;
     }
-    if (format) {
-      return format;
-    }
-    return 'YYYY/MM/DD';
+    return format;
   }, [placeholder, format]);
 
   const renderValue = useMemo(() => {
-    if (renderInputStr) {
+    if (useUserStr) {
       return inputStr;
     }
     if (calendarValue) {
       return dayjs(calendarValue as Date).format(format);
     }
-    return 'YYYY/MM/DD';
-  }, [calendarValue, inputStr, renderInputStr, format]);
+    return '';
+  }, [calendarValue, inputStr, useUserStr, format]);
 
   useEffect(() => {
-    setRenderInputStr(false);
+    setUseUserStr(false);
   }, [calendarValue]);
   return (
     <div
@@ -208,7 +200,7 @@ const DesktopDateTimePicker = React.forwardRef<
         [`${prefixCls}-disabled`]: disabled,
         [`${prefixCls}-active`]: isOpen,
       })}
-      ref={nodeRef}
+      ref={ref}
     >
       <DesktopPicker
         open={open ?? isOpen}
@@ -234,6 +226,7 @@ const DesktopDateTimePicker = React.forwardRef<
       >
         <div className={`${prefixCls}-container`}>
           <input
+            {...inputProps}
             aria-invalid
             autoComplete="off"
             placeholder={showPlaceholder}
@@ -243,8 +236,7 @@ const DesktopDateTimePicker = React.forwardRef<
             className={clsx(`${prefixCls}-content`, {
               [inputProps?.className]: inputProps?.className,
             })}
-            onBlur={() => setRenderInputStr(false)}
-            {...inputProps}
+            onBlur={() => setUseUserStr(false)}
             onClick={handleDatePickerInputClick}
             onChange={onInputChange}
             value={renderValue}
