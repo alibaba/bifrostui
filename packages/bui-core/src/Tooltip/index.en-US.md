@@ -105,13 +105,13 @@ export default () => {
           justifyContent: 'space-between',
         }}
       >
-        <Tooltip trigger="hover" title="This is a tooltip" placement="topLeft">
+        <Tooltip trigger={['hover', 'click']} title="This is a tooltip" placement="topLeft">
           {packageButton(<span>topLeft</span>)}
         </Tooltip>
-        <Tooltip trigger="hover" title="This is a tooltip" placement="top">
+        <Tooltip trigger={['hover', 'click']} title="This is a tooltip" placement="top">
           {packageButton(<span>top</span>)}
         </Tooltip>
-        <Tooltip trigger="hover" title="This is a tooltip" placement="topRight">
+        <Tooltip trigger={['hover', 'click']} title="This is a tooltip" placement="topRight">
           {packageButton(<span>topRight</span>)}
         </Tooltip>
       </div>
@@ -123,14 +123,14 @@ export default () => {
           flexDirection: 'column',
         }}
       >
-        <Tooltip trigger="hover" title="This is a tooltip" placement="leftTop">
+        <Tooltip trigger={['hover', 'click']} title="This is a tooltip" placement="leftTop">
           {packageButton(<span>leftTop</span>)}
         </Tooltip>
-        <Tooltip trigger="hover" title="This is a tooltip" placement="left">
+        <Tooltip trigger={['hover', 'click']} title="This is a tooltip" placement="left">
           {packageButton(<span>left</span>)}
         </Tooltip>
         <Tooltip
-          trigger="hover"
+          trigger={['hover', 'click']}
           title="This is a tooltip"
           placement="leftBottom"
         >
@@ -145,14 +145,14 @@ export default () => {
           flexDirection: 'column',
         }}
       >
-        <Tooltip trigger="hover" title="This is a tooltip" placement="rightTop">
+        <Tooltip trigger={['hover', 'click']} title="This is a tooltip" placement="rightTop">
           {packageButton(<span>rightTop</span>)}
         </Tooltip>
-        <Tooltip trigger="hover" title="This is a tooltip" placement="right">
+        <Tooltip trigger={['hover', 'click']} title="This is a tooltip" placement="right">
           {packageButton(<span>right</span>)}
         </Tooltip>
         <Tooltip
-          trigger="hover"
+          trigger={['hover', 'click']}
           title="This is a tooltip"
           placement="rightBottom"
         >
@@ -169,17 +169,17 @@ export default () => {
         }}
       >
         <Tooltip
-          trigger="hover"
+          trigger={['hover', 'click']}
           title="This is a tooltip"
           placement="bottomLeft"
         >
           {packageButton(<span>bottomLeft</span>)}
         </Tooltip>
-        <Tooltip trigger="hover" title="This is a tooltip" placement="bottom">
+        <Tooltip trigger={['hover', 'click']} title="This is a tooltip" placement="bottom">
           {packageButton(<span>bottom</span>)}
         </Tooltip>
         <Tooltip
-          trigger="hover"
+          trigger={['hover', 'click']}
           title="This is a tooltip"
           placement="bottomRight"
         >
