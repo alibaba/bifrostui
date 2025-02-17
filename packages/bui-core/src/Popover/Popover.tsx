@@ -95,6 +95,8 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   };
 
   const onRootElementMouted = throttle(async () => {
+    if (!tipRef.current) return;
+
     const {
       direction: newParsedDirection,
       location: newParsedLocation = 'center',
