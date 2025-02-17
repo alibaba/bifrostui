@@ -1,0 +1,37 @@
+.bui-swipe-action-button {
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: var(--background-button-color);
+  color: #fff;
+  box-sizing: content-box;
+  white-space: nowrap;
+  font-family: var(--bui-font-family);
+}
+
+.btn-bg(@color) {
+  background-color: var(~'--bui-color-@{color}');
+}
+
+.bui-swipe-action-button-primary {
+  .btn-bg(primary);
+}
+
+.bui-swipe-action-button-success {
+  .btn-bg(success);
+}
+
+.bui-swipe-action-button-info {
+  .btn-bg(info);
+}
+
+.bui-swipe-action-button-warning {
+  .btn-bg(warning);
+}
+
+.bui-swipe-action-button-danger {
+  .btn-bg(danger);
+}

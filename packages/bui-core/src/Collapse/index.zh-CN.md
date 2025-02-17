@@ -1,6 +1,6 @@
 ---
 group: 动效
-name: collapse 折叠动效
+name: Collapse 折叠动效
 ---
 
 # Collapse 折叠动效
@@ -15,7 +15,7 @@ Collapse组件支持两个折叠方向，通过`direction`参数传入，如果�
 
 #### 横向
 
-折叠方向从元素左边开始展开
+折叠方向从元素横边开始展开
 
 ```tsx
 import React, { useState } from 'react';
@@ -47,7 +47,7 @@ export default () => {
 
 #### 纵向
 
-折叠方向从元素上边开始展开
+折叠方向从元素纵边开始展开
 
 ```tsx
 import React, { useState } from 'react';

@@ -231,10 +231,10 @@ export default () => {
 | endIcon      | Input with icon, set the back icon. If clearable=true, both icons will be displayed                                  | ReactNode                                                              | -             |
 | placeholder  | Occupation Content                                                                                                   | string                                                                 | -             |
 | disabled     | Do you want to disable it                                                                                            | boolean                                                                | false         |
-| onClear      | Clicking on the clear icon callback will also clear the input box content in an uncontrolled state                   | (e: React.SyntheticEvent) => void                                      | -             |
+| onClear      | Clicking on the clear icon callback will also clear the input box content in an uncontrolled state                   | (e: React.MouseEvent<HTMLDivElement\>) => void                         | -             |
 | onChange     | Callback when input box content changes                                                                              | (e: React.ChangeEvent<HTMLInputElement\>,data: {value:string}) => void | -             |
-| onFocus      | Callback during focusing                                                                                             | (e: React.SyntheticEvent) => void                                      | -             |
-| onBlur       | Callback when out of focus                                                                                           | (e: React.SyntheticEvent) => void                                      | -             |
+| onFocus      | Callback during focusing                                                                                             | (e: React.FocusEvent<HTMLInputElement\>) => void                       | -             |
+| onBlur       | Callback when out of focus                                                                                           | (e: React.FocusEvent<HTMLInputElement\>) => void                       | -             |
 
 ## Style variables
 

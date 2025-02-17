@@ -1,0 +1,34 @@
+name: UI Test
+
+on: [push]
+
+jobs:
+  build_and_test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '9'
+
+      - name: pnpm install
+        run: |
+          pnpm install
+
+      - name: pnpm run ui:test
+        run: |
+          pnpm run ui:test
+
+      - name: upload test result
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          path: backstop_data

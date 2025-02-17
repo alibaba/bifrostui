@@ -1,0 +1,63 @@
+@import '@bifrostui/styles/mixins/index.less';
+@class-prefix-datetime-picker: ~'bui-datetime-picker';
+
+.@{class-prefix-datetime-picker} {
+  position: relative;
+  cursor: pointer;
+  height: var(--bui-input-height, 32px);
+  min-width: 100px;
+  font-size: var(--bui-title-size-3);
+  border-radius: 5px;
+  background-color: var(--bui-color-bg-view);
+  font-family: var(--bui-font-family);
+  box-sizing: border-box;
+  border: 1px solid var(--bui-color-border-default);
+
+  &:active,
+  &-active {
+    box-shadow: 0 0 0 2px var(--bui-color-bg-default);
+  }
+
+  &-icon {
+    display: flex;
+    align-items: center;
+    font-size: var(--bui-title-size-3);
+  }
+
+  &-container {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    height: 100%;
+  }
+
+  &-placeholder {
+    color: var(--bui-color-fg-disabled);
+  }
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: 0;
+  }
+
+  &-box {
+    display: flex;
+    width: 360px;
+  }
+}
+
+.@{class-prefix-datetime-picker}.@{class-prefix-datetime-picker}-disabled {
+  pointer-events: none;
+  box-shadow: none;
+  background-color: rgba(188, 188, 188, 0.2);
+
+  & input {
+    color: var(--bui-color-fg-subtle);
+  }
+}

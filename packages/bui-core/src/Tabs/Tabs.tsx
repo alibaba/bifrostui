@@ -29,6 +29,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const [lineData, setLineData] = useState({
     x: 0,
     transitionInUse: false,
+    hasActiveTab: false,
   });
   const [maskData, setMaskData] = useState({
     leftMaskOpacity: 0,
@@ -78,6 +79,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     setLineData({
       x,
       transitionInUse,
+      hasActiveTab: !!activeTab,
     });
 
     const maxScrollDistance = containerScrollWidth - containerWidth;
@@ -128,8 +130,11 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
 
           const scrollLeft = container?.scrollLeft;
           const showLeftMask = scrollLeft > 0;
-          const showRightMask =
-            scrollLeft + container.offsetWidth < container.scrollWidth;
+          const rightRange = Math.abs(
+            container.scrollWidth - (scrollLeft + container.offsetWidth),
+          );
+          // 右侧遮罩rightRange在0-1范围内即可隐藏，处理浏览器兼容问题
+          const showRightMask = rightRange > 1;
 
           setMaskData({
             leftMaskOpacity: showLeftMask ? 1 : 0,
@@ -186,7 +191,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         <div
           ref={activeLineRef}
           className={clsx(`${prefixCls}-tabline`, {
-            'bui-tabline-invisible': isMini || !lineData.x,
+            'bui-tabline-invisible': isMini || !lineData.hasActiveTab,
           })}
           style={{
             transition: lineData.transitionInUse
