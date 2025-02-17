@@ -1,9 +1,6 @@
 /**
  * 使用LLM翻译md文件
- * 1. 通过 --component 指定
- * 如 node scripts/translate/translate.mjs --component Button 表示翻译 Button 组件下的 index.zh-CN.md 文件，并写入 index.en-US.md
- * 等价于运行 pnpm run md:trans --component Button
- * 2. 通过 --file 指定
+ * 也通过 --file 指定翻译特定的markdown文件
  * 如 node scripts/translate/translate.mjs --file ./packages/bui-icons/src/index.zh-CN.md
  */
 
@@ -13,6 +10,7 @@ import fs from 'node:fs';
 import path from 'path';
 import minimist from 'minimist';
 import ora from 'ora';
+import { input } from '@inquirer/prompts';
 import { fileURLToPath } from 'url';
 
 dotenv.config();
@@ -53,7 +51,7 @@ async function translateMarkdownFile(inputFilePath, outputFilePath) {
         fs.appendFileSync(outputFilePath, deltaText);
       }
     }
-    console.log(`翻译成功并已追加到 ${outputFilePath}`);
+    console.log(`\n翻译成功并已追加到 ${outputFilePath}`);
     spinner.stop();
   } catch (error) {
     console.error('翻译过程中发生错误:', error);
@@ -61,14 +59,20 @@ async function translateMarkdownFile(inputFilePath, outputFilePath) {
 }
 
 async function main() {
+  let componentName = '';
+  while (!componentName) {
+    componentName = await input({ message: '组件名称' });
+  }
+
   const argv = minimist(process.argv.slice(2));
+
   let inputFilePath;
   let outputFilePath;
-  if (argv.component) {
+  if (componentName) {
     const directory = path.resolve(
       __dirname,
       '../../packages/bui-core/src',
-      `${argv.component}`,
+      `${componentName}`,
     );
     inputFilePath = path.resolve(directory, 'index.zh-CN.md');
     outputFilePath = path.join(directory, 'index.en-US.md');

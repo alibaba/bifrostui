@@ -28,7 +28,8 @@
     "lint:script": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
     "lint:style": "stylelint ./**/*.less",
     "prepare": "husky install",
-    "md:trans": "node scripts/translate/translate.js",
+    "generate:markdown": "node scripts/generate-md/generateMd.mjs",
+    "md:trans": "node scripts/translate/translate.mjs",
     "check:credentials": "node scripts/check-account/check-credentials.js"
   },
   "devDependencies": {
