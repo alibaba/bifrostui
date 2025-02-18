@@ -19,9 +19,22 @@ import {
   Switch,
   Slider,
 } from '@bifrostui/react';
+// import { createTheme, mountTheme } from '@bifrostui/utils';
 import { themes, tabList } from './constants';
 import { Typography } from './Typography';
 import './index.less';
+
+// TODO
+// const rootContent = createTheme({
+//   rootSelector: ":root, [data-color-mode='light'][data-theme]",
+//   cssVars: {
+//     '--bui-color-primary': 'blue',
+//   },
+// });
+// console.log('rootContent:', rootContent);
+// mountTheme({
+//   theme: rootContent,
+// });
 
 const ThemeDesigner = () => {
   const [theme, setTheme] = useState('default');

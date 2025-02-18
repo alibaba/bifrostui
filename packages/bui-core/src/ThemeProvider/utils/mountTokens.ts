@@ -37,7 +37,7 @@ const updateTokens = (options: UpdateTokensOptions) => {
 
 /**
  * 挂载响应式自定义Tokens
- * 响应式相关的Tokens挂载在全局根节点上，暗黑模式或大麦高亮主题下可自定义额外Toekns复写响应式Tokens
+ * 将自定义Tokens挂载在rootSelector.defaultLight下，其他主题下可自定义额外Toekns复写响应式Tokens
  */
 export const mountResponsiveTokens = (options: MountResponsiveTokenOptions) => {
   const { responsive, breakpoints = defaultBreakpoints } = options || {};
@@ -70,7 +70,7 @@ export const mountResponsiveTokens = (options: MountResponsiveTokenOptions) => {
  * 1. 默认高亮模式（defaultLightToken 复写 default-light.less）
  * 2. 默认暗黑模式（defaultDarkToken 复写 default-dark.less）
  * 3. 大麦高亮模式（dmLightToken 复写 dm-light.less）
- * 4. 大麦暗黑模式（dmDarkToken 复写 dm-dark.less）
+ * 4. 先锋版高亮模式（pioneerLightToken 复写 pioneer-light.less）
  */
 export const overrideBuiltInThemes = (
   tokenOptions: BuiltInThemesTokenOptions,
@@ -98,7 +98,7 @@ export const overrideBuiltInThemes = (
 
 /**
  * 挂载组件的自定义Tokens
- * **!SECTION 注意：只有自定义Tokens才会挂载到指定容器中
+ * **!SECTION 注意：将自定义Tokens挂载在rootSelector.defaultLight下，其他主题下可自定义额外Toekns复写
  */
 const mountComponentsTokens = (options: MountComponentsTokenOptions) => {
   const { isRoot = false, token, container, containerId } = options || {};
@@ -122,11 +122,11 @@ const mountComponentsTokens = (options: MountComponentsTokenOptions) => {
  * 挂载Design Tokens
  * Tokens的优先级：
  * 1. 通常情况：组件的Tokens > 响应式Tokens > BUI内置Tokens（挂载顺序控制）
- * 2. 暗黑模式：组件的Tokens > BUI内置的两种暗黑模式Tokens > 响应式Tokens (选择器权重控制)
+ * 2. 暗黑模式：组件的Tokens > BUI内置的暗黑模式Tokens > 响应式Tokens (选择器权重控制)
  *
  * - 挂载顺序决定BUI内置Tokens（暗黑模式除外）和响应式Tokens的优先级
  * - 选择器权重决定暗黑模式的Tokens和响应式Tokens的优先级
- * - 命名规则决定组件的Tokens（如：--bui-button-xxx）
+ * - 命名规则决定组件的Tokens（如：--bui-btn-xxx）
  */
 export const mountTokens = (tokenOptions?: ThemeProps) => {
   if (isMini) return;

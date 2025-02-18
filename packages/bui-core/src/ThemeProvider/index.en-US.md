@@ -14,7 +14,7 @@ ThemeProvider relies on React's' context 'to pass themes and internationalizatio
 
 \*\*Developers should pay attention to the following two points when customizing Tokens. For detailed information on theme customization, please refer to [Customize Theme] (/guide/theme).
 
-1. Do not confuse definitions: Different business scenarios should use corresponding APIs to customize Tokens. For example, responsive layout should use the responsive attribute, dark mode should use the defaultDarkToken or dmDarkToken attribute, and overlay built-in highlight mode Tokens should use defaultLightToken or dmLightToken.
+1. Do not confuse definitions: Different business scenarios should use corresponding APIs to customize Tokens. For example, responsive layout should use the responsive attribute, dark mode should use the defaultDarkToken, and overlay built-in highlight mode Tokens should use defaultLightToken or dmLightToken.
 2. Distinguish priorities: The priority of special scenarios is always higher than that of global general scenarios.
 
 ### browser

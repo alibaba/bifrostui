@@ -17,7 +17,6 @@ BUI的Tokens分为三个层面
    - `defaultLightToken`（默认高亮模式的全局Token）
    - `defaultDarkToken`（默认暗黑模式的全局Token）
    - `dmLightToken`（大麦高亮模式的全局Token）
-   - `dmDarkToken`（大麦暗黑模式的全局Token）
 
 2. **响应式Tokens：** <br>
    BUI默认是移动端优先的响应式方案，使用者可以通过 `responsive` 属性自定义响应式Tokens。
@@ -29,7 +28,7 @@ BUI的Tokens分为三个层面
 
 通常情况下，从局部高于通用的角度来看，三种Tokens的优先级是：<br>
 **组件的Tokens > 响应式Tokens > BUI内置Tokens** 。<br>
-但对于暗黑模式这种特殊场景，**BUI内置的两种暗黑模式Tokens的优先级要高于响应式Tokens**。
+但对于暗黑模式这种特殊场景，**BUI内置的暗黑模式Tokens的优先级要高于响应式Tokens**。
 
 ### 渠道差异性
 

@@ -5,9 +5,17 @@
   "description": "Common style definitions for BUI React components",
   "homepage": "http://bui.taopiaopiao.com",
   "license": "MIT",
+  "exports": {
+    ".": "./dist/index.css",
+    "./index.less": "./index.less",
+    "./themes": "./themes/index.less",
+    "./registry": "./registry/index.mjs",
+    "./mixins/index.less": "./mixins/index.less"
+  },
   "files": [
     "index.less",
-    "theme",
+    "themes",
+    "registry",
     "mixins",
     "dist",
     "package.json",
@@ -18,6 +26,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
+    "theme:create": "node ./scripts/create-theme.mjs",
     "build": "rm -rf dist && mkdir dist && lessc index.less > dist/index.css"
   },
   "devDependencies": {

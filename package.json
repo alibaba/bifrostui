@@ -10,7 +10,7 @@
     "v:beta": "npx lerna version prerelease --preid=beta --force-publish --message 'Publish'",
     "pub:online": "pnpm -r publish",
     "pub:beta": "pnpm -r publish --tag beta",
-    "start": "cross-env PUBLIC_PATH=/ dumi dev",
+    "start": "cross-env PUBLIC_PATH=/ concurrently 'dumi dev' 'pnpm watch:theme'",
     "start:weapp": "node scripts/mini-program-site/index.js --type weapp",
     "start:alipay": "node scripts/mini-program-site/index.js --type alipay",
     "start:tt": "node scripts/mini-program-site/index.js --type tt",
@@ -31,7 +31,9 @@
     "lint:style": "stylelint ./**/*.less",
     "prepare": "husky install",
     "md:trans": "node scripts/translate/translate.js",
-    "check:credentials": "node scripts/check-account/check-credentials.js"
+    "check:credentials": "node scripts/check-account/check-credentials.js",
+    "theme": "node scripts/execute-script/theme.js",
+    "watch:theme": "node scripts/watch/theme.js"
   },
   "devDependencies": {
     "@ant-design/icons-svg": "4.4.2",
@@ -70,8 +72,10 @@
     "axios": "^1.7.7",
     "babel-jest": "^28.1.0",
     "chalk": "^4.1.2",
+    "chokidar": "^3.5.3",
     "clsx": "^2.1.1",
     "copy-to-clipboard": "3.3.3",
+    "concurrently": "^8.0.1",
     "cross-env": "^7.0.3",
     "dumi": "^2.4.17",
     "esbuild": "^0.19.7",
@@ -115,6 +119,7 @@
     "react-dom": "^18.3.1",
     "react-test-renderer": "^18.0.0",
     "rimraf": "^3.0.0",
+    "shelljs": "^0.8.5",
     "stylelint": "^15.6.1",
     "stylelint-config-standard": "^33.0.0",
     "stylelint-prettier": "^4.0.0",

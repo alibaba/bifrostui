@@ -1,6 +1,6 @@
 /* stylelint-disable selector-type-no-unknown */
 
-@import './theme/index.less';
+@import './themes/index.less';
 @import './mixins/index.less';
 
 /* 经典 */
@@ -9,7 +9,7 @@ page,
 xhs-page,
 .bui-default-light,
 [data-color-mode='light'][data-theme] {
-  .light();
+  .default-light();
 }
 
 /** 大麦主题-高亮 */
@@ -28,7 +28,7 @@ xhs-page,
 :root,
 .bui-dark,
 [data-color-mode='dark'][data-theme] {
-  .dark();
+  .default-dark();
 }
 
 [data-color-mode] {

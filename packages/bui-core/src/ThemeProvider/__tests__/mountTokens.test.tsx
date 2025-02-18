@@ -57,7 +57,6 @@ describe('MountToken Functions', () => {
       defaultLightToken: { '--bui-color-red': '#f00' },
       defaultDarkToken: { '--bui-color-fg-default': '#fff' },
       dmLightToken: { '--bui-color-blue': 'blue' },
-      dmDarkToken: { '--bui-color-powder-start': 'red' },
     };
 
     overrideBuiltInThemes(tokenOptions);
@@ -65,7 +64,6 @@ describe('MountToken Functions', () => {
     const defaultLightTokenSelector = rootSelector.defaultLight.join(',');
     const defaultDarkTokenSelector = rootSelector.defaultDark.join(',');
     const dmLightTokenSelector = rootSelector.dmLight.join(',');
-    const dmtDarkTokenSelector = rootSelector.dmDark.join(',');
 
     expect(document.head.innerHTML).toContain(defaultLightTokenSelector);
     expect(document.head.innerHTML).toContain('--bui-color-red: #f00;');
@@ -75,28 +73,25 @@ describe('MountToken Functions', () => {
 
     expect(document.head.innerHTML).toContain(dmLightTokenSelector);
     expect(document.head.innerHTML).toContain('--bui-color-blue: blue;');
-
-    expect(document.head.innerHTML).toContain(dmtDarkTokenSelector);
-    expect(document.head.innerHTML).toContain('--bui-color-powder-start: red;');
   });
 
   test('mountResponsiveTokens with default breakpoints', () => {
     const options = {
       responsive: {
         xs: {
-          '--bui-button-border-radius': '2px',
+          '--bui-btn-border-radius': '2px',
         },
         sm: {
-          '--bui-button-border-radius': '6px',
+          '--bui-btn-border-radius': '6px',
         },
         md: {
-          '--bui-button-border-radius': '10px',
+          '--bui-btn-border-radius': '10px',
         },
         lg: {
-          '--bui-button-border-radius': '14px',
+          '--bui-btn-border-radius': '14px',
         },
         xl: {
-          '--bui-button-border-radius': '16px',
+          '--bui-btn-border-radius': '16px',
         },
       },
     };
@@ -112,23 +107,23 @@ describe('MountToken Functions', () => {
 
     // xs
     expect(styleElement.textContent).toContain(
-      `@media (max-width: ${breakpoints.xs}) {  --bui-button-border-radius: 2px; }`,
+      `@media (max-width: ${breakpoints.xs}) {  --bui-btn-border-radius: 2px; }`,
     );
     // sm
     expect(styleElement.textContent).toContain(
-      `@media (min-width: ${breakpoints.sm}) {  --bui-button-border-radius: 6px; }`,
+      `@media (min-width: ${breakpoints.sm}) {  --bui-btn-border-radius: 6px; }`,
     );
     // md
     expect(styleElement.textContent).toContain(
-      `@media (min-width: ${breakpoints.md}) {  --bui-button-border-radius: 10px; }`,
+      `@media (min-width: ${breakpoints.md}) {  --bui-btn-border-radius: 10px; }`,
     );
     // lg
     expect(styleElement.textContent).toContain(
-      `@media (min-width: ${breakpoints.lg}) {  --bui-button-border-radius: 14px; }`,
+      `@media (min-width: ${breakpoints.lg}) {  --bui-btn-border-radius: 14px; }`,
     );
     // xl
     expect(styleElement.textContent).toContain(
-      `@media (min-width: ${breakpoints.xl}) {  --bui-button-border-radius: 16px; }`,
+      `@media (min-width: ${breakpoints.xl}) {  --bui-btn-border-radius: 16px; }`,
     );
   });
 
@@ -136,19 +131,19 @@ describe('MountToken Functions', () => {
     const options = {
       responsive: {
         xs: {
-          '--bui-button-border-radius': '2px',
+          '--bui-btn-border-radius': '2px',
         },
         sm: {
-          '--bui-button-border-radius': '6px',
+          '--bui-btn-border-radius': '6px',
         },
         md: {
-          '--bui-button-border-radius': '10px',
+          '--bui-btn-border-radius': '10px',
         },
         lg: {
-          '--bui-button-border-radius': '14px',
+          '--bui-btn-border-radius': '14px',
         },
         xl: {
-          '--bui-button-border-radius': '16px',
+          '--bui-btn-border-radius': '16px',
         },
       },
       breakpoints: {
@@ -171,23 +166,23 @@ describe('MountToken Functions', () => {
 
     // xs
     expect(styleElement.textContent).toContain(
-      `@media (max-width: ${options.breakpoints.xs}) {  --bui-button-border-radius: 2px; }`,
+      `@media (max-width: ${options.breakpoints.xs}) {  --bui-btn-border-radius: 2px; }`,
     );
     // sm
     expect(styleElement.textContent).toContain(
-      `@media (min-width: ${options.breakpoints.sm}) {  --bui-button-border-radius: 6px; }`,
+      `@media (min-width: ${options.breakpoints.sm}) {  --bui-btn-border-radius: 6px; }`,
     );
     // md
     expect(styleElement.textContent).toContain(
-      `@media (min-width: ${options.breakpoints.md}) {  --bui-button-border-radius: 10px; }`,
+      `@media (min-width: ${options.breakpoints.md}) {  --bui-btn-border-radius: 10px; }`,
     );
     // lg
     expect(styleElement.textContent).toContain(
-      `@media (min-width: ${options.breakpoints.lg}) {  --bui-button-border-radius: 14px; }`,
+      `@media (min-width: ${options.breakpoints.lg}) {  --bui-btn-border-radius: 14px; }`,
     );
     // xl
     expect(styleElement.textContent).toContain(
-      `@media (min-width: ${options.breakpoints.xl}) {  --bui-button-border-radius: 16px; }`,
+      `@media (min-width: ${options.breakpoints.xl}) {  --bui-btn-border-radius: 16px; }`,
     );
   });
 
@@ -195,7 +190,7 @@ describe('MountToken Functions', () => {
     const tokenOptions = {
       isRoot: false,
       token: {
-        '--bui-button-border-radius': '2px',
+        '--bui-btn-border-radius': '2px',
       },
       containerId: testId,
       container: 'test',
@@ -206,7 +201,7 @@ describe('MountToken Functions', () => {
     mountTokens(tokenOptions);
 
     expect(document.body.innerHTML).toContain(
-      '<div class="bui-var-bl"><style type="text/css">.bui-var-bl {   --bui-button-border-radius: 2px; }</style></div>',
+      '<div class="bui-var-bl"><style type="text/css">.bui-var-bl {   --bui-btn-border-radius: 2px; }</style></div>',
     );
   });
 
