@@ -19,6 +19,9 @@
       "@bifrostui/icons": ["./packages/bui-icons/src/index.ts"],
       "@bifrostui/types": ["./packages/bui-types/src/index.ts"],
       "@bifrostui/utils": ["./packages/bui-utils/src/index.ts"],
+      "@bifrostui/styles/registry": [
+        "./packages/bui-styles/registry/index.mjs"
+      ],
       "testing": ["./tests"]
     },
     "allowSyntheticDefaultImports": true

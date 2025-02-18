@@ -33,3 +33,4 @@ export { default as getRootElement } from './getRootElement';
 export { default as getBoundingClientRect } from './getBoundingClientRect';
 export * from './isType';
 export * from './render';
+export * from './themeCreator';

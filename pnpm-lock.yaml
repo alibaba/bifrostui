@@ -116,9 +116,15 @@ importers:
       chalk:
         specifier: ^4.1.2
         version: 4.1.2
+      chokidar:
+        specifier: ^3.5.3
+        version: 3.6.0
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      concurrently:
+        specifier: ^8.0.1
+        version: 8.2.2
       copy-to-clipboard:
         specifier: 3.3.3
         version: 3.3.3
@@ -251,6 +257,9 @@ importers:
       rimraf:
         specifier: ^3.0.0
         version: 3.0.2
+      shelljs:
+        specifier: ^0.8.5
+        version: 0.8.5
       stylelint:
         specifier: ^15.6.1
         version: 15.11.0(typescript@4.9.5)

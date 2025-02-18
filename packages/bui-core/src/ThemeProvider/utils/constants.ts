@@ -37,7 +37,10 @@ export const rootSelector = {
   ],
   defaultDark: ['.bui-dark', '[data-color-mode="dark"][data-theme="default"]'],
   dmLight: ['.bui-dm-light', '[data-color-mode="light"][data-theme="dm"]'],
-  dmDark: ['.bui-dm-dark', '[data-color-mode="dark"][data-theme="dm"]'],
+  pioneerLight: [
+    '.bui-pioneer-light',
+    '[data-color-mode="light"][data-theme="pioneer"]',
+  ],
 };
 
 /**
