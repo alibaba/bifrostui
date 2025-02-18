@@ -17,7 +17,7 @@ const Rating = forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
     size = 'medium',
     defaultValue,
     allowHalf = false,
-    icon = <StarFilledIcon htmlColor="#ced1d6" />,
+    icon = <StarFilledIcon color="disabled" />,
     checkedIcon = <StarFilledIcon color="warning" />,
     count = 5,
     readOnly = false,
