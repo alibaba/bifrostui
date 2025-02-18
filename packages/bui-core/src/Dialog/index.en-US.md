@@ -21,7 +21,7 @@ import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
-  const handleClickConfirm = async () => {
+  const handleClickConfirm = async (showCancel) => {
     const res = await Dialog({
       header: '标题',
       message: '这是描述内容',
@@ -47,6 +47,9 @@ export default () => {
         confirm
       </Button>
       <Button onClick={handleClickConfirm}>等待confirm完成</Button>
+      <Button onClick={() => handleClickConfirm(false)}>
+        等待confirm完成且不展示取消按钮
+      </Button>
     </Stack>
   );
 };
@@ -69,7 +72,7 @@ export default () => {
   const theme = useTheme();
   const [dialog, contextHolder] = Dialog.useDialog();
 
-  const handleClickConfirm = async () => {
+  const handleClickConfirm = async (showCancel) => {
     const res = await dialog({
       header: '标题',
       message: '这是描述内容',
@@ -97,6 +100,9 @@ export default () => {
           confirm
         </Button>
         <Button onClick={handleClickConfirm}>等待confirm完成</Button>
+        <Button onClick={() => handleClickConfirm(false)}>
+          等待confirm完成且不展示取消按钮
+        </Button>
       </Stack>
     </ThemeProvider>
   );
@@ -218,6 +224,16 @@ export default () => {
         >
           自定义确认按钮文本
         </Button>
+        <Button
+          onClick={() => {
+            dialog.confirm({
+              header: '不展示取消按钮',
+              showCancel: false,
+            });
+          }}
+        >
+          不展示取消按钮
+        </Button>
       </Stack>
     </ThemeProvider>
   );
@@ -278,14 +294,15 @@ export default () => {
 
 #### DialogOptions
 
-| attribute   | explain                 | type                                      | Default value |
-| ----------- | ----------------------- | ----------------------------------------- | ------------- |
-| header      | custom header           | `React.ReactNode`                         | -             |
-| message     | Custom message          | `React.ReactNode`                         | -             |
-| confirmText | Confirm button copy     | `React.ReactNode`                         | confirm       |
-| cancelText  | Cancel button text      | `React.ReactNode`                         | cancel        |
-| onConfirm   | Confirm button callback | `(val?: string) => void \|Promise<void>;` | -             |
-| onCancel    | Cancel button callback  | `() =>void \|Promise<void>`               | -             |
+| attribute   | explain                              | type                                      | Default value |
+| ----------- | ------------------------------------ | ----------------------------------------- | ------------- |
+| header      | custom header                        | `React.ReactNode`                         | -             |
+| message     | Custom message                       | `React.ReactNode`                         | -             |
+| confirmText | Confirm button copy                  | `React.ReactNode`                         | confirm       |
+| cancelText  | Cancel button text                   | `React.ReactNode`                         | cancel        |
+| onConfirm   | Confirm button callback              | `(val?: string) => void \|Promise<void>;` | -             |
+| onCancel    | Cancel button callback               | `() =>void \|Promise<void>`               | -             |
+| showCancel  | Whether to display the cancel button | boolean                                   | true          |
 
 The value of ConfirmOptions is the same as that of DialogOptions
 

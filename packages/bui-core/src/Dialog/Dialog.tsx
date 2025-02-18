@@ -20,6 +20,7 @@ const Dialog = React.forwardRef<DialogRef, DialogProps>((props, ref) => {
     type,
     confirmText,
     cancelText,
+    showCancel = true,
     placeholder,
     InputProps,
     className,
@@ -40,13 +41,15 @@ const Dialog = React.forwardRef<DialogRef, DialogProps>((props, ref) => {
   });
   const footerNode = (
     <div className={`${prefixCls}-body-footer`}>
-      <Button
-        variant="text"
-        onClick={onClose}
-        className={`${prefixCls}-body-button`}
-      >
-        {cancelText || cancel}
-      </Button>
+      {showCancel ? (
+        <Button
+          variant="text"
+          onClick={onClose}
+          className={`${prefixCls}-body-button`}
+        >
+          {cancelText || cancel}
+        </Button>
+      ) : null}
       <Button
         variant="text"
         color="primary"
