@@ -76,7 +76,7 @@ describe('IconButton', () => {
       </MiniIconButton>,
     );
     expect(mockBackdropFn).toHaveBeenCalledWith(
-      expect.objectContaining({ htmlColor: '#fff' }),
+      expect.objectContaining({ htmlColor: 'var(--bui-color-white)' }),
     );
   });
 });

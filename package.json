@@ -22,7 +22,7 @@
     "docs:build:beta": "cross-env PUBLIC_PATH=/beta/ dumi build && chmod +x ./scripts/handle-docs.sh && ./scripts/handle-docs.sh $docs_version",
     "clear": "rimraf **/node_modules",
     "package": "chmod +x ./scripts/pack-packages.sh && ./scripts/pack-packages.sh",
-    "test": "jest --no-cache",
+    "test": "jest",
     "ci:test": "pnpm run test --coverage",
     "ci:eslint": "pnpm run lint:script -f json -o ./.ci/eslint.json",
     "generate:mini:files": "node scripts/mini-program-site/generateMiniFiles.js",
