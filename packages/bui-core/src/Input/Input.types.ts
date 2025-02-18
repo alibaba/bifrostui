@@ -55,7 +55,7 @@ export type InputProps<
       /**
        * 点击清除图标的回调，非受控状态也会清除输入框内容
        */
-      onClear?: (e: React.SyntheticEvent) => void;
+      onClear?: (e: React.MouseEvent<HTMLDivElement>) => void;
       /**
        * 输入框内容变化时的回调
        */
@@ -68,11 +68,11 @@ export type InputProps<
       /**
        * 聚焦时的回调
        */
-      onFocus?: (e: React.SyntheticEvent) => void;
+      onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
       /**
        * 失焦时的回调
        */
-      onBlur?: (e: React.SyntheticEvent) => void;
+      onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
     };
 
     defaultComponent: D;
