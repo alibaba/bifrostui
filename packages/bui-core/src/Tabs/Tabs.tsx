@@ -29,6 +29,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const [lineData, setLineData] = useState({
     x: 0,
     transitionInUse: false,
+    hasActiveTab: false,
   });
   const [maskData, setMaskData] = useState({
     leftMaskOpacity: 0,
@@ -78,6 +79,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     setLineData({
       x,
       transitionInUse,
+      hasActiveTab: !!activeTab,
     });
 
     const maxScrollDistance = containerScrollWidth - containerWidth;
@@ -186,7 +188,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         <div
           ref={activeLineRef}
           className={clsx(`${prefixCls}-tabline`, {
-            'bui-tabline-invisible': isMini || !lineData.x,
+            'bui-tabline-invisible': isMini || !lineData.hasActiveTab,
           })}
           style={{
             transition: lineData.transitionInUse

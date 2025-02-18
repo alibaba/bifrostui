@@ -231,10 +231,10 @@ export default () => {
 | endIcon      | 带图标的 input，设置后置图标，若 clearable=true，则两个图标都会展示         | ReactNode                                                              | -      |
 | placeholder  | 占位内容                                                                    | string                                                                 | -      |
 | disabled     | 是否禁用                                                                    | boolean                                                                | false  |
-| onClear      | 点击清除图标的回调，非受控状态也会清除输入框内容                            | (e: React.SyntheticEvent) => void                                      | -      |
+| onClear      | 点击清除图标的回调，非受控状态也会清除输入框内容                            | (e: React.MouseEvent<HTMLDivElement\>) => void                         | -      |
 | onChange     | 输入框内容变化时的回调                                                      | (e: React.ChangeEvent<HTMLInputElement\>,data: {value:string}) => void | -      |
-| onFocus      | 聚焦时的回调                                                                | (e: React.SyntheticEvent) => void                                      | -      |
-| onBlur       | 失焦时的回调                                                                | (e: React.SyntheticEvent) => void                                      | -      |
+| onFocus      | 聚焦时的回调                                                                | (e: React.FocusEvent<HTMLInputElement\>) => void                       | -      |
+| onBlur       | 失焦时的回调                                                                | (e: React.FocusEvent<HTMLInputElement\>) => void                       | -      |
 
 ## 样式变量
 
