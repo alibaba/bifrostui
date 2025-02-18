@@ -5,7 +5,11 @@ const convertToCss = (styles) => {
   const cssVarKeys = Object.keys(styles);
 
   cssVarKeys.forEach((key, index) => {
-    result += `${key}: ${styles[key]};\n${index === cssVarKeys.length - 1 ? '' : '\t'}`;
+    const value = styles[key];
+    if (value.includes('PX')) {
+      result += '/* prettier-ignore */\n\t';
+    }
+    result += `${key}: ${value};\n${index === cssVarKeys.length - 1 ? '' : '\t'}`;
   });
 
   return result;
