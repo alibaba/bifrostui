@@ -157,16 +157,16 @@ export const defaultLight = {
 
     // Components Variables
     // Button
-    '--bui-btn-font-size': 'var(--bui-text-size-3)',
-    '--bui-btn-font-weight': 'var(--bui-font-weight-medium)',
-    '--bui-btn-border-radius': '120px',
-    '--bui-btn-height': '27px',
-    '--bui-btn-color': 'var(--bui-color-fg-muted)',
-    '--bui-btn-bg': 'var(--bui-color-bg-view)',
-    '--bui-btn-opacity': '1',
-    '--bui-btn-padding': '0 14px',
-    '--bui-btn-border': '0',
-    '--bui-btn-font-family': 'var(--bui-font-family)',
+    // '--bui-btn-font-size': 'var(--bui-text-size-3)',
+    // '--bui-btn-font-weight': 'var(--bui-font-weight-medium)',
+    // '--bui-btn-border-radius': '120px',
+    // '--bui-btn-height': '27px',
+    // '--bui-btn-color': 'var(--bui-color-fg-muted)',
+    // '--bui-btn-bg': 'var(--bui-color-bg-view)',
+    // '--bui-btn-opacity': '1',
+    // '--bui-btn-padding': '0 14px',
+    // '--bui-btn-border': '0',
+    // '--bui-btn-font-family': 'var(--bui-font-family)',
 
     // Card
     '--bui-card-font-family': 'var(--bui-font-family)',
