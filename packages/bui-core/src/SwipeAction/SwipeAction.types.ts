@@ -84,7 +84,7 @@ export interface BuiSwipeActionContextProps {
   close: () => void;
 }
 
-type SwipeActionRef = {
+export type SwipeActionRef = {
   close: () => void;
   show: (side?: SideTypeEnum) => void;
   open: boolean;
