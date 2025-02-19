@@ -20,6 +20,7 @@
     "glob": "11.0.0"
   },
   "dependencies": {
+    "@bifrostui/styles": "workspace:*",
     "react-is": "^18.0.0"
   },
   "peerDependencies": {

@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
+import { cssVarToValue } from '@bifrostui/utils';
 import { ISvgIconProps } from '../../SvgIcon.types';
 import './SvgIcon.less';
 
@@ -79,6 +80,11 @@ export default function SvgIcon(props: ISvgIconProps) {
     );
   }
   if (typeof children === 'string') {
+    const parsedSvgColor =
+      cssVarToValue({
+        cssVar: svgColor,
+      }) || svgColor;
+
     // div背景色模式，组装data:image/svg+xml塞进内联样式
     return (
       <Component
@@ -89,7 +95,7 @@ export default function SvgIcon(props: ISvgIconProps) {
           ...style,
           backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(
             `<svg viewBox='${viewBox}' xmlns='http://www.w3.org/2000/svg' ${
-              svgColor ? `fill='${svgColor}'` : ''
+              parsedSvgColor ? `fill='${parsedSvgColor}'` : ''
             }>${children}</svg>`,
           )}")`,
         }}
