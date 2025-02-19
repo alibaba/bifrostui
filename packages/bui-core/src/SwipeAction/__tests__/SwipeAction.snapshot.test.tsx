@@ -1,5 +1,5 @@
 import { snapshotTest } from 'testing';
 
-describe('SwipeAction snapshot', () => {
+describe('SwipeAction demo snapshot', () => {
   snapshotTest('SwipeAction');
 });
