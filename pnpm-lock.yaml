@@ -333,9 +333,6 @@ importers:
 
   packages/bui-icons:
     dependencies:
-      '@bifrostui/styles':
-        specifier: workspace:*
-        version: link:../bui-styles
       '@bifrostui/types':
         specifier: workspace:*
         version: link:../bui-types
