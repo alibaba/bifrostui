@@ -84,32 +84,32 @@ export const pioneerLight = {
     // 淡色，很细微的色彩，用于辅助和需要弱化的信息
     '--bui-color-fg-subtle': 'var(--bui-color-neutral-3)',
     // 用于失效、不可用等状态
-    '--bui-color-fg-disabled': 'fade(#181818, 50%)',
+    '--bui-color-fg-disabled': 'rgba(24, 24, 24, 0.5)',
 
     // 默认背景色
     '--bui-color-bg-default': 'var(--bui-color-neutral-6)',
     // 视图背景色
     '--bui-color-bg-view': 'var(--bui-color-neutral-7)',
     '--bui-color-bg-popover': 'var(--bui-color-neutral-7)',
-    '--bui-color-bg-alpha-light-9': 'fade(#fff, 90%)',
-    '--bui-color-bg-alpha-light-7': 'fade(#fff, 70%)',
-    '--bui-color-bg-alpha-light-5': 'fade(#fff, 50%)',
-    '--bui-color-bg-alpha-light-3': 'fade(#fff, 30%)',
-    '--bui-color-bg-alpha-light-1': 'fade(#fff, 10%)',
-    '--bui-color-bg-alpha-dark-9': 'fade(#000, 90%)',
-    '--bui-color-bg-alpha-dark-7': 'fade(#000, 70%)',
-    '--bui-color-bg-alpha-dark-5': 'fade(#000, 50%)',
-    '--bui-color-bg-alpha-dark-3': 'fade(#000, 30%)',
-    '--bui-color-bg-alpha-dark-1': 'fade(#000, 10%)',
+    '--bui-color-bg-alpha-light-9': 'rgba(255, 255, 255, 0.9)',
+    '--bui-color-bg-alpha-light-7': 'rgba(255, 255, 255, 0.7)',
+    '--bui-color-bg-alpha-light-5': 'rgba(255, 255, 255, 0.5)',
+    '--bui-color-bg-alpha-light-3': 'rgba(255, 255, 255, 0.3)',
+    '--bui-color-bg-alpha-light-1': 'rgba(255, 255, 255, 0.1)',
+    '--bui-color-bg-alpha-dark-9': 'rgba(0, 0, 0, 0.9)',
+    '--bui-color-bg-alpha-dark-7': 'rgba(0, 0, 0, 0.7)',
+    '--bui-color-bg-alpha-dark-5': 'rgba(0, 0, 0, 0.5)',
+    '--bui-color-bg-alpha-dark-3': 'rgba(0, 0, 0, 0.3)',
+    '--bui-color-bg-alpha-dark-1': 'rgba(0, 0, 0, 0.1)',
 
     // 分割线、边框
     '--bui-color-border-default': 'var(--bui-color-neutral-5)',
-    '--bui-color-border-primary': 'fade(#ff7600, 40%)',
-    '--bui-color-border-info': 'fade(#148aff, 40%)',
-    '--bui-color-border-success': 'fade(#00d68f, 40%)',
-    '--bui-color-border-warning': 'fade(#ff8533, 40%)',
-    '--bui-color-border-danger': 'fade(#ff335c, 40%)',
-    '--bui-color-border-gray': 'fade(#8896b1, 40%)',
+    '--bui-color-border-primary': 'rgba(20, 138, 255, 0.4)',
+    '--bui-color-border-info': 'rgba(20, 138, 255, 0.4)',
+    '--bui-color-border-success': 'rgba(0, 214, 143, 0.4)',
+    '--bui-color-border-warning': 'rgba(255, 133, 51, 0.4)',
+    '--bui-color-border-danger': 'rgba(255, 51, 92, 0.4)',
+    '--bui-color-border-gray': 'rgba(136, 150, 177, 0.4)',
 
     // 主题色渐变
     '--bui-color-primary-start': '#ff9c0d',

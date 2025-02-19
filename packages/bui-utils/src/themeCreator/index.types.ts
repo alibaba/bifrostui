@@ -33,3 +33,34 @@ export interface ThemeCreatorOptions {
    */
   cssVars: Record<string, string>;
 }
+
+/**
+ * 合并主题css变量
+ */
+export interface MergeThemeVarsOptions {
+  /**
+   * 当前主题
+   * @default 'default'
+   */
+  theme?: 'default' | 'dm' | 'pioneer';
+  /**
+   * 当前主题模式
+   * @default 'light'
+   */
+  mode?: 'light' | 'dark';
+}
+
+/**
+ * css变量转值
+ */
+export interface CssVarToValueOptions {
+  /**
+   * 当前主题
+   */
+  cssVar: string;
+  /**
+   * 当前主题模式
+   * @default defaultLight
+   */
+  themeVars?: Record<string, string>;
+}
