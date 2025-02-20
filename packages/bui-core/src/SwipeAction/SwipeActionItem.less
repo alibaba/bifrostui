@@ -1,4 +1,4 @@
-.bui-swipe-action-button {
+.bui-swipe-action-item {
   padding: 0 15px;
   display: flex;
   align-items: center;
@@ -12,26 +12,30 @@
   font-family: var(--bui-font-family);
 }
 
-.btn-bg(@color) {
+.swipe-action-item-bg(@color) {
   background-color: var(~'--bui-color-@{color}');
 }
 
-.bui-swipe-action-button-primary {
-  .btn-bg(primary);
+.bui-swipe-action-item-primary {
+  .swipe-action-item-bg(primary);
 }
 
-.bui-swipe-action-button-success {
-  .btn-bg(success);
+.bui-swipe-action-item-vip {
+  .swipe-action-item-bg(vip);
 }
 
-.bui-swipe-action-button-info {
-  .btn-bg(info);
+.bui-swipe-action-item-success {
+  .swipe-action-item-bg(success);
 }
 
-.bui-swipe-action-button-warning {
-  .btn-bg(warning);
+.bui-swipe-action-item-info {
+  .swipe-action-item-bg(info);
 }
 
-.bui-swipe-action-button-danger {
-  .btn-bg(danger);
+.bui-swipe-action-item-warning {
+  .swipe-action-item-bg(warning);
+}
+
+.bui-swipe-action-item-danger {
+  .swipe-action-item-bg(danger);
 }

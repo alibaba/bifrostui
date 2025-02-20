@@ -372,9 +372,13 @@ export default () => {
                 cancelText: '打开左侧',
               });
               if (res) {
-                swipeActionRef.current?.show('right');
+                swipeActionRef.current?.show({
+                  side: 'right',
+                });
               } else {
-                swipeActionRef.current?.show('left');
+                swipeActionRef.current?.show({
+                  side: 'left',
+                });
               }
             }}
           >
@@ -528,28 +532,29 @@ export default () => {
 
 ### SwipeAction属性
 
-| 属性                   | 说明                                          | 类型                                | 默认值 |
-| ---------------------- | --------------------------------------------- | ----------------------------------- | ------ |
-| closeOnClickActionItem | 是否在点击操作按钮时自动归位                  | boolean                             | true   |
-| closeOnClickContainer  | 是否在点击主体区域时自动归位                  | boolean                             | false  |
-| leftActions            | 左侧的操作按钮列表（搭配SwipeActionItem使用） | React.ReactNode                     | -      |
-| rightActions           | 右侧的操作按钮列表（搭配SwipeActionItem使用） | React.ReactNode                     | -      |
-| onActionsReveal        | 按钮完全出现时触发                            | ({side: 'left' \| 'right'}) => void | -      |
-| disabled               | 是否禁用滑动                                  | boolean                             | false  |
+| 属性                  | 说明                                          | 类型                                | 默认值 |
+| --------------------- | --------------------------------------------- | ----------------------------------- | ------ |
+| closeOnClickContainer | 是否在点击主体区域时自动归位                  | boolean                             | false  |
+| leftActions           | 左侧的操作按钮列表（搭配SwipeActionItem使用） | React.ReactNode                     | -      |
+| rightActions          | 右侧的操作按钮列表（搭配SwipeActionItem使用） | React.ReactNode                     | -      |
+| onActionsReveal       | 按钮完全出现时触发                            | ({side: 'left' \| 'right'}) => void | -      |
+| disabled              | 是否禁用滑动                                  | boolean                             | false  |
 
 ### SwipeActionItem属性
 
-| 属性    | 说明       | 类型                                                      | 默认值    |
-| ------- | ---------- | --------------------------------------------------------- | --------- |
-| color   | 颜色       | 'info' \| 'success' \| 'warning' \| 'danger' \| 'primary' | 'primary' |
-| onClick | 点击时触发 | (e: React.MouseEvent) => void                             | -         |
+| 属性    | 说明       | 类型                                                               | 默认值    |
+| ------- | ---------- | ------------------------------------------------------------------ | --------- |
+| color   | 颜色       | 'info' \| 'success' \| 'warning' \| 'danger' \| 'primary' \| 'vip' | 'primary' |
+| onClick | 点击时触发 | (e: React.MouseEvent) => void                                      | -         |
 
 ### Ref
 
-| 属性  | 说明                                  | 类型                              |
-| ----- | ------------------------------------- | --------------------------------- |
-| close | 让滑动条归位                          | () => void                        |
-| show  | 滑动出操作按钮，side 参数默认为 right | (side?: 'left'\| 'right') => void |
+| 属性  | 说明                                  | 类型                                |
+| ----- | ------------------------------------- | ----------------------------------- |
+| close | 让滑动条归位                          | () => void                          |
+| show  | 滑动出操作按钮，side 参数默认为 right | ({side?: 'left'\| 'right'}) => void |
+| open  | 操作按钮是否打开                      | false                               |
+| ref   | SwipeAction的Ref                      | -                                   |
 
 ## 样式变量
 
