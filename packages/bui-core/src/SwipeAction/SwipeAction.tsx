@@ -219,7 +219,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
     useImperativeHandle(ref, () => ({
       show: async (params) => {
         let targetX = 0;
-        if (params.side === SideTypeEnum.RIGHT) {
+        if (params && params.side === SideTypeEnum.RIGHT) {
           targetX = -(await getRightRefWidth());
         } else {
           targetX = await getLefRefWidth();

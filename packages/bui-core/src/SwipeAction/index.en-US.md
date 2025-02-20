@@ -1,17 +1,17 @@
 ---
 group: Feedback
-name: SwipeAction
+name: SwipeAction Swipe Action
 ---
 
-# SwipeAction
+# SwipeAction Swipe Action
 
-Commonly used for gestures such as swipe-to-delete.
+Commonly used for gestures such as deleting cells by swiping left or right.
 
 ## When to Use
 
-Use to reveal hidden menu functions through swipe actions.
+Use swipe actions to display hidden function menus.
 
-## Code Examples
+## Code Demo
 
 ### Basic Usage
 
@@ -59,7 +59,7 @@ export default () => {
             </SwipeActionItem>
           ))}
         >
-          <span>Swipe right</span>
+          <span>Swipe Right</span>
         </SwipeAction>
         <Divider direction="horizontal" />
         <SwipeAction
@@ -69,7 +69,7 @@ export default () => {
             </SwipeActionItem>
           ))}
         >
-          <span>Swipe left</span>
+          <span>Swipe Left</span>
         </SwipeAction>
       </List>
     </Stack>
@@ -79,7 +79,7 @@ export default () => {
 
 ### Click to Close
 
-Use the `closeOnClickContainer` property to control when to close by clicking on the main content container.
+Control closing by clicking the main content container using the `closeOnClickContainer` attribute.
 
 ```tsx
 import {
@@ -119,7 +119,7 @@ export default () => {
             </SwipeActionItem>
           ))}
         >
-          <span>Click the main content to close</span>
+          <span>Clicking the main content will close it</span>
         </SwipeAction>
       </List>
     </Stack>
@@ -129,7 +129,7 @@ export default () => {
 
 ### Disable Swipe
 
-Use the `disabled` property to disable the swipe function.
+Disable swipe functionality using the `disabled` attribute.
 
 ```tsx
 import {
@@ -167,7 +167,7 @@ export default () => {
             </SwipeActionItem>
           ))}
         >
-          <span>Swipe disabled</span>
+          <span>Swipe Disabled</span>
         </SwipeAction>
       </List>
     </Stack>
@@ -177,7 +177,7 @@ export default () => {
 
 ### Event Handling
 
-The component provides an `onActionsReveal` callback triggered when action buttons appear.
+The component provides an `onActionsReveal` callback that triggers when action buttons appear.
 
 ```tsx
 import {
@@ -210,10 +210,10 @@ export default () => {
     },
     {
       key: 'right-setting',
-      text: 'Set',
+      text: 'Settings',
       color: 'success',
       onClick: () => {
-        Toast({ message: 'Setting clicked' });
+        Toast({ message: 'Settings clicked' });
       },
     },
   ];
@@ -244,8 +244,7 @@ export default () => {
           })}
           onActionsReveal={(data) => {
             Toast({
-              message:
-                data.side === 'left' ? 'Left side open' : 'Right side open',
+              message: data.side === 'left' ? 'Left opened' : 'Right opened',
             });
           }}
           leftActions={leftActions.map((item) => {
@@ -274,7 +273,7 @@ export default () => {
 
 ### Custom Event Handling
 
-The component instance provides a `show` method to manually open the swipe action buttons, and a `close` method to manually close the swipe action buttons.
+The component instance provides a `show` method to manually open swipe action buttons and a `close` method to manually close them.
 
 ```tsx
 import {
@@ -299,7 +298,7 @@ export default () => {
       color: 'info',
       onClick: () => {
         dialog.confirm({
-          message: 'Do you want to pin?',
+          message: 'Are you sure you want to pin?',
           onConfirm: async () => {
             swipeActionRef.current?.close();
           },
@@ -313,8 +312,8 @@ export default () => {
       text: 'Delete',
       color: 'danger',
       onClick: async () => {
-        await dialog.confirm({
-          message: 'Do you want to delete?',
+        const res = await dialog.confirm({
+          message: 'Are you sure you want to delete?',
           onConfirm: async () => {
             swipeActionRef.current?.close();
           },
@@ -330,7 +329,7 @@ export default () => {
     >
       <List
         style={{ width: '350px' }}
-        header={<ListItem disabled>Manual Control for Reset Logic</ListItem>}
+        header={<ListItem disabled>Manual Control of Reset Logic</ListItem>}
       >
         <SwipeAction
           style={{ '--bui-swipe-action-container-padding': '0px' }}
@@ -367,17 +366,21 @@ export default () => {
           })}
         >
           <ListItem
-            onClick={async () => {
+            onClick={async (e) => {
               const res = await Dialog({
-                header: 'Notice',
-                message: 'Please choose an action',
+                header: 'Prompt',
+                message: 'Please select an action',
                 confirmText: 'Open Right',
                 cancelText: 'Open Left',
               });
               if (res) {
-                swipeActionRef.current?.show('right');
+                swipeActionRef.current?.show({
+                  side: 'right',
+                });
               } else {
-                swipeActionRef.current?.show('left');
+                swipeActionRef.current?.show({
+                  side: 'left',
+                });
               }
             }}
           >
@@ -390,9 +393,9 @@ export default () => {
 };
 ```
 
-### Using with Other Components
+### Combination with Other Components
 
-This component allows for integration with other components as per your business needs. Below is a simple demonstration of its use with the `Image` and `List` components.
+This component allows you to pair it with other components based on your business needs. Below is a simple demonstration of using it with the `Image` and `List` components.
 
 #### Using with `Image` Component
 
@@ -472,12 +475,12 @@ export default () => {
   const rightActions = [
     {
       key: 'unsubscribe',
-      text: 'Unsubscribe',
+      text: 'Subscribe',
       color: 'warning',
     },
     {
       key: 'mute',
-      text: 'Mute',
+      text: 'Confirm',
       color: 'success',
     },
   ];
@@ -494,25 +497,25 @@ export default () => {
           <SwipeAction
             style={{ '--bui-swipe-action-container-padding': '0px' }}
             key={item}
-            leftActions={leftActions.map((action) => {
+            leftActions={leftActions.map((item) => {
               return (
                 <SwipeActionItem
-                  color={action.color}
-                  key={action.key}
-                  id={action.key}
+                  color={item.color}
+                  key={item.key}
+                  id={item.key}
                 >
-                  {action.text}
+                  {item.text}
                 </SwipeActionItem>
               );
             })}
-            rightActions={rightActions.map((action) => {
+            rightActions={rightActions.map((item) => {
               return (
                 <SwipeActionItem
-                  color={action.color}
-                  key={action.key}
-                  id={action.key}
+                  color={item.color}
+                  key={item.key}
+                  id={item.key}
                 >
-                  {action.text}
+                  {item.text}
                 </SwipeActionItem>
               );
             })}
@@ -531,31 +534,32 @@ export default () => {
 
 ### SwipeAction Props
 
-| Property               | Description                                             | Type                                | Default |
-| ---------------------- | ------------------------------------------------------- | ----------------------------------- | ------- |
-| closeOnClickActionItem | Automatically reset when the action button is clicked   | boolean                             | true    |
-| closeOnClickContainer  | Automatically reset when the main area is clicked       | boolean                             | false   |
-| leftActions            | List of left action buttons (use with SwipeActionItem)  | React.ReactNode                     | -       |
-| rightActions           | List of right action buttons (use with SwipeActionItem) | React.ReactNode                     | -       |
-| onActionsReveal        | Triggered when the button is fully revealed             | ({side: 'left' \| 'right'}) => void | -       |
-| disabled               | Disable swipe                                           | boolean                             | false   |
+| Property              | Description                                                | Type                                | Default |
+| --------------------- | ---------------------------------------------------------- | ----------------------------------- | ------- |
+| closeOnClickContainer | Whether to automatically reset when clicking the main area | boolean                             | false   |
+| leftActions           | List of left action buttons (used with SwipeActionItem)    | React.ReactNode                     | -       |
+| rightActions          | List of right action buttons (used with SwipeActionItem)   | React.ReactNode                     | -       |
+| onActionsReveal       | Triggered when buttons are fully revealed                  | ({side: 'left' \| 'right'}) => void | -       |
+| disabled              | Whether to disable swipe                                   | boolean                             | false   |
 
 ### SwipeActionItem Props
 
-| Property | Description      | Type                                                      | Default   |
-| -------- | ---------------- | --------------------------------------------------------- | --------- |
-| color    | Color            | 'info' \| 'success' \| 'warning' \| 'danger' \| 'primary' | 'primary' |
-| onClick  | Trigger on click | (e: React.MouseEvent) => void                             | -         |
+| Property | Description        | Type                                                               | Default   |
+| -------- | ------------------ | ------------------------------------------------------------------ | --------- |
+| color    | Color              | 'info' \| 'success' \| 'warning' \| 'danger' \| 'primary' \| 'vip' | 'primary' |
+| onClick  | Triggered on click | (e: React.MouseEvent) => void                                      | -         |
 
 ### Ref
 
-| Property | Description                                                   | Type                              |
-| -------- | ------------------------------------------------------------- | --------------------------------- |
-| close    | Reset the swipe bar                                           | () => void                        |
-| show     | Swipe out the action button, side parameter defaults to right | (side?: 'left'\| 'right') => void |
+| Property | Description                                           | Type                                |
+| -------- | ----------------------------------------------------- | ----------------------------------- |
+| close    | Reset the swipe bar                                   | () => void                          |
+| show     | Show action buttons, side parameter defaults to right | ({side?: 'left'\| 'right'}) => void |
+| open     | Whether action buttons are open                       | false                               |
+| ref      | SwipeAction's Ref                                     | -                                   |
 
-## CSS Variables
+## Style Variables
 
-| Property                             | Description       | Default | Global Variable                      |
-| ------------------------------------ | ----------------- | ------- | ------------------------------------ |
-| --bui-swipe-action-container-padding | Container padding | 10px    | --bui-swipe-action-container-padding |
+| Property            | Description       | Default | Global Variable                      |
+| ------------------- | ----------------- | ------- | ------------------------------------ |
+| --container-padding | Container padding | 10px    | --bui-swipe-action-container-padding |
