@@ -16,14 +16,15 @@ import {
 import BuiSwipeActionContext from './SwipeActionContext';
 import {
   SwipeActionProps,
-  CombinedRef,
+  SwipeActionRef,
   SideTypeEnum,
+  DragPhaseEnum,
 } from './SwipeAction.types';
 import './SwipeAction.less';
 
 const classPrefix = 'bui-swipe-action';
 
-const SwipeAction = React.forwardRef<CombinedRef, SwipeActionProps>(
+const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
   (props, ref) => {
     const {
       className,
@@ -45,15 +46,16 @@ const SwipeAction = React.forwardRef<CombinedRef, SwipeActionProps>(
     const [isOpen, setIsOpen] = useState(false);
     const startingX = useRef(0);
     const currentX = useRef(0);
-    let timer;
     // 标记是否正在拖动
     const isDragging = useRef(false);
     // 上一次移动定格状态时的translateX
     let pretranslateX = 0;
     // 拖动阶段标记
-    let dragPhase = 1;
+    let dragPhase = DragPhaseEnum.START;
     // 有效拖动的阈值
     const dragThreshold = 5;
+    const leftWidthCache = useRef(0);
+    const rightWidthCache = useRef(0);
 
     const getWidth = (
       ref: React.RefObject<HTMLDivElement>,
@@ -72,28 +74,46 @@ const SwipeAction = React.forwardRef<CombinedRef, SwipeActionProps>(
       });
     };
 
-    const handleTouchStart = throttle((e: React.TouchEvent<HTMLDivElement>) => {
+    const getLefRefWidth = async () => {
+      if (leftRef.current && leftActions && !leftWidthCache.current) {
+        leftWidthCache.current = await getWidth(leftRef);
+      }
+      return leftWidthCache.current;
+    };
+    const getRightRefWidth = async () => {
+      if (rightRef.current && rightActions && !rightWidthCache.current) {
+        rightWidthCache.current = await getWidth(rightRef);
+      }
+      return rightWidthCache.current;
+    };
+
+    const initRefWidth = () => {
+      getLefRefWidth();
+      getRightRefWidth();
+    };
+
+    const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
       // console.log('handleTouchStart', isOpen, closeOnClickContainer);
-      dragPhase = 1;
+      dragPhase = DragPhaseEnum.START;
       // 判断e.target的id是否是content-mask
       const isMaskEle = (e.target as HTMLElement).id === 'content-mask';
       if (isDragging.current || disabled || isMaskEle) return;
       touch.start(e);
       isDragging.current = true;
       startingX.current = touch.deltaX.current - translateX;
-    }, 100);
+    };
 
     const handleTouchMove = throttle(
       async (e: React.TouchEvent<HTMLDivElement>) => {
         if (!isDragging.current || disabled) return;
-        if (dragPhase === 1) {
-          dragPhase = 2;
+        if (dragPhase === DragPhaseEnum.START) {
+          dragPhase = DragPhaseEnum.MOVE;
         }
         touch.move(e);
         currentX.current = touch.deltaX.current - startingX.current;
         if (Math.abs(currentX.current) < dragThreshold) return;
-        const leftWidth = await getWidth(leftRef);
-        const rightWidth = await getWidth(rightRef);
+        const leftWidth = await getLefRefWidth();
+        const rightWidth = await getRightRefWidth();
         // 限制最多拖动到各自方向的宽度
         currentX.current = Math.max(
           -rightWidth,
@@ -130,33 +150,33 @@ const SwipeAction = React.forwardRef<CombinedRef, SwipeActionProps>(
       }
     };
 
-    const handleTouchEnd = throttle(
-      async (e?: React.MouseEvent | React.TouchEvent | MouseEvent) => {
-        if (!isDragging.current) return;
-        if (dragPhase === 2) {
-          dragPhase = 3;
-        }
-        const leftWidth = await getWidth(leftRef);
-        const rightWidth = await getWidth(rightRef);
-        const threshold = 0.5; // 超过50%宽度即认为是打开状态
-        let targetX = 0;
-        isDragging.current = false;
-        if (Math.abs(currentX.current) < dragThreshold) return;
-        if (currentX.current > leftWidth * threshold) {
-          targetX = leftWidth;
-        } else if (currentX.current < -rightWidth * threshold) {
-          targetX = -rightWidth;
-        }
-        if (dragPhase === 3 || isMini) {
-          emitActionsReveal(targetX);
-          console.log('handleTouchEnd：', targetX, e);
-          setTranslateX(targetX);
-          pretranslateX = targetX;
-        }
-        currentX.current = 0;
-      },
-      100,
-    );
+    const handleTouchEnd = async (
+      e?: React.MouseEvent | React.TouchEvent | MouseEvent,
+    ) => {
+      if (!isDragging.current) return;
+      if (dragPhase === DragPhaseEnum.MOVE) {
+        dragPhase = DragPhaseEnum.END;
+      }
+      const leftWidth = await getLefRefWidth();
+      const rightWidth = await getRightRefWidth();
+      const threshold = 0.5; // 超过50%宽度即认为是打开状态
+      let targetX = 0;
+      isDragging.current = false;
+      if (Math.abs(currentX.current) < dragThreshold) return;
+      if (currentX.current > leftWidth * threshold) {
+        targetX = leftWidth;
+      } else if (currentX.current < -rightWidth * threshold) {
+        targetX = -rightWidth;
+      }
+      // 小程序端拖动阶段和浏览器有差异所以这里要|| isMini
+      if (dragPhase === DragPhaseEnum.END || isMini) {
+        emitActionsReveal(targetX);
+        console.log('handleTouchEnd：', targetX, e);
+        setTranslateX(targetX);
+        pretranslateX = targetX;
+      }
+      currentX.current = 0;
+    };
 
     const close = () => {
       setTranslateX(0);
@@ -165,12 +185,13 @@ const SwipeAction = React.forwardRef<CombinedRef, SwipeActionProps>(
     };
 
     useEffect(() => {
+      initRefWidth();
       if (!contentRef.current) return;
       const removeTouchEmulator = touchEmulator(contentRef.current);
       return () => {
         removeTouchEmulator();
       };
-    }, [contentRef.current]);
+    }, []);
 
     useEffect(() => {
       contentRef?.current?.addEventListener('touchstart', handleTouchStart);
@@ -192,17 +213,16 @@ const SwipeAction = React.forwardRef<CombinedRef, SwipeActionProps>(
         if (!isMini && document) {
           document.removeEventListener('mouseup', handleTouchEnd);
         }
-        clearTimeout(timer);
       };
     }, []);
 
     useImperativeHandle(ref, () => ({
-      show: async (side = SideTypeEnum.RIGHT) => {
+      show: async (params) => {
         let targetX = 0;
-        if (side === SideTypeEnum.RIGHT) {
-          targetX = -(await getWidth(rightRef));
+        if (params.side === SideTypeEnum.RIGHT) {
+          targetX = -(await getRightRefWidth());
         } else {
-          targetX = await getWidth(leftRef);
+          targetX = await getLefRefWidth();
         }
         setTranslateX(targetX);
         pretranslateX = targetX;

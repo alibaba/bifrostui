@@ -51,7 +51,7 @@ export type SwipeActionItemProps<
       /**
        * 颜色风格
        */
-      color?: ThemeColor;
+      color?: ThemeColor | 'vip';
       /**
        * id
        */
@@ -86,14 +86,18 @@ export interface BuiSwipeActionContextProps {
 
 export type SwipeActionRef = {
   close: () => void;
-  show: (side?: SideTypeEnum) => void;
+  show: (params: { side?: SideTypeEnum }) => void;
   open: boolean;
   ref?: HTMLDivElement;
 };
 
-export type CombinedRef = SwipeActionRef | HTMLDivElement;
-
 export enum SideTypeEnum {
   LEFT = 'left',
   RIGHT = 'right',
+}
+
+export enum DragPhaseEnum {
+  START = 1,
+  MOVE = 2,
+  END = 3,
 }
