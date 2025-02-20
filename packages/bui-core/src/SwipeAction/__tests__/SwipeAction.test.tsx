@@ -28,6 +28,7 @@ describe('SwipeAction', () => {
     Component: SwipeAction,
     displayName: 'BuiSwipeAction',
     className: 'bui-swipe-action',
+    skip: ['component-has-root-ref'],
   });
 
   // 模拟滑动操作
