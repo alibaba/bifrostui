@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import React, { useMemo, useState, useEffect } from 'react';
 import { useValue } from '@bifrostui/utils';
 import { DateTimePickerProps } from './DesktopDateTimePicker.types';
-import { formatDate } from './utils';
+// import { formatDate } from './utils';
 import DesktopPicker from '../DesktopPicker';
 import useGetDatePickerContent from '../DesktopDatePicker/useGetDatePickerContent';
 import useGetTimePickerContent from '../DesktopTimePicker/useGetTimePickerContent';
@@ -66,14 +66,14 @@ const DesktopDateTimePicker = React.forwardRef<
     getPicker,
   );
 
-  const formattedValue = formatDate(value, minDate, maxDate);
-  const formattedDefaultValue = formatDate(defaultValue, minDate, maxDate);
+  // const formattedValue = formatDate(value, minDate, maxDate);
+  // const formattedDefaultValue = formatDate(defaultValue, minDate, maxDate);
 
   const [inputStr, setInputStr] = useState<string>('');
   const [useUserStr, setUseUserStr] = useState<boolean>(false);
   const [calendarValue, triggerChange] = useValue({
-    value: formattedValue,
-    defaultValue: formattedDefaultValue,
+    value,
+    defaultValue,
     onChange,
   });
 
