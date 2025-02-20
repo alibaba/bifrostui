@@ -610,7 +610,7 @@ export default () => {
 | yearRender         | 自定义年份单元格的内容           | ({ year, currentDate: ICalendarInstance}) => React.ReactNode  | -                   |
 | disableOpenPicker  | 禁用弹层选择功能                 | boolean                                                       | false               |
 | closeOnSelect      | 选择日期后是否立刻关闭           | boolean                                                       | -                   |
-| format             | 日期格式                         | string                                                        | YYYY/MM/DD          |
+| format             | 日期格式                         | string                                                        | YYYY/MM/DD HH:mm:ss |
 | onClose            | 关闭的回调                       | () => void                                                    | -                   |
 | onOpen             | 打开的回调                       | () => void                                                    | -                   |
 | onMonthChange      | 月份切换的回调                   | (e: React.SyntheticEvent, data: { value: Date }) => void      | -                   |
