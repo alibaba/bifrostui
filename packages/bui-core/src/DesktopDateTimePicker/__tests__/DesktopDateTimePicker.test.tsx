@@ -198,7 +198,7 @@ describe('DesktopDateTimePicker', () => {
   it('should 2024 year', async () => {
     const { container } = render(
       <DesktopDateTimePicker
-        picker="year"
+        views={['year', 'hour', 'minute', 'second']}
         format="YYYY"
         defaultValue={dayjs('20230401').toDate()}
         minDate={dayjs('20200401').toDate()}
@@ -224,7 +224,7 @@ describe('DesktopDateTimePicker', () => {
   it('should 2023/05 month', async () => {
     const { container } = render(
       <DesktopDateTimePicker
-        picker="month"
+        views={['month', 'hour', 'minute', 'second']}
         format="YYYY/MM"
         defaultValue={dayjs('20230401').toDate()}
         minDate={dayjs('20200401').toDate()}
@@ -268,7 +268,7 @@ describe('DesktopDateTimePicker', () => {
   it('should render disabled year by `disabledDate` property', async () => {
     const { container } = render(
       <DesktopDateTimePicker
-        picker="year"
+        views={['year', 'hour', 'minute', 'second']}
         format="YYYY"
         defaultValue={dayjs('20230401').toDate()}
         minDate={dayjs('20200401').toDate()}
@@ -323,7 +323,7 @@ describe('DesktopDateTimePicker', () => {
       <DesktopDateTimePicker
         minDate={dayjs().startOf('month').toDate()}
         maxDate={dayjs().endOf('month').toDate()}
-        picker="year"
+        views={['year', 'hour', 'minute', 'second']}
         value={dayjs().toDate()}
         yearRender={(data) => {
           return (
@@ -348,7 +348,7 @@ describe('DesktopDateTimePicker', () => {
       <DesktopDateTimePicker
         minDate={dayjs().startOf('month').toDate()}
         maxDate={dayjs().endOf('month').toDate()}
-        picker="month"
+        views={['month', 'hour', 'minute', 'second']}
         value={dayjs().toDate()}
         monthRender={(data) => {
           if (String(dayjs().format('M')) === String(data.month)) {
