@@ -39,7 +39,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   const [arrowDirection, setArrowDirection] = useState(direction);
   // 箭头位置
   const [arrowLocation, setArrowLocation] = useState(location);
-  const [tooltyles, setTooltyles] = useState({});
+  const [toolStyles, setToolStyles] = useState({});
   const tipRef = useRef(null);
   const nodeRef = useForkRef(ref, tipRef);
 
@@ -78,7 +78,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
 
   useEffect(() => {
     if (!openStatus) {
-      setTooltyles({
+      setToolStyles({
         visibility: 'hidden',
       });
     }
@@ -117,41 +117,41 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     if (newArrowLocation !== arrowLocation) {
       setArrowLocation(newArrowLocation);
     }
-    setTooltyles(styles);
+    setToolStyles(styles);
   }, 100);
 
-  /**
-   * 绑定全局事件
-   * click 全局点击隐藏
-   * resize 仅支持H5
-   * @returns
-   */
-  const bindEvent = () => {
-    if (!tipRef.current) return;
-
-    if (!controlByUser) {
-      document.addEventListener('click', clickEventHandler);
-    }
-    if (!isMini) {
-      window.addEventListener('resize', onRootElementMouted);
-    }
-  };
-
-  const unbindEvent = () => {
-    if (!controlByUser) {
-      document.removeEventListener('click', clickEventHandler);
-    }
-    if (!isMini) {
-      window.removeEventListener('resize', onRootElementMouted);
-    }
-  };
-
   useEffect(() => {
+    /**
+     * 绑定全局事件
+     * click 全局点击隐藏
+     * resize 仅支持H5
+     * @returns
+     */
+    const bindEvent = () => {
+      if (!tipRef.current) return;
+
+      if (!controlByUser) {
+        document.addEventListener('click', clickEventHandler);
+      }
+      if (!isMini) {
+        window.addEventListener('resize', onRootElementMouted);
+      }
+    };
+
+    const unbindEvent = () => {
+      if (!controlByUser) {
+        document.removeEventListener('click', clickEventHandler);
+      }
+      if (!isMini) {
+        window.removeEventListener('resize', onRootElementMouted);
+      }
+    };
+
     bindEvent();
     return () => {
       unbindEvent();
     };
-  }, [tipRef.current]);
+  }, [openStatus]);
 
   if (!title && !content) return null;
 
@@ -177,7 +177,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
             className={clsx(prefixCls, className, `popover-${arrowDirection}`, {
               'bui-popover-arrow-hide': hideArrow,
             })}
-            style={{ ...style, ...tooltyles }}
+            style={{ ...style, ...toolStyles }}
             ref={nodeRef}
             {...others}
           >
