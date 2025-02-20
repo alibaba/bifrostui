@@ -36,10 +36,6 @@ export type PopoverProps<
        */
       offsetSpacing?: number;
       /**
-       * 获取滚动容器
-       */
-      getScrollRoot?: () => Element;
-      /**
        * 气泡框位置
        * @default 'top'
        */
