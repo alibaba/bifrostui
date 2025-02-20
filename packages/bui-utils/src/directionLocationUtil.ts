@@ -1,4 +1,5 @@
 import { getScrollRect, getClientRect } from './domUtils';
+import getBoundingClientRect from './getBoundingClientRect';
 
 const directionCssMap = {
   left: 'right',
@@ -245,8 +246,8 @@ export const getStylesAndLocation = async ({
     return null;
   }
 
-  const childrenOffset = await childrenRef.current.getBoundingClientRect();
-  const tipOffset = await tipRef.current.getBoundingClientRect();
+  const childrenOffset = await getBoundingClientRect(childrenRef.current);
+  const tipOffset = await getBoundingClientRect(tipRef.current);
   if (!tipOffset || !childrenOffset) {
     return {
       styles: {},
@@ -258,7 +259,7 @@ export const getStylesAndLocation = async ({
 
   let scrollRootOffset;
   if (scrollRoot) {
-    scrollRootOffset = await scrollRoot.getBoundingClientRect();
+    scrollRootOffset = await getBoundingClientRect(scrollRoot);
   } else {
     scrollRootOffset = await getClientRect();
   }
