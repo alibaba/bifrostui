@@ -1,4 +1,8 @@
-import { IPickerOptionItem, ICascadePickerOptionItem } from './Picker.types';
+import {
+  IPickerOptionItem,
+  ICascadePickerOptionItem,
+  ICascadePickerChildOptionItem,
+} from './Picker.types';
 
 /**
  * 根据第一列数据判断选择器类型
@@ -28,8 +32,8 @@ export const formatCascade = (
   columns: ICascadePickerOptionItem[],
   values?: (number | string)[],
 ) => {
-  const result: ICascadePickerOptionItem[][] = [];
-  let columnOptions: ICascadePickerOptionItem = {
+  const result: ICascadePickerChildOptionItem[][] = [];
+  let columnOptions: ICascadePickerChildOptionItem = {
     label: '',
     value: '',
     children: columns,
@@ -37,7 +41,7 @@ export const formatCascade = (
 
   let columnIndex = 0;
   while (columnOptions?.children) {
-    const options: ICascadePickerOptionItem[] = columnOptions.children;
+    const options: ICascadePickerChildOptionItem[] = columnOptions.children;
     const value = values?.[columnIndex];
     let index = options.findIndex((item) => item.value === value);
     if (index === -1) index = 0;
