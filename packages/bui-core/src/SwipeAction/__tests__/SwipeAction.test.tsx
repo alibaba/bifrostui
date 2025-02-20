@@ -278,7 +278,7 @@ describe('SwipeAction', () => {
         'transform: translate3d(-62px, 0, 0)',
       );
       await act(async () => {
-        fireEvent.click(container.querySelector('.bui-swipe-action-button'));
+        fireEvent.click(container.querySelector('.bui-swipe-action-item'));
         jest.advanceTimersByTime(500);
       });
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
@@ -311,7 +311,7 @@ describe('SwipeAction', () => {
         'transform: translate3d(-62px, 0, 0)',
       );
       await act(async () => {
-        fireEvent.click(container.querySelector('.bui-swipe-action-button'));
+        fireEvent.click(container.querySelector('.bui-swipe-action-item'));
         jest.advanceTimersByTime(500);
       });
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
@@ -342,7 +342,7 @@ describe('SwipeAction', () => {
         'transform: translate3d(-62px, 0, 0)',
       );
       await act(async () => {
-        fireEvent.click(container.querySelector('.bui-swipe-action-button'));
+        fireEvent.click(container.querySelector('.bui-swipe-action-item'));
         jest.advanceTimersByTime(500);
       });
       expect(onClick).toHaveBeenCalledWith(expect.any(Object), {
@@ -366,8 +366,8 @@ describe('SwipeAction', () => {
     it('should have default color when no color prop is provided', () => {
       const component = <SwipeActionItem>Test Action</SwipeActionItem>;
       const { container } = render(component);
-      expect(container.querySelector('.bui-swipe-action-button')).toHaveClass(
-        'bui-swipe-action-button-primary',
+      expect(container.querySelector('.bui-swipe-action-item')).toHaveClass(
+        'bui-swipe-action-item-primary',
       );
     });
 
@@ -377,8 +377,8 @@ describe('SwipeAction', () => {
         <SwipeActionItem color="success">Test Action</SwipeActionItem>
       );
       const { container } = render(component);
-      expect(container.querySelector('.bui-swipe-action-button')).toHaveClass(
-        'bui-swipe-action-button-success',
+      expect(container.querySelector('.bui-swipe-action-item')).toHaveClass(
+        'bui-swipe-action-item-success',
       );
     });
   });
@@ -397,7 +397,7 @@ describe('SwipeAction', () => {
         </SwipeAction>,
       );
       await act(async () => {
-        swipeActionRef.current.show();
+        swipeActionRef.current.show({ side: SideTypeEnum.RIGHT });
         jest.advanceTimersByTime(500);
       });
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
@@ -417,7 +417,7 @@ describe('SwipeAction', () => {
         </SwipeAction>,
       );
       await act(async () => {
-        swipeActionRef.current.show(SideTypeEnum.LEFT);
+        swipeActionRef.current.show({ side: SideTypeEnum.LEFT });
         jest.advanceTimersByTime(500);
       });
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
@@ -437,7 +437,7 @@ describe('SwipeAction', () => {
         </SwipeAction>,
       );
       await act(async () => {
-        swipeActionRef.current.show();
+        swipeActionRef.current.show({ side: SideTypeEnum.RIGHT });
         jest.advanceTimersByTime(500);
       });
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
@@ -465,7 +465,7 @@ describe('SwipeAction', () => {
       );
       expect(swipeActionRef.current.open).toBe(false);
       await act(async () => {
-        swipeActionRef.current.show();
+        swipeActionRef.current.show({ side: SideTypeEnum.RIGHT });
         jest.advanceTimersByTime(500);
       });
       expect(swipeActionRef.current.open).toBe(true);

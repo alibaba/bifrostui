@@ -63,7 +63,7 @@ export type SwipeActionItemProps<
         e: React.SyntheticEvent,
         item: {
           id: string | number;
-          color: ThemeColor;
+          color: ThemeColor | 'vip';
           text: React.ReactNode;
         },
       ) => void;
@@ -86,7 +86,7 @@ export interface BuiSwipeActionContextProps {
 
 export type SwipeActionRef = {
   close: () => void;
-  show: (params: { side?: SideTypeEnum }) => void;
+  show: (params?: { side: SideTypeEnum }) => void;
   open: boolean;
   ref?: HTMLDivElement;
 };
