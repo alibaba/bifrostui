@@ -1,0 +1,41 @@
+.bui-swipe-action-item {
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: var(--background-button-color);
+  color: #fff;
+  box-sizing: content-box;
+  white-space: nowrap;
+  font-family: var(--bui-font-family);
+}
+
+.swipe-action-item-bg(@color) {
+  background-color: var(~'--bui-color-@{color}');
+}
+
+.bui-swipe-action-item-primary {
+  .swipe-action-item-bg(primary);
+}
+
+.bui-swipe-action-item-vip {
+  .swipe-action-item-bg(vip);
+}
+
+.bui-swipe-action-item-success {
+  .swipe-action-item-bg(success);
+}
+
+.bui-swipe-action-item-info {
+  .swipe-action-item-bg(info);
+}
+
+.bui-swipe-action-item-warning {
+  .swipe-action-item-bg(warning);
+}
+
+.bui-swipe-action-item-danger {
+  .swipe-action-item-bg(danger);
+}

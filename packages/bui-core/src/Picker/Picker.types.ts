@@ -74,6 +74,7 @@ export type PickerProps<
           value: (string | number)[];
           options: ICascadePickerChildOptionItem[][];
           currentOption: ICascadePickerChildOptionItem;
+          columnIndex: number;
         },
       ) => void;
       /**

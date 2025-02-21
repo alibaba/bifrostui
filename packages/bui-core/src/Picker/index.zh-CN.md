@@ -1210,17 +1210,17 @@ export default () => {
 
 ### Picker
 
-| 属性           | 说明                     | 类型                                                                                                                                                                        | 默认值 |
-| -------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| open           | 是否展示选择器           | boolean                                                                                                                                                                     | false  |
-| title          | 标题                     | string                                                                                                                                                                      | -      |
-| options        | 列表数据                 | IPickerOptionItem[][] \| ICascadePickerOptionItem[]                                                                                                                         | []     |
-| value          | 选中的值                 | (string \| number)[]                                                                                                                                                        | -      |
-| contentProps   | 抽屉内容DOM节点上的Props | React.HTMLAttributes\<HTMLDivElement\>                                                                                                                                      | -      |
-| onConfirm      | 点击确认按钮时候回调     | (e: React.MouseEvent<HTMLDivElement\>,data: { value: (string \| number)[]; options: ICascadePickerChildOptionItem[][]}) => void                                             | -      |
-| onOptionChange | 选项值变更时的回调       | (e: React.TransitionEvent<HTMLDivElement\>,data: { value: (string \| number)[];options: ICascadePickerChildOptionItem[][];currentOption: ICascadePickerOptionItem}) => void | -      |
-| onCancel       | 点击取消按钮时候回调     | (e: React.MouseEvent<HTMLDivElement\>) => void                                                                                                                              | -      |
-| onClose        | 关闭选择器时执行         | (e: React.MouseEvent<HTMLDivElement\>,data: {from: string;value: (string \| number)[];options: ICascadePickerChildOptionItem[][]}) => void                                  | -      |
+| 属性           | 说明                     | 类型                                                                                                                                                                                            | 默认值 |
+| -------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| open           | 是否展示选择器           | boolean                                                                                                                                                                                         | false  |
+| title          | 标题                     | string                                                                                                                                                                                          | -      |
+| options        | 列表数据                 | IPickerOptionItem[][] \| ICascadePickerOptionItem[]                                                                                                                                             | []     |
+| value          | 选中的值                 | (string \| number)[]                                                                                                                                                                            | -      |
+| contentProps   | 抽屉内容DOM节点上的Props | React.HTMLAttributes\<HTMLDivElement\>                                                                                                                                                          | -      |
+| onConfirm      | 点击确认按钮时候回调     | (e: React.MouseEvent<HTMLDivElement\>,data: { value: (string \| number)[]; options: ICascadePickerChildOptionItem[][]}) => void                                                                 | -      |
+| onOptionChange | 选项值变更时的回调       | (e: React.TransitionEvent<HTMLDivElement\>,data: { value: (string \| number)[];options: ICascadePickerChildOptionItem[][];currentOption: ICascadePickerOptionItem;columnIndex: number}) => void | -      |
+| onCancel       | 点击取消按钮时候回调     | (e: React.MouseEvent<HTMLDivElement\>) => void                                                                                                                                                  | -      |
+| onClose        | 关闭选择器时执行         | (e: React.MouseEvent<HTMLDivElement\>,data: {from: string;value: (string \| number)[];options: ICascadePickerChildOptionItem[][]}) => void                                                      | -      |
 
 ### PickerPanel
 

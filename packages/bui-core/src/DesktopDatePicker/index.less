@@ -1,0 +1,77 @@
+@import '@bifrostui/styles/mixins/index.less';
+@class-prefix-date-picker: ~'bui-desktop-date-picker';
+@date-picker-content-padding: 10px 16px;
+
+.@{class-prefix-date-picker} {
+  --height: var(--bui-input-height, 32px);
+  --min-width: var(--bui-input-min-width, 100px);
+  --icon-size: var(--bui-title-size-3, 16px);
+  --container-padding: var(--bui-spacing-md, 9px);
+  position: relative;
+  cursor: pointer;
+  vertical-align: middle;
+  height: var(--height);
+  min-width: var(--min-width);
+  font-size: var(--bui-title-size-3);
+  border-radius: 5px;
+  background-color: var(--bui-color-bg-view);
+  font-family: var(--bui-font-family);
+  border: 1px solid var(--bui-color-border-default);
+
+  &:active,
+  &-active {
+    box-shadow: 0 0 0 2px var(--bui-color-bg-default);
+  }
+
+  &-icon {
+    display: flex;
+    align-items: center;
+    font-size: var(--icon-size);
+    height: 100%;
+    padding-left: 6px;
+  }
+
+  &-container {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--container-padding);
+    height: 100%;
+  }
+
+  &-placeholder {
+    color: var(--bui-color-fg-disabled);
+  }
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: 0;
+  }
+
+  &-calendar-container {
+    position: absolute;
+    box-sizing: border-box;
+    left: 0;
+    width: 100%;
+    min-width: 300px;
+    z-index: var(--bui-z-index-dropdown);
+    background-color: var(--bui-color-bg-view);
+    padding: 2px;
+    overflow: hidden;
+  }
+}
+
+.@{class-prefix-date-picker}.@{class-prefix-date-picker}-disabled {
+  pointer-events: none;
+  box-shadow: none;
+  background-color: rgba(188, 188, 188, 0.2);
+
+  & input {
+    color: var(--bui-color-fg-subtle);
+  }
+}

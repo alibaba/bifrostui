@@ -125,6 +125,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
           value: conbineValues,
           options: formatted,
           currentOption: columnOption,
+          columnIndex,
         });
       } else {
         // value为引用类型，防止取消时外部value被修改
@@ -135,6 +136,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
           value: result,
           options: options as ICascadePickerChildOptionItem[][],
           currentOption: columnOption,
+          columnIndex,
         });
       }
     }

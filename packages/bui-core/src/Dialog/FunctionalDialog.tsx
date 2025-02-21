@@ -1,5 +1,5 @@
 import React, { LegacyRef, useCallback, useEffect, useState } from 'react';
-import { getRootElement, render, unmount } from '@bifrostui/utils';
+import { getRootContainer, render, unmount } from '@bifrostui/utils';
 import Popup from './Dialog';
 import {
   DialogPromise,
@@ -26,7 +26,7 @@ const formatProps = (props) => {
 
 const DialogGenerator = (options: DialogOptions) => {
   const rootWrapper = document.createElement('div');
-  const rootElement = getRootElement();
+  const rootElement = getRootContainer();
   rootElement.appendChild(rootWrapper);
 
   const DialogComponent = () => {
