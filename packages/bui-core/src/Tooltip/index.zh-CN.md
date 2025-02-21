@@ -7,9 +7,7 @@ name: Tooltip 文字提示
 
 简单的文字提示气泡框。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 鼠标点击则显示提示，再点击消失，气泡浮层不承载复杂文本和操作。
 
@@ -247,7 +245,7 @@ export default () => {
 | 属性                 | 说明             | 默认值  | 全局变量                         |
 | -------------------- | ---------------- | ------- | -------------------------------- |
 | --arrow-size         | 箭头大小         | 8PX     | --bui-tooltip-arrow-size         |
-| --localtion-position | 箭头位置         | 8PX     | --bui-tooltip-localtion-position |
+| --location-position  | 箭头位置         | 8PX     | --bui-tooltip-location-position  |
 | --max-width          | 最大宽度         | 350px   | --bui-tooltip-max-width          |
 | --content-min-width  | 内容区域最小宽度 | 30px    | --bui-tooltip-content-min-width  |
 | --content-min-height | 内容区域最小高度 | 32px    | --bui-tooltip-content-min-height |

@@ -197,7 +197,7 @@ ActionSheet inherits from Drawer. Other properties can be found in the Drawer AP
 | ------------------- | ---------------------------------- | ------------------ | ------------------------------------ |
 | --extra-line-height | Top additional content line height | 23px               | --bui-action-sheet-extra-line-height |
 | --extra-padding     | Top additional content margin      | --bui-spacing-xl   | --bui-action-sheet-extra-padding     |
-| --extra-magin       | Top additional content margin      | 0 --bui-spacing-xl | --bui-action-sheet-extra-magin       |
+| --extra-margin      | Top additional content margin      | 0 --bui-spacing-xl | --bui-action-sheet-extra-margin      |
 
 ### ActionSheetItem
 

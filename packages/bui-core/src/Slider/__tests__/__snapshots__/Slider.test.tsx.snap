@@ -13,8 +13,6 @@ exports[`Slider should render with default properties 1`] = `
   />
   <div
     aria-orientation="horizontal"
-    aria-valuemax="100"
-    aria-valuemin="0"
     aria-valuenow="10"
     class="bui-slider-button bui-slider-button-0"
     role="slider"
@@ -23,7 +21,7 @@ exports[`Slider should render with default properties 1`] = `
   >
     <svg
       class="bui-svg-icon"
-      color="#2e333e"
+      color="var(--bui-color-fg-default)"
       focusable="false"
       viewBox="0 0 96 96"
     >

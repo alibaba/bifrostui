@@ -24,7 +24,7 @@ module.exports = {
   ],
   overrides: [
     {
-      files: ['**/*.test.{ts,tsx}', '**/demo/*'],
+      files: ['**/*.test.{ts,tsx}', '**/demo/*', '**/docs/**/*.{ts,tsx}'],
       rules: {
         'import/no-extraneous-dependencies': 0,
       },
@@ -118,6 +118,7 @@ module.exports = {
     'no-debugger': 'warn',
     'valid-typeof': ['warn', { requireStringLiterals: true }],
     'import/no-cycle': ['warn', { maxDepth: Infinity }],
+    'import/prefer-default-export': 'off',
     'no-extra-boolean-cast': 'warn',
     'no-unused-vars': [2, { vars: 'all', args: 'none' }],
     // 'no-unused-vars': 'warn',

@@ -7,14 +7,12 @@ name: Tabs tab
 
 Tab switching component.
 
-## There are two differences between mini programs and H5:
+## Differences between mini programs and H5:
 
 1. The mini program switches between using gradient animation for the bottom line of the tab and displacement animation for H5;
 2. The mini program cannot move to the middle position of the view for tabs that are beyond scrollable when clicked to activate.
 
-## Code demonstration
-
-### Basic usage
+## Basic Tabs
 
 Complete layout with Tab component
 
@@ -57,12 +55,12 @@ export default () => {
 };
 ```
 
-### Support the use of tabs
+## Support the use of tabs
 
 Generate tabs using 'tabs'.
 
 ```tsx
-import { Stack, TabPanel, Tabs } from '@bifrostui/react';
+import { Stack, TabPanel, Tabs, Button } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
@@ -98,7 +96,148 @@ export default () => {
 };
 ```
 
-### Disabled status
+## Uncheck when value value is invalid
+
+When the value is invalid, do not select any tabs.
+
+```tsx
+import { Stack, Tab, TabPanel, Tabs, Button } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+export default () => {
+  const [value, setValue] = useState('2');
+  const defultList = [
+    { title: '长津湖', index: '1' },
+    { title: '战狼2', index: '2' },
+    { title: '你好，李焕英', index: '3' },
+    { title: '哪吒之魔童降世', index: '4' },
+    { title: '流浪地球', index: '5' },
+    { title: '唐人街探案3', index: '6' },
+  ];
+  const [tabList, setTabList] = useState(defultList);
+
+  const handleChange = (e, { index }) => {
+    console.log(e, `Tab Change, value index is: ${index}`);
+    setValue(index);
+  };
+
+  return (
+    <Stack>
+      <Button
+        onClick={() => {
+          setValue('');
+        }}
+      >
+        置为无效值
+      </Button>
+      <Button
+        onClick={() => {
+          if (tabList.length === 4) {
+            setTabList(defultList);
+          } else {
+            const newTabList = defultList.slice(0, 4);
+            setTabList(newTabList);
+            if (!newTabList.some((item) => item.index === value)) {
+              setValue('1');
+            }
+          }
+        }}
+      >
+        {tabList.length === 4 ? '增加' : '减少'}TabList长度
+      </Button>
+      <div style={{ width: '325px' }}>
+        <Tabs
+          style={{ marginTop: '20px', marginBottom: '12px' }}
+          value={value}
+          onChange={handleChange}
+        >
+          {tabList.map((item) => (
+            <Tab key={item.index} {...item}>
+              {item.title}
+            </Tab>
+          ))}
+        </Tabs>
+
+        {tabList.map((item) => (
+          <TabPanel key={item.index} value={value} index={item.index}>
+            {item.index}
+          </TabPanel>
+        ))}
+      </div>
+    </Stack>
+  );
+};
+```
+
+## Uncheck when value value is invalid (using tabs)
+
+When the value is invalid, do not select any tabs.
+
+```tsx
+import { Stack, Tab, TabPanel, Tabs, Button } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+export default () => {
+  const [value, setValue] = useState('2');
+  const defultList = [
+    { title: '长津湖', index: '1' },
+    { title: '战狼2', index: '2' },
+    { title: '你好，李焕英', index: '3' },
+    { title: '哪吒之魔童降世', index: '4' },
+    { title: '流浪地球', index: '5' },
+    { title: '唐人街探案3', index: '6' },
+  ];
+  const [tabList, setTabList] = useState(defultList);
+
+  const handleChange = (e, { index }) => {
+    console.log(e, `Tab Change, value index is: ${index}`);
+    setValue(index);
+  };
+
+  return (
+    <Stack>
+      <Button
+        onClick={() => {
+          setValue('');
+        }}
+      >
+        置为无效值
+      </Button>
+      <Button
+        onClick={() => {
+          if (tabList.length === 4) {
+            setTabList(defultList);
+          } else {
+            const newTabList = defultList.slice(0, 4);
+            setTabList(newTabList);
+            if (!newTabList.some((item) => item.index === value)) {
+              setValue('1');
+            }
+          }
+        }}
+      >
+        {tabList.length === 4 ? '增加' : '减少'}TabList长度
+      </Button>
+      <div style={{ width: '325px' }}>
+        <Tabs
+          style={{ marginTop: '20px', marginBottom: '12px' }}
+          tabs={tabList}
+          value={value}
+          onChange={handleChange}
+        />
+
+        {tabList.map((item) => (
+          <TabPanel key={item.index} value={value} index={item.index}>
+            {item.index}
+          </TabPanel>
+        ))}
+      </div>
+    </Stack>
+  );
+};
+```
+
+## Disabled status
 
 Disable Tab from triggering clicks through 'disabled'.
 
@@ -146,7 +285,9 @@ export default () => {
 };
 ```
 
-### Controlled Tabs Component
+## Controlled Tabs Component
+
+The selection status of Tabs components can be controlled through the 'value' attribute.
 
 ```tsx
 import { Button, Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
@@ -238,7 +379,9 @@ export default () => {
 };
 ```
 
-### Beyond sliding
+## Beyond sliding
+
+When there are too many tabs, it exceeds the limit for sliding.
 
 ```tsx
 import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
@@ -298,7 +441,7 @@ export default () => {
 | align     | Alignment method                                                          | `start` \|`center`                                 | `center`      |
 | onChange  | Switch panel callback                                                     | (e?: SyntheticEvent,data?:{index: string}) => void | -             |
 
-### ITab
+### Item
 
 | attribute | explain               | type            | Default value |
 | --------- | --------------------- | --------------- | ------------- |
@@ -322,25 +465,19 @@ export default () => {
 | index       | Corresponding to the index in the data of the tab switching panel | string  | -             |
 | keepMounted | Whether to render DOM structure when TabPanel is hidden           | boolean | false         |
 
-## Style variables
+<!-- ## Style variables
 
 ### Tabs
 
-| attribute      | explain                          | Default value          | global variable         |
-| -------------- | -------------------------------- | ---------------------- | ----------------------- |
-| --height       | Tabs height                      | 39px                   | --bui-tabs-height       |
-| --color        | Font color                       | --bui-color-fg-subtle  | --bui-tabs-color        |
-| --active-color | Activate Tab font color          | --bui-color-fg-default | --bui-tabs-active-color |
-| --line-width   | Width of the lower marking line  | 18px                   | --bui-tabs-line-width   |
-| --line-height  | Height of the lower marking line | 3PX                    | --bui-tabs-line-height  |
-| --line-color   | Color of the lower marking line  | --bui-color-primary    | --bui-tabs-line-color   |
-| --mask-width   | Mask width                       | 12px                   | --bui-tabs-mask-width   |
-| --mask-height  | Mask height                      | 100%                   | --bui-tabs-mask-height  |
-
-### Tab
-
-| attribute   | explain          | Default value                                    | global variable     |
-| ----------- | ---------------- | ------------------------------------------------ | ------------------- |
-| --height    | Tab height       | 100%                                             | --bui-tab-height    |
-| --padding   | Tab inner margin | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding   |
-| --font-size | Tab font size    | --bui-text-size-1                                | --bui-tab-font-size |
+| attribute            | explain                                                      | Default value                                    | global variable               |
+| -------------------- | ------------------------------------------------------------ | ------------------------------------------------ | ----------------------------- |
+| --bui-tabs-height             | Tabs height                                                  | 39px                                             | --bui-tabs-height             |
+| --bui-tabs-color             | Font color                                                   | --bui-color-fg-subtle                            | --bui-tabs-color              |
+| --bui-tabs-indicator-width         | Width of the lower marking line                              | 18px                                             | --bui-tabs-indicator-width         |
+| --bui-tabs-indicator-border-radius | Rounded corner of lower marking line                         | 3px                                              | --bui-tabs-indicator-border-radius |
+| --bui-tabs-indicator-bottom        | Positioning position at the bottom of the lower marking line | 0                                                | --bui-tabs-indicator-bottom        |
+| --bui-tabs-indicator-color        | Height of the lower marking line                             | 3PX                                              | --bui-tabs-indicator-height        |
+| --bui-tabs-indicator-bg         | Index line color                                             | --bui-color-primary                              | --bui-tabs-indicator-bg         |
+| --bui-tabs-indicator-box-shadow    | Index line shadow                                            | none                                             | --bui-tabs-indicator-box-shadow    |
+| --bui-tab-padding        | Tab inner margin                                             | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding             |
+| --bui-tabs-font-size         | Tab font size                                                | --bui-text-size-1                                | --bui-tabs-font-size           |

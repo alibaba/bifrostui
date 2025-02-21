@@ -326,7 +326,7 @@ exports[`Image snapshot Image demo snapshot 0 4`] = `
 exports[`Image snapshot Image demo snapshot 0 5`] = `
 Array [
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-medium"
     onClick={[Function]}
     type="button"
   >

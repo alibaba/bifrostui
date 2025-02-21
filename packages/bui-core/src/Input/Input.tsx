@@ -10,17 +10,17 @@ const prefixCls = 'bui-input';
 const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
   const {
     className,
-    defaultValue,
+    defaultValue = '',
     value,
     inputProps,
     inputRef,
     name,
-    type,
-    clearable,
+    type = 'text',
+    clearable = false,
     startIcon,
     endIcon,
     placeholder,
-    disabled,
+    disabled = false,
     onClear,
     onChange,
     onFocus,
@@ -112,7 +112,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
       {/* 清除按钮 */}
       {clearable && !!inputValue && hasFocus && (
         <div className={`${prefixCls}-clear`} onClick={handleClear}>
-          <ErrorCircleFilledIcon htmlColor="#959aa5" />
+          <ErrorCircleFilledIcon htmlColor="var(--bui-color-fg-subtle)" />
         </div>
       )}
 
@@ -127,11 +127,5 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
 });
 
 Input.displayName = 'BuiInput';
-Input.defaultProps = {
-  defaultValue: '',
-  type: 'text',
-  clearable: false,
-  disabled: false,
-};
 
 export default Input;

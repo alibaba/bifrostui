@@ -7,9 +7,7 @@ name: Breadcrumb 面包屑
 
 显示当前页面在系统层级结构中的位置，并能向上返回。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 最简单的用法。
 
@@ -42,7 +40,7 @@ export default () => {
 };
 ```
 
-### 使用 BreadcrumbItem
+## 使用 BreadcrumbItem
 
 使用 BreadcrumbItem 替代 items 进行渲染
 
@@ -69,7 +67,7 @@ export default () => {
 };
 ```
 
-### 带有图标的
+## 带有图标的
 
 图标放在文字前面。
 
@@ -109,7 +107,7 @@ export default () => {
 };
 ```
 
-### 分隔符
+## 分隔符
 
 使用 separator=">" 可以自定义分隔符。
 
@@ -143,7 +141,7 @@ export default () => {
 };
 ```
 
-### 独立的分隔符
+## 独立的分隔符
 
 自定义单独的分隔符。
 
@@ -177,16 +175,16 @@ export default () => {
 };
 ```
 
-### API
+## API
 
-##### BreadcrumbProps
+### BreadcrumbProps
 
 | 属性      | 说明         | 类型                  | 默认值 |
 | --------- | ------------ | --------------------- | ------ |
 | items     | 路由栈信息   | BreadcrumbItemProps[] | -      |
 | separator | 分隔符自定义 | React.ReactNode       | /      |
 
-##### BreadcrumbItemProps
+### BreadcrumbItemProps
 
 | 属性      | 说明                                     | 类型                              | 默认值 |
 | --------- | ---------------------------------------- | --------------------------------- | ------ |
@@ -195,7 +193,7 @@ export default () => {
 | children  | 使用 BreadcrumbItem 组件渲染时替代 title | React.ReactNode                   | -      |
 | onClick   | 点击事件                                 | (e: React.SyntheticEvent) => void | -      |
 
-### 样式变量
+## 样式变量
 
 | 属性                    | 说明                   | 默认值              | 全局变量                               |
 | ----------------------- | ---------------------- | ------------------- | -------------------------------------- |

@@ -8,9 +8,7 @@ name: ActionSheet 动作面板
 
 从底部弹出的动作菜单面板。包含与当前情境相关的多个选项，让用户在不离场的情况下完成操作。
 
-## 代码演示
-
-### 基本用法
+## 基本用法
 
 `ActionSheet` 默认关闭，通过`open`属性从底部弹出，通过嵌套`ActionSheetItem`完成每个选项的渲染。
 
@@ -40,7 +38,7 @@ export default () => {
 };
 ```
 
-### 取消按钮
+## 取消按钮
 
 可以通过设置`cancelText`增加底部取消按钮，点击会触发 `onClose` 事件。
 
@@ -69,7 +67,7 @@ export default () => {
 };
 ```
 
-### 描述信息
+## 描述信息
 
 通过设置`extra` 可以在顶部增加额外的描述信息，仅展示不可点击
 
@@ -102,7 +100,7 @@ export default () => {
 };
 ```
 
-### 禁用和危险选项
+## 禁用和危险选项
 
 通过给 `ActionSheetItem` 设置`disabled`可以使该选项不可点击，设置`color`可以设置该选择的主题，例如危险操作通过 color=danger 可以提示用户谨慎操作
 
@@ -135,7 +133,7 @@ export default () => {
 };
 ```
 
-### 选项描述信息
+## 选项描述信息
 
 通过给 `ActionSheetItem` 设置`description`可以增加每个选项的描述信息，作为该选项的额外补充信息
 
@@ -197,7 +195,7 @@ export default () => {
 | ------------------- | ------------------ | ------------------ | ------------------------------------ |
 | --extra-line-height | 顶部额外内容行高   | 23px               | --bui-action-sheet-extra-line-height |
 | --extra-padding     | 顶部额外内容内边距 | --bui-spacing-xl   | --bui-action-sheet-extra-padding     |
-| --extra-magin       | 顶部额外内容内边距 | 0 --bui-spacing-xl | --bui-action-sheet-extra-magin       |
+| --extra-margin      | 顶部额外内容内边距 | 0 --bui-spacing-xl | --bui-action-sheet-extra-margin      |
 
 ### ActionSheetItem
 

@@ -8,9 +8,9 @@ const prefixCls = 'bui-tab-bar';
 
 const TabBar = React.forwardRef<HTMLDivElement, TabBarProps>((props, ref) => {
   const {
-    current,
-    activeColor,
-    color,
+    current = 0,
+    activeColor = 'primary',
+    color = 'default',
     children,
     className,
     onChange,
@@ -41,9 +41,5 @@ const TabBar = React.forwardRef<HTMLDivElement, TabBarProps>((props, ref) => {
 });
 
 TabBar.displayName = 'BuiTabBar';
-TabBar.defaultProps = {
-  activeColor: 'primary',
-  color: 'default',
-  current: 0,
-};
+
 export default TabBar;

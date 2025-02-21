@@ -1,24 +1,28 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+@{root-selector} {
+  --bui-badge-position: 14%;
+  --bui-badge-min-width: 15px;
+  --bui-badge-height: 15px;
+  --bui-badge-line-height: 15px;
+  --bui-badge-padding: 0 3px;
+  --bui-badge-border-radius: 8px;
+  --bui-badge-outlined-padding: 0 2px;
+  --bui-badge-dot-size: 9px;
+  --bui-badge-bubble-padding: 0 5px;
+  --bui-badge-bubble-border-radius: 6px 6px 6px 0;
+}
+
 .bui-badge-position() {
-  top: var(--badge-position);
-  right: var(--badge-position);
+  top: var(--bui-badge-position);
+  right: var(--bui-badge-position);
   transform: scale(1) translate(50%, -50%);
 }
 .bui-badge-bubble-radius() {
-  border-radius: var(--bubble-border-radius);
+  border-radius: var(--bui-badge-bubble-border-radius);
 }
 
 .bui-badge {
-  --badge-position: var(--bui-badge-position, 14%);
-  --min-width: var(--bui-badge-min-width, 15px);
-  --height: var(--bui-badge-height, 15px);
-  --line-height: var(--bui-badge-line-height, 15px);
-  --padding: var(--bui-badge-padding, 0 3px);
-  --border-radius: var(--bui-badge-border-radius, 8px);
-  --outlined-padding: var(--bui-badge-outlined-padding, 0 2px);
-  --dot-size: var(--bui-badge-dot-size, 9px);
-  --bubble-padding: var(--bui-badge-bubble-padding, 0 5px);
-  --bubble-border-radius: var(--bui-badge-bubble-border-radius, 6px 6px 6px 0);
-
   display: inline-block;
   font-family: var(--bui-font-family);
 
@@ -46,19 +50,19 @@
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
-    min-width: var(--min-width);
-    height: var(--height);
-    line-height: var(--line-height);
-    padding: var(--padding);
+    min-width: var(--bui-badge-min-width);
+    height: var(--bui-badge-height);
+    line-height: var(--bui-badge-line-height);
+    padding: var(--bui-badge-padding);
     font-size: var(--bui-text-size-4);
-    border-radius: var(--border-radius);
+    border-radius: var(--bui-badge-border-radius);
     color: var(--bui-color-bg-view);
     white-space: nowrap;
     z-index: 1;
   }
 
   &-outlined {
-    padding: var(--outlined-padding);
+    padding: var(--bui-badge-outlined-padding);
   }
 
   &-primary {
@@ -82,16 +86,16 @@
   }
 
   &-dot {
-    width: var(--dot-size);
+    width: var(--bui-badge-dot-size);
     min-width: 0;
-    height: var(--dot-size);
+    height: var(--bui-badge-dot-size);
     padding: 0;
     border-radius: 100%;
   }
 
   &-bubble {
     .bui-badge-bubble-radius();
-    padding: var(--bubble-padding);
+    padding: var(--bui-badge-bubble-padding);
   }
 
   &-outlined {

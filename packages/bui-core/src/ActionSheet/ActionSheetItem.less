@@ -1,24 +1,15 @@
 .bui-action-sheet-item {
-  --padding: var(--bui-action-sheet-item-padding, var(--bui-spacing-xl));
-  --font-size: var(--bui-action-sheet-item-font-size, var(--bui-title-size-2));
-  --line-height: var(--bui-action-sheet-item-line-height, 24px);
-  --color: var(--bui-action-sheet-item-color, var(--bui-color-fg-default));
-  --margin: var(--bui-action-sheet-item-margin, 0 var(--bui-spacing-xl));
-  --description-line-height: var(
-    --bui-action-sheet-item-description-line-height,
-    19px
-  );
   font-family: var(--bui-font-family);
   position: relative;
-  padding: var(--padding);
+  padding: var(--bui-action-sheet-item-padding);
   cursor: pointer;
   background: var(--bui-color-bg-view);
-  font-size: var(--font-size);
+  font-size: var(--bui-action-sheet-item-font-size);
   text-align: center;
-  line-height: var(--line-height);
-  color: var(--color);
+  line-height: var(--bui-action-sheet-item-line-height);
+  color: var(--bui-action-sheet-item-color);
   border-top: 1px solid var(--bui-color-border-default);
-  margin: var(--margin);
+  margin: var(--bui-action-sheet-item-margin);
 
   &:first-child {
     border-top: none;
@@ -29,23 +20,23 @@
   }
 
   &-primary {
-    --color: var(--bui-color-primary);
+    color: var(--bui-color-primary);
   }
 
   &-info {
-    --color: var(--bui-color-info);
+    color: var(--bui-color-info);
   }
 
   &-success {
-    --color: var(--bui-color-success);
+    color: var(--bui-color-success);
   }
 
   &-warning {
-    --color: var(--bui-color-warning);
+    color: var(--bui-color-warning);
   }
 
   &-danger {
-    --color: var(--bui-color-danger);
+    color: var(--bui-color-danger);
   }
 
   &-disabled {
@@ -63,7 +54,7 @@
 
   &-description {
     font-size: var(--bui-text-size-2);
-    line-height: var(--description-line-height);
+    line-height: var(--bui-action-sheet-item-description-line-height);
     color: var(--bui-color-fg-subtle);
   }
 }

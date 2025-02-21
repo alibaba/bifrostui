@@ -247,7 +247,7 @@ export default () => {
 | attribute            | explain                        | Default value | global variable                  |
 | -------------------- | ------------------------------ | ------------- | -------------------------------- |
 | --arrow-size         | ARROW size                     | 8PX           | --bui-tooltip-arrow-size         |
-| --localtion-position | Arrow Position                 | 8PX           | --bui-tooltip-localtion-position |
+| --location-position  | Arrow Position                 | 8PX           | --bui-tooltip-location-position  |
 | --max-width          | Maximum width                  | 350px         | --bui-tooltip-max-width          |
 | --content-min-width  | Minimum width of content area  | 30px          | --bui-tooltip-content-min-width  |
 | --content-min-height | Minimum height of content area | 32px          | --bui-tooltip-content-min-height |

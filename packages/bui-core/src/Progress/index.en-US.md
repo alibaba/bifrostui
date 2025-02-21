@@ -79,8 +79,8 @@ export default () => {
       <Progress
         percent={60}
         strokeColor={{
-          from: 'var(--bui-color-red)',
-          to: 'var(--bui-color-red-light)',
+          from: 'var(--bui-color-primary)',
+          to: 'var(--bui-color-primary-light)',
         }}
       />
       <Progress
@@ -103,7 +103,7 @@ Specify the color of unfinished segments through 'trailColor'.
 import React from 'react';
 import { Progress } from '@bifrostui/react';
 export default () => {
-  return <Progress percent={60} trailColor="var(--bui-color-red-light)" />;
+  return <Progress percent={60} trailColor="var(--bui-color-primary-light)" />;
 };
 ```
 

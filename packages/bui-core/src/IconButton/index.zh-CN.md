@@ -7,9 +7,7 @@ name: IconButton 图标按钮
 
 图标按钮是一种只显示一个图标而不显示文本标签的按钮。主要用于控制栏、工具栏，当需要一个紧凑的按钮时它们也十分有用
 
-## 代码演示
-
-### 基础按钮
+## 基础按钮
 
 按钮支持 `默认按钮`、`描边按钮`、`填充按钮` 三种展示形态
 
@@ -35,7 +33,7 @@ export default () => {
 };
 ```
 
-### 形状
+## 形状
 
 按钮支持 `圆形`、`圆角`、`正方形` 三种形状
 
@@ -61,7 +59,7 @@ export default () => {
 };
 ```
 
-### 按钮大小
+## 按钮大小
 
 按钮有大、中、小三种尺寸。
 
@@ -89,9 +87,9 @@ export default () => {
 };
 ```
 
-### 按钮色彩
+## 按钮色彩
 
-按钮支持 `primary`、`success`、`info`、`warning`、`danger` 主题定义。若不设置color，则默认为`default`
+按钮支持 `primary`、`success`、`info`、`warning`、`danger`、`light`、`neutral`、`dark` 主题定义。若不设置color，则默认为`neutral`
 
 ```tsx
 import React from 'react';
@@ -100,7 +98,14 @@ import { PhoneFilledIcon } from '@bifrostui/icons';
 
 export default () => {
   return (
-    <Stack spacing="10px">
+    <Stack
+      spacing="10px"
+      style={{
+        background: 'var(--bui-color-bg-default)',
+        padding: '24px',
+        borderRadius: '8px',
+      }}
+    >
       <Stack direction="row" spacing="8px">
         <IconButton color="primary">
           <PhoneFilledIcon />
@@ -115,6 +120,35 @@ export default () => {
           <PhoneFilledIcon />
         </IconButton>
         <IconButton color="danger">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="light">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="dark">
+          <PhoneFilledIcon />
+        </IconButton>
+      </Stack>
+      <Stack direction="row" spacing="8px">
+        <IconButton color="primary" variant="outlined">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="success" variant="outlined">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="info" variant="outlined">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="warning" variant="outlined">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="danger" variant="outlined">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="light" variant="outlined">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="dark" variant="outlined">
           <PhoneFilledIcon />
         </IconButton>
       </Stack>
@@ -134,13 +168,42 @@ export default () => {
         <IconButton color="danger" variant="contained">
           <PhoneFilledIcon />
         </IconButton>
+        <IconButton color="light" variant="contained">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="dark" variant="contained">
+          <PhoneFilledIcon />
+        </IconButton>
+      </Stack>
+      <Stack direction="row" spacing="8px">
+        <IconButton color="primary" variant="subtle">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="success" variant="subtle">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="info" variant="subtle">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="warning" variant="subtle">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="danger" variant="subtle">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="light" variant="subtle">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="dark" variant="subtle">
+          <PhoneFilledIcon />
+        </IconButton>
       </Stack>
     </Stack>
   );
 };
 ```
 
-### 禁用状态
+## 禁用状态
 
 通过 disabled 属性来禁用按钮，禁用状态下按钮不可点击。
 
@@ -168,15 +231,15 @@ export default () => {
 
 ## API
 
-| 属性      | 说明                 | 类型                                                                   | 默认值    |
-| --------- | -------------------- | ---------------------------------------------------------------------- | --------- |
-| variant   | 按钮类型             | `default` \| `text` \| `contained`                                     | `default` |
-| color     | 按钮颜色             | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` | `default` |
-| size      | 按钮大小             | `small` \| `medium` \| `large`                                         | `medium`  |
-| disabled  | 是否禁用             | boolean                                                                | false     |
-| startIcon | 在子元素前放在的内容 | React.ReactNode                                                        | -         |
-| openType  | 微信开放能力         | string                                                                 | -         |
-| onClick   | 点击按钮时的回调     | (event: MouseEvent) => void                                            | -         |
+| 属性      | 说明                 | 类型                                                                                      | 默认值    |
+| --------- | -------------------- | ----------------------------------------------------------------------------------------- | --------- |
+| variant   | 按钮类型             | `default` \| `text` \| `contained` \| `subtle`                                            | `default` |
+| color     | 按钮颜色             | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `neutral`\| `light`\| `dark` | `neutral` |
+| size      | 按钮大小             | `small` \| `medium` \| `large`                                                            | `medium`  |
+| disabled  | 是否禁用             | boolean                                                                                   | false     |
+| startIcon | 在子元素前放在的内容 | React.ReactNode                                                                           | -         |
+| openType  | 微信开放能力         | string                                                                                    | -         |
+| onClick   | 点击按钮时的回调     | (event: MouseEvent) => void                                                               | -         |
 
 其他属性见 [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes)
 

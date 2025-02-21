@@ -29,12 +29,14 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     inputProps,
     BackdropProps,
     value,
-    defaultValue,
+    defaultValue = '',
     disabled,
     placeholder,
     icon,
     open,
-    scrollContainer,
+    scrollContainer = () => {
+      return isMini ? null : document.body;
+    },
     onChange,
     onClose,
     onOpen,
@@ -129,12 +131,9 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   }, []);
 
   const defaultIcon = isOpen ? (
-    <CaretUpIcon className={`${prefixCls}-selector-icon`} htmlColor="#9c9ca5" />
+    <CaretUpIcon className={`${prefixCls}-selector-icon`} color="default" />
   ) : (
-    <CaretDownIcon
-      className={`${prefixCls}-selector-icon`}
-      htmlColor="#9c9ca5"
-    />
+    <CaretDownIcon className={`${prefixCls}-selector-icon`} color="default" />
   );
 
   const renderOptions = () => {
@@ -225,11 +224,5 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
 });
 
 Select.displayName = 'BuiSelect';
-Select.defaultProps = {
-  defaultValue: '',
-  scrollContainer: () => {
-    return isMini ? null : document.body;
-  },
-};
 
 export default Select;
