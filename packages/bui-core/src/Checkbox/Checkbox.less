@@ -1,14 +1,14 @@
 @import '@bifrostui/styles/mixins/index.less';
 
+@{root-selector} {
+  --bui-checkbox-label-color: var(--bui-color-fg-default);
+  --bui-checkbox-label-font-size: var(--bui-text-size-1);
+  --bui-checkbox-icon-font-size: var(--bui-title-size-2);
+  --bui-checkbox-disabled-opacity: 0.5;
+  --bui-checkbox-icon-padding: 5px;
+}
+
 .bui-checkbox {
-  --label-color: var(--bui-checkbox-label-color, var(--bui-color-fg-default));
-  --label-font-size: var(
-    --bui-checkbox-label-font-size,
-    var(--bui-text-size-1)
-  );
-  --icon-font-size: var(--bui-checkbox-icon-font-size, var(--bui-title-size-2));
-  --disabled-opacity: var(--bui-checkbox-disabled-opacity, 0.5);
-  --icon-padding: var(--bui-checkbox-icon-padding, 5px);
   display: inline-flex;
   align-items: center;
   position: relative;
@@ -16,7 +16,7 @@
 
   &.bui-checkbox-disabled {
     pointer-events: none;
-    opacity: var(--disabled-opacity);
+    opacity: var(--bui-checkbox-disabled-opacity);
   }
 
   &-label-left {
@@ -48,13 +48,13 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    padding: var(--icon-padding);
+    padding: var(--bui-checkbox-icon-padding);
     box-sizing: border-box;
-    font-size: var(--icon-font-size);
+    font-size: var(--bui-checkbox-icon-font-size);
   }
 
   &-label {
-    font-size: var(--label-font-size);
-    color: var(--label-color);
+    font-size: var(--bui-checkbox-label-font-size);
+    color: var(--bui-checkbox-label-color);
   }
 }

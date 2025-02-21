@@ -1,41 +1,35 @@
 @import '@bifrostui/styles/mixins/index.less';
 
+@{root-selector} {
+  --bui-dialog-max-width: 300px;
+  --bui-dialog-border-radius: var(--bui-shape-radius-drawer);
+  --bui-dialog-title-padding: 0 40px 9px;
+  --bui-dialog-desc-padding: 0 24px;
+  --bui-dialog-footer-margin-top: 15px;
+  --bui-dialog-button-height: 53px;
+  --bui-dialog-button-line-height: 25px;
+  --bui-dialog-button-padding: 12px 0 13px;
+  --bui-dialog-button-font-size: 17px;
+  --bui-dialog-button-border-left: 1px solid rgba(0, 0, 0, 0.05);
+  --bui-dialog-button-active-background-color: rgba(54, 57, 64, 0.05);
+}
+
 .bui-dialog {
-  --max-width: var(--bui-dialog-max-width, 300px);
-  --border-radius: var(
-    --bui-dialog-border-radius,
-    var(--bui-shape-radius-drawer)
-  );
-  --title-padding: var(--bui-dialog-title-padding, 0 40px 9px);
-  --desc-padding: var(--bui-dialog-desc-padding, 0 24px);
-  --footer-margin-top: var(--bui-dialog-footer-margin-top, 15px);
-  --button-height: var(--bui-dialog-button-height, 53px);
-  --button-line-height: var(--bui-dialog-button-line-height, 25px);
-  --button-padding: var(--bui-dialog-button-padding, 12px 0 13px);
-  --button-font-size: var(--bui-dialog-button-font-size, 17px);
-  --button-border-left: var(
-    --bui-dialog-button-border-left,
-    1px solid rgba(0, 0, 0, 0.05)
-  );
-  --button-active-background-color: var(
-    --bui-dialog-button-active-background-color,
-    rgba(54, 57, 64, 0.05)
-  );
   display: flex;
   align-items: center;
   justify-content: center;
 
   &-body {
     padding-top: 21px;
-    min-width: var(--max-width);
+    min-width: var(--bui-dialog-max-width);
     margin: 0 auto;
-    border-radius: var(--border-radius);
+    border-radius: var(--bui-dialog-border-radius);
     background-clip: padding-box;
     background-color: var(--bui-color-bg-view);
     line-height: 21px;
 
     &-title {
-      padding: var(--title-padding);
+      padding: var(--bui-dialog-title-padding);
       font-size: var(--bui-title-size-2);
       text-align: center;
       color: var(--bui-color-fg-default);
@@ -47,7 +41,7 @@
     }
 
     &-desc {
-      padding: var(--desc-padding);
+      padding: var(--bui-dialog-desc-padding);
       color: var(--bui-color-fg-muted);
       font-size: var(--bui-title-size-4);
       text-align: center;
@@ -58,9 +52,8 @@
     }
 
     &-footer {
-      margin-top: var(--footer-margin-top);
+      margin-top: var(--bui-dialog-footer-margin-top);
       border-top: 1px solid rgba(0, 0, 0, 0.05);
-      display: -webkit-box;
       display: flex;
     }
 
@@ -73,13 +66,13 @@
       flex: 1;
       display: block;
       width: 100%;
-      height: var(--button-height);
-      line-height: var(--button-line-height);
-      padding: var(--button-padding);
-      font-size: var(--button-font-size);
+      height: var(--bui-dialog-button-height);
+      line-height: var(--bui-dialog-button-line-height);
+      padding: var(--bui-dialog-button-padding);
+      font-size: var(--bui-dialog-button-font-size);
       border: 0;
       outline: 0;
-      border-left: var(--button-border-left);
+      border-left: var(--bui-dialog-button-border-left);
       border-radius: 0;
       text-align: center;
       box-sizing: border-box;
@@ -89,7 +82,7 @@
       }
 
       &:active {
-        background-color: var(--button-active-background-color);
+        background-color: var(--bui-dialog-button-active-background-color);
       }
     }
   }

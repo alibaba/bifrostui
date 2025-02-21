@@ -1,10 +1,12 @@
 @import '@bifrostui/styles/mixins/index.less';
 
-.bui-loading {
-  --icon-font-size: var(--bui-loading-icon-font-size, 30px);
-  --text-padding: var(--bui-loading-text-padding, 10px);
-  --animation-duration: var(--bui-loading-animation-duration, 1.6s);
+@{root-selector} {
+  --bui-loading-icon-font-size: 30px;
+  --bui-loading-text-padding: 10px;
+  --bui-loading-animation-duration: 1.6s;
+}
 
+.bui-loading {
   width: fit-content;
   display: flex;
   justify-content: center;
@@ -13,12 +15,12 @@
   font-family: var(--bui-font-family);
 
   &-icon {
-    font-size: var(--icon-font-size);
-    animation: loading var(--animation-duration) linear infinite;
+    font-size: var(--bui-loading-icon-font-size);
+    animation: loading var(--bui-loading-animation-duration) linear infinite;
   }
 
   &-text {
-    padding: var(--text-padding);
+    padding: var(--bui-loading-text-padding);
     font-size: var(--bui-title-size-3);
   }
 
