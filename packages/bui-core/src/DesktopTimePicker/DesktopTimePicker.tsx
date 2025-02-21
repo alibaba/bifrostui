@@ -6,7 +6,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { useValue } from '@bifrostui/utils';
 import { TimePickerProps, TimeSteps } from './DesktopTimePicker.types';
 import './index.less';
-import { formatTime, isDisabledTime, dateToDayjs } from './utils/utils';
+import { isDisabledTime, dateToDayjs } from './utils/utils';
 import DesktopPicker from '../DesktopPicker';
 import useGetTimePickerContent from './useGetTimePickerContent';
 
@@ -52,27 +52,12 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
 
     // 是否展开日期选择
     const [isOpen, setIsOpen] = useState<boolean>(false);
-
-    const formattedValue = formatTime(
-      dateToDayjs(value),
-      dateToDayjs(minTime),
-      dateToDayjs(maxTime),
-      disabledTimeView,
-    );
-
-    const formattedDefaultValue = formatTime(
-      dateToDayjs(defaultValue),
-      dateToDayjs(minTime),
-      dateToDayjs(maxTime),
-      disabledTimeView,
-    );
-
     const [inputStr, setInputStr] = useState<string>('');
     const [useUserStr, setUseUserStr] = useState<boolean>(false);
     // 选中时间，value和defaultValue优先级高于onChange
     const [timeValue, triggerChange] = useValue({
-      value: formattedValue,
-      defaultValue: formattedDefaultValue,
+      value,
+      defaultValue,
       onChange,
     });
 
@@ -164,17 +149,10 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
         return inputStr;
       }
 
-      if (
-        timeValue &&
-        !isDisabledTime(
-          dayjs(timeValue),
-          dateToDayjs(minTime),
-          dateToDayjs(maxTime),
-          disabledTimeView,
-        )
-      ) {
+      if (timeValue) {
         return dayjs(timeValue).format(format);
       }
+
       // 校验不通过，返回空值
       return '';
     }, [timeValue, inputStr, useUserStr, format]);

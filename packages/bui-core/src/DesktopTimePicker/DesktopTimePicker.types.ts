@@ -107,7 +107,7 @@ export type TimePickerProps<
       /**
        * renderItem
        */
-      renderItem?: (item: ITimeItemInstance) => React.ReactNode;
+      renderItem?: (item: ITimeInstance) => React.ReactNode;
     };
     defaultComponent: D;
   },
@@ -151,10 +151,6 @@ export interface TimePickerContentProps {
    */
   ampm?: boolean;
   /**
-   * 不可选择的时间
-   */
-  disabledTime?: number[];
-  /**
    * 可选择的最小时间
    */
   minTime?: Dayjs;
@@ -165,14 +161,16 @@ export interface TimePickerContentProps {
   /**
    * 自定义渲染
    */
-  renderItem?: (item: ITimeItemInstance) => React.ReactNode;
+  renderItem?: (item: ITimeInstance) => React.ReactNode;
 }
 
 /** 时间面板单元格对象 */
-export interface ITimeItemInstance {
+export interface ITimeInstance {
   value: number | string;
   label: string;
+  disabled: boolean;
 }
+
 /** 时分秒面板单元格对象 */
 export interface ITimeItemNumberInstance {
   value: number;
@@ -182,10 +180,9 @@ export interface ITimeItemNumberInstance {
 export interface DesktopTimePickerListProps {
   timeValue: Dayjs;
   type: ViewTypeWithMeridiem;
-  dataList: ITimeItemInstance[];
-  disabledTime: (number | string)[];
+  dataList: ITimeInstance[];
   selectedValue: string | number;
   prefixCls: string;
   handleClick: Function;
-  renderItem: (item: ITimeItemInstance) => React.ReactNode;
+  renderItem: (item: ITimeInstance) => React.ReactNode;
 }
