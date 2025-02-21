@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   useForkRef,
   duration,
@@ -41,13 +41,9 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
 
   const wrapperRef = useRef(null);
   const collapseRef = useForkRef(wrapperRef, ref);
+  const [wrapperSize, setWrapperSize] = useState('');
   const transitions = createTransitions();
-  const wrapperSizeRef = useRef<Record<string, any>>({
-    width: FIT_CONTENT,
-    height: FIT_CONTENT,
-    WebKitWidth: FIT_CONTENT,
-    WebKitHeight: FIT_CONTENT,
-  });
+
   const isHorizontal = direction === 'horizontal';
   const collapsedSize =
     typeof collapsedSizeProp === 'number'
@@ -66,8 +62,9 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
       getBoundingClientRect(reactNodeChild).then((res) => {
         if (!res) {
           resolve(FIT_CONTENT);
+          setWrapperSize(FIT_CONTENT);
         } else {
-          resolve(isHorizontal ? `${res?.width}px` : `${res?.height}px`);
+          setWrapperSize(isHorizontal ? `${res?.width}px` : `${res?.height}px`);
         }
       });
     });
@@ -79,10 +76,10 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
       // TODO 判断
       appear === false &&
       inProp === true &&
-      wrapperRef.current?.style?.[size] === FIT_CONTENT
+      wrapperSize === FIT_CONTENT
     ) {
       getCollapseWrapperSize(wrapperRef.current).then((res) => {
-        wrapperRef.current.style[size] = res;
+        setWrapperSize(res as string);
       });
     }
   }, [appear, inProp]);
@@ -107,28 +104,15 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
         );
 
         if (state === 'entering' || state === 'entered') {
-          getCollapseWrapperSize(wrapperRef.current).then((res) => {
-            wrapperSizeRef.current = isHorizontal
-              ? {
-                  width: res || FIT_CONTENT,
-                  WebKitWidth: res || FIT_CONTENT,
-                }
-              : {
-                  height: res || FIT_CONTENT,
-                  WebKitHeight: res || FIT_CONTENT,
-                };
-          });
+          getCollapseWrapperSize(wrapperRef.current).then(
+            (res = FIT_CONTENT) => {
+              setWrapperSize(res as string);
+            },
+          );
         } else {
-          wrapperSizeRef.current = isHorizontal
-            ? {
-                width: collapsedSize,
-                WebKitWidth: collapsedSize,
-              }
-            : {
-                height: collapsedSize,
-                WebKitHeight: collapsedSize,
-              };
+          setWrapperSize(collapsedSize);
         }
+
         return React.createElement(
           'div',
           {
@@ -137,7 +121,9 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
               ...style,
               transition,
               WebkitTransition: transition,
-              ...wrapperSizeRef.current,
+              ...(isHorizontal
+                ? { width: wrapperSize, WebKitWidth: wrapperSize }
+                : { height: wrapperSize, WebKitHeight: wrapperSize }),
             },
             ...childProps,
             ref: collapseRef,
