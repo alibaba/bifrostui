@@ -139,97 +139,25 @@ export const pioneerLight = {
     '--bui-shape-radius-poster': '4px',
     // 标签
     '--bui-shape-radius-label': '3px',
-  },
-  components: {
-    Button: [
-      {
-        state: ['contained', 'primary', 'large'],
-        cssProps: {
-          'background-image': `radial-gradient(
-              35px 25px ellipse at 2% 110%,
-              #fffe1e 0%,
-              rgba(251, 134, 35, 0) 99%
-            ),
-            radial-gradient(
-              35px 25px ellipse at 110% 120%,
-              #ff3018 0%,
-              rgba(0, 48, 24, 0) 92%
-            ),
-            linear-gradient(90deg, #fc8622 0%, #ff5000 100%)`,
-        },
-      },
-      {
-        state: ['contained', 'primary', 'full'],
-        cssProps: {
-          'background-image': `radial-gradient(
-              93px 50px ellipse at 2% 110%,
-              #fffe1e 0%,
-              rgba(251, 134, 35, 0) 100%
-            ),
-            radial-gradient(
-              93px 50px ellipse at 98% 110%,
-              #ff3018 0%,
-              rgba(0, 48, 24, 0) 92%
-            ),
-            linear-gradient(90deg, #fc8622 0%, #ff5000 100%)`,
-        },
-      },
-      {
-        state: ['full'],
-        cssVars: {
-          '--bui-btn-border-radius': '14px',
-          '--bui-btn-height': '45px',
-          '--bui-btn-font-size': '18px',
-          '--bui-btn-font-family': 'var(--bui-font-family-accent)',
-        },
-      },
-      {
-        state: ['large'],
-        cssVars: {
-          '--bui-btn-border-radius': '7px',
-          '--bui-btn-height': '30px',
-        },
-      },
-      {
-        state: ['medium'],
-        cssVars: {
-          '--bui-btn-border-radius': '6px',
-        },
-      },
-    ],
-    Tabs: [
-      {
-        cssVars: {
-          '--bui-tabs-font-size': 'var(--bui-title-size-4)',
-          '--bui-tabs-active-font-weight': '700',
-          '--bui-tabs-color': 'var(--bui-color-fg-muted)',
 
-          /* prettier-ignore */
-          '--bui-tabs-indicator-height': '4PX',
-          '--bui-tabs-indicator-border-radius': '2px',
-          '--bui-tabs-indicator-box-shadow':
-            '0 2px 4px 0 rgba(255, 98, 0, 0.2)',
-        },
-      },
-      {
-        selector: '.bui-tabs .bui-tabs-indicator',
-        cssProps: {
-          'background-image': `linear-gradient(
-              90deg,
-              #ff9b00 0%,
-              #ffa700 21%,
-              #ff8300 100%
-            )`,
-        },
-      },
-    ],
-    Card: [
-      {
-        selector: '.bui-card-header-title',
-        cssVars: {
-          '--bui-card-font-size': 'var(--bui-title-size-3)',
-        },
-      },
-    ],
+    // Button
+    '--bui-btn-full-height': '45px',
+    '--bui-btn-large-height': '30px',
+    '--bui-btn-full-font-size': '18px',
+    '--bui-btn-full-font-family': 'var(--bui-font-family-accent)',
+    '--bui-btn-small-border-radius': '6px',
+    '--bui-btn-border-radius': '6px',
+    '--bui-btn-large-border-radius': '7px',
+    '--bui-btn-full-border-radius': '14px',
+
+    // Card
+    '--bui-card-header-title-font-size': 'var(--bui-title-size-3)',
+
+    // Tabs
+    '--bui-tab-font-size': 'var(--bui-title-size-4)',
+    '--bui-tab-color': 'var(--bui-color-fg-muted)',
+    '--bui-tabs-indicator-height': '4PX',
+    '--bui-tabs-indicator-border-radius': '2px',
+    '--bui-tabs-indicator-box-shadow': '0 2px 4px 0 rgba(255, 98, 0, 0.2)',
   },
 };
