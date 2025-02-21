@@ -57,7 +57,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
 
     /**
      * 获取内容方向
-     * TODO 参照原点根据方向变化,等待getStylesAndLocation返回正确的原点
+     *
      */
     const getContentDirection = async () => {
       const curScrollRoot = getRootContainer(container);
