@@ -6,7 +6,11 @@ import {
 } from './DesktopTimePicker.types';
 import DesktopTimePickerList from './DesktopTimePickerList';
 
-import { getdisabledTime, calculateValidMinTime } from './utils/utils';
+import {
+  getdisabledTime,
+  calculateValidMinTime,
+  isDisabledTime,
+} from './utils/utils';
 
 const prefixCls = 'bui-time-picker';
 
@@ -70,6 +74,22 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
     const lists = ampm ? [...views, 'meridiem'] : views;
     return lists.map((type: ViewTypeWithMeridiem, index) => {
       const dataList = getViewListData(type, timeSteps[type]);
+      const disabledTime = getdisabledTime(
+        type,
+        timeValue,
+        minTime,
+        maxTime,
+        dataList,
+        disabledTimeView,
+        ampm,
+      );
+      // 设置disabled
+      dataList.forEach((item, idx) => {
+        const { value } = item;
+        const disabled = disabledTime?.includes(value);
+        dataList[idx] = { ...item, disabled };
+      });
+
       const isLastList = index === lists.length - 1;
 
       // 当timeValue存在时，渲染选中的时间
@@ -83,20 +103,10 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
           selectedValue = timeValue[type]?.();
         }
       }
-
-      const disabledTime = getdisabledTime(
-        type,
-        timeValue,
-        minTime,
-        maxTime,
-        dataList,
-        disabledTimeView,
-        ampm,
-      );
-
       const handleClick = (e, disabled: boolean, item) => {
         // Keep the overlay open
         e.stopPropagation();
+        // 禁用或点击当前值不处理
         if (disabled || selectedValue === item.value) return;
 
         // 获取符合条件的最小时间
@@ -111,15 +121,100 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
 
           const newValue =
             type === 'hour' && ampm ? updateHour(item.value) : item.value;
-          const newTimeValue = validTime.set(type, newValue);
+          let newTimeValue = validTime.set(type, newValue);
 
-          triggerChange(e, newTimeValue.toDate());
+          // 判断click后的timeValue是否在有效时间内
+          const isDisabledNewTime = isDisabledTime(
+            newTimeValue,
+            minTime,
+            maxTime,
+            disabledTimeView,
+          );
+
+          // 如果不在有效时间内，找其余各列中符合时间条件并且距离现在最接近的选项
+          if (isDisabledNewTime) {
+            views.forEach((view) => {
+              if (view !== type) {
+                const viewDisabledTime = getdisabledTime(
+                  view,
+                  newTimeValue,
+                  minTime,
+                  maxTime,
+                  getViewListData(view, timeSteps[view]),
+                  disabledTimeView,
+                  ampm,
+                );
+
+                const viewDataList = getViewListData(view, timeSteps[view]);
+
+                const validValues = viewDataList
+                  .map((i) => i.value)
+                  .filter((el) => !viewDisabledTime.includes(el));
+                const nearestValue = validValues.reduce((prev, curr) => {
+                  const curValue = newTimeValue[view]?.() ?? 0; // 提供默认值，以防止 NaN 问题
+                  return Math.abs(curr - curValue) < Math.abs(prev - curValue)
+                    ? curr
+                    : prev;
+                }, validValues[0]); // 提供初始值
+
+                newTimeValue = newTimeValue.set(view, nearestValue);
+              }
+            });
+
+            triggerChange(e, newTimeValue.toDate());
+          } else {
+            triggerChange(e, newTimeValue.toDate());
+          }
         } else {
           // 点击ampm
           const newHour =
             item.value === 'PM' ? validTime.hour() + 12 : validTime.hour() - 12;
-          const newTimeValue = validTime.set('hour', newHour);
-          triggerChange(e, newTimeValue.toDate());
+          let newTimeValue = validTime.set('hour', newHour);
+          const isDisabledNewTime = isDisabledTime(
+            newTimeValue,
+            minTime,
+            maxTime,
+            disabledTimeView,
+          );
+          if (isDisabledNewTime) {
+            views.forEach((view) => {
+              const viewDisabledTime = getdisabledTime(
+                view,
+                newTimeValue,
+                minTime,
+                maxTime,
+                getViewListData(view, timeSteps[view]),
+                disabledTimeView,
+                ampm,
+              );
+
+              const viewDataList = getViewListData(view, timeSteps[view]);
+
+              const validValues = viewDataList
+                .map((i) => i.value)
+                .filter((el) => !viewDisabledTime.includes(el));
+              let nearestValue = validValues.reduce((prev, curr) => {
+                // click后，timeValue在该view的值
+                const curValue =
+                  view === 'hour' ? newHour : newTimeValue[view]?.();
+                return Math.abs(curr - curValue) < Math.abs(prev - curValue)
+                  ? curr
+                  : prev;
+              }, validValues[0]); // 提供初始值
+
+              // 点击pm时，hour要+12
+              if (view === 'hour') {
+                if (item.value === 'PM') {
+                  nearestValue += 12;
+                }
+              }
+              newTimeValue = newTimeValue.set(view, nearestValue);
+
+              triggerChange(e, newTimeValue.toDate());
+            });
+          } else {
+            triggerChange(e, newTimeValue.toDate());
+          }
         }
 
         if (isLastList && closeOnSelect) {
@@ -132,7 +227,6 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
           timeValue={timeValue}
           type={type}
           dataList={dataList}
-          disabledTime={disabledTime}
           selectedValue={selectedValue}
           prefixCls={prefixCls}
           handleClick={handleClick}

@@ -15,7 +15,6 @@ const DesktopTimePickerList = React.forwardRef<
     timeValue,
     type,
     dataList,
-    disabledTime,
     selectedValue,
     prefixCls,
     handleClick,
@@ -28,7 +27,6 @@ const DesktopTimePickerList = React.forwardRef<
   useEffect(() => {
     if (!ulRef.current) return;
     const elementName = `.${prefixCls}-table-${type}-ul-li-active`;
-
     if (!isMini) {
       handleScroll(elementName, setScrollTop);
     } else {
@@ -49,11 +47,10 @@ const DesktopTimePickerList = React.forwardRef<
       ref={ulRef}
     >
       {dataList.map((item, index) => {
-        const { value, label } = item;
-        const disabled = disabledTime?.includes(value);
+        const { value, label, disabled } = item;
 
         return (
-          renderItem?.(item) || (
+          renderItem?.({ ...item, disabled }) || (
             <div
               key={index}
               className={clsx(`${prefixCls}-table-${type}-ul-li`, {

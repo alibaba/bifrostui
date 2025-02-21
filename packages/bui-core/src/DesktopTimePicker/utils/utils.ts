@@ -5,7 +5,7 @@ import {
   ITimePickerValue,
   ViewType,
   ViewTypeWithMeridiem,
-  ITimeItemInstance,
+  ITimeInstance,
   ITimeItemNumberInstance,
 } from '../DesktopTimePicker.types';
 
@@ -120,12 +120,14 @@ export const getOutOfMinRangeMinutes = (
   }
   const outOfMinRangeMinutes: number[] = [];
 
-  if (minTime && hourValue === minTime.hour()) {
+  if (hourValue === minTime.hour()) {
     outOfMinRangeMinutes.push(
       ...dataList
         .map((item) => item.value)
         .filter((minute) => minute < minTime.minute()),
     );
+  } else if (hourValue < minTime.hour()) {
+    outOfMinRangeMinutes.push(...dataList.map((item) => item.value));
   }
   return outOfMinRangeMinutes;
 };
@@ -140,12 +142,14 @@ export const getOutOfMaxRangeMinutes = (
   }
   const outOfMaxRangeMinutes: number[] = [];
 
-  if (maxTime && hourValue === maxTime.hour()) {
+  if (hourValue === maxTime.hour()) {
     outOfMaxRangeMinutes.push(
       ...dataList
         .map((item) => item.value)
         .filter((minute) => minute > maxTime.minute()),
     );
+  } else if (hourValue > maxTime.hour()) {
+    outOfMaxRangeMinutes.push(...dataList.map((item) => item.value));
   }
   return outOfMaxRangeMinutes;
 };
@@ -160,16 +164,16 @@ export const getOutOfMinRangeSeconds = (
     return [];
   }
   const outOfMinRangeMinutes: number[] = [];
-  if (
-    minTime &&
-    hourValue === minTime.hour() &&
-    minuteValue === minTime.minute()
-  ) {
+  if (hourValue === minTime.hour() && minuteValue === minTime.minute()) {
     outOfMinRangeMinutes.push(
       ...dataList
         .map((item) => item.value)
         .filter((second) => second < minTime.second()),
     );
+  } else if (hourValue === minTime.hour() && minuteValue < minTime.minute()) {
+    outOfMinRangeMinutes.push(...dataList.map((item) => item.value));
+  } else if (hourValue < minTime.hour()) {
+    outOfMinRangeMinutes.push(...dataList.map((item) => item.value));
   }
 
   return outOfMinRangeMinutes;
@@ -185,16 +189,16 @@ export const getOutOfMaxRangeSeconds = (
     return [];
   }
   const outOfMaxRangeMinutes: number[] = [];
-  if (
-    maxTime &&
-    hourValue === maxTime.hour() &&
-    minuteValue === maxTime.minute()
-  ) {
+  if (hourValue === maxTime.hour() && minuteValue === maxTime.minute()) {
     outOfMaxRangeMinutes.push(
       ...dataList
         .map((item) => item.value)
         .filter((second) => second > maxTime.second()),
     );
+  } else if (hourValue === maxTime.hour() && minuteValue > maxTime.minute()) {
+    outOfMaxRangeMinutes.push(...dataList.map((item) => item.value));
+  } else if (hourValue > maxTime.hour()) {
+    outOfMaxRangeMinutes.push(...dataList.map((item) => item.value));
   }
   return outOfMaxRangeMinutes;
 };
@@ -205,12 +209,13 @@ export const getdisabledTime = (
   timeValue: Dayjs,
   minTime: Dayjs,
   maxTime: Dayjs,
-  dataList: ITimeItemInstance[],
+  dataList: ITimeInstance[],
   disabledTimeView: DisabledTimeView,
   ampm?: boolean,
 ) => {
   // 不在日期区间内，所有时间禁止
   const isRangeDate = getIsRangeDate(timeValue, minTime, maxTime);
+
   if (!isRangeDate) {
     return dataList.map((item) => item.value);
   }
