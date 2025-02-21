@@ -49,7 +49,6 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       renderItem,
       ...others
     } = props;
-
     // 是否展开日期选择
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [inputStr, setInputStr] = useState<string>('');
@@ -60,6 +59,7 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       defaultValue,
       onChange,
     });
+    const [temptValue, setTemptValue] = useState(timeValue);
 
     // 点击时间选择器icon
     const handleDatePickerIconClick = (e) => {
@@ -133,9 +133,20 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
 
     const onMount = () => {
       onOpen?.();
+      setTemptValue(timeValue);
     };
-    const unMounted = () => {
+    const unMounted = (e) => {
       onClose?.();
+      if (
+        isDisabledTime(
+          dayjs(timeValue),
+          dateToDayjs(minTime),
+          dateToDayjs(maxTime),
+          disabledTimeView,
+        )
+      ) {
+        triggerChange(e, temptValue);
+      }
     };
 
     // placeholder优先级最高，format次之，最后兜底hh:mm:ss
