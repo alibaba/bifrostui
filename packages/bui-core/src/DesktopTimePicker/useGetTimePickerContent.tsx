@@ -114,16 +114,51 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
         // 兼容timeValue为空时，避免点击后值invalid
         const validTime = timeValue ?? validMinTime;
 
-        if (type !== 'meridiem') {
-          const updateHour = (hour: number) => {
-            return validTime.format('A') === 'PM' ? hour + 12 : hour;
-          };
+        const updateHour = (hour) =>
+          validTime.format('A') === 'PM' ? hour + 12 : hour;
 
-          const newValue =
-            type === 'hour' && ampm ? updateHour(item.value) : item.value;
-          let newTimeValue = validTime.set(type, newValue);
+        const getValidTimeValue = (view, newTimeValue) => {
+          // 计算每一列的disabledData
+          const viewDisabledTime = getdisabledTime(
+            view,
+            newTimeValue,
+            minTime,
+            maxTime,
+            getViewListData(view, timeSteps[view]),
+            disabledTimeView,
+            ampm,
+          );
 
-          // 判断click后的timeValue是否在有效时间内
+          // 每一列的data
+          let viewDataList = getViewListData(view, timeSteps[view]);
+          if (view === 'hour' && ampm && newTimeValue.format('A') === 'PM') {
+            viewDataList = viewDataList.map((el) => ({
+              ...el,
+              value: el.value + 12,
+            }));
+          }
+
+          // 过滤有效data
+          const validValues = viewDataList
+            .map((i) => i.value)
+            .filter((el) => !viewDisabledTime.includes(el));
+
+          const curViewValue = newTimeValue[view]?.() ?? 0;
+          // 计算距离当前item最近的合理值
+          const nearestValue = validValues.reduce(
+            (prev, curr) =>
+              Math.abs(curr - curViewValue) < Math.abs(prev - curViewValue)
+                ? curr
+                : prev,
+            validValues[0],
+          ); // 提供初始值
+
+          // 存在无符合条件选项的情况，则维持当前
+          return nearestValue !== undefined ? nearestValue : curViewValue;
+        };
+
+        const handleNewTimeValue = (newTimeValue, event) => {
+          // 判断点击后的时间是否在有效值内
           const isDisabledNewTime = isDisabledTime(
             newTimeValue,
             minTime,
@@ -135,86 +170,35 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
           if (isDisabledNewTime) {
             views.forEach((view) => {
               if (view !== type) {
-                const viewDisabledTime = getdisabledTime(
-                  view,
-                  newTimeValue,
-                  minTime,
-                  maxTime,
-                  getViewListData(view, timeSteps[view]),
-                  disabledTimeView,
-                  ampm,
-                );
-
-                const viewDataList = getViewListData(view, timeSteps[view]);
-
-                const validValues = viewDataList
-                  .map((i) => i.value)
-                  .filter((el) => !viewDisabledTime.includes(el));
-                const nearestValue = validValues.reduce((prev, curr) => {
-                  const curValue = newTimeValue[view]?.() ?? 0; // 提供默认值，以防止 NaN 问题
-                  return Math.abs(curr - curValue) < Math.abs(prev - curValue)
-                    ? curr
-                    : prev;
-                }, validValues[0]); // 提供初始值
-
-                newTimeValue = newTimeValue.set(view, nearestValue);
+                const validValue = getValidTimeValue(view, newTimeValue);
+                newTimeValue = newTimeValue.set(view, validValue);
               }
             });
-
-            triggerChange(e, newTimeValue.toDate());
-          } else {
-            triggerChange(e, newTimeValue.toDate());
           }
-        } else {
-          // 点击ampm
+
+          triggerChange(event, newTimeValue.toDate());
+        };
+
+        // 获取每一列新的值
+        const calculateNewValue = (view, el) => {
+          if (view === 'hour' && ampm) {
+            return updateHour(item.value);
+          }
+          return el.value;
+        };
+
+        if (type === 'meridiem') {
+          // 点击 ampm
           const newHour =
             item.value === 'PM' ? validTime.hour() + 12 : validTime.hour() - 12;
-          let newTimeValue = validTime.set('hour', newHour);
-          const isDisabledNewTime = isDisabledTime(
-            newTimeValue,
-            minTime,
-            maxTime,
-            disabledTimeView,
-          );
-          if (isDisabledNewTime) {
-            views.forEach((view) => {
-              const viewDisabledTime = getdisabledTime(
-                view,
-                newTimeValue,
-                minTime,
-                maxTime,
-                getViewListData(view, timeSteps[view]),
-                disabledTimeView,
-                ampm,
-              );
+          const newTimeValue = validTime.set('hour', newHour);
 
-              const viewDataList = getViewListData(view, timeSteps[view]);
+          handleNewTimeValue(newTimeValue, e);
+        } else {
+          const newValue = calculateNewValue(type, item);
+          const newTimeValue = validTime.set(type, newValue);
 
-              const validValues = viewDataList
-                .map((i) => i.value)
-                .filter((el) => !viewDisabledTime.includes(el));
-              let nearestValue = validValues.reduce((prev, curr) => {
-                // click后，timeValue在该view的值
-                const curValue =
-                  view === 'hour' ? newHour : newTimeValue[view]?.();
-                return Math.abs(curr - curValue) < Math.abs(prev - curValue)
-                  ? curr
-                  : prev;
-              }, validValues[0]); // 提供初始值
-
-              // 点击pm时，hour要+12
-              if (view === 'hour') {
-                if (item.value === 'PM') {
-                  nearestValue += 12;
-                }
-              }
-              newTimeValue = newTimeValue.set(view, nearestValue);
-
-              triggerChange(e, newTimeValue.toDate());
-            });
-          } else {
-            triggerChange(e, newTimeValue.toDate());
-          }
+          handleNewTimeValue(newTimeValue, e);
         }
 
         if (isLastList && closeOnSelect) {
