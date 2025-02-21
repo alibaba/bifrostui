@@ -117,9 +117,9 @@ export type PickerPanelProps<
        */
       columnIndex?: number;
       /**
-       * Piker组件的样式，PickerPanel的主题定制与css变量传入的Tokens有关，需要透传计算
+       * 是否展示选择器
        */
-      pickerStyle?: React.CSSProperties;
+      open?: boolean;
       /**
        * 选择选项时的回调
        */

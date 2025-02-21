@@ -11,7 +11,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     const {
       className,
       children,
-      color = 'default',
+      color = 'neutral',
       disabled = false,
       size = 'medium',
       variant = 'default',

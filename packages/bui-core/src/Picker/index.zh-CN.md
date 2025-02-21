@@ -1112,9 +1112,9 @@ export default () => {
       </Button>
       <Picker
         style={{
-          '--panel-container-height': '500px',
-          '--indicator-top': '207px',
-          '--option-height': '70px',
+          '--bui-picker-panel-height': '500px',
+          '--bui-picker-indicator-top': '207px',
+          '--bui-picker-option-height': '70px',
         }}
         open={open}
         onClose={() => {

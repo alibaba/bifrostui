@@ -89,7 +89,7 @@ export default () => {
 
 ## 按钮色彩
 
-按钮支持 `primary`、`success`、`info`、`warning`、`danger` 主题定义。若不设置color，则默认为`default`
+按钮支持 `primary`、`success`、`info`、`warning`、`danger`、`light`、`neutral`、`dark` 主题定义。若不设置color，则默认为`neutral`
 
 ```tsx
 import React from 'react';
@@ -98,7 +98,14 @@ import { PhoneFilledIcon } from '@bifrostui/icons';
 
 export default () => {
   return (
-    <Stack spacing="10px">
+    <Stack
+      spacing="10px"
+      style={{
+        background: 'var(--bui-color-bg-default)',
+        padding: '24px',
+        borderRadius: '8px',
+      }}
+    >
       <Stack direction="row" spacing="8px">
         <IconButton color="primary">
           <PhoneFilledIcon />
@@ -113,6 +120,35 @@ export default () => {
           <PhoneFilledIcon />
         </IconButton>
         <IconButton color="danger">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="light">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="dark">
+          <PhoneFilledIcon />
+        </IconButton>
+      </Stack>
+      <Stack direction="row" spacing="8px">
+        <IconButton color="primary" variant="outlined">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="success" variant="outlined">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="info" variant="outlined">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="warning" variant="outlined">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="danger" variant="outlined">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="light" variant="outlined">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="dark" variant="outlined">
           <PhoneFilledIcon />
         </IconButton>
       </Stack>
@@ -130,6 +166,35 @@ export default () => {
           <PhoneFilledIcon />
         </IconButton>
         <IconButton color="danger" variant="contained">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="light" variant="contained">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="dark" variant="contained">
+          <PhoneFilledIcon />
+        </IconButton>
+      </Stack>
+      <Stack direction="row" spacing="8px">
+        <IconButton color="primary" variant="subtle">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="success" variant="subtle">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="info" variant="subtle">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="warning" variant="subtle">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="danger" variant="subtle">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="light" variant="subtle">
+          <PhoneFilledIcon />
+        </IconButton>
+        <IconButton color="dark" variant="subtle">
           <PhoneFilledIcon />
         </IconButton>
       </Stack>
@@ -166,15 +231,15 @@ export default () => {
 
 ## API
 
-| 属性      | 说明                 | 类型                                                                   | 默认值    |
-| --------- | -------------------- | ---------------------------------------------------------------------- | --------- |
-| variant   | 按钮类型             | `default` \| `text` \| `contained`                                     | `default` |
-| color     | 按钮颜色             | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` | `default` |
-| size      | 按钮大小             | `small` \| `medium` \| `large`                                         | `medium`  |
-| disabled  | 是否禁用             | boolean                                                                | false     |
-| startIcon | 在子元素前放在的内容 | React.ReactNode                                                        | -         |
-| openType  | 微信开放能力         | string                                                                 | -         |
-| onClick   | 点击按钮时的回调     | (event: MouseEvent) => void                                            | -         |
+| 属性      | 说明                 | 类型                                                                                      | 默认值    |
+| --------- | -------------------- | ----------------------------------------------------------------------------------------- | --------- |
+| variant   | 按钮类型             | `default` \| `text` \| `contained` \| `subtle`                                            | `default` |
+| color     | 按钮颜色             | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `neutral`\| `light`\| `dark` | `neutral` |
+| size      | 按钮大小             | `small` \| `medium` \| `large`                                                            | `medium`  |
+| disabled  | 是否禁用             | boolean                                                                                   | false     |
+| startIcon | 在子元素前放在的内容 | React.ReactNode                                                                           | -         |
+| openType  | 微信开放能力         | string                                                                                    | -         |
+| onClick   | 点击按钮时的回调     | (event: MouseEvent) => void                                                               | -         |
 
 其他属性见 [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes)
 

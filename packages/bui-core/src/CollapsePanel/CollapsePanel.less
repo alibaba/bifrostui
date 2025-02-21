@@ -1,15 +1,13 @@
-.bui-collapse-panel {
-  --width: var(--bui-collapse-panel-width, 100%);
-  --header-padding: var(
-    --bui-collapse-panel-header-padding,
-    var(--bui-spacing-lg) 0
-  );
-  --content-padding: var(
-    --bui-collapse-panel-content-padding,
-    var(--bui-spacing-lg) 0
-  );
+@import '@bifrostui/styles/mixins/index.less';
 
-  width: var(--width);
+@{root-selector} {
+  --bui-collapse-panel-width: 100%;
+  --bui-collapse-panel-header-padding: var(--bui-spacing-lg) 0;
+  --bui-collapse-panel-content-padding: var(--bui-spacing-lg) 0;
+}
+
+.bui-collapse-panel {
+  width: var(--bui-collapse-panel-width);
   background-color: var(--bui-color-bg-view);
   color: var(--bui-color-fg-default);
 }
@@ -24,7 +22,7 @@
   }
 
   &-header-label {
-    padding: var(--header-padding);
+    padding: var(--bui-collapse-panel-header-padding);
     font-size: var(--bui-title-size-2);
   }
 
@@ -38,7 +36,7 @@
   }
 
   &-content {
-    padding: var(--content-padding);
+    padding: var(--bui-collapse-panel-content-padding);
     font-size: var(--bui-text-size-1);
     transition: height 0.5s ease;
     overflow: hidden;
