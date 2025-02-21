@@ -4,30 +4,22 @@
 @import './mixins/index.less';
 
 /* 经典 */
-:root,
-page,
-xhs-page,
-.bui-default-light,
-[data-color-mode='light'][data-theme] {
+@{theme-selector-default-light} {
   .default-light();
 }
 
 /** 大麦主题-高亮 */
-.bui-dm-light,
-[data-color-mode][data-theme='dm'] {
+@{theme-selector-dm-light} {
   .dm-light();
 }
 
 /** 先锋主题 */
-.bui-pioneer-light,
-[data-color-mode][data-theme='pioneer'] {
+@{theme-selector-pioneer-light} {
   .pioneer-light();
 }
 
 /** 暗黑模式 */
-:root,
-.bui-dark,
-[data-color-mode='dark'][data-theme] {
+@{theme-selector-default-dark} {
   .default-dark();
 }
 

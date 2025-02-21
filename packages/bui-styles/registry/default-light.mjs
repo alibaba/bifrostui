@@ -154,36 +154,5 @@ export const defaultLight = {
     '--bui-z-index-popover': '1300',
     '--bui-z-index-tooltip': '1400',
     '--bui-z-index-toast': '1500', // 反馈提示，高于所有元素
-
-    // Components Variables
-    // Button
-    // '--bui-btn-font-size': 'var(--bui-text-size-3)',
-    // '--bui-btn-font-weight': 'var(--bui-font-weight-medium)',
-    // '--bui-btn-border-radius': '120px',
-    // '--bui-btn-height': '27px',
-    // '--bui-btn-color': 'var(--bui-color-fg-muted)',
-    // '--bui-btn-bg': 'var(--bui-color-bg-view)',
-    // '--bui-btn-opacity': '1',
-    // '--bui-btn-padding': '0 14px',
-    // '--bui-btn-border': '0',
-    // '--bui-btn-font-family': 'var(--bui-font-family)',
-
-    // Card
-    '--bui-card-font-family': 'var(--bui-font-family)',
-    '--bui-card-font-size': 'var(--bui-text-size-2)',
-
-    // Tabs
-    '--bui-tabs-font-family': 'var(--bui-font-family)',
-    '--bui-tabs-font-size': 'var(--bui-text-size-1)',
-    '--bui-tabs-height': '39px',
-    '--bui-tabs-color': 'var(--bui-color-fg-subtle)',
-    '--bui-tabs-font-weight': 'var(--bui-font-weight-medium)',
-    '--bui-tabs-indicator-bg': 'var(--bui-color-primary)',
-    '--bui-tabs-indicator-height': '3PX',
-    '--bui-tabs-indicator-width': '24px',
-    '--bui-tabs-indicator-border-radius': '3px 3px 0 0',
-    '--bui-tabs-indicator-bottom': '0',
-    '--bui-tabs-indicator-box-shadow': 'none',
-    '--bui-tab-padding': 'var(--bui-spacing-lg) var(--bui-spacing-lg) 10px',
   },
 };

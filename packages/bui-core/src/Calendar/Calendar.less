@@ -1,30 +1,24 @@
 @import '@bifrostui/styles/mixins/index.less';
 
+@{root-selector} {
+  --bui-calendar-padding: 6px 12px 7px;
+  --bui-calendar-week-height: 30px;
+  --bui-calendar-handler-height: 28px;
+  --bui-calendar-handler-margin-bottom: 7px;
+  --bui-calendar-handler-text-width: 80px;
+  --bui-calendar-handler-btn-width: 46px;
+  --bui-calendar-handler-btn-height: 100%;
+  --bui-calendar-handler-btn-icon-font-size: 28px;
+  --bui-calendar-day-box-height: 30px;
+  --bui-calendar-day-box-margin-bottom: 7px;
+  --bui-calendar-day-disabled-color: #9c9ca5;
+  --bui-calendar-middle-color: #000;
+  --bui-calendar-middle-background-color: #ffeaf1;
+  --bui-calendar-range-both-ends-color: #000;
+  --bui-calendar-range-both-ends-background-color: #ffc7da;
+}
+
 .bui-calendar {
-  --padding: var(--bui-calendar-padding, 6px 12px 7px);
-  --week-height: var(--bui-calendar-week-height, 30px);
-  --handler-height: var(--bui-calendar-handler-height, 28px);
-  --handler-margin-bottom: var(--bui-calendar-handler-margin-bottom, 7px);
-  --handler-text-width: var(--bui-calendar-handler-text-width, 80px);
-  --handler-btn-width: var(--bui-calendar-handler-btn-width, 46px);
-  --handler-btn-height: var(--bui-calendar-handler-btn-height, 100%);
-  --handler-btn-icon-font-size: var(
-    --bui-calendar-handler-btn-icon-font-size,
-    28px
-  );
-  --day-box-height: var(--bui-calendar-day-box-height, 30px);
-  --day-box-margin-bottom: var(--bui-calendar-day-box-margin-bottom, 7px);
-  --day-disabled-color: var(--bui-calendar-day-disabled-color, #9c9ca5);
-  --middle-color: var(--bui-calendar-middle-color, #000);
-  --middle-background-color: var(
-    --bui-calendar-middle-background-color,
-    #ffeaf1
-  );
-  --range-both-ends-color: var(--bui-calendar-range-both-ends-color, #000);
-  --range-both-ends-background-color: var(
-    --bui-calendar-range-both-ends-background-color,
-    #ffc7da
-  );
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -32,11 +26,11 @@
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  padding: var(--padding);
+  padding: var(--bui-calendar-padding);
   font-family: var(--bui-font-family);
 
   &-week {
-    height: var(--week-height);
+    height: var(--bui-calendar-week-height);
     font-size: var(--bui-text-size-2);
     font-weight: var(--bui-font-weight-medium);
     color: var(--bui-color-fg-default);
@@ -58,14 +52,14 @@
   }
 
   &-handler {
-    height: var(--handler-height);
+    height: var(--bui-calendar-handler-height);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: var(--handler-margin-bottom);
+    margin-bottom: var(--bui-calendar-handler-margin-bottom);
 
     &-text {
-      width: var(--handler-text-width);
+      width: var(--bui-calendar-handler-text-width);
       font-size: var(--bui-title-size-3);
       font-weight: var(--bui-font-weight-medium);
       text-align: center;
@@ -73,7 +67,7 @@
 
     &-btn {
       font-size: 16px;
-      height: var(--handler-btn-height);
+      height: var(--bui-calendar-handler-btn-width);
       width: var(--handler-btn-width);
       cursor: pointer;
       display: flex;
@@ -81,7 +75,7 @@
       justify-content: center;
 
       &-icon {
-        font-size: var(--handler-btn-icon-font-size);
+        font-size: var(--bui-calendar-handler-btn-icon-font-size);
       }
     }
   }
@@ -94,8 +88,8 @@
 
   &-day-box {
     width: 14.28%;
-    height: var(--day-box-height);
-    margin-bottom: var(--day-box-margin-bottom);
+    height: var(--bui-calendar-day-box-height);
+    margin-bottom: var(--bui-calendar-day-box-margin-bottom);
   }
 
   &-highlight-day {
@@ -117,7 +111,7 @@
     cursor: pointer;
 
     &.bui-calendar-disabled {
-      color: var(--day-disabled-color);
+      color: var(--bui-calendar-day-disabled-color);
     }
   }
 
@@ -126,14 +120,14 @@
   }
 
   &-middle {
-    color: var(--middle-color);
+    color: var(--bui-calendar-middle-color);
     border-radius: 0;
-    background-color: var(--middle-background-color);
+    background-color: var(--bui-calendar-middle-background-color);
   }
 
   &-start {
-    color: var(--range-both-ends-color);
-    background-color: var(--range-both-ends-background-color);
+    color: var(--bui-calendar-range-both-ends-color);
+    background-color: var(--bui-calendar-range-both-ends-background-color);
   }
 
   &-range {
@@ -142,8 +136,8 @@
   }
 
   &-end {
-    color: var(--range-both-ends-color);
-    background-color: var(--range-both-ends-background-color);
+    color: var(--bui-calendar-range-both-ends-color);
+    background-color: var(--bui-calendar-range-both-ends-background-color);
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }

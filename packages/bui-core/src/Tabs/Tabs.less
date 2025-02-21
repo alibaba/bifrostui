@@ -1,8 +1,31 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+@{root-selector} {
+  --bui-tabs-height: 39px;
+  --bui-tabs-font-weight: var(--bui-font-weight-medium);
+  --bui-tabs-indicator-background: var(--bui-color-primary);
+
+  /* prettier-ignore */
+  --bui-tabs-indicator-height: 3PX;
+  --bui-tabs-indicator-width: 24px;
+  --bui-tabs-indicator-border-radius: 3px 3px 0 0;
+  --bui-tabs-indicator-bottom: 0;
+  --bui-tabs-indicator-box-shadow: none;
+  --bui-tabs-mask-width: 12px;
+  --bui-tabs-mask-height: 100%;
+  --bui-tab-font-size: var(--bui-text-size-1);
+  --bui-tab-color: var(--bui-color-fg-subtle);
+  --bui-tab-height: 100%;
+  --bui-tab-padding: var(--bui-spacing-lg) var(--bui-spacing-lg) 10px;
+  --bui-tab-active-color: var(--bui-color-fg-default);
+  --bui-tab-active-font-family: var(--bui-font-family-accent, inherit);
+}
+
 @class-prefix-tabs: ~'bui-tabs';
 
 .@{class-prefix-tabs} {
   position: relative;
-  font-family: var(--bui-tabs-font-family);
+  font-family: var(--bui-font-family);
   font-weight: var(--bui-tabs-font-weight);
 
   &-tabs {
@@ -26,7 +49,7 @@
     bottom: var(--bui-tabs-indicator-bottom);
     height: var(--bui-tabs-indicator-height);
     color: var(--bui-color-primary);
-    background: var(--bui-tabs-indicator-bg);
+    background: var(--bui-tabs-indicator-background);
     border-radius: var(--bui-tabs-indicator-border-radius);
     box-shadow: var(--bui-tabs-indicator-box-shadow);
   }
@@ -40,8 +63,8 @@
     top: 0;
     bottom: 0;
     z-index: 1;
-    width: 12px;
-    height: 100%;
+    width: var(--bui-tabs-mask-width);
+    height: var(--bui-tabs-mask-height);
     pointer-events: none;
   }
 

@@ -1,19 +1,21 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+@{root-selector} {
+  --bui-alert-content-marquee-speed: 10s;
+  --bui-alert-padding: 8px;
+  --bui-alert-line-height: 16px;
+  --bui-alert-default-icon-font-size: 15px;
+  --bui-alert-action-margin-left: 16px;
+  --bui-alert-icon-margin-right: var(--bui-spacing-xs);
+  --bui-alert-icon-font-size: var(--bui-title-size-4);
+}
+
 .bui-alert {
-  --content-marquee-speed: var(--bui-alert-content-marquee-speed, 10s);
-  --padding: var(--bui-alert-padding, 8px);
-  --line-height: var(--bui-alert-line-height, 16px);
-  --default-icon-font-size: var(--bui-alert-default-icon-font-size, 15px);
-  --action-margin-left: var(--bui-alert-action-margin-left, 16px);
-  --icon-margin-right: var(
-    --bui-alert-icon-margin-right,
-    var(--bui-spacing-xs)
-  );
-  --icon-font-size: var(--bui-alert-icon-font-size, var(--bui-title-size-4));
   display: flex;
-  padding: var(--padding);
+  padding: var(--bui-alert-padding);
   border-radius: var(--bui-shape-radius-default);
   align-items: center;
-  line-height: var(--line-height);
+  line-height: var(--bui-alert-line-height);
   font-size: var(--bui-text-size-3);
   font-family: var(--bui-font-family);
 
@@ -72,7 +74,7 @@
   }
 
   &-default-icon {
-    font-size: var(--default-icon-font-size);
+    font-size: var(--bui-alert-default-icon-font-size);
   }
 
   &-content {
@@ -82,7 +84,7 @@
   &-action {
     // fix 小程序上dom被压缩
     flex-shrink: 0;
-    margin-left: var(--action-margin-left);
+    margin-left: var(--bui-alert-action-margin-left);
     word-wrap: keep-all;
     font-size: var(--bui-text-size-3);
     cursor: pointer;
@@ -96,9 +98,9 @@
   &-icon {
     display: flex;
     align-items: center;
-    margin-right: var(--icon-margin-right);
+    margin-right: var(--bui-alert-icon-margin-right);
     vertical-align: middle;
-    font-size: var(--icon-font-size);
+    font-size: var(--bui-alert-icon-font-size);
     cursor: pointer;
   }
 
@@ -109,7 +111,8 @@
       display: inline-block;
       padding-left: 100%;
       white-space: nowrap;
-      animation: marquee var(--content-marquee-speed) linear infinite both;
+      animation: marquee var(--bui-alert-content-marquee-speed) linear infinite
+        both;
     }
   }
 
