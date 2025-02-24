@@ -1370,7 +1370,7 @@ export default () => {
 | value    | 选项对应唯一的值   | string \| number           | -      |
 | children | 用于级联选项，可选 | ICascadePickerOptionItem[] | -      |
 
-`Picker` 继承自 `Drawer` 其他属性见 [Drawer API](/cores/drawer?#API)
+`Picker` 继承自 `Drawer` 其他属性见 [Drawer API](/cores/drawer?#api)
 
 ### 样式变量
 
