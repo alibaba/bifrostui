@@ -1,16 +1,17 @@
-.bui-tab-bar {
-  --width: var(--bui-tab-bar-width, 100%);
-  --height: var(--bui-tab-bar-height, 50px);
-  --padding: var(--bui-tab-bar-padding, 6px 0);
-  --bui-tab-bar-color: var(
-    --bui-tab-bar-default-color,
-    var(--bui-color-fg-default)
-  );
+@import '@bifrostui/styles/mixins/index.less';
 
+@{root-selector} {
+  --bui-tab-bar-width: 100%;
+  --bui-tab-bar-height: 50px;
+  --bui-tab-bar-padding: 6px 0;
+  --bui-tab-bar-color: var(--bui-color-fg-default);
+}
+
+.bui-tab-bar {
   display: flex;
-  width: var(--width);
-  height: var(--height);
-  padding: var(--padding);
-  background: var(--bui-color-white);
+  width: var(--bui-tab-bar-width);
+  height: var(--bui-tab-bar-height);
+  padding: var(--bui-tab-bar-padding);
+  background: var(--bui-color-bg-view);
   font-family: var(--bui-font-family);
 }

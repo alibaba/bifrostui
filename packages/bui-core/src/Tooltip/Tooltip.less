@@ -1,5 +1,17 @@
 @import '@bifrostui/styles/mixins/index.less';
 
+@{root-selector} {
+  /* prettier-ignore */
+  --bui-tooltip-arrow-size: 8PX;
+
+  /* prettier-ignore */
+  --bui-tooltip-location-position: 8PX;
+  --bui-tooltip-max-width: 350px;
+  --bui-tooltip-content-min-width: 30px;
+  --bui-tooltip-content-min-height: 32px;
+  --bui-tooltip-content-padding: 6px 8px;
+}
+
 @arrowTransparent: solid transparent;
 
 .arrow-common() {
@@ -9,40 +21,35 @@
 }
 
 .arrow-top() {
-  border-left: var(--arrow-size) @arrowTransparent;
-  border-right: var(--arrow-size) @arrowTransparent;
-  border-top: var(--arrow-size) solid var(--bui-color-bg-alpha-dark-7);
+  border-left: var(--bui-tooltip-arrow-size) @arrowTransparent;
+  border-right: var(--bui-tooltip-arrow-size) @arrowTransparent;
+  border-top: var(--bui-tooltip-arrow-size) solid
+    var(--bui-color-bg-alpha-dark-7);
 }
 
 .arrow-bottom() {
-  border-left: var(--arrow-size) @arrowTransparent;
-  border-right: var(--arrow-size) @arrowTransparent;
-  border-bottom: var(--arrow-size) solid var(--bui-color-bg-alpha-dark-7);
+  border-left: var(--bui-tooltip-arrow-size) @arrowTransparent;
+  border-right: var(--bui-tooltip-arrow-size) @arrowTransparent;
+  border-bottom: var(--bui-tooltip-arrow-size) solid
+    var(--bui-color-bg-alpha-dark-7);
 }
 
 .arrow-left() {
-  border-top: var(--arrow-size) @arrowTransparent;
-  border-bottom: var(--arrow-size) @arrowTransparent;
-  border-left: var(--arrow-size) solid var(--bui-color-bg-alpha-dark-7);
+  border-top: var(--bui-tooltip-arrow-size) @arrowTransparent;
+  border-bottom: var(--bui-tooltip-arrow-size) @arrowTransparent;
+  border-left: var(--bui-tooltip-arrow-size) solid
+    var(--bui-color-bg-alpha-dark-7);
 }
 
 .arrow-right() {
-  border-top: var(--arrow-size) @arrowTransparent;
-  border-bottom: var(--arrow-size) @arrowTransparent;
-  border-right: var(--arrow-size) solid var(--bui-color-bg-alpha-dark-7);
+  border-top: var(--bui-tooltip-arrow-size) @arrowTransparent;
+  border-bottom: var(--bui-tooltip-arrow-size) @arrowTransparent;
+  border-right: var(--bui-tooltip-arrow-size) solid
+    var(--bui-color-bg-alpha-dark-7);
 }
 
 .bui-tooltip {
-  /* prettier-ignore */
-  --arrow-size: var(--bui-tooltip-arrow-size, 8PX);
-
-  /* prettier-ignore */
-  --location-position: var(--bui-tooltip-location-position, 8PX);
-  --max-width: var(--bui-tooltip-max-width, 350px);
-  --content-min-width: var(--bui-tooltip-content-min-width, 30px);
-  --content-min-height: var(--bui-tooltip-content-min-height, 32px);
-  --content-padding: var(--bui-tooltip-content-padding, 6px 8px);
-  max-width: var(--max-width);
+  max-width: var(--bui-tooltip-max-width);
   font-size: var(--bui-text-size-1);
   position: absolute;
   visibility: hidden;
@@ -52,19 +59,19 @@
     .arrow-common();
 
     &.location-left {
-      left: var(--location-position);
+      left: var(--bui-tooltip-location-position);
     }
 
     &.location-right {
-      right: var(--location-position);
+      right: var(--bui-tooltip-location-position);
     }
 
     &.location-top {
-      top: var(--location-position);
+      top: var(--bui-tooltip-location-position);
     }
 
     &.location-bottom {
-      bottom: var(--location-position);
+      bottom: var(--bui-tooltip-location-position);
     }
   }
 
@@ -81,7 +88,7 @@
   }
 
   &.tooltip-top {
-    padding-bottom: var(--arrow-size);
+    padding-bottom: var(--bui-tooltip-arrow-size);
 
     .bui-tooltip-arrow {
       .arrow-top();
@@ -90,7 +97,7 @@
   }
 
   &.tooltip-bottom {
-    padding-top: var(--arrow-size);
+    padding-top: var(--bui-tooltip-arrow-size);
 
     .bui-tooltip-arrow {
       .arrow-bottom();
@@ -99,7 +106,7 @@
   }
 
   &.tooltip-left {
-    padding-right: var(--arrow-size);
+    padding-right: var(--bui-tooltip-arrow-size);
 
     .bui-tooltip-arrow {
       .arrow-left();
@@ -108,7 +115,7 @@
   }
 
   &.tooltip-right {
-    padding-left: var(--arrow-size);
+    padding-left: var(--bui-tooltip-arrow-size);
 
     .bui-tooltip-arrow {
       .arrow-right();
@@ -117,9 +124,9 @@
   }
 
   .bui-tooltip-content {
-    min-width: var(--content-min-width);
-    min-height: var(--content-min-height);
-    padding: var(--content-padding);
+    min-width: var(--bui-tooltip-content-min-width);
+    min-height: var(--bui-tooltip-content-min-height);
+    padding: var(--bui-tooltip-content-padding);
     color: var(--bui-color-white);
     text-align: left;
     text-decoration: none;

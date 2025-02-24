@@ -30,7 +30,7 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   const {
     className,
     style,
-    color = 'default',
+    color = 'neutral',
     htmlColor,
     variant = 'outlined',
     onClick,
@@ -45,7 +45,7 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>((props, ref) => {
         color: htmlColor,
         borderColor: colorHandler(htmlColor, 0.4),
       };
-    } else if (variant === 'light') {
+    } else if (variant === 'subtle') {
       customStyles = {
         color: htmlColor,
         backgroundColor: colorHandler(htmlColor, 0.3),

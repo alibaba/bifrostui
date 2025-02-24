@@ -1,5 +1,16 @@
 @import '@bifrostui/styles/mixins/index.less';
 
+@{root-selector} {
+  /* prettier-ignore */
+  --bui-popover-arrow-size: 8PX;
+
+  /* prettier-ignore */
+  --bui-popover-location-position: 8PX;
+  --bui-popover-max-width: 350px;
+  --bui-popover-content-min-width: 30px;
+  --bui-popover-content-padding: 6px 8px;
+}
+
 @arrowTransparent: solid transparent;
 
 .arrow-common() {
@@ -9,39 +20,31 @@
 }
 
 .arrow-top() {
-  border-left: var(--arrow-size) @arrowTransparent;
-  border-right: var(--arrow-size) @arrowTransparent;
-  border-top: var(--arrow-size) solid var(--bui-color-bg-view);
+  border-left: var(--bui-popover-arrow-size) @arrowTransparent;
+  border-right: var(--bui-popover-arrow-size) @arrowTransparent;
+  border-top: var(--bui-popover-arrow-size) solid var(--bui-color-bg-view);
 }
 
 .arrow-bottom() {
-  border-left: var(--arrow-size) @arrowTransparent;
-  border-right: var(--arrow-size) @arrowTransparent;
-  border-bottom: var(--arrow-size) solid var(--bui-color-bg-view);
+  border-left: var(--bui-popover-arrow-size) @arrowTransparent;
+  border-right: var(--bui-popover-arrow-size) @arrowTransparent;
+  border-bottom: var(--bui-popover-arrow-size) solid var(--bui-color-bg-view);
 }
 
 .arrow-left() {
-  border-top: var(--arrow-size) @arrowTransparent;
-  border-bottom: var(--arrow-size) @arrowTransparent;
-  border-left: var(--arrow-size) solid var(--bui-color-bg-view);
+  border-top: var(--bui-popover-arrow-size) @arrowTransparent;
+  border-bottom: var(--bui-popover-arrow-size) @arrowTransparent;
+  border-left: var(--bui-popover-arrow-size) solid var(--bui-color-bg-view);
 }
 
 .arrow-right() {
-  border-top: var(--arrow-size) @arrowTransparent;
-  border-bottom: var(--arrow-size) @arrowTransparent;
-  border-right: var(--arrow-size) solid var(--bui-color-bg-view);
+  border-top: var(--bui-popover-arrow-size) @arrowTransparent;
+  border-bottom: var(--bui-popover-arrow-size) @arrowTransparent;
+  border-right: var(--bui-popover-arrow-size) solid var(--bui-color-bg-view);
 }
 
 .bui-popover {
-  /* prettier-ignore */
-  --arrow-size: var(--bui-popover-arrow-size, 8PX);
-
-  /* prettier-ignore */
-  --location-position: var(--bui-popover-location-position, 8PX);
-  --max-width: var(--bui-popover-max-width, 350px);
-  --content-min-width: var(--bui-popover-content-min-width, 30px);
-  --content-padding: var(--bui-popover-content-padding, 6px 8px);
-  max-width: var(--max-width);
+  max-width: var(--bui-popover-max-width);
   font-size: var(--bui-text-size-1);
   position: absolute;
   visibility: hidden;
@@ -51,19 +54,19 @@
     .arrow-common();
 
     &.location-left {
-      left: var(--location-position);
+      left: var(--bui-popover-location-position);
     }
 
     &.location-right {
-      right: var(--location-position);
+      right: var(--bui-popover-location-position);
     }
 
     &.location-top {
-      top: var(--location-position);
+      top: var(--bui-popover-location-position);
     }
 
     &.location-bottom {
-      bottom: var(--location-position);
+      bottom: var(--bui-popover-location-position);
     }
   }
 
@@ -80,7 +83,7 @@
   }
 
   &.popover-top {
-    padding-bottom: var(--arrow-size);
+    padding-bottom: var(--bui-popover-arrow-size);
 
     .bui-popover-arrow {
       .arrow-top();
@@ -89,7 +92,7 @@
   }
 
   &.popover-bottom {
-    padding-top: var(--arrow-size);
+    padding-top: var(--bui-popover-arrow-size);
 
     .bui-popover-arrow {
       .arrow-bottom();
@@ -98,7 +101,7 @@
   }
 
   &.popover-left {
-    padding-right: var(--arrow-size);
+    padding-right: var(--bui-popover-arrow-size);
 
     .bui-popover-arrow {
       .arrow-left();
@@ -107,7 +110,7 @@
   }
 
   &.popover-right {
-    padding-left: var(--arrow-size);
+    padding-left: var(--bui-popover-arrow-size);
 
     .bui-popover-arrow {
       .arrow-right();
@@ -120,9 +123,9 @@
   }
 
   .bui-popover-content {
-    min-width: var(--content-min-width);
+    min-width: var(--bui-popover-content-min-width);
     color: var(--bui-color-fg-muted);
-    padding: var(--content-padding);
+    padding: var(--bui-popover-content-padding);
     text-align: left;
     text-decoration: none;
     word-wrap: break-word;

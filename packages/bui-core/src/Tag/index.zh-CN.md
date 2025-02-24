@@ -23,7 +23,7 @@ export default () => {
     <Stack direction="row" spacing="10px">
       <Tag>默认标签</Tag>
       <Tag variant="contained">填充标签</Tag>
-      <Tag variant="light">浅亮标签</Tag>
+      <Tag variant="subtle">浅亮标签</Tag>
     </Stack>
   );
 };
@@ -39,7 +39,14 @@ import React from 'react';
 
 export default () => {
   return (
-    <Stack spacing="10px">
+    <Stack
+      spacing="10px"
+      style={{
+        borderRadius: 'var(--bui-shape-radius-card)',
+        background: 'var(--bui-color-bg-default)',
+        padding: '24px',
+      }}
+    >
       <Stack direction="row" spacing="10px">
         <Tag variant="outlined" color="primary">
           限时特价
@@ -55,6 +62,12 @@ export default () => {
         </Tag>
         <Tag variant="outlined" color="danger">
           限时优惠
+        </Tag>
+        <Tag variant="outlined" color="light">
+          优惠
+        </Tag>
+        <Tag variant="outlined" color="dark">
+          优惠
         </Tag>
         <Tag variant="outlined" color="vip">
           会员
@@ -76,27 +89,39 @@ export default () => {
         <Tag variant="contained" color="danger">
           限时优惠
         </Tag>
+        <Tag variant="contained" color="light">
+          优惠
+        </Tag>
+        <Tag variant="contained" color="dark">
+          优惠
+        </Tag>
         <Tag variant="contained" color="vip">
           会员
         </Tag>
       </Stack>
       <Stack direction="row" spacing="10px">
-        <Tag variant="light" color="primary">
+        <Tag variant="subtle" color="primary">
           早鸟优惠
         </Tag>
-        <Tag variant="light" color="info">
+        <Tag variant="subtle" color="info">
           音乐剧
         </Tag>
-        <Tag variant="light" color="success">
+        <Tag variant="subtle" color="success">
           影城卡
         </Tag>
-        <Tag variant="light" color="warning">
+        <Tag variant="subtle" color="warning">
           点映
         </Tag>
-        <Tag variant="light" color="danger">
+        <Tag variant="subtle" color="danger">
           限时优惠
         </Tag>
-        <Tag variant="light" color="vip">
+        <Tag variant="subtle" color="light">
+          优惠
+        </Tag>
+        <Tag variant="subtle" color="dark">
+          优惠
+        </Tag>
+        <Tag variant="subtle" color="vip">
           会员
         </Tag>
       </Stack>
@@ -119,7 +144,7 @@ export default () => {
       <Tag variant="contained" htmlColor="#69eeff">
         自定义色彩
       </Tag>
-      <Tag variant="light" htmlColor="#69eeff">
+      <Tag variant="subtle" htmlColor="#69eeff">
         自定义色彩
       </Tag>
       <Tag variant="outlined" htmlColor="#69eeff">
@@ -277,11 +302,11 @@ export default () => {
 
 ### TagProps
 
-| 属性      | 说明           | 类型                                                                            | 默认值      |
-| --------- | -------------- | ------------------------------------------------------------------------------- | ----------- |
-| color     | 标签主题色     | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` \| `vip` | `default`   |
-| htmlColor | 自定义标签颜色 | string                                                                          | -           |
-| variant   | 标签类型       | `contained` ｜`outlined`｜`light`                                               | `contained` |
+| 属性      | 说明           | 类型                                                                                     | 默认值      |
+| --------- | -------------- | ---------------------------------------------------------------------------------------- | ----------- |
+| color     | 标签主题色     | `primary` \| `info` \| `success` \| `warning` \| `danger` \|`light`\| `neutral` \| `vip` | `neutral`   |
+| htmlColor | 自定义标签颜色 | string                                                                                   | -           |
+| variant   | 标签类型       | `contained` ｜`outlined`｜`subtle`                                                       | `contained` |
 
 ## 样式变量
 

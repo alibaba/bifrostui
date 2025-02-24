@@ -1,9 +1,12 @@
-.bui-radio {
-  --label-color: var(--bui-radio-label-color, var(--bui-color-fg-default));
-  --label-font-size: var(--bui-radio-label-font-size, var(--bui-text-size-1));
-  --icon-padding: var(--bui-radio-icon-padding, 5px);
+@import '@bifrostui/styles/mixins/index.less';
 
-  @iconSize: 16px;
+@{root-selector} {
+  --bui-radio-label-color: var(--bui-color-fg-default);
+  --bui-radio-label-font-size: var(--bui-text-size-1);
+  --bui-radio-icon-padding: 5px;
+}
+
+.bui-radio {
   display: inline-flex;
   align-items: center;
   position: relative;
@@ -43,13 +46,13 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    padding: var(--icon-padding);
+    padding: var(--bui-radio-icon-padding);
     box-sizing: border-box;
   }
 
   &-label {
-    font-size: var(--label-font-size);
-    color: var(--label-color);
+    font-size: var(--bui-radio-label-font-size);
+    color: var(--bui-radio-label-color);
   }
 
   &-btn-icon {
