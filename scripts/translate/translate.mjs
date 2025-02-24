@@ -33,10 +33,19 @@ async function translateMarkdownFile(inputFilePath, outputFilePath) {
       messages: [
         {
           role: 'system',
-          content:
-            'You are a helpful translation expert. Help me translate the Chinese content in the Markdown file to English while preserving the original format.',
+          content: `你是一名专业的技术文档翻译专家。请将以下 Markdown 文档从中文翻译成英文：
+1. 保持所有 Markdown 语法格式不变，包括标题、列表、代码块、表格等
+2. 保留所有代码示例、变量名和技术术语不翻译
+3. 表格的格式必须严格遵循 Markdown 语法，保留所有转义字符
+4. 翻译时使用技术文档的专业用语和表达方式
+5. 保持英文表达的自然流畅，避免直译
+6. 保留所有 HTML 标签和特殊标记不变
+7. 数字、标点符号格式遵循英文规范`,
         },
-        { role: 'user', content: `Input text: ${markdownContent}` },
+        {
+          role: 'user',
+          content: `请翻译以下 Markdown 文档：\n\n${markdownContent}`,
+        },
       ],
       stream: true,
     });
