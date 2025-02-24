@@ -79,9 +79,9 @@ export default () => {
 };
 ```
 
-### Set Title
+### Custom Text
 
-Use the 'title' attribute to specify the selector title.
+You can customize the text by configuring `title`, `confirmText`, and `cancelText`.
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -101,6 +101,8 @@ export default () => {
       <Picker
         open={open}
         title="请选择"
+        confirmText="Yes"
+        cancelText="No"
         onClose={(e, data) => {
           setOpen(false);
           console.log('onClose', e, data);
@@ -1330,6 +1332,8 @@ export default () => {
 | -------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | open           | Do you want to display the selector       | boolean                                                                                                                                                                                             | false         |
 | title          | title                                     | string                                                                                                                                                                                              | -             |
+| confirmText    | Confirmation text content                 | string                                                                                                                                                                                              | Confirm       |
+| cancelText     | Cancellation text content                 | string                                                                                                                                                                                              | Cancel        |
 | options        | List data                                 | IPickerOptionItem[][] \|ICascadePickerOptionItem[]                                                                                                                                                  | []            |
 | value          | Selected values                           | (string \|number)[]                                                                                                                                                                                 | -             |
 | contentProps   | Props on drawer content DOM node          | React.HTMLAttributes\<HTMLDivElement\>                                                                                                                                                              | -             |

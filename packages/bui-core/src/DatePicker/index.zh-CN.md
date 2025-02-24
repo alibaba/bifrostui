@@ -32,7 +32,6 @@ export default () => {
       </Button>
       <DatePicker
         open={open}
-        title="选择日期"
         value={value}
         onChange={handleChange}
         onClose={() => setOpen(false)}
@@ -63,7 +62,6 @@ export default () => {
       <Button onClick={() => setOpen(true)}>{value.toLocaleString()}</Button>
       <DatePicker
         open={open}
-        title="选择日期"
         defaultValue={value}
         views={['year', 'month', 'day', 'hour', 'minute', 'second']}
         onConfirm={handleConfirm}
@@ -97,7 +95,6 @@ export default () => {
       </Button>
       <DatePicker
         open={open}
-        title="选择日期"
         defaultValue={value}
         views={['hour', 'minute', 'second']}
         onConfirm={handleConfirm}
@@ -131,9 +128,49 @@ export default () => {
       </Button>
       <DatePicker
         open={open}
-        title="选择日期"
         minDate={new Date(2021, 3, 9)}
         maxDate={new Date(2026, 4, 1)}
+        defaultValue={value}
+        onConfirm={handleConfirm}
+        onClose={() => setOpen(false)}
+      />
+    </Stack>
+  );
+};
+```
+
+### 自定义文案
+
+通过配置 `title`、`confirmText`、`cancelText`，可以自定义文案。
+
+```tsx
+import React, { useState } from 'react';
+import {
+  DatePicker,
+  Stack,
+  Button,
+  DatePickerType,
+  IPickerOptionItem,
+} from '@bifrostui/react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(new Date());
+
+  const handleConfirm = (e, res) => {
+    setValue(res.value);
+  };
+
+  return (
+    <Stack>
+      <Button onClick={() => setOpen(true)}>
+        {value.toLocaleDateString()}
+      </Button>
+      <DatePicker
+        open={open}
+        title="选择日期"
+        confirmText="是"
+        cancelText="否"
         defaultValue={value}
         onConfirm={handleConfirm}
         onClose={() => setOpen(false)}
@@ -188,7 +225,6 @@ export default () => {
       </Button>
       <DatePicker
         open={open}
-        title="选择日期"
         defaultValue={value}
         formatter={formatter}
         onConfirm={handleConfirm}
@@ -269,7 +305,6 @@ export default () => {
       </Button>
       <DatePicker
         open={open}
-        title="选择日期"
         defaultValue={value}
         disableDateTimeView={{
           day: (options) => {

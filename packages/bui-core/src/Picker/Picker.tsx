@@ -16,6 +16,8 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
     title,
     options = [],
     value,
+    confirmText: propConfirmText,
+    cancelText: propCancelText,
     contentProps,
     onConfirm,
     onOptionChange,
@@ -194,11 +196,11 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
       >
         <div className={`${prefixCls}-header`}>
           <div className={`${prefixCls}-cancel`} onClick={cancel}>
-            {cancelText}
+            {propCancelText || cancelText}
           </div>
           {title && <div className={`${prefixCls}-title`}>{title}</div>}
           <div className={`${prefixCls}-confirm`} onClick={confirm}>
-            {confirmText}
+            {propConfirmText || confirmText}
           </div>
         </div>
 
