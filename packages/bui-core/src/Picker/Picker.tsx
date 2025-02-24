@@ -55,6 +55,14 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
     const isMoving = rollerRefs.current.some((roller) => roller?.isMoving);
     // 处于惯性滚动中，不允许确认关闭选择器
     if (isMoving) return;
+    // 选中值中存在禁用项，不允许确认关闭选择器
+    for (let i = 0; i < internalValue.length; i += 1) {
+      if (
+        columns[i]?.find((item) => item.value === internalValue[i])?.disabled
+      ) {
+        return;
+      }
+    }
 
     const { safeValue } = safeData({
       value: internalValue,
@@ -201,7 +209,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
               key={index}
               options={column}
               columnIndex={index}
-              defaultValue={internalValue?.[index]}
+              value={internalValue?.[index]}
               onSelect={handleSelect}
               pickerStyle={others?.style}
             />
