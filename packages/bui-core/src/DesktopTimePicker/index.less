@@ -1,5 +1,5 @@
 @import '@bifrostui/styles/mixins/index.less';
-@class-prefix-time-picker: ~'bui-time-picker';
+@class-prefix-time-picker: ~'bui-desktop-time-picker';
 @transition-duration: 0.3s;
 
 .@{class-prefix-time-picker} {
@@ -36,17 +36,6 @@
     height: 100%;
   }
 
-  // &-container {
-  //   position: absolute;
-  //   box-sizing: border-box;
-  //   left: 0;
-  //   width: 100%;
-  //   min-width: 300px;
-  //   z-index: var(--bui-z-index-dropdown);
-  //   background-color: var(--bui-color-bg-view);
-  //   overflow: hidden;
-  // }
-
   &-placeholder {
     color: var(--bui-color-fg-disabled);
   }
@@ -74,10 +63,10 @@
 
   &-main {
     --container-main-radius: 3px;
-    --container-content-padding: 10px 16px;
-    --container-content-height: 30px;
-    --container-content-line-height: 30px;
-    --container-content-width: 60px;
+    --container-li-padding: 8px;
+    --container-li-height: 24px;
+    --container-li-line-height: 24px;
+    --container-li-width: 24px;
     border-radius: var(--container-main-radius);
     padding: 3px 0;
     height: 308px;
@@ -106,10 +95,10 @@
 
         &-li {
           box-sizing: content-box;
-          width: 24px;
-          height: 24px;
-          line-height: 24px;
-          padding: 8px;
+          width: var(--container-li-width);
+          height: var(--container-li-height);
+          line-height: var(--container-li-line-height);
+          padding: var(--container-li-padding);
           margin: 0 4px;
           border-radius: 6px;
           font-size: var(--bui-title-size-4);

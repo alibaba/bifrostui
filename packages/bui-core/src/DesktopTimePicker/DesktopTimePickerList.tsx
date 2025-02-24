@@ -18,7 +18,7 @@ const DesktopTimePickerList = React.forwardRef<
     selectedValue,
     prefixCls,
     handleClick,
-    renderItem,
+    timeRender,
   } = props;
 
   const ulRef = useRef<HTMLDivElement | null>(null);
@@ -50,21 +50,19 @@ const DesktopTimePickerList = React.forwardRef<
         const { value, label, disabled } = item;
 
         return (
-          renderItem?.({ ...item, disabled }) || (
-            <div
-              key={index}
-              className={clsx(`${prefixCls}-table-${type}-ul-li`, {
-                [`${prefixCls}-table-${type}-ul-li-active`]:
-                  value === selectedValue,
-                [`${prefixCls}-table-${type}-ul-li-disabled`]: disabled,
-              })}
-              onClick={(e) => {
-                handleClick(e, disabled, item);
-              }}
-            >
-              {label}
-            </div>
-          )
+          <div
+            key={index}
+            className={clsx(`${prefixCls}-table-${type}-ul-li`, {
+              [`${prefixCls}-table-${type}-ul-li-active`]:
+                value === selectedValue,
+              [`${prefixCls}-table-${type}-ul-li-disabled`]: disabled,
+            })}
+            onClick={(e) => {
+              handleClick(e, disabled, item);
+            }}
+          >
+            {timeRender?.({ ...item, disabled }) || label}
+          </div>
         );
       })}
     </ScrollView>
