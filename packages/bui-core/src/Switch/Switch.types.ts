@@ -49,7 +49,7 @@ export type SwitchProps<
        * 颜色 'primary' | 'info' | 'success' | 'warning' | 'danger';
        * @default 'primary'
        */
-      color?: ThemeColor;
+      color?: Exclude<ThemeColor, 'dark' | 'light' | 'light'>;
       /**
        * 变化时的回调函数
        */

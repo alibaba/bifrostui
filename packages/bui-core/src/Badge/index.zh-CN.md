@@ -156,7 +156,15 @@ import { PhoneFilledIcon } from '@bifrostui/icons';
 
 export default () => {
   return (
-    <Stack spacing="10px" direction="row">
+    <Stack
+      spacing="10px"
+      direction="row"
+      style={{
+        borderRadius: 'var(--bui-shape-radius-card)',
+        background: 'var(--bui-color-bg-default)',
+        padding: '24px',
+      }}
+    >
       <Badge color="success" content="5">
         <PhoneFilledIcon color="success" style={{ fontSize: '38px' }} />
       </Badge>
@@ -172,6 +180,12 @@ export default () => {
       <Badge color="danger" content="5">
         <PhoneFilledIcon color="danger" style={{ fontSize: '38px' }} />
       </Badge>
+      <Badge color="light" content="5">
+        <PhoneFilledIcon color="default" style={{ fontSize: '38px' }} />
+      </Badge>
+      <Badge color="dark" content="5">
+        <PhoneFilledIcon color="dark" style={{ fontSize: '38px' }} />
+      </Badge>
     </Stack>
   );
 };
@@ -184,7 +198,15 @@ import { PhoneFilledIcon } from '@bifrostui/icons';
 
 export default () => {
   return (
-    <Stack spacing="10px" direction="row">
+    <Stack
+      spacing="10px"
+      direction="row"
+      style={{
+        borderRadius: 'var(--bui-shape-radius-card)',
+        background: 'var(--bui-color-bg-default)',
+        padding: '24px',
+      }}
+    >
       <Badge color="success" content="5" variant="outlined">
         <PhoneFilledIcon color="success" style={{ fontSize: '38px' }} />
       </Badge>
@@ -199,6 +221,12 @@ export default () => {
       </Badge>
       <Badge color="danger" content="5" variant="outlined">
         <PhoneFilledIcon color="danger" style={{ fontSize: '38px' }} />
+      </Badge>
+      <Badge color="light" content="5" variant="outlined">
+        <PhoneFilledIcon color="default" style={{ fontSize: '38px' }} />
+      </Badge>
+      <Badge color="dark" content="5" variant="outlined">
+        <PhoneFilledIcon color="dark" style={{ fontSize: '38px' }} />
       </Badge>
     </Stack>
   );

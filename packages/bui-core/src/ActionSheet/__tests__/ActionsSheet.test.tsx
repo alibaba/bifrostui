@@ -140,7 +140,7 @@ describe('ActionSheet', () => {
     'success',
     'info',
     'danger',
-    'default',
+    'neutral',
   ] as const)(
     'action item should render correctly with color props',
     (color) => {

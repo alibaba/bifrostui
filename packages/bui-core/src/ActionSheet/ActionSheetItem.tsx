@@ -13,7 +13,7 @@ const ActionSheetItem = React.forwardRef<HTMLDivElement, ActionSheetItemProps>(
       children,
       disabled = false,
       bold = false,
-      color = 'default',
+      color = 'neutral',
       description,
       onClick,
       index,

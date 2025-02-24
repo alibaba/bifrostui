@@ -22,7 +22,9 @@ export default function SvgIcon(props: ISvgIconProps) {
   } = props;
 
   const colorMap = {
-    default: 'var(--bui-color-fg-subtle)',
+    light: 'var(--bui-color-bg-view)',
+    dark: 'var(--bui-color-fg-default)',
+    neutral: 'var(--bui-color-fg-subtle)',
     primary: 'var(--bui-color-primary)',
     info: 'var(--bui-color-info)',
     danger: 'var(--bui-color-danger)',

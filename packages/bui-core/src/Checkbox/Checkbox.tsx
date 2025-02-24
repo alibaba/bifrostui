@@ -45,7 +45,7 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
   const checkboxCheckIcon = checkedIcon || (
     <SuccessCircleFilledIcon color="primary" />
   );
-  const checkboxUncheckIcon = icon || <CircleOutlinedIcon color="default" />;
+  const checkboxUncheckIcon = icon || <CircleOutlinedIcon color="neutral" />;
   const checkboxDisabled =
     disabled !== undefined ? disabled : groupContext?.disabled;
 

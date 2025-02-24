@@ -175,12 +175,12 @@ export default () => {
 
 ### TabBar
 
-| 属性        | 说明                 | 类型                                                                            | 默认值    |
-| ----------- | -------------------- | ------------------------------------------------------------------------------- | --------- |
-| current     | 当前选中的标签索引值 | number                                                                          | 0         |
-| color       | 默认主题色           | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` \| `vip` | `default` |
-| activeColor | 选中主题色           | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` \| `vip` | `primary` |
-| onChange    | 选中某一项时的回调   | (e:SyntheticEvent, data:{value:number}) => void                                 | -         |
+| 属性        | 说明                 | 类型                                                                                               | 默认值    |
+| ----------- | -------------------- | -------------------------------------------------------------------------------------------------- | --------- |
+| current     | 当前选中的标签索引值 | number                                                                                             | 0         |
+| color       | 默认主题色           | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `neutral`\| `dark`\| `light` \| `vip` | `neutral` |
+| activeColor | 选中主题色           | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `neutral`\| `dark`\| `light` \| `vip` | `primary` |
+| onChange    | 选中某一项时的回调   | (e:SyntheticEvent, data:{value:number}) => void                                                    | -         |
 
 ### TabBarItem
 

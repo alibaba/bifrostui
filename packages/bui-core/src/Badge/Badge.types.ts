@@ -14,7 +14,7 @@ export type BadgeProps<
       /**
        * 颜色
        */
-      color?: ThemeColor;
+      color?: Exclude<ThemeColor, 'neutral'>;
       /**
        * 最大值
        */
