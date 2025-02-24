@@ -302,11 +302,11 @@ export default () => {
 
 ### TagProps
 
-| 属性      | 说明           | 类型                                                                                     | 默认值      |
-| --------- | -------------- | ---------------------------------------------------------------------------------------- | ----------- |
-| color     | 标签主题色     | `primary` \| `info` \| `success` \| `warning` \| `danger` \|`light`\| `neutral` \| `vip` | `neutral`   |
-| htmlColor | 自定义标签颜色 | string                                                                                   | -           |
-| variant   | 标签类型       | `contained` ｜`outlined`｜`subtle`                                                       | `contained` |
+| 属性      | 说明           | 类型                                                                                              | 默认值      |
+| --------- | -------------- | ------------------------------------------------------------------------------------------------- | ----------- |
+| color     | 标签主题色     | `primary` \| `info` \| `success` \| `warning` \| `danger` \|`light`\| `neutral` \|`dark` \| `vip` | `neutral`   |
+| htmlColor | 自定义标签颜色 | string                                                                                            | -           |
+| variant   | 标签类型       | `contained` ｜`outlined`｜`subtle`                                                                | `contained` |
 
 ## 样式变量
 

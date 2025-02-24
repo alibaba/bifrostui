@@ -182,7 +182,7 @@ export default () => {
 | ----------- | ------------ | ---------------------------------------------------------------------- | --------- |
 | description | 描述内容     | React.ReactNode                                                        | -         |
 | disabled    | 是否禁用     | boolean                                                                | false     |
-| color       | 颜色         | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` | `default` |
+| color       | 颜色         | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `neutral` | `neutral` |
 | bold        | 是否加粗     | boolean                                                                | false     |
 | index       | 索引标记     | string \| number                                                       | -         |
 | onClick     | 点击选择回调 | (event: React.MouseEvent ,data?: { index: string \| number }) => void; | -         |

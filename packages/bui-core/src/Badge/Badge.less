@@ -85,6 +85,15 @@
     background-color: var(--bui-color-danger);
   }
 
+  &-light {
+    color: var(--bui-color-fg-default);
+    background-color: var(--bui-color-bg-view);
+  }
+
+  &-dark {
+    background-color: var(--bui-color-fg-default);
+  }
+
   &-dot {
     width: var(--bui-badge-dot-size);
     min-width: 0;
@@ -125,6 +134,17 @@
   &-outlined&-danger {
     border: 1px solid var(--bui-color-danger);
     color: var(--bui-color-danger);
+  }
+
+  &-outlined&-light {
+    background: var(--bui-color-bg-default);
+    border: 1px solid var(--bui-color-bg-view);
+    color: var(--bui-color-bg-view);
+  }
+
+  &-outlined&-dark {
+    border: 1px solid var(--bui-color-fg-default);
+    color: var(--bui-color-fg-default);
   }
 
   &-outlined&-bubble {
