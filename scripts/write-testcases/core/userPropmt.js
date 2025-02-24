@@ -17,6 +17,7 @@ const aiTaskPrompts = {
     aiWriteTestCases: {
         name: 'AI生成测试用例',
         model: 'qwen-coder-plus',
+        // model: 'deepseek-v3',
         description: '根据指定组件代码生成对应的测试用例',
         promptCfg: {
             getSystem: function () {
