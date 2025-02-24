@@ -9,7 +9,7 @@ export type Views = Array<'hour' | 'minute' | 'second'>;
 export type ViewType = 'hour' | 'minute' | 'second';
 export type ViewTypeWithMeridiem = ViewType | 'meridiem';
 
-export type TimeSteps = { hours?: number; minutes?: number; seconds?: number };
+export type TimeSteps = { hour?: number; minute?: number; second?: number };
 
 export type TimePickerProps<
   D extends React.ElementType = 'div',
@@ -105,9 +105,9 @@ export type TimePickerProps<
        */
       DesktopPickerProps?: DesktopPickerProps;
       /**
-       * renderItem
+       * 自定义时间单元格渲染内容
        */
-      renderItem?: (item: ITimeInstance) => React.ReactNode;
+      timeRender?: (item: ITimeInstance) => React.ReactNode;
     };
     defaultComponent: D;
   },
@@ -159,9 +159,9 @@ export interface TimePickerContentProps {
    */
   maxTime?: Dayjs;
   /**
-   * 自定义渲染
+   * 自定义时间单元格渲染内容
    */
-  renderItem?: (item: ITimeInstance) => React.ReactNode;
+  timeRender?: (item: ITimeInstance) => React.ReactNode;
 }
 
 /** 时间面板单元格对象 */
@@ -184,5 +184,5 @@ export interface DesktopTimePickerListProps {
   selectedValue: string | number;
   prefixCls: string;
   handleClick: Function;
-  renderItem: (item: ITimeInstance) => React.ReactNode;
+  timeRender: (item: ITimeInstance) => React.ReactNode;
 }

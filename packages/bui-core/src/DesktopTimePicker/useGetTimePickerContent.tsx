@@ -12,7 +12,7 @@ import {
   isDisabledTime,
 } from './utils/utils';
 
-const prefixCls = 'bui-time-picker';
+const prefixCls = 'bui-desktop-time-picker';
 
 const useGetTimePickerContent = (props: TimePickerContentProps) => {
   const {
@@ -38,7 +38,7 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
     closeOnSelect,
     setIsOpen,
     triggerChange,
-    renderItem,
+    timeRender,
   } = props;
 
   // 获取时间面板数据
@@ -58,6 +58,11 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
     }
 
     const list = [];
+
+    // 防止timeStep<=0
+    if (timeStep <= 0) {
+      timeStep = 1;
+    }
     for (let i = 0; i < maxNum; i += timeStep) {
       const value = i;
       let label = value < 10 ? `0${value}` : `${value}`;
@@ -81,8 +86,10 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
         maxTime,
         dataList,
         disabledTimeView,
+        timeSteps,
         ampm,
       );
+
       // 设置disabled
       dataList.forEach((item, idx) => {
         const { value } = item;
@@ -103,6 +110,7 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
           selectedValue = timeValue[type]?.();
         }
       }
+
       const handleClick = (e, disabled: boolean, item) => {
         // Keep the overlay open
         e.stopPropagation();
@@ -119,13 +127,14 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
 
         const getValidTimeValue = (view, newTimeValue) => {
           // 计算每一列的disabledData
-          const viewDisabledTime = getdisabledTime(
+          let viewDisabledTime = getdisabledTime(
             view,
             newTimeValue,
             minTime,
             maxTime,
             getViewListData(view, timeSteps[view]),
             disabledTimeView,
+            timeSteps,
             ampm,
           );
 
@@ -136,6 +145,9 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
               ...el,
               value: el.value + 12,
             }));
+            viewDisabledTime = viewDisabledTime.map(
+              (el) => (el as number) + 12,
+            );
           }
 
           // 过滤有效data
@@ -215,7 +227,7 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
           prefixCls={prefixCls}
           handleClick={handleClick}
           key={type}
-          renderItem={renderItem}
+          timeRender={timeRender}
         />
       );
     });

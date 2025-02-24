@@ -7,6 +7,7 @@ import {
   ViewTypeWithMeridiem,
   ITimeInstance,
   ITimeItemNumberInstance,
+  TimeSteps,
 } from '../DesktopTimePicker.types';
 
 /**
@@ -211,6 +212,7 @@ export const getdisabledTime = (
   maxTime: Dayjs,
   dataList: ITimeInstance[],
   disabledTimeView: DisabledTimeView,
+  timeSteps: TimeSteps,
   ampm?: boolean,
 ) => {
   // 不在日期区间内，所有时间禁止
@@ -243,6 +245,8 @@ export const getdisabledTime = (
           disabledTimeView?.().second?.(hourValue, minuteValue) || [];
         return disabledSeconds;
       }
+      case 'meridiem':
+        return [];
       default:
         return [];
     }
@@ -251,6 +255,9 @@ export const getdisabledTime = (
 
   // 获取minTime&maxTime设置的禁止时间
   const getOutOfMinRangeTime = () => {
+    if (!minTime) {
+      return [];
+    }
     switch (type) {
       case 'hour': {
         const outOfRangeHours = dataList
@@ -290,15 +297,17 @@ export const getdisabledTime = (
         );
         return outOfRangeSeconds;
       }
-      case 'meridiem': {
+      case 'meridiem':
         return [];
-      }
       default:
         return [];
     }
   };
 
   const getOutOfMaxRangeTime = () => {
+    if (!maxTime) {
+      return [];
+    }
     switch (type) {
       case 'hour': {
         const outOfRangeHours = dataList
@@ -340,9 +349,8 @@ export const getdisabledTime = (
         );
         return outOfRangeSeconds;
       }
-      case 'meridiem': {
+      case 'meridiem':
         return [];
-      }
       default:
         return [];
     }
@@ -354,8 +362,48 @@ export const getdisabledTime = (
   const isEqualMinDate = timeValue?.isSame(minTime, 'day');
   const isEqualMaxDate = timeValue?.isSame(maxTime, 'day');
 
+  // 计算meridiem的disable
+  const allHours = Array.from({ length: 24 }, (_, i) => i);
+  // 获得禁用时间视图的小时数组，若无则默认为空数组
+  const disabledViewHours = disabledTimeView?.().hour?.() || [];
+  // 过滤出小于 minTime 和大于 maxTime 的小时数组
+  const minHour = minTime?.hour() ?? 0;
+  const maxHour = maxTime?.hour() ?? 23;
+  const outOfMinHours = allHours.filter((hour) => hour < minHour);
+  const outOfMaxHours = allHours.filter((hour) => hour > maxHour);
+  // 计算amList和pmList
+  const generateHourArray = (start, end, step) =>
+    Array.from(
+      { length: Math.ceil((end - start) / step) },
+      (_, i) => start + i * step,
+    );
+
+  const hourStep = timeSteps.hour ?? 1;
+  const amArr = generateHourArray(0, 12, hourStep);
+  const pmArr = generateHourArray(12, 24, hourStep);
+
+  // 判断禁用AM和PM
+  const disabledAmPm = (disabledHours) => {
+    const containsAll = (arr) =>
+      arr.every((item) => disabledHours.includes(item));
+
+    const containsAllAmArr = containsAll(amArr);
+    const containsAllPmArr = containsAll(pmArr);
+
+    if (containsAllAmArr && containsAllPmArr) return ['AM', 'PM'];
+    if (containsAllAmArr) return ['AM'];
+    if (containsAllPmArr) return ['PM'];
+    return [];
+  };
+
   // 处理时间值为空时
   if (!timeValue || (isEqualMinDate && isEqualMaxDate)) {
+    if (type === 'meridiem') {
+      const disabledHours = [
+        ...new Set([...outOfMinHours, ...outOfMaxHours, ...disabledViewHours]),
+      ];
+      return disabledAmPm(disabledHours);
+    }
     return [
       ...new Set([
         ...disabledViewTime,
@@ -365,10 +413,26 @@ export const getdisabledTime = (
     ];
   }
   if (!isEqualMinDate && !isEqualMaxDate) {
+    if (type === 'meridiem') {
+      const disabledHours = disabledViewHours;
+      return disabledAmPm(disabledHours);
+    }
     return disabledViewTime;
   }
   if (isEqualMinDate) {
+    if (type === 'meridiem') {
+      const disabledHours = [
+        ...new Set([...outOfMinHours, ...disabledViewHours]),
+      ];
+      return disabledAmPm(disabledHours);
+    }
     return [...new Set([...disabledViewTime, ...outOfMinRangeTime])];
+  }
+  if (type === 'meridiem') {
+    const disabledHours = [
+      ...new Set([...outOfMaxHours, ...disabledViewHours]),
+    ];
+    return disabledAmPm(disabledHours);
   }
   return [...new Set([...disabledViewTime, ...outOfMaxRangeTime])];
 };

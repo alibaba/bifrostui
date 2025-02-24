@@ -4,7 +4,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import clsx from 'clsx';
 import React, { useMemo, useState, useEffect } from 'react';
 import { useValue } from '@bifrostui/utils';
-import { TimePickerProps, TimeSteps } from './DesktopTimePicker.types';
+import { TimePickerProps, TimeSteps, Views } from './DesktopTimePicker.types';
 import './index.less';
 import { isDisabledTime, dateToDayjs } from './utils/utils';
 import DesktopPicker from '../DesktopPicker';
@@ -12,11 +12,14 @@ import useGetTimePickerContent from './useGetTimePickerContent';
 
 dayjs.extend(customParseFormat);
 
-const prefixCls = 'bui-time-picker';
+const prefixCls = 'bui-desktop-time-picker';
+// 定义允许的视图类型
+const allowedViews: Views = ['hour', 'minute', 'second'];
+
 const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
   (props, ref) => {
     const {
-      views = ['hour', 'minute', 'second'],
+      views = allowedViews,
       timeSteps = { hour: 1, minute: 1, second: 1 } as TimeSteps,
       ampm = false,
       className,
@@ -46,7 +49,7 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       onClose,
       onOpen,
       DesktopPickerProps,
-      renderItem,
+      timeRender,
       ...others
     } = props;
     // 是否展开日期选择
@@ -81,7 +84,9 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
     };
 
     const { desktopTimePicker } = useGetTimePickerContent({
-      views,
+      views: Array.from(
+        new Set(views.filter((view) => allowedViews.includes(view))),
+      ),
       timeSteps,
       ampm,
       minTime: dateToDayjs(minTime),
@@ -93,7 +98,7 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       onClose,
       onOpen,
       closeOnSelect,
-      renderItem,
+      timeRender,
     });
 
     const onInputChange = (e) => {
