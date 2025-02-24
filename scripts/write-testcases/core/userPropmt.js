@@ -34,7 +34,8 @@ const aiTaskPrompts = {
                 return returnStr;
             },
             getUserPrompt: function (args) {
-                const userStr = `请为下面提供的组件代生成对应的测试用例：${args.originCode}`;
+                // const userStr = `请为下面提供的组件代生成对应的测试用例：${args.originCode}`;
+                const userStr = `请为下面提供的组件代生成对应的测试用例（注意请确保你生成的测试用例的实现（API、方法、属性等）与该组件的实现对应且正确，不允许增加与组件实现中无关的属性或API等）：${args.originCode}`;
                 return userStr
             },
             getSnapshotTest: function (yourComponentName='yourComponentName') {
