@@ -7,32 +7,40 @@ export const generateSystemPrompt = function (mdFileName) {
 5. 参考${mdFileName}组件的文档格式和风格`;
 };
 
-export const generateUserPrompt = function (
+export const generateUserPrompt = function ({
   componentName,
-  mdFileName,
-  mdComponentCode,
-  mdTypesCode,
-  mdStyleCode,
-  mdFormat,
-  componentCode,
-  typesCode,
-  styleCode,
-  stackCode,
-) {
+  referenceDoc: {
+    fileName,
+    code: {
+      component: referenceComponent,
+      types: referenceTypes,
+      styles: referenceStyles
+    },
+    format: referenceFormat
+  },
+  targetDoc: {
+    code: {
+      component: targetComponent,
+      types: targetTypes,
+      styles: targetStyles,
+      layout: targetLayout
+    }
+  }
+}) {
   return `请基于以下信息生成${componentName}组件的markdown文档：
 
 ### 参考资料
-- 参考组件(${mdFileName})信息：
-  - 组件代码：${mdComponentCode}
-  - 类型定义：${mdTypesCode}
-  - 样式代码：${mdStyleCode}
-  - 文档示例：${mdFormat}
+- 参考组件(${fileName})信息：
+  - 组件代码：${referenceComponent}
+  - 类型定义：${referenceTypes}
+  - 样式代码：${referenceStyles}
+  - 文档示例：${referenceFormat}
 
 ### 目标组件信息
-- 组件代码：${componentCode}
-- 类型定义：${typesCode}
-- 样式代码：${styleCode}
-- 布局组件：${stackCode}
+- 组件代码：${targetComponent}
+- 类型定义：${targetTypes}
+- 样式代码：${targetStyles}
+- 布局组件：${targetLayout}
 
 ### 文档要求
 1. 代码演示

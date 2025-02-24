@@ -1,9 +1,17 @@
 import fs from 'node:fs';
 import path from 'path';
+import { input } from '@inquirer/prompts';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-import { fileURLToPath } from 'url';
+
+// 常量配置
+export const CONFIG = {
+  DEFAULT_MD_FILE: 'TabBar',
+  BASE_PATH: '../../packages/bui-core/src',
+  MD_FILE_NAME: 'index.zh-CN.md'
+};
 
 export async function readFileContent(filePath) {
   try {
@@ -14,7 +22,7 @@ export async function readFileContent(filePath) {
   }
 }
 
-export async function getCode(componentName) {
+async function getCode(componentName) {
   const componentDir = path.resolve(
     __dirname,
     '../../packages/bui-core/src',
@@ -57,3 +65,58 @@ export async function getCode(componentName) {
   const styleCode = styleFiles.join('');
   return { componentCode, typesCode, styleCode };
 }
+
+// 获取所有必要的代码
+export const getAllCodes = async (componentName, mdFileName) => {
+  try {
+    const [
+      targetCodes,
+      referenceCodes,
+      stackCode,
+      mdFormat
+    ] = await Promise.all([
+      getCode(componentName),
+      getCode(mdFileName),
+      getCode('Stack'),
+      readFileContent(
+        path.resolve(
+          __dirname,
+          CONFIG.BASE_PATH,
+          mdFileName,
+          CONFIG.MD_FILE_NAME
+        )
+      )
+    ]);
+
+    return {
+      targetCodes,
+      referenceCodes,
+      stackCode: stackCode.componentCode,
+      mdFormat
+    };
+  } catch (error) {
+    throw new Error(`获取代码失败: ${error.message}`);
+  }
+};
+
+// 获取组件名称
+export const getComponentName = async () => {
+  let componentName = '';
+  while (!componentName) {
+    componentName = await input({ message: '组件名称' });
+  }
+  return componentName;
+};
+
+// 保存 Markdown 文件
+export const saveMarkdown = (componentName, markdown) => {
+  const componentDir = path.resolve(
+    __dirname,
+    CONFIG.BASE_PATH,
+    componentName
+  );
+  const outputPath = path.join(componentDir, CONFIG.MD_FILE_NAME);
+  
+  fs.writeFileSync(outputPath, markdown);
+  return outputPath;
+};
