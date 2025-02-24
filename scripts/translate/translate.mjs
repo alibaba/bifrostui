@@ -1,7 +1,7 @@
 /**
  * 使用LLM翻译md文件
  * 也通过 --file 指定翻译特定的markdown文件
- * 如 node scripts/translate/translate.mjs --file ./packages/bui-icons/src/index.zh-CN.md
+ * @example node scripts/translate/translate.mjs --file ./packages/bui-icons/src/index.zh-CN.md
  */
 
 import OpenAI from 'openai';
@@ -36,7 +36,10 @@ async function translateMarkdownFile(inputFilePath, outputFilePath) {
           content: `你是一名专业的技术文档翻译专家。请将以下 Markdown 文档从中文翻译成英文：
 1. 保持所有 Markdown 语法格式不变，包括标题、列表、代码块、表格等
 2. 保留所有代码示例、变量名和技术术语不翻译
-3. 表格的格式必须严格遵循 Markdown 语法，保留所有转义字符
+3. 严格保留所有转义字符，包括但不限于：
+   - 泛型类型中的转义反斜杠，如 Partial<Props\> 中的 \
+   - 竖线分隔符中的转义反斜杠，如 A \| B 中的 \
+   - 所有其他以反斜杠 \ 开头的转义序列
 4. 翻译时使用技术文档的专业用语和表达方式
 5. 保持英文表达的自然流畅，避免直译
 6. 保留所有 HTML 标签和特殊标记不变
