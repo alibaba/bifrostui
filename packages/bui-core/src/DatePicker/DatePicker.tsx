@@ -1,11 +1,9 @@
 import React, { forwardRef, useEffect, useState } from 'react';
 import clsx from 'clsx';
+import { useValue } from '@bifrostui/utils';
 import { DatePickerProps, DatePickerType } from './DatePicker.types';
 import Picker, { IPickerOptionItem } from '../Picker';
 
-// TODO: 数据量大可能会有性能问题
-// TODO: 使用共享变量是否合适
-// TODO: 日期禁用
 const MIN_DATE = new Date(new Date().getFullYear() - 10, 0, 1);
 const MAX_DATE = new Date(new Date().getFullYear() + 10, 11, 31);
 const DEFAULT_PICKER = [
@@ -14,93 +12,85 @@ const DEFAULT_PICKER = [
   DatePickerType.DAY,
 ];
 
+// 补零
+const padZero = (num: number | string, targetLength = 2) => {
+  let str = `${num}`;
+  while (str.length < targetLength) {
+    str = `0${str}`;
+  }
+  return str;
+};
+
 // 获取某年某月的最大天数
 const getMaxDay = (year: number, monthIndex: number) => {
-  return new Date(year, monthIndex + 1, 0).getDate();
+  return new Date(year, monthIndex, 0).getDate();
 };
 
 // 将当前日期转换为pickerValue
-const dateToPickerValue = (date: Date, picker: DatePickerType[]) => {
-  const result: string[] = [];
-
-  for (let i = 0; i < picker.length; i += 1) {
-    const type = picker[i];
-
-    switch (type) {
-      case DatePickerType.YEAR:
-        result.push(`${date.getFullYear()}`);
-        break;
-      case DatePickerType.MONTH:
-        result.push(`${date.getMonth() + 1}`);
-        break;
-      case DatePickerType.DAY:
-        result.push(`${date.getDate()}`);
-        break;
-      case DatePickerType.TIME:
-        result.push(`${date.getHours()}`);
-        break;
-      case DatePickerType.MINUTE:
-        result.push(`${date.getMinutes()}`);
-        break;
-      case DatePickerType.SECOND:
-        result.push(`${date.getSeconds()}`);
-        break;
-      default:
-        throw new Error(`错误的picker类型：${type}`);
-    }
+const getDateTypeValue = (date: Date, type: DatePickerType) => {
+  switch (type) {
+    case DatePickerType.YEAR:
+      return date.getFullYear();
+    case DatePickerType.MONTH:
+      return date.getMonth() + 1;
+    case DatePickerType.DAY:
+      return date.getDate();
+    case DatePickerType.HOUR:
+      return date.getHours();
+    case DatePickerType.MINUTE:
+      return date.getMinutes();
+    case DatePickerType.SECOND:
+      return date.getSeconds();
+    default:
+      throw new Error(`错误的picker类型：${type}`);
   }
-
-  return result;
 };
 
 const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
   const {
     className,
-    style,
-    open,
-    title,
     value: propValue,
     defaultValue,
-    picker = DEFAULT_PICKER,
+    views = DEFAULT_PICKER,
     minDate: propMinDate = MIN_DATE,
     maxDate: propMaxDate = MAX_DATE,
     formatter,
-    filter,
-    PickerProps,
+    disableDateTimeView,
+    dateTimeStep,
     onConfirm,
-    onCancel,
     onClose,
     onChange,
+    ...others
   } = props;
 
   const [options, setOptions] = useState<IPickerOptionItem[][]>([]);
-  const [pickerValue, setPickerValue] = useState<string[]>();
+  const [pickerValue, setPickerValue] = useState<(string | number)[]>([]);
 
   const formatDate = (date: Date | null) => {
     let formattedDate = date;
 
-    if (!formattedDate || !(formattedDate instanceof Date)) {
+    if (
+      !formattedDate ||
+      !(formattedDate instanceof Date) ||
+      formattedDate.getTime() < propMinDate.getTime()
+    ) {
       formattedDate = propMinDate;
     }
 
-    return new Date(
-      Math.min(
-        Math.max(formattedDate.getTime(), propMinDate.getTime()),
-        propMaxDate.getTime(),
-      ),
-    );
+    if (formattedDate.getTime() > propMaxDate.getTime()) {
+      formattedDate = propMaxDate;
+    }
+
+    return formattedDate;
   };
 
-  const [currentDate, setCurrentDate] = useState<Date>(
-    formatDate(propValue || defaultValue),
-  );
+  const [currentDate, triggerChange] = useValue<Date>({
+    value: propValue && formatDate(propValue),
+    defaultValue: formatDate(defaultValue),
+  });
 
   const handleConfirm = (e) => {
     onConfirm?.(e, { value: currentDate });
-  };
-
-  const handleCancel = (e) => {
-    onCancel?.(e);
   };
 
   const handleClose = (e) => {
@@ -108,63 +98,98 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
   };
 
   const handleChange = (e, { value, columnIndex }) => {
-    const selectedDate = new Date(currentDate);
+    if (value[columnIndex] === null) return;
+    const current = new Date(currentDate);
 
-    switch (picker[columnIndex]) {
+    switch (views[columnIndex]) {
       case DatePickerType.YEAR:
-        selectedDate.setFullYear(value[columnIndex]);
+        current.setFullYear(value[columnIndex]);
         break;
       case DatePickerType.MONTH: {
         const selectedMaxDay = getMaxDay(
-          selectedDate.getFullYear(),
+          current.getFullYear(),
           value[columnIndex] - 1,
         );
 
-        if (selectedDate.getDate() > selectedMaxDay) {
-          selectedDate.setDate(selectedMaxDay);
+        if (current.getDate() > selectedMaxDay) {
+          current.setDate(selectedMaxDay);
         }
 
-        selectedDate.setMonth(value[columnIndex] - 1);
+        current.setMonth(value[columnIndex] - 1);
         break;
       }
       case DatePickerType.DAY:
-        selectedDate.setDate(value[columnIndex]);
+        current.setDate(value[columnIndex]);
         break;
-      case DatePickerType.TIME:
-        selectedDate.setHours(value[columnIndex]);
+      case DatePickerType.HOUR:
+        current.setHours(value[columnIndex]);
         break;
       case DatePickerType.MINUTE:
-        selectedDate.setMinutes(value[columnIndex]);
+        current.setMinutes(value[columnIndex]);
         break;
       case DatePickerType.SECOND:
-        selectedDate.setSeconds(value[columnIndex]);
+        current.setSeconds(value[columnIndex]);
         break;
       default:
-        throw new Error(`错误的picker类型：${picker[columnIndex]}`);
+        throw new Error(`错误的picker类型：${views[columnIndex]}`);
     }
-    setCurrentDate(formatDate(selectedDate));
-    onChange?.(e, { type: picker[columnIndex], value: selectedDate });
+
+    triggerChange(e, formatDate(current));
+    onChange?.(e, { type: views[columnIndex], value: current });
   };
 
-  const generateOptions = (min: number, max: number, type: DatePickerType) => {
-    const optionsArray = Array.from({ length: max - min + 1 }, (_, index) => {
-      const option = {
-        value: `${index + min}`,
-        label: `${index + min}`,
-      };
+  const generateOptions = (
+    min: number,
+    max: number,
+    type: DatePickerType,
+    columnIndex: number,
+  ) => {
+    const step = dateTimeStep?.[type] || 1;
+    let valueIndex = 0;
+    const optionsArray = Array.from(
+      { length: (max - min + 1) / step || 1 },
+      (_, index) => {
+        const value = index * step + min;
 
-      if (formatter) {
-        return formatter(type, {
-          value: option.value,
-          label: option.label,
-        });
-      }
+        const option = {
+          value: padZero(value),
+          label: padZero(value),
+        };
 
-      return option;
-    });
+        if (value <= getDateTypeValue(currentDate, type)) {
+          valueIndex = index;
+        }
 
-    if (filter) {
-      return filter(type, optionsArray);
+        if (formatter) {
+          return formatter(type, {
+            value: option.value,
+            label: option.label,
+          });
+        }
+
+        return option;
+      },
+    );
+
+    pickerValue[columnIndex] = optionsArray[valueIndex].value;
+    setPickerValue([...pickerValue]);
+
+    if (
+      disableDateTimeView?.[type] &&
+      typeof disableDateTimeView[type] === 'function'
+    ) {
+      const disabledOptions = disableDateTimeView[type](optionsArray);
+
+      return optionsArray.map((option) => {
+        if (disabledOptions.includes(option)) {
+          return {
+            ...option,
+            disabled: true,
+          };
+        }
+
+        return option;
+      });
     }
 
     return optionsArray;
@@ -218,8 +243,8 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
     const { maxYear, maxMonth, maxDate, maxHour, maxMinute, maxSeconds } =
       getBoundary('max', currentDate);
 
-    for (let i = 0; i < picker.length; i += 1) {
-      const type = picker[i];
+    for (let i = 0; i < views.length; i += 1) {
+      const type = views[i];
 
       switch (type) {
         case DatePickerType.YEAR:
@@ -231,7 +256,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
         case DatePickerType.DAY:
           ranges.push([minDate, maxDate]);
           break;
-        case DatePickerType.TIME:
+        case DatePickerType.HOUR:
           ranges.push([minHour, maxHour]);
           break;
         case DatePickerType.MINUTE:
@@ -250,28 +275,24 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
 
   const generateRangeOptions = () =>
     generateRanges().map((range, index) =>
-      generateOptions(range[0], range[1], picker[index]),
+      generateOptions(range[0], range[1], views[index], index),
     );
 
   useEffect(() => {
     setOptions(generateRangeOptions());
-    setPickerValue(dateToPickerValue(currentDate, picker));
-  }, [currentDate, picker, propMinDate, propMaxDate]);
+  }, [currentDate, views, propMinDate, propMaxDate]);
 
   return (
-    <div className={clsx('bui-date-picker', className)} style={style} ref={ref}>
-      <Picker
-        {...PickerProps}
-        open={open}
-        title={title}
-        options={options}
-        value={pickerValue}
-        onConfirm={handleConfirm}
-        onCancel={handleCancel}
-        onClose={handleClose}
-        onOptionChange={handleChange}
-      />
-    </div>
+    <Picker
+      {...others}
+      className={clsx('bui-date-picker', className)}
+      ref={ref}
+      options={options}
+      value={pickerValue}
+      onConfirm={handleConfirm}
+      onClose={handleClose}
+      onOptionChange={handleChange}
+    />
   );
 });
 
