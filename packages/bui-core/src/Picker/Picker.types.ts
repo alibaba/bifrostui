@@ -11,6 +11,10 @@ export interface IPickerOptionItem {
    * 选项对应唯一的值
    */
   value: string | number;
+  /**
+   * 是否禁用
+   */
+  disabled?: boolean;
 }
 
 export type ICascadePickerChildOptionItem = IPickerOptionItem & {
@@ -110,9 +114,9 @@ export type PickerPanelProps<
        */
       options?: ICascadePickerChildOptionItem[];
       /**
-       * 默认值
+       * 选中值
        */
-      defaultValue?: string | number;
+      value?: string | number;
       /**
        * 列索引
        */
