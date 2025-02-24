@@ -1,4 +1,5 @@
 /**
+ * 需先在根目录新建.env文件，参考文档方法一（项目级别配置）https://aliyuque.antfin.com/tppwd/tech/zmlkl8g7bdggo6rg
  * 使用LLM翻译md文件
  * 也通过 --file 指定翻译特定的markdown文件
  * @example node scripts/translate/translate.mjs --file ./packages/bui-icons/src/index.zh-CN.md
