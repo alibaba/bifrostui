@@ -29,8 +29,8 @@
     "lint:style": "stylelint ./**/*.less",
     "aitask": "cd scripts/write-testcases && node ./task.js",
     "prepare": "husky install",
-    "generate:markdown": "node scripts/generate-md/generateMd.mjs",
-    "md:trans": "node scripts/translate/translate.mjs",
+    "docs:gen": "node scripts/generate-md/generateMd.mjs",
+    "docs:i18n": "node scripts/translate/translate.mjs",
     "check:credentials": "node scripts/check-account/check-credentials.js"
   },
   "devDependencies": {

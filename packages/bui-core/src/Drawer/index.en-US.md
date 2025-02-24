@@ -7,11 +7,11 @@ name: Drawer
 
 A floating panel that slides out from the edge of the screen.
 
-## Code Demos
+## Code Examples
 
 ### Basic Usage
 
-Control the visibility of the drawer using `open` and `onClose`.
+Control whether the drawer is displayed using `open` and `onClose`.
 
 ```tsx
 import { Button, Drawer, Stack } from '@bifrostui/react';
@@ -42,9 +42,9 @@ export default () => {
 };
 ```
 
-### Direction of Appearance
+### Appearance Direction
 
-By default, it appears from the bottom. You can control the appearance direction by setting the `anchor` property.
+By default, it appears from the bottom. You can control the appearance direction by setting the `anchor` prop, with the default being from the bottom.
 
 ```tsx
 import { Button, Drawer, Stack } from '@bifrostui/react';
@@ -97,7 +97,7 @@ export default () => {
 };
 ```
 
-### Transition Delay
+### Dynamic Effect Delay
 
 ```tsx
 import { Button, Drawer, Stack } from '@bifrostui/react';
@@ -106,14 +106,14 @@ export default () => {
   const [open, setOpen] = useState(false);
   return (
     <Stack direction="row">
-      <Button onClick={() => setOpen(true)}>Transition Delay</Button>
+      <Button onClick={() => setOpen(true)}>Dynamic Effect Delay</Button>
       <Drawer
         transitionDuration={1000}
         open={open}
         onClose={() => setOpen(false)}
       >
         <div style={{ lineHeight: '20vh', textAlign: 'center' }}>
-          Transition Delay
+          Dynamic Effect Delay
         </div>
       </Drawer>
     </Stack>
@@ -121,9 +121,9 @@ export default () => {
 };
 ```
 
-### Specified Container
+### Specifying the Container
 
-By default, the Drawer is rendered in the root node of the page (`document.body` for H5, `page node` for mini-programs).
+By default, the Drawer is rendered to the root node of the page, which is `document.body` for H5 and the `page` node for mini-programs.
 
 ```tsx
 import { Button, Drawer, Stack } from '@bifrostui/react';
@@ -138,7 +138,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        Specified Container
+        Specifying the Container
       </Button>
       <Drawer
         container={document.getElementById('draw-container')}
@@ -151,7 +151,7 @@ export default () => {
           className="content"
           style={{ lineHeight: '20vh', textAlign: 'center' }}
         >
-          Floating layer DOM is rendered within the `draw-container` element.
+          The overlay DOM is rendered within the `draw-container` element.
         </div>
       </Drawer>
     </Stack>
@@ -161,16 +161,16 @@ export default () => {
 
 ### API
 
-| Property           | Description                  | Type                                                         | Default Value |
-| ------------------ | ---------------------------- | ------------------------------------------------------------ | ------------- |
-| anchor             | Position of the Drawer       | `left` \| `top` \| `right` \| `bottom`                       | `bottom`      |
-| open               | Whether to display           | boolean                                                      | false         |
-| hideBackdrop       | Whether to hide the backdrop | boolean                                                      | false         |
-| container          | Element node for mounting    | ModalProps['container']                                      | Root Node     |
-| SlideProps         | Props for Slide animation    | Partial<SlideProps>                                          | -             |
-| transitionDuration | Duration of the animation    | number \| { appear?: number, enter?: number, exit?: number } | -             |
-| onClose            | Callback on closing          | ModalProps['onClose']                                        | -             |
-| disablePortal      | Disable Portal functionality | boolean                                                      | false         |
-| contentProps       | Props for the content node   | React.HTMLAttributes<HTMLDivElement>                         | -             |
+| Property           | Description                            | Type                                                         | Default   |
+| ------------------ | -------------------------------------- | ------------------------------------------------------------ | --------- |
+| anchor             | Position where the Drawer appears      | `left` \| `top` \| `right` \| `bottom`                       | `bottom`  |
+| open               | Whether to display the drawer          | boolean                                                      | false     |
+| hideBackdrop       | Whether to hide the backdrop           | boolean                                                      | false     |
+| container          | Element to which the drawer is mounted | ModalProps['container']                                      | Root node |
+| SlideProps         | Props for the Slide animation          | Partial<SlideProps\>                                         | -         |
+| transitionDuration | Duration of the animation              | number \| { appear?: number, enter?: number, exit?: number } | -         |
+| onClose            | Callback when the drawer is closed     | ModalProps['onClose']                                        | -         |
+| disablePortal      | Disable the portal capability          | boolean                                                      | false     |
+| contentProps       | Props for the drawer content element   | React.HTMLAttributes<HTMLDivElement\>                        | -         |
 
-The `Drawer` inherits other properties from `Modal`. See [Modal API](/cores/modal?#API) for more details.
+`Drawer` inherits from `Modal`. For other properties, see [Modal API](/cores/modal?#API).
