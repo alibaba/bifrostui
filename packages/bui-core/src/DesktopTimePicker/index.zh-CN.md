@@ -25,7 +25,6 @@ export default () => {
   const handleChange = (e, res) => {
     setValue(res.value);
   };
-
   return (
     <Stack>
       <div style={{ width: '320px' }}>
@@ -46,9 +45,8 @@ import dayjs from 'dayjs/esm/index';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState(dayjs());
+  const [value, setValue] = useState(dayjs().toDate());
   const handleChange = (e, res) => {
-    console.log('date change:', res);
     setValue(res.value);
   };
 
@@ -76,7 +74,7 @@ import dayjs from 'dayjs/esm/index';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState(dayjs());
+  const [value, setValue] = useState(dayjs().toDate());
   const handleChange = (e, res) => {
     console.log('date change:', res);
     setValue(res.value);
@@ -102,7 +100,7 @@ import dayjs from 'dayjs/esm/index';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState(dayjs());
+  const [value, setValue] = useState(dayjs().toDate());
   const handleChange = (e, res) => {
     console.log('date change:', res);
     setValue(res.value);
@@ -148,7 +146,7 @@ import dayjs from 'dayjs/esm/index';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState(dayjs());
+  const [value, setValue] = useState(dayjs().toDate());
   const handleChange = (e, res) => {
     console.log('date change:', res);
     setValue(res.value);
@@ -178,7 +176,7 @@ import dayjs from 'dayjs/esm/index';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState(dayjs());
+  const [value, setValue] = useState(dayjs().toDate());
   const handleChange = (e, res) => {
     console.log('date change:', res);
     setValue(res.value);
@@ -208,7 +206,7 @@ import dayjs from 'dayjs/esm/index';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState(dayjs());
+  const [value, setValue] = useState(dayjs().toDate());
   const [open, setOpen] = useState(false);
   const handleChange = (e, res) => {
     console.log('date change:', res);
@@ -241,16 +239,23 @@ import dayjs from 'dayjs/esm/index';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState(dayjs('20230401'));
-
+  const [value, setValue] = useState(dayjs().toDate());
   return (
     <Stack>
       <div style={{ width: '320px' }}>
         <DesktopTimePicker
           closeOnSelect={false}
           value={value}
-          minTime={dayjs().set('hour', 10).set('minute', 10).set('second', 0)}
-          maxTime={dayjs().set('hour', 15).set('minute', 10).set('second', 0)}
+          minTime={dayjs()
+            .set('hour', 6)
+            .set('minute', 10)
+            .set('second', 0)
+            .toDate()}
+          maxTime={dayjs()
+            .set('hour', 20)
+            .set('minute', 10)
+            .set('second', 0)
+            .toDate()}
           onChange={(e, res) => {
             console.log('时间变化：', res);
             setValue(res.value);
@@ -273,7 +278,7 @@ import dayjs from 'dayjs/esm/index';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState(dayjs('20230401'));
+  const [value, setValue] = useState(dayjs().toDate());
 
   return (
     <Stack>
@@ -302,7 +307,7 @@ import dayjs from 'dayjs/esm/index';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState(dayjs());
+  const [value, setValue] = useState(dayjs().toDate());
   const handleChange = (e, res) => {
     console.log('date change:', res);
     setValue(res.value);
@@ -340,10 +345,10 @@ import dayjs from 'dayjs/esm/index';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState(dayjs().add(1, 'month'));
+  const [value, setValue] = useState(dayjs().toDate());
 
   const onSingleClick = () => {
-    setValue(dayjs());
+    setValue(dayjs().toDate());
   };
   const handleChange = (e, res) => {
     console.log('时间变化：', res);
@@ -383,7 +388,43 @@ export default () => {
       <Button onClick={() => setDate(inputRef.current?.value)}>获取时间</Button>
       <div>组件内部的时间：{date}</div>
       <div style={{ width: '320px' }}>
-        <DesktopTimePicker inputRef={inputRef} defaultValue={dayjs()} />
+        <DesktopTimePicker
+          inputRef={inputRef}
+          defaultValue={dayjs().toDate()}
+        />
+      </div>
+    </Stack>
+  );
+};
+```
+
+### 自定义时间单元格的内容
+
+启用 `timeRender` 可自定义时间单元格的内容。
+
+```tsx
+import { DesktopTimePicker, Stack } from '@bifrostui/react';
+import dayjs from 'dayjs/esm/index';
+import React, { useState } from 'react';
+
+export default () => {
+  const [value, setValue] = useState(dayjs().toDate());
+  const handleChange = (e, res) => {
+    console.log('date change:', res);
+    setValue(res.value);
+  };
+
+  const timeRender = (time) => {
+    return <div style={{ color: 'red' }}>{time.value}</div>;
+  };
+  return (
+    <Stack>
+      <div style={{ width: '320px' }}>
+        <DesktopTimePicker
+          value={value}
+          timeRender={timeRender}
+          onChange={handleChange}
+        />
       </div>
     </Stack>
   );
@@ -416,3 +457,22 @@ export default () => {
 | inputRef           | 输入框Ref                        | Ref                                                                                                                                         | -                                                                                |
 | inputProps         | \<input/> 标签透传属性           | React.InputHTMLAttributes                                                                                                                   | -                                                                                |
 | DesktopPickerProps | 透传给 DesktopPicker 的属性      | DesktopPickerProps                                                                                                                          |
+
+### 组件样式变量
+
+| 属性                | 说明           | 默认值 | 全局变量               |
+| ------------------- | -------------- | ------ | ---------------------- |
+| --height            | 组件高度       | 32px   | --bui-input-height     |
+| --min-width         | 选择器最小宽度 | 100px  | --bui-select-min-width |
+| --icon-size         | 输入框icon大小 | 16px   | --bui-icon-size-3      |
+| --container-padding | 输入框左右边距 | 9px    | --bui-spacing-md       |
+
+### 浮层样式变量
+
+| 属性                       | 说明                   | 默认值 | 全局变量 |
+| -------------------------- | ---------------------- | ------ | -------- |
+| --container-main-radius    | 浮层容器圆角           | 3px    | -        |
+| --container-li-padding     | 浮层容器内元素左右边距 | 8px    | -        |
+| --container-li-height      | 浮层容器内元素高度     | 24px   | -        |
+| --container-li-line-height | 浮层容器内元素行高     | 24px   | -        |
+| --container-li-width       | 浮层容器内元素宽度     | 24px   | -        |
