@@ -9,9 +9,9 @@ export type TagProps<
     props: P & {
       /**
        * 预定义色彩
-       * @default 'default'
+       * @default 'neutral'
        */
-      color?: ThemeColor | 'default' | 'vip';
+      color?: ThemeColor | 'vip';
       /**
        * 自定义色彩
        */
@@ -19,10 +19,10 @@ export type TagProps<
       /**
        * - outlined: 描边
        * - contained: 实心填充
-       * - light: 浅亮填充
+       * - subtle: 柔和填充
        * @default 'outlined'
        */
-      variant?: 'outlined' | 'contained' | 'light';
+      variant?: 'outlined' | 'contained' | 'subtle';
     };
     defaultComponent: D;
   },

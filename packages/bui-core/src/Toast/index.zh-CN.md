@@ -536,9 +536,7 @@ export default () => {
               message: '提示内容',
               className: 'my-toast',
               style: {
-                '--color': 'red',
-                '--border-radius': '30px',
-                '--font-size': '16px',
+                '--bui-toast-border-radius': '30px',
               },
               onEntered: () => {
                 console.log('ref', ref);

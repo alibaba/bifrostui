@@ -1,6 +1,10 @@
-.bui-skeleton {
-  --height: var(--bui-skeleton-height, 1.2em);
+@import '@bifrostui/styles/mixins/index.less';
 
+@{root-selector} {
+  --bui-skeleton-height: 1.2em;
+}
+
+.bui-skeleton {
   display: block;
 
   &-animation-wave {
@@ -31,11 +35,11 @@
   }
 
   &-rectangular {
-    height: var(--height);
+    height: var(--bui-skeleton-height);
   }
 
   &-rounded {
-    height: var(--height);
+    height: var(--bui-skeleton-height);
     border-radius: var(--bui-shape-radius-label);
   }
 

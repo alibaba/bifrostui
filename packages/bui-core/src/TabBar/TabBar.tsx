@@ -10,7 +10,7 @@ const TabBar = React.forwardRef<HTMLDivElement, TabBarProps>((props, ref) => {
   const {
     current = 0,
     activeColor = 'primary',
-    color = 'default',
+    color = 'neutral',
     children,
     className,
     onChange,

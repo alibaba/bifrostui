@@ -1,31 +1,35 @@
-.bui-tag {
-  --tag-color: var(--bui-tag-color, var(--bui-color-gray));
-  --tag-border-color: var(--bui-tag-border-color, var(--bui-color-border-gray));
-  --tag-bg-color: var(--bui-tag-bg-color, var(--bui-color-gray));
-  --tag-height: var(--bui-tag-height, 15px);
-  --tag-line-height: var(--bui-tag-line-height, 15px);
-  --tag-padding: var(--bui-tag-padding, 0 var(--bui-spacing-xs));
-  --tag-bg-color-vip: var(--bui-tag-color-vip, fade(#ff866e, 30%));
+@import '@bifrostui/styles/mixins/index.less';
 
+@{root-selector} {
+  --bui-tag-color: var(--bui-color-gray);
+  --bui-tag-border-color: var(--bui-color-border-gray);
+  --bui-tag-bg-color: var(--bui-color-gray);
+  --bui-tag-height: 15px;
+  --bui-tag-line-height: 15px;
+  --bui-tag-padding: 0 var(--bui-spacing-xs);
+  --bui-tag-color-vip: fade(#ff866e, 30%);
+}
+
+.bui-tag {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  height: var(--tag-height);
-  line-height: var(--tag-line-height);
-  padding: var(--tag-padding);
+  height: var(--bui-tag-height);
+  line-height: var(--bui-tag-line-height);
+  padding: var(--bui-tag-padding);
   font-size: var(--bui-text-size-5);
   font-weight: var(--bui-font-weight-normal);
   border-radius: var(--bui-shape-radius-label);
   border: 1px solid transparent;
   box-sizing: border-box;
-  color: var(--bui-color-bg-view);
+  color: var(--bui-color-white);
   font-family: var(--bui-font-family);
   // 描边
   &-outlined {
-    color: var(--tag-color);
-    border: 1px solid var(--tag-border-color);
+    color: var(--bui-tag-color);
+    border: 1px solid var(--bui-tag-border-color);
 
     &.bui-tag-primary {
       color: var(--bui-color-primary);
@@ -52,6 +56,16 @@
       border: 1px solid var(--bui-color-border-danger);
     }
 
+    &.bui-tag-light {
+      color: var(--bui-color-bg-view);
+      border: 1px solid var(--bui-color-bg-view);
+    }
+
+    &.bui-tag-dark {
+      color: var(--bui-color-fg-default);
+      border: 1px solid var(--bui-color-fg-default);
+    }
+
     &.bui-tag-vip {
       color: var(--bui-color-primary);
       border: 1px solid var(--bui-color-border-primary);
@@ -60,7 +74,7 @@
 
   // 实心
   &-contained {
-    background-color: var(--tag-bg-color);
+    background-color: var(--bui-tag-bg-color);
 
     &.bui-tag-primary {
       background-color: var(--bui-color-primary);
@@ -82,12 +96,22 @@
       background-color: var(--bui-color-danger);
     }
 
+    &.bui-tag-light {
+      color: var(--bui-color-fg-default);
+      background-color: var(--bui-color-bg-view);
+    }
+
+    &.bui-tag-dark {
+      color: var(--bui-color-bg-view);
+      background-color: var(--bui-color-fg-default);
+    }
+
     &.bui-tag-vip {
       background-color: var(--bui-color-vip);
     }
   }
 
-  &-light {
+  &-subtle {
     background-color: var(--bui-color-gray-light);
     color: var(--bui-color-gray);
 
@@ -116,8 +140,16 @@
       color: var(--bui-color-danger);
     }
 
+    &.bui-tag-light {
+      color: var(--bui-color-bg-view);
+    }
+
+    &.bui-tag-dark {
+      color: var(--bui-color-fg-default);
+    }
+
     &.bui-tag-vip {
-      background-color: var(--tag-bg-color-vip);
+      background-color: var(--bui-tag-color-vip);
       color: var(--bui-color-vip);
     }
   }

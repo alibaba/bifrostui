@@ -1,10 +1,14 @@
-.bui-swiper {
-  --height: var(--bui-swiper-height, 150px);
+@import '@bifrostui/styles/mixins/index.less';
 
+@{root-selector} {
+  --bui-swiper-height: 150px;
+}
+
+.bui-swiper {
   font-family: var(--bui-font-family);
 
   .swiper-container-wrapper {
-    height: var(--height);
+    height: var(--bui-swiper-height);
   }
 
   .swiper-container {
