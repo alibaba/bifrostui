@@ -1093,6 +1093,122 @@ export default () => {
 };
 ```
 
+### 禁用选项
+
+通过设置`option`中`disabled`属性为`true`，实现禁用指定选项。禁用状态不会触发`onConfirm`事件，会触发`onOptionChange`事件，可以根据返回的`currentOption.disabled`来判断当前选项是否被禁用。
+
+```tsx
+import { Button, Picker, Stack } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Stack>
+      <Button
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+        打开选择器
+      </Button>
+      <Picker
+        open={open}
+        onCancel={(e) => {
+          console.log('onCancel', e);
+        }}
+        onClose={() => {
+          setOpen(false);
+        }}
+        onOptionChange={(e, { currentOption }) => {
+          console.log('onOptionChange', currentOption.disabled);
+        }}
+        options={[
+          {
+            value: 1,
+            label: '北京',
+            children: [
+              {
+                value: 1,
+                label: '朝阳区',
+                children: [
+                  {
+                    value: 1,
+                    label: '朝阳街',
+                    disabled: true,
+                  },
+                ],
+              },
+              {
+                value: 2,
+                label: '海淀区',
+              },
+              {
+                value: 3,
+                label: '大兴区',
+              },
+              {
+                value: 4,
+                label: '东城区',
+                disabled: true,
+              },
+              {
+                value: 5,
+                label: '西城区',
+              },
+              {
+                value: 6,
+                label: '丰台区',
+              },
+            ],
+          },
+          {
+            value: 2,
+            label: '上海',
+            children: [
+              {
+                value: 1,
+                label: '黄埔区',
+              },
+              {
+                value: 2,
+                label: '长宁区',
+              },
+              {
+                value: 3,
+                label: '普陀区',
+              },
+              {
+                value: 4,
+                label: '杨浦区',
+              },
+              {
+                value: 5,
+                label: '浦东新区',
+              },
+              {
+                value: 6,
+                label: '徐汇区',
+                children: [
+                  {
+                    value: 1,
+                    label: '龙耀路',
+                  },
+                  {
+                    value: 2,
+                    label: '云锦路',
+                  },
+                ],
+              },
+            ],
+          },
+        ]}
+      />
+    </Stack>
+  );
+};
+```
+
 ### 自定义样式
 
 通过[样式变量](#样式变量)提供的Tokens，可实现自定义样式。
@@ -1224,12 +1340,12 @@ export default () => {
 
 ### PickerPanel
 
-| 属性         | 说明               | 类型                                                                                                                        | 默认值 |
-| ------------ | ------------------ | --------------------------------------------------------------------------------------------------------------------------- | ------ |
-| options      | 单列面板的列表数据 | ICascadePickerChildOptionItem[]                                                                                             | []     |
-| defaultValue | 单列面板的默认值   | string \| number                                                                                                            | -      |
-| columnIndex  | 列索引             | number                                                                                                                      | -      |
-| onSelect     | 点击选项时的回调   | (e: React.TransitionEvent<HTMLDivElement\>,data: {columnOption: ICascadePickerChildOptionItem;columnIndex: number}) => void | -      |
+| 属性        | 说明               | 类型                                                                                                                        | 默认值 |
+| ----------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------- | ------ |
+| options     | 单列面板的列表数据 | ICascadePickerChildOptionItem[]                                                                                             | []     |
+| value       | 单列面板的选中值   | string \| number                                                                                                            | -      |
+| columnIndex | 列索引             | number                                                                                                                      | -      |
+| onSelect    | 点击选项时的回调   | (e: React.TransitionEvent<HTMLDivElement\>,data: {columnOption: ICascadePickerChildOptionItem;columnIndex: number}) => void | -      |
 
 #### IPickerOptionItem
 

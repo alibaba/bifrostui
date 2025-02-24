@@ -1093,6 +1093,122 @@ export default () => {
 };
 ```
 
+### disabled options
+
+By setting the `disabled` property of an `option` to true, you can disable the specified option. When in a disabled state, the option will not trigger the `onConfirm` event but will trigger the `onOptionChange` event. You can determine whether the current option is disabled by checking the `currentOption.disabled` property returned in the event.
+
+```tsx
+import { Button, Picker, Stack } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Stack>
+      <Button
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+        打开选择器
+      </Button>
+      <Picker
+        open={open}
+        onCancel={(e) => {
+          console.log('onCancel', e);
+        }}
+        onClose={() => {
+          setOpen(false);
+        }}
+        onOptionChange={(e, { currentOption }) => {
+          console.log('onOptionChange', currentOption.disabled);
+        }}
+        options={[
+          {
+            value: 1,
+            label: '北京',
+            children: [
+              {
+                value: 1,
+                label: '朝阳区',
+                children: [
+                  {
+                    value: 1,
+                    label: '朝阳街',
+                    disabled: true,
+                  },
+                ],
+              },
+              {
+                value: 2,
+                label: '海淀区',
+              },
+              {
+                value: 3,
+                label: '大兴区',
+              },
+              {
+                value: 4,
+                label: '东城区',
+                disabled: true,
+              },
+              {
+                value: 5,
+                label: '西城区',
+              },
+              {
+                value: 6,
+                label: '丰台区',
+              },
+            ],
+          },
+          {
+            value: 2,
+            label: '上海',
+            children: [
+              {
+                value: 1,
+                label: '黄埔区',
+              },
+              {
+                value: 2,
+                label: '长宁区',
+              },
+              {
+                value: 3,
+                label: '普陀区',
+              },
+              {
+                value: 4,
+                label: '杨浦区',
+              },
+              {
+                value: 5,
+                label: '浦东新区',
+              },
+              {
+                value: 6,
+                label: '徐汇区',
+                children: [
+                  {
+                    value: 1,
+                    label: '龙耀路',
+                  },
+                  {
+                    value: 2,
+                    label: '云锦路',
+                  },
+                ],
+              },
+            ],
+          },
+        ]}
+      />
+    </Stack>
+  );
+};
+```
+
 ### custom style
 
 Custom styles can be achieved through the Tokens provided by [Style Variables] (# Style Variables).
@@ -1224,12 +1340,12 @@ export default () => {
 
 ### PickerPanel
 
-| attribute    | explain                                 | type                                                                                                                        | Default value |
-| ------------ | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| options      | List data of a single column panel      | ICascadePickerChildOptionItem[]                                                                                             | []            |
-| defaultValue | Default values for single column panels | string \|number                                                                                                             | -             |
-| columnIndex  | Li Suo Yin                              | number                                                                                                                      | -             |
-| onSelect     | Callback when clicking on an option     | (e: React.TransitionEvent<HTMLDivElement\>,data: {columnOption: ICascadePickerChildOptionItem;columnIndex: number}) => void | -             |
+| attribute   | explain                                 | type                                                                                                                        | Default value |
+| ----------- | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| options     | List data of a single column panel      | ICascadePickerChildOptionItem[]                                                                                             | []            |
+| value       | selected value for single column panels | string \|number                                                                                                             | -             |
+| columnIndex | Li Suo Yin                              | number                                                                                                                      | -             |
+| onSelect    | Callback when clicking on an option     | (e: React.TransitionEvent<HTMLDivElement\>,data: {columnOption: ICascadePickerChildOptionItem;columnIndex: number}) => void | -             |
 
 #### IPickerOptionItem
 
