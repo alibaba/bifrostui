@@ -79,9 +79,9 @@ export default () => {
 };
 ```
 
-### 设置标题
+### 自定义文案
 
-使用`title`属性可指定选择器标题。
+通过配置 `title`、`confirmText`、`cancelText`，可以自定义文案。
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -101,6 +101,8 @@ export default () => {
       <Picker
         open={open}
         title="请选择"
+        confirmText="是"
+        cancelText="否"
         onClose={(e, data) => {
           setOpen(false);
           console.log('onClose', e, data);
@@ -1330,6 +1332,8 @@ export default () => {
 | -------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
 | open           | 是否展示选择器           | boolean                                                                                                                                                                                         | false  |
 | title          | 标题                     | string                                                                                                                                                                                          | -      |
+| confirmText    | 确认文本内容             | string                                                                                                                                                                                          | 确认   |
+| cancelText     | 取消文本内容             | string                                                                                                                                                                                          | 取消   |
 | options        | 列表数据                 | IPickerOptionItem[][] \| ICascadePickerOptionItem[]                                                                                                                                             | []     |
 | value          | 选中的值                 | (string \| number)[]                                                                                                                                                                            | -      |
 | contentProps   | 抽屉内容DOM节点上的Props | React.HTMLAttributes\<HTMLDivElement\>                                                                                                                                                          | -      |

@@ -47,6 +47,14 @@ export type PickerProps<
        */
       title?: string;
       /**
+       * 确认文本内容
+       */
+      confirmText?: string;
+      /**
+       * 取消文本内容
+       */
+      cancelText?: string;
+      /**
        * 列表数据
        * @default []
        */

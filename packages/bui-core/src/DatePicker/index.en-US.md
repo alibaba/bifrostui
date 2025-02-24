@@ -32,7 +32,6 @@ export default () => {
       </Button>
       <DatePicker
         open={open}
-        title="Select Date"
         value={value}
         onChange={handleChange}
         onClose={() => setOpen(false)}
@@ -63,7 +62,6 @@ export default () => {
       <Button onClick={() => setOpen(true)}>{value.toLocaleString()}</Button>
       <DatePicker
         open={open}
-        title="Select Date"
         defaultValue={value}
         views={['year', 'month', 'day', 'hour', 'minute', 'second']}
         onConfirm={handleConfirm}
@@ -97,7 +95,6 @@ export default () => {
       </Button>
       <DatePicker
         open={open}
-        title="Select Date"
         defaultValue={value}
         views={['hour', 'minute', 'second']}
         onConfirm={handleConfirm}
@@ -131,9 +128,49 @@ export default () => {
       </Button>
       <DatePicker
         open={open}
-        title="Select Date"
         minDate={new Date(2021, 3, 9)}
         maxDate={new Date(2026, 4, 1)}
+        defaultValue={value}
+        onConfirm={handleConfirm}
+        onClose={() => setOpen(false)}
+      />
+    </Stack>
+  );
+};
+```
+
+### Custom Text
+
+You can customize the text by configuring `title`, `confirmText`, and `cancelText`.
+
+```tsx
+import React, { useState } from 'react';
+import {
+  DatePicker,
+  Stack,
+  Button,
+  DatePickerType,
+  IPickerOptionItem,
+} from '@bifrostui/react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(new Date());
+
+  const handleConfirm = (e, res) => {
+    setValue(res.value);
+  };
+
+  return (
+    <Stack>
+      <Button onClick={() => setOpen(true)}>
+        {value.toLocaleDateString()}
+      </Button>
+      <DatePicker
+        open={open}
+        title="Select Date"
+        confirmText="Yes"
+        cancelText="No"
         defaultValue={value}
         onConfirm={handleConfirm}
         onClose={() => setOpen(false)}
@@ -188,7 +225,6 @@ export default () => {
       </Button>
       <DatePicker
         open={open}
-        title="Select Date"
         defaultValue={value}
         formatter={formatter}
         onConfirm={handleConfirm}
@@ -228,7 +264,6 @@ export default () => {
       </Button>
       <DatePicker
         open={open}
-        title="Select Time"
         defaultValue={value}
         views={['hour', 'minute', 'second']}
         dateTimeStep={{ hour: 4, minute: 10, second: 30 }}
@@ -269,7 +304,6 @@ export default () => {
       </Button>
       <DatePicker
         open={open}
-        title="Select Date"
         defaultValue={value}
         disableDateTimeView={{
           day: (options) => {
