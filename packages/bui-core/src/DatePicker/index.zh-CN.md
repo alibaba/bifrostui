@@ -11,7 +11,7 @@ DatePicker 是一个移动端组件，主要用于选择日期，支持年、月
 
 ### 基础用法
 
-通过`value`属性传入`Date`对象，可设置默认值和当前值，默认可选范围为当前年份的前后10年。
+通过`value`属性传入`Date`对象，可设置当前值，默认可选范围为当前年份的前后10年。
 
 ```tsx
 import React, { useState } from 'react';
@@ -325,6 +325,8 @@ export default () => {
 | ------------------- | -------------------------------- | -------------------------------------------------------------------------------- | ------------------------ |
 | open                | 弹层是否打开                     | boolean                                                                          | false                    |
 | title               | 标题                             | string                                                                           | -                        |
+| confirmText         | 确认文本内容                     | string                                                                           | 确认                     |
+| cancelText          | 取消文本内容                     | string                                                                           | 取消                     |
 | defaultValue        | 默认选中的值，当组件非受控时使用 | Date                                                                             | -                        |
 | value               | 选中的值，当组件受控时使用       | Date                                                                             | -                        |
 | views               | 日期选择器类型                   | Array<DatePickerType\>                                                           | ['year', 'month', 'day'] |
