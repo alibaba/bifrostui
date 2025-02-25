@@ -41,6 +41,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           className,
         )}
         ref={ref}
+        disabled={disabled}
         {...others}
       >
         {startIcon && <ButtonIcon iconPosition="start">{startIcon}</ButtonIcon>}
