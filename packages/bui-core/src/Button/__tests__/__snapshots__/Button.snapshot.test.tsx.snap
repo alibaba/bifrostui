@@ -15,24 +15,28 @@ exports[`Button demo snapshot Button demo snapshot 0 1`] = `
 >
   <button
     className="bui-btn bui-btn-text bui-btn-medium bui-btn-primary"
+    disabled={false}
     type="button"
   >
     Text
   </button>
   <button
     className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-primary"
+    disabled={false}
     type="button"
   >
     Outlined
   </button>
   <button
     className="bui-btn bui-btn-contained bui-btn-medium bui-btn-primary"
+    disabled={false}
     type="button"
   >
     Contained
   </button>
   <button
     className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-primary"
+    disabled={false}
     type="button"
   >
     Subtle
@@ -68,18 +72,21 @@ exports[`Button demo snapshot Button demo snapshot 0 2`] = `
   >
     <button
       className="bui-btn bui-btn-outlined bui-btn-small"
+      disabled={false}
       type="button"
     >
       Small
     </button>
     <button
       className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
       type="button"
     >
       Medium
     </button>
     <button
       className="bui-btn bui-btn-outlined bui-btn-large"
+      disabled={false}
       type="button"
     >
       Large
@@ -87,6 +94,7 @@ exports[`Button demo snapshot Button demo snapshot 0 2`] = `
   </div>
   <button
     className="bui-btn bui-btn-outlined bui-btn-full"
+    disabled={false}
     style={
       Object {
         "width": "350px",
@@ -111,18 +119,21 @@ exports[`Button demo snapshot Button demo snapshot 0 2`] = `
   >
     <button
       className="bui-btn bui-btn-contained bui-btn-small bui-btn-primary"
+      disabled={false}
       type="button"
     >
       Small
     </button>
     <button
       className="bui-btn bui-btn-contained bui-btn-medium bui-btn-primary"
+      disabled={false}
       type="button"
     >
       Medium
     </button>
     <button
       className="bui-btn bui-btn-contained bui-btn-large bui-btn-primary"
+      disabled={false}
       type="button"
     >
       Large
@@ -130,6 +141,7 @@ exports[`Button demo snapshot Button demo snapshot 0 2`] = `
   </div>
   <button
     className="bui-btn bui-btn-contained bui-btn-full bui-btn-primary"
+    disabled={false}
     style={
       Object {
         "width": "350px",
@@ -168,24 +180,28 @@ exports[`Button demo snapshot Button demo snapshot 0 3`] = `
   >
     <button
       className="bui-btn bui-btn-text bui-btn-medium"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-contained bui-btn-medium"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-subtle bui-btn-medium"
+      disabled={false}
       type="button"
     >
       Button
@@ -206,24 +222,28 @@ exports[`Button demo snapshot Button demo snapshot 0 3`] = `
   >
     <button
       className="bui-btn bui-btn-text bui-btn-medium bui-btn-light"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-light"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-contained bui-btn-medium bui-btn-light"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-light"
+      disabled={false}
       type="button"
     >
       Button
@@ -244,24 +264,28 @@ exports[`Button demo snapshot Button demo snapshot 0 3`] = `
   >
     <button
       className="bui-btn bui-btn-text bui-btn-medium bui-btn-dark"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-dark"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-contained bui-btn-medium bui-btn-dark"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-dark"
+      disabled={false}
       type="button"
     >
       Button
@@ -282,24 +306,28 @@ exports[`Button demo snapshot Button demo snapshot 0 3`] = `
   >
     <button
       className="bui-btn bui-btn-text bui-btn-medium bui-btn-primary"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-primary"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-contained bui-btn-medium bui-btn-primary"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-primary"
+      disabled={false}
       type="button"
     >
       Button
@@ -320,24 +348,28 @@ exports[`Button demo snapshot Button demo snapshot 0 3`] = `
   >
     <button
       className="bui-btn bui-btn-text bui-btn-medium bui-btn-success"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-success"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-contained bui-btn-medium bui-btn-success"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-success"
+      disabled={false}
       type="button"
     >
       Button
@@ -358,24 +390,28 @@ exports[`Button demo snapshot Button demo snapshot 0 3`] = `
   >
     <button
       className="bui-btn bui-btn-text bui-btn-medium bui-btn-info"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-info"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-contained bui-btn-medium bui-btn-info"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-info"
+      disabled={false}
       type="button"
     >
       Button
@@ -396,24 +432,28 @@ exports[`Button demo snapshot Button demo snapshot 0 3`] = `
   >
     <button
       className="bui-btn bui-btn-text bui-btn-medium bui-btn-warning"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-warning"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-contained bui-btn-medium bui-btn-warning"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-warning"
+      disabled={false}
       type="button"
     >
       Button
@@ -434,24 +474,28 @@ exports[`Button demo snapshot Button demo snapshot 0 3`] = `
   >
     <button
       className="bui-btn bui-btn-text bui-btn-medium bui-btn-danger"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-danger"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-contained bui-btn-medium bui-btn-danger"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-danger"
+      disabled={false}
       type="button"
     >
       Button
@@ -472,24 +516,28 @@ exports[`Button demo snapshot Button demo snapshot 0 3`] = `
   >
     <button
       className="bui-btn bui-btn-text bui-btn-medium bui-btn-vip"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-vip"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-contained bui-btn-medium bui-btn-vip"
+      disabled={false}
       type="button"
     >
       Button
     </button>
     <button
       className="bui-btn bui-btn-subtle bui-btn-medium bui-btn-vip"
+      disabled={false}
       type="button"
     >
       Button
@@ -513,18 +561,21 @@ exports[`Button demo snapshot Button demo snapshot 0 4`] = `
 >
   <button
     className="bui-btn bui-btn-text bui-btn-medium bui-btn-disabled"
+    disabled={true}
     type="button"
   >
     文字禁用
   </button>
   <button
     className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-disabled"
+    disabled={true}
     type="button"
   >
     描边禁用
   </button>
   <button
     className="bui-btn bui-btn-contained bui-btn-medium bui-btn-disabled"
+    disabled={true}
     type="button"
   >
     填充禁用
@@ -547,6 +598,7 @@ exports[`Button demo snapshot Button demo snapshot 0 5`] = `
 >
   <button
     className="bui-btn bui-btn-outlined bui-btn-medium"
+    disabled={false}
     type="button"
   >
     <span
@@ -568,6 +620,7 @@ exports[`Button demo snapshot Button demo snapshot 0 5`] = `
   </button>
   <button
     className="bui-btn bui-btn-outlined bui-btn-medium"
+    disabled={false}
     type="button"
   >
     Date
