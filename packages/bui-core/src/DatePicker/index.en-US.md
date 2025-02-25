@@ -324,6 +324,8 @@ export default () => {
 | ------------------- | ---------------------------------------- | -------------------------------------------------------------------------------- | ------------------------ |
 | open                | Whether the dialog is open               | boolean                                                                          | false                    |
 | title               | Title                                    | string                                                                           | -                        |
+| confirmText         | Confirmation text content                | string                                                                           | Confirm                  |
+| cancelText          | Cancellation text content                | string                                                                           | Cancel                   |
 | defaultValue        | Default selected value when uncontrolled | Date                                                                             | -                        |
 | value               | Selected value when controlled           | Date                                                                             | -                        |
 | views               | Date picker types                        | Array<DatePickerType\>                                                           | ['year', 'month', 'day'] |
