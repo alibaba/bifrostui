@@ -252,8 +252,8 @@ export const getStylesAndLocation = async ({
     return {
       styles: {},
       childrenStyle: {},
-      arrowDirection,
-      arrowLocation,
+      newArrowDirection: arrowDirection,
+      newArrowLocation: arrowLocation,
     };
   }
 
