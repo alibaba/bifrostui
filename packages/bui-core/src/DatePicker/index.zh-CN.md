@@ -333,7 +333,7 @@ export default () => {
 | minDate             | 可选择的最小日期                 | Date                                                                             | 十年前                   |
 | maxDate             | 可选择的最大日期                 | Date                                                                             | 十年后                   |
 | disableDateTimeView | 禁止选择的日期                   | {[key in DatePickerType]: (options: IPickerOptionItem[]) => IPickerOptionItem[]} | -                        |
-| dateTimeStep        | 时间间隔,设置递增步长            | [key in DatePickerType]: number;                                                 | -                        |
+| dateTimeStep        | 时间间隔,设置递增步长            | [key in DatePickerType]: number                                                  | -                        |
 | formatter           | 选项格式化函数                   | (type: string, option: IPickerOptionItem) => IPickerOptionItem                   | -                        |
 | onConfirm           | 点击确定按钮时触发               | (e: React.SyntheticEvent, { value: Date }) => void                               | -                        |
 | onCancel            | 点击取消按钮时触发               | (e: React.SyntheticEvent) => void                                                | -                        |
