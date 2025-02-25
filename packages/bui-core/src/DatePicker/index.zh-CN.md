@@ -14,8 +14,8 @@ DatePicker 是一个移动端组件，主要用于选择日期，支持年、月
 通过`value`属性传入`Date`对象，可设置当前值，默认可选范围为当前年份的前后10年。
 
 ```tsx
-import React, { useState } from 'react';
-import { DatePicker, Stack, Button } from '@bifrostui/react';
+import React, { useState, useRef, useEffect } from 'react';
+import { DatePicker, Stack, Button, ref } from '@bifrostui/react';
 
 export default () => {
   const [open, setOpen] = useState(false);

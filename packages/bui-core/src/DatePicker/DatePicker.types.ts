@@ -13,7 +13,10 @@ export enum DatePickerType {
 
 export type DatePickerProps<
   D extends React.ElementType = 'div',
-  P = PickerProps,
+  P = Omit<
+    PickerProps,
+    'value' | 'defaultValue' | 'onChange' | 'onConfirm' | 'onClose'
+  >,
 > = OverrideProps<
   {
     props: P & {
@@ -22,14 +25,14 @@ export type DatePickerProps<
       views?: DatePickerType[]; // 日期选择器类型
       minDate?: Date; // 可选择的最小日期
       maxDate?: Date; // 可选择的最大日期
-      disableDateTimeView?: {
+      disableDateTimeView?: Partial<{
         [key in DatePickerType]: (
           options: IPickerOptionItem[],
         ) => IPickerOptionItem[];
-      }; // 禁止选择的日期
-      dateTimeStep?: {
+      }>; // 禁止选择的日期
+      dateTimeStep?: Partial<{
         [key in DatePickerType]: number;
-      }; // 时间间隔，设置递增步长
+      }>; // 时间间隔，设置递增步长
       formatter?: (
         type: DatePickerType,
         option: IPickerOptionItem,
