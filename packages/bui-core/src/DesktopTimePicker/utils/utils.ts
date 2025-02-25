@@ -2,34 +2,12 @@ import dayjs, { Dayjs } from 'dayjs';
 
 import {
   DisabledTimeView,
-  ITimePickerValue,
   ViewType,
   ViewTypeWithMeridiem,
   ITimeInstance,
   ITimeItemNumberInstance,
   TimeSteps,
 } from '../DesktopTimePicker.types';
-
-/**
- * 格式化初始时间
- * @return undefined | Array<Dayjs|null>
- */
-export const formatTime = (
-  value: ITimePickerValue,
-  minTime: Dayjs,
-  maxTime: Dayjs,
-  disabledTimeView: DisabledTimeView,
-) => {
-  // value 或 defaultValue为undefined应原值返回，外部需要做受控/非受控判断
-  if (value === undefined || value === null) return undefined;
-
-  let defaultStartTime = null;
-  defaultStartTime = !isDisabledTime(value, minTime, maxTime, disabledTimeView)
-    ? value
-    : undefined;
-
-  return defaultStartTime;
-};
 
 /**
  * 判断时间是否在可选日期区间内
@@ -245,8 +223,6 @@ export const getdisabledTime = (
           disabledTimeView?.().second?.(hourValue, minuteValue) || [];
         return disabledSeconds;
       }
-      case 'meridiem':
-        return [];
       default:
         return [];
     }
@@ -297,8 +273,6 @@ export const getdisabledTime = (
         );
         return outOfRangeSeconds;
       }
-      case 'meridiem':
-        return [];
       default:
         return [];
     }
@@ -349,8 +323,6 @@ export const getdisabledTime = (
         );
         return outOfRangeSeconds;
       }
-      case 'meridiem':
-        return [];
       default:
         return [];
     }
@@ -372,11 +344,15 @@ export const getdisabledTime = (
   const outOfMinHours = allHours.filter((hour) => hour < minHour);
   const outOfMaxHours = allHours.filter((hour) => hour > maxHour);
   // 计算amList和pmList
-  const generateHourArray = (start, end, step) =>
-    Array.from(
+  const generateHourArray = (start, end, step) => {
+    if (!step) {
+      step = 1;
+    }
+    return Array.from(
       { length: Math.ceil((end - start) / step) },
       (_, i) => start + i * step,
     );
+  };
 
   const hourStep = timeSteps.hour ?? 1;
   const amArr = generateHourArray(0, 12, hourStep);

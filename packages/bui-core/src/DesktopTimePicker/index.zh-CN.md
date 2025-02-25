@@ -168,7 +168,7 @@ export default () => {
 
 ### 指定时间格式
 
-使用 `format` 指定时间显示格式， 默认 `HH:mm:ss`。如果 `ampm` 为 `true` ，则默认 `hh:mm:ss a`
+使用 `format` 指定时间显示格式， 默认 `HH:mm:ss`。如果 `ampm` 为 `true` ，则默认 `hh:mm:ss A`
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
@@ -186,7 +186,7 @@ export default () => {
     <Stack>
       <div style={{ width: '320px' }}>
         <DesktopTimePicker
-          format="hh:mm:ss a"
+          format="hh:mm:ss A"
           value={value}
           onChange={handleChange}
         />

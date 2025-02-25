@@ -31,7 +31,7 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       disableOpenPicker = false,
       placeholder,
       open,
-      format = ampm ? 'hh:mm:ss a' : 'HH:mm:ss',
+      format = ampm ? 'hh:mm:ss A' : 'HH:mm:ss',
       disabledTimeView = () => ({
         hour: () => {
           return [];
@@ -120,10 +120,26 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
         setInputStr('');
         setUseUserStr(false);
 
+        // 处理timeValue为空时的日期，使用minTime或maxTime的日期，若都不存在，取当天日期
+        let validTime;
+        if (dateToDayjs(timeValue)) {
+          validTime = dateToDayjs(timeValue);
+        } else if (minTime) {
+          validTime = dateToDayjs(minTime);
+        } else if (maxTime) {
+          validTime = dateToDayjs(maxTime);
+        } else {
+          validTime = dayjs();
+        }
+        // 获取年月日
+        const year = validTime.year();
+        const month = validTime.month() + 1;
+        const date = validTime.date();
+        const newTimeValue = dayjs(`${year}-${month}-${date} ${newValue}`);
         // 在disabledTime区间内，回退上次有效值
         if (
           isDisabledTime(
-            dayjs(newValue, format),
+            newTimeValue,
             dateToDayjs(minTime),
             dateToDayjs(maxTime),
             disabledTimeView,
@@ -132,7 +148,7 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
           return;
         }
 
-        triggerChange(e, dayjs(e.target.value, format).toDate());
+        triggerChange(e, newTimeValue.toDate());
       }
     };
 
@@ -144,7 +160,7 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       onClose?.();
       if (
         isDisabledTime(
-          dayjs(timeValue),
+          dateToDayjs(timeValue),
           dateToDayjs(minTime),
           dateToDayjs(maxTime),
           disabledTimeView,
