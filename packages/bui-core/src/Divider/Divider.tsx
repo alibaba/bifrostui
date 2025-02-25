@@ -6,7 +6,14 @@ import './Divider.less';
 const prefixCls = 'bui-divider';
 
 const Divider = forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
-  const { className, style, direction, dashed, size, children } = props;
+  const {
+    className,
+    style,
+    direction = 'vertical',
+    dashed = false,
+    size,
+    children,
+  } = props;
   const isVertical = direction === 'vertical';
   const hasChildren = !!React.Children.toArray(children).length;
   let propsStyle = {};
@@ -41,9 +48,5 @@ const Divider = forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
 });
 
 Divider.displayName = 'BuiDivider';
-Divider.defaultProps = {
-  direction: 'vertical',
-  dashed: false,
-};
 
 export default Divider;

@@ -7,9 +7,7 @@ name: Input 输入框
 
 用户输入内容，是对基础输入框的封装。
 
-## 代码演示
-
-### 基本用法
+## 基本用法
 
 支持`input`标签的基础属性透传，若要透传的属性不在该文档中，放入`inputProps`字段中才会透传至内部`input`标签。
 
@@ -31,7 +29,7 @@ export default () => {
 };
 ```
 
-### 开始图标
+## 开始图标
 
 通过 `startIcon` 可以自定义开始图标。
 
@@ -58,7 +56,7 @@ export default () => {
 };
 ```
 
-### 结束图标
+## 结束图标
 
 通过 `endIcon` 可以自定义结束图标。
 
@@ -85,7 +83,7 @@ export default () => {
 };
 ```
 
-### 清除按钮
+## 清除按钮
 
 启用 `clearable` 后，当输入框有输入内容且聚焦状态下会展示清除按钮，非受控状态也会清除输入框内容。
 
@@ -121,7 +119,7 @@ export default () => {
 };
 ```
 
-### 禁用状态
+## 禁用状态
 
 使用 `disabled` 可禁用输入框。
 
@@ -134,7 +132,7 @@ export default () => {
 };
 ```
 
-### 受控/非受控
+## 受控/非受控
 
 根据是否传入 `value` 来判断是否为受控组件，非受控组件可通过 `inputRef` 获取元素来控制 `input` 的 value。
 
@@ -188,7 +186,7 @@ export default () => {
 };
 ```
 
-### 指定 type 类型
+## 指定 type 类型
 
 H5：通过 `type` 可指定输入框类型，`type` 的值应为标准 [HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
 

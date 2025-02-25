@@ -7,9 +7,7 @@ name: Progress 进度条
 
 展示操作的当前进度。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 通过`percent`设置操作进度。
 
@@ -79,8 +77,8 @@ export default () => {
       <Progress
         percent={60}
         strokeColor={{
-          from: 'var(--bui-color-red)',
-          to: 'var(--bui-color-red-light)',
+          from: 'var(--bui-color-primary)',
+          to: 'var(--bui-color-primary-light)',
         }}
       />
       <Progress
@@ -103,7 +101,7 @@ export default () => {
 import React from 'react';
 import { Progress } from '@bifrostui/react';
 export default () => {
-  return <Progress percent={60} trailColor="var(--bui-color-red-light)" />;
+  return <Progress percent={60} trailColor="var(--bui-color-primary-light)" />;
 };
 ```
 

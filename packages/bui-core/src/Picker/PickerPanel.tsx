@@ -1,6 +1,17 @@
 import clsx from 'clsx';
-import React, { useEffect, useState, useRef, useImperativeHandle } from 'react';
-import { useTouch, useForkRef, useTouchEmulator } from '@bifrostui/utils';
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useImperativeHandle,
+  useLayoutEffect,
+} from 'react';
+import {
+  useTouch,
+  useForkRef,
+  useTouchEmulator,
+  getBoundingClientRect,
+} from '@bifrostui/utils';
 import { PickerPanelProps } from './Picker.types';
 import './PickerPanel.less';
 
@@ -13,7 +24,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       defaultValue,
       onSelect,
       columnIndex,
-      pickerStyle,
+      open,
       ...others
     } = props;
 
@@ -28,13 +39,8 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
     const TOUCH_END = 'end';
     // 默认行高
     const DEFAULT_LINE_SPACING = 36;
-    const LINE_SPACING_STR = (
-      pickerStyle?.['--option-height']
-        ? `${pickerStyle?.['--option-height']}`
-        : `${DEFAULT_LINE_SPACING}`
-    ).match(/\d+/)?.[0];
-    const LINE_SPACING = parseInt(LINE_SPACING_STR, 10);
-    const INDICATOR_OFFSET = (LINE_SPACING * 108) / DEFAULT_LINE_SPACING;
+    const lineSpacing = useRef(DEFAULT_LINE_SPACING);
+    const [indicatorOffset, setIndicatorOffset] = useState(108);
 
     const [startY, setStartY] = useState(0);
     const [currIndex, setCurrIndex] = useState(1);
@@ -46,10 +52,19 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
 
     const transformY = useRef(0);
     const isVerticalMoving = useRef(false);
-    const rollerRef = useRef(null);
+    const fitstOptionRef = useRef(null);
     const PickerPanelRef = useRef(null);
     const pickerPanelRef = useForkRef(PickerPanelRef, ref);
     useTouchEmulator(PickerPanelRef.current);
+
+    useLayoutEffect(() => {
+      if (!open) return;
+
+      getBoundingClientRect(fitstOptionRef.current).then((rect) => {
+        lineSpacing.current = rect?.height || DEFAULT_LINE_SPACING;
+        setIndicatorOffset((lineSpacing.current * 108) / DEFAULT_LINE_SPACING);
+      });
+    }, [open]);
 
     const updateSelect = () => {
       let index = -1;
@@ -64,7 +79,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       }
 
       setCurrIndex(index === -1 ? 1 : index + 1);
-      const move = index === -1 ? 0 : index * LINE_SPACING;
+      const move = index === -1 ? 0 : index * lineSpacing.current;
       setMove({ move: -move });
     };
 
@@ -105,21 +120,22 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
         if (updateMove > 0) {
           updateMove = 0;
         }
-        if (updateMove < -(options.length - 1) * LINE_SPACING) {
-          updateMove = -(options.length - 1) * LINE_SPACING;
+        if (updateMove < -(options.length - 1) * lineSpacing.current) {
+          updateMove = -(options.length - 1) * lineSpacing.current;
         }
 
         // 设置滚动距离为LINE_SPACING的倍数值
-        const endMove = Math.round(updateMove / LINE_SPACING) * LINE_SPACING;
+        const endMove =
+          Math.round(updateMove / lineSpacing.current) * lineSpacing.current;
         const deg = `${
-          (Math.abs(Math.round(endMove / LINE_SPACING)) + 1) * ROTATION
+          (Math.abs(Math.round(endMove / lineSpacing.current)) + 1) * ROTATION
         }deg`;
 
         setTransform(type, deg, time, endMove);
-        setCurrIndex(Math.abs(Math.round(endMove / LINE_SPACING)) + 1);
+        setCurrIndex(Math.abs(Math.round(endMove / lineSpacing.current)) + 1);
       } else {
         let deg = 0;
-        const currentDeg = (-updateMove / LINE_SPACING + 1) * ROTATION;
+        const currentDeg = (-updateMove / lineSpacing.current + 1) * ROTATION;
 
         // picker 滚动的最大角度
         const maxDeg = (options.length + 1) * ROTATION;
@@ -129,7 +145,9 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
 
         if (minDeg < deg && deg < maxDeg) {
           setTransform('', `${deg}deg`, undefined, updateMove);
-          setCurrIndex(Math.abs(Math.round(updateMove / LINE_SPACING)) + 1);
+          setCurrIndex(
+            Math.abs(Math.round(updateMove / lineSpacing.current)) + 1,
+          );
         }
       }
     };
@@ -207,7 +225,8 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       isVerticalMoving.current = false;
       setTouchTime(0);
       onSelect?.(e, {
-        columnOption: options?.[Math.round(-scrollDistance / LINE_SPACING)],
+        columnOption:
+          options?.[Math.round(-scrollDistance / lineSpacing.current)],
         columnIndex,
       });
     };
@@ -228,7 +247,6 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       >
         <div
           className={`${prefixCls}-roller`}
-          ref={rollerRef}
           style={{
             transition: `transform ${touchTime}ms cubic-bezier(0.17, 0.89, 0.45, 1)`,
             transform: `rotate3d(1, 0, 0, ${touchDeg})`,
@@ -237,6 +255,10 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
         >
           {options.map((item, i) => (
             <div
+              ref={(el) => {
+                if (i === 0 && !fitstOptionRef.current)
+                  fitstOptionRef.current = el;
+              }}
               className={clsx(`${prefixCls}-option`, {
                 [`${prefixCls}-option-hidden`]:
                   i + 1 <= currIndex - 8 || i + 1 >= currIndex + 8,
@@ -245,7 +267,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
               style={{
                 transform: `rotate3d(1, 0, 0, ${
                   -ROTATION * (i + 1)
-                }deg) translate3d(0px, 0px, ${INDICATOR_OFFSET}px)`,
+                }deg) translate3d(0px, 0px, ${indicatorOffset}px)`,
               }}
             >
               {item?.label}

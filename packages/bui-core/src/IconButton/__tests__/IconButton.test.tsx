@@ -29,8 +29,8 @@ describe('IconButton', () => {
   });
 
   it('should render correctly with variant props', () => {
-    const colors = ['default', 'contained', 'outlined'] as const;
-    colors.forEach((variant) => {
+    const variants = ['default', 'contained', 'outlined'] as const;
+    variants.forEach((variant) => {
       render(<IconButton variant={variant}>{variant} IconButton</IconButton>);
       expect(
         screen.getByRole('button', { name: `${variant} IconButton` }),
@@ -76,7 +76,7 @@ describe('IconButton', () => {
       </MiniIconButton>,
     );
     expect(mockBackdropFn).toHaveBeenCalledWith(
-      expect.objectContaining({ htmlColor: '#fff' }),
+      expect.objectContaining({ htmlColor: 'var(--bui-color-white)' }),
     );
   });
 });

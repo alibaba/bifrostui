@@ -11,9 +11,7 @@ name: Swiper 滑块视图容器
 > 小程序文档参考：<https://taro-docs.jd.com/docs/components/viewContainer/swiper>；
 > H5端基于社区 swiper/react v8.x 进行封装，并透传了其属性，文档可参考：<https://v8.swiperjs.com/swiper-api>
 
-## 代码演示
-
-### 基础Swiper
+## 基础Swiper
 
 Swiper内嵌套SwiperItem即可构建一个基础的滑块视图容器。
 
@@ -48,7 +46,7 @@ export default () => {
 };
 ```
 
-### 设置当前页
+## 设置当前页
 
 传入current以设置当前页面，当数据变更时会触发页面切换。
 如果需要同时兼容滑动和current控制，则还需要使用onChange事件同步当前页面位置。
@@ -98,7 +96,7 @@ export default () => {
 };
 ```
 
-### 自动切换
+## 自动切换
 
 传入autoplay以启用自动切换。
 使用interval控制两次自动切换的间隔时间（单位为毫秒）。
@@ -134,7 +132,7 @@ export default () => {
 };
 ```
 
-### 循环滚动
+## 循环滚动
 
 传入circular使得该容器能够向同一方向无限循环滚动。
 
@@ -174,7 +172,7 @@ export default () => {
 };
 ```
 
-### 淡入淡出
+## 淡入淡出
 
 传入effect参数选择切换效果。
 
@@ -215,7 +213,7 @@ export default () => {
 };
 ```
 
-### 垂直滚动
+## 垂直滚动
 
 传入vertical使得该容器垂直（而非水平）滚动。
 
@@ -255,7 +253,7 @@ export default () => {
 };
 ```
 
-### 页面指示器
+## 页面指示器
 
 传入indicatorDots启用页面指示器（小圆点）。
 使用indicatorColor和indicatorActiveColor设置小圆点的颜色。
@@ -298,7 +296,7 @@ export default () => {
 };
 ```
 
-### 事件
+## 事件
 
 支持onChange和onAnimationFinish事件。
 具体返回值在对应事件对象的detail中。

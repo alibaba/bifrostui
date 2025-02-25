@@ -14,7 +14,6 @@ const ThemeProvider = React.forwardRef<HTMLDivElement, ThemeProviderProps>(
       defaultLightToken,
       defaultDarkToken,
       dmLightToken,
-      dmDarkToken,
       token,
       children,
     } = props;
@@ -42,7 +41,6 @@ const ThemeProvider = React.forwardRef<HTMLDivElement, ThemeProviderProps>(
         defaultLightToken ||
         defaultDarkToken ||
         dmLightToken ||
-        dmDarkToken ||
         token
       ) {
         mountTokens({
@@ -53,7 +51,6 @@ const ThemeProvider = React.forwardRef<HTMLDivElement, ThemeProviderProps>(
           defaultLightToken,
           defaultDarkToken,
           dmLightToken,
-          dmDarkToken,
           token,
         });
       }
@@ -64,7 +61,6 @@ const ThemeProvider = React.forwardRef<HTMLDivElement, ThemeProviderProps>(
       defaultLightToken,
       defaultDarkToken,
       dmLightToken,
-      dmDarkToken,
       token,
     ]);
 

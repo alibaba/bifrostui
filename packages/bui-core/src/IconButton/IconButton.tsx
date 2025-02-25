@@ -11,11 +11,11 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     const {
       className,
       children,
-      color,
-      disabled,
-      size,
-      variant,
-      shape,
+      color = 'neutral',
+      disabled = false,
+      size = 'medium',
+      variant = 'default',
+      shape = 'circular',
       ...others
     } = props;
 
@@ -45,7 +45,8 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
                 color: children.props?.color || color,
               }),
               ...(isContainedVariant && {
-                htmlColor: children.props?.htmlColor || '#fff',
+                htmlColor:
+                  children.props?.htmlColor || 'var(--bui-color-white)',
               }),
             })
           : children}
@@ -55,12 +56,5 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
 );
 
 IconButton.displayName = 'BuiIconButton';
-IconButton.defaultProps = {
-  size: 'medium',
-  variant: 'default',
-  shape: 'circular',
-  color: 'default',
-  disabled: false,
-};
 
 export default IconButton;

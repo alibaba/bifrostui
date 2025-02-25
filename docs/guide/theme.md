@@ -1,4 +1,6 @@
-# 定制主题
+# Design Tokens
+
+> 点击[前往定制](/guide/theme-designer)
 
 BUI 的样式使用了 [less](https://lesscss.org/) 和 [CSS 变量](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Using_CSS_custom_properties) 相结合做为开发语言，并定义了一系列全局/组件的样式变量，我们称之为Tokens，你可以根据需求调整Tokens的值，实现定制主题的能力。
 
@@ -15,7 +17,6 @@ BUI的Tokens分为三个层面
    - `defaultLightToken`（默认高亮模式的全局Token）
    - `defaultDarkToken`（默认暗黑模式的全局Token）
    - `dmLightToken`（大麦高亮模式的全局Token）
-   - `dmDarkToken`（大麦暗黑模式的全局Token）
 
 2. **响应式Tokens：** <br>
    BUI默认是移动端优先的响应式方案，使用者可以通过 `responsive` 属性自定义响应式Tokens。
@@ -27,7 +28,7 @@ BUI的Tokens分为三个层面
 
 通常情况下，从局部高于通用的角度来看，三种Tokens的优先级是：<br>
 **组件的Tokens > 响应式Tokens > BUI内置Tokens** 。<br>
-但对于暗黑模式这种特殊场景，**BUI内置的两种暗黑模式Tokens的优先级要高于响应式Tokens**。
+但对于暗黑模式这种特殊场景，**BUI内置的暗黑模式Tokens的优先级要高于响应式Tokens**。
 
 ### 渠道差异性
 

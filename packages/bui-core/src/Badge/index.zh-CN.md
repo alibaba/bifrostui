@@ -7,9 +7,7 @@ name: Badge 徽章
 
 在容器某个角上的一个徽标，通常用于通知图标或者头像右上角。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 简单的徽章，通过`content`设置徽章内容。
 
@@ -28,12 +26,12 @@ export default () => {
 };
 ```
 
-### 徽章形状
+## 徽章形状
 
 `Badge`提供 3 种徽章形状：`rounded` 、`dot`、 `bubble`。
 您可以通过`type`属性来控制徽章形状。
 
-##### 圆形徽章
+### 圆形徽章
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
@@ -50,7 +48,7 @@ export default () => {
 };
 ```
 
-##### 圆点徽章
+### 圆点徽章
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
@@ -67,7 +65,7 @@ export default () => {
 };
 ```
 
-##### 不规则徽章
+### 不规则徽章
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
@@ -84,11 +82,11 @@ export default () => {
 };
 ```
 
-### 徽章类型
+## 徽章类型
 
 除此之外，徽章还提供 2 种模式：`contained`、`outlined`。
 
-##### 实心徽章
+### 实心徽章
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
@@ -108,7 +106,7 @@ export default () => {
 };
 ```
 
-##### 空心徽章
+### 空心徽章
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
@@ -158,7 +156,15 @@ import { PhoneFilledIcon } from '@bifrostui/icons';
 
 export default () => {
   return (
-    <Stack spacing="10px" direction="row">
+    <Stack
+      spacing="10px"
+      direction="row"
+      style={{
+        borderRadius: 'var(--bui-shape-radius-card)',
+        background: 'var(--bui-color-bg-default)',
+        padding: '24px',
+      }}
+    >
       <Badge color="success" content="5">
         <PhoneFilledIcon color="success" style={{ fontSize: '38px' }} />
       </Badge>
@@ -174,6 +180,12 @@ export default () => {
       <Badge color="danger" content="5">
         <PhoneFilledIcon color="danger" style={{ fontSize: '38px' }} />
       </Badge>
+      <Badge color="light" content="5">
+        <PhoneFilledIcon color="default" style={{ fontSize: '38px' }} />
+      </Badge>
+      <Badge color="dark" content="5">
+        <PhoneFilledIcon color="dark" style={{ fontSize: '38px' }} />
+      </Badge>
     </Stack>
   );
 };
@@ -186,7 +198,15 @@ import { PhoneFilledIcon } from '@bifrostui/icons';
 
 export default () => {
   return (
-    <Stack spacing="10px" direction="row">
+    <Stack
+      spacing="10px"
+      direction="row"
+      style={{
+        borderRadius: 'var(--bui-shape-radius-card)',
+        background: 'var(--bui-color-bg-default)',
+        padding: '24px',
+      }}
+    >
       <Badge color="success" content="5" variant="outlined">
         <PhoneFilledIcon color="success" style={{ fontSize: '38px' }} />
       </Badge>
@@ -202,14 +222,20 @@ export default () => {
       <Badge color="danger" content="5" variant="outlined">
         <PhoneFilledIcon color="danger" style={{ fontSize: '38px' }} />
       </Badge>
+      <Badge color="light" content="5" variant="outlined">
+        <PhoneFilledIcon color="default" style={{ fontSize: '38px' }} />
+      </Badge>
+      <Badge color="dark" content="5" variant="outlined">
+        <PhoneFilledIcon color="dark" style={{ fontSize: '38px' }} />
+      </Badge>
     </Stack>
   );
 };
 ```
 
-### API
+## API
 
-#### BadgeProps
+### BadgeProps
 
 | 属性     | 说明           | 类型                                                      | 默认值      |
 | -------- | -------------- | --------------------------------------------------------- | ----------- |
@@ -219,7 +245,7 @@ export default () => {
 | variant  | 徽章类型       | `contained` ｜`outlined`                                  | `contained` |
 | type     | 徽章形状       | `dot`｜`rounded`｜`bubble`                                | `rounded`   |
 
-### 样式变量
+## 样式变量
 
 | 属性                   | 说明                     | 默认值        | 全局变量                         |
 | ---------------------- | ------------------------ | ------------- | -------------------------------- |

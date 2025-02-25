@@ -1,3 +1,26 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+@{root-selector} {
+  --bui-switch-bg-color: #ccc;
+  --bui-switch-padding: 0;
+  --bui-switch-border-radius: 15px;
+  --bui-switch-small-width: 24px;
+  --bui-switch-small-height: 16px;
+  --bui-switch-small-font-size: 9px;
+  --bui-switch-controller-small-width: 12px;
+  --bui-switch-controller-small-height: 12px;
+  --bui-switch-width: 44px;
+  --bui-switch-height: 22px;
+  --bui-switch-font-size: var(--bui-text-size-3);
+  --bui-switch-controller-width: 18px;
+  --bui-switch-controller-height: 18px;
+  --bui-switch-large-width: 51px;
+  --bui-switch-large-height: 30px;
+  --bui-switch-large-font-size: var(--bui-text-size-3);
+  --bui-switch-controller-large-width: 24px;
+  --bui-switch-controller-large-height: 24px;
+}
+
 @duration: 0.3s;
 
 .switch-bg(@color) {
@@ -25,10 +48,10 @@
   position: relative;
   display: inline-block;
   box-sizing: border-box;
-  padding: var(--padding);
+  padding: var(--bui-switch-padding);
   vertical-align: middle;
-  border-radius: var(--border-radius);
-  background-color: var(--bg-color);
+  border-radius: var(--bui-switch-border-radius);
+  background-color: var(--bui-switch-bg-color);
   transition: all @duration cubic-bezier(0.35, 0, 0.25, 1);
   font-family: var(--bui-font-family);
 
@@ -52,17 +75,17 @@
 
   // 尺寸
   &-small {
-    width: var(--small-width);
-    height: var(--small-height);
+    width: var(--bui-switch-small-width);
+    height: var(--bui-switch-small-height);
 
     .bui-switch-inner {
       left: calc(100% - 10px);
-      font-size: var(--font-size-smal);
+      font-size: var(--bui-switch-small-font-size);
     }
 
     &::after {
-      width: var(--controller-small-width);
-      height: var(--controller-small-height);
+      width: var(--bui-switch-controller-small-width);
+      height: var(--bui-switch-controller-small-height);
       left: 2px;
       top: 2px;
     }
@@ -79,12 +102,16 @@
   }
 
   &-medium {
-    width: var(--medium-width);
-    height: var(--medium-height);
+    width: var(--bui-switch-width);
+    height: var(--bui-switch-height);
+
+    .bui-switch-inner {
+      font-size: var(--bui-switch-font-size);
+    }
 
     &::after {
-      width: var(--controller-medium-width);
-      height: var(--controller-medium-height);
+      width: var(--bui-switch-controller-width);
+      height: var(--bui-switch-controller-height);
     }
 
     &.bui-switch-checked {
@@ -99,16 +126,17 @@
   }
 
   &-large {
-    width: var(--large-width);
-    height: var(--large-height);
+    width: var(--bui-switch-large-width);
+    height: var(--bui-switch-large-height);
 
     .bui-switch-inner {
       left: calc(100% - 22px);
+      font-size: var(--bui-switch-large-font-size);
     }
 
     &::after {
-      width: var(--controller-large-width);
-      height: var(--controller-large-height);
+      width: var(--bui-switch-controller-large-width);
+      height: var(--bui-switch-controller-large-height);
       left: 3px;
       top: 3px;
     }
@@ -159,7 +187,6 @@
     position: absolute;
     left: calc(100% - 20px);
     color: var(--bui-color-white);
-    font-size: var(--bui-text-size-3);
     height: 100%;
     display: flex;
     align-items: center;

@@ -81,11 +81,5 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
 });
 
 Modal.displayName = 'BuiModal';
-Modal.defaultProps = {
-  open: false,
-  disablePortal: false,
-  disableScrollLock: false,
-  hideBackdrop: false,
-};
 
 export default Modal;

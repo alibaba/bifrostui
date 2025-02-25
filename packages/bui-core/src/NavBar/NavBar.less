@@ -1,31 +1,30 @@
 @import '@bifrostui/styles/mixins/index.less';
 
-.bui-navbar {
-  --width: var(--bui-navbar-width, 100%);
-  --height: var(--bui-navbar-height, 45px);
-  --padding: var(--bui-navbar-padding, 0 8px);
-  --icon-size: var(--bui-navbar-icon-size, 24px);
-  --icon-font-size: var(--bui-navbar-icon-font-size, var(--bui-title-size-3));
-  --background-color: var(
-    --bui-navbar-background-color,
-    var(--bui-color-white)
-  );
-  --border-bottom: var(--bui-navbar-border-bottom, none);
-  --z-index: var(--bui-navbar-z-index, auto);
-  --title-max-width: var(--bui-navbar-title-max-width, 60%);
+@{root-selector} {
+  --bui-navbar-width: 100%;
+  --bui-navbar-height: 45px;
+  --bui-navbar-padding: 0 8px;
+  --bui-navbar-title-padding: 0 8px;
+  --bui-navbar-icon-font-size: 24px;
+  --bui-navbar-background-color: var(--bui-color-white);
+  --bui-navbar-border-bottom: none;
+  --bui-navbar-z-index: auto;
+  --bui-navbar-title-max-width: 60%;
+}
 
+.bui-navbar {
   position: relative;
-  width: var(--width);
-  height: var(--height);
+  width: var(--bui-navbar-width);
+  height: var(--bui-navbar-height);
   box-sizing: border-box;
-  padding: var(--padding);
+  padding: var(--bui-navbar-padding);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--background-color);
-  border-bottom: var(--border-bottom);
+  background-color: var(--bui-navbar-background-color);
+  border-bottom: var(--bui-navbar-border-bottom);
   user-select: none;
-  z-index: var(--z-index);
+  z-index: var(--bui-navbar-z-index);
   font-family: var(--bui-font-family);
 
   &-fixed {
@@ -36,8 +35,8 @@
   }
 
   &-title {
-    max-width: var(--title-max-width);
-    padding: var(--padding);
+    max-width: var(--bui-navbar-title-max-width);
+    padding: var(--bui-navbar-title-padding);
     font-size: var(--bui-title-size-2);
     .ellipsis();
   }
@@ -47,7 +46,7 @@
     flex: 1;
     display: flex;
     align-items: center;
-    font-size: var(--icon-font-size);
+    font-size: var(--bui-title-size-3);
   }
 
   &-left {
@@ -62,7 +61,7 @@
   }
 
   &-icon {
-    font-size: var(--icon-size);
+    font-size: var(--bui-navbar-icon-font-size);
   }
 
   &-placeholder {
