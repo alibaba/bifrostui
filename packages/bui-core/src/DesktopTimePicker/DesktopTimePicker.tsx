@@ -140,7 +140,7 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       onOpen?.();
       setTemptValue(timeValue);
     };
-    const unMounted = (e) => {
+    const unMounted = () => {
       onClose?.();
       if (
         isDisabledTime(
@@ -150,7 +150,7 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
           disabledTimeView,
         )
       ) {
-        triggerChange(e, temptValue);
+        triggerChange(undefined, temptValue);
       }
     };
 
