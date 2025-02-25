@@ -168,7 +168,7 @@ export default () => {
 
 ### Specify Time Format
 
-Use `format` to specify the time display format, default is `HH:mm:ss`. If `ampm` is `true`, the default is `hh:mm:ss a`.
+Use `format` to specify the time display format, default is `HH:mm:ss`. If `ampm` is `true`, the default is `hh:mm:ss A`.
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
@@ -186,7 +186,7 @@ export default () => {
     <Stack>
       <div style={{ width: '320px' }}>
         <DesktopTimePicker
-          format="hh:mm:ss a"
+          format="hh:mm:ss A"
           value={value}
           onChange={handleChange}
         />

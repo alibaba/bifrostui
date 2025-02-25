@@ -132,6 +132,22 @@ describe('DesktopTimePicker', () => {
     expect(onChange).not.toHaveBeenCalled();
   });
 
+  it('should change value when input is valid', async () => {
+    const onChange = jest.fn();
+    render(
+      <DesktopTimePicker
+        value={dayjs('2023-04-01T08:00:00').toDate()}
+        minTime={dayjs('2023-04-01T08:00:00').toDate()}
+        maxTime={dayjs('2023-04-01T18:00:00').toDate()}
+        onChange={onChange}
+      />,
+    );
+    const inputDom = document.getElementsByClassName(`${rootClass}-content`)[0];
+    fireEvent.change(inputDom, { target: { value: '08:00:01' } });
+    fireEvent.blur(inputDom);
+    expect(onChange).toHaveBeenCalled();
+  });
+
   it('should set value to null when input is empty', async () => {
     const onChange = jest.fn((e, res) => res.value);
     render(
@@ -205,7 +221,7 @@ describe('DesktopTimePicker', () => {
     const onChange = jest.fn();
     const { container } = render(
       <DesktopTimePicker
-        value={dayjs('2023-04-01T08:00:00').toDate()}
+        defaultValue={dayjs('2023-04-01T08:00:00').toDate()}
         minTime={dayjs('2023-04-01T08:00:00').toDate()}
         maxTime={dayjs('2023-04-01T18:00:00').toDate()}
         disabledTimeView={() => ({
@@ -245,5 +261,88 @@ describe('DesktopTimePicker', () => {
     });
     const customTimeCells = document.getElementsByClassName('custom-time');
     expect(customTimeCells.length).toBeGreaterThan(0);
+  });
+
+  it('should handle ampm mode', async () => {
+    const { container } = render(
+      <DesktopTimePicker
+        value={dayjs('12:00:00', 'HH:mm:ss').toDate()}
+        minTime={dayjs('00:00:00', 'HH:mm:ss').toDate()}
+        maxTime={dayjs('23:59:59', 'HH:mm:ss').toDate()}
+        ampm
+        format="hh:mm:ss A"
+      />,
+    );
+    await act(async () => {
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
+    });
+    const meridiemList = document.getElementsByClassName(
+      `${rootClass}-table-meridiem-ul`,
+    );
+    const meridiemItem = meridiemList[0].querySelector(
+      `.${rootClass}-table-meridiem-ul-li`,
+    );
+    await act(async () => {
+      fireEvent.click(meridiemItem);
+    });
+    const contentNodes: HTMLInputElement = container.querySelector(
+      `.${rootClass}-content`,
+    );
+    expect(contentNodes?.value).toBe('12:00:00 PM');
+  });
+
+  it('should handle unvalid timeSteps', async () => {
+    const { container } = render(
+      <DesktopTimePicker
+        value={dayjs('2023-04-01T08:00:00').toDate()}
+        timeSteps={{ hour: 0, minute: 0, second: 0 }}
+      />,
+    );
+    await act(async () => {
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
+    });
+    expect(
+      document.getElementsByClassName(`${rootClass}-table-hour-ul-li`).length,
+    ).toBe(24);
+    expect(
+      document.getElementsByClassName(`${rootClass}-table-minute-ul-li`).length,
+    ).toBe(60);
+    expect(
+      document.getElementsByClassName(`${rootClass}-table-second-ul-li`).length,
+    ).toBe(60);
+  });
+
+  it('should handle times correctly when ampm mode', async () => {
+    const { container } = render(
+      <DesktopTimePicker
+        defaultValue={dayjs('2023-04-01T18:00:00').toDate()}
+        ampm
+      />,
+    );
+    await act(async () => {
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
+    });
+    const meridiemLi = document.getElementsByClassName(
+      `${rootClass}-table-hour-ul-li`,
+    );
+    fireEvent.click(meridiemLi[2]);
+
+    expect(document.getElementsByTagName('input')[0].value).toBe('02:00:00 PM');
+  });
+
+  it('should handle times correctly when timeValue is null in ampm', async () => {
+    render(
+      <DesktopTimePicker
+        defaultValue={null}
+        minTime={dayjs('2023-03-01T11:00:00').toDate()}
+        maxTime={dayjs('2023-04-01T12:00:00').toDate()}
+        ampm
+      />,
+    );
+
+    const inputDom = document.getElementsByClassName(`${rootClass}-content`)[0];
+    fireEvent.change(inputDom, { target: { value: '12:00:00 PM' } });
+    fireEvent.blur(inputDom);
+    expect(document.getElementsByTagName('input')[0].value).toBe('12:00:00 PM');
   });
 });
