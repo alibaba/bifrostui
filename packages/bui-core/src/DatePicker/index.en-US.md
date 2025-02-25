@@ -332,7 +332,7 @@ export default () => {
 | minDate             | Minimum selectable date                  | Date                                                                             | Ten years ago            |
 | maxDate             | Maximum selectable date                  | Date                                                                             | Ten years from now       |
 | disableDateTimeView | Disallowed selection options             | {[key in DatePickerType]: (options: IPickerOptionItem[]) => IPickerOptionItem[]} | -                        |
-| dateTimeStep        | Time interval for increment steps        | [key in DatePickerType]: number;                                                 | -                        |
+| dateTimeStep        | Time interval for increment steps        | [key in DatePickerType]: number                                                  | -                        |
 | formatter           | Option formatting function               | (type: string, option: IPickerOptionItem) => IPickerOptionItem                   | -                        |
 | onConfirm           | Triggered when confirm button is pressed | (e: React.SyntheticEvent, { value: Date }) => void                               | -                        |
 | onCancel            | Triggered when cancel button is pressed  | (e: React.SyntheticEvent) => void                                                | -                        |
