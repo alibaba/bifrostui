@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DesktopTimePicker renders correctly 1`] = `
+<div
+  class="bui-time-picker"
+>
+  <div
+    class="bui-desktop-picker"
+  >
+    <div
+      class="bui-time-picker-container"
+    >
+      <input
+        aria-invalid="true"
+        autocomplete="off"
+        class="bui-time-picker-content"
+        inputmode="text"
+        placeholder="HH:mm:ss"
+        type="text"
+        value=""
+      />
+      <div
+        class="bui-time-picker-icon"
+      >
+        <svg
+          class="bui-svg-icon"
+          color="#9c9ca5"
+          focusable="false"
+          viewBox="0 0 96 96"
+        >
+          <path
+            d="M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm0 6c-18.8 0-34 15.2-34 34s15.2 34 34 34 34-15.2 34-34-15.2-34-34-34zm16.1 46.9L50 46.8V30c0-1.7-1.3-3-3-3s-3 1.3-3 3v18c0 .8.3 1.6.9 2.1l15 15c1.2 1.2 3.1 1.2 4.2 0 1.2-1.2 1.2-3 0-4.2z"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
