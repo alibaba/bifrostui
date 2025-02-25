@@ -107,7 +107,15 @@ async function aiWriteTestCases(targetDirPath = '',
             if (fs.existsSync(path.join(targetDirPath, '__tests__', componentName + '.test.tsx'))) {
                 fs.unlinkSync(path.join(targetDirPath, '__tests__', componentName + '.test.tsx'));
             }
-            testCaseResult = testCaseResult.replace(/```\w*\s*\n*/, '').replace(/```/, '');
+            try {
+              let _testCaseResult = testCaseResult.match(/```[a-z]*\n*([\s\S]*?)```/i)?.[1]?.trim();
+              if (_testCaseResult) {
+                  testCaseResult = _testCaseResult;
+              };
+            } catch (error) {
+              console.log('正则提取代码块失败error：', error);
+              testCaseResult = testCaseResult.replace(/```\w*\s*\n*/, '').replace(/```/, '');
+            };
             fs.writeFileSync(path.join(targetDirPath, '__tests__', componentName + '.test.tsx'), testCaseResult);
             consoleTip('测试用例生成完成！', 'success');
         }
