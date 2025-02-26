@@ -373,7 +373,10 @@ export default () => {
   };
 
   const monthRender = ({ month, currentData }) => {
-    return <div style={{ color: 'red' }}>{month}</div>;
+    if (month === 5) {
+      return <div style={{ color: 'red' }}>{month}月</div>;
+    }
+    return <div>{month}月</div>;
   };
   return (
     <Stack>
@@ -406,7 +409,10 @@ export default () => {
   };
 
   const yearRender = ({ year, currentData }) => {
-    return <div style={{ color: 'red' }}>{year}</div>;
+    if (year === 2023) {
+      return <div style={{ color: 'red' }}>{year}</div>;
+    }
+    return <div>{year}</div>;
   };
 
   return (
@@ -639,12 +645,12 @@ export default () => {
 
 ### 组件样式变量
 
-| 属性                | 说明           | 默认值 | 全局变量                |
-| ------------------- | -------------- | ------ | ----------------------- |
-| --height            | 组件高度       | 32px   | --bui-input-height      |
-| --mini-width        | 选择器最小宽度 | 100px  | --bui-select-mini-width |
-| --icon-size         | 输入框icon大小 | 16px   | --bui-icon-size-3       |
-| --container-padding | 输入框左右边距 | 9px    | --bui-spacing-md        |
+| 属性                | 说明           | 默认值 | 全局变量               |
+| ------------------- | -------------- | ------ | ---------------------- |
+| --height            | 组件高度       | 32px   | --bui-input-height     |
+| --mini-width        | 选择器最小宽度 | 100px  | --bui-select-min-width |
+| --icon-size         | 输入框icon大小 | 16px   | --bui-icon-size-3      |
+| --container-padding | 输入框左右边距 | 9px    | --bui-spacing-md       |
 
 ### 浮层样式变量（由于浮层节点在H5/web渲染在 body 节点中，所以需要单独维护）,需定义在bui-date-picker-calendar-main内
 
