@@ -33,6 +33,7 @@ export default () => {
       <DatePicker
         open={open}
         value={value}
+        views={['1']}
         onChange={handleChange}
         onClose={() => setOpen(false)}
       />

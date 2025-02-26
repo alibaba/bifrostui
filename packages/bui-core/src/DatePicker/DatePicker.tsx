@@ -12,6 +12,10 @@ const DEFAULT_PICKER = [
   DatePickerType.DAY,
 ];
 
+function isValidDate(value) {
+  return value instanceof Date && !Number.isNaN(value.getTime());
+}
+
 // 补零
 const padZero = (num: number | string, targetLength = 2) => {
   let str = `${num}`;
@@ -23,7 +27,7 @@ const padZero = (num: number | string, targetLength = 2) => {
 
 // 获取某年某月的最大天数
 const getMaxDay = (year: number, monthIndex: number) => {
-  return new Date(year, monthIndex, 0).getDate();
+  return new Date(year, monthIndex + 1, 0).getDate();
 };
 
 // 将当前日期转换为pickerValue
@@ -71,7 +75,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
 
     if (
       !formattedDate ||
-      !(formattedDate instanceof Date) ||
+      !isValidDate(date) ||
       formattedDate.getTime() < propMinDate.getTime()
     ) {
       formattedDate = propMinDate;
@@ -108,7 +112,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
       case DatePickerType.MONTH: {
         const selectedMaxDay = getMaxDay(
           current.getFullYear(),
-          value[columnIndex] - 1,
+          Number(value[columnIndex]) - 1,
         );
 
         if (current.getDate() > selectedMaxDay) {
@@ -206,7 +210,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
 
     if (type === 'max') {
       month = 12;
-      date = getMaxDay(value.getFullYear(), value.getMonth() + 1);
+      date = getMaxDay(value.getFullYear(), value.getMonth());
       hour = 23;
       minute = 59;
       seconds = 59;
@@ -296,6 +300,6 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
   );
 });
 
-DatePicker.displayName = 'BUIDatePicker';
+DatePicker.displayName = 'BuiDatePicker';
 
 export default DatePicker;
