@@ -1,0 +1,481 @@
+{
+  "id": "backstop_default",
+  "viewports": [
+    {
+      "label": "tablet",
+      "width": 1024,
+      "height": 6000
+    }
+  ],
+  "onBeforeScript": "puppet/onBefore.js",
+  "onReadyScript": "puppet/onReady.js",
+  "scenarios": [
+    {
+      "label": "ActionSheet",
+      "url": "http://localhost:8000/cores/action-sheet",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/action-sheet",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Alert",
+      "url": "http://localhost:8000/cores/alert",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/alert",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Avatar",
+      "url": "http://localhost:8000/cores/avatar",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/avatar",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Backdrop",
+      "url": "http://localhost:8000/cores/backdrop",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/backdrop",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Badge",
+      "url": "http://localhost:8000/cores/badge",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/badge",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Button",
+      "url": "http://localhost:8000/cores/button",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/button",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Calendar",
+      "url": "http://localhost:8000/cores/calendar",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/calendar",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Card",
+      "url": "http://localhost:8000/cores/card",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/card",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Checkbox",
+      "url": "http://localhost:8000/cores/checkbox",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/checkbox",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Divider",
+      "url": "http://localhost:8000/cores/divider",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/divider",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Drawer",
+      "url": "http://localhost:8000/cores/drawer",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/drawer",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Fade",
+      "url": "http://localhost:8000/cores/fade",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/fade",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "IconButton",
+      "url": "http://localhost:8000/cores/icon-button",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/icon-button",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Image",
+      "url": "http://localhost:8000/cores/image",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/image",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Input",
+      "url": "http://localhost:8000/cores/input",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/input",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "List",
+      "url": "http://localhost:8000/cores/list",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/list",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Modal",
+      "url": "http://localhost:8000/cores/modal",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/modal",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Portal",
+      "url": "http://localhost:8000/cores/portal",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/portal",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Progress",
+      "url": "http://localhost:8000/cores/progress",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/progress",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Radio",
+      "url": "http://localhost:8000/cores/radio",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/radio",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Rating",
+      "url": "http://localhost:8000/cores/rating",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/rating",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "ScrollView",
+      "url": "http://localhost:8000/cores/scroll-view",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/scroll-view",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Select",
+      "url": "http://localhost:8000/cores/select",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/select",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Skeleton",
+      "url": "http://localhost:8000/cores/skeleton",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/skeleton",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Slide",
+      "url": "http://localhost:8000/cores/slide",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/slide",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Slider",
+      "url": "http://localhost:8000/cores/slider",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/slider",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Stack",
+      "url": "http://localhost:8000/cores/stack",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/stack",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Steps",
+      "url": "http://localhost:8000/cores/steps",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/steps",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Swiper",
+      "url": "http://localhost:8000/cores/swiper",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/swiper",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Switch",
+      "url": "http://localhost:8000/cores/switch",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/switch",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Tabs",
+      "url": "http://localhost:8000/cores/tabs",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/tabs",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Tag",
+      "url": "http://localhost:8000/cores/tag",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/tag",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "TextArea",
+      "url": "http://localhost:8000/cores/text-area",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/text-area",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Transition",
+      "url": "http://localhost:8000/cores/transition",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/transition",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "NavBar",
+      "url": "http://localhost:8000/cores/nav-bar",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/nav-bar",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Loading",
+      "url": "http://localhost:8000/cores/loading",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/loading",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "TabBar",
+      "url": "http://localhost:8000/cores/tab-bar",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/tab-bar",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Countdown",
+      "url": "http://localhost:8000/cores/countdown",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/countdown",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "CitySelector",
+      "url": "http://localhost:8000/cores/city-selector",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/city-selector",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Picker",
+      "url": "http://localhost:8000/cores/picker",
+      "referenceUrl": "https://bui.taopiaopiao.com/cores/picker",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Icon",
+      "url": "http://localhost:8000/icons",
+      "referenceUrl": "https://bui.taopiaopiao.com/icons",
+      "readySelector": ".dumi-default-previewer-demo",
+      "delay": 0,
+      "readyTimeout": 300000,
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report",
+    "ci_report": "backstop_data/ci_report"
+  },
+  "report": ["browser"],
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": ["--no-sandbox"]
+  },
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+}

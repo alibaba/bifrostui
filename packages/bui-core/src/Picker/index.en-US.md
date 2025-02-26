@@ -79,9 +79,9 @@ export default () => {
 };
 ```
 
-### Set Title
+### Custom Text
 
-Use the 'title' attribute to specify the selector title.
+You can customize the text by configuring `title`, `confirmText`, and `cancelText`.
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -101,6 +101,8 @@ export default () => {
       <Picker
         open={open}
         title="请选择"
+        confirmText="Yes"
+        cancelText="No"
         onClose={(e, data) => {
           setOpen(false);
           console.log('onClose', e, data);
@@ -1093,6 +1095,122 @@ export default () => {
 };
 ```
 
+### disabled options
+
+By setting the `disabled` property of an `option` to true, you can disable the specified option. When in a disabled state, the option will not trigger the `onConfirm` event but will trigger the `onOptionChange` event. You can determine whether the current option is disabled by checking the `currentOption.disabled` property returned in the event.
+
+```tsx
+import { Button, Picker, Stack } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Stack>
+      <Button
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+        打开选择器
+      </Button>
+      <Picker
+        open={open}
+        onCancel={(e) => {
+          console.log('onCancel', e);
+        }}
+        onClose={() => {
+          setOpen(false);
+        }}
+        onOptionChange={(e, { currentOption }) => {
+          console.log('onOptionChange', currentOption.disabled);
+        }}
+        options={[
+          {
+            value: 1,
+            label: '北京',
+            children: [
+              {
+                value: 1,
+                label: '朝阳区',
+                children: [
+                  {
+                    value: 1,
+                    label: '朝阳街',
+                    disabled: true,
+                  },
+                ],
+              },
+              {
+                value: 2,
+                label: '海淀区',
+              },
+              {
+                value: 3,
+                label: '大兴区',
+              },
+              {
+                value: 4,
+                label: '东城区',
+                disabled: true,
+              },
+              {
+                value: 5,
+                label: '西城区',
+              },
+              {
+                value: 6,
+                label: '丰台区',
+              },
+            ],
+          },
+          {
+            value: 2,
+            label: '上海',
+            children: [
+              {
+                value: 1,
+                label: '黄埔区',
+              },
+              {
+                value: 2,
+                label: '长宁区',
+              },
+              {
+                value: 3,
+                label: '普陀区',
+              },
+              {
+                value: 4,
+                label: '杨浦区',
+              },
+              {
+                value: 5,
+                label: '浦东新区',
+              },
+              {
+                value: 6,
+                label: '徐汇区',
+                children: [
+                  {
+                    value: 1,
+                    label: '龙耀路',
+                  },
+                  {
+                    value: 2,
+                    label: '云锦路',
+                  },
+                ],
+              },
+            ],
+          },
+        ]}
+      />
+    </Stack>
+  );
+};
+```
+
 ### custom style
 
 Custom styles can be achieved through the Tokens provided by [Style Variables] (# Style Variables).
@@ -1210,26 +1328,28 @@ export default () => {
 
 ### Picker
 
-| attribute      | explain                                   | type                                                                                                                                                                            | Default value |
-| -------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| open           | Do you want to display the selector       | boolean                                                                                                                                                                         | false         |
-| title          | title                                     | string                                                                                                                                                                          | -             |
-| options        | List data                                 | IPickerOptionItem[][] \|ICascadePickerOptionItem[]                                                                                                                              | []            |
-| value          | Selected values                           | (string \|number)[]                                                                                                                                                             | -             |
-| contentProps   | Props on drawer content DOM node          | React.HTMLAttributes\<HTMLDivElement\>                                                                                                                                          | -             |
-| onConfirm      | Callback when clicking the confirm button | (e: React.MouseEvent<HTMLDivElement\>,data: { value: (string \|number)[]; options: ICascadePickerChildOptionItem[][]}) => void                                                  | -             |
-| onOptionChange | Callback when option value changes        | (e: React.TransitionEvent<HTMLDivElement\>,data: { value: (string \|number)[];options: ICascadePickerChildOptionItem[][];currentOption: ICascadePickerChildOptionItem}) => void | -             |
-| onCancel       | Callback when clicking the cancel button  | (e: React.MouseEvent<HTMLDivElement\>) => void                                                                                                                                  | -             |
-| onClose        | Execute when closing the selector         | (e: React.MouseEvent<HTMLDivElement\>,data: {from: string;value: (string \|number)[];options: ICascadePickerChildOptionItem[][]}) => void                                       | -             |
+| attribute      | explain                                   | type                                                                                                                                                                                                | Default value |
+| -------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| open           | Do you want to display the selector       | boolean                                                                                                                                                                                             | false         |
+| title          | title                                     | string                                                                                                                                                                                              | -             |
+| confirmText    | Confirmation text content                 | string                                                                                                                                                                                              | Confirm       |
+| cancelText     | Cancellation text content                 | string                                                                                                                                                                                              | Cancel        |
+| options        | List data                                 | IPickerOptionItem[][] \|ICascadePickerOptionItem[]                                                                                                                                                  | []            |
+| value          | Selected values                           | (string \|number)[]                                                                                                                                                                                 | -             |
+| contentProps   | Props on drawer content DOM node          | React.HTMLAttributes\<HTMLDivElement\>                                                                                                                                                              | -             |
+| onConfirm      | Callback when clicking the confirm button | (e: React.MouseEvent<HTMLDivElement\>,data: { value: (string \|number)[]; options: ICascadePickerChildOptionItem[][]}) => void                                                                      | -             |
+| onOptionChange | Callback when option value changes        | (e: React.TransitionEvent<HTMLDivElement\>,data: { value: (string \|number)[];options: ICascadePickerChildOptionItem[][];currentOption: ICascadePickerChildOptionItem;columnIndex: number}) => void | -             |
+| onCancel       | Callback when clicking the cancel button  | (e: React.MouseEvent<HTMLDivElement\>) => void                                                                                                                                                      | -             |
+| onClose        | Execute when closing the selector         | (e: React.MouseEvent<HTMLDivElement\>,data: {from: string;value: (string \|number)[];options: ICascadePickerChildOptionItem[][]}) => void                                                           | -             |
 
 ### PickerPanel
 
-| attribute    | explain                                 | type                                                                                                                        | Default value |
-| ------------ | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| options      | List data of a single column panel      | ICascadePickerChildOptionItem[]                                                                                             | []            |
-| defaultValue | Default values for single column panels | string \|number                                                                                                             | -             |
-| columnIndex  | Li Suo Yin                              | number                                                                                                                      | -             |
-| onSelect     | Callback when clicking on an option     | (e: React.TransitionEvent<HTMLDivElement\>,data: {columnOption: ICascadePickerChildOptionItem;columnIndex: number}) => void | -             |
+| attribute   | explain                                 | type                                                                                                                        | Default value |
+| ----------- | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| options     | List data of a single column panel      | ICascadePickerChildOptionItem[]                                                                                             | []            |
+| value       | selected value for single column panels | string \|number                                                                                                             | -             |
+| columnIndex | Li Suo Yin                              | number                                                                                                                      | -             |
+| onSelect    | Callback when clicking on an option     | (e: React.TransitionEvent<HTMLDivElement\>,data: {columnOption: ICascadePickerChildOptionItem;columnIndex: number}) => void | -             |
 
 #### IPickerOptionItem
 

@@ -102,6 +102,20 @@ describe('Calendar', () => {
     expect(today.innerHTML).toBe(dayjs().format('D'));
   });
 
+  it('should render headerVisible', () => {
+    const { container } = render(
+      <Calendar
+        mode="single"
+        headerVisible
+        value={dayjs().toDate()}
+        minDate={dayjs().startOf('month').toDate()}
+        maxDate={dayjs().endOf('month').toDate()}
+      />,
+    );
+    const header = container.querySelector(`.${rootClass}-handler`);
+    expect(header).toBe(null);
+  });
+
   it('should render high light today date', () => {
     const { container } = render(
       <Calendar

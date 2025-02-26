@@ -176,7 +176,7 @@ export default () => {
 | onSelect   | 子项的点击选择回调                         | (event: React.MouseEvent ,data?: { index: string \| number }) => void; | -      |
 | onClose    | 关闭回调                                   | ModalProps['onClose']                                                  | -      |
 
-`ActionSheet` 继承自 `Drawer` 其他属性见 [Drawer API](/cores/drawer?#API)
+`ActionSheet` 继承自 `Drawer` 其他属性见 [Drawer API](/cores/drawer?#api)
 
 ### ActionSheetItem
 

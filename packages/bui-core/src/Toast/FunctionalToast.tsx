@@ -1,4 +1,4 @@
-import { render, unmount, getRootElement } from '@bifrostui/utils';
+import { render, unmount, getRootContainer } from '@bifrostui/utils';
 import React, { useCallback, useEffect, useState } from 'react';
 import ToastView from './Toast';
 import {
@@ -59,7 +59,7 @@ const functionalToast = (props: ToastProps | string) => {
     });
   }
 
-  const rootElement = getRootElement();
+  const rootElement = getRootContainer();
   rootElement.appendChild(rootWrapper);
 
   const ToastComponent = () => {
