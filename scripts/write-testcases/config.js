@@ -12,7 +12,9 @@ const config = {
       // 写单元测试使用的模型（测试效果较好的模型qwen-coder-plus、deepseek-v3），更多可用模型参考：https://bailian.console.aliyun.com/?spm=5176.12818093_47.resourceCenter.6.57ea16d0lfCepy#/model-market
       writeModel: 'qwen-coder-plus'
     },
-    // 注意：正常使用下面的配置即可，不需要修改；除非你非常清楚你自己在做什么
+    // ！！！注意：正常使用下面的配置即可，不需要修改；除非你非常清楚你自己在做什么
+    // ！！！注意：正常使用下面的配置即可，不需要修改；除非你非常清楚你自己在做什么
+    // ！！！注意：正常使用下面的配置即可，不需要修改；除非你非常清楚你自己在做什么
     // 需要自定义给AI加上的提示词配置
     customPromptCfg: {
       // 是否完全替换默认提示词（true：完全替换，false：在默认提示词基础上追加）
