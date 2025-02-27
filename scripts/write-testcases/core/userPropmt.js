@@ -29,7 +29,7 @@ const aiTaskPrompts = {
                console.log('testFile===>', testFile);
                const testCode = `<----${ config.referenceTestFileName}----->\n${fs.readFileSync(testFile, 'utf-8')}\n`;
                let allStrResult = getfilesContent(config.referenceDirPath, config.referenceIgnoreDir);
-                const returnStr = `你是一个专业的测试用例编写专家，请你先参考提供的参考组件的代码和对应已经完成的测试用例，模仿参考组件的测试用例规范和风格[参考组件的组件代码如下【${allStrResult}】,参考组件的组件测试用例代码如下【${testCode}】].为以下提供的组件代码生成对应的测试用例，保证单测覆盖率至少90%以上.你只需要直接输出测试用例代码，无需解释或说明：`;
+                const returnStr = `你是一个专业的测试用例编写专家，请你先参考提供的参考组件的代码和对应已经完成的测试用例，模仿参考组件的测试用例规范和风格[参考组件的组件代码如下【${allStrResult}】,参考组件的组件测试用例代码如下【${testCode}】].为以下提供的组件代码生成对应的测试用例，保证该组件单测覆盖率至少90%以上(保证API、函数、属性等的全面覆盖).你只需要直接输出测试用例代码，无需解释或说明：`;
                 return returnStr;
             },
             getUserPrompt: function (args) {
