@@ -601,7 +601,7 @@ export default () => {
 ### API
 
 | 属性               | 说明                             | 类型                                                          | 默认值                |
-| ------------------ | -------------------------------- | ------------------------------------------------------------- | --------------------- |
+| ------------------ | -------------------------------- | ------------------------------------------------------------- | --------------------- | --- |
 | defaultValue       | 默认选中的值，当组件非受控时使用 | Date \| null                                                  | -                     |
 | value              | 选中的值，当组件受控时使用       | Date \| null                                                  | -                     |
 | placeholder        | 输入框提示文字                   | string                                                        | -                     |
@@ -625,7 +625,7 @@ export default () => {
 | onOpen             | 打开的回调                       | () => void                                                    | -                     |
 | onMonthChange      | 月份切换的回调                   | (e: React.SyntheticEvent, data: { value: Date }) => void      | -                     |
 | onYearChange       | 年份切换的回调                   | (e: React.SyntheticEvent, data: { value: Date }) => void      | -                     |
-| onChange           | 选中日期的回调                   | (e: React.SyntheticEvent, data: { value: Date }) => void      | -                     |
+| onChange           | 选中日期的回调                   | (e: React.SyntheticEvent, data: { value: Date                 | null}) => void        | -   |
 | DesktopPickerProps | 透传给 DesktopPicker 的属性      | DesktopPickerProps                                            | -                     |
 | CalendarProps      | 透传给 Calendar 的属性           | CalendarProps                                                 | -                     |
 
