@@ -87,7 +87,7 @@ const DesktopDateTimePicker = React.forwardRef<
   const handleDatePickerInputClick = (e) => {
     e.stopPropagation();
     if (inputProps?.readOnly) {
-      if (disabled || disableOpenPicker) return;
+      if (disabled || disableOpenPicker || open !== undefined) return;
       setIsOpen(!isOpen);
       return;
     }
@@ -245,7 +245,9 @@ const DesktopDateTimePicker = React.forwardRef<
             onClick={handleDatePickerIconClick}
             className={`${prefixCls}-icon`}
           >
-            {icon || <DateOutlinedIcon htmlColor="#9c9ca5" />}
+            {icon || (
+              <DateOutlinedIcon htmlColor="var(--bui-color-neutral-3)" />
+            )}
           </div>
         </div>
       </DesktopPicker>

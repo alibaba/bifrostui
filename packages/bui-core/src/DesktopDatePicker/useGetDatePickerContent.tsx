@@ -4,12 +4,14 @@ import dayjs from 'dayjs';
 import React, { useMemo } from 'react';
 import Calendar from '../Calendar';
 import './deskTopPickerContainer.less';
+import { useLocaleText } from '../locales';
 
 const prefixCls = 'bui-desktop-date-picker-container';
 const useGetDatePickerContent = (props) => {
   const yPatterns = ['YYYY', 'YY'];
   const mPatterns = ['MM', 'M', 'MMM', 'MMMM'];
   const dPatterns = ['D', 'DD'];
+  const { month: monthMap } = useLocaleText('desktopDatePicker');
   const {
     format,
     minDate,
@@ -176,8 +178,7 @@ const useGetDatePickerContent = (props) => {
     return (
       <div className={clsx(`${prefixCls}-table-td-content`)}>
         <span className={clsx(`${prefixCls}-table-td-content-text`)}>
-          {its}
-          {selectType === 'month' && '月'}
+          {selectType === 'month' ? monthMap[its] : its}
         </span>
       </div>
     );
@@ -296,7 +297,7 @@ const useGetDatePickerContent = (props) => {
               ) : (
                 <CaretLeftIcon
                   className={`${prefixCls}-handler-btn-icon`}
-                  htmlColor={isMinMonth && '#cccccc'}
+                  htmlColor={isMinMonth && 'var(--bui-color-white)'}
                 />
               )}
             </div>
@@ -311,7 +312,7 @@ const useGetDatePickerContent = (props) => {
               ) : (
                 <CaretRightIcon
                   className={`${prefixCls}-handler-btn-icon`}
-                  htmlColor={isMaxMonth && '#cccccc'}
+                  htmlColor={isMaxMonth && 'var(--bui-color-white)'}
                 />
               )}
             </div>
