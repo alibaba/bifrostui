@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const themes = [defaultLight, defaultDark, dmLight, pioneerLight];
 const commemt =
-  '/** 此文件由脚本自动生成，请勿直接修改，若有变更请维护bui-styles/registry/*.mjs，再执行`pnpm theme`更新主题 */\n';
+  '/** 此文件由脚本自动生成，请勿直接修改，若有变更请维护bui-styles/registry/*.mjs，再执行`pnpm theme:js2less`更新主题 */\n';
 
 const convertToLess = (styles) => {
   let result = '';

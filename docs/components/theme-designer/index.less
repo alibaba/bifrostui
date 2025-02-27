@@ -6,6 +6,54 @@
   display: grid;
   gap: var(--bui-spacing-md);
   grid-template-columns: repeat(12, minmax(0, 1fr));
+
+  .operate-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .theme-mode {
+    width: fit-content;
+    border: 1px solid var(--bui-color-white);
+    border-radius: var(--bui-btn-border-radius);
+    padding: 2px;
+
+    &.no-border {
+      border: 0;
+    }
+
+    .is-active {
+      background-color: var(--bui-color-white);
+    }
+  }
+}
+
+.bui-select {
+  width: 200px;
+}
+
+.bui-select-option-container {
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 3px 5px 10px var(--bui-color-border-default);
+}
+
+.custom-wrapper {
+  display: flex;
+  align-items: center;
+
+  .edit-icon {
+    cursor: pointer;
+    margin: 0 var(--bui-spacing-sm);
+  }
+
+  .go-component {
+    cursor: pointer;
+    font-size: var(--bui-text-size-3);
+    color: var(--bui-color-info);
+    text-decoration: none;
+  }
 }
 
 .grid {

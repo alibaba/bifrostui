@@ -10,7 +10,7 @@
     "v:beta": "npx lerna version prerelease --preid=beta --force-publish --message 'Publish'",
     "pub:online": "pnpm -r publish",
     "pub:beta": "pnpm -r publish --tag beta",
-    "start": "cross-env PUBLIC_PATH=/ concurrently 'dumi dev' 'pnpm watch:theme'",
+    "start": "cross-env PUBLIC_PATH=/ concurrently 'pnpm theme:less2js' 'dumi dev' 'pnpm theme:watch'",
     "start:weapp": "node scripts/mini-program-site/index.js --type weapp",
     "start:alipay": "node scripts/mini-program-site/index.js --type alipay",
     "start:tt": "node scripts/mini-program-site/index.js --type tt",
@@ -32,8 +32,14 @@
     "prepare": "husky install",
     "md:trans": "node scripts/translate/translate.js",
     "check:credentials": "node scripts/check-account/check-credentials.js",
-    "theme": "node scripts/execute-script/theme.js",
-    "watch:theme": "node scripts/watch/theme.js"
+    "theme:js2less": "node scripts/execute-script/theme.js",
+    "theme:less2js": "node scripts/theme/collect-theme-vars.js",
+    "theme:watch": "node scripts/watch/theme.js"
+  },
+  "dependencies": {
+    "@bifrostui/icons": "workspace:*",
+    "@bifrostui/react": "workspace:*",
+    "@bifrostui/styles": "workspace:*"
   },
   "devDependencies": {
     "@ant-design/icons-svg": "4.4.2",

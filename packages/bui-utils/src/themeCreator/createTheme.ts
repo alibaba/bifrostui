@@ -1,4 +1,4 @@
-import { MountThemeOptions, ThemeCreatorOptions } from './index.types';
+import { MountThemeVarsOptions, ThemeCreatorOptions } from './index.types';
 
 const convertToCss = (styles) => {
   let result = '';
@@ -18,7 +18,7 @@ const convertToCss = (styles) => {
 /**
  * 挂载自定义主题
  */
-const mountTheme = (options: MountThemeOptions) => {
+const mountThemeVars = (options: MountThemeVarsOptions) => {
   const { theme, container } = options || {};
   const style = document.createElement('style');
   style.type = 'text/css';
@@ -43,4 +43,4 @@ const createTheme = (options: ThemeCreatorOptions) => {
   return rootContent;
 };
 
-export { createTheme, mountTheme };
+export { createTheme, mountThemeVars };

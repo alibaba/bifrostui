@@ -14,6 +14,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "strict": false,
+    "resolveJsonModule": true,
     "paths": {
       "@bifrostui/react": ["./packages/bui-core/src/index.ts"],
       "@bifrostui/icons": ["./packages/bui-icons/src/index.ts"],
