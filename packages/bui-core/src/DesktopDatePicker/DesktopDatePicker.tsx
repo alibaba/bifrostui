@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import React, { useMemo, useState, useEffect } from 'react';
 import { useValue } from '@bifrostui/utils';
 import { DesktopDatePickerProps } from './DesktopDatePicker.types';
-// import { formatDate } from './utils';
 import DesktopPicker from '../DesktopPicker';
 import useGetDatePickerContent from './useGetDatePickerContent';
 import './index.less';
@@ -52,9 +51,6 @@ const DesktopDatePicker = React.forwardRef<
     picker,
   );
 
-  // const formattedValue = formatDate(value, minDate, maxDate);
-  // const formattedDefaultValue = formatDate(defaultValue, minDate, maxDate);
-
   const [inputStr, setInputStr] = useState<string>('');
   const [useUserStr, setUseUserStr] = useState<boolean>(false);
   const [calendarValue, triggerChange] = useValue({
@@ -73,7 +69,7 @@ const DesktopDatePicker = React.forwardRef<
   const handleDatePickerInputClick = (e) => {
     e.stopPropagation();
     if (inputProps?.readOnly) {
-      if (disabled || disableOpenPicker) return;
+      if (disabled || disableOpenPicker || open !== undefined) return;
       setIsOpen(!isOpen);
       return;
     }
@@ -211,7 +207,9 @@ const DesktopDatePicker = React.forwardRef<
             onClick={handleDatePickerIconClick}
             className={`${prefixCls}-icon`}
           >
-            {icon || <DateOutlinedIcon htmlColor="#9c9ca5" />}
+            {icon || (
+              <DateOutlinedIcon htmlColor="var(--bui-color-neutral-3)" />
+            )}
           </div>
         </div>
       </DesktopPicker>

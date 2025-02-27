@@ -37,4 +37,7 @@ export interface BaseLang {
     currentType?: Record<string, string>;
     hotCityType?: Record<string, string>;
   };
+  desktopDatePicker?: {
+    month?: Record<number, string>;
+  };
 }
