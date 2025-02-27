@@ -7,6 +7,13 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@bifrostui/react':
+        specifier: workspace:*
+        version: link:packages/bui-core
+      '@bifrostui/styles':
+        specifier: workspace:*
+        version: link:packages/bui-styles
     devDependencies:
       '@ant-design/icons-svg':
         specifier: 4.4.2

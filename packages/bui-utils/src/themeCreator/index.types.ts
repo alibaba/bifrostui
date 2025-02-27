@@ -15,7 +15,7 @@ export interface ComponentItemOption {
 /**
  * 挂载自定义主题选项
  */
-export interface MountThemeOptions {
+export interface MountThemeVarsOptions {
   // 自定义主题内容
   theme: string;
   // 自定义主题挂载容器

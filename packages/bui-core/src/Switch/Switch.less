@@ -14,6 +14,8 @@
   --bui-switch-font-size: var(--bui-text-size-3);
   --bui-switch-controller-width: 18px;
   --bui-switch-controller-height: 18px;
+  --bui-switch-checked-controller-left: calc(100% - 20px);
+  --bui-switch-controller-left: 2px;
   --bui-switch-large-width: 51px;
   --bui-switch-large-height: 30px;
   --bui-switch-large-font-size: var(--bui-text-size-3);
@@ -28,23 +30,6 @@
 }
 
 .bui-switch {
-  --bg-color: var(--bui-switch-bg-color, #ccc);
-  --padding: var(--bui-switch-padding, 0);
-  --border-radius: var(--bui-switch-border-radius, 15px);
-  --small-width: var(--bui-switch-small-width, 24px);
-  --small-height: var(--bui-switch-small-height, 16px);
-  --small-font-size: var(--bui-switch-small-font-size, 9px);
-  --controller-small-width: var(--bui-switch-controller-small-width, 12px);
-  --controller-small-height: var(--bui-switch-controller-small-height, 12px);
-  --medium-width: var(--bui-switch-medium-width, 44px);
-  --medium-height: var(--bui-switch-medium-height, 22px);
-  --controller-medium-width: var(--bui-switch-controller-medium-width, 18px);
-  --controller-medium-height: var(--bui-switch-controller-medium-height, 18px);
-  --large-width: var(--bui-switch-large-width, 51px);
-  --large-height: var(--bui-switch-large-height, 30px);
-  --controller-large-width: var(--bui-switch-controller-large-width, 24px);
-  --controller-large-height: var(--bui-switch-controller-large-height, 24px);
-
   position: relative;
   display: inline-block;
   box-sizing: border-box;
@@ -57,7 +42,7 @@
 
   &::after {
     position: absolute;
-    left: 2px;
+    left: var(--bui-switch-controller-left);
     top: 2px;
     border-radius: 50%;
     background-color: #fff;
@@ -116,7 +101,7 @@
 
     &.bui-switch-checked {
       &::after {
-        left: calc(100% - 20px);
+        left: var(--bui-switch-checked-controller-left);
       }
 
       .bui-switch-inner {

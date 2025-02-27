@@ -65,7 +65,7 @@ export const defaultLight = {
     '--bui-color-danger': 'var(--bui-color-red)',
     '--bui-color-danger-light': 'var(--bui-color-red-light)',
 
-    /** 字号 */
+    /** 语义化字号 */
     '--bui-title-size-1': '21px',
     '--bui-title-size-2': '18px',
     '--bui-title-size-3': '16px',
