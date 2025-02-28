@@ -135,6 +135,8 @@ async function aiWriteTestCases(targetDirPath = '',
             // 开始尝试运行测试用例
             if (config.enableAutoFix) {
               runingTestCases(testcasePath); 
+            } else {
+              consoleTip('温馨提示：如有需要您可以在Config中启用【AI自动修复】（enableAutoFix）功能，以自动修复测试用例运行失败的问题^_^', 'warn');
             }
         }
     }

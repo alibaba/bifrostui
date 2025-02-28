@@ -90,6 +90,9 @@ function consoleTip(msg = '提示信息', type = 'err') {
     case 'info':
       console.log(chalk.blue('\n[执行信息提示]：' + msg))
       break;
+    case 'warn':
+      console.log(chalk.yellow('\n[温馨提示]：' + msg))
+      break;
     default:
       break;
   }
