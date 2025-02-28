@@ -6,7 +6,7 @@ const config = {
     // AI参考并学习的组件目录需要过滤掉的文件后缀（或文件夹）
     referenceIgnoreDir: ['.md', '.less', '__tests__', '__test__'],
     // 是否开启“AI自动多轮修正单测”的能力
-    enableAutoFix: true,
+    enableAutoFix: false,
     // 使用模型的配置
     modelCfg: {
       // 翻译MD使用的模型
