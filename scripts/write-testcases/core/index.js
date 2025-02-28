@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const {getfilesContent, openai, consoleTip} = require('./utils.js');
+const {getfilesContent, openai, consoleTip, getOldTestCasesFile} = require('./utils.js');
 const userPropmt = require('./userPropmt.js');
 const { exec } = require('child_process');
 const { input } = require('@inquirer/prompts');
@@ -14,6 +14,9 @@ let storeAssistantObj = {
 };
 let aiTryConut = 0;
 const maxAiTryNum = 10;
+let allmyFilesCodes = '';
+let currentComName = '';
+let storeStdoutInfo = '';
 
 // AI翻译markdwon
 /*
@@ -86,13 +89,25 @@ async function aiWriteTestCases(targetDirPath = '',
     if (!targetDirPath || !fs.existsSync(targetDirPath)) {
         throw new Error("请输入有效路径");
     };
-    let allStrResult = getfilesContent(targetDirPath, ignoreDir);
+    currentComName = componentName;
+    allmyFilesCodes = '';
+    let allStrResult = allmyFilesCodes = getfilesContent(targetDirPath, ignoreDir, true);
     storeAiPromptArr = [
         {"role": "system", "content": userPropmt.aiWriteTestCases.promptCfg.getSystem()},
         {"role": "user", "content": userPropmt.aiWriteTestCases.promptCfg.getUserPrompt({
             originCode: allStrResult 
         })}
     ];
+     // 判断是否是为已有的测试用例修正或补充
+     if (global.testsOldFiles.length > 0 && getOldTestCasesFile(global.testsOldFiles, componentName)) {
+      const oldTestCasesFilePath = getOldTestCasesFile(global.testsOldFiles, componentName);
+      consoleTip(`已检测现有的测试用例文件(${oldTestCasesFilePath})，正在处理中...`, 'info');
+      // 读取旧的测试用例文件内容
+      const oldTestCasesFileContent = fs.readFileSync(oldTestCasesFilePath, 'utf-8');
+      storeAssistantObj.content = oldTestCasesFileContent;
+      runingTestCases(oldTestCasesFilePath, true);
+      return;
+    };
     const completion = await openai.chat.completions.create({
         model: userPropmt.aiWriteTestCases.model,
         messages: storeAiPromptArr,
@@ -143,19 +158,29 @@ async function aiWriteTestCases(targetDirPath = '',
 }
 
 
-const runingTestCases = async (testcasePath) => {
+const runingTestCases = async (testcasePath, isOld = false, isOptimized = false) => {
+    storeStdoutInfo = '';
     // 将相对路径转换为绝对路径
     let testcaseRealPath = path.resolve(testcasePath);
-    consoleTip(`开始尝试运行测试用例,请稍后...(${testcaseRealPath})`, 'info');
+    let statusText;
+    if (isOptimized) {
+        statusText = '<补充优化后的>';
+    } else if (isOld) {
+        statusText = '<现有的>';
+    } else {
+        statusText = '';
+    }
+    consoleTip(`开始尝试运行${statusText}测试用例,请稍后...(${testcaseRealPath})`, 'info');
     exec('npm run test ' + testcaseRealPath, async (error, stdout, stderr) => {
         if (error) {
+            isOld && consoleTip('现有的测试用例文件运行产生错误：', 'warn');
             console.error(`exec error: ${error}`, typeof error);
             // console.error(`exec error message: ${error.message}`);
             // 检测到Test suite failed to run
             if (error?.message?.indexOf('Test suite failed to run') !== -1) {
               consoleTip(`检测到测试用例运行失败，AI正在进行修正，请稍后...`, 'info');
               if (checkMaxOptimizeTimes()) return;
-              aiOptimizeTask(testcaseRealPath, testcasePath, error?.message);
+              aiOptimizeTask(testcaseRealPath, testcasePath, error?.message, isOld, isOptimized);
             } else {
               let userselectVal = await input({ message: '检测到部分测试用例运行失败，AI任务将运行并进一步优化，是否继续？(y/n)：' });
               if (userselectVal === 'y') {
@@ -164,17 +189,105 @@ const runingTestCases = async (testcasePath) => {
                 // 优化任务
                 // 持续优化任务
                 consoleTip(`AI持续优化任务正在执行，请稍后...`, 'info');
-                aiOptimizeTask(testcaseRealPath, testcasePath, error?.message);
+                aiOptimizeTask(testcaseRealPath, testcasePath, error?.message, isOld, isOptimized);
               } else {
                 consoleTip('用户选择不继续优化，任务结束！您可以根据错误信息手动继续优化测试用例。', 'success');
               }
             }
             return;
         };
+        // 为现有的测试用例文件进一步补充测试用例，提高单元测试覆盖率
+        if (isOld && !isOptimized) {
+          await getTestCoverageInfo(stdout, currentComName);
+          storeStdoutInfo = stdout;
+          consoleTip('现有的测试用例文件运行成功，AI正在进行补充和优化，请稍后...', 'info');
+          optimizeTestCases(testcaseRealPath, testcasePath);
+          return;
+        } else if (isOptimized && isOld) {
+          await getTestCoverageInfo(stdout, currentComName, true);
+        };
         // console.log(`stdout: ${stdout}`);
         // console.error(`stderr: ${stderr}`);
         consoleTip('✅尝试运行测试用例成功，任务结束！您可以根据错误信息手动继续优化测试用例。', 'success');
     });
+}
+
+// 补充和优化测试用例，提高单元测试覆盖率
+const optimizeTestCases = async (testcaseRealPath, testcasePath) => {
+  // testcaseRealPath文件存在
+  if (fs.existsSync(testcaseRealPath)) {
+    const optimizePromptArr = [
+      storeAiPromptArr[0],
+      {
+        "role": "user",
+        "content": `下面我将提供已完成测试并验证正确的测试用例代码如下：\n${storeAssistantObj.content}，以及该单测代码运行输出的信息如下：\n${storeStdoutInfo}，
+        \n请阅读并分析我以下提供的对应组件代码并进一步对该测试用例代码进行优化或补充，保证该组件的单元测试覆盖率达到90%以上，对应组件代码如下：\n${allmyFilesCodes}，
+        \n请输出优化并补充后的测试用例代码，无需解释或说明：`
+      }
+    ]
+    // console.log("optimizeTestCases optimizePromptArr===>", optimizePromptArr);
+    const completion = await openai.chat.completions.create({
+        model: userPropmt.aiWriteTestCases.model,
+        messages: optimizePromptArr,
+        stream: true,
+    });
+    let testCaseResult = '';
+    for await (const chunk of completion) {
+          if (chunk.choices[0].delta.content) {
+              testCaseResult += chunk.choices[0].delta.content;
+              process.stdout.write(chunk.choices[0].delta.content);
+          };
+          if (chunk.choices[0].finish_reason === 'stop') {
+              storeAssistantObj.content = testCaseResult;
+              if (fs.existsSync(testcaseRealPath)) {
+                  fs.unlinkSync(testcaseRealPath);
+              }
+              try {
+                let _testCaseResult = testCaseResult.match(/```[a-z]*\n*([\s\S]*?)```/i)?.[1]?.trim();
+                if (_testCaseResult) {
+                    testCaseResult = _testCaseResult;
+                };
+              } catch (error) {
+                console.log('正则提取代码块失败error：', error);
+                testCaseResult = testCaseResult.replace(/```\w*\s*\n*/, '').replace(/```/, '');
+              };
+              fs.writeFileSync(testcaseRealPath, testCaseResult);
+              consoleTip('对现有测试用例优化并补充完成！', 'success');
+              // 开始尝试运行测试用例
+              runingTestCases(testcasePath, true, true);
+          }
+    }
+  } else {
+    consoleTip(`现有的测试用例文件(${testcaseRealPath})不存在，无法进行优化！任务结束！`, 'err');
+  }
+}
+
+// 通过AI从信息中提取出测试用例对应组件的单元覆盖率信息
+const getTestCoverageInfo = async (infoMsg = '', comName = '', isOptimized = false) => {
+  try {
+    if (!infoMsg || !comName) return;
+    const CoverageInfoPromptArr = [
+      storeAiPromptArr[0],
+      {
+        "role": "user",
+        "content": `下面我将提供测试用例运行信息如下：\n${infoMsg}，
+        \n请根据我提供的测试用例运行信息，提取并总结该测试用例对应${comName}组件的单元覆盖率信息，并输出该信息：`
+      }
+    ];
+    const completion = await openai.chat.completions.create({
+        model: userPropmt.aiWriteTestCases.model,
+        messages: CoverageInfoPromptArr,
+    });
+    const completionResult = completion?.choices[0]?.message?.content || '';
+    if (isOptimized) {
+      consoleTip(`AI补充优化后的${comName}组件的单元覆盖率信息如下：\n${completionResult}`, 'warn');
+    }
+    consoleTip(`AI提取出的${comName}组件的当前单元覆盖率信息如下：\n${completionResult}`, 'warn');
+    return completionResult;
+  } catch (error) {
+    console.log('getTestCoverageInfo error：', error);
+    return '';
+  }
 }
 
 // 判断是否达到最大优化次数
@@ -188,7 +301,8 @@ const checkMaxOptimizeTimes = () => {
 }
 
 // 持续优化任务
-const aiOptimizeTask = async (testcaseRealPath, testcasePath, errorMsg = '') => {
+const aiOptimizeTask = async (testcaseRealPath,
+  testcasePath, errorMsg = '', isOld = false, isOptimized = false) => {
   // 读取testcaseRealPathh文件内容
   // let testcaseContent = fs.readFileSync(testcaseRealPath, 'utf-8');
   if (errorMsg) {
@@ -233,7 +347,7 @@ const aiOptimizeTask = async (testcaseRealPath, testcasePath, errorMsg = '') => 
             fs.writeFileSync(testcaseRealPath, testCaseResult);
             consoleTip('测试用例优化生成完成！', 'success');
             // 开始尝试运行测试用例
-            runingTestCases(testcasePath);
+            runingTestCases(testcasePath, isOld, isOptimized);
         }
     }
   } else {

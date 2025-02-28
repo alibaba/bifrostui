@@ -13,11 +13,44 @@ const openai = new OpenAI(
     }
 )
 
-const getfilesContent = (targetDirPath, ignoreDir = []) => {
+
+const getTestsOldFiles = (dirPath) => {
+  let filesArr = [];
+  // 判断dirPath是否是有效的目录路径
+  if (!fs.existsSync(dirPath)) {
+    throw new Error("无效的目录路径");
+  };
+  const files = fs.readdirSync(dirPath);
+  files.forEach(file => {
+    const filePath = path.join(dirPath, file);
+    const stat = fs.statSync(filePath);
+    if (stat.isFile()) {
+      filesArr.push(filePath);
+    };
+  });
+  return filesArr;
+}
+
+const getOldTestCasesFile = (filesPathArr = [], comName = '') => {
+  if (filesPathArr.length === 0 || !comName) return null;
+  // 获取global.testsOldFiles中是否有comName.test.tsx文件
+  const oldTestCasesFile = filesPathArr.find(file => file.indexOf(`${comName}.test.tsx`) !== -1);
+  return oldTestCasesFile;
+}
+
+// 已有的测试用例的文件夹名称
+let testsOldFileNames = ['__tests__old', '__test__old'];
+// 已有的测试用例的文件夹中的文件
+global.testsOldFiles = [];
+
+const getfilesContent = (targetDirPath, ignoreDir = [], storeOldTestCases = false) => {
     // 判断targetDirPath是否存在
     if (!fs.existsSync(targetDirPath)) {
         throw new Error("该目录不存在");
     };
+    if (storeOldTestCases) {
+      global.testsOldFiles = [];
+    }
     let filesArr = [];
     // 遍历目录，将文件存到filesArr中去
     function traverseDir(dirPath) {
@@ -26,6 +59,12 @@ const getfilesContent = (targetDirPath, ignoreDir = []) => {
             const filePath = path.join(dirPath, file);
             const stat = fs.statSync(filePath);
             if (stat.isDirectory()) {
+                // 如果是testsOldFileNames中的文件夹，则将文件夹中的文件名路径存到testsOldFiles中去
+                if (testsOldFileNames.includes(file) && storeOldTestCases) {
+                  global.testsOldFiles = getTestsOldFiles(filePath);
+                  // console.log('testsOldFiles==>', global.testsOldFiles);
+                  return;
+                };
                 // 排除ignoreDir中有的文件夹
                 if (ignoreDir.includes(file)) return;
                 traverseDir(filePath);
@@ -100,4 +139,4 @@ function consoleTip(msg = '提示信息', type = 'err') {
  }
 
 
-module.exports = { getTargetFile, getfilesContent, openai, consoleTip };
+module.exports = { getTargetFile, getfilesContent, openai, consoleTip, getOldTestCasesFile };
