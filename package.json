@@ -25,6 +25,7 @@
     "ci:eslint": "pnpm run lint:script -f json -o ./.ci/eslint.json",
     "generate:mini:files": "node scripts/mini-program-site/generateMiniFiles.js",
     "lint": "pnpm run lint:script && pnpm run lint:style",
+    "aitask": "cd scripts/write-testcases && node ./task.js",
     "lint:script": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
     "lint:style": "stylelint ./**/*.less",
     "prepare": "husky install",
@@ -122,6 +123,7 @@
   },
   "version": "0.0.0",
   "dependencies": {
+    "@inquirer/prompts": "^7.3.2",
     "@tarojs/components": "^3.0.0",
     "@tarojs/helper": "^3.0.0",
     "@tarojs/plugin-platform-alipay": "^3.0.0",
@@ -136,6 +138,8 @@
     "@tarojs/shared": "^3.0.0",
     "@tarojs/taro": "^3.0.0",
     "@tarojs/taro-h5": "^3.0.0",
+    "dotenv": "^16.4.7",
+    "openai": "^4.86.1",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   }
