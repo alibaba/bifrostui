@@ -25,6 +25,7 @@
     "ci:eslint": "pnpm run lint:script -f json -o ./.ci/eslint.json",
     "generate:mini:files": "node scripts/mini-program-site/generateMiniFiles.js",
     "lint": "pnpm run lint:script && pnpm run lint:style",
+    "aitask": "cd scripts/write-testcases && node ./task.js",
     "lint:script": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
     "lint:style": "stylelint ./**/*.less",
     "prepare": "husky install",
