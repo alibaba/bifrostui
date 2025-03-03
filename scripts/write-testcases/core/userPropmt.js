@@ -108,8 +108,7 @@ const aiTaskPrompts = {
               \n 输入信息： 
                   \n- 错误信息: ${errorMsg} 
                   ${treeTipsText} 
-              \n注意事项： 1. 请确保只修改导致错误的部分，不要改动已经正确运行的代码。 2. 输出应为可以直接使用的测试用例代码。 3. 如果有多个可能的解决方案，请选择最简洁有效的一种。
-              \n输出格式：直接提供优化修正后且完整的测试用例代码，无需额外解释或说明。 `;
+              \n输出格式：直接提供优化修正后且完整的测试用例代码，无需额外解释或说明。`;
             },
             getSnapshotTest: function (yourComponentName='yourComponentName') {
                 return `import { snapshotTest } from 'testing';
