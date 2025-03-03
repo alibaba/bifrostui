@@ -113,7 +113,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
         <div
           className={clsx(
             `${prefixCls}-container`,
-            `${prefixCls}-container-${contentPosition}`,
+            `${prefixCls}-${contentPosition}`,
           )}
           style={{
             width: containerWidth,

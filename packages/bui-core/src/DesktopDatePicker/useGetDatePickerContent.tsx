@@ -6,7 +6,7 @@ import Calendar from '../Calendar';
 import './deskTopPickerContainer.less';
 import { useLocaleText } from '../locales';
 
-const prefixCls = 'bui-desktop-date-picker-container';
+const prefixCls = 'bui-desktop-date-picker-layout';
 const useGetDatePickerContent = (props) => {
   const yPatterns = ['YYYY', 'YY'];
   const mPatterns = ['MM', 'M', 'MMM', 'MMMM'];
@@ -163,21 +163,21 @@ const useGetDatePickerContent = (props) => {
   const renderTd = (its, currentData) => {
     if (yearRender && selectType === 'year') {
       return (
-        <div className={clsx(`${prefixCls}-table-td-content`)}>
+        <div className={clsx(`${prefixCls}-col-content`)}>
           {yearRender({ year: its, currentData })}
         </div>
       );
     }
     if (monthRender && selectType === 'month') {
       return (
-        <div className={clsx(`${prefixCls}-table-td-content`)}>
+        <div className={clsx(`${prefixCls}-col-content`)}>
           {monthRender({ month: its, currentData })}
         </div>
       );
     }
     return (
-      <div className={clsx(`${prefixCls}-table-td-content`)}>
-        <span className={clsx(`${prefixCls}-table-td-content-text`)}>
+      <div className={clsx(`${prefixCls}-col-content`)}>
+        <span className={clsx(`${prefixCls}-col-content-text`)}>
           {selectType === 'month' ? monthMap[its] : its}
         </span>
       </div>
@@ -188,7 +188,7 @@ const useGetDatePickerContent = (props) => {
     const dataList = selectType === 'year' ? yearList : mouthList;
     return dataList.map((item, index) => {
       return (
-        <div key={index + 1} className={clsx(`${prefixCls}-table-tr`)}>
+        <div key={index + 1} className={clsx(`${prefixCls}-row`)}>
           {item.map((its, idx) => {
             let disabledClick = false;
             // 判断年份是否在合理区间
@@ -215,13 +215,13 @@ const useGetDatePickerContent = (props) => {
             return (
               <div
                 key={idx + 1}
-                className={clsx(`${prefixCls}-table-td`, {
-                  [`${prefixCls}-table-td-active`]:
+                className={clsx(`${prefixCls}-col`, {
+                  [`${prefixCls}-col-active`]:
                     (selectType === 'year'
                       ? dayjs(calendarValue).year()
                       : dayjs(calendarValue).month() + 1) === its &&
                     !disabledClick,
-                  [`${prefixCls}-table-td-disabled`]: disabledClick,
+                  [`${prefixCls}-col-disabled`]: disabledClick,
                 })}
                 onClick={(e) => {
                   if (!disabledClick) {

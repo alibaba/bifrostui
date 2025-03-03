@@ -122,7 +122,7 @@ const DesktopDateTimePicker = React.forwardRef<
   const { desktopTimePicker } = useGetTimePickerContent({
     views: views.filter(
       (item) => item !== 'day' && item !== 'month' && item !== 'year',
-    ),
+    ) as ('hour' | 'minute' | 'second')[],
     minTime: dayjs(minDate),
     maxTime: dayjs(maxDate),
     setIsOpen,
@@ -233,7 +233,7 @@ const DesktopDateTimePicker = React.forwardRef<
             type="text"
             inputMode="text"
             ref={inputRef}
-            className={clsx(`${prefixCls}-content`, {
+            className={clsx(`${prefixCls}-input`, {
               [inputProps?.className]: inputProps?.className,
             })}
             onBlur={() => setUseUserStr(false)}

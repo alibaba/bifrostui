@@ -1,7 +1,7 @@
 @import '@bifrostui/styles/mixins/index.less';
-@class-prefix-date-picker-container: ~'bui-desktop-date-picker-container';
+@class-prefix-date-picker-layout: ~'bui-desktop-date-picker-layout';
 
-.@{class-prefix-date-picker-container} {
+.@{class-prefix-date-picker-layout} {
   &-main {
     --container-main-radius: 3px;
     --container-content-padding: 10px 16px;
@@ -64,19 +64,14 @@
 
     --padding: var(--bui-calendar-padding, 6px 12px 7px);
     padding: var(--padding);
-
-    & &-table {
-      border: none;
-      border-radius: 0;
-    }
   }
 
-  &-table-tr {
+  &-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
 
-  &-table-td {
+  &-col {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -102,16 +97,12 @@
     }
   }
 
-  &-table-td-active &-table-td {
-    &-content {
-      color: #000;
-      background-color: #ffc7da;
-    }
+  &-col-active &-col-content {
+    color: #000;
+    background-color: #ffc7da;
   }
 
-  &-table-td-disabled &-table-td {
-    &-content {
-      color: #ccc;
-    }
+  &-col-disabled &-col-content {
+    color: #ccc;
   }
 }
