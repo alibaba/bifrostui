@@ -58,11 +58,8 @@ const aiTaskPrompts = {
                     \n- 参考组件的代码：${allStrResult} 
                     \n- 参考组件的测试用例代码：${testCode} 
                 \n要求： 1. 保证所编写的测试用例能够覆盖目标组件至少90%的功能。 2. 确保API、函数、属性等关键部分得到全面覆盖。 3. 测试用例应遵循与参考案例相同的编码风格和结构。 
-                \n输出格式：直接提供完整的测试用例代码，无需额外解释或说明。 
-                \n注意事项： 
-                     \n- 保持测试用例简洁明了，易于理解和维护。 
-                     \n- 使用与参考测试用例一致的命名约定和技术栈。 
-                     \n- 如果可能，请考虑边界条件和异常情况以增强测试的健壮性。`;
+                \n注意事项： 1.保持测试用例简洁明了，易于理解和维护。 2.使用与参考测试用例一致的命名约定和技术栈。 3.如果可能，请考虑边界条件和异常情况以增强测试的健壮性。
+                \n输出要求：你只需要直接输出完整测试用例代码，无需任何解释或说明。`;
                 return returnStr;
             },
             getUserPrompt: function (args) {
@@ -77,15 +74,10 @@ const aiTaskPrompts = {
                       \n2. **全面性**：覆盖组件的所有主要功能点，包括但不限于各种输入情况下的表现。 
                       \n3. **独立性**：每个测试用例应尽可能独立运行，减少对其他测试用例结果的依赖。 
                       \n4. **可读性**：测试用例应当易于理解和维护，适当添加注释以提高代码可读性。 
-                \n输出格式：直接提供完整的测试用例代码，无需额外解释或说明。 
+                \n输出格式要求：你只需要直接输出完整测试用例代码，无需任何解释或说明。
                 \n请严格按照上述要求编写测试用例${treeTipsText() ? '，并在必要时参考提供的项目树形结构图来理解组件在整个项目中的位置及其与其他部分的关系' : ''}。`
                 if (config?.customPromptCfg?.prompt) {
-                  if (config.customPromptCfg.replaceDefaultPrompt) {
-                    userStr = `${config.customPromptCfg.prompt}：\n${args.originCode}`;
-                  };
-                  // else {
-                  //   userStr = `${defaultPrompt},\n${config.customPromptCfg.prompt}：\n${args.originCode}`;
-                  // };
+                  userStr = `${config.customPromptCfg.prompt}：\n${args.originCode}`;
                 };
                 // console.log('userStr===>', userStr);
                 return userStr;
@@ -100,7 +92,7 @@ const aiTaskPrompts = {
                   \n- 已完成测试并验证正确的测试用例代码: ${testCaseCode}
                   \n- 该单测代码运行输出的信息: ${storeStdoutInfo}
                   \n- 对应组件的源代码: ${allmyFilesCodes}
-              \n输出格式：直接提供优化补充后且完整的测试用例代码，无需额外解释或说明。 `;
+              \n输出格式要求：你只需要直接输出优化补充后且完整的测试用例代码，无需任何解释或说明。`;
             },
             getTestCoverageInfoPrompt: function (args) {
               const {infoMsg, comName} = args;
@@ -111,7 +103,8 @@ const aiTaskPrompts = {
                   \n- 测试用例运行信息: ${infoMsg} 
                   \n- 组件名称: ${comName} 输出要求： 
                   \n- 请从${infoMsg}中提取与${comName}组件相关的单元测试覆盖率数据。 
-                  \n- 对提取的数据进行整理和总结。 - 清晰地呈现${comName}组件的单元测试覆盖率结果。 
+                  \n- 对提取的数据进行整理和总结。
+                  \n- 清晰地呈现${comName}组件的单元测试覆盖率结果。 
               \n注意事项： 1. 确保准确识别${comName}组件的相关信息。 2. 提供的信息应当直接反映该组件的测试覆盖情况，包括但不限于代码行覆盖率、分支覆盖率等关键指标。 3. 输出格式应简洁明了，便于理解。`;
             },
             getAiOptimizeTaskPrompt: function (args) {
@@ -123,7 +116,7 @@ const aiTaskPrompts = {
               \n 输入信息： 
                   \n- 错误信息: ${errorMsg} 
                   ${(treeTipsText())} 
-              \n输出格式：直接提供优化修正后且完整的测试用例代码，无需额外解释或说明。`;
+              \n输出格式要求：你只需要直接输出优化修正后且完整的测试用例代码，无需任何解释或说明。`;
             },
             getSnapshotTest: function (yourComponentName='yourComponentName') {
                 return `import { snapshotTest } from 'testing';
