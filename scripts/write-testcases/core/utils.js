@@ -256,4 +256,13 @@ const getCurrProjectTree = () => {
 }
 
 
-module.exports = { getTargetFile, getfilesContent, openai, consoleTip, getOldTestCasesFile, getCurrProjectTree };
+const getProjectName = () => {
+  let projectPath = findProjectRoot(__dirname) || '';
+  if (projectPath) {
+    return projectPath.split(path.sep).pop();
+  };
+  return null;
+}
+
+
+module.exports = { getTargetFile, getfilesContent, openai, consoleTip, getOldTestCasesFile, getCurrProjectTree, getProjectName };

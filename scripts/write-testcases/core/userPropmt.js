@@ -1,6 +1,6 @@
 const fs = require('fs');
 const config = require('../config.js');
-const {getfilesContent, getTargetFile, getCurrProjectTree} = require('./utils.js');
+const {getfilesContent, getTargetFile, getCurrProjectTree, getProjectName} = require('./utils.js');
 const path = require('path');
 
 let enableTree = true;
@@ -15,7 +15,13 @@ const treeTipsText = () => {
 }
 const getStoreTestCasesPathPrompt = () => {
   if (!global.storeTestCasesPath) return '';
-  const returnPrompt = `- 当前测试用例代码文件所在的目录是：${path.resolve(global.storeTestCasesPath)}.\n`;
+  let realPath = path.resolve(global.storeTestCasesPath);
+  const project = getProjectName();
+  let tempPath = '';
+  if (realPath && project && realPath.indexOf(project) !== -1) {
+    tempPath = project + '' + realPath.split(project)[1];
+  }
+  const returnPrompt = `- 当前测试用例代码文件所在的目录是：${tempPath}\n`;
   return returnPrompt;
 }
 
