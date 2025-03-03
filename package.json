@@ -27,7 +27,6 @@
     "lint": "pnpm run lint:script && pnpm run lint:style",
     "lint:script": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
     "lint:style": "stylelint ./**/*.less",
-    "aitask": "cd scripts/write-testcases && node ./task.js",
     "prepare": "husky install",
     "docs:gen": "node scripts/generate-md/generateMd.mjs",
     "docs:i18n": "node scripts/translate/translate.mjs",
