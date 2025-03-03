@@ -3,7 +3,7 @@ const config = require('../config.js');
 const {getfilesContent, getTargetFile, getCurrProjectTree, getProjectName} = require('./utils.js');
 const path = require('path');
 
-let enableTree = true;
+let enableTree = false;
 // if (config.modelCfg.writeModel == 'qwen-long') {
 //   console.log('当前使用qwen-long模型，将生成项目树');
 //   enableTree = true;

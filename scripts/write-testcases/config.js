@@ -12,7 +12,7 @@ const config = {
       // 翻译MD使用的模型
       translateModel: 'qwen-coder-plus-latest',
       // 写单元测试使用的模型（测试效果较好的模型qwen-long、qwen-coder-plus、deepseek-v3、qwen-max），更多可用模型参考：https://bailian.console.aliyun.com/?spm=5176.12818093_47.resourceCenter.6.57ea16d0lfCepy#/model-market
-      writeModel: 'qwen-long'
+      writeModel: 'qwen-coder-plus'
     },
     // ！！！注意：正常使用下面的配置即可，不需要修改；除非你非常清楚你自己在做什么
     // ！！！注意：正常使用下面的配置即可，不需要修改；除非你非常清楚你自己在做什么
