@@ -26,7 +26,7 @@ const DesktopTimePickerList = React.forwardRef<
 
   useEffect(() => {
     if (!ulRef.current) return;
-    const elementName = `.${prefixCls}-table-${type}-ul-li-active`;
+    const elementName = `.${prefixCls}-${type}-active`;
     if (!isMini) {
       handleScroll(elementName, setScrollTop);
     } else {
@@ -40,7 +40,7 @@ const DesktopTimePickerList = React.forwardRef<
     <ScrollView
       scrollY
       scrollWithAnimation
-      className={clsx(`${prefixCls}-table-${type}-ul`)}
+      className={clsx(`${prefixCls}-${type}-ul`)}
       key={type}
       scrollTop={scrollTop}
       scrollAnimationDuration={200}
@@ -52,10 +52,9 @@ const DesktopTimePickerList = React.forwardRef<
         return (
           <div
             key={index}
-            className={clsx(`${prefixCls}-table-${type}-ul-li`, {
-              [`${prefixCls}-table-${type}-ul-li-active`]:
-                value === selectedValue,
-              [`${prefixCls}-table-${type}-ul-li-disabled`]: disabled,
+            className={clsx(`${prefixCls}-${type}-li`, {
+              [`${prefixCls}-${type}-active`]: value === selectedValue,
+              [`${prefixCls}-${type}-disabled`]: disabled,
             })}
             onClick={(e) => {
               handleClick(e, disabled, item);

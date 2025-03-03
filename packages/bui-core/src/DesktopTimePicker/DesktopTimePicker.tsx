@@ -5,10 +5,11 @@ import clsx from 'clsx';
 import React, { useMemo, useState, useEffect } from 'react';
 import { useValue } from '@bifrostui/utils';
 import { TimePickerProps, TimeSteps, Views } from './DesktopTimePicker.types';
-import './index.less';
 import { isDisabledTime, dateToDayjs } from './utils/utils';
 import DesktopPicker from '../DesktopPicker';
 import useGetTimePickerContent from './useGetTimePickerContent';
+
+import './index.less';
 
 dayjs.extend(customParseFormat);
 
@@ -33,12 +34,8 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       open,
       format = ampm ? 'hh:mm:ss A' : 'HH:mm:ss',
       disabledTimeView = () => ({
-        hour: () => {
-          return [];
-        },
-        minute: () => {
-          return [];
-        },
+        hour: () => [],
+        minute: () => [],
         second: () => [],
       }),
       minTime,
@@ -56,19 +53,20 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [inputStr, setInputStr] = useState<string>('');
     const [useUserStr, setUseUserStr] = useState<boolean>(false);
+    const [isInvalid, setIsInvalid] = useState<boolean>(false);
+
     // 选中时间，value和defaultValue优先级高于onChange
     const [timeValue, triggerChange] = useValue({
       value,
       defaultValue,
       onChange,
     });
-    const [temptValue, setTemptValue] = useState(timeValue);
 
     // 点击时间选择器icon
     const handleDatePickerIconClick = (e) => {
       e.stopPropagation();
       // 禁用或者禁用打开日期选择器,点击icon无反馈
-      if (disabled || disableOpenPicker) return;
+      if (disabled || disableOpenPicker || open !== undefined) return;
       setIsOpen(!isOpen);
     };
     // 点击输入框
@@ -83,7 +81,7 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       setIsOpen(false);
     };
 
-    const { desktopTimePicker } = useGetTimePickerContent({
+    const { desktopTimePanel } = useGetTimePickerContent({
       views: Array.from(
         new Set(views.filter((view) => allowedViews.includes(view))),
       ),
@@ -99,6 +97,7 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       onOpen,
       closeOnSelect,
       timeRender,
+      setIsInvalid,
     });
 
     const onInputChange = (e) => {
@@ -154,25 +153,14 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
 
     const onMount = () => {
       onOpen?.();
-      setTemptValue(timeValue);
     };
     const unMounted = () => {
       onClose?.();
-      if (
-        isDisabledTime(
-          dateToDayjs(timeValue),
-          dateToDayjs(minTime),
-          dateToDayjs(maxTime),
-          disabledTimeView,
-        )
-      ) {
-        triggerChange(undefined, temptValue);
-      }
     };
 
     // placeholder优先级最高，format次之，最后兜底hh:mm:ss
     const showPlaceholder = useMemo(
-      () => placeholder || format || 'hh:mm:ss',
+      () => placeholder || format,
       [placeholder, format],
     );
 
@@ -199,6 +187,7 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
         className={clsx(prefixCls, className, {
           [`${prefixCls}-disabled`]: disabled,
           [`${prefixCls}-active`]: isOpen,
+          [`${prefixCls}-invalid`]: isInvalid,
         })}
         ref={ref}
       >
@@ -210,12 +199,13 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
           }}
           onMount={onMount}
           onUnmounted={unMounted}
-          content={desktopTimePicker()}
+          content={desktopTimePanel()}
           inheritWidth={false}
           {...DesktopPickerProps}
         >
           <div className={`${prefixCls}-container`}>
             <input
+              {...inputProps}
               aria-invalid
               autoComplete="off"
               placeholder={showPlaceholder}
@@ -226,7 +216,6 @@ const DesktopTimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
                 [inputProps?.className]: inputProps?.className,
               })}
               onBlur={() => setUseUserStr(false)}
-              {...inputProps}
               onClick={handleTimePickerInputClick}
               onChange={onInputChange}
               value={inputValue}

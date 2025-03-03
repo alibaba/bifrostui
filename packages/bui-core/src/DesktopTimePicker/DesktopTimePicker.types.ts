@@ -3,8 +3,6 @@ import { OverrideProps } from '@bifrostui/types';
 import { Dayjs } from 'dayjs';
 import { DesktopPickerProps } from '../DesktopPicker';
 
-export type ITimePickerValue = Dayjs | null;
-
 export type Views = Array<'hour' | 'minute' | 'second'>;
 export type ViewType = 'hour' | 'minute' | 'second';
 export type ViewTypeWithMeridiem = ViewType | 'meridiem';
@@ -114,7 +112,6 @@ export type TimePickerProps<
   D
 >;
 
-// type DisabledTime = (selectedDate: Dayjs) => {
 export type DisabledTimeView = () => {
   hour?: () => number[];
   minute?: (selectedHour: number) => number[];
@@ -162,6 +159,10 @@ export interface TimePickerContentProps {
    * 自定义时间单元格渲染内容
    */
   timeRender?: (item: ITimeInstance) => React.ReactNode;
+  /**
+   * 校验timeValue是否有效
+   */
+  setIsInvalid: (a: boolean) => void;
 }
 
 /** 时间面板单元格对象 */

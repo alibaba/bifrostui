@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ViewTypeWithMeridiem,
   TimePickerContentProps,
@@ -24,12 +24,8 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
     },
     ampm = false,
     disabledTimeView = () => ({
-      hour: () => {
-        return [];
-      },
-      minute: () => {
-        return [];
-      },
+      hour: () => [],
+      minute: () => [],
       second: () => [],
     }),
     minTime,
@@ -39,7 +35,16 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
     setIsOpen,
     triggerChange,
     timeRender,
+    setIsInvalid,
   } = props;
+
+  useEffect(() => {
+    if (isDisabledTime(timeValue, minTime, maxTime, disabledTimeView)) {
+      setIsInvalid(true);
+    } else {
+      setIsInvalid(false);
+    }
+  }, [timeValue]);
 
   // 获取时间面板数据
   const getViewListData = (type: ViewTypeWithMeridiem, timeStep = 1) => {
@@ -233,7 +238,7 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
     });
   };
 
-  const desktopTimePicker = () => {
+  const desktopTimePanel = () => {
     return (
       <div
         className={clsx(`${prefixCls}-main`)}
@@ -247,7 +252,7 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
   };
 
   return {
-    desktopTimePicker,
+    desktopTimePanel,
   };
 };
 export default useGetTimePickerContent;
