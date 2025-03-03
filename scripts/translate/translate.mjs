@@ -1,7 +1,8 @@
 /**
- * 需先在根目录新建.env文件，参考文档方法一（项目级别配置）https://aliyuque.antfin.com/tppwd/tech/zmlkl8g7bdggo6rg
- * 使用LLM翻译md文件
- * 也通过 --file 指定翻译特定的markdown文件
+ * 使用前需要在env.process中配置IDEALAB_API_KEY和IDEALAB_BASE_URL
+ * @see https://aliyuque.antfin.com/tppwd/tech/zmlkl8g7bdggo6rg
+ * @example node scripts/generate-md/generateMd.mjs
+ * @example node scripts/translate/translate.mjs --all
  * @example node scripts/translate/translate.mjs --file ./packages/bui-icons/src/index.zh-CN.md
  */
 
@@ -19,8 +20,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const openai = new OpenAI({
-  apiKey: process.env.DASHSCOPE_API_KEY,
-  baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+  apiKey: process.env.IDEALAB_API_KEY,
+  baseURL: process.env.IDEALAB_BASE_URL,
 });
 
 async function translateMarkdownFile(inputFilePath, outputFilePath) {
@@ -28,9 +29,8 @@ async function translateMarkdownFile(inputFilePath, outputFilePath) {
     const markdownContent = fs.readFileSync(inputFilePath, 'utf-8');
     fs.writeFileSync(outputFilePath, '');
 
-    const spinner = ora('AI 翻译markdown文档中...').start();
     const completionStream = await openai.chat.completions.create({
-      model: 'qwen-max',
+      model: 'gpt-4o-0513',
       messages: [
         {
           role: 'system',
@@ -65,19 +65,68 @@ async function translateMarkdownFile(inputFilePath, outputFilePath) {
       }
     }
     console.log(`\n翻译成功并已追加到 ${outputFilePath}`);
-    spinner.stop();
   } catch (error) {
     console.error('翻译过程中发生错误:', error);
   }
 }
 
-async function main() {
-  let componentName = '';
-  while (!componentName) {
-    componentName = await input({ message: '组件名称' });
+/**
+ * 获取所有组件目录
+ * @returns {string[]} 组件目录路径数组
+ */
+function getAllComponentDirectories() {
+  const componentsDir = path.resolve(__dirname, '../../packages/bui-core/src');
+  return fs
+    .readdirSync(componentsDir, { withFileTypes: true })
+    .filter((dirent) => dirent.isDirectory())
+    .map((dirent) => path.join(componentsDir, dirent.name));
+}
+
+/**
+ * 翻译所有组件的文档
+ */
+async function translateAllComponents() {
+  const componentDirs = getAllComponentDirectories();
+  const spinner = ora('准备翻译所有组件文档...').start();
+
+  let translatedCount = 0;
+  let skippedCount = 0;
+
+  for (const dir of componentDirs) {
+    const inputFilePath = path.join(dir, 'index.zh-CN.md');
+    const outputFilePath = path.join(dir, 'index.en-US.md');
+
+    if (fs.existsSync(inputFilePath)) {
+      spinner.text = `正在翻译 ${path.basename(dir)} 组件文档...`;
+      await translateMarkdownFile(inputFilePath, outputFilePath);
+      translatedCount++;
+    } else {
+      skippedCount++;
+    }
   }
 
+  spinner.succeed(
+    `翻译完成！成功翻译 ${translatedCount} 个组件文档，跳过 ${skippedCount} 个组件（无中文文档）`,
+  );
+}
+
+async function main() {
   const argv = minimist(process.argv.slice(2));
+  debugger;
+
+  // 处理 --all 参数
+  if (argv.all) {
+    await translateAllComponents();
+    return;
+  }
+
+  // 原有逻辑
+  let componentName = '';
+  if (!argv.file) {
+    while (!componentName) {
+      componentName = await input({ message: '组件名称' });
+    }
+  }
 
   let inputFilePath;
   let outputFilePath;
