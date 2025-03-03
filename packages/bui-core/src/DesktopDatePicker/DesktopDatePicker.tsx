@@ -195,7 +195,7 @@ const DesktopDatePicker = React.forwardRef<
             type="text"
             inputMode="text"
             ref={inputRef}
-            className={clsx(`${prefixCls}-content`, {
+            className={clsx(`${prefixCls}-input`, {
               [inputProps?.className]: inputProps?.className,
             })}
             onBlur={() => setUseUserStr(false)}
