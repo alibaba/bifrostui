@@ -43,7 +43,7 @@ const DesktopTimePickerList = React.forwardRef<
       className={clsx(`${prefixCls}-${type}-ul`)}
       key={type}
       scrollTop={scrollTop}
-      scrollAnimationDuration={200}
+      scrollAnimationDuration={300}
       ref={ulRef}
     >
       {dataList.map((item, index) => {
