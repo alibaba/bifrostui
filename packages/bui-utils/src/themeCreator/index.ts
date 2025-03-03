@@ -1,3 +1,3 @@
 export * from './createTheme';
-export * from './mergeThemeVars';
+export * from './cssVarToValue';
 export * from './index.types';
