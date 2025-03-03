@@ -101,7 +101,7 @@ async function aiWriteTestCases(targetDirPath = '',
      // 判断是否是为已有的测试用例修正或补充
      if (global.testsOldFiles.length > 0 && getOldTestCasesFile(global.testsOldFiles, componentName)) {
       const oldTestCasesFilePath = getOldTestCasesFile(global.testsOldFiles, componentName);
-      consoleTip(`已检测现有的测试用例文件(${oldTestCasesFilePath})，正在处理中...`, 'info');
+      consoleTip(`已检测到现有的测试用例文件(${oldTestCasesFilePath})，正在处理中...`, 'info');
       // 读取旧的测试用例文件内容
       const oldTestCasesFileContent = fs.readFileSync(oldTestCasesFilePath, 'utf-8');
       storeAssistantObj.content = oldTestCasesFileContent;
@@ -185,7 +185,7 @@ const runingTestCases = async (testcasePath, isOld = false, isOptimized = false)
               let userselectVal = await input({ message: '检测到部分测试用例运行失败，AI任务将运行并进一步优化，是否继续？(y/n)：' });
               if (userselectVal === 'y') {
                 if (checkMaxOptimizeTimes()) return;
-                consoleTip('优化任记数：' + aiTryConut, 'info');
+                consoleTip('优化任务记数：' + aiTryConut, 'info');
                 // 优化任务
                 // 持续优化任务
                 consoleTip(`AI持续优化任务正在执行，请稍后...`, 'info');
@@ -199,6 +199,8 @@ const runingTestCases = async (testcasePath, isOld = false, isOptimized = false)
         // 为现有的测试用例文件进一步补充测试用例，提高单元测试覆盖率
         if (isOld && !isOptimized) {
           await getTestCoverageInfo(stdout, currentComName);
+          let next = await input({ message: '请阅读以上信息提示，是否需要AI继续补充优化现有的测试用例？(y/n)：' });
+          if (next != 'y') return consoleTip('任务取消成功！', 'success');
           storeStdoutInfo = stdout;
           consoleTip('现有的测试用例文件运行成功，AI正在进行补充和优化，请稍后...', 'info');
           optimizeTestCases(testcaseRealPath, testcasePath);
@@ -220,9 +222,11 @@ const optimizeTestCases = async (testcaseRealPath, testcasePath) => {
       storeAiPromptArr[0],
       {
         "role": "user",
-        "content": `下面我将提供已完成测试并验证正确的测试用例代码如下：\n${storeAssistantObj.content}，以及该单测代码运行输出的信息如下：\n${storeStdoutInfo}，
-        \n请阅读并分析我以下提供的对应组件代码并进一步对该测试用例代码进行优化或补充，保证该组件的单元测试覆盖率达到90%以上，对应组件代码如下：\n${allmyFilesCodes}，
-        \n请输出优化并补充后的测试用例代码，无需解释或说明：`
+        "content": userPropmt.aiWriteTestCases.promptCfg.getOptimizePrompt({
+          testCaseCode: storeAssistantObj.content,
+          storeStdoutInfo,
+          allmyFilesCodes,
+        })
       }
     ]
     // console.log("optimizeTestCases optimizePromptArr===>", optimizePromptArr);
@@ -270,8 +274,10 @@ const getTestCoverageInfo = async (infoMsg = '', comName = '', isOptimized = fal
       storeAiPromptArr[0],
       {
         "role": "user",
-        "content": `下面我将提供测试用例运行信息如下：\n${infoMsg}，
-        \n请根据我提供的测试用例运行信息，提取并总结该测试用例对应${comName}组件的单元覆盖率信息，并输出该信息：`
+        "content": userPropmt.aiWriteTestCases.promptCfg.getTestCoverageInfoPrompt({
+          infoMsg,
+          comName,
+        })
       }
     ];
     const completion = await openai.chat.completions.create({
@@ -281,8 +287,9 @@ const getTestCoverageInfo = async (infoMsg = '', comName = '', isOptimized = fal
     const completionResult = completion?.choices[0]?.message?.content || '';
     if (isOptimized) {
       consoleTip(`AI补充优化后的${comName}组件的单元覆盖率信息如下：\n${completionResult}`, 'warn');
+    } else {
+      consoleTip(`AI提取出的${comName}组件的当前单元覆盖率信息如下：\n${completionResult}`, 'warn'); 
     }
-    consoleTip(`AI提取出的${comName}组件的当前单元覆盖率信息如下：\n${completionResult}`, 'warn');
     return completionResult;
   } catch (error) {
     console.log('getTestCoverageInfo error：', error);
@@ -310,7 +317,9 @@ const aiOptimizeTask = async (testcaseRealPath,
     // 构造新一轮的prompt
     const newUserPrompt = {
       role: 'user',
-      content: `运行你给出的测试用例失败并报错，请根据以下错误信息，继续优化并修正你给出的测试用例：\n${errorMsg}，\n请输出优化并修正后的测试用例代码，无需解释或说明：`,
+      content: userPropmt.aiWriteTestCases.promptCfg.getAiOptimizeTaskPrompt({
+        errorMsg
+      }),
     };
     const newPromptArr = [
       ...storeAiPromptArr,

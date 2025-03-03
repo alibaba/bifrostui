@@ -138,5 +138,122 @@ function consoleTip(msg = '提示信息', type = 'err') {
   return false;
  }
 
+function findProjectRoot(currentDir) {
+  const rootIndicator = 'package.json'; // 通常使用 package.json 作为项目根目录的标识符
+  let currentPath = currentDir;
+  while (!fs.existsSync(path.join(currentPath, rootIndicator))) {
+    const parentPath = path.resolve(currentPath, '..');
+    // 如果已经到了根路径仍然没有找到，退出循环
+    if (parentPath === currentPath) {
+      return null;
+    }
+    currentPath = parentPath;
+  }
+  return currentPath;
+}
 
-module.exports = { getTargetFile, getfilesContent, openai, consoleTip, getOldTestCasesFile };
+function getProjectTreeIgnore(rootDir, ignoreDirs = ['node_modules', 'scripts',]) {
+  function buildTree(currentPath) {
+    let stats;
+    try {
+      stats = fs.statSync(currentPath);
+    } catch (err) {
+      // 如果文件不存在或者不能读取，返回 null
+      if (err.code === 'ENOENT') {
+        return null;
+      }
+      throw err;
+    }
+    const tree = {
+      name: path.basename(currentPath),
+      path: currentPath,
+      type: stats.isDirectory() ? 'directory' : 'file',
+    };
+    if (stats.isDirectory()) {
+      const directoryName = path.basename(currentPath);
+      // 如果目录在忽略列表中，直接返回 null
+      if (ignoreDirs.includes(directoryName)) {
+        return null;
+      }
+      const children = fs.readdirSync(currentPath).map(child =>
+        buildTree(path.join(currentPath, child))
+      );
+      // 过滤掉 null 的项（即无法读取的项）
+      tree.children = children.filter(child => child !== null);
+    }
+    return tree;
+  }
+  return buildTree(rootDir);
+}
+
+
+function getFilteredProjectTree(rootDir, includeDirs = ['packages']) {
+  function buildTree(currentPath) {
+    let stats;
+    try {
+      stats = fs.statSync(currentPath);
+    } catch (err) {
+      if (err.code === 'ENOENT') {
+        return null;
+      }
+      throw err;
+    }
+    const tree = {
+      name: path.basename(currentPath),
+      path: currentPath,
+      type: stats.isDirectory() ? 'directory' : 'file',
+    };
+    if (stats.isDirectory()) {
+      let children = fs.readdirSync(currentPath).map(child =>
+        buildTree(path.join(currentPath, child))
+      );
+      // 过滤掉 null、隐藏文件和目录，以及 node_modules
+      children = children.filter(child => child !== null && !child.name.startsWith('.') && child.name !== 'node_modules');
+      tree.children = children;
+    }
+    return tree;
+  }
+
+  const result = { name: path.basename(rootDir), type: 'directory', children: [] };
+  includeDirs.forEach(dir => {
+    const dirPath = path.join(rootDir, dir);
+    const subTree = buildTree(dirPath);
+    if (subTree) {
+      result.children.push(subTree);
+    }
+  });
+  return result;
+}
+
+
+function getCompressedTreeString(tree) {
+  function buildString(node, depth = 0) {
+    const indent = '  '.repeat(depth);
+    let result = `${indent}${node.type}: ${node.name}\n`;
+    if (node.children && node.children.length > 0) {
+      node.children.forEach(child => {
+        result += buildString(child, depth + 1);
+      });
+    }
+    return result;
+  }
+  return buildString(tree);
+}
+
+const getCurrProjectTree = () => {
+  const currentDir = __dirname; // 你可以从你的特定代码位置开始
+  const projectRoot = findProjectRoot(currentDir);
+  if (projectRoot) {
+    console.log('项目根目录:', projectRoot);
+    const tree = getFilteredProjectTree(projectRoot);
+    // console.log(JSON.stringify(tree, null, 2));
+    // console.log(getCompressedTreeString(tree));
+    return getCompressedTreeString(tree);
+  } else {
+    console.log('未能找到项目根目录');
+    return null;
+  }
+}
+
+
+module.exports = { getTargetFile, getfilesContent, openai, consoleTip, getOldTestCasesFile, getCurrProjectTree };
