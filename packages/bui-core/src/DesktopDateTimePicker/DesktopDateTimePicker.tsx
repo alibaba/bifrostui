@@ -47,6 +47,7 @@ const DesktopDateTimePicker = React.forwardRef<
   } = props;
   // 是否展开日期选择
   const [isOpen, setIsOpen] = useState<boolean>(open);
+  const [isInvalid, setIsInvalid] = useState<boolean>(false);
 
   // 获取选择类型
   const getPicker = useMemo(() => {
@@ -119,7 +120,7 @@ const DesktopDateTimePicker = React.forwardRef<
       borderRadius: '3px 0px 0px 3px',
     },
   });
-  const { desktopTimePicker } = useGetTimePickerContent({
+  const { desktopTimePanel } = useGetTimePickerContent({
     views: views.filter(
       (item) => item !== 'day' && item !== 'month' && item !== 'year',
     ) as ('hour' | 'minute' | 'second')[],
@@ -129,6 +130,7 @@ const DesktopDateTimePicker = React.forwardRef<
     triggerChange,
     closeOnSelect,
     timeValue: dayjs(calendarValue),
+    setIsInvalid,
   });
 
   const onInputChange = (e) => {
@@ -199,6 +201,7 @@ const DesktopDateTimePicker = React.forwardRef<
       className={clsx(prefixCls, className, {
         [`${prefixCls}-disabled`]: disabled,
         [`${prefixCls}-active`]: isOpen,
+        [`${prefixCls}-invalid`]: isInvalid,
       })}
       ref={ref}
     >
@@ -218,7 +221,7 @@ const DesktopDateTimePicker = React.forwardRef<
             }}
           >
             {desktopDatePicker()}
-            {desktopTimePicker()}
+            {desktopTimePanel()}
           </div>
         }
         {...DesktopPickerProps}
