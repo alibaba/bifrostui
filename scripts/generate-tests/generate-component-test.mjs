@@ -30,7 +30,6 @@ const srcDirectory = path.join(__dirname, '../../packages/bui-core/src');
  * @returns {Object} 组件信息
  */
 async function extractComponentInfo(componentName) {
-  debugger;
   const componentDir = path.join(srcDirectory, componentName);
 
   if (!fs.existsSync(componentDir)) {

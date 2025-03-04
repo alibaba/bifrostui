@@ -30,7 +30,7 @@
     "prepare": "husky install",
     "docs:gen": "node scripts/generate-md/generateMd.mjs",
     "docs:i18n": "node scripts/translate/translate.mjs",
-    "tests:gen": "node scripts/generate-md/generateTests.mjs",
+    "tests:gen": "node scripts/generate-tests/generate-component-test.mjs",
     "check:credentials": "node scripts/check-account/check-credentials.js"
   },
   "devDependencies": {
