@@ -172,6 +172,22 @@ $ pnpm --filter @bifrostui/icons build
 - `TypeScript`：TypeScript 风格也是 [Airbnb JavaScript Style](https://github.com/airbnb/javascript) 的变种，详情请看相关包目录下的 `eslint.json` 和 `tsconfig.json`。
 - 样式：遵循相关包目录下的 `.stylelintrc` 风格。
 
+## AI辅助
+
+- 组件markdown文档自动生成：`pnpm docs:gen`
+- 组件测试用例自动生成：`pnpm tests:gen`
+- 组件文档国际化：`pnpm docs:i18n`
+
+AI辅助使用到了[claude37_sonnet](https://www.anthropic.com/claude)和[gpt-4o-0513](https://openai.com/index/gpt-4/)模型，使用前请申请对应的API Key，并配置好对应的环境变量：
+
+```bash
+# 在项目根目录新建 `.env` 文件，并添加以下内容：
+IDEALAB_API_KEY="YOUR API KEY"
+IDEALAB_BASE_URL="CORRESPONDING BASE URL"
+```
+
+环境变量配置参考：[大模型服务平台百炼](https://help.aliyun.com/zh/model-studio/getting-started/first-api-call-to-qwen?spm=a2c4g.11186623.help-menu-2400256.d_0_1_0.5a06b0a8v21EON#688de734136xo)
+
 ## Pull Request 指南
 
 1. 务必保证 `pnpm build` 能够编译成功；

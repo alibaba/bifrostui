@@ -118,7 +118,6 @@ export const saveMarkdown = (componentName, markdown) => {
     const styleVarsStart = existingContent.indexOf('# 样式变量');
 
     let newContent;
-    debugger;
     if (apiStart !== -1 || styleVarsStart !== -1) {
       const beforeAPI =
         apiStart !== -1
