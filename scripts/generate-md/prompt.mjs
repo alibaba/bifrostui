@@ -14,18 +14,18 @@ export const generateUserPrompt = function ({
     code: {
       component: referenceComponent,
       types: referenceTypes,
-      styles: referenceStyles
+      styles: referenceStyles,
     },
-    format: referenceFormat
+    format: referenceFormat,
   },
   targetDoc: {
     code: {
       component: targetComponent,
       types: targetTypes,
       styles: targetStyles,
-      layout: targetLayout
-    }
-  }
+      layout: targetLayout,
+    },
+  },
 }) {
   return `请基于以下信息生成${componentName}组件的markdown文档：
 
@@ -43,20 +43,30 @@ export const generateUserPrompt = function ({
 - 布局组件：${targetLayout}
 
 ### 文档要求
-1. 代码演示
+1. 文档顶部结构内容参考：
+---
+group:
+  title: 基本输入
+  order: -1
+order: -1
+nav: 组件
+name: Button 按钮
+---
+
+2. 代码演示
    - 使用Stack组件进行布局
    - 优先使用组件库内置组件（如Button）
    - 仅可使用@bifrostui/icons中的SettingsOutlinedIcon和HomeOutlinedIcon图标组件
    - 示例代码应该简单且具有代表性
 
-2. API文档
+3. API文档
    - 表格列：属性、说明、类型、默认值
    - 类型和默认值列使用\`代码块\`格式
    - 包含|符号需要转义为\\|
    - 完整展示所有Props定义
    - 属性说明应清晰明确
 
-3. 样式变量（如果存在）
+4. 样式变量（如果存在）
    - 表格列：属性、说明、默认值、全局变量
    - 默认值和全局变量列使用\`代码块\`格式
    - 完整展示所有CSS变量，如--border-radius
