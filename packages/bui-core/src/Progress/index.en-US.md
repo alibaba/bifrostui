@@ -1,17 +1,17 @@
 ---
-group: feedback
-name: Progress bar
+group: Feedback
+name: Progress Bar
 ---
 
-# Progress bar
+# Progress Bar
 
-Display the current progress of the operation.
+Display the current progress of an operation.
 
-## Code demonstration
+## Code Demos
 
-### Basic usage
+### Basic Usage
 
-Set the operation progress through 'percentage'.
+Set the operation progress using `percent`.
 
 ```tsx
 import React from 'react';
@@ -21,9 +21,9 @@ export default () => {
 };
 ```
 
-### Specify line color
+### Specifying Line Color
 
-Set the line color through 'strokeColor', with the default value being '-- bui color primary'.
+Set the line color using `strokeColor`; its default value is `--bui-color-primary`.
 
 ```tsx
 import React from 'react';
@@ -41,9 +41,9 @@ export default () => {
 };
 ```
 
-### Progress bar width
+### Progress Bar Width
 
-You can set the width of the progress bar through 'strokeWidth'.
+Set the width of the progress bar using `strokeWidth`.
 
 ```tsx
 import React from 'react';
@@ -66,9 +66,9 @@ export default () => {
 };
 ```
 
-### Custom progress bar gradient color
+### Custom Gradient for Progress Bar
 
-Encapsulation of linear gradient. Recommend only transmitting two colors.
+Encapsulation of `linear-gradient`. It's recommended to use only two colors.
 
 ```tsx
 import React from 'react';
@@ -95,9 +95,9 @@ export default () => {
 };
 ```
 
-### Customize the color of unfinished segments
+### Customizing the Color of Unfilled Segments
 
-Specify the color of unfinished segments through 'trailColor'.
+Specify the color of unfilled segments using `trailColor`.
 
 ```tsx
 import React from 'react';
@@ -109,19 +109,19 @@ export default () => {
 
 ## API
 
-| attribute   | explain                                                             | type                                                                                                             | Default value |
-| ----------- | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------- |
-| percent     | percentage                                                          | number                                                                                                           | -             |
-| strokeColor | The color of the progress bar is gradient when passing in an object | string \|{ from: string; to: string; direction?: string } \|{ [percentage: string]: string; direction?: string } | -             |
-| trailColor  | Color of unfilled progress bar                                      | string                                                                                                           | -             |
-| strokeWidth | Width of progress bar                                               | number \|string                                                                                                  | -             |
+| Property    | Description                                               | Type                                                                                                               | Default |
+| ----------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------- |
+| percent     | Percentage                                                | number                                                                                                             | -       |
+| strokeColor | Color of the progress bar, gradient when object is passed | string \| { from: string; to: string; direction?: string } \| { [percentage: string]: string; direction?: string } | -       |
+| trailColor  | Color of the unfilled part of the progress bar            | string                                                                                                             | -       |
+| strokeWidth | Width of the progress bar line                            | number \| string                                                                                                   | -       |
 
-## Style variables
+## Style Variables
 
-| attribute       | explain                        | Default value            | global variable              |
-| --------------- | ------------------------------ | ------------------------ | ---------------------------- |
-| --fill-color    | Color of progress bar          | --bui-color-primary      | --bui-progress-fill-color    |
-| --trail-color   | Color of unfilled progress bar | rgba(156, 156, 165, 0.2) | --bui-progress-trail-color   |
-| --stroke-width  | Fill in progress bar width     | 8px                      | --bui-progress-stroke-width  |
-| --width         | Progress bar width             | 100%                     | --bui-progress-width         |
-| --border-radius | Round corner of progress bar   | 100px                    | --bui-progress-border-radius |
+| Property        | Description                       | Default Value            | Global Variable              |
+| --------------- | --------------------------------- | ------------------------ | ---------------------------- |
+| --fill-color    | Color of the progress bar         | --bui-color-primary      | --bui-progress-fill-color    |
+| --trail-color   | Color of the unfilled part        | rgba(156, 156, 165, 0.2) | --bui-progress-trail-color   |
+| --stroke-width  | Width of the progress bar         | 8px                      | --bui-progress-stroke-width  |
+| --width         | Width of the progress bar         | 100%                     | --bui-progress-width         |
+| --border-radius | Border radius of the progress bar | 100px                    | --bui-progress-border-radius |
