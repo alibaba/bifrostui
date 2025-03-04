@@ -15,23 +15,13 @@ const prefixCls = 'bui-item-selector';
 
 const ItemSelector = React.forwardRef<HTMLDivElement, ItemSelectorCoreProps>(
   (props, ref) => {
-    const {
-      selectedItemGroupName: selectedItemGroupLocaleName,
-      currentItemGroupName: currentItemGroupLocaleName,
-      hotItemsGroupName: hotItemsGroupLocaleName,
-      located,
-      current,
-      hot,
-    } = useLocaleText('citySelector');
+    const { located, current, hot } = useLocaleText('citySelector');
     const {
       className,
       title: pageTitle,
       selectedItem,
-      selectedItemGroupName = selectedItemGroupLocaleName,
       currentItem,
-      currentItemGroupName = currentItemGroupLocaleName,
       hotItems,
-      hotItemsGroupName = hotItemsGroupLocaleName,
       items,
       disableIndex,
       touchHandler,
@@ -125,26 +115,11 @@ const ItemSelector = React.forwardRef<HTMLDivElement, ItemSelectorCoreProps>(
       onClose?.(e);
     };
 
-    const renderTitile = (title, titleCode?) => {
+    const renderTitle = (title, titleCode?) => {
       const parseTitle = (titleCode || title).toUpperCase();
       return (
         <div className="select-item-title" id={disableIndex ? '' : parseTitle}>
           {title?.toUpperCase()}
-        </div>
-      );
-    };
-
-    const renderItem = (allItems, title, titleCode?) => {
-      return (
-        <div>
-          {renderTitile(title, titleCode)}
-          <div className="select-item-buttons">
-            {allItems.map((item, index) => {
-              return (
-                <Selector key={index} item={item} onSelect={selectHandler} />
-              );
-            })}
-          </div>
         </div>
       );
     };
@@ -168,29 +143,31 @@ const ItemSelector = React.forwardRef<HTMLDivElement, ItemSelectorCoreProps>(
           onScroll={scrollHandler}
         >
           <div className={`${prefixCls}-all-item`}>
-            {/* 当前Item */}
-            {selectedItem
-              ? renderItem(
-                  [selectedItem],
-                  selectedItemGroupName,
-                  CURRENT_TYPE.code,
-                )
-              : null}
-            {/* 定位Item */}
-            {currentItem
-              ? renderItem([currentItem], currentItemGroupName, GPS_TYPE.code)
-              : null}
-            {/* 热门Item */}
-            {hotItems?.length > 0
-              ? renderItem(hotItems, hotItemsGroupName, HOT_ITEM_TYPE.code)
-              : null}
             {items?.length > 0 ? (
               <div className={`${prefixCls}-list-container`}>
                 {items.map((item, itemGroupIndex) => {
                   if (!item?.groupName) return null;
+                  if (item.isFlat) {
+                    return (
+                      <div key={itemGroupIndex}>
+                        {renderTitle(item.groupName)}
+                        <div className="select-item-buttons">
+                          {item.items.map((currIt, index) => {
+                            return (
+                              <Selector
+                                key={index}
+                                item={currIt}
+                                onSelect={selectHandler}
+                              />
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  }
                   return (
                     <div key={itemGroupIndex}>
-                      {renderTitile(item.groupName, item.groupName)}
+                      {renderTitle(item.groupName, item.groupName)}
                       <ul className={`${prefixCls}-list`}>
                         {item.items.map((it, itemIndex) => {
                           return (

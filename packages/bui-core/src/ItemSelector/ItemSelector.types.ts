@@ -10,8 +10,12 @@ export type itemType = {
 export type allItemType = {
   /** Item列表 */
   items: itemType[];
-  /** 索引字母 */
+  /** 组名 */
   groupName: string;
+  /** 索引字母 */
+  indexName: string;
+  /** 是否平铺 */
+  isFlat: boolean;
 };
 
 export type ItemSelectorProps<
