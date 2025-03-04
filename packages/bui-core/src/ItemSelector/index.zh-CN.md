@@ -17,22 +17,48 @@ Item选择展示当前Item、定位Item、热门Item及所有Item，支持右侧
 import React from 'react';
 import { ItemSelector } from '@bifrostui/react';
 
-const hotItems = [
-  {
-    code: '110100',
-    name: '北京',
-  },
-  {
-    code: '310100',
-    name: '上海',
-  },
-  {
-    code: '440100',
-    name: '广州',
-  },
-];
-
 const items = [
+  {
+    groupName: '当前城市',
+    indexName: '当前',
+    isFlat: true,
+    items: [
+      {
+        code: '310100',
+        name: '上海',
+      },
+    ],
+  },
+  {
+    groupName: '定位城市',
+    indexName: '定位',
+    isFlat: true,
+    items: [
+      {
+        code: '110100',
+        name: '北京',
+      },
+    ],
+  },
+  {
+    groupName: '热门城市',
+    indexName: '常用',
+    isFlat: true,
+    items: [
+      {
+        code: '110100',
+        name: '北京',
+      },
+      {
+        code: '310100',
+        name: '上海',
+      },
+      {
+        code: '440100',
+        name: '广州',
+      },
+    ],
+  },
   {
     groupName: 'A',
     items: [
@@ -88,14 +114,6 @@ const items = [
 ];
 
 export default () => {
-  const selectedItem = {
-    code: '110100',
-    name: '北京',
-  };
-  const currentItem = {
-    code: '310100',
-    name: '上海',
-  };
   const onSelect = (item) => {
     console.log(item);
   };
@@ -108,12 +126,6 @@ export default () => {
     <ItemSelector
       items={items}
       onSelect={onSelect}
-      selectedItem={selectedItem}
-      selectedItemGroupName="当前Item"
-      currentItem={currentItem}
-      currentItemGroupName="定位Item"
-      hotItems={hotItems}
-      hotItemsGroupName="热门Item"
       onClose={onHide}
       style={{ height: '500px' }}
     />
