@@ -1,6 +1,6 @@
 /**
  * 使用前需要在env.process中配置IDEALAB_API_KEY和IDEALAB_BASE_URL
- * @see https://aliyuque.antfin.com/tppwd/tech/zmlkl8g7bdggo6rg
+ * @see https://aliyuque.antfin.com/wushuxuan.wsx/mobfr5/gwebrbfu6dkl0zlk?singleDoc#%20
  * @example node scripts/generate-md/generateMd.mjs
  * @example node scripts/translate/translate.mjs --all
  * @example node scripts/translate/translate.mjs --file ./packages/bui-icons/src/index.zh-CN.md
@@ -112,7 +112,6 @@ async function translateAllComponents() {
 
 async function main() {
   const argv = minimist(process.argv.slice(2));
-  debugger;
 
   // 处理 --all 参数
   if (argv.all) {

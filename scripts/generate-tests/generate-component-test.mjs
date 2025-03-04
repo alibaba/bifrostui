@@ -1,6 +1,6 @@
 /**
  * 使用前需要在env.process中配置IDEALAB_API_KEY和IDEALAB_BASE_URL
- * @see https://aliyuque.antfin.com/tppwd/tech/zmlkl8g7bdggo6rg
+ * @see https://aliyuque.antfin.com/wushuxuan.wsx/mobfr5/gwebrbfu6dkl0zlk?singleDoc#%20
  */
 
 import fs from 'node:fs';
