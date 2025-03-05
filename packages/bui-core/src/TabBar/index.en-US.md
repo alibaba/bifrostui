@@ -1,17 +1,17 @@
 ---
 group: Data Display
-name: TabBar bottom navigation bar
+name: TabBar Bottom Navigation Bar
 ---
 
-# TabBar bottom navigation bar
+# TabBar Bottom Navigation Bar
 
-Bottom navigation bar, used to switch between different pages
+Bottom navigation bar, used for switching between different pages.
 
-## Code demonstration
+## Code Examples
 
-### Basic usage
+### Basic Usage
 
-Update the 'current' value change by listening to the 'onChange' event. The 'current' value is mandatory and the first element is selected by default.
+By listening to the `onChange` event to update changes in the `current` value. The `current` value is required and defaults to selecting the first element.
 
 ```tsx
 import React, { useState } from 'react';
@@ -25,18 +25,18 @@ export default () => {
   return (
     <Stack style={{ background: '#eee', padding: '20px 0 10px' }}>
       <TabBar current={active} onChange={handleChange}>
-        <TabBarItem title="主页" />
-        <TabBarItem title="商店" />
-        <TabBarItem title="帮助" />
+        <TabBarItem title="Home" />
+        <TabBarItem title="Store" />
+        <TabBarItem title="Help" />
       </TabBar>
     </Stack>
   );
 };
 ```
 
-### Customize icons
+### Custom Icons
 
-You can customize the default icon and selected icon of TabBarItem through the 'icon' and 'activeIcon' properties
+You can customize the default icons and selected icons of `TabBarItem` using the `icon`, `activeIcon` properties.
 
 ```tsx
 import React, { useState } from 'react';
@@ -58,17 +58,17 @@ export default () => {
     <Stack style={{ background: '#eee', padding: '20px 0 10px' }}>
       <TabBar current={active} onChange={handleChange}>
         <TabBarItem
-          title="主页"
+          title="Home"
           icon={<HomeFilledIcon />}
           activeIcon={<HomeFilledIcon color="primary" />}
         />
         <TabBarItem
-          title="商店"
+          title="Store"
           icon={<StoreFilledIcon />}
           activeIcon={<StoreFilledIcon color="primary" />}
         />
         <TabBarItem
-          title="帮助"
+          title="Help"
           icon={<PhoneFilledIcon />}
           activeIcon={<PhoneFilledIcon color="primary" />}
         />
@@ -78,9 +78,9 @@ export default () => {
 };
 ```
 
-### Custom Theme
+### Custom Themes
 
-Support setting default theme colors and selecting theme colors through 'color' and 'activeColor' to achieve custom icon and font colors
+Supports setting default theme colors and selected theme colors via `color`, `activeColor` to achieve custom icon and font colors.
 
 ```tsx
 import React, { useState } from 'react';
@@ -101,27 +101,27 @@ export default () => {
         style={{ background: '#eee', padding: '20px 0 10px' }}
         alignItems="flex-start"
       >
-        <div style={{ margin: '8px' }}>自定义选中主题色: </div>
+        <div style={{ margin: '8px' }}>Custom selected theme color:</div>
         <TabBar current={active} onChange={handleChange}>
-          <TabBarItem title="主页" />
-          <TabBarItem title="商店" />
-          <TabBarItem title="帮助" />
+          <TabBarItem title="Home" />
+          <TabBarItem title="Store" />
+          <TabBarItem title="Help" />
         </TabBar>
       </Stack>
       <Stack
         style={{ background: '#eee', padding: '20px 0 10px' }}
         alignItems="flex-start"
       >
-        <div style={{ margin: '8px' }}>自定义默认主题色: </div>
+        <div style={{ margin: '8px' }}>Custom default theme color:</div>
         <TabBar
           current={active2}
           onChange={handleChange2}
           color="info"
           activeColor="primary"
         >
-          <TabBarItem title="主页" />
-          <TabBarItem title="商店" />
-          <TabBarItem title="帮助" />
+          <TabBarItem title="Home" />
+          <TabBarItem title="Store" />
+          <TabBarItem title="Help" />
         </TabBar>
       </Stack>
     </>
@@ -129,9 +129,9 @@ export default () => {
 };
 ```
 
-### Logo Tip
+### Badge Notifications
 
-Support setting the corresponding logo content for 'TabBarItem' through the BadgeProps property
+Supports setting badge content for `TabBarItem` through the `BadgeProps` property.
 
 ```tsx
 import React, { useState } from 'react';
@@ -151,18 +151,18 @@ export default () => {
     <Stack style={{ background: '#eee', padding: '20px 0 10px' }}>
       <TabBar current={active} onChange={handleChange}>
         <TabBarItem
-          title="主页"
+          title="Home"
           icon={<HomeFilledIcon />}
           activeIcon={<HomeFilledIcon color="primary" />}
         />
         <TabBarItem
-          title="商店"
+          title="Store"
           icon={<StoreFilledIcon />}
           activeIcon={<StoreFilledIcon color="primary" />}
           BadgeProps={{ type: 'dot' }}
         />
         <TabBarItem
-          title="帮助"
+          title="Help"
           icon={<PhoneFilledIcon />}
           activeIcon={<PhoneFilledIcon color="primary" />}
           BadgeProps={{ content: '20' }}
@@ -177,34 +177,34 @@ export default () => {
 
 #### TabBar
 
-| attribute   | explain                                    | type                                                                      | Default value |
-| ----------- | ------------------------------------------ | ------------------------------------------------------------------------- | ------------- |
-| current     | The currently selected tag index value     | number                                                                    | 0             |
-| color       | Default Theme Color                        | `primary` \|`info` \|`success` \|`warning` \|`danger` \|`default` \|`vip` | `default`     |
-| activeColor | Select theme color                         | `primary` \|`info` \|`success` \|`warning` \|`danger` \|`default` \|`vip` | `primary`     |
-| onChange    | The callback when selecting a certain item | (e:SyntheticEvent, data:{value:number}) => void                           | -             |
+| Property    | Description                         | Type                                                                            | Default Value |
+| ----------- | ----------------------------------- | ------------------------------------------------------------------------------- | ------------- |
+| current     | Index of the currently selected tab | number                                                                          | 0             |
+| color       | Default theme color                 | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` \| `vip` | `default`     |
+| activeColor | Selected theme color                | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` \| `vip` | `primary`     |
+| onChange    | Callback when an item is selected   | (e: SyntheticEvent, data: {value: number}) => void                              | -             |
 
-#### Tabbar Item
+#### TabBarItem
 
-| attribute  | explain     | type       | Default value |
-| ---------- | ----------- | ---------- | ------------- |
-| title      | title       | string     | -             |
-| icon       | Icon        | ReactNode  | -             |
-| activeIcon | Select icon | ReactNode  |
-| BadgeProps | logo        | BadgeProps | -             |
+| Property   | Description   | Type       | Default Value |
+| ---------- | ------------- | ---------- | ------------- |
+| title      | Title         | string     | -             |
+| icon       | Icon          | ReactNode  | -             |
+| activeIcon | Selected Icon | ReactNode  | -             |
+| BadgeProps | Badge         | BadgeProps | -             |
 
-### Style variables
+### Style Variables
 
 #### TabBar
 
-| attribute | explain | Default value | global variable       |
-| --------- | ------- | ------------- | --------------------- |
-| --width   | width   | 100%          | --bui-tab-bar-width   |
-| --height  | height  | 50px          | --bui-tab-bar-height  |
-| --padding | padding | 6px 0         | --bui-tab-bar-padding |
+| Property  | Description | Default Value | Global Variable       |
+| --------- | ----------- | ------------- | --------------------- |
+| --width   | Width       | 100%          | --bui-tab-bar-width   |
+| --height  | Height      | 50px          | --bui-tab-bar-height  |
+| --padding | Padding     | 6px 0         | --bui-tab-bar-padding |
 
-#### Tabbar Item
+#### TabBarItem
 
-| attribute   | explain    | Default value          | global variable             |
-| ----------- | ---------- | ---------------------- | --------------------------- |
-| --tab-color | Text color | --bui-color-fg-default | --bui-tab-bar-default-color |
+| Property    | Description | Default Value          | Global Variable             |
+| ----------- | ----------- | ---------------------- | --------------------------- |
+| --tab-color | Text Color  | --bui-color-fg-default | --bui-tab-bar-default-color |

@@ -1,17 +1,17 @@
 ---
-group: feedback
-name: Alert warning prompt
+group: Feedback
+name: Alert Warning Prompt
 ---
 
-# Alert warning prompt
+# Alert Warning Prompt
 
-The Alert component is commonly used to display brief information that needs attention, and to show warning or success prompts to users.
+The Alert component is commonly used to display brief information that requires attention. It is often used to show warning prompts or success notifications to users.
 
-## Code demonstration
+## Code Demos
 
 ### Basic Usage
 
-The Alert component can be set to its content by using 'children'.
+The Alert component can set its content using the `children` prop.
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
@@ -20,16 +20,16 @@ import React from 'react';
 export default () => {
   return (
     <Stack alignItems="stretch" style={{ maxWidth: 350, margin: '0 auto' }}>
-      <Alert>开票提醒2020.0802下午14:00开售</Alert>
+      <Alert>Ticket reminder: Sales start at 14:00 on August 2, 2020</Alert>
     </Stack>
   );
 };
 ```
 
-### Warning box icon
+### Alert Icons
 
-Icon allows you to add icons to the header of the Alert component, which will override the default Alert icon.
-You can also remove the default Alert icon by setting the 'icon' attribute to 'false'.
+The `icon` prop allows you to add an icon to the beginning of the Alert component, overriding the default icon.
+You can also remove the default icon by setting the `icon` prop to `false`.
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
@@ -43,19 +43,21 @@ export default () => {
       style={{ maxWidth: 350, margin: '0 auto' }}
       spacing="10px"
     >
-      <Alert>开票提醒2020.0802下午14:00开售</Alert>
+      <Alert>Ticket reminder: Sales start at 14:00 on August 2, 2020</Alert>
       <Alert icon={<HelpCircleOutlinedIcon />}>
-        开票提醒2020.0802下午14:00开售
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
       </Alert>
-      <Alert icon={false}>开票提醒2020.0802下午14:00开售</Alert>
+      <Alert icon={false}>
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
+      </Alert>
     </Stack>
   );
 };
 ```
 
-### Warning box scrolling
+### Scrolling Alerts
 
-The marquee attribute allows you to scroll through the content of the Alert component.
+The `marquee` prop allows the content of the Alert component to scroll.
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
@@ -70,20 +72,24 @@ export default () => {
       spacing="10px"
     >
       <Alert icon={false} marquee>
-        【开始】首部海外维和题材商业大片高燃来袭，聚焦中国维和警察鲜为人知的生死时刻！【结束】
+        【Start】The first commercial film on overseas peacekeeping missions
+        arrives with intense scenes focusing on the rarely seen moments of
+        Chinese peacekeeping police!【End】
       </Alert>
       <Alert marquee icon={<HelpCircleOutlinedIcon />}>
-        【开始】首部海外维和题材商业大片高燃来袭，聚焦中国维和警察鲜为人知的生死时刻！【结束】
+        【Start】The first commercial film on overseas peacekeeping missions
+        arrives with intense scenes focusing on the rarely seen moments of
+        Chinese peacekeeping police!【End】
       </Alert>
     </Stack>
   );
 };
 ```
 
-### Warning box theme
+### Alert Themes
 
-The Alert component provides 5 color themes: 'warning', 'success',' error ',' info ', and' primary '. You can set the component theme color through the' color 'attribute.
-The default value for the color attribute is' primary '.
+The Alert component provides five color themes: `warning`, `success`, `error`, `info`, and `primary`. You can set the theme color using the `color` prop.
+The default value for the `color` prop is `primary`.
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
@@ -96,23 +102,30 @@ export default () => {
       style={{ maxWidth: 350, margin: '0 auto' }}
       spacing="10px"
     >
-      <Alert>开票提醒2020.0802下午14:00开售</Alert>
-      <Alert color="warning">开票提醒2020.0802下午14:00开售</Alert>
-      <Alert color="success">开票提醒2020.0802下午14:00开售</Alert>
-      <Alert color="danger">开票提醒2020.0802下午14:00开售</Alert>
-      <Alert color="info">开票提醒2020.0802下午14:00开售</Alert>
+      <Alert>Ticket reminder: Sales start at 14:00 on August 2, 2020</Alert>
+      <Alert color="warning">
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
+      </Alert>
+      <Alert color="success">
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
+      </Alert>
+      <Alert color="danger">
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
+      </Alert>
+      <Alert color="info">
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
+      </Alert>
     </Stack>
   );
 };
 ```
 
-### Warning box mode
+### Alert Variants
 
-The Alert component supports two modes: fill in 'standard' and outline 'outlined'.
-You can set the component mode through the 'variant' property.
-The default value for the variable attribute is' standard '.
+The Alert component supports two modes: filled (`standard`) and outlined (`outlined`). You can set the mode using the `variant` prop.
+The default value for the `variant` prop is `standard`.
 
-##### standard
+##### Standard
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
@@ -125,26 +138,28 @@ export default () => {
       style={{ maxWidth: 350, margin: '0 auto' }}
       spacing="10px"
     >
-      <Alert variant="standard">开票提醒2020.0802下午14:00开售</Alert>
+      <Alert variant="standard">
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
+      </Alert>
       <Alert variant="standard" color="warning">
-        开票提醒2020.0802下午14:00开售
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
       </Alert>
 
       <Alert variant="standard" color="danger">
-        开票提醒2020.0802下午14:00开售
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
       </Alert>
       <Alert variant="standard" color="info">
-        开票提醒2020.0802下午14:00开售
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
       </Alert>
       <Alert variant="standard" color="success">
-        开票提醒2020.0802下午14:00开售
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
       </Alert>
     </Stack>
   );
 };
 ```
 
-##### outlined
+##### Outlined
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
@@ -157,29 +172,31 @@ export default () => {
       style={{ maxWidth: 350, margin: '0 auto' }}
       spacing="10px"
     >
-      <Alert variant="outlined">开票提醒2020.0802下午14:00开售</Alert>
+      <Alert variant="outlined">
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
+      </Alert>
       <Alert variant="outlined" color="warning">
-        开票提醒2020.0802下午14:00开售
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
       </Alert>
       <Alert variant="outlined" color="danger">
-        开票提醒2020.0802下午14:00开售
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
       </Alert>
       <Alert variant="outlined" color="info">
-        开票提醒2020.0802下午14:00开售
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
       </Alert>
       <Alert variant="outlined" color="success">
-        开票提醒2020.0802下午14:00开售
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
       </Alert>
     </Stack>
   );
 };
 ```
 
-### Operation area
+### Action Area
 
-The Alert component provides an 'action' attribute for closing or revoking alerts.
-Alert provides an onClose callback. If the business has configured nClose and the action has not set its attribute, a close icon will be displayed at the end of the Alert component.
-The 'action' attribute can be used to override this close icon and customize the action area.
+The Alert component provides the `action` prop for closing or dismissing the Alert.
+The Alert component includes an onClose callback. If the business configuration includes an onClose handler and no action prop is set, a close icon will be displayed at the end of the Alert component.
+The `action` prop can override this close icon to customize the action area.
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
@@ -194,7 +211,9 @@ export default () => {
       style={{ maxWidth: 350, margin: '0 auto' }}
       spacing="10px"
     >
-      <Alert color="warning">开票提醒2020.0802下午14:00开售</Alert>
+      <Alert color="warning">
+        Ticket reminder: Sales start at 14:00 on August 2, 2020
+      </Alert>
       {!closeOne && (
         <Alert
           color="success"
@@ -202,7 +221,7 @@ export default () => {
             setCloseOne(true);
           }}
         >
-          开票提醒2020.0802下午14:00开售
+          Ticket reminder: Sales start at 14:00 on August 2, 2020
         </Alert>
       )}
       {!closeTwo && (
@@ -212,7 +231,7 @@ export default () => {
             setCloseTwo(true);
           }}
         >
-          开票提醒2020.0802下午14:00开售
+          Ticket reminder: Sales start at 14:00 on August 2, 2020
         </Alert>
       )}
     </Stack>
@@ -222,24 +241,24 @@ export default () => {
 
 ### API
 
-#### AlertProperts
+#### AlertProps
 
-| attribute | explain                                   | type                                                      | Default value |
-| --------- | ----------------------------------------- | --------------------------------------------------------- | ------------- |
-| color     | Warning box theme color                   | `primary` ｜ `info` ｜ `success` ｜ `warning` ｜ `danger` | `primary`     |
-| icon      | Custom icon, hide icon when icon is false | React.ReactNode ｜ boolean                                | true          |
-| action    | Warning prompt operation area             | React.ReactNode                                           | -             |
-| variant   | Warning mode                              | `standard`｜`outlined`                                    | `standard`    |
-| onClose   | Close callback                            | (e?: SyntheticEvent, data?: any) => void;                 | -             |
+| Property | Description                            | Type                                                      | Default    |
+| -------- | -------------------------------------- | --------------------------------------------------------- | ---------- |
+| color    | Alert theme color                      | `primary` ｜ `info` ｜ `success` ｜ `warning` ｜ `danger` | `primary`  |
+| icon     | Custom icon; hidden if `icon` is false | React.ReactNode ｜ boolean                                | true       |
+| action   | Action area for alert                  | React.ReactNode                                           | -          |
+| variant  | Alert variant                          | `standard`｜`outlined`                                    | `standard` |
+| onClose  | Callback for closing                   | (e?: SyntheticEvent, data?: any) => void                  | -          |
 
-### Style variables
+### Style Variables
 
-| attribute                | explain                       | Default value      | global variable                    |
-| ------------------------ | ----------------------------- | ------------------ | ---------------------------------- |
-| --content-marquee-speed  | Content scrolling speed       | 10s                | --bui-alert-content-marquee-speed  |
-| --padding                | padding                       | 8px                | --bui-alert-padding                |
-| --line-height            | Hang Gao                      | 16px               | --bui-alert-line-height            |
-| --default-icon-font-size | Default icon font size        | 15px               | --bui-alert-default-icon-font-size |
-| --action-margin-left     | Left margin of operation area | 16px               | --bui-alert-action-margin-left     |
-| --icon-margin-right      | Icon right margin             | --bui-spacing-xs   | --bui-alert-icon-margin-right      |
-| --icon-font-size         | Icon font size                | --bui-title-size-4 | --bui-alert-icon-font-size         |
+| Property                 | Description            | Default Value      | Global Variable                    |
+| ------------------------ | ---------------------- | ------------------ | ---------------------------------- |
+| --content-marquee-speed  | Content scroll speed   | 10s                | --bui-alert-content-marquee-speed  |
+| --padding                | Padding                | 8px                | --bui-alert-padding                |
+| --line-height            | Line height            | 16px               | --bui-alert-line-height            |
+| --default-icon-font-size | Default icon font size | 15px               | --bui-alert-default-icon-font-size |
+| --action-margin-left     | Left margin for action | 16px               | --bui-alert-action-margin-left     |
+| --icon-margin-right      | Right margin for icon  | --bui-spacing-xs   | --bui-alert-icon-margin-right      |
+| --icon-font-size         | Icon font size         | --bui-title-size-4 | --bui-alert-icon-font-size         |
