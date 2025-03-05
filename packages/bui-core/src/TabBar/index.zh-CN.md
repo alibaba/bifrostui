@@ -195,14 +195,9 @@ export default () => {
 
 ### TabBar
 
-| 属性      | 说明   | 默认值 | 全局变量              |
-| --------- | ------ | ------ | --------------------- |
-| --width   | 宽度   | 100%   | --bui-tab-bar-width   |
-| --height  | 高度   | 50px   | --bui-tab-bar-height  |
-| --padding | 内边距 | 6px 0  | --bui-tab-bar-padding |
-
-### TabBarItem
-
-| 属性        | 说明     | 默认值                 | 全局变量                    |
-| ----------- | -------- | ---------------------- | --------------------------- |
-| --tab-color | 文字颜色 | --bui-color-fg-default | --bui-tab-bar-default-color |
+| 全局变量              | 说明     | 默认值                        |
+| --------------------- | -------- | ----------------------------- |
+| --bui-tab-bar-width   | 宽度     | 100%                          |
+| --bui-tab-bar-height  | 高度     | 50px                          |
+| --bui-tab-bar-padding | 内边距   | 6px 0                         |
+| --bui-tab-bar-color   | 背景颜色 | `var(--bui-color-fg-default)` |
