@@ -3,19 +3,19 @@ import { OverrideProps } from '@bifrostui/types';
 export type itemType = {
   /** Item名 */
   name: string;
-  /** Item名id */
-  code: string;
 };
 
 export type allItemType = {
   /** Item列表 */
   items: itemType[];
   /** 组名 */
-  groupName: string;
+  groupName?: string;
   /** 索引字母 */
-  indexName: string;
+  indexName?: string;
+  /** 索引Code */
+  indexCode?: string;
   /** 是否平铺 */
-  isFlat: boolean;
+  isFlat?: boolean;
 };
 
 export type ItemSelectorProps<
@@ -24,18 +24,6 @@ export type ItemSelectorProps<
 > = OverrideProps<
   {
     props: P & {
-      /** 当前Item信息 */
-      selectedItem?: itemType;
-      /** 当前Item栏的title */
-      selectedItemGroupName?: string;
-      /** 定位Item信息 */
-      currentItem?: itemType;
-      /** 定位Item栏的title */
-      currentItemGroupName?: string;
-      /** 热门Item信息 */
-      hotItems?: itemType[];
-      /** 热门Item栏的title */
-      hotItemsGroupName?: string;
       /** Item列表 */
       items: allItemType[];
       /** 禁用展示索引 默认false 即展示索引 */
@@ -47,6 +35,7 @@ export type ItemSelectorProps<
         e: React.SyntheticEvent,
         data: {
           item: itemType;
+          group: allItemType;
         },
       ) => void;
       /** 和title配合使用，头部右侧的关闭回调 */

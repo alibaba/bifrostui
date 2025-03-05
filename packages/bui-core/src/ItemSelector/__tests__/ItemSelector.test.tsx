@@ -10,13 +10,7 @@ import {
 import ItemSelector from '../ItemSelector';
 
 const items = require('./items.json');
-const hotItems = require('./hotItems.json');
 
-const selectedItem = { code: '310100', name: '上海' };
-const selectedItemGroupName = '当前Item';
-const currentItem = { code: '310100', name: '上海' };
-const currentItemGroupName = '定位Item';
-const hotItemsGroupName = '热门Item';
 const title = '选择Item';
 const onSelect = jest.fn();
 const onClose = jest.fn();
@@ -41,12 +35,6 @@ describe('ItemSelector', () => {
         <ItemSelector
           items={items}
           onSelect={onSelect}
-          selectedItem={selectedItem}
-          selectedItemGroupName={selectedItemGroupName}
-          currentItem={currentItem}
-          currentItemGroupName={currentItemGroupName}
-          hotItems={hotItems}
-          hotItemsGroupName={hotItemsGroupName}
           disableIndex={false}
           title={title}
           onClose={onClose}
@@ -124,12 +112,6 @@ describe('ItemSelector', () => {
         <ItemSelector
           items={[]}
           onSelect={onSelect}
-          selectedItem={selectedItem}
-          selectedItemGroupName={selectedItemGroupName}
-          currentItem={currentItem}
-          currentItemGroupName={currentItemGroupName}
-          hotItems={hotItems}
-          hotItemsGroupName={hotItemsGroupName}
           disableIndex
           title={title}
           onClose={onClose}

@@ -21,6 +21,437 @@ const items = [
   {
     groupName: '当前城市',
     indexName: '当前',
+    indexCode: 'CRT',
+    isFlat: true,
+    items: [
+      {
+        code: '310100',
+        name: '上海',
+      },
+    ],
+  },
+  {
+    groupName: '定位城市',
+    indexName: '定位',
+    indexCode: 'POS',
+    isFlat: true,
+    items: [
+      {
+        code: '110100',
+        name: '北京',
+      },
+    ],
+  },
+  {
+    groupName: '热门城市',
+    indexName: '常用',
+    indexCode: 'HOT',
+    isFlat: true,
+    items: [
+      {
+        code: '110100',
+        name: '北京',
+      },
+      {
+        code: '310100',
+        name: '上海',
+      },
+      {
+        code: '440100',
+        name: '广州',
+      },
+    ],
+  },
+  {
+    groupName: 'A',
+    items: [
+      {
+        code: '610900',
+        name: '安康',
+      },
+      {
+        code: '210300',
+        name: '鞍山',
+      },
+    ],
+  },
+  {
+    groupName: 'B',
+    items: [
+      {
+        code: '652800',
+        name: '巴音郭楞',
+      },
+      {
+        code: '511900',
+        name: '巴中',
+      },
+    ],
+  },
+  {
+    groupName: 'C',
+    items: [
+      {
+        code: '130900',
+        name: '沧州',
+      },
+      {
+        code: '220100',
+        name: '长春',
+      },
+    ],
+  },
+  {
+    groupName: 'D',
+    items: [
+      {
+        code: '532900',
+        name: '大理',
+      },
+      {
+        code: '210200',
+        name: '大连',
+      },
+    ],
+  },
+];
+
+export default () => {
+  const onSelect = (e, item) => {
+    console.log(item);
+  };
+
+  const onHide = () => {
+    console.log('onHide');
+  };
+
+  return (
+    <ItemSelector
+      items={items}
+      onSelect={onSelect}
+      onClose={onHide}
+      style={{ height: '500px' }}
+    />
+  );
+};
+```
+
+### 自定义索引
+
+用户可以自定义 indexName|indexCode 控制右侧字母导航的展示文案
+
+```tsx
+import React from 'react';
+import { ItemSelector } from '@bifrostui/react';
+
+const items = [
+  {
+    groupName: 'Fruit',
+    indexName: '果',
+    indexCode: 'FRT',
+    items: [
+      {
+        name: 'Bannar',
+      },
+      {
+        name: 'Apple',
+      },
+      {
+        name: 'Grape',
+      },
+      {
+        name: 'Pear',
+      },
+      {
+        name: 'Orange',
+      },
+      {
+        name: 'Pineapple',
+      },
+      {
+        name: 'Kiwi',
+      },
+      {
+        name: 'Watermelon',
+      },
+    ],
+  },
+  {
+    groupName: '交通工具',
+    indexName: '通',
+    items: [
+      {
+        name: '汽车',
+      },
+      {
+        name: '飞机',
+      },
+      {
+        name: '火车',
+      },
+      {
+        name: '卡车',
+      },
+      {
+        name: '轮船',
+      },
+      {
+        name: '公共汽车',
+      },
+      {
+        name: '大巴士',
+      },
+      {
+        name: '自行车',
+      },
+      {
+        name: '徒步',
+      },
+      {
+        name: '滑板车',
+      },
+      {
+        name: '三轮车',
+      },
+    ],
+  },
+  {
+    groupName: 'Stationery',
+    indexName: '文',
+    items: [
+      {
+        name: 'Bag',
+      },
+      {
+        name: 'Ruler',
+      },
+      {
+        name: 'Pen',
+      },
+      {
+        name: 'Pencil',
+      },
+      {
+        name: 'Ruler',
+      },
+      {
+        name: 'Rubber',
+      },
+      {
+        name: 'Pencilcase',
+      },
+      {
+        name: 'Desk',
+      },
+      {
+        name: 'Lamp',
+      },
+    ],
+  },
+  {
+    groupName: 'emoji',
+    indexName: '😈',
+    indexCode: 'EMOJI',
+    items: [
+      {
+        name: '自定义数据',
+        param1: 123,
+        param2: 'abc',
+        param3: false,
+      },
+      {
+        name: '测试1',
+      },
+      {
+        name: '测试2',
+      },
+      {
+        name: '测试3',
+      },
+      {
+        name: '测试4',
+      },
+      {
+        name: '测试4',
+      },
+      {
+        name: '测试4',
+      },
+      {
+        name: '测试4',
+      },
+      {
+        name: '测试4',
+      },
+      {
+        name: '测试4',
+      },
+      {
+        name: '测试4',
+      },
+    ],
+  },
+];
+
+export default () => {
+  const onSelect = (item) => {
+    console.log(item);
+  };
+
+  const onHide = () => {
+    console.log('onHide');
+  };
+
+  return (
+    <ItemSelector
+      items={items}
+      onSelect={onSelect}
+      title="自定义Index"
+      onClose={onHide}
+      style={{ height: '500px' }}
+    />
+  );
+};
+```
+
+### 不展示导航用法
+
+用户可以设置disableIndex控制右侧字母导航的展示，默认为false，即展示字母导航
+
+```tsx
+import React from 'react';
+import { ItemSelector } from '@bifrostui/react';
+
+const items = [
+  {
+    groupName: '当前城市',
+    indexName: '当前',
+    isFlat: true,
+    items: [
+      {
+        code: '310100',
+        name: '上海',
+      },
+    ],
+  },
+  {
+    groupName: '定位城市',
+    indexName: '定位',
+    isFlat: true,
+    items: [
+      {
+        code: '110100',
+        name: '北京',
+      },
+    ],
+  },
+  {
+    groupName: '热门城市',
+    indexName: '常用',
+    isFlat: true,
+    items: [
+      {
+        code: '110100',
+        name: '北京',
+      },
+      {
+        code: '310100',
+        name: '上海',
+      },
+      {
+        code: '440100',
+        name: '广州',
+      },
+    ],
+  },
+  {
+    groupName: 'A',
+    items: [
+      {
+        code: '610900',
+        name: '安康',
+      },
+      {
+        code: '210300',
+        name: '鞍山',
+      },
+    ],
+  },
+  {
+    groupName: 'B',
+    items: [
+      {
+        code: '652800',
+        name: '巴音郭楞',
+      },
+      {
+        code: '511900',
+        name: '巴中',
+      },
+    ],
+  },
+  {
+    groupName: 'C',
+    items: [
+      {
+        code: '130900',
+        name: '沧州',
+      },
+      {
+        code: '220100',
+        name: '长春',
+      },
+    ],
+  },
+  {
+    groupName: 'D',
+    items: [
+      {
+        code: '532900',
+        name: '大理',
+      },
+      {
+        code: '210200',
+        name: '大连',
+      },
+    ],
+  },
+];
+
+export default () => {
+  const onSelect = (item) => {
+    console.log(item);
+  };
+
+  const onHide = () => {
+    console.log('onHide');
+  };
+
+  return (
+    <ItemSelector
+      items={items}
+      onSelect={onSelect}
+      title="选择Item"
+      disableIndex
+      onClose={onHide}
+      style={{ height: '500px' }}
+    />
+  );
+};
+```
+
+### 不展示title和导航用法
+
+用户可以设置title来控制头部的展示
+
+```tsx
+import React from 'react';
+import { ItemSelector } from '@bifrostui/react';
+
+const items = [
+  {
+    groupName: '当前城市',
+    indexName: '当前',
     isFlat: true,
     items: [
       {
@@ -127,234 +558,6 @@ export default () => {
       items={items}
       onSelect={onSelect}
       onClose={onHide}
-      style={{ height: '500px' }}
-    />
-  );
-};
-```
-
-### 不展示导航用法
-
-用户可以设置disableIndex控制右侧字母导航的展示，默认为false，即展示字母导航
-
-```tsx
-import React from 'react';
-import { ItemSelector } from '@bifrostui/react';
-
-const hotItems = [
-  {
-    code: '110100',
-    name: '北京',
-  },
-  {
-    code: '310100',
-    name: '上海',
-  },
-  {
-    code: '440100',
-    name: '广州',
-  },
-];
-
-const items = [
-  {
-    groupName: 'A',
-    items: [
-      {
-        code: '610900',
-        name: '安康',
-      },
-      {
-        code: '210300',
-        name: '鞍山',
-      },
-    ],
-  },
-  {
-    groupName: 'B',
-    items: [
-      {
-        code: '652800',
-        name: '巴音郭楞',
-      },
-      {
-        code: '511900',
-        name: '巴中',
-      },
-    ],
-  },
-  {
-    groupName: 'C',
-    items: [
-      {
-        code: '130900',
-        name: '沧州',
-      },
-      {
-        code: '220100',
-        name: '长春',
-      },
-    ],
-  },
-  {
-    groupName: 'D',
-    items: [
-      {
-        code: '532900',
-        name: '大理',
-      },
-      {
-        code: '210200',
-        name: '大连',
-      },
-    ],
-  },
-];
-
-export default () => {
-  const selectedItem = {
-    code: '110100',
-    name: '北京',
-  };
-  const currentItem = {
-    code: '310100',
-    name: '上海',
-  };
-
-  const onSelect = (item) => {
-    console.log(item);
-  };
-
-  const onHide = () => {
-    console.log('onHide');
-  };
-
-  return (
-    <ItemSelector
-      items={items}
-      onSelect={onSelect}
-      selectedItem={selectedItem}
-      selectedItemGroupName="当前Item"
-      currentItem={currentItem}
-      currentItemGroupName="定位Item"
-      hotItems={hotItems}
-      hotItemsGroupName="热门Item"
-      title="选择Item"
-      disableIndex
-      onClose={onHide}
-      style={{ height: '500px' }}
-    />
-  );
-};
-```
-
-### 不展示title和导航用法用法
-
-用户可以设置title来控制头部的展示
-
-```tsx
-import React from 'react';
-import { ItemSelector } from '@bifrostui/react';
-
-const hotItems = [
-  {
-    code: '110100',
-    name: '北京',
-  },
-  {
-    code: '310100',
-    name: '上海',
-  },
-  {
-    code: '440100',
-    name: '广州',
-  },
-];
-
-const items = [
-  {
-    groupName: 'A',
-    items: [
-      {
-        code: '610900',
-        name: '安康',
-      },
-      {
-        code: '210300',
-        name: '鞍山',
-      },
-    ],
-  },
-  {
-    groupName: 'B',
-    items: [
-      {
-        code: '652800',
-        name: '巴音郭楞',
-      },
-      {
-        code: '511900',
-        name: '巴中',
-      },
-    ],
-  },
-  {
-    groupName: 'C',
-    items: [
-      {
-        code: '130900',
-        name: '沧州',
-      },
-      {
-        code: '220100',
-        name: '长春',
-      },
-    ],
-  },
-  {
-    groupName: 'D',
-    items: [
-      {
-        code: '532900',
-        name: '大理',
-      },
-      {
-        code: '210200',
-        name: '大连',
-      },
-    ],
-  },
-];
-
-export default () => {
-  const selectedItem = {
-    code: '110100',
-    name: '北京',
-  };
-  const currentItem = {
-    code: '310100',
-    name: '上海',
-  };
-
-  const onSelect = (item) => {
-    console.log(item);
-  };
-
-  const onHide = () => {
-    console.log('onHide');
-  };
-
-  return (
-    <ItemSelector
-      items={items}
-      onSelect={onSelect}
-      selectedItem={selectedItem}
-      selectedItemGroupName="当前Item"
-      currentItem={currentItem}
-      currentItemGroupName="定位Item"
-      hotItems={hotItems}
-      hotItemsGroupName="热门Item"
-      onClose={onHide}
       disableIndex
       style={{ height: '500px' }}
     />
@@ -366,26 +569,23 @@ export default () => {
 
 #### ItemSelectorProps
 
-| 属性                  | 说明                                | 类型                                                 | 默认值     |
-| --------------------- | ----------------------------------- | ---------------------------------------------------- | ---------- |
-| items                 | Item列表                            | ItemGroup[]                                          | -          |
-| onSelect              | 选择Item回调                        | (e: React.SyntheticEvent,data: {item: Item}) => void | -          |
-| selectedItem          | 当前Item信息                        | Item                                                 | -          |
-| selectedItemGroupName | 当前Item栏的title                   | string                                               | '当前Item' |
-| currentItem           | 定位Item信息                        | Item                                                 | -          |
-| currentItemGroupName  | 定位Item栏的title                   | string                                               | '定位Item' |
-| hotItems              | 热门Item信息                        | Item[]                                               | -          |
-| hotItemsGroupName     | 热门Item栏的title                   | string                                               | '热门Item' |
-| disableIndex          | 禁用展示索引 默认false 即展示索引   | boolean                                              | false      |
-| title                 | 头部title，非必传                   | string                                               | -          |
-| onClose               | 和title配合使用，头部右侧的关闭回调 | (e: React.SyntheticEvent) => void                    | -          |
+| 属性         | 说明                                | 类型                                                 | 默认值 |
+| ------------ | ----------------------------------- | ---------------------------------------------------- | ------ |
+| items        | Item列表                            | ItemGroup[]                                          | -      |
+| onSelect     | 选择Item回调                        | (e: React.SyntheticEvent,data: {item: Item}) => void | -      |
+| disableIndex | 禁用展示索引 默认false 即展示索引   | boolean                                              | false  |
+| title        | 头部title，非必传                   | string                                               | -      |
+| onClose      | 和title配合使用，头部右侧的关闭回调 | (e: React.SyntheticEvent) => void                    | -      |
 
 #### ItemGroup
 
-| 属性      | 说明     | 类型   | 默认值 |
-| --------- | -------- | ------ | ------ |
-| groupName | 分组名   | string | -      |
-| items     | Item列表 | Item[] | -      |
+| 属性      | 说明     | 类型    | 默认值 |
+| --------- | -------- | ------- | ------ |
+| groupName | 分组名   | string  | -      |
+| indexName | 索引名   | string  | -      |
+| indexCode | 索引code | string  | -      |
+| isFlat    | 是否平铺 | boolean | -      |
+| items     | Item列表 | Item[]  | -      |
 
 #### Item
 
