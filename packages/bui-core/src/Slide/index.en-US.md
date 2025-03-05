@@ -1,19 +1,19 @@
 ---
-group: Dynamic effect
-name: Slide In Slide Out
+group: Animation
+name: Slide In/Out
 ---
 
-# Slide In Slide Out
+# Slide In/Out
 
-Basic slide in/slide out animation using Transition encapsulation.
-Considering the compatibility of mini programs, slide along one edge of the element itself instead of the screen edge.
+Basic slide-in and slide-out animations encapsulated using Transition.
+Considering the compatibility with mini-programs, sliding is performed along one edge of the element itself rather than from the screen edge.
 
-## Code demonstration
+## Code Demonstrations
 
-### Basic usage
+### Basic Usage
 
-The Slide component supports four sliding directions, which are passed in through the 'direction' parameter
-The component itself only handles the displacement of internal elements, and you may need to add external styles such as' overflow: midden 'by yourself
+The Slide component supports four sliding directions, which can be passed via the `direction` parameter.
+The component only handles the internal element's movement; you may need to add external styles such as `overflow:hidden`.
 
 ```tsx
 import React, { useState } from 'react';
@@ -28,7 +28,7 @@ export default () => {
           setOpen((prev) => !prev);
         }}
       >
-        点击改变in属性
+        Click to toggle in property
       </Button>
       <Stack>
         {['down', 'left', 'right', 'up'].map((direction, index) => (
@@ -42,7 +42,7 @@ export default () => {
               }}
               delay={200 * index}
             >
-              <div>滑动效果{direction}</div>
+              <div>Sliding effect {direction}</div>
             </Slide>
           </div>
         ))}
@@ -52,10 +52,10 @@ export default () => {
 };
 ```
 
-### Play animation upon entry
+### Play Animation on Entry
 
-When both 'append' and 'in' are 'true'
-The component will immediately play an animation when mounted
+When both `appear` and `in` are `true`,
+the component will immediately play the animation upon mounting.
 
 ```tsx
 import React, { useState } from 'react';
@@ -70,7 +70,7 @@ export default () => {
           setOpen((prev) => !prev);
         }}
       >
-        点击挂载/卸载组件
+        Click to mount/unmount component
       </Button>
       {open && (
         <Slide
@@ -82,7 +82,7 @@ export default () => {
             exit: 1000,
           }}
         >
-          <div>滑动效果Appear</div>
+          <div>Sliding effect Appear</div>
         </Slide>
       )}
     </Stack>
@@ -90,27 +90,27 @@ export default () => {
 };
 ```
 
-### Events and other attributes
+### Events and Other Properties
 
-Slide inherits from Transition. Other properties can be found in Transition (/ores/transition)
+`Slide` inherits from `Transition`; see other properties at [Transition](/cores/transition)
 
 ## API
 
-| attribute     | explain                                    | type                           | Default value |
-| ------------- | ------------------------------------------ | ------------------------------ | ------------- |
-| in            | Do you want to enter                       | boolean                        | false         |
-| appear        | Whether to play animation during mounting  | boolean                        | false         |
-| direction     | Sliding direction                          | "up"\|"down"\|"left"\|"right"  |               |
-| timeout       | Animation time configuration               | number \|{appear, enter, exit} | -             |
-| delay         | Animation Delay Configuration              | number \|{appear, enter, exit} | -             |
-| enter         | Do you want to play the animation          | boolean                        | true          |
-| exit          | Do you want to play the exit animation     | boolean                        | true          |
-| mountOnEnter  | Mount children on first entry              | boolean                        | false         |
-| unmountOnExit | Uninstall children upon exit               | boolean                        | false         |
-| onEnter       | The callback before entering the beginning | node=>void                     | -             |
-| onEntering    | The callback after entering the beginning  | node=>void                     | -             |
-| onEntered     | Enter the completed callback               | node=>void                     | -             |
-| onExit        | Callback before exit starts                | node=>void                     | -             |
-| onExiting     | Callback after exit starts                 | node=>void                     | -             |
-| onExited      | Exit completed callback                    | node=>void                     | -             |
-| easing        | Transition limiting function               | string \|{enter, exit}         | -             |
+| Property      | Description                                       | Type                            | Default |
+| ------------- | ------------------------------------------------- | ------------------------------- | ------- |
+| in            | Whether to enter                                  | boolean                         | false   |
+| appear        | Whether to play animation on mount                | boolean                         | false   |
+| direction     | Sliding direction                                 | "up"\|"down"\|"left"\|"right"   |         |
+| timeout       | Animation duration configuration                  | number \| {appear, enter, exit} | -       |
+| delay         | Animation delay configuration                     | number \| {appear, enter, exit} | -       |
+| enter         | Whether to play entry animation                   | boolean                         | true    |
+| exit          | Whether to play exit animation                    | boolean                         | true    |
+| mountOnEnter  | Mount children only on first entry                | boolean                         | false   |
+| unmountOnExit | Unmount children on exit                          | boolean                         | false   |
+| onEnter       | Callback before entering starts                   | node=>void                      | -       |
+| onEntering    | Callback after entering starts                    | node=>void                      | -       |
+| onEntered     | Callback when entering completes                  | node=>void                      | -       |
+| onExit        | Callback before exiting starts                    | node=>void                      | -       |
+| onExiting     | Callback after exiting starts                     | node=>void                      | -       |
+| onExited      | Callback when exiting completes                   | node=>void                      | -       |
+| easing        | Easing function, i.e., transition-timing-function | string \| {enter, exit}         | -       |

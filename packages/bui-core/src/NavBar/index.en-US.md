@@ -1,17 +1,17 @@
 ---
 group: Navigation
-name: NavBar navigation bar
+name: NavBar Navigation Bar
 ---
 
-# NavBar navigation bar
+# NavBar Navigation Bar
 
-Provide navigation components for pages, commonly found at the top of mobile pages
+Provides a navigation component for pages, commonly found at the top of mobile pages.
 
-## Code demonstration
+## Code Examples
 
-### Basic usage
+### Basic Usage
 
-Simply import the component to add a navigation bar at the top of the page
+Simply import the component to add a navigation bar to the top of the page.
 
 ```tsx
 /**
@@ -29,9 +29,9 @@ export default () => {
 };
 ```
 
-### Modify or hide the default icon on the left side
+### Modifying or Hiding the Default Left Icon
 
-The component supports modifying the style of the left return arrow by passing a parameter of type ReactNode to leftCon to modify the left return arrow. When the pass parameter is' false ', hide the icon.
+The component supports modifying the style of the left arrow. Pass a `ReactNode` type parameter to `leftIcon` to change the left arrow. If the parameter is `false`, the icon will be hidden.
 
 ```tsx
 /**
@@ -44,16 +44,16 @@ import { CloseLargeIcon } from '@bifrostui/icons';
 export default () => {
   return (
     <Stack spacing="50px">
-      <NavBar title="标题文案" leftIcon={<CloseLargeIcon />} />
-      <NavBar title="标题文案" leftIcon={false} />
+      <NavBar title="Title Text" leftIcon={<CloseLargeIcon />} />
+      <NavBar title="Title Text" leftIcon={false} />
     </Stack>
   );
 };
 ```
 
-### Custom icon display
+### Customizing Icon Display
 
-Control internal icons by setting 'IconProps'
+Control the internal icons by setting `IconProps`.
 
 ```tsx
 /**
@@ -65,15 +65,15 @@ import { Stack, NavBar } from '@bifrostui/react';
 export default () => {
   return (
     <Stack>
-      <NavBar title="标题文案" IconProps={{ htmlColor: '#ff335c' }} />
+      <NavBar title="Title Text" IconProps={{ htmlColor: '#ff335c' }} />
     </Stack>
   );
 };
 ```
 
-### Customize left copy
+### Customizing the Left Text
 
-Modify the text content to the left of the return arrow by passing a parameter of type ReactNode to the left attribute.
+Modify the text content to the left of the back arrow by passing a `ReactNode` type parameter to the `left` property.
 
 ```tsx
 /**
@@ -85,15 +85,15 @@ import { Stack, NavBar } from '@bifrostui/react';
 export default () => {
   return (
     <Stack spacing="50px">
-      <NavBar left="返回" />
+      <NavBar left="Back" />
     </Stack>
   );
 };
 ```
 
-### Add a title to the navigation bar
+### Adding a Title to the Navigation Bar
 
-The component supports custom titles, which can be modified by passing parameters of type ReactNode to the title property The title of 'string' type supports omitting display beyond the limit, while 'ReactNode' needs to be implemented by oneself.
+Customize the title by passing a `ReactNode` type parameter to the `title` property. Titles of type `string` support ellipsis for overflow, while `ReactNode` types need to handle this manually.
 
 ```tsx
 /**
@@ -106,17 +106,17 @@ export default () => {
   return (
     <Stack>
       <Stack spacing="50px" style={{ width: '375px' }}>
-        <NavBar title="标题文案" />
-        <NavBar title="这个标题文案很长很长很长很长" />
+        <NavBar title="Title Text" />
+        <NavBar title="This title text is very long and exceeds the normal length" />
       </Stack>
     </Stack>
   );
 };
 ```
 
-### Customize the content on the right side
+### Customizing the Right Content
 
-Users can customize the content of the right area by passing parameters of type ReactNode to the 'right' attribute, as shown in the icon content in '@ bifrostui/icons'.
+Users can customize the content on the right side by passing a `ReactNode` type parameter to the `right` property. Refer to the icons in `@bifrostui/icons` for examples.
 
 ```tsx
 /**
@@ -129,16 +129,16 @@ import { MoreIcon } from '@bifrostui/icons';
 export default () => {
   return (
     <Stack spacing="50px">
-      <NavBar title="标题文案" right="文案" />
-      <NavBar title="标题文案" right={<MoreIcon size="large" />} />
+      <NavBar title="Title Text" right="Text" />
+      <NavBar title="Title Text" right={<MoreIcon size="large" />} />
     </Stack>
   );
 };
 ```
 
-### Fixed at the top
+### Fixing to the Top
 
-Users can fix the navigation bar at the top of the page by passing 'true' to the 'fixed' property, and can also set the 'placeholder' property to pass' true 'to generate a placeholder block in its original position.
+Users can fix the navigation bar to the top of the page by passing `true` to the `fixed` property. Additionally, setting `placeholder` to `true` will generate a placeholder block at the original position.
 
 ```tsx
 /**
@@ -152,7 +152,7 @@ import { Stack, NavBar } from '@bifrostui/react';
 export default () => {
   return (
     <Stack>
-      <NavBar title="标题文案" fixed placeholder />
+      <NavBar title="Title Text" fixed placeholder />
     </Stack>
   );
 };
@@ -160,30 +160,30 @@ export default () => {
 
 ## API
 
-### Name
+### NavBar
 
-| attribute   | explain                                                                                                                                  | type                                       | Default value               |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | --------------------------- |
-| className   | Component class name                                                                                                                     | string                                     | -                           |
-| title       | title                                                                                                                                    | ReactNode                                  | -                           |
-| left        | Customize the content on the left side of the navigation bar                                                                             | ReactNode                                  | -                           |
-| leftIcon    | Customize left arrow, false controls hide                                                                                                | ReactNode \|boolean                        | <ArrowBackwardLargeIcon \/> |
-| IconProps   | Transmitting attributes to internal icons                                                                                                | ISvgIconProps                              | -                           |
-| right       | Customize the content on the right side of the navigation bar                                                                            | ReactNode                                  | -                           |
-| fixed       | Is it fixed at the top                                                                                                                   | boolean                                    | false                       |
-| placeholder | When fixed at the top, generate an equally high placeholder element at the label position (consider turning off immersive effect scenes) | boolean                                    | false                       |
-| onClickLeft | Click the return button to call back the event                                                                                           | (e: SyntheticEvent<HTMLDivElement) => void | -                           |
+| Property    | Description                                                                   | Type                                          | Default Value               |
+| ----------- | ----------------------------------------------------------------------------- | --------------------------------------------- | --------------------------- |
+| className   | Component class name                                                          | string                                        | -                           |
+| title       | Title                                                                         | ReactNode                                     | -                           |
+| left        | Custom content for the left side of the navigation bar                        | ReactNode                                     | -                           |
+| leftIcon    | Customize the left arrow, `false` to hide it                                  | ReactNode \| boolean                          | <ArrowBackwardLargeIcon \/> |
+| IconProps   | Props passed to the internal icon                                             | ISvgIconProps                                 | -                           |
+| right       | Custom content for the right side of the navigation bar                       | ReactNode                                     | -                           |
+| fixed       | Whether to fix the navigation bar to the top                                  | boolean                                       | false                       |
+| placeholder | Whether to generate a placeholder element at the original position when fixed | boolean                                       | false                       |
+| onClickLeft | Callback for the left button click event                                      | (e: SyntheticEvent<HTMLDivElement \>) => void | -                           |
 
-## Style variables
+## Style Variables
 
-| attribute          | explain                               | Default value           | global variable               |
-| ------------------ | ------------------------------------- | ----------------------- | ----------------------------- |
-| --width            | Navigation bar width                  | 100%                    | --bui-navbar-width            |
-| --height           | Navigation bar height                 | 45px                    | --bui-navbar-height           |
-| --padding          |                                       | 0 8px                   | --bui-navbar-padding          |
-| --title-max-width  | Maximum width of navigation bar title | 60%                     | --bui-navbar-title-max-width  |
-| --icon-size        | Navigation bar icon size              | 30px                    | --bui-navbar-icon-size        |
-| --icon-font-size   | Navigation bar icon font              | var(--bui-title-size-3) | --bui-navbar-icon-font-size   |
-| --background-color | Navigation bar background color       | var(--bui-color-white)  | --bui-navbar-background-color |
-| --border-bottom    | Bottom border style of navigation bar | none                    | --bui-navbar-border-bottom    |
-| --z-index          | Default hierarchy of navigation bar   | auto                    | --bui-navbar-z-index          |
+| Property           | Description                                  | Default Value           | Global Variable               |
+| ------------------ | -------------------------------------------- | ----------------------- | ----------------------------- |
+| --width            | Width of the navigation bar                  | 100%                    | --bui-navbar-width            |
+| --height           | Height of the navigation bar                 | 45px                    | --bui-navbar-height           |
+| --padding          | Padding of the navigation bar                | 0 8px                   | --bui-navbar-padding          |
+| --title-max-width  | Maximum width of the title                   | 60%                     | --bui-navbar-title-max-width  |
+| --icon-size        | Size of the icons in the navigation bar      | 30px                    | --bui-navbar-icon-size        |
+| --icon-font-size   | Font size of the icons in the navigation bar | var(--bui-title-size-3) | --bui-navbar-icon-font-size   |
+| --background-color | Background color of the navigation bar       | var(--bui-color-white)  | --bui-navbar-background-color |
+| --border-bottom    | Bottom border style of the navigation bar    | none                    | --bui-navbar-border-bottom    |
+| --z-index          | Default z-index of the navigation bar        | auto                    | --bui-navbar-z-index          |

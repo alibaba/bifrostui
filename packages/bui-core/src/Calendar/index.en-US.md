@@ -1,18 +1,18 @@
 ---
 group:
-  title: Basic input
-name: Calendar Calendar
+  title: Basic Input
+name: Calendar
 ---
 
-# Calendar Calendar
+# Calendar
 
-Used to select dates or date ranges.
+Used for selecting a date or a date range.
 
-## Code demonstration
+## Code Examples
 
-### Basic usage
+### Basic Usage
 
-The default is single choice mode, and the corresponding 'value' should be passed in as a single 'date'. The default selectable range is one year including the current month.
+By default, it is in single-selection mode, where `value` should be passed a single `Date`. The default selectable range includes the current month and the year before and after it.
 
 ```tsx
 import { Calendar, Stack } from '@bifrostui/react';
@@ -36,9 +36,9 @@ export default () => {
 };
 ```
 
-### Specify optional range
+### Specifying Selectable Range
 
-Specify the optional range through 'minDate' and 'maxDate', render the specified month: value=null and specify 'minDate'.
+Use `minDate` and `maxDate` to specify the selectable range. When rendering a specified month: `value=null` and set `minDate`.
 
 ```tsx
 import { Calendar, Stack } from '@bifrostui/react';
@@ -56,7 +56,7 @@ export default () => {
           minDate={dayjs().toDate()}
           maxDate={dayjs().add(2, 'month').toDate()}
           onChange={(e, res) => {
-            console.log('日期变化：', res);
+            console.log('date change:', res);
             setValue(res.value);
           }}
         />
@@ -66,9 +66,9 @@ export default () => {
 };
 ```
 
-### Hide dates outside the current month
+### Hiding Dates Outside Current Month
 
-Enable 'hideDaysOutsideCurrentMonth' to hide dates outside the current month.
+Enable `hideDaysOutsideCurrentMonth` to hide dates outside the current month.
 
 ```tsx
 import { Calendar, Stack } from '@bifrostui/react';
@@ -96,9 +96,9 @@ export default () => {
 };
 ```
 
-### Customize header date format
+### Customizing Header Bar Date Format
 
-You can customize the header date format using 'headerBarFormat', with the default format being 'YYYY/MM'.
+Use `headerBarFormat` to customize the header bar date format; the default format is `YYYY/MM`.
 
 ```tsx
 import { Calendar, Stack } from '@bifrostui/react';
@@ -118,7 +118,7 @@ export default () => {
         <Calendar
           style={{ '--handler-text-width': '90px' }}
           onMonthChange={(e, res) => {
-            console.log('月份变化：', res);
+            console.log('month change:', res);
           }}
           headerBarFormat="YYYY年MM月"
           value={value}
@@ -130,9 +130,9 @@ export default () => {
 };
 ```
 
-### Customize the left and right buttons of the header bar
+### Customizing Header Bar Left and Right Icons
 
-You can customize the left and right icons of the header bar using 'headerBarLeftAcon' and 'headerBarRightIcon'.
+Use `headerBarLeftIcon` and `headerBarRightIcon` to customize the icons on either side of the header bar.
 
 ```tsx
 import { Calendar, Stack } from '@bifrostui/react';
@@ -156,13 +156,15 @@ export default () => {
         <Calendar
           headerBarLeftIcon={({ isMinMonth }) => {
             return (
-              <DoubleArrowLeftTwoToneIcon htmlColor={isMinMonth && '#cccccc'} />
+              <DoubleArrowLeftTwoToneIcon
+                htmlColor={isMinMonth ? '#cccccc' : ''}
+              />
             );
           }}
           headerBarRightIcon={({ isMaxMonth }) => {
             return (
               <DoubleArrowRightTwoToneIcon
-                htmlColor={isMaxMonth && '#cccccc'}
+                htmlColor={isMaxMonth ? '#cccccc' : ''}
               />
             );
           }}
@@ -175,9 +177,9 @@ export default () => {
 };
 ```
 
-### Customize disable date
+### Customizing Disabled Dates
 
-You can customize the disable date through 'disabled date'.
+Use `disabledDate` to customize disabled dates.
 
 ```tsx
 import { Calendar, Stack } from '@bifrostui/react';
@@ -189,11 +191,8 @@ export default () => {
 
   const disabledDate = (current) => {
     return (
-      // 之前日期不可选
-      dayjs(dayjs(current).format('YYYYMMDD')).diff(
-        dayjs(dayjs().format('YYYYMMDD')),
-        'day',
-      ) < 0
+      // Previous dates are not selectable
+      dayjs(current).diff(dayjs(), 'day') < 0
     );
   };
 
@@ -204,7 +203,7 @@ export default () => {
           value={value}
           disabledDate={disabledDate}
           onChange={(e, res) => {
-            console.log('日期变化：', res);
+            console.log('date change:', res);
             setValue(res.value);
           }}
         />
@@ -214,9 +213,9 @@ export default () => {
 };
 ```
 
-### Highlight date
+### Highlighting Dates
 
-Highlight a day or weekend through 'highlightDate'.
+Use `highlightDate` to highlight specific days or weekends.
 
 ```tsx
 import { Calendar, Stack } from '@bifrostui/react';
@@ -233,7 +232,7 @@ export default () => {
           value={value}
           highlightDate="weekend"
           onChange={(e, res) => {
-            console.log('日期变化：', dayjs(res.value).format('YYYY-MM-DD'));
+            console.log('date change:', dayjs(res.value).format('YYYY-MM-DD'));
             setValue(res.value);
           }}
         />
@@ -243,9 +242,9 @@ export default () => {
 };
 ```
 
-### Select date range
+### Selecting a Date Range
 
-Mode 'is specified as' range', which allows for the selection of a date range.
+Set `mode` to `range` to enable selection of a date range.
 
 ```tsx
 import { Calendar, Stack } from '@bifrostui/react';
@@ -265,7 +264,7 @@ export default () => {
           mode="range"
           value={value}
           onChange={(e, res) => {
-            console.log('日期变化：', res);
+            console.log('date change:', res);
             setValue(res.value);
           }}
         />
@@ -277,7 +276,7 @@ export default () => {
 
 ### Controlled Calendar Component
 
-Control the calendar component through the 'value' attribute.
+Control the calendar component using the `value` property.
 
 ```tsx
 import { Button, Calendar, Stack } from '@bifrostui/react';
@@ -286,7 +285,7 @@ import React, { useState } from 'react';
 
 export default () => {
   const [value, setValue] = useState(dayjs().add(1, 'month').toDate());
-  const [rangevalue, setRangeValue] = useState([
+  const [rangeValue, setRangeValue] = useState([
     dayjs().add(30, 'day').toDate(),
     dayjs().add(33, 'day').toDate(),
   ]);
@@ -302,19 +301,19 @@ export default () => {
   return (
     <Stack>
       <div style={{ width: '320px' }}>
-        <Button onClick={onSingleClick}>回到今天</Button>
+        <Button onClick={onSingleClick}>Go Back to Today</Button>
         <Calendar mode="single" value={value} />
-        <Button onClick={onRangeClick}>选中最近一周</Button>
-        <Calendar mode="range" value={rangevalue} />
+        <Button onClick={onRangeClick}>Select Last Week</Button>
+        <Calendar mode="range" value={rangeValue} />
       </div>
     </Stack>
   );
 };
 ```
 
-### Uncontrolled calendar component
+### Uncontrolled Calendar Component
 
-By using the 'defaultValue' attribute to render the component, the selected state of the calendar will be reflected in the 'data selected' or 'data start' and 'data end' attributes of the outermost DOM.
+Use `defaultValue` to render the component, with selected states reflected in the outermost DOM's `data-selected`, `data-start`, and `data-end` attributes.
 
 ```tsx
 import { Calendar, Stack } from '@bifrostui/react';
@@ -338,9 +337,9 @@ export default () => {
 };
 ```
 
-### Customize the content of the date cell
+### Customizing Date Cell Content
 
-You can use 'dateRender' to draw custom date styles.
+Use `dateRender` to customize the appearance of date cells.
 
 ```tsx
 import { Calendar, Stack } from '@bifrostui/react';
@@ -363,7 +362,7 @@ export default () => {
         style={{ flexDirection: 'column' }}
       >
         <div>{day && dayjs(day).format('D')}</div>
-        {isToday && <div style={{ fontSize: '10px' }}>今天</div>}
+        {isToday && <div style={{ fontSize: '10px' }}>Today</div>}
       </div>
     );
   };
@@ -385,9 +384,9 @@ export default () => {
 };
 ```
 
-### Customize the content of weekly cells
+### Customizing Week Cell Content
 
-You can use 'weekRender' to draw custom weekly cell styles.
+Use `weekRender` to customize the appearance of week cells.
 
 ```tsx
 import { Calendar, Stack } from '@bifrostui/react';
@@ -433,61 +432,61 @@ export default () => {
 
 ## API
 
-| attribute                   | explain                                                               | type                                                              | Default value                      |
-| --------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------- |
-| defaultValue                | The default selected value is used when the component is uncontrolled | Date \|Date[] \|null                                              | -                                  |
-| value                       | The selected value is used when the component is controlled           | Date \|Date[] \|null                                              | -                                  |
-| minDate                     | Minimum selectable date                                               | Date                                                              | The first day of the current month |
-| maxDate                     | Maximum selectable dates                                              | Date                                                              | One year after the current date    |
-| mode                        | Calendar selection type                                               | `single` \|`range`                                                | `single`                           |
-| hideDaysOutsideCurrentMonth | Do you want to hide dates outside the current month                   | boolean                                                           | false                              |
-| headerBarFormat             | Display format of date in the header operation bar                    | string                                                            | YYYY/MM                            |
-| headerBarLeftIcon           | Left icon of the head operation bar                                   | (options: ICustomIconProps) => React.ReactNode                    | \<CaretLeftIcon />                 |
-| headerBarRightIcon          | Icon on the right side of the head operation bar                      | (options: ICustomIconProps) => React.ReactNode                    | \<CaretRightIcon />                |
-| disabledDate                | Non selectable dates                                                  | (currentDate: Date) => boolean                                    | Date before that day               |
-| highlightDate               | Highlighted date                                                      | `today` \|`weekend`                                               | `today`                            |
-| dateRender                  | Customize the content of the date cell                                | (currentDate: ICalendarInstance) => React.ReactNode               | -                                  |
-| weekRender                  | Customize the content of weekly cells                                 | (week: string) => React.ReactNode                                 | -                                  |
-| onMonthChange               | A callback with monthly changes                                       | (e: React.SyntheticEvent,data: ICalendarMonthChangeData) => void  | -                                  |
-| onChange                    | Callback for date changes                                             | (e: React.SyntheticEvent,data: { value: ICalendarValue }) => void | -                                  |
+| Property                    | Description                                    | Type                                                               | Default Value               |
+| --------------------------- | ---------------------------------------------- | ------------------------------------------------------------------ | --------------------------- |
+| defaultValue                | Default selected value, used when uncontrolled | Date \| Date[] \| null                                             | -                           |
+| value                       | Selected value, used when controlled           | Date \| Date[] \| null                                             | -                           |
+| minDate                     | Minimum selectable date                        | Date                                                               | First day of current month  |
+| maxDate                     | Maximum selectable date                        | Date                                                               | One year after current date |
+| mode                        | Calendar selection type                        | `single` \| `range`                                                | `single`                    |
+| hideDaysOutsideCurrentMonth | Hide dates outside the current month           | boolean                                                            | false                       |
+| headerBarFormat             | Header bar date display format                 | string                                                             | YYYY/MM                     |
+| headerBarLeftIcon           | Left icon in the header bar                    | (options: ICustomIconProps) => React.ReactNode                     | `<CaretLeftIcon />`         |
+| headerBarRightIcon          | Right icon in the header bar                   | (options: ICustomIconProps) => React.ReactNode                     | `<CaretRightIcon />`        |
+| disabledDate                | Non-selectable dates                           | (currentDate: Date) => boolean                                     | Dates before today          |
+| highlightDate               | Highlighted dates                              | `today` \| `weekend`                                               | `today`                     |
+| dateRender                  | Custom content for date cells                  | (currentDate: ICalendarInstance) => React.ReactNode                | -                           |
+| weekRender                  | Custom content for week cells                  | (week: string) => React.ReactNode                                  | -                           |
+| onMonthChange               | Callback for month changes                     | (e: React.SyntheticEvent, data: ICalendarMonthChangeData) => void  | -                           |
+| onChange                    | Callback for date changes                      | (e: React.SyntheticEvent, data: { value: ICalendarValue }) => void | -                           |
 
-### CalendarMonthChangeData
+### ICalendarMonthChangeData
 
-| attribute | explain                                                                 | type            |
-| --------- | ----------------------------------------------------------------------- | --------------- |
-| month     | Month after switching                                                   | string          |
-| type      | Operation type, prev: click on previous month next: click on next month | `prev` \|`next` |
+| Property | Description                                                       | Type             |
+| -------- | ----------------------------------------------------------------- | ---------------- |
+| month    | Switched month                                                    | string           |
+| type     | Operation type, prev: click previous month next: click next month | `prev` \| `next` |
 
 ### ICalendarInstance
 
-| attribute | explain                   | type    |
-| --------- | ------------------------- | ------- |
-| month     | Date Object               | Date    |
-| type      | Do you want to disable it | boolean |
+| Property | Description      | Type    |
+| -------- | ---------------- | ------- |
+| month    | Date object      | Date    |
+| type     | Whether disabled | boolean |
 
 ### ICustomIconProps
 
-| attribute  | explain                                            | type    |
-| ---------- | -------------------------------------------------- | ------- |
-| isMinMonth | Is it the smallest month within the optional range | boolean |
-| isMaxMonth | Is it the maximum month within the optional range  | boolean |
+| Property   | Description                               | Type    |
+| ---------- | ----------------------------------------- | ------- |
+| isMinMonth | Whether it's the minimum selectable month | boolean |
+| isMaxMonth | Whether it's the maximum selectable month | boolean |
 
-## Style variables
+## Style Variables
 
-| attribute                          | explain                                                          | Default value | global variable                                 |
-| ---------------------------------- | ---------------------------------------------------------------- | ------------- | ----------------------------------------------- |
-| --padding                          | padding                                                          | 6px 12px 7px  | --bui-calendar-padding                          |
-| --week-height                      | Day of the week display bar height                               | 30px          | --bui-calendar-week-height                      |
-| --handler-height                   | Height of operation bar                                          | 28px          | --bui-calendar-handler-height                   |
-| --handler-margin-bottom            | Bottom outer margin of the operation bar                         | 7px           | --bui-calendar-handler-margin-bottom            |
-| --handler-text-width               | Width of operation bar text container                            | 80px          | --bui-calendar-handler-text-width               |
-| --handler-btn-width                | Width of operation bar buttons                                   | 46px          | --bui-calendar-handler-btn-width                |
-| --handler-btn-height               | Height of operation bar buttons                                  | 100%          | --bui-calendar-handler-btn-height               |
-| --handler-btn-icon-font-size       | Font size of operation bar button icon                           | 28px          | --bui-calendar-handler-btn-icon-font-size       |
-| --day-box-height                   | Date box height                                                  | 30px          | --bui-calendar-day-box-height                   |
-| --day-box-margin-bottom            | Bottom margin of date box                                        | 7px           | --bui-calendar-day-box-margin-bottom            |
-| --day-disabled-color               | Date disabled font color                                         | #9c9ca5       | --bui-calendar-day-disabled-color               |
-| --middle-color                     | Select the font color for the middle part of the range selection | #000          | --bui-calendar-middle-color                     |
-| --middle-background-color          | Select the background color in the middle of the range           | #ffeaf1       | --bui-calendar-middle-background-color          |
-| --range-both-ends-color            | Select font colors at both ends of the range                     | #000          | --bui-calendar-range-both-ends-color            |
-| --range-both-ends-background-color | Select background colors at both ends of the range               | #ffc7da       | --bui-calendar-range-both-ends-background-color |
+| Property                           | Description                                      | Default Value | Global Variable                                 |
+| ---------------------------------- | ------------------------------------------------ | ------------- | ----------------------------------------------- |
+| --padding                          | Padding                                          | 6px 12px 7px  | --bui-calendar-padding                          |
+| --week-height                      | Week label height                                | 30px          | --bui-calendar-week-height                      |
+| --handler-height                   | Handler height                                   | 28px          | --bui-calendar-handler-height                   |
+| --handler-margin-bottom            | Handler bottom margin                            | 7px           | --bui-calendar-handler-margin-bottom            |
+| --handler-text-width               | Handler text container width                     | 80px          | --bui-calendar-handler-text-width               |
+| --handler-btn-width                | Handler button width                             | 46px          | --bui-calendar-handler-btn-width                |
+| --handler-btn-height               | Handler button height                            | 100%          | --bui-calendar-handler-btn-height               |
+| --handler-btn-icon-font-size       | Handler button icon font size                    | 28px          | --bui-calendar-handler-btn-icon-font-size       |
+| --day-box-height                   | Day box height                                   | 30px          | --bui-calendar-day-box-height                   |
+| --day-box-margin-bottom            | Day box bottom margin                            | 7px           | --bui-calendar-day-box-margin-bottom            |
+| --day-disabled-color               | Disabled day font color                          | #9c9ca5       | --bui-calendar-day-disabled-color               |
+| --middle-color                     | Middle part font color for range selection       | #000          | --bui-calendar-middle-color                     |
+| --middle-background-color          | Middle part background color for range selection | #ffeaf1       | --bui-calendar-middle-background-color          |
+| --range-both-ends-color            | Both ends font color for range selection         | #000          | --bui-calendar-range-both-ends-color            |
+| --range-both-ends-background-color | Both ends background color for range selection   | #ffc7da       | --bui-calendar-range-both-ends-background-color |

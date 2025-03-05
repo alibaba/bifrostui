@@ -1,28 +1,26 @@
 ---
-group: layout
-name: Stack Layout Components
+group: Layout
+name: Stack Layout Component
 ---
 
-# Stack Layout Components
+# Stack Layout Component
 
 Stack is a container component used to control the vertical or horizontal arrangement of elements.
 
-## Code demonstration
+## Code Examples
 
-### Basic usage
+### Basic Usage
 
-You can control the vertical/horizontal distribution of child nodes through the 'direction' attribute.
-You can also control the alignment of child nodes on the main/cross axis through 'alignItem' and 'justifyContent'.
-In addition, you can also control the spacing between child nodes through 'spacing'.
-The example document is as follows:
+You can control the vertical/horizontal distribution of child nodes using the `direction` property. Additionally, you can use `alignItems` and `justifyContent` to control the alignment of child nodes on the main axis/cross axis. Furthermore, you can control the spacing between child nodes using `spacing`.
+The example documentation is as follows:
 
-##### Interactive experience
+##### Interactive Experience
 
 <code src="./demo/StackDemo.tsx"> </code >
 
-### Dividing line
+### Divider
 
-By using the 'divide' attribute, you can insert an element between each child element.
+Using the `divider` property, you can insert an element between each child element.
 
 ```tsx
 import { Button, Divider, Stack } from '@bifrostui/react';
@@ -36,9 +34,9 @@ export default () => {
         spacing="10px"
         style={{ width: '100px' }}
       >
-        <Button>按钮1</Button>
-        <Button>按钮2</Button>
-        <Button>按钮3</Button>
+        <Button>Button 1</Button>
+        <Button>Button 2</Button>
+        <Button>Button 3</Button>
       </Stack>
     </Stack>
   );
@@ -49,11 +47,11 @@ export default () => {
 
 ##### StackProps
 
-| attribute      | explain                                                              | type                                                                                        | Default value |
-| -------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------- |
-| direction      | Set the vertical/horizontal distribution of child nodes              | `row` ｜ `row-reverse` ｜ `column` ｜ `column-reverse`                                      | `column`      |
-| alignItems     | Cross axis alignment method                                          | `flex-start` ｜ `center`｜ `flex-end`｜ `stretch` ｜`baseline`                              | `center`      |
-| justifyContent | Alignment method on the spindle                                      | `flex-start` ｜ `center` ｜ `flex-end` ｜ `space-between` ｜`space-around` ｜`space-evenly` | `center`      |
-| flexWrap       | Exceeding line break                                                 | `wrap` ｜ `nowrap`｜ `wrap-reverse`                                                         | `nowrap`      |
-| spacing        | Set the spacing between child nodes                                  | string                                                                                      | -             |
-| divider        | Split line, allowing insertion of an element between each child node | ReactNode ｜ boolean                                                                        | false         |
+| Property       | Description                                                  | Type                                                                                        | Default Value |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------- | ------------- |
+| direction      | Sets the vertical/horizontal distribution of child nodes     | `row` ｜ `row-reverse` ｜ `column` ｜ `column-reverse`                                      | `column`      |
+| alignItems     | Alignment on the cross axis                                  | `flex-start` ｜ `center`｜ `flex-end`｜ `stretch` ｜`baseline`                              | `center`      |
+| justifyContent | Alignment on the main axis                                   | `flex-start` ｜ `center` ｜ `flex-end` ｜ `space-between` ｜`space-around` ｜`space-evenly` | `center`      |
+| flexWrap       | Wrapping when overflow                                       | `wrap` ｜ `nowrap`｜ `wrap-reverse`                                                         | `nowrap`      |
+| spacing        | Sets the spacing between child nodes                         | string                                                                                      | -             |
+| divider        | Divider, allows inserting an element between each child node | ReactNode ｜ boolean                                                                        | false         |

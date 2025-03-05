@@ -1,21 +1,21 @@
 ---
 group: Data Display
-name: Card card
+name: Card
 ---
 
-# Card card
+# Card
 
-Universal card container, the most basic card container, can be used to hold text, lists, images, paragraphs, and is commonly used for backend overview pages.
+A general card container, the most basic card container that can be used to hold text, lists, images, paragraphs, and is commonly used for backend overview pages.
 
-## Code demonstration
+## Code Examples
 
-### Basic usage
+### Basic Usage
 
-The Card component is divided into three modules: CardHeader, CardContent, CardFooter, etc. The following is an example document.
+The `Card` component is divided into 3 sections: `CardHeader`, `CardContent`, and `CardFooter`. Below are example documents.
 
 ### Card Title
 
-The card component provides a 'CardHeader' sub component for setting the card header module. You can set the title of the card container through 'title'.
+The `Card` component provides a `CardHeader` sub-component to set the header section of the card. You can set the title of the card container using the `title` attribute.
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
@@ -26,7 +26,7 @@ export default () => {
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader title={<div>美味小食</div>} />
+          <CardHeader title={<div>Delicious Snacks</div>} />
         </Card>
       </Stack>
     </Stack>
@@ -36,7 +36,7 @@ export default () => {
 
 ### Card Subtitle
 
-You can also set the subtitle of the card container through 'subtitle'.
+You can also set the subtitle of the card container using the `subtitle` attribute.
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
@@ -47,7 +47,7 @@ export default () => {
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader subtitle="（大桶爆米花1份+300ml自制奶茶2杯）" />
+          <CardHeader subtitle="(1 Large Bucket Popcorn + 2 Cups of 300ml Homemade Milk Tea)" />
         </Card>
       </Stack>
     </Stack>
@@ -55,7 +55,7 @@ export default () => {
 };
 ```
 
-Use title and subtitle in combination
+Using both `title` and `subtitle`.
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
@@ -67,8 +67,8 @@ export default () => {
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
           <CardHeader
-            title="美味小食"
-            subtitle="（大桶爆米花1份+300ml自制奶茶2杯）"
+            title="Delicious Snacks"
+            subtitle="(1 Large Bucket Popcorn + 2 Cups of 300ml Homemade Milk Tea)"
           />
         </Card>
       </Stack>
@@ -77,10 +77,9 @@ export default () => {
 };
 ```
 
-### Card head operation area
+### Header Action Area
 
-In addition to providing titles and subheadings, the CardHeader sub component also provides a card header operation area. You can use 'extra' to carry the card header operation area Action.
-When binding the 'nClick' event, the 'CardHeader' provides the default icon for the right side operation. You can also display or hide this icon by setting the 'endIcon' property to 'true/false'.
+Besides providing titles and subtitles, the `CardHeader` sub-component also offers an action area for the header. You can use the `extra` attribute to include actions in the header area. When binding an `onClick` event, `CardHeader` provides a default right-side action icon. You can show or hide this icon by setting the `endIcon` attribute to `true/false`.
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
@@ -92,8 +91,8 @@ export default () => {
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
           <CardHeader
-            title="订单"
-            extra="查看更多"
+            title="Order"
+            extra="View More"
             onClick={(e) => {
               console.log(e);
             }}
@@ -105,7 +104,7 @@ export default () => {
 };
 ```
 
-Set 'endIcon' to 'false'.
+Setting `endIcon` to `false`.
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
@@ -117,8 +116,8 @@ export default () => {
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
           <CardHeader
-            title="订单"
-            extra="查看更多"
+            title="Order"
+            extra="View More"
             endIcon={false}
             onClick={(e) => {
               console.log(e);
@@ -131,9 +130,9 @@ export default () => {
 };
 ```
 
-### Card Text
+### Card Body
 
-The Card component provides a CardContent sub component, typically used to hold the main content of a card container.
+The `Card` component provides a `CardContent` sub-component, typically used to contain the main content of the card.
 
 ```tsx
 import { Card, CardContent, Stack } from '@bifrostui/react';
@@ -145,9 +144,9 @@ export default () => {
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
           <CardContent>
-            <div>订单号：7a73fcggert235fag4</div>
-            <div>取餐码：235634</div>
-            <div>手机号: 134****5427</div>
+            <div>Order Number: 7a73fcggert235fag4</div>
+            <div>Pickup Code: 235634</div>
+            <div>Phone Number: 134****5427</div>
           </CardContent>
         </Card>
       </Stack>
@@ -156,9 +155,9 @@ export default () => {
 };
 ```
 
-### Bottom of the card
+### Card Footer
 
-The Card component provides a CardFooter sub component, typically used to carry the bottom operating area of the card container.
+The `Card` component provides a `CardFooter` sub-component, typically used to contain the bottom operation area of the card.
 
 ```tsx
 import {
@@ -176,14 +175,14 @@ export default () => {
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader title="订单" />
+          <CardHeader title="Order" />
           <CardContent>
-            <div>订单号：7a73fcggert235fag4</div>
-            <div>取餐码：235634</div>
-            <div>手机号: 134****5427</div>
+            <div>Order Number: 7a73fcggert235fag4</div>
+            <div>Pickup Code: 235634</div>
+            <div>Phone Number: 134****5427</div>
           </CardContent>
           <CardFooter>
-            <Button color="success">签收</Button>
+            <Button color="success">Confirm Receipt</Button>
           </CardFooter>
         </Card>
       </Stack>
@@ -192,9 +191,9 @@ export default () => {
 };
 ```
 
-### Typical card example
+### Typical Card Example
 
-Used in conjunction with the 'CardHeader', 'CardContent', and 'CardFooter' sub components.
+Used with `CardHeader`, `CardContent`, and `CardFooter` sub-components.
 
 ```tsx
 import {
@@ -212,14 +211,14 @@ export default () => {
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader title="订单" />
+          <CardHeader title="Order" />
           <CardContent>
-            <div>订单号：7a73fcggert235fag4</div>
-            <div>取餐码：235634</div>
-            <div>手机号: 134****5427</div>
+            <div>Order Number: 7a73fcggert235fag4</div>
+            <div>Pickup Code: 235634</div>
+            <div>Phone Number: 134****5427</div>
           </CardContent>
           <CardFooter>
-            <Button color="success">签收</Button>
+            <Button color="success">Confirm Receipt</Button>
           </CardFooter>
         </Card>
       </Stack>
@@ -228,9 +227,9 @@ export default () => {
 };
 ```
 
-### Examples of Complex Scenarios
+### Complex Scenario Example
 
-The Card component supports nested use.
+The `Card` component supports nested usage.
 
 ```tsx
 import { Card, CardContent, CardHeader, Stack } from '@bifrostui/react';
@@ -241,34 +240,34 @@ export default () => {
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader title="购买商品" />
+          <CardHeader title="Purchased Items" />
           <CardContent>
             <Card style={{ width: '100%' }}>
               <CardHeader
-                title="生鲜水果"
+                title="Fresh Fruits"
                 onClick={(e) => {
                   console.log(e);
                 }}
-                extra="共6件"
+                extra="Total 6 items"
               />
               <CardContent>
-                <div>苹果*2</div>
-                <div>木瓜*1</div>
-                <div>菠菜*3</div>
+                <div>Apple * 2</div>
+                <div>Papaya * 1</div>
+                <div>Spinach * 3</div>
               </CardContent>
             </Card>
             <Card className="subCard">
               <CardHeader
-                title="零食饮料"
+                title="Snacks & Drinks"
                 onClick={(e) => {
                   console.log(e);
                 }}
-                extra="共14件"
+                extra="Total 14 items"
               />
               <CardContent>
-                <div>薯片*2</div>
-                <div>橙汁*2</div>
-                <div>火腿肠*10</div>
+                <div>Chips * 2</div>
+                <div>Orange Juice * 2</div>
+                <div>Sausage * 10</div>
               </CardContent>
             </Card>
           </CardContent>
@@ -279,9 +278,9 @@ export default () => {
 };
 ```
 
-### Highly customized
+### Highly Customizable
 
-In addition to being used in conjunction with the CardHeader, CardContent, and CardFooter sub components, you can also achieve highly customized cards by directly inserting children.
+In addition to using `CardHeader`, `CardContent`, and `CardFooter` sub-components, you can directly insert children to achieve highly customized cards.
 
 ```tsx
 import { Card, Stack } from '@bifrostui/react';
@@ -292,9 +291,9 @@ export default () => {
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ padding: '10px' }}>
-          <div>配料表</div>
-          <div>主要成分：水，生牛乳</div>
-          <div>产品检验合格</div>
+          <div>Ingredients List</div>
+          <div>Main Ingredients: Water, Raw Cow's Milk</div>
+          <div>Product Inspection Passed</div>
         </Card>
       </Stack>
     </Stack>
@@ -306,24 +305,24 @@ export default () => {
 
 ##### CardHeaderProps
 
-| attribute | explain                                      | type                 | Default value |
-| --------- | -------------------------------------------- | -------------------- | ------------- |
-| title     | Card Title                                   | ReactNode            | -             |
-| subtitle  | subtitle                                     | ReactNode            | -             |
-| extra     | Operation area on the right side of the card | ReactNode            | -             |
-| endIcon   | Icon on the right side of the card           | ReactNode ｜ boolean | -             |
+| Property | Description       | Type                 | Default |
+| -------- | ----------------- | -------------------- | ------- |
+| title    | Card Title        | ReactNode            | -       |
+| subtitle | Subtitle          | ReactNode            | -       |
+| extra    | Right Action Area | ReactNode            | -       |
+| endIcon  | Right Icon        | ReactNode \| boolean | -       |
 
-### Style variables
+### Style Variables
 
 #### CardHeader
 
-| attribute              | explain                      | Default value                     | global variable                        |
-| ---------------------- | ---------------------------- | --------------------------------- | -------------------------------------- |
-| --padding              | padding                      | --bui-spacing-md --bui-spacing-lg | --bui-card-header-padding              |
-| --end-icon-margin-left | Left margin of the tail icon | 2px                               | --bui-card-header-end-icon-margin-left |
+| Property               | Description | Default Value                     | Global Variable                        |
+| ---------------------- | ----------- | --------------------------------- | -------------------------------------- |
+| --padding              | Padding     | --bui-spacing-md --bui-spacing-lg | --bui-card-header-padding              |
+| --end-icon-margin-left | Left Margin | 2px                               | --bui-card-header-end-icon-margin-left |
 
 #### CardFooter
 
-| attribute | explain | Default value                     | global variable           |
-| --------- | ------- | --------------------------------- | ------------------------- |
-| --padding | padding | --bui-spacing-md --bui-spacing-lg | --bui-card-footer-padding |
+| Property  | Description | Default Value                     | Global Variable           |
+| --------- | ----------- | --------------------------------- | ------------------------- |
+| --padding | Padding     | --bui-spacing-md --bui-spacing-lg | --bui-card-footer-padding |
