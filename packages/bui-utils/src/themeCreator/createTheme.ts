@@ -19,7 +19,7 @@ const convertToCss = (styles) => {
  * 挂载自定义主题
  */
 const mountThemeVars = (options: MountThemeVarsOptions) => {
-  const { theme, container } = options || {};
+  const { theme = '', container } = options || {};
   const style = document.createElement('style');
   style.type = 'text/css';
   style.appendChild(document.createTextNode(theme));
