@@ -1,33 +1,32 @@
 ---
-group: theme
+group: Theme
 name: ThemeProvider Theme Configuration
 ---
 
 # ThemeProvider
 
-Theme configuration can be used to specify component colors, sizes, languages, etc.
-ThemeProvider relies on React's' context 'to pass themes and internationalization to components, so you need to ensure that ThemeProvider is the parent of the component you are trying to customize.
+ThemeProvider is used to configure the theme, allowing you to specify component colors, sizes, language, and more. `ThemeProvider` relies on React's `context` to pass the theme and internationalization to components, so you need to ensure that `ThemeProvider` is a parent of any components you wish to customize.
 
-## Code demonstration
+## Code Examples
 
-## Theme customization
+## Customizing Themes
 
-\*\*Developers should pay attention to the following two points when customizing Tokens. For detailed information on theme customization, please refer to [Customize Theme] (/guide/theme).
+**Developers should pay attention to the following two points when customizing Tokens**, for detailed information on theme customization, please refer to [Customizing Themes](/guide/theme).
 
-1. Do not confuse definitions: Different business scenarios should use corresponding APIs to customize Tokens. For example, responsive layout should use the responsive attribute, dark mode should use the defaultDarkToken, and overlay built-in highlight mode Tokens should use defaultLightToken or dmLightToken.
-2. Distinguish priorities: The priority of special scenarios is always higher than that of global general scenarios.
+1. Do not confuse definitions: For different business scenarios, use corresponding APIs to customize Tokens. For example, use responsive properties for responsive layouts, use `defaultDarkToken` or `dmDarkToken` for dark mode, and use `defaultLightToken` or `dmLightToken` to override built-in highlight mode Tokens.
+2. Understand priorities: Specific scenario priorities always take precedence over global common scenarios.
 
-### browser
+### Browser
 
-You can flexibly customize Design Tokens in the browser.
+In browsers, Design Tokens can be customized quite flexibly.
 
 ```tsx
 import { ThemeProvider, Button } from '@bifrostui/react';
 import React from 'react';
 
 /**
- * 响应式：不同屏幕尺寸下自定义Tokens
- * 可配置响应式场景下的内置Tokens和组件的全局Tokens
+ * Responsive: Customize Tokens for different screen sizes
+ * Configure built-in Tokens and global Tokens for responsive scenarios
  */
 const responsive = {
   xs: {
@@ -48,8 +47,8 @@ const responsive = {
 };
 
 /**
- * 默认高亮模式自定义Tokens
- * 应配置BUI内置默认高亮模式全局Tokens
+ * Customize Tokens for default light mode
+ * Should configure BUI's built-in default light mode global Tokens
  */
 const defaultLightToken = {
   '--bui-color-info-start': '#33a7ff',
@@ -57,8 +56,8 @@ const defaultLightToken = {
 };
 
 /**
- * 默认暗黑模式自定义Tokens
- * 应配置BUI内默认置暗黑模式全局Tokens
+ * Customize Tokens for default dark mode
+ * Should configure BUI's built-in default dark mode global Tokens
  */
 const defaultDarkToken = {
   '--bui-color-info-start': '#11caee',
@@ -66,8 +65,8 @@ const defaultDarkToken = {
 };
 
 /**
- * 自定义组件Tokens
- * 应配置组件级别的全局Tokens
+ * Customize component-level Tokens
+ * Should configure component-level global Tokens
  */
 const token = {
   '--bui-button-height': '34px',
@@ -83,16 +82,16 @@ export default () => {
       defaultDarkToken={defaultDarkToken}
     >
       <Button variant="contained" color="info">
-        自定义Tokens
+        Customized Tokens
       </Button>
     </ThemeProvider>
   );
 };
 ```
 
-### Local themes (nested themes)
+### Local Themes (Nested Themes)
 
-Global Design Tokens related to components can be configured by nested ThemeProvider components. BUI does not restrict the transmission of built-in Token properties in custom Tokens at the component level to override global built-in Tokens, but it is recommended not to do so unless necessary to avoid confusion in theme configuration.
+You can configure global Design Tokens related to components by nesting `ThemeProvider` components. BUI does not restrict passing built-in Token properties in component-level custom Tokens to overwrite global built-in Tokens, but it is recommended not to do so unless necessary to avoid confusion in theme configurations.
 
 ```tsx
 import { ThemeProvider, Button } from '@bifrostui/react';
@@ -104,7 +103,7 @@ const token = {
 
 const internalToken = {
   '--bui-button-height': '28px',
-  // 不推荐在token中复写内置Token，尽量使用组件的全局变量来定制样式
+  // Not recommended to rewrite built-in Tokens in tokens; try using global variables of components to customize styles
   // '--bui-color-info-end': '#148a00',
 };
 
@@ -112,11 +111,11 @@ export default () => {
   return (
     <ThemeProvider isRoot token={token}>
       <Button variant="contained" color="info" style={{ marginRight: '20px' }}>
-        自定义Tokens
+        Customized Tokens
       </Button>
       <ThemeProvider token={internalToken}>
         <Button variant="contained" color="info" className="test">
-          嵌套的Tokens
+          Nested Tokens
         </Button>
       </ThemeProvider>
     </ThemeProvider>
@@ -124,23 +123,23 @@ export default () => {
 };
 ```
 
-### Mini program
+### Mini Program
 
-Code cannot be dynamically injected into mini programs, and themes and responsive design tokens cannot be dynamically configured through the ThemeProvider component. Currently, the following two methods are supported to modify mini program themes:
+Mini Programs cannot dynamically inject code and therefore cannot dynamically configure themes and responsive-related Design Tokens through the `ThemeProvider` component. Currently, there are two ways to modify Mini Program themes:
 
-1. Write the corresponding tokens under the selector in the style file, and the theme configuration of the global style file will be overwritten by the page level style file.
-2. Local themes can only be passed in CSS variables inline when using components.
+1. Write corresponding selector Tokens in style files manually; page-level style files will override global style files.
+2. Local themes can only be passed inline as CSS variables when using components.
 
 ```tsx
 import { Button } from '@bifrostui/react';
 import React from 'react';
 /**
- * 1.小程序全局或页面级主题，可在入口或页面级样式文件中自行书写选择器对应的样式变量，页面级会覆盖全局样式
+ * 1. Global or page-level theme for Mini Programs can be written in entry or page-level style files with corresponding selector style variables; page-level will override global styles.
  * app.less
  * page { --bui-button-height: 32px }
  */
 
-// 2.小程序局部主题
+// 2. Local theme for Mini Programs
 export default () => {
   return (
     <Button
@@ -148,16 +147,15 @@ export default () => {
       color="info"
       style={{ '--bui-button-height': '28px' }}
     >
-      自定义Tokens
+      Customized Tokens
     </Button>
   );
 };
 ```
 
-## internationalization
+## Internationalization
 
-Here are the components in BUI that require internationalization support. You can switch languages in the demonstration.
-Currently, the components that support internationalization include: Picker, Calendar, Input, TextArea, Select, CitySelector, and Dialog
+BUI provides Chinese, Traditional Chinese, and English by default. If these do not meet your needs, you can also customize languages at the component level. The following lists the currently internationalized components, and you can switch languages in the demos.
 
 ```tsx
 import {
@@ -167,8 +165,6 @@ import {
   Stack,
   Picker,
   Calendar,
-  Input,
-  TextArea,
   Select,
   SelectOption,
   CitySelector,
@@ -197,15 +193,15 @@ const options = [
 const hotCities = [
   {
     code: '110100',
-    name: '北京',
+    name: 'Beijing',
   },
   {
     code: '310100',
-    name: '上海',
+    name: 'Shanghai',
   },
   {
     code: '440100',
-    name: '广州',
+    name: 'Guangzhou',
   },
 ];
 
@@ -215,11 +211,11 @@ const cities = [
     cities: [
       {
         code: '610900',
-        name: '安康',
+        name: 'Ankang',
       },
       {
         code: '210300',
-        name: '鞍山',
+        name: 'Anshan',
       },
     ],
   },
@@ -228,11 +224,11 @@ const cities = [
     cities: [
       {
         code: '652800',
-        name: '巴音郭楞',
+        name: 'Bayin Gol',
       },
       {
         code: '511900',
-        name: '巴中',
+        name: 'Bazhong',
       },
     ],
   },
@@ -241,11 +237,11 @@ const cities = [
     cities: [
       {
         code: '130900',
-        name: '沧州',
+        name: 'Cangzhou',
       },
       {
         code: '220100',
-        name: '长春',
+        name: 'Changchun',
       },
     ],
   },
@@ -254,11 +250,11 @@ const cities = [
     cities: [
       {
         code: '532900',
-        name: '大理',
+        name: 'Dali',
       },
       {
         code: '210200',
-        name: '大连',
+        name: 'Dalian',
       },
     ],
   },
@@ -267,24 +263,19 @@ const cities = [
 export default () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(dayjs().toDate());
-  const [inputValue, setInputValue] = useState('');
   const [curValue, setCurValue] = useState(EN);
   const [dialog, contextHolder] = Dialog.useDialog();
   const handleChange = (e, res) => {
     console.log('date change:', res);
     setValue(res.value);
   };
-  const handleInputChange = (e, data) => {
-    setInputValue(data?.value);
-    console.log('change', data?.value);
-  };
   const selectedCity = {
     code: '110100',
-    name: '北京',
+    name: 'Beijing',
   };
   const currentCity = {
     code: '310100',
-    name: '上海',
+    name: 'Shanghai',
   };
   const onSelect = (city) => {
     console.log(city);
@@ -311,7 +302,7 @@ export default () => {
     <ThemeProvider locale={curValue}>
       {contextHolder}
       <Stack spacing="10px">
-        <div>语言选择</div>
+        <div>Language Selection</div>
         <Select
           defaultValue={EN}
           onChange={(e, { value: locale }) => {
@@ -325,18 +316,18 @@ export default () => {
         <Button
           onClick={() => {
             dialog.confirm({
-              message: '测试',
+              message: 'Test',
             });
           }}
         >
-          Dialog
+          Open Dialog
         </Button>
         <Button
           onClick={() => {
             setOpen(true);
           }}
         >
-          打开picker
+          Open Picker
         </Button>
         <Picker
           open={open}
@@ -348,43 +339,36 @@ export default () => {
             [
               {
                 value: 1,
-                label: '周一',
+                label: 'Monday',
               },
               {
                 value: 2,
-                label: '周二',
+                label: 'Tuesday',
               },
               {
                 value: 3,
-                label: '周三',
+                label: 'Wednesday',
               },
               {
                 value: 4,
-                label: '周四',
+                label: 'Thursday',
               },
               {
                 value: 5,
-                label: '周五',
+                label: 'Friday',
               },
               {
                 value: 6,
-                label: '周六',
+                label: 'Saturday',
               },
               {
                 value: 7,
-                label: '周日',
+                label: 'Sunday',
               },
             ],
           ]}
         />
         <Calendar value={value} onChange={handleChange} />
-        <Input value={inputValue} onChange={handleInputChange} />
-        <TextArea style={{ width: '300px' }} />
-        <Select>
-          {options.map((item, index) => (
-            <SelectOption key={index} value={item.value} label={item.label} />
-          ))}
-        </Select>
         <CitySelector
           cities={cities}
           onSelect={onSelect}
@@ -400,28 +384,28 @@ export default () => {
 };
 ```
 
-### API
+## API
 
-#### ThemeProviderProps、ThemeProps
+### ThemeProviderProps, ThemeProps
 
-| attribute         | explain                                               | type                   | Default value |
-| ----------------- | ----------------------------------------------------- | ---------------------- | ------------- |
-| isRoot            | Is the current ThemeProvider mounted at the top level | boolean                | false         |
-| container         | Mounted container                                     | ReactNode              | -             |
-| containerId       | Mount the container's ID                              | string                 | -             |
-| locale            | language                                              | BaseLang               | zh-CN         |
-| responsive        | Responsive screen breakpoint configuration            | ResponsiveTokenOptions | -             |
-| defaultLightToken | Default highlight theme token                         | Record<string, string> | -             |
-| defaultDarkToken  | Default Dark Theme Token                              | Record<string, string> | -             |
-| dmLightToken      | Damai Dark Theme Token                                | Record<string, string> | -             |
-| token             | Component Global Token                                | Record<string, string> | -             |
+| Property          | Description                                            | Type                   | Default |
+| ----------------- | ------------------------------------------------------ | ---------------------- | ------- |
+| isRoot            | Whether this ThemeProvider is mounted at the top level | boolean                | false   |
+| container         | Mounting container                                     | ReactNode              | -       |
+| containerId       | ID of the mounting container                           | string                 | -       |
+| locale            | Language                                               | BaseLang               | zh-CN   |
+| responsive        | Responsive screen breakpoint configuration             | ResponsiveTokenOptions | -       |
+| defaultLightToken | Default light theme token                              | Record<string, string> | -       |
+| defaultDarkToken  | Default dark theme token                               | Record<string, string> | -       |
+| dmLightToken      | Dark mode light theme token                            | Record<string, string> | -       |
+| token             | Component global Token                                 | Record<string, string> | -       |
 
-#### ResponsiveTokenOptions
+### ResponsiveTokenOptions
 
-| attribute | explain            | type                   | Default value |
-| --------- | ------------------ | ---------------------- | ------------- |
-| xs        | Ultra small screen | Record<string, string> | 575.98px      |
-| sm        | Small screen       | Record<string, string> | 576px         |
-| md        | Medium screen      | Record<string, string> | 768px         |
-| lg        | Large screen       | Record<string, string> | 992px         |
-| xl        | Large screen       | Record<string, string> | 1200px        |
+| Property | Description        | Type                   | Default  |
+| -------- | ------------------ | ---------------------- | -------- |
+| xs       | Extra small screen | Record<string, string> | 575.98px |
+| sm       | Small screen       | Record<string, string> | 576px    |
+| md       | Medium screen      | Record<string, string> | 768px    |
+| lg       | Large screen       | Record<string, string> | 992px    |
+| xl       | Extra large screen | Record<string, string> | 1200px   |

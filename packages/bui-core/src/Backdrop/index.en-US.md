@@ -1,16 +1,16 @@
 ---
-group: feedback
-name: Backdrop pop-up background
+group: Feedback
+name: Backdrop Modal Background
 ---
 
-# Backdrop pop-up background
+# Backdrop Modal Background
 
-As a part of [Today popup] (/cores/modal), the popup background is implemented using Fade.
-Generally speaking, you should use Modal directly instead of this component.
+It exists as part of the [Modal](/cores/modal), implemented with Fade for the modal background.
+Typically, you should use Modal directly rather than this component.
 
-## Code demonstration
+## Code Examples
 
-### Basic usage
+### Basic Usage
 
 ```tsx
 import React, { useState } from 'react';
@@ -30,7 +30,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        打开弹窗背景
+        Open backdrop
       </Button>
       <Backdrop
         open={open}
@@ -42,7 +42,7 @@ export default () => {
 };
 ```
 
-### Hide Black Mask
+### Hidden Black Overlay
 
 ```tsx
 import React, { useState } from 'react';
@@ -62,7 +62,9 @@ export default () => {
           setOpen(true);
         }}
       >
-        {open ? '弹窗背景已打开（不可见），点击任意部分关闭' : '打开弹窗背景'}
+        {open
+          ? 'Backdrop opened (invisible), click anywhere to close'
+          : 'Open backdrop'}
       </Button>
       <Backdrop
         open={open}
@@ -75,7 +77,7 @@ export default () => {
 };
 ```
 
-### Fade in/fade out animation duration
+### Transition Duration for Fade In and Out
 
 ```tsx
 import React, { useState } from 'react';
@@ -95,7 +97,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        2s淡入淡出动效效果
+        2s fade in and out transition effect
       </Button>
       <Backdrop
         open={open}
@@ -110,14 +112,14 @@ export default () => {
 
 ## API
 
-| attribute          | explain                                          | type                                | Default value |
-| ------------------ | ------------------------------------------------ | ----------------------------------- | ------------- |
-| open               | Is it displayed                                  | boolean                             | false         |
-| invisible          | Is it transparent or invisible (still clickable) | boolean                             | false         |
-| transitionDuration | Fade in/fade out time                            | number \|TransitionProps['timeout'] |               |
+| Property           | Description                                               | Type                                 | Default |
+| ------------------ | --------------------------------------------------------- | ------------------------------------ | ------- |
+| open               | Whether it is displayed                                   | boolean                              | false   |
+| invisible          | Whether it is transparent and invisible (still clickable) | boolean                              | false   |
+| transitionDuration | Duration for fade in and out                              | number \| TransitionProps['timeout'] |         |
 
-## Style variables
+## Style Variables
 
-| attribute          | explain          | Default value       | global variable                 |
+| Property           | Description      | Default Value       | Global Variable                 |
 | ------------------ | ---------------- | ------------------- | ------------------------------- |
 | --background-color | Background color | rgba(0, 0, 0, 0.68) | --bui-backdrop-background-color |
