@@ -1,5 +1,90 @@
 [
   {
+    "groupName": "当前城市",
+    "indexName": "CRRT",
+    "isFlat": true,
+    "items": [
+      {
+        "code": "110100",
+        "name": "北京"
+      }
+    ]
+  },
+  {
+    "groupName": "定位城市",
+    "indexName": "GPS",
+    "isFlat": true,
+    "items": [
+      {
+        "code": "310100",
+        "name": "上海"
+      }
+    ]
+  },
+  {
+    "groupName": "热门城市",
+    "indexName": "HOT",
+    "isFlat": true,
+    "items": [
+      {
+        "code": "110100",
+        "name": "北京"
+      },
+      {
+        "code": "310100",
+        "name": "上海"
+      },
+      {
+        "code": "440100",
+        "name": "广州"
+      },
+      {
+        "code": "440300",
+        "name": "深圳"
+      },
+      {
+        "code": "330100",
+        "name": "杭州"
+      },
+      {
+        "code": "320100",
+        "name": "南京"
+      },
+      {
+        "code": "510100",
+        "name": "成都"
+      },
+      {
+        "code": "420100",
+        "name": "武汉"
+      },
+      {
+        "code": "120100",
+        "name": "天津"
+      },
+      {
+        "code": "210100",
+        "name": "沈阳"
+      },
+      {
+        "code": "610100",
+        "name": "西安"
+      },
+      {
+        "code": "330200",
+        "name": "宁波"
+      },
+      {
+        "code": "0",
+        "name": "海外"
+      },
+      {
+        "code": "350600",
+        "name": "漳州"
+      }
+    ]
+  },
+  {
     "groupName": "",
     "items": [
       {
