@@ -33,4 +33,9 @@ export interface CssVarToValueOptions {
    * @default defaultLight
    */
   themeVars?: Record<string, string>;
+  /**
+   * 记录已解析的变量路径
+   * 函数内部使用参数
+   */
+  _visitedKeys?: Set<string>;
 }
