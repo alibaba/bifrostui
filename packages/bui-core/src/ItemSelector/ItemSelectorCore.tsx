@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import { throttle, useForkRef, useTouchEmulator } from '@bifrostui/utils';
-import { useLocaleText } from '../locales';
 import ScrollView from '../ScrollView';
-import { ItemSelectorCoreProps } from './ItemSelector.types';
+import { ItemSelectorCoreProps, allItemType } from './ItemSelector.types';
 import Selector from './Selector';
 
 import './ItemSelector.less';
@@ -15,13 +14,9 @@ const prefixCls = 'bui-item-selector';
 
 const ItemSelector = React.forwardRef<HTMLDivElement, ItemSelectorCoreProps>(
   (props, ref) => {
-    const { located, current, hot } = useLocaleText('citySelector');
     const {
       className,
       title: pageTitle,
-      selectedItem,
-      currentItem,
-      hotItems,
       items,
       disableIndex,
       touchHandler,
@@ -31,26 +26,29 @@ const ItemSelector = React.forwardRef<HTMLDivElement, ItemSelectorCoreProps>(
       ...others
     } = props;
 
-    const GPS_TYPE = {
-      title: located,
-      code: 'GPS',
-    };
-    const CURRENT_TYPE = {
-      title: current,
-      code: 'CRRT',
-    };
-
-    const HOT_ITEM_TYPE = {
-      title: hot,
-      code: 'HOT',
-    };
-
     const itemRef = useRef(null);
     const nodeRef = useForkRef(ref, itemRef);
     useTouchEmulator(itemRef.current);
     const [codeGroup, setCodeGroup] = useState([]);
     const [codeShow, setCodeShow] = useState(false);
     const [targetId, setTargetId] = useState('');
+
+    const getGroupName = (item: allItemType): string => item.groupName || '';
+    const getIdxName = (item: allItemType): string =>
+      typeof item.indexName === 'string' ? item.indexName : getGroupName(item);
+    const getIdxCode = (item: allItemType): string =>
+      typeof item.indexCode === 'string' ? item.indexCode : getIdxName(item);
+    const renderTitle = (item) => {
+      const title = getGroupName(item);
+      return title ? (
+        <div
+          className="select-item-title"
+          id={disableIndex ? '' : getIdxCode(item)}
+        >
+          {title}
+        </div>
+      ) : null;
+    };
 
     // 提取字母
     useEffect(() => {
@@ -59,34 +57,24 @@ const ItemSelector = React.forwardRef<HTMLDivElement, ItemSelectorCoreProps>(
         items?.length === 0 ||
         codeGroup.length !== 0 ||
         disableIndex
-      )
+      ) {
         return;
-
-      const newGroup = [];
-      if (selectedItem) {
-        newGroup.push(CURRENT_TYPE);
       }
-      if (currentItem) {
-        newGroup.push(GPS_TYPE);
-      }
-      if (hotItems) {
-        newGroup.push(HOT_ITEM_TYPE);
-      }
-      items.forEach((item) => {
-        newGroup.push(item.groupName.toUpperCase());
-      });
-      setCodeGroup(newGroup);
-    }, [items, selectedItem, currentItem, hotItems]);
+      setCodeGroup(
+        items.map((item) => {
+          return {
+            name: getIdxName(item),
+            code: getIdxCode(item),
+          };
+        }),
+      );
+    }, [items]);
 
     // 计算每个code的top
     useEffect(() => {
       if (codeGroup.length === 0) return;
       setCodeShow(true);
     }, [codeGroup]);
-
-    const selectHandler = (e, item) => {
-      onSelect(e, { item });
-    };
 
     const scrollToCode = (targetCode) => {
       if (!targetCode) return;
@@ -115,15 +103,6 @@ const ItemSelector = React.forwardRef<HTMLDivElement, ItemSelectorCoreProps>(
       onClose?.(e);
     };
 
-    const renderTitle = (title, titleCode?) => {
-      const parseTitle = (titleCode || title).toUpperCase();
-      return (
-        <div className="select-item-title" id={disableIndex ? '' : parseTitle}>
-          {title?.toUpperCase()}
-        </div>
-      );
-    };
-
     return (
       <div className={clsx(prefixCls, className)} ref={nodeRef} {...others}>
         {pageTitle ? (
@@ -147,42 +126,40 @@ const ItemSelector = React.forwardRef<HTMLDivElement, ItemSelectorCoreProps>(
               <div className={`${prefixCls}-list-container`}>
                 {items.map((item, itemGroupIndex) => {
                   if (!item?.groupName) return null;
-                  if (item.isFlat) {
-                    return (
-                      <div key={itemGroupIndex}>
-                        {renderTitle(item.groupName)}
+                  return (
+                    <div key={itemGroupIndex}>
+                      {renderTitle(item)}
+                      {item.isFlat ? (
                         <div className="select-item-buttons">
-                          {item.items.map((currIt, index) => {
+                          {item.items.map((it, index) => {
                             return (
                               <Selector
                                 key={index}
-                                item={currIt}
-                                onSelect={selectHandler}
+                                item={it}
+                                onSelect={(e) => {
+                                  onSelect(e, { item: it, group: item });
+                                }}
                               />
                             );
                           })}
                         </div>
-                      </div>
-                    );
-                  }
-                  return (
-                    <div key={itemGroupIndex}>
-                      {renderTitle(item.groupName, item.groupName)}
-                      <ul className={`${prefixCls}-list`}>
-                        {item.items.map((it, itemIndex) => {
-                          return (
-                            <li
-                              className={`${prefixCls}-list-item`}
-                              key={itemIndex}
-                              onClick={(e) => {
-                                selectHandler(e, item);
-                              }}
-                            >
-                              {it.name}
-                            </li>
-                          );
-                        })}
-                      </ul>
+                      ) : (
+                        <ul className={`${prefixCls}-list`}>
+                          {item.items.map((it, itemIndex) => {
+                            return (
+                              <li
+                                className={`${prefixCls}-list-item`}
+                                key={itemIndex}
+                                onClick={(e) => {
+                                  onSelect(e, { item: it, group: item });
+                                }}
+                              >
+                                {it.name}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      )}
                     </div>
                   );
                 })}
@@ -198,22 +175,22 @@ const ItemSelector = React.forwardRef<HTMLDivElement, ItemSelectorCoreProps>(
             })}
           >
             <ul onTouchMove={touchCbk} className={`${prefixCls}-index-list`}>
-              {codeGroup.map((item, chartIndex) => {
-                return (
+              {codeGroup.map((item, idx) => {
+                return item.name ? (
                   <li
                     className={`${prefixCls}-index-item`}
-                    key={chartIndex}
-                    data-code={item.code || item}
+                    key={idx}
+                    data-code={item.code}
                     onClick={() => {
-                      codeClickHandler(item.code || item);
+                      codeClickHandler(item.code);
                     }}
                     style={{
                       maxHeight: `calc((${height} - ${DEVIATION_HEIGHT}) / ${codeGroup.length})`,
                     }}
                   >
-                    {item.title || item}
+                    {item.name}
                   </li>
-                );
+                ) : null;
               })}
             </ul>
           </div>

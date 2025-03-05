@@ -17,22 +17,51 @@ Item selection displays the current item, location item, popular items, and all 
 import React from 'react';
 import { ItemSelector } from '@bifrostui/react';
 
-const hotItems = [
-  {
-    code: '110100',
-    name: '北京',
-  },
-  {
-    code: '310100',
-    name: '上海',
-  },
-  {
-    code: '440100',
-    name: '广州',
-  },
-];
-
 const items = [
+  {
+    groupName: '当前城市',
+    indexName: '当前',
+    indexCode: 'CRT',
+    isFlat: true,
+    items: [
+      {
+        code: '310100',
+        name: '上海',
+      },
+    ],
+  },
+  {
+    groupName: '定位城市',
+    indexName: '定位',
+    indexCode: 'POS',
+    isFlat: true,
+    items: [
+      {
+        code: '110100',
+        name: '北京',
+      },
+    ],
+  },
+  {
+    groupName: '热门城市',
+    indexName: '常用',
+    indexCode: 'HOT',
+    isFlat: true,
+    items: [
+      {
+        code: '110100',
+        name: '北京',
+      },
+      {
+        code: '310100',
+        name: '上海',
+      },
+      {
+        code: '440100',
+        name: '广州',
+      },
+    ],
+  },
   {
     groupName: 'A',
     items: [
@@ -88,14 +117,183 @@ const items = [
 ];
 
 export default () => {
-  const selectedItem = {
-    code: '110100',
-    name: '北京',
+  const onSelect = (e, item) => {
+    console.log(item);
   };
-  const currentItem = {
-    code: '310100',
-    name: '上海',
+
+  const onHide = () => {
+    console.log('onHide');
   };
+
+  return (
+    <ItemSelector
+      items={items}
+      onSelect={onSelect}
+      onClose={onHide}
+      style={{ height: '500px' }}
+    />
+  );
+};
+```
+
+### Custom Index
+
+Users can customize indexName|indexCode to control the display copy of the letter navigation on the right
+
+```tsx
+import React from 'react';
+import { ItemSelector } from '@bifrostui/react';
+
+const items = [
+  {
+    groupName: 'Fruit',
+    indexName: '果',
+    indexCode: 'FRT',
+    items: [
+      {
+        name: 'Bannar',
+      },
+      {
+        name: 'Apple',
+      },
+      {
+        name: 'Grape',
+      },
+      {
+        name: 'Pear',
+      },
+      {
+        name: 'Orange',
+      },
+      {
+        name: 'Pineapple',
+      },
+      {
+        name: 'Kiwi',
+      },
+      {
+        name: 'Watermelon',
+      },
+    ],
+  },
+  {
+    groupName: '交通工具',
+    indexName: '通',
+    items: [
+      {
+        name: '汽车',
+      },
+      {
+        name: '飞机',
+      },
+      {
+        name: '火车',
+      },
+      {
+        name: '卡车',
+      },
+      {
+        name: '轮船',
+      },
+      {
+        name: '公共汽车',
+      },
+      {
+        name: '大巴士',
+      },
+      {
+        name: '自行车',
+      },
+      {
+        name: '徒步',
+      },
+      {
+        name: '滑板车',
+      },
+      {
+        name: '三轮车',
+      },
+    ],
+  },
+  {
+    groupName: 'Stationery',
+    indexName: '文',
+    items: [
+      {
+        name: 'Bag',
+      },
+      {
+        name: 'Ruler',
+      },
+      {
+        name: 'Pen',
+      },
+      {
+        name: 'Pencil',
+      },
+      {
+        name: 'Ruler',
+      },
+      {
+        name: 'Rubber',
+      },
+      {
+        name: 'Pencilcase',
+      },
+      {
+        name: 'Desk',
+      },
+      {
+        name: 'Lamp',
+      },
+    ],
+  },
+  {
+    groupName: 'emoji',
+    indexName: '😈',
+    indexCode: 'EMOJI',
+    items: [
+      {
+        name: '自定义数据',
+        param1: 123,
+        param2: 'abc',
+        param3: false,
+      },
+      {
+        name: '测试1',
+      },
+      {
+        name: '测试2',
+      },
+      {
+        name: '测试3',
+      },
+      {
+        name: '测试4',
+      },
+      {
+        name: '测试4',
+      },
+      {
+        name: '测试4',
+      },
+      {
+        name: '测试4',
+      },
+      {
+        name: '测试4',
+      },
+      {
+        name: '测试4',
+      },
+      {
+        name: '测试4',
+      },
+    ],
+  },
+];
+
+export default () => {
   const onSelect = (item) => {
     console.log(item);
   };
@@ -108,12 +306,7 @@ export default () => {
     <ItemSelector
       items={items}
       onSelect={onSelect}
-      selectedItem={selectedItem}
-      selectedItemGroupName="当前Item"
-      currentItem={currentItem}
-      currentItemGroupName="定位Item"
-      hotItems={hotItems}
-      hotItemsGroupName="热门Item"
+      title="自定义Index"
       onClose={onHide}
       style={{ height: '500px' }}
     />
@@ -129,22 +322,48 @@ Users can set the disabling Index to control the display of letter navigation on
 import React from 'react';
 import { ItemSelector } from '@bifrostui/react';
 
-const hotItems = [
-  {
-    code: '110100',
-    name: '北京',
-  },
-  {
-    code: '310100',
-    name: '上海',
-  },
-  {
-    code: '440100',
-    name: '广州',
-  },
-];
-
 const items = [
+  {
+    groupName: '当前城市',
+    indexName: '当前',
+    isFlat: true,
+    items: [
+      {
+        code: '310100',
+        name: '上海',
+      },
+    ],
+  },
+  {
+    groupName: '定位城市',
+    indexName: '定位',
+    isFlat: true,
+    items: [
+      {
+        code: '110100',
+        name: '北京',
+      },
+    ],
+  },
+  {
+    groupName: '热门城市',
+    indexName: '常用',
+    isFlat: true,
+    items: [
+      {
+        code: '110100',
+        name: '北京',
+      },
+      {
+        code: '310100',
+        name: '上海',
+      },
+      {
+        code: '440100',
+        name: '广州',
+      },
+    ],
+  },
   {
     groupName: 'A',
     items: [
@@ -200,15 +419,6 @@ const items = [
 ];
 
 export default () => {
-  const selectedItem = {
-    code: '110100',
-    name: '北京',
-  };
-  const currentItem = {
-    code: '310100',
-    name: '上海',
-  };
-
   const onSelect = (item) => {
     console.log(item);
   };
@@ -221,12 +431,6 @@ export default () => {
     <ItemSelector
       items={items}
       onSelect={onSelect}
-      selectedItem={selectedItem}
-      selectedItemGroupName="当前Item"
-      currentItem={currentItem}
-      currentItemGroupName="定位Item"
-      hotItems={hotItems}
-      hotItemsGroupName="热门Item"
       title="选择Item"
       disableIndex
       onClose={onHide}
@@ -244,22 +448,48 @@ Users can set the title to control the display of the head
 import React from 'react';
 import { ItemSelector } from '@bifrostui/react';
 
-const hotItems = [
-  {
-    code: '110100',
-    name: '北京',
-  },
-  {
-    code: '310100',
-    name: '上海',
-  },
-  {
-    code: '440100',
-    name: '广州',
-  },
-];
-
 const items = [
+  {
+    groupName: '当前城市',
+    indexName: '当前',
+    isFlat: true,
+    items: [
+      {
+        code: '310100',
+        name: '上海',
+      },
+    ],
+  },
+  {
+    groupName: '定位城市',
+    indexName: '定位',
+    isFlat: true,
+    items: [
+      {
+        code: '110100',
+        name: '北京',
+      },
+    ],
+  },
+  {
+    groupName: '热门城市',
+    indexName: '常用',
+    isFlat: true,
+    items: [
+      {
+        code: '110100',
+        name: '北京',
+      },
+      {
+        code: '310100',
+        name: '上海',
+      },
+      {
+        code: '440100',
+        name: '广州',
+      },
+    ],
+  },
   {
     groupName: 'A',
     items: [
@@ -315,15 +545,6 @@ const items = [
 ];
 
 export default () => {
-  const selectedItem = {
-    code: '110100',
-    name: '北京',
-  };
-  const currentItem = {
-    code: '310100',
-    name: '上海',
-  };
-
   const onSelect = (item) => {
     console.log(item);
   };
@@ -336,12 +557,6 @@ export default () => {
     <ItemSelector
       items={items}
       onSelect={onSelect}
-      selectedItem={selectedItem}
-      selectedItemGroupName="当前Item"
-      currentItem={currentItem}
-      currentItemGroupName="定位Item"
-      hotItems={hotItems}
-      hotItemsGroupName="热门Item"
       onClose={onHide}
       disableIndex
       style={{ height: '500px' }}
@@ -354,26 +569,23 @@ export default () => {
 
 #### ItemSelectorProps
 
-| attribute             | explain                                                                              | type                                                 | Default value      |
-| --------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------- | ------------------ |
-| items                 | Item List                                                                            | ItemGroup[]                                          | -                  |
-| onSelect              | Select item callback                                                                 | (e: React.SyntheticEvent,data: {item: Item}) => void | -                  |
-| selectedItem          | Current item information                                                             | Item                                                 | -                  |
-| selectedItemGroupName | The title of the current item column                                                 | string                                               | Current Item       |
-| currentItem           | Locate item information                                                              | Item                                                 | -                  |
-| currentItemGroupName  | Position the title of the item column                                                | string                                               | 'Positioning Item' |
-| hotItems              | Popular item information                                                             | Item[]                                               | -                  |
-| hotItemsGroupName     | Title of the popular item column                                                     | string                                               | 'Popular Items'    |
-| disableIndex          | Disable display index. Default false means display index is disabled                 | boolean                                              | false              |
-| title                 | Title at the top, not mandatory                                                      | string                                               | -                  |
-| onClose               | Used in conjunction with the title, the close callback on the right side of the head | (e: React.SyntheticEvent) => void                    | -                  |
+| attribute    | explain                                                                              | type                                                 | Default value |
+| ------------ | ------------------------------------------------------------------------------------ | ---------------------------------------------------- | ------------- |
+| items        | Item List                                                                            | ItemGroup[]                                          | -             |
+| onSelect     | Select item callback                                                                 | (e: React.SyntheticEvent,data: {item: Item}) => void | -             |
+| disableIndex | Disable display index. Default false means display index is disabled                 | boolean                                              | false         |
+| title        | Title at the top, not mandatory                                                      | string                                               | -             |
+| onClose      | Used in conjunction with the title, the close callback on the right side of the head | (e: React.SyntheticEvent) => void                    | -             |
 
 #### ItemGroup
 
-| attribute | explain    | type   | Default value |
-| --------- | ---------- | ------ | ------------- |
-| groupName | Group name | string | -             |
-| items     | Item List  | Item[] | -             |
+| attribute | explain     | type    | Default value |
+| --------- | ----------- | ------- | ------------- |
+| groupName | Group name  | string  | -             |
+| indexName | Index name  | string  | -             |
+| indexCode | Index code  | string  | -             |
+| isFlat    | flat layout | boolean | -             |
+| items     | Item List   | Item[]  | -             |
 
 #### Item
 
