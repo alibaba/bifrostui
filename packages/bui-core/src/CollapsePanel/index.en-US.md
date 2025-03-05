@@ -1,17 +1,17 @@
 ---
 group: Data Display
-name: CollapsePanel
+name: CollapsePanel Collapsible Panel
 ---
 
-# CollapsePanel
+# CollapsePanel Collapsible Panel
 
-The content area that can be folded/unfolded.
+A collapsible/expandable content area.
 
-## Code demonstration
+## Code Demos
 
-### Basic usage
+### Basic Usage
 
-Multiple panels can be expanded simultaneously, and this example defaults to expanding the first one.
+Multiple panels can be expanded at the same time; this example defaults to expanding the first panel.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -19,9 +19,9 @@ import React from 'react';
 
 export default () => {
   const text = `
-    狗是一种家养动物。
-    它以忠诚和忠诚而闻名，
-    在世界各地的许多家庭中，它都是受欢迎的客人。
+    A dog is a domesticated animal.
+    It is known for its loyalty,
+    and it is a welcome guest in many families around the world.
   `;
 
   return (
@@ -30,17 +30,17 @@ export default () => {
       items={[
         {
           key: '1',
-          label: '这是面板标题1',
+          label: 'This is Panel Title 1',
           children: <p>{text}</p>,
         },
         {
           key: '2',
-          label: '这是面板标题2',
+          label: 'This is Panel Title 2',
           children: <p>{text}</p>,
         },
         {
           key: '3',
-          label: '这是面板标题3',
+          label: 'This is Panel Title 3',
           children: <p>{text}</p>,
         },
       ]}
@@ -59,20 +59,20 @@ import React from 'react';
 
 export default () => {
   const text = `
-    狗是一种家养动物。
-    它以忠诚和忠诚而闻名，
-    在世界各地的许多家庭中，它都是受欢迎的客人。
+    A dog is a domesticated animal.
+    It is known for its loyalty,
+    and it is a welcome guest in many families around the world.
   `;
 
   return (
     <CollapsePanel defaultActiveKeys={['1']}>
-      <CollapsePanelItem key="1" label="这是面板标题1">
+      <CollapsePanelItem key="1" label="This is Panel Title 1">
         {text}
       </CollapsePanelItem>
-      <CollapsePanelItem key="2" label="这是面板标题2">
+      <CollapsePanelItem key="2" label="This is Panel Title 2">
         {text}
       </CollapsePanelItem>
-      <CollapsePanelItem key="3" label="这是面板标题3">
+      <CollapsePanelItem key="3" label="This is Panel Title 3">
         {text}
       </CollapsePanelItem>
     </CollapsePanel>
@@ -80,9 +80,9 @@ export default () => {
 };
 ```
 
-### Accordion mode
+### Accordion Mode
 
-In accordion mode, only one panel is always active.
+In accordion mode, only one panel remains active at any time.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -90,9 +90,9 @@ import React from 'react';
 
 export default () => {
   const text = `
-    狗是一种家养动物。
-    它以忠诚和忠诚而闻名，
-    在世界各地的许多家庭中，它都是受欢迎的客人。
+    A dog is a domesticated animal.
+    It is known for its loyalty,
+    and it is a welcome guest in many families around the world.
   `;
 
   return (
@@ -102,17 +102,17 @@ export default () => {
       items={[
         {
           key: '1',
-          label: '这是面板标题1',
+          label: 'This is Panel Title 1',
           children: <p>{text}</p>,
         },
         {
           key: '2',
-          label: '这是面板标题2',
+          label: 'This is Panel Title 2',
           children: <p>{text}</p>,
         },
         {
           key: '3',
-          label: '这是面板标题3',
+          label: 'This is Panel Title 3',
           children: <p>{text}</p>,
         },
       ]}
@@ -121,9 +121,9 @@ export default () => {
 };
 ```
 
-### Specify the active keys for the current expansion panel
+### Specifying Currently Expanded Panels with activeKeys
 
-By setting ActiveKeys, you can manually specify the currently unfolded panel, which needs to be combined with oChange to achieve controlled unfolding and folding effects.
+By setting activeKeys, you can manually specify which panels are currently expanded. This needs to be used with onChange to achieve controlled expand/collapse effects.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -132,9 +132,9 @@ import React, { useState } from 'react';
 export default () => {
   const [activeKeys, setActiveKeys] = useState(['1']);
   const text = `
-    狗是一种家养动物。
-    它以忠诚和忠诚而闻名，
-    在世界各地的许多家庭中，它都是受欢迎的客人。
+    A dog is a domesticated animal.
+    It is known for its loyalty,
+    and it is a welcome guest in many families around the world.
   `;
 
   const handleChange = (event, params) => {
@@ -147,17 +147,17 @@ export default () => {
       items={[
         {
           key: '1',
-          label: '这是面板标题1',
+          label: 'This is Panel Title 1',
           children: <p>{text}</p>,
         },
         {
           key: '2',
-          label: '这是面板标题2',
+          label: 'This is Panel Title 2',
           children: <p>{text}</p>,
         },
         {
           key: '3',
-          label: '这是面板标题3',
+          label: 'This is Panel Title 3',
           children: <p>{text}</p>,
         },
       ]}
@@ -167,9 +167,9 @@ export default () => {
 };
 ```
 
-### Implementing accordion mode using ActiveKeys
+### Implementing Accordion Mode with activeKeys
 
-By setting ActiveKeys, the currently unfolded panel can be manually specified, and accordion mode can be enabled by setting accordion
+By setting activeKeys, you can manually specify which panels are currently expanded. By setting accordion to true, you enable accordion mode.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -178,9 +178,9 @@ import React, { useState } from 'react';
 export default () => {
   const [activeKeys, setActiveKeys] = useState(['1']);
   const text = `
-    狗是一种家养动物。
-    它以忠诚和忠诚而闻名，
-    在世界各地的许多家庭中，它都是受欢迎的客人。
+    A dog is a domesticated animal.
+    It is known for its loyalty,
+    and it is a welcome guest in many families around the world.
   `;
 
   const handleChange = (event, params) => {
@@ -194,17 +194,17 @@ export default () => {
       items={[
         {
           key: '1',
-          label: '这是面板标题1',
+          label: 'This is Panel Title 1',
           children: <p>{text}</p>,
         },
         {
           key: '2',
-          label: '这是面板标题2',
+          label: 'This is Panel Title 2',
           children: <p>{text}</p>,
         },
         {
           key: '3',
-          label: '这是面板标题3',
+          label: 'This is Panel Title 3',
           children: <p>{text}</p>,
         },
       ]}
@@ -214,9 +214,9 @@ export default () => {
 };
 ```
 
-### Customize icons
+### Customizing Icons
 
-By setting a custom icon through arrowIcon, if it is a ReactNode, it will automatically add a rotation animation effect for you.
+Set custom icons using arrowIcon. If it's a ReactNode, it will automatically add a rotation animation effect.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -225,9 +225,9 @@ import React from 'react';
 
 export default () => {
   const text = `
-    狗是一种家养动物。
-    它以忠诚和忠诚而闻名，
-    在世界各地的许多家庭中，它都是受欢迎的客人。
+    A dog is a domesticated animal.
+    It is known for its loyalty,
+    and it is a welcome guest in many families around the world.
   `;
 
   return (
@@ -236,17 +236,17 @@ export default () => {
       items={[
         {
           key: '1',
-          label: '这是面板标题1',
+          label: 'This is Panel Title 1',
           children: <p>{text}</p>,
         },
         {
           key: '2',
-          label: '这是面板标题2',
+          label: 'This is Panel Title 2',
           children: <p>{text}</p>,
         },
         {
           key: '3',
-          label: '这是面板标题3',
+          label: 'This is Panel Title 3',
           children: <p>{text}</p>,
         },
       ]}
@@ -256,9 +256,9 @@ export default () => {
 };
 ```
 
-### Customize unfolding and folding icons
+### Customizing Expand/Collapse Icons
 
-ArrowIcon can pass in a function with the parameter being whether it is activated, and return the specific icon based on the input status.
+arrowIcon can accept a function that takes an activation state as a parameter and returns a specific icon based on that state.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -270,9 +270,9 @@ import React from 'react';
 
 export default () => {
   const text = `
-    狗是一种家养动物。
-    它以忠诚和忠诚而闻名，
-    在世界各地的许多家庭中，它都是受欢迎的客人。
+    A dog is a domesticated animal.
+    It is known for its loyalty,
+    and it is a welcome guest in many families around the world.
   `;
 
   const renderArrowIcon = (active) => {
@@ -288,17 +288,17 @@ export default () => {
       items={[
         {
           key: '1',
-          label: '这是面板标题1',
+          label: 'This is Panel Title 1',
           children: <p>{text}</p>,
         },
         {
           key: '2',
-          label: '这是面板标题2',
+          label: 'This is Panel Title 2',
           children: <p>{text}</p>,
         },
         {
           key: '3',
-          label: '这是面板标题3',
+          label: 'This is Panel Title 3',
           children: <p>{text}</p>,
         },
       ]}
@@ -312,29 +312,29 @@ export default () => {
 
 ##### CollapsePanelProps
 
-| attribute         | explain                                        | type                                                     | Default value |
-| ----------------- | ---------------------------------------------- | -------------------------------------------------------- | ------------- |
-| accordion         | Do you want to activate accordion mode         | boolean                                                  | false         |
-| activeKeys        | The key of the current activation panel        | string[]                                                 | -             |
-| defaultActiveKeys | Default key for expanding the panel            | string[]                                                 | -             |
-| items             | Folding project content                        | CollapsePanelItemProps[]                                 | -             |
-| children          | Body area content, rendered using CollapseItem | React.ReactNode                                          | -             |
-| arrowIcon         | Customize arrow icon                           | React.ReactNode \|((active: boolean) => React.ReactNode) | -             |
-| onChange          | Triggered when switching panels                | (activeKeys: string[]) => void                           | -             |
+| Property          | Description                                    | Type                                                      | Default |
+| ----------------- | ---------------------------------------------- | --------------------------------------------------------- | ------- |
+| accordion         | Whether to enable accordion mode               | boolean                                                   | false   |
+| activeKeys        | Keys of currently active panels                | string[]                                                  | -       |
+| defaultActiveKeys | Keys of default expanded panels                | string[]                                                  | -       |
+| items             | Collapsible item contents                      | CollapsePanelItemProps[]                                  | -       |
+| children          | Body content area, rendered using CollapseItem | React.ReactNode                                           | -       |
+| arrowIcon         | Custom arrow icon                              | React.ReactNode \| ((active: boolean) => React.ReactNode) | -       |
+| onChange          | Triggered when switching panels                | (activeKeys: string[]) => void                            | -       |
 
 ##### CollapsePanelItemProps
 
-| attribute | explain                                       | type                                                     | Default value |
-| --------- | --------------------------------------------- | -------------------------------------------------------- | ------------- |
-| key       | Unique identifier, corresponding to ActiveKey | string                                                   | -             |
-| label     | Panel Title                                   | React.ReactNode                                          | -             |
-| icon      | Custom icon, overwrite arrowIcon              | React.ReactNode \|((active: boolean) => React.ReactNode) | -             |
-| children  | Body area content                             | React.ReactNode                                          | -             |
+| Property | Description                           | Type                                                      | Default |
+| -------- | ------------------------------------- | --------------------------------------------------------- | ------- |
+| key      | Unique identifier, matching activeKey | string                                                    | -       |
+| label    | Panel title                           | React.ReactNode                                           | -       |
+| icon     | Custom icon, overriding arrowIcon     | React.ReactNode \| ((active: boolean) => React.ReactNode) | -       |
+| children | Body content area                     | React.ReactNode                                           | -       |
 
-### Style variables
+### Style Variables
 
-| attribute         | explain                    | Default value           | global variable                      |
-| ----------------- | -------------------------- | ----------------------- | ------------------------------------ |
-| --width           | width                      | 100%                    | --bui-collapse-panel-width           |
-| --header-padding  | Inner margin of panel head | var(--bui-spacing-lg) 0 | --bui-collapse-panel-header-padding  |
-| --content-padding | Panel theme margin         | var(--bui-spacing-lg) 0 | --bui-collapse-panel-content-padding |
+| Property          | Description          | Default Value           | Global Variable                      |
+| ----------------- | -------------------- | ----------------------- | ------------------------------------ |
+| --width           | Width                | 100%                    | --bui-collapse-panel-width           |
+| --header-padding  | Panel header padding | var(--bui-spacing-lg) 0 | --bui-collapse-panel-header-padding  |
+| --content-padding | Panel body padding   | var(--bui-spacing-lg) 0 | --bui-collapse-panel-content-padding |
