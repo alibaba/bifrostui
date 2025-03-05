@@ -179,6 +179,7 @@ const items = [
   {
     groupName: '交通工具',
     indexName: '通',
+    indexCode: 'TFC',
     items: [
       {
         name: '汽车',
@@ -218,6 +219,7 @@ const items = [
   {
     groupName: 'Stationery',
     indexName: '文',
+    indexCode: 'SIY',
     items: [
       {
         name: 'Bag',
@@ -249,9 +251,8 @@ const items = [
     ],
   },
   {
-    groupName: 'emoji',
-    indexName: '😈',
-    indexCode: 'EMOJI',
+    groupName: 'Customer',
+    indexName: 'Main',
     items: [
       {
         name: '自定义数据',
