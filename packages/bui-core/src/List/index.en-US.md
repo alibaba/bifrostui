@@ -1,17 +1,17 @@
 ---
 group: Data Display
-name: List component
+name: List Component
 ---
 
-# List component
+# List Component
 
-A list is a continuous set of text or images composed of items from the main and supplementary operations, commonly used for data display.
+A list is a set of continuous text or images, composed of items with primary actions and supplementary actions, commonly used for data display.
 
-## Code demonstration
+## Code Demos
 
-### Basic usage
+### Basic Usage
 
-The most basic list display, which can be used to carry text, images, paragraphs, etc.
+The most basic list display, which can carry text, images, paragraphs, etc.
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
@@ -29,7 +29,7 @@ export default () => {
               console.log(e);
             }}
           >
-            <ListItemContent primary={<div>回收站</div>} />
+            <ListItemContent primary={<div>Recycle Bin</div>} />
           </ListItem>
           <ListItem
             onClick={(e) => {
@@ -37,8 +37,8 @@ export default () => {
             }}
           >
             <ListItemContent
-              primary={<div>设置</div>}
-              secondary={<div>音量设置</div>}
+              primary={<div>Settings</div>}
+              secondary={<div>Volume Settings</div>}
             />
           </ListItem>
         </List>
@@ -48,8 +48,8 @@ export default () => {
 };
 ```
 
-The list component provides the 'ListItem' component to host list sub items.
-The ListItem component is divided into four areas: ListItem Header, ListItem Content, ListItem Extra, and ListItem Footer.
+The List component provides the `ListItem` component to hold list items.
+The `ListItem` component is divided into 4 areas: `ListItemHeader`, `ListItemContent`, `ListItemExtra`, and `ListItemFooter`.
 
 ```tsx
 import {
@@ -79,8 +79,8 @@ export default () => {
             <ListItemHeader>
               <PhoneFilledIcon />
             </ListItemHeader>
-            <ListItemContent primary={<div>飞行模式</div>} />
-            <ListItemFooter>{check ? '已开启飞行模式' : ''}</ListItemFooter>
+            <ListItemContent primary={<div>Airplane Mode</div>} />
+            <ListItemFooter>{check ? 'Airplane Mode On' : ''}</ListItemFooter>
             <ListItemExtra
               onClick={(e) => {
                 setCheck(!check);
@@ -96,10 +96,10 @@ export default () => {
 };
 ```
 
-### Clickable status
+### Clickable State
 
-The list component provides the 'disabled' attribute to control the clickable state of the list.
-You can pass' disabled 'through the' ListItem 'component to individually control sub items from clicking.
+The List component provides a `disabled` property to control whether the list item is clickable.
+You can pass `disabled` through the `ListItem` component to individually disable clicking on list items.
 
 ```tsx
 import {
@@ -116,7 +116,7 @@ export default () => {
   return (
     <Stack style={{ backgroundColor: 'rgb(238, 238, 238)', padding: '20px' }}>
       <Stack style={{ width: '350px' }}>
-        {isOpen && <Alert>点击清除回收站成功</Alert>}
+        {isOpen && <Alert>Recycle Bin Cleared Successfully</Alert>}
         <List style={{ width: '100%' }}>
           <ListItem
             disabled
@@ -137,7 +137,7 @@ export default () => {
                     }, 1000);
                   }}
                 >
-                  回收站
+                  Recycle Bin
                 </div>
               }
             />
@@ -151,8 +151,8 @@ export default () => {
             }}
           >
             <ListItemContent
-              primary={<div>设置</div>}
-              secondary={<div>清除回收站</div>}
+              primary={<div>Settings</div>}
+              secondary={<div>Clear Recycle Bin</div>}
             />
           </ListItem>
         </List>
@@ -162,9 +162,9 @@ export default () => {
 };
 ```
 
-### Set the header of the list
+### Setting the List Header
 
-The list component can set the list header through header and subheader .
+The List component allows setting the list header using `header` and `subheader`.
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
@@ -175,8 +175,8 @@ export default () => {
     <Stack style={{ backgroundColor: 'rgb(238, 238, 238)', padding: '20px' }}>
       <Stack style={{ width: '350px' }}>
         <List
-          header={<div>系统</div>}
-          subheader={<div>系统设置</div>}
+          header={<div>System</div>}
+          subheader={<div>System Settings</div>}
           style={{ width: '100%' }}
         >
           <ListItem
@@ -184,14 +184,14 @@ export default () => {
               console.log(e);
             }}
           >
-            <ListItemContent primary={<div>主题设置</div>} />
+            <ListItemContent primary={<div>Theme Settings</div>} />
           </ListItem>
           <ListItem
             onClick={(e) => {
               console.log(e);
             }}
           >
-            <ListItemContent primary={<div>音量设置</div>} />
+            <ListItemContent primary={<div>Volume Settings</div>} />
           </ListItem>
         </List>
       </Stack>
@@ -200,9 +200,9 @@ export default () => {
 };
 ```
 
-### Set the left operation area of the list sub items
+### Setting the Left Operation Area of List Items
 
-The list component provides the 'ListItemHeader' sub component, which is used to customize the header operation area of list items and is commonly used to customize the header icons of list items.
+The List component provides the `ListItemHeader` child component to customize the left operation area of list items, commonly used for customizing icons.
 
 ```tsx
 import React from 'react';
@@ -228,7 +228,7 @@ export default () => {
             <ListItemHeader>
               <PhoneFilledIcon />
             </ListItemHeader>
-            <ListItemContent>电话</ListItemContent>
+            <ListItemContent>Phone</ListItemContent>
           </ListItem>
           <ListItem
             onClick={(e) => {
@@ -238,7 +238,7 @@ export default () => {
             <ListItemHeader>
               <LocationFilledIcon />
             </ListItemHeader>
-            <ListItemContent>住址</ListItemContent>
+            <ListItemContent>Address</ListItemContent>
           </ListItem>
         </List>
       </Stack>
@@ -247,10 +247,10 @@ export default () => {
 };
 ```
 
-### Set the content area for sub items in the list
+### Setting the Content Area of List Items
 
-The list component provides a 'ListItemContent' sub component for customizing the content area of list sub items.
-You can set the main content area and sub content area of the list sub items through the 'primary' and 'secondary' attributes.
+The List component provides the `ListItemContent` child component to customize the content area of list items.
+You can use the `primary` and `secondary` properties to set the main and secondary content areas.
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
@@ -266,7 +266,7 @@ export default () => {
               console.log(e);
             }}
           >
-            <ListItemContent primary="设置" secondary="系统设置" />
+            <ListItemContent primary="Settings" secondary="System Settings" />
           </ListItem>
         </List>
       </Stack>
@@ -275,9 +275,9 @@ export default () => {
 };
 ```
 
-### Set the tail area of the list sub items
+### Setting the Footer Area of List Items
 
-The list component provides a 'ListItemFooter' sub component for customizing the tail area of list items.
+The List component provides the `ListItemFooter` child component to customize the footer area of list items.
 
 ```tsx
 import {
@@ -300,7 +300,7 @@ export default () => {
               console.log(e);
             }}
           >
-            <ListItemContent>头像</ListItemContent>
+            <ListItemContent>Avatar</ListItemContent>
             <ListItemFooter>
               <Avatar src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png" />
             </ListItemFooter>
@@ -312,10 +312,10 @@ export default () => {
 };
 ```
 
-### Set the operation area on the right side of the list sub items
+### Setting the Right Operation Area of List Items
 
-The list component provides a 'ListItemExtra' sub component for customizing the operation area on the right side of list items.
-The ListItemExtra sub component can be used to configure switches and to individually control list sub items.
+The List component provides the `ListItemExtra` child component to customize the right operation area of list items.
+The `ListItemExtra` component can be used to configure switches or to individually control list items.
 
 ```tsx
 import {
@@ -336,8 +336,10 @@ export default () => {
         <List style={{ width: '100%' }}>
           <ListItem>
             <ListItemContent
-              primary={<div>在优酷展示想看记录</div>}
-              secondary={<div>影片可在线播放时会通知提醒你</div>}
+              primary={<div>Show Watchlist on Youku</div>}
+              secondary={
+                <div>You will be notified when videos are available online</div>
+              }
             />
             <ListItemExtra
               onClick={(e) => {
@@ -354,10 +356,10 @@ export default () => {
 };
 ```
 
-### Dividing line
+### Divider
 
-The default sub item of the list component has a dividing line before it, and the dividing line component attribute is transparently passed through by providing the 'dividerDrop' attribute.
-You can also hide the dividing line through 'hideDivider'.
+The List component has dividers between items by default. You can customize divider properties using the `dividerProp` attribute.
+You can also hide dividers using `hideDivider`.
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
@@ -374,8 +376,8 @@ export default () => {
             }}
           >
             <ListItemContent
-              primary="蓝牙和设备连接"
-              secondary="NFC、投射屏幕、触碰付款"
+              primary="Bluetooth and Device Connections"
+              secondary="NFC, Screen Projection, Tap-to-Pay"
             />
           </ListItem>
           <ListItem
@@ -383,7 +385,10 @@ export default () => {
               console.log(e);
             }}
           >
-            <ListItemContent primary="显示" secondary="状态栏、息屏显示" />
+            <ListItemContent
+              primary="Display"
+              secondary="Status Bar, Always-On Display"
+            />
           </ListItem>
         </List>
       </Stack>
@@ -407,8 +412,8 @@ export default () => {
             }}
           >
             <ListItemContent
-              primary="蓝牙和设备连接"
-              secondary="NFC、投射屏幕、触碰付款"
+              primary="Bluetooth and Device Connections"
+              secondary="NFC, Screen Projection, Tap-to-Pay"
             />
           </ListItem>
           <ListItem
@@ -416,7 +421,10 @@ export default () => {
               console.log(e);
             }}
           >
-            <ListItemContent primary="显示" secondary="状态栏、息屏显示" />
+            <ListItemContent
+              primary="Display"
+              secondary="Status Bar, Always-On Display"
+            />
           </ListItem>
         </List>
       </Stack>
@@ -425,9 +433,9 @@ export default () => {
 };
 ```
 
-### Set size
+### Setting Size
 
-The list component provides three sizes: small, medium, and large. You can customize these three sizes through the 'size' attribute.
+The List component offers three sizes: `small`, `medium`, and `large`. You can customize the size using the `size` property.
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
@@ -440,34 +448,34 @@ export default () => {
       spacing="20px"
     >
       <Stack style={{ width: '350px' }}>
-        <div> 默认大小（medium）:</div>
+        <div>Default Size (medium):</div>
         <List style={{ width: '100%' }}>
           <ListItem
             onClick={(e) => {
               console.log(e);
             }}
           >
-            <ListItemContent primary={<div>系统</div>} />
+            <ListItemContent primary={<div>System</div>} />
           </ListItem>
         </List>
-        <div>小一号（small）：</div>
+        <div>Small Size (small):</div>
         <List size="small" style={{ width: '100%' }}>
           <ListItem
             onClick={(e) => {
               console.log(e);
             }}
           >
-            <ListItemContent primary={<div>系统</div>} />
+            <ListItemContent primary={<div>System</div>} />
           </ListItem>
         </List>
-        <div>大一号（large）：</div>
+        <div>Large Size (large):</div>
         <List size="large" style={{ width: '100%' }}>
           <ListItem
             onClick={(e) => {
               console.log(e);
             }}
           >
-            <ListItemContent primary={<div>系统</div>} />
+            <ListItemContent primary={<div>System</div>} />
           </ListItem>
         </List>
       </Stack>
@@ -480,41 +488,41 @@ export default () => {
 
 #### ListProps
 
-| attribute   | explain                               | type                       | Default value |
-| ----------- | ------------------------------------- | -------------------------- | ------------- |
-| header      | List header content                   | ReactNode                  | -             |
-| subheader   | List subheading content               | ReactNode                  | -             |
-| hideDivider | Do you want to hide the dividing line | boolean                    | false         |
-| size        | List size                             | `small`｜`medium`｜`large` | `medium`      |
-| component   | List node label                       | React.ElementType          | -             |
+| Property    | Description       | Type                       | Default  |
+| ----------- | ----------------- | -------------------------- | -------- |
+| header      | Header content    | ReactNode                  | -        |
+| subheader   | Subheader content | ReactNode                  | -        |
+| hideDivider | Hide divider      | boolean                    | false    |
+| size        | List size         | `small`｜`medium`｜`large` | `medium` |
+| component   | List node tag     | React.ElementType          | -        |
 
 #### ListItemProps
 
-| attribute   | explain                                               | type                | Default value |
-| ----------- | ----------------------------------------------------- | ------------------- | ------------- |
-| endIcon     | Operation icon on the right side of the list sub item | ReactNode ｜boolean | -             |
-| disabled    | Is the list clickable                                 | boolean             | false         |
-| hideDivider | Do you want to hide the dividing line                 | boolean             | false         |
-| component   | Root node label                                       | React.ElementType   | -             |
+| Property    | Description          | Type                | Default |
+| ----------- | -------------------- | ------------------- | ------- |
+| endIcon     | Right operation icon | ReactNode ｜boolean | -       |
+| disabled    | Disable clicking     | boolean             | false   |
+| hideDivider | Hide divider         | boolean             | false   |
+| component   | Root node tag        | React.ElementType   | -       |
 
-#### List
+#### ListItemContentProps
 
-| attribute | explain           | type              | Default value |
-| --------- | ----------------- | ----------------- | ------------- |
-| primary   | primary coverage  | ReactNode         | -             |
-| secondary | Secondary content | ReactNode         | -             |
-| component | Root node label   | React.ElementType | -             |
+| Property  | Description       | Type              | Default |
+| --------- | ----------------- | ----------------- | ------- |
+| primary   | Main content      | ReactNode         | -       |
+| secondary | Secondary content | ReactNode         | -       |
+| component | Root node tag     | React.ElementType | -       |
 
-#### ListItemHeaderProps、ListItemFooterProps、ListItemExtraProps
+#### ListItemHeaderProps, ListItemFooterProps, ListItemExtraProps
 
-| attribute | explain         | type              | Default value |
-| --------- | --------------- | ----------------- | ------------- |
-| component | Root node label | React.ElementType | -             |
+| Property  | Description   | Type              | Default |
+| --------- | ------------- | ----------------- | ------- |
+| component | Root node tag | React.ElementType | -       |
 
-### Style variables
+### Style Variables
 
-| attribute             | explain                         | Default value | global variable                |
-| --------------------- | ------------------------------- | ------------- | ------------------------------ |
-| --small-item-padding  | Inner margin of small sub items | 5px 12px      | --bui-list-small-item-padding  |
-| --medium-item-padding | Median sub item margin          | 18px 12px     | --bui-list-medium-item-padding |
-| --large-item-padding  | Large sub item margin           | 20px 12px     | --bui-list-large-item-padding  |
+| Property              | Description         | Default Value | Global Variable                |
+| --------------------- | ------------------- | ------------- | ------------------------------ |
+| --small-item-padding  | Small item padding  | 5px 12px      | --bui-list-small-item-padding  |
+| --medium-item-padding | Medium item padding | 18px 12px     | --bui-list-medium-item-padding |
+| --large-item-padding  | Large item padding  | 20px 12px     | --bui-list-large-item-padding  |
