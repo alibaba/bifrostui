@@ -7,11 +7,11 @@ name: DesktopPicker Overlay Component
 
 The DesktopPicker component is commonly used to control the visibility of overlays.
 
-## Code Demos
+## Code Demonstrations
 
 ### Basic Usage
 
-By default, `open` should be set to `true` to initially open the overlay.
+The default `open` should be passed as `true` to initially open the overlay.
 
 ```tsx
 import { DesktopPicker, Stack, Button } from '@bifrostui/react';
@@ -24,7 +24,7 @@ export default () => {
       <div style={{ width: '320px' }}>
         <DesktopPicker
           open={open}
-          content={<div style={{ height: '100px' }}>Overlay content</div>}
+          content={<div style={{ height: '100px' }}>Overlay Content</div>}
           onClose={() => setOpen(false)}
         >
           <Button style={{ width: '100px' }} onClick={() => setOpen(!open)}>
@@ -37,9 +37,9 @@ export default () => {
 };
 ```
 
-### Basic Usage
+### Advanced Usage
 
-Automatically position within a scrolling container based on scroll position.
+Auto positioning within a container based on scroll location.
 
 ```tsx
 import { DesktopPicker, Stack, Button } from '@bifrostui/react';
@@ -60,18 +60,18 @@ export default () => {
           boxShadow: '0 0 0 2px #f4f5f6',
         }}
       >
-        <div style={{ height: '200px' }}>Top section</div>
+        <div style={{ height: '200px' }}>Top Part</div>
         <DesktopPicker
           open={open}
           container={() => containerRef.current}
-          content={<div style={{ height: '100px' }}>Overlay content</div>}
+          content={<div style={{ height: '100px' }}>Overlay Content</div>}
           onClose={() => setOpen(false)}
         >
           <Button style={{ width: '320px' }} onClick={() => setOpen(!open)}>
             demo
           </Button>
         </DesktopPicker>
-        <div style={{ padding: '3px 0', height: '200px' }}>Bottom section</div>
+        <div style={{ padding: '3px 0', height: '200px' }}>Bottom Part</div>
       </div>
     </Stack>
   );
@@ -82,25 +82,25 @@ export default () => {
 
 ### DesktopPicker
 
-| Property              | Description                              | Type                                                           | Default Value |
-| --------------------- | ---------------------------------------- | -------------------------------------------------------------- | ------------- |
-| open                  | Whether the overlay is open              | `boolean`                                                      | -             |
-| content               | Content of the overlay                   | `React.ReactNode`                                              | -             |
-| container             | Specify the scroll container             | `HTMLElement \| () => HTMLElement`                             | -             |
-| defaultDirection      | Default popup direction                  | `'top' \| 'bottom'`                                            | `'bottom'`    |
-| inheritWidth          | Whether to inherit width                 | `boolean`                                                      | `true`        |
-| containerWidth        | Width of the overlay                     | `number`                                                       | `'auto'`      |
-| miniBackdropInvisible | Whether to use backdrop in mini programs | `boolean`                                                      | `false`       |
-| onClose               | Callback function when closing           | `(e: React.MouseEvent<any>, data: { value: boolean }) => void` | -             |
-| onMount               | Callback when opening animation starts   | `() => void`                                                   | -             |
-| onUnmounted           | Callback when unmounting animation ends  | `() => void`                                                   | -             |
-| BackdropProps         | Props to pass to Backdrop component      | `BackdropProps`                                                | -             |
-| children              | Trigger element                          | `React.ReactElement`                                           | -             |
+| Property              | Description                        | Type                                                           | Default    |
+| --------------------- | ---------------------------------- | -------------------------------------------------------------- | ---------- |
+| open                  | Whether the overlay is open        | `boolean`                                                      | -          |
+| content               | Content of the overlay             | `React.ReactNode`                                              | -          |
+| container             | Specifies the scrolling container  | `HTMLElement \| () => HTMLElement`                             | -          |
+| defaultDirection      | Default direction for the overlay  | `'top' \| 'bottom'`                                            | `'bottom'` |
+| inheritWidth          | Whether to inherit width           | `boolean`                                                      | `true`     |
+| containerWidth        | Width of the overlay               | `number`                                                       | `'auto'`   |
+| miniBackdropInvisible | Use backdrop in mini programs      | `boolean`                                                      | `false`    |
+| onClose               | Callback function on close         | `(e: React.MouseEvent<any>, data: { value: boolean }) => void` | -          |
+| onMount               | Callback after the open animation  | `() => void`                                                   | -          |
+| onUnmounted           | Callback after the close animation | `() => void`                                                   | -          |
+| BackdropProps         | Props passed to the Backdrop       | `BackdropProps`                                                | -          |
+| children              | Trigger element                    | `React.ReactElement`                                           | -          |
 
 ## Style Variables
 
-| Property                    | Description            | Default Value                           | Global Variable |
-| --------------------------- | ---------------------- | --------------------------------------- | --------------- |
-| --bui-desktop-picker-zindex | Z-index of the overlay | `var(--bui-z-index-tooltip)`            | -               |
-| --bui-desktop-picker-bg     | Background color       | `var(--bui-color-bg-view)`              | -               |
-| --bui-desktop-picker-shadow | Shadow                 | `0 0 0 2px var(--bui-color-bg-default)` | -               |
+| Global Variable             | Description      | Default Value                           |
+| --------------------------- | ---------------- | --------------------------------------- |
+| --bui-desktop-picker-zindex | Overlay z-index  | `var(--bui-z-index-tooltip)`            |
+| --bui-desktop-picker-bg     | Background color | `var(--bui-color-bg-view)`              |
+| --bui-desktop-picker-shadow | Shadow           | `0 0 0 2px var(--bui-color-bg-default)` |

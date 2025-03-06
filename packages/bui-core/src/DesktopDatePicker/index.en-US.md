@@ -5,13 +5,13 @@ name: DesktopDatePicker Component
 
 # DesktopDatePicker Component
 
-DesktopDatePicker component is commonly used for selecting a date, including year, month, and day.
+The DesktopDatePicker component is commonly used for selecting dates, including year, month, and day.
 
-## Code Example
+## Code Demo
 
 ### Basic Usage
 
-The default `value` should be passed as `Date`, and the selectable range is 10 years before and after the current year by default.
+The default `value` should be a `Date`, and the selectable range includes the current year plus/minus 10 years.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -37,7 +37,7 @@ export default () => {
 
 ### Disable Popup
 
-Use `disableOpenPicker` to disable the popup selection feature. The date can only be changed by input.
+Use `disableOpenPicker` to disable the popup feature, allowing date changes only through input.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -65,7 +65,7 @@ export default () => {
 };
 ```
 
-### Disable Component
+### Disabled
 
 Use `disabled` to disable the date picker component.
 
@@ -93,7 +93,7 @@ export default () => {
 
 ### Disable Specific Dates
 
-Use `disabledDate` to customize the disabled dates.
+Use `disabledDate` to customize disabled dates.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -128,9 +128,9 @@ export default () => {
 };
 ```
 
-### Close Popup on Select
+### Close Popup After Selecting Date
 
-Use `closeOnSelect` to specify whether the popup should close immediately after selecting a date.
+Use `closeOnSelect` to control whether the popup is closed immediately after selecting a date.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -188,9 +188,9 @@ export default () => {
 };
 ```
 
-### Control Popup Open State
+### Control Popup Visibility
 
-Use `open` to control whether the date picker popup is open.
+Use `open` to control whether the date picker is open or not.
 
 ```tsx
 import { DesktopDatePicker, Stack, Button } from '@bifrostui/react';
@@ -225,7 +225,7 @@ export default () => {
 
 ### Specify Selectable Range
 
-Use `minDate` and `maxDate` to specify the selectable range.
+Use `minDate` and `maxDate` to specify the selectable date range.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -253,7 +253,7 @@ export default () => {
 };
 ```
 
-### Custom Input Icon
+### Customize Input Icon
 
 Use `icon` to specify the input icon.
 
@@ -285,7 +285,7 @@ export default () => {
 
 ### Date Picker Types
 
-Use `picker` to specify the range that can be selected.
+Use `picker` to specify the selection type.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -313,9 +313,9 @@ export default () => {
 };
 ```
 
-### Custom Header Bar Icons
+### Customize Header Icons
 
-Use `headerBarLeftIcon` and `headerBarRightIcon` to customize the header bar left and right icons.
+Use `headerBarLeftIcon` and `headerBarRightIcon` to customize the left and right header icons.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -358,9 +358,9 @@ export default () => {
 };
 ```
 
-### Custom Month Cell Content
+### Customize Month Cell Content
 
-Enable `monthRender` to customize the content of the month cell.
+Enable `monthRender` to customize the content of the month cells.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -394,9 +394,9 @@ export default () => {
 };
 ```
 
-### Custom Year Cell Content
+### Customize Year Cell Content
 
-Enable `yearRender` to customize the content of the year cell.
+Enable `yearRender` to customize the content of the year cells.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -431,9 +431,9 @@ export default () => {
 };
 ```
 
-### Callback on Popup Open/Close
+### Open/Close Callbacks
 
-`onClose` and `onOpen` can customize the callback when the popup is closed or opened.
+`onClose`, `onOpen` to customize callbacks for opening and closing.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -469,9 +469,9 @@ export default () => {
 };
 ```
 
-### Callback on Month Change
+### Month Change Callback
 
-Enable `onMonthChange` to customize the callback when switching months.
+Enable `onMonthChange` to customize the month change callback.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -502,9 +502,9 @@ export default () => {
 };
 ```
 
-### Callback on Year Change
+### Year Change Callback
 
-Enable `onYearChange` to customize the callback when switching years.
+Enable `onYearChange` to customize the year change callback.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -535,7 +535,7 @@ export default () => {
 
 ### Controlled Calendar Component
 
-Use the `value` attribute to control the calendar component.
+Control the calendar component via the `value` property.
 
 ```tsx
 import { Button, DesktopDatePicker, Input, Stack } from '@bifrostui/react';
@@ -563,7 +563,7 @@ export default () => {
           onChange={handleChange}
           value={value}
         />
-        <Button onClick={onSingleClick}>Back to today</Button>
+        <Button onClick={onSingleClick}>Return to Today</Button>
       </div>
     </Stack>
   );
@@ -572,7 +572,7 @@ export default () => {
 
 ### Uncontrolled Calendar Component
 
-Use the `defaultValue` attribute to render the component, the selected state of the calendar will be reflected in the input, which can be obtained via inputRef.
+Render the component via the `defaultValue` property, and the selected date will be reflected in the input. Use `inputRef` to access it.
 
 ```tsx
 import { DesktopDatePicker, Button, Stack } from '@bifrostui/react';
@@ -587,13 +587,13 @@ export default () => {
   return (
     <Stack>
       <Button onClick={() => setDate(inputRef.current?.value)}>
-        Get internal component date
+        Get Date from Component
       </Button>
       <Button onClick={() => setDefault(dayjs().toDate())}>
-        Back to today
+        Return to Today
       </Button>
       <div>defaultValue: {dayjs(defaultValue).format('YYYY/MM/DD')}</div>
-      <div>internal component date: {dayjs(date).format('YYYY/MM/DD')}</div>
+      <div>Component Date: {dayjs(date).format('YYYY/MM/DD')}</div>
       <div style={{ width: '320px' }}>
         <DesktopDatePicker inputRef={inputRef} defaultValue={defaultValue} />
       </div>
@@ -606,17 +606,18 @@ export default () => {
 
 ### DesktopDatePicker
 
-| Property           | Description                              | Type                                                       | Default                                 |
-| ------------------ | ---------------------------------------- | ---------------------------------------------------------- | --------------------------------------- |
-| defaultValue       | Default selected value when uncontrolled | `Date \| null`                                             | -                                       |
-| value              | Selected value when controlled           | `Date \| null`                                             | -                                       |
-| placeholder        | Placeholder for the input                | `string`                                                   | -                                       |
-| minDate            | Minimum selectable date                  | `Date`                                                     | `dayjs().subtract(10, 'year').toDate()` |
-| maxDate            | Maximum selectable date                  | `Date`                                                     | `dayjs().add(10, 'year').toDate()`      |
-| open               | Whether the popup is open                | `boolean`                                                  | -                                       |
-| icon               | Icon for the input                       | `React.ReactNode`                                          | `<DateOutlinedIcon />`                  |
-| inputRef           | Input reference                          | `Ref<HTMLInputElement>`                                    | -                                       |
-| inputProps         | Input properties                         | `React.InputHTMLAttributes<HTMLInputElement>`              | -                                       |
-| picker             | Type of date picker                      | `'year' \| 'month' \| 'day'`                               | `'day'`                                 |
-| headerBarLeftIcon  | Left icon in header bar                  | `(options: IDatePickerCustomIconProps) => React.ReactNode` | -                                       |
-| headerBarRightIcon | Right icon in header bar                 | `(options: IDatePickerCustomIconProps) => React.ReactNode` | -                                       |
+| Property           | Description                                       | Type                                                       | Default                                 |
+| ------------------ | ------------------------------------------------- | ---------------------------------------------------------- | --------------------------------------- |
+| defaultValue       | Default selected value for uncontrolled component | `Date \| null`                                             | -                                       |
+| value              | Selected value for controlled component           | `Date \| null`                                             | -                                       |
+| placeholder        | Input placeholder                                 | `string`                                                   | -                                       |
+| minDate            | Minimum selectable date                           | `Date`                                                     | `dayjs().subtract(10, 'year').toDate()` |
+| maxDate            | Maximum selectable date                           | `Date`                                                     | `dayjs().add(10, 'year').toDate()`      |
+| open               | Whether the popup is open                         | `boolean`                                                  | -                                       |
+| icon               | Input icon                                        | `React.ReactNode`                                          | `<DateOutlinedIcon />`                  |
+| inputRef           | Input reference                                   | `Ref<HTMLInputElement>`                                    | -                                       |
+| inputProps         | Input properties                                  | `React.InputHTMLAttributes<HTMLInputElement>`              | -                                       |
+| picker             | Date picker type                                  | `'year' \| 'month' \| 'day'`                               | `'day'`                                 |
+| headerBarLeftIcon  | Custom left icon for header                       | `(options: IDatePickerCustomIconProps) => React.ReactNode` | -                                       |
+| headerBarRightIcon | Custom right icon for header                      | `(options: IDatePickerCustomIconProps) => React.ReactNode` | -                                       |
+| disabled           | Whether the date picker is disabled               | `boolean`                                                  | `                                       |
