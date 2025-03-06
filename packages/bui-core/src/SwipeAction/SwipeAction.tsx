@@ -34,7 +34,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
       disabled,
       closeOnClickActionItem = true,
       closeOnClickContainer = false,
-      onActionsReveal = () => {},
+      onActionsReveal,
       ...others
     } = props;
     const touch = useTouch();
@@ -58,18 +58,18 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
     const rightWidthCache = useRef(0);
 
     const getWidth = (
-      ref: React.RefObject<HTMLDivElement>,
+      _ref: React.RefObject<HTMLDivElement>,
     ): Promise<number> => {
-      if (!ref.current) return Promise.resolve(0);
+      if (!_ref.current) return Promise.resolve(0);
       return new Promise((resolve) => {
         if (isMini) {
-          getBoundingClientRect(ref.current).then((rect) => {
+          getBoundingClientRect(_ref.current).then((rect) => {
             if (rect) {
               resolve(rect.width || 0);
             }
           });
         } else {
-          resolve(ref.current.offsetWidth);
+          resolve(_ref.current.offsetWidth);
         }
       });
     };
@@ -124,7 +124,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
       100,
     );
 
-    const emitActionsReveal = (targetX: number, stop: boolean = false) => {
+    const emitActionsReveal = (targetX: number, stop = false) => {
       const isSpecial = targetX === pretranslateX && targetX !== 0;
       // 如果当前不需要触发任何操作，直接返回
       if ((targetX === pretranslateX && !isSpecial) || stop) return;
@@ -188,6 +188,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
       initRefWidth();
       if (!contentRef.current) return;
       const removeTouchEmulator = touchEmulator(contentRef.current);
+      // eslint-disable-next-line consistent-return
       return () => {
         removeTouchEmulator();
       };
