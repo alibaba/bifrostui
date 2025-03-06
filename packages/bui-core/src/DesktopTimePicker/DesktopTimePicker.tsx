@@ -13,7 +13,7 @@ import './index.less';
 
 dayjs.extend(customParseFormat);
 
-const prefixCls = 'bui-desktop-time-picker';
+const prefixCls = 'bui-d-time-picker';
 // 定义允许的视图类型
 const allowedViews: Views = ['hour', 'minute', 'second'];
 

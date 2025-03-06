@@ -3,7 +3,7 @@ import React, { act } from 'react';
 import { fireEvent, isConformant, render, userEvent } from 'testing';
 import { DesktopTimePicker } from '..';
 
-const rootClass = 'bui-desktop-time-picker';
+const rootClass = 'bui-d-time-picker';
 
 describe('DesktopTimePicker', () => {
   isConformant({
@@ -109,9 +109,7 @@ describe('DesktopTimePicker', () => {
     await act(async () => {
       userEvent.click(container.querySelector(`.${rootClass}-icon`));
     });
-    const hourList = document.getElementsByClassName(
-      `${rootClass}-table-hour-ul`,
-    );
+    const hourList = document.getElementsByClassName(`${rootClass}-hour-ul`);
     fireEvent.click(hourList[0].children[10]);
     expect(onChange).toHaveBeenCalled();
   });
@@ -211,7 +209,7 @@ describe('DesktopTimePicker', () => {
       userEvent.click(container.querySelector(`.${rootClass}-icon`));
     });
     const meridiemList = document.getElementsByClassName(
-      `${rootClass}-table-meridiem-ul`,
+      `${rootClass}-meridiem-ul`,
     );
     fireEvent.click(meridiemList[0].children[1]);
     expect(onChange).toHaveBeenCalled();
@@ -235,13 +233,11 @@ describe('DesktopTimePicker', () => {
     await act(async () => {
       userEvent.click(container.querySelector(`.${rootClass}-icon`));
     });
-    const hourList = document.getElementsByClassName(
-      `${rootClass}-table-hour-ul`,
-    );
+    const hourList = document.getElementsByClassName(`${rootClass}-hour-ul`);
     fireEvent.click(hourList[0].children[8]); // 8
     fireEvent.click(hourList[0].children[9]); // 9
     const secondList = document.getElementsByClassName(
-      `${rootClass}-table-second-ul`,
+      `${rootClass}-second-ul`,
     );
     fireEvent.click(secondList[0].children[0]); // 0
     expect(onChange).not.toHaveBeenCalled();
@@ -277,10 +273,10 @@ describe('DesktopTimePicker', () => {
       userEvent.click(container.querySelector(`.${rootClass}-icon`));
     });
     const meridiemList = document.getElementsByClassName(
-      `${rootClass}-table-meridiem-ul`,
+      `${rootClass}-meridiem-ul`,
     );
     const meridiemItem = meridiemList[0].querySelector(
-      `.${rootClass}-table-meridiem-ul-li`,
+      `.${rootClass}-meridiem-li`,
     );
     await act(async () => {
       fireEvent.click(meridiemItem);
@@ -301,14 +297,14 @@ describe('DesktopTimePicker', () => {
     await act(async () => {
       userEvent.click(container.querySelector(`.${rootClass}-icon`));
     });
+    expect(document.getElementsByClassName(`${rootClass}-hour-li`).length).toBe(
+      24,
+    );
     expect(
-      document.getElementsByClassName(`${rootClass}-table-hour-ul-li`).length,
-    ).toBe(24);
-    expect(
-      document.getElementsByClassName(`${rootClass}-table-minute-ul-li`).length,
+      document.getElementsByClassName(`${rootClass}-minute-li`).length,
     ).toBe(60);
     expect(
-      document.getElementsByClassName(`${rootClass}-table-second-ul-li`).length,
+      document.getElementsByClassName(`${rootClass}-second-li`).length,
     ).toBe(60);
   });
 
@@ -322,9 +318,7 @@ describe('DesktopTimePicker', () => {
     await act(async () => {
       userEvent.click(container.querySelector(`.${rootClass}-icon`));
     });
-    const meridiemLi = document.getElementsByClassName(
-      `${rootClass}-table-hour-ul-li`,
-    );
+    const meridiemLi = document.getElementsByClassName(`${rootClass}-hour-li`);
     fireEvent.click(meridiemLi[2]);
 
     expect(document.getElementsByTagName('input')[0].value).toBe('02:00:00 PM');
