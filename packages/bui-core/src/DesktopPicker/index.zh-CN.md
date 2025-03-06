@@ -99,8 +99,8 @@ export default () => {
 
 ## 样式变量
 
-| 属性                        | 说明       | 默认值                                  | 全局变量 |
-| --------------------------- | ---------- | --------------------------------------- | -------- |
-| --bui-desktop-picker-zindex | 弹出层层级 | `var(--bui-z-index-tooltip)`            | -        |
-| --bui-desktop-picker-bg     | 背景颜色   | `var(--bui-color-bg-view)`              | -        |
-| --bui-desktop-picker-shadow | 阴影       | `0 0 0 2px var(--bui-color-bg-default)` | -        |
+| 全局变量                    | 说明       | 默认值                                  |
+| --------------------------- | ---------- | --------------------------------------- |
+| --bui-desktop-picker-zindex | 弹出层层级 | `var(--bui-z-index-tooltip)`            |
+| --bui-desktop-picker-bg     | 背景颜色   | `var(--bui-color-bg-view)`              |
+| --bui-desktop-picker-shadow | 阴影       | `0 0 0 2px var(--bui-color-bg-default)` |

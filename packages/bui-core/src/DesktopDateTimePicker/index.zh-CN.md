@@ -646,15 +646,15 @@ export default () => {
 
 ## 样式变量
 
-| 属性                                    | 说明             | 默认值                                      | 全局变量                |
-| --------------------------------------- | ---------------- | ------------------------------------------- | ----------------------- |
-| --bui-datetime-picker-height            | 高度             | `32px`                                      | `--bui-input-height`    |
-| --bui-datetime-picker-min-width         | 最小宽度         | `100px`                                     | `--bui-input-min-width` |
-| --bui-datetime-picker-icon-size         | 图标大小         | `16px`                                      | `--bui-title-size-3`    |
-| --bui-datetime-picker-font-size         | 字体大小         | `16px`                                      | `--bui-title-size-3`    |
-| --bui-datetime-picker-container-padding | 内边距           | `9px`                                       | `--bui-spacing-md`      |
-| --bui-datetime-picker-bg                | 背景色           | `var(--bui-color-bg-view)`                  | -                       |
-| --bui-datetime-picker-font-family       | 字体             | `var(--bui-font-family)`                    | -                       |
-| --bui-datetime-picker-border            | 边框             | `1px solid var(--bui-color-border-default)` | -                       |
-| --bui-datetime-picker-shadow            | 阴影             | `0 0 0 2px var(--bui-color-bg-default)`     | -                       |
-| --bui-datetime-picker-disabled-color    | 禁用状态文字颜色 | `var(--bui-color-fg-subtle)`                | -                       |
+| 全局变量                                | 说明             | 默认值                                      |
+| --------------------------------------- | ---------------- | ------------------------------------------- |
+| --bui-datetime-picker-height            | 高度             | `var(--bui-input-height, 32px)`             |
+| --bui-datetime-picker-min-width         | 最小宽度         | `var(--bui-input-min-width, 100px)`         |
+| --bui-datetime-picker-icon-size         | 图标大小         | `var(--bui-title-size-3, 16px)`             |
+| --bui-datetime-picker-font-size         | 字体大小         | `var(--bui-title-size-3, 16px)`             |
+| --bui-datetime-picker-container-padding | 内边距           | `var(--bui-spacing-md, 9px)`                |
+| --bui-datetime-picker-bg                | 背景色           | `var(--bui-color-bg-view)`                  |
+| --bui-datetime-picker-font-family       | 字体             | `var(--bui-font-family)`                    |
+| --bui-datetime-picker-border            | 边框             | `1px solid var(--bui-color-border-default)` |
+| --bui-datetime-picker-shadow            | 阴影             | `0 0 0 2px var(--bui-color-bg-default)`     |
+| --bui-datetime-picker-disabled-color    | 禁用状态文字颜色 | `var(--bui-color-fg-subtle)`                |

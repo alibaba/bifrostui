@@ -651,33 +651,33 @@ export default () => {
 
 ### DesktopDatePicker
 
-| 属性                                  | 说明         | 默认值                                      | 全局变量                |
-| ------------------------------------- | ------------ | ------------------------------------------- | ----------------------- |
-| --bui-d-date-picker-height            | 输入框高度   | `32px`                                      | `--bui-input-height`    |
-| --bui-d-date-picker-min-width         | 最小宽度     | `100px`                                     | `--bui-input-min-width` |
-| --bui-d-date-picker-font-size         | 字体大小     | `16px`                                      | `--bui-title-size-3`    |
-| --bui-d-date-picker-icon-size         | 图标大小     | `16px`                                      | `--bui-title-size-3`    |
-| --bui-d-date-picker-container-padding | 内边距       | `9px`                                       | `--bui-spacing-md`      |
-| --bui-d-date-picker-bg                | 背景颜色     | `var(--bui-color-bg-view)`                  | -                       |
-| --bui-d-date-picker-font-family       | 字体         | `var(--bui-font-family)`                    | -                       |
-| --bui-d-date-picker-border            | 边框         | `1px solid var(--bui-color-border-default)` | -                       |
-| --bui-d-date-picker-shadow            | 阴影         | `0 0 0 2px var(--bui-color-bg-default)`     | -                       |
-| --bui-d-date-picker-disabled-color    | 禁用文字颜色 | `var(--bui-color-fg-subtle)`                | -                       |
+| 全局变量                              | 说明         | 默认值                                      |
+| ------------------------------------- | ------------ | ------------------------------------------- |
+| --bui-d-date-picker-height            | 输入框高度   | `var(--bui-input-height, 32px)`             |
+| --bui-d-date-picker-min-width         | 最小宽度     | `var(--bui-input-min-width, 100px)`         |
+| --bui-d-date-picker-font-size         | 字体大小     | `var(--bui-title-size-3, 16px)`             |
+| --bui-d-date-picker-icon-size         | 图标大小     | `var(--bui-title-size-3, 16px)`             |
+| --bui-d-date-picker-container-padding | 内边距       | ` var(--bui-spacing-md, 9px)`               |
+| --bui-d-date-picker-bg                | 背景颜色     | `var(--bui-color-bg-view)`                  |
+| --bui-d-date-picker-font-family       | 字体         | `var(--bui-font-family)`                    |
+| --bui-d-date-picker-border            | 边框         | `1px solid var(--bui-color-border-default)` |
+| --bui-d-date-picker-shadow            | 阴影         | `0 0 0 2px var(--bui-color-bg-default)`     |
+| --bui-d-date-picker-disabled-color    | 禁用文字颜色 | `var(--bui-color-fg-subtle)`                |
 
 ### 日期选择面板
 
-| 属性                                        | 说明         | 默认值                                  | 全局变量                     |
-| ------------------------------------------- | ------------ | --------------------------------------- | ---------------------------- |
-| --bui-d-date-picker-lay-font-family         | 字体         | `var(--bui-font-family)`                | -                            |
-| --bui-d-date-picker-lay-main-radius         | 边框圆角     | `3px`                                   | -                            |
-| --bui-d-date-picker-lay-content-padding     | 内容内边距   | `10px 16px`                             | -                            |
-| --bui-d-date-picker-lay-content-height      | 内容高度     | `30px`                                  | -                            |
-| --bui-d-date-picker-lay-content-line-height | 内容行高     | `30px`                                  | -                            |
-| --bui-d-date-picker-lay-content-width       | 内容宽度     | `60px`                                  | -                            |
-| --bui-d-date-picker-lay-calendar-padding    | 日历内边距   | `6px 12px 7px`                          | -                            |
-| --bui-d-date-picker-lay-shadow              | 阴影         | `0 0 0 2px var(--bui-color-bg-default)` | -                            |
-| --bui-d-date-picker-title-size              | 标题字体大小 | `var(--bui-title-size-3)`               | -                            |
-| --bui-d-date-picker-list-padding            | 列表内边距   | `6px 12px 7px`                          | `--bui-calendar-padding`     |
-| --bui-d-date-picker-col-bg                  | 列背景颜色   | `var(--bui-color-bg-view)`              | -                            |
-| --bui-d-date-picker-content-radius          | 内容圆角     | `6px`                                   | `--bui-shape-radius-default` |
-| --bui-d-date-picker-col-font-size           | 列字体大小   | `var(--bui-title-size-4)`               | -                            |
+| 全局变量                                    | 说明         | 默认值                                  |
+| ------------------------------------------- | ------------ | --------------------------------------- |
+| --bui-d-date-picker-lay-font-family         | 字体         | `var(--bui-font-family)`                |
+| --bui-d-date-picker-lay-main-radius         | 边框圆角     | `3px`                                   |
+| --bui-d-date-picker-lay-content-padding     | 内容内边距   | `10px 16px`                             |
+| --bui-d-date-picker-lay-content-height      | 内容高度     | `30px`                                  |
+| --bui-d-date-picker-lay-content-line-height | 内容行高     | `30px`                                  |
+| --bui-d-date-picker-lay-content-width       | 内容宽度     | `60px`                                  |
+| --bui-d-date-picker-lay-calendar-padding    | 日历内边距   | `6px 12px 7px`                          |
+| --bui-d-date-picker-lay-shadow              | 阴影         | `0 0 0 2px var(--bui-color-bg-default)` |
+| --bui-d-date-picker-title-size              | 标题字体大小 | `var(--bui-title-size-3)`               |
+| --bui-d-date-picker-list-padding            | 列表内边距   | `6px 12px 7px`                          |
+| --bui-d-date-picker-col-bg                  | 列背景颜色   | `var(--bui-color-bg-view)`              |
+| --bui-d-date-picker-content-radius          | 内容圆角     | `var(--bui-shape-radius-default, 6px)`  |
+| --bui-d-date-picker-col-font-size           | 列字体大小   | `var(--bui-title-size-4)`               |
