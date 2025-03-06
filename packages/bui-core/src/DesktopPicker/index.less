@@ -1,6 +1,10 @@
 @import '@bifrostui/styles/mixins/index.less';
 @class-prefix-desktop-picker: ~'bui-desktop-picker';
-
+@{root-selector} {
+  --bui-desktop-picker-zindex: var(--bui-z-index-tooltip);
+  --bui-desktop-picker-bg: var(--bui-color-bg-view);
+  --bui-desktop-picker-shadow: 0 0 0 2px var(--bui-color-bg-default);
+}
 .@{class-prefix-desktop-picker} {
   position: relative;
   height: 100%;
@@ -9,12 +13,12 @@
     position: absolute;
     box-sizing: border-box;
     visibility: hidden;
-    z-index: var(--bui-z-index-tooltip);
+    z-index: var(--bui-desktop-picker-zindex);
 
     &-content {
       border-radius: 3px;
-      background-color: var(--bui-color-bg-view);
-      box-shadow: 0 0 0 2px var(--bui-color-bg-default);
+      background-color: var(--bui-desktop-picker-bg);
+      box-shadow: var(--bui-desktop-picker-shadow);
     }
 
     &-open {

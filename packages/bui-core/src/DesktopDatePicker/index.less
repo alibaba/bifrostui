@@ -1,32 +1,39 @@
 @import '@bifrostui/styles/mixins/index.less';
 @class-prefix-date-picker: ~'bui-d-date-picker';
-@date-picker-content-padding: 10px 16px;
 
+@{root-selector} {
+  --bui-d-date-picker-height: var(--bui-input-height, 32px);
+  --bui-d-date-picker-min-width: var(--bui-input-min-width, 100px);
+  --bui-d-date-picker-font-size: var(--bui-title-size-3, 16px);
+  --bui-d-date-picker-icon-size: var(--bui-title-size-3, 16px);
+  --bui-d-date-picker-container-padding: var(--bui-spacing-md, 9px);
+  --bui-d-date-picker-bg: var(--bui-color-bg-view);
+  --bui-d-date-picker-font-family: var(--bui-font-family);
+  --bui-d-date-picker-border: 1px solid var(--bui-color-border-default);
+  --bui-d-date-picker-shadow: 0 0 0 2px var(--bui-color-bg-default);
+  --bui-d-date-picker-disabled-color: var(--bui-color-fg-subtle);
+}
 .@{class-prefix-date-picker} {
-  --height: var(--bui-input-height, 32px);
-  --min-width: var(--bui-input-min-width, 100px);
-  --icon-size: var(--bui-title-size-3, 16px);
-  --container-padding: var(--bui-spacing-md, 9px);
   position: relative;
   cursor: pointer;
   vertical-align: middle;
-  height: var(--height);
-  min-width: var(--min-width);
-  font-size: var(--bui-title-size-3);
+  height: var(--bui-d-date-picker-height);
+  min-width: var(--bui-d-date-picker-min-width);
+  font-size: var(--bui-d-date-picker-font-size);
   border-radius: 5px;
-  background-color: var(--bui-color-bg-view);
-  font-family: var(--bui-font-family);
-  border: 1px solid var(--bui-color-border-default);
+  background-color: var(--bui-d-date-picker-bg);
+  font-family: var(--bui-d-date-picker-font-family);
+  border: var(--bui-d-date-picker-border);
 
   &:active,
   &-active {
-    box-shadow: 0 0 0 2px var(--bui-color-bg-default);
+    box-shadow: var(--bui-d-date-picker-shadow);
   }
 
   &-icon {
     display: flex;
     align-items: center;
-    font-size: var(--icon-size);
+    font-size: var(--bui-d-date-picker-icon-size);
     height: 100%;
     padding-left: 6px;
   }
@@ -34,7 +41,7 @@
   &-container {
     display: flex;
     align-items: center;
-    padding: 0 var(--container-padding);
+    padding: 0 var(--bui-d-date-picker-container-padding);
     height: 100%;
   }
 
@@ -56,6 +63,6 @@
   background-color: rgba(188, 188, 188, 0.2);
 
   & input {
-    color: var(--bui-color-fg-subtle);
+    color: var(--bui-d-date-picker-disabled-color);
   }
 }
