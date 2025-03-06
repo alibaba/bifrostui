@@ -590,46 +590,71 @@ export default () => {
 
 ### API
 
-| 属性               | 说明                             | 类型                                                             | 默认值                |
-| ------------------ | -------------------------------- | ---------------------------------------------------------------- | --------------------- |
-| defaultValue       | 默认选中的值，当组件非受控时使用 | Date \| null                                                     | -                     |
-| value              | 选中的值，当组件受控时使用       | Date \| null                                                     | -                     |
-| placeholder        | 输入框提示文字                   | string                                                           | -                     |
-| minDate            | 可选择的最小日期                 | Date                                                             | 当前日期的十年前      |
-| maxDate            | 可选择的最大日期                 | Date                                                             | 当前日期的十年后      |
-| open               | 弹层是否打开                     | boolean                                                          | false                 |
-| icon               | 输入框icon                       | React.ReactNode                                                  | \<DateOutlinedIcon /> |
-| inputRef           | 输入框Ref                        | Ref                                                              | -                     |
-| inputProps         | \<input/> 标签透传属性           | React.InputHTMLAttributes                                        | -                     |
-| views              | 选择器类型                       | year \| month \| day \| hour \| minute \| second                 | -                     |
-| headerBarLeftIcon  | 头部操作栏左边图标               | (options: IDatePickerCustomIconProps) => React.ReactNode         | \<CaretLeftIcon />    |
-| headerBarRightIcon | 头部操作栏右边图标               | (options: IDatePickerCustomIconProps) => React.ReactNode         | \<CaretRightIcon />   |
-| disabled           | 日期选择器是否不可点击           | boolean                                                          | false                 |
-| disabledDate       | 不可选择的日期                   | (currentDate: Date) => boolean                                   | 当天之前的日期        |
-| monthRender        | 自定义月份单元格的内容           | ({ month, currentDate: ICalendarInstance}) => React.ReactNode    | -                     |
-| yearRender         | 自定义年份单元格的内容           | ({ year, currentDate: ICalendarInstance}) => React.ReactNode     | -                     |
-| disableOpenPicker  | 禁用弹层选择功能                 | boolean                                                          | false                 |
-| closeOnSelect      | 选择日期后是否立刻关闭           | boolean                                                          | -                     |
-| format             | 日期格式                         | string                                                           | YYYY/MM/DD HH:mm:ss   |
-| onClose            | 关闭的回调                       | () => void                                                       | -                     |
-| onOpen             | 打开的回调                       | () => void                                                       | -                     |
-| onMonthChange      | 月份切换的回调                   | (e: React.SyntheticEvent, data: { value: Date }) => void         | -                     |
-| onYearChange       | 年份切换的回调                   | (e: React.SyntheticEvent, data: { value: Date }) => void         | -                     |
-| onChange           | 选中日期的回调                   | (e: React.SyntheticEvent, data: { value: Date ｜ null }) => void | -                     |
-| DesktopPickerProps | 透传给 DesktopPicker 的属性      | DesktopPickerProps                                               | -                     |
-| CalendarProps      | 透传给 Calendar 的属性           | CalendarProps                                                    | -                     |
-| containerWidth     | 容器宽度                         | string                                                           | 400px                 |
+### DesktopDateTimePicker
 
-### ICalendarInstance
+| 属性               | 说明                             | 类型                                                                                                       | 默认值                                                 |
+| ------------------ | -------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| defaultValue       | 默认选中的值，当组件非受控时使用 | `Date \| null`                                                                                             | -                                                      |
+| value              | 选中的值，当组件受控时使用       | `Date \| null`                                                                                             | -                                                      |
+| placeholder        | 输入框占位内容                   | `string`                                                                                                   | `format`                                               |
+| minDate            | 可选择的最小日期                 | `Date`                                                                                                     | `dayjs().subtract(10, 'year').toDate()`                |
+| maxDate            | 可选择的最大日期                 | `Date`                                                                                                     | `dayjs().add(10, 'year').toDate()`                     |
+| open               | 弹层是否打开                     | `boolean`                                                                                                  | -                                                      |
+| icon               | 输入框图标                       | `ReactNode`                                                                                                | `<DateOutlinedIcon />`                                 |
+| inputRef           | 输入框的 ref                     | `Ref<HTMLInputElement>`                                                                                    | -                                                      |
+| inputProps         | 输入框的属性                     | `React.InputHTMLAttributes<HTMLInputElement>`                                                              | -                                                      |
+| views              | 选择器类型                       | `Array<'year' \| 'month' \| 'day' \| 'hour' \| 'minute' \| 'second'>`                                      | `['year', 'month', 'day', 'hour', 'minute', 'second']` |
+| headerBarLeftIcon  | 头部操作栏左边图标               | `(options: IDateTimePickerCustomIconProps) => ReactNode`                                                   | -                                                      |
+| headerBarRightIcon | 头部操作栏右边图标               | `(options: IDateTimePickerCustomIconProps) => ReactNode`                                                   | -                                                      |
+| disabled           | 是否禁用日期选择器               | `boolean`                                                                                                  | `false`                                                |
+| disabledDate       | 不可选择的日期                   | `(currentDate: Date) => boolean`                                                                           | -                                                      |
+| monthRender        | 自定义月份单元格的内容           | `({ month, currentDate }: { month: string \| number; currentDate: IDateTimePickerInstance }) => ReactNode` | -                                                      |
+| yearRender         | 自定义年份单元格的内容           | `({ year, currentDate }: { year: string \| number; currentDate: IDateTimePickerInstance }) => ReactNode`   | -                                                      |
+| onChange           | 日期发生变化的回调               | `(e: React.SyntheticEvent, data: { value: Date \| null }) => void`                                         | -                                                      |
+| closeOnSelect      | 选择日期后是否立刻关闭           | `boolean`                                                                                                  | `true`                                                 |
+| disableOpenPicker  | 禁用弹层选择功能                 | `boolean`                                                                                                  | `false`                                                |
+| format             | 日期格式化                       | `string`                                                                                                   | `'YYYY/MM/DD HH:mm:ss'`                                |
+| onClose            | 弹层关闭的回调                   | `() => void`                                                                                               | -                                                      |
+| onOpen             | 弹层打开的回调                   | `() => void`                                                                                               | -                                                      |
+| onMonthChange      | 月份切换的回调                   | `(e: React.SyntheticEvent, data: { value: Date }) => void`                                                 | -                                                      |
+| onYearChange       | 年份切换的回调                   | `(e: React.SyntheticEvent, data: { value: Date }) => void`                                                 | -                                                      |
+| DesktopPickerProps | DesktopPicker 组件属性           | `DesktopPickerProps`                                                                                       | -                                                      |
+| CalendarProps      | Calendar 组件属性                | `CalendarProps`                                                                                            | -                                                      |
 
-| 属性  | 说明     | 类型    |
-| ----- | -------- | ------- |
-| month | 日期对象 | Date    |
-| type  | 是否禁用 | boolean |
+### IDateTimePickerInstance
 
-### IDatePickerCustomIconProps
+| 属性     | 说明     | 类型      | 默认值 |
+| -------- | -------- | --------- | ------ |
+| day      | 日期对象 | `Date`    | -      |
+| disabled | 是否禁用 | `boolean` | -      |
 
-| 属性       | 说明           | 类型    |
-| ---------- | -------------- | ------- |
-| isMinMonth | 是否是最小月份 | boolean |
-| isMaxMonth | 是否是最大月份 | boolean |
+### IDateTimePickerCustomIconProps
+
+| 属性       | 说明           | 类型      | 默认值 |
+| ---------- | -------------- | --------- | ------ |
+| isMinMonth | 是否是最小时间 | `boolean` | -      |
+| isMaxMonth | 是否是最大时间 | `boolean` | -      |
+
+### CalendarProps
+
+| 属性                        | 说明                     | 类型                                                  | 默认值    |
+| --------------------------- | ------------------------ | ----------------------------------------------------- | --------- |
+| hideDaysOutsideCurrentMonth | 是否隐藏当前月之外的日期 | `boolean`                                             | `false`   |
+| highlightDate               | 高亮的日期               | `'today' \| 'weekend'`                                | `'today'` |
+| dateRender                  | 自定义日期单元格的内容   | `(currentDate: IDateTimePickerInstance) => ReactNode` | -         |
+| weekRender                  | 自定义周单元格的内容     | `(week: string) => ReactNode`                         | -         |
+
+## 样式变量
+
+| 属性                                    | 说明             | 默认值                                      | 全局变量                |
+| --------------------------------------- | ---------------- | ------------------------------------------- | ----------------------- |
+| --bui-datetime-picker-height            | 高度             | `32px`                                      | `--bui-input-height`    |
+| --bui-datetime-picker-min-width         | 最小宽度         | `100px`                                     | `--bui-input-min-width` |
+| --bui-datetime-picker-icon-size         | 图标大小         | `16px`                                      | `--bui-title-size-3`    |
+| --bui-datetime-picker-font-size         | 字体大小         | `16px`                                      | `--bui-title-size-3`    |
+| --bui-datetime-picker-container-padding | 内边距           | `9px`                                       | `--bui-spacing-md`      |
+| --bui-datetime-picker-bg                | 背景色           | `var(--bui-color-bg-view)`                  | -                       |
+| --bui-datetime-picker-font-family       | 字体             | `var(--bui-font-family)`                    | -                       |
+| --bui-datetime-picker-border            | 边框             | `1px solid var(--bui-color-border-default)` | -                       |
+| --bui-datetime-picker-shadow            | 阴影             | `0 0 0 2px var(--bui-color-bg-default)`     | -                       |
+| --bui-datetime-picker-disabled-color    | 禁用状态文字颜色 | `var(--bui-color-fg-subtle)`                | -                       |
