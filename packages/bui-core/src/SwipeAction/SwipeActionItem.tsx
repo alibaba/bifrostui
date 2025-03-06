@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { SwipeActionItemProps } from './SwipeAction.types';
 import BuiSwipeActionContext from './SwipeActionContext';
 import './SwipeActionItem.less';
+
 const prefixCls = 'bui-swipe-action-item';
 
 const SwipeActionItem = React.forwardRef<HTMLDivElement, SwipeActionItemProps>(

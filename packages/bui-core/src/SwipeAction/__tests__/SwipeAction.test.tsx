@@ -260,6 +260,7 @@ describe('SwipeAction', () => {
     // 测试点击滑动操作项时关闭滑动操作
     it('should close action on item click when closeOnClickActionItem is true', async () => {
       const rightAction = (
+        // eslint-disable-next-line  @typescript-eslint/no-empty-function
         <SwipeActionItem key="right" onClick={() => {}}>
           Right Action
         </SwipeActionItem>
@@ -290,6 +291,7 @@ describe('SwipeAction', () => {
     // 测试点击滑动操作项时不关闭滑动操作
     it('should not close action on item click when closeOnClickActionItem is false', async () => {
       const rightAction = (
+        // eslint-disable-next-line  @typescript-eslint/no-empty-function
         <SwipeActionItem key="right" onClick={() => {}}>
           Right Action
         </SwipeActionItem>
