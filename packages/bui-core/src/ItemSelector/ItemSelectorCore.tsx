@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import { throttle, useForkRef, useTouchEmulator } from '@bifrostui/utils';
 import ScrollView from '../ScrollView';
-import { ItemSelectorCoreProps, allItemType } from './ItemSelector.types';
+import { ItemSelectorCoreProps, ItemGroup } from './ItemSelector.types';
 import Selector from './Selector';
 
 import './ItemSelector.less';
@@ -33,10 +33,10 @@ const ItemSelector = React.forwardRef<HTMLDivElement, ItemSelectorCoreProps>(
     const [codeShow, setCodeShow] = useState(false);
     const [targetId, setTargetId] = useState('');
 
-    const getGroupName = (item: allItemType): string => item.groupName || '';
-    const getIdxName = (item: allItemType): string =>
+    const getGroupName = (item: ItemGroup): string => item.groupName || '';
+    const getIdxName = (item: ItemGroup): string =>
       typeof item.indexName === 'string' ? item.indexName : getGroupName(item);
-    const getIdxCode = (item: allItemType): string =>
+    const getIdxCode = (item: ItemGroup): string =>
       typeof item.indexCode === 'string' ? item.indexCode : getIdxName(item);
     const renderTitle = (item) => {
       const title = getGroupName(item);
