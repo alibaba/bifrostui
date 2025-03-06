@@ -1,5 +1,5 @@
 @import '@bifrostui/styles/mixins/index.less';
-@class-prefix-date-picker-layout: ~'bui-desktop-date-picker-layout';
+@class-prefix-date-picker-layout: ~'bui-d-date-picker-layout';
 
 .@{class-prefix-date-picker-layout} {
   &-main {
@@ -26,23 +26,6 @@
     margin-bottom: 7px;
     margin-top: 8px;
 
-    &-box {
-      display: flex;
-      align-items: center;
-
-      &-text {
-        white-space: nowrap;
-        font-size: var(--bui-title-size-3);
-        font-weight: var(--bui-font-weight-medium);
-        text-align: center;
-      }
-
-      &-text:hover {
-        cursor: pointer;
-        color: var(--bui-color-blue);
-      }
-    }
-
     &-btn {
       font-size: 16px;
       height: 100%;
@@ -51,10 +34,27 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
 
-      &-icon {
-        font-size: 28px;
-      }
+    &-icon {
+      font-size: 28px;
+    }
+  }
+
+  &-title {
+    display: flex;
+    align-items: center;
+
+    &-text {
+      white-space: nowrap;
+      font-size: var(--bui-title-size-3);
+      font-weight: var(--bui-font-weight-medium);
+      text-align: center;
+    }
+
+    &-text:hover {
+      cursor: pointer;
+      color: var(--bui-color-blue);
     }
   }
 
@@ -87,13 +87,13 @@
       font-weight: var(--bui-font-weight-medium);
       color: var(--bui-color-fg-default);
       font-family: var(--bui-font-family);
+    }
 
-      &-text {
-        display: inline-block;
-        width: 36px;
-        font-size: var(--bui-title-size-4);
-        line-height: 1;
-      }
+    &-text {
+      display: inline-block;
+      width: 36px;
+      font-size: var(--bui-title-size-4);
+      line-height: 1;
     }
   }
 

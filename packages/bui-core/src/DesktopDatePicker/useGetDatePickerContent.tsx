@@ -6,7 +6,7 @@ import Calendar from '../Calendar';
 import './deskTopPickerContainer.less';
 import { useLocaleText } from '../locales';
 
-const prefixCls = 'bui-desktop-date-picker-layout';
+const prefixCls = 'bui-d-date-picker-layout';
 const useGetDatePickerContent = (props) => {
   const yPatterns = ['YYYY', 'YY'];
   const mPatterns = ['MM', 'M', 'MMM', 'MMMM'];
@@ -177,7 +177,7 @@ const useGetDatePickerContent = (props) => {
     }
     return (
       <div className={clsx(`${prefixCls}-col-content`)}>
-        <span className={clsx(`${prefixCls}-col-content-text`)}>
+        <span className={clsx(`${prefixCls}-col-text`)}>
           {selectType === 'month' ? monthMap[its] : its}
         </span>
       </div>
@@ -266,7 +266,7 @@ const useGetDatePickerContent = (props) => {
         }
         domArr.push(
           <div
-            className={clsx(`${prefixCls}-handler-box-text`)}
+            className={clsx(`${prefixCls}-title-text`)}
             key={i}
             onClick={(e) => handleClickTitle(e, matchArr[i])}
           >
@@ -296,13 +296,13 @@ const useGetDatePickerContent = (props) => {
                 headerBarLeftIcon({ isMinMonth })
               ) : (
                 <CaretLeftIcon
-                  className={`${prefixCls}-handler-btn-icon`}
+                  className={`${prefixCls}-handler-icon`}
                   htmlColor={isMinMonth && 'var(--bui-color-white)'}
                 />
               )}
             </div>
           )}
-          <div className={`${prefixCls}-handler-box`}>
+          <div className={`${prefixCls}-title`}>
             {calendarValue ? renderTitle(format, calendarValue) : format}
           </div>
           {selectType !== 'year' && (
@@ -311,7 +311,7 @@ const useGetDatePickerContent = (props) => {
                 headerBarRightIcon({ isMaxMonth })
               ) : (
                 <CaretRightIcon
-                  className={`${prefixCls}-handler-btn-icon`}
+                  className={`${prefixCls}-handler-icon`}
                   htmlColor={isMaxMonth && 'var(--bui-color-white)'}
                 />
               )}
@@ -330,9 +330,7 @@ const useGetDatePickerContent = (props) => {
           />
         ) : (
           <div className={clsx(`${prefixCls}-list`)}>
-            <div className={clsx(`${prefixCls}-list-table`)}>
-              {renderTable()}
-            </div>
+            <div className={clsx(`${prefixCls}-box`)}>{renderTable()}</div>
           </div>
         )}
       </div>
