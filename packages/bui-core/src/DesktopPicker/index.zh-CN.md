@@ -80,15 +80,27 @@ export default () => {
 
 ### API
 
-| 属性             | 说明                                                                                   | 类型                    | 默认值   |
-| ---------------- | -------------------------------------------------------------------------------------- | ----------------------- | -------- |
-| open             | 打开关闭该浮层                                                                         | boolean                 | false    |
-| defaultDirection | 默认方向                                                                               | 'top' \| 'bottom'       | 'bottom' |
-| container        | 容器元素                                                                               | HTMLElement             | null     |
-| onClose          | 关闭回调                                                                               | (data: boolean) => void | -        |
-| content          | 浮层内容                                                                               | React.ReactNode         | -        |
-| inheritWidth     | 继承容器宽度                                                                           | boolean                 | true     |
-| miniBackdrop     | 小程序中是否需要Backdrop, 该属性仅在小程序中生效，避免遮罩层出现影响主动控制浮层的能力 | boolean                 | true     |
-| onMount          | 挂载回调                                                                               | () => void              | -        |
-| onUnmounted      | 卸载回调                                                                               | () => void              | -        |
-| containerWidth   | 容器宽度                                                                               | string                  | auto     |
+### DesktopPicker
+
+| 属性                  | 说明                       | 类型                                                           | 默认值     |
+| --------------------- | -------------------------- | -------------------------------------------------------------- | ---------- |
+| open                  | 是否打开                   | `boolean`                                                      | -          |
+| content               | 弹出层内容                 | `React.ReactNode`                                              | -          |
+| container             | 指定滚动容器               | `HTMLElement \| () => HTMLElement`                             | -          |
+| defaultDirection      | 默认弹出方向               | `'top' \| 'bottom'`                                            | `'bottom'` |
+| inheritWidth          | 是否继承宽度               | `boolean`                                                      | `true`     |
+| containerWidth        | 弹出层宽度                 | `number`                                                       | `'auto'`   |
+| miniBackdropInvisible | 小程序是否使用backdrop     | `boolean`                                                      | `false`    |
+| onClose               | 关闭回调函数               | `(e: React.MouseEvent<any>, data: { value: boolean }) => void` | -          |
+| onMount               | 打开后动画开始的回调       | `() => void`                                                   | -          |
+| onUnmounted           | 卸载后动画结束的回调       | `() => void`                                                   | -          |
+| BackdropProps         | 透传给 Backdrop 组件的属性 | `BackdropProps`                                                | -          |
+| children              | 触发元素                   | `React.ReactElement`                                           | -          |
+
+## 样式变量
+
+| 属性                        | 说明       | 默认值                                  | 全局变量 |
+| --------------------------- | ---------- | --------------------------------------- | -------- |
+| --bui-desktop-picker-zindex | 弹出层层级 | `var(--bui-z-index-tooltip)`            | -        |
+| --bui-desktop-picker-bg     | 背景颜色   | `var(--bui-color-bg-view)`              | -        |
+| --bui-desktop-picker-shadow | 阴影       | `0 0 0 2px var(--bui-color-bg-default)` | -        |
