@@ -1,6 +1,6 @@
 import React from 'react';
 import { act, fireEvent, isConformant, render } from 'testing';
-import DatePicker, { DatePickerType } from '..';
+import DatePicker, { DatePickerType, DatePickerOption } from '..';
 
 const rootClass = 'bui-date-picker';
 const currentDate = new Date(2025, 1, 26);
@@ -178,8 +178,8 @@ describe('DatePicker', () => {
 
   it('should render with disabled options', () => {
     const disableDateTimeView = {
-      [DatePickerType.YEAR]: (options) =>
-        options.filter((option) => Number(option.value) === 2025),
+      [DatePickerType.YEAR]: (values) =>
+        values.filter((value) => value === 2025),
     };
     render(<DatePicker open disableDateTimeView={disableDateTimeView} />);
     const hiddenOption = document.querySelector(
@@ -311,6 +311,34 @@ describe('DatePicker', () => {
         value: new Date(2025, 1, 28),
       }),
     );
+  });
+
+  it('should render with showUnit', () => {
+    render(<DatePicker open showUnit minDate={minDate} maxDate={maxDate} />);
+    const panels = document.querySelectorAll('.bui-picker-panel');
+    const options = panels[0].querySelectorAll('.bui-picker-panel-option');
+    expect(panels.length).toBe(3);
+    expect(options[0].textContent).toBe('2020年');
+  });
+
+  it('should render with filter', () => {
+    render(
+      <DatePicker
+        open
+        views={[DatePickerType.HOUR]}
+        filter={(type: DatePickerType, options: DatePickerOption[]) => {
+          switch (type) {
+            case DatePickerType.HOUR:
+              return options.filter((option) => option.value % 2 === 0);
+            default:
+              return options;
+          }
+        }}
+      />,
+    );
+    const panels = document.querySelectorAll('.bui-picker-panel');
+    const options = panels[0].querySelectorAll('.bui-picker-panel-option');
+    expect(options[1].textContent).toBe('02');
   });
 
   it('show throw error when views is invalid', () => {

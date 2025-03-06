@@ -41,19 +41,21 @@ export default () => {
 };
 ```
 
-### Uncontrolled State
+### 非受控状态
 
-When using the `defaultValue` attribute, the component is in an uncontrolled state. If not specified, the default value is `minDate`.
+When using the defaultValue property, the component is in an uncontrolled state, and if not specified, the default value will be minDate. The timestamp of the currently selected date can be obtained through the data-selected attribute on the DOM.
 
 ```tsx
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { DatePicker, Stack, Button } from '@bifrostui/react';
 
 export default () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(new Date());
+  const datePickerRef = useRef();
 
   const handleConfirm = (e, res) => {
+    console.log(datePickerRef.current.dataset.selected);
     setValue(res.value);
   };
 
@@ -61,6 +63,7 @@ export default () => {
     <Stack>
       <Button onClick={() => setOpen(true)}>{value.toLocaleString()}</Button>
       <DatePicker
+        ref={datePickerRef}
         open={open}
         defaultValue={value}
         views={['year', 'month', 'day', 'hour', 'minute', 'second']}
@@ -150,7 +153,7 @@ import {
   Stack,
   Button,
   DatePickerType,
-  IPickerOptionItem,
+  DatePickerOption,
 } from '@bifrostui/react';
 
 export default () => {
@@ -182,7 +185,7 @@ export default () => {
 
 ### Format Options
 
-Use the `formatter` function to format option text.
+With the `formatter` function, you can format the option text. The `showUnit` property also adds units to the options, but the `formatter` function takes precedence over the `showUnit` property.
 
 ```tsx
 import React, { useState } from 'react';
@@ -191,7 +194,7 @@ import {
   Stack,
   Button,
   DatePickerType,
-  IPickerOptionItem,
+  DatePickerOption,
 } from '@bifrostui/react';
 
 export default () => {
@@ -202,7 +205,7 @@ export default () => {
     setValue(res.value);
   };
 
-  const formatter = (type: DatePickerType, option: IPickerOptionItem) => {
+  const formatter = (type: DatePickerType, option: DatePickerOption) => {
     switch (type) {
       case DatePickerType.YEAR:
         option.label = `${option.label} Year`;
@@ -246,7 +249,7 @@ import {
   Stack,
   Button,
   DatePickerType,
-  IPickerOptionItem,
+  DatePickerOption,
 } from '@bifrostui/react';
 
 export default () => {
@@ -287,7 +290,7 @@ import {
   Stack,
   Button,
   DatePickerType,
-  IPickerOptionItem,
+  DatePickerOption,
 } from '@bifrostui/react';
 
 export default () => {
@@ -319,32 +322,85 @@ export default () => {
 };
 ```
 
+### 过滤选项
+
+Filter options using the `filter` function to implement custom filtering logic.
+
+```tsx
+import React, { useState } from 'react';
+import {
+  DatePicker,
+  Stack,
+  Button,
+  DatePickerType,
+  DatePickerOption,
+} from '@bifrostui/react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(new Date());
+
+  const handleConfirm = (e, res) => {
+    setValue(res.value);
+  };
+
+  const filter = (type: DatePickerType, options: DatePickerOption[]) => {
+    switch (type) {
+      case DatePickerType.HOUR:
+        return options.filter((option) => option.value % 2 === 0);
+      case DatePickerType.MINUTE:
+        return options.filter((option) => option.value % 5 === 0);
+      default:
+        return options;
+    }
+  };
+
+  return (
+    <Stack>
+      <Button onClick={() => setOpen(true)}>
+        {value.toLocaleTimeString()}
+      </Button>
+      <DatePicker
+        open={open}
+        defaultValue={value}
+        views={['hour', 'minute']}
+        filter={filter}
+        onConfirm={handleConfirm}
+        onClose={() => setOpen(false)}
+      />
+    </Stack>
+  );
+};
+```
+
 ### API
 
-| Property            | Description                                                     | Type                                                                             | Default Value            |
-| ------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------- | ------------------------ |
-| open                | Whether the popup is open                                       | boolean                                                                          | false                    |
-| title               | Title                                                           | string                                                                           | -                        |
-| confirmText         | Confirm button text                                             | string                                                                           | Confirm                  |
-| cancelText          | Cancel button text                                              | string                                                                           | Cancel                   |
-| defaultValue        | Default selected value, used when the component is uncontrolled | Date                                                                             | -                        |
-| value               | Selected value, used when the component is controlled           | Date                                                                             | -                        |
-| views               | Date picker types                                               | Array<DatePickerType\>                                                           | ['year', 'month', 'day'] |
-| minDate             | Minimum selectable date                                         | Date                                                                             | Ten years ago            |
-| maxDate             | Maximum selectable date                                         | Date                                                                             | Ten years later          |
-| disableDateTimeView | Disable specific date selections                                | {[key in DatePickerType]: (options: IPickerOptionItem[]) => IPickerOptionItem[]} | -                        |
-| dateTimeStep        | Time interval, set increment steps                              | [key in DatePickerType]: number                                                  | -                        |
-| formatter           | Option formatting function                                      | (type: string, option: IPickerOptionItem) => IPickerOptionItem                   | -                        |
-| onConfirm           | Triggered when the confirm button is clicked                    | (e: React.SyntheticEvent, { value: Date }) => void                               | -                        |
-| onCancel            | Triggered when the cancel button is clicked                     | (e: React.SyntheticEvent) => void                                                | -                        |
-| onClose             | Triggered on both confirm and cancel                            | (e: React.SyntheticEvent, { value: Date }) => void                               | -                        |
-| onChange            | Triggered when the option changes                               | (e: React.SyntheticEvent, { value: Date, type: DatePickerType }) => void         | -                        |
+| Property            | Description                                       | Type                                                                                          | Default Value            |
+| ------------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------ |
+| open                | Whether the overlay is open                       | boolean                                                                                       | false                    |
+| title               | Title                                             | string                                                                                        | -                        |
+| confirmText         | Confirm button text                               | string                                                                                        | Confirm                  |
+| cancelText          | Cancel button text                                | string                                                                                        | Cancel                   |
+| defaultValue        | Default selected value for uncontrolled component | Date                                                                                          | -                        |
+| value               | Selected value for controlled component           | Date                                                                                          | -                        |
+| views               | DatePicker types                                  | Array<DatePickerType\>                                                                        | ['year', 'month', 'day'] |
+| minDate             | Minimum selectable date                           | Date                                                                                          | 10 years ago             |
+| maxDate             | Maximum selectable date                           | Date                                                                                          | 10 years later           |
+| showUnit            | Whether to show unit in picker                    | boolean                                                                                       | false                    |
+| disableDateTimeView | Disabled dates                                    | Partial<{[key in DatePickerType]: (options: (string \| number)[]) => (string \| number)[]; }> | -                        |
+| dateTimeStep        | Time step interval                                | Partial<{[key in DatePickerType]: number; }>                                                  | -                        |
+| formatter           | Option formatter function                         | (type: string, option: DatePickerOption) => DatePickerOption                                  | -                        |
+| filter              | Option filter function                            | (type: string, options: DatePickerOption[]) => DatePickerOption[]                             | -                        |
+| onConfirm           | Triggered when confirm button is clicked          | (e: React.SyntheticEvent, { value: Date }) => void                                            | -                        |
+| onCancel            | Triggered when cancel button is clicked           | (e: React.SyntheticEvent) => void                                                             | -                        |
+| onClose             | Triggered on both confirm and cancel              | (e: React.SyntheticEvent, { value: Date }) => void                                            | -                        |
+| onChange            | Triggered when options change                     | (e: React.SyntheticEvent, { value: Date, type: DatePickerType }) => void                      | -                        |
 
-`DatePicker` inherits properties from `Picker`. See other properties at [Picker API](/cores/picker?#api)
+`DatePicker` inherits properties from `Picker`. See other properties at [Picker API](/cores/picker?#api).
 
 ### DatePickerType Enum Type
 
-`DatePickerType` is an enum type used to define different types of time pickers:
+`DatePickerType` is an enum type used to define different types of time pickers。
 
 | Enum Value | Description   |
 | ---------- | ------------- |
@@ -354,3 +410,13 @@ export default () => {
 | `hour`     | Hour picker   |
 | `minute`   | Minute picker |
 | `second`   | Second picker |
+
+### DatePickerOption Type
+
+`DatePickerOption` is a composite type similar to `IPickerOptionItem`, with the difference that the `value` property is of type `number`, and the `label` property is of type `string`.
+
+| 属性     | 说明                           | 类型    | 默认值 |
+| -------- | ------------------------------ | ------- | ------ |
+| label    | Text content of the option     | string  | -      |
+| value    | Unique value for the option    | number  | -      |
+| disabled | Whether the option is disabled | boolean | -      |

@@ -61,6 +61,14 @@ const enUS: BaseLang = {
       12: 'Dec',
     },
   },
+  datePicker: {
+    year: 'Year',
+    month: 'Month',
+    day: 'Day',
+    hour: 'Hour',
+    minute: 'Minute',
+    second: 'Second',
+  },
 };
 
 export default enUS;

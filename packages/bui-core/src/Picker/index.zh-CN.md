@@ -1353,10 +1353,11 @@ export default () => {
 
 #### IPickerOptionItem
 
-| 属性  | 说明             | 类型             | 默认值 |
-| ----- | ---------------- | ---------------- | ------ |
-| label | 选项的文字内容   | string \| number | -      |
-| value | 选项对应唯一的值 | string \| number | -      |
+| 属性     | 说明             | 类型             | 默认值 |
+| -------- | ---------------- | ---------------- | ------ |
+| label    | 选项的文字内容   | string \| number | -      |
+| value    | 选项对应唯一的值 | string \| number | -      |
+| disabled | 是否禁用         | boolean          | -      |
 
 #### ICascadePickerOptionItem
 
@@ -1378,18 +1379,20 @@ export default () => {
 
 ### 样式变量
 
-| 属性                     | 说明                                        | 默认值                     | 全局变量                            |
-| ------------------------ | ------------------------------------------- | -------------------------- | ----------------------------------- |
-| --header-height          | 选择器头部高度                              | 50px                       | --bui-picker-header-height          |
-| --header-padding         | 选择器头部内边距                            | 0 var(--bui-spacing-lg)    | --bui-picker-header-padding         |
-| --cancel-height          | 取消按钮高度                                | 100%                       | --bui-picker-cancel-height          |
-| --cancel-line-height     | 取消按钮行高                                | 50px                       | --bui-picker-cancel-line-height     |
-| --confirm-height         | 确认按钮高度                                | 100%                       | --bui-picker-confirm-height         |
-| --confirm-line-height    | 确认按钮行高                                | 50px                       | --bui-picker-confirm-line-height    |
-| --panel-container-height | 选择器容器高度                              | 260px                      | --bui-picker-panel-height           |
-| --indicator-top          | 指示器距离顶部距离                          | 108px                      | --bui-picker-indicator-top          |
-| --indicator-border-color | 指示器描边颜色                              | --bui-color-border-default | --bui-picker-indicator-border-color |
-| --option-height          | 选项高度，与indicator同高，必须使用内联传入 | 36px                       | --bui-picker-option-height          |
+| 属性                     | 说明                                        | 默认值                     | 全局变量                              |
+| ------------------------ | ------------------------------------------- | -------------------------- | ------------------------------------- |
+| --header-height          | 选择器头部高度                              | 50px                       | --bui-picker-header-height            |
+| --header-padding         | 选择器头部内边距                            | 0 var(--bui-spacing-lg)    | --bui-picker-header-padding           |
+| --cancel-height          | 取消按钮高度                                | 100%                       | --bui-picker-cancel-height            |
+| --cancel-line-height     | 取消按钮行高                                | 50px                       | --bui-picker-cancel-line-height       |
+| --confirm-height         | 确认按钮高度                                | 100%                       | --bui-picker-confirm-height           |
+| --confirm-line-height    | 确认按钮行高                                | 50px                       | --bui-picker-confirm-line-height      |
+| --panel-container-height | 选择器容器高度                              | 260px                      | --bui-picker-panel-height             |
+| --indicator-top          | 指示器距离顶部距离                          | 108px                      | --bui-picker-indicator-top            |
+| --indicator-border-color | 指示器描边颜色                              | --bui-color-border-default | --bui-picker-indicator-border-color   |
+| --option-height          | 选项高度，与indicator同高，必须使用内联传入 | 36px                       | --bui-picker-option-height            |
+| -                        | 确认按钮禁用时的不透明度                    | 0.38                       | --bui-picker-confirm-disabled-opacity |
+| -                        | 选项禁用时的不透明度                        | 0.38                       | --bui-picker-option-disabled-opacity  |
 
 #### --option-height 为什么要使用内联方式传入
 

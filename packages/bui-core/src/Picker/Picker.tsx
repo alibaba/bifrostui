@@ -9,6 +9,12 @@ import './Picker.less';
 
 const prefixCls = 'bui-picker';
 
+const checkDisabled = (values, columns) =>
+  values.find(
+    (value, index) =>
+      columns?.[index]?.find((column) => column?.value === value)?.disabled,
+  );
+
 const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
   const {
     className,
@@ -30,6 +36,8 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
   const [columns, setColumns] = useState([]);
   const [internalValue, setInternalValue] = useState([]);
   const { cancel: cancelText, confirm: confirmText } = useLocaleText('picker');
+
+  const disabled = checkDisabled(internalValue, columns);
 
   useEffect(() => {
     if (!open) return;
@@ -55,16 +63,8 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
 
   const confirm = (e: React.MouseEvent<HTMLDivElement>) => {
     const isMoving = rollerRefs.current.some((roller) => roller?.isMoving);
-    // 处于惯性滚动中，不允许确认关闭选择器
-    if (isMoving) return;
-    // 选中值中存在禁用项，不允许确认关闭选择器
-    for (let i = 0; i < internalValue.length; i += 1) {
-      if (
-        columns[i]?.find((item) => item.value === internalValue[i])?.disabled
-      ) {
-        return;
-      }
-    }
+    // 处于惯性滚动中，或者处于禁用状态，不允许确认关闭选择器
+    if (isMoving || disabled) return;
 
     const { safeValue } = safeData({
       value: internalValue,
@@ -199,7 +199,12 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
             {propCancelText || cancelText}
           </div>
           {title && <div className={`${prefixCls}-title`}>{title}</div>}
-          <div className={`${prefixCls}-confirm`} onClick={confirm}>
+          <div
+            className={clsx(`${prefixCls}-confirm`, {
+              [`${prefixCls}-confirm-disabled`]: disabled,
+            })}
+            onClick={confirm}
+          >
             {propConfirmText || confirmText}
           </div>
         </div>

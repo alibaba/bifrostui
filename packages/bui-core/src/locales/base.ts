@@ -40,4 +40,12 @@ export interface BaseLang {
   desktopDatePicker?: {
     month?: Record<number, string>;
   };
+  datePicker?: {
+    year: string;
+    month: string;
+    day: string;
+    hour: string;
+    minute: string;
+    second: string;
+  };
 }
