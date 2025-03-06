@@ -6,7 +6,7 @@ import Calendar from '../Calendar';
 import './deskTopPickerContainer.less';
 import { useLocaleText } from '../locales';
 
-const prefixCls = 'bui-d-date-picker-layout';
+const prefixCls = 'bui-d-date-picker-lay';
 const useGetDatePickerContent = (props) => {
   const yPatterns = ['YYYY', 'YY'];
   const mPatterns = ['MM', 'M', 'MMM', 'MMMM'];
@@ -99,7 +99,7 @@ const useGetDatePickerContent = (props) => {
     e.stopPropagation();
     if (data.value) {
       const ymd = dayjs(data.value);
-      const hms = dayjs(calendarValue);
+      const hms = dayjs(calendarValue || new Date());
       const newValue = ymd
         .hour(hms.hour())
         .minute(hms.minute())

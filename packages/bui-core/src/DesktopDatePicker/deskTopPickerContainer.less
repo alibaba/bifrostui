@@ -1,19 +1,28 @@
 @import '@bifrostui/styles/mixins/index.less';
-@class-prefix-date-picker-layout: ~'bui-d-date-picker-layout';
-
-.@{class-prefix-date-picker-layout} {
+@class-prefix-date-picker-lay: ~'bui-d-date-picker-lay';
+@{root-selector} {
+  --bui-calendar-padding: 6px 12px 7px;
+  --bui-d-date-picker-lay-font-family: var(--bui-font-family);
+  --bui-d-date-picker-lay-main-radius: 3px;
+  --bui-d-date-picker-lay-content-padding: 10px 16px;
+  --bui-d-date-picker-lay-content-height: 30px;
+  --bui-d-date-picker-lay-content-line-height: 30px;
+  --bui-d-date-picker-lay-content-width: 60px;
+  --bui-d-date-picker-lay-calendar-padding: 6px 12px 7px;
+  --bui-d-date-picker-lay-shadow: 0 0 0 2px var(--bui-color-bg-default);
+  --bui-d-date-picker-title-size: var(--bui-title-size-3);
+  --bui-d-date-picker-list-padding: var(--bui-calendar-padding, 6px 12px 7px);
+  --bui-d-date-picker-col-bg: var(--bui-color-bg-view);
+  --bui-d-date-picker-content-radius: var(--bui-shape-radius-default, 6px);
+  --bui-d-date-picker-col-font-size: var(--bui-title-size-4);
+}
+.@{class-prefix-date-picker-lay} {
   &-main {
-    --container-main-radius: 3px;
-    --container-content-padding: 10px 16px;
-    --container-content-height: 30px;
-    --container-content-line-height: 30px;
-    --container-content-width: 60px;
-    --bui-calendar-padding: 6px 12px 7px;
     height: 308px;
-    font-family: var(--bui-font-family);
-    border-radius: var(--container-main-radius);
+    font-family: var(--bui-d-date-picker-lay-font-family);
+    border-radius: var(--bui-d-date-picker-lay-main-radius);
     padding: 3px 0;
-    box-shadow: 0 0 0 2px var(--bui-color-bg-default);
+    box-shadow: var(--bui-d-date-picker-lay-shadow);
     overflow: hidden;
     flex: 1;
   }
@@ -47,7 +56,7 @@
 
     &-text {
       white-space: nowrap;
-      font-size: var(--bui-title-size-3);
+      font-size: var(--bui-d-date-picker-title-size);
       font-weight: var(--bui-font-weight-medium);
       text-align: center;
     }
@@ -61,9 +70,7 @@
   &-list {
     max-height: 262px;
     overflow: auto;
-
-    --padding: var(--bui-calendar-padding, 6px 12px 7px);
-    padding: var(--padding);
+    padding: var(--bui-d-date-picker-list-padding);
   }
 
   &-row {
@@ -75,24 +82,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--bui-color-bg-view);
+    background-color: var(--bui-d-date-picker-col-bg);
     cursor: pointer;
 
     &-content {
       margin: 12px 8px;
       padding: 4px 6px;
-      border-radius: var(--bui-shape-radius-default, 6px);
+      border-radius: var(--bui-d-date-picker-content-radius);
       display: inline-block;
       text-align: center;
       font-weight: var(--bui-font-weight-medium);
       color: var(--bui-color-fg-default);
-      font-family: var(--bui-font-family);
+      font-family: var(--bui-d-date-picker-lay-font-family);
     }
 
     &-text {
       display: inline-block;
       width: 36px;
-      font-size: var(--bui-title-size-4);
+      font-size: var(--bui-d-date-picker-col-font-size);
       line-height: 1;
     }
   }
