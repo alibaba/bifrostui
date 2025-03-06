@@ -7,8 +7,6 @@ name: Itemselector Item Selection
 
 Item selection
 
-## Code demonstration
-
 ### Basic usage
 
 Item selection displays the current item, location item, popular items, and all items, supporting right-hand letter navigation
@@ -295,7 +293,7 @@ const items = [
 ];
 
 export default () => {
-  const onSelect = (item) => {
+  const onSelect = (e, item) => {
     console.log(item);
   };
 
@@ -420,7 +418,7 @@ const items = [
 ];
 
 export default () => {
-  const onSelect = (item) => {
+  const onSelect = (e, item) => {
     console.log(item);
   };
 
@@ -546,7 +544,7 @@ const items = [
 ];
 
 export default () => {
-  const onSelect = (item) => {
+  const onSelect = (e, item) => {
     console.log(item);
   };
 
@@ -597,20 +595,20 @@ export default () => {
 
 ### Style variables
 
-| attribute                       | explain                                           | Default value                  | global variable                                   |
-| ------------------------------- | ------------------------------------------------- | ------------------------------ | ------------------------------------------------- |
-| --select-item-width             | Horizontal option width                           | 111px                          | --bui-item-selector-item-width                    |
-| --select-item-height            | Horizontal option height                          | 36px                           | --bui-item-selector-item-height                   |
-| --select-item-border-radius     | Horizontal options with rounded corners           | 20px                           | --bui-item-selector-item-border-radius            |
-| --select-item-margin            | Horizontal option margin                          | 4.5px 0 4.5px 9px              | --bui-item-selector-item-margin                   |
-| --title-height                  | Title height                                      | 45px                           | --bui-item-selector-title-height                  |
-| --title-line-height             | Title line height                                 | 45px                           | --bui-item-selector-title-line-height             |
-| --btn-close-size                | Close button container width and height           | 45px                           | --bui-item-selector-btn-close-size                |
-| --btn-close-font-size           | Close button font size                            | 20px                           | --bui-item-selector-btn-close-font-size           |
-| --container-with-title-height   | Item container height with title                  | calc(100% - --title-height)    | --bui-item-selector-container-with-title-height   |
-| --item-container-min-height     | Minimum height of urban container                 | 500px                          | --bui-item-selector-item-container-min-height     |
-| --select-item-buttons-padding   | Horizontal button container inner margin          | 7.5px 0 0 3px                  | --bui-item-selector-select-item-buttons-padding   |
-| --select-item-title-line-height | Item index title bar row height                   | 15px                           | --bui-item-selector-select-item-title-line-height |
-| --list-item-height              | Item item height                                  | 45px                           | --bui-item-selector-list-item-height              |
-| --item-index-has-title-top      | Distance from the top of the item index container | calc(50% + --title-height / 2) | --bui-item-selector-item-index-has-title-top      |
-| --index-item-height             | Item index item height                            | 20px                           | --bui-item-selector-index-item-height             |
+| attribute                                         | explain                                    | Default value                                           |
+| ------------------------------------------------- | ------------------------------------------ | ------------------------------------------------------- |
+| --bui-item-selector-item-width                    | Horizontal item width                      | `111px`                                                 |
+| --bui-item-selector-item-height                   | Horizontal item height                     | `36px`                                                  |
+| --bui-item-selector-item-border-radius            | Horizontal item border radius              | `20px`                                                  |
+| --bui-item-selector-item-margin                   | Horizontal item margin                     | `4.5px 0 4.5px 9px`                                     |
+| --bui-item-selector-title-height                  | Title height                               | `45px`                                                  |
+| --bui-item-selector-title-line-height             | Title line height                          | `45px`                                                  |
+| --bui-item-selector-btn-close-size                | Close button container size                | `45px`                                                  |
+| --bui-item-selector-btn-close-font-size           | Close button font size                     | `20px`                                                  |
+| --bui-item-selector-container-with-title-height   | Container height with title                | `calc(100% - var(--bui-item-selector-title-height))`    |
+| --bui-item-selector-item-container-min-height     | Minimum city container height              | `500px`                                                 |
+| --bui-item-selector-select-item-buttons-padding   | Horizontal button padding                  | `7.5px 0 0 3px`                                         |
+| --bui-item-selector-select-item-title-line-height | City index title line height               | `15px`                                                  |
+| --bui-item-selector-list-item-height              | City item height                           | `45px`                                                  |
+| --bui-item-selector-item-index-has-title-top      | Distance from top for city index container | `calc(50% + var(--bui-item-selector-title-height) / 2)` |
+| --bui-item-selector-index-item-height             | City index item height                     | `20px`                                                  |

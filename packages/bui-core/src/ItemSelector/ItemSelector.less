@@ -1,49 +1,38 @@
 @import '@bifrostui/styles/mixins/index.less';
 
+@{root-selector} {
+  --bui-item-selector-item-width: 111px;
+  --bui-item-selector-item-height: 36px;
+  --bui-item-selector-item-border-radius: 20px;
+  --bui-item-selector-item-margin: 4.5px 0 4.5px 9px;
+  --bui-item-selector-title-height: 45px;
+  --bui-item-selector-title-line-height: 45px;
+  --bui-item-selector-btn-close-size: 45px;
+  --bui-item-selector-btn-close-font-size: 20px;
+  --bui-item-selector-container-with-title-height: calc(
+    100% - var(--bui-item-selector-title-height)
+  );
+  --bui-item-selector-item-container-min-height: 500px;
+  --bui-item-selector-select-item-buttons-padding: 7.5px 0 0 3px;
+  --bui-item-selector-select-item-title-line-height: 15px;
+  --bui-item-selector-list-item-height: 45px;
+  --bui-item-selector-item-index-has-title-top: calc(
+    50% + var(--bui-item-selector-title-height) / 2
+  );
+  --bui-item-selector-index-item-height: 20px;
+}
+
 .bui-item-selector {
-  --select-item-width: var(--bui-item-selector-item-width, 111px);
-  --select-item-height: var(--bui-item-selector-item-height, 36px);
-  --select-item-border-radius: var(
-    --bui-item-selector-item-border-radius,
-    20px
-  );
-  --select-item-margin: var(--bui-item-selector-item-margin, 4.5px 0 4.5px 9px);
-  --title-height: var(--bui-item-selector-title-height, 45px);
-  --title-line-height: var(--bui-item-selector-title-line-height, 45px);
-  --btn-close-size: var(--bui-item-selector-btn-close-size, 45px);
-  --btn-close-font-size: var(--bui-item-selector-btn-close-font-size, 20px);
-  --container-with-title-height: var(
-    --bui-item-selector-container-with-title-height,
-    calc(100% - var(--title-height))
-  );
-  --item-container-min-height: var(
-    --bui-item-selector-item-container-min-height,
-    500px
-  );
-  --select-item-buttons-padding: var(
-    --bui-item-selector-select-item-buttons-padding,
-    7.5px 0 0 3px
-  );
-  --select-item-title-line-height: var(
-    --bui-item-selector-select-item-title-line-height,
-    15px
-  );
-  --list-item-height: var(--bui-item-selector-list-item-height, 45px);
-  --item-index-has-title-top: var(
-    --bui-item-selector-item-index-has-title-top,
-    calc(50% + var(--title-height) / 2)
-  );
-  --index-item-height: var(--bui-item-selector-index-item-height, 20px);
   font-family: var(--bui-font-family);
   height: 100%;
   position: relative;
 
   &-title {
     width: 100%;
-    height: var(--title-height);
+    height: var(--bui-item-selector-title-height);
     color: var(--bui-color-fg-default);
     font-size: var(--bui-title-size-3);
-    line-height: var(--title-line-height);
+    line-height: var(--bui-item-selector-title-line-height);
     text-align: center;
     position: sticky;
     top: 0;
@@ -56,23 +45,23 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: var(--btn-close-size);
-    height: var(--btn-close-size);
+    width: var(--bui-item-selector-btn-close-size);
+    height: var(--bui-item-selector-btn-close-size);
     color: var(--bui-color-fg-muted);
     text-align: center;
-    font-size: var(--btn-close-font-size);
+    font-size: var(--bui-item-selector-btn-close-font-size);
   }
 
   &-scroll-view-container {
     height: 100%;
 
     &.container-has-title {
-      height: var(--container-with-title-height);
+      height: var(--bui-item-selector-container-with-title-height);
     }
   }
 
   &-all-item {
-    min-height: var(--item-container-min-height);
+    min-height: var(--bui-item-selector-item-container-min-height);
     font-size: var(--bui-text-size-2);
     width: 100%;
     background: var(--bui-color-bg-view);
@@ -81,12 +70,12 @@
     .select-item-buttons {
       display: flex;
       flex-flow: wrap;
-      padding: var(--select-item-buttons-padding);
+      padding: var(--bui-item-selector-select-item-buttons-padding);
     }
 
     .select-item-title {
       font-size: var(--bui-title-size-4);
-      line-height: var(--select-item-title-line-height);
+      line-height: var(--bui-item-selector-select-item-title-line-height);
       font-weight: var(--bui-font-weight-bold);
       padding-left: var(--bui-spacing-lg);
       padding-top: var(--bui-spacing-md);
@@ -99,7 +88,7 @@
   }
 
   &-list-item {
-    height: var(--list-item-height);
+    height: var(--bui-item-selector-list-item-height);
     font-size: var(--bui-title-size-4);
     display: flex;
     align-items: center;
@@ -129,7 +118,7 @@
     }
 
     &.item-index-has-title {
-      top: var(--item-index-has-title-top);
+      top: var(--bui-item-selector-item-index-has-title-top);
     }
 
     ul {
@@ -142,7 +131,7 @@
 
     li {
       list-style: none;
-      height: var(--index-item-height);
+      height: var(--bui-item-selector-index-item-height);
       text-align: center;
       font-size: var(--bui-text-size-3);
       color: var(--bui-color-info, --bui-color-info);

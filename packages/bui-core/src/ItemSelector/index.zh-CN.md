@@ -7,8 +7,6 @@ name: ItemSelector Item选择
 
 Item选择
 
-## 代码演示
-
 ### 基础用法
 
 Item选择展示当前Item、定位Item、热门Item及所有Item，支持右侧字母导航
@@ -295,7 +293,7 @@ const items = [
 ];
 
 export default () => {
-  const onSelect = (item) => {
+  const onSelect = (e, item) => {
     console.log(item);
   };
 
@@ -420,7 +418,7 @@ const items = [
 ];
 
 export default () => {
-  const onSelect = (item) => {
+  const onSelect = (e, item) => {
     console.log(item);
   };
 
@@ -546,7 +544,7 @@ const items = [
 ];
 
 export default () => {
-  const onSelect = (item) => {
+  const onSelect = (e, item) => {
     console.log(item);
   };
 
@@ -595,22 +593,22 @@ export default () => {
 | code | Itemid | string | -      |
 | name | Item名 | string | -      |
 
-### 样式变量
+## 样式变量
 
-| 属性                            | 说明                 | 默认值                         | 全局变量                                          |
-| ------------------------------- | -------------------- | ------------------------------ | ------------------------------------------------- |
-| --select-item-width             | 横排选项宽度         | 111px                          | --bui-item-selector-item-width                    |
-| --select-item-height            | 横排选项高度         | 36px                           | --bui-item-selector-item-height                   |
-| --select-item-border-radius     | 横排选项圆角         | 20px                           | --bui-item-selector-item-border-radius            |
-| --select-item-margin            | 横排选项外边距       | 4.5px 0 4.5px 9px              | --bui-item-selector-item-margin                   |
-| --title-height                  | 标题高度             | 45px                           | --bui-item-selector-title-height                  |
-| --title-line-height             | 标题行高             | 45px                           | --bui-item-selector-title-line-height             |
-| --btn-close-size                | 关闭按钮容器宽高     | 45px                           | --bui-item-selector-btn-close-size                |
-| --btn-close-font-size           | 关闭按钮字号         | 20px                           | --bui-item-selector-btn-close-font-size           |
-| --container-with-title-height   | 带标题的Item容器高度 | calc(100% - --title-height)    | --bui-item-selector-container-with-title-height   |
-| --item-container-min-height     | Item容器最小高度     | 500px                          | --bui-item-selector-item-container-min-height     |
-| --select-item-buttons-padding   | 横排按钮容器内边距   | 7.5px 0 0 3px                  | --bui-item-selector-select-item-buttons-padding   |
-| --select-item-title-line-height | Item索引标题栏行高   | 15px                           | --bui-item-selector-select-item-title-line-height |
-| --list-item-height              | Item项高度           | 45px                           | --bui-item-selector-list-item-height              |
-| --item-index-has-title-top      | Item索引容器距顶距离 | calc(50% + --title-height / 2) | --bui-item-selector-item-index-has-title-top      |
-| --index-item-height             | Item索引项高度       | 20px                           | --bui-item-selector-index-item-height             |
+| 变量名                                            | 说明                 | 默认值                                                  |
+| ------------------------------------------------- | -------------------- | ------------------------------------------------------- |
+| --bui-item-selector-item-width                    | 选择项宽度           | `111px`                                                 |
+| --bui-item-selector-item-height                   | 选择项高度           | `36px`                                                  |
+| --bui-item-selector-item-border-radius            | 选择项边框圆角       | `20px`                                                  |
+| --bui-item-selector-item-margin                   | 选择项外边距         | `4.5px 0 4.5px 9px`                                     |
+| --bui-item-selector-title-height                  | 标题高度             | `45px`                                                  |
+| --bui-item-selector-title-line-height             | 标题行高             | `45px`                                                  |
+| --bui-item-selector-btn-close-size                | 关闭按钮尺寸         | `45px`                                                  |
+| --bui-item-selector-btn-close-font-size           | 关闭按钮字体大小     | `20px`                                                  |
+| --bui-item-selector-container-with-title-height   | 带标题容器高度       | `calc(100% - var(--bui-item-selector-title-height))`    |
+| --bui-item-selector-item-container-min-height     | 城市容器最小高度     | `500px`                                                 |
+| --bui-item-selector-select-item-buttons-padding   | 城市按钮容器内边距   | `7.5px 0 0 3px`                                         |
+| --bui-item-selector-select-item-title-line-height | 城市分组标题行高     | `15px`                                                  |
+| --bui-item-selector-list-item-height              | 列表项高度           | `45px`                                                  |
+| --bui-item-selector-item-index-has-title-top      | 带标题的索引顶部位置 | `calc(50% + var(--bui-item-selector-title-height) / 2)` |
+| --bui-item-selector-index-item-height             | 索引项高度           | `20px`                                                  |
