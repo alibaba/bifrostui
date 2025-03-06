@@ -1,8 +1,13 @@
 import React, { forwardRef, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { useValue } from '@bifrostui/utils';
-import { DatePickerProps, DatePickerType } from './DatePicker.types';
-import Picker, { IPickerOptionItem } from '../Picker';
+import {
+  DatePickerProps,
+  DatePickerType,
+  DatePickerOption,
+} from './DatePicker.types';
+import Picker from '../Picker';
+import { useLocaleText } from '../locales';
 
 const MIN_DATE = new Date(new Date().getFullYear() - 10, 0, 1);
 const MAX_DATE = new Date(new Date().getFullYear() + 10, 11, 31);
@@ -58,7 +63,9 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
     views = DEFAULT_PICKER,
     minDate: propMinDate = MIN_DATE,
     maxDate: propMaxDate = MAX_DATE,
+    showUnit = false,
     formatter,
+    filter,
     disableDateTimeView,
     dateTimeStep,
     onConfirm,
@@ -67,8 +74,9 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
     ...others
   } = props;
 
-  const [options, setOptions] = useState<IPickerOptionItem[][]>([]);
+  const [options, setOptions] = useState<DatePickerOption[][]>([]);
   const [pickerValue, setPickerValue] = useState<(string | number)[]>([]);
+  const datePickerText = useLocaleText('datePicker');
 
   const formatDate = (date: Date | null) => {
     let formattedDate = date;
@@ -142,6 +150,23 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
     onChange?.(e, { type: views[columnIndex], value: current });
   };
 
+  const formatOption = (type: DatePickerType, value: number) => {
+    let label = padZero(value);
+
+    if (formatter) {
+      return formatter(type, {
+        value,
+        label,
+      });
+    }
+
+    if (showUnit) {
+      label += datePickerText[type];
+    }
+
+    return { value, label };
+  };
+
   const generateOptions = (
     min: number,
     max: number,
@@ -155,23 +180,11 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
       (_, index) => {
         const value = index * step + min;
 
-        const option = {
-          value: padZero(value),
-          label: padZero(value),
-        };
-
         if (value <= getDateTypeValue(currentDate, type)) {
           valueIndex = index;
         }
 
-        if (formatter) {
-          return formatter(type, {
-            value: option.value,
-            label: option.label,
-          });
-        }
-
-        return option;
+        return formatOption(type, value);
       },
     );
 
@@ -182,10 +195,12 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
       disableDateTimeView?.[type] &&
       typeof disableDateTimeView[type] === 'function'
     ) {
-      const disabledOptions = disableDateTimeView[type](optionsArray);
+      const disabledOptionsValue = disableDateTimeView[type](
+        optionsArray.map((i) => i.value),
+      );
 
       return optionsArray.map((option) => {
-        if (disabledOptions.includes(option)) {
+        if (disabledOptionsValue.includes(option.value)) {
           return {
             ...option,
             disabled: true,
@@ -194,6 +209,10 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
 
         return option;
       });
+    }
+
+    if (filter) {
+      return filter(type, optionsArray);
     }
 
     return optionsArray;
@@ -289,6 +308,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
   return (
     <Picker
       {...others}
+      data-selected={currentDate ? currentDate.getTime() : ''}
       className={clsx('bui-date-picker', className)}
       ref={ref}
       options={options}

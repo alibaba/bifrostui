@@ -33,7 +33,6 @@ export default () => {
       <DatePicker
         open={open}
         value={value}
-        views={['1']}
         onChange={handleChange}
         onClose={() => setOpen(false)}
       />
@@ -44,17 +43,19 @@ export default () => {
 
 ### 非受控状态
 
-使用`defaultValue`属性时，组件处于非受控状态，未指定时默认值为`minDate`。
+使用`defaultValue`属性时，组件处于非受控状态，未指定时默认值为`minDate`。通过DOM上的`data-selected`属性可以获取当前选中日期对应的时间戳。
 
 ```tsx
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { DatePicker, Stack, Button } from '@bifrostui/react';
 
 export default () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(new Date());
+  const datePickerRef = useRef();
 
   const handleConfirm = (e, res) => {
+    console.log(datePickerRef.current.dataset.selected);
     setValue(res.value);
   };
 
@@ -62,6 +63,7 @@ export default () => {
     <Stack>
       <Button onClick={() => setOpen(true)}>{value.toLocaleString()}</Button>
       <DatePicker
+        ref={datePickerRef}
         open={open}
         defaultValue={value}
         views={['year', 'month', 'day', 'hour', 'minute', 'second']}
@@ -151,7 +153,7 @@ import {
   Stack,
   Button,
   DatePickerType,
-  IPickerOptionItem,
+  DatePickerOption,
 } from '@bifrostui/react';
 
 export default () => {
@@ -183,7 +185,7 @@ export default () => {
 
 ### 格式化选项
 
-通过`formatter`函数，可以对选项文字进行格式化处理。
+通过`formatter`函数，可以对选项文字进行格式化处理。`showUnit`属性同样是也为选项后面添加单位，但`formatter`函数的优先级高于`showUnit`属性。
 
 ```tsx
 import React, { useState } from 'react';
@@ -192,7 +194,7 @@ import {
   Stack,
   Button,
   DatePickerType,
-  IPickerOptionItem,
+  DatePickerOption,
 } from '@bifrostui/react';
 
 export default () => {
@@ -203,7 +205,7 @@ export default () => {
     setValue(res.value);
   };
 
-  const formatter = (type: DatePickerType, option: IPickerOptionItem) => {
+  const formatter = (type: DatePickerType, option: DatePickerOption) => {
     switch (type) {
       case DatePickerType.YEAR:
         option.label = `${option.label}年`;
@@ -247,7 +249,7 @@ import {
   Stack,
   Button,
   DatePickerType,
-  IPickerOptionItem,
+  DatePickerOption,
 } from '@bifrostui/react';
 
 export default () => {
@@ -288,7 +290,7 @@ import {
   Stack,
   Button,
   DatePickerType,
-  IPickerOptionItem,
+  DatePickerOption,
 } from '@bifrostui/react';
 
 export default () => {
@@ -308,8 +310,8 @@ export default () => {
         open={open}
         defaultValue={value}
         disableDateTimeView={{
-          day: (options) => {
-            return options.filter((option) => option.value % 2 === 0);
+          day: (values) => {
+            return values.filter((value) => value % 2 === 0);
           },
         }}
         onConfirm={handleConfirm}
@@ -320,32 +322,85 @@ export default () => {
 };
 ```
 
+### 过滤选项
+
+通过`filter`函数过滤选项，实现自定义筛选逻辑。
+
+```tsx
+import React, { useState } from 'react';
+import {
+  DatePicker,
+  Stack,
+  Button,
+  DatePickerType,
+  DatePickerOption,
+} from '@bifrostui/react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(new Date());
+
+  const handleConfirm = (e, res) => {
+    setValue(res.value);
+  };
+
+  const filter = (type: DatePickerType, options: DatePickerOption[]) => {
+    switch (type) {
+      case DatePickerType.HOUR:
+        return options.filter((option) => option.value % 2 === 0);
+      case DatePickerType.MINUTE:
+        return options.filter((option) => option.value % 5 === 0);
+      default:
+        return options;
+    }
+  };
+
+  return (
+    <Stack>
+      <Button onClick={() => setOpen(true)}>
+        {value.toLocaleTimeString()}
+      </Button>
+      <DatePicker
+        open={open}
+        defaultValue={value}
+        views={['hour', 'minute']}
+        filter={filter}
+        onConfirm={handleConfirm}
+        onClose={() => setOpen(false)}
+      />
+    </Stack>
+  );
+};
+```
+
 ### API
 
-| 属性                | 说明                             | 类型                                                                             | 默认值                   |
-| ------------------- | -------------------------------- | -------------------------------------------------------------------------------- | ------------------------ |
-| open                | 弹层是否打开                     | boolean                                                                          | false                    |
-| title               | 标题                             | string                                                                           | -                        |
-| confirmText         | 确认文本内容                     | string                                                                           | 确认                     |
-| cancelText          | 取消文本内容                     | string                                                                           | 取消                     |
-| defaultValue        | 默认选中的值，当组件非受控时使用 | Date                                                                             | -                        |
-| value               | 选中的值，当组件受控时使用       | Date                                                                             | -                        |
-| views               | 日期选择器类型                   | Array<DatePickerType\>                                                           | ['year', 'month', 'day'] |
-| minDate             | 可选择的最小日期                 | Date                                                                             | 十年前                   |
-| maxDate             | 可选择的最大日期                 | Date                                                                             | 十年后                   |
-| disableDateTimeView | 禁止选择的日期                   | {[key in DatePickerType]: (options: IPickerOptionItem[]) => IPickerOptionItem[]} | -                        |
-| dateTimeStep        | 时间间隔,设置递增步长            | [key in DatePickerType]: number                                                  | -                        |
-| formatter           | 选项格式化函数                   | (type: string, option: IPickerOptionItem) => IPickerOptionItem                   | -                        |
-| onConfirm           | 点击确定按钮时触发               | (e: React.SyntheticEvent, { value: Date }) => void                               | -                        |
-| onCancel            | 点击取消按钮时触发               | (e: React.SyntheticEvent) => void                                                | -                        |
-| onClose             | 确定和取消时都触发               | (e: React.SyntheticEvent, { value: Date }) => void                               | -                        |
-| onChange            | 选项改变时触发                   | (e: React.SyntheticEvent, { value: Date, type: DatePickerType }) => void         | -                        |
+| 属性                | 说明                             | 类型                                                                                         | 默认值                   |
+| ------------------- | -------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------ |
+| open                | 弹层是否打开                     | boolean                                                                                      | false                    |
+| title               | 标题                             | string                                                                                       | -                        |
+| confirmText         | 确认文本内容                     | string                                                                                       | 确认                     |
+| cancelText          | 取消文本内容                     | string                                                                                       | 取消                     |
+| defaultValue        | 默认选中的值，当组件非受控时使用 | Date                                                                                         | -                        |
+| value               | 选中的值，当组件受控时使用       | Date                                                                                         | -                        |
+| views               | 日期选择器类型                   | Array<DatePickerType\>                                                                       | ['year', 'month', 'day'] |
+| minDate             | 可选择的最小日期                 | Date                                                                                         | 十年前                   |
+| maxDate             | 可选择的最大日期                 | Date                                                                                         | 十年后                   |
+| showUnit            | 是否展示选择器的单位             | boolean                                                                                      | false                    |
+| disableDateTimeView | 禁止选择的日期                   | Partial<{[key in DatePickerType]: (options: (string \| number)[]) => (string \| number)[] }> | -                        |
+| dateTimeStep        | 时间间隔,设置递增步长            | Partial<{[key in DatePickerType]: number }>                                                  | -                        |
+| formatter           | 选项格式化函数                   | (type: string, option: DatePickerOption) => DatePickerOption                                 | -                        |
+| filter              | 选项过滤函数                     | (type: string, options: DatePickerOption[]) => DatePickerOption[]                            | -                        |
+| onConfirm           | 点击确定按钮时触发               | (e: React.SyntheticEvent, { value: Date }) => void                                           | -                        |
+| onCancel            | 点击取消按钮时触发               | (e: React.SyntheticEvent) => void                                                            | -                        |
+| onClose             | 确定和取消时都触发               | (e: React.SyntheticEvent, { value: Date }) => void                                           | -                        |
+| onChange            | 选项改变时触发                   | (e: React.SyntheticEvent, { value: Date, type: DatePickerType }) => void                     | -                        |
 
-`DatePicker` 继承自 `Picker` 其他属性见 [Picker API](/cores/picker?#api)
+`DatePicker`继承自`Picker`，其他属性见 [Picker API](/cores/picker?#api)
 
 ### DatePickerType 枚举类型
 
-`DatePickerType`是一个枚举类型，用于定义时间选择器的不同类型：
+`DatePickerType`是一个枚举类型，用于定义时间选择器的不同类型。
 
 | 枚举值   | 描述       |
 | -------- | ---------- |
@@ -355,3 +410,13 @@ export default () => {
 | `hour`   | 时间选择器 |
 | `minute` | 分钟选择器 |
 | `second` | 秒钟选择器 |
+
+### DatePickerOption 选项类型
+
+`DatePickerOption`是组合类型，与`IPickerOptionItem`相似，区别是`value`属性是`number`类型，`label`属性是`string`类型。
+
+| 属性     | 说明             | 类型    | 默认值 |
+| -------- | ---------------- | ------- | ------ |
+| label    | 选项的文字内容   | string  | -      |
+| value    | 选项对应唯一的值 | number  | -      |
+| disabled | 是否禁用         | boolean | -      |
