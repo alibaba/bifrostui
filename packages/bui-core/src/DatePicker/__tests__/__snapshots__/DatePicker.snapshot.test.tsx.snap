@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatePicker demo snapshot DatePicker demo snapshot 0 1`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <button
+    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    onClick={[Function]}
+    type="button"
+  >
+    2025/3/6
+  </button>
+</div>
+`;
+
+exports[`DatePicker demo snapshot DatePicker demo snapshot 0 2`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <button
+    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    onClick={[Function]}
+    type="button"
+  >
+    2025/3/6
+  </button>
+</div>
+`;
+
+exports[`DatePicker demo snapshot DatePicker demo snapshot 0 3`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <button
+    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    onClick={[Function]}
+    type="button"
+  >
+    2025/3/6
+  </button>
+</div>
+`;
