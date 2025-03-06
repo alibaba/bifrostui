@@ -1,5 +1,5 @@
 ---
-group: 浮层
+group: 反馈
 name: DesktopPicker 浮层组件
 ---
 

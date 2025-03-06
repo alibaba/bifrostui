@@ -8,7 +8,7 @@ import DesktopPicker from '../DesktopPicker';
 import useGetDatePickerContent from './useGetDatePickerContent';
 import './index.less';
 
-const prefixCls = 'bui-desktop-date-picker';
+const prefixCls = 'bui-d-date-picker';
 const DesktopDatePicker = React.forwardRef<
   HTMLDivElement,
   DesktopDatePickerProps
