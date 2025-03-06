@@ -197,7 +197,7 @@ export default () => {
 
 | 全局变量              | 说明     | 默认值                        |
 | --------------------- | -------- | ----------------------------- |
-| --bui-tab-bar-width   | 宽度     | 100%                          |
-| --bui-tab-bar-height  | 高度     | 50px                          |
-| --bui-tab-bar-padding | 内边距   | 6px 0                         |
-| --bui-tab-bar-color   | 背景颜色 | `var(--bui-color-fg-default)` |
+| --bui-tab-bar-width   | 宽度     | `100%`                        |
+| --bui-tab-bar-height  | 高度     | `50px`                        |
+| --bui-tab-bar-padding | 内边距   | `6px 0`                       |
+| --bui-tab-bar-color   | 文本颜色 | `var(--bui-color-fg-default)` |

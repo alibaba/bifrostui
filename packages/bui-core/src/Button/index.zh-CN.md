@@ -353,3 +353,29 @@ export default () => {
 | onClick   | 点击按钮时的回调     | (event: MouseEvent) => void                                                     | -          |
 
 其他属性见 [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes)
+
+## 样式变量
+
+| 全局变量                      | 说明               | 默认值                                 |
+| ----------------------------- | ------------------ | -------------------------------------- |
+| --bui-btn-font-size           | 字体大小           | `var(--bui-text-size-3)`               |
+| --bui-btn-font-weight         | 字体粗细           | `var(--bui-font-weight-medium)`        |
+| --bui-btn-border-radius       | 边框圆角           | `120px`                                |
+| --bui-btn-small-border-radius | 小尺寸按钮边框圆角 | `120px`                                |
+| --bui-btn-large-border-radius | 大尺寸按钮边框圆角 | `120px`                                |
+| --bui-btn-full-border-radius  | 全宽按钮边框圆角   | `120px`                                |
+| --bui-btn-color               | 文字颜色           | `var(--bui-color-fg-muted)`            |
+| --bui-btn-background          | 背景颜色           | `var(--bui-color-bg-view)`             |
+| --bui-btn-border              | 边框样式           | `0`                                    |
+| --bui-btn-height              | 按钮高度           | `27px`                                 |
+| --bui-btn-small-height        | 小尺寸按钮高度     | `24px`                                 |
+| --bui-btn-large-height        | 大尺寸按钮高度     | `33px`                                 |
+| --bui-btn-full-height         | 全宽按钮高度       | `42px`                                 |
+| --bui-btn-subtle-border       | 柔和按钮边框       | `0`                                    |
+| --bui-btn-outlined-border     | 线框按钮边框       | `1px solid var(--bui-color-neutral-4)` |
+| --bui-btn-disabled-opacity    | 禁用状态透明度     | `0.5`                                  |
+| --bui-btn-small-padding       | 小尺寸按钮内边距   | `0 11px`                               |
+| --bui-btn-padding             | 按钮内边距         | `0 14px`                               |
+| --bui-btn-large-padding       | 大尺寸按钮内边距   | `0 14px`                               |
+| --bui-btn-full-font-size      | 全宽按钮字体大小   | `var(--bui-title-size-4)`              |
+| --bui-btn-full-font-family    | 全宽按钮字体族     | `var(--bui-font-family)`               |

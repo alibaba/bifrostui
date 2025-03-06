@@ -96,8 +96,8 @@ export default () => {
 
 ## 样式变量
 
-| 属性                 | 说明             | 默认值 | 全局变量                         |
-| -------------------- | ---------------- | ------ | -------------------------------- |
-| --icon-font-size     | 图标字号         | 30px   | --bui-loading-icon-font-size     |
-| --text-padding       | 文案容器内边距   | 10px   | --bui-loading-text-padding       |
-| --animation-duration | 加载动画播放周期 | 1.6s   | --bui-loading-animation-duration |
+| 全局变量                         | 说明             | 默认值 |
+| -------------------------------- | ---------------- | ------ |
+| --bui-loading-icon-font-size     | 加载图标字体大小 | `30px` |
+| --bui-loading-text-padding       | 文本内边距       | `10px` |
+| --bui-loading-animation-duration | 加载动画持续时间 | `1.6s` |

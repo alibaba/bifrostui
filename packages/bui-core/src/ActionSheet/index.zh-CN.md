@@ -189,21 +189,14 @@ export default () => {
 
 ## 样式变量
 
-### ActionSheet
-
-| 属性                | 说明               | 默认值             | 全局变量                             |
-| ------------------- | ------------------ | ------------------ | ------------------------------------ |
-| --extra-line-height | 顶部额外内容行高   | 23px               | --bui-action-sheet-extra-line-height |
-| --extra-padding     | 顶部额外内容内边距 | --bui-spacing-xl   | --bui-action-sheet-extra-padding     |
-| --extra-margin      | 顶部额外内容内边距 | 0 --bui-spacing-xl | --bui-action-sheet-extra-margin      |
-
-### ActionSheetItem
-
-| 属性                      | 说明             | 默认值                 | 全局变量                                        |
-| ------------------------- | ---------------- | ---------------------- | ----------------------------------------------- |
-| --padding                 | 子项内边距       | --bui-spacing-xl       | --bui-action-sheet-item-padding                 |
-| --font-size               | 子项字体大小     | --bui-title-size-2     | --bui-action-sheet-item-font-size               |
-| --line-height             | 子项字体行高     | 24px                   | --bui-action-sheet-item-line-height             |
-| --color                   | 子项字体颜色     | --bui-color-fg-default | --bui-action-sheet-item-color                   |
-| --margin                  | 子项字体         | 0 --bui-spacing-xl     | --bui-action-sheet-item-margin                  |
-| --description-line-height | 子项描述文案行高 | 19px                   | --bui-action-sheet-item-description-line-height |
+| 全局变量                                        | 说明           | 默认值                        |
+| ----------------------------------------------- | -------------- | ----------------------------- |
+| --bui-action-sheet-extra-line-height            | 附加内容行高   | `23px`                        |
+| --bui-action-sheet-extra-padding                | 附加内容内边距 | `var(--bui-spacing-xl)`       |
+| --bui-action-sheet-extra-margin                 | 附加内容外边距 | `0 var(--bui-spacing-xl)`     |
+| --bui-action-sheet-item-padding                 | 选项内边距     | `var(--bui-spacing-xl)`       |
+| --bui-action-sheet-item-font-size               | 选项字体大小   | `var(--bui-title-size-2)`     |
+| --bui-action-sheet-item-line-height             | 选项行高       | `24px`                        |
+| --bui-action-sheet-item-color                   | 选项颜色       | `var(--bui-color-fg-default)` |
+| --bui-action-sheet-item-margin                  | 选项外边距     | `0 var(--bui-spacing-xl)`     |
+| --bui-action-sheet-item-description-line-height | 描述文本行高   | `19px`                        |

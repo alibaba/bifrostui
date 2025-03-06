@@ -235,21 +235,22 @@ export default () => {
 
 ## 样式变量
 
-| 属性                    | 说明             | 默认值                     | 全局变量                           |
-| ----------------------- | ---------------- | -------------------------- | ---------------------------------- |
-| --line-color            | 线条前景色       | --bui-color-primary        | --bui-slider-line-color            |
-| --line-bg-color         | 线条背景色       | --bui-color-border-default | --bui-slider-line-bg-color         |
-| --width                 | 滑动输入条宽度   | 100%                       | --bui-slider-width                 |
-| --height                | 滑动输入条高度   | 2px                        | --bui-slider-height                |
-| --padding               | 滑动输入条内边距 | 19px 0                     | --bui-slider-padding               |
-| --button-width          | 滑动按钮宽度     | 100%                       | --bui-slider-button-width          |
-| --button-height         | 滑动按钮高度     | 2px                        | --bui-slider-button-height         |
-| --button-font-size      | 滑动按钮字体大小 | --bui-title-size-3         | --bui-slider-button-font-size      |
-| --button-border-radius  | 滑动按钮边框圆角 | 50%                        | --bui-slider-button-border-radius  |
-| --tooltip-font-size     | 提示气泡字体大小 | --bui-text-size-3          | --bui-tooltip-font-size            |
-| --tooltip-color         | 提示气泡字体颜色 | --bui-color-white          | --bui-tooltip-color                |
-| --tooltip-bg-color      | 提示气泡背景颜色 | --line-color               | --bui-tooltip-bg-color             |
-| --tooltip-width         | 提示气泡宽度     | 46px                       | --bui-slider-tooltip-width         |
-| --tooltip-height        | 提示气泡高度     | 24px                       | --bui-slider-tooltip-height        |
-| --tooltip-line-height   | 提示气泡行高     | 24px                       | --bui-slider-tooltip-line-height   |
-| --tooltip-border-radius | 提示气泡边框圆角 | 24px                       | --bui-slider-tooltip-border-radius |
+| 全局变量                           | 说明             | 默认值                            |
+| ---------------------------------- | ---------------- | --------------------------------- |
+| --bui-slider-line-color            | 滑块激活部分颜色 | `var(--bui-color-primary)`        |
+| --bui-slider-line-bg-color         | 滑块背景颜色     | `var(--bui-color-border-default)` |
+| --bui-slider-width                 | 滑块宽度         | `100%`                            |
+| --bui-slider-height                | 滑块高度         | `2px`                             |
+| --bui-slider-padding               | 滑块内边距       | `19px 0`                          |
+| --bui-slider-button-width          | 滑块按钮宽度     | `26px`                            |
+| --bui-slider-button-height         | 滑块按钮高度     | `26px`                            |
+| --bui-slider-button-font-size      | 滑块按钮字体大小 | `var(--bui-title-size-3)`         |
+| --bui-slider-button-box-shadow     | 滑块按钮阴影     | `#ddd 0 0 10px`                   |
+| --bui-slider-button-border-radius  | 滑块按钮边框圆角 | `50%`                             |
+| --bui-slider-tooltip-width         | 提示气泡宽度     | `46px`                            |
+| --bui-slider-tooltip-height        | 提示气泡高度     | `24px`                            |
+| --bui-slider-tooltip-line-height   | 提示气泡行高     | `24px`                            |
+| --bui-slider-tooltip-border-radius | 提示气泡边框圆角 | `24px`                            |
+| --bui-slider-tooltip-font-size     | 提示气泡字体大小 | `var(--bui-text-size-3)`          |
+| --bui-slider-tooltip-color         | 提示气泡文字颜色 | `var(--bui-color-white)`          |
+| --bui-slider-tooltip-bg-color      | 提示气泡背景色   | `var(--bui-slider-line-color)`    |

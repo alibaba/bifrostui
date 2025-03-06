@@ -310,3 +310,13 @@ export default () => {
 | subtitle | 子标题         | ReactNode            | -      |
 | extra    | 卡片右侧操作区 | ReactNode            | -      |
 | endIcon  | 卡片右侧图标   | ReactNode ｜ boolean | -      |
+
+## 样式变量
+
+| 全局变量                            | 说明             | 默认值                                        |
+| ----------------------------------- | ---------------- | --------------------------------------------- |
+| `--bui-card-header-padding`         | 卡片头部内边距   | `var(--bui-spacing-md) var(--bui-spacing-lg)` |
+| `--bui-card-footer-padding`         | 卡片底部内边距   | `var(--bui-spacing-md) var(--bui-spacing-lg)` |
+| `--bui-card-header-title-font-size` | 卡片标题字体大小 | `var(--bui-title-size-4)`                     |
+| `--bui-card-content-font-size`      | 卡片内容字体大小 | `var(--bui-text-size-2)`                      |
+| `--bui-card-footer-font-size`       | 卡片底部字体大小 | `var(--bui-text-size-2)`                      |

@@ -320,8 +320,8 @@ export default () => {
 
 ## 样式变量
 
-| 属性              | 说明         | 默认值                   | 全局变量                   |
-| ----------------- | ------------ | ------------------------ | -------------------------- |
-| --label-color     | 文案字体颜色 | --bui-color-fg-default   | --bui-radio-label-color    |
-| --label-font-size | 文案字体大小 | --bui-text-size-1        | -bui-radio-label-font-size |
-| --icon-padding    | 图标内边距   | --bui-radio-icon-padding | 5px                        |
+| 全局变量                    | 说明         | 默认值                        |
+| --------------------------- | ------------ | ----------------------------- |
+| --bui-radio-label-color     | 标签文本颜色 | `var(--bui-color-fg-default)` |
+| --bui-radio-label-font-size | 标签文本大小 | `var(--bui-text-size-1)`      |
+| --bui-radio-icon-padding    | 图标内边距   | `5px`                         |

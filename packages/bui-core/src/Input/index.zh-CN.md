@@ -236,12 +236,14 @@ export default () => {
 
 ## 样式变量
 
-| 属性                        | 说明           | 默认值                     | 全局变量                              |
-| --------------------------- | -------------- | -------------------------- | ------------------------------------- |
-| --height                    | 高度           | 32px                       | --bui-input-height                    |
-| --padding                   | 内边距         | 4px 10px                   | --bui-input-padding                   |
-| --border-radius             | 圆角           | --bui-shape-radius-default | --bui-input-border-radius             |
-| --icon-start-margin-right   | 头部按钮右边距 | 3px                        | --bui-input-icon-start-margin-right   |
-| --icon-end-margin-left      | 尾部按钮左边距 | 3px                        | --bui-input-icon-end-margin-left      |
-| --background-color          | 背景色         | transparent                | --bui-input-background-color          |
-| --disabled-background-color | 禁用状态背景色 | rgba(0, 0, 0, 0.04)        | --bui-input-disabled-background-color |
+| 属性                                  | 说明             | 默认值                            |
+| ------------------------------------- | ---------------- | --------------------------------- |
+| --bui-input-height                    | 输入框高度       | `32px`                            |
+| --bui-input-padding                   | 输入框内边距     | `4px 10px`                        |
+| --bui-input-border-radius             | 输入框圆角       | `var(--bui-shape-radius-default)` |
+| --bui-input-icon-start-margin-right   | 前置图标右边距   | `3px`                             |
+| --bui-input-icon-end-margin-left      | 后置图标左边距   | `3px`                             |
+| --bui-input-background-color          | 输入框背景色     | `transparent`                     |
+| --bui-input-disabled-background-color | 禁用状态背景色   | `rgba(0, 0, 0, 0.04)`             |
+| --bui-input-clear-color               | 清除按钮颜色     | `#ced1d6`                         |
+| --bui-input-clear-font-size           | 清除按钮字体大小 | `var(--bui-title-size-3)`         |

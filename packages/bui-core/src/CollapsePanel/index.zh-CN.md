@@ -329,10 +329,10 @@ export default () => {
 | icon     | 自定义 icon，覆盖 arrowIcon | React.ReactNode \| ((active: boolean) => React.ReactNode) | -      |
 | children | body 区域内容               | React.ReactNode                                           | -      |
 
-### 样式变量
+## 样式变量
 
-| 属性              | 说明           | 默认值                  | 全局变量                             |
-| ----------------- | -------------- | ----------------------- | ------------------------------------ |
-| --width           | 宽度           | 100%                    | --bui-collapse-panel-width           |
-| --header-padding  | 面板头部内边距 | var(--bui-spacing-lg) 0 | --bui-collapse-panel-header-padding  |
-| --content-padding | 面板主题内边距 | var(--bui-spacing-lg) 0 | --bui-collapse-panel-content-padding |
+| 属性                                 | 说明               | 默认值                    |
+| ------------------------------------ | ------------------ | ------------------------- |
+| --bui-collapse-panel-width           | 折叠面板宽度       | `100%`                    |
+| --bui-collapse-panel-header-padding  | 面板头部内边距     | `var(--bui-spacing-lg) 0` |
+| --bui-collapse-panel-content-padding | 面板内容区域内边距 | `var(--bui-spacing-lg) 0` |

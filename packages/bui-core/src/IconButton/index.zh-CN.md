@@ -245,11 +245,17 @@ export default () => {
 
 ## 样式变量
 
-| 属性               | 说明                                       | 默认值                | 全局变量                        |
-| ------------------ | ------------------------------------------ | --------------------- | ------------------------------- |
-| --bg-color         | 图标按钮背景颜色                           | --bui-color-neutral-5 | --bui-icon-btn-bg-color         |
-| --color            | 图标颜色                                   | --bui-color-fg-muted  | --bui-icon-btn-color            |
-| --icon-size        | 图标大小                                   | 17px                  | --bui-icon-btn-font-size        |
-| --user-area        | 按钮点击安全区域大小(默认medium大小情况下) | 5px                   | --bui-icon-btn-padding          |
-| --large-font-size  | 大号按钮字号                               | 23px                  | --bui-icon-btn-large-font-size  |
-| --disabled-opacity | 禁用状态透明度                             | 0.5                   | --bui-icon-btn-disabled-opacity |
+| 全局变量                          | 说明             | 默认值                       |
+| --------------------------------- | ---------------- | ---------------------------- |
+| --bui-icon-btn-contained-bg-color | 填充按钮背景色   | `var(--bui-color-neutral-5)` |
+| --bui-icon-btn-color              | 按钮颜色         | `var(--bui-color-fg-muted)`  |
+| --bui-icon-btn-small-font-size    | 小按钮字体大小   | `var(--bui-text-size-4)`     |
+| --bui-icon-btn-font-size          | 默认按钮字体大小 | `17px`                       |
+| --bui-icon-btn-small-padding      | 小按钮内边距     | `var(--bui-spacing-xs)`      |
+| --bui-icon-btn-padding            | 默认按钮内边距   | `5px`                        |
+| --bui-icon-btn-large-padding      | 大按钮内边距     | `var(--bui-spacing-sm)`      |
+| --bui-icon-btn-large-font-size    | 大按钮字体大小   | `23px`                       |
+| --bui-icon-btn-disabled-opacity   | 禁用按钮透明度   | `0.5`                        |
+| --bui-icon-btn-outlined-border    | 描边按钮边框     | `1px solid`                  |
+| --bui-icon-btn-subtle-border      | 柔和按钮边框     | `1px solid transparent`      |
+| --bui-icon-btn-border             | 默认按钮边框     | `1px solid transparent`      |

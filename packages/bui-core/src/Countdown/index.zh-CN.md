@@ -264,9 +264,9 @@ export default () => {
 
 ## 样式变量
 
-| 属性                | 说明         | 默认值                   | 全局变量                          |
-| ------------------- | ------------ | ------------------------ | --------------------------------- |
-| --font-size         | 文案字体大小 | --bui-text-size-1        | --bui-countdown-font-size         |
-| --color             | 文案字体颜色 | --bui-color-fg-default   | --bui-countdown-color             |
-| --font-weight       | 文案字体字重 | --bui-font-weight-normal | --bui-countdown-font-weight       |
-| --slice-unit-margin | 分隔符间距   | 0 2px                    | --bui-countdown-slice-unit-margin |
+| 变量名                            | 说明     | 默认值                          |
+| --------------------------------- | -------- | ------------------------------- |
+| --bui-countdown-font-size         | 字体大小 | `var(--bui-text-size-1)`        |
+| --bui-countdown-color             | 字体颜色 | `var(--bui-color-fg-default)`   |
+| --bui-countdown-font-weight       | 字体粗细 | `var(--bui-font-weight-normal)` |
+| --bui-countdown-slice-unit-margin | 单位间隔 | `0 2px`                         |
