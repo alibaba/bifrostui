@@ -173,9 +173,13 @@ export default () => {
 
 ## 样式变量
 
-| 属性                  | 说明             | 默认值 | 全局变量                         |
-| --------------------- | ---------------- | ------ | -------------------------------- |
-| --small-margin-right  | 小号评分右外边距 | 0.5px  | --bui-rating-small-margin-right  |
-| --medium-margin-right | 中号评分右外边距 | 1px    | --bui-rating-medium-margin-right |
-| --large-margin-right  | 大号评分右外边距 | 2px    | --bui-rating-large-margin-right  |
-| --large-font-size     | 大号评分字体大小 | 22px   | --bui-rating-large-font-size     |
+| 属性                             | 说明             | 默认值                    | 全局变量                           |
+| -------------------------------- | ---------------- | ------------------------- | ---------------------------------- |
+| --bui-rating-xsmall-font-size    | 超小尺寸字体大小 | `var(--bui-text-size-5)`  | `--bui-rating-xsmall-font-size`    |
+| --bui-rating-xsmall-margin-right | 超小尺寸右边距   | `0`                       | `--bui-rating-xsmall-margin-right` |
+| --bui-rating-small-font-size     | 小尺寸字体大小   | `var(--bui-text-size-1)`  | `--bui-rating-small-font-size`     |
+| --bui-rating-small-margin-right  | 小尺寸右边距     | `0.5px`                   | `--bui-rating-small-margin-right`  |
+| --bui-rating-font-size           | 中尺寸字体大小   | `var(--bui-title-size-3)` | `--bui-rating-font-size`           |
+| --bui-rating-margin-right        | 中尺寸右边距     | `1px`                     | `--bui-rating-margin-right`        |
+| --bui-rating-large-font-size     | 大尺寸字体大小   | `22px`                    | `--bui-rating-large-font-size`     |
+| --bui-rating-large-margin-right  | 大尺寸右边距     | `2px`                     | `--bui-rating-large-margin-right`  |

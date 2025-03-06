@@ -509,10 +509,10 @@ export default () => {
 | --------- | ---------- | ----------------- | ------ |
 | component | 根节点标签 | React.ElementType | -      |
 
-### 样式变量
+## 样式变量
 
-| 属性                  | 说明           | 默认值    | 全局变量                       |
-| --------------------- | -------------- | --------- | ------------------------------ |
-| --small-item-padding  | 小号子项内边距 | 5px 12px  | --bui-list-small-item-padding  |
-| --medium-item-padding | 中等子项内边距 | 18px 12px | --bui-list-medium-item-padding |
-| --large-item-padding  | 大号子项内边距 | 20px 12px | --bui-list-large-item-padding  |
+| 全局变量                       | 说明               | 默认值      |
+| ------------------------------ | ------------------ | ----------- |
+| --bui-list-small-item-padding  | 小尺寸列表项内边距 | `5px 12px`  |
+| --bui-list-medium-item-padding | 中尺寸列表项内边距 | `18px 12px` |
+| --bui-list-large-item-padding  | 大尺寸列表项内边距 | `20px 12px` |

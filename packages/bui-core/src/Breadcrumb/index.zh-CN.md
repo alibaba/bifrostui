@@ -177,14 +177,14 @@ export default () => {
 
 ## API
 
-### BreadcrumbProps
+### Breadcrumb
 
 | 属性      | 说明         | 类型                  | 默认值 |
 | --------- | ------------ | --------------------- | ------ |
 | items     | 路由栈信息   | BreadcrumbItemProps[] | -      |
 | separator | 分隔符自定义 | React.ReactNode       | /      |
 
-### BreadcrumbItemProps
+### BreadcrumbItem
 
 | 属性      | 说明                                     | 类型                              | 默认值 |
 | --------- | ---------------------------------------- | --------------------------------- | ------ |
@@ -195,10 +195,10 @@ export default () => {
 
 ## 样式变量
 
-| 属性                    | 说明                   | 默认值              | 全局变量                               |
-| ----------------------- | ---------------------- | ------------------- | -------------------------------------- |
-| --margin                | 面包屑外边距           | 0                   | --bui-breadcrumb-margin                |
-| --padding               | 面包屑内边距           | 0                   | --bui-breadcrumb-padding               |
-| --color                 | 面包屑颜色             | rgba(0, 0, 0, 0.45) | --bui-breadcrumb-color                 |
-| --item-separator-margin | 面包屑选项分隔符外边距 | 0                   | --bui-breadcrumb-item-separator-margin |
-| --list-li-color         | 面包屑列表子项颜色     | rgba(0, 0, 0, 0.88) | --bui-breadcrumb-list-li-color         |
+| 全局变量                               | 说明             | 默认值                |
+| -------------------------------------- | ---------------- | --------------------- |
+| --bui-breadcrumb-margin                | 面包屑外边距     | `0`                   |
+| --bui-breadcrumb-padding               | 面包屑内边距     | `0`                   |
+| --bui-breadcrumb-color                 | 面包屑文字颜色   | `rgba(0, 0, 0, 0.45)` |
+| --bui-breadcrumb-item-separator-margin | 分隔符边距       | `0 8px`               |
+| --bui-breadcrumb-last-item-color       | 最后一项文字颜色 | `rgba(0, 0, 0, 0.88)` |

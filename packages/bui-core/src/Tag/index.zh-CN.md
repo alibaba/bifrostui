@@ -312,18 +312,18 @@ export default () => {
 
 ### Tag
 
-| 属性               | 说明           | 默认值                  | 全局变量               |
-| ------------------ | -------------- | ----------------------- | ---------------------- |
-| --tag-bg-color     | Tag 背景色     | --bui-color-gay         | --bui-tag-bg-color     |
-| --tag-border-color | Tag 边框色     | --bui-color-border-gay  | --bui-tag-border-color |
-| --tag-color        | Tag 文案颜色   | --bui-color-gay         | --bui-tag-color        |
-| --tag-height       | Tag 高度       | 15px                    | --bui-tag-height       |
-| --tag-line-height  | Tag 行高       | 15px                    | --bui-tag-line-height  |
-| --tag-padding      | Tag 内边距     | 0 var(--bui-spacing-xs) | --bui-tag-padding      |
-| --tag-bg-color-vip | Tag 会员主题色 | fade(#ff866e, 30%)      | --bui-tag-color-vip    |
+| 全局变量               | 说明         | 默认值                         |
+| ---------------------- | ------------ | ------------------------------ |
+| --bui-tag-color        | 标签文本颜色 | `var(--bui-color-gray)`        |
+| --bui-tag-border-color | 标签边框颜色 | `var(--bui-color-border-gray)` |
+| --bui-tag-bg-color     | 标签背景色   | `var(--bui-color-gray)`        |
+| --bui-tag-height       | 标签高度     | `15px`                         |
+| --bui-tag-line-height  | 标签行高     | `15px`                         |
+| --bui-tag-padding      | 标签内边距   | `0 var(--bui-spacing-xs)`      |
+| --bui-tag-color-vip    | VIP标签颜色  | `fade(#ff866e, 30%)`           |
 
 ### TagGroup
 
-| 属性     | 说明       | 默认值 | 全局变量                       |
-| -------- | ---------- | ------ | ------------------------------ |
-| --height | 分割线高度 | 13%    | --bui-tag-group-divider-height |
+| 全局变量                       | 说明             | 默认值 |
+| ------------------------------ | ---------------- | ------ |
+| --bui-tag-group-divider-height | 标签组分隔符高度 | `13%`  |

@@ -316,19 +316,23 @@ export default () => {
 | index       | 对应 tabs 切换面板的数据中的 index    | string  | -      |
 | keepMounted | 当 TabPanel 被隐藏时是否渲染 DOM 结构 | boolean | false  |
 
-<!-- ## 样式变量
+## 样式变量
 
-### Tabs
-
-| 属性                 | 说明               | 默认值                                           | 全局变量                      |
-| -------------------- | ------------------ | ------------------------------------------------ | ----------------------------- |
-| --bui-tabs-height             | Tabs 高度          | 39px                                             | --bui-tabs-height             |
-| --bui-tabs-color              | 字体颜色           | --bui-color-fg-subtle                            | --bui-tabs-color              |
-| --bui-tabs-indicator-width         | 下标线宽度         | 18px                                             | --bui-tabs-indicator-width         |
-| --bui-tabs-indicator-border-radius | 下标线圆角         | 3px                                              | --bui-tabs-indicator-border-radius |
-| --bui-tabs-indicator-bottom        | 下标线底部定位位置 | 0                                                | --bui-tabs-indicator-bottom        |
-| --bui-tabs-indicator-color        | 下标线高度         | 3PX                                              | --bui-tabs-indicator-height        |
-| --bui-tabs-indicator-bg         | 下标线颜色         | --bui-color-primary                              | --bui-tabs-indicator-bg         |
-| --bui-tabs-indicator-box-shadow    | 下标线阴影         | none                                             | --bui-tabs-indicator-box-shadow    |
-| --bui-tab-padding        | Tab内边距          | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding             |
-| --bui-tabs-font-size          | Tab字体大小        | --bui-text-size-1                                | --bui-tabs-font-size           |
+| 全局变量                           | 说明           | 默认值                                             |
+| ---------------------------------- | -------------- | -------------------------------------------------- |
+| --bui-tabs-height                  | 标签页高度     | `39px`                                             |
+| --bui-tabs-font-weight             | 字体粗细       | `var(--bui-font-weight-medium)`                    |
+| --bui-tabs-indicator-background    | 指示器背景色   | `var(--bui-color-primary)`                         |
+| --bui-tabs-indicator-height        | 指示器高度     | `3PX`                                              |
+| --bui-tabs-indicator-width         | 指示器宽度     | `24px`                                             |
+| --bui-tabs-indicator-border-radius | 指示器圆角     | `3px 3px 0 0`                                      |
+| --bui-tabs-indicator-bottom        | 指示器底部位置 | `0`                                                |
+| --bui-tabs-indicator-box-shadow    | 指示器阴影     | `none`                                             |
+| --bui-tabs-mask-width              | 遮罩宽度       | `12px`                                             |
+| --bui-tabs-mask-height             | 遮罩高度       | `100%`                                             |
+| --bui-tab-font-size                | 标签字体大小   | `var(--bui-text-size-1)`                           |
+| --bui-tab-color                    | 标签颜色       | `var(--bui-color-fg-subtle)`                       |
+| --bui-tab-height                   | 标签高度       | `100%`                                             |
+| --bui-tab-padding                  | 标签内边距     | `var(--bui-spacing-lg) var(--bui-spacing-lg) 10px` |
+| --bui-tab-active-color             | 激活标签颜色   | `var(--bui-color-fg-default)`                      |
+| --bui-tab-active-font-family       | 激活标签字体   | `var(--bui-font-family-accent, inherit)`           |

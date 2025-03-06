@@ -585,16 +585,16 @@ export default () => {
 
 ## 样式变量
 
-| 属性               | 说明                     | 默认值                     | 全局变量                    |
-| ------------------ | ------------------------ | -------------------------- | --------------------------- |
-| --min-width        | 最小宽度                 | 86px                       | --bui-toast-min-width       |
-| --max-width        | 最大宽度                 | 80%                        | --bui-toast-max-width       |
-| --text-align       | 文字排列方式             | center                     | --bui-toast-text-align      |
-| --flex-direction   | icon跟文案排列方向       | column                     | --bui-toast-flex-direction  |
-| --padding          | 内边距                   | --bui-spacing-xl           | --bui-toast-padding         |
-| --position-top     | 顶部展示时，距离顶部距离 | 15%                        | --bui-toast-position-top    |
-| --position-bottom  | 底部展示时，距离顶部距离 | 85%                        | --bui-toast-position-bottom |
-| --background-color | 背景颜色                 | rgba(0, 0, 0, 0.8)         | --bui-toast-bg-color        |
-| --border-radius    | 圆角                     | --bui-shape-radius-default | --bui-toast-border-radius   |
-| --icon-margin      | 图标边距                 | 0 0 8px                    | --bui-toast-icon-margin     |
-| --icon-font-size   | 图标字体大小             | 30px                       | --bui-toast-icon-font-size  |
+| 全局变量                    | 说明         | 默认值                            |
+| --------------------------- | ------------ | --------------------------------- |
+| --bui-toast-min-width       | 最小宽度     | `86px`                            |
+| --bui-toast-max-width       | 最大宽度     | `80%`                             |
+| --bui-toast-text-align      | 文字对齐方式 | `center`                          |
+| --bui-toast-flex-direction  | 弹层方向     | `column`                          |
+| --bui-toast-padding         | 内边距       | `var(--bui-spacing-xl)`           |
+| --bui-toast-position-top    | 顶部位置     | `15%`                             |
+| --bui-toast-position-bottom | 底部位置     | `85%`                             |
+| --bui-toast-bg-color        | 背景颜色     | `rgba(0, 0, 0, 0.8)`              |
+| --bui-toast-border-radius   | 圆角         | `var(--bui-shape-radius-default)` |
+| --bui-toast-icon-margin     | 图标外边距   | `0 0 8px`                         |
+| --bui-toast-icon-font-size  | 图标字体大小 | `30px`                            |
