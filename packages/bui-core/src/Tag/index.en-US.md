@@ -1,20 +1,21 @@
 ---
 group: Data Display
-name: Tag tags
+name: Tag Label
 ---
 
-# Tag tags
+# Tag Label
 
-Tags are usually used to mark or supplement a visual element.
+Tags are commonly used to mark or provide additional information about a visual element.
 
-## Code demonstration
+## Code Demos
 
-### Basic tags
+### Basic Tags
 
-The label supports three display modes: 'stroke', 'fill', and 'light', with the default being the stroke label.
-Stroke label: a common form of white background with borders, which can be used in combination with fill buttons.
-Fill in tags: Users need to focus on the highest priority tag on the entire page to guide them to pay attention.
-Light Bright Label: The light bright mode is visually less emphasized than the fill label, and the background and text have the same theme color.
+Tags support three display modes: `outlined`, `contained`, and `light`. The default mode is the outlined tag.
+
+- `Outlined Tag`: Commonly used with a white background and border, suitable for pairing with contained buttons.
+- `Contained Tag`: The highest priority tag on the page, guiding user attention.
+- `Light Tag`: Light mode has less emphasis compared to contained tags, where both background and text share the same theme color.
 
 ```tsx
 import { Stack, Tag } from '@bifrostui/react';
@@ -23,17 +24,17 @@ import React from 'react';
 export default () => {
   return (
     <Stack direction="row" spacing="10px">
-      <Tag>默认标签</Tag>
-      <Tag variant="contained">填充标签</Tag>
-      <Tag variant="light">浅亮标签</Tag>
+      <Tag>Default Tag</Tag>
+      <Tag variant="contained">Contained Tag</Tag>
+      <Tag variant="light">Light Tag</Tag>
     </Stack>
   );
 };
 ```
 
-## theme
+## Themes
 
-Tag tags support defining themes such as' primary ',' success', 'info', 'warning', and 'danger'. If color is not set, it defaults to 'default'
+Tag supports `primary`, `success`, `info`, `warning`, `danger` themes. If no color is set, it defaults to `default`.
 
 ```tsx
 import { Stack, Tag } from '@bifrostui/react';
@@ -44,62 +45,62 @@ export default () => {
     <Stack spacing="10px">
       <Stack direction="row" spacing="10px">
         <Tag variant="outlined" color="primary">
-          限时特价
+          Limited Time Offer
         </Tag>
         <Tag variant="outlined" color="info">
-          音乐剧
+          Musical
         </Tag>
         <Tag variant="outlined" color="success">
-          音乐剧
+          Musical
         </Tag>
         <Tag variant="outlined" color="warning">
-          点映
+          Preview
         </Tag>
         <Tag variant="outlined" color="danger">
-          限时优惠
+          Limited Discount
         </Tag>
         <Tag variant="outlined" color="vip">
-          会员
+          Member
         </Tag>
       </Stack>
       <Stack direction="row" spacing="10px">
         <Tag variant="contained" color="primary">
-          早鸟优惠
+          Early Bird Discount
         </Tag>
         <Tag variant="contained" color="info">
-          音乐剧
+          Musical
         </Tag>
         <Tag variant="contained" color="success">
-          影城卡
+          Cinema Card
         </Tag>
         <Tag variant="contained" color="warning">
-          点映
+          Preview
         </Tag>
         <Tag variant="contained" color="danger">
-          限时优惠
+          Limited Discount
         </Tag>
         <Tag variant="contained" color="vip">
-          会员
+          Member
         </Tag>
       </Stack>
       <Stack direction="row" spacing="10px">
         <Tag variant="light" color="primary">
-          早鸟优惠
+          Early Bird Discount
         </Tag>
         <Tag variant="light" color="info">
-          音乐剧
+          Musical
         </Tag>
         <Tag variant="light" color="success">
-          影城卡
+          Cinema Card
         </Tag>
         <Tag variant="light" color="warning">
-          点映
+          Preview
         </Tag>
         <Tag variant="light" color="danger">
-          限时优惠
+          Limited Discount
         </Tag>
         <Tag variant="light" color="vip">
-          会员
+          Member
         </Tag>
       </Stack>
     </Stack>
@@ -107,9 +108,9 @@ export default () => {
 };
 ```
 
-### Customize colors
+### Custom Colors
 
-In addition to using the theme colors we provide, you can also customize colors through the 'htmlColor' property.
+In addition to using our predefined theme colors, you can also customize colors using the `htmlColor` property.
 
 ```tsx
 import { Stack, Tag } from '@bifrostui/react';
@@ -119,22 +120,22 @@ export default () => {
   return (
     <Stack spacing="10px">
       <Tag variant="contained" htmlColor="#69eeff">
-        自定义色彩
+        Custom Color
       </Tag>
       <Tag variant="light" htmlColor="#69eeff">
-        自定义色彩
+        Custom Color
       </Tag>
       <Tag variant="outlined" htmlColor="#69eeff">
-        自定义色彩
+        Custom Color
       </Tag>
     </Stack>
   );
 };
 ```
 
-## combination
+## Combinations
 
-In addition to a single tag tag, you can also combine the 'TagGroup' component to achieve combined tags.
+Besides individual tags, you can combine tags using the `TagGroup` component.
 
 ```tsx
 import { Stack, Tag, TagGroup } from '@bifrostui/react';
@@ -279,28 +280,28 @@ export default () => {
 
 ##### TagProps
 
-| attribute | explain                | type                                                                      | Default value |
-| --------- | ---------------------- | ------------------------------------------------------------------------- | ------------- |
-| color     | Tag Theme Color        | `primary` \|`info` \|`success` \|`warning` \|`danger` \|`default` \|`vip` | `default`     |
-| htmlColor | Customize label colors | string                                                                    | -             |
-| variant   | Tag type               | `contained` ｜`outlined`｜`light`                                         | `contained`   |
+| Property  | Description      | Type                                                                            | Default     |
+| --------- | ---------------- | ------------------------------------------------------------------------------- | ----------- |
+| color     | Tag theme        | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` \| `vip` | `default`   |
+| htmlColor | Custom tag color | string                                                                          | -           |
+| variant   | Tag type         | `contained` \| `outlined` \| `light`                                            | `contained` |
 
-### Style variables
+### Style Variables
 
 #### Tag
 
-| attribute          | explain                | Default value           | global variable        |
-| ------------------ | ---------------------- | ----------------------- | ---------------------- |
-| --tag-bg-color     | Tag background color   | --bui-color-gay         | --bui-tag-bg-color     |
-| --tag-border-color | Tag border color       | --bui-color-border-gay  | --bui-tag-border-color |
-| --tag-color        | Tag Text Color         | --bui-color-gay         | --bui-tag-color        |
-| --tag-height       | Tag height             | 15px                    | --bui-tag-height       |
-| --tag-line-height  | Tag row height         | 15px                    | --bui-tag-line-height  |
-| --tag-padding      | Tag inner margin       | 0 var(--bui-spacing-xs) | --bui-tag-padding      |
-| --tag-bg-color-vip | Tag Member Theme Color | fade(#ff866e, 30%)      | --bui-tag-color-vip    |
+| Property           | Description             | Default Value           | Global Variable        |
+| ------------------ | ----------------------- | ----------------------- | ---------------------- |
+| --tag-bg-color     | Background color of Tag | --bui-color-gay         | --bui-tag-bg-color     |
+| --tag-border-color | Border color of Tag     | --bui-color-border-gay  | --bui-tag-border-color |
+| --tag-color        | Text color of Tag       | --bui-color-gay         | --bui-tag-color        |
+| --tag-height       | Height of Tag           | 15px                    | --bui-tag-height       |
+| --tag-line-height  | Line height of Tag      | 15px                    | --bui-tag-line-height  |
+| --tag-padding      | Padding of Tag          | 0 var(--bui-spacing-xs) | --bui-tag-padding      |
+| --tag-bg-color-vip | VIP theme color of Tag  | fade(#ff866e, 30%)      | --bui-tag-color-vip    |
 
 #### TagGroup
 
-| attribute | explain                 | Default value | global variable                |
-| --------- | ----------------------- | ------------- | ------------------------------ |
-| --height  | Height of dividing line | 13%           | --bui-tag-group-divider-height |
+| Property | Description    | Default Value | Global Variable                |
+| -------- | -------------- | ------------- | ------------------------------ |
+| --height | Divider height | 13%           | --bui-tag-group-divider-height |

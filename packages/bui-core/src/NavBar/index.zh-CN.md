@@ -162,17 +162,17 @@ export default () => {
 
 ### NavBar
 
-| 属性        | 说明                                                                         | 类型                                       | 默认值                      |
-| ----------- | ---------------------------------------------------------------------------- | ------------------------------------------ | --------------------------- |
-| className   | 组件类名                                                                     | string                                     | -                           |
-| title       | 标题                                                                         | ReactNode                                  | -                           |
-| left        | 导航栏左侧内容自定义                                                         | ReactNode                                  | -                           |
-| leftIcon    | 自定义左侧箭头，false控制隐藏                                                | ReactNode \| boolean                       | <ArrowBackwardLargeIcon \/> |
-| IconProps   | 透传给内部图标的属性                                                         | ISvgIconProps                              | -                           |
-| right       | 导航栏右侧内容自定义                                                         | ReactNode                                  | -                           |
-| fixed       | 是否固定在顶部                                                               | boolean                                    | false                       |
-| placeholder | 固定在顶部时，是否在标签位置生成一个等高的占位元素（沉浸式效果场景考虑关闭） | boolean                                    | false                       |
-| onClickLeft | 点击返回按钮回调事件                                                         | (e: SyntheticEvent<HTMLDivElement) => void | -                           |
+| 属性        | 说明                                                                         | 类型                                         | 默认值                      |
+| ----------- | ---------------------------------------------------------------------------- | -------------------------------------------- | --------------------------- |
+| className   | 组件类名                                                                     | string                                       | -                           |
+| title       | 标题                                                                         | ReactNode                                    | -                           |
+| left        | 导航栏左侧内容自定义                                                         | ReactNode                                    | -                           |
+| leftIcon    | 自定义左侧箭头，false控制隐藏                                                | ReactNode \| boolean                         | <ArrowBackwardLargeIcon \/> |
+| IconProps   | 透传给内部图标的属性                                                         | ISvgIconProps                                | -                           |
+| right       | 导航栏右侧内容自定义                                                         | ReactNode                                    | -                           |
+| fixed       | 是否固定在顶部                                                               | boolean                                      | false                       |
+| placeholder | 固定在顶部时，是否在标签位置生成一个等高的占位元素（沉浸式效果场景考虑关闭） | boolean                                      | false                       |
+| onClickLeft | 点击返回按钮回调事件                                                         | (e: SyntheticEvent<HTMLDivElement\>) => void | -                           |
 
 ## 样式变量
 

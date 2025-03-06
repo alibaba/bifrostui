@@ -58,7 +58,6 @@ export const isDisabledViewTime = (
  * 判断时间是否在 minTime & maxTime 时间区间内
  */
 export const getIsRangeTime = (time: Dayjs, start?: Dayjs, end?: Dayjs) => {
-  if (!time) return false;
   if (start && end) {
     return !time.isBefore(start, 'second') && !time.isAfter(end, 'second');
   }
@@ -80,6 +79,7 @@ export const isDisabledTime = (
   end?: Dayjs,
   disabledTimeView?: DisabledTimeView,
 ) => {
+  if (!time) return false;
   return (
     isDisabledViewTime(time, disabledTimeView) ||
     !getIsRangeTime(time, start, end)
