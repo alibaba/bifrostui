@@ -12,7 +12,7 @@ import {
   isDisabledTime,
 } from './utils/utils';
 
-const prefixCls = 'bui-desktop-time-picker';
+const prefixCls = 'bui-d-time-picker';
 
 const useGetTimePickerContent = (props: TimePickerContentProps) => {
   const {

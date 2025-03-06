@@ -560,6 +560,7 @@ export default () => {
 
 ## Style Variables
 
-| Property            | Description       | Default | Global Variable                      |
-| ------------------- | ----------------- | ------- | ------------------------------------ |
-| --container-padding | Container padding | 10px    | --bui-swipe-action-container-padding |
+| Attribute                            | Description             | Default Value     |
+| ------------------------------------ | ----------------------- | ----------------- |
+| --bui-swipe-action-container-padding | Container padding       | 10px              |
+| --bui-swipe-action-container-color   | Text color in container | --bui-color-black |

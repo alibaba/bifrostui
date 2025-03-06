@@ -1,17 +1,17 @@
 ---
 group: Data Display
-name: Cityselector City Selection
+name: CitySelector City Selection
 ---
 
-# Cityselector City Selection
+# CitySelector City Selection
 
 City selection
 
-## Code demonstration
+## Code Demo
 
-### Basic usage
+### Basic Usage
 
-City selection displays the current city, location city, popular cities, and all cities, supporting right-hand letter navigation
+The city selector displays the current city, located city, popular cities, and all cities, supporting right-side letter navigation.
 
 ```tsx
 import React from 'react';
@@ -20,15 +20,15 @@ import { CitySelector } from '@bifrostui/react';
 const hotCities = [
   {
     code: '110100',
-    name: '北京',
+    name: 'Beijing',
   },
   {
     code: '310100',
-    name: '上海',
+    name: 'Shanghai',
   },
   {
     code: '440100',
-    name: '广州',
+    name: 'Guangzhou',
   },
 ];
 
@@ -38,11 +38,11 @@ const cities = [
     cities: [
       {
         code: '610900',
-        name: '安康',
+        name: 'Ankang',
       },
       {
         code: '210300',
-        name: '鞍山',
+        name: 'Anshan',
       },
     ],
   },
@@ -51,11 +51,11 @@ const cities = [
     cities: [
       {
         code: '652800',
-        name: '巴音郭楞',
+        name: 'Bayin格尔',
       },
       {
         code: '511900',
-        name: '巴中',
+        name: 'Bazhong',
       },
     ],
   },
@@ -64,11 +64,11 @@ const cities = [
     cities: [
       {
         code: '130900',
-        name: '沧州',
+        name: 'Cangzhou',
       },
       {
         code: '220100',
-        name: '长春',
+        name: 'Changchun',
       },
     ],
   },
@@ -77,11 +77,11 @@ const cities = [
     cities: [
       {
         code: '532900',
-        name: '大理',
+        name: 'Dali',
       },
       {
         code: '210200',
-        name: '大连',
+        name: 'Dalian',
       },
     ],
   },
@@ -90,11 +90,11 @@ const cities = [
 export default () => {
   const selectedCity = {
     code: '110100',
-    name: '北京',
+    name: 'Beijing',
   };
   const currentCity = {
     code: '310100',
-    name: '上海',
+    name: 'Shanghai',
   };
   const onSelect = (city) => {
     console.log(city);
@@ -109,11 +109,11 @@ export default () => {
       cities={cities}
       onSelect={onSelect}
       selectedCity={selectedCity}
-      selectedCityGroupName="当前城市"
+      selectedCityGroupName="Current City"
       currentCity={currentCity}
-      currentCityGroupName="定位城市"
+      currentCityGroupName="Located City"
       hotCities={hotCities}
-      hotCitiesGroupName="热门城市"
+      hotCitiesGroupName="Popular Cities"
       onClose={onHide}
       style={{ height: '500px' }}
     />
@@ -121,9 +121,9 @@ export default () => {
 };
 ```
 
-### Do not display navigation usage
+### Hide Navigation Usage
 
-Users can set the disabling Index to control the display of letter navigation on the right side, which defaults to false, indicating the display of letter navigation
+Users can set `disableIndex` to control the display of the right-side letter navigation. Default is `false`, meaning it shows the letter navigation.
 
 ```tsx
 import React from 'react';
@@ -132,15 +132,15 @@ import { CitySelector } from '@bifrostui/react';
 const hotCities = [
   {
     code: '110100',
-    name: '北京',
+    name: 'Beijing',
   },
   {
     code: '310100',
-    name: '上海',
+    name: 'Shanghai',
   },
   {
     code: '440100',
-    name: '广州',
+    name: 'Guangzhou',
   },
 ];
 
@@ -150,11 +150,11 @@ const cities = [
     cities: [
       {
         code: '610900',
-        name: '安康',
+        name: 'Ankang',
       },
       {
         code: '210300',
-        name: '鞍山',
+        name: 'Anshan',
       },
     ],
   },
@@ -163,11 +163,11 @@ const cities = [
     cities: [
       {
         code: '652800',
-        name: '巴音郭楞',
+        name: 'Bayin格尔',
       },
       {
         code: '511900',
-        name: '巴中',
+        name: 'Bazhong',
       },
     ],
   },
@@ -176,11 +176,11 @@ const cities = [
     cities: [
       {
         code: '130900',
-        name: '沧州',
+        name: 'Cangzhou',
       },
       {
         code: '220100',
-        name: '长春',
+        name: 'Changchun',
       },
     ],
   },
@@ -189,11 +189,11 @@ const cities = [
     cities: [
       {
         code: '532900',
-        name: '大理',
+        name: 'Dali',
       },
       {
         code: '210200',
-        name: '大连',
+        name: 'Dalian',
       },
     ],
   },
@@ -202,11 +202,11 @@ const cities = [
 export default () => {
   const selectedCity = {
     code: '110100',
-    name: '北京',
+    name: 'Beijing',
   };
   const currentCity = {
     code: '310100',
-    name: '上海',
+    name: 'Shanghai',
   };
 
   const onSelect = (city) => {
@@ -222,12 +222,12 @@ export default () => {
       cities={cities}
       onSelect={onSelect}
       selectedCity={selectedCity}
-      selectedCityGroupName="当前城市"
+      selectedCityGroupName="Current City"
       currentCity={currentCity}
-      currentCityGroupName="定位城市"
+      currentCityGroupName="Located City"
       hotCities={hotCities}
-      hotCitiesGroupName="热门城市"
-      title="选择城市"
+      hotCitiesGroupName="Popular Cities"
+      title="Select City"
       disableIndex
       onClose={onHide}
       style={{ height: '500px' }}
@@ -236,9 +236,9 @@ export default () => {
 };
 ```
 
-### Do not display title and navigation usage
+### Hide Title and Navigation Usage
 
-Users can set the title to control the display of the head
+Users can set `title` to control the header display.
 
 ```tsx
 import React from 'react';
@@ -247,15 +247,15 @@ import { CitySelector } from '@bifrostui/react';
 const hotCities = [
   {
     code: '110100',
-    name: '北京',
+    name: 'Beijing',
   },
   {
     code: '310100',
-    name: '上海',
+    name: 'Shanghai',
   },
   {
     code: '440100',
-    name: '广州',
+    name: 'Guangzhou',
   },
 ];
 
@@ -265,11 +265,11 @@ const cities = [
     cities: [
       {
         code: '610900',
-        name: '安康',
+        name: 'Ankang',
       },
       {
         code: '210300',
-        name: '鞍山',
+        name: 'Anshan',
       },
     ],
   },
@@ -278,11 +278,11 @@ const cities = [
     cities: [
       {
         code: '652800',
-        name: '巴音郭楞',
+        name: 'Bayin格尔',
       },
       {
         code: '511900',
-        name: '巴中',
+        name: 'Bazhong',
       },
     ],
   },
@@ -291,11 +291,11 @@ const cities = [
     cities: [
       {
         code: '130900',
-        name: '沧州',
+        name: 'Cangzhou',
       },
       {
         code: '220100',
-        name: '长春',
+        name: 'Changchun',
       },
     ],
   },
@@ -304,11 +304,11 @@ const cities = [
     cities: [
       {
         code: '532900',
-        name: '大理',
+        name: 'Dali',
       },
       {
         code: '210200',
-        name: '大连',
+        name: 'Dalian',
       },
     ],
   },
@@ -317,11 +317,11 @@ const cities = [
 export default () => {
   const selectedCity = {
     code: '110100',
-    name: '北京',
+    name: 'Beijing',
   };
   const currentCity = {
     code: '310100',
-    name: '上海',
+    name: 'Shanghai',
   };
 
   const onSelect = (city) => {
@@ -337,11 +337,11 @@ export default () => {
       cities={cities}
       onSelect={onSelect}
       selectedCity={selectedCity}
-      selectedCityGroupName="当前城市"
+      selectedCityGroupName="Current City"
       currentCity={currentCity}
-      currentCityGroupName="定位城市"
+      currentCityGroupName="Located City"
       hotCities={hotCities}
-      hotCitiesGroupName="热门城市"
+      hotCitiesGroupName="Popular Cities"
       onClose={onHide}
       disableIndex
       style={{ height: '500px' }}
@@ -354,50 +354,50 @@ export default () => {
 
 #### CitySelectorProps
 
-| attribute             | explain                                                                              | type                                                 | Default value      |
-| --------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------- | ------------------ |
-| cities                | City List                                                                            | CityGroup[]                                          | -                  |
-| onSelect              | Select city callback                                                                 | (e: React.SyntheticEvent,data: {city: City}) => void | -                  |
-| selectedCity          | Current city information                                                             | City                                                 | -                  |
-| selectedCityGroupName | The title of the current city column                                                 | string                                               | Current City       |
-| currentCity           | Locate city information                                                              | City                                                 | -                  |
-| currentCityGroupName  | Position the title of the city column                                                | string                                               | 'Positioning City' |
-| hotCities             | Popular city information                                                             | City[]                                               | -                  |
-| hotCitiesGroupName    | Title of the popular city column                                                     | string                                               | 'Popular Cities'   |
-| disableIndex          | Disable display index. Default false means display index is disabled                 | boolean                                              | false              |
-| title                 | Title at the top, not mandatory                                                      | string                                               | -                  |
-| onClose               | Used in conjunction with the title, the close callback on the right side of the head | (e: React.SyntheticEvent) => void                    | -                  |
+| Property              | Description                                   | Type                                                  | Default Value    |
+| --------------------- | --------------------------------------------- | ----------------------------------------------------- | ---------------- |
+| cities                | List of cities                                | CityGroup[]                                           | -                |
+| onSelect              | Callback for city selection                   | (e: React.SyntheticEvent, data: {city: City}) => void | -                |
+| selectedCity          | Information about the currently selected city | City                                                  | -                |
+| selectedCityGroupName | Title for the selected city section           | string                                                | 'Current City'   |
+| currentCity           | Information about the located city            | City                                                  | -                |
+| currentCityGroupName  | Title for the located city section            | string                                                | 'Located City'   |
+| hotCities             | List of popular cities                        | City[]                                                | -                |
+| hotCitiesGroupName    | Title for the popular cities section          | string                                                | 'Popular Cities' |
+| disableIndex          | Disable index display, defaults to false      | boolean                                               | false            |
+| title                 | Header title, optional                        | string                                                | -                |
+| onClose               | Callback for closing the header               | (e: React.SyntheticEvent) => void                     | -                |
 
 #### CityGroup
 
-| attribute | explain    | type   | Default value |
-| --------- | ---------- | ------ | ------------- |
-| groupName | Group name | string | -             |
-| cities    | City List  | City[] | -             |
+| Property  | Description    | Type   | Default Value |
+| --------- | -------------- | ------ | ------------- |
+| groupName | Group name     | string | -             |
+| cities    | List of cities | City[] | -             |
 
 #### City
 
-| attribute | explain   | type   | Default value |
-| --------- | --------- | ------ | ------------- |
-| code      | City ID   | string | -             |
-| name      | City name | string | -             |
+| Property | Description | Type   | Default Value |
+| -------- | ----------- | ------ | ------------- |
+| code     | City ID     | string | -             |
+| name     | City name   | string | -             |
 
-### Style variables
+### Style Variables
 
-| attribute                       | explain                                           | Default value                  | global variable                                   |
-| ------------------------------- | ------------------------------------------------- | ------------------------------ | ------------------------------------------------- |
-| --select-item-width             | Horizontal option width                           | 111px                          | --bui-city-selector-item-width                    |
-| --select-item-height            | Horizontal option height                          | 36px                           | --bui-city-selector-item-height                   |
-| --select-item-border-radius     | Horizontal options with rounded corners           | 20px                           | --bui-city-selector-item-border-radius            |
-| --select-item-margin            | Horizontal option margin                          | 4.5px 0 4.5px 9px              | --bui-city-selector-item-margin                   |
-| --title-height                  | Title height                                      | 45px                           | --bui-city-selector-title-height                  |
-| --title-line-height             | Title line height                                 | 45px                           | --bui-city-selector-title-line-height             |
-| --btn-close-size                | Close button container width and height           | 45px                           | --bui-city-selector-btn-close-size                |
-| --btn-close-font-size           | Close button font size                            | 20px                           | --bui-city-selector-btn-close-font-size           |
-| --container-with-title-height   | City container height with title                  | calc(100% - --title-height)    | --bui-city-selector-container-with-title-height   |
-| --city-container-min-height     | Minimum height of urban container                 | 500px                          | --bui-city-selector-city-container-min-height     |
-| --select-city-buttons-padding   | Horizontal button container inner margin          | 7.5px 0 0 3px                  | --bui-city-selector-select-city-buttons-padding   |
-| --select-city-title-line-height | City index title bar row height                   | 15px                           | --bui-city-selector-select-city-title-line-height |
-| --list-item-height              | City item height                                  | 45px                           | --bui-city-selector-list-item-height              |
-| --city-index-has-title-top      | Distance from the top of the city index container | calc(50% + --title-height / 2) | --bui-city-selector-city-index-has-title-top      |
-| --index-item-height             | City index item height                            | 20px                           | --bui-city-selector-index-item-height             |
+| Property                        | Description                                | Default Value                  | Global Variable                                   |
+| ------------------------------- | ------------------------------------------ | ------------------------------ | ------------------------------------------------- |
+| --select-item-width             | Horizontal item width                      | 111px                          | --bui-city-selector-item-width                    |
+| --select-item-height            | Horizontal item height                     | 36px                           | --bui-city-selector-item-height                   |
+| --select-item-border-radius     | Horizontal item border radius              | 20px                           | --bui-city-selector-item-border-radius            |
+| --select-item-margin            | Horizontal item margin                     | 4.5px 0 4.5px 9px              | --bui-city-selector-item-margin                   |
+| --title-height                  | Title height                               | 45px                           | --bui-city-selector-title-height                  |
+| --title-line-height             | Title line height                          | 45px                           | --bui-city-selector-title-line-height             |
+| --btn-close-size                | Close button container size                | 45px                           | --bui-city-selector-btn-close-size                |
+| --btn-close-font-size           | Close button font size                     | 20px                           | --bui-city-selector-btn-close-font-size           |
+| --container-with-title-height   | Container height with title                | calc(100% - --title-height)    | --bui-city-selector-container-with-title-height   |
+| --city-container-min-height     | Minimum city container height              | 500px                          | --bui-city-selector-city-container-min-height     |
+| --select-city-buttons-padding   | Horizontal button padding                  | 7.5px 0 0 3px                  | --bui-city-selector-select-city-buttons-padding   |
+| --select-city-title-line-height | City index title line height               | 15px                           | --bui-city-selector-select-city-title-line-height |
+| --list-item-height              | City item height                           | 45px                           | --bui-city-selector-list-item-height              |
+| --city-index-has-title-top      | Distance from top for city index container | calc(50% + --title-height / 2) | --bui-city-selector-city-index-has-title-top      |
+| --index-item-height             | City index item height                     | 20px                           | --bui-city-selector-index-item-height             |

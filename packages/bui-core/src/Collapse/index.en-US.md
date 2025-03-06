@@ -1,21 +1,21 @@
 ---
-group: Dynamic effect
-name: Collapse dynamic effect
+group: Animation
+name: collapse Collapse Animation
 ---
 
-# Collapse dynamic effect
+# Collapse Collapse Animation
 
-Basic folding animation encapsulated with Transition, unfolded from the starting edge of the element
+Basic collapsible animation encapsulated using Transition, expanding from the starting edge of the element.
 
-## Code demonstration
+## Code Examples
 
-### Basic usage
+### Basic Usage
 
-The Collapse component supports two folding directions, which are passed in through the 'direction' parameter. If horizontal folding is required, the 'horizontal' value is used, and if vertical folding is required, the 'vertical' value is used. The default value is' vertical '
+The Collapse component supports two directions for collapsing, specified by the `direction` parameter. Use `horizontal` for horizontal collapsing and `vertical` for vertical collapsing. The default value is `vertical`.
 
-#### transverse
+#### Horizontal
 
-The folding direction starts from the transverse of the element and unfolds
+Collapsing direction starts from the left edge of the element.
 
 ```tsx
 import React, { useState } from 'react';
@@ -45,9 +45,9 @@ export default () => {
 };
 ```
 
-#### portrait
+#### Vertical
 
-The folding direction starts from the portrait of the element and unfolds
+Collapsing direction starts from the top edge of the element.
 
 ```tsx
 import React, { useState } from 'react';
@@ -77,9 +77,9 @@ export default () => {
 };
 ```
 
-## Folding size
+## Collapsed Size
 
-The collapsedSize property can be used to set the minimum width/height when not unfolded
+The `collapsedSize` property can be used to set the minimum width/height when not expanded.
 
 ```tsx
 import React, { useState } from 'react';
@@ -109,28 +109,28 @@ export default () => {
 };
 ```
 
-### Other events and attributes
+### Other Events and Properties
 
-Collapse inherits from Transition, other properties can be found in Transition (/ores/transition)
+`Collapse` inherits from `Transition`, see other properties at [Transition](/cores/transition)
 
 ## API
 
-| attribute     | explain                                    | type                           | Default value |
-| ------------- | ------------------------------------------ | ------------------------------ | ------------- |
-| in            | Do you want to enter                       | boolean                        | false         |
-| appear        | Whether to play animation during mounting  | boolean                        | false         |
-| timeout       | Animation time configuration               | number \|{appear, enter, exit} | -             |
-| delay         | Animation Delay Configuration              | number \|{appear, enter, exit} | -             |
-| enter         | Do you want to play the animation          | boolean                        | true          |
-| exit          | Do you want to play the exit animation     | boolean                        | true          |
-| mountOnEnter  | Mount children on first entry              | boolean                        | false         |
-| unmountOnExit | Uninstall children upon exit               | boolean                        | false         |
-| direction     | Folding direction                          | horizontal \|vertical          | -             |
-| collapsedSize | Folding size                               | string \|number                | -             |
-| onEnter       | The callback before entering the beginning | node=>void                     | -             |
-| onEntering    | The callback after entering the beginning  | node=>void                     | -             |
-| onEntered     | Enter the completed callback               | node=>void                     | -             |
-| onExit        | Callback before exit starts                | node=>void                     | -             |
-| onExiting     | Callback after exit starts                 | node=>void                     | -             |
-| onExited      | Exit completed callback                    | node=>void                     | -             |
-| easing        | Transition limiting function               | string \|{enter, exit}         | -             |
+| Property      | Description                                       | Type                            | Default |
+| ------------- | ------------------------------------------------- | ------------------------------- | ------- |
+| in            | Whether to enter                                  | boolean                         | false   |
+| appear        | Whether to play animation on mount                | boolean                         | false   |
+| timeout       | Animation duration configuration                  | number \| {appear, enter, exit} | -       |
+| delay         | Animation delay configuration                     | number \| {appear, enter, exit} | -       |
+| enter         | Whether to play enter animation                   | boolean                         | true    |
+| exit          | Whether to play exit animation                    | boolean                         | true    |
+| mountOnEnter  | Mount children only on first enter                | boolean                         | false   |
+| unmountOnExit | Unmount children on exit                          | boolean                         | false   |
+| direction     | Collapsing direction                              | horizontal \| vertical          | -       |
+| collapsedSize | Collapsed size                                    | string \| number                | -       |
+| onEnter       | Callback before entering starts                   | node=>void                      | -       |
+| onEntering    | Callback after entering starts                    | node=>void                      | -       |
+| onEntered     | Callback after entering completes                 | node=>void                      | -       |
+| onExit        | Callback before exiting starts                    | node=>void                      | -       |
+| onExiting     | Callback after exiting starts                     | node=>void                      | -       |
+| onExited      | Callback after exiting completes                  | node=>void                      | -       |
+| easing        | Easing function, i.e., transition-timing-function | string \| {enter, exit}         | -       |

@@ -558,6 +558,7 @@ export default () => {
 
 ## 样式变量
 
-| 属性                | 说明          | 默认值 | 全局变量                             |
-| ------------------- | ------------- | ------ | ------------------------------------ |
-| --container-padding | container边距 | 10px   | --bui-swipe-action-container-padding |
+| 属性                                 | 说明                | 默认值            |
+| ------------------------------------ | ------------------- | ----------------- |
+| --bui-swipe-action-container-padding | container边距       | 10px              |
+| --bui-swipe-action-container-color   | container中文本颜色 | --bui-color-black |

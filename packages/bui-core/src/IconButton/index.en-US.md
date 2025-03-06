@@ -1,17 +1,17 @@
 ---
-group: Basic input
-name: IconButton Icon button
+group: Basic Input
+name: IconButton Icon Button
 ---
 
-# IconButton Icon button
+# IconButton Icon Button
 
-Icon button is a button that displays only one icon without displaying a text label. Mainly used for control bars and toolbars, they are also very useful when a compact button is needed
+An icon button is a button that displays only an icon without a text label. It is mainly used in control bars and toolbars, and it is also very useful when a compact button is needed.
 
-## Code demonstration
+## Code Examples
 
-### Basic button
+### Basic Buttons
 
-The button supports three display forms: default button, stroke button, and fill button
+Buttons support three display styles: `default`, `outlined`, and `contained`.
 
 ```tsx
 import React from 'react';
@@ -35,9 +35,9 @@ export default () => {
 };
 ```
 
-### shape
+### Shapes
 
-The button supports three shapes: circular, rounded, and square
+Buttons come in three shapes: `circular`, `rounded`, and `square`.
 
 ```tsx
 import React from 'react';
@@ -61,11 +61,11 @@ export default () => {
 };
 ```
 
-### Button size
+### Button Sizes
 
-The buttons come in three sizes: large, medium, and small.
+Buttons are available in three sizes: large, medium, and small.
 
-Set the 'size' to 'large small' and set the buttons to 'large' and 'small' respectively. If 'size' is not set, the size will be medium.
+Set the `size` to `large` or `small` to make the button larger or smaller respectively. If `size` is not set, the button defaults to medium size.
 
 ```tsx
 import React from 'react';
@@ -89,9 +89,9 @@ export default () => {
 };
 ```
 
-### Button color
+### Button Colors
 
-The button supports defining themes such as' primary ',' success', 'info', 'warning', and 'danger'. If color is not set, it defaults to 'default'
+Buttons support themes defined by `primary`, `success`, `info`, `warning`, and `danger`. If no color is set, it defaults to `default`.
 
 ```tsx
 import React from 'react';
@@ -140,9 +140,9 @@ export default () => {
 };
 ```
 
-### Disabled status
+### Disabled State
 
-Disable the button through the disabled attribute, and the button cannot be clicked in the disabled state.
+Disable buttons using the `disabled` attribute, which prevents them from being clickable.
 
 ```tsx
 import React from 'react';
@@ -168,25 +168,25 @@ export default () => {
 
 ## API
 
-| attribute | explain                                     | type                                                              | Default value |
-| --------- | ------------------------------------------- | ----------------------------------------------------------------- | ------------- |
-| variant   | Button type                                 | `default` \|`text` \|`contained`                                  | `default`     |
-| color     | Button color                                | `primary` \|`info` \|`success` \|`warning` \|`danger` \|`default` | `default`     |
-| size      | Button size                                 | `small` \|`medium` \|`large`                                      | `medium`      |
-| disabled  | Do you want to disable it                   | boolean                                                           | false         |
-| startIcon | The content placed before the child element | React.ReactNode                                                   | -             |
-| openType  | WeChat Open Capability                      | string                                                            | -             |
-| onClick   | Callback when clicking a button             | (event: MouseEvent) => void                                       | -             |
+| Property  | Description             | Type                                                                   | Default Value |
+| --------- | ----------------------- | ---------------------------------------------------------------------- | ------------- |
+| variant   | Button type             | `default` \| `text` \| `contained`                                     | `default`     |
+| color     | Button color            | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` | `default`     |
+| size      | Button size             | `small` \| `medium` \| `large`                                         | `medium`      |
+| disabled  | Whether it's disabled   | boolean                                                                | false         |
+| startIcon | Content before children | React.ReactNode                                                        | -             |
+| openType  | WeChat open ability     | string                                                                 | -             |
+| onClick   | Click callback          | (event: MouseEvent) => void                                            | -             |
 
-[UNK][UNK]属[UNK]见 [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes)
+For other attributes, see [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes)
 
-## Style variables
+## Style Variables
 
-| attribute          | explain                                                  | Default value         | global variable                 |
-| ------------------ | -------------------------------------------------------- | --------------------- | ------------------------------- |
-| --bg-color         | Icon button background color                             | --bui-color-neutral-5 | --bui-icon-btn-bg-color         |
-| --color            | Icon color                                               | --bui-color-fg-muted  | --bui-icon-btn-color            |
-| --icon-size        | Icon size                                                | 17px                  | --bui-icon-btn-font-size        |
-| --user-area        | Click on the safe zone size button (default medium size) | 5px                   | --bui-icon-btn-padding          |
-| --large-font-size  | Large button font size                                   | 23px                  | --bui-icon-btn-large-font-size  |
-| --disabled-opacity | Disable transparency status                              | 0.5                   | --bui-icon-btn-disabled-opacity |
+| Property           | Description                                      | Default Value         | Global Variable                 |
+| ------------------ | ------------------------------------------------ | --------------------- | ------------------------------- |
+| --bg-color         | Background color of the icon button              | --bui-color-neutral-5 | --bui-icon-btn-bg-color         |
+| --color            | Icon color                                       | --bui-color-fg-muted  | --bui-icon-btn-color            |
+| --icon-size        | Icon size                                        | 17px                  | --bui-icon-btn-font-size        |
+| --user-area        | Click safety area size (for default medium size) | 5px                   | --bui-icon-btn-padding          |
+| --large-font-size  | Font size for large buttons                      | 23px                  | --bui-icon-btn-large-font-size  |
+| --disabled-opacity | Opacity for disabled state                       | 0.5                   | --bui-icon-btn-disabled-opacity |

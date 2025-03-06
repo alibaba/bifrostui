@@ -1,17 +1,17 @@
 ---
-group: Basic input
-name: Slider sliding input bar
+group: Basic Input
+name: Slider Slider Input Bar
 ---
 
-# Slider sliding input bar
+# Slider Slider Input Bar
 
-Slide the input bar to select a value within a given range.
+The slider input bar is used for selecting a value within a given range.
 
-## Code demonstration
+## Code Examples
 
-### Basic usage
+### Basic Usage
 
-Use 'value' and 'onChange' to control the sliding input bar.
+Control the slider using `value` and `onChange`.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
@@ -31,9 +31,9 @@ export default () => {
 };
 ```
 
-### Maximum and minimum values
+### Minimum and Maximum Values
 
-Use 'min' and 'max' to slide and limit the value range of the input bar.
+Use `min` and `max` to set the range of values for the slider.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
@@ -55,7 +55,7 @@ export default () => {
 
 ### Custom Step Size
 
-The step size can be customized through 'step', which should be an integer multiple of max min.
+Set a custom step size with `step`, which should be an integer multiple of `max-min`.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
@@ -75,9 +75,9 @@ export default () => {
 };
 ```
 
-### Always display prompt bubbles
+### Always Show Tooltip
 
-Enable 'tipVisible', the prompt bubble will always be displayed, otherwise it will only be displayed when sliding.
+Enable `tipVisible` to always show the tooltip; otherwise, it will only appear when sliding.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
@@ -97,9 +97,9 @@ export default () => {
 };
 ```
 
-### Double slider
+### Dual Sliders
 
-When the type of 'value' or 'defaultValue' is' [number, number] ', the double slider mode will be enabled.
+When `value` or `defaultValue` is of type `[number, number]`, dual sliders mode is enabled.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
@@ -119,9 +119,9 @@ export default () => {
 };
 ```
 
-### Prohibit interlocking of front and rear buttons
+### Prevent Overlapping Handles
 
-When using a double slider, you can use 'disableSwap' to disable the front and back buttons from interlocking.
+In dual slider mode, use `disableSwap` to prevent handles from overlapping.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
@@ -142,9 +142,9 @@ export default () => {
 };
 ```
 
-### Start/End icon
+### Start/End Icons
 
-The front button icon can be customized through 'startIcon', and the back button icon can be customized through 'endIcon'.
+Customize start and end icons using `startIcon` and `endIcon`.
 
 ```tsx
 import React from 'react';
@@ -165,9 +165,9 @@ export default () => {
 };
 ```
 
-### Disable
+### Disabled State
 
-Use 'disabled' to disable the component.
+Disable the component using `disabled`.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
@@ -182,9 +182,9 @@ export default () => {
 };
 ```
 
-### Bubble prompt formatting
+### Tooltip Formatting
 
-Use 'tooltipRender' to customize prompt bubbles.
+Customize the tooltip using `tooltipRender`.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
@@ -220,38 +220,38 @@ export default () => {
 
 ## API
 
-| attribute     | explain                                                                | type                                                                                 | Default value |
-| ------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------- |
-| defaultValue  | Set initial value, to be used when the component is uncontrolled       | number \|[number, number]                                                            | -             |
-| value         | Set the current value to be used when the component is controlled      | number \|[number, number]                                                            | -             |
-| min           | minimum value                                                          | number                                                                               | 0             |
-| max           | Maximum value                                                          | number                                                                               | 100           |
-| step          | Step size, the value must be greater than 0 and divisible by (max min) | number                                                                               | 1             |
-| tipVisible    | Prompt whether bubbles are always visible                              | boolean                                                                              | false         |
-| tooltipRender | Customize prompt bubbles                                               | (value: number) => React.ReactNode                                                   | -             |
-| disabled      | Do you want to disable it                                              | boolean                                                                              | false         |
-| startIcon     | Start icon                                                             | React.ReactNode                                                                      | -             |
-| endIcon       | End icon                                                               | React.ReactNode                                                                      | -             |
-| disableSwap   | Prohibit interleaving of start and end icons                           | boolean                                                                              | false         |
-| onChange      | Callback when changing                                                 | (event: React.SyntheticEvent,data: {value: SliderValue;buttonIndex: number}) => void | -             |
+| Property      | Description                                                    | Type                                                                                   | Default |
+| ------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------- |
+| defaultValue  | Sets the initial value when the component is uncontrolled      | number \| [number, number]                                                             | -       |
+| value         | Sets the current value when the component is controlled        | number \| [number, number]                                                             | -       |
+| min           | Minimum value                                                  | number                                                                                 | 0       |
+| max           | Maximum value                                                  | number                                                                                 | 100     |
+| step          | Step size, must be greater than 0 and divisible by (max - min) | number                                                                                 | 1       |
+| tipVisible    | Whether the tooltip is always visible                          | boolean                                                                                | false   |
+| tooltipRender | Customize the tooltip                                          | (value: number) => React.ReactNode                                                     | -       |
+| disabled      | Whether the component is disabled                              | boolean                                                                                | false   |
+| startIcon     | Start icon                                                     | React.ReactNode                                                                        | -       |
+| endIcon       | End icon                                                       | React.ReactNode                                                                        | -       |
+| disableSwap   | Prevent start and end icons from swapping                      | boolean                                                                                | false   |
+| onChange      | Callback function on change                                    | (event: React.SyntheticEvent, data: {value: SliderValue; buttonIndex: number}) => void | -       |
 
-## Style variables
+## Style Variables
 
-| attribute               | explain                                 | Default value              | global variable                    |
-| ----------------------- | --------------------------------------- | -------------------------- | ---------------------------------- |
-| --line-color            | Line foreground scenery                 | --bui-color-primary        | --bui-slider-line-color            |
-| --line-bg-color         | Line background color                   | --bui-color-border-default | --bui-slider-line-bg-color         |
-| --width                 | Sliding input bar width                 | 100%                       | --bui-slider-width                 |
-| --height                | Sliding input bar height                | 2px                        | --bui-slider-height                |
-| --padding               | Slide the inner margin of the input bar | 19px 0                     | --bui-slider-padding               |
-| --button-width          | Sliding button width                    | 100%                       | --bui-slider-button-width          |
-| --button-height         | Slide button height                     | 2px                        | --bui-slider-button-height         |
-| --button-font-size      | Font size of sliding button             | --bui-title-size-3         | --bui-slider-button-font-size      |
-| --button-border-radius  | Sliding button border rounded corner    | 50%                        | --bui-slider-button-border-radius  |
-| --tooltip-font-size     | Prompt for bubble font size             | --bui-text-size-3          | --bui-tooltip-font-size            |
-| --tooltip-color         | Prompt bubble font color                | --bui-color-white          | --bui-tooltip-color                |
-| --tooltip-bg-color      | Prompt bubble background color          | --line-color               | --bui-tooltip-bg-color             |
-| --tooltip-width         | Prompt bubble width                     | 46px                       | --bui-slider-tooltip-width         |
-| --tooltip-height        | Prompt bubble height                    | 24px                       | --bui-slider-tooltip-height        |
-| --tooltip-line-height   | Prompt bubble height                    | 24px                       | --bui-slider-tooltip-line-height   |
-| --tooltip-border-radius | Prompt bubble border rounded corners    | 24px                       | --bui-slider-tooltip-border-radius |
+| Property                | Description              | Default Value              | Global Variable                    |
+| ----------------------- | ------------------------ | -------------------------- | ---------------------------------- |
+| --line-color            | Line foreground color    | --bui-color-primary        | --bui-slider-line-color            |
+| --line-bg-color         | Line background color    | --bui-color-border-default | --bui-slider-line-bg-color         |
+| --width                 | Slider width             | 100%                       | --bui-slider-width                 |
+| --height                | Slider height            | 2px                        | --bui-slider-height                |
+| --padding               | Slider padding           | 19px 0                     | --bui-slider-padding               |
+| --button-width          | Button width             | 100%                       | --bui-slider-button-width          |
+| --button-height         | Button height            | 2px                        | --bui-slider-button-height         |
+| --button-font-size      | Button font size         | --bui-title-size-3         | --bui-slider-button-font-size      |
+| --button-border-radius  | Button border radius     | 50%                        | --bui-slider-button-border-radius  |
+| --tooltip-font-size     | Tooltip font size        | --bui-text-size-3          | --bui-tooltip-font-size            |
+| --tooltip-color         | Tooltip font color       | --bui-color-white          | --bui-tooltip-color                |
+| --tooltip-bg-color      | Tooltip background color | --line-color               | --bui-tooltip-bg-color             |
+| --tooltip-width         | Tooltip width            | 46px                       | --bui-slider-tooltip-width         |
+| --tooltip-height        | Tooltip height           | 24px                       | --bui-slider-tooltip-height        |
+| --tooltip-line-height   | Tooltip line height      | 24px                       | --bui-slider-tooltip-line-height   |
+| --tooltip-border-radius | Tooltip border radius    | 24px                       | --bui-slider-tooltip-border-radius |

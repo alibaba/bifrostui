@@ -1,17 +1,17 @@
 ---
 group: Navigation
-name: Breadcrumbs
+name: Breadcrumb
 ---
 
-# Breadcrumbs
+# Breadcrumb
 
-Display the position of the current page in the system hierarchy and be able to return upwards.
+Displays the current page's location within the system hierarchy and allows navigation back up.
 
-## Code demonstration
+## Code Demos
 
-### Basic usage
+### Basic Usage
 
-The simplest usage.
+The simplest way to use it.
 
 ```tsx
 import { Breadcrumb } from '@bifrostui/react';
@@ -22,19 +22,19 @@ export default () => {
     <Breadcrumb
       items={[
         {
-          title: '首页',
+          title: 'Home',
           onClick: () => {
             window.location.href = 'https://bui.taopiaopiao.com/';
           },
         },
         {
-          title: '组件',
+          title: 'Components',
           onClick: () => {
             window.location.href = 'https://bui.taopiaopiao.com/cores/button';
           },
         },
         {
-          title: '面包屑',
+          title: 'Breadcrumb',
         },
       ]}
     />
@@ -42,9 +42,9 @@ export default () => {
 };
 ```
 
-### Using BreadrumbItem
+### Using BreadcrumbItem
 
-Use BreadrumbItem instead of items for rendering
+Using BreadcrumbItem for rendering instead of items.
 
 ```tsx
 import { Breadcrumb, BreadcrumbItem } from '@bifrostui/react';
@@ -61,17 +61,17 @@ export default () => {
 
   return (
     <Breadcrumb>
-      <BreadcrumbItem onClick={handleHomeClick}>首页</BreadcrumbItem>
-      <BreadcrumbItem onClick={handleCompClick}>组件</BreadcrumbItem>
-      <BreadcrumbItem>面包屑</BreadcrumbItem>
+      <BreadcrumbItem onClick={handleHomeClick}>Home</BreadcrumbItem>
+      <BreadcrumbItem onClick={handleCompClick}>Components</BreadcrumbItem>
+      <BreadcrumbItem>Breadcrumb</BreadcrumbItem>
     </Breadcrumb>
   );
 };
 ```
 
-### With icons
+### With Icons
 
-Place the icon in front of the text.
+Icons are placed before the text.
 
 ```tsx
 import { Breadcrumb, BreadcrumbItem } from '@bifrostui/react';
@@ -100,18 +100,18 @@ export default () => {
       <BreadcrumbItem onClick={handleCompClick}>
         <span style={{ display: 'flex', alignItems: 'center' }}>
           <ListOutlinedIcon />
-          <span style={{ marginLeft: '4px' }}>组件</span>
+          <span style={{ marginLeft: '4px' }}>Components</span>
         </span>
       </BreadcrumbItem>
-      <BreadcrumbItem>面包屑</BreadcrumbItem>
+      <BreadcrumbItem>Breadcrumb</BreadcrumbItem>
     </Breadcrumb>
   );
 };
 ```
 
-### Delimiter
+### Custom Separator
 
-Use separator=">" to customize the delimiter.
+Use `separator=">"` to customize the separator.
 
 ```tsx
 import { Breadcrumb } from '@bifrostui/react';
@@ -123,19 +123,19 @@ export default () => {
       separator=">"
       items={[
         {
-          title: '首页',
+          title: 'Home',
           onClick: () => {
             window.location.href = 'https://bui.taopiaopiao.com/';
           },
         },
         {
-          title: '组件',
+          title: 'Components',
           onClick: () => {
             window.location.href = 'https://bui.taopiaopiao.com/cores/button';
           },
         },
         {
-          title: '面包屑',
+          title: 'Breadcrumb',
         },
       ]}
     />
@@ -143,9 +143,9 @@ export default () => {
 };
 ```
 
-### Independent delimiter
+### Individual Separator
 
-Customize a separate delimiter.
+Customize individual separators.
 
 ```tsx
 import { Breadcrumb } from '@bifrostui/react';
@@ -156,20 +156,20 @@ export default () => {
     <Breadcrumb
       items={[
         {
-          title: '首页',
+          title: 'Home',
           separator: ':',
           onClick: () => {
             window.location.href = 'https://bui.taopiaopiao.com/';
           },
         },
         {
-          title: '组件',
+          title: 'Components',
           onClick: () => {
             window.location.href = 'https://bui.taopiaopiao.com/cores/button';
           },
         },
         {
-          title: '面包屑',
+          title: 'Breadcrumb',
         },
       ]}
     />
@@ -181,26 +181,26 @@ export default () => {
 
 ##### BreadcrumbProps
 
-| attribute | explain                   | type                  | Default value |
-| --------- | ------------------------- | --------------------- | ------------- |
-| items     | Routing stack information | BreadcrumbItemProps[] | -             |
-| separator | Custom delimiter          | React.ReactNode       | /             |
+| Property  | Description      | Type                  | Default |
+| --------- | ---------------- | --------------------- | ------- |
+| items     | Route stack info | BreadcrumbItemProps[] | -       |
+| separator | Custom separator | React.ReactNode       | /       |
 
 ##### BreadcrumbItemProps
 
-| attribute | explain                                                   | type                              | Default value |
-| --------- | --------------------------------------------------------- | --------------------------------- | ------------- |
-| separator | The delimiter to be displayed                             | React.ReactNode                   | /             |
-| title     | name                                                      | React.ReactNode                   | -             |
-| children  | Replace title when rendering with BreadrumbItem component | React.ReactNode                   | -             |
-| onClick   | Click on the event                                        | (e: React.SyntheticEvent) => void | -             |
+| Property  | Description                                        | Type                              | Default |
+| --------- | -------------------------------------------------- | --------------------------------- | ------- |
+| separator | Separator to be displayed                          | React.ReactNode                   | /       |
+| title     | Name                                               | React.ReactNode                   | -       |
+| children  | Replaces title when using BreadcrumbItem component | React.ReactNode                   | -       |
+| onClick   | Click event handler                                | (e: React.SyntheticEvent) => void | -       |
 
-### Style variables
+### Style Variables
 
-| attribute               | explain                            | Default value       | global variable                        |
-| ----------------------- | ---------------------------------- | ------------------- | -------------------------------------- |
-| --margin                | Breadcrumb outer margin            | 0                   | --bui-breadcrumb-margin                |
-| --padding               | Breadcrumb inner margin            | 0                   | --bui-breadcrumb-padding               |
-| --color                 | Breadcrumb color                   | rgba(0, 0, 0, 0.45) | --bui-breadcrumb-color                 |
-| --item-separator-margin | Breadcrumb option delimiter margin | 0                   | --bui-breadcrumb-item-separator-margin |
-| --list-li-color         | Breadcrumb list sub item color     | rgba(0, 0, 0, 0.88) | --bui-breadcrumb-list-li-color         |
+| Property                | Description           | Default Value       | Global Variable                        |
+| ----------------------- | --------------------- | ------------------- | -------------------------------------- |
+| --margin                | Breadcrumb margin     | 0                   | --bui-breadcrumb-margin                |
+| --padding               | Breadcrumb padding    | 0                   | --bui-breadcrumb-padding               |
+| --color                 | Breadcrumb color      | rgba(0, 0, 0, 0.45) | --bui-breadcrumb-color                 |
+| --item-separator-margin | Item separator margin | 0                   | --bui-breadcrumb-item-separator-margin |
+| --list-li-color         | List item color       | rgba(0, 0, 0, 0.88) | --bui-breadcrumb-list-li-color         |

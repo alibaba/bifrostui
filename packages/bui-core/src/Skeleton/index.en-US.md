@@ -1,17 +1,17 @@
 ---
-group: feedback
-name: Skeleton Skeleton Screen
+group: Feedback
+name: Skeleton Placeholder
 ---
 
-# Skeleton Skeleton Screen
+# Skeleton Placeholder
 
-Provide a placeholder graphic combination at the location where content needs to be loaded.
+Provides a placeholder graphic combination where content needs to be loaded.
 
-## Code demonstration
+## Code Demos
 
-### Basic usage
+### Basic Usage
 
-Use 'width' and 'height' to set the width and height.
+Use `width` and `height` to set dimensions.
 
 ```tsx
 import React from 'react';
@@ -27,13 +27,12 @@ export default () => {
 };
 ```
 
-### variant
+### Variants
 
-The component supports four variants:
+The component supports 4 variants `variant`:
 
-Text '(default): It can automatically adjust the size based on' font size '.
-
-Circular, rectangular, rounded: can be resized based on width and height.
+- `text` (default): Automatically adjusts size based on `font-size`.
+- `circular`, `rectangular`, `rounded`: Adjust size based on `width` and `height`.
 
 ```tsx
 import React from 'react';
@@ -51,9 +50,9 @@ export default () => {
 };
 ```
 
-### animation
+### Animation
 
-The default is' wave '. You can set different animations based on 'animation' or completely disable it.
+Default is `wave`. You can set different animations using `animation` or disable it entirely.
 
 ```tsx
 import React from 'react';
@@ -70,9 +69,9 @@ export default () => {
 };
 ```
 
-### combination
+### Combinations
 
-Different combinations of graphics can be used.
+You can use different graphic combinations.
 
 ```tsx
 import React from 'react';
@@ -98,9 +97,9 @@ export default () => {
 };
 ```
 
-### Dimensional inference
+### Size Inference
 
-You can set the size based on the 'height' and 'width' properties of 'style'.
+Dimensions can be set using the `height` and `width` properties of `style`.
 
 ```tsx
 import React from 'react';
@@ -122,15 +121,15 @@ export default () => {
 
 ## API
 
-| attribute | explain             | type                                            | Default value |
-| --------- | ------------------- | ----------------------------------------------- | ------------- |
-| animation | Animation effects   | `wave` \|`pulse` \|`false`                      | `wave`        |
-| variant   | Presentation format | `text` \|`circular` \|`rectangular` \|`rounded` | `text`        |
-| width     | Occupation width    | `string` \|`number`                             | `100%`        |
-| height    | Occupation height   | `string` \|`number `                            | `16px`        |
+| Property  | Description        | Type                                               | Default |
+| --------- | ------------------ | -------------------------------------------------- | ------- |
+| animation | Animation effect   | `wave` \| `pulse` \| `false`                       | `wave`  |
+| variant   | Display form       | `text` \| `circular` \| `rectangular` \| `rounded` | `text`  |
+| width     | Placeholder width  | `string` \| `number`                               | `100%`  |
+| height    | Placeholder height | `string` \| `number `                              | `16px`  |
 
-## Style variables
+## Style Variables
 
-| attribute | explain                | Default value | global variable       |
-| --------- | ---------------------- | ------------- | --------------------- |
-| --height  | Skeleton screen height | 1.2em         | --bui-skeleton-height |
+| Property | Description        | Default | Global Variable       |
+| -------- | ------------------ | ------- | --------------------- |
+| --height | Placeholder height | 1.2em   | --bui-skeleton-height |
