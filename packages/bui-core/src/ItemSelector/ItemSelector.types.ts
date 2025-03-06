@@ -5,7 +5,7 @@ export type itemType = {
   name: string;
 };
 
-export type allItemType = {
+export type ItemGroup = {
   /** Item列表 */
   items: itemType[];
   /** 组名 */
@@ -25,7 +25,7 @@ export type ItemSelectorProps<
   {
     props: P & {
       /** Item列表 */
-      items: allItemType[];
+      items: ItemGroup[];
       /** 禁用展示索引 默认false 即展示索引 */
       disableIndex?: boolean;
       /** 头部标题 */
@@ -35,7 +35,7 @@ export type ItemSelectorProps<
         e: React.SyntheticEvent,
         data: {
           item: itemType;
-          group: allItemType;
+          group: ItemGroup;
         },
       ) => void;
       /** 和title配合使用，头部右侧的关闭回调 */
