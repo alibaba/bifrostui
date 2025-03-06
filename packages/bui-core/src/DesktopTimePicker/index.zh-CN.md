@@ -458,21 +458,33 @@ export default () => {
 | inputProps         | \<input/> 标签透传属性           | React.InputHTMLAttributes                                                                                                                   | -                                                                              |
 | DesktopPickerProps | 透传给 DesktopPicker 的属性      | DesktopPickerProps                                                                                                                          |
 
-### 组件样式变量
+## 样式变量
 
-| 属性                | 说明           | 默认值 | 全局变量               |
-| ------------------- | -------------- | ------ | ---------------------- |
-| --height            | 组件高度       | 32px   | --bui-input-height     |
-| --min-width         | 选择器最小宽度 | 100px  | --bui-select-min-width |
-| --icon-size         | 输入框icon大小 | 16px   | --bui-icon-size-3      |
-| --container-padding | 输入框左右边距 | 9px    | --bui-spacing-md       |
+| 全局变量                              | 说明           | 默认值                                    |
+| ------------------------------------- | -------------- | ----------------------------------------- |
+| --bui-d-time-picker-height            | 输入框高度     | --bui-input-height                        |
+| --bui-d-time-picker-min-width         | 最小宽度       | --bui-select-min-width                    |
+| --bui-d-time-picker-font-size         | 字体大小       | --bui-title-size-3                        |
+| --bui-d-time-picker-icon-size         | 图标大小       | --bui-title-size-3                        |
+| --bui-d-time-picker-container-padding | 输入框左右边距 | --bui-spacing-md                          |
+| --bui-d-time-picker-bg                | 背景颜色       | --bui-color-bg-view                       |
+| --bui-d-time-picker-font-family       | 字体           | --bui-font-family                         |
+| --bui-d-time-picker-border            | 边框           | 1px solid var(--bui-color-border-default) |
+| --bui-d-time-picker-border-invalid    | 校验错误边框   | 1px solid var(--bui-color-danger)         |
+| --bui-d-time-picker-shadow            | 阴影           | 0 0 0 2px var(--bui-color-bg-default)     |
+| --bui-d-time-picker-disabled-color    | 禁用文字颜色   | --bui-color-fg-subtle                     |
 
-### 浮层样式变量
+### 时间选择面板
 
-| 属性                       | 说明                   | 默认值 | 全局变量 |
-| -------------------------- | ---------------------- | ------ | -------- |
-| --container-main-radius    | 浮层容器圆角           | 3px    | -        |
-| --container-li-padding     | 浮层容器内元素左右边距 | 8px    | -        |
-| --container-li-height      | 浮层容器内元素高度     | 24px   | -        |
-| --container-li-line-height | 浮层容器内元素行高     | 24px   | -        |
-| --container-li-width       | 浮层容器内元素宽度     | 24px   | -        |
+| 全局变量                                      | 说明                 | 默认值                     |
+| --------------------------------------------- | -------------------- | -------------------------- |
+| --bui-d-time-picker-container-main-radius     | 浮层容器圆角         | 3px                        |
+| --bui-d-time-picker-container-li-padding      | 单元格左右内边距     | 8px                        |
+| --bui-d-time-picker-container-li-height       | 单元格高度           | 24px                       |
+| --bui-d-time-picker-container-li-line-height  | 单元格行高           | 24px                       |
+| --bui-d-time-picker-container-li-width        | 单元格宽度           | 24px                       |
+| --bui-d-time-picker-container-li-radius       | 单元格圆角           | --bui-shape-radius-default |
+| --bui-d-time-picker-container-li-font-size    | 单元格字体大小       | --bui-title-size-4         |
+| --bui-d-time-picker-container-li-color        | 单元格字体颜色       | --bui-color-fg-default     |
+| --bui-d-time-picker-container-li-color-active | 单元格选中态字体颜色 | --bui-color-primary        |
+| --bui-d-time-picker-container-li-bg-active    | 单元格选中态背景颜色 | #fff2f0                    |
