@@ -1,5 +1,11 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+@{root-selector} {
+  --bui-swipe-action-container-padding: 10px;
+  --bui-swipe-action-container-color: var(--bui-color-black);
+}
+
 .bui-swipe-action {
-  --container-padding: var(--bui-swipe-action-container-padding, 10px);
   background: var(--bui-color-bg-view);
   font-family: var(--bui-font-family);
   overflow: hidden;
@@ -60,8 +66,8 @@
     cursor: grab;
     // 禁止选中
     user-select: none;
-    padding: var(--container-padding);
-    color: #000;
+    padding: var(--bui-swipe-action-container-padding);
+    color: var(--bui-swipe-action-container-color);
 
     &:active {
       cursor: grabbing;
