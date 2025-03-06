@@ -1,5 +1,20 @@
 @import '@bifrostui/styles/mixins/index.less';
 
+@{root-selector} {
+  --bui-icon-btn-contained-bg-color: var(--bui-color-neutral-5);
+  --bui-icon-btn-color: var(--bui-color-fg-muted);
+  --bui-icon-btn-small-font-size: var(--bui-text-size-4);
+  --bui-icon-btn-font-size: 17px;
+  --bui-icon-btn-small-padding: var(--bui-spacing-xs);
+  --bui-icon-btn-padding: 5px;
+  --bui-icon-btn-large-padding: var(--bui-spacing-sm);
+  --bui-icon-btn-large-font-size: 23px;
+  --bui-icon-btn-disabled-opacity: 0.5;
+  --bui-icon-btn-outlined-border: 1px solid;
+  --bui-icon-btn-subtle-border: 1px solid transparent;
+  --bui-icon-btn-border: 1px solid transparent;
+}
+
 .btn-icon-default(@color) {
   color: var(~'--bui-color-@{color}');
 }
@@ -13,13 +28,12 @@
   .linear-gradient(var(~'--bui-color-@{color}-start'), var(~'--bui-color-@{color}-end'));
 }
 
+.btn-icon-subtle(@color) {
+  color: var(~'--bui-color-@{color}');
+  background: var(~'--bui-color-@{color}-light');
+}
+
 .bui-icon-btn {
-  --bg-color: var(--bui-icon-btn-bg-color, var(--bui-color-neutral-5));
-  --color: var(--bui-icon-btn-color, var(--bui-color-fg-muted));
-  --icon-size: var(--bui-icon-btn-font-size, 17px);
-  --user-area: var(--bui-icon-btn-padding, 5px);
-  --large-font-size: var(--bui-icon-btn-large-font-size, 23px);
-  --disabled-opacity: var(--bui-icon-btn-disabled-opacity, 0.5);
   position: relative;
   display: inline-flex;
   height: auto;
@@ -27,8 +41,8 @@
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  border: 1px solid transparent;
-  color: var(--color);
+  border: var(--bui-icon-btn-border);
+  color: var(--bui-icon-btn-color);
   cursor: pointer;
   font-family: var(--bui-font-family);
 
@@ -54,39 +68,22 @@
   &::after {
     border: 0;
   }
-  font-size: var(--icon-size);
-  padding: var(--user-area);
+  font-size: var(--bui-icon-btn-font-size);
+  padding: var(--bui-icon-btn-padding);
 
   &-small {
-    font-size: var(--bui-text-size-4);
-    padding: var(--bui-spacing-xs);
-
-    &.bui-icon-btn-outlined,
-    &.bui-icon-btn-contained {
-      padding: var(--bui-spacing-xs);
-    }
-  }
-
-  &-medium {
-    &.bui-icon-btn-outlined,
-    &.bui-icon-btn-contained {
-      padding: var(--user-area);
-    }
+    font-size: var(--bui-icon-btn-small-font-size);
+    padding: var(--bui-icon-btn-small-padding);
   }
 
   &-large {
-    font-size: var(--large-font-size);
-    padding: var(--bui-spacing-sm);
-
-    &.bui-icon-btn-outlined,
-    &.bui-icon-btn-contained {
-      padding: var(--bui-spacing-sm);
-    }
+    font-size: var(--bui-icon-btn-large-font-size);
+    padding: var(--bui-icon-btn-large-padding);
   }
 
   &-disabled {
     pointer-events: none;
-    opacity: var(--disabled-opacity);
+    opacity: var(--bui-icon-btn-disabled-opacity);
   }
 
   &-circular {
@@ -117,10 +114,18 @@
     &.bui-icon-btn-warning {
       .btn-icon-default(warning);
     }
+
+    &.bui-icon-btn-light {
+      color: var(--bui-color-bg-view);
+    }
+
+    &.bui-icon-btn-dark {
+      color: var(--bui-color-fg-default);
+    }
   }
 
   &-outlined {
-    border: solid 1px;
+    border: var(--bui-icon-btn-outlined-border);
 
     &.bui-icon-btn-primary {
       .btn-icon-outline(primary);
@@ -141,10 +146,20 @@
     &.bui-icon-btn-danger {
       .btn-icon-outline(danger);
     }
+
+    &.bui-icon-btn-light {
+      color: var(--bui-color-bg-view);
+      border-color: var(--bui-color-bg-view);
+    }
+
+    &.bui-icon-btn-dark {
+      color: var(--bui-color-fg-default);
+      border-color: var(--bui-color-fg-default);
+    }
   }
 
   &-contained {
-    background-color: var(--bg-color);
+    background-color: var(--bui-icon-btn-contained-bg-color);
 
     &.bui-icon-btn-primary {
       .btn-icon-contained(primary);
@@ -164,6 +179,49 @@
 
     &.bui-icon-btn-danger {
       .btn-icon-contained(danger);
+    }
+
+    &.bui-icon-btn-light {
+      color: var(--bui-color-fg-default);
+      background: var(--bui-color-bg-view);
+    }
+
+    &.bui-icon-btn-dark {
+      color: var(--bui-color-bg-view);
+      background: var(--bui-color-fg-default);
+    }
+  }
+
+  &-subtle {
+    background-color: var(--bui-color-gray-light);
+    border: var(--bui-icon-btn-subtle-border);
+
+    &.bui-icon-btn-warning {
+      .btn-icon-subtle(warning);
+    }
+
+    &.bui-icon-btn-primary {
+      .btn-icon-subtle(primary);
+    }
+
+    &.bui-icon-btn-info {
+      .btn-icon-subtle(info);
+    }
+
+    &.bui-icon-btn-success {
+      .btn-icon-subtle(success);
+    }
+
+    &.bui-icon-btn-danger {
+      .btn-icon-subtle(danger);
+    }
+
+    &.bui-icon-btn-light {
+      color: var(--bui-color-bg-view);
+    }
+
+    &.bui-icon-btn-dark {
+      color: var(--bui-color-fg-default);
     }
   }
 }

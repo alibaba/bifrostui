@@ -1,15 +1,19 @@
 @import '@bifrostui/styles/mixins/index.less';
 
+@{root-selector} {
+  --bui-picker-header-height: 50px;
+  --bui-picker-header-padding: 0 var(--bui-spacing-lg);
+  --bui-picker-cancel-height: 100%;
+  --bui-picker-cancel-line-height: 50px;
+  --bui-picker-confirm-height: 100%;
+  --bui-picker-confirm-line-height: 50px;
+  --bui-picker-panel-height: 260px;
+  --bui-picker-indicator-top: 108px;
+  --bui-picker-option-height: 36px;
+  --bui-picker-option-font-size: var(--bui-title-size-4);
+}
+
 .bui-picker {
-  --header-height: var(--bui-picker-header-height, 50px);
-  --header-padding: var(--bui-picker-header-padding, 0 var(--bui-spacing-lg));
-  --cancel-height: var(--bui-picker-cancel-height, 100%);
-  --cancel-line-height: var(--bui-picker-cancel-line-height, 50px);
-  --confirm-height: var(--bui-picker-confirm-height, 100%);
-  --confirm-line-height: var(--bui-picker-confirm-line-height, 50px);
-  --panel-container-height: var(--bui-picker-panel-height, 260px);
-  --indicator-top: var(--bui-picker-indicator-top, 108px);
-  --option-height: var(--bui-picker-option-height, 36px);
   font-family: var(--bui-font-family);
 
   .bui-drawer-content {
@@ -18,19 +22,19 @@
   }
 
   &-header {
-    height: var(--header-height);
+    height: var(--bui-picker-header-height);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--header-padding);
+    padding: var(--bui-picker-header-padding);
   }
 
   &-cancel {
     cursor: pointer;
-    height: var(--cancel-height);
+    height: var(--bui-picker-cancel-height);
     font-size: var(--bui-title-size-4);
     text-align: center;
-    line-height: var(--cancel-line-height);
+    line-height: var(--bui-picker-cancel-line-height);
     color: var(--bui-color-fg-default);
   }
 
@@ -42,16 +46,16 @@
 
   &-confirm {
     cursor: pointer;
-    height: var(--confirm-height);
+    height: var(--bui-picker-confirm-height);
     font-size: var(--bui-title-size-4);
     text-align: center;
-    line-height: var(--confirm-line-height);
+    line-height: var(--bui-picker-confirm-line-height);
     color: var(--bui-color-primary);
   }
 
   &-container {
     width: 100%;
-    height: var(--panel-container-height);
+    height: var(--bui-picker-panel-height);
     display: flex;
     overflow: hidden;
   }

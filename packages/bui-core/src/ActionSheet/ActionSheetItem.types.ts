@@ -14,9 +14,9 @@ export type ActionSheetItemProps<
       disabled?: boolean;
       /**
        * 颜色
-       * @default 'default'
+       * @default 'neutral'
        */
-      color?: ThemeColor | 'default';
+      color?: Exclude<ThemeColor, 'dark' | 'light'>;
       /**
        * 是否加粗
        * @default false

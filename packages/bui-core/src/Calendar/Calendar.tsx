@@ -25,15 +25,15 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       className,
       defaultValue,
       value,
-      minDate,
-      maxDate,
-      mode,
-      hideDaysOutsideCurrentMonth,
-      headerBarFormat,
+      minDate = dayjs(dayjs().format('YYYYMMDD')).add(0, 'month').toDate(),
+      maxDate = dayjs(dayjs().format('YYYYMMDD')).add(11, 'month').toDate(),
+      mode = 'single',
+      hideDaysOutsideCurrentMonth = false,
+      headerBarFormat = 'YYYY/MM',
       headerBarLeftIcon,
       headerBarRightIcon,
       disabledDate,
-      highlightDate,
+      highlightDate = 'today',
       dateRender,
       weekRender,
       onMonthChange,
@@ -97,7 +97,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       ) : (
         <CaretLeftIcon
           className={`${classes.handler}-btn-icon`}
-          htmlColor={isMinMonth && '#cccccc'}
+          htmlColor={isMinMonth && 'var(--bui-color-fg-disabled)'}
         />
       ),
       right: headerBarRightIcon ? (
@@ -105,7 +105,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       ) : (
         <CaretRightIcon
           className={`${classes.handler}-btn-icon`}
-          htmlColor={isMaxMonth && '#cccccc'}
+          htmlColor={isMaxMonth && 'var(--bui-color-fg-disabled)'}
         />
       ),
     };
@@ -362,13 +362,5 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
 );
 
 Calendar.displayName = 'BuiCalendar';
-Calendar.defaultProps = {
-  hideDaysOutsideCurrentMonth: false,
-  headerBarFormat: 'YYYY/MM',
-  mode: 'single',
-  minDate: dayjs(dayjs().format('YYYYMMDD')).add(0, 'month').toDate(),
-  maxDate: dayjs(dayjs().format('YYYYMMDD')).add(11, 'month').toDate(),
-  highlightDate: 'today',
-};
 
 export default Calendar;

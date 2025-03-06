@@ -32,10 +32,12 @@ const ToastComponent = React.forwardRef<ToastRef, ToastProps>((props, ref) => {
   }, []);
 
   const iconMap = {
-    fail: <ErrorCircleFilledBoldIcon htmlColor="#ffffff" />,
-    loading: <AccessTimeCircleFilledBoldIcon htmlColor="#ffffff" />,
-    warning: <AlertCircleFilledBoldIcon htmlColor="#ffffff" />,
-    success: <SuccessCircleFilledBoldIcon htmlColor="#ffffff" />,
+    fail: <ErrorCircleFilledBoldIcon htmlColor="var(--bui-color-white)" />,
+    loading: (
+      <AccessTimeCircleFilledBoldIcon htmlColor="var(--bui-color-white)" />
+    ),
+    warning: <AlertCircleFilledBoldIcon htmlColor="var(--bui-color-white)" />,
+    success: <SuccessCircleFilledBoldIcon htmlColor="var(--bui-color-white)" />,
   };
   const iconDom = iconMap[type] || icon;
 

@@ -11,19 +11,17 @@ name: Button 按钮
 
 按钮用于触发一个操作，做出选择，例如提交表单，打开对话框，取消操作或执行删除操作。
 
-## 代码演示
+## 按钮变体
 
-### 基础按钮
+按钮支持`文字按钮`、`线框按钮`、`填充按钮`、`浅亮按钮`四种变体，默认`线框按钮`。
 
-按钮支持 `文字按钮`、`描边按钮`、`填充按钮`、`浅亮按钮` 四种展示形态，默认是描边按钮。
+`文字按钮`: 低调、灵活性。适用內联操作、简洁界面、轻量级操作。
 
-`文字按钮`: 直接使用文字作为按钮。是视觉吸引力最弱的一个按钮，通常出现在表格操作栏、标题和字段旁等。
+`填充按钮`: 突出、重要性。适用强视觉焦点、高优先级操作、主要操作。
 
-`填充按钮`: 一般用于主按钮，是用户在整个页面需要关注优先级最高的操作，引导用户关注并操作。
+`线框按钮`: 中性、灵活性，适用透明背景、视觉平衡、中等优先级操作。
 
-`描边按钮`: 常见白底加文字的形式，在视觉强调程度上弱于填充按钮，通常与填充按钮搭配成组使用
-
-`浅亮按钮`: 浅亮状态的文字为按钮背景颜色，背景则为对应的浅色。
+`柔和按钮`: 低调、非焦点，适用柔和界面、低对比度设计、次要操作。
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
@@ -31,23 +29,23 @@ import React from 'react';
 
 export default () => {
   return (
-    <Stack direction="row" spacing="8px" flexWrap="wrap">
+    <Stack direction="row" spacing="9px" flexWrap="wrap">
       <Button color="primary" variant="text">
-        文字按钮
+        Text
       </Button>
-      <Button color="primary">描边按钮</Button>
+      <Button color="primary">Outlined</Button>
       <Button color="primary" variant="contained">
-        填充按钮
+        Contained
       </Button>
-      <Button color="primary" variant="light">
-        浅亮按钮
+      <Button color="primary" variant="subtle">
+        Subtle
       </Button>
     </Stack>
   );
 };
 ```
 
-### 按钮大小
+## 按钮大小
 
 按钮有大、中、小三种尺寸。
 
@@ -59,21 +57,49 @@ import React from 'react';
 
 export default () => {
   return (
-    <Stack spacing="8px">
-      <Stack direction="row" spacing="8px">
-        <Button size="small">小号按钮</Button>
-        <Button size="medium">中号按钮</Button>
-        <Button size="large">大号按钮</Button>
+    <Stack spacing="9px">
+      <Stack direction="row" spacing="9px" style={{ width: '350px' }}>
+        <Button size="small">Small</Button>
+        <Button size="medium">Medium</Button>
+        <Button size="large">Large</Button>
       </Stack>
-      <Button size="full">通栏按钮</Button>
+      <Button size="full" style={{ width: '350px' }}>
+        Full
+      </Button>
+      <Stack direction="row" spacing="9px" style={{ width: '350px' }}>
+        <Button size="small" variant="contained" color="primary">
+          Small
+        </Button>
+        <Button size="medium" variant="contained" color="primary">
+          Medium
+        </Button>
+        <Button size="large" variant="contained" color="primary">
+          Large
+        </Button>
+      </Stack>
+      <Button
+        size="full"
+        variant="contained"
+        color="primary"
+        style={{ width: '350px' }}
+      >
+        Full
+      </Button>
     </Stack>
   );
 };
 ```
 
-### 按钮色彩
+## 按钮色彩
 
-按钮支持 `primary`、`success`、`info`、`warning`、`danger`、 `vip` 主题定义。若不设置color，则默认为`default`
+按钮支持 `primary`、`success`、`info`、`warning`、`danger`、 `vip` 主题定义。若不设置color，则默认为`default`。
+
+- primary: 主按钮，传递品牌主题
+- info: 信息提示或中性操作
+- success: 成功或正向操作（如完成、通过）
+- waring: 警告或需要谨慎的操作（如提醒、修改）
+- danger: 危险、强调，关键、核心或破坏性操作（如删除、注销）
+- vip: 尊贵、尊享、专属或高级感
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
@@ -81,32 +107,191 @@ import React from 'react';
 
 export default () => {
   return (
-    <Stack direction="row" spacing="8px" flexWrap="wrap">
-      <Button variant="contained">取消</Button>
-      <Button color="primary" variant="contained">
-        购票
-      </Button>
-      <Button color="success" variant="contained">
-        影城
-      </Button>
-      <Button color="info" variant="contained">
-        电影
-      </Button>
-      <Button color="warning" variant="contained">
-        想看
-      </Button>
-      <Button color="danger" variant="contained">
-        特惠
-      </Button>
-      <Button color="vip" variant="contained">
-        会员
-      </Button>
-    </Stack>
+    <div
+      className="btn-colors"
+      style={{
+        borderRadius: 'var(--bui-shape-radius-card)',
+        background: 'var(--bui-color-bg-default)',
+        padding: '24px',
+      }}
+    >
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button variant="text">Button</Button>
+        <Button variant="outlined">Button</Button>
+        <Button variant="contained">Button</Button>
+        <Button variant="subtle">Button</Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button color="light" variant="text">
+          Button
+        </Button>
+        <Button color="light" variant="outlined">
+          Button
+        </Button>
+        <Button color="light" variant="contained">
+          Button
+        </Button>
+        <Button color="light" variant="subtle">
+          Button
+        </Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button color="dark" variant="text">
+          Button
+        </Button>
+        <Button color="dark" variant="outlined">
+          Button
+        </Button>
+        <Button color="dark" variant="contained">
+          Button
+        </Button>
+        <Button color="dark" variant="subtle">
+          Button
+        </Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button color="primary" variant="text">
+          Button
+        </Button>
+        <Button color="primary" variant="outlined">
+          Button
+        </Button>
+        <Button color="primary" variant="contained">
+          Button
+        </Button>
+        <Button color="primary" variant="subtle">
+          Button
+        </Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button color="success" variant="text">
+          Button
+        </Button>
+        <Button color="success" variant="outlined">
+          Button
+        </Button>
+        <Button color="success" variant="contained">
+          Button
+        </Button>
+        <Button color="success" variant="subtle">
+          Button
+        </Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button color="info" variant="text">
+          Button
+        </Button>
+        <Button color="info" variant="outlined">
+          Button
+        </Button>
+        <Button color="info" variant="contained">
+          Button
+        </Button>
+        <Button color="info" variant="subtle">
+          Button
+        </Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button color="warning" variant="text">
+          Button
+        </Button>
+        <Button color="warning" variant="outlined">
+          Button
+        </Button>
+        <Button color="warning" variant="contained">
+          Button
+        </Button>
+        <Button color="warning" variant="subtle">
+          Button
+        </Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button color="danger" variant="text">
+          Button
+        </Button>
+        <Button color="danger" variant="outlined">
+          Button
+        </Button>
+        <Button color="danger" variant="contained">
+          Button
+        </Button>
+        <Button color="danger" variant="subtle">
+          Button
+        </Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing="9px"
+        flexWrap="wrap"
+        style={{ marginBottom: '9px' }}
+      >
+        <Button color="vip" variant="text">
+          Button
+        </Button>
+        <Button color="vip" variant="outlined">
+          Button
+        </Button>
+        <Button color="vip" variant="contained">
+          Button
+        </Button>
+        <Button color="vip" variant="subtle">
+          Button
+        </Button>
+      </Stack>
+    </div>
   );
 };
 ```
 
-### 禁用状态
+## 禁用状态
 
 通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
 
@@ -116,7 +301,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <Stack direction="row" spacing="8px">
+    <Stack direction="row" spacing="9px">
       <Button variant="text" disabled>
         文字禁用
       </Button>
@@ -129,7 +314,7 @@ export default () => {
 };
 ```
 
-### 按钮带图标
+## 按钮带图标
 
 因为相比纯文本来说用户对图标更敏感，所以有些时候你可能希望为某些按钮设置图标，以增强应用程序的用户体验。 例如，如果您有日期按钮，则可以使用日期图标对其进行标记。`startIcon` 位于子元素的前面，`endIcon` 位于子元素的后面。
 
@@ -140,7 +325,7 @@ import { CalendarOutlinedIcon, HeartFilledIcon } from '@bifrostui/icons';
 
 export default () => {
   return (
-    <Stack direction="row" spacing="8px">
+    <Stack direction="row" spacing="9px">
       <Button
         startIcon={
           <HeartFilledIcon htmlColor="linear-gradient(150deg, #FFFDFC 0%, #D5B198 100%)" />
@@ -171,22 +356,26 @@ export default () => {
 
 ## 样式变量
 
-| 属性                      | 说明                                    | 默认值                          | 全局变量                             |
-| ------------------------- | --------------------------------------- | ------------------------------- | ------------------------------------ |
-| --border-radius           | 圆角大小                                | 100px                           | --bui-button-border-radius           |
-| --bg-color                | 背景颜色                                | --bui-color-neutral-5           | --bui-button-default-bg-color        |
-| --text-color              | 按钮默认字体颜色                        | --bui-color-fg-muted            | --bui-button-text-color              |
-| --default-border          | 默认边框，包含text和contained按钮的边框 | 1px solid transparent           | --bui-button-default-border          |
-| --light-border            | light按钮的边框                         | 1px solid transparent           | --bui-button-light-border            |
-| --outlined-default-border | outlined按钮的默认边框                  | 1px solid --bui-color-neutral-4 | --bui-button-outlined-default-border |
-| --height                  | 按钮默认高度                            | 27px                            | --bui-button-height                  |
-| --icon-start-margin-right | 前置标签右边距                          | --bui-spacing-xs                | --bui-button-icon-start-margin-right |
-| --icon-end-margin-left    | 前置标签左边距                          | --bui-spacing-xs                | --bui-button-icon-end-margin-left    |
-| --disabled-opacity        | 禁用状态透明度                          | 0.5                             | --bui-button-disabled-opacity        |
-| --small-padding           | 小按钮内边距                            | 0 11px                          | --bui-button-small-padding           |
-| --small-height            | 小按钮高度                              | 24px                            | --bui-button-small-height            |
-| --medium-padding          | 中按钮内边距                            | 0 14px                          | --bui-button-medium-padding          |
-| --large-padding           | 大按钮内边距                            | 0 14px                          | --bui-button-large-padding           |
-| --large-height            | 大按钮高度                              | 33px                            | --bui-button-large-height            |
-| --full-font-size          | 满屏按钮字号                            | --bui-title-size-4              | --bui-button-full-font-size          |
-| --full-height             | 满屏按钮高度                            | 42px                            | --bui-button-full-height             |
+| 全局变量                      | 说明               | 默认值                                 |
+| ----------------------------- | ------------------ | -------------------------------------- |
+| --bui-btn-font-size           | 字体大小           | `var(--bui-text-size-3)`               |
+| --bui-btn-font-weight         | 字体粗细           | `var(--bui-font-weight-medium)`        |
+| --bui-btn-border-radius       | 边框圆角           | `120px`                                |
+| --bui-btn-small-border-radius | 小尺寸按钮边框圆角 | `120px`                                |
+| --bui-btn-large-border-radius | 大尺寸按钮边框圆角 | `120px`                                |
+| --bui-btn-full-border-radius  | 全宽按钮边框圆角   | `120px`                                |
+| --bui-btn-color               | 文字颜色           | `var(--bui-color-fg-muted)`            |
+| --bui-btn-background          | 背景颜色           | `var(--bui-color-bg-view)`             |
+| --bui-btn-border              | 边框样式           | `0`                                    |
+| --bui-btn-height              | 按钮高度           | `27px`                                 |
+| --bui-btn-small-height        | 小尺寸按钮高度     | `24px`                                 |
+| --bui-btn-large-height        | 大尺寸按钮高度     | `33px`                                 |
+| --bui-btn-full-height         | 全宽按钮高度       | `42px`                                 |
+| --bui-btn-subtle-border       | 柔和按钮边框       | `0`                                    |
+| --bui-btn-outlined-border     | 线框按钮边框       | `1px solid var(--bui-color-neutral-4)` |
+| --bui-btn-disabled-opacity    | 禁用状态透明度     | `0.5`                                  |
+| --bui-btn-small-padding       | 小尺寸按钮内边距   | `0 11px`                               |
+| --bui-btn-padding             | 按钮内边距         | `0 14px`                               |
+| --bui-btn-large-padding       | 大尺寸按钮内边距   | `0 14px`                               |
+| --bui-btn-full-font-size      | 全宽按钮字体大小   | `var(--bui-title-size-4)`              |
+| --bui-btn-full-font-family    | 全宽按钮字体族     | `var(--bui-font-family)`               |

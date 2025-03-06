@@ -8,9 +8,7 @@ name: Backdrop 弹窗背景
 作为[Modal 弹窗](/cores/modal)的一部分存在，使用Fade实现的弹窗背景。
 通常来说，你应该直接使用Modal而不是这个组件。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 ```tsx
 import React, { useState } from 'react';
@@ -42,7 +40,7 @@ export default () => {
 };
 ```
 
-### 隐藏黑色遮罩
+## 隐藏黑色遮罩
 
 ```tsx
 import React, { useState } from 'react';
@@ -75,7 +73,7 @@ export default () => {
 };
 ```
 
-### 淡入淡出动效时长
+## 淡入淡出动效时长
 
 ```tsx
 import React, { useState } from 'react';
@@ -118,6 +116,6 @@ export default () => {
 
 ## 样式变量
 
-| 属性               | 说明   | 默认值              | 全局变量                        |
-| ------------------ | ------ | ------------------- | ------------------------------- |
-| --background-color | 背景色 | rgba(0, 0, 0, 0.68) | --bui-backdrop-background-color |
+| 全局变量                        | 说明       | 默认值                |
+| ------------------------------- | ---------- | --------------------- |
+| --bui-backdrop-background-color | 背景板颜色 | `rgba(0, 0, 0, 0.68)` |

@@ -25,8 +25,6 @@ $ pnpm add @bifrostui/icons
 import { SettingsOutlinedIcon } from '@bifrostui/icons';
 ```
 
-## 代码演示
-
 ### 大小
 
 通过`size`属性设置图标大小。

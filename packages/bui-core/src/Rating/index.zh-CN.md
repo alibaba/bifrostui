@@ -7,9 +7,7 @@ name: Rating 评分
 
 评分组件提供对评价进行展示。也允许用户快速的评分操作。
 
-## 代码演示
-
-### 基础使用
+## 基础使用
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
@@ -25,7 +23,7 @@ export default () => {
 };
 ```
 
-### 受控使用
+## 受控使用
 
 通过`value` 和 `onChange` 自定义评分选中值
 
@@ -47,7 +45,7 @@ export default () => {
 };
 ```
 
-### 半选
+## 半选
 
 通过 `allowHalf` 指定 `Rating` 支持半选状态。
 
@@ -58,13 +56,13 @@ export default () => {
   return (
     <Stack spacing="8px">
       <Rating allowHalf />
-      <Rating defaultValue={3} allowHalf />
+      <Rating defaultValue={3.5} allowHalf />
     </Stack>
   );
 };
 ```
 
-### 只读
+## 只读
 
 通过 `readOnly` 指定 `Rating` 为只读。
 
@@ -81,7 +79,7 @@ export default () => {
 };
 ```
 
-### 大小
+## 大小
 
 通过 `size` 指定 `Rating` 的大小
 
@@ -100,7 +98,7 @@ export default () => {
 };
 ```
 
-### 数量
+## 数量
 
 通过 `count` 指定 `Rating` 的展示图标个数
 
@@ -116,7 +114,7 @@ export default () => {
 };
 ```
 
-### 禁用
+## 禁用
 
 通过 `disabled` 指定 `Rating` 为禁用状态
 
@@ -132,7 +130,7 @@ export default () => {
 };
 ```
 
-### 自定义图标
+## 自定义图标
 
 通过`icon` 和 `emptyIcon` 可以将星星替换为其他字符，比如表情、字母，数字，字体图标甚至中文，`icon`为选中态图标，`emptyIcon`为未选中态图标
 
@@ -175,9 +173,13 @@ export default () => {
 
 ## 样式变量
 
-| 属性                  | 说明             | 默认值 | 全局变量                         |
-| --------------------- | ---------------- | ------ | -------------------------------- |
-| --small-margin-right  | 小号评分右外边距 | 0.5px  | --bui-rating-small-margin-right  |
-| --medium-margin-right | 中号评分右外边距 | 1px    | --bui-rating-medium-margin-right |
-| --large-margin-right  | 大号评分右外边距 | 2px    | --bui-rating-large-margin-right  |
-| --large-font-size     | 大号评分字体大小 | 22px   | --bui-rating-large-font-size     |
+| 属性                             | 说明             | 默认值                    | 全局变量                           |
+| -------------------------------- | ---------------- | ------------------------- | ---------------------------------- |
+| --bui-rating-xsmall-font-size    | 超小尺寸字体大小 | `var(--bui-text-size-5)`  | `--bui-rating-xsmall-font-size`    |
+| --bui-rating-xsmall-margin-right | 超小尺寸右边距   | `0`                       | `--bui-rating-xsmall-margin-right` |
+| --bui-rating-small-font-size     | 小尺寸字体大小   | `var(--bui-text-size-1)`  | `--bui-rating-small-font-size`     |
+| --bui-rating-small-margin-right  | 小尺寸右边距     | `0.5px`                   | `--bui-rating-small-margin-right`  |
+| --bui-rating-font-size           | 中尺寸字体大小   | `var(--bui-title-size-3)` | `--bui-rating-font-size`           |
+| --bui-rating-margin-right        | 中尺寸右边距     | `1px`                     | `--bui-rating-margin-right`        |
+| --bui-rating-large-font-size     | 大尺寸字体大小   | `22px`                    | `--bui-rating-large-font-size`     |
+| --bui-rating-large-margin-right  | 大尺寸右边距     | `2px`                     | `--bui-rating-large-margin-right`  |

@@ -8,13 +8,11 @@ name: Toast 轻提示
 在页面中弹出黑色半透明提示，用于操作结果提示等场景，支持`Toast`,`Toast.warning`,`Toast.loading`,`Toast.success`,`Toast.fail`。
 推荐使用Hooks调用方式，静态方法无法获取上下文，ThemeProvider数据不会生效，因此推荐`Toast.useToast`创建支持读取context的contextHolder, 通过顶层注册方式代替`Toast`静态方法。
 
-## 代码演示
-
-### 基础提示
+## 基础提示
 
 展示提示内容。
 
-#### 静态方法（不推荐）
+### 静态方法（不推荐）
 
 ```tsx
 import { Stack, Button, Toast } from '@bifrostui/react';
@@ -35,7 +33,7 @@ export default () => {
 };
 ```
 
-#### Hooks调用（推荐）
+### Hooks调用（推荐）
 
 ```tsx
 import {
@@ -68,7 +66,7 @@ export default () => {
 };
 ```
 
-### 常用模式
+## 常用模式
 
 Toast提供了 `warning`、`loading`、`success`、`fail`四种常用模式。
 
@@ -124,7 +122,7 @@ export default () => {
 };
 ```
 
-### 提示文案换行
+## 提示文案换行
 
 提示文案支持使用`\n`换行。
 
@@ -158,7 +156,7 @@ export default () => {
 };
 ```
 
-### 展示时长
+## 展示时长
 
 使用`duration`控制提示展示时长，默认展示2秒，当`duration`为0时，Toast不会自动关闭，当然你可以接收返回值，并使用其`close`函数，手动关闭当前Toast。
 
@@ -212,7 +210,7 @@ export default () => {
 };
 ```
 
-### 展示位置
+## 展示位置
 
 Toast提供了`top`、`center`、`bottom`三种展示位置，默认为`center`。
 
@@ -270,7 +268,7 @@ export default () => {
 };
 ```
 
-### 同时存在多个Toast
+## 同时存在多个Toast
 
 使用`allowMultiple`可允许页面中同时存在多个Toast提示，默认每次只展示一个Toast。
 
@@ -331,7 +329,7 @@ export default () => {
 };
 ```
 
-### 自定义图标
+## 自定义图标
 
 使用`icon`可定制图标。
 
@@ -370,7 +368,7 @@ export default () => {
 };
 ```
 
-### 禁止背景点击
+## 禁止背景点击
 
 使用`disableClick`可控制展示Toast提示时，页面其他内容是否可点击，默认可点击。
 
@@ -409,7 +407,7 @@ export default () => {
 };
 ```
 
-### 关闭回调
+## 关闭回调
 
 可通过`onClose`监听Toast关闭时的回调。
 
@@ -449,7 +447,7 @@ export default () => {
 };
 ```
 
-### 关闭所有Toast
+## 关闭所有Toast
 
 Toast提供了`clear`方法，用于关闭页面中所有存在的弹窗。
 
@@ -508,7 +506,7 @@ export default () => {
 };
 ```
 
-### 自定义提示样式
+## 自定义提示样式
 
 可以根据提供的css变量，以及className等属性自定义Toast样式。
 
@@ -538,9 +536,7 @@ export default () => {
               message: '提示内容',
               className: 'my-toast',
               style: {
-                '--color': 'red',
-                '--border-radius': '30px',
-                '--font-size': '16px',
+                '--bui-toast-border-radius': '30px',
               },
               onEntered: () => {
                 console.log('ref', ref);
@@ -556,9 +552,9 @@ export default () => {
 };
 ```
 
-### API
+## API
 
-##### ToastOptions
+### ToastOptions
 
 | 属性          | 说明                                    | 类型                          | 默认值   |
 | ------------- | --------------------------------------- | ----------------------------- | -------- |
@@ -570,7 +566,7 @@ export default () => {
 | disableClick  | 展示Toast时，页面内容是否可以点击       | boolean                       | false    |
 | onClose       | 关闭时的回调函数                        | () => void                    | -        |
 
-##### 方法
+### 方法
 
 | 方法名        | 说明     | 参数                   | 返回值          |
 | ------------- | -------- | ---------------------- | --------------- |
@@ -581,24 +577,24 @@ export default () => {
 | Toast.fail    | 失败提示 | ToastOptions \| string | ToastReturnType |
 | Toast.clear   | 清空提示 | -                      | -               |
 
-##### ToastReturnType
+### ToastReturnType
 
 | 属性名 | 说明         | 类型       | 返回值 |
 | ------ | ------------ | ---------- | ------ |
 | close  | 关闭当前提示 | () => void | -      |
 
-### 样式变量
+## 样式变量
 
-| 属性               | 说明                     | 默认值                     | 全局变量                    |
-| ------------------ | ------------------------ | -------------------------- | --------------------------- |
-| --min-width        | 最小宽度                 | 86px                       | --bui-toast-min-width       |
-| --max-width        | 最大宽度                 | 80%                        | --bui-toast-max-width       |
-| --text-align       | 文字排列方式             | center                     | --bui-toast-text-align      |
-| --flex-direction   | icon跟文案排列方向       | column                     | --bui-toast-flex-direction  |
-| --padding          | 内边距                   | --bui-spacing-xl           | --bui-toast-padding         |
-| --position-top     | 顶部展示时，距离顶部距离 | 15%                        | --bui-toast-position-top    |
-| --position-bottom  | 底部展示时，距离顶部距离 | 85%                        | --bui-toast-position-bottom |
-| --background-color | 背景颜色                 | rgba(0, 0, 0, 0.8)         | --bui-toast-bg-color        |
-| --border-radius    | 圆角                     | --bui-shape-radius-default | --bui-toast-border-radius   |
-| --icon-margin      | 图标边距                 | 0 0 8px                    | --bui-toast-icon-margin     |
-| --icon-font-size   | 图标字体大小             | 30px                       | --bui-toast-icon-font-size  |
+| 全局变量                    | 说明         | 默认值                            |
+| --------------------------- | ------------ | --------------------------------- |
+| --bui-toast-min-width       | 最小宽度     | `86px`                            |
+| --bui-toast-max-width       | 最大宽度     | `80%`                             |
+| --bui-toast-text-align      | 文字对齐方式 | `center`                          |
+| --bui-toast-flex-direction  | 弹层方向     | `column`                          |
+| --bui-toast-padding         | 内边距       | `var(--bui-spacing-xl)`           |
+| --bui-toast-position-top    | 顶部位置     | `15%`                             |
+| --bui-toast-position-bottom | 底部位置     | `85%`                             |
+| --bui-toast-bg-color        | 背景颜色     | `rgba(0, 0, 0, 0.8)`              |
+| --bui-toast-border-radius   | 圆角         | `var(--bui-shape-radius-default)` |
+| --bui-toast-icon-margin     | 图标外边距   | `0 0 8px`                         |
+| --bui-toast-icon-font-size  | 图标字体大小 | `30px`                            |
