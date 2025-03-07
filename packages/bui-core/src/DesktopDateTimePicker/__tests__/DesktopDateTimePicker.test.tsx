@@ -148,7 +148,7 @@ describe('DesktopDateTimePicker', () => {
     });
     // 切换到年份选择面板
     const yearText = document.getElementsByClassName(
-      'bui-d-date-picker-lay-handler-box-text',
+      'bui-d-date-picker-lay-title-text',
     )[0];
     await act(async () => {
       fireEvent.click(yearText);
