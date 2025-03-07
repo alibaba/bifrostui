@@ -11,17 +11,25 @@ Portal组件提供了将其子节点渲染到当前 DOM 结构之外的DOM节点
 
 ### 基础使用
 
-默认情况Portal组件会将子组件挂载到页面的根节点上，H5是`document.body`, 小程序是`page节点`
+默认情况Portal组件会将子组件挂载到页面的根节点上，H5是`document.body`，小程序是`page节点`，小程序中，进入页面直接渲染Portal组件并不会将其子节点挂载到根节点上，需要用户主动触发才可正确挂载，如：通过点击按钮更改状态控制Portal组件的渲染。
 
-```tsx | pure
-import React from 'react';
-import { Portal } from '@bifrostui/react';
+```tsx
+import React, { useState } from 'react';
+import { Portal, Button } from '@bifrostui/react';
 
 export default () => {
+  const [rederPortal, setRederPortal] = useState(false);
   return (
-    <Portal>
-      <div>挂载在页面根节点上</div>
-    </Portal>
+    <>
+      <Button onClick={() => setRederPortal(!rederPortal)}>
+        {rederPortal ? '卸载' : '挂载'}Portal子节点
+      </Button>
+      {rederPortal && (
+        <Portal>
+          <div>挂载在页面根节点上</div>
+        </Portal>
+      )}
+    </>
   );
 };
 ```

@@ -10,6 +10,7 @@
   --panel-container-height: var(--bui-picker-panel-height, 260px);
   --indicator-top: var(--bui-picker-indicator-top, 108px);
   --option-height: var(--bui-picker-option-height, 36px);
+  --bui-picker-confirm-disabled-opacity: 0.38;
   font-family: var(--bui-font-family);
 
   .bui-drawer-content {
@@ -47,6 +48,11 @@
     text-align: center;
     line-height: var(--confirm-line-height);
     color: var(--bui-color-primary);
+
+    &-disabled {
+      color: var(--bui-color-fg-default);
+      opacity: var(--bui-picker-confirm-disabled-opacity);
+    }
   }
 
   &-container {

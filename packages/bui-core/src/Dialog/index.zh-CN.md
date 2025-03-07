@@ -289,7 +289,7 @@ export default () => {
 
 `ConfirmOptions`的取值同`DialogOptions`
 
-`DialogOptions` 继承自 `ModalProps`, 其他属性见 [Modal API](/cores/modal?#API)
+`DialogOptions` 继承自 `ModalProps`, 其他属性见 [Modal API](/cores/modal?#api)
 
 #### PromptOptions
 
