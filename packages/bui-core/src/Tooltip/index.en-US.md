@@ -1,17 +1,17 @@
 ---
 group: Data Display
-name: Tooltip text prompt
+name: Tooltip Text Hint
 ---
 
-# Tooltip text prompt
+# Tooltip Text Hint
 
-Simple text prompts for bubble boxes.
+A simple text hint bubble.
 
-## Code demonstration
+## Code Demos
 
-### Basic usage
+### Basic Usage
 
-Clicking with the mouse will display a prompt, and clicking again will disappear. The bubble floating layer does not support complex text and operations.
+Clicking the mouse shows the tooltip, clicking again hides it. The bubble overlay does not carry complex text or operations.
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
@@ -20,15 +20,15 @@ import React from 'react';
 export default () => {
   return (
     <Tooltip title="This is a tooltip">
-      <span>click显示</span>
+      <span>click to show</span>
     </Tooltip>
   );
 };
 ```
 
-### Open external control
+### External Control with `open`
 
-External setting of bubble floating layer visibility through open
+Control the visibility of the bubble overlay externally using `open`.
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
@@ -38,15 +38,15 @@ export default () => {
   const [open, setOpen] = useState(true);
   return (
     <Tooltip title="This is a tooltip" open={open}>
-      <span onClick={() => setOpen(!open)}>open控制显隐</span>
+      <span onClick={() => setOpen(!open)}>Control visibility with open</span>
     </Tooltip>
   );
 };
 ```
 
-### DefaultOpen default display
+### Default Visibility with `defaultOpen`
 
-You can set defaultOpen to true to display bubble floating layers by default
+Set `defaultOpen` to `true` to display the bubble overlay by default.
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
@@ -55,15 +55,15 @@ import React from 'react';
 export default () => {
   return (
     <Tooltip title="This is a tooltip" defaultOpen>
-      <span>defaultOpen默认显示</span>
+      <span>Default visibility with defaultOpen</span>
     </Tooltip>
   );
 };
 ```
 
-### OffsetSpacing is the interval between the floating layer and the target element
+### Adjusting Distance with `offsetSpacing`
 
-OffsetSpacing can be set to control the distance from the target element
+Use `offsetSpacing` to control the distance between the target element and the bubble overlay.
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
@@ -72,15 +72,17 @@ import React from 'react';
 export default () => {
   return (
     <Tooltip title="This is a tooltip" offsetSpacing={20} defaultOpen>
-      <span>offsetSpacing控制目标间隔（设置20 以便观察）</span>
+      <span>
+        Adjust distance with offsetSpacing (set to 20 for observation)
+      </span>
     </Tooltip>
   );
 };
 ```
 
-### Placement Bubble Box Position
+### Setting Placement with `placement`
 
-placement设置气泡浮层的位置，可选 top left right bottom topLeft topRight bottomLeft bottomRight leftTop leftBottom rightTop rightBottom
+Use `placement` to set the position of the bubble overlay. Options include `top`, `left`, `right`, `bottom`, `topLeft`, `topRight`, `bottomLeft`, `bottomRight`, `leftTop`, `leftBottom`, `rightTop`, `rightBottom`.
 
 ```tsx
 import { Tooltip, Button } from '@bifrostui/react';
@@ -191,9 +193,9 @@ export default () => {
 };
 ```
 
-### Trigger triggering method
+### Trigger Behavior with `trigger`
 
-The triggering method for displaying bubbles is "click" or "hover", with the default being "click"
+Set the trigger behavior for displaying the bubble overlay to either "click" or "hover". Default is "click".
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
@@ -202,13 +204,13 @@ import React from 'react';
 export default () => {
   return (
     <Tooltip title="This is a tooltip" trigger={['hover']}>
-      <span>hover触发方式</span>
+      <span>Hover trigger</span>
     </Tooltip>
   );
 };
 ```
 
-### Callback method for bubble floating layer in onOpenChange
+### Callback Method for Visibility Changes with `onOpenChange`
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
@@ -224,7 +226,7 @@ export default () => {
       trigger="click"
       onOpenChange={onOpenChange}
     >
-      <span>onOpenChange 回调方法</span>
+      <span>Callback method for visibility changes</span>
     </Tooltip>
   );
 };
@@ -232,23 +234,23 @@ export default () => {
 
 ### API
 
-| attribute     | explain                                                                                | type                                                                                                                                                                              | Default value |
-| ------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| title         | Bubble floating layer content                                                          | string                                                                                                                                                                            | -             |
-| defaultOpen   | Whether to hide by default                                                             | boolean                                                                                                                                                                           | false         |
-| open          | Used for manually controlling the appearance and concealment of bubble floating layers | boolean                                                                                                                                                                           | -             |
-| offsetSpacing | The offset between the floating layer and the target element                           | number                                                                                                                                                                            | 0             |
-| placement     | Bubble box position                                                                    | string， The enumeration value is `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` `bottom` | 'top'         |
-| trigger       | Trigger behavior                                                                       | string \|string[]， The enumeration value is' click '\|'hover'                                                                                                                    | 'click'       |
-| onOpenChange  | The callback method for bubble floating layer manifestation and concealment            | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                                              | -             |
+| Property      | Description                  | Type                                                                                                                                                           | Default |
+| ------------- | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| title         | Bubble overlay content       | string                                                                                                                                                         | -       |
+| defaultOpen   | Default visibility           | boolean                                                                                                                                                        | false   |
+| open          | Manual control of visibility | boolean                                                                                                                                                        | -       |
+| offsetSpacing | Offset from target element   | number                                                                                                                                                         | 0       |
+| placement     | Position of the bubble       | string, enum values are `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` | 'top'   |
+| trigger       | Trigger behavior             | string \| string[], enum values are 'click' \| 'hover'                                                                                                         | 'click' |
+| onOpenChange  | Callback for visibility      | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                           | -       |
 
-### Style variables
+### Style Variables
 
-| attribute            | explain                        | Default value | global variable                  |
-| -------------------- | ------------------------------ | ------------- | -------------------------------- |
-| --arrow-size         | ARROW size                     | 8PX           | --bui-tooltip-arrow-size         |
-| --localtion-position | Arrow Position                 | 8PX           | --bui-tooltip-localtion-position |
-| --max-width          | Maximum width                  | 350px         | --bui-tooltip-max-width          |
-| --content-min-width  | Minimum width of content area  | 30px          | --bui-tooltip-content-min-width  |
-| --content-min-height | Minimum height of content area | 32px          | --bui-tooltip-content-min-height |
-| --content-padding    | Inner margin of content area   | 6px 8px       | --bui-tooltip-content-padding    |
+| Property             | Description            | Default Value | Global Variable                  |
+| -------------------- | ---------------------- | ------------- | -------------------------------- |
+| --arrow-size         | Arrow size             | 8PX           | --bui-tooltip-arrow-size         |
+| --localtion-position | Arrow position         | 8PX           | --bui-tooltip-localtion-position |
+| --max-width          | Maximum width          | 350px         | --bui-tooltip-max-width          |
+| --content-min-width  | Minimum content width  | 30px          | --bui-tooltip-content-min-width  |
+| --content-min-height | Minimum content height | 32px          | --bui-tooltip-content-min-height |
+| --content-padding    | Content padding        | 6px 8px       | --bui-tooltip-content-padding    |
