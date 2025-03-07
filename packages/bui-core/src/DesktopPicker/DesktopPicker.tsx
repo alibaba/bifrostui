@@ -26,7 +26,6 @@ const directionMap = {
   top: 'bottom',
 };
 
-// TODO 生成英文md
 const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
   (props, ref) => {
     const {

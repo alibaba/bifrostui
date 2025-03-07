@@ -105,7 +105,6 @@ describe('ListItem', () => {
       userEvent.click(screen.getByText(/list-item/));
       expect(onClick).toHaveBeenCalled();
     });
-    // TODO disaled 测试不通过
     it('could not click when it is disabled', () => {
       const onClick = jest.fn(() => {
         console.log('成功点击List');

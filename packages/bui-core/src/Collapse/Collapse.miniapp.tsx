@@ -23,7 +23,6 @@ const defaultTimeout = {
 
 const FIT_CONTENT = 'fit-content';
 
-// TODO 动画慢看下有没有优化空间
 const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
   const {
     appear = false,
@@ -72,12 +71,7 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
 
   useEffect(() => {
     // 修复未挂载时获取不到children元素宽高，动画异常
-    if (
-      // TODO 判断
-      appear === false &&
-      inProp === true &&
-      wrapperSize === FIT_CONTENT
-    ) {
+    if (appear === false && inProp === true && wrapperSize === FIT_CONTENT) {
       getCollapseWrapperSize(wrapperRef.current).then((res) => {
         setWrapperSize(res as string);
       });
