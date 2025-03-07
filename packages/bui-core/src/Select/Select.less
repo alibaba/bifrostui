@@ -1,5 +1,4 @@
 @class-prefix-select: ~'bui-select';
-@transition-duration: 0.3s;
 
 .@{class-prefix-select} {
   --height: var(--bui-select-height, 27px);
@@ -58,13 +57,9 @@
   &-option-container {
     position: absolute;
     box-sizing: border-box;
-    top: 100%;
-    left: 0;
-    width: 100%;
     font-size: var(--bui-select-font-size, var(--bui-title-size-3));
     z-index: var(--bui-z-index-tooltip);
     border-radius: 3px;
-    background-color: var(--bui-color-bg-view);
     padding: 2px;
     overflow: hidden;
 
@@ -85,6 +80,7 @@
     border-radius: 3px;
     padding: var(--bui-select-option-container-padding, 3px 0);
     box-shadow: 0 0 0 2px var(--bui-color-bg-default);
+    background-color: var(--bui-color-bg-view);
     overflow: hidden;
   }
 

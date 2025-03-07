@@ -2,7 +2,9 @@ import { GripperBarVerticalIcon } from '@bifrostui/icons';
 import {
   isMini,
   useForkRef,
-  useTouchEmulator,
+  emulateTouchStart,
+  emulateTouchMove,
+  emulateTouchEnd,
   useValue,
   getBoundingClientRect,
 } from '@bifrostui/utils';
@@ -57,7 +59,6 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
 
   const [rootRef, setRootRef] = useState(null);
   const handleRef = useForkRef(ref, setRootRef);
-  useTouchEmulator(rootRef);
 
   // Slider BoundingClientRect
   const sliderRect = useRef<Record<string, any>>();
@@ -178,9 +179,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     beforeMoveValue.current = internalValue;
     tooltipRef.current = internalValue;
     // 补偿获取宽度，隐藏元素getBoundingClientRect获取不到dom信息
-    if (!sliderRect.current.width) {
-      getLineWidth();
-    }
+    getLineWidth();
     // currentTarget只存在于事件触发到事件处理结束之间，须在异步操作之前保存下来
     const currentTarget = isMini ? e.mpEvent.currentTarget : e.currentTarget;
     touchStartPageX.current = e.touches[0].pageX;
@@ -268,6 +267,18 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     setEndTooltipVisible(false);
   };
 
+  const onMouseUp = (e) => {
+    emulateTouchEnd(e);
+    document.removeEventListener('mousemove', emulateTouchMove);
+    document.removeEventListener('mouseup', onMouseUp);
+  };
+
+  const onMouseDown = (e) => {
+    emulateTouchStart(e);
+    document.addEventListener('mousemove', emulateTouchMove);
+    document.addEventListener('mouseup', onMouseUp);
+  };
+
   const renderButton = (index: number) => {
     const valuenow = internalValue[index];
 
@@ -291,6 +302,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
         onTouchCancel={onTouchEnd}
+        onMouseDown={onMouseDown}
       >
         {index === SLIDER_BUTTON.FRONT
           ? startIcon || defaultIcon

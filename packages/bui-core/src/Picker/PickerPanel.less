@@ -1,6 +1,7 @@
 @import '@bifrostui/styles/mixins/index.less';
 
 .bui-picker-panel {
+  --bui-picker-option-disabled-opacity: 0.38;
   flex: 1;
   flex-shrink: 0;
   position: relative;
@@ -58,6 +59,10 @@
     backface-visibility: hidden;
     .ellipsis();
     width: 100%;
+  }
+
+  &-option-disabled {
+    opacity: var(--bui-picker-option-disabled-opacity);
   }
 
   &-option-hidden {

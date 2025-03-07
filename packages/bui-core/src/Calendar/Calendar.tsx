@@ -3,6 +3,7 @@ import { useDidMountEffect, useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import React, { SyntheticEvent, useMemo, useState } from 'react';
 import { CalendarProps, ICalendarInstance } from './Calendar.types';
 import { formatDate, isRange, isSame } from './utils';
@@ -10,6 +11,7 @@ import { useLocaleText } from '../locales';
 import './Calendar.less';
 
 dayjs.extend(isoWeek);
+dayjs.extend(customParseFormat);
 
 const classes = {
   root: 'bui-calendar',
@@ -34,6 +36,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       headerBarRightIcon,
       disabledDate,
       highlightDate,
+      headerVisible = false,
       dateRender,
       weekRender,
       onMonthChange,
@@ -330,17 +333,19 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         {...data}
       >
         {/* 顶部操作栏 */}
-        <div className={classes.handler}>
-          <div onClick={onClickPrev} className={`${classes.handler}-btn`}>
-            {headerBarIcon.left}
+        {!headerVisible && (
+          <div className={classes.handler}>
+            <div onClick={onClickPrev} className={`${classes.handler}-btn`}>
+              {headerBarIcon.left}
+            </div>
+            <div className={`${classes.handler}-text`}>
+              {dayjs(renderMonth).format(headerBarFormat)}
+            </div>
+            <div onClick={onClickNext} className={`${classes.handler}-btn`}>
+              {headerBarIcon.right}
+            </div>
           </div>
-          <div className={`${classes.handler}-text`}>
-            {dayjs(renderMonth).format(headerBarFormat)}
-          </div>
-          <div onClick={onClickNext} className={`${classes.handler}-btn`}>
-            {headerBarIcon.right}
-          </div>
-        </div>
+        )}
 
         {/* 周横条 */}
         <div className={classes.week}>
