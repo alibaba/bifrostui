@@ -139,7 +139,7 @@ describe('Select', () => {
       });
       expect(onClick).not.toHaveBeenCalled();
     });
-    it('should pass value as part of the event.target of select', () => {
+    it('should pass value as part of the event.target of select', async () => {
       const onSelect = jest.fn((e, value) => value);
       render(
         <Select onChange={onSelect}>
@@ -149,8 +149,9 @@ describe('Select', () => {
           </SelectOption>
         </Select>,
       );
-      userEvent.click(screen.getByText(/option2/));
-
+      await act(async () => {
+        userEvent.click(screen.getByText(/option2/));
+      });
       expect(onSelect).toReturnWith({ value: 'option2' });
     });
   });
