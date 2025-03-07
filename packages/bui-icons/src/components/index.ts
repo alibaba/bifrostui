@@ -101,6 +101,7 @@ export { default as FullScreenOutlinedIcon } from './FullScreenOutlined';
 export { default as GetTicketsFilledIcon } from './GetTicketsFilled';
 export { default as GetTicketsOutlinedIcon } from './GetTicketsOutlined';
 export { default as GiftCardOutlinedIcon } from './GiftCardOutlined';
+export { default as GiftFilledIcon } from './GiftFilled';
 export { default as GiftOutlinedIcon } from './GiftOutlined';
 export { default as GlassesOutlinedIcon } from './GlassesOutlined';
 export { default as GppGoodFilledIcon } from './GppGoodFilled';
