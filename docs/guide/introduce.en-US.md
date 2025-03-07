@@ -15,7 +15,7 @@ _Bifrost UI_, originally referred to the rainbow bridge in Norse mythology that 
 - 💪 Complete documentation and component examples for developers to quickly get started
 - 🎯 Support on-demand referencing
 - 💡 Unit testing coverage exceeds 90%, with guaranteed stability
-- ✨ 30+high-quality components, mobile first component scenarios
+- ✨ 40+high-quality components, mobile first component scenarios
 - 👋 Component packaging is more flexible, allowing for free combination and use
 
 ## Get started quickly
