@@ -1,0 +1,68 @@
+@import (reference) '../../styles/variables.less';
+
+.version-select {
+  padding: 10px;
+  position: relative;
+  display: flex;
+  cursor: pointer;
+
+  &:hover {
+    .versions-container {
+      visibility: visible;
+    }
+  }
+
+  &-arrow {
+    margin-left: 4px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-top-color: @c-text-grey;
+    transform: translateY(10px);
+  }
+
+  .versions-container {
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 140px;
+    padding: 10px 6px;
+    border-radius: 6px;
+    background-color: @c-site-bg;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    z-index: 1200;
+    @{dark-selector} & {
+      background-color: @c-site-bg-dark;
+    }
+
+    .version-item {
+      color: @c-text;
+      padding: 6px;
+      border-radius: 4px;
+      margin-bottom: 2px;
+      text-decoration: none;
+      @{dark-selector} & {
+        color: @c-text-dark;
+      }
+
+      &:hover {
+        background-color: @c-bg-grey;
+        @{dark-selector} & {
+          background-color: @c-light-bg-dark;
+        }
+      }
+
+      &-active {
+        color: @c-error;
+        background-color: @c-bg-grey;
+        @{dark-selector} & {
+          color: @c-error;
+          background-color: @c-light-bg-dark;
+        }
+      }
+    }
+  }
+}

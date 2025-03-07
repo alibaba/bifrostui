@@ -1,17 +1,17 @@
 ---
 group: Data Display
-name: Countdown countdown
+name: Countdown Timer
 ---
 
-# Countdown countdown
+# Countdown Timer
 
-Used for real-time display of countdown values.
+Used to display countdown values in real time.
 
-## Code demonstration
+## Code Demos
 
 ### Basic Usage
 
-Control the remaining duration of the countdown through 'remaningTime' and choose one from the 'endTimestamp' field.
+Control the remaining countdown duration using `remainingTime`, which is mutually exclusive with the `endTimestamp` field.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -26,9 +26,9 @@ export default () => {
 };
 ```
 
-### End timestamp
+### End Timestamp
 
-Specify the countdown end time point through 'endTimestamp', choose one from the 'remaningTime' field, and prioritize it over the 'remaningTime' field.
+Specify the end time of the countdown using `endTimestamp`, which is mutually exclusive with `remainingTime`. It has a higher priority than `remainingTime`.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -43,9 +43,9 @@ export default () => {
 };
 ```
 
-### Calculate server timestamp
+### Server Timestamp Calculation
 
-By setting the server timestamp through 'serverless timestamp', it can be used in conjunction with 'endtimestamp'. This property can be used to prevent situations where local time is modified and countdown errors occur.
+Set the server timestamp using `serverTimestamp`, which can be used in conjunction with `endTimestamp`. This property prevents local time modifications from causing incorrect countdowns.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -64,9 +64,9 @@ export default () => {
 };
 ```
 
-### Format countdown timer
+### Formatting the Countdown
 
-The countdown can be formatted using 'format', with the default value being 'HH: mm: ss'.
+Customize the format of the countdown using `format`. The default value is `HH:mm:ss`.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -84,9 +84,9 @@ export default () => {
 };
 ```
 
-### Countdown unit style
+### Countdown Unit Style
 
-The countdown unit style can be set through 'unitStyle'.
+Customize the style of the countdown units using `unitStyle`.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -109,9 +109,9 @@ export default () => {
 };
 ```
 
-### Countdown numerical style
+### Countdown Value Style
 
-The style of the first and second digits of the countdown can be customized through 'valueStyle'.
+Customize the style of the first and second digits of the countdown using `valueStyle`.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -140,9 +140,9 @@ export default () => {
 };
 ```
 
-### The style of countdown timer
+### Time Slice Style
 
-You can customize the style of each countdown time slot through 'timeSliceStyle'.
+Customize the style of each time slice in the countdown using `timeSliceStyle`.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -166,9 +166,9 @@ export default () => {
 };
 ```
 
-### Countdown End Event
+### Countdown Finish Event
 
-When the countdown ends, the 'onFinnish' event will be triggered.
+The `onFinish` event is triggered when the countdown ends.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -176,7 +176,7 @@ import React from 'react';
 
 export default () => {
   const finish = () => {
-    console.log('倒计时已结束！');
+    console.log('Countdown has ended!');
   };
 
   return (
@@ -187,9 +187,9 @@ export default () => {
 };
 ```
 
-### Countdown change event
+### Countdown Change Event
 
-When the countdown changes, the 'onChange' event will be triggered.
+The `onChange` event is triggered when the countdown changes.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -197,7 +197,7 @@ import React from 'react';
 
 export default () => {
   const change = (data) => {
-    console.log('正在倒计时，当前数据', data);
+    console.log('Counting down, current data:', data);
   };
 
   return (
@@ -208,9 +208,9 @@ export default () => {
 };
 ```
 
-### Customize countdown content
+### Custom Countdown Content
 
-You can customize the content of the countdown component by using renderContent .
+Customize the content of the countdown component using `renderContent`.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -224,7 +224,8 @@ export default () => {
         renderContent={({ hours, minutes, seconds }) => {
           return (
             <span>
-              距离倒计时结束还剩{hours}小时{minutes}分钟{seconds}秒
+              Remaining time until countdown ends: {hours} hours {minutes}{' '}
+              minutes {seconds} seconds
             </span>
           );
         }}
@@ -238,37 +239,37 @@ export default () => {
 
 ### Countdown
 
-| attribute       | explain                                                                                                                                                            | type                                    | Default value |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------- | ------------- |
-| remainingTime   | The remaining countdown time is a time period (in milliseconds) that is mutually exclusive with endTimestamp                                                       | number                                  | 0             |
-| endTimestamp    | The countdown end timestamp is a time point that is mutually exclusive with remaningTime and has a higher priority than remaningTime                               | number                                  | -             |
-| serverTimestamp | Server timestamp is a time point that can be used in conjunction with endTimestamp                                                                                 | number                                  | -             |
-| format          | Format countdown display, refer to dayjs                                                                                                                           | string                                  | HH:mm:ss      |
-| unitStyle       | Style of time unit                                                                                                                                                 | CSSProperties                           | -             |
-| valueStyle      | The style of the countdown digits is used to customize the style of the first and second digits                                                                    | CSSProperties[]                         | -             |
-| timeSliceStyle  | The style of each time block is used to customize the style of each time block. If the style of the first and second digits is the same, it can replace valueStyle | CSSProperties                           | -             |
-| onFinish        | Triggered when the countdown is completed                                                                                                                          | () => void                              | -             |
-| onChange        | Triggered when the countdown time changes                                                                                                                          | (data: { value: CurrentTime }) => void; | -             |
-| renderContent   | Customize rendering content                                                                                                                                        | (data: CurrentTime) => React.ReactNode; | -             |
+| Property        | Description                                                                                                                                             | Type                                    | Default  |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | -------- |
+| remainingTime   | The remaining countdown duration, as a time interval (in milliseconds), mutually exclusive with `endTimestamp`                                          | number                                  | 0        |
+| endTimestamp    | The end timestamp of the countdown, as a specific point in time, mutually exclusive with `remainingTime`, has higher priority than `remainingTime`      | number                                  | -        |
+| serverTimestamp | The server timestamp, as a specific point in time, can be used in conjunction with `endTimestamp`                                                       | number                                  | -        |
+| format          | Format for displaying the countdown, see dayjs for reference                                                                                            | string                                  | HH:mm:ss |
+| unitStyle       | Style for the time units                                                                                                                                | CSSProperties                           | -        |
+| valueStyle      | Style for the countdown digits, customizes the style of the first and second digits                                                                     | CSSProperties[]                         | -        |
+| timeSliceStyle  | Style for each time slice, customizes the style of each time block, can replace `valueStyle` if the styles for the first and second digits are the same | CSSProperties                           | -        |
+| onFinish        | Triggered when the countdown completes                                                                                                                  | () => void                              | -        |
+| onChange        | Triggered when the countdown time changes                                                                                                               | (data: { value: CurrentTime }) => void; | -        |
+| renderContent   | Customizes the rendered content                                                                                                                         | (data: CurrentTime) => React.ReactNode; | -        |
 
-#### Today
+#### CurrentTime
 
-| attribute     | explain                                 | type   | Default value |
-| ------------- | --------------------------------------- | ------ | ------------- |
-| total         | Remaining total time, in milliseconds   | number | -             |
-| years         | Remaining years                         | string | -             |
-| months        | Remaining months                        | string | -             |
-| days          | Days Remaining                          | string | -             |
-| hours         | Remaining hours                         | string | -             |
-| minutes       | Remaining minutes                       | string | -             |
-| seconds       | Remaining seconds                       | string | -             |
-| hoursWithDays | Remaining integer days, remaining hours | string | -             |
+| Property      | Description                           | Type   | Default |
+| ------------- | ------------------------------------- | ------ | ------- |
+| total         | Total remaining time, in milliseconds | number | -       |
+| years         | Remaining years                       | string | -       |
+| months        | Remaining months                      | string | -       |
+| days          | Remaining days                        | string | -       |
+| hours         | Remaining hours                       | string | -       |
+| minutes       | Remaining minutes                     | string | -       |
+| seconds       | Remaining seconds                     | string | -       |
+| hoursWithDays | Remaining hours after whole days      | string | -       |
 
-## Style variables
+## Style Variables
 
-| attribute           | explain           | Default value            | global variable                   |
-| ------------------- | ----------------- | ------------------------ | --------------------------------- |
-| --font-size         | Copy font size    | --bui-text-size-1        | --bui-countdown-font-size         |
-| --color             | Text font color   | --bui-color-fg-default   | --bui-countdown-color             |
-| --font-weight       | Copy font weight  | --bui-font-weight-normal | --bui-countdown-font-weight       |
-| --slice-unit-margin | Delimiter spacing | 0 2px                    | --bui-countdown-slice-unit-margin |
+| Property            | Description           | Default                  | Global Variable                   |
+| ------------------- | --------------------- | ------------------------ | --------------------------------- |
+| --font-size         | Font size for text    | --bui-text-size-1        | --bui-countdown-font-size         |
+| --color             | Text color            | --bui-color-fg-default   | --bui-countdown-color             |
+| --font-weight       | Font weight           | --bui-font-weight-normal | --bui-countdown-font-weight       |
+| --slice-unit-margin | Margin between slices | 0 2px                    | --bui-countdown-slice-unit-margin |

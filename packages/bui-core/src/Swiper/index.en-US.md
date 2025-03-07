@@ -1,20 +1,21 @@
 ---
-group: layout
-name: Swiper slider view container
+group: Layout
+name: Swiper Slider View Container
 ---
 
-# Swiper slider view container
+# Swiper Slider View Container
 
-A slider view container used for creating commonly used layouts such as slideshows and pagination displays.
-The mini program side directly used Taro's Swiper component, while the H5 side used Swiper/react and aligned the input parameters.
+A slider view container used to create common layouts such as carousels and paginated displays.
+In the mini-program, Taro's Swiper component is used directly, while on the H5 end, Swiper/react is used with aligned parameters.
 
-> Mini program documentation reference:< https://taro-docs.jd.com/docs/components/viewContainer/swiper >
+> Mini-program documentation reference: <https://taro-docs.jd.com/docs/components/viewContainer/swiper>;
+> For the H5 end, it is encapsulated based on the community swiper/react v8.x, and its properties are passed through. Documentation can be found at: <https://v8.swiperjs.com/swiper-api>
 
-## Code demonstration
+## Code Demonstrations
 
 ### Basic Swiper
 
-By embedding the SwiperItem into the Swiper, you can build a basic slider view container.
+Embedding SwiperItem inside Swiper constructs a basic slider view container.
 
 ```tsx
 import React from 'react';
@@ -47,10 +48,10 @@ export default () => {
 };
 ```
 
-### Set current page
+### Setting Current Page
 
-Pass in current to set the current page, which will trigger page switching when data changes.
-If you need to be compatible with both sliding and current control, you also need to use the nChange event to synchronize the current page position.
+Pass `current` to set the current page. When data changes, it triggers a page switch.
+If you need to support both sliding and `current` control simultaneously, you also need to use the `onChange` event to synchronize the current page position.
 
 ```tsx
 import React, { useState } from 'react';
@@ -61,9 +62,9 @@ export default () => {
   return (
     <>
       <Stack direction="row" spacing="8px">
-        <Button onClick={() => setCur(0)}>切换到1</Button>
-        <Button onClick={() => setCur(1)}>切换到2</Button>
-        <Button onClick={() => setCur(2)}>切换到3</Button>
+        <Button onClick={() => setCur(0)}>Switch to 1</Button>
+        <Button onClick={() => setCur(1)}>Switch to 2</Button>
+        <Button onClick={() => setCur(2)}>Switch to 3</Button>
       </Stack>
       <Swiper
         current={cur}
@@ -97,10 +98,10 @@ export default () => {
 };
 ```
 
-### Automatic switching
+### Auto Switching
 
-Pass in autoplay to enable automatic switching.
-Use interval to control the interval time (in milliseconds) between two automatic switches.
+Pass `autoplay` to enable auto-switching.
+Use `interval` to control the interval between two automatic switches (in milliseconds).
 
 ```tsx
 import React from 'react';
@@ -133,9 +134,9 @@ export default () => {
 };
 ```
 
-### Loop scrolling
+### Looping Scroll
 
-Passing in circular allows the container to roll infinitely in the same direction.
+Pass `circular` to make the container scroll infinitely in one direction.
 
 ```tsx
 import React from 'react';
@@ -173,9 +174,9 @@ export default () => {
 };
 ```
 
-### Fade in and fade out
+### Fade Effect
 
-Pass in the effect parameter to select the switching effect.
+Pass the `effect` parameter to choose the transition effect.
 
 ```tsx
 import React from 'react';
@@ -214,9 +215,9 @@ export default () => {
 };
 ```
 
-### Vertical scrolling
+### Vertical Scroll
 
-Pass in vertical to make the container roll vertically (rather than horizontally).
+Pass `vertical` to make the container scroll vertically instead of horizontally.
 
 ```tsx
 import React from 'react';
@@ -254,10 +255,10 @@ export default () => {
 };
 ```
 
-### Page indicator
+### Page Indicators
 
-Pass in the indicator dots to enable page indicators (small dots).
-Use indicator Color and indicator ActiveColor to set the color of small dots.
+Pass `indicatorDots` to enable page indicators (small dots).
+Use `indicatorColor` and `indicatorActiveColor` to set the color of the small dots.
 
 ```tsx
 import React from 'react';
@@ -297,10 +298,10 @@ export default () => {
 };
 ```
 
-### event
+### Events
 
-Support ONChange and onAnimationFinish events.
-The specific return value is in the detail of the corresponding event object.
+Supports `onChange` and `onAnimationFinish` events.
+Specific return values are in the detail of the corresponding event object.
 
 ```tsx
 import React from 'react';
@@ -339,26 +340,26 @@ export default () => {
 
 ## API
 
-| attribute            | explain                                                        | type            | Default value |
-| -------------------- | -------------------------------------------------------------- | --------------- | ------------- |
-| current              | Current page index                                             | number          | -             |
-| autoplay             | Automatic switching                                            | boolean         | false         |
-| interval             | Interval time for automatic switching                          | number          | 5000          |
-| duration             | Switch animation time                                          | number          | 500           |
-| displayMultipleItems | Number of images displayed on each screen                      | number          | 1             |
-| circular             | Circular display                                               | boolean         | false         |
-| vertical             | Vertical mode                                                  | boolean         | false         |
-| spaceBetween         | The distance between two sheets                                | number          | -             |
-| previousMargin       | Leakage of the width (height) of the previous sheet            | number \|string | -             |
-| nextMargin           | Leakage of the width (height) of the next sheet                | number \|string | -             |
-| indicatorDots        | Page indicator (small dot)                                     | boolean         | false         |
-| indicatorColor       | Page indicator is not the color of the current page            | string          | -             |
-| indicatorActiveColor | Page indicator: The color of the current page                  | string          | -             |
-| onChange             | Switching callback (triggered when releasing and switching)    | event=>void     | -             |
-| onAnimationFinish    | Animation end callback (triggered at the end of the animation) | event=>void     | -             |
+| Property             | Description                          | Type             | Default |
+| -------------------- | ------------------------------------ | ---------------- | ------- |
+| current              | Index of the current page            | number           | -       |
+| autoplay             | Enable auto-switching                | boolean          | false   |
+| interval             | Interval for auto-switching          | number           | 5000    |
+| duration             | Duration of the switching animation  | number           | 500     |
+| displayMultipleItems | Number of items displayed per screen | number           | 1       |
+| circular             | Enable circular display              | boolean          | false   |
+| vertical             | Vertical mode                        | boolean          | false   |
+| spaceBetween         | Spacing between items                | number           | -       |
+| previousMargin       | Width (height) of the previous item  | number \| string | -       |
+| nextMargin           | Width (height) of the next item      | number \| string | -       |
+| indicatorDots        | Enable page indicators (dots)        | boolean          | false   |
+| indicatorColor       | Color of non-active page indicators  | string           | -       |
+| indicatorActiveColor | Color of active page indicator       | string           | -       |
+| onChange             | Callback when switching pages        | event=>void      | -       |
+| onAnimationFinish    | Callback when animation finishes     | event=>void      | -       |
 
-## Style variables
+## Style Variables
 
-| attribute | explain | Default value | global variable     |
-| --------- | ------- | ------------- | ------------------- |
-| --height  | height  | 150px         | --bui-swiper-height |
+| Property | Description | Default | Global Variable     |
+| -------- | ----------- | ------- | ------------------- |
+| --height | Height      | 150px   | --bui-swiper-height |

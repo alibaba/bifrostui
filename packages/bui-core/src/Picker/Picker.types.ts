@@ -13,11 +13,18 @@ export interface IPickerOptionItem {
   value: string | number;
 }
 
+export type ICascadePickerChildOptionItem = IPickerOptionItem & {
+  /**
+   * 用于级联选项，子节点可能没有children属性
+   */
+  children?: ICascadePickerChildOptionItem[];
+};
+
 export type ICascadePickerOptionItem = IPickerOptionItem & {
   /**
-   * 用于级联选项
+   * 用于级联选项，根节点必须含有children属性
    */
-  children?: ICascadePickerOptionItem[];
+  children: ICascadePickerChildOptionItem[];
 };
 
 export type PickerProps<
@@ -52,36 +59,36 @@ export type PickerProps<
        * 点击确认按钮时候回调
        */
       onConfirm?: (
-        e: React.SyntheticEvent,
+        e: React.MouseEvent<HTMLDivElement>,
         data: {
           value: (string | number)[];
-          options: ICascadePickerOptionItem[];
+          options: ICascadePickerChildOptionItem[][];
         },
       ) => void;
       /**
        * 选项值变更时的回调
        */
       onOptionChange?: (
-        e: React.SyntheticEvent,
+        e: React.TransitionEvent<HTMLDivElement>,
         data: {
           value: (string | number)[];
-          options: IPickerOptionItem[][] | ICascadePickerOptionItem[];
-          currentOption: ICascadePickerOptionItem;
+          options: ICascadePickerChildOptionItem[][];
+          currentOption: ICascadePickerChildOptionItem;
         },
       ) => void;
       /**
        * 点击取消按钮时候回调
        */
-      onCancel?: (e: React.SyntheticEvent) => void;
+      onCancel?: (e: React.MouseEvent<HTMLDivElement>) => void;
       /**
        * 关闭选择器时执行
        */
       onClose?: (
-        e: React.SyntheticEvent,
+        e: React.MouseEvent<HTMLDivElement>,
         data: {
           from: string;
           value: (string | number)[];
-          options: IPickerOptionItem[][] | ICascadePickerOptionItem[];
+          options: ICascadePickerChildOptionItem[][];
         },
       ) => void;
     };
@@ -100,7 +107,7 @@ export type PickerPanelProps<
        * 单列面板的列表数据
        * @default []
        */
-      options?: IPickerOptionItem[][] | ICascadePickerOptionItem[];
+      options?: ICascadePickerChildOptionItem[];
       /**
        * 默认值
        */
@@ -117,9 +124,9 @@ export type PickerPanelProps<
        * 选择选项时的回调
        */
       onSelect?: (
-        e: React.SyntheticEvent,
+        e: React.TransitionEvent<HTMLDivElement>,
         data: {
-          columnOption: IPickerOptionItem[] | ICascadePickerOptionItem;
+          columnOption: ICascadePickerChildOptionItem;
           columnIndex: number;
         },
       ) => void;
