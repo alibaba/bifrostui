@@ -21,11 +21,8 @@
   --bui-d-time-picker-container-li-radius: var(--bui-shape-radius-default, 6px);
   --bui-d-time-picker-container-li-font-size: var(--bui-title-size-4);
   --bui-d-time-picker-container-li-color: var(--bui-color-fg-default);
-  --bui-d-time-picker-container-li-color-active: var(
-    --bui-color-primary,
-    #fff2f0
-  );
-  --bui-d-time-picker-container-li-bg-active: #fff2f0;
+  --bui-d-time-picker-container-li-color-active: var(--bui-color-fg-default);
+  --bui-d-time-picker-container-li-bg-active: #ffc7da;
 }
 
 .@{class-prefix-time-picker} {
@@ -42,7 +39,7 @@
 
   &:active,
   &-active {
-    box-shadow: 0 0 0 2px var(--bui-d-time-picker-shadow);
+    box-shadow: var(--bui-d-time-picker-shadow);
   }
 
   &-invalid {
@@ -136,7 +133,7 @@
     }
 
     &-li:hover {
-      background-color: var(--bui-d-time-picker-container-li-bg-active);
+      background-color: var(--bui-color-bg-default);
     }
 
     &-active {

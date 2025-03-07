@@ -486,5 +486,5 @@ export default () => {
 | --bui-d-time-picker-container-li-radius       | 单元格圆角           | --bui-shape-radius-default |
 | --bui-d-time-picker-container-li-font-size    | 单元格字体大小       | --bui-title-size-4         |
 | --bui-d-time-picker-container-li-color        | 单元格字体颜色       | --bui-color-fg-default     |
-| --bui-d-time-picker-container-li-color-active | 单元格选中态字体颜色 | --bui-color-primary        |
-| --bui-d-time-picker-container-li-bg-active    | 单元格选中态背景颜色 | #fff2f0                    |
+| --bui-d-time-picker-container-li-color-active | 单元格选中态字体颜色 | --bui-color-fg-default     |
+| --bui-d-time-picker-container-li-bg-active    | 单元格选中态背景颜色 | #ffc7da                    |

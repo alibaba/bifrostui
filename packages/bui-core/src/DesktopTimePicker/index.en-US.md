@@ -488,5 +488,5 @@ export default () => {
 | --bui-d-time-picker-container-li-radius       | Cell border radius                 | --bui-shape-radius-default |
 | --bui-d-time-picker-container-li-font-size    | Cell font size                     | --bui-title-size-4         |
 | --bui-d-time-picker-container-li-color        | Cell font color                    | --bui-color-fg-default     |
-| --bui-d-time-picker-container-li-color-active | Active cell font color             | --bui-color-primary        |
-| --bui-d-time-picker-container-li-bg-active    | Active cell background color       | #fff2f0                    |
+| --bui-d-time-picker-container-li-color-active | Active cell font color             | --bui-color-fg-default     |
+| --bui-d-time-picker-container-li-bg-active    | Active cell background color       | #ffc7da                    |
