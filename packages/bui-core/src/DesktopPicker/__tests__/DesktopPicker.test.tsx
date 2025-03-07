@@ -32,7 +32,7 @@ describe('DesktopPicker', () => {
     });
     expect(
       document.getElementsByClassName('bui-desktop-picker-container')[0],
-    ).toHaveClass('bui-desktop-picker-container-bottom');
+    ).toHaveClass('bui-desktop-picker-bottom');
     await act(async () => {
       userEvent.click(getAllByText('close')[0]);
     });
