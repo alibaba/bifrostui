@@ -1,6 +1,6 @@
 {
   "name": "@bifrostui/types",
-  "version": "1.4.7-beta.0",
+  "version": "1.4.7",
   "description": "Utility types for BUI",
   "typings": "src/index.ts",
   "files": [
