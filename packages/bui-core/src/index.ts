@@ -40,6 +40,7 @@ export * from './Loading';
 export * from './TabBar';
 export * from './Countdown';
 export * from './CitySelector';
+export * from './ItemSelector';
 export * from './Picker';
 export * from './CollapsePanel';
 export * from './Breadcrumb';
