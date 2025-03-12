@@ -1,20 +1,20 @@
 ---
-group: feedback
-name: Toast Light Tips
+group: Feedback
+name: Toast Light提示
 ---
 
-# Toast Light Tips
+# Toast Light提示
 
-Pop up a black semi transparent prompt on the page, used for operation result prompts and other scenarios, supports`Toast`,`Toast.warning`,`Toast.loading`,`Toast.success`,`Toast.fail`。
-It is recommended to use Hooks calling method. Static methods cannot obtain context, and ThemeProvider data will not take effect. Therefore, it is recommended to use Hooks calling method`Toast.useToast`创build contextholder that supports reading context and replaces it with top-level registration`Toast`静state method.
+A black semi-transparent prompt pops up on the page, used for operation result prompts and other scenarios. It supports `Toast`, `Toast.warning`, `Toast.loading`, `Toast.success`, and `Toast.fail`.
+We recommend using Hooks for invocation as static methods cannot obtain context and ThemeProvider data will not take effect. Therefore, we recommend creating a contextHolder that can read context via `Toast.useToast` and register it at the top level to replace the static method of `Toast`.
 
-## Code demonstration
+## Code Demonstration
 
-### Basic Tips
+### Basic Prompt
 
 Display prompt content.
 
-#### Static method (not recommended)
+#### Static Method (Not Recommended)
 
 ```tsx
 import { Stack, Button, Toast } from '@bifrostui/react';
@@ -25,7 +25,7 @@ export default () => {
     <Stack direction="row" spacing="10px">
       <Button
         onClick={() => {
-          Toast('提示内容');
+          Toast('Prompt content');
         }}
       >
         toast
@@ -35,7 +35,7 @@ export default () => {
 };
 ```
 
-#### Hooks call (recommended)
+#### Hooks Call (Recommended)
 
 ```tsx
 import {
@@ -57,7 +57,7 @@ export default () => {
       <Stack direction="row" spacing="10px">
         <Button
           onClick={() => {
-            toast('提示内容');
+            toast('Prompt content');
           }}
         >
           toast
@@ -68,9 +68,9 @@ export default () => {
 };
 ```
 
-### Common modes
+### Common Modes
 
-Toast provides four common modes: warning, loading, success, and fail.
+Toast provides four common modes: `warning`, `loading`, `success`, and `fail`.
 
 ```tsx
 import {
@@ -92,28 +92,28 @@ export default () => {
       <Stack direction="row" spacing="10px">
         <Button
           onClick={() => {
-            toast.warning('校验不通过，请重试');
+            toast.warning('Validation failed, please retry');
           }}
         >
           warning
         </Button>
         <Button
           onClick={() => {
-            toast.loading('正在加载');
+            toast.loading('Loading...');
           }}
         >
           loading
         </Button>
         <Button
           onClick={() => {
-            toast.success('操作成功');
+            toast.success('Operation successful');
           }}
         >
           success
         </Button>
         <Button
           onClick={() => {
-            toast.fail('操作失败');
+            toast.fail('Operation failed');
           }}
         >
           fail
@@ -124,9 +124,9 @@ export default () => {
 };
 ```
 
-### Prompt for text wrapping
+### Multi-line Prompt Text
 
-The prompt text supports the use of '\ n' line breaks.
+The prompt text supports line breaks using `\n`.
 
 ```tsx
 import {
@@ -147,7 +147,9 @@ export default () => {
       <Stack direction="row" spacing="10px">
         <Button
           onClick={() => {
-            toast('小二很忙\n系统很累，请稍后再试～');
+            toast(
+              'Little helper is busy\nSystem is tired, please try again later～',
+            );
           }}
         >
           toast
@@ -158,9 +160,9 @@ export default () => {
 };
 ```
 
-### Display duration
+### Display Duration
 
-Use 'duration' to control the duration of the prompt display, with a default display of 2 seconds. When 'duration' is 0, Toast will not automatically close. Of course, you can receive the return value and use its' close 'function to manually close the current Toast.
+Use `duration` to control the display duration of the prompt. By default, it displays for 2 seconds. When `duration` is 0, the Toast will not close automatically. You can also receive the returned value and use its `close` function to manually close the current Toast.
 
 ```tsx
 import {
@@ -179,7 +181,7 @@ export default () => {
   let toastA;
   const showToastA = () => {
     toastA = toast({
-      message: '我不会自动关闭',
+      message: 'I will not close automatically',
       duration: 0,
     });
   };
@@ -195,26 +197,28 @@ export default () => {
         <Button
           onClick={() => {
             toast({
-              message: '我会展示4秒',
+              message: 'I will be displayed for 4 seconds',
               duration: 4000,
             });
           }}
         >
-          展示4秒
+          Display for 4 seconds
         </Button>
 
-        <Button onClick={showToastA}>不自动关闭(ToastA)</Button>
+        <Button onClick={showToastA}>
+          Do Not Close Automatically (ToastA)
+        </Button>
 
-        <Button onClick={closeToastA}>手动关闭ToastA</Button>
+        <Button onClick={closeToastA}>Manually Close ToastA</Button>
       </Stack>
     </ThemeProvider>
   );
 };
 ```
 
-### Display location
+### Display Position
 
-Toast provides three display positions: top, center, and bottom, with the default being center.
+Toast offers three display positions: `top`, `center`, and `bottom`. The default is `center`.
 
 ```tsx
 import {
@@ -237,32 +241,32 @@ export default () => {
         <Button
           onClick={() => {
             toast({
-              message: '顶部展示',
+              message: 'Top display',
               position: 'top',
             });
           }}
         >
-          顶部展示
+          Top display
         </Button>
         <Button
           onClick={() => {
             toast({
-              message: '居中展示',
+              message: 'Center display',
               position: 'center',
             });
           }}
         >
-          居中展示
+          Center display
         </Button>
         <Button
           onClick={() => {
             toast({
-              message: '底部展示',
+              message: 'Bottom display',
               position: 'bottom',
             });
           }}
         >
-          底部展示
+          Bottom display
         </Button>
       </Stack>
     </ThemeProvider>
@@ -270,9 +274,9 @@ export default () => {
 };
 ```
 
-### There are multiple Toasts simultaneously present
+### Multiple Toasts Simultaneously
 
-Using 'allowMultiple' allows for multiple Toast prompts to exist simultaneously on the page, with only one Toast displayed by default at a time.
+Using `allowMultiple` allows multiple Toast notifications to exist simultaneously on the page. By default, only one Toast is shown each time.
 
 ```tsx
 import {
@@ -295,35 +299,35 @@ export default () => {
         <Button
           onClick={() => {
             toast({
-              message: '顶部展示',
+              message: 'Top display',
               position: 'top',
               allowMultiple: true,
             });
           }}
         >
-          允许存在其他Toast
+          Allow Other Toasts
         </Button>
         <Button
           onClick={() => {
             toast({
-              message: '居中展示',
+              message: 'Center display',
               position: 'center',
               allowMultiple: true,
             });
           }}
         >
-          允许存在其他Toast
+          Allow Other Toasts
         </Button>
         <Button
           onClick={() => {
             toast({
-              message: '底部展示',
+              message: 'Bottom display',
               position: 'bottom',
               allowMultiple: false,
             });
           }}
         >
-          会清除其他Toast
+          Clear Other Toasts
         </Button>
       </Stack>
     </ThemeProvider>
@@ -331,9 +335,9 @@ export default () => {
 };
 ```
 
-### Customize icons
+### Custom Icons
 
-Use 'icon' to customize icons.
+Customize icons using `icon`.
 
 ```tsx
 import {
@@ -357,12 +361,12 @@ export default () => {
         <Button
           onClick={() => {
             toast({
-              message: '我在上海',
+              message: 'I am in Shanghai',
               icon: <LocationFilledIcon size="large" htmlColor="#fee01e" />,
             });
           }}
         >
-          定制图标
+          Customize Icon
         </Button>
       </Stack>
     </ThemeProvider>
@@ -370,9 +374,9 @@ export default () => {
 };
 ```
 
-### Prohibit background clicking
+### Disable Background Click
 
-Use 'disableClick' to control whether other content on the page can be clicked when displaying Toast prompts. It defaults to clickable.
+Use `disableClick` to control whether other content on the page can be clicked when displaying a Toast notification. By default, it is clickable.
 
 ```tsx
 import {
@@ -395,13 +399,13 @@ export default () => {
         <Button
           onClick={() => {
             toast({
-              message: '提示内容',
+              message: 'Prompt content',
               disableClick: true,
               duration: 3000,
             });
           }}
         >
-          展示Toast禁止页面内容点击
+          Show Toast and Disable Page Content Clicking
         </Button>
       </Stack>
     </ThemeProvider>
@@ -409,9 +413,9 @@ export default () => {
 };
 ```
 
-### Close callback
+### Closure Callback
 
-You can listen for callbacks when Toast is closed through 'onClose'.
+Listen to the closure callback of Toast using `onClose`.
 
 ```tsx
 import {
@@ -434,14 +438,14 @@ export default () => {
         <Button
           onClick={() => {
             toast({
-              message: '提示内容',
+              message: 'Prompt content',
               onClose: () => {
-                toast('已关闭');
+                toast('Closed');
               },
             });
           }}
         >
-          关闭回调
+          Closure Callback
         </Button>
       </Stack>
     </ThemeProvider>
@@ -449,9 +453,9 @@ export default () => {
 };
 ```
 
-### Close all Toasts
+### Close All Toasts
 
-Toast provides a 'clear' method to close all existing pop ups on the page.
+Toast provides a `clear` method to close all existing popups on the page.
 
 ```tsx
 import {
@@ -474,33 +478,33 @@ export default () => {
         <Button
           onClick={() => {
             toast({
-              message: '提示内容1',
+              message: 'Prompt content 1',
               position: 'top',
               allowMultiple: true,
               duration: 0,
             });
           }}
         >
-          不消失1
+          Do Not Disappear 1
         </Button>
         <Button
           onClick={() => {
             toast({
-              message: '提示内容2',
+              message: 'Prompt content 2',
               position: 'center',
               allowMultiple: true,
               duration: 0,
             });
           }}
         >
-          不消失2
+          Do Not Disappear 2
         </Button>
         <Button
           onClick={() => {
             toast.clear();
           }}
         >
-          关闭所有Toast
+          Close All Toasts
         </Button>
       </Stack>
     </ThemeProvider>
@@ -508,9 +512,9 @@ export default () => {
 };
 ```
 
-### Customize prompt style
+### Customize Toast Style
 
-You can customize the Toast style based on the provided CSS variables and properties such as className.
+Customize Toast styles using provided CSS variables and className properties.
 
 ```tsx
 import {
@@ -535,7 +539,7 @@ export default () => {
           onClick={() => {
             toast({
               ref,
-              message: '提示内容',
+              message: 'Prompt content',
               className: 'my-toast',
               style: {
                 '--color': 'red',
@@ -558,47 +562,47 @@ export default () => {
 
 ### API
 
-##### Toastoptions
+##### ToastOptions
 
-| attribute     | explain                                                              | type                        | Default value |
-| ------------- | -------------------------------------------------------------------- | --------------------------- | ------------- |
-| message       | Toast content, supports the use of `\n` Line break                   | string                      | -             |
-| duration      | Display duration (ms), when the value is 0, toast will not disappear | number                      | 2000          |
-| position      | Display location                                                     | `top` \|`center` \|`bottom` | `center`      |
-| allowMultiple | Is it allowed to have multiple Toasts at the same time               | boolean                     | false         |
-| icon          | Customize icons                                                      | React.ReactNode             | -             |
-| disableClick  | Can the page content be clicked when displaying Toast                | boolean                     | false         |
-| onClose       | The callback function when closing                                   | () => void                  | -             |
+| Property      | Description                                              | Type                          | Default Value |
+| ------------- | -------------------------------------------------------- | ----------------------------- | ------------- |
+| message       | Toast content, supports `\n` for line breaks             | string                        | -             |
+| duration      | Display duration (ms), set to 0 for no auto-close        | number                        | 2000          |
+| position      | Display position                                         | `top` \| `center` \| `bottom` | `center`      |
+| allowMultiple | Whether to allow multiple Toasts simultaneously          | boolean                       | false         |
+| icon          | Custom icon                                              | React.ReactNode               | -             |
+| disableClick  | Whether page content can be clicked while Toast is shown | boolean                       | false         |
+| onClose       | Callback function when closing                           | () => void                    | -             |
 
-##### method
+##### Methods
 
-| Method Name   | explain           | parameter             | Return value    |
-| ------------- | ----------------- | --------------------- | --------------- |
-| Toast         | Display Tips      | ToastOptions \|string | ToastReturnType |
-| Toast.warning | Warning prompt    | ToastOptions \|string | ToastReturnType |
-| Toast.loading | Loading prompt    | ToastOptions \|string | ToastReturnType |
-| Toast.success | Successful prompt | ToastOptions \|string | ToastReturnType |
-| Toast.fail    | Failure prompt    | ToastOptions \|string | ToastReturnType |
-| Toast.clear   | Clear prompt      | -                     | -               |
+| Method Name   | Description       | Parameters             | Return Value    |
+| ------------- | ----------------- | ---------------------- | --------------- |
+| Toast         | Show prompt       | ToastOptions \| string | ToastReturnType |
+| Toast.warning | Warning prompt    | ToastOptions \| string | ToastReturnType |
+| Toast.loading | Loading prompt    | ToastOptions \| string | ToastReturnType |
+| Toast.success | Success prompt    | ToastOptions \| string | ToastReturnType |
+| Toast.fail    | Failure prompt    | ToastOptions \| string | ToastReturnType |
+| Toast.clear   | Clear all prompts | -                      | -               |
 
 ##### ToastReturnType
 
-| Attribute Name | Description              | Type     | Return Value |
-| -------------- | ------------------------ | -------- | ------------ |
-| Close          | Close the current prompt | ()=>void | -            |
+| Property | Description          | Type       | Return Value |
+| -------- | -------------------- | ---------- | ------------ |
+| close    | Close current prompt | () => void | -            |
 
-### Style variables
+### Style Variables
 
-| attribute          | explain                                                  | Default value              | global variable             |
-| ------------------ | -------------------------------------------------------- | -------------------------- | --------------------------- |
-| --min-width        | Minimum width                                            | 86px                       | --bui-toast-min-width       |
-| --max-width        | Maximum width                                            | 80%                        | --bui-toast-max-width       |
-| --text-align       | text arrangement                                         | center                     | --bui-toast-text-align      |
-| --flex-direction   | Icon and copywriting arrangement direction               | column                     | --bui-toast-flex-direction  |
-| --padding          | padding                                                  | --bui-spacing-xl           | --bui-toast-padding         |
-| --position-top     | When displaying at the top, the distance from the top    | 15%                        | --bui-toast-position-top    |
-| --position-bottom  | When displaying at the bottom, the distance from the top | 85%                        | --bui-toast-position-bottom |
-| --background-color | background color                                         | rgba(0, 0, 0, 0.8)         | --bui-toast-bg-color        |
-| --border-radius    | fillet                                                   | --bui-shape-radius-default | --bui-toast-border-radius   |
-| --icon-margin      | Icon margin                                              | 0 0 8px                    | --bui-toast-icon-margin     |
-| --icon-font-size   | Icon font size                                           | 30px                       | --bui-toast-icon-font-size  |
+| Property           | Description                                   | Default Value              | Global Variable             |
+| ------------------ | --------------------------------------------- | -------------------------- | --------------------------- |
+| --min-width        | Minimum width                                 | 86px                       | --bui-toast-min-width       |
+| --max-width        | Maximum width                                 | 80%                        | --bui-toast-max-width       |
+| --text-align       | Text alignment                                | center                     | --bui-toast-text-align      |
+| --flex-direction   | Icon and text arrangement direction           | column                     | --bui-toast-flex-direction  |
+| --padding          | Padding                                       | --bui-spacing-xl           | --bui-toast-padding         |
+| --position-top     | Distance from top when displayed at top       | 15%                        | --bui-toast-position-top    |
+| --position-bottom  | Distance from bottom when displayed at bottom | 85%                        | --bui-toast-position-bottom |
+| --background-color | Background color                              | rgba(0, 0, 0, 0.8)         | --bui-toast-bg-color        |
+| --border-radius    | Border radius                                 | --bui-shape-radius-default | --bui-toast-border-radius   |
+| --icon-margin      | Icon margin                                   | 0 0 8px                    | --bui-toast-icon-margin     |
+| --icon-font-size   | Icon font size                                | 30px                       | --bui-toast-icon-font-size  |

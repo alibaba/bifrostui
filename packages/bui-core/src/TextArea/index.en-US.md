@@ -1,17 +1,17 @@
 ---
-group: Basic input
-name: TextArea Text Box
+group: Basic Input
+name: TextArea
 ---
 
-# TextArea Text Box
+# TextArea
 
-Text input box, used for inputting longer content.
+A text input box used for entering longer content.
 
-## Code demonstration
+## Code Examples
 
 ### Basic Usage
 
-The basic attribute transparency of the 'textarea' tag is supported. If the attribute to be transparently passed is not in the document, it will only be passed to the internal 'textarea' tag by placing it in the 'textarea Properties' field.
+Supports passing through basic attributes of the `textarea` tag. If an attribute is not listed in this documentation, it should be placed in the `textareaProps` field to be passed through to the internal `textarea` tag.
 
 ```tsx
 import { Stack, TextArea } from '@bifrostui/react';
@@ -27,15 +27,15 @@ export default () => {
 
   return (
     <Stack alignItems="stretch">
-      <TextArea value={value} placeholder="默认" onChange={handleChange} />
+      <TextArea value={value} placeholder="Default" onChange={handleChange} />
     </Stack>
   );
 };
 ```
 
-### Display the number of words
+### Display Character Count
 
-ShowCount 'controls the number of words displayed as input and can generally be used in conjunction with' maxLength '.
+The `showCount` property controls the display of the number of characters entered. It is usually used in conjunction with `maxLength`.
 
 ```tsx
 import { Stack, TextArea } from '@bifrostui/react';
@@ -48,7 +48,7 @@ export default () => {
     <Stack alignItems="stretch">
       <TextArea
         value={value}
-        placeholder="最多输入10个字"
+        placeholder="Maximum 10 characters"
         onChange={(e, data) => setValue(data?.value)}
         maxLength={10}
         showCount
@@ -60,7 +60,7 @@ export default () => {
 
 ### Controlled/Uncontrolled
 
-Determine whether it is a controlled component based on whether 'value' is passed in. Uncontrolled components can control the value of 'textarea' by obtaining elements through 'textareaRef'.
+Whether a component is controlled or uncontrolled is determined by whether `value` is passed. For uncontrolled components, you can control the `textarea`'s value using `textareaRef` to get the element.
 
 ```tsx
 import { Button, Stack, TextArea } from '@bifrostui/react';
@@ -93,17 +93,21 @@ export default () => {
           marginBottom: '40px',
         }}
       >
-        受控组件：
-        <Button onClick={addTen}>数量加10</Button>
+        Controlled Component:
+        <Button onClick={addTen}>Increase by 10</Button>
         <br />
         <TextArea value={value} onChange={(e, data) => setValue(data.value)} />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        非受控组件：
+        Uncontrolled Component:
         <br />
-        <Button onClick={reduceTen}>数量减10(操作defaultValue无效)</Button>
+        <Button onClick={reduceTen}>
+          Decrease by 10 (changing defaultValue has no effect)
+        </Button>
         <br />
-        <Button onClick={multiplyTwo}>数量乘2(通过DOM操作value有效)</Button>
+        <Button onClick={multiplyTwo}>
+          Multiply by 2 (DOM manipulation of value is effective)
+        </Button>
         <br />
         <TextArea textareaRef={reduceRef} defaultValue={defaultValue} />
       </div>
@@ -112,9 +116,9 @@ export default () => {
 };
 ```
 
-### Auto focus
+### Auto Focus
 
-Control whether to auto focus through the 'autoFocus' field.
+Control whether the `textarea` is automatically focused using the `autoFocus` field.
 
 ```tsx
 import { Stack, TextArea, Button } from '@bifrostui/react';
@@ -131,7 +135,7 @@ export default () => {
           setAutoFocus(!autoFocus);
         }}
       >
-        {autoFocus ? '失' : '聚'}焦
+        {autoFocus ? 'Blur' : 'Focus'}
       </Button>
       <TextArea
         value={value}
@@ -143,9 +147,9 @@ export default () => {
 };
 ```
 
-### Automatic lifting
+### Auto Resize
 
-Control whether to automatically raise through the 'autoSize' field. When passing this field to 'boolean', there is no limit on the height size. When passing it to 'object', the height size can be controlled. If it exceeds the maximum value, it can be scrolled. This function does not support Alipay applet.
+Control whether the `textarea` automatically resizes using the `autoSize` field. When `autoSize` is a `boolean`, there is no height limit. When it is an `object`, you can control the height, and if it exceeds the maximum, it becomes scrollable. This feature is not supported in Alipay Mini Programs.
 
 ```tsx
 import { Stack, TextArea } from '@bifrostui/react';
@@ -158,7 +162,7 @@ export default () => {
     <Stack alignItems="stretch">
       <TextArea
         value={value}
-        placeholder="文案过多会自动撑高"
+        placeholder="Excess text will auto-resize"
         onChange={(e, data) => setValue(data?.value)}
         autoSize={{ minHeight: 50, maxHeight: 100 }}
       />
@@ -169,35 +173,35 @@ export default () => {
 
 ## API
 
-|   attribute   |                                              explain                                               |                                    type                                    | Default value |
-| :-----------: | :------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------: | :-----------: |
-|     value     |                              Input box content, used when controlled                               |                                   string                                   |       -       |
-| defaultValue  |                         Default input box content, used when uncontrolled                          |                                   string                                   |       -       |
-| textareaProps |                          inside `<textarea>` Standard attributes of tags                           |                TextareaHTMLAttributes<HTMLTextAreaElement\>                |       -       |
-|  textareaRef  |                                  inside `<textarea>` Label's ref                                   |                      React.Ref<HTMLTextAreaElement\>                       |       -       |
-|     name      |                              inside `<textarea>` Name identification                               |                                   string                                   |       -       |
-|  placeholder  |                                         Occupation Content                                         |                                   string                                   |       -       |
-|   disabled    |                                     Do you want to disable it                                      |                                  boolean                                   |     false     |
-|     rows      |                                  Number of lines in the text box                                   |                                   number                                   |       2       |
-|   maxLength   |                                     Maximum length of content                                      |                                   number                                   |       -       |
-|   autoSize    | Adaptive content height, can be set to true\|false 或对象：{minHeight?: number;maxHeight?: number} |                                  boolean                                   |     false     |
-|   autoFocus   |                                    Does it automatically focus                                     |                                  boolean                                   |     false     |
-|   showCount   |                                         Display word count                                         |                                  boolean                                   |     false     |
-|   onChange    |                         Callback when the content of the text box changes                          | (e: React.ChangeEvent<HTMLTextAreaElement\>,data: {value: string}) => void |       -       |
+|   Property    |                                                Description                                                 |                                    Type                                    | Default |
+| :-----------: | :--------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------: | :-----: |
+|     value     |                                    Input content, used when controlled                                     |                                   string                                   |    -    |
+| defaultValue  |                               Default input content, used when uncontrolled                                |                                   string                                   |    -    |
+| textareaProps |                            Standard properties of the internal `<textarea>` tag                            |                TextareaHTMLAttributes<HTMLTextAreaElement\>                |    -    |
+|  textareaRef  |                                   Ref for the internal `<textarea>` tag                                    |                      React.Ref<HTMLTextAreaElement\>                       |    -    |
+|     name      |                               Name identifier for the internal `<textarea>`                                |                                   string                                   |    -    |
+|  placeholder  |                                            Placeholder content                                             |                                   string                                   |    -    |
+|   disabled    |                                      Whether the textarea is disabled                                      |                                  boolean                                   |  false  |
+|     rows      |                                       Number of rows in the textarea                                       |                                   number                                   |    2    |
+|   maxLength   |                                       Maximum length of the content                                        |                                   number                                   |    -    |
+|   autoSize    | Adaptive content height, can be set to true \| false or an object: {minHeight?: number;maxHeight?: number} |                                  boolean                                   |  false  |
+|   autoFocus   |                                    Whether the textarea is auto-focused                                    |                                  boolean                                   |  false  |
+|   showCount   |                                   Whether to display the character count                                   |                                  boolean                                   |  false  |
+|   onChange    |                          Callback function for when the textarea content changes                           | (e: React.ChangeEvent<HTMLTextAreaElement\>,data: {value: string}) => void |    -    |
 
-## Style variables
+## Style Variables
 
-| attribute                 | explain                                        | Default value            | global variable                        |
-| ------------------------- | ---------------------------------------------- | ------------------------ | -------------------------------------- |
-| --border-radius           | fillet                                         | --bui-shape-radius-label | --bui-textarea-border-radius           |
-| --width                   | width                                          | 100%                     | --bui-textarea-width                   |
-| --bg-color                | Text box background color                      | --bui-color-bg-default   | --bui-textarea-background-color        |
-| --text-color              | Text box font color                            | --bui-color-fg-subtle    | --bui-textarea-text-color              |
-| --count-bg-color          | Count column background color                  | --bui-color-bg-default   | --bui-textarea-background-color        |
-| --count-text-color        | Count column font color                        | --bui-color-fg-subtle    | --bui-textarea-count-color             |
-| --text-font-size          | Font size of text box                          | --bui-text-size-2        | --bui-textarea-text-font-size          |
-| --count-font-size         | Text box word count and font size              | --bui-title-size-3       | --bui-textarea-count-font-size         |
-| --content-padding         | Text box margin                                | 8px                      | --bui-textarea-padding                 |
-| --count-padding           | Count column margin                            | 4px                      | --bui-textarea-count-padding           |
-| --placeholder-color       | Placeholder font color                         | #ced1d6                  | --bui-textarea-placeholder-color       |
-| --placeholder-line-height | Placeholder line height (invalid mini program) | 1.3                      | --bui-textarea-placeholder-line-height |
+| Property                  | Description                                               | Default                  | Global Variable                        |
+| ------------------------- | --------------------------------------------------------- | ------------------------ | -------------------------------------- |
+| --border-radius           | Border radius                                             | --bui-shape-radius-label | --bui-textarea-border-radius           |
+| --width                   | Width                                                     | 100%                     | --bui-textarea-width                   |
+| --bg-color                | Background color of the textarea                          | --bui-color-bg-default   | --bui-textarea-background-color        |
+| --text-color              | Text color of the textarea                                | --bui-color-fg-subtle    | --bui-textarea-text-color              |
+| --count-bg-color          | Background color of the count bar                         | --bui-color-bg-default   | --bui-textarea-background-color        |
+| --count-text-color        | Text color of the count bar                               | --bui-color-fg-subtle    | --bui-textarea-count-color             |
+| --text-font-size          | Font size of the textarea                                 | --bui-text-size-2        | --bui-textarea-text-font-size          |
+| --count-font-size         | Font size of the count bar                                | --bui-title-size-3       | --bui-textarea-count-font-size         |
+| --content-padding         | Padding of the textarea                                   | 8px                      | --bui-textarea-padding                 |
+| --count-padding           | Padding of the count bar                                  | 4px                      | --bui-textarea-count-padding           |
+| --placeholder-color       | Placeholder text color                                    | #ced1d6                  | --bui-textarea-placeholder-color       |
+| --placeholder-line-height | Placeholder line height (not applicable in Mini Programs) | 1.3                      | --bui-textarea-placeholder-line-height |

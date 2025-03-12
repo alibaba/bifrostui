@@ -8,6 +8,7 @@ node_modules
 # production
 dist
 es
+/dist
 /docs-dist
 .history
 /website/pages/dist/**
@@ -39,3 +40,4 @@ backstop_data/html_report
 
 project.private.config.json
 .tgz
+.env
