@@ -1,17 +1,17 @@
 ---
-group: Basic input
-name: Switch switch
+group: Basic Input
+name: Switch Toggle
 ---
 
-# Switch switch
+# Switch Toggle
 
-By simply tapping the button, users can trigger actions or make choices.
+With just a tap of the button, users can trigger actions or make selections.
 
-## Code demonstration
+## Code Demos
 
-### Basic usage
+### Basic Usage
 
-Basic usage of Switch. The default color for Switch is' primary ', and the default size is' medium'.
+Basic usage of `Switch`. The default color of Switch is `primary`, and the default size is `medium`.
 
 ```tsx
 import React from 'react';
@@ -25,11 +25,11 @@ export default () => {
 };
 ```
 
-### There are default values
+### With Default Values
 
-### color
+### Colors
 
-The Switch component provides 5 theme colors: primary, info, success, warning, and danger. The component theme color can be set through color The default value for the color attribute is' primary '.
+The `Switch` component provides 5 theme colors: `primary`, `info`, `success`, `warning`, `danger`. You can set the component's theme color using the `color` property. The default value for `color` is `primary`.
 
 ```tsx
 import React from 'react';
@@ -47,9 +47,9 @@ export default () => {
 };
 ```
 
-### size
+### Sizes
 
-The component size can be specified through 'size', with optional values including 'small', 'medium', and 'large'. The default is' medium '.
+You can define the component size using the `size` property, with options being `small`, `medium`, `large`. The default size is `medium`.
 
 ```tsx
 import React from 'react';
@@ -65,9 +65,9 @@ export default () => {
 };
 ```
 
-### With text and icons
+### With Text and Icons
 
-Customize status text or icons through 'checkedChildren' and 'uncheckedChildren'.
+Customize status text or icons using `checkedChildren` and `unCheckedChildren`.
 
 ```tsx
 import React from 'react';
@@ -77,7 +77,7 @@ import { MoonOutlinedIcon, SunOutlinedIcon } from '@bifrostui/icons';
 export default () => {
   return (
     <Stack spacing="10px" direction="row">
-      <Switch defaultChecked checkedChildren="开" unCheckedChildren="关" />
+      <Switch defaultChecked checkedChildren="On" unCheckedChildren="Off" />
       <Switch
         defaultChecked
         checkedChildren={<MoonOutlinedIcon htmlColor="#fff" />}
@@ -94,9 +94,9 @@ export default () => {
 };
 ```
 
-### Controlled use
+### Controlled Usage
 
-Customize component selection status through 'checked' and 'onChange'.
+Customize the selected state of the component using `checked` and `onChange`.
 
 ```tsx
 import React, { useState } from 'react';
@@ -116,9 +116,9 @@ export default () => {
 };
 ```
 
-### Transmitting attributes transparently to internal input tags
+### Passing Attributes to Internal Input Tag
 
-The input property passed through 'inputProps' can be passed transparently to the internal' input 'tag.
+Attributes passed via `inputProps` will be forwarded to the internal `input` tag.
 
 ```tsx
 import React, { useState } from 'react';
@@ -142,9 +142,9 @@ export default () => {
 };
 ```
 
-### Unavailable state
+### Disabled State
 
-Specify 'Switch' as disabled through 'disabled'.
+Set `Switch` to disabled state using `disabled`.
 
 ```tsx
 import React from 'react';
@@ -162,39 +162,39 @@ export default () => {
 
 ## API
 
-| attribute         | explain                                                                    | type                                                          | Default value |
-| ----------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------- | ------------- |
-| checked           | Selected or not                                                            | boolean                                                       | -             |
-| defaultChecked    | Whether it is selected by default, used when the component is uncontrolled | boolean                                                       | -             |
-| inputRef          | inside `<input>` Label's ref                                               | React.Ref<HTMLInputElement\>                                  | -             |
-| inputProps        | inside `<input>` Standard attributes of tags                               | React.InputHTMLAttributes<HTMLInputElement\>                  | -             |
-| name              | inside `<input>` Name identification                                       | string                                                        | -             |
-| checkedChildren   | Content when selected                                                      | ReactNode                                                     | -             |
-| unCheckedChildren | Content when not selected                                                  | ReactNode                                                     | -             |
-| disabled          | Do you want to disable it                                                  | boolean                                                       | false         |
-| size              | size                                                                       | `small` \|`medium` \|`large`                                  | `medium`      |
-| color             | colour                                                                     | `info` \|`primary` \|`success` \|`warning` \|`danger`         | `primary`     |
-| onChange          | The callback function during changes                                       | (e: React.SyntheticEvent,data: { checked: boolean;},) => void | -             |
+| Property          | Description                                         | Type                                                          | Default Value |
+| ----------------- | --------------------------------------------------- | ------------------------------------------------------------- | ------------- |
+| checked           | Whether it is checked                               | boolean                                                       | -             |
+| defaultChecked    | Default checked state (for uncontrolled components) | boolean                                                       | -             |
+| inputRef          | Ref for the internal `<input>` tag                  | React.Ref<HTMLInputElement\>                                  | -             |
+| inputProps        | Standard attributes for the internal `<input>` tag  | React.InputHTMLAttributes<HTMLInputElement\>                  | -             |
+| name              | Name attribute for the internal `<input>` tag       | string                                                        | -             |
+| checkedChildren   | Content when checked                                | ReactNode                                                     | -             |
+| unCheckedChildren | Content when unchecked                              | ReactNode                                                     | -             |
+| disabled          | Whether it is disabled                              | boolean                                                       | false         |
+| size              | Size                                                | `small` \| `medium` \| `large`                                | `medium`      |
+| color             | Color                                               | `info` \| `primary` \| `success` \| `warning` \| `danger`     | `primary`     |
+| onChange          | Callback function when changed                      | (e: React.SyntheticEvent,data: { checked: boolean;},) => void | -             |
 
-[UNK][UNK]属[UNK]见 [label](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attributes)
+For other attributes, see [label](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attributes)
 
-## Style variables
+## Style Variables
 
-| attribute                  | explain               | Default value | global variable                       |
-| -------------------------- | --------------------- | ------------- | ------------------------------------- |
-| --bg-color                 | background color      | #ccc          | --bui-switch-bg-color                 |
-| --padding                  | padding               | 0             | --bui-switch-padding                  |
-| --border-radius            | fillet                | 15px          | --bui-switch-border-radius            |
-| --small-width              | Small switch width    | 24px          | --bui-switch-small-width              |
-| --small-height             | Small switch height   | 16px          | --bui-switch-small-height             |
-| --small-font-size          | fine print            | 9px           | --bui-switch-small-font-size          |
-| --controller-small-width   | Small control width   | 12px          | --bui-switch-controller-small-width   |
-| --controller-small-height  | Small control height  | 12px          | --bui-switch-controller-small-height  |
-| --medium-width             | Medium switch width   | 44px          | --bui-switch-medium-width             |
-| --medium-height            | Medium switch height  | 22px          | --bui-switch-medium-height            |
-| --controller-medium-width  | Medium control width  | 18px          | --bui-switch-controller-medium-width  |
-| --controller-medium-height | Medium control height | 18px          | --bui-switch-controller-medium-height |
-| --large-width              | Large switch width    | 51px          | --bui-switch-large-width              |
-| --large-height             | Large switch height   | 30px          | --bui-switch-large-height             |
-| --controller-large-width   | Large control width   | 24px          | --bui-switch-controller-large-width   |
-| --controller-large-height  | Large control height  | 24px          | --bui-switch-controller-large-height  |
+| Property                   | Description              | Default Value | Global Variable                       |
+| -------------------------- | ------------------------ | ------------- | ------------------------------------- |
+| --bg-color                 | Background color         | #ccc          | --bui-switch-bg-color                 |
+| --padding                  | Padding                  | 0             | --bui-switch-padding                  |
+| --border-radius            | Border radius            | 15px          | --bui-switch-border-radius            |
+| --small-width              | Small switch width       | 24px          | --bui-switch-small-width              |
+| --small-height             | Small switch height      | 16px          | --bui-switch-small-height             |
+| --small-font-size          | Small font size          | 9px           | --bui-switch-small-font-size          |
+| --controller-small-width   | Small controller width   | 12px          | --bui-switch-controller-small-width   |
+| --controller-small-height  | Small controller height  | 12px          | --bui-switch-controller-small-height  |
+| --medium-width             | Medium switch width      | 44px          | --bui-switch-medium-width             |
+| --medium-height            | Medium switch height     | 22px          | --bui-switch-medium-height            |
+| --controller-medium-width  | Medium controller width  | 18px          | --bui-switch-controller-medium-width  |
+| --controller-medium-height | Medium controller height | 18px          | --bui-switch-controller-medium-height |
+| --large-width              | Large switch width       | 51px          | --bui-switch-large-width              |
+| --large-height             | Large switch height      | 30px          | --bui-switch-large-height             |
+| --controller-large-width   | Large controller width   | 24px          | --bui-switch-controller-large-width   |
+| --controller-large-height  | Large controller height  | 24px          | --bui-switch-controller-large-height  |

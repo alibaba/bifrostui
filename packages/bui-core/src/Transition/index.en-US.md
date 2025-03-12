@@ -1,26 +1,26 @@
 ---
-group: Dynamic effect
-name: Transition Foundation Transition
+group: Animation
+name: Transition Basic Transition
 ---
 
-# Transition Foundation Transition
+# Transition Basic Transition
 
-All the underlying components of dynamic effects.
+The underlying component for all animations.
 
-Responsible for maintaining the mapping from the input (entering, exiting) of what state a component should be in to the output (entering, entering, exiting, exiting, uninstalling) of what state the component is currently in.
+It is responsible for maintaining the mapping from the input of what state a component should be in (entering, exiting) to the output of what state the component is currently in (entering, entered, exiting, exited, unmounted).
 
-The specific rendering is completed by the user after passing the render function to accept the current state of the component.
+The specific rendering is completed by the user passing a render function that accepts the current state of the component.
 
-## Code demonstration
+## Code Demonstration
 
-### Basic usage
+### Basic Usage
 
 The following code implements a simple Fade component.
-As can be seen, passing a rendering function into Transition and maintaining a status based on it makes it easy to implement a custom switching animation.
-The specific meanings corresponding to tenses are as follows:
-Enter, exit: after the change and before the action is triggered
--Ing: Action in progress
--Ed: Action completed
+As can be seen, by passing a render function into Transition and using its maintained status, it is easy to implement a custom transition animation.
+The meanings of the tenses are as follows:
+enter, exit: after `in` changes, before action triggers
+-ing: during the action
+-ed: after the action ends
 
 ```tsx
 import { Button, Transition, Stack } from '@bifrostui/react';
@@ -57,13 +57,13 @@ export default () => {
 };
 ```
 
-## event
+## Events
 
-The Transition component will trigger the corresponding event every time the state changes and return the corresponding DOM node as much as possible in the parameters.
-The triggering timing corresponding to the tense is as follows:
-Enter, exit: after the change and before the action is triggered
--Ing: After the action starts (action in progress)
--Ed: After the action is completed
+The Transition component triggers corresponding events whenever there is a state change, and returns the corresponding DOM node in the parameters if possible.
+The timing of the event triggers based on tenses is as follows:
+enter, exit: after `in` changes, before action triggers
+-ing: after the action starts (during the action)
+-ed: after the action ends
 
 ```tsx
 import { Button, Transition, Stack } from '@bifrostui/react';
@@ -124,19 +124,19 @@ export default () => {
 
 ## API
 
-| attribute     | explain                                    | type                           | Default value |
-| ------------- | ------------------------------------------ | ------------------------------ | ------------- |
-| in            | Do you want to enter                       | boolean                        | false         |
-| appear        | Whether to play animation during mounting  | boolean                        | false         |
-| timeout       | Animation time configuration               | number \|{appear, enter, exit} | -             |
-| delay         | Animation Delay Configuration              | number \|{appear, enter, exit} | -             |
-| enter         | Do you want to play the animation          | boolean                        | true          |
-| exit          | Do you want to play the exit animation     | boolean                        | true          |
-| mountOnEnter  | Mount children on first entry              | boolean                        | false         |
-| unmountOnExit | Uninstall children upon exit               | boolean                        | false         |
-| onEnter       | The callback before entering the beginning | node=>void                     | -             |
-| onEntering    | The callback after entering the beginning  | node=>void                     | -             |
-| onEntered     | Enter the completed callback               | node=>void                     | -             |
-| onExit        | Callback before exit starts                | node=>void                     | -             |
-| onExiting     | Callback after exit starts                 | node=>void                     | -             |
-| onExited      | Exit completed callback                    | node=>void                     | -             |
+| Property      | Description                        | Type                            | Default |
+| ------------- | ---------------------------------- | ------------------------------- | ------- |
+| in            | Whether to enter                   | boolean                         | false   |
+| appear        | Whether to play animation on mount | boolean                         | false   |
+| timeout       | Animation time configuration       | number \| {appear, enter, exit} | -       |
+| delay         | Animation delay configuration      | number \| {appear, enter, exit} | -       |
+| enter         | Whether to play enter animation    | boolean                         | true    |
+| exit          | Whether to play exit animation     | boolean                         | true    |
+| mountOnEnter  | Mount children on first enter      | boolean                         | false   |
+| unmountOnExit | Unmount children on exit           | boolean                         | false   |
+| onEnter       | Callback before entering starts    | node=>void                      | -       |
+| onEntering    | Callback after entering starts     | node=>void                      | -       |
+| onEntered     | Callback after entering completes  | node=>void                      | -       |
+| onExit        | Callback before exiting starts     | node=>void                      | -       |
+| onExiting     | Callback after exiting starts      | node=>void                      | -       |
+| onExited      | Callback after exiting completes   | node=>void                      | -       |

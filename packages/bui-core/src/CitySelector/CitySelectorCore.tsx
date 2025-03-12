@@ -125,7 +125,7 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
       onClose?.(e);
     };
 
-    const renderTitile = (title, titleCode?) => {
+    const renderTitle = (title, titleCode?) => {
       const parseTitle = (titleCode || title).toUpperCase();
       return (
         <div className="select-city-title" id={disableIndex ? '' : parseTitle}>
@@ -137,7 +137,7 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
     const renderCity = (citys, title, titleCode?) => {
       return (
         <div>
-          {renderTitile(title, titleCode)}
+          {renderTitle(title, titleCode)}
           <div className="select-city-buttons">
             {citys.map((city, index) => {
               return (
@@ -190,7 +190,7 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
                   if (!item?.groupName) return null;
                   return (
                     <div key={cityGroupIndex}>
-                      {renderTitile(item.groupName, item.groupName)}
+                      {renderTitle(item.groupName, item.groupName)}
                       <ul className={`${prefixCls}-list`}>
                         {item.cities.map((city, cityIndex) => {
                           return (

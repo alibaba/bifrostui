@@ -1,17 +1,17 @@
 ---
-group: Basic input
-name: Input box
+group: Basic Input
+name: Input Text Box
 ---
 
-# Input box
+# Input Text Box
 
-User input content is the encapsulation of the basic input box.
+User input content, it is a wrapper for the basic input box.
 
-## Code demonstration
+## Code Examples
 
 ### Basic Usage
 
-Support the basic attribute transparency of the 'input' tag. If the attribute to be transparently passed is not in the document, it will only be passed to the internal 'input' tag by placing it in the 'inputProps' field.
+Supports the transmission of basic properties of the `input` tag. If the properties to be transmitted are not in this document, place them in the `inputProps` field to transmit them to the internal `input` tag.
 
 ```tsx
 import { Input } from '@bifrostui/react';
@@ -26,14 +26,18 @@ export default () => {
   };
 
   return (
-    <Input value={value} placeholder="请填写内容" onChange={handleChange} />
+    <Input
+      value={value}
+      placeholder="Please enter content"
+      onChange={handleChange}
+    />
   );
 };
 ```
 
-### Start icon
+### Start Icon
 
-You can customize the start icon through 'startIcon'.
+Customize the start icon using `startIcon`.
 
 ```tsx
 import React, { useState } from 'react';
@@ -50,7 +54,7 @@ export default () => {
   return (
     <Input
       value={value}
-      placeholder="请填写内容"
+      placeholder="Please enter content"
       startIcon={<SearchOutlinedIcon htmlColor="#959aa5" />}
       onChange={handleChange}
     />
@@ -58,9 +62,9 @@ export default () => {
 };
 ```
 
-### End icon
+### End Icon
 
-You can customize the end icon through 'endIcon'.
+Customize the end icon using `endIcon`.
 
 ```tsx
 import React, { useState } from 'react';
@@ -77,7 +81,7 @@ export default () => {
   return (
     <Input
       value={value}
-      placeholder="请填写内容"
+      placeholder="Please enter content"
       endIcon={<SearchOutlinedIcon htmlColor="#959aa5" />}
       onChange={handleChange}
     />
@@ -85,9 +89,9 @@ export default () => {
 };
 ```
 
-### Clear button
+### Clear Button
 
-After enabling 'clearable', a clear button will be displayed when there is input content in the input box and it is in focus state. Uncontrolled state will also clear the input box content.
+Enabling `clearable` will display a clear button when the input box has content and is focused. In uncontrolled state, it also clears the input box content.
 
 ```tsx
 import { Input } from '@bifrostui/react';
@@ -111,32 +115,34 @@ export default () => {
         value={value}
         clearable
         onClear={handleClear}
-        placeholder="请填写内容"
+        placeholder="Please enter content"
         onChange={handleChange}
       />
-      <div style={{ margin: '20px 0 10px' }}>非受控也会清空输入框：</div>
-      <Input clearable defaultValue="会清空内容" />
+      <div style={{ margin: '20px 0 10px' }}>
+        Uncontrolled will also clear the input box:
+      </div>
+      <Input clearable defaultValue="Will clear content" />
     </>
   );
 };
 ```
 
-### Disabled status
+### Disabled State
 
-Use 'disabled' to disable the input box.
+Use `disabled` to disable the input box.
 
 ```tsx
 import { Input } from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
-  return <Input disabled placeholder="请填写内容" />;
+  return <Input disabled placeholder="Please enter content" />;
 };
 ```
 
 ### Controlled/Uncontrolled
 
-Determine whether it is a controlled component based on whether 'value' is passed in. Uncontrolled components can control the value of 'input' by obtaining elements through 'inputRef'.
+Determine whether it is a controlled component based on whether `value` is passed. Uncontrolled components can control the `input` value by obtaining the element through `inputRef`.
 
 ```tsx
 import { Button, Input } from '@bifrostui/react';
@@ -169,17 +175,21 @@ export default () => {
           marginBottom: '40px',
         }}
       >
-        受控组件：
-        <Button onClick={addTen}>数量加10</Button>
+        Controlled component:
+        <Button onClick={addTen}>Increase by 10</Button>
         <br />
         <Input value={value} onChange={(e, data) => setValue(data.value)} />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        非受控组件：
+        Uncontrolled component:
         <br />
-        <Button onClick={reduceTen}>数量减10(操作defaultValue无效)</Button>
+        <Button onClick={reduceTen}>
+          Decrease by 10 (manipulating defaultValue is ineffective)
+        </Button>
         <br />
-        <Button onClick={multiplyTwo}>数量乘2(通过DOM操作value有效)</Button>
+        <Button onClick={multiplyTwo}>
+          Multiply by 2 (DOM manipulation of value is effective)
+        </Button>
         <br />
         <Input inputRef={reduceRef} defaultValue={defaultValue} />
       </div>
@@ -188,11 +198,11 @@ export default () => {
 };
 ```
 
-### Specify type type
+### Specifying type Attribute
 
-H5：通过 type 可指定输入框类型，type 的值应为标准 [HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
+HTML5: Use `type` to specify the input box type. The value of `type` should be a standard [HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
 
-Mini program: The value of 'type' varies in different channels, please refer to [Mini program input type]（ https://developers.weixin.qq.com/miniprogram/dev/component/input.html )
+Mini Program: The value of `type` varies across different channels; refer to [Mini Program input type](https://developers.weixin.qq.com/miniprogram/dev/component/input.html)
 
 ```tsx
 import { Input } from '@bifrostui/react';
@@ -208,7 +218,7 @@ export default () => {
   return (
     <Input
       type="number"
-      placeholder="number类型"
+      placeholder="Number type"
       value={value}
       onChange={handleChange}
     />
@@ -218,32 +228,32 @@ export default () => {
 
 ## API
 
-| attribute    | explain                                                                                                              | type                                                                   | Default value |
-| ------------ | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------- |
-| defaultValue | The default content of the input box is used when the component is uncontrolled                                      | string                                                                 | -             |
-| value        | Input box content, used when the component is controlled                                                             | string                                                                 | -             |
-| inputProps   | inside `<input>` Standard attributes of tags                                                                         | React.InputHTMLAttributes<HTMLInputElement\>                           | -             |
-| inputRef     | inside `<input>` Label's ref                                                                                         | React.Ref<HTMLInputElement\>                                           | -             |
-| name         | `<input>` Name identification                                                                                        | string                                                                 | -             |
-| type         | `<input>` The type identifier should be a valid HTML5 input type value or a type value supported by the mini program | string                                                                 | text          |
-| clearable    | Is the clear icon displayed? Clicking on the clear icon will clear the input box                                     | boolean                                                                | false         |
-| startIcon    | Input with icon, set front icon                                                                                      | ReactNode                                                              | -             |
-| endIcon      | Input with icon, set the back icon. If clearable=true, both icons will be displayed                                  | ReactNode                                                              | -             |
-| placeholder  | Occupation Content                                                                                                   | string                                                                 | -             |
-| disabled     | Do you want to disable it                                                                                            | boolean                                                                | false         |
-| onClear      | Clicking on the clear icon callback will also clear the input box content in an uncontrolled state                   | (e: React.MouseEvent<HTMLDivElement\>) => void                         | -             |
-| onChange     | Callback when input box content changes                                                                              | (e: React.ChangeEvent<HTMLInputElement\>,data: {value:string}) => void | -             |
-| onFocus      | Callback during focusing                                                                                             | (e: React.FocusEvent<HTMLInputElement\>) => void                       | -             |
-| onBlur       | Callback when out of focus                                                                                           | (e: React.FocusEvent<HTMLInputElement\>) => void                       | -             |
+| Property     | Description                                                                                   | Type                                                                   | Default |
+| ------------ | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ------- |
+| defaultValue | Default content of the input box, used when the component is uncontrolled                     | string                                                                 | -       |
+| value        | Content of the input box, used when the component is controlled                               | string                                                                 | -       |
+| inputProps   | Standard attributes for the internal `<input>` tag                                            | React.InputHTMLAttributes<HTMLInputElement\>                           | -       |
+| inputRef     | Ref for the internal `<input>` tag                                                            | React.Ref<HTMLInputElement\>                                           | -       |
+| name         | Name identifier for `<input>`                                                                 | string                                                                 | -       |
+| type         | Type identifier for `<input>`, should be a valid HTML5 input type value or Mini Program type  | string                                                                 | text    |
+| clearable    | Whether to show the clear icon, clicking the clear icon will clear the input box              | boolean                                                                | false   |
+| startIcon    | Set the start icon for an input with icons                                                    | ReactNode                                                              | -       |
+| endIcon      | Set the end icon for an input with icons, both icons will be displayed if `clearable=true`    | ReactNode                                                              | -       |
+| placeholder  | Placeholder content                                                                           | string                                                                 | -       |
+| disabled     | Whether to disable                                                                            | boolean                                                                | false   |
+| onClear      | Callback when the clear icon is clicked, uncontrolled state also clears the input box content | (e: React.MouseEvent<HTMLDivElement\>) => void                         | -       |
+| onChange     | Callback when the input box content changes                                                   | (e: React.ChangeEvent<HTMLInputElement\>,data: {value:string}) => void | -       |
+| onFocus      | Callback when focused                                                                         | (e: React.FocusEvent<HTMLInputElement\>) => void                       | -       |
+| onBlur       | Callback when unfocused                                                                       | (e: React.FocusEvent<HTMLInputElement\>) => void                       | -       |
 
-## Style variables
+## Style Variables
 
-| attribute                   | explain                         | Default value              | global variable                       |
-| --------------------------- | ------------------------------- | -------------------------- | ------------------------------------- |
-| --height                    | height                          | 32px                       | --bui-input-height                    |
-| --padding                   | padding                         | 4px 10px                   | --bui-input-padding                   |
-| --border-radius             | fillet                          | --bui-shape-radius-default | --bui-input-border-radius             |
-| --icon-start-margin-right   | Right margin of the head button | 3px                        | --bui-input-icon-start-margin-right   |
-| --icon-end-margin-left      | Left margin of the tail button  | 3px                        | --bui-input-icon-end-margin-left      |
-| --background-color          | Background color                | transparent                | --bui-input-background-color          |
-| --disabled-background-color | Disable background color        | rgba(0, 0, 0, 0.04)        | --bui-input-disabled-background-color |
+| Property                    | Description                | Default Value              | Global Variable                       |
+| --------------------------- | -------------------------- | -------------------------- | ------------------------------------- |
+| --height                    | Height                     | 32px                       | --bui-input-height                    |
+| --padding                   | Padding                    | 4px 10px                   | --bui-input-padding                   |
+| --border-radius             | Border Radius              | --bui-shape-radius-default | --bui-input-border-radius             |
+| --icon-start-margin-right   | Right Margin of Start Icon | 3px                        | --bui-input-icon-start-margin-right   |
+| --icon-end-margin-left      | Left Margin of End Icon    | 3px                        | --bui-input-icon-end-margin-left      |
+| --background-color          | Background Color           | transparent                | --bui-input-background-color          |
+| --disabled-background-color | Disabled Background Color  | rgba(0, 0, 0, 0.04)        | --bui-input-disabled-background-color |
