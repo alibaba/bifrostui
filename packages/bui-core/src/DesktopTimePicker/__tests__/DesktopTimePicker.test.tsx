@@ -38,17 +38,24 @@ describe('DesktopTimePicker', () => {
     expect(document.getElementsByClassName(`${rootClass}-main`).length).toBe(0);
   });
 
-  it('should not show container when disableOpenPicker', async () => {
+  it('should not show container when readOnly and disableOpenPicker', async () => {
     const { container } = render(
       <DesktopTimePicker
         value={dayjs('2023-04-01T08:00:00').toDate()}
         minTime={dayjs('2023-04-01T08:00:00').toDate()}
         maxTime={dayjs('2023-04-01T18:00:00').toDate()}
         disableOpenPicker
+        inputProps={{
+          readOnly: true,
+        }}
       />,
     );
     await act(async () => {
       userEvent.click(container.querySelector(`.${rootClass}-icon`));
+    });
+    expect(document.getElementsByClassName(`${rootClass}-main`).length).toBe(0);
+    await act(async () => {
+      userEvent.click(container.querySelector(`.${rootClass}-content`));
     });
     expect(document.getElementsByClassName(`${rootClass}-main`).length).toBe(0);
   });
@@ -338,5 +345,50 @@ describe('DesktopTimePicker', () => {
     fireEvent.change(inputDom, { target: { value: '12:00:00 PM' } });
     fireEvent.blur(inputDom);
     expect(document.getElementsByTagName('input')[0].value).toBe('12:00:00 PM');
+  });
+
+  it('should disable AM/PM options outside the allowed range', async () => {
+    const { container } = render(
+      <DesktopTimePicker
+        defaultValue={dayjs('2023-04-03T08:00:00').toDate()}
+        minTime={dayjs('2023-04-01T08:00:00').toDate()}
+        maxTime={dayjs('2023-04-03T11:00:00').toDate()}
+        ampm
+      />,
+    );
+    await act(async () => {
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
+    });
+    const meridiem = document.getElementsByClassName(
+      `${rootClass}-meridiem-disabled`,
+    );
+    expect(meridiem.length).toBe(1);
+  });
+
+  it('should disable AM/PM options outside the allowed range', async () => {
+    const disabledTimeView = () => ({
+      hour: () => {
+        return [0];
+      },
+      minute: (selectedHour) => {
+        return [0];
+      },
+      second: () => [0],
+    });
+    const onChange = jest.fn();
+
+    const { container } = render(
+      <DesktopTimePicker
+        value={null}
+        disabledTimeView={disabledTimeView}
+        onChange={onChange}
+      />,
+    );
+    await act(async () => {
+      userEvent.click(container.querySelector(`.${rootClass}-icon`));
+    });
+    const hourList = document.getElementsByClassName(`${rootClass}-hour-ul`);
+    fireEvent.click(hourList[0].children[10]);
+    expect(onChange).toHaveBeenCalled();
   });
 });

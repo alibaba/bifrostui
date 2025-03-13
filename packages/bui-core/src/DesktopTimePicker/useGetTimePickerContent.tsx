@@ -122,10 +122,13 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
         // 禁用或点击当前值不处理
         if (disabled || selectedValue === item.value) return;
 
-        // 获取符合条件的最小时间
-        const validMinTime = calculateValidMinTime(disabledTimeView, minTime);
         // 兼容timeValue为空时，避免点击后值invalid
-        const validTime = timeValue ?? validMinTime;
+        let validTime = timeValue;
+        if (!timeValue) {
+          // 获取符合条件的最小时间
+          const validMinTime = calculateValidMinTime(disabledTimeView, minTime);
+          validTime = validMinTime;
+        }
 
         const updateHour = (hour) =>
           validTime.format('A') === 'PM' ? hour + 12 : hour;

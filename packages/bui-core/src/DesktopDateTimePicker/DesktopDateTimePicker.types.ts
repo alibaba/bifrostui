@@ -168,7 +168,7 @@ export type DateTimePickerProps<
       /**
        * DesktopPickerProps
        */
-      DesktopPickerProps?: DesktopPickerProps;
+      DesktopPickerProps?: Omit<DesktopPickerProps, 'open'>;
       /**
        * CalendarProps
        */

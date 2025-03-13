@@ -101,7 +101,7 @@ export type TimePickerProps<
       /**
        * DesktopPickerProps
        */
-      DesktopPickerProps?: DesktopPickerProps;
+      DesktopPickerProps?: Omit<DesktopPickerProps, 'open'>;
       /**
        * 自定义时间单元格渲染内容
        */

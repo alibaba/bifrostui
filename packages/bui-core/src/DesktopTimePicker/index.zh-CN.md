@@ -453,10 +453,9 @@ export default () => {
 | onOpen             | 弹层打开的回调                   | () => void                                                                                                                                  | -                                                                              |
 | onChange           | 时间发生变化的回调               | (e: React.SyntheticEvent, data: { value: Date \| null }) => void                                                                            | -                                                                              |
 | timeRender         | 自定义时间单元格的内容           | (item: {value: number \| string, label: string, disabled:boolean}) => React.ReactNode                                                       | -                                                                              |
-| DesktopPickerProps | 透传给 DesktopPicker 的属性      |
+| DesktopPickerProps | 透传给 DesktopPicker 的属性      | DesktopPickerProps                                                                                                                          |
 | inputRef           | 输入框Ref                        | Ref                                                                                                                                         | -                                                                              |
 | inputProps         | \<input/> 标签透传属性           | React.InputHTMLAttributes                                                                                                                   | -                                                                              |
-| DesktopPickerProps | 透传给 DesktopPicker 的属性      | DesktopPickerProps                                                                                                                          |
 
 ## 样式变量
 
