@@ -169,7 +169,7 @@ export type DesktopDatePickerProps<
       /**
        * DesktopPickerProps
        */
-      DesktopPickerProps?: DesktopPickerProps;
+      DesktopPickerProps?: Omit<DesktopPickerProps, 'open'>;
       /**
        * CalendarProps
        */
