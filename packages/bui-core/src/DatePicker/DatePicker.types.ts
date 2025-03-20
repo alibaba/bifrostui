@@ -1,15 +1,7 @@
 import React from 'react';
 import { OverrideProps } from '@bifrostui/types';
 import { PickerProps, IPickerOptionItem } from '../Picker';
-
-export enum DatePickerType {
-  YEAR = 'year',
-  MONTH = 'month',
-  DAY = 'day',
-  HOUR = 'hour',
-  MINUTE = 'minute',
-  SECOND = 'second',
-}
+import { DatePickerType } from './constants';
 
 export type DatePickerOption = IPickerOptionItem & {
   value: number;

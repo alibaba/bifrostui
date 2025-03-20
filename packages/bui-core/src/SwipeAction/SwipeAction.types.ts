@@ -1,6 +1,7 @@
 /* eslint-disable */
 import { OverrideProps, ThemeColor } from '@bifrostui/types';
 import React from 'react';
+import { SideTypeEnum } from './constants';
 
 export type SwipeActionProps<
   D extends React.ElementType = 'div',
@@ -90,14 +91,3 @@ export type SwipeActionRef = {
   open: boolean;
   ref?: HTMLDivElement;
 };
-
-export enum SideTypeEnum {
-  LEFT = 'left',
-  RIGHT = 'right',
-}
-
-export enum DragPhaseEnum {
-  START = 1,
-  MOVE = 2,
-  END = 3,
-}
