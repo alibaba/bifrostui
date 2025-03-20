@@ -1,13 +1,10 @@
 import React, { forwardRef, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { useValue } from '@bifrostui/utils';
-import {
-  DatePickerProps,
-  DatePickerType,
-  DatePickerOption,
-} from './DatePicker.types';
+import { DatePickerProps, DatePickerOption } from './DatePicker.types';
 import Picker from '../Picker';
 import { useLocaleText } from '../locales';
+import { DatePickerType } from './constants';
 
 const MIN_DATE = new Date(new Date().getFullYear() - 10, 0, 1);
 const MAX_DATE = new Date(new Date().getFullYear() + 10, 11, 31);

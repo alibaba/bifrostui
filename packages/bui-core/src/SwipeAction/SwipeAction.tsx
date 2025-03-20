@@ -14,12 +14,8 @@ import {
   throttle,
 } from '@bifrostui/utils';
 import BuiSwipeActionContext from './SwipeActionContext';
-import {
-  SwipeActionProps,
-  SwipeActionRef,
-  SideTypeEnum,
-  DragPhaseEnum,
-} from './SwipeAction.types';
+import { DragPhaseEnum, SideTypeEnum } from './constants';
+import { SwipeActionProps, SwipeActionRef } from './SwipeAction.types';
 import './SwipeAction.less';
 
 const classPrefix = 'bui-swipe-action';
