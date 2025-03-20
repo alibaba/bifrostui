@@ -1,6 +1,7 @@
 import React from 'react';
 import { act, fireEvent, isConformant, render } from 'testing';
-import DatePicker, { DatePickerType, DatePickerOption } from '..';
+import DatePicker, { DatePickerOption } from '..';
+import DatePickerType from '../constants';
 
 const rootClass = 'bui-date-picker';
 const currentDate = new Date(2025, 1, 26);

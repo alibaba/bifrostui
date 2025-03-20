@@ -2,7 +2,8 @@ import React from 'react';
 import { render, isConformant, fireEvent, act } from 'testing';
 import SwipeAction from '../SwipeAction';
 import SwipeActionItem from '../SwipeActionItem';
-import { SwipeActionRef, SideTypeEnum } from '../SwipeAction.types';
+import { SwipeActionRef } from '../SwipeAction.types';
+import { SideTypeEnum } from '../constants';
 
 describe('SwipeAction', () => {
   // 在每个测试用例之前，启用Jest的假定时器
