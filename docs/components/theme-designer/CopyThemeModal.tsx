@@ -37,7 +37,7 @@ const CopyThemeModal = (props: CopyThemeModalProps) => {
       <div className="theme-modal-content">
         <div className="theme-modal-title">自定义主题</div>
         <div className="theme-modal-desc">
-          以下自定义主题可复制到业务代码的app.less文件中，并在项目入口引用改主题变量文件，实现自定义主题定制。
+          以下自定义主题可复制到业务代码的app.less文件中，并在项目入口引用该主题变量文件，实现自定义主题定制。
         </div>
         <TextArea
           className="theme-modal-textarea"
