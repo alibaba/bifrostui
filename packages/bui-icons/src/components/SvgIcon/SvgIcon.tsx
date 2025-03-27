@@ -8,7 +8,7 @@ const classes = {
   root: 'bui-svg-icon',
 };
 
-export default function SvgIcon(props: ISvgIconProps) {
+function SvgIcon(props: ISvgIconProps, ref) {
   const {
     className,
     children,
@@ -51,6 +51,7 @@ export default function SvgIcon(props: ISvgIconProps) {
       // 传入string，svg dom模式，使用dangerouslySetInnerHTML
       return (
         <Component
+          ref={ref}
           className={clsx(classes.root, className, {
             [`icon-size-${size}`]: size,
           })}
@@ -68,6 +69,7 @@ export default function SvgIcon(props: ISvgIconProps) {
     // 传入ReactNode，直接丢进children
     return (
       <Component
+        ref={ref}
         className={clsx(classes.root, className, {
           [`icon-size-${size}`]: size,
         })}
@@ -90,6 +92,7 @@ export default function SvgIcon(props: ISvgIconProps) {
     // div背景色模式，组装data:image/svg+xml塞进内联样式
     return (
       <Component
+        ref={ref}
         className={clsx(classes.root, className, {
           [`icon-size-${size}`]: size,
         })}
@@ -107,3 +110,5 @@ export default function SvgIcon(props: ISvgIconProps) {
   }
   return null;
 }
+
+export default React.forwardRef(SvgIcon);

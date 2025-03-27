@@ -9,13 +9,13 @@ export const cssVarToValue = (
 ): string | undefined => {
   const {
     cssVar,
-    themeVars = defaultLight.cssVars,
+    themeVars = defaultLight?.cssVars,
     _visitedKeys = new Set<string>(),
   } = options || {};
   if (!cssVar) return '';
 
   const variableKey = cssVar.replace(/^var\(/, '').replace(/\)$/, '');
-  const variableValue = themeVars[variableKey];
+  const variableValue = themeVars?.[variableKey];
 
   if (_visitedKeys.has(variableKey)) {
     console.warn(`检测到CSS变量循环引用: ${variableKey}`);
