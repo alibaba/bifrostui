@@ -42,12 +42,16 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
       onUnmounted,
       containerWidth = 'auto',
       BackdropProps,
+      prefix = '',
       ...others
     } = props;
     const contentRef = useRef<HTMLDivElement>(null);
     const nodeRef = useRef<HTMLDivElement>(null);
     const renderChildren = React.cloneElement(children as ReactElement, {
       ref: nodeRef,
+      style: {
+        flex: 1,
+      },
     });
     const [contentPosition, setContentPosition] = useState<'bottom' | 'top'>(
       'bottom',
@@ -163,6 +167,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
     return (
       <>
         <div ref={ref} className={clsx(prefixCls, className)} {...others}>
+          {prefix}
           {renderChildren}
         </div>
         {!isMini && renderContainer && <Portal>{renderContent()}</Portal>}
