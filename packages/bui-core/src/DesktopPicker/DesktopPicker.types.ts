@@ -9,6 +9,10 @@ export type DesktopPickerProps<
   {
     props: P & {
       /**
+       * 前缀
+       */
+      prefix?: React.ReactNode | string;
+      /**
        * 是否继承宽度
        * @default true
        */
