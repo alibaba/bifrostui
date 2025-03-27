@@ -108,8 +108,9 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   );
 
   useEffect(() => {
+    // value变化，或value没变但tab数量变化时，indicator位置要更新
     animate();
-  }, [value]);
+  }, [value, tabs.length, React.Children.toArray(children).length]);
 
   useEffect(() => {
     const handleResize = debounce(() => {
