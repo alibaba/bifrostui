@@ -168,7 +168,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
           })}
           style={{
             transition: 'transform 0.3s ease-in-out',
-            transform: `translate3d(${indicatorData.x}px, 0px, 0px)`,
+            transform: `translate(${indicatorData.x}px, 0px)`,
           }}
         />
 
