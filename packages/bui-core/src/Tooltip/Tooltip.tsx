@@ -9,7 +9,7 @@ import {
 } from '@bifrostui/utils';
 import Portal from '../Portal';
 import { TooltipProps } from './Tooltip.types';
-import './Tooltip.less';
+import './index.less';
 
 const prefixCls = 'bui-tooltip';
 

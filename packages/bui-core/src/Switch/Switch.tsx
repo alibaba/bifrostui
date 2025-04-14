@@ -2,7 +2,7 @@ import { useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import React, { forwardRef } from 'react';
 import { SwitchProps } from './Switch.types';
-import './Switch.less';
+import './index.less';
 
 const prefixCls = 'bui-switch';
 

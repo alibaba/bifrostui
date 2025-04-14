@@ -10,6 +10,14 @@
   "directories": {
     "test": "__tests__"
   },
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "module": "./src/index.ts",
+      "require": "./src/index.ts"
+    },
+    "./css/*": "./es/*/index.css"
+  },
   "files": [
     "dist",
     "es",
@@ -19,6 +27,14 @@
   "publishConfig": {
     "main": "dist/index.js",
     "module": "es/index.js",
+    "exports": {
+      ".": {
+        "import": "./es/index.js",
+        "module": "./es/index.js",
+        "require": "./dist/index.js"
+      },
+      "./css/*": "./es/*/index.css"
+    },
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },

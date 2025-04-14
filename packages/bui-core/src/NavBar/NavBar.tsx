@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { useForkRef, useSize } from '@bifrostui/utils';
 import { ArrowBackwardLargeIcon } from '@bifrostui/icons';
 import { NavBarProps } from './NavBar.types';
-import './NavBar.less';
+import './index.less';
 
 const prefixCls = 'bui-navbar';
 

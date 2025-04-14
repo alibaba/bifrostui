@@ -3,7 +3,7 @@ import React, { SetStateAction, useContext, useEffect } from 'react';
 import { SelectOptionProps } from './Select.types';
 import BuiSelectContext from './selectContext';
 
-import './Select.less';
+import './index.less';
 
 const prefixCls = 'bui-select-option';
 

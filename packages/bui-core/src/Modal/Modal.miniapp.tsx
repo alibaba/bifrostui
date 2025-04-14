@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { View, ViewProps } from '@tarojs/components';
 import Backdrop from '../Backdrop';
 import Portal from '../Portal';
-import './Modal.less';
 import { ModalProps } from './Modal.types';
+import './index.less';
 
 const prefixCls = 'bui-modal';
 

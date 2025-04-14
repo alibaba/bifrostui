@@ -7,7 +7,7 @@ import React, { SyntheticEvent, useMemo, useState } from 'react';
 import { CalendarProps, ICalendarInstance } from './Calendar.types';
 import { formatDate, isRange, isSame } from './utils';
 import { useLocaleText } from '../locales';
-import './Calendar.less';
+import './index.less';
 
 dayjs.extend(isoWeek);
 

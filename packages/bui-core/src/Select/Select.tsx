@@ -15,7 +15,7 @@ import { SelectProps } from './Select.types';
 import BuiSelectContext from './selectContext';
 import Backdrop from '../Backdrop';
 import Portal from '../Portal';
-import './Select.less';
+import './index.less';
 
 const prefixCls = 'bui-select';
 const defaultPlacement = 'bottom';

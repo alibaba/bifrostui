@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { LoadingThreeQuartersOutlinedIcon } from '@bifrostui/icons';
 import { LoadingProps } from './Loading.types';
-import './Loading.less';
+import './index.less';
 
 const prefixCls = 'bui-loading';
 

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 import { BadgeProps } from './Badge.types';
-import './Badge.less';
+import './index.less';
 
 const prefixCls = 'bui-badge';
 

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
-import './Skeleton.less';
 import { SkeletonProps } from './Skeleton.types';
+import './index.less';
 
 const prefixCls = 'bui-skeleton';
 

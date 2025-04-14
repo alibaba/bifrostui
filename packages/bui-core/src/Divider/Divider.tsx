@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React, { forwardRef } from 'react';
 import { DividerProps } from './Divider.types';
-import './Divider.less';
+import './index.less';
 
 const prefixCls = 'bui-divider';
 

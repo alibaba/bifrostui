@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Modal from '../Modal';
 import Slide from '../Slide';
 import { DrawerProps } from './Drawer.types';
-import './Drawer.less';
+import './index.less';
 
 const prefixCls = 'bui-drawer';
 

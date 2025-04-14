@@ -4,7 +4,7 @@ import { useDidMountEffect } from '@bifrostui/utils';
 import { CountdownProps } from './Countdown.types';
 import useCountdown from './useCountdown';
 import { formatCountdown } from './utils';
-import './Countdown.less';
+import './index.less';
 
 const prefixCls = 'bui-countdown';
 
