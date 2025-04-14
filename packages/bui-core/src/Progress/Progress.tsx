@@ -5,7 +5,7 @@ import {
   ProgressProps,
   ProgressStringGradients,
 } from './Progress.types';
-import './Progress.less';
+import './index.less';
 
 const prefixCls = 'bui-progress';
 

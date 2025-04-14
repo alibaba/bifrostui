@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 import { ButtonProps } from './Button.types';
-import './Button.less';
+import './index.less';
 
 const prefixCls = 'bui-btn';
 

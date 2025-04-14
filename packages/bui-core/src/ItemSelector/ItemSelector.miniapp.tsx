@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import Taro from '@tarojs/taro';
 import { ItemSelectorProps } from './ItemSelector.types';
 import ItemSelectorCore from './ItemSelectorCore';
-import './miniapp.less';
 
 const ItemSelector = React.forwardRef<HTMLDivElement, ItemSelectorProps>(
   (props, ref) => {

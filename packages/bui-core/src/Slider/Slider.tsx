@@ -14,9 +14,9 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import './Slider.less';
 import { SliderProps, SliderValue } from './Slider.types';
 import { formatValue, isSameValue, sortValue } from './utils';
+import './index.less';
 
 const classes = {
   root: 'bui-slider',

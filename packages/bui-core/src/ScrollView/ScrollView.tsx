@@ -1,7 +1,7 @@
 import { useForkRef } from '@bifrostui/utils';
 import clsx from 'clsx';
 import React, { forwardRef, useCallback, useEffect, useRef } from 'react';
-import './ScrollView.less';
+import './index.less';
 
 import { ScrollViewProps } from './ScrollView.types';
 

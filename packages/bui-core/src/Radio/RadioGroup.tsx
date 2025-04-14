@@ -1,9 +1,9 @@
 import { useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import React, { forwardRef } from 'react';
-import './Radio.less';
 import { RadioGroupProps } from './Radio.types';
 import { RadioContextProvider } from './RadioContext';
+import './index.less';
 
 const prefixCls = 'bui-radio-group';
 

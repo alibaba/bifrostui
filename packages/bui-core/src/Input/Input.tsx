@@ -3,7 +3,7 @@ import { isMini, useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import React, { forwardRef, useState } from 'react';
 import { InputProps } from './index';
-import './Input.less';
+import './index.less';
 
 const prefixCls = 'bui-input';
 

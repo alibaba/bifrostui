@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import React, { forwardRef, useContext } from 'react';
 import { CheckboxProps } from './Checkbox.types';
 import CheckboxContext from './CheckboxContext';
-import './Checkbox.less';
+import './index.less';
 
 const prefixCls = 'bui-checkbox';
 

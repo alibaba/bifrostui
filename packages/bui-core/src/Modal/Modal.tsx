@@ -3,8 +3,8 @@ import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import Backdrop from '../Backdrop';
 import Portal from '../Portal';
-import './Modal.less';
 import { ModalProps } from './Modal.types';
+import './index.less';
 
 const prefixCls = 'bui-modal';
 

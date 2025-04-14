@@ -4,7 +4,7 @@ import React, { forwardRef, useContext } from 'react';
 import { RadioProps } from './Radio.types';
 import RadioButtonIcon from './RadioButtonIcon';
 import RadioContext from './RadioContext';
-import './Radio.less';
+import './index.less';
 
 const prefixCls = 'bui-radio';
 

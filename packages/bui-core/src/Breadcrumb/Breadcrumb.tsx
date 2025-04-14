@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import BreadcrumbItem from './BreadcrumbItem';
 import { BreadcrumbProps } from './Breadcrumb.types';
-import './Breadcrumb.less';
+import './index.less';
 
 const prefixCls = 'bui-breadcrumb';
 

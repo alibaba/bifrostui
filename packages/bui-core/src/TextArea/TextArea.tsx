@@ -2,7 +2,7 @@ import { isMini, useForkRef, useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import React, { useEffect, useRef } from 'react';
 import { TextAreaProps } from './TextArea.types';
-import './TextArea.less';
+import './index.less';
 
 const prefixCls = 'bui-textarea';
 const DEFAULT_ROWS = 2;

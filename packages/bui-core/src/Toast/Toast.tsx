@@ -9,7 +9,7 @@ import {
 import { ToastProps, ToastRef } from './Toast.types';
 import Fade from '../Fade';
 import { useTheme } from '../ThemeProvider';
-import './Toast.less';
+import './index.less';
 
 const prefixCls = 'bui-toast';
 

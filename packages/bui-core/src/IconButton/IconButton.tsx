@@ -2,7 +2,7 @@ import { isMini } from '@bifrostui/utils';
 import clsx from 'clsx';
 import React from 'react';
 import { IconButtonProps } from './IconButton.types';
-import './IconButton.less';
+import './index.less';
 
 const prefixCls = 'bui-icon-btn';
 

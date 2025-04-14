@@ -3,7 +3,7 @@ import { useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import React, { forwardRef } from 'react';
 import { RatingProps } from './Rating.types';
-import './Rating.less';
+import './index.less';
 
 const classes = {
   root: 'bui-rating',
