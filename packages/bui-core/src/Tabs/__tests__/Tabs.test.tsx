@@ -73,7 +73,7 @@ describe('Tabs', () => {
 
     const tabLine = container.querySelector(`.${rootClass.tabs}-indicator`);
     expect(tabLine).toHaveStyle({
-      transform: 'translate3d(0px, 0px, 0px)',
+      transform: 'translate(0px, 0px)',
       transition: 'transform 0.3s ease-in-out',
     });
   });
