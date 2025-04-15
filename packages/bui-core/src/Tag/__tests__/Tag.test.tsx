@@ -59,7 +59,9 @@ describe('Tag', () => {
   });
   it('should render with htmlColor currently  when light', () => {
     const htmlColor = '#666666';
-    const { container } = render(<Tag variant="light" htmlColor={htmlColor} />);
+    const { container } = render(
+      <Tag variant="subtle" htmlColor={htmlColor} />,
+    );
     const target = container.querySelector<HTMLDivElement>(`.${rootClass}`);
     expect(container.querySelector(`.${rootClass}`)).toHaveStyle(
       `color: ${htmlColor}`,

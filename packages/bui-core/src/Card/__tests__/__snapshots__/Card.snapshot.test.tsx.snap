@@ -401,6 +401,7 @@ exports[`Card snapshot Card demo snapshot 0 7`] = `
       >
         <button
           className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-success"
+          disabled={false}
           type="button"
         >
           签收
@@ -474,6 +475,7 @@ exports[`Card snapshot Card demo snapshot 0 8`] = `
       >
         <button
           className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-success"
+          disabled={false}
           type="button"
         >
           签收

@@ -3,6 +3,7 @@ import { render, isConformant, userEvent, screen } from 'testing';
 import Alert from '../Alert';
 
 describe('Alert', () => {
+  const originalModule = jest.requireActual('@bifrostui/utils');
   isConformant({
     Component: Alert,
     displayName: 'BuiAlert',
@@ -49,6 +50,7 @@ describe('Alert', () => {
     it('should render icon current in miniapp', async () => {
       jest.resetModules();
       jest.doMock('@bifrostui/utils', () => ({
+        ...originalModule,
         isMini: true,
       }));
       const { default: MiniAlert } = await import('../index');
@@ -59,6 +61,7 @@ describe('Alert', () => {
     it('should render icon color current in miniapp', async () => {
       jest.resetModules();
       jest.doMock('@bifrostui/utils', () => ({
+        ...originalModule,
         isMini: true,
       }));
       const { default: MiniAlert } = await import('../index');

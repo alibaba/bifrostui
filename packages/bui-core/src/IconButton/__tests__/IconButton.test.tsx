@@ -44,7 +44,7 @@ describe('IconButton', () => {
       'success',
       'info',
       'danger',
-      'default',
+      'neutral',
     ] as const;
     colors.forEach((color) => {
       render(<IconButton color={color}>{color} IconButton</IconButton>);
