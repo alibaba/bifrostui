@@ -103,6 +103,7 @@ Array [
   >
     <button
       className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
       onClick={[Function]}
       type="button"
     >
@@ -110,6 +111,7 @@ Array [
     </button>
     <button
       className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
       onClick={[Function]}
       type="button"
     >
@@ -117,6 +119,7 @@ Array [
     </button>
     <button
       className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
       onClick={[Function]}
       type="button"
     >

@@ -21,7 +21,7 @@ exports[`ActionSheet renders correctly 1`] = `
       class="bui-action-sheet-item-wrapper"
     >
       <div
-        class="bui-action-sheet-item bui-action-sheet-item-default"
+        class="bui-action-sheet-item bui-action-sheet-item-neutral"
       >
         <div
           class="bui-action-sheet-item-content"
@@ -30,7 +30,7 @@ exports[`ActionSheet renders correctly 1`] = `
         </div>
       </div>
       <div
-        class="bui-action-sheet-item bui-action-sheet-item-default"
+        class="bui-action-sheet-item bui-action-sheet-item-neutral"
       >
         <div
           class="bui-action-sheet-item-content"
@@ -39,7 +39,7 @@ exports[`ActionSheet renders correctly 1`] = `
         </div>
       </div>
       <div
-        class="bui-action-sheet-item bui-action-sheet-item-default bui-action-sheet-item-disabled"
+        class="bui-action-sheet-item bui-action-sheet-item-neutral bui-action-sheet-item-disabled"
       >
         <div
           class="bui-action-sheet-item-content"
@@ -48,7 +48,7 @@ exports[`ActionSheet renders correctly 1`] = `
         </div>
       </div>
       <div
-        class="bui-action-sheet-item bui-action-sheet-item-default bui-action-sheet-item-bold"
+        class="bui-action-sheet-item bui-action-sheet-item-neutral bui-action-sheet-item-bold"
       >
         <div
           class="bui-action-sheet-item-content"
@@ -57,7 +57,7 @@ exports[`ActionSheet renders correctly 1`] = `
         </div>
       </div>
       <div
-        class="bui-action-sheet-item bui-action-sheet-item-default"
+        class="bui-action-sheet-item bui-action-sheet-item-neutral"
       >
         <div
           class="bui-action-sheet-item-content"
