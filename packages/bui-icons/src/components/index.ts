@@ -35,7 +35,7 @@ export { default as BankCardFilledIcon } from './BankCardFilled';
 export { default as BankCardOutlinedIcon } from './BankCardOutlined';
 export { default as BlockCircleFilledIcon } from './BlockCircleFilled';
 export { default as BlockCircleOutlinedIcon } from './BlockCircleOutlined';
-export { default as BlockCircleOutlinedIconBoldIcon } from './BlockCircleOutlinedIconBold';
+export { default as BlockCircleOutlinedBoldIcon } from './BlockCircleOutlinedBold';
 export { default as BlockCircleOutlinedThinIcon } from './BlockCircleOutlinedThin';
 export { default as BogoOutlinedIcon } from './BogoOutlined';
 export { default as BoltFilledIcon } from './BoltFilled';
