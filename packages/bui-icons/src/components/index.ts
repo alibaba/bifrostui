@@ -220,7 +220,7 @@ export { default as TipsOutlinedIcon } from './TipsOutlined';
 export { default as ToTopOutlinedIcon } from './ToTopOutlined';
 export { default as TopicFilledIcon } from './TopicFilled';
 export { default as TopicOutlinedIcon } from './TopicOutlined';
-export { default as TransFilledIcon } from './TransFilled';
+export { default as TransformFilledIcon } from './TransformFilled';
 export { default as TrendingCircleFilledIcon } from './TrendingCircleFilled';
 export { default as TrendingCircleOutlinedIcon } from './TrendingCircleOutlined';
 export { default as TripleVerticalLineIcon } from './TripleVerticalLine';
