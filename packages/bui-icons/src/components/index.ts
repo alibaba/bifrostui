@@ -186,6 +186,7 @@ export { default as ScanOutlinedIcon } from './ScanOutlined';
 export { default as ScheduleIcon } from './Schedule';
 export { default as SearchGapOutlinedIcon } from './SearchGapOutlined';
 export { default as SearchOutlinedIcon } from './SearchOutlined';
+export { default as SearchOutlinedBoldIcon } from './SearchOutlinedBold';
 export { default as SettingsOutlinedIcon } from './SettingsOutlined';
 export { default as SevenDayCalendarIcon } from './SevenDayCalendar';
 export { default as ShareIcon } from './Share';
