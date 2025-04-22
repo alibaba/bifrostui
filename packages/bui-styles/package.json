@@ -1,6 +1,6 @@
 {
   "name": "@bifrostui/styles",
-  "version": "2.0.0-beta.8",
+  "version": "2.0.0-beta.9",
   "main": "dist/index.css",
   "description": "Common style definitions for BUI React components",
   "homepage": "http://bui.taopiaopiao.com",
