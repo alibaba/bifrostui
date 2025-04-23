@@ -35,8 +35,9 @@
     "tests:gen": "node scripts/generate-tests/generate-component-test.mjs",
     "check:credentials": "node scripts/check-account/check-credentials.js",
     "theme:js2less": "node scripts/execute-script/theme.js",
-    "theme:less2js": "node scripts/theme/collect-theme-vars.js",
-    "theme:watch": "node scripts/watch/theme.js"
+    "theme:less2js": "node scripts/theme/collect-theme-vars.mjs",
+    "theme:watch": "node scripts/watch/theme.js",
+    "inspect": "node scripts/auto-inspect/index.mjs"
   },
   "dependencies": {
     "@bifrostui/icons": "workspace:*",
@@ -102,6 +103,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "fast-glob": "^3.3.1",
     "fs-extra": "^10.0.0",
     "glob": "^10.2.2",
     "globby": "^11",
