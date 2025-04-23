@@ -1,12 +1,14 @@
-const fse = require('fs-extra');
-const path = require('path');
+import path from 'path';
+import fse from 'fs-extra';
+import { rootSelectorContentRegex, convertToJson } from '../utils/index.mjs';
 
 const igonredDirs = ['locales'];
-// 查找@{root-selector} 的内容
-const rootSelectorContentRegex = /@{root-selector}\s*{([^}]+)}/;
-const componentsDir = path.join(__dirname, '../../packages/bui-core/src');
+const componentsDir = path.join(
+  import.meta.dirname,
+  '../../packages/bui-core/src',
+);
 const outputFilePath = path.join(
-  __dirname,
+  import.meta.dirname,
   '../../docs/constants/theme-vars.json',
 );
 
@@ -22,24 +24,6 @@ const getComponentsFiles = (directory) => {
     }
   });
   return result;
-};
-
-const convertToJson = (str) => {
-  const cleanedStr = str
-    .replace(/\/\*.*?\*\//g, '') // 去除 /* ... */
-    .replace(/\/\/.*?(?=\n|$)/g, '') // 去除 // ...
-    .replace(/[\r\n]+/g, '') // 去除换行
-    .trim(); // 去除首尾空格
-
-  const regex = /(--[\w-]+):\s*([^;]+);/g;
-  const results = {};
-  let match;
-
-  while ((match = regex.exec(cleanedStr)) !== null) {
-    results[match[1]] = match[2].trim();
-  }
-
-  return results;
 };
 
 const collectThemeVars = () => {
