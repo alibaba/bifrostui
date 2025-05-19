@@ -5,7 +5,7 @@ import ora from 'ora';
 import path from 'path';
 import fse from 'fs-extra';
 import chalk from 'chalk';
-import TaskBase from './task-base.mjs';
+import Task from '../task-runner/task.mjs';
 import getAllComponents from '../../utils/getAllComponents.mjs';
 import {
   systemPrompt,
@@ -144,7 +144,7 @@ const task = async (componentList = []) => {
   }
 };
 
-export default new TaskBase({
+export default new Task({
   name: 'task-css-var-suggest',
   desc: '组件less中的样式属性是否存在可替换为css变量的值',
   inputTips:

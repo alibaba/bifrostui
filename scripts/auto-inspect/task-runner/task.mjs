@@ -1,4 +1,4 @@
-export default class TaskBase {
+export default class Task {
   constructor(options) {
     this.options = options;
     this.task = options.task;
@@ -19,13 +19,6 @@ export default class TaskBase {
   }
 
   async run(params) {
-    try {
-      const result = await this.task(params);
-      this.result.pass = result.pass;
-      this.result.data = result.data;
-    } catch (error) {
-      this.result.pass = false;
-    }
-    return this.result;
+    return this.task(params);
   }
 }
