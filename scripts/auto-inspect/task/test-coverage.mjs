@@ -2,7 +2,7 @@ import ora from 'ora';
 import path from 'path';
 import chalk from 'chalk';
 import { execSync } from 'child_process';
-import TaskBase from './task-base.mjs';
+import Task from '../task-runner/task.mjs';
 import { ignoreTestCoverage } from '../ignore.mjs';
 
 // 各覆盖率最低标准
@@ -135,7 +135,7 @@ const task = () => {
   }
 };
 
-export default new TaskBase({
+export default new Task({
   name: 'task-test-coverage',
   desc: '单测行覆盖率是否达90%',
   task: async () => {

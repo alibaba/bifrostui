@@ -1,7 +1,7 @@
 import fg from 'fast-glob';
 import path from 'path';
 import chalk from 'chalk';
-import TaskBase from './task-base.mjs';
+import Task from '../task-runner/task.mjs';
 import { ignoreCssEntryFile } from '../ignore.mjs';
 import getAllComponents from '../../utils/getAllComponents.mjs';
 
@@ -24,7 +24,7 @@ const task = async () => {
   return invalidData;
 };
 
-export default new TaskBase({
+export default new Task({
   name: 'task-css-entry-file',
   desc: '组件样式入口文件名是否正确，用于规范独立导出组件样式',
   task: async () => {

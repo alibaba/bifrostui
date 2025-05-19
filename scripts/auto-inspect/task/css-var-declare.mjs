@@ -2,7 +2,7 @@ import fg from 'fast-glob';
 import path from 'path';
 import fse from 'fs-extra';
 import chalk from 'chalk';
-import TaskBase from './task-base.mjs';
+import Task from '../task-runner/task.mjs';
 import getAllComponents from '../../utils/getAllComponents.mjs';
 import { rootSelectorContentRegex } from '../../utils/index.mjs';
 import { ignoreCssVarDeclare } from '../ignore.mjs';
@@ -42,7 +42,7 @@ const task = async () => {
   return invalidData;
 };
 
-export default new TaskBase({
+export default new Task({
   name: 'task-css-var-declare',
   desc: '组件是否声明主题定制css变量任务',
   task: async () => {

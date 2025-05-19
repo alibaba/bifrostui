@@ -2,7 +2,7 @@ import fg from 'fast-glob';
 import path from 'path';
 import fse from 'fs-extra';
 import chalk from 'chalk';
-import TaskBase from './task-base.mjs';
+import Task from '../task-runner/task.mjs';
 import { ignoreThemeDesignOnline } from '../ignore.mjs';
 import getAllComponents from '../../utils/getAllComponents.mjs';
 import { rootSelectorContentRegex, convertToJson } from '../../utils/index.mjs';
@@ -59,7 +59,7 @@ const task = async () => {
   return invalidData;
 };
 
-export default new TaskBase({
+export default new Task({
   name: 'theme-design-online',
   desc: '组件是否支持在线定制主题任务',
   task: async () => {
