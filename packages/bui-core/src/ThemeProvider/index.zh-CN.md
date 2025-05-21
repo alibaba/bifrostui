@@ -71,7 +71,7 @@ export default () => {
       defaultLightToken={defaultLightToken}
       defaultDarkToken={defaultDarkToken}
     >
-      <Button variant="contained" size="large" color="info">
+      <Button variant="contained" color="info">
         info
       </Button>
     </ThemeProvider>
@@ -98,16 +98,11 @@ const internalToken = {
 export default () => {
   return (
     <ThemeProvider isRoot token={token}>
-      <Button
-        variant="contained"
-        size="large"
-        color="info"
-        style={{ marginRight: '20px' }}
-      >
+      <Button variant="contained" color="info" style={{ marginRight: '20px' }}>
         Outter Button
       </Button>
       <ThemeProvider token={internalToken}>
-        <Button variant="contained" size="large" color="info">
+        <Button variant="contained" color="info">
           Inner Button
         </Button>
       </ThemeProvider>
