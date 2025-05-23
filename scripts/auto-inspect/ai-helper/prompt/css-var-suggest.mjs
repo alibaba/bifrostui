@@ -111,11 +111,15 @@ ${cssVars}
 
 5. 如果样式文件中全部都为@import引用语句，则不需要再审查；
 
-6. <significant>若有修改建议，请以下面的数据结构输出，不要额外额外内容；若没有修改建议，请一定保证下面数据结构中的message字段为空字符串，不要输出额外内容。
+6. <significant>若有修改建议，请以下面的数据结构输出，不要额外额外内容；若没有修改建议，请一定保证下面数据结构中的suggestions字段为空数组，不要输出额外内容。
 
 <answer>
 {
-  "message": "你提供的修改建议",
+  "suggestions": [
+    {
+      message: "你提供的修改建议",
+    }
+  ],
   "componentName": "${componentName}",
   "componentPath": "${componentPath}",
   "lessPath": "${cssPath}"

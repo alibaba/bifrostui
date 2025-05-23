@@ -30,7 +30,11 @@ export default class TaskRunner {
         inputComponents = await this.getInputComponents(task.options.inputTips);
       }
       const res = await this.executeTask({ task, inputComponents });
-      this.results.push(res);
+
+      this.results.push({
+        ...task.result,
+        ...res,
+      });
     }
     return this.results;
   }

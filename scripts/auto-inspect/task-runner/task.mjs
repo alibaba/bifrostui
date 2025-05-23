@@ -15,6 +15,8 @@ export default class Task {
       data: null,
       // 任务执行异常时的报错信息
       error: null,
+      // ai任务执行结果提示
+      aiWarning: options.aiWarning,
     };
   }
 
