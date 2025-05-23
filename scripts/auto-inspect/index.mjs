@@ -14,28 +14,28 @@ import cssEntryFileTask from './task/css-entry-file.mjs';
 import themeDesignOnline from './task/theme-design-online.mjs';
 import cssVarSuggestTask from './task/css-var-suggest.mjs';
 import testCoverageTask from './task/test-coverage.mjs';
+import codeReviewTask from './task/code-review.mjs';
 
-const main = async () => {
-  const taskRunner = new TaskRunner();
-  // 1. 脚本任务（快、准，适用于规则固定的规范检查，覆盖面较窄）
-  // 2. AI任务（慢，适用于规则不固定的规范检查，覆盖面广）
-  const tasks = [
-    cssVarDeclareTask,
-    cssEntryFileTask,
-    themeDesignOnline,
-    testCoverageTask,
-    cssVarSuggestTask,
-  ];
-  tasks.forEach((task) => taskRunner.addTask(task));
+const args = process.argv.slice(2);
+const arg = args[0];
+const isRetry = arg === 'retry';
 
-  let results = await taskRunner.run();
-  results = results.filter((item) => !item.pass);
-  console.log(chalk.green(`🚀🚀 所有巡检任务已执行完成！`));
-
+// 生成巡检结果报表
+const generateReport = async (dataList) => {
+  let results = dataList;
   const resPath = `${process.cwd()}/inspect`;
-  const spinner = ora(`✨ AI正在为您生成巡检报告...`).start();
+  if (isRetry) {
+    results = fse.readJSONSync(`${resPath}.json`);
+    if (!results?.length) {
+      console.log(chalk.red('没有可用于生成报表的数据源，请重新执行巡检任务'));
+      return;
+    }
+  }
+  const spinner = ora(
+    `✨ AI正在${isRetry ? '尝试重新' : ''}为您生成巡检报告...`,
+  ).start();
+
   try {
-    // 生成巡检结果报表
     const resFilePath = `${resPath}.html`;
     await createResult({ result: results, resPath: resFilePath });
     console.log(
@@ -49,12 +49,38 @@ const main = async () => {
     });
     console.log(
       chalk.red(
-        `AI生成报表失败，降级为JSON报表，请前往 ${resultFilePath} 查看结果`,
+        `AI生成报表失败，降级为JSON报表，请前往 ${resultFilePath} 查看结果，或执行 pnpm inspect retry 尝试重新生成报表`,
       ),
     );
   } finally {
     spinner.stop();
   }
+};
+
+const main = async () => {
+  if (isRetry) {
+    generateReport();
+    return;
+  }
+  const taskRunner = new TaskRunner();
+  // 1. 脚本任务（快、准，适用于规则固定的规范检查，覆盖面较窄）
+  // 2. AI任务（慢，适用于规则不固定的规范检查，覆盖面广）
+  const tasks = [
+    cssVarDeclareTask,
+    cssEntryFileTask,
+    themeDesignOnline,
+    testCoverageTask,
+    cssVarSuggestTask,
+    codeReviewTask,
+  ];
+  tasks.forEach((task) => taskRunner.addTask(task));
+
+  let results = await taskRunner.run();
+  results = results.filter((item) => !item.pass);
+  console.log(chalk.green(`🚀🚀 所有巡检任务已执行完成！`));
+
+  // 生成巡检结果报表
+  generateReport(results);
 };
 
 main();
