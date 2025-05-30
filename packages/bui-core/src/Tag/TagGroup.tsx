@@ -6,21 +6,23 @@ import './TagGroup.less';
 
 const prefixCls = 'bui-tag-group';
 
-const Tag = React.forwardRef<HTMLDivElement, TagGroupProps>((props, ref) => {
-  const { className, onClick, children, ...others } = props;
+const TagGroup = React.forwardRef<HTMLDivElement, TagGroupProps>(
+  (props, ref) => {
+    const { className, onClick, children, ...others } = props;
 
-  return (
-    <div
-      ref={ref}
-      onClick={onClick}
-      className={clsx(prefixCls, className)}
-      {...others}
-    >
-      {children}
-    </div>
-  );
-});
+    return (
+      <div
+        ref={ref}
+        onClick={onClick}
+        className={clsx(prefixCls, className)}
+        {...others}
+      >
+        {children}
+      </div>
+    );
+  },
+);
 
-Tag.displayName = 'BuiTagGroup';
+TagGroup.displayName = 'BuiTagGroup';
 
-export default Tag;
+export default TagGroup;
