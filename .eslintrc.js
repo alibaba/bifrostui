@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
     es2021: true,
@@ -21,6 +22,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
     'plugin:markdown/recommended',
+    'plugin:jsx-a11y/recommended',
   ],
   overrides: [
     {
@@ -63,6 +65,7 @@ module.exports = {
     '@typescript-eslint',
     'prettier',
     'markdown',
+    'jsx-a11y',
   ],
   rules: {
     'import/extensions': 0,
@@ -136,13 +139,16 @@ module.exports = {
     'no-restricted-exports': 0,
     // **********
     'react/function-component-definition': 0,
-    'jsx-a11y/click-events-have-key-events': 0,
-    'jsx-a11y/no-static-element-interactions': 0,
-    'jsx-a11y/label-has-associated-control': 0,
-    'jsx-a11y/no-noninteractive-element-interactions': 0,
     'react/jsx-props-no-spreading': 0,
     'react/no-array-index-key': 0,
     '@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/no-var-requires': 0,
+    // jsx-a11y rules
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
+    'jsx-a11y/no-noninteractive-element-interactions': 'off',
+    'jsx-a11y/no-autofocus': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
   },
 };
