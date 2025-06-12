@@ -13,7 +13,7 @@ const Swiper = forwardRef<SwiperRef, SwiperProps>((props, ref) => {
   const {
     autoplay = false,
     circular = false,
-    current,
+    current = 0,
     displayMultipleItems = 1,
     duration = 500,
     interval = 5000,
@@ -54,23 +54,13 @@ const Swiper = forwardRef<SwiperRef, SwiperProps>((props, ref) => {
     }
     swiperInstance?.current?.slideTo?.(current);
   }, [current]);
-  useEffect(() => {
-    if (swiperInstance?.current) {
-      if (autoplay) {
-        if (typeof current !== 'number') {
-          swiperInstance?.current?.slideTo?.(1);
-        }
-        swiperInstance?.current?.autoplay.start();
-      } else {
-        swiperInstance?.current?.autoplay.stop();
-      }
-    }
-  }, [autoplay]);
   return (
     <SwiperReact
       modules={[Pagination, Autoplay, EffectFade]}
       loop={circular}
-      autoplay={{ delay: interval, disableOnInteraction: false }}
+      autoplay={
+        autoplay ? { delay: interval, disableOnInteraction: false } : false
+      }
       speed={duration}
       slidesPerView={displayMultipleItems}
       direction={vertical ? 'vertical' : 'horizontal'}
