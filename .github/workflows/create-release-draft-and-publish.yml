@@ -104,14 +104,14 @@ jobs:
       - name: Determine release type
         id: release-type
         run: |
-          if [[ "${{ env.COMMIT_TAG }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-beta\.[0-9]+$ ]]; then
+          if [[ "${{ env.COMMIT_TAG }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-(beta|alpha)\.[0-9]+$ ]]; then
             echo "RELEASE=pre-release" >> $GITHUB_ENV
             echo "......pre-release......"
           elif [[ "${{ env.COMMIT_TAG }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             echo "RELEASE=latest" >> $GITHUB_ENV
             echo "......latest......"
           else
-            echo "Error: Invalid tag, only support like vX.X.X-beta.X or vX.X.X, plase check your tag."
+            echo "Error: Invalid tag, only support like vX.X.X-alpha.X, vX.X.X-beta.X or vX.X.X, plase check your tag."
             exit 1
           fi
 
