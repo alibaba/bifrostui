@@ -13,7 +13,7 @@ const Swiper = forwardRef<SwiperRef, SwiperProps>((props, ref) => {
   const {
     autoplay = false,
     circular = false,
-    current,
+    current = 0,
     displayMultipleItems = 1,
     duration = 500,
     interval = 5000,
@@ -52,14 +52,15 @@ const Swiper = forwardRef<SwiperRef, SwiperProps>((props, ref) => {
       isInit.current = false;
       return;
     }
-    swiperInstance?.current?.slideTo?.(current);
-  }, [current]);
+    if (circular) {
+      swiperInstance?.current?.slideToLoop?.(current);
+    } else {
+      swiperInstance?.current?.slideTo?.(current);
+    }
+  }, [current, circular]);
   useEffect(() => {
     if (swiperInstance?.current) {
       if (autoplay) {
-        if (typeof current !== 'number') {
-          swiperInstance?.current?.slideTo?.(1);
-        }
         swiperInstance?.current?.autoplay.start();
       } else {
         swiperInstance?.current?.autoplay.stop();
