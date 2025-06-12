@@ -7,8 +7,10 @@
   "homepage": "https://alibaba.github.io/bifrostui",
   "scripts": {
     "v:online": "npx lerna version --force-publish --message 'Publish'",
+    "v:alpha": "npx lerna version prerelease --preid=alpha --force-publish --message 'Publish'",
     "v:beta": "npx lerna version prerelease --preid=beta --force-publish --message 'Publish'",
     "pub:online": "pnpm -r publish",
+    "pub:alpha": "pnpm -r publish --tag alpha",
     "pub:beta": "pnpm -r publish --tag beta",
     "start": "cross-env PUBLIC_PATH=/ concurrently 'pnpm theme:less2js' 'dumi dev' 'pnpm theme:watch'",
     "start:weapp": "node scripts/mini-program-site/index.js --type weapp",
@@ -19,6 +21,7 @@
     "build:tt": "node scripts/mini-program-site/index.js --type tt",
     "build": "lerna run build --no-private --verbose",
     "docs:build": "cross-env PUBLIC_PATH=/ dumi build && chmod +x ./scripts/handle-docs.sh && ./scripts/handle-docs.sh $docs_version",
+    "docs:build:alpha": "cross-env PUBLIC_PATH=/alpha/ dumi build && chmod +x ./scripts/handle-docs.sh && ./scripts/handle-docs.sh $docs_version",
     "docs:build:beta": "cross-env PUBLIC_PATH=/beta/ dumi build && chmod +x ./scripts/handle-docs.sh && ./scripts/handle-docs.sh $docs_version",
     "clear": "rimraf **/node_modules",
     "package": "chmod +x ./scripts/pack-packages.sh && ./scripts/pack-packages.sh",
