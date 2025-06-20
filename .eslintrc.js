@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
     es2021: true,
@@ -21,6 +22,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
     'plugin:markdown/recommended',
+    'plugin:jsx-a11y/recommended',
   ],
   overrides: [
     {
@@ -63,6 +65,7 @@ module.exports = {
     '@typescript-eslint',
     'prettier',
     'markdown',
+    'jsx-a11y',
   ],
   rules: {
     'import/extensions': 0,
@@ -137,13 +140,31 @@ module.exports = {
     'no-restricted-exports': 0,
     // **********
     'react/function-component-definition': 0,
-    'jsx-a11y/click-events-have-key-events': 0,
-    'jsx-a11y/no-static-element-interactions': 0,
-    'jsx-a11y/label-has-associated-control': 0,
-    'jsx-a11y/no-noninteractive-element-interactions': 0,
     'react/jsx-props-no-spreading': 0,
     'react/no-array-index-key': 0,
     '@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/no-var-requires': 0,
+    // ===== 可访问性 (a11y) 规则 =====
+    // 1. 键盘交互规则
+    'jsx-a11y/click-events-have-key-events': 'warn', // 确保可点击元素有对应的键盘事件处理
+    'jsx-a11y/no-static-element-interactions': 'warn', // 禁止在静态元素上添加事件处理器
+    'jsx-a11y/no-noninteractive-element-interactions': 'warn', // 禁止在非交互元素上添加事件处理器
+    'jsx-a11y/no-autofocus': 'warn', // 禁止使用自动聚焦，除非必要
+
+    // 2. 表单和标签规则
+    'jsx-a11y/label-has-associated-control': 'warn', // 确保每个 label 标签都有对应的表单控件
+    'jsx-a11y/anchor-is-valid': 'warn', // 确保锚点标签有有效的 href 属性
+
+    // 3. ARIA 角色和属性规则
+    'jsx-a11y/role-has-required-aria-props': 'warn', // 确保具有 ARIA 角色的元素包含该角色所需的所有属性
+    'jsx-a11y/role-supports-aria-props': 'warn', // 确保 ARIA 属性与元素的 ARIA 角色兼容
+    'jsx-a11y/aria-role': 'warn', // 确保 ARIA 角色有效
+    'jsx-a11y/aria-props': 'warn', // 确保 ARIA 属性有效
+    'jsx-a11y/aria-proptypes': 'warn', // 确保 ARIA 属性值有效
+    'jsx-a11y/aria-unsupported-elements': 'warn', // 确保 ARIA 属性不被用于不支持它的元素
+
+    // 4. 图片可访问性规则
+    'jsx-a11y/alt-text': 'warn', // 确保图片有替代文本
+    'jsx-a11y/img-redundant-alt': 'warn', // 避免图片的 alt 文本与图片内容重复
   },
 };

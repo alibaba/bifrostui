@@ -17,6 +17,7 @@ export {
 } from '@testing-library/react-hooks';
 
 export { default as userEvent } from '@testing-library/user-event';
+export { accessibilityDemoTest } from './accessibilityTest';
 
 // override render method
 const getTargetElement = (testInfo, result, attr) => {
@@ -141,5 +142,76 @@ export const snapshotTest = async (componentName) => {
         await snapshot(index);
       }
     });
+  });
+};
+
+export const getMdDemoCodes = (
+  componentName = '',
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  callback = (...ags: any[]) => {},
+  skips = [],
+) => {
+  if (!componentName) throw Error('componentName is required');
+  const filePath = path.join(
+    __dirname,
+    `../packages/bui-core/src/${componentName}/*.zh-CN.md`,
+  );
+  const componentTestPath = path.join(
+    __dirname,
+    `../packages/bui-core/src/${componentName}/__tests__/`,
+  );
+  const files = glob.sync(filePath);
+  // 若果filePath没有
+  if (!files.length) throw Error('componentName is not exist');
+  files.forEach((file, fileIndex) => {
+    const mdFile = formatMarkdown(file);
+    // 先在componentTestPath项目下创建一个名叫tempDemos的文件夹
+    const tempDemoPath = path.join(componentTestPath, 'tempDemos');
+    if (fs.existsSync(tempDemoPath)) {
+      // 如果存在，则删除文件夹
+      fs.rmdirSync(tempDemoPath, { recursive: true });
+    }
+    fs.mkdirSync(tempDemoPath);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const [index, item] of mdFile.codeModules.entries()) {
+      // eslint-disable-next-line no-continue
+      if (!item.code) continue;
+      // 在文件夹下创建一个tsx文件，将item.code写入
+      const createFilePath = path.join(tempDemoPath, `md_demo_${index}.tsx`);
+      fs.writeFileSync(createFilePath, item.code);
+    }
+    // 去读取tempDemos文件夹下的所有tsx文件
+    let demofiles = glob.sync(`${tempDemoPath}/*.tsx`);
+    // 过滤掉skip中的文件
+    if (skips.length) {
+      demofiles = demofiles.filter((item) => {
+        return item && !skips.some((item2) => item.includes(item2));
+      });
+    }
+    // console.log(demofiles, 'demofiles12');
+    // eslint-disable-next-line no-restricted-syntax
+    for (const [index, item] of demofiles.entries()) {
+      // 读取每个文件中导出的default
+      // eslint-disable-next-line import/no-dynamic-require, global-require
+      const demo = require(item);
+      const Component = demo.default;
+      // 取出文件名字取出后缀作为componentDemoName
+      const componentDemoName = `${componentName}_${path.basename(item).replace('.tsx', '')}`;
+      // console.log(Component, 'Component', index, componentDemoName);
+      // 调用callback，传入Component
+      callback({
+        demoComponent: Component,
+        demoComponentName: componentDemoName,
+        demoComponentIndex: index,
+        demoTotal: demofiles.length,
+        finishCallback: (finishIndex = 0) => {
+          // console.log('finishCallback running.......', finishIndex);
+          if (finishIndex === demofiles.length - 1) {
+            // 删除tempDemos文件夹
+            fs.rmdirSync(tempDemoPath, { recursive: true });
+          }
+        },
+      });
+    }
   });
 };
