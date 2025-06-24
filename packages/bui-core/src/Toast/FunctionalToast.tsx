@@ -59,11 +59,18 @@ const functionalToast = (props: ToastProps | string) => {
     });
   }
 
-  const rootElement = getRootContainer();
+  const rootElement = getRootContainer(options?.container);
   rootElement.appendChild(rootWrapper);
 
   const ToastComponent = () => {
-    const { duration, allowMultiple, onClose, ...others } = options;
+    const {
+      duration,
+      allowMultiple,
+      onClose,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      container,
+      ...others
+    } = options;
     const [open, setOpen] = useState(false);
     let timer;
     const fadeTimeout = {
