@@ -47,6 +47,11 @@ export interface DialogProps extends ModalProps {
    */
   theme?: ThemeProps;
   /**
+   * 渲染Dialog的根容器
+   * @default document.body
+   */
+  container?: HTMLElement | (() => HTMLElement);
+  /**
    * 确认回调
    */
   onOk?: (val?: string) => void;

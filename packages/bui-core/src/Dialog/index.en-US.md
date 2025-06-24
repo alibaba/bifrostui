@@ -5,15 +5,15 @@ name: Dialog
 
 # Dialog
 
-Used for informing important information or feedback on operations. It supports `Dialog`, `Dialog.confirm`, and `Dialog.prompt`. We recommend using the Hooks method to call it. Static methods cannot obtain context, and ThemeProvider data will not take effect. Therefore, we recommend creating a `contextHolder` that can read context using `Dialog.useDialog` and registering it at the top level instead of using static methods.
+Used for communicating important information or feedback related to operations, the Dialog component supports `Dialog`, `Dialog.confirm`, and `Dialog.prompt`. It is recommended to use Hooks for invocation since static methods cannot access context, and the ThemeProvider data will not be applied. Therefore, it's suggested to use `Dialog.useDialog` to create a contextHolder that supports context reading, using top-level registration methods instead of static methods provided by `Dialog`.
 
-## Code Examples
+## Code Demonstration
 
 ### Confirmation Box
 
-#### Static Method (Not Recommended)
+### Static Method (Not Recommended)
 
-Use `Dialog` (default type is confirm) or `Dialog.confirm` to display a confirmation box. `Dialog.confirm` returns a `Promise`, you can determine whether the user clicked confirm or cancel through the returned value.
+Use `Dialog` (default type is confirm) or `Dialog.confirm` to display a confirmation dialog. `Dialog.confirm` returns a `Promise` that lets you determine if the user clicked confirm or cancel.
 
 ```tsx
 import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
@@ -23,37 +23,37 @@ export default () => {
   const handleClickConfirm = async () => {
     const res = await Dialog({
       header: 'Title',
-      message: 'This is the description content',
+      message: 'This is a description',
     });
     if (res) {
-      Toast({ message: 'Confirmed', position: 'bottom' });
+      Toast({ message: 'Clicked confirm', position: 'bottom' });
     } else {
-      Toast({ message: 'Cancelled', position: 'bottom' });
+      Toast({ message: 'Clicked cancel', position: 'bottom' });
     }
   };
 
   return (
     <Stack direction="row" spacing="10px">
-      <Button onClick={() => Dialog('Submit Application?')}>
-        Default Confirm
+      <Button onClick={() => Dialog('Submit the application?')}>
+        Default is confirm
       </Button>
       <Button
         onClick={() =>
           Dialog.confirm({
             header: 'Title',
-            message: 'Detailed Description',
+            message: 'Detailed description',
           })
         }
       >
-        Confirm
+        confirm
       </Button>
-      <Button onClick={handleClickConfirm}>Wait for Confirm Completion</Button>
+      <Button onClick={handleClickConfirm}>Await confirm completion</Button>
     </Stack>
   );
 };
 ```
 
-#### Hook Call (Recommended)
+### Hook Invocation (Recommended)
 
 ```tsx
 import {
@@ -73,12 +73,12 @@ export default () => {
   const handleClickConfirm = async () => {
     const res = await dialog({
       header: 'Title',
-      message: 'This is the description content',
+      message: 'This is a description',
     });
     if (res) {
-      Toast({ message: 'Confirmed', position: 'bottom' });
+      Toast({ message: 'Clicked confirm', position: 'bottom' });
     } else {
-      Toast({ message: 'Cancelled', position: 'bottom' });
+      Toast({ message: 'Clicked cancel', position: 'bottom' });
     }
   };
 
@@ -86,31 +86,70 @@ export default () => {
     <ThemeProvider locale={theme.locale}>
       {contextHolder}
       <Stack direction="row" spacing="10px">
-        <Button onClick={() => dialog('Submit Application?')}>
-          Default Confirm
+        <Button onClick={() => dialog('Submit the application?')}>
+          Default is confirm
         </Button>
         <Button
           onClick={() =>
             dialog.confirm({
               header: 'Title',
-              message: 'Detailed Description',
+              message: 'Detailed description',
             })
           }
         >
-          Confirm
+          confirm
         </Button>
-        <Button onClick={handleClickConfirm}>
-          Wait for Confirm Completion
-        </Button>
+        <Button onClick={handleClickConfirm}>Await confirm completion</Button>
       </Stack>
     </ThemeProvider>
   );
 };
 ```
 
-### Handling Asynchronous Operations Success/Failure
+### Specify Render Container
 
-Use `onConfirm` to define the callback when confirming.
+You can specify the `container` to set the parent container where it renders.
+
+```tsx
+import {
+  Stack,
+  Button,
+  Dialog,
+  Toast,
+  useTheme,
+  ThemeProvider,
+} from '@bifrostui/react';
+import React from 'react';
+
+export default () => {
+  const theme = useTheme();
+  const [dialog, contextHolder] = Dialog.useDialog();
+
+  return (
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() =>
+            dialog.confirm({
+              header: 'Title',
+              message: 'Detailed description',
+              container: document.getElementById('container'),
+            })
+          }
+        >
+          confirm
+        </Button>
+        <div id="container" />
+      </Stack>
+    </ThemeProvider>
+  );
+};
+```
+
+### Asynchronous Operations Success/Failure
+
+Use `onConfirm` to define the callback when confirm is clicked.
 
 ```tsx
 import {
@@ -133,12 +172,12 @@ export default () => {
 
   const handleClickConfirm = async () => {
     const res = await dialog.confirm({
-      message: 'Submit Application?',
+      message: 'Submit the application?',
       onConfirm: async () => {
         await sleep(3000);
         Toast({
           icon: 'success',
-          content: 'Submission Successful',
+          content: 'Submission successful',
           position: 'bottom',
         });
       },
@@ -148,12 +187,12 @@ export default () => {
 
   const handleClickConfirmError = async () => {
     const res = await dialog.confirm({
-      message: 'Submit Application?',
+      message: 'Submit the application?',
       onConfirm: async () => {
         await sleep(3000);
         Toast({
           icon: 'fail',
-          content: 'Submission Failed',
+          content: 'Submission failed',
           position: 'bottom',
         });
         throw new Error();
@@ -166,11 +205,9 @@ export default () => {
     <ThemeProvider locale={theme.locale}>
       {contextHolder}
       <Stack direction="row" spacing="10px">
-        <Button onClick={handleClickConfirm}>
-          Asynchronous Operation Success
-        </Button>
+        <Button onClick={handleClickConfirm}>Async Operation Success</Button>
         <Button onClick={handleClickConfirmError}>
-          Asynchronous Operation Failure
+          Async Operation Failure
         </Button>
       </Stack>
     </ThemeProvider>
@@ -180,7 +217,7 @@ export default () => {
 
 ### Custom Content Area
 
-You can customize the title and content area using `header` and `message`. You can also customize the cancel and confirm button text using `confirmText` and `cancelText`.
+You can use `header` and `message` to customize the title and content area respectively. You can also use `confirmText` and `cancelText` to customize the text of the confirm and cancel buttons.
 
 ```tsx
 import {
@@ -206,10 +243,10 @@ export default () => {
               header: 'Custom Title and Message',
               message: (
                 <>
-                  <div>Please refer to the following instructions</div>
+                  <div>Please refer to the instructions below</div>
                   <div>
-                    For more details, please check the{' '}
-                    <span>Operation Guide</span>
+                    For detailed instructions, please refer to
+                    <span>the operation guide</span>
                   </div>
                 </>
               ),
@@ -221,7 +258,7 @@ export default () => {
         <Button
           onClick={() => {
             dialog.confirm({
-              header: 'Custom Bottom Button Text',
+              header: 'Customize Footer Button Text',
               confirmText: 'Delete',
             });
           }}
@@ -236,7 +273,7 @@ export default () => {
 
 ### Prompt Dialog
 
-Use `dialog.prompt` to display a prompt dialog. You can customize the placeholder text using `placeholder`. It also supports passing `InputProps` to the internal `Input` component, see [Input](/cores/input#api).
+Use `dialog.prompt` to display a prompt dialog. You can customize placeholder text, and it supports `InputProps` to pass additional properties to the internal `Input` component. Refer to [Input](/cores/input#api) for more details.
 
 ```tsx
 import {
@@ -255,21 +292,21 @@ export default () => {
   const handleClickPrompt = async () => {
     const res = await dialog.prompt({
       header: 'Title',
-      placeholder: 'Custom Placeholder Text',
+      placeholder: 'Custom placeholder text',
     });
-    res && Toast(`Input Value is ${res}`);
+    res && Toast(`Entered value is ${res}`);
   };
 
   return (
     <ThemeProvider locale={theme.locale}>
       {contextHolder}
       <Stack direction="row" spacing="10px">
-        <Button onClick={handleClickPrompt}>Prompt</Button>
+        <Button onClick={handleClickPrompt}>prompt</Button>
         <Button
           onClick={() => {
             dialog.prompt({
               header: 'Title',
-              placeholder: 'Custom Placeholder Text',
+              placeholder: 'Custom placeholder text',
               InputProps: {
                 clearable: true,
               },
@@ -288,48 +325,49 @@ export default () => {
 
 #### DialogOptions
 
-| Property    | Description             | Type                                       | Default |
-| ----------- | ----------------------- | ------------------------------------------ | ------- |
-| header      | Custom header           | `React.ReactNode`                          | -       |
-| message     | Custom message          | `React.ReactNode`                          | -       |
-| confirmText | Confirm button text     | `React.ReactNode`                          | Confirm |
-| cancelText  | Cancel button text      | `React.ReactNode`                          | Cancel  |
-| onConfirm   | Confirm button callback | `(val?: string) => void \| Promise<void>;` | -       |
-| onCancel    | Cancel button callback  | `() =>void \| Promise<void>`               | -       |
+| Property    | Description             | Type                                       | Default Value |
+| ----------- | ----------------------- | ------------------------------------------ | ------------- |
+| header      | Custom header           | `React.ReactNode`                          | -             |
+| message     | Custom message          | `React.ReactNode`                          | -             |
+| confirmText | Confirm button text     | `React.ReactNode`                          | Confirm       |
+| cancelText  | Cancel button text      | `React.ReactNode`                          | Cancel        |
+| container   | Render container        | `HTMLElement` \| `(() => HTMLElement) `    | document.body |
+| onConfirm   | Confirm button callback | `(val?: string) => void \| Promise<void>;` | -             |
+| onCancel    | Cancel button callback  | `() =>void \| Promise<void>`               | -             |
 
-`ConfirmOptions` has the same values as `DialogOptions`
+The properties of `ConfirmOptions` are the same as `DialogOptions`.
 
-`DialogOptions` inherits from `ModalProps`, other properties are detailed in [Modal API](/cores/modal?#API)
+`DialogOptions` inherits from `ModalProps`. Other properties can be found in [Modal API](/cores/modal?#api).
 
 #### PromptOptions
 
-The parameters accepted by `Dialog.prompt` are the same as `Dialog.confirm`, with additional support for the following properties:
+Parameters accepted by `Dialog.prompt` are the same as those for `Dialog.confirm`. Additionally, it supports the following properties:
 
-| Property    | Description             | Type                  | Default           |
-| ----------- | ----------------------- | --------------------- | ----------------- |
-| placeholder | Input placeholder text  | string                | Please enter here |
-| InputProps  | Props passed to `Input` | `Partial<InputProps>` | -                 |
+| Property    | Description                                         | Type                  | Default Value |
+| ----------- | --------------------------------------------------- | --------------------- | ------------- |
+| placeholder | Input placeholder text                              | string                | Please Enter  |
+| InputProps  | Properties passed to the internal `Input` component | `Partial<InputProps>` | -             |
 
 #### Methods
 
-| Method Name    | Description           | Parameters                 | Return Value    |
-| -------------- | --------------------- | -------------------------- | --------------- |
-| Dialog         | Show confirmation box | `DialogOptions \| string`  | `DialogPromise` |
-| Dialog.confirm | Show confirmation box | `ConfirmOptions \| string` | `DialogPromise` |
-| Dialog.prompt  | Show prompt dialog    | `PromptOptions \| string`  | `DialogPromise` |
+| Method Name    | Description              | Parameters               | Return Value  |
+| -------------- | ------------------------ | ------------------------ | ------------- |
+| Dialog         | Display confirmation box | DialogOptions \| string  | DialogPromise |
+| Dialog.confirm | Display confirmation box | ConfirmOptions \| string | DialogPromise |
+| Dialog.prompt  | Display prompt dialog    | PromptOptions \| string  | DialogPromise |
 
 ### Style Variables
 
-| Property                         | Description              | Default Value                 | Global Variable                             |
-| -------------------------------- | ------------------------ | ----------------------------- | ------------------------------------------- |
-| --max-width                      | Dialog max width         | 300px                         | --bui-dialog-max-width                      |
-| --border-radius                  | Dialog border radius     | --bui-shape-radius-drawer     | --bui-dialog-border-radius                  |
-| --title-padding                  | Title padding            | 0 40px 9px                    | --bui-dialog-title-padding                  |
-| --desc-padding                   | Description padding      | 0 24px                        | --bui-dialog-desc-padding                   |
-| --footer-margin-top              | Footer margin top        | 15px                          | --bui-dialog-footer-margin-top              |
-| --button-height                  | Button height            | 53px                          | --bui-dialog-button-height                  |
-| --button-line-height             | Button line height       | 25px                          | --bui-dialog-button-line-height             |
-| --button-padding                 | Button padding           | 12px 0 13px                   | --bui-dialog-button-padding                 |
-| --button-font-size               | Button font size         | 17px                          | --bui-dialog-button-font-size               |
-| --button-border-left             | Button left border       | 1px solid rgba(0, 0, 0, 0.05) | --bui-dialog-button-border-left             |
-| --button-active-background-color | Button active background | rgba(54, 57, 64, 0.05)        | --bui-dialog-button-active-background-color |
+| Property                         | Description                          | Default Value                 | Global Variables                            |
+| -------------------------------- | ------------------------------------ | ----------------------------- | ------------------------------------------- |
+| --max-width                      | Dialog maximum width                 | 300px                         | --bui-dialog-max-width                      |
+| --border-radius                  | Dialog border radius                 | --bui-shape-radius-drawer     | --bui-dialog-border-radius                  |
+| --title-padding                  | Header padding                       | 0 40px 9px                    | --bui-dialog-title-padding                  |
+| --desc-padding                   | Message padding                      | 0 24px                        | --bui-dialog-desc-padding                   |
+| --footer-margin-top              | Footer top margin                    | 15px                          | --bui-dialog-footer-margin-top              |
+| --button-height                  | Button height                        | 53px                          | --bui-dialog-button-height                  |
+| --button-line-height             | Button line height                   | 25px                          | --bui-dialog-button-line-height             |
+| --button-padding                 | Button padding                       | 12px 0 13px                   | --bui-dialog-button-padding                 |
+| --button-font-size               | Button font size                     | 17px                          | --bui-dialog-button-font-size               |
+| --button-border-left             | Button left border                   | 1px solid rgba(0, 0, 0, 0.05) | --bui-dialog-button-border-left             |
+| --button-active-background-color | Button active state background color | rgba(54, 57, 64, 0.05)        | --bui-dialog-button-active-background-color |

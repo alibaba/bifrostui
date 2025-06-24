@@ -26,11 +26,18 @@ const formatProps = (props) => {
 
 const DialogGenerator = (options: DialogOptions) => {
   const rootWrapper = document.createElement('div');
-  const rootElement = getRootContainer();
+  const rootElement = getRootContainer(options?.container);
   rootElement.appendChild(rootWrapper);
 
   const DialogComponent = () => {
-    const { onConfirm, onCancel, ref, ...others } = options;
+    const {
+      onConfirm,
+      onCancel,
+      ref,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      container,
+      ...others
+    } = options;
     const [visible, setVisible] = useState(false);
 
     const close = useCallback(() => {
