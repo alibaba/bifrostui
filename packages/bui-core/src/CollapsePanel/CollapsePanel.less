@@ -8,6 +8,14 @@
     --bui-collapse-panel-content-padding,
     var(--bui-spacing-lg) 0
   );
+  --title-font-size: var(
+    --bui-collapse-panel-title-font-size,
+    var(--bui-title-size-3)
+  );
+  --content-font-size: var(
+    --bui-collapse-panel-content-font-size,
+    var(--bui-text-size-1)
+  );
 
   width: var(--width);
   background-color: var(--bui-color-bg-view);
@@ -25,7 +33,7 @@
 
   &-header-label {
     padding: var(--header-padding);
-    font-size: var(--bui-title-size-2);
+    font-size: var(--title-font-size);
   }
 
   &-header-icon-arrow {
@@ -39,7 +47,7 @@
 
   &-content {
     padding: var(--content-padding);
-    font-size: var(--bui-text-size-1);
+    font-size: var(--content-font-size);
     transition: height 0.5s ease;
     overflow: hidden;
   }

@@ -1,0 +1,115 @@
+@import '@bifrostui/styles/mixins/index.less';
+@class-prefix-date-picker-lay: ~'bui-d-date-picker-lay';
+@{root-selector} {
+  --bui-calendar-padding: 6px 12px 7px;
+  --bui-d-date-picker-lay-font-family: var(--bui-font-family);
+  --bui-d-date-picker-lay-main-radius: 3px;
+  --bui-d-date-picker-lay-content-padding: 10px 16px;
+  --bui-d-date-picker-lay-content-height: 30px;
+  --bui-d-date-picker-lay-content-line-height: 30px;
+  --bui-d-date-picker-lay-content-width: 60px;
+  --bui-d-date-picker-lay-calendar-padding: 6px 12px 7px;
+  --bui-d-date-picker-lay-shadow: 0 0 0 2px var(--bui-color-bg-default);
+  --bui-d-date-picker-title-size: var(--bui-title-size-3);
+  --bui-d-date-picker-list-padding: 6px 12px 7px;
+  --bui-d-date-picker-col-bg: var(--bui-color-bg-view);
+  --bui-d-date-picker-content-radius: var(--bui-shape-radius-default, 6px);
+  --bui-d-date-picker-col-font-size: var(--bui-title-size-4);
+}
+.@{class-prefix-date-picker-lay} {
+  &-main {
+    height: 308px;
+    font-family: var(--bui-d-date-picker-lay-font-family);
+    border-radius: var(--bui-d-date-picker-lay-main-radius);
+    padding: 3px 0;
+    box-shadow: var(--bui-d-date-picker-lay-shadow);
+    overflow: hidden;
+    flex: 1;
+  }
+
+  &-handler {
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 7px;
+    margin-top: 8px;
+
+    &-btn {
+      font-size: 16px;
+      height: 100%;
+      width: 46px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-icon {
+      font-size: 28px;
+    }
+  }
+
+  &-title {
+    display: flex;
+    align-items: center;
+
+    &-text {
+      white-space: nowrap;
+      font-size: var(--bui-d-date-picker-title-size);
+      font-weight: var(--bui-font-weight-medium);
+      text-align: center;
+    }
+
+    &-text:hover {
+      cursor: pointer;
+      color: var(--bui-color-blue);
+    }
+  }
+
+  &-list {
+    max-height: 262px;
+    overflow: auto;
+    padding: var(--bui-d-date-picker-list-padding);
+  }
+
+  &-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bui-d-date-picker-col-bg);
+    cursor: pointer;
+
+    &-content {
+      margin: 12px 8px;
+      padding: 4px 6px;
+      border-radius: var(--bui-d-date-picker-content-radius);
+      display: inline-block;
+      text-align: center;
+      font-weight: var(--bui-font-weight-medium);
+      color: var(--bui-color-fg-default);
+      font-family: var(--bui-d-date-picker-lay-font-family);
+    }
+
+    &-text {
+      display: inline-block;
+      width: 36px;
+      font-size: var(--bui-d-date-picker-col-font-size);
+      line-height: 1;
+    }
+  }
+
+  &-col-active &-col-content {
+    color: #000;
+    background-color: #ffc7da;
+  }
+
+  &-col-disabled &-col-content {
+    color: #ccc;
+  }
+}

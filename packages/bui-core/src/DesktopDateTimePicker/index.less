@@ -1,0 +1,74 @@
+@import '@bifrostui/styles/mixins/index.less';
+@class-prefix-datetime-picker: ~'bui-datetime-picker';
+@{root-selector} {
+  --bui-datetime-picker-height: var(--bui-input-height, 32px);
+  --bui-datetime-picker-min-width: var(--bui-input-min-width, 100px);
+  --bui-datetime-picker-icon-size: var(--bui-title-size-3, 16px);
+  --bui-datetime-picker-font-size: var(--bui-title-size-3, 16px);
+  --bui-datetime-picker-container-padding: var(--bui-spacing-md, 9px);
+  --bui-datetime-picker-bg: var(--bui-color-bg-view);
+  --bui-datetime-picker-font-family: var(--bui-font-family);
+  --bui-datetime-picker-border: 1px solid var(--bui-color-border-default);
+  --bui-datetime-picker-shadow: 0 0 0 2px var(--bui-color-bg-default);
+  --bui-datetime-picker-disabled-color: var(--bui-color-fg-subtle);
+}
+.@{class-prefix-datetime-picker} {
+  position: relative;
+  cursor: pointer;
+  height: var(--bui-datetime-picker-height);
+  min-width: 100px;
+  font-size: var(--bui-datetime-picker-font-size);
+  border-radius: 5px;
+  background-color: var(--bui-datetime-picker-bg);
+  font-family: var(--bui-datetime-picker-font-family);
+  box-sizing: border-box;
+  border: var(--bui-datetime-picker-border);
+
+  &:active,
+  &-active {
+    box-shadow: var(--bui-datetime-picker-shadow);
+  }
+
+  &-invalid {
+    border: 1px solid var(--bui-color-danger);
+  }
+
+  &-icon {
+    display: flex;
+    align-items: center;
+    font-size: var(--bui-datetime-picker-icon-size);
+  }
+
+  &-container {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    height: 100%;
+  }
+
+  &-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: 0;
+  }
+
+  &-box {
+    display: flex;
+    width: 420px;
+  }
+}
+
+.@{class-prefix-datetime-picker}.@{class-prefix-datetime-picker}-disabled {
+  pointer-events: none;
+  box-shadow: none;
+  background-color: rgba(188, 188, 188, 0.2);
+
+  & input {
+    color: var(--bui-datetime-picker-disabled-color);
+  }
+}

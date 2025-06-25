@@ -14,7 +14,7 @@ name: Toast 轻提示
 
 展示提示内容。
 
-#### 静态方法（不推荐）
+### 静态方法（不推荐）
 
 ```tsx
 import { Stack, Button, Toast } from '@bifrostui/react';
@@ -35,7 +35,7 @@ export default () => {
 };
 ```
 
-#### Hooks调用（推荐）
+### Hooks调用（推荐）
 
 ```tsx
 import {
@@ -63,6 +63,45 @@ export default () => {
           toast
         </Button>
       </Stack>
+    </ThemeProvider>
+  );
+};
+```
+
+### 指定渲染容器
+
+可以指定`container`指定渲染的父容器。
+
+```tsx
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
+import React from 'react';
+
+export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const theme = useTheme();
+
+  return (
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() => {
+            toast({
+              message: '提示内容',
+              container: document.getElementById('container'),
+            });
+          }}
+        >
+          toast
+        </Button>
+      </Stack>
+      <div id="container" />
     </ThemeProvider>
   );
 };
@@ -560,15 +599,16 @@ export default () => {
 
 ##### ToastOptions
 
-| 属性          | 说明                                    | 类型                          | 默认值   |
-| ------------- | --------------------------------------- | ----------------------------- | -------- |
-| message       | toast内容，支持使用`\n`换行             | string                        | -        |
-| duration      | 展示时长(ms)，值为 0 时，toast 不会消失 | number                        | 2000     |
-| position      | 展示位置                                | `top` \| `center` \| `bottom` | `center` |
-| allowMultiple | 是否允许同时存在多个Toast               | boolean                       | false    |
-| icon          | 自定义图标                              | React.ReactNode               | -        |
-| disableClick  | 展示Toast时，页面内容是否可以点击       | boolean                       | false    |
-| onClose       | 关闭时的回调函数                        | () => void                    | -        |
+| 属性          | 说明                                    | 类型                                    | 默认值        |
+| ------------- | --------------------------------------- | --------------------------------------- | ------------- |
+| message       | toast内容，支持使用`\n`换行             | string                                  | -             |
+| duration      | 展示时长(ms)，值为 0 时，toast 不会消失 | number                                  | 2000          |
+| position      | 展示位置                                | `top` \| `center` \| `bottom`           | `center`      |
+| allowMultiple | 是否允许同时存在多个Toast               | boolean                                 | false         |
+| icon          | 自定义图标                              | React.ReactNode                         | -             |
+| disableClick  | 展示Toast时，页面内容是否可以点击       | boolean                                 | false         |
+| container     | 渲染容器                                | `HTMLElement` \| `(() => HTMLElement) ` | document.body |
+| onClose       | 关闭时的回调函数                        | () => void                              | -             |
 
 ##### 方法
 

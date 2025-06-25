@@ -35,7 +35,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 1`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "fit-content",
@@ -87,7 +87,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 1`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "0px",
@@ -139,7 +139,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 1`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "0px",
@@ -202,7 +202,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 2`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "fit-content",
@@ -252,7 +252,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 2`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "0px",
@@ -302,7 +302,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 2`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "0px",
@@ -363,7 +363,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 3`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "fit-content",
@@ -415,7 +415,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 3`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "0px",
@@ -467,7 +467,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 3`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "0px",
@@ -530,7 +530,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 4`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "fit-content",
@@ -582,7 +582,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 4`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "0px",
@@ -634,7 +634,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 4`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "0px",
@@ -697,7 +697,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 5`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "fit-content",
@@ -749,7 +749,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 5`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "0px",
@@ -801,7 +801,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 5`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "0px",
@@ -864,7 +864,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 6`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "fit-content",
@@ -916,7 +916,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 6`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "0px",
@@ -968,7 +968,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 6`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "0px",
@@ -1031,7 +1031,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 7`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "fit-content",
@@ -1083,7 +1083,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 7`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "0px",
@@ -1135,7 +1135,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 7`] = `
         </div>
       </div>
       <div
-        className="bui-collapse undefined"
+        className="bui-collapse"
         style={
           Object {
             "WebKitHeight": "0px",
