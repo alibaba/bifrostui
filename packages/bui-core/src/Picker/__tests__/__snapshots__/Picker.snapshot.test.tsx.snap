@@ -287,3 +287,26 @@ exports[`Picker snapshot Picker demo snapshot 0 12`] = `
   </button>
 </div>
 `;
+
+exports[`Picker snapshot Picker demo snapshot 0 13`] = `
+<div
+  className="bui-stack"
+  style={
+    Object {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+    }
+  }
+>
+  <button
+    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    onClick={[Function]}
+    type="button"
+  >
+    打开选择器
+  </button>
+</div>
+`;

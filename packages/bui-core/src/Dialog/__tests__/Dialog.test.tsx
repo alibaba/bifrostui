@@ -64,6 +64,27 @@ describe('Dialog Functional Calls', () => {
     await waitFor(() => expect(confirmPromise).resolves.toBe(true));
   });
 
+  it('should render in container', async () => {
+    const { getByTestId } = render(
+      <>
+        <div id="render-container" data-testid="render-container" />
+        <Button
+          data-testid="emit-button"
+          onClick={() => {
+            Dialog.confirm({
+              message: 'Are you sure?',
+              container: document.getElementById('render-container'),
+            });
+          }}
+        >
+          test
+        </Button>
+      </>,
+    );
+    fireEvent.click(getByTestId('emit-button'));
+    expect(getByTestId('render-container')).toHaveTextContent('Are you sure?');
+  });
+
   it('should resolve with false when Dialog.confirm is cancelled', async () => {
     let confirmPromise;
     const { getByTestId } = render(
