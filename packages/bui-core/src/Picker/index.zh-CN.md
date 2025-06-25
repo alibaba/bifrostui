@@ -79,9 +79,9 @@ export default () => {
 };
 ```
 
-### 设置标题
+### 自定义文案
 
-使用`title`属性可指定选择器标题。
+通过配置 `title`、`confirmText`、`cancelText`，可以自定义文案。
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -101,6 +101,8 @@ export default () => {
       <Picker
         open={open}
         title="请选择"
+        confirmText="是"
+        cancelText="否"
         onClose={(e, data) => {
           setOpen(false);
           console.log('onClose', e, data);
@@ -1093,6 +1095,122 @@ export default () => {
 };
 ```
 
+### 禁用选项
+
+通过设置`option`中`disabled`属性为`true`，实现禁用指定选项。禁用状态不会触发`onConfirm`事件，会触发`onOptionChange`事件，可以根据返回的`currentOption.disabled`来判断当前选项是否被禁用。
+
+```tsx
+import { Button, Picker, Stack } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Stack>
+      <Button
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+        打开选择器
+      </Button>
+      <Picker
+        open={open}
+        onCancel={(e) => {
+          console.log('onCancel', e);
+        }}
+        onClose={() => {
+          setOpen(false);
+        }}
+        onOptionChange={(e, { currentOption }) => {
+          console.log('onOptionChange', currentOption.disabled);
+        }}
+        options={[
+          {
+            value: 1,
+            label: '北京',
+            children: [
+              {
+                value: 1,
+                label: '朝阳区',
+                children: [
+                  {
+                    value: 1,
+                    label: '朝阳街',
+                    disabled: true,
+                  },
+                ],
+              },
+              {
+                value: 2,
+                label: '海淀区',
+              },
+              {
+                value: 3,
+                label: '大兴区',
+              },
+              {
+                value: 4,
+                label: '东城区',
+                disabled: true,
+              },
+              {
+                value: 5,
+                label: '西城区',
+              },
+              {
+                value: 6,
+                label: '丰台区',
+              },
+            ],
+          },
+          {
+            value: 2,
+            label: '上海',
+            children: [
+              {
+                value: 1,
+                label: '黄埔区',
+              },
+              {
+                value: 2,
+                label: '长宁区',
+              },
+              {
+                value: 3,
+                label: '普陀区',
+              },
+              {
+                value: 4,
+                label: '杨浦区',
+              },
+              {
+                value: 5,
+                label: '浦东新区',
+              },
+              {
+                value: 6,
+                label: '徐汇区',
+                children: [
+                  {
+                    value: 1,
+                    label: '龙耀路',
+                  },
+                  {
+                    value: 2,
+                    label: '云锦路',
+                  },
+                ],
+              },
+            ],
+          },
+        ]}
+      />
+    </Stack>
+  );
+};
+```
+
 ### 自定义样式
 
 通过[样式变量](#样式变量)提供的Tokens，可实现自定义样式。
@@ -1210,33 +1328,36 @@ export default () => {
 
 ### Picker
 
-| 属性           | 说明                     | 类型                                                                                                                                                                        | 默认值 |
-| -------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| open           | 是否展示选择器           | boolean                                                                                                                                                                     | false  |
-| title          | 标题                     | string                                                                                                                                                                      | -      |
-| options        | 列表数据                 | IPickerOptionItem[][] \| ICascadePickerOptionItem[]                                                                                                                         | []     |
-| value          | 选中的值                 | (string \| number)[]                                                                                                                                                        | -      |
-| contentProps   | 抽屉内容DOM节点上的Props | React.HTMLAttributes\<HTMLDivElement\>                                                                                                                                      | -      |
-| onConfirm      | 点击确认按钮时候回调     | (e: React.MouseEvent<HTMLDivElement\>,data: { value: (string \| number)[]; options: ICascadePickerChildOptionItem[][]}) => void                                             | -      |
-| onOptionChange | 选项值变更时的回调       | (e: React.TransitionEvent<HTMLDivElement\>,data: { value: (string \| number)[];options: ICascadePickerChildOptionItem[][];currentOption: ICascadePickerOptionItem}) => void | -      |
-| onCancel       | 点击取消按钮时候回调     | (e: React.MouseEvent<HTMLDivElement\>) => void                                                                                                                              | -      |
-| onClose        | 关闭选择器时执行         | (e: React.MouseEvent<HTMLDivElement\>,data: {from: string;value: (string \| number)[];options: ICascadePickerChildOptionItem[][]}) => void                                  | -      |
+| 属性           | 说明                     | 类型                                                                                                                                                                                            | 默认值 |
+| -------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| open           | 是否展示选择器           | boolean                                                                                                                                                                                         | false  |
+| title          | 标题                     | string                                                                                                                                                                                          | -      |
+| confirmText    | 确认文本内容             | string                                                                                                                                                                                          | 确认   |
+| cancelText     | 取消文本内容             | string                                                                                                                                                                                          | 取消   |
+| options        | 列表数据                 | IPickerOptionItem[][] \| ICascadePickerOptionItem[]                                                                                                                                             | []     |
+| value          | 选中的值                 | (string \| number)[]                                                                                                                                                                            | -      |
+| contentProps   | 抽屉内容DOM节点上的Props | React.HTMLAttributes\<HTMLDivElement\>                                                                                                                                                          | -      |
+| onConfirm      | 点击确认按钮时候回调     | (e: React.MouseEvent<HTMLDivElement\>,data: { value: (string \| number)[]; options: ICascadePickerChildOptionItem[][]}) => void                                                                 | -      |
+| onOptionChange | 选项值变更时的回调       | (e: React.TransitionEvent<HTMLDivElement\>,data: { value: (string \| number)[];options: ICascadePickerChildOptionItem[][];currentOption: ICascadePickerOptionItem;columnIndex: number}) => void | -      |
+| onCancel       | 点击取消按钮时候回调     | (e: React.MouseEvent<HTMLDivElement\>) => void                                                                                                                                                  | -      |
+| onClose        | 关闭选择器时执行         | (e: React.MouseEvent<HTMLDivElement\>,data: {from: string;value: (string \| number)[];options: ICascadePickerChildOptionItem[][]}) => void                                                      | -      |
 
 ### PickerPanel
 
-| 属性         | 说明               | 类型                                                                                                                        | 默认值 |
-| ------------ | ------------------ | --------------------------------------------------------------------------------------------------------------------------- | ------ |
-| options      | 单列面板的列表数据 | ICascadePickerChildOptionItem[]                                                                                             | []     |
-| defaultValue | 单列面板的默认值   | string \| number                                                                                                            | -      |
-| columnIndex  | 列索引             | number                                                                                                                      | -      |
-| onSelect     | 点击选项时的回调   | (e: React.TransitionEvent<HTMLDivElement\>,data: {columnOption: ICascadePickerChildOptionItem;columnIndex: number}) => void | -      |
+| 属性        | 说明               | 类型                                                                                                                        | 默认值 |
+| ----------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------- | ------ |
+| options     | 单列面板的列表数据 | ICascadePickerChildOptionItem[]                                                                                             | []     |
+| value       | 单列面板的选中值   | string \| number                                                                                                            | -      |
+| columnIndex | 列索引             | number                                                                                                                      | -      |
+| onSelect    | 点击选项时的回调   | (e: React.TransitionEvent<HTMLDivElement\>,data: {columnOption: ICascadePickerChildOptionItem;columnIndex: number}) => void | -      |
 
 #### IPickerOptionItem
 
-| 属性  | 说明             | 类型             | 默认值 |
-| ----- | ---------------- | ---------------- | ------ |
-| label | 选项的文字内容   | string \| number | -      |
-| value | 选项对应唯一的值 | string \| number | -      |
+| 属性     | 说明             | 类型             | 默认值 |
+| -------- | ---------------- | ---------------- | ------ |
+| label    | 选项的文字内容   | string \| number | -      |
+| value    | 选项对应唯一的值 | string \| number | -      |
+| disabled | 是否禁用         | boolean          | -      |
 
 #### ICascadePickerOptionItem
 
@@ -1254,22 +1375,24 @@ export default () => {
 | value    | 选项对应唯一的值   | string \| number           | -      |
 | children | 用于级联选项，可选 | ICascadePickerOptionItem[] | -      |
 
-`Picker` 继承自 `Drawer` 其他属性见 [Drawer API](/cores/drawer?#API)
+`Picker` 继承自 `Drawer` 其他属性见 [Drawer API](/cores/drawer?#api)
 
 ### 样式变量
 
-| 属性                     | 说明                                        | 默认值                     | 全局变量                            |
-| ------------------------ | ------------------------------------------- | -------------------------- | ----------------------------------- |
-| --header-height          | 选择器头部高度                              | 50px                       | --bui-picker-header-height          |
-| --header-padding         | 选择器头部内边距                            | 0 var(--bui-spacing-lg)    | --bui-picker-header-padding         |
-| --cancel-height          | 取消按钮高度                                | 100%                       | --bui-picker-cancel-height          |
-| --cancel-line-height     | 取消按钮行高                                | 50px                       | --bui-picker-cancel-line-height     |
-| --confirm-height         | 确认按钮高度                                | 100%                       | --bui-picker-confirm-height         |
-| --confirm-line-height    | 确认按钮行高                                | 50px                       | --bui-picker-confirm-line-height    |
-| --panel-container-height | 选择器容器高度                              | 260px                      | --bui-picker-panel-height           |
-| --indicator-top          | 指示器距离顶部距离                          | 108px                      | --bui-picker-indicator-top          |
-| --indicator-border-color | 指示器描边颜色                              | --bui-color-border-default | --bui-picker-indicator-border-color |
-| --option-height          | 选项高度，与indicator同高，必须使用内联传入 | 36px                       | --bui-picker-option-height          |
+| 属性                     | 说明                                        | 默认值                     | 全局变量                              |
+| ------------------------ | ------------------------------------------- | -------------------------- | ------------------------------------- |
+| --header-height          | 选择器头部高度                              | 50px                       | --bui-picker-header-height            |
+| --header-padding         | 选择器头部内边距                            | 0 var(--bui-spacing-lg)    | --bui-picker-header-padding           |
+| --cancel-height          | 取消按钮高度                                | 100%                       | --bui-picker-cancel-height            |
+| --cancel-line-height     | 取消按钮行高                                | 50px                       | --bui-picker-cancel-line-height       |
+| --confirm-height         | 确认按钮高度                                | 100%                       | --bui-picker-confirm-height           |
+| --confirm-line-height    | 确认按钮行高                                | 50px                       | --bui-picker-confirm-line-height      |
+| --panel-container-height | 选择器容器高度                              | 260px                      | --bui-picker-panel-height             |
+| --indicator-top          | 指示器距离顶部距离                          | 108px                      | --bui-picker-indicator-top            |
+| --indicator-border-color | 指示器描边颜色                              | --bui-color-border-default | --bui-picker-indicator-border-color   |
+| --option-height          | 选项高度，与indicator同高，必须使用内联传入 | 36px                       | --bui-picker-option-height            |
+| -                        | 确认按钮禁用时的不透明度                    | 0.38                       | --bui-picker-confirm-disabled-opacity |
+| -                        | 选项禁用时的不透明度                        | 0.38                       | --bui-picker-option-disabled-opacity  |
 
 #### --option-height 为什么要使用内联方式传入
 

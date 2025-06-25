@@ -11,6 +11,10 @@ export interface IPickerOptionItem {
    * 选项对应唯一的值
    */
   value: string | number;
+  /**
+   * 是否禁用
+   */
+  disabled?: boolean;
 }
 
 export type ICascadePickerChildOptionItem = IPickerOptionItem & {
@@ -43,6 +47,14 @@ export type PickerProps<
        */
       title?: string;
       /**
+       * 确认文本内容
+       */
+      confirmText?: string;
+      /**
+       * 取消文本内容
+       */
+      cancelText?: string;
+      /**
        * 列表数据
        * @default []
        */
@@ -74,6 +86,7 @@ export type PickerProps<
           value: (string | number)[];
           options: ICascadePickerChildOptionItem[][];
           currentOption: ICascadePickerChildOptionItem;
+          columnIndex: number;
         },
       ) => void;
       /**
@@ -109,9 +122,9 @@ export type PickerPanelProps<
        */
       options?: ICascadePickerChildOptionItem[];
       /**
-       * 默认值
+       * 选中值
        */
-      defaultValue?: string | number;
+      value?: string | number;
       /**
        * 列索引
        */

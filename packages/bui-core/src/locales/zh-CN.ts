@@ -27,6 +27,30 @@ const zhCN: BaseLang = {
     current: '当前',
     hot: '热门',
   },
+  desktopDatePicker: {
+    month: {
+      1: '1月',
+      2: '2月',
+      3: '3月',
+      4: '4月',
+      5: '5月',
+      6: '6月',
+      7: '7月',
+      8: '8月',
+      9: '9月',
+      10: '10月',
+      11: '11月',
+      12: '12月',
+    },
+  },
+  datePicker: {
+    year: '年',
+    month: '月',
+    day: '日',
+    hour: '时',
+    minute: '分',
+    second: '秒',
+  },
 };
 
 export default zhCN;
