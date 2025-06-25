@@ -171,4 +171,4 @@ export default () => {
 | disablePortal      | 禁止 Portal能力          | boolean                                                      | false      |
 | contentProps       | 抽屉内容元素节点的 props | React.HTMLAttributes<HTMLDivElement\>                        | -          |
 
-`Drawer` 继承自 `Modal` 其他属性见 [Modal API](/cores/modal?#API)
+`Drawer` 继承自 `Modal` 其他属性见 [Modal API](/cores/modal?#api)

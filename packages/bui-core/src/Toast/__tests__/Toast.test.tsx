@@ -38,6 +38,27 @@ describe('Toast', () => {
     expect(document.body.querySelector(`.${rootClass}`)).toBeInTheDocument();
   });
 
+  it('should render in container', async () => {
+    const { getByTestId } = render(
+      <>
+        <div id="render-container" data-testid="render-container" />
+        <Button
+          data-testid="emit-button"
+          onClick={() => {
+            Toast({
+              message: '提示内容',
+              container: document.getElementById('render-container'),
+            });
+          }}
+        >
+          test
+        </Button>
+      </>,
+    );
+    fireEvent.click(getByTestId('emit-button'));
+    expect(getByTestId('render-container')).toHaveTextContent('提示内容');
+  });
+
   it('should render whit default props', () => {
     const { getByTestId } = render(
       <Button

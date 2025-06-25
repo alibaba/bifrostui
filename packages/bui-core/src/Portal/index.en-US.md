@@ -13,11 +13,12 @@ The Portal component provides the ability to render its child nodes into a DOM n
 
 By default, the Portal component mounts child components to the root node of the page; for H5 it is `document.body`, and for mini-programs it is the `page node`.
 
-```tsx | pure
-import React from 'react';
-import { Portal } from '@bifrostui/react';
+```tsx
+import React, { useState } from 'react';
+import { Portal, Button } from '@bifrostui/react';
 
 export default () => {
+  const [rederPortal, setRederPortal] = useState(false);
   return (
     <Portal>
       <div>Mounted on the page root node</div>

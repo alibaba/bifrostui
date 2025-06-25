@@ -4,7 +4,6 @@ import {
   isMini,
   throttle,
   useForkRef,
-  useUniqueId,
   useValue,
 } from '@bifrostui/utils';
 import clsx from 'clsx';
@@ -58,35 +57,33 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const isOpen = open !== undefined ? open : internalOpen;
   const locatorRef = useRef(null);
   const rootRef = useForkRef(ref, locatorRef);
-  const ttId = useUniqueId();
-  const dataId = `${prefixCls}-tt-${ttId}`;
+  const optionContainerRef = useRef(null);
+  const optionMainRef = useRef(null);
 
-  const updateOptionStyle = throttle(() => {
+  const updateOptionStyle = async () => {
     const curScrollRoot = scrollContainer();
-    if (!isMini && curScrollRoot) {
-      const result = getStylesAndLocation({
-        scrollRoot: curScrollRoot,
-        childrenRef: locatorRef,
-        arrowDirection: defaultPlacement,
-        arrowLocation: 'none',
-        selector: `[data-id="${dataId}"]`,
-        offsetSpacing: 0,
-      });
-      if (!result) return;
-      const { styles, childrenStyle, newArrowDirection } = result;
-      setPlacement(newArrowDirection);
-      setOptionStyle({ ...styles, width: childrenStyle.width });
-    }
-  }, 100);
+    const result = await getStylesAndLocation({
+      scrollRoot: curScrollRoot,
+      childrenRef: locatorRef,
+      tipRef: optionContainerRef,
+      arrowDirection: defaultPlacement,
+      arrowLocation: 'none',
+      offsetSpacing: 0,
+    });
+    if (!result) return;
+    const { styles, childrenStyle, newArrowDirection } = result;
+    optionMainRef.current.style.transition = 'none';
+    optionMainRef.current.style.transform = `translateY(${newArrowDirection === 'bottom' ? '-100%' : '100%'})`;
+    setPlacement(newArrowDirection);
+    setOptionStyle({ ...styles, width: childrenStyle?.width });
+  };
 
-  const changeOpen = (newOpen: boolean) => {
+  const changeOpen = async (newOpen: boolean) => {
     if (newOpen) {
-      updateOptionStyle();
+      await updateOptionStyle();
       // 第一次超出边界变化方向时，Slide的动画方向更新时序问题
-      setTimeout(() => {
-        setInternalOpen(newOpen);
-        onOpen?.();
-      }, 100);
+      setInternalOpen(newOpen);
+      onOpen?.();
     } else {
       onClose?.();
       setInternalOpen(newOpen);
@@ -122,10 +119,11 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {
+    const resizeCb = throttle(updateOptionStyle, 100);
     if (!isMini) {
-      window.addEventListener('resize', updateOptionStyle);
+      window.addEventListener('resize', resizeCb);
       return () => {
-        window.removeEventListener('resize', updateOptionStyle);
+        window.removeEventListener('resize', resizeCb);
       };
     }
   }, []);
@@ -144,8 +142,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       <Fade
         in={isOpen}
         timeout={{
-          enter: 150,
-          exit: 150,
+          enter: 167,
+          exit: 167,
         }}
       >
         <div
@@ -159,18 +157,23 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
               [`${prefixCls}-option-container-hide`]: !isOpen,
             },
           )}
-          data-id={dataId}
+          ref={optionContainerRef}
           style={optionStyle}
         >
           <Slide
             in={isOpen}
             direction={placement === 'bottom' ? 'down' : 'up'}
             timeout={{
-              enter: 150,
-              exit: 150,
+              enter: 167,
+              exit: 167,
             }}
           >
-            <div className={clsx(`${prefixCls}-option-main`)}>{children}</div>
+            <div
+              className={clsx(`${prefixCls}-option-main`)}
+              ref={optionMainRef}
+            >
+              {children}
+            </div>
           </Slide>
         </div>
       </Fade>
@@ -204,13 +207,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           />
           {icon || defaultIcon}
         </div>
-        {isMini && renderOptions()}
       </div>
-      {!isMini && (
-        <Portal onRootElementMouted={updateOptionStyle}>
-          {renderOptions()}
-        </Portal>
-      )}
+      <Portal onRootElementMouted={updateOptionStyle}>{renderOptions()}</Portal>
       <Backdrop
         open={isOpen}
         invisible

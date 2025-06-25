@@ -1,0 +1,47 @@
+@import '@bifrostui/styles/mixins/index.less';
+@class-prefix-desktop-picker: ~'bui-desktop-picker';
+@{root-selector} {
+  --bui-desktop-picker-zindex: var(--bui-z-index-tooltip);
+  --bui-desktop-picker-bg: var(--bui-color-bg-view);
+  --bui-desktop-picker-shadow: 0 0 0 2px var(--bui-color-bg-default);
+}
+.@{class-prefix-desktop-picker} {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+
+  &-container {
+    position: absolute;
+    box-sizing: border-box;
+    visibility: hidden;
+    z-index: var(--bui-desktop-picker-zindex);
+
+    &-content {
+      border-radius: 3px;
+      background-color: var(--bui-desktop-picker-bg);
+      box-shadow: var(--bui-desktop-picker-shadow);
+    }
+
+    &-open {
+      transform: none;
+      transition:
+        opacity 321ms cubic-bezier(0.4, 0, 0.2, 1),
+        transform 214ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &-close {
+      opacity: 0;
+      transform: scale(0.75, 0.5625);
+      transition:
+        opacity 321ms cubic-bezier(0.4, 0, 0.2, 1),
+        transform 214ms cubic-bezier(0.4, 0, 0.2, 1) 107ms;
+    }
+  }
+}
+.@{class-prefix-desktop-picker}-top {
+  margin-top: -6px;
+}
+.@{class-prefix-desktop-picker}-bottom {
+  margin-top: 6px;
+}

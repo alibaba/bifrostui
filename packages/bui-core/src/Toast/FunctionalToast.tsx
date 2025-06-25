@@ -1,4 +1,4 @@
-import { render, unmount, getRootElement } from '@bifrostui/utils';
+import { render, unmount, getRootContainer } from '@bifrostui/utils';
 import React, { useCallback, useEffect, useState } from 'react';
 import ToastView from './Toast';
 import {
@@ -59,11 +59,18 @@ const functionalToast = (props: ToastProps | string) => {
     });
   }
 
-  const rootElement = getRootElement();
+  const rootElement = getRootContainer(options?.container);
   rootElement.appendChild(rootWrapper);
 
   const ToastComponent = () => {
-    const { duration, allowMultiple, onClose, ...others } = options;
+    const {
+      duration,
+      allowMultiple,
+      onClose,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      container,
+      ...others
+    } = options;
     const [open, setOpen] = useState(false);
     let timer;
     const fadeTimeout = {

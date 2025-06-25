@@ -126,13 +126,25 @@ export default () => {
           justifyContent: 'space-between',
         }}
       >
-        <Popover trigger="hover" title="This is a popover" placement="topLeft">
+        <Popover
+          trigger={['hover', 'click']}
+          title="This is a popover"
+          placement="topLeft"
+        >
           {packageButton(<span>topLeft</span>)}
         </Popover>
-        <Popover trigger="hover" title="This is a popover" placement="top">
+        <Popover
+          trigger={['hover', 'click']}
+          title="This is a popover"
+          placement="top"
+        >
           {packageButton(<span>top</span>)}
         </Popover>
-        <Popover trigger="hover" title="This is a popover" placement="topRight">
+        <Popover
+          trigger={['hover', 'click']}
+          title="This is a popover"
+          placement="topRight"
+        >
           {packageButton(<span>topRight</span>)}
         </Popover>
       </div>
@@ -144,14 +156,22 @@ export default () => {
           flexDirection: 'column',
         }}
       >
-        <Popover trigger="hover" title="This is a popover" placement="leftTop">
+        <Popover
+          trigger={['hover', 'click']}
+          title="This is a popover"
+          placement="leftTop"
+        >
           {packageButton(<span>leftTop</span>)}
         </Popover>
-        <Popover trigger="hover" title="This is a popover" placement="left">
+        <Popover
+          trigger={['hover', 'click']}
+          title="This is a popover"
+          placement="left"
+        >
           {packageButton(<span>left</span>)}
         </Popover>
         <Popover
-          trigger="hover"
+          trigger={['hover', 'click']}
           title="This is a popover"
           placement="leftBottom"
         >
@@ -166,14 +186,22 @@ export default () => {
           flexDirection: 'column',
         }}
       >
-        <Popover trigger="hover" title="This is a popover" placement="rightTop">
+        <Popover
+          trigger={['hover', 'click']}
+          title="This is a popover"
+          placement="rightTop"
+        >
           {packageButton(<span>rightTop</span>)}
         </Popover>
-        <Popover trigger="hover" title="This is a popover" placement="right">
+        <Popover
+          trigger={['hover', 'click']}
+          title="This is a popover"
+          placement="right"
+        >
           {packageButton(<span>right</span>)}
         </Popover>
         <Popover
-          trigger="hover"
+          trigger={['hover', 'click']}
           title="This is a popover"
           placement="rightBottom"
         >
@@ -190,17 +218,21 @@ export default () => {
         }}
       >
         <Popover
-          trigger="hover"
+          trigger={['hover', 'click']}
           title="This is a popover"
           placement="bottomLeft"
         >
           {packageButton(<span>bottomLeft</span>)}
         </Popover>
-        <Popover trigger="hover" title="This is a popover" placement="bottom">
+        <Popover
+          trigger={['hover', 'click']}
+          title="This is a popover"
+          placement="bottom"
+        >
           {packageButton(<span>bottom</span>)}
         </Popover>
         <Popover
-          trigger="hover"
+          trigger={['hover', 'click']}
           title="This is a popover"
           placement="bottomRight"
         >
@@ -242,7 +274,7 @@ export default () => {
   return (
     <Popover
       title="This is a popover"
-      trigger="hover"
+      trigger={['hover', 'click']}
       onOpenChange={onOpenChange}
     >
       <span>Callback method for visibility change</span>
