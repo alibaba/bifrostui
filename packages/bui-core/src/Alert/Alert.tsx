@@ -81,6 +81,7 @@ const AlertAction = (props: AlertActionProps) => {
       className={`${prefixCls}-action`}
       color={color}
       onClick={onClose}
+      aria-label="按钮"
     >
       <CloseIcon />
     </IconButton>
