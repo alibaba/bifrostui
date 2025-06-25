@@ -16,6 +16,7 @@ export const ignoreCssEntryFile = [
   'Fade',
   'Portal',
   'Slide',
+  'DatePicker',
   'ThemeProvider',
   'Transition',
 ];
