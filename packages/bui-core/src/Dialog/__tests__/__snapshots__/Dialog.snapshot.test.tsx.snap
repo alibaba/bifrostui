@@ -121,7 +121,8 @@ exports[`Dialog snapshot Dialog demo snapshot 0 4`] = `
   }
 >
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+    className="bui-btn bui-btn-outlined bui-btn-medium"
+    disabled={false}
     onClick={[Function]}
     type="button"
   >
