@@ -1,0 +1,69 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+@{root-selector} {
+  --bui-textarea-border-radius: var(--bui-shape-radius-label);
+  --bui-textarea-width: 100%;
+  --bui-textarea-background-color: var(--bui-color-bg-default);
+  --bui-textarea-text-color: var(--bui-color-fg-subtle);
+  --bui-textarea-count-background-color: var(
+    --bui-textarea-background-color,
+    var(--bui-color-bg-default)
+  );
+  --bui-textarea-count-color: var(--bui-color-fg-subtle);
+  --bui-textarea-text-font-size: var(--bui-text-size-2);
+  --bui-textarea-count-font-size: var(--bui-title-size-3);
+  --bui-textarea-padding: 8px;
+  --bui-textarea-count-padding: 0 4px;
+  --bui-textarea-placeholder-color: #ced1d6;
+  --bui-textarea-placeholder-line-height: 1.3;
+}
+
+.bui-textarea {
+  background: var(--bui-color-bg-default);
+  border-radius: var(--bui-textarea-border-radius);
+  font-family: var(--bui-font-family);
+  overflow: hidden;
+
+  textarea {
+    font-size: var(--bui-textarea-text-font-size);
+    color: var(--bui-textarea-text-color);
+    line-height: var(--bui-line-height);
+  }
+
+  .bui-mini-placeholder {
+    color: var(--bui-textarea-placeholder-color);
+  }
+
+  &-disabled {
+    pointer-events: none;
+  }
+
+  // 隐藏支付宝自带字数标识
+  .a-textarea-count-wrap {
+    display: none;
+  }
+}
+
+.bui-textarea-content {
+  width: var(--bui-textarea-width);
+  resize: none;
+  background-color: var(--bui-textarea-background-color);
+  padding: var(--bui-textarea-padding);
+  border: none;
+  outline: none;
+  word-break: break-all;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: var(--bui-textarea-placeholder-color);
+    line-height: var(--bui-textarea-placeholder-line-height);
+  }
+}
+
+.bui-textarea-count {
+  background-color: var(--bui-textarea-count-background-color);
+  color: var(--bui-textarea-count-color);
+  text-align: right;
+  padding: var(--bui-textarea-count-padding);
+  font-size: var(--bui-textarea-count-font-size);
+}

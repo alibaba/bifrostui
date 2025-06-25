@@ -102,21 +102,24 @@ Array [
     }
   >
     <button
-      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+      className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
       onClick={[Function]}
       type="button"
     >
       切换到1
     </button>
     <button
-      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+      className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
       onClick={[Function]}
       type="button"
     >
       切换到2
     </button>
     <button
-      className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
+      className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
       onClick={[Function]}
       type="button"
     >

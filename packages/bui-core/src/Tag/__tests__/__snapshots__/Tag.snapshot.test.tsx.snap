@@ -14,19 +14,19 @@ exports[`Tag snapshot Tag demo snapshot 0 1`] = `
   }
 >
   <div
-    className="bui-tag bui-tag-outlined bui-tag-default"
+    className="bui-tag bui-tag-outlined bui-tag-neutral"
     style={Object {}}
   >
     默认标签
   </div>
   <div
-    className="bui-tag bui-tag-contained bui-tag-default"
+    className="bui-tag bui-tag-contained bui-tag-neutral"
     style={Object {}}
   >
     填充标签
   </div>
   <div
-    className="bui-tag bui-tag-light bui-tag-default"
+    className="bui-tag bui-tag-subtle bui-tag-neutral"
     style={Object {}}
   >
     浅亮标签
@@ -44,6 +44,9 @@ exports[`Tag snapshot Tag demo snapshot 0 2`] = `
       "--flex-wrap": "nowrap",
       "--justify-content": "center",
       "--spacing": "10px",
+      "background": "var(--bui-color-bg-default)",
+      "borderRadius": "var(--bui-shape-radius-card)",
+      "padding": "24px",
     }
   }
 >
@@ -88,6 +91,18 @@ exports[`Tag snapshot Tag demo snapshot 0 2`] = `
       style={Object {}}
     >
       限时优惠
+    </div>
+    <div
+      className="bui-tag bui-tag-outlined bui-tag-light"
+      style={Object {}}
+    >
+      优惠
+    </div>
+    <div
+      className="bui-tag bui-tag-outlined bui-tag-dark"
+      style={Object {}}
+    >
+      优惠
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-vip"
@@ -139,6 +154,18 @@ exports[`Tag snapshot Tag demo snapshot 0 2`] = `
       限时优惠
     </div>
     <div
+      className="bui-tag bui-tag-contained bui-tag-light"
+      style={Object {}}
+    >
+      优惠
+    </div>
+    <div
+      className="bui-tag bui-tag-contained bui-tag-dark"
+      style={Object {}}
+    >
+      优惠
+    </div>
+    <div
       className="bui-tag bui-tag-contained bui-tag-vip"
       style={Object {}}
     >
@@ -158,37 +185,49 @@ exports[`Tag snapshot Tag demo snapshot 0 2`] = `
     }
   >
     <div
-      className="bui-tag bui-tag-light bui-tag-primary"
+      className="bui-tag bui-tag-subtle bui-tag-primary"
       style={Object {}}
     >
       早鸟优惠
     </div>
     <div
-      className="bui-tag bui-tag-light bui-tag-info"
+      className="bui-tag bui-tag-subtle bui-tag-info"
       style={Object {}}
     >
       音乐剧
     </div>
     <div
-      className="bui-tag bui-tag-light bui-tag-success"
+      className="bui-tag bui-tag-subtle bui-tag-success"
       style={Object {}}
     >
       影城卡
     </div>
     <div
-      className="bui-tag bui-tag-light bui-tag-warning"
+      className="bui-tag bui-tag-subtle bui-tag-warning"
       style={Object {}}
     >
       点映
     </div>
     <div
-      className="bui-tag bui-tag-light bui-tag-danger"
+      className="bui-tag bui-tag-subtle bui-tag-danger"
       style={Object {}}
     >
       限时优惠
     </div>
     <div
-      className="bui-tag bui-tag-light bui-tag-vip"
+      className="bui-tag bui-tag-subtle bui-tag-light"
+      style={Object {}}
+    >
+      优惠
+    </div>
+    <div
+      className="bui-tag bui-tag-subtle bui-tag-dark"
+      style={Object {}}
+    >
+      优惠
+    </div>
+    <div
+      className="bui-tag bui-tag-subtle bui-tag-vip"
       style={Object {}}
     >
       会员
@@ -211,7 +250,7 @@ exports[`Tag snapshot Tag demo snapshot 0 3`] = `
   }
 >
   <div
-    className="bui-tag bui-tag-contained bui-tag-default"
+    className="bui-tag bui-tag-contained bui-tag-neutral"
     style={
       Object {
         "backgroundColor": "#69eeff",
@@ -221,7 +260,7 @@ exports[`Tag snapshot Tag demo snapshot 0 3`] = `
     自定义色彩
   </div>
   <div
-    className="bui-tag bui-tag-light bui-tag-default"
+    className="bui-tag bui-tag-subtle bui-tag-neutral"
     style={
       Object {
         "backgroundColor": "rgba(105,238,255,0.3)",
@@ -232,7 +271,7 @@ exports[`Tag snapshot Tag demo snapshot 0 3`] = `
     自定义色彩
   </div>
   <div
-    className="bui-tag bui-tag-outlined bui-tag-default"
+    className="bui-tag bui-tag-outlined bui-tag-neutral"
     style={
       Object {
         "borderColor": "rgba(105,238,255,0.4)",

@@ -1,28 +1,35 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+@{root-selector} {
+  --bui-tabs-height: 39px;
+  --bui-tabs-font-weight: var(--bui-font-weight-medium);
+  --bui-tabs-indicator-background: var(--bui-color-primary);
+
+  /* prettier-ignore */
+  --bui-tabs-indicator-height: 3PX;
+  --bui-tabs-indicator-width: 24px;
+  --bui-tabs-indicator-border-radius: 3px 3px 0 0;
+  --bui-tabs-indicator-bottom: 0;
+  --bui-tabs-indicator-box-shadow: none;
+  --bui-tabs-mask-width: 12px;
+  --bui-tabs-mask-height: 100%;
+  --bui-tab-font-size: var(--bui-text-size-1);
+  --bui-tab-color: var(--bui-color-fg-subtle);
+  --bui-tab-height: 100%;
+  --bui-tab-padding: var(--bui-spacing-lg) var(--bui-spacing-lg) 10px;
+  --bui-tab-active-color: var(--bui-color-fg-default);
+  --bui-tab-active-font-family: var(--bui-font-family-accent, inherit);
+}
+
 @class-prefix-tabs: ~'bui-tabs';
 
 .@{class-prefix-tabs} {
-  --height: var(--bui-tabs-height, 39px);
-  --color: var(--bui-tabs-color, var(--bui-color-fg-subtle));
-  --active-color: var(--bui-tabs-active-color, var(--bui-color-fg-default));
-  --line-color: var(--bui-tabs-line-color, var(--bui-color-primary));
-
-  /* prettier-ignore */
-  --line-height: var(--bui-tabs-line-height, 3PX);
-  --line-width: var(--bui-tabs-line-width, 18px);
-  --mask-width: var(--bui-tabs-mask-width, 12px);
-  --mask-height: var(--bui-tabs-mask-height, 100%);
-  --tab-height: var(--bui-tab-height, 100%);
-  --tab-padding: var(
-    --bui-tab-padding,
-    var(--bui-spacing-lg) var(--bui-spacing-lg) 10px
-  );
-  --font-size: var(--bui-tab-font-size, var(--bui-text-size-1));
-
   position: relative;
   font-family: var(--bui-font-family);
+  font-weight: var(--bui-tabs-font-weight);
 
   &-tabs {
-    height: var(--height);
+    height: var(--bui-tabs-height);
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -36,15 +43,15 @@
     scrollbar-width: none;
   }
 
-  &-tabline {
+  &-indicator {
     position: absolute;
-    width: var(--line-width);
-    bottom: 0;
-
-    height: var(--line-height);
+    width: var(--bui-tabs-indicator-width);
+    bottom: var(--bui-tabs-indicator-bottom);
+    height: var(--bui-tabs-indicator-height);
     color: var(--bui-color-primary);
-    background: var(--line-color);
-    border-radius: var(--bui-shape-radius-label);
+    background: var(--bui-tabs-indicator-background);
+    border-radius: var(--bui-tabs-indicator-border-radius);
+    box-shadow: var(--bui-tabs-indicator-box-shadow);
   }
 
   &-content {
@@ -56,8 +63,8 @@
     top: 0;
     bottom: 0;
     z-index: 1;
-    width: var(--mask-width);
-    height: var(--mask-height);
+    width: var(--bui-tabs-mask-width);
+    height: var(--bui-tabs-mask-height);
     pointer-events: none;
   }
 
@@ -80,7 +87,7 @@
   }
 }
 
-.bui-tabline-invisible {
+.bui-indicator-invisible {
   visibility: hidden;
   background-color: transparent;
 }

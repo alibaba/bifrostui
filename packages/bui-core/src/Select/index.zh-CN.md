@@ -8,9 +8,7 @@ name: Select 下拉选择器
 Select 组件用于从选项列表收集用户提供的信息。
 目前 Select 组件仅支持`单项选择`，更多功能敬请期待我们解锁。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 通过组合`SelectOption`组件，达到下拉选择效果。
 
@@ -589,16 +587,17 @@ export default () => {
 | value    | 选项值       | string ｜ number | -      |
 | disabled | 选项可点击态 | boolean          | false  |
 
-### 样式变量
+## 样式变量
 
-| 属性                          | 说明                 | 默认值                  | 全局变量                              |
-| ----------------------------- | -------------------- | ----------------------- | ------------------------------------- |
-| --height                      | 选择器高度           | 27px                    | --bui-select-height                   |
-| --mini-width                  | 选择器最小宽度       | 100px                   | --bui-select-mini-width               |
-| --font-size                   | 选择器字体大小       | var(--bui-title-size-3) | --bui-select-font-size                |
-| --padding                     | 选择器内边距         | 100px                   | --bui-select-mini-width               |
-| --option-container-padding    | 下拉框整体内边距     | 3px 0                   | --bui-select-option-container-padding |
-| --option-container-margin-top | 下拉框整体顶部外边距 | 6px                     | --bui-select-option-margin-top        |
-| --option-padding              | 下拉框单个选项内边距 | 0 14px                  | --bui-select-option-padding           |
-| --option-margin               | 下拉框单个选项外边距 | 0 3px                   | --bui-select-option-margin            |
-| --option-height               | 下拉框单个选项高度   | 27px                    | --bui-select-option-height            |
+| 全局变量                                | 说明               | 默认值                   |
+| --------------------------------------- | ------------------ | ------------------------ |
+| --bui-select-height                     | 选择器高度         | `32px`                   |
+| --bui-select-min-width                  | 选择器最小宽度     | `100px`                  |
+| --bui-select-font-size                  | 选择器字体大小     | `var(--bui-text-size-1)` |
+| --bui-select-selector-container-padding | 选择器容器内边距   | `0 14px`                 |
+| --bui-select-option-main-padding        | 选项主要容器内边距 | `3px 0`                  |
+| --bui-select-option-padding             | 选项内边距         | `0 14px`                 |
+| --bui-select-option-border-radius       | 选项边框圆角       | `5px`                    |
+| --bui-select-option-margin              | 选项外边距         | `0 3px`                  |
+| --bui-select-option-height              | 选项高度           | `32px`                   |
+| --bui-select-option-active-bg-color     | 选项激活背景色     | `#fff2f0`                |

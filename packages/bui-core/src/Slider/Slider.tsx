@@ -16,9 +16,9 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import './Slider.less';
 import { SliderProps, SliderValue } from './Slider.types';
 import { formatValue, isSameValue, sortValue } from './utils';
+import './index.less';
 
 const classes = {
   root: 'bui-slider',
@@ -37,15 +37,15 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     className,
     defaultValue,
     value: valueProp,
-    min,
-    max,
-    step,
-    tipVisible,
-    tooltipRender,
+    min = 0,
+    max = 100,
+    step = 1,
+    tipVisible = false,
+    tooltipRender = (value) => value,
     disabled,
     startIcon,
     endIcon,
-    disableSwap,
+    disableSwap = false,
     onChange,
     ...others
   } = props;
@@ -72,7 +72,9 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const beforeMoveValue = useRef([0, 0]);
 
   // 默认图标
-  const defaultIcon = <GripperBarVerticalIcon htmlColor="#2e333e" />;
+  const defaultIcon = (
+    <GripperBarVerticalIcon htmlColor="var(--bui-color-fg-default)" />
+  );
   // 根据初始化时的数据判断是否为双滑块
   const initialRange = useRef(
     (value !== undefined && Array.isArray(value)) ||
@@ -346,13 +348,5 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
 });
 
 Slider.displayName = 'BuiSlider';
-Slider.defaultProps = {
-  min: 0,
-  max: 100,
-  step: 1,
-  disableSwap: false,
-  tipVisible: false,
-  tooltipRender: (value) => value,
-};
 
 export default Slider;

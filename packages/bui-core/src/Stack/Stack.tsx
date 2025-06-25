@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { StackProps } from './Stack.types';
-import './Stack.less';
+import './index.less';
 
 const prefixCls = 'bui-stack';
 

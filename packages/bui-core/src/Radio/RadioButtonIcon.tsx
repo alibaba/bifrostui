@@ -13,7 +13,12 @@ export interface IRadioButtonIconProps extends ISvgIconProps {
 const prefixCls = 'bui-radio-btn-icon';
 
 function RadioButtonIcon(props: IRadioButtonIconProps) {
-  const { checked, size = 'medium', color, htmlColor = '#959aa5' } = props;
+  const {
+    checked,
+    size = 'medium',
+    color,
+    htmlColor = 'var(--bui-color-fg-subtle)',
+  } = props;
 
   return (
     <span
@@ -36,9 +41,5 @@ function RadioButtonIcon(props: IRadioButtonIconProps) {
     </span>
   );
 }
-
-// RadioButtonIcon.defaultProps = {
-//   checked: false,
-// };
 
 export default RadioButtonIcon;

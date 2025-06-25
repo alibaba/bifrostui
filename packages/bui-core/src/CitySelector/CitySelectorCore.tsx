@@ -6,7 +6,7 @@ import ScrollView from '../ScrollView';
 import { CitySelectorCoreProps } from './CitySelector.types';
 import Selector from './Selector';
 
-import './CitySelector.less';
+import './index.less';
 
 // 误差偏移量
 const DEVIATION_HEIGHT = '6vmin';

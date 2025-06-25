@@ -7,9 +7,7 @@ name: Tooltip 文字提示
 
 简单的文字提示气泡框。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 鼠标点击则显示提示，再点击消失，气泡浮层不承载复杂文本和操作。
 
@@ -105,13 +103,25 @@ export default () => {
           justifyContent: 'space-between',
         }}
       >
-        <Tooltip trigger={['hover', 'click']} title="This is a tooltip" placement="topLeft">
+        <Tooltip
+          trigger={['hover', 'click']}
+          title="This is a tooltip"
+          placement="topLeft"
+        >
           {packageButton(<span>topLeft</span>)}
         </Tooltip>
-        <Tooltip trigger={['hover', 'click']} title="This is a tooltip" placement="top">
+        <Tooltip
+          trigger={['hover', 'click']}
+          title="This is a tooltip"
+          placement="top"
+        >
           {packageButton(<span>top</span>)}
         </Tooltip>
-        <Tooltip trigger={['hover', 'click']} title="This is a tooltip" placement="topRight">
+        <Tooltip
+          trigger={['hover', 'click']}
+          title="This is a tooltip"
+          placement="topRight"
+        >
           {packageButton(<span>topRight</span>)}
         </Tooltip>
       </div>
@@ -123,10 +133,18 @@ export default () => {
           flexDirection: 'column',
         }}
       >
-        <Tooltip trigger={['hover', 'click']} title="This is a tooltip" placement="leftTop">
+        <Tooltip
+          trigger={['hover', 'click']}
+          title="This is a tooltip"
+          placement="leftTop"
+        >
           {packageButton(<span>leftTop</span>)}
         </Tooltip>
-        <Tooltip trigger={['hover', 'click']} title="This is a tooltip" placement="left">
+        <Tooltip
+          trigger={['hover', 'click']}
+          title="This is a tooltip"
+          placement="left"
+        >
           {packageButton(<span>left</span>)}
         </Tooltip>
         <Tooltip
@@ -145,10 +163,18 @@ export default () => {
           flexDirection: 'column',
         }}
       >
-        <Tooltip trigger={['hover', 'click']} title="This is a tooltip" placement="rightTop">
+        <Tooltip
+          trigger={['hover', 'click']}
+          title="This is a tooltip"
+          placement="rightTop"
+        >
           {packageButton(<span>rightTop</span>)}
         </Tooltip>
-        <Tooltip trigger={['hover', 'click']} title="This is a tooltip" placement="right">
+        <Tooltip
+          trigger={['hover', 'click']}
+          title="This is a tooltip"
+          placement="right"
+        >
           {packageButton(<span>right</span>)}
         </Tooltip>
         <Tooltip
@@ -175,7 +201,11 @@ export default () => {
         >
           {packageButton(<span>bottomLeft</span>)}
         </Tooltip>
-        <Tooltip trigger={['hover', 'click']} title="This is a tooltip" placement="bottom">
+        <Tooltip
+          trigger={['hover', 'click']}
+          title="This is a tooltip"
+          placement="bottom"
+        >
           {packageButton(<span>bottom</span>)}
         </Tooltip>
         <Tooltip
@@ -243,13 +273,13 @@ export default () => {
 | trigger       | 触发行为                 | string \| string[]，枚举值是 'click' \| 'hover'                                                                                                                  | 'click' |
 | onOpenChange  | 气泡浮层显隐的回调方法   | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                             | -       |
 
-### 样式变量
+## 样式变量
 
-| 属性                 | 说明             | 默认值  | 全局变量                         |
-| -------------------- | ---------------- | ------- | -------------------------------- |
-| --arrow-size         | 箭头大小         | 8PX     | --bui-tooltip-arrow-size         |
-| --localtion-position | 箭头位置         | 8PX     | --bui-tooltip-localtion-position |
-| --max-width          | 最大宽度         | 350px   | --bui-tooltip-max-width          |
-| --content-min-width  | 内容区域最小宽度 | 30px    | --bui-tooltip-content-min-width  |
-| --content-min-height | 内容区域最小高度 | 32px    | --bui-tooltip-content-min-height |
-| --content-padding    | 内容区域内边距   | 6px 8px | --bui-tooltip-content-padding    |
+| 全局变量                         | 说明         | 默认值    |
+| -------------------------------- | ------------ | --------- |
+| --bui-tooltip-arrow-size         | 箭头大小     | `8PX`     |
+| --bui-tooltip-location-position  | 定位偏移量   | `8PX`     |
+| --bui-tooltip-max-width          | 最大宽度     | `350px`   |
+| --bui-tooltip-content-min-width  | 内容最小宽度 | `30px`    |
+| --bui-tooltip-content-min-height | 内容最小高度 | `32px`    |
+| --bui-tooltip-content-padding    | 内容内边距   | `6px 8px` |

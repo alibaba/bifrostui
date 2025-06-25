@@ -15,10 +15,10 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
     children,
     src,
     lazy,
-    variant,
-    size,
+    variant = 'rounded',
+    size = 'medium',
     alt,
-    fit,
+    fit = 'cover',
     placeholder,
     ImageProps,
     ...others
@@ -62,10 +62,5 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
 });
 
 Avatar.displayName = 'BuiAvatar';
-Avatar.defaultProps = {
-  variant: 'rounded',
-  size: 'medium',
-  fit: 'cover',
-};
 
 export default Avatar;

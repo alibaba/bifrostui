@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { View, ViewProps } from '@tarojs/components';
 import Backdrop from '../Backdrop';
 import Portal from '../Portal';
-import './Modal.less';
 import { ModalProps } from './Modal.types';
+import './index.less';
 
 const prefixCls = 'bui-modal';
 
@@ -13,13 +13,13 @@ const Modal = React.forwardRef<HTMLDivElement, ViewProps & ModalProps>(
   (props, ref) => {
     const {
       className,
-      open,
+      open = false,
       BackdropProps,
       children,
       container,
-      disablePortal,
-      disableScrollLock,
-      hideBackdrop,
+      disablePortal = false,
+      disableScrollLock = false,
+      hideBackdrop = false,
       onClose,
       keepMounted,
       ...others
@@ -72,11 +72,5 @@ const Modal = React.forwardRef<HTMLDivElement, ViewProps & ModalProps>(
 );
 
 Modal.displayName = 'BuiModal';
-Modal.defaultProps = {
-  open: false,
-  disablePortal: false,
-  disableScrollLock: false,
-  hideBackdrop: false,
-};
 
 export default Modal;

@@ -7,9 +7,7 @@ name: Collapse 折叠动效
 
 使用Transition封装的基础折叠动画，从元素的起始边缘展开
 
-## 代码演示
-
-### 基础使用
+## 基础使用
 
 Collapse组件支持两个折叠方向，通过`direction`参数传入，如果需要水平折叠则使用`horizontal`值，如果需要垂直方向折叠则使用`vertical`值。默认值为`vertical`
 

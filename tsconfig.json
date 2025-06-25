@@ -12,24 +12,20 @@
     "jsx": "react",
     "esModuleInterop": true,
     "sourceMap": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "strict": false,
+    "resolveJsonModule": true,
     "paths": {
-      "@bifrostui/react": ["./packages/bui-core/src"],
-      "@bifrostui/icons": ["./packages/bui-icons/src"],
-      "@bifrostui/types": ["./packages/bui-types/src"],
-      "@bifrostui/utils": ["./packages/bui-utils/src"],
+      "@bifrostui/react": ["./packages/bui-core/src/index.ts"],
+      "@bifrostui/icons": ["./packages/bui-icons/src/index.ts"],
+      "@bifrostui/types": ["./packages/bui-types/src/index.ts"],
+      "@bifrostui/utils": ["./packages/bui-utils/src/index.ts"],
+      "@bifrostui/styles/registry": [
+        "./packages/bui-styles/registry/index.mjs"
+      ],
       "testing": ["./tests"]
     },
     "allowSyntheticDefaultImports": true
   },
-  "exclude": [
-    "node_modules",
-    "lib",
-    "es",
-    "dist",
-    "typings",
-    "docs",
-    "websites"
-  ]
+  "exclude": ["node_modules", "lib", "es", "dist", "typings", "websites"]
 }

@@ -6,8 +6,8 @@ import 'swiper/css/autoplay';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 import { Swiper as SwiperReact, SwiperRef } from 'swiper/react';
-import './Swiper.less';
 import { SwiperProps } from './Swiper.types';
+import './index.less';
 
 const Swiper = forwardRef<SwiperRef, SwiperProps>((props, ref) => {
   const {

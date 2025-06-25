@@ -9,7 +9,7 @@ import {
 import clsx from 'clsx';
 import { Transition } from '../Transition';
 import { CollapseProps } from './Collapse.types';
-import './Collapse.less';
+import './index.less';
 
 const defaultEasing = {
   enter: easing.easeOut,

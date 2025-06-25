@@ -7,9 +7,7 @@ name: NavBar 导航栏
 
 提供页面的导航组件，常见于移动端页面的顶部
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 直接引入组件即可在页面头部添加导航栏
 
@@ -176,14 +174,14 @@ export default () => {
 
 ## 样式变量
 
-| 属性               | 说明               | 默认值                  | 全局变量                      |
-| ------------------ | ------------------ | ----------------------- | ----------------------------- |
-| --width            | 导航栏宽度         | 100%                    | --bui-navbar-width            |
-| --height           | 导航栏高度         | 45px                    | --bui-navbar-height           |
-| --padding          |                    | 0 8px                   | --bui-navbar-padding          |
-| --title-max-width  | 导航栏标题最大宽度 | 60%                     | --bui-navbar-title-max-width  |
-| --icon-size        | 导航栏图标大小     | 30px                    | --bui-navbar-icon-size        |
-| --icon-font-size   | 导航栏图标字体     | var(--bui-title-size-3) | --bui-navbar-icon-font-size   |
-| --background-color | 导航栏背景色       | var(--bui-color-white)  | --bui-navbar-background-color |
-| --border-bottom    | 导航栏底部边框样式 | none                    | --bui-navbar-border-bottom    |
-| --z-index          | 导航栏默认层级     | auto                    | --bui-navbar-z-index          |
+| 全局变量                      | 说明         | 默认值                   |
+| ----------------------------- | ------------ | ------------------------ |
+| --bui-navbar-width            | 导航栏宽度   | `100%`                   |
+| --bui-navbar-height           | 导航栏高度   | `45px`                   |
+| --bui-navbar-padding          | 导航栏内边距 | `0 8px`                  |
+| --bui-navbar-title-padding    | 标题内边距   | `0 8px`                  |
+| --bui-navbar-icon-font-size   | 图标字体大小 | `24px`                   |
+| --bui-navbar-background-color | 背景颜色     | `var(--bui-color-white)` |
+| --bui-navbar-border-bottom    | 底部边框     | `none`                   |
+| --bui-navbar-z-index          | 层级         | `auto`                   |
+| --bui-navbar-title-max-width  | 标题最大宽度 | `60%`                    |

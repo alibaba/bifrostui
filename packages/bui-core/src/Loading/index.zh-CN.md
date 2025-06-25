@@ -5,16 +5,11 @@ name: Loading 加载
 
 # Loading 加载
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 展示一个加载中的图标
 
 ```tsx
-/**
- * background: '#f6f7f9'
- */
 import React from 'react';
 import { Stack, Loading } from '@bifrostui/react';
 
@@ -27,7 +22,7 @@ export default () => {
 };
 ```
 
-### 添加文案
+## 添加文案
 
 可以通过`children`属性传递文案，非`ReactNode`类型的内容会默认添加一层DOM结构来控制样式。
 
@@ -47,7 +42,7 @@ export default () => {
 };
 ```
 
-### 修改图标和文案的排列形式
+## 修改图标和文案的排列形式
 
 可以通过`direction`传递`vertical` ｜ `horizontal`来控制行列展示形式。
 
@@ -67,7 +62,7 @@ export default () => {
 };
 ```
 
-### 自定义图标展示
+## 自定义图标展示
 
 通过设置`IconProps`来控制内部图标
 
@@ -101,8 +96,8 @@ export default () => {
 
 ## 样式变量
 
-| 属性                 | 说明             | 默认值 | 全局变量                         |
-| -------------------- | ---------------- | ------ | -------------------------------- |
-| --icon-font-size     | 图标字号         | 30px   | --bui-loading-icon-font-size     |
-| --text-padding       | 文案容器内边距   | 10px   | --bui-loading-text-padding       |
-| --animation-duration | 加载动画播放周期 | 1.6s   | --bui-loading-animation-duration |
+| 全局变量                         | 说明             | 默认值 |
+| -------------------------------- | ---------------- | ------ |
+| --bui-loading-icon-font-size     | 加载图标字体大小 | `30px` |
+| --bui-loading-text-padding       | 文本内边距       | `10px` |
+| --bui-loading-animation-duration | 加载动画持续时间 | `1.6s` |
