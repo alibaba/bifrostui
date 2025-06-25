@@ -2,8 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { act, render, screen } from 'testing';
 import { fireEvent, waitFor } from '@testing-library/react';
 import ScrollView from '../ScrollView';
+import Button from '../../Button';
 
 describe('ScrollView', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+  afterEach(() => {
+    jest.clearAllTimers();
+    jest.useRealTimers();
+  });
+
   const rootClass = 'bui-scroll';
 
   it('renders correctly', () => {
@@ -201,15 +210,76 @@ describe('ScrollView', () => {
         ).toEqual(3000);
       });
     };
-    await Promise.all([
-      doTest(false, false, false),
-      doTest(true, false, false),
-      doTest(false, true, false),
-      doTest(true, true, false),
-      doTest(false, false, true),
-      doTest(true, false, true),
-      doTest(false, true, true),
-      doTest(true, true, true),
-    ]);
+
+    const testCases: [boolean, boolean, boolean][] = [
+      [false, false, false],
+      [true, false, false],
+      [false, true, false],
+      [true, true, false],
+      [false, false, true],
+      [true, false, true],
+      [false, true, true],
+      [true, true, true],
+    ];
+
+    // eslint-disable-next-line
+    for (const testCase of testCases) {
+      // eslint-disable-next-line
+      await doTest(...testCase);
+    }
+  });
+
+  it('should take 300ms to scroll to the specified position when clicking an item', async () => {
+    const App = () => {
+      const scrollAnimationDuration = 300;
+      const [h, sH] = useState(undefined);
+      const [id, sId] = useState(undefined);
+      return (
+        <>
+          <Button
+            className="button"
+            onClick={() => {
+              sId(undefined);
+              sH(200);
+            }}
+          >
+            滚动到200px
+          </Button>
+          <ScrollView
+            scrollY
+            scrollTop={h}
+            scrollIntoView={id}
+            scrollIntoViewAlignment="nearest"
+            onScroll={(e) => {
+              sId(undefined);
+              sH(undefined);
+            }}
+            scrollWithAnimation
+            scrollAnimationDuration={scrollAnimationDuration}
+            style={{ width: '100%', height: '400px' }}
+          >
+            {[...new Array(100)].map((_, index) => (
+              <div className="item" key={index} id={`d${index}`}>
+                {index}
+              </div>
+            ))}
+          </ScrollView>
+        </>
+      );
+    };
+    const { container } = render(<App />);
+
+    const scrollElement = container.querySelector(`.${rootClass}`);
+
+    const item = document.querySelector('button');
+    await act(async () => {
+      fireEvent.click(item);
+    });
+
+    jest.advanceTimersByTime(290);
+    expect(scrollElement.scrollTop).toBeLessThan(200);
+
+    jest.advanceTimersByTime(300);
+    expect(scrollElement.scrollTop).toEqual(200);
   });
 });

@@ -5,12 +5,14 @@ import './index.less';
 
 import { ScrollViewProps } from './ScrollView.types';
 
-function easeOutScroll(from, to, callback) {
+function easeOutScroll(from, to, callback, dur) {
+  if (dur <= 0) {
+    dur = 500;
+  }
   if (from === to || typeof from !== 'number') {
     return;
   }
   const change = to - from;
-  const dur = 500;
   const sTime = +new Date();
   function linear(t, b, c, d) {
     return (c * t) / d + b;
@@ -49,6 +51,7 @@ const ScrollView = forwardRef<HTMLDivElement, ScrollViewProps>(
       onTouchMove: propsOnTouchMove,
       scrollIntoViewAlignment,
       children,
+      scrollAnimationDuration = 500,
     } = props;
 
     const container = useRef(null);
@@ -62,18 +65,28 @@ const ScrollView = forwardRef<HTMLDivElement, ScrollViewProps>(
     const scrollVertical = useCallback((top, isAnimation) => {
       if (top === undefined) return;
       if (isAnimation) {
-        easeOutScroll(container.current.scrollTop, top, (pos) => {
-          if (container.current) container.current.scrollTop = pos;
-        });
+        easeOutScroll(
+          container.current.scrollTop,
+          top,
+          (pos) => {
+            if (container.current) container.current.scrollTop = pos;
+          },
+          scrollAnimationDuration,
+        );
       } else if (container.current) container.current.scrollTop = top;
     }, []);
 
     const scrollHorizontal = useCallback((left, isAnimation) => {
       if (left === undefined) return;
       if (isAnimation) {
-        easeOutScroll(container.current.scrollLeft, left, (pos) => {
-          if (container.current) container.current.scrollLeft = pos;
-        });
+        easeOutScroll(
+          container.current.scrollLeft,
+          left,
+          (pos) => {
+            if (container.current) container.current.scrollLeft = pos;
+          },
+          scrollAnimationDuration,
+        );
       } else if (container.current) container.current.scrollLeft = left;
     }, []);
 

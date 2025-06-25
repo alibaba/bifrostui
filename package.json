@@ -27,6 +27,7 @@
     "package": "chmod +x ./scripts/pack-packages.sh && ./scripts/pack-packages.sh",
     "test": "jest",
     "ci:test": "pnpm run test --coverage",
+    "ui:test": "dumi dev & chmod +x ./scripts/ui-test.sh &&  ./scripts/ui-test.sh",
     "ci:eslint": "pnpm run lint:script -f json -o ./.ci/eslint.json",
     "generate:mini:files": "node scripts/mini-program-site/generateMiniFiles.js",
     "lint": "pnpm run lint:script && pnpm run lint:style",
@@ -45,7 +46,8 @@
   "dependencies": {
     "@bifrostui/icons": "workspace:*",
     "@bifrostui/react": "workspace:*",
-    "@bifrostui/styles": "workspace:*"
+    "@bifrostui/styles": "workspace:*",
+    "backstopjs": "^6.3.25"
   },
   "devDependencies": {
     "@ant-design/icons-svg": "4.4.2",

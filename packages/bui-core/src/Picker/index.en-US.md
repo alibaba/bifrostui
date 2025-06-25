@@ -1233,10 +1233,11 @@ export default () => {
 
 #### IPickerOptionItem
 
-| Property | Description                 | Type             | Default |
-| -------- | --------------------------- | ---------------- | ------- |
-| label    | Option text content         | string \| number | -       |
-| value    | Unique value for the option | string \| number | -       |
+| Property | Description                    | Type             | Default |
+| -------- | ------------------------------ | ---------------- | ------- |
+| label    | Option text content            | string \| number | -       |
+| value    | Unique value for the option    | string \| number | -       |
+| disabled | Whether the option is disabled | boolean          | -       |
 
 #### ICascadePickerOptionItem
 
@@ -1258,18 +1259,20 @@ export default () => {
 
 ### Style Variables
 
-| Property                 | Description                                             | Default Value              | Global Variable                     |
-| ------------------------ | ------------------------------------------------------- | -------------------------- | ----------------------------------- |
-| --header-height          | Selector header height                                  | 50px                       | --bui-picker-header-height          |
-| --header-padding         | Selector header padding                                 | 0 var(--bui-spacing-lg)    | --bui-picker-header-padding         |
-| --cancel-height          | Cancel button height                                    | 100%                       | --bui-picker-cancel-height          |
-| --cancel-line-height     | Cancel button line height                               | 50px                       | --bui-picker-cancel-line-height     |
-| --confirm-height         | Confirm button height                                   | 100%                       | --bui-picker-confirm-height         |
-| --confirm-line-height    | Confirm button line height                              | 50px                       | --bui-picker-confirm-line-height    |
-| --panel-container-height | Selector container height                               | 260px                      | --bui-picker-panel-height           |
-| --indicator-top          | Distance from top to indicator                          | 108px                      | --bui-picker-indicator-top          |
-| --indicator-border-color | Indicator border color                                  | --bui-color-border-default | --bui-picker-indicator-border-color |
-| --option-height          | Option height, same as indicator height, must be inline | 36px                       | --bui-picker-option-height          |
+| Property                 | Description                                             | Default Value              | Global Variable                       |
+| ------------------------ | ------------------------------------------------------- | -------------------------- | ------------------------------------- |
+| --header-height          | Selector header height                                  | 50px                       | --bui-picker-header-height            |
+| --header-padding         | Selector header padding                                 | 0 var(--bui-spacing-lg)    | --bui-picker-header-padding           |
+| --cancel-height          | Cancel button height                                    | 100%                       | --bui-picker-cancel-height            |
+| --cancel-line-height     | Cancel button line height                               | 50px                       | --bui-picker-cancel-line-height       |
+| --confirm-height         | Confirm button height                                   | 100%                       | --bui-picker-confirm-height           |
+| --confirm-line-height    | Confirm button line height                              | 50px                       | --bui-picker-confirm-line-height      |
+| --panel-container-height | Selector container height                               | 260px                      | --bui-picker-panel-height             |
+| --indicator-top          | Distance from top to indicator                          | 108px                      | --bui-picker-indicator-top            |
+| --indicator-border-color | Indicator border color                                  | --bui-color-border-default | --bui-picker-indicator-border-color   |
+| --option-height          | Option height, same as indicator height, must be inline | 36px                       | --bui-picker-option-height            |
+| -                        | The opacity of the confirm button when disabled         | 0.38                       | --bui-picker-confirm-disabled-opacity |
+| -                        | The opacity of the option when disabled                 | 0.38                       | --bui-picker-option-disabled-opacity  |
 
 #### Why Use Inline Style for `--option-height`
 

@@ -6,6 +6,7 @@ import {
   getTransitionProps,
   createTransitions,
 } from '@bifrostui/utils';
+import clsx from 'clsx';
 import { Transition } from '../Transition';
 import { CollapseProps } from './Collapse.types';
 import './index.less';
@@ -15,12 +16,14 @@ const defaultEasing = {
   exit: easing.sharp,
 };
 
+const FIT_CONTENT = 'fit-content';
+
 const defaultTimeout = {
   enter: duration.enteringScreen,
   exit: duration.leavingScreen,
 };
 
-const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
+const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
   const {
     appear = false,
     in: inProp,
@@ -35,7 +38,6 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
     ...other
   } = props;
 
-  const nodeRef = useForkRef(ref);
   const wrapperRef = useRef(null);
   const collapseRef = useForkRef(wrapperRef, ref);
   const transitions = createTransitions();
@@ -49,7 +51,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
   const getCollapseWrapperSize = (reactNode) => {
     return reactNode
       ? `${reactNode[isHorizontal ? 'clientWidth' : 'clientHeight']}px`
-      : 'fit-content';
+      : FIT_CONTENT;
   };
 
   useEffect(() => {
@@ -57,7 +59,7 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
     if (
       appear === false &&
       inProp === true &&
-      wrapperRef.current?.style?.[size] === 'fit-content'
+      wrapperRef.current?.style?.[size] === FIT_CONTENT
     ) {
       wrapperRef.current.style[size] = getCollapseWrapperSize(
         wrapperRef.current?.children?.[0],
@@ -70,7 +72,6 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
   return (
     <Transition
       {...other}
-      ref={nodeRef}
       in={inProp}
       timeout={timeout}
       delay={delay}
@@ -99,17 +100,19 @@ const Collapse = React.forwardRef<unknown, CollapseProps>((props, ref) => {
                 WebKitHeight: collapseWrapperSize,
               };
         };
-
         return React.createElement(
           'div',
           {
-            className: `bui-collapse ${className}`,
+            className: clsx('bui-collapse', {
+              className,
+            }),
             style: {
               ...style,
               transition,
               WebkitTransition: transition,
               ...wrapperSize(),
             },
+            ...childProps,
             ref: collapseRef,
           },
           React.cloneElement(children, {

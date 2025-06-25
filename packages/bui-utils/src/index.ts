@@ -1,6 +1,7 @@
 export { default as debounce } from './debounce';
 export {
   getStylesAndLocation,
+  getNewDirectionLocation,
   triggerEventTransform,
   parsePlacement,
 } from './directionLocationUtil';
@@ -10,6 +11,10 @@ export {
   useEventCallback,
   useForkRef,
   useTouchEmulator,
+  touchEmulator,
+  emulateTouchStart,
+  emulateTouchMove,
+  emulateTouchEnd,
   useValue,
   useDomReady,
   useSize,
@@ -29,8 +34,9 @@ export {
   getTransitionProps,
   createTransitions,
 } from './transitions';
-export { default as getRootElement } from './getRootElement';
+export { default as getRootContainer } from './getRootContainer';
 export { default as getBoundingClientRect } from './getBoundingClientRect';
+export { getScrollRect, getClientRect } from './domUtils';
 export * from './isType';
 export * from './render';
 export * from './themeCreator';

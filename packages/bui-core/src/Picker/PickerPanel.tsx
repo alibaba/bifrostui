@@ -21,7 +21,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
   (props, ref) => {
     const {
       options = [],
-      defaultValue,
+      value,
       onSelect,
       columnIndex,
       open,
@@ -68,9 +68,9 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
 
     const updateSelect = () => {
       let index = -1;
-      if (defaultValue) {
+      if (value) {
         options.some((item, idx) => {
-          if (item.value === defaultValue) {
+          if (item.value === value) {
             index = idx;
             return true;
           }
@@ -90,7 +90,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       return () => {
         clearTimeout(timer);
       };
-    }, [options]);
+    }, [options, value]);
 
     const setTransform = (
       type: string,
@@ -262,6 +262,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
               className={clsx(`${prefixCls}-option`, {
                 [`${prefixCls}-option-hidden`]:
                   i + 1 <= currIndex - 8 || i + 1 >= currIndex + 8,
+                [`${prefixCls}-option-disabled`]: item?.disabled,
               })}
               key={`${item?.value}-${i}`}
               style={{

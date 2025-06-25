@@ -101,6 +101,47 @@ export default () => {
 };
 ```
 
+## 指定渲染容器
+
+可以指定`container`指定渲染的父容器。
+
+```tsx
+import {
+  Stack,
+  Button,
+  Dialog,
+  Toast,
+  useTheme,
+  ThemeProvider,
+} from '@bifrostui/react';
+import React from 'react';
+
+export default () => {
+  const theme = useTheme();
+  const [dialog, contextHolder] = Dialog.useDialog();
+
+  return (
+    <ThemeProvider locale={theme.locale}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button
+          onClick={() =>
+            dialog.confirm({
+              header: '标题',
+              message: '详细描述',
+              container: document.getElementById('container'),
+            })
+          }
+        >
+          confirm
+        </Button>
+        <div id="container" />
+      </Stack>
+    </ThemeProvider>
+  );
+};
+```
+
 ## 异步操作执行成功/失败
 
 使用`onConfirm`来定义点击确认时回调。
@@ -276,18 +317,19 @@ export default () => {
 
 ### DialogOptions
 
-| 属性        | 说明         | 类型                                       | 默认值 |
-| ----------- | ------------ | ------------------------------------------ | ------ |
-| header      | 自定义页头   | `React.ReactNode`                          | -      |
-| message     | 自定义消息   | `React.ReactNode`                          | -      |
-| confirmText | 确认按钮文案 | `React.ReactNode`                          | 确认   |
-| cancelText  | 取消按钮文案 | `React.ReactNode`                          | 取消   |
-| onConfirm   | 确定按钮回调 | `(val?: string) => void \| Promise<void>;` | -      |
-| onCancel    | 取消按钮回调 | `() =>void \| Promise<void>`               | -      |
+| 属性        | 说明         | 类型                                       | 默认值        |
+| ----------- | ------------ | ------------------------------------------ | ------------- |
+| header      | 自定义页头   | `React.ReactNode`                          | -             |
+| message     | 自定义消息   | `React.ReactNode`                          | -             |
+| confirmText | 确认按钮文案 | `React.ReactNode`                          | 确认          |
+| cancelText  | 取消按钮文案 | `React.ReactNode`                          | 取消          |
+| container   | 渲染容器     | `HTMLElement` \| `(() => HTMLElement) `    | document.body |
+| onConfirm   | 确定按钮回调 | `(val?: string) => void \| Promise<void>;` | -             |
+| onCancel    | 取消按钮回调 | `() =>void \| Promise<void>`               | -             |
 
 `ConfirmOptions`的取值同`DialogOptions`
 
-`DialogOptions` 继承自 `ModalProps`, 其他属性见 [Modal API](/cores/modal?#API)
+`DialogOptions` 继承自 `ModalProps`, 其他属性见 [Modal API](/cores/modal?#api)
 
 ### PromptOptions
 

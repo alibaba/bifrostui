@@ -9,6 +9,12 @@ import './Picker.less';
 
 const prefixCls = 'bui-picker';
 
+const checkDisabled = (values, columns) =>
+  values.find(
+    (value, index) =>
+      columns?.[index]?.find((column) => column?.value === value)?.disabled,
+  );
+
 const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
   const {
     className,
@@ -16,6 +22,8 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
     title,
     options = [],
     value,
+    confirmText: propConfirmText,
+    cancelText: propCancelText,
     contentProps,
     onConfirm,
     onOptionChange,
@@ -28,6 +36,8 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
   const [columns, setColumns] = useState([]);
   const [internalValue, setInternalValue] = useState([]);
   const { cancel: cancelText, confirm: confirmText } = useLocaleText('picker');
+
+  const disabled = checkDisabled(internalValue, columns);
 
   useEffect(() => {
     if (!open) return;
@@ -53,8 +63,8 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
 
   const confirm = (e: React.MouseEvent<HTMLDivElement>) => {
     const isMoving = rollerRefs.current.some((roller) => roller?.isMoving);
-    // 处于惯性滚动中，不允许确认关闭选择器
-    if (isMoving) return;
+    // 处于惯性滚动中，或者处于禁用状态，不允许确认关闭选择器
+    if (isMoving || disabled) return;
 
     const { safeValue } = safeData({
       value: internalValue,
@@ -125,6 +135,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
           value: conbineValues,
           options: formatted,
           currentOption: columnOption,
+          columnIndex,
         });
       } else {
         // value为引用类型，防止取消时外部value被修改
@@ -135,6 +146,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
           value: result,
           options: options as ICascadePickerChildOptionItem[][],
           currentOption: columnOption,
+          columnIndex,
         });
       }
     }
@@ -184,11 +196,16 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
       >
         <div className={`${prefixCls}-header`}>
           <div className={`${prefixCls}-cancel`} onClick={cancel}>
-            {cancelText}
+            {propCancelText || cancelText}
           </div>
           {title && <div className={`${prefixCls}-title`}>{title}</div>}
-          <div className={`${prefixCls}-confirm`} onClick={confirm}>
-            {confirmText}
+          <div
+            className={clsx(`${prefixCls}-confirm`, {
+              [`${prefixCls}-confirm-disabled`]: disabled,
+            })}
+            onClick={confirm}
+          >
+            {propConfirmText || confirmText}
           </div>
         </div>
 
@@ -199,7 +216,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
               key={index}
               options={column}
               columnIndex={index}
-              defaultValue={internalValue?.[index]}
+              value={internalValue?.[index]}
               onSelect={handleSelect}
               open={open}
             />
