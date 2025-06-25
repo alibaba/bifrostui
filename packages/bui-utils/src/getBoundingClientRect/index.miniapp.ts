@@ -1,16 +1,21 @@
 import Taro from '@tarojs/taro';
-import type { TaroElement } from '@tarojs/runtime';
+import { isTt, isWeapp } from '../isMini';
 
-export default function getBoundingClientRect(
-  ele: TaroElement,
-): Promise<DOMRect> {
-  return new Promise((resolve) => {
+// 导出一个默认函数，用于获取元素的位置信息
+export default async function getBoundingClientRect(ele): Promise<DOMRect> {
+  let result;
+  if (isWeapp || isTt) {
+    result = await ele.getBoundingClientRect();
+  } else {
     const query = Taro.createSelectorQuery();
-    query
-      .select(`#${ele.uid}`)
-      .boundingClientRect()
-      .exec(([res]) => {
-        resolve(res);
-      });
-  });
+    result = await new Promise((resolve) => {
+      query
+        .select(`#${ele.uid}`)
+        .boundingClientRect()
+        .exec(([res]) => {
+          resolve(res);
+        });
+    });
+  }
+  return result;
 }

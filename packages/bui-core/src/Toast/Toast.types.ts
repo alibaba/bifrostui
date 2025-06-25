@@ -52,6 +52,11 @@ export interface ToastProps extends FadeProps {
    */
   disableClick?: boolean;
   /**
+   * 渲染Toast的根容器
+   * @default document.body
+   */
+  container?: HTMLElement | (() => HTMLElement);
+  /**
    * 关闭时的回调函数
    */
   onClose?: () => void;

@@ -36,6 +36,7 @@ const Touch = function Touch(target, identifier, pos, deltaX, deltaY) {
  * @returns touchList
  */
 function TouchList() {
+  /* eslint-disable */
   const touchList: any = [];
 
   touchList.item = (index) => {
@@ -99,6 +100,7 @@ function onMouse(touchType) {
  * @param mouseEv
  */
 function triggerTouch(eventName, mouseEv) {
+  /* eslint-disable */
   const touchEvent: any = document.createEvent('Event');
   touchEvent.initEvent(eventName, true, false);
 
@@ -138,24 +140,42 @@ function getActiveTouches(mouseEv) {
   return createTouchList(mouseEv);
 }
 
-export default function useTouchEmulator(dom: HTMLElement | Window = window) {
-  const touchStart = onMouse('touchstart');
-  const touchMove = onMouse('touchmove');
-  const touchEnd = onMouse('touchend');
+const emulateTouchStart = onMouse('touchstart');
+const emulateTouchMove = onMouse('touchmove');
+const emulateTouchEnd = onMouse('touchend');
 
+function useTouchEmulator(dom: HTMLElement | Window = window) {
   useEffect(() => {
     if (dom) {
-      dom.addEventListener('mousedown', touchStart, true);
-      dom.addEventListener('mousemove', touchMove, true);
-      dom.addEventListener('mouseup', touchEnd, true);
+      dom.addEventListener('mousedown', emulateTouchStart, true);
+      dom.addEventListener('mousemove', emulateTouchMove, true);
+      dom.addEventListener('mouseup', emulateTouchEnd, true);
     }
 
     return () => {
       if (dom) {
-        dom.removeEventListener('mousedown', touchStart, true);
-        dom.removeEventListener('mousemove', touchMove, true);
-        dom.removeEventListener('mouseup', touchEnd, true);
+        dom.removeEventListener('mousedown', emulateTouchStart, true);
+        dom.removeEventListener('mousemove', emulateTouchMove, true);
+        dom.removeEventListener('mouseup', emulateTouchEnd, true);
       }
     };
   }, [dom]);
 }
+
+const touchEmulator = (dom: HTMLElement | Window = window) => {
+  if (dom) {
+    dom.addEventListener('mousedown', emulateTouchStart, true);
+    dom.addEventListener('mousemove', emulateTouchMove, true);
+    dom.addEventListener('mouseup', emulateTouchEnd, true);
+  }
+  return function () {
+    if (dom) {
+      dom.removeEventListener('mousedown', emulateTouchStart, true);
+      dom.removeEventListener('mousemove', emulateTouchMove, true);
+      dom.removeEventListener('mouseup', emulateTouchEnd, true);
+    }
+  };
+};
+
+export default useTouchEmulator;
+export { touchEmulator, emulateTouchStart, emulateTouchMove, emulateTouchEnd };

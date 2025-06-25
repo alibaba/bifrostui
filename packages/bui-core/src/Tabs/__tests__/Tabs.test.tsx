@@ -12,6 +12,9 @@ describe('Tabs', () => {
 
   beforeEach(() => {
     document.body.innerHTML = '';
+    jest.mock('@bifrostui/utils', () => ({
+      isMini: false,
+    }));
     jest.useFakeTimers();
   });
 

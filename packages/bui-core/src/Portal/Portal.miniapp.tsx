@@ -1,11 +1,14 @@
 import Taro from '@tarojs/taro';
-import React, { forwardRef, useMemo } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import { PortalProps } from './Portal.types';
 import PortalCore from './PortalCore';
 
 export const Portal = forwardRef<HTMLElement, PortalProps>((props, ref) => {
   const { disablePortal } = props;
-  const rootWrapperElement = useMemo(() => {
+  const [rootWrapperElement, setRootWrapperElement] = useState<HTMLElement>();
+
+  useEffect(() => {
+    let root;
     if (!disablePortal) {
       const currentPages = Taro.getCurrentPages() || [];
       const currentPage = currentPages[currentPages.length - 1];
@@ -21,11 +24,12 @@ export const Portal = forwardRef<HTMLElement, PortalProps>((props, ref) => {
         const view = document.createElement('view');
         view.id = portalId;
         rootElement?.appendChild(view);
-        return view;
+        root = view;
+      } else {
+        root = portalWrapperElement;
       }
-      return portalWrapperElement;
     }
-    return undefined;
+    setRootWrapperElement(root);
   }, []);
 
   return <PortalCore {...props} ref={ref} rootElement={rootWrapperElement} />;

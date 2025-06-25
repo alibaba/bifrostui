@@ -241,7 +241,36 @@ export default () => {
 };
 ```
 
-## 选择日期范围
+### 隐藏头部操作区域
+
+通过 `headerVisible` 可隐藏头部操作区域。
+
+```tsx
+import { Calendar, Stack } from '@bifrostui/react';
+import dayjs from 'dayjs/esm/index';
+import React, { useState } from 'react';
+
+export default () => {
+  const [value, setValue] = useState(dayjs().toDate());
+
+  return (
+    <Stack>
+      <div style={{ width: '320px' }}>
+        <Calendar
+          value={value}
+          headerVisible
+          onChange={(e, res) => {
+            console.log('日期变化：', dayjs(res.value).format('YYYY-MM-DD'));
+            setValue(res.value);
+          }}
+        />
+      </div>
+    </Stack>
+  );
+};
+```
+
+### 选择日期范围
 
 `mode` 指定为 `range`，可以实现选择日期范围。
 

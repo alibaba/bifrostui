@@ -265,7 +265,7 @@ const options = [
 ];
 
 export default () => {
-  const [open, setOpen] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -464,9 +464,8 @@ export default () => {
 
 ### 指定滚动父容器
 
-通过scrollContainer指定滚动父容器，默认是() => document.body。
+通过scrollContainer指定滚动父容器，默认滚动父容器是页面。
 指定后，下拉框的展示方向会自动根据滚动父容器进行计算。
-仅支持H5。
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
@@ -496,19 +495,19 @@ export default () => {
       alignItems="stretch"
       style={{
         display: 'block',
-        height: '300px',
-        padding: '50px',
+        height: '150px',
+        padding: '10px 50px',
         background: '#eee',
         overflowY: 'scroll',
       }}
     >
-      <div style={{ height: '150px' }}></div>
+      <div style={{ height: '50px' }}></div>
       <Select scrollContainer={() => ref.current}>
         {options.map((item, index) => (
           <SelectOption key={index} value={item.value} label={item.label} />
         ))}
       </Select>
-      <div style={{ height: '500px' }}></div>
+      <div style={{ height: '200px' }}></div>
     </Stack>
   );
 };

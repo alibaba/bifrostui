@@ -4,10 +4,11 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Tab from './Tab';
 import { TabsProps } from './Tabs.types';
 import { TabsContextProvider } from './TabsContext';
-import bound from './utils/bound';
+import scrollLeftTo from './utils/scroll';
 import './Tabs.less';
 
 const prefixCls = 'bui-tabs';
+const duration = 300;
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const { children, className, value, tabs = [], onChange, ...others } = props;
@@ -22,16 +23,15 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     rightMaskOpacity: 0,
   });
 
-  const animate = useEventCallback(() => {
+  const getActiveTabElement = () => {
     const container = tabsRef.current;
-    if (!container) return;
+    if (!container) return undefined;
 
     const activeIndex =
       !!tabs.length && tabs.findIndex((item) => item.index === value);
-    const activeLine = activeLineRef.current;
-    if (!activeLine) return;
 
     let activeTab;
+
     if (tabs.length) {
       activeTab =
         activeIndex > -1
@@ -47,6 +47,31 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         return [...child.classList].includes('bui-tab-active');
       }) as HTMLDivElement;
     }
+
+    return activeTab;
+  };
+
+  const scrollIntoView = () => {
+    const tabsContainer = tabsRef.current;
+    const activeTab = getActiveTabElement();
+    if (!tabsContainer || !activeTab) {
+      return;
+    }
+
+    const to =
+      activeTab.offsetLeft -
+      (tabsContainer.offsetWidth - activeTab.offsetWidth) / 2;
+    scrollLeftTo(tabsContainer, to, duration);
+  };
+
+  const animate = useEventCallback(() => {
+    const container = tabsRef.current;
+    if (!container) return;
+
+    const activeLine = activeLineRef.current;
+    if (!activeLine) return;
+
+    const activeTab = getActiveTabElement();
 
     let activeTabLeft = 0;
     let activeTabWidth = 0;
@@ -70,14 +95,8 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     const maxScrollDistance = containerScrollWidth - containerWidth;
     if (maxScrollDistance <= 0 || !activeTab) return;
 
-    const nextScrollLeft = bound(
-      activeTabLeft - (containerWidth - activeTabWidth) / 2,
-      0,
-      containerScrollWidth - containerWidth,
-    );
-
-    if (tabsRef.current) {
-      tabsRef.current.scrollLeft = nextScrollLeft;
+    if (!isMini) {
+      scrollIntoView();
     }
   });
 
@@ -90,8 +109,11 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
 
           const scrollLeft = container?.scrollLeft;
           const showLeftMask = scrollLeft > 0;
-          const showRightMask =
-            scrollLeft + container.offsetWidth < container.scrollWidth;
+          const rightRange = Math.abs(
+            container.scrollWidth - (scrollLeft + container.offsetWidth),
+          );
+          // 右侧遮罩rightRange在0-1范围内即可隐藏，处理浏览器兼容问题
+          const showRightMask = rightRange > 1;
 
           setMaskData({
             leftMaskOpacity: showLeftMask ? 1 : 0,
