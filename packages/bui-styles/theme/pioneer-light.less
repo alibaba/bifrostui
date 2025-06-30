@@ -5,28 +5,48 @@
     'Helvetica Neue', helvetica, arial, sans-serif;
 
   /** 品牌红 */
-  --bui-color-red: #ff335c;
-  --bui-color-red-light: #ffebef;
+  --bui-color-red: #ff471a;
+  --bui-color-red-light: #ffefe6;
+  --bui-color-red-dark: #b31800;
 
   /** 明亮粉 */
   --bui-color-pink: #dd10f2;
   --bui-color-pink-light: #fce7fe;
 
   /** 活力橙 */
-  --bui-color-orange: #ff8533;
-  --bui-color-orange-light: #fff0e5;
+  --bui-color-orange: #ff7600;
+  --bui-color-orange-light: #fff6e6;
+  --bui-color-orange-dark: #b34700;
+
+  /** 活力黄 */
+  --bui-color-yellow: #ffa608;
+  --bui-color-yellow-light: #fffae6;
+  --bui-color-yellow-dark: #b36500;
+
+  /** 荧光黄 */
+  --bui-color-lemonyellow: #fff36f;
+  --bui-color-lemonyellow-light: #ffffeb;
+  --bui-color-lemonyellow-dark: #b3a13d;
 
   /** 亲和绿 */
-  --bui-color-green: #00d68f;
-  --bui-color-green-light: #dcf9f0;
+  --bui-color-green: #40bf00;
+  --bui-color-green-light: #f2ffe6;
+  --bui-color-green-dark: #1f7300;
 
   /** 神秘紫 */
-  --bui-color-purple: #8b52ff;
-  --bui-color-purple-light: #f2ebff;
+  --bui-color-purple: #754dff;
+  --bui-color-purple-light: #f6f0ff;
+  --bui-color-purple-dark: #3924b3;
 
   /** 宁静蓝 */
-  --bui-color-blue: #148aff;
-  --bui-color-blue-light: #e1f0ff;
+  --bui-color-blue: #229af0;
+  --bui-color-blue-light: #f0fbff;
+  --bui-color-blue-dark: #0757a3;
+
+  /** 智能蓝 */
+  --bui-color-aiblue: #5cfffa;
+  --bui-color-aiblue-light: #f0fffc;
+  --bui-color-aiblue-dark: #1d858c;
 
   /** 中性灰 */
   --bui-color-gray: #8896b1;
@@ -34,25 +54,31 @@
   --bui-color-black: #000;
   --bui-color-white: #fff;
   --bui-color-vip: #ff866e;
+  --bui-color-vip1: #fec9a3;
+  --bui-color-vip2: #f44a8b;
+  --bui-color-vip3: #c46e31;
+  --bui-color-vip4: #fccfe0;
 
   /** 中性色 */
   --bui-color-neutral-0: var(--bui-color-black);
-  --bui-color-neutral-1: #2e333e;
-  --bui-color-neutral-2: #5f6672;
-  --bui-color-neutral-3: #959aa5;
-  --bui-color-neutral-4: #ced1d6;
+  --bui-color-neutral-1: #030b1a;
+  --bui-color-neutral-2: #444b5b;
+  --bui-color-neutral-3: #8b93a5;
+  --bui-color-neutral-4: #bfc4cf;
   --bui-color-neutral-5: #e9ebef;
-  --bui-color-neutral-6: #f5f6f8;
+  --bui-color-neutral-6: #f7f9fc;
   --bui-color-neutral-7: var(--bui-color-white);
 
   /** 字重 */
   --bui-font-weight-normal: 400;
   --bui-font-weight-medium: 500;
-  --bui-font-weight-bold: 600;
+  --bui-font-weight-semibold: 600;
+  --bui-font-weight-bold: 700;
 
   /** 主题 */
-  --bui-color-primary: #ff7600;
-  --bui-color-primary-light: #ffefe5;
+  --bui-color-primary: var(--bui-color-orange);
+  --bui-color-primary-light: var(--bui-color-orange-light);
+  --bui-color-primary-dark: var(--bui-color-orange-dark);
   --bui-color-info: var(--bui-color-blue);
   --bui-color-info-light: var(--bui-color-blue-light);
   --bui-color-success: var(--bui-color-green);
@@ -62,29 +88,45 @@
   --bui-color-danger: var(--bui-color-red);
   --bui-color-danger-light: var(--bui-color-red-light);
 
+  /** 基础字体 */
+  --bui-font-size-xs1: 8px;
+  --bui-font-size-xs2: 9px;
+  --bui-font-size-sm1: 10px;
+  --bui-font-size-sm2: 11px;
+  --bui-font-size-sm3: 12px;
+  --bui-font-size-sm4: 13px;
+  --bui-font-size-md1: 14px;
+  --bui-font-size-md2: 15px;
+  --bui-font-size-md3: 16px;
+  --bui-font-size-md4: 18px;
+  --bui-font-size-lg1: 20px;
+  --bui-font-size-lg2: 22px;
+  --bui-font-size-lg3: 24px;
+  --bui-font-size-lg4: 26px;
+
   /** 语义化字体 */
   --bui-title-size-1: 21px;
-  --bui-title-size-2: 18px;
-  --bui-title-size-3: 16px;
-  --bui-title-size-4: 14px;
-  --bui-text-size-1: 14px;
-  --bui-text-size-2: 13px;
-  --bui-text-size-3: 12px;
-  --bui-text-size-4: 11px;
-  --bui-text-size-5: 10px;
+  --bui-title-size-2: var(--bui-font-size-md4);
+  --bui-title-size-3: var(--bui-font-size-md3);
+  --bui-title-size-4: var(--bui-font-size-md3);
+  --bui-text-size-1: var(--bui-font-size-md3);
+  --bui-text-size-2: var(--bui-font-size-sm4);
+  --bui-text-size-3: var(--bui-font-size-sm3);
+  --bui-text-size-4: var(--bui-font-size-sm2);
+  --bui-text-size-5: var(--bui-font-size-sm1);
 
   // 前景色，通常用于文字
   // default是最通用的色彩，比如标题和一级信息
-  --bui-color-fg-default: #181818;
+  --bui-color-fg-default: var(--bui-color-neutral-1);
   // 柔和色，通常用于次级及补充说明信息
   --bui-color-fg-muted: var(--bui-color-neutral-2);
   // 淡色，很细微的色彩，用于辅助和需要弱化的信息
   --bui-color-fg-subtle: var(--bui-color-neutral-3);
   // 用于失效、不可用等状态
-  --bui-color-fg-disabled: fade(#181818, 50%);
+  --bui-color-fg-disabled: fade(#030b1a, 50%);
 
   // 默认背景色
-  --bui-color-bg-default: #f0f3f7;
+  --bui-color-bg-default: var(--bui-color-neutral-6);
   // 视图背景色
   --bui-color-bg-view: var(--bui-color-neutral-7);
   --bui-color-bg-popover: var(--bui-color-neutral-7);
@@ -102,47 +144,76 @@
   // 分割线、边框
   --bui-color-border-default: var(--bui-color-neutral-5);
   --bui-color-border-primary: fade(#ff7600, 40%);
-  --bui-color-border-info: fade(#148aff, 40%);
-  --bui-color-border-success: fade(#00d68f, 40%);
-  --bui-color-border-warning: fade(#ff8533, 40%);
-  --bui-color-border-danger: fade(#ff335c, 40%);
+  --bui-color-border-info: fade(#229af0, 40%);
+  --bui-color-border-success: fade(#40bf00, 40%);
+  --bui-color-border-warning: fade(#ff7600, 40%);
+  --bui-color-border-danger: fade(#ff471a, 40%);
   --bui-color-border-gray: fade(#8896b1, 40%);
 
   // 主题色渐变
-  --bui-color-primary-start: #ff9c0d;
-  --bui-color-primary-end: #ff6813;
+  --bui-color-primary-start: #ffb300;
+  --bui-color-primary-end: var(--bui-color-primary);
   --bui-color-secondary-start: #f32adf;
   --bui-color-secondary-end: var(--bui-color-pink);
-  --bui-color-info-start: #17b6ff;
-  --bui-color-info-end: #48d3ff;
-  --bui-color-warning-start: #ffcf02;
-  --bui-color-warning-end: #ffb205;
-  --bui-color-success-start: #00ebac;
-  --bui-color-success-end: var(--bui-color-green);
-  --bui-color-danger-start: #ef16b9;
-  --bui-color-danger-end: var(--bui-color-red);
+  --bui-color-info-start: #5bc8ff;
+  --bui-color-info-end: var(--bui-color-info);
+  --bui-color-warning-start: #fc3;
+  --bui-color-warning-end: var(--bui-color-warning);
+  --bui-color-success-start: #66d933;
+  --bui-color-success-end: var(--bui-color-success);
+  --bui-color-danger-start: #ff7633;
+  --bui-color-danger-end: var(--bui-color-danger);
   --bui-color-vip-start: #ffd4a6;
   --bui-color-vip-end: #ffbeae;
 
+  /* 基础圆角 */
+  --bui-radius-circular: 10000px;
+  --bui-radius-8: 24px;
+  --bui-radius-7: 18px;
+  --bui-radius-6: 15px;
+  --bui-radius-5: 12px;
+  --bui-radius-4: 9px;
+  --bui-radius-3: 6px;
+  --bui-radius-2: 4px;
+  --bui-radius-1: 3px;
+  --bui-radius-none: 0px;
+
   // 形状定义
   // 页面级浮层
-  --bui-shape-radius-popover: 18px;
-  --bui-shape-radius-drawer: 15px;
+  --bui-shape-radius-popover: var(--bui-radius-7);
+  --bui-shape-radius-drawer: var(--bui-radius-6);
   // 卡片、普通视图、抽屉、action sheet，常用于信息密度较低的视图
-  --bui-shape-radius-card: 12px;
+  --bui-shape-radius-card: var(--bui-radius-5);
   // 独立海报、卡片，常用于信息密度较高的视图
-  --bui-shape-radius-default: 9px;
+  --bui-shape-radius-default: var(--bui-radius-4);
   // 容器内海报
-  --bui-shape-radius-poster: 4px;
+  --bui-shape-radius-poster: var(--bui-radius-2);
   // 标签
-  --bui-shape-radius-label: 3px;
+  --bui-shape-radius-label: var(--bui-radius-1);
+
+  /* 基础间距 */
+  --bui-spacing-1: 1px;
+  --bui-spacing-2: 2px;
+  --bui-spacing-3: 3px;
+  --bui-spacing-4: 4px;
+  --bui-spacing-5: 6px;
+  --bui-spacing-6: 9px;
+  --bui-spacing-7: 12px;
+  --bui-spacing-8: 15px;
+  --bui-spacing-9: 18px;
+  --bui-spacing-10: 24px;
+  --bui-spacing-xl: var(--bui-spacing-8);
+  --bui-spacing-lg: var(--bui-spacing-7);
+  --bui-spacing-md: var(--bui-spacing-6);
+  --bui-spacing-sm: var(--bui-spacing-5);
+  --bui-spacing-xs: var(--bui-spacing-4);
 
   .bui-btn {
     --bui-button-border-radius: 14px;
-    --bui-button-outlined-default-border: 1px solid #171717;
+    --bui-button-outlined-default-border: 1px solid var(--bui-color-neutral-1);
     --bui-button-text-color: var(--bui-color-fg-default);
     --bui-button-font-weight: 700;
-    --bui-button-default-bg-color: #171717;
+    --bui-button-default-bg-color: var(--bui-color-neutral-1);
     --bui-button-full-height: 45px;
 
     &.bui-btn-contained {
@@ -181,7 +252,7 @@
   .bui-btn-full {
     --bui-btn-border-radius: 14px;
     --bui-btn-height: 45px;
-    --bui-btn-font-size: 18px;
+    --bui-btn-font-size: var(--bui-font-size-md4);
     --bui-btn-font-family: var(--bui-font-family-accent);
   }
 
@@ -191,16 +262,16 @@
   }
 
   .bui-btn-medium {
-    --bui-btn-border-radius: 6px;
+    --bui-btn-border-radius: var(--bui-spacing-radius-3);
   }
 
   .bui-btn-small {
-    --bui-btn-border-radius: 6px;
+    --bui-btn-border-radius: var(--bui-spacing-radius-3);
   }
 
   .bui-tabs {
     --bui-tabs-font-size: var(--bui-title-size-4);
-    --bui-tabs-active-font-weight: 700;
+    --bui-tabs-active-font-weight: var(--bui-font-weight-bold);
     --bui-tabs-color: var(--bui-color-fg-muted);
 
     /* prettier-ignore */
