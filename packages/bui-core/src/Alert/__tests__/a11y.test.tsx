@@ -16,6 +16,10 @@ getMdDemoCodes(
         componentName: demoComponentName,
         demoComponentIndex,
         axeOptions: {},
+        customA11yChecks: (container) => {
+          // 这里写你需要的特定断言
+          expect(container.querySelector('[role="alert"]')).not.toBeNull();
+        },
         beforeAllFn: () => {
           console.log('Alert beforeAllFn...');
         },

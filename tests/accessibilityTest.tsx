@@ -51,6 +51,7 @@ type Options = {
   beforeAllFn?: () => void;
   beforeEachFn?: () => void;
   afterEachFn?: () => void;
+  customA11yChecks?: (container: HTMLElement) => void;
 };
 
 const convertRulesToAxeFormat = (rules: string[]): Rules => {
@@ -90,12 +91,16 @@ function accessibilityTest(
       const axeOptions = {
         rules,
         ...options?.axeOptions,
-        runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'],
+        runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'],
         resultTypes: ['violations', 'incomplete', 'inapplicable'],
       };
 
       const results = await axe(container, axeOptions);
       (expect(results) as any).toHaveNoViolations();
+      // ---- 新增：自定义断言 -------
+      if (options.customA11yChecks) {
+        options.customA11yChecks(container);
+      }
       finishCallback?.(options.demoComponentIndex);
     },
     options?.timeout || 15000,
