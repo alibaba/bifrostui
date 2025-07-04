@@ -25,9 +25,12 @@ getMdDemoCodes(
         },
         beforeEachFn: () => {
           console.log('Alert beforeEachFn...');
+          // jest.useFakeTimers();
         },
         afterEachFn: () => {
           console.log('Alert afterEachFn...');
+          // jest.clearAllTimers();
+          // jest.useRealTimers();
         },
       },
       finishCallback,
