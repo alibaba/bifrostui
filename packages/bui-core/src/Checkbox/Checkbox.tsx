@@ -4,14 +4,14 @@ import clsx from 'clsx';
 import React, { forwardRef, useContext } from 'react';
 import { CheckboxProps } from './Checkbox.types';
 import CheckboxContext from './CheckboxContext';
-import './Checkbox.less';
+import './index.less';
 
 const prefixCls = 'bui-checkbox';
 
 const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
   const {
     className,
-    defaultChecked,
+    defaultChecked = false,
     checked,
     inputProps,
     inputRef,
@@ -20,7 +20,7 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
     disabled,
     icon,
     checkedIcon,
-    labelPlacement,
+    labelPlacement = 'right',
     onChange,
     children,
     ...others
@@ -45,9 +45,7 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
   const checkboxCheckIcon = checkedIcon || (
     <SuccessCircleFilledIcon color="primary" />
   );
-  const checkboxUncheckIcon = icon || (
-    <CircleOutlinedIcon htmlColor="#ced1d6" />
-  );
+  const checkboxUncheckIcon = icon || <CircleOutlinedIcon color="neutral" />;
   const checkboxDisabled =
     disabled !== undefined ? disabled : groupContext?.disabled;
 
@@ -101,9 +99,5 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
 });
 
 Checkbox.displayName = 'BuiCheckbox';
-Checkbox.defaultProps = {
-  defaultChecked: false,
-  labelPlacement: 'right',
-};
 
 export default Checkbox;

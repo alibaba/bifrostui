@@ -20,7 +20,7 @@ import React, { useEffect, useState, type FC } from 'react';
 import En from '@bifrostui/react/locales/en-US';
 import CN from '@bifrostui/react/locales/zh-CN';
 import { ThemeProvider } from '@bifrostui/react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import './index.less';
 
 const DocLayout: FC = () => {
@@ -104,7 +104,7 @@ const DocLayout: FC = () => {
           </div>
         )}
         <main
-          className={classNames('dumi-default-doc-layout-content', {
+          className={clsx('dumi-default-doc-layout-content', {
             'home-page': pathname === '/index-en' || pathname === '/',
           })}
         >

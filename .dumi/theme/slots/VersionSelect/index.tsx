@@ -7,7 +7,10 @@ const VersionSelect: FC = () => {
   const otherVersions =
     process.env.NODE_ENV === 'development'
       ? []
-      : [{ label: 'beta', publicPath: '/beta/', rootPath: '/beta' }];
+      : [
+          { label: 'alpha', publicPath: '/alpha/', rootPath: '/alpha' },
+          { label: 'beta', publicPath: '/beta/', rootPath: '/beta' },
+        ];
   const versions = [latestVersion, ...otherVersions];
 
   const [version, setVersion] = useState<any>({});

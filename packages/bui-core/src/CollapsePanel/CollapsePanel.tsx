@@ -7,7 +7,7 @@ import {
   CollapsePanelProps,
   CollapsePanelItemProps,
 } from './CollapsePanel.types';
-import './CollapsePanel.less';
+import './index.less';
 
 const prefixCls = 'bui-collapse-panel';
 

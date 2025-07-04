@@ -1,0 +1,82 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+@{root-selector} {
+  --bui-input-height: 32px;
+  --bui-input-padding: 4px 10px;
+  --bui-input-border-radius: var(--bui-shape-radius-default);
+  --bui-input-icon-start-margin-right: 3px;
+  --bui-input-icon-end-margin-left: 3px;
+  --bui-input-background-color: transparent;
+  --bui-input-disabled-background-color: rgba(0, 0, 0, 0.04);
+  --bui-input-clear-color: #ced1d6;
+  --bui-input-clear-font-size: var(--bui-title-size-3);
+}
+
+.bui-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--bui-input-height);
+  padding: var(--bui-input-padding);
+  box-sizing: border-box;
+  border-radius: var(--bui-input-border-radius);
+  border: 1px solid var(--bui-color-border-default);
+  font-family: var(--bui-font-family);
+
+  &-icon {
+    display: flex;
+    align-items: center;
+    color: var(--bui-color-fg-subtle);
+    font-size: var(--bui-title-size-3);
+
+    &-start {
+      margin-right: var(--bui-input-icon-start-margin-right);
+    }
+
+    &-end {
+      margin-left: var(--bui-input-icon-end-margin-left);
+    }
+  }
+
+  &-input {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+    height: 100%;
+    color: var(--bui-color-fg-default);
+    border: none;
+    outline: none;
+    background-color: var(--bui-input-background-color);
+    font-size: var(--bui-text-size-2);
+
+    &::placeholder {
+      color: var(--bui-color-fg-subtle);
+    }
+  }
+
+  &-disabled {
+    background-color: var(--bui-input-disabled-background-color);
+
+    .bui-input-input {
+      color: var(--bui-color-fg-disabled);
+
+      &::placeholder {
+        color: var(--bui-color-fg-disabled);
+      }
+    }
+  }
+
+  &-clear {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--bui-input-clear-color);
+    height: 100%;
+    font-size: var(--bui-input-clear-font-size);
+  }
+
+  .bui-mini-placeholder {
+    // 处理小程序placeholder较长被截断问题
+    width: auto;
+  }
+}

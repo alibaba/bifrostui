@@ -301,9 +301,9 @@ export default () => {
 };
 ```
 
-### API
+## API
 
-##### CardHeaderProps
+### CardHeaderProps
 
 | Property | Description       | Type                 | Default |
 | -------- | ----------------- | -------------------- | ------- |

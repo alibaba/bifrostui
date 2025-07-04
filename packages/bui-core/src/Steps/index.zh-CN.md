@@ -7,9 +7,7 @@ name: Steps 步骤条
 
 步骤流程导航条。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 默认方向为纵向，若未指定 current，则默认为 0，即第一步
 
@@ -36,7 +34,7 @@ export default () => {
 };
 ```
 
-### 横向展示
+## 横向展示
 
 通过`direction`改变步骤条方向
 
@@ -57,7 +55,7 @@ export default () => {
 };
 ```
 
-### 改变副标题排列位置
+## 改变副标题排列位置
 
 若有副标题，可以通过`labelPlacement`改变其展示位置
 
@@ -83,7 +81,7 @@ export default () => {
 };
 ```
 
-### 展示描述文案
+## 展示描述文案
 
 传入`description`可添加描述说明。
 
@@ -125,7 +123,7 @@ export default () => {
 };
 ```
 
-### 控制步骤状态
+## 控制步骤状态
 
 可通过 status 控制步骤状态，`wait`为等待中， `active`为当前激活， `finish`为已完成， `error`为失败已完成
 
@@ -171,7 +169,7 @@ export default () => {
 };
 ```
 
-### 自定义图标
+## 自定义图标
 
 通过`icon`可以自定义各个状态的图标。
 
@@ -226,7 +224,7 @@ export default () => {
 };
 ```
 
-#### 禁用点击
+## 禁用点击
 
 通过`disabled`使步骤台不可点击
 
@@ -263,7 +261,7 @@ export default () => {
 };
 ```
 
-### 复杂布局
+## 复杂布局
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
@@ -332,7 +330,7 @@ export default () => {
 };
 ```
 
-### 使用 css 变量修改样式
+## 使用 css 变量修改样式
 
 可通过常用的 css 变量改变组件样式
 
@@ -386,19 +384,18 @@ export default () => {
 
 ## 样式变量
 
-| 属性                                | 说明                   | 默认值                                          | 全局变量                                |
-| ----------------------------------- | ---------------------- | ----------------------------------------------- | --------------------------------------- |
-| --font-size                         | 默认字体大小           | --bui-title-size-3                              | --bui-steps-font-size                   |
-| --subtitle-font-size                | 副标题字体大小         | --bui-text-size-2                               | --bui-step-subtitle-font-size           |
-| --step-icon-margin                  | 步骤图标外边距         | --bui-spacing-xs --bui-spacing-xs 0 0           | --bui-step-icon-margin                  |
-| --step-line-padding                 | 步骤条连线内边距       | 20px 0 3px 0                                    | --bui-step-line-padding                 |
-| --step-line-width                   | 步骤条连线宽度         | 1px                                             | --bui-step-line-width                   |
-| --step-line-height                  | 步骤条连线高度         | 100%                                            | --bui-step-line-height                  |
-| --step-label-horizontal-line-height | 步骤条标签水平方向行高 | 1.8                                             | --bui-step-label-horizontal-line-height |
-| --step-icon-width                   | 步骤条图标宽度         | 28px                                            | --bui-step-icon-width                   |
-| --step-icon-font-size               | 步骤条图标             | var(--bui-title-size-4)                         | --bui-step-icon-font-size               |
-| --step-icon-active-width            | 步骤条当前激活图标宽度 | 12px                                            | --bui-step-icon-active-width            |
-| --step-icon-active-height           | 步骤条当前激活图标高度 | 12px                                            | --bui-step-icon-active-height           |
-| --step-icon-margin                  | 步骤条图标外边距       | var(--bui-spacing-xs) var(--bui-spacing-xs) 0 0 | --bui-step-icon-margin                  |
-| --step-content-padding              | 步骤条内容内边距       | 3px 0                                           | --bui-step-content-padding              |
-| --step-horizontal-line-padding      | 步骤条水平连线内边距   | 28px 0 6px                                      | --bui-step-horizontal-line-padding      |
+| 全局变量                                | 说明             | 默认值                                            |
+| --------------------------------------- | ---------------- | ------------------------------------------------- |
+| --bui-steps-font-size                   | 步骤条字体大小   | `var(--bui-title-size-3)`                         |
+| --bui-step-subtitle-font-size           | 副标题字体大小   | `var(--bui-text-size-2)`                          |
+| --bui-step-line-padding                 | 线条内边距       | `20px 0 3px 0`                                    |
+| --bui-step-line-width                   | 线条宽度         | `1px`                                             |
+| --bui-step-line-height                  | 线条高度         | `100%`                                            |
+| --bui-step-label-horizontal-line-height | 水平标签行高     | `1.8`                                             |
+| --bui-step-icon-width                   | 图标宽度         | `28px`                                            |
+| --bui-step-icon-active-width            | 激活状态图标宽度 | `12px`                                            |
+| --bui-step-icon-active-height           | 激活状态图标高度 | `12px`                                            |
+| --bui-step-icon-font-size               | 图标字体大小     | `var(--bui-title-size-4)`                         |
+| --bui-step-icon-margin                  | 图标外边距       | `var(--bui-spacing-xs) var(--bui-spacing-xs) 0 0` |
+| --bui-step-content-padding              | 内容内边距       | `3px 0`                                           |
+| --bui-step-horizontal-line-padding      | 水平线条内边距   | `28px 0 6px`                                      |

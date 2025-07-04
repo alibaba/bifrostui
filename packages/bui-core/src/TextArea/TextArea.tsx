@@ -2,7 +2,7 @@ import { isMini, useForkRef, useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import React, { useEffect, useRef } from 'react';
 import { TextAreaProps } from './TextArea.types';
-import './TextArea.less';
+import './index.less';
 
 const prefixCls = 'bui-textarea';
 const DEFAULT_ROWS = 2;
@@ -12,17 +12,17 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
     const {
       className,
       value,
-      defaultValue,
+      defaultValue = '',
       textareaProps,
       textareaRef,
       name,
       placeholder,
       disabled,
-      rows,
+      rows = DEFAULT_ROWS,
       maxLength,
-      autoSize,
-      autoFocus,
-      showCount,
+      autoSize = false,
+      autoFocus = false,
+      showCount = false,
       onChange,
       ...others
     } = props;
@@ -148,12 +148,5 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
 );
 
 TextArea.displayName = 'BuiTextArea';
-TextArea.defaultProps = {
-  defaultValue: '',
-  rows: DEFAULT_ROWS,
-  autoSize: false,
-  autoFocus: false,
-  showCount: false,
-};
 
 export default TextArea;

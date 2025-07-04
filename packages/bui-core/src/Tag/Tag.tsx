@@ -30,9 +30,9 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   const {
     className,
     style,
-    color,
+    color = 'neutral',
     htmlColor,
-    variant,
+    variant = 'outlined',
     onClick,
     children,
     ...others
@@ -45,7 +45,7 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>((props, ref) => {
         color: htmlColor,
         borderColor: colorHandler(htmlColor, 0.4),
       };
-    } else if (variant === 'light') {
+    } else if (variant === 'subtle') {
       customStyles = {
         color: htmlColor,
         backgroundColor: colorHandler(htmlColor, 0.3),
@@ -78,9 +78,5 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>((props, ref) => {
 });
 
 Tag.displayName = 'BuiTag';
-Tag.defaultProps = {
-  variant: 'outlined',
-  color: 'default',
-};
 
 export default Tag;

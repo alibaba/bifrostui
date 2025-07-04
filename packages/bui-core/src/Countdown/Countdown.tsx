@@ -4,7 +4,7 @@ import { useDidMountEffect } from '@bifrostui/utils';
 import { CountdownProps } from './Countdown.types';
 import useCountdown from './useCountdown';
 import { formatCountdown } from './utils';
-import './Countdown.less';
+import './index.less';
 
 const prefixCls = 'bui-countdown';
 
@@ -13,11 +13,11 @@ const Countdown = forwardRef<HTMLDivElement, CountdownProps>((props, ref) => {
     className,
     serverTimestamp,
     endTimestamp,
-    remainingTime,
-    format,
-    unitStyle,
-    valueStyle,
-    timeSliceStyle,
+    remainingTime = 0,
+    format = 'HH:mm:ss',
+    unitStyle = {},
+    valueStyle = [{}, {}],
+    timeSliceStyle = {},
     renderContent,
     onChange,
     onFinish,
@@ -108,12 +108,5 @@ const Countdown = forwardRef<HTMLDivElement, CountdownProps>((props, ref) => {
 });
 
 Countdown.displayName = 'BuiCountdown';
-Countdown.defaultProps = {
-  format: 'HH:mm:ss',
-  remainingTime: 0,
-  unitStyle: {},
-  valueStyle: [{}, {}],
-  timeSliceStyle: {},
-};
 
 export default Countdown;

@@ -9,8 +9,8 @@ import {
   isMini,
 } from '@bifrostui/utils';
 import Portal from '../Portal';
-import './Popover.less';
 import { PopoverProps } from './Popover.types';
+import './index.less';
 
 const prefixCls = 'bui-popover';
 

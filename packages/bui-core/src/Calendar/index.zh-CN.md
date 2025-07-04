@@ -8,9 +8,7 @@ name: Calendar 日历
 
 用于选择日期或日期区间。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 默认为单选模式，对应 `value` 应传入单个 `Date`，默认可选范围为包含当前月份在内的一年。
 
@@ -36,7 +34,7 @@ export default () => {
 };
 ```
 
-### 指定可选范围
+## 指定可选范围
 
 通过 `minDate` 和 `maxDate` 指定可选范围，渲染指定月时：value=null 并指定 `minDate`。
 
@@ -66,7 +64,7 @@ export default () => {
 };
 ```
 
-### 隐藏当前月之外的日期
+## 隐藏当前月之外的日期
 
 启用 `hideDaysOutsideCurrentMonth` 可隐藏当前月之外的日期。
 
@@ -96,7 +94,7 @@ export default () => {
 };
 ```
 
-### 自定义头部栏日期格式
+## 自定义头部栏日期格式
 
 使用 `headerBarFormat` 可自定义头部栏日期格式，默认格式为 `YYYY/MM`。
 
@@ -130,7 +128,7 @@ export default () => {
 };
 ```
 
-### 自定义头部栏左右按钮
+## 自定义头部栏左右按钮
 
 使用 `headerBarLeftIcon` 和 `headerBarRightIcon` 可自定义头部栏左右图标。
 
@@ -175,7 +173,7 @@ export default () => {
 };
 ```
 
-### 自定义禁用日期
+## 自定义禁用日期
 
 通过 `disabledDate` 可自定义禁用日期。
 
@@ -214,7 +212,7 @@ export default () => {
 };
 ```
 
-### 高亮日期
+## 高亮日期
 
 通过 `highlightDate` 可高亮某天或周末。
 
@@ -304,7 +302,7 @@ export default () => {
 };
 ```
 
-### 受控日历组件
+## 受控日历组件
 
 通过 `value` 属性控制日历组件。
 
@@ -315,7 +313,7 @@ import React, { useState } from 'react';
 
 export default () => {
   const [value, setValue] = useState(dayjs().add(1, 'month').toDate());
-  const [rangevalue, setRangeValue] = useState([
+  const [rangeValue, setRangeValue] = useState([
     dayjs().add(30, 'day').toDate(),
     dayjs().add(33, 'day').toDate(),
   ]);
@@ -334,14 +332,14 @@ export default () => {
         <Button onClick={onSingleClick}>回到今天</Button>
         <Calendar mode="single" value={value} />
         <Button onClick={onRangeClick}>选中最近一周</Button>
-        <Calendar mode="range" value={rangevalue} />
+        <Calendar mode="range" value={rangeValue} />
       </div>
     </Stack>
   );
 };
 ```
 
-### 非受控日历组件
+## 非受控日历组件
 
 通过 `defaultValue` 属性渲染组件，日历的选中态会体现在最外层 dom 的 `data-selected` 或 `data-start` 和 `data-end` 属性中。
 
@@ -367,7 +365,7 @@ export default () => {
 };
 ```
 
-### 自定义日期单元格的内容
+## 自定义日期单元格的内容
 
 使用 `dateRender` 可以绘制出自定义日期样式。
 
@@ -414,7 +412,7 @@ export default () => {
 };
 ```
 
-### 自定义周单元格的内容
+## 自定义周单元格的内容
 
 使用 `weekRender` 可以绘制出自定义周单元格样式。
 
@@ -503,20 +501,20 @@ export default () => {
 
 ## 样式变量
 
-| 属性                               | 说明                     | 默认值       | 全局变量                                        |
-| ---------------------------------- | ------------------------ | ------------ | ----------------------------------------------- |
-| --padding                          | 内边距                   | 6px 12px 7px | --bui-calendar-padding                          |
-| --week-height                      | 周几显示栏高度           | 30px         | --bui-calendar-week-height                      |
-| --handler-height                   | 操作栏高度               | 28px         | --bui-calendar-handler-height                   |
-| --handler-margin-bottom            | 操作栏底部外边距         | 7px          | --bui-calendar-handler-margin-bottom            |
-| --handler-text-width               | 操作栏文案容器宽度       | 80px         | --bui-calendar-handler-text-width               |
-| --handler-btn-width                | 操作栏按钮宽度           | 46px         | --bui-calendar-handler-btn-width                |
-| --handler-btn-height               | 操作栏按钮高度           | 100%         | --bui-calendar-handler-btn-height               |
-| --handler-btn-icon-font-size       | 操作栏按钮图标字号       | 28px         | --bui-calendar-handler-btn-icon-font-size       |
-| --day-box-height                   | 日期框高度               | 30px         | --bui-calendar-day-box-height                   |
-| --day-box-margin-bottom            | 日期框底部外边距         | 7px          | --bui-calendar-day-box-margin-bottom            |
-| --day-disabled-color               | 日期禁用字体颜色         | #9c9ca5      | --bui-calendar-day-disabled-color               |
-| --middle-color                     | 范围选择中间部分字体颜色 | #000         | --bui-calendar-middle-color                     |
-| --middle-background-color          | 范围选择中间部分背景颜色 | #ffeaf1      | --bui-calendar-middle-background-color          |
-| --range-both-ends-color            | 范围选择两端字体颜色     | #000         | --bui-calendar-range-both-ends-color            |
-| --range-both-ends-background-color | 范围选择两端背景颜色     | #ffc7da      | --bui-calendar-range-both-ends-background-color |
+| 全局变量                                        | 说明                   | 默认值         |
+| ----------------------------------------------- | ---------------------- | -------------- |
+| --bui-calendar-padding                          | 日历内边距             | `6px 12px 7px` |
+| --bui-calendar-week-height                      | 星期栏高度             | `30px`         |
+| --bui-calendar-handler-height                   | 操作栏高度             | `28px`         |
+| --bui-calendar-handler-margin-bottom            | 操作栏底部外边距       | `7px`          |
+| --bui-calendar-handler-text-width               | 操作栏文本宽度         | `80px`         |
+| --bui-calendar-handler-btn-width                | 操作栏按钮宽度         | `46px`         |
+| --bui-calendar-handler-btn-height               | 操作栏按钮高度         | `100%`         |
+| --bui-calendar-handler-btn-icon-font-size       | 操作栏按钮图标字体大小 | `28px`         |
+| --bui-calendar-day-box-height                   | 日期单元格高度         | `30px`         |
+| --bui-calendar-day-box-margin-bottom            | 日期单元格底部外边距   | `7px`          |
+| --bui-calendar-day-disabled-color               | 禁用日期颜色           | `#9c9ca5`      |
+| --bui-calendar-middle-color                     | 区间中间日期文字颜色   | `#000`         |
+| --bui-calendar-middle-background-color          | 区间中间日期背景颜色   | `#ffeaf1`      |
+| --bui-calendar-range-both-ends-color            | 区间两端日期文字颜色   | `#000`         |
+| --bui-calendar-range-both-ends-background-color | 区间两端日期背景颜色   | `#ffc7da`      |

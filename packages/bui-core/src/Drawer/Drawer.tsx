@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Modal from '../Modal';
 import Slide from '../Slide';
 import { DrawerProps } from './Drawer.types';
-import './Drawer.less';
+import './index.less';
 
 const prefixCls = 'bui-drawer';
 
@@ -16,15 +16,15 @@ const oppositeDirection = {
 
 const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
   const {
-    anchor: anchorProp,
+    anchor: anchorProp = 'bottom',
     container,
     children,
     className,
-    hideBackdrop,
+    hideBackdrop = false,
     onClose,
     SlideProps,
-    open,
-    disablePortal,
+    open = false,
+    disablePortal = false,
     contentProps,
     transitionDuration,
     ...others
@@ -68,11 +68,5 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
 });
 
 Drawer.displayName = 'BuiDrawer';
-Drawer.defaultProps = {
-  anchor: 'bottom',
-  hideBackdrop: false,
-  open: false,
-  disablePortal: false,
-};
 
 export default Drawer;

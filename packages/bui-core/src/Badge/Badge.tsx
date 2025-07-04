@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 import { BadgeProps } from './Badge.types';
-import './Badge.less';
+import './index.less';
 
 const prefixCls = 'bui-badge';
 
@@ -11,10 +11,10 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     onClick,
     children,
     content,
-    color,
+    color = 'primary',
     maxCount,
-    variant,
-    type,
+    variant = 'contained',
+    type = 'standard',
     ...others
   } = props;
 
@@ -49,10 +49,5 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
 });
 
 Badge.displayName = 'BuiBadge';
-Badge.defaultProps = {
-  color: 'primary',
-  variant: 'contained',
-  type: 'standard',
-};
 
 export default Badge;

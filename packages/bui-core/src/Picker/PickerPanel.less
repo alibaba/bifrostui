@@ -11,9 +11,9 @@
     transform: rotate3d(1, 0, 0, 60deg);
     transform-style: preserve-3d;
     position: absolute;
-    top: var(--indicator-top);
+    top: var(--bui-picker-indicator-top);
     width: 100%;
-    height: var(--option-height);
+    height: var(--bui-picker-option-height);
   }
 
   &-mask {
@@ -33,15 +33,15 @@
         var(--bui-color-bg-alpha-light-3)
       );
     background-position: top, bottom;
-    background-size: 100% var(--indicator-top);
+    background-size: 100% var(--bui-picker-indicator-top);
     background-repeat: no-repeat;
     transform: translateZ(0);
   }
 
   &-indicator {
     position: absolute;
-    top: var(--indicator-top);
-    height: var(--option-height);
+    top: var(--bui-picker-indicator-top);
+    height: var(--bui-picker-option-height);
     width: 100%;
     border-top: 1px solid var(--bui-color-border-default);
     border-bottom: 1px solid var(--bui-color-border-default);
@@ -52,10 +52,10 @@
     top: 0;
     left: 0;
     text-align: center;
-    height: var(--option-height);
-    line-height: var(--option-height);
+    height: var(--bui-picker-option-height);
+    line-height: var(--bui-picker-option-height);
     color: var(--bui-color-fg-default);
-    font-size: var(--option-font-size);
+    font-size: var(--bui-picker-option-font-size);
     backface-visibility: hidden;
     .ellipsis();
     width: 100%;

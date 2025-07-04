@@ -1,6 +1,6 @@
 {
   "name": "@bifrostui/react",
-  "version": "1.5.0",
+  "version": "2.0.0-alpha.0",
   "description": "React components for building mobile application",
   "homepage": "http://bui.taopiaopiao.com",
   "license": "MIT",
@@ -9,6 +9,14 @@
   "typings": "es/index.d.ts",
   "directories": {
     "test": "__tests__"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "module": "./src/index.ts",
+      "require": "./src/index.ts"
+    },
+    "./css/*": "./es/*/index.css"
   },
   "files": [
     "dist",
@@ -19,6 +27,14 @@
   "publishConfig": {
     "main": "dist/index.js",
     "module": "es/index.js",
+    "exports": {
+      ".": {
+        "import": "./es/index.js",
+        "module": "./es/index.js",
+        "require": "./dist/index.js"
+      },
+      "./css/*": "./es/*/index.css"
+    },
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
@@ -39,7 +55,7 @@
     "@bifrostui/styles": "workspace:*",
     "@bifrostui/types": "workspace:*",
     "@bifrostui/utils": "workspace:*",
-    "clsx": "^1.2.1",
+    "clsx": "^2.1.1",
     "dayjs": "^1.11.7",
     "swiper": "^8.1.5"
   },

@@ -8,13 +8,11 @@ name: ThemeProvider 主题配置
 主题配置，可以用来指定组件颜色、尺寸、语言等。
 `ThemeProvider`依赖React的`context`将主题、国际化传递给组件，因此您需要确保`ThemeProvider` 是您尝试自定义组件的父级。
 
-## 代码演示
-
 ## 主题定制
 
 **开发者在自定义Tokens时，需注意以下两点**，关于主题定制的详细信息请参考[定制主题](/guide/theme)。
 
-1. 不要混淆定义：不同业务场景，应使用对应的API来自定义Tokens，如响应式布局应使用 responsive 属性，暗黑模式应使用 defaultDarkToken 或 dmDarkToken 属性，覆盖内置高亮模式Tokens应使用 defaultLightToken 或 dmLightToken 。
+1. 不要混淆定义：不同业务场景，应使用对应的API来自定义Tokens，如响应式布局应使用 responsive 属性，暗黑模式应使用 defaultDarkToken，覆盖内置高亮模式Tokens应使用 defaultLightToken 或 dmLightToken 。
 2. 分清优先级：特殊场景的优先级永远大于全局通用场景。
 
 ### 浏览器
@@ -31,19 +29,19 @@ import React from 'react';
  */
 const responsive = {
   xs: {
-    '--bui-button-border-radius': '2px',
+    '--bui-btn-border-radius': '2px',
   },
   sm: {
-    '--bui-button-border-radius': '6px',
+    '--bui-btn-border-radius': '6px',
   },
   md: {
-    '--bui-button-border-radius': '10px',
+    '--bui-btn-border-radius': '10px',
   },
   lg: {
-    '--bui-button-border-radius': '14px',
+    '--bui-btn-border-radius': '14px',
   },
   xl: {
-    '--bui-button-border-radius': '16px',
+    '--bui-btn-border-radius': '16px',
   },
 };
 
@@ -52,8 +50,8 @@ const responsive = {
  * 应配置BUI内置默认高亮模式全局Tokens
  */
 const defaultLightToken = {
-  '--bui-color-info-start': '#33a7ff',
-  '--bui-color-info-end': '#148aff',
+  '--bui-color-info-start': '#ff335c',
+  '--bui-color-info-end': '#ff7600',
 };
 
 /**
@@ -61,29 +59,20 @@ const defaultLightToken = {
  * 应配置BUI内默认置暗黑模式全局Tokens
  */
 const defaultDarkToken = {
-  '--bui-color-info-start': '#11caee',
-  '--bui-color-info-end': '#47bfbb',
-};
-
-/**
- * 自定义组件Tokens
- * 应配置组件级别的全局Tokens
- */
-const token = {
-  '--bui-button-height': '34px',
+  '--bui-color-info-start': '#ff7600',
+  '--bui-color-info-end': '#ff335c',
 };
 
 export default () => {
   return (
     <ThemeProvider
       isRoot
-      token={token}
       responsive={responsive}
       defaultLightToken={defaultLightToken}
       defaultDarkToken={defaultDarkToken}
     >
       <Button variant="contained" color="info">
-        自定义Tokens
+        info
       </Button>
     </ThemeProvider>
   );
@@ -92,31 +81,29 @@ export default () => {
 
 ### 局部主题（嵌套主题）
 
-可通过嵌套`ThemeProvider`组件来配置组件相关的全局Design Tokens，BUI没有限制在组件层面的自定义Tokens中传入内置Token属性来复写全局内置Token，但建议非必要时不要这么做，以免导致主题配置的混乱。
+可通过嵌套`ThemeProvider`组件来配置组件的Design Tokens。
 
 ```tsx
 import { ThemeProvider, Button } from '@bifrostui/react';
 import React from 'react';
 
 const token = {
-  '--bui-button-height': '34px',
+  '--bui-btn-height': '40px',
 };
 
 const internalToken = {
-  '--bui-button-height': '28px',
-  // 不推荐在token中复写内置Token，尽量使用组件的全局变量来定制样式
-  // '--bui-color-info-end': '#148a00',
+  '--bui-btn-height': '28px',
 };
 
 export default () => {
   return (
     <ThemeProvider isRoot token={token}>
       <Button variant="contained" color="info" style={{ marginRight: '20px' }}>
-        自定义Tokens
+        Outter Button
       </Button>
       <ThemeProvider token={internalToken}>
-        <Button variant="contained" color="info" className="test">
-          嵌套的Tokens
+        <Button variant="contained" color="info">
+          Inner Button
         </Button>
       </ThemeProvider>
     </ThemeProvider>
@@ -137,7 +124,7 @@ import React from 'react';
 /**
  * 1.小程序全局或页面级主题，可在入口或页面级样式文件中自行书写选择器对应的样式变量，页面级会覆盖全局样式
  * app.less
- * page { --bui-button-height: 32px }
+ * page { --bui-btn-height: 32px }
  */
 
 // 2.小程序局部主题
@@ -146,7 +133,7 @@ export default () => {
     <Button
       variant="contained"
       color="info"
-      style={{ '--bui-button-height': '28px' }}
+      style={{ '--bui-btn-height': '28px' }}
     >
       自定义Tokens
     </Button>

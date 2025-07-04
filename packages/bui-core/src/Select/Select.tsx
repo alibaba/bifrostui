@@ -14,7 +14,7 @@ import { SelectProps } from './Select.types';
 import BuiSelectContext from './selectContext';
 import Backdrop from '../Backdrop';
 import Portal from '../Portal';
-import './Select.less';
+import './index.less';
 
 const prefixCls = 'bui-select';
 const defaultPlacement = 'bottom';
@@ -28,12 +28,14 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     inputProps,
     BackdropProps,
     value,
-    defaultValue,
+    defaultValue = '',
     disabled,
     placeholder,
     icon,
     open,
-    scrollContainer,
+    scrollContainer = () => {
+      return isMini ? null : document.body;
+    },
     onChange,
     onClose,
     onOpen,
@@ -127,12 +129,9 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   }, []);
 
   const defaultIcon = isOpen ? (
-    <CaretUpIcon className={`${prefixCls}-selector-icon`} htmlColor="#9c9ca5" />
+    <CaretUpIcon className={`${prefixCls}-selector-icon`} color="neutral" />
   ) : (
-    <CaretDownIcon
-      className={`${prefixCls}-selector-icon`}
-      htmlColor="#9c9ca5"
-    />
+    <CaretDownIcon className={`${prefixCls}-selector-icon`} color="neutral" />
   );
 
   const renderOptions = () => {
@@ -223,9 +222,5 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
 });
 
 Select.displayName = 'BuiSelect';
-Select.defaultProps = {
-  defaultValue: '',
-  scrollContainer: () => null,
-};
 
 export default Select;
