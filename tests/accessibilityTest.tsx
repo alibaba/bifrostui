@@ -2,6 +2,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { axe, AxeResults, toHaveNoViolations } from 'jest-axe';
+import axeCore, { resultGroups } from 'axe-core';
 expect.extend(toHaveNoViolations);
 
 type Rules = {
@@ -97,6 +98,15 @@ function accessibilityTest(
 
       const results = await axe(container, axeOptions);
       (expect(results) as any).toHaveNoViolations();
+      // const axeOptions = {
+      //   rules,
+      //   ...options.axeOptions,
+      //   runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'],
+      //   resultTypes: ['violations'] as resultGroups[]
+      // };
+
+      // const results2 = await axeCore.run(container, axeOptions);
+      // expect(results2).toHaveNoViolations();
       // ---- 新增：自定义断言 -------
       if (options.customA11yChecks) {
         options.customA11yChecks(container);
