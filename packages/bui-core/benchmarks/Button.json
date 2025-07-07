@@ -10,7 +10,8 @@
       "browser": {
         "name": "chrome",
         "headless": false
-      }
+      },
+      "measurement": "fcp"
     },
     {
       "name": "Button-Main",
@@ -18,7 +19,8 @@
       "browser": {
         "name": "chrome",
         "headless": false
-      }
+      },
+      "measurement": "fcp"
     }
   ]
 }
