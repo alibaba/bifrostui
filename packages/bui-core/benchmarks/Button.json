@@ -1,0 +1,24 @@
+{
+  "root": "../../../",
+  "$schema": "https://raw.githubusercontent.com/Polymer/tachometer/master/config.schema.json",
+  "sampleSize": 30,
+  "timeout": 0,
+  "benchmarks": [
+    {
+      "name": "Button-Latest",
+      "url": "latest.html?name=Button",
+      "browser": {
+        "name": "chrome",
+        "headless": false
+      }
+    },
+    {
+      "name": "Button-Main",
+      "url": "main.html?name=Button",
+      "browser": {
+        "name": "chrome",
+        "headless": false
+      }
+    }
+  ]
+}

@@ -8,6 +8,8 @@ node_modules
 # production
 dist
 es
+umd
+umd-main
 /dist
 /docs-dist
 .history
