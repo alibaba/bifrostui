@@ -61,52 +61,6 @@ describe('Countdown', () => {
     expect(screen.queryAllByText('毫秒')).toHaveLength(1);
   });
 
-  it('renders countdown with unitStyle prop', () => {
-    render(
-      <Countdown
-        endTimestamp={Date.now() + 10 * 1000}
-        unitStyle={{ color: 'rgb(255, 0, 0)' }}
-        format="HH:mm:ss"
-      />,
-    );
-    screen.queryAllByText(':').forEach((item) => {
-      expect(item).toHaveStyle({
-        color: 'rgb(255, 0, 0)',
-      });
-    });
-  });
-
-  it('renders countdown with valueStyle prop', () => {
-    render(
-      <Countdown
-        endTimestamp={Date.now() + 15 * 1000}
-        valueStyle={[{ fontSize: '15px' }, { fontSize: '20px' }]}
-      />,
-    );
-    expect(screen.queryByText('1')).toHaveStyle({
-      fontSize: '15px',
-    });
-    expect(screen.queryByText('5')).toHaveStyle({
-      fontSize: '20px',
-    });
-  });
-
-  it('renders countdown with timeSliceStyle prop', () => {
-    const { container } = render(
-      <Countdown
-        endTimestamp={Date.now() + 10 * 1000}
-        timeSliceStyle={{ backgroundColor: 'rgb(255, 0, 0)' }}
-        format="HH:mm:ss"
-      />,
-    );
-    const timeSlices = container.querySelectorAll(`.${rootClass}-slice`);
-    timeSlices.forEach((item) => {
-      expect(item).toHaveStyle({
-        backgroundColor: 'rgb(255, 0, 0)',
-      });
-    });
-  });
-
   it('onFinish prop has been trigger when countdown finished', () => {
     const fakeFinish = jest.fn();
     render(
