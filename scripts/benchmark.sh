@@ -11,6 +11,9 @@ SUBPACKAGE="packages/bui-core"
 UMD_DIR="${SUBPACKAGE}/benchmarks/umd"
 UMD_MAIN_DIR="${SUBPACKAGE}/benchmarks/umd-main"
 
+pnpm --filter @bifrostui/styles build
+pnpm --filter @bifrostui/react build:benchmark
+
 if [ ! -d "$UMD_DIR" ]; then
   echo "❌ Error: $UMD_DIR The directory does not exist. Please build the UMD product first."
   exit 1
@@ -23,8 +26,6 @@ if [ ! -d "$UMD_MAIN_DIR" ]; then
   exit 1
 fi
 
-pnpm --filter @bifrostui/styles build
-pnpm --filter @bifrostui/react build:benchmark
 if [ $? -ne 0 ]; then
   echo "Building UMD failed."
   exit 1

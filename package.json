@@ -91,6 +91,7 @@
     "canvas": "^3.1.0",
     "chalk": "^4.1.2",
     "chokidar": "^3.5.3",
+    "chromedriver": "^138.0.1",
     "clsx": "^2.1.1",
     "concurrently": "^8.0.1",
     "copy-to-clipboard": "3.3.3",
