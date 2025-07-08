@@ -9,6 +9,7 @@ import './index.less';
 
 const prefixCls = 'bui-progress';
 
+// 校验进度值，确保在0-100区间
 function validProgress(progress: number | undefined) {
   if (!progress || progress < 0) {
     return 0;
@@ -18,6 +19,8 @@ function validProgress(progress: number | undefined) {
   }
   return progress;
 }
+
+// 对渐变色对象按百分比排序，并格式化为CSS渐变字符串
 const sortGradient = (gradients: ProgressStringGradients) => {
   let tempArr = [];
   Object.keys(gradients).forEach((key) => {
@@ -32,8 +35,11 @@ const sortGradient = (gradients: ProgressStringGradients) => {
   tempArr = tempArr.sort((a, b) => a.key - b.key);
   return tempArr.map(({ key, value }) => `${value} ${key}%`).join(', ');
 };
+
+// 处理渐变色strokeColor，生成linear-gradient样式对象
 export const handleGradient = (strokeColor: ProgressGradient) => {
   const { from, to, direction = 'to right', ...rest } = strokeColor;
+  // rest为自定义的渐变点，如{ '0%': '#fff', '100%': '#000' }
   if (Object.keys(rest).length !== 0) {
     const sortedGradients = sortGradient(rest as ProgressStringGradients);
     return {
@@ -43,17 +49,19 @@ export const handleGradient = (strokeColor: ProgressGradient) => {
   return { backgroundImage: `linear-gradient(${direction}, ${from}, ${to})` };
 };
 
+// 进度条主组件
 const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
   (props, ref) => {
     const {
       className,
-      percent,
-      strokeWidth,
-      strokeColor,
-      trailColor,
+      percent = 0, // 当前进度百分比
+      strokeWidth, // 进度条高度
+      strokeColor, // 进度条颜色或渐变
+      trailColor, // 轨道颜色
       ...others
     } = props;
 
+    // 处理进度条颜色，支持渐变和纯色
     const backgroundProps =
       strokeColor && typeof strokeColor !== 'string'
         ? handleGradient(strokeColor)
@@ -61,19 +69,24 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
             background: strokeColor,
           };
 
+    // 进度条样式
     const percentStyle = {
       width: `${validProgress(percent)}%`,
       height: strokeWidth,
       ...backgroundProps,
     } as React.CSSProperties;
 
+    // 轨道样式
     const trailStyle = {
       background: trailColor || undefined,
     } as React.CSSProperties;
 
     return (
+      // 外层容器
       <div className={clsx(prefixCls, className)} ref={ref} {...others}>
+        {/* 轨道 */}
         <div className={`${prefixCls}-inner`} style={trailStyle}>
+          {/* 进度条 */}
           <div className={`${prefixCls}-bg`} style={percentStyle} />
         </div>
       </div>
