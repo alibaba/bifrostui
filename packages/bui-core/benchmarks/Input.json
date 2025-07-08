@@ -1,12 +1,12 @@
 {
   "root": "../../../",
   "$schema": "https://raw.githubusercontent.com/Polymer/tachometer/master/config.schema.json",
-  "sampleSize": 10,
+  "sampleSize": 30,
   "timeout": 0,
   "benchmarks": [
     {
-      "name": "Button-Latest",
-      "url": "templates/latest.html?component=Button",
+      "name": "Input-Latest",
+      "url": "templates/latest.html?component=Input",
       "browser": {
         "name": "chrome",
         "headless": false
@@ -14,8 +14,8 @@
       "measurement": "fcp"
     },
     {
-      "name": "Button-Main",
-      "url": "templates/main.html?component=Button",
+      "name": "Input-Main",
+      "url": "templates/main.html?component=Input",
       "browser": {
         "name": "chrome",
         "headless": false
