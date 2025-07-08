@@ -39,13 +39,16 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "build": "node esbuild.config.js"
+    "build": "node esbuild.config.js",
+    "build:umd": "rspack build"
   },
   "sideEffects": [
     "*.css",
     "*.less"
   ],
   "devDependencies": {
+    "@rspack/cli": "^1.4.4",
+    "@rspack/core": "^1.4.4",
     "esbuild-plugin-less": "1.3.10",
     "fs-extra": "^11.2.0",
     "glob": "11.0.0"

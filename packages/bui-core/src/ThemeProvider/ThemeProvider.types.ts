@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { OverrideProps } from '@bifrostui/types';
-import { BaseLang } from '../locales/base';
+import type { BaseLang } from '../locales/base';
 
 export interface Breakpoints {
   /**
