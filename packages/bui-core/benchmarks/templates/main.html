@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html data-color-mode='light' data-theme="default">
 <head>
-  <title>Performance Benchmark Latest</title>
+  <title>Performance Benchmark Main</title>
   <link rel="stylesheet" href="/packages/bui-styles/dist/index.css">
 </head>
 <body>
@@ -14,15 +14,18 @@
   // from tachometer server
   import * as bench from '/bench.js';
 
-  const componentName = new URLSearchParams(window.location.search).get('name');
+  const search = new URLSearchParams(window.location.search);
+  const componentName = search.get('component');
+
   const script = document.createElement('script');
-  script.src = `/packages/bui-core/umd/${componentName}.umd.js`;
+  script.src = `/packages/bui-core/benchmarks/umd-main/${componentName}.umd.js`;
+
   script.onload = () => {
     const Component = window[componentName];
     const root = ReactDOM.createRoot(document.body);
 
     bench.start();
-    root.render(React.createElement(Component, {color: 'primary', size: 'small'}, 'test button'));
+    root.render(React.createElement(Component, null));
     bench.stop();
   };
   document.head.appendChild(script);

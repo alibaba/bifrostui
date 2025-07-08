@@ -40,7 +40,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     } else {
       activeTab = [...container.childNodes].find((child: any) => {
         if (isMini) {
-          return [...child.classList.tokenList].includes(
+          return [...(child?.classList?.tokenList ?? [])].includes(
             'bui-tab-miniapp-active',
           );
         }

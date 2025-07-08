@@ -40,7 +40,7 @@
   },
   "scripts": {
     "build": "node esbuild.config.js",
-    "build:umd": "rspack build"
+    "build:benchmark": "rspack build"
   },
   "sideEffects": [
     "*.css",

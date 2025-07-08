@@ -16,16 +16,22 @@ const isMainBranch = () => {
   }
 };
 
-const components = fs.readdirSync(path.resolve(__dirname, 'src'));
+const components = fs.readdirSync(
+  path.resolve(__dirname, 'benchmarks/components'),
+);
 const entryList = components.reduce((acc, component) => {
-  if (component !== 'index.ts') {
-    acc[component] = path.resolve(__dirname, 'src', component, 'index.ts');
-  }
+  const componentName = component.split('.')[0];
+  acc[componentName] = path.resolve(
+    __dirname,
+    'benchmarks/components',
+    component,
+  );
   return acc;
 }, {});
+
 const outputPath = isMainBranch()
-  ? path.resolve(__dirname, 'umd-main')
-  : path.resolve(__dirname, 'umd');
+  ? path.resolve(__dirname, 'benchmarks/umd-main')
+  : path.resolve(__dirname, 'benchmarks/umd');
 
 module.exports = defineConfig({
   entry: entryList,
