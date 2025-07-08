@@ -10,7 +10,7 @@ const isMainBranch = () => {
       encoding: 'utf-8',
       stdio: 'pipe',
     }).trim();
-    return currentBranch === 'feat/benchmark';
+    return currentBranch === 'feat/benchmark-main';
   } catch (error) {
     return false;
   }
