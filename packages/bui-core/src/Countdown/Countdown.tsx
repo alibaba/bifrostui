@@ -15,9 +15,6 @@ const Countdown = forwardRef<HTMLDivElement, CountdownProps>((props, ref) => {
     endTimestamp,
     remainingTime = 0,
     format = 'HH:mm:ss',
-    unitStyle = {},
-    valueStyle = [{}, {}],
-    timeSliceStyle = {},
     renderContent,
     onChange,
     onFinish,
@@ -67,18 +64,13 @@ const Countdown = forwardRef<HTMLDivElement, CountdownProps>((props, ref) => {
           const { unitText, valStr } = item;
           const valueList = valStr.split('');
           return (
-            <span
-              key={`slice-${index}`}
-              className={clsx(`${prefixCls}-slice`)}
-              style={timeSliceStyle}
-            >
+            <span key={`slice-${index}`} className={clsx(`${prefixCls}-slice`)}>
               {/* 倒计时时间片 */}
               <span className={clsx(`${prefixCls}-slice-item`)}>
                 {valueList.map((val, i) => (
                   <span
                     key={`slice-value-${i}`}
                     className={clsx(`${prefixCls}-slice-value`)}
-                    style={valueStyle[i]}
                   >
                     {val}
                   </span>
@@ -86,10 +78,7 @@ const Countdown = forwardRef<HTMLDivElement, CountdownProps>((props, ref) => {
               </span>
               {/* 倒计时单位 */}
               {unitText && (
-                <span
-                  className={clsx(`${prefixCls}-slice-unit`)}
-                  style={unitStyle}
-                >
+                <span className={clsx(`${prefixCls}-slice-unit`)}>
                   {unitText}
                 </span>
               )}
