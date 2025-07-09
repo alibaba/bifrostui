@@ -9,7 +9,7 @@
       "url": "templates/latest.html?component=Input",
       "browser": {
         "name": "chrome",
-        "headless": false
+        "headless": true
       },
       "measurement": "fcp"
     },
@@ -18,7 +18,7 @@
       "url": "templates/main.html?component=Input",
       "browser": {
         "name": "chrome",
-        "headless": false
+        "headless": true
       },
       "measurement": "fcp"
     }

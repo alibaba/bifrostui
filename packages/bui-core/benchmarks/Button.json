@@ -1,7 +1,7 @@
 {
   "root": "../../../",
   "$schema": "https://raw.githubusercontent.com/Polymer/tachometer/master/config.schema.json",
-  "sampleSize": 10,
+  "sampleSize": 30,
   "timeout": 0,
   "benchmarks": [
     {
@@ -9,7 +9,7 @@
       "url": "templates/latest.html?component=Button",
       "browser": {
         "name": "chrome",
-        "headless": false
+        "headless": true
       },
       "measurement": "fcp"
     },
@@ -18,7 +18,7 @@
       "url": "templates/main.html?component=Button",
       "browser": {
         "name": "chrome",
-        "headless": false
+        "headless": true
       },
       "measurement": "fcp"
     }

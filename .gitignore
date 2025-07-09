@@ -10,6 +10,7 @@ dist
 es
 umd
 umd-main
+logs
 /dist
 /docs-dist
 .history
