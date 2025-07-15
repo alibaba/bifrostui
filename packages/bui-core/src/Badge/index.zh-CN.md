@@ -241,7 +241,10 @@ export default () => {
 | -------- | -------------- | --------------------------------------------------------- | ----------- |
 | content  | 徽章内容       | ReactNode                                                 | -           |
 | color    | 徽章主题色     | `primary` ｜ `info` ｜ `success` ｜ `warning` ｜ `danger` | `primary`   |
-| maxCount | 数字徽章最大值 | number                                                    | -           |
+| max      | 数字徽章的最大值（推荐使用） | number | - |
+| showZero | content为0时是否展示         | boolean | false |
+| visibility | 是否展示badge              | boolean | true |
+| maxCount | 数字徽章最大值（即将废弃）   | number | - |
 | variant  | 徽章类型       | `contained` ｜`outlined`                                  | `contained` |
 | type     | 徽章形状       | `dot`｜`rounded`｜`bubble`                                | `rounded`   |
 
@@ -259,3 +262,26 @@ export default () => {
 | --bui-badge-dot-size             | 圆点大小       | `9px`           |
 | --bui-badge-bubble-padding       | 气泡内边距     | `0 5px`         |
 | --bui-badge-bubble-border-radius | 气泡圆角       | `6px 6px 6px 0` |
+
+## 新增用法示例
+
+### max属性
+```tsx
+import React from 'react';
+import { Badge } from '@bifrostui/react';
+<Badge content={120} max={99} />
+```
+
+### showZero属性
+```tsx
+import React from 'react';
+import { Badge } from '@bifrostui/react';
+<Badge content={0} showZero />
+```
+
+### visibility属性
+```tsx
+import React from 'react';
+import { Badge } from '@bifrostui/react';
+<Badge content={10} visibility={false} />
+```
