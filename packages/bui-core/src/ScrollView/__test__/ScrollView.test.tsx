@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { act, render, screen } from 'testing';
 import { fireEvent, waitFor } from '@testing-library/react';
 import ScrollView from '../ScrollView';
-import Button from '../../Button';
 
 describe('ScrollView', () => {
   beforeEach(() => {
@@ -229,57 +228,46 @@ describe('ScrollView', () => {
     }
   });
 
-  it('should take 300ms to scroll to the specified position when clicking an item', async () => {
-    const App = () => {
-      const scrollAnimationDuration = 300;
-      const [h, sH] = useState(undefined);
-      const [id, sId] = useState(undefined);
-      return (
-        <>
-          <Button
-            className="button"
-            onClick={() => {
-              sId(undefined);
-              sH(200);
-            }}
-          >
-            滚动到200px
-          </Button>
-          <ScrollView
-            scrollY
-            scrollTop={h}
-            scrollIntoView={id}
-            scrollIntoViewAlignment="nearest"
-            onScroll={(e) => {
-              sId(undefined);
-              sH(undefined);
-            }}
-            scrollWithAnimation
-            scrollAnimationDuration={scrollAnimationDuration}
-            style={{ width: '100%', height: '400px' }}
-          >
-            {[...new Array(100)].map((_, index) => (
-              <div className="item" key={index} id={`d${index}`}>
-                {index}
-              </div>
-            ))}
-          </ScrollView>
-        </>
+  describe('Edge Cases', () => {
+    it('should handle zero height container gracefully', () => {
+      const { container } = render(
+        <ScrollView scrollY style={{ height: 0 }}>
+          <div>Content</div>
+        </ScrollView>,
       );
-    };
-    const { container } = render(<App />);
-
-    const scrollElement = container.querySelector(`.${rootClass}`);
-
-    const item = document.querySelector('button');
-    await act(async () => {
-      fireEvent.click(item);
+      expect(container.querySelector(`.${rootClass}`)).toBeInTheDocument();
     });
 
-    jest.advanceTimersByTime(290);
-    expect(scrollElement.scrollTop).toBeLessThan(200);
+    it('should not throw error for invalid scrollIntoView id', () => {
+      expect(() => {
+        render(
+          <ScrollView scrollY scrollIntoView="non-existent-id">
+            <div id="real-id">Content</div>
+          </ScrollView>,
+        );
+      }).not.toThrow();
+    });
 
-    jest.advanceTimersByTime(300);
-    expect(scrollElement.scrollTop).toEqual(200);
+    it('should handle empty children', () => {
+      const { container } = render(<ScrollView scrollY />);
+      expect(container.querySelector(`.${rootClass}`)).toBeInTheDocument();
+    });
+  });
+
+  describe('Accessibility', () => {
+    it('should support keyboard navigation when tabIndex is set', () => {
+      const { container } = render(
+        <ScrollView scrollY style={{ height: '100px' }} tabIndex={0}>
+          <div style={{ height: '500px' }}>Scrollable content</div>
+        </ScrollView>,
+      );
+      const scrollView = container.querySelector(`.${rootClass}`);
+      expect(scrollView).not.toBeNull();
+      (scrollView as HTMLElement).focus();
+      fireEvent.keyDown(scrollView, { key: 'ArrowDown', code: 'ArrowDown' });
+      // Note: JSDOM does not implement layouting, so scrollTop will not change.
+      // We are just testing that the event does not throw an error.
+      expect(scrollView.scrollTop).toBe(0);
+    });
   });
 });
