@@ -59,4 +59,27 @@ describe('Badge', () => {
       },
     );
   });
+  describe('prop: max', () => {
+    it('render with max current', () => {
+      const { container } = render(<Badge max={100} content={120} />);
+      expect(container).toHaveTextContent('100+');
+    });
+  });
+  describe('prop: showZero', () => {
+    it('should render when content is 0 and showZero is true', () => {
+      const { container } = render(<Badge content={0} showZero />);
+      expect(container).toHaveTextContent('0');
+    });
+    it('should not render when content is 0 and showZero is false', () => {
+      const { container } = render(<Badge content={0} showZero={false} />);
+      // 只渲染了外层div，没有内容
+      expect(container.querySelector('.bui-badge > div')).toBeNull();
+    });
+  });
+  describe('prop: visibility', () => {
+    it('should not render when visibility is false', () => {
+      const { container } = render(<Badge content={10} visibility={false} />);
+      expect(container.firstChild).toBeNull();
+    });
+  });
 });
