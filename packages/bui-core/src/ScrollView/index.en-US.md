@@ -16,7 +16,7 @@ On the mini-program side, Taro's ScrollView component is used directly, while on
 
 ```tsx
 import { ScrollView, Button, Stack } from '@bifrostui/react';
-import React, { useState } from 'react';
+import React from 'react';
 
 export default () => {
   return (
@@ -109,7 +109,7 @@ export default () => {
         scrollY
         scrollTop={h}
         scrollIntoView={id}
-        scrollIntoViewAlignment={'nearest'}
+        scrollIntoViewAlignment="nearest"
         onScrollToLower={onScrollToLower}
         onScrollToUpper={onScrollToUpper}
         onScroll={(e) => {
@@ -130,6 +130,51 @@ export default () => {
   );
 };
 ```
+
+## Performance Guidelines
+
+### Handling Large Datasets
+To avoid performance issues from rendering a large number of DOM nodes at once, it's recommended to use virtual scrolling techniques or render only the data within the visible viewport.
+
+```tsx
+import { ScrollView } from '@bifrostui/react';
+import { useMemo, useState } from 'react';
+
+export default () => {
+  const allItems = useMemo(() => 
+    [...new Array(10000)].map((_, index) => ({ id: index, text: `Item ${index}` }))
+  , []);
+  
+  const [visibleCount, setVisibleCount] = useState(100);
+
+  const onScrollToLower = () => {
+    // Load more data when scrolling to the bottom
+    setVisibleCount(prev => Math.min(prev + 100, allItems.length));
+  };
+
+  return (
+    <ScrollView 
+      scrollY 
+      style={{ height: '400px' }}
+      onScrollToLower={onScrollToLower}
+    >
+      {allItems.slice(0, visibleCount).map(item => (
+        <div key={item.id} className="item">{item.text}</div>
+      ))}
+    </ScrollView>
+  );
+};
+```
+
+## Best Practices
+
+### Scroll Performance
+- **Event Throttling**: Avoid expensive computations in the `onScroll` callback. If necessary, use throttling or debouncing to limit the event handling frequency.
+- **Animation Duration**: When using `scrollWithAnimation`, set a reasonable `scrollAnimationDuration` to achieve a smooth animation effect.
+
+### Accessibility
+- **ARIA Label**: Add a descriptive `aria-label` attribute to the scroll container to enhance screen reader usability.
+- **Keyboard Navigation**: Ensure that the content can be scrolled and accessed via the keyboard (e.g., `Tab` and arrow keys).
 
 ## API
 
