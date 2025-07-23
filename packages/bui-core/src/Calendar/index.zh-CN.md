@@ -460,6 +460,39 @@ export default () => {
 };
 ```
 
+### 平铺月份页面
+
+`flat` 指定为 `true`，可以实现平铺月份页面。
+
+```tsx
+import { Calendar, Stack } from '@bifrostui/react';
+import dayjs from 'dayjs/esm/index';
+import React, { useState } from 'react';
+
+export default () => {
+  const [value, setValue] = useState<[Date, Date]>([
+    dayjs().add(1, 'day').toDate(),
+    dayjs().add(5, 'day').toDate(),
+  ]);
+
+  return (
+    <Stack>
+      <div style={{ width: '320px' }}>
+        <Calendar
+          mode="range"
+          value={value}
+          flat
+          onChange={(e, res) => {
+            console.log('日期变化：', res);
+            setValue(res.value);
+          }}
+        />
+      </div>
+    </Stack>
+  );
+};
+```
+
 ## API
 
 | 属性                        | 说明                             | 类型                                                              | 默认值              |
@@ -520,3 +553,4 @@ export default () => {
 | --middle-background-color          | 范围选择中间部分背景颜色 | #ffeaf1      | --bui-calendar-middle-background-color          |
 | --range-both-ends-color            | 范围选择两端字体颜色     | #000         | --bui-calendar-range-both-ends-color            |
 | --range-both-ends-background-color | 范围选择两端背景颜色     | #ffc7da      | --bui-calendar-range-both-ends-background-color |
+| --month-list-height                | 平铺月份页面时的页面高度 | 220px        | --bui-calendar-month-list-height                |

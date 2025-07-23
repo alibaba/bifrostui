@@ -37,6 +37,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       disabledDate,
       highlightDate,
       headerVisible = false,
+      flat = false,
       dateRender,
       weekRender,
       onMonthChange,
@@ -144,6 +145,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
           list.unshift({
             day: hideDaysOutsideCurrentMonth ? null : day,
             disabled: true,
+            hide: flat,
           });
         });
       }
@@ -171,6 +173,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         list.push({
           day: hideDaysOutsideCurrentMonth ? null : day,
           disabled: true,
+          hide: flat,
         });
       });
 
@@ -261,26 +264,43 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       triggerChange?.(e, hasSelectedDate ? null : ins.day);
     };
 
-    const renderDayList = () =>
-      getDaysInMonth(renderMonth).map(
-        (ins: ICalendarInstance, index: number) => {
-          const dayStr = dayjs(ins.day).format('YYYYMMDD');
-          return (
-            <div
-              className={clsx(`${classes.day}-box`, {
-                [`${classes.root}-highlight-day`]:
-                  highlightDate === 'weekend' &&
-                  !ins.disabled &&
-                  (index % 7 === 0 || index % 7 === 6),
-              })}
-              key={`${dayStr}-${index}`}
-              onClick={(e) => onClickDay(e, ins)}
-            >
-              {dateRender ? dateRender(ins) : defaultDateRender(ins)}
+    const renderDayList = (month = renderMonth) =>
+      getDaysInMonth(month).map((ins: ICalendarInstance, index: number) => {
+        const dayStr = dayjs(ins.day).format('YYYYMMDD');
+        return (
+          <div
+            className={clsx(`${classes.day}-box`, {
+              [`${classes.root}-highlight-day`]:
+                highlightDate === 'weekend' &&
+                !ins.disabled &&
+                (index % 7 === 0 || index % 7 === 6),
+              [`${classes.day}-hide`]: ins.hide,
+            })}
+            key={`${dayStr}-${index}`}
+            onClick={(e) => onClickDay(e, ins)}
+          >
+            {dateRender ? dateRender(ins) : defaultDateRender(ins)}
+          </div>
+        );
+      });
+
+    const renderMonthList = () => {
+      return [...Array(12)].map((_, index) => {
+        const curMonth = dayjs(renderMonth).add(index, 'month');
+        const month = curMonth.toDate();
+        const monthStr = curMonth.format(headerBarFormat);
+        return (
+          <div key={index}>
+            <div className={clsx(`${classes.root}-month-title`)}>
+              {monthStr}
             </div>
-          );
-        },
-      );
+            <div className={clsx(`${classes.root}-month`)}>
+              {renderDayList(month)}
+            </div>
+          </div>
+        );
+      });
+    };
 
     /**
      * 切换上一个月
@@ -333,7 +353,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         {...data}
       >
         {/* 顶部操作栏 */}
-        {!headerVisible && (
+        {!headerVisible && !flat && (
           <div className={classes.handler}>
             <div onClick={onClickPrev} className={`${classes.handler}-btn`}>
               {headerBarIcon.left}
@@ -348,7 +368,11 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         )}
 
         {/* 周横条 */}
-        <div className={classes.week}>
+        <div
+          className={clsx(classes.week, {
+            [`${classes.week}-flat`]: flat,
+          })}
+        >
           {SUNDAY_WEEK_DATA?.map((w) => {
             return weekRender ? (
               weekRender(w)
@@ -360,7 +384,13 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
           })}
         </div>
 
-        <div className={clsx(`${classes.root}-month`)}>{renderDayList()}</div>
+        {!flat ? (
+          <div className={clsx(`${classes.root}-month`)}>{renderDayList()}</div>
+        ) : (
+          <div className={clsx(`${classes.root}-month-list`)}>
+            {renderMonthList()}
+          </div>
+        )}
       </div>
     );
   },

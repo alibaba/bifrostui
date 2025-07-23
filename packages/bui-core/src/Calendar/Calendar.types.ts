@@ -6,6 +6,8 @@ export interface ICalendarInstance {
   day: Date;
   /** 是否禁用 */
   disabled: boolean;
+  /** 是否隐藏 */
+  hide: boolean;
 }
 
 export interface ICalendarMonthChangeData {
@@ -89,6 +91,10 @@ export type CalendarProps<
        * default: false
        */
       headerVisible?: boolean;
+      /**
+       * 是否平铺月份页面
+       */
+      flat?: boolean;
       /**
        * 自定义日期单元格的内容
        */

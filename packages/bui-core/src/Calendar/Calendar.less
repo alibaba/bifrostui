@@ -25,6 +25,7 @@
     --bui-calendar-range-both-ends-background-color,
     #ffc7da
   );
+  --month-list-height: var(--bui-calendar-month-list-height, 220px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -54,6 +55,10 @@
     &-item:nth-child(1),
     &-item:nth-child(7) {
       color: var(--bui-color-primary);
+    }
+
+    &-flat {
+      box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.1);
     }
   }
 
@@ -92,6 +97,20 @@
     margin-bottom: var(--bui-spacing-sm);
   }
 
+  &-month-list {
+    height: var(--month-list-height);
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &-month-title {
+    padding: 8px 0;
+    font-weight: 500;
+  }
+
   &-day-box {
     width: 14.28%;
     height: var(--day-box-height);
@@ -118,6 +137,10 @@
 
     &.bui-calendar-disabled {
       color: var(--day-disabled-color);
+    }
+
+    &-hide {
+      visibility: hidden;
     }
   }
 

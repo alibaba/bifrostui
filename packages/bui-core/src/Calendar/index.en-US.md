@@ -490,3 +490,4 @@ export default () => {
 | --middle-background-color          | Middle part background color for range selection | #ffeaf1       | --bui-calendar-middle-background-color          |
 | --range-both-ends-color            | Both ends font color for range selection         | #000          | --bui-calendar-range-both-ends-color            |
 | --range-both-ends-background-color | Both ends background color for range selection   | #ffc7da       | --bui-calendar-range-both-ends-background-color |
+| --month-list-height                | height of month page when flat month page        | 220px         | --bui-calendar-month-list-height                |
