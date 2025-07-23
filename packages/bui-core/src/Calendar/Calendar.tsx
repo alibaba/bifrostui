@@ -8,6 +8,7 @@ import React, {
   SyntheticEvent,
   useImperativeHandle,
   useMemo,
+  useRef,
   useState,
 } from 'react';
 import {
@@ -97,6 +98,7 @@ const Calendar = React.forwardRef<CalendarRef, CalendarProps>((props, ref) => {
   const selectedEndDate = useMemo(() => {
     return calendarValue?.[1];
   }, [calendarValue]);
+  const rootRef = useRef(null);
 
   const isMinMonth = dayjs(minDate).isSame(renderMonth, 'month');
   const isMaxMonth = dayjs(maxDate).isSame(renderMonth, 'month');
@@ -105,6 +107,7 @@ const Calendar = React.forwardRef<CalendarRef, CalendarProps>((props, ref) => {
     jumpTo: (date: Date) => {
       setRenderMonth(date);
     },
+    rootRef: rootRef.current,
   }));
 
   // 头部操作栏左右图标
@@ -328,8 +331,7 @@ const Calendar = React.forwardRef<CalendarRef, CalendarProps>((props, ref) => {
 
   return (
     <div
-      // @ts-ignore
-      ref={ref}
+      ref={rootRef}
       className={clsx(classes.root, className, {
         [`${classes.root}-highlight-weekend`]: highlightDate === 'weekend',
       })}
