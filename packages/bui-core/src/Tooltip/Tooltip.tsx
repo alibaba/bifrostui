@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   getStylesAndLocation,
   triggerEventTransform,
@@ -20,7 +20,8 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     style,
     children,
     title,
-    defaultOpen,
+    defaultOpen = false,
+    offset,
     offsetSpacing = 0,
     placement = 'top',
     trigger = 'click',
@@ -30,6 +31,9 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   } = props;
 
   const controlByUser = typeof open !== 'undefined';
+
+  // 使用 offset 优先，如果没有则使用 offsetSpacing（向后兼容）
+  const actualOffset = offset !== undefined ? offset : offsetSpacing;
 
   const { direction, location = 'center' } = parsePlacement(placement);
   const childrenRef = useRef<Element>();
@@ -42,14 +46,14 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   const tipRef = useRef(null);
   const nodeRef = useForkRef(ref, tipRef);
 
-  const clearRef = (status) => {
+  const clearRef = (status: boolean) => {
     // 隐藏时 清空tipRef
     if (status === false) {
       tipRef.current = null;
     }
   };
 
-  const changeOpenStatus = (event, status) => {
+  const changeOpenStatus = (event: React.SyntheticEvent, status: boolean) => {
     if (controlByUser) return;
     // 隐藏时 清空tipRef
     clearRef(status);
@@ -57,23 +61,23 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     onOpenChange?.(event, { open: status });
   };
 
-  const triggerClick = (event) => {
+  const triggerClick = (event: React.MouseEvent) => {
     event.stopPropagation();
     const targetStatus = !openStatus;
     changeOpenStatus(event, targetStatus);
   };
-  const hideTooltip = (event) => {
+  const hideTooltip = (event: React.SyntheticEvent) => {
     changeOpenStatus(event, false);
   };
-  const showTooltip = (event) => {
+  const showTooltip = (event: React.SyntheticEvent) => {
     changeOpenStatus(event, true);
   };
 
   useEffect(() => {
     if (!controlByUser) return;
-    setOpenStatus(open);
-    clearRef(open);
-  }, [open]);
+    setOpenStatus(open ?? false);
+    clearRef(open ?? false);
+  }, [open, controlByUser]);
 
   useEffect(() => {
     if (!openStatus) {
@@ -83,15 +87,28 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     }
   }, [openStatus]);
 
-  const clickEventHandler = (event) => {
-    if (
-      trigger === 'hover' ||
-      (trigger?.length === 1 && trigger?.[0] === 'hover')
-    )
-      return;
+  // 判断是否需要监听全局点击事件来隐藏 tooltip
+  const shouldListenGlobalClick = useCallback(() => {
+    if (typeof trigger === 'string') {
+      return trigger === 'click';
+    }
+    if (Array.isArray(trigger)) {
+      return trigger.includes('click');
+    }
+    return true; // 默认为 'click'
+  }, [trigger]);
 
-    hideTooltip(event);
-  };
+  const clickEventHandler = useCallback(
+    (event: Event) => {
+      // 只有当 trigger 包含 'click' 时才监听全局点击事件隐藏
+      if (!shouldListenGlobalClick()) {
+        return;
+      }
+      // 简化：直接类型断言，大多数回调不会深度使用事件对象
+      hideTooltip(event as unknown as React.SyntheticEvent);
+    },
+    [shouldListenGlobalClick, hideTooltip],
+  );
 
   const onRootElementMouted = throttle(async () => {
     if (!tipRef.current) return;
@@ -103,7 +120,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
       childrenRef,
       arrowDirection: newParsedDirection,
       arrowLocation: newParsedLocation,
-      offsetSpacing,
+      offsetSpacing: actualOffset,
       tipRef,
     });
     if (!result) return;
@@ -127,7 +144,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
      */
     const bindEvent = () => {
       if (!openStatus) return;
-      if (!controlByUser) {
+      if (!controlByUser && shouldListenGlobalClick()) {
         document.addEventListener('click', clickEventHandler);
       }
       if (!isMini) {
@@ -135,7 +152,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
       }
     };
     const unbindEvent = () => {
-      if (!controlByUser) {
+      if (!controlByUser && shouldListenGlobalClick()) {
         document.removeEventListener('click', clickEventHandler);
       }
       if (!isMini) {
@@ -147,7 +164,13 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     return () => {
       unbindEvent();
     };
-  }, [openStatus]);
+  }, [
+    openStatus,
+    controlByUser,
+    shouldListenGlobalClick,
+    clickEventHandler,
+    onRootElementMouted,
+  ]);
 
   let triggerEventOption;
   if (!controlByUser) {
@@ -163,6 +186,14 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     ref: childrenRef,
     ...triggerEventOption,
   };
+
+  // 确保 children 是有效的 React 元素
+  if (!React.isValidElement(children)) {
+    console.warn(
+      'BUI Tooltip: children must be a valid React element that can accept a ref.',
+    );
+    return children as React.ReactElement;
+  }
 
   return (
     <>
@@ -181,9 +212,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
           </div>
         </Portal>
       ) : null}
-      {React.isValidElement(children)
-        ? React.cloneElement(children, childrenOptions)
-        : children}
+      {React.cloneElement(children, childrenOptions)}
     </>
   );
 });
