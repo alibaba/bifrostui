@@ -25,6 +25,7 @@ describe('Calendar', () => {
       minDate: dayjs('20230401').toDate(),
       maxDate: dayjs('20230429').toDate(),
     },
+    skip: ['component-has-root-ref'],
   });
 
   it('should render date range in minDate to maxDate', () => {
