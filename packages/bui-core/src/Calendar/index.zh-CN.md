@@ -311,7 +311,7 @@ export default () => {
 ```tsx
 import { Button, Calendar, Stack } from '@bifrostui/react';
 import dayjs from 'dayjs/esm/index';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 export default () => {
   const [value, setValue] = useState(dayjs().add(1, 'month').toDate());
@@ -319,9 +319,12 @@ export default () => {
     dayjs().add(30, 'day').toDate(),
     dayjs().add(33, 'day').toDate(),
   ]);
+  const ref = useRef();
 
   const onSingleClick = () => {
+    const today = dayjs().toDate();
     setValue(dayjs().toDate());
+    ref.current.jumpTo(today);
   };
 
   const onRangeClick = () => {
@@ -332,7 +335,7 @@ export default () => {
     <Stack>
       <div style={{ width: '320px' }}>
         <Button onClick={onSingleClick}>回到今天</Button>
-        <Calendar mode="single" value={value} />
+        <Calendar mode="single" value={value} ref={ref} />
         <Button onClick={onRangeClick}>选中最近一周</Button>
         <Calendar mode="range" value={rangevalue} />
       </div>
@@ -454,6 +457,36 @@ export default () => {
           weekRender={weekRender}
           onChange={onChange}
         />
+      </div>
+    </Stack>
+  );
+};
+```
+
+### 跳转到指定日期的月份页面
+
+通过 `ref.current.jumpTo` 方法跳转到指定日期的月份页面。
+
+```tsx
+import { Button, Calendar, Stack } from '@bifrostui/react';
+import dayjs from 'dayjs/esm/index';
+import React, { useState, useRef } from 'react';
+
+export default () => {
+  const [value, setValue] = useState(dayjs().add(1, 'month').toDate());
+  const ref = useRef();
+
+  const onSingleClick = () => {
+    const today = dayjs().toDate();
+    setValue(dayjs().toDate());
+    ref.current.jumpTo(today);
+  };
+
+  return (
+    <Stack>
+      <div style={{ width: '320px' }}>
+        <Button onClick={onSingleClick}>回到今天</Button>
+        <Calendar mode="single" value={value} ref={ref} />
       </div>
     </Stack>
   );

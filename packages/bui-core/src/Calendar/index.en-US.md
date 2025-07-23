@@ -281,7 +281,7 @@ Control the calendar component using the `value` property.
 ```tsx
 import { Button, Calendar, Stack } from '@bifrostui/react';
 import dayjs from 'dayjs/esm/index';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 export default () => {
   const [value, setValue] = useState(dayjs().add(1, 'month').toDate());
@@ -289,9 +289,12 @@ export default () => {
     dayjs().add(30, 'day').toDate(),
     dayjs().add(33, 'day').toDate(),
   ]);
+  const ref = useRef();
 
   const onSingleClick = () => {
+    const today = dayjs().toDate();
     setValue(dayjs().toDate());
+    ref.current.jumpTo(today);
   };
 
   const onRangeClick = () => {
@@ -424,6 +427,36 @@ export default () => {
           weekRender={weekRender}
           onChange={onChange}
         />
+      </div>
+    </Stack>
+  );
+};
+```
+
+### Jump to Specified Date's Month Page
+
+Use `ref.current.jumpTo` to jumpto specified date's month page.
+
+```tsx
+import { Button, Calendar, Stack } from '@bifrostui/react';
+import dayjs from 'dayjs/esm/index';
+import React, { useState, useRef } from 'react';
+
+export default () => {
+  const [value, setValue] = useState(dayjs().add(1, 'month').toDate());
+  const ref = useRef();
+
+  const onSingleClick = () => {
+    const today = dayjs().toDate();
+    setValue(dayjs().toDate());
+    ref.current.jumpTo(today);
+  };
+
+  return (
+    <Stack>
+      <div style={{ width: '320px' }}>
+        <Button onClick={onSingleClick}>back to today</Button>
+        <Calendar mode="single" value={value} ref={ref} />
       </div>
     </Stack>
   );

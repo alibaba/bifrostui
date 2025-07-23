@@ -116,3 +116,8 @@ export type CalendarProps<
   },
   D
 >;
+
+export type CalendarRef = {
+  /** 跳转到指定月份 */
+  jumpTo?: (date: Date) => void;
+};
