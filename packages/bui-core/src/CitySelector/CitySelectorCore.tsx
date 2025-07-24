@@ -32,6 +32,9 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
       currentCityGroupName = currentCityGroupLocaleName,
       hotCities,
       hotCitiesGroupName = hotCitiesGroupLocaleName,
+      sideBarSelectedCityGroupName = current,
+      sideBarCurrentCityGroupName = located,
+      sideBarHotCitiesGroupName = hot,
       cities,
       disableIndex,
       touchHandler,
@@ -42,16 +45,16 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
     } = props;
 
     const GPS_TYPE = {
-      title: located,
+      title: sideBarCurrentCityGroupName,
       code: 'GPS',
     };
     const CURRENT_TYPE = {
-      title: current,
+      title: sideBarSelectedCityGroupName,
       code: 'CRRT',
     };
 
     const HOT_CITY_TYPE = {
-      title: hot,
+      title: sideBarHotCitiesGroupName,
       code: 'HOT',
     };
 
@@ -135,13 +138,28 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
     };
 
     const renderCity = (citys, title, titleCode?) => {
+      const parsedCode = titleCode?.toLowerCase();
       return (
         <div>
           {renderTitle(title, titleCode)}
-          <div className="select-city-buttons">
+          <div
+            className={clsx(
+              'select-city-buttons',
+              `select-city-buttons-${parsedCode}`,
+            )}
+          >
             {citys.map((city, index) => {
               return (
-                <Selector key={index} city={city} onSelect={selectHandler} />
+                <Selector
+                  className={
+                    city.code === selectedCity.code
+                      ? `bui-select-city-item-active`
+                      : ''
+                  }
+                  key={index}
+                  city={city}
+                  onSelect={selectHandler}
+                />
               );
             })}
           </div>

@@ -26,10 +26,10 @@ exports[`CitySelector snapshot CitySelector demo snapshot 0 1`] = `
           当前城市
         </div>
         <div
-          className="select-city-buttons"
+          className="select-city-buttons select-city-buttons-crrt"
         >
           <span
-            className="bui-city-selector-item"
+            className="bui-select-city-item-active bui-city-selector-item"
             onClick={[Function]}
           >
             北京
@@ -44,7 +44,7 @@ exports[`CitySelector snapshot CitySelector demo snapshot 0 1`] = `
           定位城市
         </div>
         <div
-          className="select-city-buttons"
+          className="select-city-buttons select-city-buttons-gps"
         >
           <span
             className="bui-city-selector-item"
@@ -62,10 +62,10 @@ exports[`CitySelector snapshot CitySelector demo snapshot 0 1`] = `
           热门城市
         </div>
         <div
-          className="select-city-buttons"
+          className="select-city-buttons select-city-buttons-hot"
         >
           <span
-            className="bui-city-selector-item"
+            className="bui-select-city-item-active bui-city-selector-item"
             onClick={[Function]}
           >
             北京
@@ -226,10 +226,10 @@ exports[`CitySelector snapshot CitySelector demo snapshot 0 2`] = `
           当前城市
         </div>
         <div
-          className="select-city-buttons"
+          className="select-city-buttons select-city-buttons-crrt"
         >
           <span
-            className="bui-city-selector-item"
+            className="bui-select-city-item-active bui-city-selector-item"
             onClick={[Function]}
           >
             北京
@@ -244,7 +244,7 @@ exports[`CitySelector snapshot CitySelector demo snapshot 0 2`] = `
           定位城市
         </div>
         <div
-          className="select-city-buttons"
+          className="select-city-buttons select-city-buttons-gps"
         >
           <span
             className="bui-city-selector-item"
@@ -262,10 +262,10 @@ exports[`CitySelector snapshot CitySelector demo snapshot 0 2`] = `
           热门城市
         </div>
         <div
-          className="select-city-buttons"
+          className="select-city-buttons select-city-buttons-hot"
         >
           <span
-            className="bui-city-selector-item"
+            className="bui-select-city-item-active bui-city-selector-item"
             onClick={[Function]}
           >
             北京
@@ -415,10 +415,10 @@ exports[`CitySelector snapshot CitySelector demo snapshot 0 3`] = `
           当前城市
         </div>
         <div
-          className="select-city-buttons"
+          className="select-city-buttons select-city-buttons-crrt"
         >
           <span
-            className="bui-city-selector-item"
+            className="bui-select-city-item-active bui-city-selector-item"
             onClick={[Function]}
           >
             北京
@@ -433,7 +433,7 @@ exports[`CitySelector snapshot CitySelector demo snapshot 0 3`] = `
           定位城市
         </div>
         <div
-          className="select-city-buttons"
+          className="select-city-buttons select-city-buttons-gps"
         >
           <span
             className="bui-city-selector-item"
@@ -451,10 +451,10 @@ exports[`CitySelector snapshot CitySelector demo snapshot 0 3`] = `
           热门城市
         </div>
         <div
-          className="select-city-buttons"
+          className="select-city-buttons select-city-buttons-hot"
         >
           <span
-            className="bui-city-selector-item"
+            className="bui-select-city-item-active bui-city-selector-item"
             onClick={[Function]}
           >
             北京

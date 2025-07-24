@@ -32,6 +32,12 @@ export type CitySelectorProps<
       hotCities?: cityType[];
       /** 热门城市栏的title */
       hotCitiesGroupName?: string;
+      /** 侧边栏的当前城市title */
+      sideBarSelectedCityGroupName?: string;
+      /** 侧边栏的定位城市title */
+      sideBarCurrentCityGroupName?: string;
+      /** 侧边栏的热门城市title */
+      sideBarHotCitiesGroupName?: string;
       /** 城市列表 */
       cities: allCityItemType[];
       /** 禁用展示索引 默认false 即展示索引 */

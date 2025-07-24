@@ -1,17 +1,19 @@
 import React from 'react';
+import clsx from 'clsx';
 import { cityType } from '../CitySelector.types';
 import './index.less';
 
 type propsType = {
+  className: string;
   city: cityType;
   onSelect: (e: React.SyntheticEvent, city: cityType) => void;
 };
 
 const Selector = (props: propsType) => {
-  const { city, onSelect } = props;
+  const { className, city, onSelect } = props;
   return (
     <span
-      className="bui-city-selector-item"
+      className={clsx(className, 'bui-city-selector-item')}
       onClick={(e) => {
         onSelect?.(e, city);
       }}
