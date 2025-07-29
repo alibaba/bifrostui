@@ -75,7 +75,7 @@ export interface TooltipBaseProps {
   /**
    * 触发 Tooltip 显示的事件类型
    * - 'click': 点击触发
-   * - 'hover': 悬停触发  
+   * - 'hover': 悬停触发
    * - 可以传递数组来组合多种触发方式
    * @default 'click'
    */
