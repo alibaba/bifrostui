@@ -302,16 +302,10 @@ import React from 'react';
 import { Badge, Avatar } from '@bifrostui/react';
 
 export default () => {
-<<<<<<< HEAD
-  return <Badge content={10} visibility={true}>
-      <Avatar src="//perico.damai.cn/userheadphotos/927551/185510204.jpg" />
-    </Badge>
-=======
   return (
     <Badge content={10} visibility={true}>
       <Avatar src="//perico.damai.cn/userheadphotos/927551/185510204.jpg" />
     </Badge>
   );
->>>>>>> e8cd4a6 (feat: 重构Tooltip组件和修复Badge组件相关问题)
 };
 ```
