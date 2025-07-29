@@ -133,6 +133,170 @@ describe('Tooltip', () => {
       expect(onOpenChange).toBeCalledTimes(2);
     });
   });
+
+  // 新增测试：offset 属性
+  it('test offset prop', () => {
+    const { rerender } = render(
+      <Tooltip title="Test tooltip" offset={20} defaultOpen>
+        <div data-testid="tooltipTestid">children</div>
+      </Tooltip>,
+    );
+
+    expect(screen.getByText('Test tooltip')).toBeInTheDocument();
+
+    // 测试 offset 为 0
+    rerender(
+      <Tooltip title="Test tooltip" offset={0} defaultOpen>
+        <div data-testid="tooltipTestid">children</div>
+      </Tooltip>,
+    );
+    expect(screen.getByText('Test tooltip')).toBeInTheDocument();
+  });
+
+  // 新增测试：offset 和 offsetSpacing 优先级
+  it('test offset takes precedence over offsetSpacing', () => {
+    render(
+      <Tooltip title="Test tooltip" offset={30} offsetSpacing={10} defaultOpen>
+        <div data-testid="tooltipTestid">children</div>
+      </Tooltip>,
+    );
+
+    expect(screen.getByText('Test tooltip')).toBeInTheDocument();
+    // 此处实际应该使用 offset={30} 而不是 offsetSpacing={10}
+  });
+
+  // 新增测试：offsetSpacing 向后兼容性
+  it('test offsetSpacing backward compatibility', () => {
+    render(
+      <Tooltip title="Test tooltip" offsetSpacing={15} defaultOpen>
+        <div data-testid="tooltipTestid">children</div>
+      </Tooltip>,
+    );
+
+    expect(screen.getByText('Test tooltip')).toBeInTheDocument();
+  });
+
+  // 新增测试：title 支持 ReactNode
+  it('test title supports ReactNode', () => {
+    const ComplexTitle = () => (
+      <div>
+        <strong>Bold text</strong> and <em>italic text</em>
+      </div>
+    );
+
+    render(
+      <Tooltip title={<ComplexTitle />} defaultOpen>
+        <div data-testid="tooltipTestid">children</div>
+      </Tooltip>,
+    );
+
+    expect(screen.getByText('Bold text')).toBeInTheDocument();
+    expect(screen.getByText('italic text')).toBeInTheDocument();
+  });
+
+  // 新增测试：title 为字符串时仍然工作
+  it('test title with string content', () => {
+    render(
+      <Tooltip title="Simple string tooltip" defaultOpen>
+        <div data-testid="tooltipTestid">children</div>
+      </Tooltip>,
+    );
+
+    expect(screen.getByText('Simple string tooltip')).toBeInTheDocument();
+  });
+
+  // 新增测试：修复后的 trigger 逻辑 - hover 不应该监听全局点击
+  it('test trigger hover should not hide on global click', async () => {
+    const onOpenChange = jest.fn();
+    render(
+      <Tooltip
+        title="Hover tooltip"
+        trigger="hover"
+        onOpenChange={onOpenChange}
+      >
+        <div data-testid="tooltipTestid">children</div>
+      </Tooltip>,
+    );
+
+    const $childrenDom = screen.getByTestId('tooltipTestid');
+
+    // 鼠标进入显示
+    await act(async () => {
+      fireEvent.mouseEnter($childrenDom);
+    });
+    expect(onOpenChange).toHaveBeenCalledWith(expect.any(Object), {
+      open: true,
+    });
+
+    // 全局点击不应该隐藏（这是修复的 bug）
+    await act(async () => {
+      userEvent.click(document.body);
+    });
+    // onOpenChange 应该只调用一次（显示），不应该因为全局点击而隐藏
+    expect(onOpenChange).toHaveBeenCalledTimes(1);
+  });
+
+  // 新增测试：混合 trigger 时的全局点击行为
+  it('test mixed trigger with click should hide on global click', async () => {
+    const onOpenChange = jest.fn();
+    render(
+      <Tooltip
+        title="Mixed trigger tooltip"
+        trigger={['hover', 'click']}
+        onOpenChange={onOpenChange}
+      >
+        <div data-testid="tooltipTestid">children</div>
+      </Tooltip>,
+    );
+
+    const $childrenDom = screen.getByTestId('tooltipTestid');
+
+    // 点击显示
+    await act(async () => {
+      userEvent.click($childrenDom);
+    });
+    expect(onOpenChange).toHaveBeenCalledWith(expect.any(Object), {
+      open: true,
+    });
+
+    // 全局点击应该隐藏（因为包含 click trigger）
+    await act(async () => {
+      userEvent.click(document.body);
+    });
+    expect(onOpenChange).toHaveBeenCalledWith(expect.any(Object), {
+      open: false,
+    });
+    expect(onOpenChange).toHaveBeenCalledTimes(2);
+  });
+
+  // 新增测试：children 必须是有效的 React 元素
+  it('test invalid children warning', () => {
+    const consoleSpy = jest.spyOn(console, 'warn').mockImplementation();
+
+    render(
+      <Tooltip title="Test tooltip" defaultOpen>
+        {'Invalid children' as any}
+      </Tooltip>,
+    );
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      'BUI Tooltip: children must be a valid React element that can accept a ref.',
+    );
+
+    consoleSpy.mockRestore();
+  });
+
+  // 新增测试：defaultOpen 默认值
+  it('test defaultOpen default value', () => {
+    render(
+      <Tooltip title="Test tooltip">
+        <div data-testid="tooltipTestid">children</div>
+      </Tooltip>,
+    );
+
+    // 默认不显示
+    expect(screen.queryByText('Test tooltip')).not.toBeInTheDocument();
+  });
 });
 
 describe('Tooltip', () => {

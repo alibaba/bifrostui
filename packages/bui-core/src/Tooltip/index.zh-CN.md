@@ -59,9 +59,9 @@ export default () => {
 };
 ```
 
-### offsetSpacing 浮层和目标元素间隔
+### offset 浮层和目标元素间隔
 
-可以设置offsetSpacing来控制和目标元素的距离
+可以设置offset来控制和目标元素的距离
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
@@ -69,8 +69,8 @@ import React from 'react';
 
 export default () => {
   return (
-    <Tooltip title="This is a tooltip" offsetSpacing={20} defaultOpen>
-      <span>offsetSpacing控制目标间隔（设置20 以便观察）</span>
+    <Tooltip title="This is a tooltip" offset={20} defaultOpen>
+      <span>offset控制目标间隔（设置20 以便观察）</span>
     </Tooltip>
   );
 };
@@ -268,10 +268,13 @@ export default () => {
 | title         | 气泡浮层内容             | string                                                                                                                                                           | -       |
 | defaultOpen   | 默认是否显隐             | boolean                                                                                                                                                          | false   |
 | open          | 用于手动控制气泡浮层显隐 | boolean                                                                                                                                                          | -       |
+| offset        | 浮层与目标元素的偏移量   | number                                                                                                                                                           | 0       |
 | offsetSpacing | 浮层与目标元素的偏移量   | number                                                                                                                                                           | 0       |
 | placement     | 气泡框位置               | string，枚举值是 `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` `bottom` | 'top'   |
 | trigger       | 触发行为                 | string \| string[]，枚举值是 'click' \| 'hover'                                                                                                                  | 'click' |
 | onOpenChange  | 气泡浮层显隐的回调方法   | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                             | -       |
+
+> **注意:** `offsetSpacing` 属性已被标记为废弃，建议使用 `offset` 属性替代。两个属性功能相同，`offset` 优先级更高。
 
 ## 样式变量
 

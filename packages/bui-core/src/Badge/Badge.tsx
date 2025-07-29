@@ -32,7 +32,7 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
   let displayValue: React.ReactNode = null;
   if (
     type !== 'dot' &&
-    !isNaN(Number(content)) &&
+    !Number.isNaN(Number(content)) &&
     typeof realMax === 'number'
   ) {
     displayValue = Number(content) > Number(realMax) ? `${realMax}+` : content;
