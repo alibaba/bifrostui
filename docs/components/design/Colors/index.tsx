@@ -11,7 +11,7 @@ export default () => {
     { name: '亲和绿', color: '#00d68f', lightColor: '#dcf9f0' },
     { name: '神秘紫', color: '#8b52ff', lightColor: '#f2ebff' },
     { name: '宁静蓝', color: '#148aff', lightColor: '#e1f0ff' },
-    { name: '中性灰', color: '#8896b1', lightColor: '#f3f5f8' },
+    { name: '中性灰', color: '#8896b1', lightColor: '#f7f9fc' },
     // { name: '榜单金', color: '#d7932c', lightColor: '#fbefe1' },
     { name: '会员柚', color: '#ff866e', lightColor: '' },
     // { name: '会员文字', color: '#582331', lightColor: '#874953' },
@@ -21,16 +21,16 @@ export default () => {
   // 文字色
   const textColors = [
     { name: '特级', color: '#000000', desc: '主标题' },
-    { name: '一级', color: '#2e333e', desc: '主标题' },
-    { name: '次级', color: '#5f6672', desc: '副标题' },
-    { name: '辅助', color: '#959aa5', desc: '弱文案' },
-    { name: '失效', color: '#ced1d6', desc: '失效' },
+    { name: '一级', color: '#030b1a', desc: '主标题' },
+    { name: '次级', color: '#444b5b', desc: '副标题' },
+    { name: '辅助', color: '#8b93a5', desc: '弱文案' },
+    { name: '失效', color: '#bfc4cf', desc: '失效' },
   ];
 
   // 背景色
   const backgroundColors = [
     { name: '分割', color: '#e9ebef', desc: '分割线' },
-    { name: '背景', color: '#f5f6f8', desc: '页面背景' },
+    { name: '背景', color: '#f7f9fc', desc: '页面背景' },
     { name: '灰色反色', color: '#ffffff', desc: '卡片背景' },
   ];
 

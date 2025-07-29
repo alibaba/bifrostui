@@ -1,172 +1,193 @@
-# Customized Theme
+# Design Tokens
 
-BUI's style uses [less]（ https://lesscss.org/ ）And [CSS variable]（ https://developer.mozilla.org/zh-CN/docs/Web/CSS/Using_CSS_custom_properties ）Combining as a development language and defining a series of global/component style variables, we call them Tokens. You can adjust the value of Tokens according to your needs to achieve the ability to customize themes.
+> Click [Customize](/guide/theme-designer)
 
-Compared to crude CSS style overlay, CSS variables allow us to more elegantly customize the styles of components.
+The styles of BUI are developed using a combination of [less](https://lesscss.org/) and [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties), and a series of global/component style variables are defined, which we refer to as Tokens. You can adjust the values of these Tokens as needed to achieve the capability of customizing themes.
+
+Compared to rough CSS style overrides, CSS variables allow for more elegant customization of component styles.
 
 ## BUI Tokens Concept
 
-### Hierarchical structure
+### Levels
 
-BUI's tokens are divided into three levels
+BUI Tokens are divided into three levels:
 
-1. - - BUI Built in Tokens: \* \*<br>
+1. **Built-in BUI Tokens:** <br>
+   - `defaultLightToken` (global token for default light mode)
+   - `defaultDarkToken` (global token for default dark mode)
+   - `dmLightToken` (global token for DaMai light mode)
+   - `dmDarkToken` (global token for DaMai dark mode)
 
--DefaultLightToken (Global Token with default highlight mode)
+2. **Responsive Tokens:** <br>
+   BUI defaults to a mobile-first responsive scheme. Users can customize responsive Tokens via the `responsive` property.
 
-- defaultDarkToken (global token for default dark mode)
-  -DmLightToken (Global Token for Damai Highlighting Mode)
-  -DmDarkToken (Global Token for Damai Dark Mode)
+3. **Component Tokens:** <br>
+   When implementing components, BUI allows users to flexibly customize component styles through the `token` property.
 
-2. - - Responsive Tokens: \* \*<br>
-       BUI defaults to a mobile first responsive solution, and users can customize responsive tokens through the 'responsive' attribute.
+### Priority
 
-3. Tokens of \* _ components: _ \*<br>
-   BUI allows users to flexibly customize component styles through the 'token' attribute when implementing components.
+Generally, from a local over universal point of view, the priority of the three types of Tokens is:<br>
+**Component Tokens > Responsive Tokens > Built-in BUI Tokens**.<br>
+However, for special scenarios like dark mode, **the priority of the two dark mode BUI built-in Tokens is higher than the responsive Tokens**.
 
-### priority
+### Variability Across Channels
 
-Normally, from the perspective of local superiority over general, the priority of the three types of tokens is:<br> \*_Component Tokens>Responsive Tokens>BUI Built in Tokens _ \*< br>
-But for the special scenario of dark mode, the priority of the two dark mode tokens built into BUI is higher than that of responsive tokens.
+In the browser environment, different customization methods can be chosen according to various needs, such as:
 
-### Channel differentiation
+- If your theme customization needs are broad, simply customizing the built-in Tokens will suffice.
+- If your theme customization needs are detailed, you'll need to combine built-in Tokens with component Tokens for unified customization.
+- If your theme customization needs to consider responsiveness and has a finer granularity, you may need to combine built-in Tokens, responsive Tokens, and component Tokens for customization.
 
-In the browser environment, different customization methods can be chosen for different needs. For example:
+In mini programs, due to the limitation that dynamic code insertion is not possible, theme customization is not as flexible as in browsers. Currently, mini programs support the following two methods to modify themes:
 
--Your theme customization needs are quite broad, you only need to customize built-in Tokens to complete it.
--Your theme customization needs are quite detailed, and you need to combine built-in Tokens and component Tokens for unified customization.
--Your theme customization needs to consider responsiveness, and if the granularity is relatively fine, you may need to combine built-in Tokens, responsive Tokens, and component Tokens for customization.
+- Write Tokens under the corresponding selectors in the style file; global style file theme configurations will be overridden by page-level style files.
+- Local themes can only be passed inline via CSS variables when using components.
 
-In mini programs, due to the limitation of not being able to dynamically insert code, customizing themes is not as flexible as in browsers. At present, the mini program supports the following two ways to modify the theme of the mini program:
+## Built-in Tokens Overview
 
--Write the corresponding tokens under the selector in the style file, and the theme configuration of the global style file will be overwritten by the page level style file.
--Local themes can only be passed in CSS variables inline when using components.
+Before customizing, it is essential to understand what built-in Tokens BUI provides. This will give an overall understanding of BUI's theme. Here, only the default light and dark mode built-in Tokens are listed. The theme variable design for DaMai's light and dark mode is based on the default Tokens. Interested developers can check the `dm-light.less` and `dm-dark.less` files in `@bifrostui/styles`.
 
-## What are the built-in tokens
+### Theme Colors - Basic Variables
 
-Before customization, it is necessary to understand what are the built-in Tokens in BUI, so that we can have a comprehensive understanding of the BUI theme. Here, only the default built-in Tokens in highlight and dark modes are used. The design of the highlight and dark mode theme variables for the Damai theme is based on the default Tokens and will not be elaborated here. Interested developers can check the 'dm-light. rest' and 'dm-dark. rest' files in @ bifrostui/styles.
+| Built-in Token Variable Name | Default Value     | Description               |
+| ---------------------------- | ----------------- | ------------------------- |
+| --bui-color-red              | #ff335c           | Brand Red                 |
+| --bui-color-red-light        | #ffebef           | Brand Red - Light         |
+| --bui-color-pink             | #dd10f2           | Bright Pink               |
+| --bui-color-pink-light       | #fce7fe           | Bright Pink - Light       |
+| --bui-color-orange           | #ff8533           | Vibrant Orange            |
+| --bui-color-orange-light     | #fff0e5           | Vibrant Orange - Light    |
+| --bui-color-green            | #00d68f           | Amiable Green             |
+| --bui-color-green-light      | #dcf9f0           | Amiable Green - Light     |
+| --bui-color-purple           | #8b52ff           | Mysterious Purple         |
+| --bui-color-purple-light     | #f2ebff           | Mysterious Purple - Light |
+| --bui-color-blue             | #148aff           | Calm Blue                 |
+| --bui-color-blue-light       | #e1f0ff           | Calm Blue - Light         |
+| --bui-color-gray             | #8896b1           | Neutral Gray              |
+| --bui-color-gray-light       | #f7f9fc           | Neutral Gray - Light      |
+| --bui-color-black            | #000              | Black                     |
+| --bui-color-white            | #fff              | White                     |
+| --bui-color-vip              | #ff866e           | VIP Orange                |
+| --bui-color-neutral-0        | --bui-color-black | Neutral Color - 0         |
+| --bui-color-neutral-1        | #030b1a           | Neutral Color - 1         |
+| --bui-color-neutral-2        | #444b5b           | Neutral Color - 2         |
+| --bui-color-neutral-3        | #8b93a5           | Neutral Color - 3         |
+| --bui-color-neutral-4        | #bfc4cf           | Neutral Color - 4         |
+| --bui-color-neutral-5        | #e9ebef           | Neutral Color - 5         |
+| --bui-color-neutral-6        | #f7f9fc           | Neutral Color - 6         |
+| --bui-color-neutral-7        | --bui-color-white | Neutral Color - 7         |
 
-### Theme Color - Basic Variables
+### Theme Colors - Semantic Variables
 
-| Built in Token variable name | Default value     | explain                          |
-| ---------------------------- | ----------------- | -------------------------------- |
-| --bui-color-red              | #ff335c           | Brand Red                        |
-| --bui-color-red-light        | #ffebef           | Brand Red - Light Bright         |
-| --bui-color-pink             | #dd10f2           | Bright Pink                      |
-| --bui-color-pink-light       | #fce7fe           | Bright Pink - Light Bright       |
-| --bui-color-orange           | #ff8533           | Vitality Orange                  |
-| --bui-color-orange-light     | #fff0e5           | Vitality Orange - Light Bright   |
-| --bui-color-green            | #00d68f           | Affinity Green                   |
-| --bui-color-green-light      | #dcf9f0           | Affinity Green - Light Bright    |
-| --bui-color-purple           | #8b52ff           | Mysterious Purple                |
-| --bui-color-purple-light     | #f2ebff           | Mysterious Purple - Light Bright |
-| --bui-color-blue             | #148aff           | Ning Jinglan                     |
-| --bui-color-blue-light       | #e1f0ff           | Tranquil Blue - Light Bright     |
-| --bui-color-gray             | #8896b1           | Neutral Grey                     |
-| --bui-color-gray-light       | #f3f5f8           | Neutral gray - light bright      |
-| --bui-color-black            | #000              | black                            |
-| --bui-color-white            | #fff              | white                            |
-| --bui-color-vip              | #ff866e           | Member Orange                    |
-| --bui-color-neutral-0        | --bui-color-black | Neutral Color-0                  |
-| --bui-color-neutral-1        | #2e333e           | Neutral color-1                  |
-| --bui-color-neutral-2        | #5f6672           | Neutral color-2                  |
-| --bui-color-neutral-3        | #959aa5           | Neutral color-3                  |
-| --bui-color-neutral-4        | #ced1d6           | Neutral color-4                  |
-| --bui-color-neutral-5        | #e9ebef           | Neutral color-5                  |
-| --bui-color-neutral-6        | #f5f6f8           | Neutral color-6                  |
-| --bui-color-neutral-7        | --bui-color-white | Neutral color-7                  |
+| Built-in Token Variable Name | Default Value            | Description              |
+| ---------------------------- | ------------------------ | ------------------------ |
+| --bui-color-primary          | --bui-color-red          | Primary Color            |
+| --bui-color-primary-light    | --bui-color-red-light    | Primary Color - Light    |
+| --bui-color-info             | --bui-color-blue         | Information Blue         |
+| --bui-color-info-light       | --bui-color-blue-light   | Information Blue - Light |
+| --bui-color-success          | --bui-color-green        | Success Green            |
+| --bui-color-success-light    | --bui-color-green-light  | Success Green - Light    |
+| --bui-color-warning          | --bui-color-orange       | Warning Orange           |
+| --bui-color-warning-light    | --bui-color-orange-light | Warning Orange - Light   |
+| --bui-color-danger           | --bui-color-red          | Error Red                |
+| --bui-color-danger-light     | --bui-color-red-light    | Error Red - Light        |
 
-### Theme Color - Semantic Variables
+### Font Weight Variables
 
-| Built in Token variable name | Default value            | explain                            |
-| ---------------------------- | ------------------------ | ---------------------------------- |
-| --bui-color-primary          | --bui-color-red          | Main color tone                    |
-| --bui-color-primary-light    | --bui-color-red-light    | Main color tone - light and bright |
-| --bui-color-info             | --bui-color-blue         | Information Blue                   |
-| --bui-color-info-light       | --bui-color-blue-light   | Information Blue - Light Bright    |
-| --bui-color-success          | --bui-color-green        | Success Green                      |
-| --bui-color-success-light    | --bui-color-green-light  | Success Green - Light Bright       |
-| --bui-color-warning          | --bui-color-orange       | Warning Orange                     |
-| --bui-color-warning-light    | --bui-color-orange-light | Warning Orange - Light Bright      |
-| --bui-color-danger           | --bui-color-red          | Error Red                          |
-| --bui-color-danger-light     | --bui-color-red-light    | Error Red - Light Bright           |
+| Built-in Token Variable Name | Default Value | Description             |
+| ---------------------------- | ------------- | ----------------------- |
+| --bui-font-weight-normal     | 400           | Font Weight - Normal    |
+| --bui-font-weight-medium     | 500           | Font Weight - Medium    |
+| --bui-font-weight-semibold   | 600           | Font Weight - Semi-Bold |
+| --bui-font-weight-bold       | 700           | Font Weight - Bold      |
 
-### Word weight variable
+### Font Size Variables Basic Token
 
-| Built in Token variable name | Default value | explain                |
-| ---------------------------- | ------------- | ---------------------- |
-| --bui-font-weight-normal     | 400           | Word weight - regular  |
-| --bui-font-weight-medium     | 500           | Word weight - moderate |
-| --bui-font-weight-bold       | 600           | Word weight - bold     |
+| Built-in Token Variable Name | Default Value |
+| ---------------------------- | ------------- |
+| --bui-font-size-xs1          | 8px           |
+| --bui-font-size-xs2          | 9px           |
+| --bui-font-size-sm1          | 10px          |
+| --bui-font-size-sm2          | 11px          |
+| --bui-font-size-sm3          | 12px          |
+| --bui-font-size-sm4          | 13px          |
+| --bui-font-size-md1          | 14px          |
+| --bui-font-size-md2          | 15px          |
+| --bui-font-size-md3          | 16px          |
+| --bui-font-size-md4          | 18px          |
+| --bui-font-size-lg1          | 20px          |
+| --bui-font-size-lg2          | 22px          |
+| --bui-font-size-lg3          | 24px          |
+| --bui-font-size-lg4          | 26px          |
 
-### Semantic font size variable
+### Semantic Font Size Variables
 
-| Built in Token variable name | Default value | explain       |
-| ---------------------------- | ------------- | ------------- |
-| --bui-title-size-1           | 21px          | Title 1       |
-| --bui-title-size-2           | 18px          | Title 2       |
-| --bui-title-size-3           | 16px          | Title 3       |
-| --bui-title-size-4           | 15px          | Title 4       |
-| --bui-text-size-1            | 14px          | Copywriting 1 |
-| --bui-text-size-2            | 13px          | Copywriting 2 |
-| --bui-text-size-3            | 12px          | Copywriting 3 |
-| --bui-text-size-4            | 11px          | Copywriting 4 |
-| --bui-text-size-5            | 10px          | Copywriting 5 |
+| Built-in Token Variable Name | Default Value       | Description |
+| ---------------------------- | ------------------- | ----------- |
+| --bui-title-size-1           | 21px                | Title 1     |
+| --bui-title-size-2           | --bui-font-size-md4 | Title 2     |
+| --bui-title-size-3           | --bui-font-size-md3 | Title 3     |
+| --bui-title-size-4           | --bui-font-size-md2 | Title 4     |
+| --bui-text-size-1            | --bui-font-size-md1 | Text 1      |
+| --bui-text-size-2            | --bui-font-size-sm4 | Text 2      |
+| --bui-text-size-3            | --bui-font-size-sm3 | Text 3      |
+| --bui-text-size-4            | --bui-font-size-sm2 | Text 4      |
+| --bui-text-size-5            | --bui-font-size-sm1 | Text 5      |
 
-### Foreground scenery - semantic variables
+### Foreground Color - Semantic Variables
 
-Usually used for text, where '-- bui color fg default' is the most common color, such as titles and primary information
+Generally used for text, where `--bui-color-fg-default` is the most commonly used color, such as titles and primary information
 
-| Built in Token variable name | Default value         | explain                                             |
-| ---------------------------- | --------------------- | --------------------------------------------------- |
-| --bui-color-fg-default       | --bui-color-neutral-1 | Title, primary information                          |
-| --bui-color-fg-muted         | --bui-color-neutral-2 | Secondary and supplementary explanatory information |
-| --bui-color-fg-subtle        | --bui-color-neutral-3 | Auxiliary and weakened information                  |
-| --bui-color-fg-disabled      | --bui-color-neutral-4 | Invalid, unavailable                                |
+| Built-in Token Variable Name | Default Value         | Description                          |
+| ---------------------------- | --------------------- | ------------------------------------ |
+| --bui-color-fg-default       | --bui-color-neutral-1 | Title, Primary Information           |
+| --bui-color-fg-muted         | --bui-color-neutral-2 | Secondary, Supplementary Information |
+| --bui-color-fg-subtle        | --bui-color-neutral-3 | Auxiliary, Weakened Information      |
+| --bui-color-fg-disabled      | --bui-color-neutral-4 | Disabled, Unavailable                |
 
 ### Background Color - Semantic Variables
 
-Used to define a universal background color
+Used to define general background color
 
-| Built in Token variable name | Default value         | explain                  |
+| Built-in Token Variable Name | Default Value         | Description              |
 | ---------------------------- | --------------------- | ------------------------ |
-| --bui-color-bg-default       | --bui-color-neutral-6 | Default background color |
-| --bui-color-bg-view          | --bui-color-neutral-7 | View background color    |
+| --bui-color-bg-default       | --bui-color-neutral-6 | Default Background Color |
+| --bui-color-bg-view          | --bui-color-neutral-7 | View Background Color    |
 
-### Color with transparency
+### Colors with Transparency
 
-| Built in Token variable name | Default value         | explain                                |
-| ---------------------------- | --------------------- | -------------------------------------- |
-| --bui-color-bg-popover       | --bui-color-neutral-7 | Bubble background color                |
-| --bui-color-bg-alpha-light-9 | fade(#fff, 90%)       | High brightness - semi transparent 90% |
-| --bui-color-bg-alpha-light-7 | fade(#fff, 70%)       | High brightness - semi transparent 70% |
-| --bui-color-bg-alpha-light-5 | fade(#fff, 50%)       | High brightness - semi transparent 50% |
-| --bui-color-bg-alpha-light-3 | fade(#fff, 30%)       | High brightness - semi transparent 30% |
-| --bui-color-bg-alpha-light-1 | fade(#fff, 10%)       | High brightness - semi transparent 10% |
-| --bui-color-bg-alpha-dark-9  | fade(#000, 90%)       | Dark - Translucent 90%                 |
-| --bui-color-bg-alpha-dark-7  | fade(#000, 70%)       | Dark - Translucent 70%                 |
-| --bui-color-bg-alpha-dark-5  | fade(#000, 50%)       | Dark - Translucent 50%                 |
-| --bui-color-bg-alpha-dark-3  | fade(#000, 30%)       | Dark - Translucent 30%                 |
-| --bui-color-bg-alpha-dark-1  | fade(#000, 10%)       | Dark - Translucent 10%                 |
+| Built-in Token Variable Name | Default Value         | Description              |
+| ---------------------------- | --------------------- | ------------------------ |
+| --bui-color-bg-popover       | --bui-color-neutral-7 | Bubble Background Color  |
+| --bui-color-bg-alpha-light-9 | fade(#fff, 90%)       | Light - 90% Transparency |
+| --bui-color-bg-alpha-light-7 | fade(#fff, 70%)       | Light - 70% Transparency |
+| --bui-color-bg-alpha-light-5 | fade(#fff, 50%)       | Light - 50% Transparency |
+| --bui-color-bg-alpha-light-3 | fade(#fff, 30%)       | Light - 30% Transparency |
+| --bui-color-bg-alpha-light-1 | fade(#fff, 10%)       | Light - 10% Transparency |
+| --bui-color-bg-alpha-dark-9  | fade(#000, 90%)       | Dark - 90% Transparency  |
+| --bui-color-bg-alpha-dark-7  | fade(#000, 70%)       | Dark - 70% Transparency  |
+| --bui-color-bg-alpha-dark-5  | fade(#000, 50%)       | Dark - 50% Transparency  |
+| --bui-color-bg-alpha-dark-3  | fade(#000, 30%)       | Dark - 30% Transparency  |
+| --bui-color-bg-alpha-dark-1  | fade(#000, 10%)       | Dark - 10% Transparency  |
 
-### Color of dividing lines or borders
+### Divider or Border Colors
 
-| Built in Token variable name | Default value         | explain                       |
-| ---------------------------- | --------------------- | ----------------------------- |
-| --bui-color-border-default   | --bui-color-neutral-5 | Default border color          |
-| --bui-color-border-primary   | fade(#ff335c, 40%)    | Main color border color       |
-| --bui-color-border-info      | fade(#148aff, 40%)    | Information blue border color |
-| --bui-color-border-success   | fade(#00d68f, 40%)    | Successful green border color |
-| --bui-color-border-warning   | fade(#ff8533, 40%)    | Warning Orange Border Color   |
-| --bui-color-border-danger    | fade(#ff335c, 40%)    | Error red border color        |
-| --bui-color-border-gray      | fade(#8896b1, 40%)    | Gray border                   |
+| Built-in Token Variable Name | Default Value         | Description             |
+| ---------------------------- | --------------------- | ----------------------- |
+| --bui-color-border-default   | --bui-color-neutral-5 | Default Border Color    |
+| --bui-color-border-primary   | fade(#ff335c, 40%)    | Primary Color Border    |
+| --bui-color-border-info      | fade(#148aff, 40%)    | Information Blue Border |
+| --bui-color-border-success   | fade(#00d68f, 40%)    | Success Green Border    |
+| --bui-color-border-warning   | fade(#ff8533, 40%)    | Warning Orange Border   |
+| --bui-color-border-danger    | fade(#ff335c, 40%)    | Error Red Border        |
+| --bui-color-border-gray      | fade(#8896b1, 40%)    | Gray Border             |
 
-### Gradient Theme Color
+### Gradient Theme Colors
 
-| Built in Token variable name | Default value      | explain                           |
+| Built-in Token Variable Name | Default Value      | Description                       |
 | ---------------------------- | ------------------ | --------------------------------- |
-| --bui-color-primary-start    | #ef16b9            | Main color gradient - Start       |
-| --bui-color-primary-end      | --bui-color-red    | Main color gradient - End         |
+| --bui-color-primary-start    | #ef16b9            | Primary Gradient - Start          |
+| --bui-color-primary-end      | --bui-color-red    | Primary Gradient - End            |
 | --bui-color-secondary-start  | #f32adf            | Bright Pink Gradient - Start      |
 | --bui-color-secondary-end    | --bui-color-pink   | Bright Pink Gradient - End        |
 | --bui-color-info-start       | #33a7ff            | Information Blue Gradient - Start |
@@ -177,88 +198,118 @@ Used to define a universal background color
 | --bui-color-success-end      | --bui-color-green  | Success Green Gradient - End      |
 | --bui-color-danger-start     | #ef16b9            | Error Red Gradient - Start        |
 | --bui-color-danger-end       | --bui-color-red    | Error Red Gradient - End          |
-| --bui-color-vip-start        | #ffd4a6            | Member Orange Gradient - Start    |
-| --bui-color-vip-end          | #ffbeae            | Member Orange Gradient - End      |
+| --bui-color-vip-start        | #ffd4a6            | VIP Orange Gradient - Start       |
+| --bui-color-vip-end          | #ffbeae            | VIP Orange Gradient - End         |
 
-### Shape variable (rounded corner)
+### Shape Variables (Border Radius) Basic Token
 
-| Built in Token variable name | Default value | explain                                                                                                   |
-| ---------------------------- | ------------- | --------------------------------------------------------------------------------------------------------- |
-| --bui-shape-radius-popover   | 18px          | Rounded corner - page level floating layer                                                                |
-| --bui-shape-radius-drawer    | 12px          | Rounded corners - page level drawer                                                                       |
-| --bui-shape-radius-card      | 9px           | Rounded corners - commonly used for views with low information density, such as cards and regular views   |
-| --bui-shape-radius-default   | 6px           | Rounded corners - independent posters, cards, etc., commonly used for views with high information density |
-| --bui-shape-radius-poster    | 4px           | Rounded corners - posters, cards, etc. inside the container                                               |
-| --bui-shape-radius-label     | 3px           | Rounded corner - label                                                                                    |
+| Built-in Token Variable Name | Default Value |
+| ---------------------------- | ------------- |
+| --bui-radius-circular        | 10000px       |
+| --bui-radius-8               | 24px          |
+| --bui-radius-7               | 18px          |
+| --bui-radius-6               | 15px          |
+| --bui-radius-5               | 12px          |
+| --bui-radius-4               | 9px           |
+| --bui-radius-3               | 6px           |
+| --bui-radius-2               | 4px           |
+| --bui-radius-1               | 3px           |
+| --bui-radius-none            | 0px           |
 
-### Spatial variables (spacing, row height, hierarchy)
+### Shape Variables (Border Radius)
 
-| Built in Token variable name | Default value | explain                                              |
-| ---------------------------- | ------------- | ---------------------------------------------------- |
-| --bui-spacing-xl             | 15px          | Spacing - Extra Large                                |
-| --bui-spacing-lg             | 12px          | Distance - Larger                                    |
-| --bui-spacing-md             | 9px           | Distance - Medium                                    |
-| --bui-spacing-sm             | 6px           | Spacing - Small                                      |
-| --bui-spacing-xs             | 4px           | Spacing - Ultra small                                |
-| --bui-line-height            | 1.5           | Hang Gao                                             |
-| --bui-z-index-dropdown       | 1000          | Level - dropdown menu                                |
-| --bui-z-index-affix          | 1100          | Hierarchical - Ceiling mounted, fixed fixed elements |
-| --bui-z-index-modal-backdrop | 1200          | Level - Pop up Background Layer                      |
-| --bui-z-index-modal          | 1200          | Level - Pop up                                       |
-| --bui-z-index-popover        | 1300          | Level - Bubble                                       |
-| --bui-z-index-tooltip        | 1400          | Level - Tip Tool                                     |
-| --bui-z-index-toast          | 1500          | Level - Light Reminder                               |
+| Built-in Token Variable Name | Default Value  | Description                                |
+| ---------------------------- | -------------- | ------------------------------------------ |
+| --bui-shape-radius-popover   | --bui-radius-7 | Border Radius - Page Layer                 |
+| --bui-shape-radius-drawer    | --bui-radius-5 | Border Radius - Page Drawer                |
+| --bui-shape-radius-card      | --bui-radius-4 | Border Radius - Cards & Normal Views       |
+| --bui-shape-radius-default   | --bui-radius-3 | Border Radius - Independent Posters, Cards |
+| --bui-shape-radius-poster    | --bui-radius-2 | Border Radius - Container Posters, Cards   |
+| --bui-shape-radius-label     | --bui-radius-1 | Border Radius - Labels                     |
 
-### typeface
+### Space Variables (Spacing, Line Height, Z-Index) Basic Token
 
-| Built in Token variable name | Default value                                                                                                                              | explain          |
+| Built-in Token Variable Name | Default Value |
+| ---------------------------- | ------------- |
+| --bui-spacing-1              | 1px           |
+| --bui-spacing-2              | 2px           |
+| --bui-spacing-3              | 3px           |
+| --bui-spacing-4              | 4px           |
+| --bui-spacing-5              | 6px           |
+| --bui-spacing-6              | 9px           |
+| --bui-spacing-7              | 12px          |
+| --bui-spacing-8              | 15px          |
+| --bui-spacing-9              | 18px          |
+
+### Space Variables (Spacing, Line Height, Z-Index)
+
+| Built-in Token Variable Name | Default Value   | Description                     |
+| ---------------------------- | --------------- | ------------------------------- |
+| --bui-spacing-xl             | --bui-spacing-8 | Spacing - Extra Large           |
+| --bui-spacing-lg             | --bui-spacing-7 | Spacing - Large                 |
+| --bui-spacing-md             | --bui-spacing-6 | Spacing - Medium                |
+| --bui-spacing-sm             | --bui-spacing-5 | Spacing - Small                 |
+| --bui-spacing-xs             | --bui-spacing-4 | Spacing - Extra Small           |
+| --bui-line-height            | 1.5             | Line Height                     |
+| --bui-z-index-dropdown       | 1000            | Z-Index - Dropdown              |
+| --bui-z-index-affix          | 1100            | Z-Index - Affix, Fixed Elements |
+| --bui-z-index-modal-backdrop | 1200            | Z-Index - Modal Backdrop        |
+| --bui-z-index-modal          | 1200            | Z-Index - Modal                 |
+| --bui-z-index-popover        | 1300            | Z-Index - Popover               |
+| --bui-z-index-tooltip        | 1400            | Z-Index - Tooltip               |
+| --bui-z-index-toast          | 1500            | Z-Index - Toast                 |
+
+### Font
+
+| Built-in Token Variable Name | Default Value                                                                                                                              | Description      |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------- |
-| --bui-font-family            | 'PingFang SC', 'Chinese Quote', 'Segoe UI', roboto, 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', helvetica, arial，sans-serif; | BUI default font |
+| --bui-font-family            | 'PingFang SC', 'Chinese Quote', 'Segoe UI', roboto, 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', helvetica, arial, sans-serif; | Default BUI Font |
 
-## Unique Tokens in Dark Mode
+## Tokens Specific to Dark Mode
 
-Dark mode will use the following Tokens to overwrite CSS variables with the same name mounted on the root node, in order to achieve style consistency in Dark mode.
+In dark mode, the following Tokens are used to overwrite the same name CSS variables mounted at the root node to achieve unified styling in dark mode.
 
-| Built in Token variable name | Default value      | explain                                             |
-| ---------------------------- | ------------------ | --------------------------------------------------- |
-| --bui-color-fg-default       | #f0f6fc            | Title, primary information                          |
-| --bui-color-fg-muted         | #8b949e            | Secondary and supplementary explanatory information |
-| --bui-color-fg-subtle        | #484f58            | Auxiliary and weakened information                  |
-| --bui-color-fg-disabled      | #484f58            | Invalid, unavailable                                |
-| --bui-color-bg-default       | #010409            | Default background color                            |
-| --bui-color-bg-view          | #161b22            | View background color                               |
-| --bui-color-bg-popover       | fade(#484f58, 70%) | Bubble background color                             |
-| --bui-color-bg-alpha-light-9 | fade(#161b22, 90%) | High brightness - semi transparent 90%              |
-| --bui-color-bg-alpha-light-7 | fade(#161b22, 70%) | High brightness - semi transparent 70%              |
-| --bui-color-bg-alpha-light-5 | fade(#161b22, 50%) | High brightness - semi transparent 50%              |
-| --bui-color-bg-alpha-light-3 | fade(#161b22, 30%) | High brightness - semi transparent 30%              |
-| --bui-color-bg-alpha-light-1 | fade(#161b22, 10%) | High brightness - semi transparent 10%              |
-| --bui-color-bg-alpha-dark-9  | fade(#484f58, 90%) | Dark - Translucent 90%                              |
-| --bui-color-bg-alpha-dark-7  | fade(#484f58, 70%) | Dark - Translucent 70%                              |
-| --bui-color-bg-alpha-dark-5  | fade(#484f58, 50%) | Dark - Translucent 50%                              |
-| --bui-color-bg-alpha-dark-3  | fade(#484f58, 30%) | Dark - Translucent 30%                              |
-| --bui-color-bg-alpha-dark-1  | fade(#484f58, 10%) | Dark - Translucent 10%                              |
-| --bui-color-border-default   | #30363d            | Divide line, border                                 |
+| Built-in Token Variable Name | Default Value      | Description                          |
+| ---------------------------- | ------------------ | ------------------------------------ |
+| --bui-color-fg-default       | #f0f6fc            | Title, Primary Information           |
+| --bui-color-fg-muted         | #8b949e            | Secondary, Supplementary Information |
+| --bui-color-fg-subtle        | #484f58            | Auxiliary, Weakened Information      |
+| --bui-color-fg-disabled      | #484f58            | Disabled, Unavailable                |
+| --bui-color-bg-default       | #010409            | Default Background Color             |
+| --bui-color-bg-view          | #161b22            | View Background Color                |
+| --bui-color-bg-popover       | fade(#484f58, 70%) | Bubble Background Color              |
+| --bui-color-bg-alpha-light-9 | fade(#161b22, 90%) | Light - 90% Transparency             |
+| --bui-color-bg-alpha-light-7 | fade(#161b22, 70%) | Light - 70% Transparency             |
+| --bui-color-bg-alpha-light-5 | fade(#161b22, 50%) | Light - 50% Transparency             |
+| --bui-color-bg-alpha-light-3 | fade(#161b22, 30%) | Light - 30% Transparency             |
+| --bui-color-bg-alpha-light-1 | fade(#161b22, 10%) | Light - 10% Transparency             |
+| --bui-color-bg-alpha-dark-9  | fade(#484f58, 90%) | Dark - 90% Transparency              |
+| --bui-color-bg-alpha-dark-7  | fade(#484f58, 70%) | Dark - 70% Transparency              |
+| --bui-color-bg-alpha-dark-5  | fade(#484f58, 50%) | Dark - 50% Transparency              |
+| --bui-color-bg-alpha-dark-3  | fade(#484f58, 30%) | Dark - 30% Transparency              |
+| --bui-color-bg-alpha-dark-1  | fade(#484f58, 10%) | Dark - 10% Transparency              |
+| --bui-color-border-default   | #30363d            | Divider, Border                      |
 
-## How to customize
+## How to Customize
 
-### Browser environment
+### Browser Environment
 
-Taking a more complex scenario as an example: your theme customization needs to consider responsiveness, and if the granularity is relatively fine, you need to combine built-in Tokens, responsive Tokens, and component Tokens for customization.
+Take a relatively complex scenario as an example: if your theme customization needs to consider responsiveness with a finer granularity, you'll need to combine built-in Tokens, responsive Tokens, and component Tokens for customization.
 
-Firstly, configure the [built-in Tokens] that need to be modified (what are the # built-in tokens) according to the requirements, and pass them to BUI through the defaultLightToken or defaultDarkToken properties of the ThemeProvider component.
-If the built-in Tokens cannot meet the requirements, you can check the Tokens supported by the component, such as [Button supported customizable Tokens] (/cores/button # style variables), and pass them to BUI through the token property of the ThemeProvider component. 3. If responsiveness needs to be considered, the designed Tokens can be passed to BUI through the 'responsive' property of the 'ThemeProvider' component. The code demonstration can refer to [Theme Customization] (/responses/theme provider # Theme Customization).
+1. First, configure the [built-in Tokens](#built-in-tokens-overview) that need to be modified according to your requirements, and pass them to BUI through the `defaultLightToken` or `defaultDarkToken` attributes of the `ThemeProvider` component.
+2. If the built-in Tokens cannot meet the needs, you can check the tokens supported by the component, such as [customizable button tokens](/cores/button#style-variables), and pass them to BUI through the `token` attribute of the `ThemeProvider` component.
+3. If responsiveness needs to be considered, the designed Tokens can be passed to BUI through the `responsive` attribute of the `ThemeProvider` component. Code demonstration can refer to [theme customization](/cores/theme-provider#theme-customization).
 
-### Mini program
+### Mini Programs
 
-In the mini program environment, theme customization is not as flexible as in the browser environment. For detailed solutions, please refer to [Mini Program Theme Customization Usage] (/cores/theme provider # Mini Program).
+In the mini program environment, theme customization is not as flexible as in the browser environment. Detailed plans can be found at [theme customization usage in mini programs](/cores/theme-provider#mini-program).
 
-### Local themes
+### Local Theme
 
-BUI offers two ways to customize themes.
+BUI offers two methods of theme customization solutions.
 
-1. Customize local themes through nested ThemeProvider components, which can be viewed as [Local Theme Customization] (/cores/theme provider # Local Theme Nested Themes)
-2. Component level theme customization, which can use the Tokens provided by each component to customize specified components. The code is as follows:
+1. Customize local themes through nested `ThemeProvider` components. See [local theme customization](/cores/theme-provider#local-theme-nesting).
+2. Component-level theme customization. Use Tokens provided by each component to customize the specified component. The code is as follows:
 
 ```jsx | pure
 <Button
@@ -268,31 +319,31 @@ BUI offers two ways to customize themes.
 />
 ```
 
-## Responsive type
+## Responsive
 
-Responsive interface is the design of a page that can adapt to different devices. Responsive design utilizes media queries and other technologies to achieve style adaptation for different devices or windows, which means it will display different page layouts to users based on the different devices you use.
+Responsive design refers to designing pages that adapt to different devices. Responsive design utilizes technologies like media queries to achieve style adaptation based on different devices or windows, meaning it shows different page layouts to users based on the device in use.
 
-BUI uses HTML5's media query technology to obtain screen width, and then uses CSS to define Design Tokens using different CSS variables at different widths.
+BUI uses HTML5 media query technology to obtain screen width, and then uses CSS to define Design Tokens with different CSS variables at different widths.
 
-BUI adopts a popular mobile first responsive design scheme, and then adapts the corresponding style according to the situation of the PC based on this.
+BUI adopts a popular mobile-first responsive design scheme and then adapts corresponding styles for the PC based on this foundation.
 
-### Screen breakpoint
+### Breakpoints
 
-The so-called breakpoint refers to the critical point at which the page layout changes. BUI defines five responsive screen breakpoints, namely 'xs',' sm ',' md ',' lg ', and' xl ', with corresponding values as shown in the table below:
+Breakpoints are the critical points at which the page layout changes. BUI defines `xs`, `sm`, `md`, `lg`, `xl` 5 responsive screen breakpoints, which correspond to the following values in the table:
 
-| Breakpoint Type                               | Specifications | Screen size (critical value) |
-| --------------------------------------------- | -------------- | ---------------------------- |
-| X-Small (ultra small, usually a mobile phone) | xs             | < 576px                      |
-| Small (small, tablet or old laptop)           | sm             | ≥ 576px                      |
-| Medium (medium, narrow screen computer)       | md             | ≥ 768px                      |
-| Large (large, widescreen computer)            | lg             | ≥ 992px                      |
-| Extra large (large, widescreen computer)      | xl             | ≥ 1200px                     |
+| Breakpoint Type                                  | Specification | Screen Size (Threshold) |
+| ------------------------------------------------ | ------------- | ----------------------- |
+| X-Small (Very Small, typically phones)           | xs            | < 576px                 |
+| Small (Small, tablets or older laptops)          | sm            | ≥ 576px                 |
+| Medium (Medium, narrow screen computers)         | md            | ≥ 768px                 |
+| Large (Large, wide screen computers)             | lg            | ≥ 992px                 |
+| Extra large (Extra large, wide screen computers) | xl            | ≥ 1200px                |
 
-Based on the above 5 breakpoints, combined with mobile first responsive design, mainly based on [media query]（ https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_media_queries/Using_media_queries ）The minimum screen width (min width) can be adjusted to change the display form of components according to custom Design Tokens as the viewport changes.
+Based on the five types of breakpoints and combined with mobile-first responsive design, mainly based on the [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries) min-width, it is possible to dynamically change the component display form according to custom Design Tokens while the viewport changes.
 
-### Customize responsive screen breakpoints
+### Custom Responsive Screen Breakpoints
 
-In order to meet the situation where the responsive screen breakpoints defined by users in the business warehouse may not be consistent with those defined by BUI, resulting in less smooth theme customization in responsive scenarios, BUI provides the ability to customize responsive screen breakpoints, which can be achieved through the mountResponsiveTokens function. The demonstration code is as follows:
+To meet situations where responsive screen breakpoints defined in user business repositories might not be consistent with BUI-defined breakpoints, resulting in less smooth theme customization in responsive scenarios, BUI provides the capability to customize responsive screen breakpoints. It can be achieved via the `mountResponsiveTokens` function to define custom responsive screen breakpoint theme customization capability. Demonstration code is as follows:
 
 ```jsx | pure
 import { mountResponsiveTokens } from '@bifrostui/react';

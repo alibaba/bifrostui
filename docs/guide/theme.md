@@ -13,7 +13,6 @@ BUI 的样式使用了 [less](https://lesscss.org/) 和 [CSS 变量](https://dev
 BUI的Tokens分为三个层面
 
 1. **BUI内置Tokens：** <br>
-
    - `defaultLightToken`（默认高亮模式的全局Token）
    - `defaultDarkToken`（默认暗黑模式的全局Token）
    - `dmLightToken`（大麦高亮模式的全局Token）
@@ -65,17 +64,17 @@ BUI的Tokens分为三个层面
 | --bui-color-blue         | #148aff           | 宁静蓝      |
 | --bui-color-blue-light   | #e1f0ff           | 宁静蓝-浅亮 |
 | --bui-color-gray         | #8896b1           | 中性灰      |
-| --bui-color-gray-light   | #f3f5f8           | 中性灰-浅亮 |
+| --bui-color-gray-light   | #f7f9fc           | 中性灰-浅亮 |
 | --bui-color-black        | #000              | 黑色        |
 | --bui-color-white        | #fff              | 白色        |
 | --bui-color-vip          | #ff866e           | 会员橙      |
 | --bui-color-neutral-0    | --bui-color-black | 中性色-0    |
-| --bui-color-neutral-1    | #2e333e           | 中性色-1    |
-| --bui-color-neutral-2    | #5f6672           | 中性色-2    |
-| --bui-color-neutral-3    | #959aa5           | 中性色-3    |
-| --bui-color-neutral-4    | #ced1d6           | 中性色-4    |
+| --bui-color-neutral-1    | #030b1a           | 中性色-1    |
+| --bui-color-neutral-2    | #444b5b           | 中性色-2    |
+| --bui-color-neutral-3    | #8b93a5           | 中性色-3    |
+| --bui-color-neutral-4    | #bfc4cf           | 中性色-4    |
 | --bui-color-neutral-5    | #e9ebef           | 中性色-5    |
-| --bui-color-neutral-6    | #f5f6f8           | 中性色-6    |
+| --bui-color-neutral-6    | #f7f9fc           | 中性色-6    |
 | --bui-color-neutral-7    | --bui-color-white | 中性色-7    |
 
 ### 主题色彩-语义化变量
@@ -95,25 +94,45 @@ BUI的Tokens分为三个层面
 
 ### 字重变量
 
-| 内置Token变量名          | 默认值 | 说明      |
-| ------------------------ | ------ | --------- |
-| --bui-font-weight-normal | 400    | 字重-常规 |
-| --bui-font-weight-medium | 500    | 字重-中等 |
-| --bui-font-weight-bold   | 600    | 字重-加粗 |
+| 内置Token变量名            | 默认值 | 说明      |
+| -------------------------- | ------ | --------- |
+| --bui-font-weight-normal   | 400    | 字重-常规 |
+| --bui-font-weight-medium   | 500    | 字重-中等 |
+| --bui-font-weight-semibold | 600    | 字重-半粗 |
+| --bui-font-weight-bold     | 700    | 字重-加粗 |
+
+### 字体大小变量 基础Token
+
+| 内置Token变量名     | 默认值 |
+| ------------------- | ------ |
+| --bui-font-size-xs1 | 8px    |
+| --bui-font-size-xs2 | 9px    |
+| --bui-font-size-sm1 | 10px   |
+| --bui-font-size-sm2 | 11px   |
+| --bui-font-size-sm3 | 12px   |
+| --bui-font-size-sm4 | 13px   |
+| --bui-font-size-md1 | 14px   |
+| --bui-font-size-md2 | 15px   |
+| --bui-font-size-md3 | 16px   |
+| --bui-font-size-md4 | 18px   |
+| --bui-font-size-lg1 | 20px   |
+| --bui-font-size-lg2 | 22px   |
+| --bui-font-size-lg3 | 24px   |
+| --bui-font-size-lg4 | 26px   |
 
 ### 语义化字体大小变量
 
-| 内置Token变量名    | 默认值 | 说明  |
-| ------------------ | ------ | ----- |
-| --bui-title-size-1 | 21px   | 标题1 |
-| --bui-title-size-2 | 18px   | 标题2 |
-| --bui-title-size-3 | 16px   | 标题3 |
-| --bui-title-size-4 | 15px   | 标题4 |
-| --bui-text-size-1  | 14px   | 文案1 |
-| --bui-text-size-2  | 13px   | 文案2 |
-| --bui-text-size-3  | 12px   | 文案3 |
-| --bui-text-size-4  | 11px   | 文案4 |
-| --bui-text-size-5  | 10px   | 文案5 |
+| 内置Token变量名    | 默认值              | 说明  |
+| ------------------ | ------------------- | ----- |
+| --bui-title-size-1 | 21px                | 标题1 |
+| --bui-title-size-2 | --bui-font-size-md4 | 标题2 |
+| --bui-title-size-3 | --bui-font-size-md3 | 标题3 |
+| --bui-title-size-4 | --bui-font-size-md2 | 标题4 |
+| --bui-text-size-1  | --bui-font-size-md1 | 文案1 |
+| --bui-text-size-2  | --bui-font-size-sm4 | 文案2 |
+| --bui-text-size-3  | --bui-font-size-sm3 | 文案3 |
+| --bui-text-size-4  | --bui-font-size-sm2 | 文案4 |
+| --bui-text-size-5  | --bui-font-size-sm1 | 文案5 |
 
 ### 前景色-语义变量
 
@@ -182,34 +201,64 @@ BUI的Tokens分为三个层面
 | --bui-color-vip-start       | #ffd4a6            | 会员橙渐变-开始 |
 | --bui-color-vip-end         | #ffbeae            | 会员橙渐变-结束 |
 
+### 形状变量(圆角) 基础Token
+
+| 内置Token变量名       | 默认值  |
+| --------------------- | ------- |
+| --bui-radius-circular | 10000px |
+| --bui-radius-8        | 24px    |
+| --bui-radius-7        | 18px    |
+| --bui-radius-6        | 15px    |
+| --bui-radius-5        | 12px    |
+| --bui-radius-4        | 9px     |
+| --bui-radius-3        | 6px     |
+| --bui-radius-2        | 4px     |
+| --bui-radius-1        | 3px     |
+| --bui-radius-none     | 0px     |
+
 ### 形状变量(圆角)
 
-| 内置Token变量名            | 默认值 | 说明                                            |
-| -------------------------- | ------ | ----------------------------------------------- |
-| --bui-shape-radius-popover | 18px   | 圆角-页面级浮层                                 |
-| --bui-shape-radius-drawer  | 12px   | 圆角-页面级抽屉                                 |
-| --bui-shape-radius-card    | 9px    | 圆角-卡片、普通视图等，常用于信息密度较低的视图 |
-| --bui-shape-radius-default | 6px    | 圆角-独立海报、卡片等，常用于信息密度较高的视图 |
-| --bui-shape-radius-poster  | 4px    | 圆角-容器内海报、卡片等                         |
-| --bui-shape-radius-label   | 3px    | 圆角-标签                                       |
+| 内置Token变量名            | 默认值         | 说明                                            |
+| -------------------------- | -------------- | ----------------------------------------------- |
+| --bui-shape-radius-popover | --bui-radius-7 | 圆角-页面级浮层                                 |
+| --bui-shape-radius-drawer  | --bui-radius-5 | 圆角-页面级抽屉                                 |
+| --bui-shape-radius-card    | --bui-radius-4 | 圆角-卡片、普通视图等，常用于信息密度较低的视图 |
+| --bui-shape-radius-default | --bui-radius-3 | 圆角-独立海报、卡片等，常用于信息密度较高的视图 |
+| --bui-shape-radius-poster  | --bui-radius-2 | 圆角-容器内海报、卡片等                         |
+| --bui-shape-radius-label   | --bui-radius-1 | 圆角-标签                                       |
+|                            |
+
+### 空间变量(间距、行高、层级) 基础Token
+
+| 内置Token变量名 | 默认值 |
+| --------------- | ------ |
+| --bui-spacing-1 | 1px    |
+| --bui-spacing-2 | 2px    |
+| --bui-spacing-3 | 3px    |
+| --bui-spacing-4 | 4px    |
+| --bui-spacing-5 | 6px    |
+| --bui-spacing-6 | 9px    |
+| --bui-spacing-7 | 12px   |
+| --bui-spacing-8 | 15px   |
+| --bui-spacing-9 | 18px   |
 
 ### 空间变量(间距、行高、层级)
 
-| 内置Token变量名              | 默认值 | 说明                     |
-| ---------------------------- | ------ | ------------------------ |
-| --bui-spacing-xl             | 15px   | 间距-超大                |
-| --bui-spacing-lg             | 12px   | 间距-较大                |
-| --bui-spacing-md             | 9px    | 间距-中等                |
-| --bui-spacing-sm             | 6px    | 间距-较小                |
-| --bui-spacing-xs             | 4px    | 间距-超小                |
-| --bui-line-height            | 1.5    | 行高                     |
-| --bui-z-index-dropdown       | 1000   | 层级-下拉菜单            |
-| --bui-z-index-affix          | 1100   | 层级-吸顶、fixed固定元素 |
-| --bui-z-index-modal-backdrop | 1200   | 层级-弹窗背景层          |
-| --bui-z-index-modal          | 1200   | 层级-弹窗                |
-| --bui-z-index-popover        | 1300   | 层级-气泡                |
-| --bui-z-index-tooltip        | 1400   | 层级-提示工具            |
-| --bui-z-index-toast          | 1500   | 层级-轻提示              |
+| 内置Token变量名              | 默认值          | 说明                     |
+| ---------------------------- | --------------- | ------------------------ |
+| --bui-spacing-xl             | --bui-spacing-8 | 间距-超大                |
+| --bui-spacing-lg             | --bui-spacing-7 | 间距-较大                |
+| --bui-spacing-md             | --bui-spacing-6 | 间距-中等                |
+| --bui-spacing-sm             | --bui-spacing-5 | 间距-较小                |
+| --bui-spacing-xs             | --bui-spacing-4 | 间距-超小                |
+| --bui-line-height            | 1.5             | 行高                     |
+| --bui-z-index-dropdown       | 1000            | 层级-下拉菜单            |
+| --bui-z-index-affix          | 1100            | 层级-吸顶、fixed固定元素 |
+| --bui-z-index-modal-backdrop | 1200            | 层级-弹窗背景层          |
+| --bui-z-index-modal          | 1200            | 层级-弹窗                |
+| --bui-z-index-popover        | 1300            | 层级-气泡                |
+| --bui-z-index-tooltip        | 1400            | 层级-提示工具            |
+| --bui-z-index-toast          | 1500            | 层级-轻提示              |
 
 ### 字体
 
