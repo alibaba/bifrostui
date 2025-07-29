@@ -72,9 +72,7 @@ import React from 'react';
 export default () => {
   return (
     <Tooltip title="This is a tooltip" offset={20} defaultOpen>
-      <span>
-        Adjust distance with offset (set to 20 for observation)
-      </span>
+      <span>Adjust distance with offset (set to 20 for observation)</span>
     </Tooltip>
   );
 };
