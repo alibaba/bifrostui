@@ -1,40 +1,57 @@
-.light() {
-  // 字体
-  --bui-font-family: 'PingFang SC', 'Chinese Quote', 'Segoe UI', roboto,
+.pioneer-light() {
+  /** pioneer 特殊字体 */
+  --bui-font-family-accent:
+    'AlibabaPuHuiTi-Heavy', 'PingFang SC', 'Chinese Quote', 'Segoe UI', roboto,
     'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', helvetica, arial,
     sans-serif;
 
   /** 品牌红 */
-  --bui-color-red: #ff335c;
-  --bui-color-red-light: #ffebef;
+  --bui-color-red: #ff471a;
+  --bui-color-red-light: #ffefe6;
+  --bui-color-red-dark: #b31800;
 
   /** 明亮粉 */
   --bui-color-pink: #dd10f2;
   --bui-color-pink-light: #fce7fe;
 
   /** 活力橙 */
-  --bui-color-orange: #ff8533;
-  --bui-color-orange-light: #fff0e5;
+  --bui-color-orange: #ff7600;
+  --bui-color-orange-light: #fff6e6;
+  --bui-color-orange-dark: #b34700;
 
   /** 活力黄 */
-  --bui-color-yellow: #ff8533;
-  --bui-color-yellow-light: #fff0e5;
+  --bui-color-yellow: #ffa608;
+  --bui-color-yellow-light: #fffae6;
+  --bui-color-yellow-dark: #b36500;
+
+  /** 荧光黄 */
+  --bui-color-lemonyellow: #fff36f;
+  --bui-color-lemonyellow-light: #ffffeb;
+  --bui-color-lemonyellow-dark: #b3a13d;
 
   /** 亲和绿 */
-  --bui-color-green: #00d68f;
-  --bui-color-green-light: #dcf9f0;
+  --bui-color-green: #40bf00;
+  --bui-color-green-light: #f2ffe6;
+  --bui-color-green-dark: #1f7300;
 
   /** 神秘紫 */
-  --bui-color-purple: #8b52ff;
-  --bui-color-purple-light: #f2ebff;
+  --bui-color-purple: #754dff;
+  --bui-color-purple-light: #f6f0ff;
+  --bui-color-purple-dark: #3924b3;
 
   /** 宁静蓝 */
-  --bui-color-blue: #148aff;
-  --bui-color-blue-light: #e1f0ff;
+  --bui-color-blue: #229af0;
+  --bui-color-blue-light: #f0fbff;
+  --bui-color-blue-dark: #0757a3;
+
+  /** 智能蓝 */
+  --bui-color-aiblue: #5cfffa;
+  --bui-color-aiblue-light: #f0fffc;
+  --bui-color-aiblue-dark: #1d858c;
 
   /** 中性灰 */
   --bui-color-gray: #8896b1;
-  --bui-color-gray-light: #f3f5f8;
+  --bui-color-gray-light: #f7f9fc;
   --bui-color-black: #000;
   --bui-color-white: #fff;
   --bui-color-vip: #ff866e;
@@ -59,9 +76,10 @@
   --bui-font-weight-semibold: 600;
   --bui-font-weight-bold: 700;
 
-  /** 语义色 */
-  --bui-color-primary: var(--bui-color-red);
-  --bui-color-primary-light: var(--bui-color-red-light);
+  /** 主题 */
+  --bui-color-primary: var(--bui-color-orange);
+  --bui-color-primary-light: var(--bui-color-orange-light);
+  --bui-color-primary-dark: var(--bui-color-orange-dark);
   --bui-color-info: var(--bui-color-blue);
   --bui-color-info-light: var(--bui-color-blue-light);
   --bui-color-success: var(--bui-color-green);
@@ -87,11 +105,11 @@
   --bui-font-size-lg3: 24px;
   --bui-font-size-lg4: 26px;
 
-  /** 字号 */
+  /** 语义化字体 */
   --bui-title-size-1: 21px;
   --bui-title-size-2: var(--bui-font-size-md4);
   --bui-title-size-3: var(--bui-font-size-md3);
-  --bui-title-size-4: var(--bui-font-size-md2);
+  --bui-title-size-4: var(--bui-font-size-md1);
   --bui-text-size-1: var(--bui-font-size-md1);
   --bui-text-size-2: var(--bui-font-size-sm4);
   --bui-text-size-3: var(--bui-font-size-sm3);
@@ -106,9 +124,9 @@
   // 淡色，很细微的色彩，用于辅助和需要弱化的信息
   --bui-color-fg-subtle: var(--bui-color-neutral-3);
   // 用于失效、不可用等状态
-  --bui-color-fg-disabled: var(--bui-color-neutral-4);
+  --bui-color-fg-disabled: fade(#030b1a, 50%);
 
-  // 背景色
+  // 默认背景色
   --bui-color-bg-default: var(--bui-color-neutral-6);
   // 视图背景色
   --bui-color-bg-view: var(--bui-color-neutral-7);
@@ -126,26 +144,26 @@
 
   // 分割线、边框
   --bui-color-border-default: var(--bui-color-neutral-5);
-  --bui-color-border-primary: fade(#ff335c, 40%);
-  --bui-color-border-info: fade(#148aff, 40%);
-  --bui-color-border-success: fade(#00d68f, 40%);
-  --bui-color-border-warning: fade(#ff8533, 40%);
-  --bui-color-border-danger: fade(#ff335c, 40%);
+  --bui-color-border-primary: fade(#ff7600, 40%);
+  --bui-color-border-info: fade(#229af0, 40%);
+  --bui-color-border-success: fade(#40bf00, 40%);
+  --bui-color-border-warning: fade(#ff7600, 40%);
+  --bui-color-border-danger: fade(#ff471a, 40%);
   --bui-color-border-gray: fade(#8896b1, 40%);
 
   // 主题色渐变
-  --bui-color-primary-start: #ef16b9;
-  --bui-color-primary-end: var(--bui-color-red);
+  --bui-color-primary-start: #ffb300;
+  --bui-color-primary-end: var(--bui-color-primary);
   --bui-color-secondary-start: #f32adf;
   --bui-color-secondary-end: var(--bui-color-pink);
-  --bui-color-info-start: #33a7ff;
-  --bui-color-info-end: var(--bui-color-blue);
-  --bui-color-warning-start: #ffad33;
-  --bui-color-warning-end: var(--bui-color-orange);
-  --bui-color-success-start: #00ebac;
-  --bui-color-success-end: var(--bui-color-green);
-  --bui-color-danger-start: #ef16b9;
-  --bui-color-danger-end: var(--bui-color-red);
+  --bui-color-info-start: #5bc8ff;
+  --bui-color-info-end: var(--bui-color-info);
+  --bui-color-warning-start: #fc3;
+  --bui-color-warning-end: var(--bui-color-warning);
+  --bui-color-success-start: #66d933;
+  --bui-color-success-end: var(--bui-color-success);
+  --bui-color-danger-start: #ff7633;
+  --bui-color-danger-end: var(--bui-color-danger);
   --bui-color-vip-start: #ffd4a6;
   --bui-color-vip-end: #ffbeae;
 
@@ -164,11 +182,11 @@
   // 形状定义
   // 页面级浮层
   --bui-shape-radius-popover: var(--bui-radius-7);
-  --bui-shape-radius-drawer: var(--bui-radius-5);
+  --bui-shape-radius-drawer: var(--bui-radius-6);
   // 卡片、普通视图、抽屉、action sheet，常用于信息密度较低的视图
-  --bui-shape-radius-card: var(--bui-radius-4);
+  --bui-shape-radius-card: var(--bui-radius-5);
   // 独立海报、卡片，常用于信息密度较高的视图
-  --bui-shape-radius-default: var(--bui-radius-3);
+  --bui-shape-radius-default: var(--bui-radius-4);
   // 容器内海报
   --bui-shape-radius-poster: var(--bui-radius-2);
   // 标签
@@ -185,50 +203,96 @@
   --bui-spacing-8: 15px;
   --bui-spacing-9: 18px;
   --bui-spacing-10: 24px;
-
-  // 空间定义
   --bui-spacing-xl: var(--bui-spacing-8);
   --bui-spacing-lg: var(--bui-spacing-7);
   --bui-spacing-md: var(--bui-spacing-6);
   --bui-spacing-sm: var(--bui-spacing-5);
   --bui-spacing-xs: var(--bui-spacing-4);
-  --bui-line-height: 1.5;
-  --bui-z-index-dropdown: 1000; // dropdown 、cascader、DatePicker、select、TimePicker、treeSelect
-  --bui-z-index-affix: 1100; // 吸顶元素、固定元素fixed
-  --bui-z-index-modal-backdrop: 1200;
-  --bui-z-index-modal: 1200; // drawer、 model
-  --bui-z-index-popover: 1300;
-  --bui-z-index-tooltip: 1400;
-  --bui-z-index-toast: 1500; // 反馈提示，高于所有元素
 
-  // Components Variables
-  // Button
-  --bui-btn-font-size: var(--bui-text-size-3);
-  --bui-btn-font-weight: var(--bui-font-weight-medium);
-  --bui-btn-border-radius: 120px;
-  --bui-btn-height: 27px;
-  --bui-btn-color: var(--bui-color-fg-muted);
-  --bui-btn-bg: var(--bui-color-bg-view);
-  --bui-btn-opacity: 1;
-  --bui-btn-padding: 0 14px;
-  --bui-btn-border: 0;
-  --bui-btn-font-family: var(--bui-font-family);
+  .bui-btn {
+    --bui-button-border-radius: 14px;
+    --bui-button-outlined-default-border: 1px solid var(--bui-color-neutral-1);
+    --bui-button-text-color: var(--bui-color-fg-default);
+    --bui-button-font-weight: 700;
+    --bui-button-default-bg-color: var(--bui-color-neutral-1);
+    --bui-button-full-height: 45px;
 
-  // Card
-  --bui-card-font-family: var(--bui-font-family);
-  --bui-card-font-size: var(--bui-text-size-2);
+    &.bui-btn-contained {
+      &.bui-btn-primary {
+        &.bui-btn-large {
+          background-image:
+            radial-gradient(
+              35px 25px ellipse at 2% 110%,
+              #fffe1e 0%,
+              rgba(251, 134, 35, 0) 99%
+            ),
+            radial-gradient(
+              35px 25px ellipse at 110% 120%,
+              #ff3018 0%,
+              rgba(0, 48, 24, 0) 92%
+            ),
+            linear-gradient(90deg, #fc8622 0%, #ff5000 100%);
+        }
 
-  // Tabs
-  --bui-tabs-font-family: var(--bui-font-family);
-  --bui-tabs-font-size: var(--bui-text-size-1);
-  --bui-tabs-height: 39px;
-  --bui-tabs-color: var(--bui-color-fg-subtle);
-  --bui-tabs-font-weight: var(--bui-font-weight-medium);
-  --bui-tabs-indicator-bg: var(--bui-color-primary);
-  --bui-tabs-indicator-height: 3px;
-  --bui-tabs-indicator-width: 24px;
-  --bui-tabs-indicator-border-radius: 3px 3px 0 0;
-  --bui-tabs-indicator-bottom: 0;
-  --bui-tabs-indicator-box-shadow: none;
-  --bui-tab-padding: var(--bui-spacing-lg) var(--bui-spacing-lg) 10px;
+        &.bui-btn-full {
+          background-image:
+            radial-gradient(
+              93px 50px ellipse at 2% 110%,
+              #fffe1e 0%,
+              rgba(251, 134, 35, 0) 100%
+            ),
+            radial-gradient(
+              93px 50px ellipse at 98% 110%,
+              #ff3018 0%,
+              rgba(0, 48, 24, 0) 92%
+            ),
+            linear-gradient(90deg, #fc8622 0%, #ff5000 100%);
+        }
+      }
+    }
+  }
+
+  .bui-btn-full {
+    --bui-btn-border-radius: 14px;
+    --bui-btn-height: 45px;
+    --bui-btn-font-size: var(--bui-font-size-md4);
+    --bui-btn-font-family: var(--bui-font-family-accent);
+  }
+
+  .bui-btn-large {
+    --bui-btn-border-radius: 7px;
+    --bui-btn-height: 30px;
+  }
+
+  .bui-btn-medium {
+    --bui-btn-border-radius: var(--bui-spacing-radius-3);
+  }
+
+  .bui-btn-small {
+    --bui-btn-border-radius: var(--bui-spacing-radius-3);
+  }
+
+  .bui-tabs {
+    --bui-tabs-font-size: var(--bui-title-size-4);
+    --bui-tabs-active-font-weight: var(--bui-font-weight-bold);
+    --bui-tabs-color: var(--bui-color-fg-muted);
+
+    /* prettier-ignore */
+    --bui-tabs-indicator-height: 4PX;
+    --bui-tabs-indicator-border-radius: 2px;
+    --bui-tabs-indicator-box-shadow: 0 2px 4px 0 rgba(255, 98, 0, 0.2);
+
+    .bui-tabs-indicator {
+      background-image: linear-gradient(
+        90deg,
+        #ff9b00 0%,
+        #ffa700 21%,
+        #ff8300 100%
+      );
+    }
+  }
+
+  .bui-card-header-title {
+    --bui-card-font-size: var(--bui-title-size-3);
+  }
 }
