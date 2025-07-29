@@ -237,16 +237,16 @@ export default () => {
 
 ### Badge
 
-| 属性     | 说明           | 类型                                                      | 默认值      |
-| -------- | -------------- | --------------------------------------------------------- | ----------- |
-| content  | 徽章内容       | ReactNode                                                 | -           |
-| color    | 徽章主题色     | `primary` ｜ `info` ｜ `success` ｜ `warning` ｜ `danger` | `primary`   |
-| max      | 数字徽章的最大值（推荐使用） | number | - |
-| showZero | content为0时是否展示         | boolean | false |
-| visibility | 是否展示badge              | boolean | true |
-| maxCount | 数字徽章最大值（即将废弃）   | number | - |
-| variant  | 徽章类型       | `contained` ｜`outlined`                                  | `contained` |
-| type     | 徽章形状       | `dot`｜`rounded`｜`bubble`                                | `rounded`   |
+| 属性       | 说明                         | 类型                                                      | 默认值      |
+| ---------- | ---------------------------- | --------------------------------------------------------- | ----------- |
+| content    | 徽章内容                     | ReactNode                                                 | -           |
+| color      | 徽章主题色                   | `primary` ｜ `info` ｜ `success` ｜ `warning` ｜ `danger` | `primary`   |
+| max        | 数字徽章的最大值（推荐使用） | number                                                    | -           |
+| showZero   | content为0时是否展示         | boolean                                                   | false       |
+| visibility | 是否展示badge                | boolean                                                   | true        |
+| maxCount   | 数字徽章最大值（即将废弃）   | number                                                    | -           |
+| variant    | 徽章类型                     | `contained` ｜`outlined`                                  | `contained` |
+| type       | 徽章形状                     | `dot`｜`rounded`｜`bubble`                                | `rounded`   |
 
 ## 样式变量
 
@@ -266,22 +266,44 @@ export default () => {
 ## 新增用法示例
 
 ### max属性
+
 ```tsx
 import React from 'react';
 import { Badge } from '@bifrostui/react';
-<Badge content={120} max={99} />
+import { PhoneFilledIcon } from '@bifrostui/icons';
+
+export default () => {
+  return (
+    <Badge content={120} max={99}>
+      <PhoneFilledIcon color="success" style={{ fontSize: '38px' }} />
+    </Badge>
+  );
+};
 ```
 
 ### showZero属性
+
 ```tsx
 import React from 'react';
-import { Badge } from '@bifrostui/react';
-<Badge content={0} showZero />
+import { Badge, Avatar } from '@bifrostui/react';
+export default () => {
+  return (
+    <Badge content={0} showZero>
+      <Avatar src="//perico.damai.cn/userheadphotos/927551/185510204.jpg" />
+    </Badge>
+  );
+};
 ```
 
 ### visibility属性
+
 ```tsx
 import React from 'react';
-import { Badge } from '@bifrostui/react';
-<Badge content={10} visibility={false} />
+import { Badge, Avatar } from '@bifrostui/react';
+
+export default () => {
+  return <Badge content={10} visibility={true}>
+      <Avatar src="//perico.damai.cn/userheadphotos/927551/185510204.jpg" />
+    </Badge>
+};
 ```
