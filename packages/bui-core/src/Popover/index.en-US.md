@@ -22,7 +22,7 @@ export default () => {
     <Popover
       title="This is a title"
       content="This is a content"
-      placement="topLeft"
+      anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
     >
       <span>Click to Show</span>
     </Popover>
@@ -48,9 +48,9 @@ export default () => {
 };
 ```
 
-### Default Visibility (`defaultOpen`)
+### Default Visibility
 
-You can set `defaultOpen` to `true` to display the tooltip layer by default.
+You can set `defaultOpen` to `true` to show the tooltip layer by default.
 
 ```tsx
 import { Popover } from '@bifrostui/react';
@@ -59,15 +59,15 @@ import React from 'react';
 export default () => {
   return (
     <Popover title="This is a popover" defaultOpen>
-      <span>Default visible</span>
+      <span>Default visibility</span>
     </Popover>
   );
 };
 ```
 
-### Offset Spacing Between Layer and Target Element
+### Offset Spacing
 
-Set `offsetSpacing` to control the distance between the target element and the tooltip layer.
+You can set `offsetSpacing` to control the distance from the target element.
 
 ```tsx
 import { Popover } from '@bifrostui/react';
@@ -76,15 +76,15 @@ import React from 'react';
 export default () => {
   return (
     <Popover title="This is a popover" offsetSpacing={20} defaultOpen>
-      <span>Offset spacing control (set to 20 for observation)</span>
+      <span>Control offset spacing (set to 20 for observation)</span>
     </Popover>
   );
 };
 ```
 
-### Hide Arrow
+### Arrow Display
 
-Set `hideArrow` to `true` to hide the arrow.
+You can set `hideArrow` to `true` to hide the arrow.
 
 ```tsx
 import { Popover } from '@bifrostui/react';
@@ -93,217 +93,170 @@ import React from 'react';
 export default () => {
   return (
     <Popover title="This is a popover" defaultOpen hideArrow>
-      <span>Default visible</span>
+      <span>Default visibility</span>
     </Popover>
   );
 };
 ```
 
-### Placement of Tooltip Box
+### anchorOrigin Position
 
-Set `placement` to position the tooltip layer. Available values are: `top`, `left`, `right`, `bottom`, `topLeft`, `topRight`, `bottomLeft`, `bottomRight`, `leftTop`, `leftBottom`, `rightTop`, `rightBottom`.
+`anchorOrigin` sets the position of the tooltip layer relative to the anchor. Control the position through `vertical` and `horizontal` properties:
+- `vertical`: Options are `top`, `center`, `bottom`
+- `horizontal`: Options are `left`, `center`, `right`
+
+The following shows all 9 position combinations (3×3 grid):
 
 ```tsx
 import { Popover, Button } from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
-  const packageButton = (inner) => {
+  const createButton = (text, anchorOrigin) => {
     return (
-      <Button style={{ borderRadius: 0, marginTop: '4px', width: '80px' }}>
-        {inner}
-      </Button>
+      <Popover
+        trigger={['hover', 'click']}
+        title={`anchorOrigin: ${JSON.stringify(anchorOrigin)}`}
+        content={`vertical: ${anchorOrigin.vertical}, horizontal: ${anchorOrigin.horizontal}`}
+        anchorOrigin={anchorOrigin}
+      >
+        <Button 
+          style={{ 
+            width: '120px', 
+            height: '40px', 
+            margin: '4px',
+            fontSize: '12px'
+          }}
+        >
+          {text}
+        </Button>
+      </Popover>
     );
   };
 
   return (
-    <div>
-      <div
-        style={{
-          display: 'flex',
-          width: '300px',
-          marginLeft: '100px',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="topLeft"
-        >
-          {packageButton(<span>topLeft</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="top"
-        >
-          {packageButton(<span>top</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="topRight"
-        >
-          {packageButton(<span>topRight</span>)}
-        </Popover>
-      </div>
-      <div
-        style={{
-          marginTop: '20px',
-          display: 'inline-flex',
-          width: '100px',
-          flexDirection: 'column',
-        }}
-      >
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="leftTop"
-        >
-          {packageButton(<span>leftTop</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="left"
-        >
-          {packageButton(<span>left</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="leftBottom"
-        >
-          {packageButton(<span>leftBottom</span>)}
-        </Popover>
-      </div>
-      <div
-        style={{
-          marginLeft: '300px',
-          display: 'inline-flex',
-          width: '100px',
-          flexDirection: 'column',
-        }}
-      >
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="rightTop"
-        >
-          {packageButton(<span>rightTop</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="right"
-        >
-          {packageButton(<span>right</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="rightBottom"
-        >
-          {packageButton(<span>rightBottom</span>)}
-        </Popover>
-      </div>
-      <div
-        style={{
-          marginLeft: '100px',
-          marginTop: '20px',
-          display: 'flex',
-          width: '300px',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="bottomLeft"
-        >
-          {packageButton(<span>bottomLeft</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="bottom"
-        >
-          {packageButton(<span>bottom</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="bottomRight"
-        >
-          {packageButton(<span>bottomRight</span>)}
-        </Popover>
-      </div>
+    <div style={{ 
+      display: 'grid', 
+      gridTemplateColumns: 'repeat(3, 1fr)', 
+      gap: '8px',
+      maxWidth: '400px',
+      margin: '20px auto',
+      padding: '20px',
+      border: '1px solid #e0e0e0',
+      borderRadius: '8px',
+      backgroundColor: '#fafafa'
+    }}>
+      {/* First row: top */}
+      {createButton('top + left', { vertical: 'top', horizontal: 'left' })}
+      {createButton('top + center', { vertical: 'top', horizontal: 'center' })}
+      {createButton('top + right', { vertical: 'top', horizontal: 'right' })}
+      
+      {/* Second row: center */}
+      {createButton('center + left', { vertical: 'center', horizontal: 'left' })}
+      {createButton('center + center', { vertical: 'center', horizontal: 'center' })}
+      {createButton('center + right', { vertical: 'center', horizontal: 'right' })}
+      
+      {/* Third row: bottom */}
+      {createButton('bottom + left', { vertical: 'bottom', horizontal: 'left' })}
+      {createButton('bottom + center', { vertical: 'bottom', horizontal: 'center' })}
+      {createButton('bottom + right', { vertical: 'bottom', horizontal: 'right' })}
     </div>
   );
 };
 ```
 
-### Trigger Method
+### Position Reference Table
 
-The method to show the tooltip can be "click" or "hover", default is "click".
+| vertical | horizontal | Description | Equivalent original placement value |
+|----------|------------|-------------|-----------------------------------|
+| `top` | `left` | Tooltip above and to the left of anchor | `topLeft` |
+| `top` | `center` | Tooltip directly above anchor | `top` |
+| `top` | `right` | Tooltip above and to the right of anchor | `topRight` |
+| `center` | `left` | Tooltip to the left of anchor | `left` |
+| `center` | `center` | Tooltip directly above anchor (special handling) | `top` |
+| `center` | `right` | Tooltip to the right of anchor | `right` |
+| `bottom` | `left` | Tooltip below and to the left of anchor | `bottomLeft` |
+| `bottom` | `center` | Tooltip directly below anchor | `bottom` |
+| `bottom` | `right` | Tooltip below and to the right of anchor | `bottomRight` |
+
+### Trigger Methods
+
+The tooltip layer can be configured with different trigger methods using the `trigger` property.
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import React, { useState } from 'react';
 
 export default () => {
+  const [manualOpen, setManualOpen] = useState(false);
+  
   return (
-    <Popover title="This is a popover" trigger="hover">
-      <span>Hover trigger method</span>
-    </Popover>
+    <div>
+      <p>
+        <Popover
+          title="This is a popover"
+          content="onClick trigger"
+          trigger="click"
+        >
+          <span>Click trigger</span>
+        </Popover>
+      </p>
+      <p>
+        <Popover
+          title="This is a popover"
+          content="hover trigger"
+          trigger="hover"
+        >
+          <span>Hover trigger</span>
+        </Popover>
+      </p>
+      <p>
+        <Popover
+          title="This is a popover"
+          content="Both click and hover can trigger"
+          trigger={['click', 'hover']}
+        >
+          <span>Click or hover trigger</span>
+        </Popover>
+      </p>
+      <p>
+        <button onClick={() => setManualOpen(!manualOpen)}>
+          External Control {manualOpen ? '(Click to hide)' : '(Click to show)'}
+        </button>
+        <Popover
+          title="Fully Manual Control"
+          content="This popover is completely controlled externally, no auto-trigger events"
+          trigger="none"
+          open={manualOpen}
+        >
+          <span style={{ marginLeft: '10px' }}>None trigger (External control)</span>
+        </Popover>
+      </p>
+    </div>
   );
 };
 ```
 
-### Callback Method on Tooltip Visibility Change
+## API
 
-```tsx
-import { Popover } from '@bifrostui/react';
-import React from 'react';
+| Property      | Description                      | Type                                                                                     | Default                                    |
+| ------------- | -------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------ |
+| title         | Title of the tooltip layer       | ReactNode                                                                                | -                                          |
+| content       | Content of the tooltip layer     | ReactNode                                                                                | -                                          |
+| defaultOpen   | Default visibility               | boolean                                                                                  | false                                      |
+| open          | Control tooltip layer visibility | boolean                                                                                  | -                                          |
+| hideArrow     | Whether to show the arrow        | boolean                                                                                  | false                                      |
+| offsetSpacing | Offset from the target element   | number                                                                                   | 0                                          |
+| anchorOrigin  | Position relative to anchor      | { vertical: 'top' \| 'center' \| 'bottom', horizontal: 'left' \| 'center' \| 'right' } | { vertical: 'top', horizontal: 'center' }  |
+| trigger       | Trigger behavior                 | string \| string[], values are 'click' \| 'hover' \| 'none'                             | 'click'                                    |
+| onOpenChange  | Callback for visibility changes  | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                     | -                                          |
 
-export default () => {
-  const onOpenChange = (event, data) => {
-    console.log(JSON.stringify(data));
-  };
-  return (
-    <Popover
-      title="This is a popover"
-      trigger={['hover', 'click']}
-      onOpenChange={onOpenChange}
-    >
-      <span>Callback method for visibility change</span>
-    </Popover>
-  );
-};
-```
+## CSS Variables
 
-### API
-
-| Property      | Description                           | Type                                                                                                                                                        | Default |
-| ------------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| title         | Title of the tooltip layer            | ReactNode                                                                                                                                                   | -       |
-| content       | Content of the tooltip layer          | ReactNode                                                                                                                                                   | -       |
-| defaultOpen   | Whether it is visible by default      | boolean                                                                                                                                                     | false   |
-| open          | Manually control visibility           | boolean                                                                                                                                                     | -       |
-| hideArrow     | Whether to show the arrow             | boolean                                                                                                                                                     | false   |
-| offsetSpacing | Offset between the layer and target   | number                                                                                                                                                      | 0       |
-| placement     | Position of the tooltip box           | string, enum values: `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` | 'top'   |
-| trigger       | Trigger behavior                      | string \| string[], enum values: 'click' \| 'hover'                                                                                                         | 'click' |
-| onOpenChange  | Callback method for visibility change | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                        | -       |
-
-### Style Variables
-
-| Property             | Description                    | Default Value | Global Variable                  |
-| -------------------- | ------------------------------ | ------------- | -------------------------------- |
-| --arrow-size         | Arrow size                     | 8PX           | --bui-popover-arrow-size         |
-| --localtion-position | Arrow position                 | 8PX           | --bui-popover-localtion-position |
-| --max-width          | Maximum width                  | 350px         | --bui-popover-max-width          |
-| --content-min-width  | Minimum width of content area  | 30px          | --bui-popover-content-min-width  |
-| --content-min-height | Minimum height of content area | 32px          | --bui-popover-content-min-height |
-| --content-padding    | Padding inside content area    | 0             | --bui-popover-content-padding    |
+| Global Variable                 | Description        | Default   |
+| ------------------------------- | ------------------ | --------- |
+| --bui-popover-arrow-size        | Arrow size         | `8px`     |
+| --bui-popover-location-position | Arrow position offset | `8px`     |
+| --bui-popover-max-width         | Maximum tooltip width | `350px`   |
+| --bui-popover-content-min-width | Minimum content width | `30px`    |
+| --bui-popover-content-padding   | Content padding    | `6px 8px` |
