@@ -9,10 +9,39 @@ import {
   isMini,
 } from '@bifrostui/utils';
 import Portal from '../Portal';
-import { PopoverProps } from './Popover.types';
+import { PopoverProps, AnchorOrigin } from './Popover.types';
 import './index.less';
 
 const prefixCls = 'bui-popover';
+
+/**
+ * 将 anchorOrigin 转换为内部使用的 placement 字符串
+ */
+const anchorOriginToPlacement = (anchorOrigin: AnchorOrigin): string => {
+  const { vertical, horizontal } = anchorOrigin;
+
+  // 特殊情况：center + center 映射为 top（默认位置）
+  if (vertical === 'center' && horizontal === 'center') {
+    return 'top';
+  }
+
+  // 处理基本方向
+  if (horizontal === 'center') {
+    return vertical;
+  }
+
+  // 处理复合方向
+  const horizontalMap = {
+    left: 'Left',
+    right: 'Right',
+  };
+
+  if (vertical === 'center') {
+    return horizontal;
+  }
+
+  return `${vertical}${horizontalMap[horizontal]}`;
+};
 
 const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   const {
@@ -23,13 +52,16 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     content,
     defaultOpen,
     offsetSpacing = 0,
-    placement = 'top',
+    anchorOrigin = { vertical: 'top', horizontal: 'center' },
     trigger = 'click',
     open,
     hideArrow,
     onOpenChange,
     ...others
   } = props;
+
+  // 将 anchorOrigin 转换为内部使用的 placement
+  const placement = anchorOriginToPlacement(anchorOrigin);
 
   const controlByUser = typeof open !== 'undefined';
   const { direction, location = 'center' } = parsePlacement(placement);
@@ -87,6 +119,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   const clickEventHandler = (event) => {
     if (
       trigger === 'hover' ||
+      trigger === 'none' ||
       (trigger?.length === 1 && trigger?.[0] === 'hover')
     )
       return;
@@ -130,7 +163,13 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     const bindEvent = () => {
       if (!tipRef.current) return;
 
-      if (!controlByUser) {
+      // 当 trigger="none" 或 trigger="hover" 时，不绑定全局点击事件
+      if (
+        !controlByUser &&
+        trigger !== 'none' &&
+        trigger !== 'hover' &&
+        !(trigger?.length === 1 && trigger?.[0] === 'hover')
+      ) {
         document.addEventListener('click', clickEventHandler);
       }
       if (!isMini) {
@@ -139,7 +178,12 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     };
 
     const unbindEvent = () => {
-      if (!controlByUser) {
+      if (
+        !controlByUser &&
+        trigger !== 'none' &&
+        trigger !== 'hover' &&
+        !(trigger?.length === 1 && trigger?.[0] === 'hover')
+      ) {
         document.removeEventListener('click', clickEventHandler);
       }
       if (!isMini) {
@@ -156,7 +200,8 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   if (!title && !content) return null;
 
   let triggerEventOption;
-  if (!controlByUser) {
+  // 当 trigger="none" 或用户手动控制时，不绑定任何触发事件
+  if (!controlByUser && trigger !== 'none') {
     triggerEventOption = triggerEventTransform({
       trigger,
       click: triggerClick,
