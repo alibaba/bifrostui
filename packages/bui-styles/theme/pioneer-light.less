@@ -1,9 +1,8 @@
 .pioneer-light() {
   /** pioneer 特殊字体 */
-  --bui-font-family-accent:
-    'AlibabaPuHuiTi-Heavy', 'PingFang SC', 'Chinese Quote', 'Segoe UI', roboto,
-    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', helvetica, arial,
-    sans-serif;
+  --bui-font-family-accent: 'AlibabaPuHuiTi-Heavy', 'PingFang SC',
+    'Chinese Quote', 'Segoe UI', roboto, 'Hiragino Sans GB', 'Microsoft YaHei',
+    'Helvetica Neue', helvetica, arial, sans-serif;
 
   /** 品牌红 */
   --bui-color-red: #ff471a;
@@ -49,19 +48,21 @@
   --bui-color-primary: var(--bui-color-orange);
   --bui-color-primary-light: var(--bui-color-orange-light);
   --bui-color-primary-dark: var(--bui-color-orange-dark);
+
+  /** 语义化字号 */
   --bui-title-size-4: var(--bui-font-size-md1);
 
   // 用于失效、不可用等状态
   --bui-color-fg-disabled: fade(#030b1a, 50%);
 
-  // 分割线、边框
+  /** 分割线、边框 */
   --bui-color-border-primary: fade(#ff7600, 40%);
   --bui-color-border-info: fade(#229af0, 40%);
   --bui-color-border-success: fade(#40bf00, 40%);
   --bui-color-border-warning: fade(#ff7600, 40%);
   --bui-color-border-danger: fade(#ff471a, 40%);
 
-  // 主题色渐变
+  /** 主题色渐变 */
   --bui-color-primary-start: #ffb300;
   --bui-color-primary-end: var(--bui-color-primary);
   --bui-color-info-start: #5bc8ff;
@@ -72,6 +73,8 @@
   --bui-color-success-end: var(--bui-color-success);
   --bui-color-danger-start: #ff7633;
   --bui-color-danger-end: var(--bui-color-danger);
+
+  /** 形状定义 */
   --bui-shape-radius-drawer: var(--bui-radius-6);
   // 卡片、普通视图、抽屉、action sheet，常用于信息密度较低的视图
   --bui-shape-radius-card: var(--bui-radius-5);
@@ -89,8 +92,7 @@
     &.bui-btn-contained {
       &.bui-btn-primary {
         &.bui-btn-large {
-          background-image:
-            radial-gradient(
+          background-image: radial-gradient(
               35px 25px ellipse at 2% 110%,
               #fffe1e 0%,
               rgba(251, 134, 35, 0) 99%
@@ -104,8 +106,7 @@
         }
 
         &.bui-btn-full {
-          background-image:
-            radial-gradient(
+          background-image: radial-gradient(
               93px 50px ellipse at 2% 110%,
               #fffe1e 0%,
               rgba(251, 134, 35, 0) 100%

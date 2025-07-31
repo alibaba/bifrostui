@@ -1,8 +1,8 @@
 .light() {
-  // 字体
-  --bui-font-family:
-    'PingFang SC', 'Chinese Quote', 'Segoe UI', roboto, 'Hiragino Sans GB',
-    'Microsoft YaHei', 'Helvetica Neue', helvetica, arial, sans-serif;
+  /** 字体 */
+  --bui-font-family: 'PingFang SC', 'Chinese Quote', 'Segoe UI', roboto,
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', helvetica, arial,
+    sans-serif;
 
   /** 品牌红 */
   --bui-color-red: #ff335c;
@@ -98,7 +98,7 @@
   --bui-text-size-4: var(--bui-font-size-sm2);
   --bui-text-size-5: var(--bui-font-size-sm1);
 
-  // 前景色，通常用于文字
+  /** 前景色，通常用于文字 */
   // default是最通用的色彩，比如标题和一级信息
   --bui-color-fg-default: var(--bui-color-neutral-1);
   // 柔和色，通常用于次级及补充说明信息
@@ -108,9 +108,8 @@
   // 用于失效、不可用等状态
   --bui-color-fg-disabled: var(--bui-color-neutral-4);
 
-  // 背景色
+  /** 背景色，通常用于视图 */
   --bui-color-bg-default: var(--bui-color-neutral-6);
-  // 视图背景色
   --bui-color-bg-view: var(--bui-color-neutral-7);
   --bui-color-bg-popover: var(--bui-color-neutral-7);
   --bui-color-bg-alpha-light-9: fade(#fff, 90%);
@@ -124,7 +123,7 @@
   --bui-color-bg-alpha-dark-3: fade(#000, 30%);
   --bui-color-bg-alpha-dark-1: fade(#000, 10%);
 
-  // 分割线、边框
+  /** 分割线、边框 */
   --bui-color-border-default: var(--bui-color-neutral-5);
   --bui-color-border-primary: fade(#ff335c, 40%);
   --bui-color-border-info: fade(#148aff, 40%);
@@ -133,7 +132,7 @@
   --bui-color-border-danger: fade(#ff335c, 40%);
   --bui-color-border-gray: fade(#8896b1, 40%);
 
-  // 主题色渐变
+  /** 主题色渐变 */
   --bui-color-primary-start: #ef16b9;
   --bui-color-primary-end: var(--bui-color-red);
   --bui-color-secondary-start: #f32adf;
@@ -161,7 +160,7 @@
   --bui-radius-1: 3px;
   --bui-radius-none: 0px;
 
-  // 形状定义
+  /* 形状定义 */
   // 页面级浮层
   --bui-shape-radius-popover: var(--bui-radius-7);
   --bui-shape-radius-drawer: var(--bui-radius-5);
@@ -186,13 +185,17 @@
   --bui-spacing-9: 18px;
   --bui-spacing-10: 24px;
 
-  // 空间定义
+  /** 语义化间距 */
   --bui-spacing-xl: var(--bui-spacing-8);
   --bui-spacing-lg: var(--bui-spacing-7);
   --bui-spacing-md: var(--bui-spacing-6);
   --bui-spacing-sm: var(--bui-spacing-5);
   --bui-spacing-xs: var(--bui-spacing-4);
+
+  // 行高
   --bui-line-height: 1.5;
+
+  /** 层级 */
   --bui-z-index-dropdown: 1000; // dropdown 、cascader、DatePicker、select、TimePicker、treeSelect
   --bui-z-index-affix: 1100; // 吸顶元素、固定元素fixed
   --bui-z-index-modal-backdrop: 1200;
