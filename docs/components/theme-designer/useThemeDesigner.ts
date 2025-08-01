@@ -14,8 +14,6 @@ import { setStorage, getStorage, clearStorage, toKebabCase } from './utils';
 export const useThemeDesigner = () => {
   // 主题模式：builtin内置主题 custom自定义主题
   const [themeMode, setThemeMode] = useState(THEME_MODE.BUILTIN);
-  // 内置主题：default默认 dm大麦 pioneer活力橙
-  const [builtinTheme, setBuiltinTheme] = useState(BUILTIN_THEME.DEFAULT);
   // 自定义主题-变量类型：common通用变量 component组件变量
   const [varsType, setVarsType] = useState('');
   // 当前编辑的变量
@@ -57,11 +55,6 @@ export const useThemeDesigner = () => {
     mountThemeVars({
       theme: rootContent,
     });
-  };
-
-  const handleThemeChange = (_e, data) => {
-    document.querySelector('html')?.setAttribute('data-theme', data.value);
-    setBuiltinTheme(data.value);
   };
 
   const handleVarsTypeChange = (_e, data) => {
@@ -194,7 +187,6 @@ export const useThemeDesigner = () => {
 
   return {
     drawerOpen,
-    builtinTheme,
     currentEditVars,
     themeMode,
     varsType,
@@ -207,7 +199,6 @@ export const useThemeDesigner = () => {
     closeEdit,
     goComponentPage,
     setCurrentEditVars,
-    handleThemeChange,
     handleVarsTypeChange,
   };
 };
