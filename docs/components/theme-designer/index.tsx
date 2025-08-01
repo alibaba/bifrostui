@@ -1,66 +1,81 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Select, SelectOption, Input, Toast } from '@bifrostui/react';
 import {
-  Stack,
-  Button,
-  Tabs,
-  Tab,
-  TabPanel,
-  Card,
-  CardHeader,
-  CardContent,
-  Radio,
-  RadioGroup,
-  Calendar,
-  List,
-  ListItem,
-  ListItemContent,
-  ListItemExtra,
-  Switch,
-  Slider,
-  Select,
-  SelectOption,
-} from '@bifrostui/react';
-import { EditFilledIcon } from '@bifrostui/icons';
-import { useThemeDesigner } from './useThemeDesigner';
+  EditOutlinedIcon,
+  CopyOutlinedIcon,
+  RefreshOutlinedIcon,
+} from '@bifrostui/icons';
 import {
-  THEME_MODE,
-  VARS_TYPE,
-  BUILTIN_THEME,
-  builtinThemes,
-  tabList,
-} from './constants';
-import { Typography } from './Typography';
-import CopyThemeModal from './CopyThemeModal';
-import EditThemeDrawer from './EditThemeDrawer';
+  defaultLight,
+  dmLight,
+  pioneerLight,
+} from '@bifrostui/styles/registry';
+import cs from 'clsx';
 import componentThemeData from '../../constants/theme-vars.json';
+import { VARS_TYPE, BUILTIN_THEME, builtinThemes } from './constants';
+import { ThemeCanvas } from './ThemeCanvas';
 import './index.less';
 
+enum ThemeMode {
+  // 内置主题
+  BuiltinMode = 'BuiltinMode',
+  // 自定义主题
+  CustomMode = 'CustomMode',
+}
+
+enum CssVarMode {
+  Readonly = 'Readonly',
+  Editable = 'Editable',
+}
+
+const builtInThemeCssVars = {
+  [BUILTIN_THEME.DEFAULT]: defaultLight,
+  [BUILTIN_THEME.DM]: dmLight,
+  [BUILTIN_THEME.PIONEER]: pioneerLight,
+};
+
+// 通用变量name
+const CUSTOM_UNIVERSAL_VAR_NAME = 'common';
+
 const ThemeDesigner = () => {
-  const {
-    drawerOpen,
-    builtinTheme,
-    currentEditVars,
-    themeMode,
-    customThemes,
-    varsType,
-    copyTheme,
-    resetAll,
-    changeToBuiltin,
-    setThemeMode,
-    saveThemeVars,
-    closeEdit,
-    goComponentPage,
-    setCurrentEditVars,
-    handleThemeChange,
-    handleVarsTypeChange,
-  } = useThemeDesigner();
-  const [openModal, setOpenModal] = useState(false);
-  const [activeTab, setActiveTab] = useState(tabList[0].index);
+  const [toast] = Toast.useToast();
+  const [activeThemeMode, setActiveThemeMode] = useState(ThemeMode.BuiltinMode);
+  // 内置主题：default默认 dm大麦 pioneer活力橙
+  const [builtinTheme, setBuiltinTheme] = useState(BUILTIN_THEME.DEFAULT);
+  const [customComponentName, setCustomComponentName] = useState(
+    CUSTOM_UNIVERSAL_VAR_NAME,
+  );
+  const [cssVarMode, setCssVarMode] = useState<CssVarMode>(CssVarMode.Readonly);
+  const [activeThemeCssVars, setActiveThemeCssVars] = useState<
+    Record<string, string>
+  >(builtInThemeCssVars[builtinTheme]?.cssVars);
+  const [editableCssVarToken, setEditableCssVarToken] = useState('');
   const [selectOptions, setSelectOptions] = useState([]);
-  const themeCode = useRef('');
+  const themePlaygroundRef = useRef<HTMLDivElement>();
+  const cssCanvasRef = useRef<HTMLDivElement>();
 
   useEffect(() => {
-    if (themeMode === THEME_MODE.CUSTOM) {
+    const updateElementHeight = () => {
+      if (!themePlaygroundRef.current) return;
+      // 获取元素的尺寸与位置
+      const rect = themePlaygroundRef.current.getBoundingClientRect();
+      const viewportHeight = document.documentElement.clientHeight;
+
+      // 59px是底部paddingBottom之和
+      themePlaygroundRef.current.style.height = `${viewportHeight - rect.top - 59}px`;
+    };
+
+    updateElementHeight();
+
+    window.addEventListener('resize', updateElementHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateElementHeight);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (activeThemeMode === ThemeMode.CustomMode) {
       const options = Object.keys(componentThemeData)
         .filter((name) => !!componentThemeData[name].cssVars)
         .map((name) => ({
@@ -70,235 +85,216 @@ const ThemeDesigner = () => {
       options.unshift({ label: '通用变量', value: VARS_TYPE.COMMON });
       setSelectOptions(options);
     }
-  }, [themeMode]);
+  }, [activeThemeMode]);
 
-  const copyThemeCode = () => {
-    themeCode.current = copyTheme();
-    setOpenModal(true);
+  const applyCssVars = (cssVars: Record<string, string> = {}) => {
+    // 清空上一次的主题变量
+    cssCanvasRef.current.style.cssText = '';
+    // 应用最新的主题变量
+    Object.entries(cssVars).forEach(([token, value]) => {
+      cssCanvasRef.current.style.setProperty(token, value);
+    });
+  };
+
+  const updateActiveThemeCssVars = (tab: ThemeMode) => {
+    if (tab === ThemeMode.CustomMode) {
+      const cssVars =
+        customComponentName === CUSTOM_UNIVERSAL_VAR_NAME
+          ? defaultLight?.cssVars
+          : componentThemeData[customComponentName]?.cssVars;
+      setActiveThemeCssVars(cssVars);
+      applyCssVars(cssVars);
+    } else if (tab === ThemeMode.BuiltinMode) {
+      const cssVars = builtInThemeCssVars[builtinTheme]?.cssVars;
+      setActiveThemeCssVars(cssVars);
+      applyCssVars(cssVars);
+    }
+  };
+
+  const onResetCssVars = () => {
+    updateActiveThemeCssVars(activeThemeMode);
+    toast.success({
+      message: '重置成功',
+    });
+  };
+
+  const onCopyCssVars = async () => {
+    try {
+      const text = Object.entries(activeThemeCssVars)
+        .map(([token, value]) => `${token}: ${value};`)
+        .join('\n');
+      await navigator?.clipboard?.writeText(text);
+      toast.success({
+        message: '复制成功',
+      });
+    } catch (err) {
+      console.log(err);
+      toast.fail({
+        message: '复制失败',
+      });
+    }
+  };
+
+  const onCustomComponentNameChange = (e, data) => {
+    if (!data.value) return;
+
+    setActiveThemeCssVars(
+      data.value === CUSTOM_UNIVERSAL_VAR_NAME
+        ? defaultLight?.cssVars
+        : componentThemeData[data.value]?.cssVars,
+    );
+    setCustomComponentName(data.value);
+  };
+
+  const onSwitchBuiltInTheme = (newBuiltinTheme: BUILTIN_THEME) => {
+    setBuiltinTheme(newBuiltinTheme);
+    const cssVars = builtInThemeCssVars[newBuiltinTheme]?.cssVars;
+    setActiveThemeCssVars(cssVars);
+    applyCssVars(cssVars);
+  };
+
+  const editCssVar = (token: string) => {
+    setCssVarMode(CssVarMode.Editable);
+    setEditableCssVarToken(token);
+  };
+
+  const submitCssVar = () => {
+    setCssVarMode(CssVarMode.Readonly);
+    setEditableCssVarToken('');
+    applyCssVars(activeThemeCssVars);
   };
 
   return (
-    <div className="bui-theme-editor grid grid-cols-12">
-      {/* 复制主题弹窗 */}
-      <CopyThemeModal
-        open={openModal}
-        themeVars={themeCode.current}
-        onClose={() => setOpenModal(false)}
-      />
-      {/* 主题变量编辑抽屉 */}
-      <EditThemeDrawer
-        open={drawerOpen}
-        currentEditVars={currentEditVars}
-        setCurrentEditVars={setCurrentEditVars}
-        closeEdit={closeEdit}
-        saveThemeVars={saveThemeVars}
-      />
-
-      <div className="grid col-span-12 operate-container">
-        <div className="theme-mode">
-          <Button
-            className={themeMode === THEME_MODE.BUILTIN && 'is-active'}
-            style={{ marginRight: '4px' }}
-            variant="text"
-            size="large"
-            onClick={changeToBuiltin}
-          >
-            内置主题
-          </Button>
-          <Button
-            className={themeMode === THEME_MODE.CUSTOM && 'is-active'}
-            variant="text"
-            size="large"
-            onClick={(e) => {
-              handleThemeChange(e, { value: BUILTIN_THEME.DEFAULT });
-              setThemeMode(THEME_MODE.CUSTOM);
-            }}
-          >
-            自定义主题
-          </Button>
-        </div>
-        {!!customThemes.length && (
-          <div className="theme-mode no-border">
-            <Button
-              style={{ marginRight: '4px' }}
-              size="large"
-              onClick={resetAll}
-            >
-              重置全部
-            </Button>
-            <Button size="large" onClick={copyThemeCode}>
-              复制代码
-            </Button>
+    <div className="bui-theme-designer">
+      <div className="theme-playground" ref={themePlaygroundRef}>
+        <div className="theme-css-vars">
+          <div className="theme-tabs">
+            <div className="theme-mode">
+              <div
+                className={cs('theme-mode-item', {
+                  'is-active': activeThemeMode === ThemeMode.BuiltinMode,
+                })}
+                onClick={() => {
+                  setActiveThemeMode(ThemeMode.BuiltinMode);
+                  updateActiveThemeCssVars(ThemeMode.BuiltinMode);
+                }}
+              >
+                内置主题
+              </div>
+              <div
+                className={cs('theme-mode-item', {
+                  'is-active': activeThemeMode === ThemeMode.CustomMode,
+                })}
+                onClick={(e) => {
+                  setActiveThemeMode(ThemeMode.CustomMode);
+                  updateActiveThemeCssVars(ThemeMode.CustomMode);
+                }}
+              >
+                自定义主题
+              </div>
+            </div>
           </div>
-        )}
-      </div>
-
-      <div className="theme-editor-menu grid col-span-12">
-        {themeMode === THEME_MODE.BUILTIN ? (
-          <RadioGroup value={builtinTheme} onChange={handleThemeChange}>
-            {builtinThemes.map((item) => (
-              <Radio key={item.value} value={item.value}>
-                {item.text}
-              </Radio>
-            ))}
-          </RadioGroup>
-        ) : (
-          <div className="custom-wrapper">
-            <Select
-              placeholder="选择组件/通用变量"
-              onChange={handleVarsTypeChange}
-            >
-              {selectOptions.map((item) => (
-                <SelectOption
-                  key={item.value}
-                  value={item.value}
-                  label={item.label}
-                />
-              ))}
-            </Select>
-            {!!varsType && (
-              <>
-                <div title="修改变量">
-                  <EditFilledIcon
-                    className="edit-icon"
-                    color="primary"
-                    onClick={(e) => {
-                      handleVarsTypeChange(e, { value: currentEditVars.name });
-                    }}
-                  />
-                </div>
-                {customThemes.includes(currentEditVars.name) &&
-                  varsType !== VARS_TYPE.COMMON && (
-                    <div
-                      className="go-component"
-                      onClick={() => {
-                        goComponentPage(currentEditVars.name);
-                      }}
-                    >
-                      前往查看
+          <div className="theme-tab-switch">
+            {activeThemeMode === ThemeMode.BuiltinMode ? (
+              <div className="theme-mode-builtIn">
+                {builtinThemes.map((item) => (
+                  <div
+                    className={cs('theme-mode-builtIn-item', {
+                      'is-active': item.value === builtinTheme,
+                    })}
+                    key={item.value}
+                    onClick={() => onSwitchBuiltInTheme(item.value)}
+                  >
+                    {item.text}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="custom-theme-operator">
+                <Select
+                  placeholder="选择组件/通用变量"
+                  onChange={onCustomComponentNameChange}
+                  value={customComponentName}
+                >
+                  {selectOptions.map((item) => (
+                    <SelectOption
+                      key={item.value}
+                      value={item.value}
+                      label={item.label}
+                    />
+                  ))}
+                </Select>
+              </div>
+            )}
+            <div className="theme-css-var-operators">
+              <div className="theme-css-var-operator" onClick={onResetCssVars}>
+                <RefreshOutlinedIcon />
+                重置
+              </div>
+              <div className="theme-css-var-operator" onClick={onCopyCssVars}>
+                <CopyOutlinedIcon />
+                复制
+              </div>
+            </div>
+          </div>
+          <div className="theme-css-var-items scrollbar">
+            {Object.entries(activeThemeCssVars ?? {}).map(
+              ([token, value]: [string, string]) => {
+                const isColorValue =
+                  value.startsWith('#') ||
+                  value.startsWith('rgb') ||
+                  value.startsWith('rgba');
+                return (
+                  <div className="theme-css-var-item" key={token}>
+                    <div className="theme-css-var-item-token">{token}</div>
+                    <div className="theme-css-var-item-value">
+                      <EditOutlinedIcon
+                        className="theme-css-var-item-value-edit-icon"
+                        onClick={() => editCssVar(token)}
+                      />
+                      {isColorValue ? (
+                        <div className="theme-css-var-item-value-color">
+                          <div className="theme-css-var-item-value-color-text">
+                            {value}
+                          </div>
+                          <div
+                            className="theme-css-var-item-value-color-icon"
+                            style={{ backgroundColor: value }}
+                          />
+                        </div>
+                      ) : (
+                        value
+                      )}
                     </div>
-                  )}
-              </>
+                    {cssVarMode === CssVarMode.Editable &&
+                      token === editableCssVarToken && (
+                        <Input
+                          className="theme-css-var-item-value-input"
+                          value={activeThemeCssVars[editableCssVarToken]}
+                          inputProps={{ autoFocus: true }}
+                          onChange={(e, data) => {
+                            setActiveThemeCssVars((val) => ({
+                              ...val,
+                              [token]: data.value,
+                            }));
+                          }}
+                          onKeyUp={(e) => {
+                            if (e.keyCode === 13) {
+                              submitCssVar();
+                            }
+                          }}
+                          onBlur={submitCssVar}
+                        />
+                      )}
+                  </div>
+                );
+              },
             )}
           </div>
-        )}
-      </div>
-
-      <Typography />
-
-      <div className="grid col-span-2">
-        <Card className="card-center">
-          <CardContent>
-            <Stack direction="column" spacing="9px">
-              <Button>浅色</Button>
-              <Button color="dark">深色</Button>
-              <Button variant="contained">浅色</Button>
-              <Button color="dark" variant="contained">
-                深色
-              </Button>
-              <Button variant="contained" color="primary">
-                购票
-              </Button>
-              <Button variant="contained" color="warning">
-                想看
-              </Button>
-              <Button variant="contained" color="info">
-                预售
-              </Button>
-            </Stack>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="grid col-span-6">
-        <Card className="card-center">
-          <CardContent>
-            <Stack
-              className="editor-preview-column"
-              direction="column"
-              spacing="9px"
-            >
-              <Button size="small" variant="contained" color="primary">
-                小按钮
-              </Button>
-              <Button size="medium" variant="contained" color="primary">
-                中按钮
-              </Button>
-              <Button size="large" variant="contained" color="primary">
-                大按钮
-              </Button>
-
-              <Button size="full" variant="contained" color="primary">
-                通栏按钮
-              </Button>
-            </Stack>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="grid col-span-8">
-        <Card>
-          <CardContent>
-            <Tabs style={{ marginBottom: '12px' }} value={activeTab}>
-              {tabList.map((item) => (
-                <Tab
-                  key={item.index}
-                  index={item.index}
-                  onClick={() => setActiveTab(item.index)}
-                >
-                  {item.title}
-                </Tab>
-              ))}
-            </Tabs>
-            {tabList.map((item) => (
-              <TabPanel key={item.index} value={activeTab} index={item.index}>
-                {item.title}
-              </TabPanel>
-            ))}
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="grid col-span-4">
-        <Card className="card-center">
-          <CardContent>
-            <Slider defaultValue={37.5} tipVisible />
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="grid col-span-4">
-        <Card>
-          <CardHeader title="显示与亮度" />
-          <CardContent>
-            <List size="medium">
-              <ListItem>
-                <ListItemContent primary="自动" />
-                <ListItemExtra>
-                  <Switch color="primary" defaultChecked />
-                </ListItemExtra>
-              </ListItem>
-              <ListItem>
-                <ListItemContent primary="粗体文本" />
-                <ListItemExtra>
-                  <Switch color="primary" />
-                </ListItemExtra>
-              </ListItem>
-              <ListItem>
-                <ListItemContent primary="原彩显示" />
-                <ListItemExtra>
-                  <Switch color="primary" />
-                </ListItemExtra>
-              </ListItem>
-            </List>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="grid col-span-8">
-        <Card>
-          <Calendar />
-        </Card>
+        </div>
+        <div className="theme-css-canvas scrollbar" ref={cssCanvasRef}>
+          <ThemeCanvas componentName={customComponentName} />
+        </div>
       </div>
     </div>
   );

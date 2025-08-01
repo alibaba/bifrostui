@@ -48,7 +48,8 @@
     "@bifrostui/icons": "workspace:*",
     "@bifrostui/react": "workspace:*",
     "@bifrostui/styles": "workspace:*",
-    "backstopjs": "^6.3.25"
+    "backstopjs": "^6.3.25",
+    "react-color": "^2.19.3"
   },
   "devDependencies": {
     "@ant-design/icons-svg": "4.4.2",
