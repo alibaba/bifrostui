@@ -1,12 +1,12 @@
-import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
+import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
 
-export const TabsDemo = () => {
-  const [value, setValue] = useState('fruits');
+export default () => {
+  const [value, setValue] = useState('one');
   const tabList = [
-    { title: '水果', index: 'fruits' },
-    { title: '蔬菜', index: 'vegetables' },
-    { title: '动物', index: 'animals' },
+    { title: 'TAB ONE', index: 'one' },
+    { title: 'TAB TWO', index: 'two' },
+    { title: 'TAB THREE', index: 'three' },
   ];
   const handleClick = (e, { index }) => {
     console.log(`Click Tab, value index is: ${index}`);
@@ -22,14 +22,14 @@ export const TabsDemo = () => {
           </Tab>
         ))}
       </Tabs>
-      <TabPanel value={value} index="fruits">
-        菠萝
+      <TabPanel value={value} index="one">
+        Tab Panel 1
       </TabPanel>
-      <TabPanel value={value} index="vegetables">
-        西红柿
+      <TabPanel value={value} index="two">
+        Tab Panel 2
       </TabPanel>
-      <TabPanel value={value} index="animals">
-        蚂蚁
+      <TabPanel value={value} index="three">
+        Tab Panel 3
       </TabPanel>
     </Stack>
   );
