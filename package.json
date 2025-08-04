@@ -50,7 +50,8 @@
     "@bifrostui/react": "workspace:*",
     "@bifrostui/styles": "workspace:*",
     "backstopjs": "^6.3.25",
-    "react-color": "^2.19.3"
+    "react-color": "^2.19.3",
+    "dayjs": "^1.11.7"
   },
   "devDependencies": {
     "@ant-design/icons-svg": "4.4.2",

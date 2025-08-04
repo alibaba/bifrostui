@@ -13,7 +13,7 @@ import {
   Switch,
   Calendar,
 } from '@bifrostui/react';
-import { TabsDemo } from './canvas-demos';
+import * as demos from './canvas-demos';
 import { Typography } from './Typography';
 import './ThemeCanvas.less';
 
@@ -66,11 +66,13 @@ export const ThemeCanvas: FC<ThemeCanvasProps> = ({ componentName }) => {
       window.removeEventListener('resize', updateChildWidth);
     };
   }, []);
+
+  const Comp = demos[`${componentName}Demo`];
   return (
     <div className="theme-canvas" ref={themeCanvasElRef}>
-      {componentName === 'Tabs' ? (
+      {Comp ? (
         <div className="theme-canvas-rows">
-          <TabsDemo />
+          <Comp />
         </div>
       ) : (
         <>
