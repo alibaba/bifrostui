@@ -14,7 +14,7 @@ import cs from 'clsx';
 import componentThemeData from '../../constants/theme-vars.json';
 import { VARS_TYPE, BUILTIN_THEME, builtinThemes } from './constants';
 import { ThemeCanvas } from './ThemeCanvas';
-import './index.less';
+import './ThemeDesigner.less';
 
 enum ThemeMode {
   // 内置主题
@@ -52,7 +52,6 @@ const ThemeDesigner = () => {
   const [editableCssVarToken, setEditableCssVarToken] = useState('');
   const [selectOptions, setSelectOptions] = useState([]);
   const themePlaygroundRef = useRef<HTMLDivElement>();
-  const cssCanvasRef = useRef<HTMLDivElement>();
 
   useEffect(() => {
     const updateElementHeight = () => {
@@ -89,10 +88,10 @@ const ThemeDesigner = () => {
 
   const applyCssVars = (cssVars: Record<string, string> = {}) => {
     // 清空上一次的主题变量
-    cssCanvasRef.current.style.cssText = '';
+    document.body.style.cssText = '';
     // 应用最新的主题变量
     Object.entries(cssVars).forEach(([token, value]) => {
-      cssCanvasRef.current.style.setProperty(token, value);
+      document.body.style.setProperty(token, value);
     });
   };
 
@@ -138,12 +137,13 @@ const ThemeDesigner = () => {
   const onCustomComponentNameChange = (e, data) => {
     if (!data.value) return;
 
-    setActiveThemeCssVars(
+    const cssVars =
       data.value === CUSTOM_UNIVERSAL_VAR_NAME
         ? defaultLight?.cssVars
-        : componentThemeData[data.value]?.cssVars,
-    );
+        : componentThemeData[data.value]?.cssVars;
+    setActiveThemeCssVars(cssVars);
     setCustomComponentName(data.value);
+    applyCssVars(cssVars);
   };
 
   const onSwitchBuiltInTheme = (newBuiltinTheme: BUILTIN_THEME) => {
@@ -165,7 +165,7 @@ const ThemeDesigner = () => {
   };
 
   return (
-    <div className="bui-theme-designer">
+    <div className="theme-designer">
       <div className="theme-playground" ref={themePlaygroundRef}>
         <div className="theme-css-vars">
           <div className="theme-tabs">
@@ -292,8 +292,14 @@ const ThemeDesigner = () => {
             )}
           </div>
         </div>
-        <div className="theme-css-canvas scrollbar" ref={cssCanvasRef}>
-          <ThemeCanvas componentName={customComponentName} />
+        <div className="theme-css-canvas scrollbar">
+          <ThemeCanvas
+            componentName={
+              activeThemeMode === ThemeMode.BuiltinMode
+                ? ''
+                : customComponentName
+            }
+          />
         </div>
       </div>
     </div>
