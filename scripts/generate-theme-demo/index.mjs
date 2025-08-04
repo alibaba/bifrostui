@@ -17,7 +17,17 @@ const generateThemeDemo = async () => {
     const mdFile = formatMarkdown(mdPath);
     const { theme, codeModules } = mdFile ?? {};
     const filePath = `${targetDir}/${theme.enName}Demo.tsx`;
-    const fileContent = codeModules[0].code;
+    let fileContent = codeModules[0].code;
+    if (theme.enName === 'Stack') {
+      const srcRelativePath = path.relative(
+        import.meta.dirname,
+        '../../packages/bui-core/src',
+      );
+      fileContent = fileContent.replace(
+        './index.less',
+        `${srcRelativePath}/Stack/demo/index.less`,
+      );
+    }
     fse.writeFileSync(filePath, fileContent, 'utf8');
     const demoName = `${theme.enName}Demo`;
     entryList += `export { default as ${demoName} } from './${demoName}';
