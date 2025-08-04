@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Radio, RadioGroup, Stack } from '@bifrostui/react';
-import './index.less';
+import '../../../../packages/bui-core/src/Stack/demo/index.less';
 
 const StackDemo = () => {
   const [stackState, setStackState] = useState({
