@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { act, render, screen } from 'testing';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import ScrollView from '../ScrollView';
 
 describe('ScrollView', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers({ shouldAdvanceTime: true });
   });
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
   });
 
   const rootClass = 'bui-scroll';
@@ -54,9 +54,9 @@ describe('ScrollView', () => {
       value: 2000,
     });
 
-    const onScrollToUpper = jest.fn();
-    const onScrollToLower = jest.fn();
-    const onScroll = jest.fn();
+    const onScrollToUpper = vi.fn();
+    const onScrollToLower = vi.fn();
+    const onScroll = vi.fn();
     const { container } = render(
       <ScrollView
         scrollY
@@ -147,13 +147,13 @@ describe('ScrollView', () => {
       );
     };
     const { container } = render(<App />);
-    await act(async () =>
-      waitFor(() => {
-        expect(container.querySelector(`.${rootClass}`).scrollTop).toEqual(
-          2000,
-        );
-      }),
-    );
+    await act(async () => {
+      await vi.runAllTimers();
+    });
+    await act(async () => {
+      await vi.runAllTimers();
+    });
+    expect(container.querySelector(`.${rootClass}`).scrollTop).toEqual(2000);
 
     Object.defineProperty(
       HTMLElement.prototype,
@@ -162,7 +162,7 @@ describe('ScrollView', () => {
     );
   });
   it('can scroll to scrollTop/scrollLeft', async () => {
-    window.HTMLElement.prototype.scrollIntoView = jest.fn();
+    window.HTMLElement.prototype.scrollIntoView = vi.fn();
     // eslint-disable-next-line react/prop-types
     const App = ({ x = false, isAnimated = false, isInit = false }) => {
       const [scrollTop, setScrollTop] = useState(isInit ? 3000 : 0);
@@ -201,13 +201,17 @@ describe('ScrollView', () => {
       const { container } = render(
         <App isAnimated={isAnimated} x={x} isInit={isInit} />,
       );
-      await waitFor(() => {
-        expect(
-          container.querySelector(`.${rootClass}`)[
-            x ? 'scrollLeft' : 'scrollTop'
-          ],
-        ).toEqual(3000);
+      await act(async () => {
+        await vi.runAllTimers();
       });
+      await act(async () => {
+        await vi.runAllTimers();
+      });
+      expect(
+        container.querySelector(`.${rootClass}`)[
+          x ? 'scrollLeft' : 'scrollTop'
+        ],
+      ).toEqual(3000);
     };
 
     const testCases: [boolean, boolean, boolean][] = [
@@ -235,7 +239,8 @@ describe('ScrollView', () => {
           <div>Content</div>
         </ScrollView>,
       );
-      expect(container.querySelector(`.${rootClass}`)).toBeInTheDocument();
+      const scrollElement = container.querySelector(`.${rootClass}`);
+      expect(scrollElement).not.toBeNull();
     });
 
     it('should not throw error for invalid scrollIntoView id', () => {
@@ -250,7 +255,8 @@ describe('ScrollView', () => {
 
     it('should handle empty children', () => {
       const { container } = render(<ScrollView scrollY />);
-      expect(container.querySelector(`.${rootClass}`)).toBeInTheDocument();
+      const scrollElement = container.querySelector(`.${rootClass}`);
+      expect(scrollElement).not.toBeNull();
     });
   });
 
@@ -263,11 +269,13 @@ describe('ScrollView', () => {
       );
       const scrollView = container.querySelector(`.${rootClass}`);
       expect(scrollView).not.toBeNull();
-      (scrollView as HTMLElement).focus();
-      fireEvent.keyDown(scrollView, { key: 'ArrowDown', code: 'ArrowDown' });
-      // Note: JSDOM does not implement layouting, so scrollTop will not change.
-      // We are just testing that the event does not throw an error.
-      expect(scrollView.scrollTop).toBe(0);
+      if (scrollView) {
+        (scrollView as HTMLElement).focus();
+        fireEvent.keyDown(scrollView, { key: 'ArrowDown', code: 'ArrowDown' });
+        // Note: JSDOM does not implement layouting, so scrollTop will not change.
+        // We are just testing that the event does not throw an error.
+        expect(scrollView.scrollTop).toBe(0);
+      }
     });
   });
 });

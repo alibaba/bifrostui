@@ -12,8 +12,8 @@ import ItemSelector from '../ItemSelector';
 const items = require('./items.json');
 
 const title = '选择Item';
-const onSelect = jest.fn();
-const onClose = jest.fn();
+const onSelect = vi.fn();
+const onClose = vi.fn();
 
 const queryEle = (container, selector) => {
   return container.querySelector(selector);
@@ -50,16 +50,18 @@ describe('ItemSelector', () => {
       expect(
         queryEle(container, '.bui-item-selector-title'),
       ).toBeInTheDocument();
-      userEvent.click(container.querySelector('.bui-item-selector-btn-close'));
+      await userEvent.click(
+        container.querySelector('.bui-item-selector-btn-close'),
+      );
       expect(onClose).toHaveBeenCalledTimes(1);
-      userEvent.click(
+      await userEvent.click(
         container.querySelector(
           '.bui-item-selector-list-container .bui-item-selector-list-item',
         ),
       );
       expect(onSelect).toHaveBeenCalledTimes(1);
 
-      userEvent.click(container.querySelector('.bui-item-selector-item'));
+      await userEvent.click(container.querySelector('.bui-item-selector-item'));
       expect(onSelect).toHaveBeenCalledTimes(2);
 
       const $scrollView = container.querySelector(
@@ -70,8 +72,8 @@ describe('ItemSelector', () => {
       });
       expect($scrollView.scrollTop).toBe(200);
 
-      await waitFor(() => {
-        userEvent.click(
+      await waitFor(async () => {
+        await userEvent.click(
           container.querySelector(
             '.bui-item-selector-index-item[data-code="D"]',
           ),
@@ -82,7 +84,7 @@ describe('ItemSelector', () => {
         const itemCodeS = container.querySelector(
           '.bui-item-selector-index-item[data-code="S"]',
         );
-        const mockElementFromPoint = jest.fn(() => itemCodeS);
+        const mockElementFromPoint = vi.fn(() => itemCodeS);
         // 替换原生函数
         Object.defineProperty(document, 'elementFromPoint', {
           value: mockElementFromPoint,

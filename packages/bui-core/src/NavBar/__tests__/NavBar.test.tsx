@@ -2,11 +2,11 @@ import React from 'react';
 import { render, screen, isConformant } from 'testing';
 import NavBar from '../index';
 
-jest.mock('@bifrostui/utils', () => {
-  const originalModule = jest.requireActual('@bifrostui/utils');
+vi.mock('@bifrostui/utils', async () => {
+  const originalModule = await vi.importActual('@bifrostui/utils');
   return {
     ...originalModule,
-    useSize: jest.fn(() => ({ width: '100%', height: 45 })),
+    useSize: vi.fn(() => ({ width: '100%', height: 45 })),
   };
 });
 

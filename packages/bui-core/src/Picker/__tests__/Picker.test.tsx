@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  act,
-  fireEvent,
-  isConformant,
-  render,
-  screen,
-  userEvent,
-} from 'testing';
+import { act, fireEvent, isConformant, render, screen } from 'testing';
 import Picker from '..';
 
 describe('Picker', () => {
@@ -218,13 +211,13 @@ describe('Picker', () => {
   ];
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers({ shouldAdvanceTime: true });
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
-    jest.clearAllMocks();
+    vi.clearAllTimers();
+    vi.useRealTimers();
+    vi.clearAllMocks();
   });
 
   isConformant({
@@ -296,8 +289,8 @@ describe('Picker', () => {
     expect(content).toHaveStyle('height: 300px');
   });
 
-  it('should call `onConfirm` when click confirm button', () => {
-    const confirm = jest.fn((_, { value }) => value);
+  it('should call `onConfirm` when click confirm button', async () => {
+    const confirm = vi.fn((_, { value }) => value);
     render(
       <Picker
         open
@@ -306,17 +299,22 @@ describe('Picker', () => {
         options={cascadeData}
       />,
     );
+    await act(async () => {
+      await vi.runAllTimers();
+    });
     const comfirmButton = document.querySelector(`.${rootClass}-confirm`);
-    userEvent.click(comfirmButton);
+    await act(async () => {
+      fireEvent.click(comfirmButton);
+    });
     expect(confirm).toHaveBeenCalled();
     expect(confirm).toReturnWith([2, 6, 2]);
   });
 
-  it('should modify callback `value` when click confirm button', () => {
-    const confirm = jest.fn((_, { options, value }) => {
+  it('should modify callback `value` when click confirm button', async () => {
+    const confirm = vi.fn((_, { options, value }) => {
       return { options, value };
     });
-    const close = jest.fn((_, { options, value }) => {
+    const close = vi.fn((_, { options, value }) => {
       return { options, value };
     });
     render(
@@ -328,8 +326,13 @@ describe('Picker', () => {
         options={cascadeData}
       />,
     );
+    await act(async () => {
+      await vi.runAllTimers();
+    });
     const comfirmButton = document.querySelector(`.${rootClass}-confirm`);
-    userEvent.click(comfirmButton);
+    await act(async () => {
+      fireEvent.click(comfirmButton);
+    });
     expect(confirm).toHaveBeenCalled();
     expect(confirm).toReturnWith({
       options: cascadeCallbackOptions,
@@ -341,15 +344,20 @@ describe('Picker', () => {
     });
   });
 
-  it('should modify callback `value` when click cancel button', () => {
-    const close = jest.fn((_, { options, value }) => {
+  it('should modify callback `value` when click cancel button', async () => {
+    const close = vi.fn((_, { options, value }) => {
       return { options, value };
     });
     render(
       <Picker open onClose={close} value={[2, 6, 100]} options={cascadeData} />,
     );
+    await act(async () => {
+      await vi.runAllTimers();
+    });
     const cancelButton = document.querySelector(`.${rootClass}-cancel`);
-    userEvent.click(cancelButton);
+    await act(async () => {
+      fireEvent.click(cancelButton);
+    });
     expect(close).toReturnWith({
       options: [
         [
@@ -413,11 +421,11 @@ describe('Picker', () => {
     });
   });
 
-  it('should modify callback `value` when click confirm button in multiple picker', () => {
-    const confirm = jest.fn((_, { options, value }) => {
+  it('should modify callback `value` when click confirm button in multiple picker', async () => {
+    const confirm = vi.fn((_, { options, value }) => {
       return { options, value };
     });
-    const close = jest.fn((_, { options, value }) => {
+    const close = vi.fn((_, { options, value }) => {
       return { options, value };
     });
     render(
@@ -429,8 +437,13 @@ describe('Picker', () => {
         options={multiData}
       />,
     );
+    await act(async () => {
+      await vi.runAllTimers();
+    });
     const comfirmButton = document.querySelector(`.${rootClass}-confirm`);
-    userEvent.click(comfirmButton);
+    await act(async () => {
+      fireEvent.click(comfirmButton);
+    });
     expect(confirm).toHaveBeenCalled();
     expect(confirm).toReturnWith({
       options: multiData,
@@ -442,11 +455,11 @@ describe('Picker', () => {
     });
   });
 
-  it('should modify callback `value` when click confirm button in single picker', () => {
-    const confirm = jest.fn((_, { options, value }) => {
+  it('should modify callback `value` when click confirm button in single picker', async () => {
+    const confirm = vi.fn((_, { options, value }) => {
       return { options, value };
     });
-    const close = jest.fn((_, { options, value }) => {
+    const close = vi.fn((_, { options, value }) => {
       return { options, value };
     });
     render(
@@ -458,8 +471,13 @@ describe('Picker', () => {
         options={singleData}
       />,
     );
+    await act(async () => {
+      await vi.runAllTimers();
+    });
     const comfirmButton = document.querySelector(`.${rootClass}-confirm`);
-    userEvent.click(comfirmButton);
+    await act(async () => {
+      fireEvent.click(comfirmButton);
+    });
     expect(confirm).toHaveBeenCalled();
     expect(confirm).toReturnWith({
       options: singleData,
@@ -472,11 +490,11 @@ describe('Picker', () => {
   });
 
   it('should call cascade `onOptionChange` when select option', async () => {
-    const change = jest.fn((_, { value }) => value);
+    const change = vi.fn((_, { value }) => value);
     render(<Picker open onOptionChange={change} options={cascadeData} />);
 
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     const [panel1] = document.querySelectorAll(`.${rootClass}-panel`);
@@ -508,11 +526,11 @@ describe('Picker', () => {
   });
 
   it('should call multiple `onOptionChange` when select option', async () => {
-    const change = jest.fn((_, { value }) => value);
+    const change = vi.fn((_, { value }) => value);
     render(<Picker open onOptionChange={change} options={multiData} />);
 
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     const [, panel2] = document.querySelectorAll(`.${rootClass}-panel`);
@@ -544,11 +562,11 @@ describe('Picker', () => {
   });
 
   it('should roll with inertial', async () => {
-    const change = jest.fn((_, { value }) => value);
+    const change = vi.fn((_, { value }) => value);
     render(<Picker open onOptionChange={change} options={multiData} />);
 
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     const [, panel2] = document.querySelectorAll(`.${rootClass}-panel`);
@@ -590,21 +608,35 @@ describe('Picker', () => {
     expect(change).toReturnWith([1, 3]);
   });
 
-  it('should call `onCancel` when click cancel button', () => {
-    const cancel = jest.fn();
+  it('should call `onCancel` when click cancel button', async () => {
+    const cancel = vi.fn();
     render(<Picker open onCancel={cancel} options={cascadeData} />);
-    userEvent.click(document.querySelector(`.${rootClass}-cancel`));
+    await act(async () => {
+      await vi.runAllTimers();
+    });
+    await act(async () => {
+      fireEvent.click(document.querySelector(`.${rootClass}-cancel`));
+    });
     expect(cancel).toBeCalled();
   });
 
-  it('should call `onClose` when Picker hidden', () => {
-    const close = jest.fn();
+  it('should call `onClose` when Picker hidden', async () => {
+    const close = vi.fn();
     render(<Picker open onClose={close} options={cascadeData} />);
-    userEvent.click(document.querySelector(`.${rootClass}-cancel`));
+    await act(async () => {
+      await vi.runAllTimers();
+    });
+    await act(async () => {
+      fireEvent.click(document.querySelector(`.${rootClass}-cancel`));
+    });
     expect(close).toBeCalled();
-    userEvent.click(document.querySelector(`.${rootClass}-confirm`));
+    await act(async () => {
+      fireEvent.click(document.querySelector(`.${rootClass}-confirm`));
+    });
     expect(close).toBeCalled();
-    userEvent.click(document.querySelector('.bui-backdrop'));
+    await act(async () => {
+      fireEvent.click(document.querySelector('.bui-backdrop'));
+    });
     expect(close).toBeCalled();
   });
 });

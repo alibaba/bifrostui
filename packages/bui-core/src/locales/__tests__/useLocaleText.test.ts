@@ -1,26 +1,27 @@
+import { type Mock } from 'vitest';
 import useLocaleText from '../hooks/useLocaleText';
 import { useTheme } from '../../ThemeProvider';
 import enUS from '../en-US';
 import zhCN from '../zh-CN';
 
-jest.mock('../../ThemeProvider', () => ({
-  useTheme: jest.fn(),
+vi.mock('../../ThemeProvider', () => ({
+  useTheme: vi.fn(),
 }));
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 describe('useLocaleText', () => {
   it('should return the default Chinese localization for a component', () => {
-    (useTheme as jest.Mock).mockReturnValue({ locale: undefined });
+    (useTheme as Mock).mockReturnValue({ locale: undefined });
 
     const result = useLocaleText('calendar');
     expect(result).toEqual(zhCN.calendar);
   });
 
   it('should return the custom English localization for a component', () => {
-    (useTheme as jest.Mock).mockReturnValue({ locale: enUS });
+    (useTheme as Mock).mockReturnValue({ locale: enUS });
 
     const result = useLocaleText('calendar');
     expect(result).toEqual(enUS.calendar);
@@ -33,7 +34,7 @@ describe('useLocaleText', () => {
       },
     };
 
-    (useTheme as jest.Mock).mockReturnValue({ locale: customLocale });
+    (useTheme as Mock).mockReturnValue({ locale: customLocale });
 
     const result = useLocaleText('calendar');
     expect(result).toEqual({

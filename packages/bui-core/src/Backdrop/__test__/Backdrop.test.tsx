@@ -6,7 +6,7 @@ describe('Backdrop', () => {
   const classPrefix = 'bui-backdrop';
 
   it('should fire onClick event when click backdrop', () => {
-    const clickFn = jest.fn();
+    const clickFn = vi.fn();
     const { container } = render(
       <Backdrop open timeout={1000} onClick={clickFn} />,
     );
