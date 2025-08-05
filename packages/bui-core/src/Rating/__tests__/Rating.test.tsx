@@ -1,5 +1,6 @@
 import React from 'react';
-import { isConformant, render, screen, userEvent } from 'testing';
+import { act, isConformant, render, screen, userEvent } from 'testing';
+import { vi } from 'vitest';
 import Rating from '../index';
 
 describe('Rating', () => {
@@ -38,8 +39,8 @@ describe('Rating', () => {
   });
 
   it('the count of icons can be customized', () => {
-    render(<Rating count={8} />);
-    expect(screen.queryAllByRole('radio').length).toBe(8);
+    const { container } = render(<Rating count={8} />);
+    expect(container.querySelectorAll(`.${rootClass}-item`).length).toBe(8);
   });
   it('allow to render half', () => {
     const { container } = render(<Rating value={4.6} allowHalf />);
@@ -51,9 +52,19 @@ describe('Rating', () => {
     );
   });
 
-  it('disabled rating can not respond to events', () => {
+  it('disabled rating can not respond to events', async () => {
     const { container } = render(<Rating defaultValue={3} disabled />);
-    userEvent.click(container.querySelectorAll('.bui-rating-item')[2]);
+
+    await act(async () => {
+      try {
+        await userEvent.click(
+          container.querySelectorAll('.bui-rating-item')[2],
+        );
+      } catch (error) {
+        // 忽略 pointer-events: none 错误，这是预期的行为
+      }
+    });
+
     expect(container.querySelectorAll(`.${rootClass}-item-active`).length).toBe(
       3,
     );
@@ -62,10 +73,12 @@ describe('Rating', () => {
     );
   });
 
-  it('read only not clickable', () => {
-    const handleChange = jest.fn();
+  it('read only not clickable', async () => {
+    const handleChange = vi.fn();
     const { container } = render(<Rating readOnly onChange={handleChange} />);
-    userEvent.click(container.querySelector(`.${rootClass}-item-readonly`));
+    await userEvent.click(
+      container.querySelector(`.${rootClass}-item-readonly`),
+    );
     expect(handleChange).not.toBeCalled();
   });
 
@@ -85,38 +98,38 @@ describe('Rating', () => {
   //   },
   // );
 
-  it('should fire change event when click rate item', () => {
-    const handleChange = jest.fn();
+  it('should fire change event when click rate item', async () => {
+    const handleChange = vi.fn();
     const { container } = render(<Rating onChange={handleChange} />);
     expect(container.querySelectorAll(`.${rootClass}-item-active`).length).toBe(
       0,
     );
-    userEvent.click(container.querySelector(`.${rootClass}-item`));
+    await userEvent.click(container.querySelector(`.${rootClass}-item`));
     expect(container.querySelectorAll(`.${rootClass}-item-active`).length).toBe(
       1,
     );
     expect(handleChange).toBeCalled();
   });
 
-  it('click again to clear active status', () => {
+  it('click again to clear active status', async () => {
     const { container } = render(<Rating />);
-    userEvent.click(container.querySelector(`.${rootClass}-item`));
+    await userEvent.click(container.querySelector(`.${rootClass}-item`));
     expect(container.querySelectorAll(`.${rootClass}-item-active`).length).toBe(
       1,
     );
-    userEvent.click(container.querySelector(`.${rootClass}-item`));
+    await userEvent.click(container.querySelector(`.${rootClass}-item`));
     expect(container.querySelectorAll(`.${rootClass}-item-active`).length).toBe(
       0,
     );
   });
 
-  it('click again to can not clear active status', () => {
+  it('click again to can not clear active status', async () => {
     const { container } = render(<Rating disableClear />);
-    userEvent.click(container.querySelector(`.${rootClass}-item`));
+    await userEvent.click(container.querySelector(`.${rootClass}-item`));
     expect(container.querySelectorAll(`.${rootClass}-item-active`).length).toBe(
       1,
     );
-    userEvent.click(container.querySelector(`.${rootClass}-item`));
+    await userEvent.click(container.querySelector(`.${rootClass}-item`));
     expect(container.querySelectorAll(`.${rootClass}-item-active`).length).toBe(
       1,
     );

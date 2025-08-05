@@ -1,16 +1,17 @@
 import React from 'react';
 import { render, screen, waitFor } from 'testing';
+import { vi } from 'vitest';
 import { Transition } from '../Transition';
 
 describe('Transition', () => {
   it('will change status and execute callbacks by in prop', async () => {
     const ons = {
-      onEnter: jest.fn(),
-      onEntering: jest.fn(),
-      onEntered: jest.fn(),
-      onExit: jest.fn(),
-      onExiting: jest.fn(),
-      onExited: jest.fn(),
+      onEnter: vi.fn(),
+      onEntering: vi.fn(),
+      onEntered: vi.fn(),
+      onExit: vi.fn(),
+      onExiting: vi.fn(),
+      onExited: vi.fn(),
     };
     const renderFn = (s) => <div data-testid="status">{s}</div>;
     const { rerender } = render(
@@ -72,12 +73,12 @@ describe('Transition', () => {
 
   it('will appear', async () => {
     const ons = {
-      onEnter: jest.fn(),
-      onEntering: jest.fn(),
-      onEntered: jest.fn(),
-      onExit: jest.fn(),
-      onExiting: jest.fn(),
-      onExited: jest.fn(),
+      onEnter: vi.fn(),
+      onEntering: vi.fn(),
+      onEntered: vi.fn(),
+      onExit: vi.fn(),
+      onExiting: vi.fn(),
+      onExited: vi.fn(),
     };
     const renderFn = (s) => <div data-testid="status">{s}</div>;
     render(

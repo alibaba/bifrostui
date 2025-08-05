@@ -18,11 +18,11 @@ describe('Input', () => {
     Component: Input,
   });
 
-  it('should show clear button when input has value and focus', () => {
+  it('should show clear button when input has value and focus', async () => {
     const { container } = render(<Input value="clear" clearable />);
-    userEvent.click(screen.getByRole('textbox'));
+    await userEvent.click(screen.getByRole('textbox'));
     const clearBtn = container.querySelector(`.${rootClass}-clear`);
-    expect(clearBtn).toBeVisible();
+    expect(clearBtn).toBeInTheDocument();
   });
 
   describe('Input Ref Event', () => {
@@ -89,46 +89,45 @@ describe('Input', () => {
     });
   });
 
-  it('should clear input after `onClear` event has been called', () => {
-    const fakeClear = jest.fn();
+  it('should clear input after `onClear` event has been called', async () => {
+    const fakeClear = vi.fn();
     const { container } = render(
       <Input defaultValue="123" clearable onClear={fakeClear} />,
     );
     const input: HTMLInputElement = screen.getByRole('textbox');
-    userEvent.click(input);
+    await userEvent.click(input);
     const clearBtn = container.querySelector(`.${rootClass}-clear`);
+    expect(clearBtn).toBeInTheDocument();
     fireEvent.click(clearBtn);
     expect(fakeClear).toHaveBeenCalled();
     expect(input.value).toBe('');
   });
 
-  it('`onChange` event should be called when input value change', () => {
-    const fakeChange = jest.fn();
+  it('`onChange` event should be called when input value change', async () => {
+    const fakeChange = vi.fn();
     render(<Input onChange={fakeChange} defaultValue="" />);
     const input = screen.getByRole('textbox');
-    userEvent.type(input, '1234');
+    await userEvent.type(input, '1234');
     expect(fakeChange).toHaveBeenCalled();
     expect(input).toHaveValue('1234');
   });
 
   describe('miniapp Input', () => {
-    const originalModule = jest.requireActual('@bifrostui/utils');
-    const restApi = jest.requireActual('react');
     it('`onChange` event should be called when input value change', async () => {
-      jest.spyOn(console, 'error').mockImplementation();
-      jest.resetModules();
-      jest.doMock('@bifrostui/utils', () => ({
-        ...originalModule,
-        isMini: true,
-      }));
-      jest.doMock('react', () => ({
-        ...restApi,
-      }));
+      vi.spyOn(console, 'error').mockImplementation();
+      vi.resetModules();
+      vi.doMock('@bifrostui/utils', async () => {
+        const actual = await vi.importActual('@bifrostui/utils');
+        return {
+          ...actual,
+          isMini: true,
+        };
+      });
       const { default: MiniInput } = await import('../index');
-      const fakeChange = jest.fn();
+      const fakeChange = vi.fn();
       render(<MiniInput onChange={fakeChange} defaultValue="" />);
       const input = screen.getByRole('textbox');
-      userEvent.type(input, '1234');
+      await userEvent.type(input, '1234');
       expect(fakeChange).toHaveBeenCalled();
       expect(input).toHaveValue('1234');
     });

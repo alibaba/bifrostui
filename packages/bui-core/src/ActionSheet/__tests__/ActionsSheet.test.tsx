@@ -1,15 +1,22 @@
 import React from 'react';
-import { act, isConformant, render, screen, userEvent } from 'testing';
+import {
+  act,
+  isConformant,
+  render,
+  screen,
+  userEvent,
+  fireEvent,
+} from 'testing';
 import { ActionSheet, ActionSheetItem } from '../index';
 
 describe('ActionSheet', () => {
   const rootClass = 'bui-action-sheet';
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
   });
 
   isConformant({
@@ -36,7 +43,7 @@ describe('ActionSheet', () => {
       </ActionSheet>,
     );
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -81,7 +88,7 @@ describe('ActionSheet', () => {
   });
 
   it('onClick can not be called when actions item disabled', () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(
       <ActionSheet open>
         <ActionSheetItem>action item copy</ActionSheetItem>
@@ -96,15 +103,16 @@ describe('ActionSheet', () => {
     expect(onClick).not.toHaveBeenCalled();
   });
 
-  it('actions item onclick function should be called', () => {
-    const onClick = jest.fn();
+  it('actions item onclick function should be called', async () => {
+    const onClick = vi.fn();
     render(
       <ActionSheet open>
         <ActionSheetItem>action item copy</ActionSheetItem>
         <ActionSheetItem onClick={onClick}>action item edit</ActionSheetItem>
       </ActionSheet>,
     );
-    userEvent.click(screen.getByText(/action item edit/));
+    fireEvent.click(screen.getByText(/action item edit/));
+    await vi.runAllTimers();
     expect(onClick).toHaveBeenCalled();
   });
 
@@ -156,8 +164,8 @@ describe('ActionSheet', () => {
       );
     },
   );
-  it('action item triggers click event', () => {
-    const onClick = jest.fn((_, { index }) => index);
+  it('action item triggers click event', async () => {
+    const onClick = vi.fn((_, { index }) => index);
     render(
       <ActionSheet open>
         <ActionSheetItem index={2} onClick={onClick}>
@@ -165,19 +173,21 @@ describe('ActionSheet', () => {
         </ActionSheetItem>
       </ActionSheet>,
     );
-    userEvent.click(screen.getByText('action item edit'));
+    fireEvent.click(screen.getByText('action item edit'));
+    await vi.runAllTimers();
     expect(onClick).toHaveBeenCalled();
     expect(onClick).toReturnWith(2);
   });
-  it('When action item triggers a click event onSelect will respond', () => {
-    const onSelect = jest.fn((_, { index }) => index);
+  it('When action item triggers a click event onSelect will respond', async () => {
+    const onSelect = vi.fn((_, { index }) => index);
     render(
       <ActionSheet onSelect={onSelect} open>
         <ActionSheetItem index={1}>action item copy</ActionSheetItem>
         <ActionSheetItem index={2}>action item edit</ActionSheetItem>
       </ActionSheet>,
     );
-    userEvent.click(screen.getByText('action item edit'));
+    fireEvent.click(screen.getByText('action item edit'));
+    await vi.runAllTimers();
     expect(onSelect).toHaveBeenCalled();
     expect(onSelect).toReturnWith(2);
   });
@@ -199,7 +209,7 @@ describe('ActionSheet', () => {
 
   describe('handle onClose function', () => {
     it('onClose callback not work with default', () => {
-      const onClose = jest.fn();
+      const onClose = vi.fn();
       render(
         <ActionSheet onClose={onClose} open>
           <ActionSheetItem>action item copy</ActionSheetItem>
@@ -209,15 +219,16 @@ describe('ActionSheet', () => {
       userEvent.click(screen.getByText(/action item edit/));
       expect(onClose).not.toHaveBeenCalled();
     });
-    it('onClose should be called width closeOnAction equal true', () => {
-      const onClose = jest.fn();
+    it('onClose should be called width closeOnAction equal true', async () => {
+      const onClose = vi.fn();
       render(
         <ActionSheet onClose={onClose} open cancelText="cancel">
           <ActionSheetItem>action item copy</ActionSheetItem>
           <ActionSheetItem>action item edit</ActionSheetItem>
         </ActionSheet>,
       );
-      userEvent.click(screen.getByText('cancel'));
+      fireEvent.click(screen.getByText('cancel'));
+      await vi.runAllTimers();
       expect(onClose).toHaveBeenCalled();
     });
   });

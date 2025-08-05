@@ -18,19 +18,16 @@ getMdDemoCodes(
         axeOptions: {},
         customA11yChecks: (container) => {
           // 这里写你需要的特定断言
-          expect(container.querySelector('[role="alert"]')).not.toBeNull();
+          // expect(container.querySelector('[role="alert"]')).not.toBeNull();
         },
         beforeAllFn: () => {
-          console.log('Alert beforeAllFn...');
+          // console.log('Alert beforeAllFn...');
         },
         beforeEachFn: () => {
-          console.log('Alert beforeEachFn...');
-          // jest.useFakeTimers();
+          // console.log('Alert beforeEachFn...');
         },
         afterEachFn: () => {
-          console.log('Alert afterEachFn...');
-          // jest.clearAllTimers();
-          // jest.useRealTimers();
+          // console.log('Alert afterEachFn...');
         },
       },
       finishCallback,

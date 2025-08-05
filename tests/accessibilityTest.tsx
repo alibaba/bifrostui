@@ -1,9 +1,8 @@
 /* eslint-disable */
 import React from 'react';
 import { render } from '@testing-library/react';
-import { axe, AxeResults, toHaveNoViolations } from 'jest-axe';
-import axeCore, { resultGroups } from 'axe-core';
-expect.extend(toHaveNoViolations);
+import { axe } from 'vitest-axe';
+import { resultGroups } from 'axe-core';
 
 type Rules = {
   [key: string]: {
@@ -66,7 +65,7 @@ const convertRulesToAxeFormat = (rules: string[]): Rules => {
 };
 
 function accessibilityTest(
-  Component: React.ComponentType,
+  Component: React.ComponentType | (() => Promise<{ default: React.ComponentType }>),
   options: Options,
   disabledRules?: string[],
   finishCallback?: (...args: any[]) => void
@@ -86,28 +85,32 @@ function accessibilityTest(
   it(
     `${options.componentName} does not have any violations`,
     async () => {
-      const { container } = render(<Component />);
+      // 处理异步组件
+      let ActualComponent: React.ComponentType;
+      if (typeof Component === 'function') {
+        try {
+          const result = await (Component as any)();
+          ActualComponent = result.default || result;
+        } catch {
+          ActualComponent = Component as React.ComponentType;
+        }
+      } else {
+        ActualComponent = Component;
+      }
+      
+      const { container } = render(<ActualComponent />);
 
       const rules = convertRulesToAxeFormat(disabledRules || []);
       const axeOptions = {
         rules,
         ...options?.axeOptions,
         runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'],
-        resultTypes: ['violations', 'incomplete', 'inapplicable'],
+        resultTypes: ['violations', 'incomplete', 'inapplicable'] as resultGroups[],
       };
 
       const results = await axe(container, axeOptions);
-      (expect(results) as any).toHaveNoViolations();
-      // const axeOptions = {
-      //   rules,
-      //   ...options.axeOptions,
-      //   runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'],
-      //   resultTypes: ['violations'] as resultGroups[]
-      // };
-
-      // const results2 = await axeCore.run(container, axeOptions);
-      // expect(results2).toHaveNoViolations();
-      // ---- 新增：自定义断言 -------
+      expect(results.violations).toHaveLength(0);
+      
       if (options.customA11yChecks) {
         options.customA11yChecks(container);
       }
