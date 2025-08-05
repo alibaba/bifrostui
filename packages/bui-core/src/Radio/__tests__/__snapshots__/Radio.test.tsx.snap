@@ -1,4 +1,188 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Radio > Radio label placement > label should on the bottom 1`] = `
+<div
+  class="bui-radio bui-radio-label-bottom"
+  data-testid="bui-radio"
+>
+  <input
+    class="bui-radio-input"
+    type="radio"
+    value=""
+  />
+  <div
+    class="bui-radio-icon"
+  >
+    <span
+      class="bui-radio-btn-icon"
+    >
+      <svg
+        class="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+        color="var(--bui-color-fg-subtle)"
+        focusable="false"
+        viewBox="0 0 96 96"
+      >
+        <path
+          d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"
+        />
+      </svg>
+      <svg
+        class="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+        color="var(--bui-color-fg-subtle)"
+        focusable="false"
+        viewBox="0 0 96 96"
+      >
+        <path
+          d="M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0"
+        />
+      </svg>
+    </span>
+  </div>
+  <div
+    class="bui-radio-label"
+  >
+    淘票票
+  </div>
+</div>
+`;
+
+exports[`Radio > Radio label placement > label should on the left 1`] = `
+<div
+  class="bui-radio bui-radio-label-left"
+  data-testid="bui-radio"
+>
+  <input
+    class="bui-radio-input"
+    type="radio"
+    value=""
+  />
+  <div
+    class="bui-radio-icon"
+  >
+    <span
+      class="bui-radio-btn-icon"
+    >
+      <svg
+        class="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+        color="var(--bui-color-fg-subtle)"
+        focusable="false"
+        viewBox="0 0 96 96"
+      >
+        <path
+          d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"
+        />
+      </svg>
+      <svg
+        class="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+        color="var(--bui-color-fg-subtle)"
+        focusable="false"
+        viewBox="0 0 96 96"
+      >
+        <path
+          d="M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0"
+        />
+      </svg>
+    </span>
+  </div>
+  <div
+    class="bui-radio-label"
+  >
+    淘票票
+  </div>
+</div>
+`;
+
+exports[`Radio > Radio label placement > label should on the right 1`] = `
+<div
+  class="bui-radio bui-radio-label-right"
+  data-testid="bui-radio"
+>
+  <input
+    class="bui-radio-input"
+    type="radio"
+    value=""
+  />
+  <div
+    class="bui-radio-icon"
+  >
+    <span
+      class="bui-radio-btn-icon"
+    >
+      <svg
+        class="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+        color="var(--bui-color-fg-subtle)"
+        focusable="false"
+        viewBox="0 0 96 96"
+      >
+        <path
+          d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"
+        />
+      </svg>
+      <svg
+        class="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+        color="var(--bui-color-fg-subtle)"
+        focusable="false"
+        viewBox="0 0 96 96"
+      >
+        <path
+          d="M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0"
+        />
+      </svg>
+    </span>
+  </div>
+  <div
+    class="bui-radio-label"
+  >
+    淘票票
+  </div>
+</div>
+`;
+
+exports[`Radio > Radio label placement > label should on the top 1`] = `
+<div
+  class="bui-radio bui-radio-label-top"
+  data-testid="bui-radio"
+>
+  <input
+    class="bui-radio-input"
+    type="radio"
+    value=""
+  />
+  <div
+    class="bui-radio-icon"
+  >
+    <span
+      class="bui-radio-btn-icon"
+    >
+      <svg
+        class="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
+        color="var(--bui-color-fg-subtle)"
+        focusable="false"
+        viewBox="0 0 96 96"
+      >
+        <path
+          d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"
+        />
+      </svg>
+      <svg
+        class="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
+        color="var(--bui-color-fg-subtle)"
+        focusable="false"
+        viewBox="0 0 96 96"
+      >
+        <path
+          d="M28 48a20 20 0 1 0 40 0 20 20 0 1 0-40 0"
+        />
+      </svg>
+    </span>
+  </div>
+  <div
+    class="bui-radio-label"
+  >
+    淘票票
+  </div>
+</div>
+`;
 
 exports[`Radio Radio label placement label should on the bottom 1`] = `
 <div

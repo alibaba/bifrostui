@@ -66,7 +66,7 @@ describe('Switch', () => {
   });
 
   it('should call onChange', async () => {
-    const changeFn = jest.fn();
+    const changeFn = vi.fn();
     function Component() {
       const [checked] = useState(false);
       return <Switch checked={checked} onChange={changeFn} />;

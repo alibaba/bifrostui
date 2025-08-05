@@ -44,7 +44,7 @@ function createCaseByPickerType() {
 
   Object.values(DatePickerType).forEach((type) => {
     it(`should call onChange when the ${type} option is changed`, async () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       render(
         <DatePicker
           open
@@ -55,7 +55,7 @@ function createCaseByPickerType() {
       );
 
       await act(async () => {
-        await jest.runAllTimers();
+        await vi.runAllTimers();
       });
 
       const panel = document.querySelector('.bui-picker-panel');
@@ -74,13 +74,13 @@ function createCaseByPickerType() {
 
 describe('DatePicker', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
-    jest.clearAllMocks();
+    vi.clearAllTimers();
+    vi.useRealTimers();
+    vi.clearAllMocks();
   });
 
   isConformant({
@@ -150,7 +150,7 @@ describe('DatePicker', () => {
   });
 
   it('should call onConfirm when confirm button is clicked', () => {
-    const onConfirm = jest.fn();
+    const onConfirm = vi.fn();
     render(
       <DatePicker open defaultValue={currentDate} onConfirm={onConfirm} />,
     );
@@ -165,7 +165,7 @@ describe('DatePicker', () => {
   });
 
   it('should call onClose when close button is clicked', () => {
-    const onClose = jest.fn();
+    const onClose = vi.fn();
     render(<DatePicker open defaultValue={currentDate} onClose={onClose} />);
     const closeButton = document.querySelector('.bui-picker-cancel');
     fireEvent.click(closeButton);
@@ -227,7 +227,7 @@ describe('DatePicker', () => {
 
   it('should handle invalid date value', () => {
     const invalidDate = new Date('invalid');
-    const onConfirm = jest.fn();
+    const onConfirm = vi.fn();
     render(
       <DatePicker
         open
@@ -249,7 +249,7 @@ describe('DatePicker', () => {
 
   it('should handle date value less than minDate', () => {
     const dateBeforeMinDate = new Date(minDate.getFullYear() - 1, 0, 1);
-    const onConfirm = jest.fn();
+    const onConfirm = vi.fn();
     render(
       <DatePicker
         open
@@ -270,7 +270,7 @@ describe('DatePicker', () => {
 
   it('should handle date value greater than maxDate', () => {
     const dateAfterMaxDate = new Date(maxDate.getFullYear() + 1, 0, 1);
-    const onConfirm = jest.fn();
+    const onConfirm = vi.fn();
     render(
       <DatePicker
         open
@@ -291,7 +291,7 @@ describe('DatePicker', () => {
 
   it('should adjust the date if it exceeds the max day of the new month', () => {
     const date = new Date(2025, 0, 31);
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     render(
       <DatePicker
         open
@@ -344,7 +344,7 @@ describe('DatePicker', () => {
 
   it('show throw error when views is invalid', () => {
     expect(() => {
-      render(<DatePicker open views={['invalid' as any]} />);
+      render(<DatePicker open views={['invalid' as DatePickerType]} />);
     }).toThrowError('错误的picker类型：invalid');
   });
 });

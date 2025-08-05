@@ -3,18 +3,16 @@ import { act, fireEvent, isConformant, render, screen } from 'testing';
 import Slider from '..';
 
 describe('Slider', () => {
-  const originalModule = jest.requireActual('@bifrostui/utils');
-  const restApi = jest.requireActual('react');
   const rootClass = 'bui-slider';
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
-    jest.clearAllMocks();
+    vi.clearAllTimers();
+    vi.useRealTimers();
+    vi.clearAllMocks();
   });
 
   isConformant({
@@ -24,7 +22,7 @@ describe('Slider', () => {
   });
 
   it('should render with default properties', () => {
-    const fakeFn = jest.fn();
+    const fakeFn = vi.fn();
     const { container } = render(<Slider value={10} onChange={fakeFn} />);
     const slider = container.querySelector(`.${rootClass}`);
     expect(slider).toMatchSnapshot();
@@ -89,7 +87,7 @@ describe('Slider', () => {
   });
 
   it('should render startIcon', () => {
-    const fakeChange = jest.fn();
+    const fakeChange = vi.fn();
     const { container } = render(
       <Slider
         value={10}
@@ -102,7 +100,7 @@ describe('Slider', () => {
   });
 
   it('should render endIcon', () => {
-    const fakeChange = jest.fn();
+    const fakeChange = vi.fn();
     const { container } = render(
       <Slider
         value={[10, 20]}
@@ -122,7 +120,7 @@ describe('Slider', () => {
       />,
     );
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     act(() => {
       const button = screen.getByRole('slider');
@@ -134,7 +132,7 @@ describe('Slider', () => {
         cancelable: true,
         bubbles: true,
       });
-      const touchMove = jest.fn();
+      const touchMove = vi.fn();
       button.addEventListener('touchmove', touchMove, false);
 
       button.dispatchEvent(mousedown);
@@ -153,7 +151,7 @@ describe('Slider', () => {
       />,
     );
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     act(() => {
       const button = screen.getByRole('slider');
@@ -169,7 +167,7 @@ describe('Slider', () => {
         cancelable: true,
         bubbles: true,
       });
-      const touchEnd = jest.fn();
+      const touchEnd = vi.fn();
       button.addEventListener('touchend', touchEnd, false);
 
       button.dispatchEvent(mousedown);
@@ -183,25 +181,31 @@ describe('Slider', () => {
   it('should trigger touchmove event with range mode', async () => {
     const pageX = 30;
     const totalWidth = 300;
-    jest.resetModules();
+    vi.resetModules();
     // mock getBoundingClientRect
-    jest.doMock('@bifrostui/utils', () => ({
-      ...originalModule,
-      getBoundingClientRect: () => {
-        return Promise.resolve({
-          width: totalWidth,
-        });
-      },
-    }));
-    jest.doMock('react', () => ({
-      ...restApi,
-    }));
+    vi.doMock('@bifrostui/utils', async () => {
+      const actual = await vi.importActual('@bifrostui/utils');
+      return {
+        ...actual,
+        getBoundingClientRect: () => {
+          return Promise.resolve({
+            width: totalWidth,
+          });
+        },
+      };
+    });
+    vi.doMock('react', async () => {
+      const actual = await vi.importActual('react');
+      return {
+        ...actual,
+      };
+    });
 
     const { default: FakeSlider } = await import('../index');
 
     render(<FakeSlider defaultValue={[0, 5]} />);
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     const [button1] = screen.getAllByRole('slider');
@@ -234,25 +238,31 @@ describe('Slider', () => {
   it('should not swap end button', async () => {
     const pageX = 30;
     const totalWidth = 300;
-    jest.resetModules();
+    vi.resetModules();
     // mock getBoundingClientRect
-    jest.doMock('@bifrostui/utils', () => ({
-      ...originalModule,
-      getBoundingClientRect: () => {
-        return Promise.resolve({
-          width: totalWidth,
-        });
-      },
-    }));
-    jest.doMock('react', () => ({
-      ...restApi,
-    }));
+    vi.doMock('@bifrostui/utils', async () => {
+      const actual = await vi.importActual('@bifrostui/utils');
+      return {
+        ...actual,
+        getBoundingClientRect: () => {
+          return Promise.resolve({
+            width: totalWidth,
+          });
+        },
+      };
+    });
+    vi.doMock('react', async () => {
+      const actual = await vi.importActual('react');
+      return {
+        ...actual,
+      };
+    });
 
     const { default: FakeSlider } = await import('../index');
 
     render(<FakeSlider defaultValue={[0, 5]} disableSwap />);
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     const [button1, button2] = screen.getAllByRole('slider');
@@ -284,25 +294,31 @@ describe('Slider', () => {
   it('should not swap start button', async () => {
     const pageX = 60;
     const totalWidth = 300;
-    jest.resetModules();
+    vi.resetModules();
     // mock getBoundingClientRect
-    jest.doMock('@bifrostui/utils', () => ({
-      ...originalModule,
-      getBoundingClientRect: () => {
-        return Promise.resolve({
-          width: totalWidth,
-        });
-      },
-    }));
-    jest.doMock('react', () => ({
-      ...restApi,
-    }));
+    vi.doMock('@bifrostui/utils', async () => {
+      const actual = await vi.importActual('@bifrostui/utils');
+      return {
+        ...actual,
+        getBoundingClientRect: () => {
+          return Promise.resolve({
+            width: totalWidth,
+          });
+        },
+      };
+    });
+    vi.doMock('react', async () => {
+      const actual = await vi.importActual('react');
+      return {
+        ...actual,
+      };
+    });
 
     const { default: FakeSlider } = await import('../index');
 
     render(<FakeSlider defaultValue={[30, 60]} disableSwap />);
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     const [button1, button2] = screen.getAllByRole('slider');
