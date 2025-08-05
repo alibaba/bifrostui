@@ -1,4 +1,1170 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`List snapshot > List demo snapshot 0 1`] = `
+<div
+  className="bui-stack"
+  style={
+    {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "backgroundColor": "rgb(238, 238, 238)",
+      "padding": "20px 10px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "350px",
+      }
+    }
+  >
+    <div
+      className="bui-list bui-list-medium"
+      style={
+        {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-list-item bui-list-item-divider"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-content"
+        >
+          <div
+            className="bui-list-item-content-primary"
+          >
+            <div>
+              回收站
+            </div>
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+      <div
+        className="bui-list-item bui-list-item-divider"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-content"
+        >
+          <div
+            className="bui-list-item-content-primary"
+          >
+            <div>
+              设置
+            </div>
+          </div>
+          <div
+            className="bui-list-item-content-secondary"
+          >
+            <div>
+              音量设置
+            </div>
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`List snapshot > List demo snapshot 0 2`] = `
+<div
+  className="bui-stack"
+  style={
+    {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "backgroundColor": "rgb(238, 238, 238)",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "350px",
+      }
+    }
+  >
+    <div
+      className="bui-list bui-list-medium"
+      style={
+        {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-list-item bui-list-item-divider"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-header"
+        >
+          <svg
+            className="bui-svg-icon"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M68.3 56.5c9.1 3.3 13.8 13.2 10.8 22.3l-.3.8C75.6 88.5 64.8 93 56.4 90l-4-1.5h-.1c-12.8-5.9-24.4-16.6-30-27.8-6.7-13.2-8.4-30.3-3.5-43.9C22.4 7.1 32.2 2.7 41.7 6.2c9.3 3.4 14 13.6 10.6 22.9-2.4 6.5-8.2 10.5-14.9 11 .8 3.8 2.1 7.6 3.9 11.2C43.4 55.4 46 59 49 62c4.7-5.7 12.1-8.1 19.3-5.5z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+        <div
+          className="bui-list-item-content"
+        >
+          <div
+            className="bui-list-item-content-primary"
+          >
+            <div>
+              飞行模式
+            </div>
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        />
+        <div
+          className="bui-list-item-extra"
+          onClick={[Function]}
+        >
+          <div
+            className="bui-switch bui-switch-medium bui-switch-primary"
+          >
+            <input
+              checked={false}
+              className="bui-switch-input"
+              disabled={false}
+              onChange={[Function]}
+              type="checkbox"
+            />
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`List snapshot > List demo snapshot 0 3`] = `
+<div
+  className="bui-stack"
+  style={
+    {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "backgroundColor": "rgb(238, 238, 238)",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "350px",
+      }
+    }
+  >
+    <div
+      className="bui-list bui-list-medium"
+      style={
+        {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-list-item bui-list-item-divider bui-list-item-disabled"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-content"
+        >
+          <div
+            className="bui-list-item-content-primary"
+          >
+            <div
+              onClick={[Function]}
+            >
+              回收站
+            </div>
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+      <div
+        className="bui-list-item bui-list-item-divider"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-content"
+        >
+          <div
+            className="bui-list-item-content-primary"
+          >
+            <div>
+              设置
+            </div>
+          </div>
+          <div
+            className="bui-list-item-content-secondary"
+          >
+            <div>
+              清除回收站
+            </div>
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`List snapshot > List demo snapshot 0 4`] = `
+<div
+  className="bui-stack"
+  style={
+    {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "backgroundColor": "rgb(238, 238, 238)",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "350px",
+      }
+    }
+  >
+    <div
+      className="bui-list bui-list-medium"
+      style={
+        {
+          "width": "100%",
+        }
+      }
+    >
+      <div>
+        系统
+      </div>
+      <div>
+        系统设置
+      </div>
+      <div
+        className="bui-list-item bui-list-item-divider"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-content"
+        >
+          <div
+            className="bui-list-item-content-primary"
+          >
+            <div>
+              主题设置
+            </div>
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+      <div
+        className="bui-list-item bui-list-item-divider"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-content"
+        >
+          <div
+            className="bui-list-item-content-primary"
+          >
+            <div>
+              音量设置
+            </div>
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`List snapshot > List demo snapshot 0 5`] = `
+<div
+  className="bui-stack"
+  style={
+    {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "backgroundColor": "rgb(238, 238, 238)",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "350px",
+      }
+    }
+  >
+    <div
+      className="bui-list bui-list-medium"
+      style={
+        {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-list-item bui-list-item-divider"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-header"
+        >
+          <svg
+            className="bui-svg-icon"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M68.3 56.5c9.1 3.3 13.8 13.2 10.8 22.3l-.3.8C75.6 88.5 64.8 93 56.4 90l-4-1.5h-.1c-12.8-5.9-24.4-16.6-30-27.8-6.7-13.2-8.4-30.3-3.5-43.9C22.4 7.1 32.2 2.7 41.7 6.2c9.3 3.4 14 13.6 10.6 22.9-2.4 6.5-8.2 10.5-14.9 11 .8 3.8 2.1 7.6 3.9 11.2C43.4 55.4 46 59 49 62c4.7-5.7 12.1-8.1 19.3-5.5z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+        <div
+          className="bui-list-item-content"
+        >
+          电话
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+      <div
+        className="bui-list-item bui-list-item-divider"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-header"
+        >
+          <svg
+            className="bui-svg-icon"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M48 91C42.6 91 9 65.1 9 43.7S26.5 5 48 5s39 17.3 39 38.7S53.4 91 48 91zm0-35c6.6 0 12-5.4 12-12s-5.4-12-12-12-12 5.4-12 12 5.4 12 12 12z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+        <div
+          className="bui-list-item-content"
+        >
+          住址
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`List snapshot > List demo snapshot 0 6`] = `
+<div
+  className="bui-stack"
+  style={
+    {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "backgroundColor": "rgb(238, 238, 238)",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "350px",
+      }
+    }
+  >
+    <div
+      className="bui-list bui-list-medium"
+      style={
+        {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-list-item bui-list-item-divider"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-content"
+        >
+          <div
+            className="bui-list-item-content-primary"
+          >
+            设置
+          </div>
+          <div
+            className="bui-list-item-content-secondary"
+          >
+            系统设置
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`List snapshot > List demo snapshot 0 7`] = `
+<div
+  className="bui-stack"
+  style={
+    {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "backgroundColor": "rgb(238, 238, 238)",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "350px",
+      }
+    }
+  >
+    <div
+      className="bui-list bui-list-medium"
+      style={
+        {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-list-item bui-list-item-divider"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-content"
+        >
+          头像
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <div
+            className="bui-avatar bui-avatar-medium bui-avatar-rounded"
+          >
+            <div
+              className="bui-image bui-avatar-img"
+              style={
+                {
+                  "height": undefined,
+                  "width": undefined,
+                }
+              }
+            >
+              <img
+                className="bui-image-img bui-image-loaded"
+                loading="eager"
+                onError={[Function]}
+                onLoad={[Function]}
+                src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
+                style={
+                  {
+                    "objectFit": "cover",
+                  }
+                }
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`List snapshot > List demo snapshot 0 8`] = `
+<div
+  className="bui-stack"
+  style={
+    {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "backgroundColor": "rgb(238, 238, 238)",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "350px",
+      }
+    }
+  >
+    <div
+      className="bui-list bui-list-medium"
+      style={
+        {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-list-item bui-list-item-divider"
+      >
+        <div
+          className="bui-list-item-content"
+        >
+          <div
+            className="bui-list-item-content-primary"
+          >
+            <div>
+              在优酷展示想看记录
+            </div>
+          </div>
+          <div
+            className="bui-list-item-content-secondary"
+          >
+            <div>
+              影片可在线播放时会通知提醒你
+            </div>
+          </div>
+        </div>
+        <div
+          className="bui-list-item-extra"
+          onClick={[Function]}
+        >
+          <div
+            className="bui-switch bui-switch-medium bui-switch-primary"
+          >
+            <input
+              checked={false}
+              className="bui-switch-input"
+              disabled={false}
+              onChange={[Function]}
+              type="checkbox"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`List snapshot > List demo snapshot 0 9`] = `
+<div
+  className="bui-stack"
+  style={
+    {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "backgroundColor": "rgb(238, 238, 238)",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "350px",
+      }
+    }
+  >
+    <div
+      className="bui-list bui-list-medium"
+      style={
+        {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-list-item bui-list-item-divider"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-content"
+        >
+          <div
+            className="bui-list-item-content-primary"
+          >
+            蓝牙和设备连接
+          </div>
+          <div
+            className="bui-list-item-content-secondary"
+          >
+            NFC、投射屏幕、触碰付款
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+      <div
+        className="bui-list-item bui-list-item-divider"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-content"
+        >
+          <div
+            className="bui-list-item-content-primary"
+          >
+            显示
+          </div>
+          <div
+            className="bui-list-item-content-secondary"
+          >
+            状态栏、息屏显示
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`List snapshot > List demo snapshot 0 10`] = `
+<div
+  className="bui-stack"
+  style={
+    {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "backgroundColor": "rgb(238, 238, 238)",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "350px",
+      }
+    }
+  >
+    <div
+      className="bui-list bui-list-medium"
+      style={
+        {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-list-item"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-content"
+        >
+          <div
+            className="bui-list-item-content-primary"
+          >
+            蓝牙和设备连接
+          </div>
+          <div
+            className="bui-list-item-content-secondary"
+          >
+            NFC、投射屏幕、触碰付款
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+      <div
+        className="bui-list-item"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-content"
+        >
+          <div
+            className="bui-list-item-content-primary"
+          >
+            显示
+          </div>
+          <div
+            className="bui-list-item-content-secondary"
+          >
+            状态栏、息屏显示
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`List snapshot > List demo snapshot 0 11`] = `
+<div
+  className="bui-stack"
+  style={
+    {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "20px",
+      "backgroundColor": "rgb(238, 238, 238)",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "350px",
+      }
+    }
+  >
+    <div>
+       默认大小（medium）:
+    </div>
+    <div
+      className="bui-list bui-list-medium"
+      style={
+        {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-list-item bui-list-item-divider"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-content"
+        >
+          <div
+            className="bui-list-item-content-primary"
+          >
+            <div>
+              系统
+            </div>
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+    </div>
+    <div>
+      小一号（small）：
+    </div>
+    <div
+      className="bui-list bui-list-small"
+      style={
+        {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-list-item bui-list-item-divider"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-content"
+        >
+          <div
+            className="bui-list-item-content-primary"
+          >
+            <div>
+              系统
+            </div>
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+    </div>
+    <div>
+      大一号（large）：
+    </div>
+    <div
+      className="bui-list bui-list-large"
+      style={
+        {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-list-item bui-list-item-divider"
+        onClick={[Function]}
+      >
+        <div
+          className="bui-list-item-content"
+        >
+          <div
+            className="bui-list-item-content-primary"
+          >
+            <div>
+              系统
+            </div>
+          </div>
+        </div>
+        <div
+          className="bui-list-item-footer"
+        >
+          <svg
+            className="bui-svg-icon icon-size-small"
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
+              }
+            }
+            focusable="false"
+            viewBox="0 0 96 96"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
 
 exports[`List snapshot List demo snapshot 0 1`] = `
 <div

@@ -22,12 +22,13 @@ describe('TextArea', () => {
     expect(textarea).toHaveValue('123');
   });
 
-  it('should controlled by value', () => {
-    const handleChange = jest.fn((e, data) => data.value);
+  it('should controlled by value', async () => {
+    const handleChange = vi.fn((e, data) => data.value);
     render(<TextArea placeholder="textarea" onChange={handleChange} />);
     const textarea = screen.getByRole('textbox');
-    userEvent.type(textarea, '1234');
-    expect(handleChange).toReturnWith('1234');
+    await userEvent.type(textarea, '1234');
+    expect(handleChange).toHaveBeenCalled();
+    expect(handleChange).toHaveReturnedWith('1234');
     expect(textarea).toHaveValue('1234');
   });
 
@@ -104,12 +105,13 @@ describe('TextArea', () => {
     expect(count).toHaveTextContent('4');
   });
 
-  it('trigger on change', () => {
-    const fakeChange = jest.fn((e, v) => v.value);
+  it('trigger on change', async () => {
+    const fakeChange = vi.fn((e, v) => v.value);
     render(<TextArea onChange={fakeChange} />);
     const textarea = screen.getByRole('textbox');
-    userEvent.type(textarea, '1234');
-    expect(fakeChange).toReturnWith('1234');
+    await userEvent.type(textarea, '1234');
+    expect(fakeChange).toHaveBeenCalled();
+    expect(fakeChange).toHaveReturnedWith('1234');
   });
 
   it('trigger focus', () => {

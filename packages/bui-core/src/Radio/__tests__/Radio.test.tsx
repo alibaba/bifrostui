@@ -12,7 +12,7 @@ describe('Radio', () => {
   });
 
   it('should be checked', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     render(
       <Radio checked onChange={onChange}>
         淘票票
@@ -48,7 +48,7 @@ describe('Radio', () => {
   });
 
   it('should use custom checked icon', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const checkedIcon = <div className="test-checked-icon">icon</div>;
     render(<Radio checkedIcon={checkedIcon} checked onChange={onChange} />);
     const icon = screen.getByText('icon');
@@ -71,7 +71,7 @@ describe('Radio', () => {
   });
 
   it('should call `onChange`', () => {
-    const fakeChange = jest.fn((e, data) => data.checked);
+    const fakeChange = vi.fn((e, data) => data.checked);
     const { container } = render(
       <Radio value="淘票票" onChange={fakeChange}>
         淘票票
@@ -106,7 +106,7 @@ describe('Radio', () => {
     });
 
     it('should call `onChange`', () => {
-      const fakeChange = jest.fn((e, data) => data.value);
+      const fakeChange = vi.fn((e, data) => data.value);
       const { container } = render(
         <RadioGroup onChange={fakeChange}>
           <Radio value="水门桥">水门桥</Radio>
@@ -137,19 +137,25 @@ describe('Radio', () => {
   });
 
   describe('miniapp Radio', () => {
-    const originalModule = jest.requireActual('@bifrostui/utils');
-    const restApi = jest.requireActual('react');
+    const originalModule = vi.importActual('@bifrostui/utils');
+    const restApi = vi.importActual('react');
     it('should call `onChange`', async () => {
-      jest.resetModules();
-      jest.doMock('@bifrostui/utils', () => ({
-        ...originalModule,
-        isMini: true,
-      }));
-      jest.doMock('react', () => ({
-        ...restApi,
-      }));
+      vi.resetModules();
+      vi.doMock('@bifrostui/utils', async () => {
+        const actual = await originalModule;
+        return {
+          ...actual,
+          isMini: true,
+        };
+      });
+      vi.doMock('react', async () => {
+        const actual = await restApi;
+        return {
+          ...actual,
+        };
+      });
       const { default: MiniRadio } = await import('../index');
-      const fakeChange = jest.fn((e, data) => data.checked);
+      const fakeChange = vi.fn((e, data) => data.checked);
       const { container } = render(
         <MiniRadio value="淘票票" onChange={fakeChange}>
           淘票票

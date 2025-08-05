@@ -11,10 +11,10 @@ describe('IconButton', () => {
     className: rootClass,
   });
 
-  it('can trigger a function by being clicked', () => {
-    const onClick = jest.fn();
+  it('can trigger a function by being clicked', async () => {
+    const onClick = vi.fn();
     render(<IconButton onClick={onClick}>IconButton</IconButton>);
-    userEvent.click(screen.getByRole('button'));
+    await userEvent.click(screen.getByRole('button'));
     expect(onClick).toHaveBeenCalled();
   });
 
@@ -54,8 +54,8 @@ describe('IconButton', () => {
     });
   });
   it('in miniapp children can set color props', async () => {
-    jest.resetModules();
-    jest.doMock('@bifrostui/utils', () => ({
+    vi.resetModules();
+    vi.doMock('@bifrostui/utils', () => ({
       isMini: true,
     }));
     const { default: MiniIconButton } = await import('../index');
@@ -65,7 +65,7 @@ describe('IconButton', () => {
       </MiniIconButton>,
     );
     expect(screen.getByText('icon')).toHaveAttribute('color', 'success');
-    const mockBackdropFn = jest.fn();
+    const mockBackdropFn = vi.fn();
     const TestChildren = (props) => {
       mockBackdropFn(props);
       return <div />;
