@@ -224,7 +224,7 @@ export const getMdDemoCodes = (
            console.log('finishCallback running.......', finishIndex);
            if (finishIndex === demofiles.length - 1) {
              // 删除tempDemos文件夹
-             fs.rmdirSync(tempDemoPath, { recursive: true });
+             fs.rmSync(tempDemoPath, { recursive: true });
            }
          },
        });
