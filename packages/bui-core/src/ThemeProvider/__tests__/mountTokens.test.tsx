@@ -13,8 +13,8 @@ vi.mock('@bifrostui/utils', () => ({
   isMini: false,
 }));
 
-let consoleSpy: jest.SpyInstance;
-let isValidElement: jest.SpyInstance;
+let consoleSpy: ReturnType<typeof vi.spyOn>;
+let isValidElement: ReturnType<typeof vi.spyOn>;
 const testId = 'bui-var-bl';
 
 beforeEach(() => {
