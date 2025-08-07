@@ -39,6 +39,7 @@
     "docs:gen": "node scripts/generate-md/generateMd.mjs",
     "docs:i18n": "node scripts/translate/translate.mjs",
     "tests:gen": "node scripts/generate-tests/generate-component-test.mjs",
+    "a11y:gen": "node scripts/generate-a11y-test.js",
     "check:credentials": "node scripts/check-account/check-credentials.js",
     "theme:js2less": "node scripts/execute-script/theme.js",
     "theme:less2js": "node scripts/theme/collect-theme-vars.mjs",

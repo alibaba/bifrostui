@@ -102,6 +102,10 @@ type Options = {
   beforeEachFn?: () => void;
   afterEachFn?: () => void;
   customA11yChecks?: (container: HTMLElement) => void;
+  /**
+   * Callback function called when test finishes
+   */
+  finishCallback?: (index?: number) => void;
 };
 
 const convertRulesToAxeFormat = (rules: string[]): Rules => {
@@ -144,6 +148,21 @@ const getFixSuggestions = (violationId: string) => {
       '✅ 确保标题层级正确（h1 > h2 > h3...）',
       '✅ 不要跳过标题层级',
       '✅ 每个页面应该只有一个 h1 标题'
+    ],
+    'link-name': [
+      '✅ 添加 aria-label 属性描述链接目的',
+      '✅ 确保链接文本有意义',
+      '✅ 使用 title 属性提供额外信息'
+    ],
+    'aria-hidden-focus': [
+      '✅ 移除 aria-hidden 属性或使元素不可聚焦',
+      '✅ 使用 tabindex="-1" 移除聚焦能力',
+      '✅ 重新考虑元素的可访问性设计'
+    ],
+    'focus-order-semantics': [
+      '✅ 使用语义化 HTML 元素 (button, input, a)',
+      '✅ 确保焦点顺序逻辑合理',
+      '✅ 添加适当的 ARIA 属性'
     ]
   };
   
@@ -273,6 +292,23 @@ export const accessibilityDemoTest = (
     });
     return;
   }
+  
+  // 支持跳过特定的demo索引
+  if (Array.isArray(options.skip) && options.demoComponentIndex !== undefined) {
+    const shouldSkip = options.skip.some(skipPattern => 
+      typeof skipPattern === 'string' 
+        ? options.componentName.includes(skipPattern)
+        : skipPattern === options.demoComponentIndex
+    );
+    
+    if (shouldSkip) {
+      describe.skip(`${options.componentName} demo a11y (skipped)`, () => {
+        it('skipped', () => {});
+      });
+      return;
+    }
+  }
+  
   describe(`Test ${options.componentName} accessibility`, () => {
     accessibilityTest(Component, options, options.disabledRules, finishCallback);
   });
