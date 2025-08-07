@@ -1,57 +1,78 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Select, SelectOption, Input, Toast } from '@bifrostui/react';
 import {
   EditOutlinedIcon,
   CopyOutlinedIcon,
   RefreshOutlinedIcon,
+  CloseLargeIcon,
 } from '@bifrostui/icons';
-import {
-  defaultLight,
-  dmLight,
-  pioneerLight,
-} from '@bifrostui/styles/registry';
 import cs from 'clsx';
 import componentThemeData from '../../constants/theme-vars.json';
-import { VARS_TYPE, BUILTIN_THEME, builtinThemes } from './constants';
+import { BUILTIN_THEME, builtinThemes } from './constants';
 import { ThemeCanvas } from './ThemeCanvas';
 import './ThemeDesigner.less';
-
-enum ThemeMode {
-  // 内置主题
-  BuiltinMode = 'BuiltinMode',
-  // 自定义主题
-  CustomMode = 'CustomMode',
-}
 
 enum CssVarMode {
   Readonly = 'Readonly',
   Editable = 'Editable',
 }
 
-const builtInThemeCssVars = {
-  [BUILTIN_THEME.DEFAULT]: defaultLight,
-  [BUILTIN_THEME.DM]: dmLight,
-  [BUILTIN_THEME.PIONEER]: pioneerLight,
-};
+type ModifiedCssVars = Record<
+  string,
+  {
+    baseCssVars: Record<string, string>;
+    componentsCssVars: {
+      [componentName: string]: Record<string, string>;
+    };
+  }
+>;
 
-// 通用变量name
-const CUSTOM_UNIVERSAL_VAR_NAME = 'common';
+const selectOptions = Object.keys(componentThemeData)
+  .filter((name) => Boolean(componentThemeData[name].cssVars))
+  .map((name) => ({
+    label: name,
+    value: name,
+  }));
+
+const builtInThemeData = Object.fromEntries(
+  builtinThemes.map((v) => [v.value, v.themeData]),
+);
 
 const ThemeDesigner = () => {
   const [toast] = Toast.useToast();
-  const [activeThemeMode, setActiveThemeMode] = useState(ThemeMode.BuiltinMode);
   // 内置主题：default默认 dm大麦 pioneer活力橙
   const [builtinTheme, setBuiltinTheme] = useState(BUILTIN_THEME.DEFAULT);
-  const [customComponentName, setCustomComponentName] = useState(
-    CUSTOM_UNIVERSAL_VAR_NAME,
+  const [componentName, setComponentName] = useState('');
+  // 存储只发生修改的CSS变量
+  const [modifiedCssVars, setModifiedCssVars] = useState<ModifiedCssVars>(() =>
+    Object.fromEntries(
+      builtinThemes.map((v) => [
+        v.value,
+        { baseCssVars: {}, componentsCssVars: {} },
+      ]),
+    ),
   );
   const [cssVarMode, setCssVarMode] = useState<CssVarMode>(CssVarMode.Readonly);
-  const [activeThemeCssVars, setActiveThemeCssVars] = useState<
-    Record<string, string>
-  >(builtInThemeCssVars[builtinTheme]?.cssVars);
-  const [editableCssVarToken, setEditableCssVarToken] = useState('');
-  const [selectOptions, setSelectOptions] = useState([]);
+  const [editableCssVar, setEditableCssVar] = useState<
+    [token?: string, value?: string]
+  >([]);
   const themePlaygroundRef = useRef<HTMLDivElement>();
+
+  const currentCssVars: Record<string, string> = useMemo(() => {
+    // 展示组件变量
+    if (componentName) {
+      return {
+        ...componentThemeData[componentName]?.cssVars,
+        ...modifiedCssVars[builtinTheme]?.componentsCssVars?.[componentName],
+      };
+    }
+
+    // 展示基础变量
+    return {
+      ...builtInThemeData[builtinTheme]?.cssVars,
+      ...modifiedCssVars[builtinTheme]?.baseCssVars,
+    };
+  }, [componentName, builtinTheme, modifiedCssVars]);
 
   useEffect(() => {
     const updateElementHeight = () => {
@@ -73,45 +94,27 @@ const ThemeDesigner = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (activeThemeMode === ThemeMode.CustomMode) {
-      const options = Object.keys(componentThemeData)
-        .filter((name) => !!componentThemeData[name].cssVars)
-        .map((name) => ({
-          label: name,
-          value: name,
-        }));
-      options.unshift({ label: '通用变量', value: VARS_TYPE.COMMON });
-      setSelectOptions(options);
-    }
-  }, [activeThemeMode]);
-
-  const applyCssVars = (cssVars: Record<string, string> = {}) => {
+  const applyCssVars = () => {
     // 清空上一次的主题变量
     document.body.style.cssText = '';
     // 应用最新的主题变量
-    Object.entries(cssVars).forEach(([token, value]) => {
+    Object.entries(currentCssVars).forEach(([token, value]) => {
       document.body.style.setProperty(token, value);
     });
   };
 
-  const updateActiveThemeCssVars = (tab: ThemeMode) => {
-    if (tab === ThemeMode.CustomMode) {
-      const cssVars =
-        customComponentName === CUSTOM_UNIVERSAL_VAR_NAME
-          ? defaultLight?.cssVars
-          : componentThemeData[customComponentName]?.cssVars;
-      setActiveThemeCssVars(cssVars);
-      applyCssVars(cssVars);
-    } else if (tab === ThemeMode.BuiltinMode) {
-      const cssVars = builtInThemeCssVars[builtinTheme]?.cssVars;
-      setActiveThemeCssVars(cssVars);
-      applyCssVars(cssVars);
-    }
-  };
+  useEffect(() => {
+    applyCssVars();
+  }, [currentCssVars]);
 
   const onResetCssVars = () => {
-    updateActiveThemeCssVars(activeThemeMode);
+    if (componentName) {
+      modifiedCssVars[builtinTheme].componentsCssVars[componentName] =
+        undefined;
+    } else {
+      modifiedCssVars[builtinTheme].baseCssVars = undefined;
+    }
+    setModifiedCssVars(JSON.parse(JSON.stringify(modifiedCssVars)));
     toast.success({
       message: '重置成功',
     });
@@ -119,8 +122,25 @@ const ThemeDesigner = () => {
 
   const onCopyCssVars = async () => {
     try {
-      const text = Object.entries(activeThemeCssVars)
-        .map(([token, value]) => `${token}: ${value};`)
+      // 组件变量
+      const compCssVars = selectOptions.map((option) => {
+        return {
+          ...componentThemeData[option.value].cssVars,
+          ...modifiedCssVars[builtinTheme].componentsCssVars[option.value],
+        };
+      });
+      // 基础变量
+      const baseCssVars = {
+        ...builtInThemeData[builtinTheme]?.cssVars,
+        ...modifiedCssVars[builtinTheme]?.baseCssVars,
+      };
+
+      const text = [baseCssVars, ...compCssVars]
+        .map((v) => {
+          return Object.entries(v)
+            .map(([token, value]) => `${token}: ${value as string};`)
+            .join('\n');
+        })
         .join('\n');
       await navigator?.clipboard?.writeText(text);
       toast.success({
@@ -134,34 +154,42 @@ const ThemeDesigner = () => {
     }
   };
 
-  const onCustomComponentNameChange = (e, data) => {
-    if (!data.value) return;
-
-    const cssVars =
-      data.value === CUSTOM_UNIVERSAL_VAR_NAME
-        ? defaultLight?.cssVars
-        : componentThemeData[data.value]?.cssVars;
-    setActiveThemeCssVars(cssVars);
-    setCustomComponentName(data.value);
-    applyCssVars(cssVars);
-  };
-
+  // 切换主题
   const onSwitchBuiltInTheme = (newBuiltinTheme: BUILTIN_THEME) => {
     setBuiltinTheme(newBuiltinTheme);
-    const cssVars = builtInThemeCssVars[newBuiltinTheme]?.cssVars;
-    setActiveThemeCssVars(cssVars);
-    applyCssVars(cssVars);
+    setComponentName('');
   };
 
-  const editCssVar = (token: string) => {
+  // 切换组件
+  const onComponentChange = (e, data) => {
+    if (!data.value) return;
+
+    setComponentName(data.value);
+  };
+
+  const editCssVar = (token: string, value: string) => {
     setCssVarMode(CssVarMode.Editable);
-    setEditableCssVarToken(token);
+    setEditableCssVar([token, value]);
   };
 
   const submitCssVar = () => {
+    const [token, value] = editableCssVar;
+    const builtinThemeCssVars = modifiedCssVars[builtinTheme];
+    if (componentName) {
+      if (!builtinThemeCssVars.componentsCssVars[componentName]) {
+        builtinThemeCssVars.componentsCssVars[componentName] = {};
+      }
+      builtinThemeCssVars.componentsCssVars[componentName][token] = value;
+    } else {
+      if (!builtinThemeCssVars.baseCssVars) {
+        builtinThemeCssVars.baseCssVars = {};
+      }
+      builtinThemeCssVars.baseCssVars[token] = value;
+    }
+    setModifiedCssVars(JSON.parse(JSON.stringify(modifiedCssVars)));
+
     setCssVarMode(CssVarMode.Readonly);
-    setEditableCssVarToken('');
-    applyCssVars(activeThemeCssVars);
+    setEditableCssVar([]);
   };
 
   return (
@@ -170,75 +198,49 @@ const ThemeDesigner = () => {
         <div className="theme-css-vars">
           <div className="theme-tabs">
             <div className="theme-mode">
-              <div
-                className={cs('theme-mode-item', {
-                  'is-active': activeThemeMode === ThemeMode.BuiltinMode,
-                })}
-                onClick={() => {
-                  setActiveThemeMode(ThemeMode.BuiltinMode);
-                  updateActiveThemeCssVars(ThemeMode.BuiltinMode);
-                }}
-              >
-                内置主题
-              </div>
-              <div
-                className={cs('theme-mode-item', {
-                  'is-active': activeThemeMode === ThemeMode.CustomMode,
-                })}
-                onClick={(e) => {
-                  setActiveThemeMode(ThemeMode.CustomMode);
-                  updateActiveThemeCssVars(ThemeMode.CustomMode);
-                }}
-              >
-                自定义主题
-              </div>
+              {builtinThemes.map((v) => {
+                return (
+                  <div
+                    key={v.value}
+                    className={cs('theme-mode-item', {
+                      'is-active': builtinTheme === v.value,
+                    })}
+                    onClick={() => {
+                      onSwitchBuiltInTheme(v.value);
+                    }}
+                  >
+                    {v.text}
+                  </div>
+                );
+              })}
+            </div>
+            <div className="theme-css-var-operator" onClick={onCopyCssVars}>
+              <CopyOutlinedIcon />
+              复制
             </div>
           </div>
-          <div className="theme-tab-switch">
-            {activeThemeMode === ThemeMode.BuiltinMode ? (
-              <div className="theme-mode-builtIn">
-                {builtinThemes.map((item) => (
-                  <div
-                    className={cs('theme-mode-builtIn-item', {
-                      'is-active': item.value === builtinTheme,
-                    })}
-                    key={item.value}
-                    onClick={() => onSwitchBuiltInTheme(item.value)}
-                  >
-                    {item.text}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="custom-theme-operator">
-                <Select
-                  placeholder="选择组件/通用变量"
-                  onChange={onCustomComponentNameChange}
-                  value={customComponentName}
-                >
-                  {selectOptions.map((item) => (
-                    <SelectOption
-                      key={item.value}
-                      value={item.value}
-                      label={item.label}
-                    />
-                  ))}
-                </Select>
-              </div>
-            )}
-            <div className="theme-css-var-operators">
-              <div className="theme-css-var-operator" onClick={onResetCssVars}>
-                <RefreshOutlinedIcon />
-                重置
-              </div>
-              <div className="theme-css-var-operator" onClick={onCopyCssVars}>
-                <CopyOutlinedIcon />
-                复制
-              </div>
+          <div className="theme-change-area">
+            <Select
+              className="theme-component-select"
+              placeholder="选择组件"
+              onChange={onComponentChange}
+              value={componentName}
+            >
+              {selectOptions.map((item) => (
+                <SelectOption
+                  key={item.value}
+                  value={item.value}
+                  label={item.label}
+                />
+              ))}
+            </Select>
+            <div className="theme-css-var-operator" onClick={onResetCssVars}>
+              <RefreshOutlinedIcon />
+              重置
             </div>
           </div>
           <div className="theme-css-var-items scrollbar">
-            {Object.entries(activeThemeCssVars ?? {}).map(
+            {Object.entries(currentCssVars).map(
               ([token, value]: [string, string]) => {
                 const isColorValue =
                   value.startsWith('#') ||
@@ -250,7 +252,7 @@ const ThemeDesigner = () => {
                     <div className="theme-css-var-item-value">
                       <EditOutlinedIcon
                         className="theme-css-var-item-value-edit-icon"
-                        onClick={() => editCssVar(token)}
+                        onClick={() => editCssVar(token, value)}
                       />
                       {isColorValue ? (
                         <div className="theme-css-var-item-value-color">
@@ -267,16 +269,13 @@ const ThemeDesigner = () => {
                       )}
                     </div>
                     {cssVarMode === CssVarMode.Editable &&
-                      token === editableCssVarToken && (
+                      token === editableCssVar[0] && (
                         <Input
                           className="theme-css-var-item-value-input"
-                          value={activeThemeCssVars[editableCssVarToken]}
+                          value={editableCssVar[1]}
                           inputProps={{ autoFocus: true }}
                           onChange={(e, data) => {
-                            setActiveThemeCssVars((val) => ({
-                              ...val,
-                              [token]: data.value,
-                            }));
+                            setEditableCssVar([token, data.value]);
                           }}
                           onKeyUp={(e) => {
                             if (e.keyCode === 13) {
@@ -293,13 +292,13 @@ const ThemeDesigner = () => {
           </div>
         </div>
         <div className="theme-css-canvas scrollbar">
-          <ThemeCanvas
-            componentName={
-              activeThemeMode === ThemeMode.BuiltinMode
-                ? ''
-                : customComponentName
-            }
-          />
+          <ThemeCanvas componentName={componentName} />
+          {componentName && (
+            <CloseLargeIcon
+              className="theme-css-canvas-close-icon"
+              onClick={() => setComponentName('')}
+            />
+          )}
         </div>
       </div>
     </div>
