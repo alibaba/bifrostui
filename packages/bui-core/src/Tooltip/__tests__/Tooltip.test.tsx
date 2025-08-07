@@ -266,7 +266,7 @@ describe('Tooltip', () => {
 
     // 点击显示
     await act(async () => {
-      userEvent.click($childrenDom);
+      fireEvent.click($childrenDom);
     });
 
     // 验证 onOpenChange 被调用
@@ -279,11 +279,14 @@ describe('Tooltip', () => {
       // 使用 fireEvent 而不是 userEvent 来避免递归调用
       fireEvent.click(document.body);
     });
-    expect(onOpenChange).toHaveBeenCalledWith(expect.any(Object), {
+
+    // 检查 onOpenChange 至少被调用2次（显示和隐藏）
+    expect(onOpenChange).toHaveBeenCalledTimes(2);
+
+    // 验证最后一次调用是隐藏
+    expect(onOpenChange).toHaveBeenLastCalledWith(expect.any(Object), {
       open: false,
     });
-    // 在混合trigger的情况下，可能会有额外的调用，所以检查至少被调用2次
-    expect(onOpenChange).toHaveBeenCalledTimes(3);
   });
 
   // 新增测试：children 必须是有效的 React 元素
@@ -294,7 +297,7 @@ describe('Tooltip', () => {
 
     render(
       <Tooltip title="Test tooltip" defaultOpen>
-        {'Invalid children' as React.ReactElement}
+        {'Invalid children' as unknown as React.ReactElement}
       </Tooltip>,
     );
 
