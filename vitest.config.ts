@@ -19,12 +19,12 @@ export default defineConfig({
     // setupFiles作用是设置测试文件的初始化文件，这里设置为tests/setup.ts，表示所有的测试文件都会先执行tests/setup.ts中的代码
     setupFiles: ['./tests/setup.ts'],
     // 启用动态导入支持
-    deps: {
-      inline: [
-        "@tarojs/runtime",
-        "@tarojs/taro"
-      ]
-    },
+    // deps: {
+    //   inline: [
+    //     "@tarojs/runtime",
+    //     "@tarojs/taro"
+    //   ]
+    // },
     // 减少控制台输出
     silent: false,
     // 设置测试超时时间
