@@ -1,4 +1,4 @@
-import { isMini } from '@bifrostui/utils';
+// import { isMini } from '@bifrostui/utils';
 import clsx from 'clsx';
 import React from 'react';
 import { IconButtonProps } from './IconButton.types';
@@ -39,10 +39,11 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         {...others}
       >
         {/* 小程序中svgIcon不能继承父元素的color */}
-        {isMini && React.isValidElement(children)
+        {React.isValidElement(children)
           ? React.cloneElement(children, {
               ...(!isContainedVariant && {
                 color: children.props?.color || color,
+                htmlColor: children.props?.htmlColor || '#959aa5',
               }),
               ...(isContainedVariant && {
                 htmlColor: children.props?.htmlColor || '#fff',
@@ -59,7 +60,6 @@ IconButton.defaultProps = {
   size: 'medium',
   variant: 'default',
   shape: 'circular',
-  color: 'default',
   disabled: false,
 };
 
