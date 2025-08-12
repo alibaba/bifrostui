@@ -15,7 +15,6 @@ export type IconButtonProps<
        */
       size?: 'small' | 'medium' | 'large';
       /** 按钮颜色
-       * @default 'neutral'
        */
       color?: ThemeColor;
       /**
