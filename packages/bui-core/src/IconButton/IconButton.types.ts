@@ -15,16 +15,16 @@ export type IconButtonProps<
        */
       size?: 'small' | 'medium' | 'large';
       /** 按钮颜色
-       * @default 'default'
        */
-      color?: ThemeColor | 'default';
+      color?: ThemeColor;
       /**
        * - default: 图标按钮
        * - contained: 实心填充按钮
        * - outlined: 描边按钮
+       * - subtle: 柔和按钮
        * @default 'default'
        */
-      variant?: 'default' | 'contained' | 'outlined';
+      variant?: 'default' | 'contained' | 'outlined' | 'subtle';
       /**
        * - circular: 圆形
        * - square: 正方形

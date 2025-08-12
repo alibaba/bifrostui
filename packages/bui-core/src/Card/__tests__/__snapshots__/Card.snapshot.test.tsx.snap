@@ -212,7 +212,7 @@ exports[`Card snapshot Card demo snapshot 0 4`] = `
         >
           <svg
             className="bui-svg-icon icon-size-small"
-            color="#ced1d6"
+            color="var(--bui-color-fg-disabled)"
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<path d=\\"M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z\\"/>",
@@ -401,6 +401,7 @@ exports[`Card snapshot Card demo snapshot 0 7`] = `
       >
         <button
           className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-success"
+          disabled={false}
           type="button"
         >
           签收
@@ -474,6 +475,7 @@ exports[`Card snapshot Card demo snapshot 0 8`] = `
       >
         <button
           className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-success"
+          disabled={false}
           type="button"
         >
           签收
@@ -559,7 +561,7 @@ exports[`Card snapshot Card demo snapshot 0 9`] = `
             >
               <svg
                 className="bui-svg-icon icon-size-small"
-                color="#ced1d6"
+                color="var(--bui-color-fg-disabled)"
                 dangerouslySetInnerHTML={
                   Object {
                     "__html": "<path d=\\"M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z\\"/>",
@@ -606,7 +608,7 @@ exports[`Card snapshot Card demo snapshot 0 9`] = `
             >
               <svg
                 className="bui-svg-icon icon-size-small"
-                color="#ced1d6"
+                color="var(--bui-color-fg-disabled)"
                 dangerouslySetInnerHTML={
                   Object {
                     "__html": "<path d=\\"M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z\\"/>",

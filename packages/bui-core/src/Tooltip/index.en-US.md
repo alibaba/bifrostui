@@ -61,9 +61,9 @@ export default () => {
 };
 ```
 
-### Adjusting Distance with `offsetSpacing`
+### Adjusting Distance with `offset`
 
-Use `offsetSpacing` to control the distance between the target element and the bubble overlay.
+Use `offset` to control the distance between the target element and the bubble overlay.
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
@@ -71,10 +71,8 @@ import React from 'react';
 
 export default () => {
   return (
-    <Tooltip title="This is a tooltip" offsetSpacing={20} defaultOpen>
-      <span>
-        Adjust distance with offsetSpacing (set to 20 for observation)
-      </span>
+    <Tooltip title="This is a tooltip" offset={20} defaultOpen>
+      <span>Adjust distance with offset (set to 20 for observation)</span>
     </Tooltip>
   );
 };
@@ -271,10 +269,13 @@ export default () => {
 | title         | Bubble overlay content       | string                                                                                                                                                         | -       |
 | defaultOpen   | Default visibility           | boolean                                                                                                                                                        | false   |
 | open          | Manual control of visibility | boolean                                                                                                                                                        | -       |
+| offset        | Offset from target element   | number                                                                                                                                                         | 0       |
 | offsetSpacing | Offset from target element   | number                                                                                                                                                         | 0       |
 | placement     | Position of the bubble       | string, enum values are `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` | 'top'   |
 | trigger       | Trigger behavior             | string \| string[], enum values are 'click' \| 'hover'                                                                                                         | 'click' |
 | onOpenChange  | Callback for visibility      | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                           | -       |
+
+> **Note:** The `offsetSpacing` property is deprecated. Use `offset` instead. Both properties have the same functionality, with `offset` taking higher precedence.
 
 ### Style Variables
 

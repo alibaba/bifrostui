@@ -8,9 +8,7 @@ name: Dialog 对话框
 用于重要信息的告知或操作的反馈，支持`Dialog`,`Dialog.confirm`和`Dialog.prompt`。
 推荐Hooks调用方式，静态方法无法获取上下文，ThemeProvider数据不会生效，因此推荐`Dialog.useDialog`创建支持读取context的contextHolder，通过顶层注册方法代替`Dialog`静态方法。
 
-## 代码演示
-
-### 确认框
+## 确认框
 
 ### 静态方法（不推荐）
 
@@ -103,7 +101,7 @@ export default () => {
 };
 ```
 
-### 指定渲染容器
+## 指定渲染容器
 
 可以指定`container`指定渲染的父容器。
 
@@ -144,7 +142,7 @@ export default () => {
 };
 ```
 
-### 异步操作执行成功/失败
+## 异步操作执行成功/失败
 
 使用`onConfirm`来定义点击确认时回调。
 
@@ -210,7 +208,7 @@ export default () => {
 };
 ```
 
-### 自定义内容区域
+## 自定义内容区域
 
 可以使用`header`, `message`来分别自定义标题、内容区域。也可以使用`confirmText`和`cancelText`来自定义取消和确定按钮内容。
 
@@ -265,7 +263,7 @@ export default () => {
 };
 ```
 
-### 提示对话框
+## 提示对话框
 
 使用`dialog.prompt`来展示提示对话框。可以使用`placeholder`来自定义占位文本。同时支持`InputProps`透传到内部`Input`组件中，参考[Input](/cores/input#api)。
 
@@ -315,9 +313,9 @@ export default () => {
 };
 ```
 
-### API
+## API
 
-#### DialogOptions
+### DialogOptions
 
 | 属性        | 说明         | 类型                                       | 默认值        |
 | ----------- | ------------ | ------------------------------------------ | ------------- |
@@ -333,7 +331,7 @@ export default () => {
 
 `DialogOptions` 继承自 `ModalProps`, 其他属性见 [Modal API](/cores/modal?#api)
 
-#### PromptOptions
+### PromptOptions
 
 `Dialog.prompt` 接受的参数同 `Dialog.confirm`, 此外，它还额外支持以下属性：
 
@@ -342,7 +340,7 @@ export default () => {
 | placeholder | 输入框占位文本              | string                | 请在此处输入 |
 | InputProps  | 透传给内部`Input`组件的属性 | `Partial<InputProps>` | -            |
 
-#### 方法
+### 方法
 
 | 方法名         | 说明           | 参数                     | 返回值        |
 | -------------- | -------------- | ------------------------ | ------------- |
@@ -350,18 +348,18 @@ export default () => {
 | Dialog.confirm | 展示确认框     | ConfirmOptions \| string | DialogPromise |
 | Dialog.prompt  | 展示提示对话框 | PromptOptions \| string  | DialogPromise |
 
-### 样式变量
+## 样式变量
 
-| 属性                             | 说明               | 默认值                        | 全局变量                                    |
-| -------------------------------- | ------------------ | ----------------------------- | ------------------------------------------- |
-| --max-width                      | 对话框最大宽度     | 300px                         | --bui-dialog-max-width                      |
-| --border-radius                  | 对话框圆角         | --bui-shape-radius-drawer     | --bui-dialog-border-radius                  |
-| --title-padding                  | 标题栏内边距       | 0 40px 9px                    | --bui-dialog-title-padding                  |
-| --desc-padding                   | 描述文案内边距     | 0 24px                        | --bui-dialog-desc-padding                   |
-| --footer-margin-top              | 底部上边距         | 15px                          | --bui-dialog-footer-margin-top              |
-| --button-height                  | 按钮高度           | 53px                          | --bui-dialog-button-height                  |
-| --button-line-height             | 按钮行高           | 25px                          | --bui-dialog-button-line-height             |
-| --button-padding                 | 按钮内边距         | 12px 0 13px                   | --bui-dialog-button-padding                 |
-| --button-font-size               | 按钮字号           | 17px                          | --bui-dialog-button-font-size               |
-| --button-border-left             | 按钮左边框         | 1px solid rgba(0, 0, 0, 0.05) | --bui-dialog-button-border-left             |
-| --button-active-background-color | 按钮激活状态背景色 | rgba(54, 57, 64, 0.05)        | --bui-dialog-button-active-background-color |
+| 变量名                                      | 说明           | 默认值                           |
+| ------------------------------------------- | -------------- | -------------------------------- |
+| --bui-dialog-max-width                      | 对话框最大宽度 | `300px`                          |
+| --bui-dialog-border-radius                  | 边框圆角       | `var(--bui-shape-radius-drawer)` |
+| --bui-dialog-title-padding                  | 标题内边距     | `0 40px 9px`                     |
+| --bui-dialog-desc-padding                   | 描述内边距     | `0 24px`                         |
+| --bui-dialog-footer-margin-top              | 底部区域上边距 | `15px`                           |
+| --bui-dialog-button-height                  | 按钮高度       | `53px`                           |
+| --bui-dialog-button-line-height             | 按钮行高       | `25px`                           |
+| --bui-dialog-button-padding                 | 按钮内边距     | `12px 0 13px`                    |
+| --bui-dialog-button-font-size               | 按钮字体大小   | `17px`                           |
+| --bui-dialog-button-border-left             | 按钮左边框     | `1px solid rgba(0, 0, 0, 0.05)`  |
+| --bui-dialog-button-active-background-color | 按钮激活背景色 | `rgba(54, 57, 64, 0.05)`         |

@@ -3,8 +3,8 @@ import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import Backdrop from '../Backdrop';
 import Portal from '../Portal';
-import './Modal.less';
 import { ModalProps } from './Modal.types';
+import './index.less';
 
 const prefixCls = 'bui-modal';
 
@@ -81,11 +81,5 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
 });
 
 Modal.displayName = 'BuiModal';
-Modal.defaultProps = {
-  open: false,
-  disablePortal: false,
-  disableScrollLock: false,
-  hideBackdrop: false,
-};
 
 export default Modal;

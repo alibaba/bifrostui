@@ -287,7 +287,9 @@ export default () => {
 };
 ```
 
-### Controlled Tabs Component
+## Controlled Tabs Component
+
+The selection status of Tabs components can be controlled through the 'value' attribute.
 
 Control the selected state of Tabs using the `value` property.
 

@@ -1,0 +1,44 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+@{root-selector} {
+  --bui-breadcrumb-margin: 0;
+  --bui-breadcrumb-padding: 0;
+  --bui-breadcrumb-color: rgba(0, 0, 0, 0.45);
+  --bui-breadcrumb-item-separator-margin: 0 8px;
+  --bui-breadcrumb-last-item-color: rgba(0, 0, 0, 0.88);
+}
+
+.bui-breadcrumb {
+  margin: var(--bui-breadcrumb-margin);
+  padding: var(--bui-breadcrumb-padding);
+  color: var(--bui-breadcrumb-color);
+  list-style: none;
+  font-size: var(--bui-text-size-1);
+  line-height: var(--bui-line-height);
+
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: var(--bui-breadcrumb-margin);
+    padding: var(--bui-breadcrumb-padding);
+    list-style: none;
+  }
+
+  &-list a {
+    color: var(--bui-breadcrumb-color);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  &-list li:last-child {
+    color: var(--bui-breadcrumb-last-item-color);
+  }
+
+  &-item {
+    cursor: pointer;
+  }
+
+  &-item-separator {
+    margin: var(--bui-breadcrumb-item-separator-margin);
+  }
+}

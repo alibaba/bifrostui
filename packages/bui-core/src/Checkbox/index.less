@@ -1,0 +1,60 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+@{root-selector} {
+  --bui-checkbox-label-color: var(--bui-color-fg-default);
+  --bui-checkbox-label-font-size: var(--bui-text-size-1);
+  --bui-checkbox-icon-font-size: var(--bui-title-size-2);
+  --bui-checkbox-disabled-opacity: 0.5;
+  --bui-checkbox-icon-padding: 5px;
+}
+
+.bui-checkbox {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  font-family: var(--bui-font-family);
+
+  &.bui-checkbox-disabled {
+    pointer-events: none;
+    opacity: var(--bui-checkbox-disabled-opacity);
+  }
+
+  &-label-left {
+    flex-direction: row-reverse;
+  }
+
+  &-label-top {
+    flex-direction: column-reverse;
+  }
+
+  &-label-bottom {
+    flex-direction: column;
+  }
+
+  &-input {
+    opacity: 0;
+    // 解决onClick触发两次的问题 & 微信文案点击选中
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  &-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: var(--bui-checkbox-icon-padding);
+    box-sizing: border-box;
+    font-size: var(--bui-checkbox-icon-font-size);
+  }
+
+  &-label {
+    font-size: var(--bui-checkbox-label-font-size);
+    color: var(--bui-checkbox-label-color);
+  }
+}

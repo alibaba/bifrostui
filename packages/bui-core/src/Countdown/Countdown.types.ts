@@ -1,5 +1,5 @@
 import { OverrideProps } from '@bifrostui/types';
-import React, { CSSProperties } from 'react';
+import React from 'react';
 
 /**
  * 当前时间
@@ -63,18 +63,6 @@ export type CountdownProps<
        * @default HH:mm:ss
        */
       format?: string;
-      /**
-       * 时间单位的样式
-       */
-      unitStyle?: CSSProperties;
-      /**
-       * 倒计时位数的样式，用于定制第一、第二位数字的样式
-       */
-      valueStyle?: CSSProperties[];
-      /**
-       * 各时间区块的样式，用于定制各个时间块的样式，若第一、第二位数字的样式相同，则可替代valueStyle
-       */
-      timeSliceStyle?: CSSProperties;
       /**
        * 倒计时完成时触发
        */

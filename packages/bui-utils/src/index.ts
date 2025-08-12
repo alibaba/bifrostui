@@ -39,3 +39,4 @@ export { default as getBoundingClientRect } from './getBoundingClientRect';
 export { getScrollRect, getClientRect } from './domUtils';
 export * from './isType';
 export * from './render';
+export * from './themeCreator';

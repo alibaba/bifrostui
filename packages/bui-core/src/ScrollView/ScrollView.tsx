@@ -1,33 +1,62 @@
 import { useForkRef } from '@bifrostui/utils';
 import clsx from 'clsx';
-import React, { forwardRef, useCallback, useEffect, useRef } from 'react';
-import './ScrollView.less';
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useRef,
+  UIEvent,
+  SyntheticEvent,
+  TouchEvent,
+} from 'react';
+import './index.less';
 
-import { ScrollViewProps } from './ScrollView.types';
+import { ScrollViewProps, ScrollViewScrollEvent } from './ScrollView.types';
 
-function easeOutScroll(from, to, callback, dur) {
-  if (dur <= 0) {
-    dur = 500;
-  }
-  if (from === to || typeof from !== 'number') {
-    return;
-  }
+type ScrollLogicalPosition = 'start' | 'center' | 'end' | 'nearest';
+
+/**
+ * 平滑滚动动画
+ * @param from 起始位置
+ * @param to 结束位置
+ * @param callback 每一帧的回调
+ * @param duration 动画时长
+ */
+function easeOutScroll(
+  from: number,
+  to: number,
+  callback: (pos: number) => void,
+  duration = 500,
+) {
+  if (from === to || typeof from !== 'number') return;
   const change = to - from;
-  const sTime = +new Date();
-  function linear(t, b, c, d) {
-    return (c * t) / d + b;
-  }
+  const startTime = Date.now();
+  const linear = (t: number, b: number, c: number, d: number) =>
+    (c * t) / d + b;
   const isLarger = to >= from;
 
   function step() {
-    const stepFrom = linear(+new Date() - sTime, from, change, dur);
-    if ((isLarger && stepFrom >= to) || (!isLarger && to >= stepFrom)) {
+    const now = Date.now();
+    const timeElapsed = now - startTime;
+
+    // 如果动画结束
+    if (timeElapsed >= duration) {
       callback?.(to);
       return;
     }
+
+    const stepFrom = linear(timeElapsed, from, change, duration);
+
+    // 防止超出目标
+    if ((isLarger && stepFrom >= to) || (!isLarger && stepFrom <= to)) {
+      callback?.(to);
+      return;
+    }
+
     callback?.(stepFrom);
     requestAnimationFrame(step);
   }
+
   step();
 }
 
@@ -35,241 +64,291 @@ const classes = {
   root: 'bui-scroll',
 };
 
-const ScrollView = forwardRef<HTMLDivElement, ScrollViewProps>(
-  (props: ScrollViewProps, ref) => {
-    const {
-      className,
-      style = {},
-      onScroll,
-      onScrollToUpper,
-      onScrollToLower,
-      scrollTop: scrollTopProp,
-      scrollLeft: scrollLeftProp,
-      scrollX,
-      scrollY,
-      scrollIntoView,
-      onTouchMove: propsOnTouchMove,
-      scrollIntoViewAlignment,
-      children,
-      scrollAnimationDuration = 500,
-    } = props;
+const ScrollView = forwardRef<HTMLDivElement, ScrollViewProps>((props, ref) => {
+  const {
+    className,
+    style = {},
+    onScroll,
+    onScrollToUpper,
+    onScrollToLower,
+    scrollTop: scrollTopProp,
+    scrollLeft: scrollLeftProp,
+    scrollX,
+    scrollY,
+    scrollIntoView,
+    onTouchMove: propsOnTouchMove,
+    scrollIntoViewAlignment = 'start',
+    children,
+    scrollAnimationDuration = 500,
+    scrollWithAnimation,
+    upperThreshold = 50,
+    lowerThreshold = 50,
+  } = props;
 
-    const container = useRef(null);
-    const handleRef = useForkRef(ref, container);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const handleRef = useForkRef(ref, containerRef);
+  const upperLowerStatus = useRef(0); // 0: none, 1: upper, -1: lower
 
-    const onTouchMove = (e) => {
-      // 会导致埋点工具无法正确区分滑动和点击，必须去掉。
-      // e.stopPropagation();
-    };
-
-    const scrollVertical = useCallback((top, isAnimation) => {
-      if (top === undefined) return;
+  /**
+   * 垂直滚动
+   * @param top 滚动到的位置
+   * @param isAnimation 是否带动画
+   */
+  const scrollVertical = useCallback(
+    (top: number, isAnimation?: boolean) => {
+      if (top === undefined || !containerRef.current) return;
       if (isAnimation) {
         easeOutScroll(
-          container.current.scrollTop,
+          containerRef.current.scrollTop,
           top,
           (pos) => {
-            if (container.current) container.current.scrollTop = pos;
+            if (containerRef.current) containerRef.current.scrollTop = pos;
           },
           scrollAnimationDuration,
         );
-      } else if (container.current) container.current.scrollTop = top;
-    }, []);
+      } else {
+        containerRef.current.scrollTop = top;
+      }
+    },
+    [scrollAnimationDuration],
+  );
 
-    const scrollHorizontal = useCallback((left, isAnimation) => {
-      if (left === undefined) return;
+  /**
+   * 水平滚动
+   * @param left 滚动到的位置
+   * @param isAnimation 是否带动画
+   */
+  const scrollHorizontal = useCallback(
+    (left: number, isAnimation?: boolean) => {
+      if (left === undefined || !containerRef.current) return;
       if (isAnimation) {
         easeOutScroll(
-          container.current.scrollLeft,
+          containerRef.current.scrollLeft,
           left,
           (pos) => {
-            if (container.current) container.current.scrollLeft = pos;
+            if (containerRef.current) containerRef.current.scrollLeft = pos;
           },
           scrollAnimationDuration,
         );
-      } else if (container.current) container.current.scrollLeft = left;
-    }, []);
+      } else {
+        containerRef.current.scrollLeft = left;
+      }
+    },
+    [scrollAnimationDuration],
+  );
 
-    const handleScroll = useCallback(
-      (isInit = false) => {
-        const isAnimation = props?.scrollWithAnimation;
-        // scrollIntoView
-        if (
-          scrollIntoView &&
-          typeof scrollIntoView === 'string' &&
-          container?.current?.querySelector?.(`#${scrollIntoView}`)
-        ) {
-          const doScrollIntoView = (
-            id: string,
-            alignment: ScrollLogicalPosition = 'start',
-            _isAnimation: boolean = isAnimation,
-          ) => {
-            const target = container.current.querySelector(`#${id}`);
-            if (scrollY) {
-              const start = target.offsetTop;
-              const end =
-                target.offsetTop +
-                target.offsetHeight -
-                container.current.clientHeight;
-              let nearest;
-              if (container.current.scrollTop < end) nearest = end;
-              else if (container.current.scrollTop > start) nearest = start;
-              const center = (start + end) / 2;
-              scrollVertical(
-                { start, end, nearest, center }[alignment],
-                _isAnimation,
-              );
+  /**
+   * 核心滚动处理：处理滚动到指定元素或位置
+   * @param isInit 是否为初始渲染
+   */
+  const handleScroll = useCallback(
+    (isInit = false) => {
+      if (!containerRef.current) return;
+      const isAnimation = !!scrollWithAnimation;
+
+      // scrollIntoView 优先
+      if (
+        scrollIntoView &&
+        typeof scrollIntoView === 'string' &&
+        containerRef.current.querySelector?.(`#${scrollIntoView}`)
+      ) {
+        const doScrollIntoView = (
+          id: string,
+          alignment: ScrollLogicalPosition,
+          animation: boolean,
+        ) => {
+          const target = containerRef.current?.querySelector(
+            `#${id}`,
+          ) as HTMLElement;
+          if (!target) return;
+
+          if (scrollY) {
+            const start = target.offsetTop;
+            const end =
+              target.offsetTop +
+              target.offsetHeight -
+              containerRef.current.clientHeight;
+            const center = (start + end) / 2;
+            let nearest = start;
+            if (
+              Math.abs(containerRef.current.scrollTop - start) >
+              Math.abs(containerRef.current.scrollTop - end)
+            ) {
+              nearest = end;
             }
-            if (scrollX) {
-              const start = target.offsetLeft;
-              const end =
-                target.offsetLeft +
-                target.offsetWidth -
-                container.current.clientWidth;
-              let nearest;
-              if (container.current.scrollTop < end) nearest = end;
-              else if (container.current.scrollTop > start) nearest = start;
-              const center = (start + end) / 2;
-              scrollHorizontal(
-                { start, end, nearest, center }[alignment],
-                _isAnimation,
-              );
-            }
-          };
-          if (isInit) {
-            setTimeout(
-              () =>
-                doScrollIntoView(
-                  scrollIntoView,
-                  scrollIntoViewAlignment,
-                  isAnimation,
-                ),
-              500,
+            scrollVertical(
+              { start, end, nearest, center }[alignment],
+              animation,
             );
-          } else {
+          }
+          if (scrollX) {
+            const start = target.offsetLeft;
+            const end =
+              target.offsetLeft +
+              target.offsetWidth -
+              containerRef.current.clientWidth;
+            const center = (start + end) / 2;
+            let nearest = start;
+            if (
+              Math.abs(containerRef.current.scrollLeft - start) >
+              Math.abs(containerRef.current.scrollLeft - end)
+            ) {
+              nearest = end;
+            }
+            scrollHorizontal(
+              { start, end, nearest, center }[alignment],
+              animation,
+            );
+          }
+        };
+
+        const timeout = isInit ? 500 : 0;
+        setTimeout(
+          () =>
             doScrollIntoView(
               scrollIntoView,
               scrollIntoViewAlignment,
               isAnimation,
-            );
-          }
-        } else {
-          // Y 轴滚动
-          if (
-            scrollY &&
-            typeof scrollTopProp === 'number' &&
-            scrollTopProp !== container.current.scrollTop
-          ) {
-            if (isInit) {
-              setTimeout(() => scrollVertical(scrollTopProp, isAnimation), 10);
-            } else {
-              scrollVertical(scrollTopProp, isAnimation);
-            }
-          }
-          // X 轴滚动
-          if (
-            scrollX &&
-            typeof scrollLeftProp === 'number' &&
-            scrollLeftProp !== container.current.scrollLeft
-          ) {
-            if (isInit) {
-              setTimeout(
-                () => scrollHorizontal(scrollLeftProp, isAnimation),
-                10,
-              );
-            } else {
-              scrollHorizontal(scrollLeftProp, isAnimation);
-            }
-          }
-        }
-      },
-      [scrollIntoView, scrollY, scrollTopProp, scrollX, scrollLeftProp],
-    );
-
-    useEffect(() => {
-      handleScroll(true);
-    }, []);
-
-    useEffect(() => {
-      handleScroll();
-    }, [scrollIntoView, scrollY, scrollTopProp, scrollX, scrollLeftProp]);
-
-    let { upperThreshold = 50, lowerThreshold = 50 } = props;
-    const cls = clsx(
-      classes.root,
-      {
-        [`${classes.root}-view-scroll-x`]: scrollX,
-        [`${classes.root}-view-scroll-y`]: scrollY,
-      },
-      className,
-    );
-    upperThreshold = Number(upperThreshold);
-    lowerThreshold = Number(lowerThreshold);
-    const upperLowerStatus = useRef(0);
-    const upperAndLower = (e) => {
-      if (!container.current) return;
-      const {
-        offsetWidth,
-        offsetHeight,
-        scrollLeft,
-        scrollTop,
-        scrollHeight,
-        scrollWidth,
-      } = container.current;
-      if (
-        onScrollToLower &&
-        ((scrollY &&
-          offsetHeight + scrollTop + lowerThreshold >= scrollHeight) ||
-          (scrollX && offsetWidth + scrollLeft + lowerThreshold >= scrollWidth))
-      ) {
-        if (upperLowerStatus.current !== -1) onScrollToLower(e);
-        upperLowerStatus.current = -1;
-      } else if (
-        onScrollToUpper &&
-        ((scrollY && scrollTop <= upperThreshold) ||
-          (scrollX && scrollLeft <= upperThreshold))
-      ) {
-        if (upperLowerStatus.current !== 1) onScrollToUpper(e);
-        upperLowerStatus.current = 1;
+            ),
+          timeout,
+        );
       } else {
-        upperLowerStatus.current = 0;
+        const timeout = isInit ? 10 : 0;
+        // Y轴滚动
+        if (
+          scrollY &&
+          typeof scrollTopProp === 'number' &&
+          scrollTopProp !== containerRef.current.scrollTop
+        ) {
+          setTimeout(() => scrollVertical(scrollTopProp, isAnimation), timeout);
+        }
+        // X轴滚动
+        if (
+          scrollX &&
+          typeof scrollLeftProp === 'number' &&
+          scrollLeftProp !== containerRef.current.scrollLeft
+        ) {
+          setTimeout(
+            () => scrollHorizontal(scrollLeftProp, isAnimation),
+            timeout,
+          );
+        }
       }
-    };
-    const onScrollHandler = (e) => {
-      const { scrollLeft, scrollTop, scrollHeight, scrollWidth } =
-        container.current;
-      // container.current.scrollLeft = scrollLeft;
-      // container.current.scrollTop = scrollTop;
-      Object.defineProperty(e, 'detail', {
-        enumerable: true,
-        writable: true,
-        value: {
-          scrollLeft,
-          scrollTop,
-          scrollHeight,
-          scrollWidth,
-        },
-      });
-      upperAndLower(e);
-      onScroll?.(e);
-    };
-    const onTouchMoveHandler = (e) => {
-      (propsOnTouchMove || onTouchMove)?.(e);
-    };
+    },
+    [
+      scrollIntoView,
+      scrollIntoViewAlignment,
+      scrollWithAnimation,
+      scrollX,
+      scrollY,
+      scrollHorizontal,
+      scrollVertical,
+      scrollLeftProp,
+      scrollTopProp,
+    ],
+  );
 
-    return (
-      <div
-        ref={handleRef}
-        style={style}
-        className={cls}
-        onScroll={onScrollHandler}
-        onTouchMove={onTouchMoveHandler}
-      >
-        {children}
-      </div>
+  useEffect(() => {
+    handleScroll(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    handleScroll();
+  }, [handleScroll]);
+
+  /**
+   * 检查是否滚动到顶部或底部阈值
+   * @param e 滚动事件
+   */
+  const checkUpperAndLower = (e: UIEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const {
+      offsetWidth,
+      offsetHeight,
+      scrollLeft,
+      scrollTop,
+      scrollHeight,
+      scrollWidth,
+    } = containerRef.current;
+
+    const upThreshold = Number(upperThreshold);
+    const lowThreshold = Number(lowerThreshold);
+
+    if (
+      onScrollToLower &&
+      ((scrollY && offsetHeight + scrollTop + lowThreshold >= scrollHeight) ||
+        (scrollX && offsetWidth + scrollLeft + lowThreshold >= scrollWidth))
+    ) {
+      if (upperLowerStatus.current !== -1) {
+        onScrollToLower(e);
+        upperLowerStatus.current = -1;
+      }
+    } else if (
+      onScrollToUpper &&
+      ((scrollY && scrollTop <= upThreshold) ||
+        (scrollX && scrollLeft <= upThreshold))
+    ) {
+      if (upperLowerStatus.current !== 1) {
+        onScrollToUpper(e);
+        upperLowerStatus.current = 1;
+      }
+    } else {
+      upperLowerStatus.current = 0;
+    }
+  };
+
+  /**
+   * 滚动事件处理器
+   * @param e UIEvent
+   */
+  const onScrollHandler = (e: UIEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const { scrollLeft, scrollTop, scrollHeight, scrollWidth } =
+      containerRef.current;
+
+    // 为了与小程序行为对齐，动态给事件添加 detail 属性
+    Object.defineProperty(e, 'detail', {
+      enumerable: true,
+      writable: true,
+      value: { scrollLeft, scrollTop, scrollHeight, scrollWidth },
+    });
+
+    checkUpperAndLower(e);
+    onScroll?.(
+      e as unknown as SyntheticEvent<HTMLDivElement, ScrollViewScrollEvent>,
     );
-  },
-);
+  };
+
+  /**
+   * 触摸移动事件处理器
+   * @param e TouchEvent
+   */
+  const onTouchMoveHandler = (e: TouchEvent<HTMLDivElement>) => {
+    propsOnTouchMove?.(e);
+  };
+
+  const cls = clsx(
+    classes.root,
+    {
+      [`${classes.root}-view-scroll-x`]: scrollX,
+      [`${classes.root}-view-scroll-y`]: scrollY,
+    },
+    className,
+  );
+
+  return (
+    <div
+      ref={handleRef}
+      style={style}
+      className={cls}
+      onScroll={onScrollHandler}
+      onTouchMove={onTouchMoveHandler}
+    >
+      {children}
+    </div>
+  );
+});
 
 ScrollView.displayName = 'BuiScrollView';
 

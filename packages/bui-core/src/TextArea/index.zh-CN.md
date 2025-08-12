@@ -7,9 +7,7 @@ name: TextArea 文本框
 
 文本输入框，用于输入较长内容时使用。
 
-## 代码演示
-
-### 基本用法
+## 基本用法
 
 支持`textarea`标签的基础属性透传，若要透传的属性不在该文档中，放入`textareaProps`字段中才会透传至内部`textarea`标签。
 
@@ -187,17 +185,17 @@ export default () => {
 
 ## 样式变量
 
-| 属性                      | 说明                   | 默认值                   | 全局变量                               |
-| ------------------------- | ---------------------- | ------------------------ | -------------------------------------- |
-| --border-radius           | 圆角                   | --bui-shape-radius-label | --bui-textarea-border-radius           |
-| --width                   | 宽度                   | 100%                     | --bui-textarea-width                   |
-| --bg-color                | 文本框底色             | --bui-color-bg-default   | --bui-textarea-background-color        |
-| --text-color              | 文本框字体颜色         | --bui-color-fg-subtle    | --bui-textarea-text-color              |
-| --count-bg-color          | 计数栏底色             | --bui-color-bg-default   | --bui-textarea-background-color        |
-| --count-text-color        | 计数栏字体颜色         | --bui-color-fg-subtle    | --bui-textarea-count-color             |
-| --text-font-size          | 文本框字体大小         | --bui-text-size-2        | --bui-textarea-text-font-size          |
-| --count-font-size         | 文本框字数字体大小     | --bui-title-size-3       | --bui-textarea-count-font-size         |
-| --content-padding         | 文本框内边距           | 8px                      | --bui-textarea-padding                 |
-| --count-padding           | 计数栏内边距           | 4px                      | --bui-textarea-count-padding           |
-| --placeholder-color       | 占位符字体颜色         | #ced1d6                  | --bui-textarea-placeholder-color       |
-| --placeholder-line-height | 占位符行高(小程序无效) | 1.3                      | --bui-textarea-placeholder-line-height |
+| 变量名                                 | 说明           | 默认值                                                              |
+| -------------------------------------- | -------------- | ------------------------------------------------------------------- |
+| --bui-textarea-border-radius           | 文本域圆角     | `var(--bui-shape-radius-label)`                                     |
+| --bui-textarea-width                   | 文本域宽度     | `100%`                                                              |
+| --bui-textarea-background-color        | 背景颜色       | `var(--bui-color-bg-default)`                                       |
+| --bui-textarea-text-color              | 文字颜色       | `var(--bui-color-fg-subtle)`                                        |
+| --bui-textarea-count-background-color  | 计数器背景色   | `var(--bui-textarea-background-color, var(--bui-color-bg-default))` |
+| --bui-textarea-count-color             | 计数器文字颜色 | `var(--bui-color-fg-subtle)`                                        |
+| --bui-textarea-text-font-size          | 文字大小       | `var(--bui-text-size-2)`                                            |
+| --bui-textarea-count-font-size         | 计数器字体大小 | `var(--bui-title-size-3)`                                           |
+| --bui-textarea-padding                 | 内边距         | `8px`                                                               |
+| --bui-textarea-count-padding           | 计数器内边距   | `0 4px`                                                             |
+| --bui-textarea-placeholder-color       | 占位符颜色     | `#ced1d6`                                                           |
+| --bui-textarea-placeholder-line-height | 占位符行高     | `1.3`                                                               |

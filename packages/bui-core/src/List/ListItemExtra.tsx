@@ -8,7 +8,12 @@ const prefixCls = 'bui-list-item-extra';
 
 const ListItemExtra = React.forwardRef<HTMLElement, ListItemExtraProps>(
   (props, ref) => {
-    const { children, className, component: Component, ...others } = props;
+    const {
+      children,
+      className,
+      component: Component = 'div',
+      ...others
+    } = props;
 
     return (
       <Component className={clsx(prefixCls, className)} ref={ref} {...others}>
@@ -19,8 +24,5 @@ const ListItemExtra = React.forwardRef<HTMLElement, ListItemExtraProps>(
 );
 
 ListItemExtra.displayName = 'BuiListItemExtra';
-ListItemExtra.defaultProps = {
-  component: 'div',
-};
 
 export default ListItemExtra;

@@ -1,0 +1,205 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+@{root-selector} {
+  --bui-switch-bg-color: #ccc;
+  --bui-switch-padding: 0;
+  --bui-switch-border-radius: 15px;
+  --bui-switch-small-width: 24px;
+  --bui-switch-small-height: 16px;
+  --bui-switch-small-font-size: 9px;
+  --bui-switch-controller-small-width: 12px;
+  --bui-switch-controller-small-height: 12px;
+  --bui-switch-width: 44px;
+  --bui-switch-height: 22px;
+  --bui-switch-font-size: var(--bui-text-size-3);
+  --bui-switch-controller-width: 18px;
+  --bui-switch-controller-height: 18px;
+  --bui-switch-checked-controller-left: calc(100% - 20px);
+  --bui-switch-controller-left: 2px;
+  --bui-switch-large-width: 51px;
+  --bui-switch-large-height: 30px;
+  --bui-switch-large-font-size: var(--bui-text-size-3);
+  --bui-switch-controller-large-width: 24px;
+  --bui-switch-controller-large-height: 24px;
+}
+
+@duration: 0.3s;
+
+.switch-bg(@color) {
+  background-color: var(~'--bui-color-@{color}');
+}
+
+.bui-switch {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: var(--bui-switch-padding);
+  vertical-align: middle;
+  border-radius: var(--bui-switch-border-radius);
+  background-color: var(--bui-switch-bg-color);
+  transition: all @duration cubic-bezier(0.35, 0, 0.25, 1);
+  font-family: var(--bui-font-family);
+
+  &::after {
+    position: absolute;
+    left: var(--bui-switch-controller-left);
+    top: 2px;
+    border-radius: 50%;
+    background-color: #fff;
+    content: ' ';
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+    transition: left @duration cubic-bezier(0.35, 0, 0.25, 1);
+    animation-timing-function: cubic-bezier(0.35, 0, 0.25, 1);
+    animation-duration: @duration;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  // 尺寸
+  &-small {
+    width: var(--bui-switch-small-width);
+    height: var(--bui-switch-small-height);
+
+    .bui-switch-inner {
+      left: calc(100% - 10px);
+      font-size: var(--bui-switch-small-font-size);
+    }
+
+    &::after {
+      width: var(--bui-switch-controller-small-width);
+      height: var(--bui-switch-controller-small-height);
+      left: 2px;
+      top: 2px;
+    }
+
+    &.bui-switch-checked {
+      &::after {
+        left: calc(100% - 14px);
+      }
+
+      .bui-switch-inner {
+        left: 2px;
+      }
+    }
+  }
+
+  &-medium {
+    width: var(--bui-switch-width);
+    height: var(--bui-switch-height);
+
+    .bui-switch-inner {
+      font-size: var(--bui-switch-font-size);
+    }
+
+    &::after {
+      width: var(--bui-switch-controller-width);
+      height: var(--bui-switch-controller-height);
+    }
+
+    &.bui-switch-checked {
+      &::after {
+        left: var(--bui-switch-checked-controller-left);
+      }
+
+      .bui-switch-inner {
+        left: var(--bui-spacing-sm);
+      }
+    }
+  }
+
+  &-large {
+    width: var(--bui-switch-large-width);
+    height: var(--bui-switch-large-height);
+
+    .bui-switch-inner {
+      left: calc(100% - 22px);
+      font-size: var(--bui-switch-large-font-size);
+    }
+
+    &::after {
+      width: var(--bui-switch-controller-large-width);
+      height: var(--bui-switch-controller-large-height);
+      left: 3px;
+      top: 3px;
+    }
+
+    &.bui-switch-checked {
+      &::after {
+        left: calc(100% - 27px);
+      }
+
+      .bui-switch-inner {
+        left: var(--bui-spacing-sm);
+      }
+    }
+  }
+
+  // 颜色
+  &-primary {
+    &.bui-switch-checked {
+      .switch-bg(primary);
+    }
+  }
+
+  &-info {
+    &.bui-switch-checked {
+      .switch-bg(info);
+    }
+  }
+
+  &-success {
+    &.bui-switch-checked {
+      .switch-bg(success);
+    }
+  }
+
+  &-warning {
+    &.bui-switch-checked {
+      .switch-bg(warning);
+    }
+  }
+
+  &-danger {
+    &.bui-switch-checked {
+      .switch-bg(danger);
+    }
+  }
+
+  &-inner {
+    position: absolute;
+    left: calc(100% - 20px);
+    color: var(--bui-color-white);
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    .bui-svg-icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+
+    &::after {
+      animation-name: none;
+      cursor: not-allowed;
+    }
+  }
+
+  &-input {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    z-index: 1;
+    cursor: pointer;
+  }
+}

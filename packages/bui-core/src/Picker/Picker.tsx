@@ -218,7 +218,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
               columnIndex={index}
               value={internalValue?.[index]}
               onSelect={handleSelect}
-              pickerStyle={others?.style}
+              open={open}
             />
           ))}
         </div>

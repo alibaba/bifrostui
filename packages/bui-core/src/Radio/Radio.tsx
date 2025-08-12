@@ -4,14 +4,14 @@ import React, { forwardRef, useContext } from 'react';
 import { RadioProps } from './Radio.types';
 import RadioButtonIcon from './RadioButtonIcon';
 import RadioContext from './RadioContext';
-import './Radio.less';
+import './index.less';
 
 const prefixCls = 'bui-radio';
 
 const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
   const {
     className,
-    defaultChecked,
+    defaultChecked = false,
     checked,
     inputProps,
     inputRef,
@@ -20,7 +20,7 @@ const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
     disabled,
     icon,
     checkedIcon,
-    labelPlacement,
+    labelPlacement = 'right',
     onChange,
     children,
     ...others
@@ -118,9 +118,5 @@ const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
 });
 
 Radio.displayName = 'BuiRadio';
-Radio.defaultProps = {
-  defaultChecked: false,
-  labelPlacement: 'right',
-};
 
 export default Radio;

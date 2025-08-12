@@ -7,9 +7,7 @@ name: Radio 单选框
 
 单选框，使用户能够从一组选项中选择一个选项。
 
-## 代码演示
-
-### 基本用法
+## 基本用法
 
 通过 `checked` 和 `onChange` 控制状态。
 
@@ -34,7 +32,7 @@ export default () => {
 };
 ```
 
-### 给内部 input 标签透传属性
+## 给内部 input 标签透传属性
 
 通过 `inputProps` 传入的 input 属性可透传至内部`input`标签。
 
@@ -62,7 +60,7 @@ export default () => {
 };
 ```
 
-### 内部 input 标签 name 和 value
+## 内部 input 标签 name 和 value
 
 `name` 和 `value` 可直接透传至内部`input`标签，不会被 `inputProps` 传入的同名属性覆盖。
 
@@ -89,7 +87,7 @@ export default () => {
 };
 ```
 
-### 文案位置
+## 文案位置
 
 通过 `labelPlacement` 可控制文案在复选框图标的位置。
 
@@ -147,7 +145,7 @@ export default () => {
 };
 ```
 
-### 自定义图标
+## 自定义图标
 
 通过 `icon` 可自定义为选中状态图标，`checkedIcon` 可自定义选中状态图标。
 
@@ -175,7 +173,7 @@ export default () => {
 };
 ```
 
-### 禁用状态
+## 禁用状态
 
 使用`disabled`禁用组件，`RadioGroup.disabled` 可整组禁用。
 
@@ -195,7 +193,7 @@ export default () => {
 };
 ```
 
-#### Radio 组
+## Radio 组
 
 `RadioGroup` 和 `Radio` 组合，可实现复选框组，且此时的 `Radio` 应该传入 `value` 属性。
 
@@ -221,7 +219,7 @@ export default () => {
 };
 ```
 
-### 受控的 Radio
+## 受控的 Radio
 
 通过 `value` 控制 `RadioGroup` 组件，通过 `checked` 控制 `Radio` 组件。
 
@@ -264,7 +262,7 @@ export default () => {
 };
 ```
 
-### 使用默认值
+## 使用默认值
 
 使用 `defaultValue` 指定 `RadioGroup` 组件默认值，使用 `defaultChecked` 指定 `Radio` 组件默认值。
 
@@ -320,11 +318,10 @@ export default () => {
 | labelPlacement | 文案位置                                 | `left` \| `top` \| `right` \| `bottom`                     | `right` |
 | onChange       | 变化时的回调函数                         | (e: React.SyntheticEvent,data: {checked: boolean}) => void | -       |
 
-### 样式变量
+## 样式变量
 
-| 属性              | 说明         | 默认值                   | 全局变量                   |
-| ----------------- | ------------ | ------------------------ | -------------------------- |
-| --label-color     | 文案字体颜色 | --bui-color-fg-default   | --bui-radio-label-color    |
-| --label-font-size | 文案字体大小 | --bui-text-size-1        | -bui-radio-label-font-size |
-| --icon-font-size  | 图标字体大小 | --bui-title-size-2       | --bui-radio-icon-font-size |
-| --icon-padding    | 图标内边距   | --bui-radio-icon-padding | 5px                        |
+| 全局变量                    | 说明         | 默认值                        |
+| --------------------------- | ------------ | ----------------------------- |
+| --bui-radio-label-color     | 标签文本颜色 | `var(--bui-color-fg-default)` |
+| --bui-radio-label-font-size | 标签文本大小 | `var(--bui-text-size-1)`      |
+| --bui-radio-icon-padding    | 图标内边距   | `5px`                         |

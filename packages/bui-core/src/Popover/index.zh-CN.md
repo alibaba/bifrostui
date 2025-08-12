@@ -7,9 +7,7 @@ name: Popover 气泡卡片
 
 click或hover触发弹出气泡式的卡片浮层，可以自定义事件
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 鼠标点击则显示提示，再点击消失，气泡浮层不承载复杂文本和操作。
 
@@ -22,7 +20,7 @@ export default () => {
     <Popover
       title="This is a title"
       content="This is a content"
-      placement="topLeft"
+      anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
     >
       <span>click显示</span>
     </Popover>
@@ -99,114 +97,67 @@ export default () => {
 };
 ```
 
-### placement 气泡框位置
+### anchorOrigin 气泡框位置
 
-`placement` 设置气泡浮层的位置。可选值有： `top` `left` `right` `bottom` `topLeft` `topRight` `bottomLeft` `bottomRight` `leftTop` `leftBottom` `rightTop` `rightBottom`
+`anchorOrigin` 设置气泡浮层相对于锚点的位置。通过 `vertical` 和 `horizontal` 两个属性来控制位置：
+- `vertical`: 可选值为 `top`、`center`、`bottom`
+- `horizontal`: 可选值为 `left`、`center`、`right`
+
+以下展示了所有 9 种位置组合（3×3 网格）：
 
 ```tsx
 import { Popover, Button } from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
-  const packageButton = (inner) => {
+  const createButton = (text, anchorOrigin) => {
     return (
-      <Button style={{ borderRadius: 0, marginTop: '4px', width: '80px' }}>
-        {inner}
-      </Button>
+      <Popover
+        trigger={['hover', 'click']}
+        title={`anchorOrigin: ${JSON.stringify(anchorOrigin)}`}
+        content={`vertical: ${anchorOrigin.vertical}, horizontal: ${anchorOrigin.horizontal}`}
+        anchorOrigin={anchorOrigin}
+      >
+        <Button 
+          style={{ 
+            width: '100px', 
+            height: '40px', 
+            margin: '4px',
+            fontSize: '12px'
+          }}
+        >
+          {text}
+        </Button>
+      </Popover>
     );
   };
 
   return (
-    <div>
-      <div
-        style={{
-          display: 'flex',
-          width: '300px',
-          marginLeft: '100px',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Popover trigger={['hover', 'click']} title="This is a popover" placement="topLeft">
-          {packageButton(<span>topLeft</span>)}
-        </Popover>
-        <Popover trigger={['hover', 'click']} title="This is a popover" placement="top">
-          {packageButton(<span>top</span>)}
-        </Popover>
-        <Popover trigger={['hover', 'click']} title="This is a popover" placement="topRight">
-          {packageButton(<span>topRight</span>)}
-        </Popover>
-      </div>
-      <div
-        style={{
-          marginTop: '20px',
-          display: 'inline-flex',
-          width: '100px',
-          flexDirection: 'column',
-        }}
-      >
-        <Popover trigger={['hover', 'click']} title="This is a popover" placement="leftTop">
-          {packageButton(<span>leftTop</span>)}
-        </Popover>
-        <Popover trigger={['hover', 'click']} title="This is a popover" placement="left">
-          {packageButton(<span>left</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="leftBottom"
-        >
-          {packageButton(<span>leftBottom</span>)}
-        </Popover>
-      </div>
-      <div
-        style={{
-          marginLeft: '300px',
-          display: 'inline-flex',
-          width: '100px',
-          flexDirection: 'column',
-        }}
-      >
-        <Popover trigger={['hover', 'click']} title="This is a popover" placement="rightTop">
-          {packageButton(<span>rightTop</span>)}
-        </Popover>
-        <Popover trigger={['hover', 'click']} title="This is a popover" placement="right">
-          {packageButton(<span>right</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="rightBottom"
-        >
-          {packageButton(<span>rightBottom</span>)}
-        </Popover>
-      </div>
-      <div
-        style={{
-          marginLeft: '100px',
-          marginTop: '20px',
-          display: 'flex',
-          width: '300px',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="bottomLeft"
-        >
-          {packageButton(<span>bottomLeft</span>)}
-        </Popover>
-        <Popover trigger={['hover', 'click']} title="This is a popover" placement="bottom">
-          {packageButton(<span>bottom</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="bottomRight"
-        >
-          {packageButton(<span>bottomRight</span>)}
-        </Popover>
-      </div>
+    <div style={{ 
+      display: 'grid', 
+      gridTemplateColumns: 'repeat(3, 1fr)', 
+      gap: '8px',
+      maxWidth: '400px',
+      margin: '20px auto',
+      padding: '20px',
+      border: '1px solid #e0e0e0',
+      borderRadius: '8px',
+      backgroundColor: '#fafafa'
+    }}>
+      {/* 第一行：top */}
+      {createButton('top + left', { vertical: 'top', horizontal: 'left' })}
+      {createButton('top + center', { vertical: 'top', horizontal: 'center' })}
+      {createButton('top + right', { vertical: 'top', horizontal: 'right' })}
+      
+      {/* 第二行：center */}
+      {createButton('center + left', { vertical: 'center', horizontal: 'left' })}
+      {createButton('center + center', { vertical: 'center', horizontal: 'center' })}
+      {createButton('center + right', { vertical: 'center', horizontal: 'right' })}
+      
+      {/* 第三行：bottom */}
+      {createButton('bottom + left', { vertical: 'bottom', horizontal: 'left' })}
+      {createButton('bottom + center', { vertical: 'bottom', horizontal: 'center' })}
+      {createButton('bottom + right', { vertical: 'bottom', horizontal: 'right' })}
     </div>
   );
 };
@@ -214,64 +165,82 @@ export default () => {
 
 ### trigger 触发方式
 
-显示气泡的触发方式 "click"或者"hover"，默认click
+气泡浮层可以通过 `trigger` 属性配置触发方式。
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import React, { useState } from 'react';
 
 export default () => {
+  const [manualOpen, setManualOpen] = useState(false);
+  
   return (
-    <Popover title="This is a popover" trigger={['hover', 'click']}>
-      <span>hover触发方式</span>
-    </Popover>
-  );
-};
-```
-
-### onOpenChange 气泡浮层显隐的回调方法
-
-```tsx
-import { Popover } from '@bifrostui/react';
-import React from 'react';
-
-export default () => {
-  const onOpenChange = (event, data) => {
-    console.log(JSON.stringify(data));
-  };
-  return (
-    <Popover
-      title="This is a popover"
-      trigger={['hover', 'click']}
-      onOpenChange={onOpenChange}
-    >
-      <span>onOpenChange 回调方法</span>
-    </Popover>
+    <div>
+      <p>
+        <Popover
+          title="This is a popover"
+          content="onClick触发"
+          trigger="click"
+        >
+          <span>click触发</span>
+        </Popover>
+      </p>
+      <p>
+        <Popover
+          title="This is a popover"
+          content="hover触发"
+          trigger="hover"
+        >
+          <span>hover触发</span>
+        </Popover>
+      </p>
+      <p>
+        <Popover
+          title="This is a popover"
+          content="click和hover都可以触发"
+          trigger={['click', 'hover']}
+        >
+          <span>click或hover触发</span>
+        </Popover>
+      </p>
+      <p>
+        <button onClick={() => setManualOpen(!manualOpen)}>
+          外部控制按钮 {manualOpen ? '(点击隐藏)' : '(点击显示)'}
+        </button>
+        <Popover
+          title="完全手动控制"
+          content="这个气泡完全由外部控制，不响应任何自动触发事件"
+          trigger="none"
+          open={manualOpen}
+        >
+          <span style={{ marginLeft: '10px' }}>none触发（外部控制）</span>
+        </Popover>
+      </p>
+    </div>
   );
 };
 ```
 
 ### API
 
-| 属性          | 说明                     | 类型                                                                                                                                                             | 默认值  |
-| ------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| title         | 气泡浮层的标题浮层内容   | ReactNode                                                                                                                                                        | -       |
-| content       | 气泡浮层的内容           | ReactNode                                                                                                                                                        | -       |
-| defaultOpen   | 默认是否显隐             | boolean                                                                                                                                                          | false   |
-| open          | 用于手动控制气泡浮层显隐 | boolean                                                                                                                                                          | -       |
-| hideArrow     | 是否展示箭头             | boolean                                                                                                                                                          | false   |
-| offsetSpacing | 浮层与目标元素的偏移量   | number                                                                                                                                                           | 0       |
-| placement     | 气泡框位置               | string，枚举值是 `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` `bottom` | 'top'   |
-| trigger       | 触发行为                 | string \| string[]，枚举值是 'click' \| 'hover'                                                                                                                  | 'click' |
-| onOpenChange  | 气泡浮层显隐的回调方法   | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                             | -       |
+| 属性          | 说明                     | 类型                                                                         | 默认值                                         |
+| ------------- | ------------------------ | ---------------------------------------------------------------------------- | ---------------------------------------------- |
+| title         | 气泡浮层的标题浮层内容   | ReactNode                                                                    | -                                              |
+| content       | 气泡浮层的内容           | ReactNode                                                                    | -                                              |
+| defaultOpen   | 默认是否显隐             | boolean                                                                      | false                                          |
+| open          | 用于手动控制气泡浮层显隐 | boolean                                                                      | -                                              |
+| hideArrow     | 是否展示箭头             | boolean                                                                      | false                                          |
+| offsetSpacing | 浮层与目标元素的偏移量   | number                                                                       | 0                                              |
+| anchorOrigin  | 气泡框相对于锚点的位置   | { vertical: 'top' \| 'center' \| 'bottom', horizontal: 'left' \| 'center' \| 'right' } | { vertical: 'top', horizontal: 'center' }      |
+| trigger       | 触发行为                 | string \| string[]，枚举值是 'click' \| 'hover' \| 'none'                     | 'click'                                        |
+| onOpenChange  | 气泡浮层显隐的回调方法   | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void         | -                                              |
 
-### 样式变量
+## 样式变量
 
-| 属性                 | 说明             | 默认值 | 全局变量                         |
-| -------------------- | ---------------- | ------ | -------------------------------- |
-| --arrow-size         | 箭头大小         | 8PX    | --bui-popover-arrow-size         |
-| --localtion-position | 箭头位置         | 8PX    | --bui-popover-localtion-position |
-| --max-width          | 最大宽度         | 350px  | --bui-popover-max-width          |
-| --content-min-width  | 内容区域最小宽度 | 30px   | --bui-popover-content-min-width  |
-| --content-min-height | 内容区域最小高度 | 32px   | --bui-popover-content-min-height |
-| --content-padding    | 内容区域内边距   | 0      | --bui-popover-content-padding    |
+| 全局变量                        | 说明           | 默认值    |
+| ------------------------------- | -------------- | --------- |
+| --bui-popover-arrow-size        | 箭头大小       | `8px`     |
+| --bui-popover-location-position | 箭头位置偏移量 | `8px`     |
+| --bui-popover-max-width         | 气泡最大宽度   | `350px`   |
+| --bui-popover-content-min-width | 内容最小宽度   | `30px`    |
+| --bui-popover-content-padding   | 内容内边距     | `6px 8px` |

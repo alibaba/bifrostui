@@ -1,23 +1,24 @@
 import clsx from 'clsx';
 import React from 'react';
-import './Skeleton.less';
 import { SkeletonProps } from './Skeleton.types';
+import './index.less';
 
 const prefixCls = 'bui-skeleton';
 
 const Skeleton = React.forwardRef<HTMLSpanElement, SkeletonProps>(
-  (props, ref) => {
-    const {
+  (
+    {
       className,
       style,
-      animation,
+      animation = 'wave',
       width,
       height,
-      variant,
+      variant = 'text',
       children,
       ...others
-    } = props;
-
+    },
+    ref,
+  ) => {
     return (
       <span
         className={clsx(
@@ -40,8 +41,5 @@ const Skeleton = React.forwardRef<HTMLSpanElement, SkeletonProps>(
 );
 
 Skeleton.displayName = 'BuiSkeleton';
-Skeleton.defaultProps = {
-  animation: 'wave',
-  variant: 'text',
-};
+
 export default Skeleton;

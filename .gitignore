@@ -8,6 +8,9 @@ node_modules
 # production
 dist
 es
+umd
+umd-main
+logs
 /dist
 /docs-dist
 .history
@@ -37,6 +40,8 @@ backstop_data/html_report
 /.ci
 /.dumi/tmp
 /.vscode
+/inspect.json
+/inspect.html
 
 project.private.config.json
 .tgz

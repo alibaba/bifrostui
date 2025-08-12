@@ -214,7 +214,10 @@ export default () => {
 | -------- | ------------------------------- | --------------------------------------------------------- | ----------- |
 | content  | Badge content                   | ReactNode                                                 | -           |
 | color    | Badge theme color               | `primary` \| `info` \| `success` \| `warning` \| `danger` | `primary`   |
-| maxCount | Maximum value for number badges | number                                                    | -           |
+| max      | Maximum value for number badges (recommended) | number | - |
+| showZero | Whether to show badge when content is 0        | boolean | false |
+| visibility | Whether to show badge                        | boolean | true |
+| maxCount | Maximum value for number badges (deprecated)   | number | - |
 | variant  | Badge type                      | `contained` \| `outlined`                                 | `contained` |
 | type     | Badge shape                     | `dot` \| `rounded` \| `bubble`                            | `rounded`   |
 
@@ -232,3 +235,20 @@ export default () => {
 | --dot-size             | Width and height for dot badges             | 9px           | --bui-badge-dot-size             |
 | --bubble-padding       | Padding for bubble badges                   | 9px           | --bui-badge-dot-size             |
 | --bubble-border-radius | Border radius for bubble badges             | 6px 6px 6px 0 | --bui-badge-bubble-border-radius |
+
+## New Usage Examples
+
+### max prop
+```tsx
+<Badge content={120} max={99} />
+```
+
+### showZero prop
+```tsx
+<Badge content={0} showZero />
+```
+
+### visibility prop
+```tsx
+<Badge content={10} visibility={false} />
+```

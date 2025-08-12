@@ -1,17 +1,6 @@
-import {
-  debounce,
-  isMini,
-  throttle,
-  useDidMountEffect,
-} from '@bifrostui/utils';
+import { debounce, isMini, throttle, useEventCallback } from '@bifrostui/utils';
 import clsx from 'clsx';
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Tab from './Tab';
 import { TabsProps } from './Tabs.types';
 import { TabsContextProvider } from './TabsContext';
@@ -22,14 +11,11 @@ const prefixCls = 'bui-tabs';
 const duration = 300;
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
-  const { children, className, value, tabs, align, onChange, ...others } =
-    props;
-  const [active, setActive] = useState('');
+  const { children, className, value, tabs = [], onChange, ...others } = props;
   const tabsRef = useRef<HTMLDivElement>(null);
   const activeLineRef = useRef<HTMLDivElement>(null);
-  const [lineData, setLineData] = useState({
+  const [indicatorData, setIndicatorData] = useState({
     x: 0,
-    transitionInUse: false,
     hasActiveTab: false,
   });
   const [maskData, setMaskData] = useState({
@@ -42,7 +28,8 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     if (!container) return undefined;
 
     const activeIndex =
-      !!tabs.length && tabs.findIndex((item) => item.index === active);
+      !!tabs.length && tabs.findIndex((item) => item.index === value);
+
     let activeTab;
 
     if (tabs.length) {
@@ -53,7 +40,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     } else {
       activeTab = [...container.childNodes].find((child: any) => {
         if (isMini) {
-          return [...child.classList.tokenList].includes(
+          return [...(child?.classList?.tokenList ?? [])].includes(
             'bui-tab-miniapp-active',
           );
         }
@@ -77,7 +64,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     scrollLeftTo(tabsContainer, to, duration);
   };
 
-  const animate = ({ transitionInUse }: { transitionInUse: boolean }) => {
+  const animate = useEventCallback(() => {
     const container = tabsRef.current;
     if (!container) return;
 
@@ -100,9 +87,8 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
       activeLineWidth = activeLine.offsetWidth;
       x = activeTabLeft + (activeTabWidth - activeLineWidth) / 2;
     }
-    setLineData({
+    setIndicatorData({
       x,
-      transitionInUse,
       hasActiveTab: !!activeTab,
     });
 
@@ -112,32 +98,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     if (!isMini) {
       scrollIntoView();
     }
-  };
-
-  useEffect(() => {
-    setActive(value);
-  }, [value]);
-
-  useLayoutEffect(() => {
-    animate({ transitionInUse: false });
-  }, []);
-
-  useEffect(() => {
-    const handleResize = debounce(() => {
-      animate({ transitionInUse: true });
-      updateMask();
-    }, 100);
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [active]);
-
-  useDidMountEffect(() => {
-    animate({ transitionInUse: true });
-  }, [active, tabs, children]);
+  });
 
   const updateMask = useMemo(
     () =>
@@ -168,7 +129,25 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     [],
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    // value变化，或value没变但tab数量变化时，indicator位置要更新
+    animate();
+  }, [value, tabs.length, React.Children.toArray(children).length]);
+
+  useEffect(() => {
+    const handleResize = debounce(() => {
+      animate();
+      updateMask();
+    }, 100);
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
     updateMask();
   }, []);
 
@@ -178,17 +157,15 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     if (index === undefined || index === null) {
       return;
     }
-    if (active !== value) {
-      setActive(index);
-    }
+
     if (index !== value) {
       onChange?.(e, { index });
     }
   };
 
   const providerValue = useMemo(() => {
-    return { value, align, triggerChange: handleClick };
-  }, [value, align, children, handleClick]);
+    return { value, triggerChange: handleClick };
+  }, [value, children, handleClick]);
 
   return (
     <div ref={ref} className={clsx(prefixCls, className)} {...others}>
@@ -208,14 +185,12 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
       <div className={`${prefixCls}-tabs`} ref={tabsRef} onScroll={updateMask}>
         <div
           ref={activeLineRef}
-          className={clsx(`${prefixCls}-tabline`, {
-            'bui-tabline-invisible': isMini || !lineData.hasActiveTab,
+          className={clsx(`${prefixCls}-indicator`, {
+            'bui-indicator-invisible': isMini || !indicatorData.hasActiveTab,
           })}
           style={{
-            transition: lineData.transitionInUse
-              ? `transform ${duration / 1000}s ease`
-              : undefined,
-            transform: `translate3d(${lineData.x}px, 0px, 0px)`,
+            transition: 'transform 0.3s ease-in-out',
+            transform: `translate(${indicatorData.x}px, 0px)`,
           }}
         />
 
@@ -242,9 +217,5 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
 });
 
 Tabs.displayName = 'BuiTabs';
-Tabs.defaultProps = {
-  align: 'center',
-  tabs: [],
-};
 
 export default Tabs;

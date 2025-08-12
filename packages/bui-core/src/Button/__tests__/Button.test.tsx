@@ -43,7 +43,7 @@ describe('Button', () => {
     'info',
     'danger',
     'vip',
-    'default',
+    'neutral',
   ] as const)('should render correctly with color props', (color) => {
     render(<Button color={color}>{color} button</Button>);
     expect(screen.getByRole('button')).toHaveClass(`${rootClass}-${color}`);

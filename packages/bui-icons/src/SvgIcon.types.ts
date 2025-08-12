@@ -4,7 +4,7 @@ import { ThemeColor } from '@bifrostui/types';
 export interface ISvgIconProps {
   className?: string;
   /** 预定义的一些icon颜色 */
-  color?: ThemeColor | 'default' | 'disabled';
+  color?: ThemeColor | 'disabled';
   /** 应用到SVG元素上的自定义色彩 */
   htmlColor?: string;
   /** 预置的图标大小，也可以通过元素的font-size来设置自定义的图标大小 */

@@ -1,0 +1,49 @@
+// 无法用css variables实现的先锋版高亮主题色
+@import '../mixins/variables.less';
+
+@{theme-selector-pioneer-light} {
+  .bui-btn {
+    &.bui-btn-contained {
+      &.bui-btn-primary {
+        &.bui-btn-large {
+          background-image: radial-gradient(
+              35px 25px ellipse at 2% 110%,
+              #fffe1e 0%,
+              rgba(251, 134, 35, 0) 99%
+            ),
+            radial-gradient(
+              35px 25px ellipse at 110% 120%,
+              #ff3018 0%,
+              rgba(0, 48, 24, 0) 92%
+            ),
+            linear-gradient(90deg, #fc8622 0%, #ff5000 100%);
+        }
+
+        &.bui-btn-full {
+          background-image: radial-gradient(
+              93px 50px ellipse at 2% 110%,
+              #fffe1e 0%,
+              rgba(251, 134, 35, 0) 100%
+            ),
+            radial-gradient(
+              93px 50px ellipse at 98% 110%,
+              #ff3018 0%,
+              rgba(0, 48, 24, 0) 92%
+            ),
+            linear-gradient(90deg, #fc8622 0%, #ff5000 100%);
+        }
+      }
+    }
+  }
+
+  .bui-tabs {
+    .bui-tabs-indicator {
+      background-image: linear-gradient(
+        90deg,
+        #ff9b00 0%,
+        #ffa700 21%,
+        #ff8300 100%
+      );
+    }
+  }
+}

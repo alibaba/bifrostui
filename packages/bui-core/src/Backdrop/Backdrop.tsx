@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import React from 'react';
 import Fade from '../Fade';
-import './Backdrop.less';
 import { BackdropProps } from './Backdrop.types';
+import './index.less';
 
 const prefixCls = 'bui-backdrop';
 

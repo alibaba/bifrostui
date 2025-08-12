@@ -1,7 +1,7 @@
 import React from 'react';
 import { OverrideProps } from '@bifrostui/types';
 
-interface ScrollViewScrollEvent extends Event {
+export interface ScrollViewScrollEvent extends Event {
   detail?: {
     scrollLeft: number;
     scrollTop: number;

@@ -7,9 +7,7 @@ name: Progress 进度条
 
 展示操作的当前进度。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 通过`percent`设置操作进度。
 
@@ -79,8 +77,8 @@ export default () => {
       <Progress
         percent={60}
         strokeColor={{
-          from: 'var(--bui-color-red)',
-          to: 'var(--bui-color-red-light)',
+          from: 'var(--bui-color-primary)',
+          to: 'var(--bui-color-primary-light)',
         }}
       />
       <Progress
@@ -103,7 +101,7 @@ export default () => {
 import React from 'react';
 import { Progress } from '@bifrostui/react';
 export default () => {
-  return <Progress percent={60} trailColor="var(--bui-color-red-light)" />;
+  return <Progress percent={60} trailColor="var(--bui-color-primary-light)" />;
 };
 ```
 
@@ -118,10 +116,10 @@ export default () => {
 
 ## 样式变量
 
-| 属性            | 说明               | 默认值                   | 全局变量                     |
-| --------------- | ------------------ | ------------------------ | ---------------------------- |
-| --fill-color    | 进度条的色彩       | --bui-color-primary      | --bui-progress-fill-color    |
-| --trail-color   | 未填充进度条的色彩 | rgba(156, 156, 165, 0.2) | --bui-progress-trail-color   |
-| --stroke-width  | 填充进度条宽度     | 8px                      | --bui-progress-stroke-width  |
-| --width         | 进度条宽度         | 100%                     | --bui-progress-width         |
-| --border-radius | 进度条圆角         | 100px                    | --bui-progress-border-radius |
+| 全局变量                     | 说明           | 默认值                     |
+| ---------------------------- | -------------- | -------------------------- |
+| --bui-progress-fill-color    | 进度条填充颜色 | `var(--bui-color-primary)` |
+| --bui-progress-trail-color   | 进度条背景颜色 | `rgba(156, 156, 165, 0.2)` |
+| --bui-progress-stroke-width  | 进度条高度     | `8px`                      |
+| --bui-progress-width         | 进度条宽度     | `100%`                     |
+| --bui-progress-border-radius | 进度条圆角     | `100px`                    |
