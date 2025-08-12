@@ -1,4 +1,4 @@
-// import { isMini } from '@bifrostui/utils';
+import { isMini } from '@bifrostui/utils';
 import clsx from 'clsx';
 import React from 'react';
 import { IconButtonProps } from './IconButton.types';
@@ -39,7 +39,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         {...others}
       >
         {/* 小程序中svgIcon不能继承父元素的color */}
-        {React.isValidElement(children)
+        {isMini && React.isValidElement(children)
           ? React.cloneElement(children, {
               ...(!isContainedVariant && {
                 color: children.props?.color || color,
