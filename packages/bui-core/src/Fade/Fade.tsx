@@ -49,15 +49,19 @@ const Fade = React.forwardRef<HTMLElement, FadeProps>(
         ref={nodeRef}
       >
         {(state, childProps) => {
-          const transition = transitions.create(
-            'opacity',
-            getTransitionProps(
-              { timeout, style, easing: easingProp, delay },
-              {
-                mode: state,
-              },
-            ),
-          );
+          const transition =
+            state === 'entering' || state === 'exiting'
+              ? transitions.create(
+                  'opacity',
+                  getTransitionProps(
+                    { timeout, style, easing: easingProp, delay },
+                    {
+                      mode: state,
+                    },
+                  ),
+                )
+              : 'none';
+
           return React.cloneElement(children, {
             style: {
               visibility: state === 'exited' ? 'hidden' : 'visible',
