@@ -14,7 +14,7 @@ exports[`IconButton demo snapshot IconButton demo snapshot 0 1`] = `
   }
 >
   <button
-    className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular bui-icon-btn-default"
+    className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular"
     type="button"
   >
     <svg
@@ -29,7 +29,7 @@ exports[`IconButton demo snapshot IconButton demo snapshot 0 1`] = `
     />
   </button>
   <button
-    className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-outlined bui-icon-btn-circular bui-icon-btn-default"
+    className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-outlined bui-icon-btn-circular"
     type="button"
   >
     <svg
@@ -44,7 +44,7 @@ exports[`IconButton demo snapshot IconButton demo snapshot 0 1`] = `
     />
   </button>
   <button
-    className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-circular bui-icon-btn-default"
+    className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-circular"
     type="button"
   >
     <svg
@@ -75,7 +75,7 @@ exports[`IconButton demo snapshot IconButton demo snapshot 0 2`] = `
   }
 >
   <button
-    className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-circular bui-icon-btn-default"
+    className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-circular"
     type="button"
   >
     <svg
@@ -90,7 +90,7 @@ exports[`IconButton demo snapshot IconButton demo snapshot 0 2`] = `
     />
   </button>
   <button
-    className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-rounded bui-icon-btn-default"
+    className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-rounded"
     type="button"
   >
     <svg
@@ -105,7 +105,7 @@ exports[`IconButton demo snapshot IconButton demo snapshot 0 2`] = `
     />
   </button>
   <button
-    className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-square bui-icon-btn-default"
+    className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-square"
     type="button"
   >
     <svg
@@ -136,7 +136,7 @@ exports[`IconButton demo snapshot IconButton demo snapshot 0 3`] = `
   }
 >
   <button
-    className="bui-icon-btn bui-icon-btn-small bui-icon-btn-default bui-icon-btn-circular bui-icon-btn-default"
+    className="bui-icon-btn bui-icon-btn-small bui-icon-btn-default bui-icon-btn-circular"
     type="button"
   >
     <svg
@@ -151,7 +151,7 @@ exports[`IconButton demo snapshot IconButton demo snapshot 0 3`] = `
     />
   </button>
   <button
-    className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular bui-icon-btn-default"
+    className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular"
     type="button"
   >
     <svg
@@ -166,7 +166,7 @@ exports[`IconButton demo snapshot IconButton demo snapshot 0 3`] = `
     />
   </button>
   <button
-    className="bui-icon-btn bui-icon-btn-large bui-icon-btn-default bui-icon-btn-circular bui-icon-btn-default"
+    className="bui-icon-btn bui-icon-btn-large bui-icon-btn-default bui-icon-btn-circular"
     type="button"
   >
     <svg
