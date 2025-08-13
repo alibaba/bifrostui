@@ -60,15 +60,18 @@ const Slide = React.forwardRef<HTMLElement, SlideProps>((props, ref) => {
       ref={nodeRef}
     >
       {(state, childProps) => {
-        const transition = transitions.create(
-          'transform',
-          getTransitionProps(
-            { timeout, style, easing: easingProp, delay },
-            {
-              mode: state,
-            },
-          ),
-        );
+        const transition =
+          state === 'entering' || state === 'exiting'
+            ? transitions.create(
+                'transform',
+                getTransitionProps(
+                  { timeout, style, easing: easingProp, delay },
+                  {
+                    mode: state,
+                  },
+                ),
+              )
+            : 'none';
         const transform =
           state === 'entering' || state === 'entered'
             ? 'none'
