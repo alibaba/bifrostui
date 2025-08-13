@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Badge } from '@bifrostui/react';
 import clsx from 'clsx';
+import Badge from '../Badge';
 import { TabBarItemProps } from './index.types';
 import './TabBarItem.less';
 import TabBarContext from './TabBarContext';
