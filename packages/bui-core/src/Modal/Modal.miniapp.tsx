@@ -21,6 +21,7 @@ const Modal = React.forwardRef<HTMLDivElement, ViewProps & ModalProps>(
       disableScrollLock,
       hideBackdrop,
       onClose,
+      onClick,
       keepMounted,
       ...others
     } = props;
@@ -49,6 +50,10 @@ const Modal = React.forwardRef<HTMLDivElement, ViewProps & ModalProps>(
           className={clsx(prefixCls, className)}
           ref={handleRef}
           catchMove={!disableScrollLock}
+          // Fixed the issue where view binding events are lost when component view props are updated and re-rendered
+          onClick={(event) => {
+            onClick?.(event);
+          }}
           {...others}
         >
           {!hideBackdrop ? (
