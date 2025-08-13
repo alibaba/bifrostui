@@ -62,14 +62,20 @@ const Fade = React.forwardRef<HTMLElement, FadeProps>((props, ref) => {
   const shouldAnimateOnFirstMount = inProp && appear;
   // Whether to animate on subsequent updates
   const shouldAnimate = (inProp && enter) || (!inProp && exit);
+  // Determine whether animation should be executed
+  const shouldExecuteAnimation = isFirstMount.current
+    ? shouldAnimateOnFirstMount
+    : shouldAnimate;
   /**
    * Animation configuration
    */
-  const getAnimationDuration = () => {
-    if (isFirstMount.current) {
-      return shouldAnimateOnFirstMount ? timeout : 0;
+  const getAnimationDurationAndDelay = () => {
+    // If animation should not be executed, return zero values
+    if (!shouldExecuteAnimation) {
+      return { timeout: 0, delay: 0 };
     }
-    return shouldAnimate ? timeout : 0;
+    // Return actual configuration when executing animation
+    return { timeout, delay };
   };
 
   // Whether to skip the initial animation
@@ -81,15 +87,14 @@ const Fade = React.forwardRef<HTMLElement, FadeProps>((props, ref) => {
    */
   const transitions = createTransitions();
   const animationName = inProp ? 'bui-fade-in' : 'bui-fade-out';
-  const animationDuration = getAnimationDuration();
+  const animationDurationAndDelay = getAnimationDurationAndDelay();
   const animation = transitions.create(
     animationName,
     getTransitionProps(
       {
-        timeout: animationDuration,
+        ...animationDurationAndDelay,
         style,
         easing: easingProp,
-        delay,
       },
       { mode: inProp ? 'enter' : 'exit' },
     ),
@@ -117,7 +122,7 @@ const Fade = React.forwardRef<HTMLElement, FadeProps>((props, ref) => {
    */
   useEffect(() => {
     // Trigger animation start callback
-    const shouldTriggerCallback = isMounted && animationDuration !== 0;
+    const shouldTriggerCallback = isMounted && shouldExecuteAnimation;
     if (!shouldTriggerCallback) return;
 
     if (inProp) {
@@ -125,10 +130,10 @@ const Fade = React.forwardRef<HTMLElement, FadeProps>((props, ref) => {
     } else {
       onExit?.(elementRef.current);
     }
-  }, [inProp, isMounted, animationDuration, onEnter, onExit]);
+  }, [inProp, isMounted, shouldExecuteAnimation, onEnter, onExit]);
 
   const handleAnimationStart = () => {
-    if (animationDuration === 0) return;
+    if (!shouldExecuteAnimation) return;
 
     if (inProp) {
       onEntering?.(elementRef.current);
@@ -161,7 +166,7 @@ const Fade = React.forwardRef<HTMLElement, FadeProps>((props, ref) => {
     onAnimationStart: handleAnimationStart,
     style: {
       animation,
-      animationFillMode: 'forwards',
+      animationFillMode: 'both',
       ...style,
       ...children.props?.style,
     },
