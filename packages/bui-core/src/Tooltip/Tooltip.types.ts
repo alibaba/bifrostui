@@ -95,6 +95,51 @@ export interface TooltipBaseProps {
    * 子元素，必须是可以接收 ref 的 React 元素
    */
   children?: React.ReactElement;
+
+  // ========== 无障碍功能相关属性 ==========
+
+  /**
+   * 无障碍功能：Tooltip的角色
+   * @default 'tooltip'
+   */
+  role?: 'tooltip' | 'dialog' | 'status' | 'alert';
+
+  /**
+   * 无障碍功能：为Tooltip提供可访问的标签
+   */
+  'aria-label'?: string;
+
+  /**
+   * 无障碍功能：引用描述此Tooltip的元素ID
+   */
+  'aria-labelledby'?: string;
+
+  /**
+   * 无障碍功能：是否自动管理焦点
+   * 当为true时，Tooltip显示时会自动获取焦点，关闭时焦点返回到触发元素
+   * @default false
+   */
+  autoFocus?: boolean;
+
+  /**
+   * 无障碍功能：是否支持Escape键关闭
+   * @default true
+   */
+  closeOnEscape?: boolean;
+
+  /**
+   * 无障碍功能：是否支持Enter/空格键触发
+   * 仅在trigger包含'click'时有效
+   * @default true
+   */
+  keyboardTrigger?: boolean;
+
+  /**
+   * 无障碍功能：是否对屏幕阅读器隐藏Tooltip
+   * 当为true时，Tooltip将被屏幕阅读器忽略
+   * @default false
+   */
+  'aria-hidden'?: boolean;
 }
 
 export type TooltipProps<
