@@ -6,6 +6,7 @@ import {
   parsePlacement,
   throttle,
   useForkRef,
+  useUniqueId,
   isMini,
 } from '@bifrostui/utils';
 import Portal from '../Portal';
@@ -27,6 +28,14 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     trigger = 'click',
     open,
     onOpenChange,
+    // 无障碍功能相关属性
+    role = 'tooltip',
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
+    autoFocus = false,
+    closeOnEscape = true,
+    keyboardTrigger = true,
+    'aria-hidden': ariaHidden = false,
     ...others
   } = props;
 
@@ -45,6 +54,10 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   const [toolStyles, setToolStyles] = useState({});
   const tipRef = useRef(null);
   const nodeRef = useForkRef(ref, tipRef);
+
+  // 无障碍功能：生成唯一ID用于ARIA关联
+  const tooltipId = useUniqueId();
+  const isOpen = open || openStatus;
 
   const clearRef = (status: boolean) => {
     // 隐藏时 清空tipRef
@@ -72,6 +85,47 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   const showTooltip = (event: React.SyntheticEvent) => {
     changeOpenStatus(event, true);
   };
+
+  // 无障碍功能：键盘事件处理
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    if (closeOnEscape && event.key === 'Escape' && isOpen) {
+      event.preventDefault();
+      event.stopPropagation();
+      hideTooltip(event as any);
+      // 焦点返回到触发元素
+      if (childrenRef.current && 'focus' in childrenRef.current) {
+        (childrenRef.current as HTMLElement).focus();
+      }
+    }
+  }, [closeOnEscape, isOpen, hideTooltip]);
+
+  // 无障碍功能：触发元素的键盘事件处理
+  const handleTriggerKeyDown = useCallback((event: React.KeyboardEvent) => {
+    if (!keyboardTrigger || controlByUser) return;
+
+    const shouldTrigger = trigger === 'click' ||
+      (Array.isArray(trigger) && trigger.includes('click'));
+
+    if (shouldTrigger && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault();
+      event.stopPropagation();
+      triggerClick(event as any);
+    }
+  }, [keyboardTrigger, controlByUser, trigger, triggerClick]);
+
+  // 无障碍功能：焦点管理
+  useEffect(() => {
+    if (isOpen && autoFocus && tipRef.current) {
+      // 延迟设置焦点，确保DOM已渲染
+      const timer = setTimeout(() => {
+        if (tipRef.current && 'focus' in tipRef.current) {
+          (tipRef.current as HTMLElement).focus();
+        }
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+    return undefined;
+  }, [isOpen, autoFocus]);
 
   useEffect(() => {
     if (!controlByUser) return;
@@ -140,6 +194,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
      * 绑定全局事件
      * click 全局点击隐藏
      * resize 仅支持H5
+     * keydown 键盘事件（无障碍功能）
      * @returns
      */
     const bindEvent = () => {
@@ -150,6 +205,10 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
       if (!isMini) {
         window.addEventListener('resize', onRootElementMouted);
       }
+      // 无障碍功能：绑定键盘事件
+      if (isOpen) {
+        document.addEventListener('keydown', handleKeyDown);
+      }
     };
     const unbindEvent = () => {
       if (!controlByUser && shouldListenGlobalClick()) {
@@ -158,6 +217,8 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
       if (!isMini) {
         window.removeEventListener('resize', onRootElementMouted);
       }
+      // 无障碍功能：解绑键盘事件
+      document.removeEventListener('keydown', handleKeyDown);
     };
 
     bindEvent();
@@ -170,6 +231,8 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     shouldListenGlobalClick,
     clickEventHandler,
     onRootElementMouted,
+    isOpen,
+    handleKeyDown,
   ]);
 
   let triggerEventOption;
@@ -182,9 +245,15 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     });
   }
 
+  // 无障碍功能：为触发元素添加ARIA属性和键盘事件
   const childrenOptions = {
     ref: childrenRef,
     ...triggerEventOption,
+    // ARIA属性
+    'aria-describedby': isOpen ? tooltipId : undefined,
+    'aria-expanded': isOpen,
+    // 键盘事件
+    onKeyDown: handleTriggerKeyDown,
   };
 
   // 确保 children 是有效的 React 元素
@@ -203,6 +272,13 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
             className={clsx(prefixCls, className, `tooltip-${arrowDirection}`)}
             style={{ ...style, ...toolStyles }}
             ref={nodeRef}
+            // 无障碍功能：ARIA属性
+            id={tooltipId}
+            role={role}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledby}
+            aria-hidden={ariaHidden}
+            tabIndex={autoFocus ? -1 : undefined}
             {...others}
           >
             <div
