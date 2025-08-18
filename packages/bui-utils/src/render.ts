@@ -18,7 +18,7 @@ const fullClone = {
   };
   createRoot?: CreateRoot;
 };
-
+// @ts-ignore
 const { version, render: reactRender, unmountComponentAtNode } = fullClone;
 
 let createRoot: CreateRoot;
