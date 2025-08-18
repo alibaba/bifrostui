@@ -72,6 +72,36 @@ export type PopoverProps<
         event: React.SyntheticEvent,
         data: { open: boolean },
       ) => void;
+      /**
+       * 无障碍功能：Popover的角色
+       * @default 'tooltip'
+       */
+      role?: 'tooltip' | 'dialog' | 'menu' | 'listbox';
+      /**
+       * 无障碍功能：为Popover提供可访问的标签
+       */
+      'aria-label'?: string;
+      /**
+       * 无障碍功能：引用描述此Popover的元素ID
+       */
+      'aria-labelledby'?: string;
+      /**
+       * 无障碍功能：是否自动管理焦点
+       * 当为true时，Popover打开时会自动获取焦点，关闭时焦点返回到触发元素
+       * @default true
+       */
+      autoFocus?: boolean;
+      /**
+       * 无障碍功能：是否在Popover内部捕获焦点
+       * 当为true时，Tab键只能在Popover内部的可聚焦元素间循环
+       * @default false
+       */
+      trapFocus?: boolean;
+      /**
+       * 无障碍功能：是否支持Escape键关闭
+       * @default true
+       */
+      closeOnEscape?: boolean;
     };
     defaultComponent: D;
   },

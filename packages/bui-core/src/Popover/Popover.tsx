@@ -1,11 +1,12 @@
 import clsx from 'clsx';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   getStylesAndLocation,
   triggerEventTransform,
   parsePlacement,
   throttle,
   useForkRef,
+  useUniqueId,
   isMini,
 } from '@bifrostui/utils';
 import Portal from '../Portal';
@@ -57,6 +58,13 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     open,
     hideArrow,
     onOpenChange,
+    // 无障碍功能相关属性
+    role = 'tooltip',
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
+    autoFocus = true,
+    trapFocus = false,
+    closeOnEscape = true,
     ...others
   } = props;
 
@@ -74,6 +82,10 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   const [toolStyles, setToolStyles] = useState({});
   const tipRef = useRef(null);
   const nodeRef = useForkRef(ref, tipRef);
+
+  // 无障碍功能：生成唯一ID用于ARIA关联
+  const popoverId = useUniqueId();
+  const isOpen = open || openStatus;
 
   const clearRef = (status) => {
     // 隐藏时 清空tipRef
@@ -101,6 +113,59 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   const showPopover = (event) => {
     changeOpenStatus(event, true);
   };
+
+  // 无障碍功能：键盘事件处理
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    if (closeOnEscape && event.key === 'Escape' && isOpen) {
+      event.preventDefault();
+      event.stopPropagation();
+      hidePopover(event as any);
+      // 焦点返回到触发元素
+      if (childrenRef.current && 'focus' in childrenRef.current) {
+        (childrenRef.current as HTMLElement).focus();
+      }
+    }
+  }, [closeOnEscape, isOpen, hidePopover]);
+
+  // 无障碍功能：焦点管理
+  useEffect(() => {
+    if (isOpen && autoFocus && tipRef.current) {
+      // 延迟设置焦点，确保DOM已渲染
+      const timer = setTimeout(() => {
+        if (tipRef.current && 'focus' in tipRef.current) {
+          (tipRef.current as HTMLElement).focus();
+        }
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, autoFocus]);
+
+  // 无障碍功能：焦点陷阱
+  const handleFocusTrap = useCallback((event: KeyboardEvent) => {
+    if (!trapFocus || !isOpen || !tipRef.current) return;
+
+    if (event.key === 'Tab') {
+      const focusableElements = tipRef.current.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const firstElement = focusableElements[0] as HTMLElement;
+      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+      if (event.shiftKey) {
+        // Shift + Tab
+        if (document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement?.focus();
+        }
+      } else {
+        // Tab
+        if (document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement?.focus();
+        }
+      }
+    }
+  }, [trapFocus, isOpen]);
 
   useEffect(() => {
     if (!controlByUser) return;
@@ -158,6 +223,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
      * 绑定全局事件
      * click 全局点击隐藏
      * resize 仅支持H5
+     * keydown 键盘事件（无障碍功能）
      * @returns
      */
     const bindEvent = () => {
@@ -175,6 +241,13 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
       if (!isMini) {
         window.addEventListener('resize', onRootElementMouted);
       }
+      // 无障碍功能：绑定键盘事件
+      if (isOpen) {
+        document.addEventListener('keydown', handleKeyDown);
+        if (trapFocus) {
+          document.addEventListener('keydown', handleFocusTrap);
+        }
+      }
     };
 
     const unbindEvent = () => {
@@ -189,13 +262,18 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
       if (!isMini) {
         window.removeEventListener('resize', onRootElementMouted);
       }
+      // 无障碍功能：解绑键盘事件
+      document.removeEventListener('keydown', handleKeyDown);
+      if (trapFocus) {
+        document.removeEventListener('keydown', handleFocusTrap);
+      }
     };
 
     bindEvent();
     return () => {
       unbindEvent();
     };
-  }, [openStatus]);
+  }, [openStatus, isOpen, handleKeyDown, handleFocusTrap, trapFocus]);
 
   if (!title && !content) return null;
 
@@ -210,9 +288,14 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     });
   }
 
+  // 无障碍功能：为触发元素添加ARIA属性
   const childrenOptions = {
     ref: childrenRef,
     ...triggerEventOption,
+    // ARIA属性
+    'aria-describedby': isOpen ? popoverId : undefined,
+    'aria-expanded': isOpen,
+    'aria-haspopup': role === 'menu' ? 'menu' : role === 'listbox' ? 'listbox' : 'dialog',
   };
   return (
     <>
@@ -224,6 +307,12 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
             })}
             style={{ ...style, ...toolStyles }}
             ref={nodeRef}
+            // 无障碍功能：ARIA属性
+            id={popoverId}
+            role={role}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledby}
+            tabIndex={autoFocus ? -1 : undefined}
             {...others}
           >
             {!hideArrow ? (
