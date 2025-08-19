@@ -728,6 +728,13 @@ export default () => {
 };
 ```
 
+## Accessibility
+
+- 基础弹窗默认设置role=presentation，使用Modal进行封装弹窗等组件的时候请根据情况设置role为dialog等
+- aria-labelledby 对应 Modal header
+- aria-describedby 对应 Modal body
+- Modal弹出时，Modal的兄弟元素自动会添加aria-hidden属性，Modal关闭去除aria-hidden属性
+
 ## API
 
 ### Modal Props
