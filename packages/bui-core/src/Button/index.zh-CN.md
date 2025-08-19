@@ -339,6 +339,17 @@ export default () => {
 };
 ```
 
+## Accessibility
+
+- `aria-label`: 为按钮提供可访问的标签
+- `aria-describedby`: 关联描述按钮的元素
+- `aria-hidden`: 控制按钮在无障碍树中的可见性
+- `aria-details`: 提供按钮的详细信息
+- `aria-keyshortcuts`: 定义按钮的键盘快捷键
+- `aria-busy`: 表示按钮是否处于忙碌状态
+- `aria-readonly`: 表示按钮是否为只读
+- `aria-required`: 表示按钮是否为必填
+
 ## API
 
 | 属性      | 说明                 | 类型                                                                            | 默认值     |
