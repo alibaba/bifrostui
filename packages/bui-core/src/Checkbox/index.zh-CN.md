@@ -306,8 +306,8 @@ export default () => {
 
 | 属性           | 说明                                        | 类型                                                      | 默认值  |
 | -------------- | ------------------------------------------- | --------------------------------------------------------- | ------- |
-| defaultChecked | 默认是否选中，当组件非受控时使用            | boolean                                                   | -       |
-| checked        | 是否选中，当组件受控时使用                  | boolean                                                   | -       |
+| defaultChecked | 默认是否选中，当组件非受控时使用            | boolean                                                   | false   |
+| checked        | 是否选中，当组件受控时使用                  | boolean                                                   | false   |
 | inputProps     | 内部`<input>`标签的标准属性                 | React.InputHTMLAttributes<HTMLInputElement\>              | -       |
 | inputRef       | 内部`<input>`标签的 ref                     | React.Ref<HTMLInputElement\>                              | -       |
 | name           | `<input>`名称标识                           | string                                                    | -       |

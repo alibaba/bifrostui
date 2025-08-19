@@ -13,7 +13,7 @@ const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
     defaultValue,
     value,
     onChange,
-    disabled,
+    disabled = false,
     children,
     ...others
   } = props;
