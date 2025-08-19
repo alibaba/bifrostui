@@ -13,15 +13,12 @@ name: Button 按钮
 
 ## 按钮变体
 
-按钮支持`文字按钮`、`线框按钮`、`填充按钮`、`浅亮按钮`四种变体，默认`线框按钮`。
+按钮支持`文字按钮`、`线框按钮`、`填充按钮`、`柔和按钮`四种变体，默认`线框按钮`。
 
-`文字按钮`: 低调、灵活性。适用內联操作、简洁界面、轻量级操作。
-
-`填充按钮`: 突出、重要性。适用强视觉焦点、高优先级操作、主要操作。
-
-`线框按钮`: 中性、灵活性，适用透明背景、视觉平衡、中等优先级操作。
-
-`柔和按钮`: 低调、非焦点，适用柔和界面、低对比度设计、次要操作。
+- `文字按钮`: 低调、灵活性。适用內联操作、简洁界面、轻量级操作。
+- `线框按钮`: 中性、灵活性，适用透明背景、视觉平衡、中等优先级操作。
+- `填充按钮`: 突出、重要性。适用强视觉焦点、高优先级操作、主要操作。
+- `柔和按钮`: 低调、非焦点，适用柔和界面、低对比度设计、次要操作。
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
@@ -49,7 +46,7 @@ export default () => {
 
 按钮有大、中、小三种尺寸。
 
-通过设置 `size` 为 large small full 分别把按钮设为大、小、通栏尺寸。若不设置 `size`，则尺寸为中等尺寸。
+通过设置 `size` 为 `large`、`small`、`full` 分别把按钮设为大、小、通栏尺寸。若不设置 `size`，则尺寸为中等尺寸。
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
@@ -92,14 +89,16 @@ export default () => {
 
 ## 按钮色彩
 
-按钮支持 `primary`、`success`、`info`、`warning`、`danger`、 `vip` 主题定义。若不设置color，则默认为`default`。
+按钮支持 `primary`、`success`、`info`、`warning`、`danger`、`vip`、`light`、`dark` 主题定义。若不设置color，则默认为`neutral`。
 
-- primary: 主按钮，传递品牌主题
-- info: 信息提示或中性操作
-- success: 成功或正向操作（如完成、通过）
-- waring: 警告或需要谨慎的操作（如提醒、修改）
-- danger: 危险、强调，关键、核心或破坏性操作（如删除、注销）
-- vip: 尊贵、尊享、专属或高级感
+- `primary`: 主按钮，传递品牌主题
+- `info`: 信息提示或中性操作
+- `success`: 成功或正向操作（如完成、通过）
+- `warning`: 警告或需要谨慎的操作（如提醒、修改）
+- `danger`: 危险、强调，关键、核心或破坏性操作（如删除、注销）
+- `vip`: 尊贵、尊享、专属或高级感
+- `light`: 浅色主题
+- `dark`: 深色主题
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
@@ -316,7 +315,7 @@ export default () => {
 
 ## 按钮带图标
 
-因为相比纯文本来说用户对图标更敏感，所以有些时候你可能希望为某些按钮设置图标，以增强应用程序的用户体验。 例如，如果您有日期按钮，则可以使用日期图标对其进行标记。`startIcon` 位于子元素的前面，`endIcon` 位于子元素的后面。
+因为相比纯文本来说用户对图标更敏感，所以有些时候你可能希望为某些按钮设置图标，以增强应用程序的用户体验。例如，如果您有日期按钮，则可以使用日期图标对其进行标记。`startIcon` 位于子元素的前面，`endIcon` 位于子元素的后面。
 
 ```tsx
 import React from 'react';
@@ -339,7 +338,9 @@ export default () => {
 };
 ```
 
-## Accessibility
+## 无障碍性 (Accessibility)
+
+Button 组件内置了完整的无障碍性支持，可以直接使用以下 ARIA 属性：
 
 - `aria-label`: 为按钮提供可访问的标签
 - `aria-describedby`: 关联描述按钮的元素
@@ -350,18 +351,44 @@ export default () => {
 - `aria-readonly`: 表示按钮是否为只读
 - `aria-required`: 表示按钮是否为必填
 
+使用示例：
+
+```tsx
+import { Button, Stack } from '@bifrostui/react';
+import React from 'react';
+
+export default () => {
+  return (
+    <Stack spacing="9px">
+      <Button aria-label="关闭对话框">X</Button>
+      <Button aria-describedby="description">按钮</Button>
+      <span id="description" style={{ display: 'none' }}>
+        这是按钮的描述信息
+      </span>
+      <Button
+        aria-label="保存文档"
+        aria-keyshortcuts="Ctrl+S"
+        aria-busy={false}
+      >
+        保存
+      </Button>
+    </Stack>
+  );
+};
+```
+
 ## API
 
-| 属性      | 说明                 | 类型                                                                            | 默认值     |
-| --------- | -------------------- | ------------------------------------------------------------------------------- | ---------- |
-| variant   | 按钮类型             | `outlined` \| `text` \| `contained` \| `light`                                  | `outlined` |
-| color     | 按钮颜色             | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `vip` \| `default` | `default`  |
-| size      | 按钮大小             | `small` \| `medium` \| `large` \| `full`                                        | `medium`   |
-| disabled  | 是否禁用             | boolean                                                                         | false      |
-| startIcon | 在子元素前放在的内容 | React.ReactNode                                                                 | -          |
-| endIcon   | 在子元素后放在的内容 | React.ReactNode                                                                 | -          |
-| openType  | 微信开放能力         | string                                                                          | -          |
-| onClick   | 点击按钮时的回调     | (event: MouseEvent) => void                                                     | -          |
+| 属性      | 说明                 | 类型                                                                                    | 默认值     |
+| --------- | -------------------- | --------------------------------------------------------------------------------------- | ---------- |
+| variant   | 按钮类型             | `outlined` \| `text` \| `contained` \| `subtle`                                         | `outlined` |
+| color     | 按钮颜色             | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `vip` \| `light` \| `dark` | `neutral`  |
+| size      | 按钮大小             | `small` \| `medium` \| `large` \| `full`                                                | `medium`   |
+| disabled  | 是否禁用             | boolean                                                                                 | false      |
+| startIcon | 在子元素前放在的内容 | React.ReactNode                                                                         | -          |
+| endIcon   | 在子元素后放在的内容 | React.ReactNode                                                                         | -          |
+| openType  | 微信开放能力         | string                                                                                  | -          |
+| onClick   | 点击按钮时的回调     | (event: MouseEvent) => void                                                             | -          |
 
 其他属性见 [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes)
 
