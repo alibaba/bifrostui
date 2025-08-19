@@ -3,11 +3,9 @@ import React, { SyntheticEvent } from 'react';
 import { BackdropProps } from '../Backdrop/Backdrop.types';
 import { PortalProps } from '../Portal/Portal.types';
 
-export type CloseDetail = {
+export type ModalCloseDetail = {
   from?: string;
 };
-
-export type CloseReason = 'backdropClick' | 'escapeKeyDown';
 
 export type ModalProps<
   D extends React.ElementType = 'div',
@@ -34,7 +32,7 @@ export type ModalProps<
       /**
        * 关闭回调
        */
-      onClose?: (e: SyntheticEvent, detail: CloseDetail) => void;
+      onClose?: (e: SyntheticEvent, detail: ModalCloseDetail) => void;
       /**
        * 是否禁用滚动锁定
        */
