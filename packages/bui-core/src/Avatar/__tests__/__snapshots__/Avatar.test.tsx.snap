@@ -32,36 +32,3 @@ exports[`Avatar > prop: src > should render containing an img 1`] = `
   </div>
 </div>
 `;
-
-exports[`Avatar prop: src should render children correctly, not src 1`] = `
-<div>
-  <div
-    class="bui-avatar bui-avatar-medium bui-avatar-rounded"
-  >
-    <div
-      class="bui-avatar-children"
-    >
-      hello world
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Avatar prop: src should render containing an img 1`] = `
-<div>
-  <div
-    class="bui-avatar bui-avatar-medium bui-avatar-rounded"
-  >
-    <div
-      class="bui-image bui-avatar-img"
-    >
-      <img
-        class="bui-image-img bui-image-loaded"
-        loading="eager"
-        src="https://gw.alicdn.com/imgextra/i3/O1CN01tp2YUs1WFD8lboMDu_!!6000000002758-2-tps-126-126.png"
-        style="object-fit: cover;"
-      />
-    </div>
-  </div>
-</div>
-`;
