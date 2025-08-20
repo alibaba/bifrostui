@@ -3,31 +3,17 @@
 exports[`Drawer > renders correctly 1`] = `
 <div
   class="bui-modal bui-drawer"
+  role="presentation"
 >
   <div
+    aria-hidden="true"
     class="bui-backdrop bui-modal-backdrop"
     style="visibility: visible; transition: opacity 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; opacity: 1;"
   />
   <div
     class="bui-drawer-content bui-drawer-content-bottom"
     style="visibility: visible; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transform: none;"
-  >
-    Drawer
-  </div>
-</div>
-`;
-
-exports[`Drawer renders correctly 1`] = `
-<div
-  class="bui-modal bui-drawer"
->
-  <div
-    class="bui-backdrop bui-modal-backdrop"
-    style="visibility: visible; transition: opacity 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; opacity: 1;"
-  />
-  <div
-    class="bui-drawer-content bui-drawer-content-bottom"
-    style="visibility: visible; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transform: none;"
+    tabindex="-1"
   >
     Drawer
   </div>

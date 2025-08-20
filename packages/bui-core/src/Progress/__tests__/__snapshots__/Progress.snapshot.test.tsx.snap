@@ -2,7 +2,11 @@
 
 exports[`Progress demo snapshot > Progress demo snapshot 0 1`] = `
 <div
+  aria-valuemax={100}
+  aria-valuemin={0}
+  aria-valuenow={40}
   className="bui-progress"
+  role="progressbar"
 >
   <div
     className="bui-progress-inner"
@@ -40,7 +44,11 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 2`] = `
   }
 >
   <div
+    aria-valuemax={100}
+    aria-valuemin={0}
+    aria-valuenow={40}
     className="bui-progress"
+    role="progressbar"
   >
     <div
       className="bui-progress-inner"
@@ -63,7 +71,11 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 2`] = `
     </div>
   </div>
   <div
+    aria-valuemax={100}
+    aria-valuemin={0}
+    aria-valuenow={50}
     className="bui-progress"
+    role="progressbar"
   >
     <div
       className="bui-progress-inner"
@@ -86,7 +98,11 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 2`] = `
     </div>
   </div>
   <div
+    aria-valuemax={100}
+    aria-valuemin={0}
+    aria-valuenow={30}
     className="bui-progress"
+    role="progressbar"
   >
     <div
       className="bui-progress-inner"
@@ -109,7 +125,11 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 2`] = `
     </div>
   </div>
   <div
+    aria-valuemax={100}
+    aria-valuemin={0}
+    aria-valuenow={80}
     className="bui-progress"
+    role="progressbar"
   >
     <div
       className="bui-progress-inner"
@@ -132,7 +152,11 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 2`] = `
     </div>
   </div>
   <div
+    aria-valuemax={100}
+    aria-valuemin={0}
+    aria-valuenow={90}
     className="bui-progress"
+    role="progressbar"
   >
     <div
       className="bui-progress-inner"
@@ -171,7 +195,11 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 3`] = `
   }
 >
   <div
+    aria-valuemax={100}
+    aria-valuemin={0}
+    aria-valuenow={60}
     className="bui-progress"
+    role="progressbar"
   >
     <div
       className="bui-progress-inner"
@@ -194,7 +222,11 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 3`] = `
     </div>
   </div>
   <div
+    aria-valuemax={100}
+    aria-valuemin={0}
+    aria-valuenow={60}
     className="bui-progress"
+    role="progressbar"
   >
     <div
       className="bui-progress-inner"
@@ -233,7 +265,11 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 4`] = `
   }
 >
   <div
+    aria-valuemax={100}
+    aria-valuemin={0}
+    aria-valuenow={60}
     className="bui-progress"
+    role="progressbar"
   >
     <div
       className="bui-progress-inner"
@@ -256,7 +292,11 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 4`] = `
     </div>
   </div>
   <div
+    aria-valuemax={100}
+    aria-valuemin={0}
+    aria-valuenow={90}
     className="bui-progress"
+    role="progressbar"
   >
     <div
       className="bui-progress-inner"
@@ -283,7 +323,11 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 4`] = `
 
 exports[`Progress demo snapshot > Progress demo snapshot 0 5`] = `
 <div
+  aria-valuemax={100}
+  aria-valuemin={0}
+  aria-valuenow={60}
   className="bui-progress"
+  role="progressbar"
 >
   <div
     className="bui-progress-inner"
@@ -307,52 +351,31 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 5`] = `
 </div>
 `;
 
-exports[`Progress demo snapshot Progress demo snapshot 0 1`] = `
-<div
-  className="bui-progress"
->
-  <div
-    className="bui-progress-inner"
-    style={
-      Object {
-        "background": undefined,
-      }
-    }
-  >
-    <div
-      className="bui-progress-bg"
-      style={
-        Object {
-          "background": undefined,
-          "height": undefined,
-          "width": "40%",
-        }
-      }
-    />
-  </div>
-</div>
-`;
-
-exports[`Progress demo snapshot Progress demo snapshot 0 2`] = `
+exports[`Progress demo snapshot > Progress demo snapshot 0 6`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
       "--justify-content": "center",
-      "--spacing": "5px",
+      "--spacing": "10px",
     }
   }
 >
   <div
+    aria-label="文件下载进度"
+    aria-valuemax={100}
+    aria-valuemin={0}
+    aria-valuenow={50}
     className="bui-progress"
+    role="progressbar"
   >
     <div
       className="bui-progress-inner"
       style={
-        Object {
+        {
           "background": undefined,
         }
       }
@@ -360,31 +383,8 @@ exports[`Progress demo snapshot Progress demo snapshot 0 2`] = `
       <div
         className="bui-progress-bg"
         style={
-          Object {
-            "background": "var(--bui-color-primary)",
-            "height": undefined,
-            "width": "40%",
-          }
-        }
-      />
-    </div>
-  </div>
-  <div
-    className="bui-progress"
-  >
-    <div
-      className="bui-progress-inner"
-      style={
-        Object {
-          "background": undefined,
-        }
-      }
-    >
-      <div
-        className="bui-progress-bg"
-        style={
-          Object {
-            "background": "var(--bui-color-info)",
+          {
+            "background": undefined,
             "height": undefined,
             "width": "50%",
           }
@@ -393,12 +393,18 @@ exports[`Progress demo snapshot Progress demo snapshot 0 2`] = `
     </div>
   </div>
   <div
+    aria-label="数据加载进度"
+    aria-valuemax={100}
+    aria-valuemin={0}
+    aria-valuenow={75}
+    aria-valuetext="已完成75%"
     className="bui-progress"
+    role="progressbar"
   >
     <div
       className="bui-progress-inner"
       style={
-        Object {
+        {
           "background": undefined,
         }
       }
@@ -406,8 +412,36 @@ exports[`Progress demo snapshot Progress demo snapshot 0 2`] = `
       <div
         className="bui-progress-bg"
         style={
-          Object {
-            "background": "var(--bui-color-success)",
+          {
+            "background": undefined,
+            "height": undefined,
+            "width": "75%",
+          }
+        }
+      />
+    </div>
+  </div>
+  <div
+    aria-describedby="progress-description"
+    aria-valuemax={100}
+    aria-valuemin={0}
+    aria-valuenow={30}
+    className="bui-progress"
+    role="progressbar"
+  >
+    <div
+      className="bui-progress-inner"
+      style={
+        {
+          "background": undefined,
+        }
+      }
+    >
+      <div
+        className="bui-progress-bg"
+        style={
+          {
+            "background": undefined,
             "height": undefined,
             "width": "30%",
           }
@@ -415,201 +449,15 @@ exports[`Progress demo snapshot Progress demo snapshot 0 2`] = `
       />
     </div>
   </div>
-  <div
-    className="bui-progress"
-  >
-    <div
-      className="bui-progress-inner"
-      style={
-        Object {
-          "background": undefined,
-        }
-      }
-    >
-      <div
-        className="bui-progress-bg"
-        style={
-          Object {
-            "background": "var(--bui-color-warning)",
-            "height": undefined,
-            "width": "80%",
-          }
-        }
-      />
-    </div>
-  </div>
-  <div
-    className="bui-progress"
-  >
-    <div
-      className="bui-progress-inner"
-      style={
-        Object {
-          "background": undefined,
-        }
-      }
-    >
-      <div
-        className="bui-progress-bg"
-        style={
-          Object {
-            "background": "var(--bui-color-vip)",
-            "height": undefined,
-            "width": "90%",
-          }
-        }
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Progress demo snapshot Progress demo snapshot 0 3`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "flex-start",
-      "--flex-direction": "column",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <div
-    className="bui-progress"
-  >
-    <div
-      className="bui-progress-inner"
-      style={
-        Object {
-          "background": undefined,
-        }
-      }
-    >
-      <div
-        className="bui-progress-bg"
-        style={
-          Object {
-            "background": "var(--bui-color-warning)",
-            "height": 10,
-            "width": "60%",
-          }
-        }
-      />
-    </div>
-  </div>
-  <div
-    className="bui-progress"
-  >
-    <div
-      className="bui-progress-inner"
-      style={
-        Object {
-          "background": undefined,
-        }
-      }
-    >
-      <div
-        className="bui-progress-bg"
-        style={
-          Object {
-            "background": "var(--bui-color-warning)",
-            "height": 15,
-            "width": "60%",
-          }
-        }
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Progress demo snapshot Progress demo snapshot 0 4`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "flex-start",
-      "--flex-direction": "column",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <div
-    className="bui-progress"
-  >
-    <div
-      className="bui-progress-inner"
-      style={
-        Object {
-          "background": undefined,
-        }
-      }
-    >
-      <div
-        className="bui-progress-bg"
-        style={
-          Object {
-            "backgroundImage": "linear-gradient(to right, var(--bui-color-primary), var(--bui-color-primary-light))",
-            "height": undefined,
-            "width": "60%",
-          }
-        }
-      />
-    </div>
-  </div>
-  <div
-    className="bui-progress"
-  >
-    <div
-      className="bui-progress-inner"
-      style={
-        Object {
-          "background": undefined,
-        }
-      }
-    >
-      <div
-        className="bui-progress-bg"
-        style={
-          Object {
-            "backgroundImage": "linear-gradient(to right, var(--bui-color-orange) 0%, var(--bui-color-orange-light) 100%)",
-            "height": undefined,
-            "width": "90%",
-          }
-        }
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Progress demo snapshot Progress demo snapshot 0 5`] = `
-<div
-  className="bui-progress"
->
-  <div
-    className="bui-progress-inner"
+  <span
+    id="progress-description"
     style={
-      Object {
-        "background": "var(--bui-color-primary-light)",
+      {
+        "display": "none",
       }
     }
   >
-    <div
-      className="bui-progress-bg"
-      style={
-        Object {
-          "background": undefined,
-          "height": undefined,
-          "width": "60%",
-        }
-      }
-    />
-  </div>
+    这是进度条的详细描述信息
+  </span>
 </div>
 `;

@@ -23,7 +23,7 @@ describe('Progress Accessibility', () => {
 
   it('应该正确应用aria-hidden属性', () => {
     render(<Progress percent={50} aria-hidden />);
-    const progress = screen.getByRole('progressbar');
+    const progress = screen.getByRole('progressbar', { hidden: true });
     expect(progress).toHaveAttribute('aria-hidden', 'true');
   });
 
