@@ -50,21 +50,24 @@ const Image = React.forwardRef<HTMLDivElement, ImageProps>(
       setFailed(false);
     }, [src]);
 
-    function defaultIconWrap(icon: React.ReactNode) {
-      return <div className={`${prefixCls}-default-icon-wrap`}>{icon}</div>;
-    }
-
-    const defaultIcon = defaultIconWrap(
-      <div className={`${prefixCls}-default-icon-item`} />,
-    );
+    const defaultIconWrap = (icon?: React.ReactNode) => {
+      return (
+        <div
+          className={clsx(`${prefixCls}-default-icon-wrap`, {
+            'default-holder': !icon,
+          })}
+        >
+          {icon}
+        </div>
+      );
+    };
 
     const defaultPlaceholder =
       placeholder === false
         ? []
-        : (placeholder !== true && defaultIconWrap(placeholder)) || defaultIcon;
+        : (placeholder !== true && defaultIconWrap(placeholder)) ||
+          defaultIconWrap();
 
-    const defaultFallback =
-      (fallback && defaultIconWrap(fallback)) || defaultPlaceholder;
     const miniAttr = {
       webp,
       lazyLoad: lazy,
@@ -100,11 +103,10 @@ const Image = React.forwardRef<HTMLDivElement, ImageProps>(
     );
 
     function renderImgEle() {
+      if (failed) return fallback || defaultPlaceholder;
       return (
         <>
-          {(failed && defaultFallback) ||
-            (!loaded && defaultPlaceholder) ||
-            null}
+          {!loaded && defaultPlaceholder}
           {imgEle}
         </>
       );

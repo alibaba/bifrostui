@@ -32,7 +32,7 @@ export type ModalProps<
       /**
        * 关闭回调
        */
-      onClose?: (e: SyntheticEvent, detail: ModalCloseDetail) => void;
+      onClose?: (e: SyntheticEvent, detail?: ModalCloseDetail) => void;
       /**
        * 是否禁用滚动锁定
        */
