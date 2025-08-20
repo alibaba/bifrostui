@@ -27,6 +27,16 @@ module.exports = {
   overrides: [
     {
       files: ['**/*.test.{ts,tsx}', '**/demo/*', '**/docs/**/*.{ts,tsx}'],
+      globals: {
+        vi: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+      },
       rules: {
         'import/no-extraneous-dependencies': 0,
       },

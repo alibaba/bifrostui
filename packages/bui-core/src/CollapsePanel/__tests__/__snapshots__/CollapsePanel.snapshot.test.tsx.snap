@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 1`] = `
+exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 1`] = `
 <div
   className="bui-collapse-panel"
 >
@@ -25,8 +25,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 1`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z\\"/>",
+              {
+                "__html": "<path d="M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z"/>",
               }
             }
             focusable="false"
@@ -37,7 +37,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 1`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "fit-content",
             "WebkitTransition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
             "height": "fit-content",
@@ -47,7 +47,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 1`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -77,8 +77,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 1`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z\\"/>",
+              {
+                "__html": "<path d="M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z"/>",
               }
             }
             focusable="false"
@@ -89,7 +89,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 1`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "0px",
             "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
             "height": "0px",
@@ -99,7 +99,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 1`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -129,8 +129,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 1`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z\\"/>",
+              {
+                "__html": "<path d="M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z"/>",
               }
             }
             focusable="false"
@@ -141,7 +141,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 1`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "0px",
             "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
             "height": "0px",
@@ -151,7 +151,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 1`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -167,7 +167,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 1`] = `
 </div>
 `;
 
-exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 2`] = `
+exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 2`] = `
 <div
   className="bui-collapse-panel"
 >
@@ -192,8 +192,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 2`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z\\"/>",
+              {
+                "__html": "<path d="M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z"/>",
               }
             }
             focusable="false"
@@ -204,7 +204,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 2`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "fit-content",
             "WebkitTransition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
             "height": "fit-content",
@@ -214,7 +214,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 2`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           
     狗是一种家养动物。
@@ -242,8 +242,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 2`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z\\"/>",
+              {
+                "__html": "<path d="M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z"/>",
               }
             }
             focusable="false"
@@ -254,7 +254,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 2`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "0px",
             "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
             "height": "0px",
@@ -264,7 +264,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 2`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           
     狗是一种家养动物。
@@ -292,8 +292,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 2`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z\\"/>",
+              {
+                "__html": "<path d="M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z"/>",
               }
             }
             focusable="false"
@@ -304,7 +304,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 2`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "0px",
             "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
             "height": "0px",
@@ -314,7 +314,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 2`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           
     狗是一种家养动物。
@@ -328,7 +328,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 2`] = `
 </div>
 `;
 
-exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 3`] = `
+exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 3`] = `
 <div
   className="bui-collapse-panel"
 >
@@ -353,8 +353,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 3`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z\\"/>",
+              {
+                "__html": "<path d="M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z"/>",
               }
             }
             focusable="false"
@@ -365,7 +365,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 3`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "fit-content",
             "WebkitTransition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
             "height": "fit-content",
@@ -375,7 +375,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 3`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -405,8 +405,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 3`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z\\"/>",
+              {
+                "__html": "<path d="M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z"/>",
               }
             }
             focusable="false"
@@ -417,7 +417,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 3`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "0px",
             "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
             "height": "0px",
@@ -427,7 +427,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 3`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -457,8 +457,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 3`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z\\"/>",
+              {
+                "__html": "<path d="M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z"/>",
               }
             }
             focusable="false"
@@ -469,7 +469,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 3`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "0px",
             "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
             "height": "0px",
@@ -479,7 +479,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 3`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -495,7 +495,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 3`] = `
 </div>
 `;
 
-exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 4`] = `
+exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 4`] = `
 <div
   className="bui-collapse-panel"
 >
@@ -520,8 +520,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 4`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z\\"/>",
+              {
+                "__html": "<path d="M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z"/>",
               }
             }
             focusable="false"
@@ -532,7 +532,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 4`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "fit-content",
             "WebkitTransition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
             "height": "fit-content",
@@ -542,7 +542,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 4`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -572,8 +572,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 4`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z\\"/>",
+              {
+                "__html": "<path d="M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z"/>",
               }
             }
             focusable="false"
@@ -584,7 +584,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 4`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "0px",
             "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
             "height": "0px",
@@ -594,7 +594,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 4`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -624,8 +624,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 4`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z\\"/>",
+              {
+                "__html": "<path d="M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z"/>",
               }
             }
             focusable="false"
@@ -636,7 +636,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 4`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "0px",
             "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
             "height": "0px",
@@ -646,7 +646,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 4`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -662,7 +662,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 4`] = `
 </div>
 `;
 
-exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 5`] = `
+exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 5`] = `
 <div
   className="bui-collapse-panel"
 >
@@ -687,8 +687,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 5`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z\\"/>",
+              {
+                "__html": "<path d="M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z"/>",
               }
             }
             focusable="false"
@@ -699,7 +699,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 5`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "fit-content",
             "WebkitTransition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
             "height": "fit-content",
@@ -709,7 +709,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 5`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -739,8 +739,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 5`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z\\"/>",
+              {
+                "__html": "<path d="M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z"/>",
               }
             }
             focusable="false"
@@ -751,7 +751,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 5`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "0px",
             "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
             "height": "0px",
@@ -761,7 +761,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 5`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -791,8 +791,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 5`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z\\"/>",
+              {
+                "__html": "<path d="M48 61.6 78.8 28c1.1-1.2 3-1.3 4.2-.2 1.2 1.1 1.3 3 .2 4.2l-33 36a2.97 2.97 0 0 1-4.4 0l-33-36c-1.1-1.2-1-3.1.2-4.2s3.1-1 4.2.2L48 61.6z"/>",
               }
             }
             focusable="false"
@@ -803,7 +803,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 5`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "0px",
             "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
             "height": "0px",
@@ -813,7 +813,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 5`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -829,7 +829,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 5`] = `
 </div>
 `;
 
-exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 6`] = `
+exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 6`] = `
 <div
   className="bui-collapse-panel"
 >
@@ -854,8 +854,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 6`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"m48 70.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2 1.6 1.5 1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7 1.6-1.5 4.2-1.4 5.7.2l21 22.8z\\"/><path d=\\"m48 40.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2s1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7s4.2-1.4 5.7.2l21 22.8z\\" opacity=\\".6\\"/>",
+              {
+                "__html": "<path d="m48 70.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2 1.6 1.5 1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7 1.6-1.5 4.2-1.4 5.7.2l21 22.8z"/><path d="m48 40.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2s1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7s4.2-1.4 5.7.2l21 22.8z" opacity=".6"/>",
               }
             }
             focusable="false"
@@ -866,7 +866,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 6`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "fit-content",
             "WebkitTransition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
             "height": "fit-content",
@@ -876,7 +876,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 6`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -906,8 +906,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 6`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"m48 70.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2 1.6 1.5 1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7 1.6-1.5 4.2-1.4 5.7.2l21 22.8z\\"/><path d=\\"m48 40.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2s1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7s4.2-1.4 5.7.2l21 22.8z\\" opacity=\\".6\\"/>",
+              {
+                "__html": "<path d="m48 70.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2 1.6 1.5 1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7 1.6-1.5 4.2-1.4 5.7.2l21 22.8z"/><path d="m48 40.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2s1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7s4.2-1.4 5.7.2l21 22.8z" opacity=".6"/>",
               }
             }
             focusable="false"
@@ -918,7 +918,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 6`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "0px",
             "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
             "height": "0px",
@@ -928,7 +928,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 6`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -958,8 +958,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 6`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"m48 70.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2 1.6 1.5 1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7 1.6-1.5 4.2-1.4 5.7.2l21 22.8z\\"/><path d=\\"m48 40.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2s1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7s4.2-1.4 5.7.2l21 22.8z\\" opacity=\\".6\\"/>",
+              {
+                "__html": "<path d="m48 70.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2 1.6 1.5 1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7 1.6-1.5 4.2-1.4 5.7.2l21 22.8z"/><path d="m48 40.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2s1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7s4.2-1.4 5.7.2l21 22.8z" opacity=".6"/>",
               }
             }
             focusable="false"
@@ -970,7 +970,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 6`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "0px",
             "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
             "height": "0px",
@@ -980,7 +980,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 6`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -996,7 +996,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 6`] = `
 </div>
 `;
 
-exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 7`] = `
+exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 7`] = `
 <div
   className="bui-collapse-panel"
 >
@@ -1021,8 +1021,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 7`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48.1 26 27 48.8c-1.5 1.6-4 1.7-5.7.2-1.6-1.5-1.7-4-.2-5.7l24-26c1.6-1.7 4.3-1.7 5.9 0l24 26c1.5 1.6 1.4 4.2-.2 5.7s-4.2 1.4-5.7-.2L48.1 26z\\"/><path d=\\"M48.1 56 27 78.8c-1.5 1.6-4 1.7-5.7.2s-1.7-4-.2-5.7l24-26c1.6-1.7 4.3-1.7 5.9 0l24 26c1.5 1.6 1.4 4.2-.2 5.7s-4.2 1.4-5.7-.2L48.1 56z\\" opacity=\\".6\\"/>",
+              {
+                "__html": "<path d="M48.1 26 27 48.8c-1.5 1.6-4 1.7-5.7.2-1.6-1.5-1.7-4-.2-5.7l24-26c1.6-1.7 4.3-1.7 5.9 0l24 26c1.5 1.6 1.4 4.2-.2 5.7s-4.2 1.4-5.7-.2L48.1 26z"/><path d="M48.1 56 27 78.8c-1.5 1.6-4 1.7-5.7.2s-1.7-4-.2-5.7l24-26c1.6-1.7 4.3-1.7 5.9 0l24 26c1.5 1.6 1.4 4.2-.2 5.7s-4.2 1.4-5.7-.2L48.1 56z" opacity=".6"/>",
               }
             }
             focusable="false"
@@ -1033,7 +1033,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 7`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "fit-content",
             "WebkitTransition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
             "height": "fit-content",
@@ -1043,7 +1043,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 7`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -1073,8 +1073,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 7`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"m48 70.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2 1.6 1.5 1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7 1.6-1.5 4.2-1.4 5.7.2l21 22.8z\\"/><path d=\\"m48 40.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2s1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7s4.2-1.4 5.7.2l21 22.8z\\" opacity=\\".6\\"/>",
+              {
+                "__html": "<path d="m48 70.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2 1.6 1.5 1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7 1.6-1.5 4.2-1.4 5.7.2l21 22.8z"/><path d="m48 40.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2s1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7s4.2-1.4 5.7.2l21 22.8z" opacity=".6"/>",
               }
             }
             focusable="false"
@@ -1085,7 +1085,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 7`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "0px",
             "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
             "height": "0px",
@@ -1095,7 +1095,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 7`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             
@@ -1125,8 +1125,8 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 7`] = `
           <svg
             className="bui-svg-icon"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"m48 70.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2 1.6 1.5 1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7 1.6-1.5 4.2-1.4 5.7.2l21 22.8z\\"/><path d=\\"m48 40.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2s1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7s4.2-1.4 5.7.2l21 22.8z\\" opacity=\\".6\\"/>",
+              {
+                "__html": "<path d="m48 70.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2 1.6 1.5 1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7 1.6-1.5 4.2-1.4 5.7.2l21 22.8z"/><path d="m48 40.1 21.1-22.8c1.5-1.6 4-1.7 5.7-.2s1.7 4 .2 5.7l-24 26a4.05 4.05 0 0 1-5.9 0l-24-26c-1.5-1.6-1.4-4.2.2-5.7s4.2-1.4 5.7.2l21 22.8z" opacity=".6"/>",
               }
             }
             focusable="false"
@@ -1137,7 +1137,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 7`] = `
       <div
         className="bui-collapse"
         style={
-          Object {
+          {
             "WebKitHeight": "0px",
             "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
             "height": "0px",
@@ -1147,7 +1147,7 @@ exports[`CollapsePanel snapshot CollapsePanel demo snapshot 0 7`] = `
       >
         <div
           className="bui-collapse-panel-item-content"
-          style={Object {}}
+          style={{}}
         >
           <p>
             

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Skeleton can set width and height in style 1`] = `
+exports[`Skeleton > can set width and height in style 1`] = `
 <span
   class="bui-skeleton bui-skeleton-text bui-skeleton-animation-wave bui-skeleton-with-children"
   style="width: 48px; height: 48px;"

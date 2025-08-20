@@ -64,10 +64,12 @@ describe('Avatar', () => {
   });
 
   describe('prop: ImageProps', () => {
-    render(
-      <Avatar src="https://not.exists.image/" ImageProps={{ fit: 'fill' }} />,
-    );
-    expect(screen.getByRole('img').style.objectFit === 'fill');
+    it('should apply ImageProps correctly', () => {
+      render(
+        <Avatar src="https://not.exists.image/" ImageProps={{ fit: 'fill' }} />,
+      );
+      expect(screen.getByRole('img').style.objectFit).toBe('fill');
+    });
   });
   // it('has placeholder', async () => {
   //   render(<Avatar src="https://not.exists.image/" placeholder="加载失败" />);
@@ -76,7 +78,7 @@ describe('Avatar', () => {
 
   it.each(['contain', 'cover', 'fill', 'none', 'scale-down'])(
     'renders with different fit modes',
-    async (fit: any) => {
+    async (fit: string) => {
       render(
         <Avatar
           src="https://gw.alicdn.com/imgextra/i3/O1CN01tp2YUs1WFD8lboMDu_!!6000000002758-2-tps-126-126.png"
@@ -88,10 +90,10 @@ describe('Avatar', () => {
   );
 
   describe('events', () => {
-    it('responses click events', () => {
-      const onClick = jest.fn();
+    it('responses click events', async () => {
+      const onClick = vi.fn();
       render(<Avatar onClick={onClick}>hello world</Avatar>);
-      userEvent.click(screen.getByText('hello world'));
+      await userEvent.click(screen.getByText('hello world'));
       expect(onClick).toHaveBeenCalled();
     });
   });

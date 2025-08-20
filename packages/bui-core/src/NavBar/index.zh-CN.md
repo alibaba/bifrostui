@@ -174,14 +174,14 @@ export default () => {
 
 ## 样式变量
 
-| 全局变量                      | 说明         | 默认值                   |
-| ----------------------------- | ------------ | ------------------------ |
-| --bui-navbar-width            | 导航栏宽度   | `100%`                   |
-| --bui-navbar-height           | 导航栏高度   | `45px`                   |
-| --bui-navbar-padding          | 导航栏内边距 | `0 8px`                  |
-| --bui-navbar-title-padding    | 标题内边距   | `0 8px`                  |
-| --bui-navbar-icon-font-size   | 图标字体大小 | `24px`                   |
-| --bui-navbar-background-color | 背景颜色     | `var(--bui-color-white)` |
-| --bui-navbar-border-bottom    | 底部边框     | `none`                   |
-| --bui-navbar-z-index          | 层级         | `auto`                   |
-| --bui-navbar-title-max-width  | 标题最大宽度 | `60%`                    |
+| 全局变量                     | 说明         | 默认值                   |
+| ---------------------------- | ------------ | ------------------------ |
+| --bui-navbar-width           | 导航栏宽度   | `100%`                   |
+| --bui-navbar-height          | 导航栏高度   | `45px`                   |
+| --bui-navbar-padding         | 导航栏内边距 | `0 8px`                  |
+| --bui-navbar-title-padding   | 标题内边距   | `0 8px`                  |
+| --bui-navbar-icon-font-size  | 图标字体大小 | `24px`                   |
+| --bui-navbar-bg-color        | 背景颜色     | `var(--bui-color-white)` |
+| --bui-navbar-border-bottom   | 底部边框     | `none`                   |
+| --bui-navbar-z-index         | 层级         | `auto`                   |
+| --bui-navbar-title-max-width | 标题最大宽度 | `60%`                    |

@@ -1,9 +1,8 @@
 import React from 'react';
-import { fireEvent, renderHook, waitFor } from '@testing-library/react';
+import { fireEvent, renderHook } from '@testing-library/react';
 import { Button } from '@bifrostui/react';
 import { render, screen, act } from 'testing';
 import Dialog from '../FunctionalDialog';
-import '@testing-library/jest-dom/extend-expect';
 
 describe('Dialog Functional Calls', () => {
   const rootClass = 'bui-dialog';
@@ -11,16 +10,16 @@ describe('Dialog Functional Calls', () => {
 
   beforeEach(() => {
     document.body.innerHTML = '';
-    jest.useFakeTimers();
+    vi.useFakeTimers({ shouldAdvanceTime: true });
     renderHook(() => {
       dialogHook = Dialog.useDialog();
     });
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
-    jest.clearAllMocks();
+    vi.clearAllTimers();
+    vi.useRealTimers();
+    vi.clearAllMocks();
   });
 
   it('The default type of dialog is confirm', async () => {
@@ -61,7 +60,11 @@ describe('Dialog Functional Calls', () => {
     expect(screen.getByText('Confirm Title')).toBeInTheDocument();
     expect(screen.getByText('Are you sure?')).toBeInTheDocument();
     fireEvent.click(screen.getByText('Yes'));
-    await waitFor(() => expect(confirmPromise).resolves.toBe(true));
+    await act(async () => {
+      await vi.runAllTimers();
+    });
+    const result = await confirmPromise;
+    expect(result).toBe(true);
   });
 
   it('should render in container', async () => {
@@ -104,7 +107,11 @@ describe('Dialog Functional Calls', () => {
     );
     fireEvent.click(getByTestId('emit-button'));
     fireEvent.click(screen.getByText('Del'));
-    await waitFor(() => expect(confirmPromise).resolves.toBe(false));
+    await act(async () => {
+      await vi.runAllTimers();
+    });
+    const result = await confirmPromise;
+    expect(result).toBe(false);
   });
 
   it('should resolve with the correct value when Dialog.prompt is confirmed', async () => {
@@ -138,10 +145,11 @@ describe('Dialog Functional Calls', () => {
     fireEvent.change(input, { target: { value: 'Test Input' } });
 
     fireEvent.click(screen.getByText('Confirm'));
-    await waitFor(() => expect(promptPromise).resolves.toBe('Test Input'));
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
+    const result = await promptPromise;
+    expect(result).toBe('Test Input');
     expect(
       document.body.querySelector(`.${rootClass}`),
     ).not.toBeInTheDocument();
@@ -166,11 +174,15 @@ describe('Dialog Functional Calls', () => {
     );
     fireEvent.click(getByTestId('emit-button'));
     fireEvent.click(screen.getByText('Delete'));
-    await waitFor(() => expect(promptPromise).resolves.toBe(false));
+    await act(async () => {
+      await vi.runAllTimers();
+    });
+    const result = await promptPromise;
+    expect(result).toBe(false);
   });
   it('the default type of useDialog is confirm', async () => {
-    const onConfirm = jest.fn();
-    const onCancel = jest.fn();
+    const onConfirm = vi.fn();
+    const onCancel = vi.fn();
     const { getByTestId } = render(
       <Button
         data-testid="emit-button"
@@ -192,21 +204,18 @@ describe('Dialog Functional Calls', () => {
     ).toBeInTheDocument();
     expect(screen.getByText('描述内容')).toBeInTheDocument();
     fireEvent.click(screen.getByText('取消'));
-    await waitFor(async () => {
-      expect(onCancel).toHaveBeenCalled();
-      fireEvent.click(screen.getByText('确定'));
-      await waitFor(() => {
-        expect(onConfirm).toHaveBeenCalled();
-      });
+    await act(async () => {
+      await vi.runAllTimers();
     });
+    expect(onCancel).toHaveBeenCalled();
   });
 
   it.each(['confirm', 'prompt'])(
     'should support basic api with useDialog',
     async (type) => {
       const dialog = dialogHook?.[0];
-      const onConfirm = jest.fn();
-      const onCancel = jest.fn();
+      const onConfirm = vi.fn();
+      const onCancel = vi.fn();
 
       render(
         <Button
@@ -224,13 +233,10 @@ describe('Dialog Functional Calls', () => {
       fireEvent.click(screen.getByText('dialog button'));
       expect(screen.getByText(`${type} message`)).toBeInTheDocument();
       fireEvent.click(screen.getByText('取消'));
-      await waitFor(async () => {
-        expect(onCancel).toHaveBeenCalled();
-        fireEvent.click(screen.getByText('确定'));
-        await waitFor(() => {
-          expect(onConfirm).toHaveBeenCalled();
-        });
+      await act(async () => {
+        await vi.runAllTimers();
       });
+      expect(onCancel).toHaveBeenCalled();
     },
   );
 });

@@ -501,20 +501,20 @@ export default () => {
 
 ## 样式变量
 
-| 全局变量                                        | 说明                   | 默认值         |
-| ----------------------------------------------- | ---------------------- | -------------- |
-| --bui-calendar-padding                          | 日历内边距             | `6px 12px 7px` |
-| --bui-calendar-week-height                      | 星期栏高度             | `30px`         |
-| --bui-calendar-handler-height                   | 操作栏高度             | `28px`         |
-| --bui-calendar-handler-margin-bottom            | 操作栏底部外边距       | `7px`          |
-| --bui-calendar-handler-text-width               | 操作栏文本宽度         | `80px`         |
-| --bui-calendar-handler-btn-width                | 操作栏按钮宽度         | `46px`         |
-| --bui-calendar-handler-btn-height               | 操作栏按钮高度         | `100%`         |
-| --bui-calendar-handler-btn-icon-font-size       | 操作栏按钮图标字体大小 | `28px`         |
-| --bui-calendar-day-box-height                   | 日期单元格高度         | `30px`         |
-| --bui-calendar-day-box-margin-bottom            | 日期单元格底部外边距   | `7px`          |
-| --bui-calendar-day-disabled-color               | 禁用日期颜色           | `#9c9ca5`      |
-| --bui-calendar-middle-color                     | 区间中间日期文字颜色   | `#000`         |
-| --bui-calendar-middle-background-color          | 区间中间日期背景颜色   | `#ffeaf1`      |
-| --bui-calendar-range-both-ends-color            | 区间两端日期文字颜色   | `#000`         |
-| --bui-calendar-range-both-ends-background-color | 区间两端日期背景颜色   | `#ffc7da`      |
+| 全局变量                                  | 说明                   | 默认值         |
+| ----------------------------------------- | ---------------------- | -------------- |
+| --bui-calendar-padding                    | 日历内边距             | `6px 12px 7px` |
+| --bui-calendar-week-height                | 星期栏高度             | `30px`         |
+| --bui-calendar-handler-height             | 操作栏高度             | `28px`         |
+| --bui-calendar-handler-margin             | 操作栏外边距           | `0 0 7px 0`    |
+| --bui-calendar-handler-text-width         | 操作栏文本宽度         | `80px`         |
+| --bui-calendar-handler-btn-width          | 操作栏按钮宽度         | `46px`         |
+| --bui-calendar-handler-btn-height         | 操作栏按钮高度         | `100%`         |
+| --bui-calendar-handler-btn-icon-font-size | 操作栏按钮图标字体大小 | `28px`         |
+| --bui-calendar-day-box-height             | 日期单元格高度         | `30px`         |
+| --bui-calendar-day-box-margin             | 日期单元格外边距       | `0 0 7px 0`    |
+| --bui-calendar-day-disabled-color         | 禁用日期颜色           | `#9c9ca5`      |
+| --bui-calendar-middle-color               | 区间中间日期文字颜色   | `#000`         |
+| --bui-calendar-middle-bg-color            | 区间中间日期背景颜色   | `#ffeaf1`      |
+| --bui-calendar-range-both-ends-color      | 区间两端日期文字颜色   | `#000`         |
+| --bui-calendar-range-both-ends-bg-color   | 区间两端日期背景颜色   | `#ffc7da`      |

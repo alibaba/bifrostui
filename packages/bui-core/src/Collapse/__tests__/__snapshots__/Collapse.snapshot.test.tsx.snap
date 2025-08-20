@@ -1,10 +1,10 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Collapse snapshot Collapse demo snapshot 0 1`] = `
+exports[`Collapse snapshot > Collapse demo snapshot 0 1`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "wrap",
@@ -27,7 +27,7 @@ exports[`Collapse snapshot Collapse demo snapshot 0 1`] = `
   <div
     className="bui-collapse"
     style={
-      Object {
+      {
         "WebKitWidth": "0px",
         "WebkitTransition": "width 1500ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
         "transition": "width 1500ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
@@ -38,7 +38,7 @@ exports[`Collapse snapshot Collapse demo snapshot 0 1`] = `
     <div
       className="bui-card"
       style={
-        Object {
+        {
           "background": "#CCCCCC",
           "height": "100px",
           "width": "100px",
@@ -49,11 +49,11 @@ exports[`Collapse snapshot Collapse demo snapshot 0 1`] = `
 </div>
 `;
 
-exports[`Collapse snapshot Collapse demo snapshot 0 2`] = `
+exports[`Collapse snapshot > Collapse demo snapshot 0 2`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "wrap",
@@ -76,7 +76,7 @@ exports[`Collapse snapshot Collapse demo snapshot 0 2`] = `
   <div
     className="bui-collapse"
     style={
-      Object {
+      {
         "WebKitHeight": "fit-content",
         "WebkitTransition": "height 1500ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
         "height": "fit-content",
@@ -87,7 +87,7 @@ exports[`Collapse snapshot Collapse demo snapshot 0 2`] = `
     <div
       className="bui-card"
       style={
-        Object {
+        {
           "background": "#CCCCCC",
           "height": "100px",
           "width": "100px",
@@ -98,11 +98,11 @@ exports[`Collapse snapshot Collapse demo snapshot 0 2`] = `
 </div>
 `;
 
-exports[`Collapse snapshot Collapse demo snapshot 0 3`] = `
+exports[`Collapse snapshot > Collapse demo snapshot 0 3`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "wrap",
@@ -125,7 +125,7 @@ exports[`Collapse snapshot Collapse demo snapshot 0 3`] = `
   <div
     className="bui-collapse"
     style={
-      Object {
+      {
         "WebKitHeight": "fit-content",
         "WebkitTransition": "height 1500ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
         "height": "fit-content",
@@ -136,7 +136,7 @@ exports[`Collapse snapshot Collapse demo snapshot 0 3`] = `
     <div
       className="bui-card"
       style={
-        Object {
+        {
           "background": "#CCCCCC",
           "height": "100px",
           "width": "100px",

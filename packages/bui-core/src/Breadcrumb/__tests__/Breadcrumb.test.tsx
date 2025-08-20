@@ -103,8 +103,8 @@ describe('Breadcrumb', () => {
     )[0];
     expect(separator).toHaveTextContent(':');
   });
-  it('should trigger item onClick', () => {
-    const fakeClick = jest.fn();
+  it('should trigger item onClick', async () => {
+    const fakeClick = vi.fn();
     setup({
       items: [
         {
@@ -115,7 +115,7 @@ describe('Breadcrumb', () => {
       ],
       separator: ':',
     });
-    userEvent.click(screen.getByText('路径1'));
+    await userEvent.click(screen.getByText('路径1'));
     expect(fakeClick).toBeCalled();
   });
   it('should return null', () => {
@@ -169,15 +169,15 @@ describe('Breadcrumb', () => {
       )[0];
       expect(separator).toHaveTextContent(':');
     });
-    it('should trigger item onClick', () => {
-      const fakeClick = jest.fn();
+    it('should trigger item onClick', async () => {
+      const fakeClick = vi.fn();
       render(
         <Breadcrumb>
           <BreadcrumbItem onClick={fakeClick}>路径1</BreadcrumbItem>
           <BreadcrumbItem>路径2</BreadcrumbItem>
         </Breadcrumb>,
       );
-      userEvent.click(screen.getByText('路径1'));
+      await userEvent.click(screen.getByText('路径1'));
       expect(fakeClick).toBeCalled();
     });
     it('should return null', () => {

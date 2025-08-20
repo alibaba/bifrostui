@@ -1,10 +1,10 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Divider snapshot Divider demo snapshot 0 1`] = `
+exports[`Divider snapshot > Divider demo snapshot 0 1`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
@@ -19,7 +19,7 @@ exports[`Divider snapshot Divider demo snapshot 0 1`] = `
   <div
     className="bui-divider bui-divider-vertical"
     style={
-      Object {
+      {
         "margin": "0 6px",
       }
     }
@@ -28,11 +28,11 @@ exports[`Divider snapshot Divider demo snapshot 0 1`] = `
 </div>
 `;
 
-exports[`Divider snapshot Divider demo snapshot 0 2`] = `
+exports[`Divider snapshot > Divider demo snapshot 0 2`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
@@ -47,7 +47,7 @@ exports[`Divider snapshot Divider demo snapshot 0 2`] = `
   <div
     className="bui-divider bui-divider-vertical bui-divider-vertical-dashed"
     style={
-      Object {
+      {
         "margin": "0 6px",
       }
     }
@@ -56,11 +56,11 @@ exports[`Divider snapshot Divider demo snapshot 0 2`] = `
 </div>
 `;
 
-exports[`Divider snapshot Divider demo snapshot 0 3`] = `
+exports[`Divider snapshot > Divider demo snapshot 0 3`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
@@ -75,7 +75,7 @@ exports[`Divider snapshot Divider demo snapshot 0 3`] = `
   <div
     className="bui-divider bui-divider-vertical"
     style={
-      Object {
+      {
         "margin": "0 6px",
       }
     }
@@ -84,11 +84,11 @@ exports[`Divider snapshot Divider demo snapshot 0 3`] = `
 </div>
 `;
 
-exports[`Divider snapshot Divider demo snapshot 0 4`] = `
+exports[`Divider snapshot > Divider demo snapshot 0 4`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -101,17 +101,17 @@ exports[`Divider snapshot Divider demo snapshot 0 4`] = `
   上边
   <div
     className="bui-divider bui-divider-horizontal"
-    style={Object {}}
+    style={{}}
   />
   下边
 </div>
 `;
 
-exports[`Divider snapshot Divider demo snapshot 0 5`] = `
+exports[`Divider snapshot > Divider demo snapshot 0 5`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
@@ -126,7 +126,7 @@ exports[`Divider snapshot Divider demo snapshot 0 5`] = `
   <div
     className="bui-divider bui-divider-vertical"
     style={
-      Object {
+      {
         "height": "12px",
         "margin": "0 6px",
       }
@@ -136,11 +136,11 @@ exports[`Divider snapshot Divider demo snapshot 0 5`] = `
 </div>
 `;
 
-exports[`Divider snapshot Divider demo snapshot 0 6`] = `
+exports[`Divider snapshot > Divider demo snapshot 0 6`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -154,7 +154,7 @@ exports[`Divider snapshot Divider demo snapshot 0 6`] = `
   <div
     className="bui-divider bui-divider-horizontal"
     style={
-      Object {
+      {
         "width": "100px",
       }
     }
@@ -163,11 +163,11 @@ exports[`Divider snapshot Divider demo snapshot 0 6`] = `
 </div>
 `;
 
-exports[`Divider snapshot Divider demo snapshot 0 7`] = `
+exports[`Divider snapshot > Divider demo snapshot 0 7`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -181,7 +181,7 @@ exports[`Divider snapshot Divider demo snapshot 0 7`] = `
   <div
     className="bui-divider bui-divider-horizontal bui-divider-content"
     style={
-      Object {
+      {
         "margin": "6px 0",
       }
     }
@@ -189,7 +189,7 @@ exports[`Divider snapshot Divider demo snapshot 0 7`] = `
     <span
       className="bui-divider-line"
       style={
-        Object {
+        {
           "width": "60px",
         }
       }
@@ -202,7 +202,7 @@ exports[`Divider snapshot Divider demo snapshot 0 7`] = `
     <span
       className="bui-divider-line"
       style={
-        Object {
+        {
           "width": "60px",
         }
       }
@@ -212,11 +212,11 @@ exports[`Divider snapshot Divider demo snapshot 0 7`] = `
 </div>
 `;
 
-exports[`Divider snapshot Divider demo snapshot 0 8`] = `
+exports[`Divider snapshot > Divider demo snapshot 0 8`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -230,7 +230,7 @@ exports[`Divider snapshot Divider demo snapshot 0 8`] = `
   <div
     className="bui-divider bui-divider-horizontal"
     style={
-      Object {
+      {
         "borderBottomWidth": "2px",
       }
     }

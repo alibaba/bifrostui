@@ -1,10 +1,10 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ItemSelector snapshot ItemSelector demo snapshot 0 1`] = `
+exports[`ItemSelector snapshot > ItemSelector demo snapshot 0 1`] = `
 <div
   className="bui-item-selector"
   style={
-    Object {
+    {
       "height": "500px",
     }
   }
@@ -13,7 +13,7 @@ exports[`ItemSelector snapshot ItemSelector demo snapshot 0 1`] = `
     className="bui-scroll bui-scroll-view-scroll-y bui-item-selector-scroll-view-container tph"
     onScroll={[Function]}
     onTouchMove={[Function]}
-    style={Object {}}
+    style={{}}
   >
     <div
       className="bui-item-selector-all-item"
@@ -189,11 +189,11 @@ exports[`ItemSelector snapshot ItemSelector demo snapshot 0 1`] = `
 </div>
 `;
 
-exports[`ItemSelector snapshot ItemSelector demo snapshot 0 2`] = `
+exports[`ItemSelector snapshot > ItemSelector demo snapshot 0 2`] = `
 <div
   className="bui-item-selector"
   style={
-    Object {
+    {
       "height": "500px",
     }
   }
@@ -213,7 +213,7 @@ exports[`ItemSelector snapshot ItemSelector demo snapshot 0 2`] = `
     className="bui-scroll bui-scroll-view-scroll-y bui-item-selector-scroll-view-container tph container-has-title"
     onScroll={[Function]}
     onTouchMove={[Function]}
-    style={Object {}}
+    style={{}}
   >
     <div
       className="bui-item-selector-all-item"
@@ -506,71 +506,14 @@ exports[`ItemSelector snapshot ItemSelector demo snapshot 0 2`] = `
       </div>
     </div>
   </div>
-  <div
-    className="bui-item-selector-index-container left-in item-index-has-title"
-  >
-    <ul
-      className="bui-item-selector-index-list"
-      onTouchMove={[Function]}
-    >
-      <li
-        className="bui-item-selector-index-item"
-        data-code="FRT"
-        onClick={[Function]}
-        style={
-          Object {
-            "maxHeight": "calc((NaNvh - 6vmin) / 4)",
-          }
-        }
-      >
-        果
-      </li>
-      <li
-        className="bui-item-selector-index-item"
-        data-code="TFC"
-        onClick={[Function]}
-        style={
-          Object {
-            "maxHeight": "calc((NaNvh - 6vmin) / 4)",
-          }
-        }
-      >
-        通
-      </li>
-      <li
-        className="bui-item-selector-index-item"
-        data-code="SIY"
-        onClick={[Function]}
-        style={
-          Object {
-            "maxHeight": "calc((NaNvh - 6vmin) / 4)",
-          }
-        }
-      >
-        文
-      </li>
-      <li
-        className="bui-item-selector-index-item"
-        data-code="Main"
-        onClick={[Function]}
-        style={
-          Object {
-            "maxHeight": "calc((NaNvh - 6vmin) / 4)",
-          }
-        }
-      >
-        Main
-      </li>
-    </ul>
-  </div>
 </div>
 `;
 
-exports[`ItemSelector snapshot ItemSelector demo snapshot 0 3`] = `
+exports[`ItemSelector snapshot > ItemSelector demo snapshot 0 3`] = `
 <div
   className="bui-item-selector"
   style={
-    Object {
+    {
       "height": "500px",
     }
   }
@@ -590,7 +533,7 @@ exports[`ItemSelector snapshot ItemSelector demo snapshot 0 3`] = `
     className="bui-scroll bui-scroll-view-scroll-y bui-item-selector-scroll-view-container tph container-has-title"
     onScroll={[Function]}
     onTouchMove={[Function]}
-    style={Object {}}
+    style={{}}
   >
     <div
       className="bui-item-selector-all-item"
@@ -766,11 +709,11 @@ exports[`ItemSelector snapshot ItemSelector demo snapshot 0 3`] = `
 </div>
 `;
 
-exports[`ItemSelector snapshot ItemSelector demo snapshot 0 4`] = `
+exports[`ItemSelector snapshot > ItemSelector demo snapshot 0 4`] = `
 <div
   className="bui-item-selector"
   style={
-    Object {
+    {
       "height": "500px",
     }
   }
@@ -779,7 +722,7 @@ exports[`ItemSelector snapshot ItemSelector demo snapshot 0 4`] = `
     className="bui-scroll bui-scroll-view-scroll-y bui-item-selector-scroll-view-container tph"
     onScroll={[Function]}
     onTouchMove={[Function]}
-    style={Object {}}
+    style={{}}
   >
     <div
       className="bui-item-selector-all-item"

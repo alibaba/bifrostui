@@ -1,16 +1,19 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ActionSheet renders correctly 1`] = `
+exports[`ActionSheet > renders correctly 1`] = `
 <div
   class="bui-modal bui-drawer bui-action-sheet"
+  role="presentation"
 >
   <div
+    aria-hidden="true"
     class="bui-backdrop bui-modal-backdrop"
     style="visibility: visible; transition: opacity 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; opacity: 1;"
   />
   <div
     class="bui-drawer-content bui-drawer-content-bottom bui-action-sheet-content"
     style="visibility: visible; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transform: none;"
+    tabindex="-1"
   >
     <div
       class="bui-action-sheet-extra"

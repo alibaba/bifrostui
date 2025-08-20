@@ -1,12 +1,12 @@
 @import '@bifrostui/styles/mixins/index.less';
 
 @{root-selector} {
-  --bui-avatar-group-xsmall-margin-left: -5px;
-  --bui-avatar-group-small-margin-left: -9px;
+  --bui-avatar-group-xsmall-margin: 0 0 0 -5px;
+  --bui-avatar-group-small-margin: 0 0 0 -9px;
   --bui-avatar-group-small-box-shadow: 0 0 0 1px var(--bui-color-bg-view);
-  --bui-avatar-group-medium-margin-left: -13px;
+  --bui-avatar-group-medium-margin: 0 0 0 -13px;
   --bui-avatar-group-medium-box-shadow: 0 0 0 2px var(--bui-color-bg-view);
-  --bui-avatar-group-large-margin-left: -21px;
+  --bui-avatar-group-large-margin: 0 0 0 -21px;
   --bui-avatar-group-large-box-shadow: 0 0 0 3px var(--bui-color-bg-view);
 }
 
@@ -23,27 +23,27 @@
 
   .bui-avatar-xsmall {
     &:not(:first-child) {
-      margin-left: var(--bui-avatar-group-xsmall-margin-left);
+      margin: var(--bui-avatar-group-xsmall-margin);
     }
   }
 
   .bui-avatar-small {
     &:not(:first-child) {
-      margin-left: var(--bui-avatar-group-small-margin-left);
+      margin: var(--bui-avatar-group-small-margin);
     }
     box-shadow: var(--bui-avatar-group-small-box-shadow);
   }
 
   .bui-avatar-large {
     &:not(:first-child) {
-      margin-left: var(--bui-avatar-group-large-margin-left);
+      margin: var(--bui-avatar-group-large-margin);
     }
     box-shadow: var(--bui-avatar-group-large-box-shadow);
   }
 
   .bui-avatar-medium {
     &:not(:first-child) {
-      margin-left: var(--bui-avatar-group-medium-margin-left);
+      margin: var(--bui-avatar-group-medium-margin);
     }
     box-shadow: var(--bui-avatar-group-medium-box-shadow);
   }

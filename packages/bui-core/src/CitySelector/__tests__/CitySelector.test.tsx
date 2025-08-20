@@ -18,8 +18,8 @@ const currentCity = { code: '310100', name: '上海' };
 const currentCityGroupName = '定位城市';
 const hotCitiesGroupName = '热门城市';
 const title = '选择城市';
-const onSelect = jest.fn();
-const onClose = jest.fn();
+const onSelect = vi.fn();
+const onClose = vi.fn();
 
 const queryEle = (container, selector) => {
   return container.querySelector(selector);
@@ -62,16 +62,18 @@ describe('CitySelector', () => {
       expect(
         queryEle(container, '.bui-city-selector-title'),
       ).toBeInTheDocument();
-      userEvent.click(container.querySelector('.bui-city-selector-btn-close'));
+      await userEvent.click(
+        container.querySelector('.bui-city-selector-btn-close'),
+      );
       expect(onClose).toHaveBeenCalledTimes(1);
-      userEvent.click(
+      await userEvent.click(
         container.querySelector(
           '.bui-city-selector-list-container .bui-city-selector-list-item',
         ),
       );
       expect(onSelect).toHaveBeenCalledTimes(1);
 
-      userEvent.click(container.querySelector('.bui-city-selector-item'));
+      await userEvent.click(container.querySelector('.bui-city-selector-item'));
       expect(onSelect).toHaveBeenCalledTimes(2);
 
       const $scrollView = container.querySelector(
@@ -82,8 +84,8 @@ describe('CitySelector', () => {
       });
       expect($scrollView.scrollTop).toBe(200);
 
-      await waitFor(() => {
-        userEvent.click(
+      await waitFor(async () => {
+        await userEvent.click(
           container.querySelector(
             '.bui-city-selector-index-item[data-code="D"]',
           ),
@@ -94,7 +96,7 @@ describe('CitySelector', () => {
         const cityCodeS = container.querySelector(
           '.bui-city-selector-index-item[data-code="S"]',
         );
-        const mockElementFromPoint = jest.fn(() => cityCodeS);
+        const mockElementFromPoint = vi.fn(() => cityCodeS);
         // 替换原生函数
         Object.defineProperty(document, 'elementFromPoint', {
           value: mockElementFromPoint,

@@ -3,8 +3,6 @@ import { fireEvent, isConformant, render, act } from 'testing';
 import { TabPanel, Tabs, Tab } from '..';
 
 describe('Tabs', () => {
-  const originalModule = jest.requireActual('@bifrostui/utils');
-  const restApi = jest.requireActual('react');
   const rootClass = {
     tabs: 'bui-tabs',
     tabpanel: 'bui-tabpanel',
@@ -12,16 +10,20 @@ describe('Tabs', () => {
 
   beforeEach(() => {
     document.body.innerHTML = '';
-    jest.mock('@bifrostui/utils', () => ({
-      isMini: false,
-    }));
-    jest.useFakeTimers();
+    vi.mock('@bifrostui/utils', async () => {
+      const actual = await vi.importActual('@bifrostui/utils');
+      return {
+        ...actual,
+        isMini: false,
+      };
+    });
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
-    jest.clearAllMocks();
+    vi.clearAllTimers();
+    vi.useRealTimers();
+    vi.clearAllMocks();
   });
 
   isConformant({
@@ -231,8 +233,10 @@ describe('Tabs', () => {
     });
 
     it('should disable click', () => {
-      const handleChange = jest.fn();
-      function Component(props: { handleChange: any }) {
+      const handleChange = vi.fn();
+      function Component(props: {
+        handleChange: (e: React.MouseEvent, data: { index: string }) => void;
+      }) {
         const { handleChange: change } = props;
         const [value] = useState('fruits');
         return (
@@ -300,14 +304,20 @@ describe('Tabs', () => {
   });
 
   it('should render when resize', async () => {
-    jest.resetModules();
-    jest.doMock('@bifrostui/utils', () => ({
-      ...originalModule,
-      debounce: jest.fn((fn) => fn),
-    }));
-    jest.doMock('react', () => ({
-      ...restApi,
-    }));
+    vi.resetModules();
+    vi.doMock('@bifrostui/utils', async () => {
+      const actual = await vi.importActual('@bifrostui/utils');
+      return {
+        ...actual,
+        debounce: vi.fn((fn) => fn),
+      };
+    });
+    vi.doMock('react', async () => {
+      const actual = await vi.importActual('react');
+      return {
+        ...actual,
+      };
+    });
     const { default: FakeTabs } = await import('../index');
 
     function Component() {
@@ -342,7 +352,7 @@ describe('Tabs', () => {
 
     const { container } = render(<Component />);
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     act(() => {
@@ -382,6 +392,13 @@ describe('Tabs', () => {
             onClick={() => {
               setValue('');
             }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                setValue('');
+              }
+            }}
+            role="button"
+            tabIndex={0}
           >
             置为无效值
           </div>
@@ -398,6 +415,21 @@ describe('Tabs', () => {
                 }
               }
             }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                if (tabList.length === 4) {
+                  setTabList(tabs);
+                } else {
+                  const newTabList = tabs.slice(0, 4);
+                  setTabList(newTabList);
+                  if (!newTabList.some((item) => item.index === value)) {
+                    setValue('1');
+                  }
+                }
+              }
+            }}
+            role="button"
+            tabIndex={0}
           >
             {tabList.length === 4 ? '增加' : '减少'}TabList长度
           </div>
@@ -477,6 +509,13 @@ describe('Tabs', () => {
             onClick={() => {
               setValue('');
             }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                setValue('');
+              }
+            }}
+            role="button"
+            tabIndex={0}
           >
             置为无效值
           </div>
@@ -493,6 +532,21 @@ describe('Tabs', () => {
                 }
               }
             }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                if (tabList.length === 4) {
+                  setTabList(tabs);
+                } else {
+                  const newTabList = tabs.slice(0, 4);
+                  setTabList(newTabList);
+                  if (!newTabList.some((item) => item.index === value)) {
+                    setValue('1');
+                  }
+                }
+              }
+            }}
+            role="button"
+            tabIndex={0}
           >
             {tabList.length === 4 ? '增加' : '减少'}TabList长度
           </div>
@@ -575,6 +629,21 @@ describe('Tabs', () => {
                 }
               }
             }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                if (tabList.length === 4) {
+                  setTabList(tabs);
+                } else {
+                  const newTabList = tabs.slice(0, 4);
+                  setTabList(newTabList);
+                  if (!newTabList.some((item) => item.index === value)) {
+                    setValue('1');
+                  }
+                }
+              }
+            }}
+            role="button"
+            tabIndex={0}
           >
             {tabList.length === 4 ? '增加' : '减少'}TabList长度
           </div>

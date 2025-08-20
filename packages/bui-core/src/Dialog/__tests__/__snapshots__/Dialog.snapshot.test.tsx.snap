@@ -1,10 +1,10 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Dialog snapshot Dialog demo snapshot 0 1`] = `
+exports[`Dialog snapshot > Dialog demo snapshot 0 1`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
@@ -40,11 +40,11 @@ exports[`Dialog snapshot Dialog demo snapshot 0 1`] = `
 </div>
 `;
 
-exports[`Dialog snapshot Dialog demo snapshot 0 2`] = `
+exports[`Dialog snapshot > Dialog demo snapshot 0 2`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
@@ -80,11 +80,11 @@ exports[`Dialog snapshot Dialog demo snapshot 0 2`] = `
 </div>
 `;
 
-exports[`Dialog snapshot Dialog demo snapshot 0 3`] = `
+exports[`Dialog snapshot > Dialog demo snapshot 0 3`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
@@ -107,11 +107,11 @@ exports[`Dialog snapshot Dialog demo snapshot 0 3`] = `
 </div>
 `;
 
-exports[`Dialog snapshot Dialog demo snapshot 0 4`] = `
+exports[`Dialog snapshot > Dialog demo snapshot 0 4`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
@@ -139,11 +139,11 @@ exports[`Dialog snapshot Dialog demo snapshot 0 4`] = `
 </div>
 `;
 
-exports[`Dialog snapshot Dialog demo snapshot 0 5`] = `
+exports[`Dialog snapshot > Dialog demo snapshot 0 5`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
@@ -171,11 +171,11 @@ exports[`Dialog snapshot Dialog demo snapshot 0 5`] = `
 </div>
 `;
 
-exports[`Dialog snapshot Dialog demo snapshot 0 6`] = `
+exports[`Dialog snapshot > Dialog demo snapshot 0 6`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
