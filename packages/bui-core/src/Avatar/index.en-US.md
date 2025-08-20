@@ -280,12 +280,12 @@ export default () => {
 
 #### AvatarGroup
 
-| Property             | Description                    | Default Value                 | Global Variable                       |
-| -------------------- | ------------------------------ | ----------------------------- | ------------------------------------- |
-| --xsmall-margin-left | Extra small avatar left margin | -5px                          | --bui-avatar-group-xsmall-margin-left |
-| --small-margin-left  | Small avatar left margin       | -9px                          | --bui-avatar-group-small-margin-left  |
-| --small-box-shadow   | Small avatar shadow            | 0 0 0 1px --bui-color-bg-view | --bui-avatar-group-small-box-shadow   |
-| --medium-margin-left | Medium avatar left margin      | -13px                         | --bui-avatar-group-medium-margin-left |
-| --medium-box-shadow  | Medium avatar shadow           | 0 0 0 2px --bui-color-bg-view | --bui-avatar-group-medium-box-shadow  |
-| --large-margin-left  | Large avatar left margin       | -21px                         | --bui-avatar-group-large-margin-left  |
-| --large-box-shadow   | Large avatar shadow            | 0 0 0 3px --bui-color-bg-view | --bui-avatar-group-large-box-shadow   |
+| Property             | Description                    | Default Value                 | Global Variable                      |
+| -------------------- | ------------------------------ | ----------------------------- | ------------------------------------ |
+| --xsmall-margin-left | Extra small avatar left margin | -5px                          | --bui-avatar-group-xsmall-margin     |
+| --small-margin-left  | Small avatar left margin       | -9px                          | --bui-avatar-group-small-margin      |
+| --small-box-shadow   | Small avatar shadow            | 0 0 0 1px --bui-color-bg-view | --bui-avatar-group-small-box-shadow  |
+| --medium-margin-left | Medium avatar left margin      | -13px                         | --bui-avatar-group-medium-margin     |
+| --medium-box-shadow  | Medium avatar shadow           | 0 0 0 2px --bui-color-bg-view | --bui-avatar-group-medium-box-shadow |
+| --large-margin-left  | Large avatar left margin       | -21px                         | --bui-avatar-group-large-margin      |
+| --large-box-shadow   | Large avatar shadow            | 0 0 0 3px --bui-color-bg-view | --bui-avatar-group-large-box-shadow  |
