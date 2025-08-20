@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Checkbox Checkbox label placement label should on the bottom 1`] = `
+exports[`Checkbox > Checkbox label placement > label should on the bottom 1`] = `
 <div
   class="bui-checkbox bui-checkbox-label-bottom"
   data-testid="bui-checkbox"
@@ -32,7 +32,7 @@ exports[`Checkbox Checkbox label placement label should on the bottom 1`] = `
 </div>
 `;
 
-exports[`Checkbox Checkbox label placement label should on the left 1`] = `
+exports[`Checkbox > Checkbox label placement > label should on the left 1`] = `
 <div
   class="bui-checkbox bui-checkbox-label-left"
   data-testid="bui-checkbox"
@@ -64,7 +64,7 @@ exports[`Checkbox Checkbox label placement label should on the left 1`] = `
 </div>
 `;
 
-exports[`Checkbox Checkbox label placement label should on the right 1`] = `
+exports[`Checkbox > Checkbox label placement > label should on the right 1`] = `
 <div
   class="bui-checkbox bui-checkbox-label-right"
   data-testid="bui-checkbox"
@@ -96,7 +96,7 @@ exports[`Checkbox Checkbox label placement label should on the right 1`] = `
 </div>
 `;
 
-exports[`Checkbox Checkbox label placement label should on the top 1`] = `
+exports[`Checkbox > Checkbox label placement > label should on the top 1`] = `
 <div
   class="bui-checkbox bui-checkbox-label-top"
   data-testid="bui-checkbox"

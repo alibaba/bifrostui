@@ -1,10 +1,10 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CitySelector snapshot CitySelector demo snapshot 0 1`] = `
+exports[`CitySelector snapshot > CitySelector demo snapshot 0 1`] = `
 <div
   className="bui-city-selector"
   style={
-    Object {
+    {
       "height": "500px",
     }
   }
@@ -13,7 +13,7 @@ exports[`CitySelector snapshot CitySelector demo snapshot 0 1`] = `
     className="bui-scroll bui-scroll-view-scroll-y bui-city-selector-scroll-view-container tph"
     onScroll={[Function]}
     onTouchMove={[Function]}
-    style={Object {}}
+    style={{}}
   >
     <div
       className="bui-city-selector-all-city"
@@ -189,11 +189,11 @@ exports[`CitySelector snapshot CitySelector demo snapshot 0 1`] = `
 </div>
 `;
 
-exports[`CitySelector snapshot CitySelector demo snapshot 0 2`] = `
+exports[`CitySelector snapshot > CitySelector demo snapshot 0 2`] = `
 <div
   className="bui-city-selector"
   style={
-    Object {
+    {
       "height": "500px",
     }
   }
@@ -213,7 +213,7 @@ exports[`CitySelector snapshot CitySelector demo snapshot 0 2`] = `
     className="bui-scroll bui-scroll-view-scroll-y bui-city-selector-scroll-view-container tph container-has-title"
     onScroll={[Function]}
     onTouchMove={[Function]}
-    style={Object {}}
+    style={{}}
   >
     <div
       className="bui-city-selector-all-city"
@@ -389,11 +389,11 @@ exports[`CitySelector snapshot CitySelector demo snapshot 0 2`] = `
 </div>
 `;
 
-exports[`CitySelector snapshot CitySelector demo snapshot 0 3`] = `
+exports[`CitySelector snapshot > CitySelector demo snapshot 0 3`] = `
 <div
   className="bui-city-selector"
   style={
-    Object {
+    {
       "height": "500px",
     }
   }
@@ -402,7 +402,7 @@ exports[`CitySelector snapshot CitySelector demo snapshot 0 3`] = `
     className="bui-scroll bui-scroll-view-scroll-y bui-city-selector-scroll-view-container tph"
     onScroll={[Function]}
     onTouchMove={[Function]}
-    style={Object {}}
+    style={{}}
   >
     <div
       className="bui-city-selector-all-city"

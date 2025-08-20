@@ -18,6 +18,12 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     visibility = true,
     variant = 'contained',
     type = 'standard',
+    // 无障碍功能相关属性
+    'aria-label': ariaLabel,
+    'aria-describedby': ariaDescribedby,
+    role = 'status',
+    'aria-hidden': ariaHidden = false,
+    decorative = false,
     ...others
   } = props;
 
@@ -50,6 +56,64 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     return !!content || content === 0;
   };
 
+  // 无障碍功能：生成可访问性标签
+  const getAccessibilityLabel = (): string | undefined => {
+    // 如果用户提供了自定义标签，直接使用
+    if (ariaLabel) return ariaLabel;
+
+    // 如果是装饰性的或者被隐藏，不需要标签
+    if (decorative || ariaHidden) return undefined;
+
+    // 根据类型和内容生成标签
+    if (type === 'dot') {
+      return '有新通知';
+    }
+
+    if (displayValue !== null) {
+      const numValue = Number(displayValue);
+      if (!Number.isNaN(numValue)) {
+        if (numValue === 0) return '无通知';
+        if (numValue === 1) return '1条通知';
+        if (String(displayValue).includes('+')) {
+          return `超过${String(displayValue).replace('+', '')}条通知`;
+        }
+        return `${displayValue}条通知`;
+      }
+      return `通知：${displayValue}`;
+    }
+
+    return undefined;
+  };
+
+  // 无障碍功能：确定最终的ARIA属性
+  const getAriaAttributes = () => {
+    const accessibilityLabel = getAccessibilityLabel();
+
+    // 如果是装饰性的，设置为presentation角色并隐藏
+    if (decorative) {
+      return {
+        role: 'presentation',
+        'aria-hidden': true,
+      };
+    }
+
+    // 如果明确设置为隐藏
+    if (ariaHidden) {
+      return {
+        'aria-hidden': true,
+      };
+    }
+
+    return {
+      role,
+      'aria-label': accessibilityLabel,
+      'aria-describedby': ariaDescribedby,
+    };
+  };
+
+  // 获取ARIA属性
+  const ariaAttributes = getAriaAttributes();
+
   return (
     <div
       className={clsx(`${prefixCls}`, className, {
@@ -66,6 +130,8 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
             `${prefixCls}-${variant}`,
             `${prefixCls}-${type}`,
           )}
+          // 无障碍功能：应用ARIA属性
+          {...ariaAttributes}
         >
           {displayValue}
         </div>

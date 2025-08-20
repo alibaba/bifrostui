@@ -2,7 +2,14 @@ import React from 'react';
 import { isConformant, render, act, screen } from 'testing';
 import { Countdown } from '..';
 
-jest.useFakeTimers();
+beforeEach(() => {
+  vi.useFakeTimers();
+});
+
+afterEach(() => {
+  vi.clearAllTimers();
+  vi.useRealTimers();
+});
 
 describe('Countdown', () => {
   const rootClass = 'bui-countdown';
@@ -62,23 +69,23 @@ describe('Countdown', () => {
   });
 
   it('onFinish prop has been trigger when countdown finished', () => {
-    const fakeFinish = jest.fn();
+    const fakeFinish = vi.fn();
     render(
       <Countdown endTimestamp={Date.now() + 10 * 1000} onFinish={fakeFinish} />,
     );
     act(() => {
-      jest.advanceTimersByTime(10 * 1000);
+      vi.advanceTimersByTime(10 * 1000);
     });
     expect(fakeFinish).toHaveBeenCalledTimes(1);
   });
 
   it('onChange prop has been trigger when countdown change', () => {
-    const fakeChange = jest.fn();
+    const fakeChange = vi.fn();
     render(
       <Countdown endTimestamp={Date.now() + 10 * 1000} onChange={fakeChange} />,
     );
     act(() => {
-      jest.advanceTimersByTime(1 * 1000);
+      vi.advanceTimersByTime(1 * 1000);
     });
     expect(fakeChange).toBeCalled();
   });

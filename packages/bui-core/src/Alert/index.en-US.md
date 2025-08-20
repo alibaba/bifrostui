@@ -259,6 +259,6 @@ export default () => {
 | --padding                | Padding                | 8px                | --bui-alert-padding                |
 | --line-height            | Line height            | 16px               | --bui-alert-line-height            |
 | --default-icon-font-size | Default icon font size | 15px               | --bui-alert-default-icon-font-size |
-| --action-margin-left     | Left margin for action | 16px               | --bui-alert-action-margin-left     |
-| --icon-margin-right      | Right margin for icon  | --bui-spacing-xs   | --bui-alert-icon-margin-right      |
+| --action-margin-left     | Left margin for action | 16px               | --bui-alert-action-margin          |
+| --icon-margin-right      | Right margin for icon  | --bui-spacing-xs   | --bui-alert-icon-margin            |
 | --icon-font-size         | Icon font size         | --bui-title-size-4 | --bui-alert-icon-font-size         |

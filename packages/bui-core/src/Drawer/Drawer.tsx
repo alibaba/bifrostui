@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from '../Modal';
 import Slide from '../Slide';
 import { DrawerProps } from './Drawer.types';
@@ -30,7 +30,6 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
     ...others
   } = props;
   const anchorInvariant = oppositeDirection[anchorProp];
-  const [keepMounted, setKeepMounted] = useState(open);
 
   return (
     <Modal
@@ -41,15 +40,12 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
       ref={ref}
       className={clsx(prefixCls, className)}
       disablePortal={disablePortal}
-      keepMounted={keepMounted}
       {...others}
     >
       <Slide
         in={open}
         direction={anchorInvariant}
         timeout={transitionDuration}
-        onEnter={() => setKeepMounted(true)}
-        onExited={() => setKeepMounted(false)}
         {...SlideProps}
       >
         <div

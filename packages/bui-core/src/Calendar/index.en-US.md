@@ -473,20 +473,20 @@ export default () => {
 
 ## Style Variables
 
-| Property                           | Description                                      | Default Value | Global Variable                                 |
-| ---------------------------------- | ------------------------------------------------ | ------------- | ----------------------------------------------- |
-| --padding                          | Padding                                          | 6px 12px 7px  | --bui-calendar-padding                          |
-| --week-height                      | Week label height                                | 30px          | --bui-calendar-week-height                      |
-| --handler-height                   | Handler height                                   | 28px          | --bui-calendar-handler-height                   |
-| --handler-margin-bottom            | Handler bottom margin                            | 7px           | --bui-calendar-handler-margin-bottom            |
-| --handler-text-width               | Handler text container width                     | 80px          | --bui-calendar-handler-text-width               |
-| --handler-btn-width                | Handler button width                             | 46px          | --bui-calendar-handler-btn-width                |
-| --handler-btn-height               | Handler button height                            | 100%          | --bui-calendar-handler-btn-height               |
-| --handler-btn-icon-font-size       | Handler button icon font size                    | 28px          | --bui-calendar-handler-btn-icon-font-size       |
-| --day-box-height                   | Day box height                                   | 30px          | --bui-calendar-day-box-height                   |
-| --day-box-margin-bottom            | Day box bottom margin                            | 7px           | --bui-calendar-day-box-margin-bottom            |
-| --day-disabled-color               | Disabled day font color                          | #9c9ca5       | --bui-calendar-day-disabled-color               |
-| --middle-color                     | Middle part font color for range selection       | #000          | --bui-calendar-middle-color                     |
-| --middle-background-color          | Middle part background color for range selection | #ffeaf1       | --bui-calendar-middle-background-color          |
-| --range-both-ends-color            | Both ends font color for range selection         | #000          | --bui-calendar-range-both-ends-color            |
-| --range-both-ends-background-color | Both ends background color for range selection   | #ffc7da       | --bui-calendar-range-both-ends-background-color |
+| Property                           | Description                                      | Default Value | Global Variable                           |
+| ---------------------------------- | ------------------------------------------------ | ------------- | ----------------------------------------- |
+| --padding                          | Padding                                          | 6px 12px 7px  | --bui-calendar-padding                    |
+| --week-height                      | Week label height                                | 30px          | --bui-calendar-week-height                |
+| --handler-height                   | Handler height                                   | 28px          | --bui-calendar-handler-height             |
+| --handler-margin-bottom            | Handler bottom margin                            | 7px           | --bui-calendar-handler-margin             |
+| --handler-text-width               | Handler text container width                     | 80px          | --bui-calendar-handler-text-width         |
+| --handler-btn-width                | Handler button width                             | 46px          | --bui-calendar-handler-btn-width          |
+| --handler-btn-height               | Handler button height                            | 100%          | --bui-calendar-handler-btn-height         |
+| --handler-btn-icon-font-size       | Handler button icon font size                    | 28px          | --bui-calendar-handler-btn-icon-font-size |
+| --day-box-height                   | Day box height                                   | 30px          | --bui-calendar-day-box-height             |
+| --day-box-margin-bottom            | Day box bottom margin                            | 7px           | --bui-calendar-day-box-margin             |
+| --day-disabled-color               | Disabled day font color                          | #9c9ca5       | --bui-calendar-day-disabled-color         |
+| --middle-color                     | Middle part font color for range selection       | #000          | --bui-calendar-middle-color               |
+| --middle-background-color          | Middle part background color for range selection | #ffeaf1       | --bui-calendar-middle-bg-color            |
+| --range-both-ends-color            | Both ends font color for range selection         | #000          | --bui-calendar-range-both-ends-color      |
+| --range-both-ends-background-color | Both ends background color for range selection   | #ffc7da       | --bui-calendar-range-both-ends-bg-color   |

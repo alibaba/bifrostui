@@ -18,7 +18,7 @@ describe('Tag', () => {
   });
 
   it('should be clickable', () => {
-    const fakeClick = jest.fn();
+    const fakeClick = vi.fn();
     const { container } = render(<Tag onClick={fakeClick} />);
     const tag = container.querySelectorAll(`.${rootClass}`)[0];
     fireEvent.click(tag);

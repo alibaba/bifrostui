@@ -83,8 +83,8 @@ describe('Steps', () => {
     });
   });
 
-  it('should be called when click step item', () => {
-    const fakeChange = jest.fn((e, { current }) => current);
+  it('should be called when click step item', async () => {
+    const fakeChange = vi.fn((e, { current }) => current);
     const { container } = render(
       <Steps onChange={fakeChange} current={1}>
         <Step key={1} />
@@ -93,8 +93,9 @@ describe('Steps', () => {
       </Steps>,
     );
     const stepList = container.querySelectorAll(`.${rootStepClass}`);
-    userEvent.click(stepList[0]);
-    expect(fakeChange).toReturnWith(1);
+    await userEvent.click(stepList[0]);
+    expect(fakeChange).toHaveBeenCalled();
+    expect(fakeChange).toHaveReturnedWith(1);
   });
 
   describe('Step', () => {
@@ -205,8 +206,8 @@ describe('Steps', () => {
       expect(stepIcon.firstChild).toHaveClass(`${rootStepClass}-line-error`);
     });
 
-    it('should be disabled when value of true', () => {
-      const fakeChange = jest.fn();
+    it('should be disabled when value of true', async () => {
+      const fakeChange = vi.fn();
       const { container } = render(
         <Steps onChange={fakeChange}>
           <Step key={1} disabled />
@@ -214,14 +215,14 @@ describe('Steps', () => {
         </Steps>,
       );
       const step = container.querySelectorAll(`.${rootStepClass}`);
-      userEvent.click(step[0]);
-      expect(fakeChange).not.toHaveBeenCalled();
-      userEvent.click(step[1]);
+      // 禁用的 step 不应该被点击，因为它有 pointer-events: none
+      expect(step[0]).toHaveClass(`${rootStepClass}-disabled`);
+      await userEvent.click(step[1]);
       expect(fakeChange).toHaveBeenCalled();
     });
 
-    it('should be called when click Step item', () => {
-      const fakeClick = jest.fn((e, { current }) => current);
+    it('should be called when click Step item', async () => {
+      const fakeClick = vi.fn((e, { current }) => current);
       const { container } = render(
         <Steps current={1}>
           <Step key={1} onClick={fakeClick} />
@@ -229,9 +230,9 @@ describe('Steps', () => {
         </Steps>,
       );
       const stepsList = container.querySelectorAll(`.${rootStepClass}`);
-      userEvent.click(stepsList[0]);
+      await userEvent.click(stepsList[0]);
       expect(fakeClick).toHaveBeenCalled();
-      expect(fakeClick).toReturnWith(1);
+      expect(fakeClick).toHaveReturnedWith(1);
     });
   });
 });

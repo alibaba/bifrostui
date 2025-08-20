@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Calendar range mode value should be a range date 1`] = `
+exports[`Calendar > range mode > value should be a range date 1`] = `
 <div
   class="bui-calendar"
   data-end="20230422"
@@ -467,7 +467,7 @@ exports[`Calendar range mode value should be a range date 1`] = `
 </div>
 `;
 
-exports[`Calendar should not fill last or next month 1`] = `
+exports[`Calendar > should not fill last or next month 1`] = `
 <div
   class="bui-calendar"
   data-end="Invalid Date"
@@ -910,7 +910,7 @@ exports[`Calendar should not fill last or next month 1`] = `
 </div>
 `;
 
-exports[`Calendar should render disabled date by \`disabledDate\` property 1`] = `
+exports[`Calendar > should render disabled date by \`disabledDate\` property 1`] = `
 <div
   class="bui-calendar"
   data-mode="single"
@@ -1353,7 +1353,7 @@ exports[`Calendar should render disabled date by \`disabledDate\` property 1`] =
 </div>
 `;
 
-exports[`Calendar single mode should selected date by \`value\` property 1`] = `
+exports[`Calendar > single mode > should selected date by \`value\` property 1`] = `
 <div
   class="bui-calendar"
   data-mode="single"

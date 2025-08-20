@@ -3,10 +3,10 @@
 @{root-selector} {
   --bui-textarea-border-radius: var(--bui-shape-radius-label);
   --bui-textarea-width: 100%;
-  --bui-textarea-background-color: var(--bui-color-bg-default);
+  --bui-textarea-bg-color: var(--bui-color-bg-default);
   --bui-textarea-text-color: var(--bui-color-fg-subtle);
-  --bui-textarea-count-background-color: var(
-    --bui-textarea-background-color,
+  --bui-textarea-count-bg-color: var(
+    --bui-textarea-bg-color,
     var(--bui-color-bg-default)
   );
   --bui-textarea-count-color: var(--bui-color-fg-subtle);
@@ -47,7 +47,7 @@
 .bui-textarea-content {
   width: var(--bui-textarea-width);
   resize: none;
-  background-color: var(--bui-textarea-background-color);
+  background-color: var(--bui-textarea-bg-color);
   padding: var(--bui-textarea-padding);
   border: none;
   outline: none;
@@ -61,7 +61,7 @@
 }
 
 .bui-textarea-count {
-  background-color: var(--bui-textarea-count-background-color);
+  background-color: var(--bui-textarea-count-bg-color);
   color: var(--bui-textarea-count-color);
   text-align: right;
   padding: var(--bui-textarea-count-padding);

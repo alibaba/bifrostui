@@ -5,13 +5,13 @@
   --bui-dialog-border-radius: var(--bui-shape-radius-drawer);
   --bui-dialog-title-padding: 0 40px 9px;
   --bui-dialog-desc-padding: 0 24px;
-  --bui-dialog-footer-margin-top: 15px;
+  --bui-dialog-footer-margin: 15px 0 0 0;
   --bui-dialog-button-height: 53px;
   --bui-dialog-button-line-height: 25px;
   --bui-dialog-button-padding: 12px 0 13px;
   --bui-dialog-button-font-size: 17px;
   --bui-dialog-button-border-left: 1px solid rgba(0, 0, 0, 0.05);
-  --bui-dialog-button-active-background-color: rgba(54, 57, 64, 0.05);
+  --bui-dialog-button-active-bg-color: rgba(54, 57, 64, 0.05);
 }
 
 .bui-dialog {
@@ -52,7 +52,7 @@
     }
 
     &-footer {
-      margin-top: var(--bui-dialog-footer-margin-top);
+      margin: var(--bui-dialog-footer-margin);
       border-top: 1px solid rgba(0, 0, 0, 0.05);
       display: flex;
     }
@@ -82,7 +82,7 @@
       }
 
       &:active {
-        background-color: var(--bui-dialog-button-active-background-color);
+        background-color: var(--bui-dialog-button-active-bg-color);
       }
     }
   }

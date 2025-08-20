@@ -1,10 +1,10 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Card snapshot Card demo snapshot 0 1`] = `
+exports[`Card snapshot > Card demo snapshot 0 1`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -18,7 +18,7 @@ exports[`Card snapshot Card demo snapshot 0 1`] = `
   <div
     className="bui-stack"
     style={
-      Object {
+      {
         "--align-items": "center",
         "--flex-direction": "column",
         "--flex-wrap": "nowrap",
@@ -31,7 +31,7 @@ exports[`Card snapshot Card demo snapshot 0 1`] = `
     <div
       className="bui-card"
       style={
-        Object {
+        {
           "width": "100%",
         }
       }
@@ -52,11 +52,11 @@ exports[`Card snapshot Card demo snapshot 0 1`] = `
 </div>
 `;
 
-exports[`Card snapshot Card demo snapshot 0 2`] = `
+exports[`Card snapshot > Card demo snapshot 0 2`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -70,7 +70,7 @@ exports[`Card snapshot Card demo snapshot 0 2`] = `
   <div
     className="bui-stack"
     style={
-      Object {
+      {
         "--align-items": "center",
         "--flex-direction": "column",
         "--flex-wrap": "nowrap",
@@ -83,7 +83,7 @@ exports[`Card snapshot Card demo snapshot 0 2`] = `
     <div
       className="bui-card"
       style={
-        Object {
+        {
           "width": "100%",
         }
       }
@@ -102,11 +102,11 @@ exports[`Card snapshot Card demo snapshot 0 2`] = `
 </div>
 `;
 
-exports[`Card snapshot Card demo snapshot 0 3`] = `
+exports[`Card snapshot > Card demo snapshot 0 3`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -120,7 +120,7 @@ exports[`Card snapshot Card demo snapshot 0 3`] = `
   <div
     className="bui-stack"
     style={
-      Object {
+      {
         "--align-items": "center",
         "--flex-direction": "column",
         "--flex-wrap": "nowrap",
@@ -133,7 +133,7 @@ exports[`Card snapshot Card demo snapshot 0 3`] = `
     <div
       className="bui-card"
       style={
-        Object {
+        {
           "width": "100%",
         }
       }
@@ -157,11 +157,11 @@ exports[`Card snapshot Card demo snapshot 0 3`] = `
 </div>
 `;
 
-exports[`Card snapshot Card demo snapshot 0 4`] = `
+exports[`Card snapshot > Card demo snapshot 0 4`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -175,7 +175,7 @@ exports[`Card snapshot Card demo snapshot 0 4`] = `
   <div
     className="bui-stack"
     style={
-      Object {
+      {
         "--align-items": "center",
         "--flex-direction": "column",
         "--flex-wrap": "nowrap",
@@ -188,7 +188,7 @@ exports[`Card snapshot Card demo snapshot 0 4`] = `
     <div
       className="bui-card"
       style={
-        Object {
+        {
           "width": "100%",
         }
       }
@@ -214,8 +214,8 @@ exports[`Card snapshot Card demo snapshot 0 4`] = `
             className="bui-svg-icon icon-size-small"
             color="var(--bui-color-fg-disabled)"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z\\"/>",
+              {
+                "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
               }
             }
             focusable="false"
@@ -228,11 +228,11 @@ exports[`Card snapshot Card demo snapshot 0 4`] = `
 </div>
 `;
 
-exports[`Card snapshot Card demo snapshot 0 5`] = `
+exports[`Card snapshot > Card demo snapshot 0 5`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -246,7 +246,7 @@ exports[`Card snapshot Card demo snapshot 0 5`] = `
   <div
     className="bui-stack"
     style={
-      Object {
+      {
         "--align-items": "center",
         "--flex-direction": "column",
         "--flex-wrap": "nowrap",
@@ -259,7 +259,7 @@ exports[`Card snapshot Card demo snapshot 0 5`] = `
     <div
       className="bui-card"
       style={
-        Object {
+        {
           "width": "100%",
         }
       }
@@ -284,11 +284,11 @@ exports[`Card snapshot Card demo snapshot 0 5`] = `
 </div>
 `;
 
-exports[`Card snapshot Card demo snapshot 0 6`] = `
+exports[`Card snapshot > Card demo snapshot 0 6`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -302,7 +302,7 @@ exports[`Card snapshot Card demo snapshot 0 6`] = `
   <div
     className="bui-stack"
     style={
-      Object {
+      {
         "--align-items": "center",
         "--flex-direction": "column",
         "--flex-wrap": "nowrap",
@@ -315,7 +315,7 @@ exports[`Card snapshot Card demo snapshot 0 6`] = `
     <div
       className="bui-card"
       style={
-        Object {
+        {
           "width": "100%",
         }
       }
@@ -338,11 +338,11 @@ exports[`Card snapshot Card demo snapshot 0 6`] = `
 </div>
 `;
 
-exports[`Card snapshot Card demo snapshot 0 7`] = `
+exports[`Card snapshot > Card demo snapshot 0 7`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -356,7 +356,7 @@ exports[`Card snapshot Card demo snapshot 0 7`] = `
   <div
     className="bui-stack"
     style={
-      Object {
+      {
         "--align-items": "center",
         "--flex-direction": "column",
         "--flex-wrap": "nowrap",
@@ -369,81 +369,7 @@ exports[`Card snapshot Card demo snapshot 0 7`] = `
     <div
       className="bui-card"
       style={
-        Object {
-          "width": "100%",
-        }
-      }
-    >
-      <div
-        className="bui-card-header"
-      >
-        <div
-          className="bui-card-header-title"
-        >
-          订单
-        </div>
-      </div>
-      <div
-        className="bui-card-content"
-      >
-        <div>
-          订单号：7a73fcggert235fag4
-        </div>
-        <div>
-          取餐码：235634
-        </div>
-        <div>
-          手机号: 134****5427
-        </div>
-      </div>
-      <div
-        className="bui-card-footer"
-      >
-        <button
-          className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-success"
-          disabled={false}
-          type="button"
-        >
-          签收
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Card snapshot Card demo snapshot 0 8`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "column",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "0",
-      "background": "#eee",
-      "padding": "20px",
-    }
-  }
->
-  <div
-    className="bui-stack"
-    style={
-      Object {
-        "--align-items": "center",
-        "--flex-direction": "column",
-        "--flex-wrap": "nowrap",
-        "--justify-content": "center",
-        "--spacing": "0",
-        "width": "270px",
-      }
-    }
-  >
-    <div
-      className="bui-card"
-      style={
-        Object {
+        {
           "width": "100%",
         }
       }
@@ -486,11 +412,11 @@ exports[`Card snapshot Card demo snapshot 0 8`] = `
 </div>
 `;
 
-exports[`Card snapshot Card demo snapshot 0 9`] = `
+exports[`Card snapshot > Card demo snapshot 0 8`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -504,7 +430,7 @@ exports[`Card snapshot Card demo snapshot 0 9`] = `
   <div
     className="bui-stack"
     style={
-      Object {
+      {
         "--align-items": "center",
         "--flex-direction": "column",
         "--flex-wrap": "nowrap",
@@ -517,7 +443,81 @@ exports[`Card snapshot Card demo snapshot 0 9`] = `
     <div
       className="bui-card"
       style={
-        Object {
+        {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="bui-card-header"
+      >
+        <div
+          className="bui-card-header-title"
+        >
+          订单
+        </div>
+      </div>
+      <div
+        className="bui-card-content"
+      >
+        <div>
+          订单号：7a73fcggert235fag4
+        </div>
+        <div>
+          取餐码：235634
+        </div>
+        <div>
+          手机号: 134****5427
+        </div>
+      </div>
+      <div
+        className="bui-card-footer"
+      >
+        <button
+          className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-success"
+          disabled={false}
+          type="button"
+        >
+          签收
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Card snapshot > Card demo snapshot 0 9`] = `
+<div
+  className="bui-stack"
+  style={
+    {
+      "--align-items": "center",
+      "--flex-direction": "column",
+      "--flex-wrap": "nowrap",
+      "--justify-content": "center",
+      "--spacing": "0",
+      "background": "#eee",
+      "padding": "20px",
+    }
+  }
+>
+  <div
+    className="bui-stack"
+    style={
+      {
+        "--align-items": "center",
+        "--flex-direction": "column",
+        "--flex-wrap": "nowrap",
+        "--justify-content": "center",
+        "--spacing": "0",
+        "width": "270px",
+      }
+    }
+  >
+    <div
+      className="bui-card"
+      style={
+        {
           "width": "100%",
         }
       }
@@ -537,7 +537,7 @@ exports[`Card snapshot Card demo snapshot 0 9`] = `
         <div
           className="bui-card"
           style={
-            Object {
+            {
               "width": "100%",
             }
           }
@@ -563,8 +563,8 @@ exports[`Card snapshot Card demo snapshot 0 9`] = `
                 className="bui-svg-icon icon-size-small"
                 color="var(--bui-color-fg-disabled)"
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<path d=\\"M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z\\"/>",
+                  {
+                    "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
                   }
                 }
                 focusable="false"
@@ -610,8 +610,8 @@ exports[`Card snapshot Card demo snapshot 0 9`] = `
                 className="bui-svg-icon icon-size-small"
                 color="var(--bui-color-fg-disabled)"
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<path d=\\"M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z\\"/>",
+                  {
+                    "__html": "<path d="M55.1 48 32.3 26.9c-1.6-1.5-1.7-4-.2-5.7 1.5-1.6 4-1.7 5.7-.2l26 24c1.7 1.6 1.7 4.3 0 5.9l-26 24c-1.6 1.5-4.2 1.4-5.7-.2-1.5-1.6-1.4-4.2.2-5.7l22.8-21z"/>",
                   }
                 }
                 focusable="false"
@@ -639,11 +639,11 @@ exports[`Card snapshot Card demo snapshot 0 9`] = `
 </div>
 `;
 
-exports[`Card snapshot Card demo snapshot 0 10`] = `
+exports[`Card snapshot > Card demo snapshot 0 10`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -657,7 +657,7 @@ exports[`Card snapshot Card demo snapshot 0 10`] = `
   <div
     className="bui-stack"
     style={
-      Object {
+      {
         "--align-items": "center",
         "--flex-direction": "column",
         "--flex-wrap": "nowrap",
@@ -670,7 +670,7 @@ exports[`Card snapshot Card demo snapshot 0 10`] = `
     <div
       className="bui-card"
       style={
-        Object {
+        {
           "padding": "10px",
         }
       }

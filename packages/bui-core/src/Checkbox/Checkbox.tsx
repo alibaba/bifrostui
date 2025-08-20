@@ -12,7 +12,7 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
   const {
     className,
     defaultChecked = false,
-    checked,
+    checked = false,
     inputProps,
     inputRef,
     name,
@@ -39,6 +39,7 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
     value: validChecked,
   });
   if (groupContext && !value) {
+    // eslint-disable-next-line no-console
     console.error('CheckboxGroup模式下Checkbox须传入value属性');
   }
 
@@ -47,7 +48,7 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
   );
   const checkboxUncheckIcon = icon || <CircleOutlinedIcon color="neutral" />;
   const checkboxDisabled =
-    disabled !== undefined ? disabled : groupContext?.disabled;
+    disabled !== undefined ? disabled : groupContext?.disabled || false;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = !checkboxChecked;

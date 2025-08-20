@@ -15,12 +15,12 @@ Buttons are used to trigger an action, make a choice, such as submitting a form,
 
 ### Basic Buttons
 
-Buttons support four display styles: `Text Button`, `Outlined Button`, `Contained Button`, and `Light Button`. The default style is the Outlined Button.
+Buttons support four display styles: `Text Button`, `Outlined Button`, `Contained Button`, and `Subtle Button`. The default style is the Outlined Button.
 
 - `Text Button`: Directly uses text as the button. This is the least visually attractive button and is typically found in table operation bars, titles, and beside fields.
-- `Contained Button`: Generally used as the main button, it is the highest-priority operation that users need to focus on across the entire page, guiding user attention and interaction.
 - `Outlined Button`: Commonly in the form of white background with text, its visual emphasis is weaker than the Contained Button. It is usually paired with the Contained Button.
-- `Light Button`: The text color is the button's background color, while the background is a corresponding light color.
+- `Contained Button`: Generally used as the main button, it is the highest-priority operation that users need to focus on across the entire page, guiding user attention and interaction.
+- `Subtle Button`: A subtle button with a light background color that provides a softer visual appearance.
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
@@ -36,8 +36,8 @@ export default () => {
       <Button color="primary" variant="contained">
         Contained Button
       </Button>
-      <Button color="primary" variant="light">
-        Light Button
+      <Button color="primary" variant="subtle">
+        Subtle Button
       </Button>
     </Stack>
   );
@@ -46,7 +46,7 @@ export default () => {
 
 ### Button Sizes
 
-Buttons come in three sizes: large, medium, and small.
+Buttons come in four sizes: large, medium, small, and full-width.
 
 By setting `size` to `large`, `small`, or `full`, you can change the button size accordingly. If `size` is not set, the button will be medium-sized by default.
 
@@ -70,7 +70,7 @@ export default () => {
 
 ### Button Colors
 
-Buttons support the following themes: `primary`, `success`, `info`, `warning`, `danger`, and `vip`. If no color is specified, it defaults to `default`.
+Buttons support the following themes: `primary`, `success`, `info`, `warning`, `danger`, `vip`, `light`, and `dark`. If no color is specified, it defaults to `neutral`.
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
@@ -97,6 +97,12 @@ export default () => {
       </Button>
       <Button color="vip" variant="contained">
         Member
+      </Button>
+      <Button color="light" variant="contained">
+        Light
+      </Button>
+      <Button color="dark" variant="contained">
+        Dark
       </Button>
     </Stack>
   );
@@ -151,18 +157,57 @@ export default () => {
 };
 ```
 
+### Accessibility
+
+The Button component has built-in accessibility support and can directly use the following ARIA attributes:
+
+- `aria-label`: Provides an accessible label for the button
+- `aria-describedby`: Associates an element that describes the button
+- `aria-hidden`: Controls the visibility of the button in the accessibility tree
+- `aria-details`: Provides detailed information about the button
+- `aria-keyshortcuts`: Defines keyboard shortcuts for the button
+- `aria-busy`: Indicates whether the button is in a busy state
+- `aria-readonly`: Indicates whether the button is read-only
+- `aria-required`: Indicates whether the button is required
+
+Usage example:
+
+```tsx
+import { Button, Stack } from '@bifrostui/react';
+import React from 'react';
+
+export default () => {
+  return (
+    <Stack spacing="8px">
+      <Button aria-label="Close dialog">X</Button>
+      <Button aria-describedby="description">Button</Button>
+      <span id="description" style={{ display: 'none' }}>
+        This is a description of the button
+      </span>
+      <Button
+        aria-label="Save document"
+        aria-keyshortcuts="Ctrl+S"
+        aria-busy={false}
+      >
+        Save
+      </Button>
+    </Stack>
+  );
+};
+```
+
 ## API
 
-| Property  | Description          | Type                                                                            | Default    |
-| --------- | -------------------- | ------------------------------------------------------------------------------- | ---------- |
-| variant   | Button type          | `outlined` \| `text` \| `contained` \| `light`                                  | `outlined` |
-| color     | Button color         | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `vip` \| `default` | `default`  |
-| size      | Button size          | `small` \| `medium` \| `large` \| `full`                                        | `medium`   |
-| disabled  | Whether to disable   | boolean                                                                         | false      |
-| startIcon | Content before child | React.ReactNode                                                                 | -          |
-| endIcon   | Content after child  | React.ReactNode                                                                 | -          |
-| openType  | WeChat open ability  | string                                                                          | -          |
-| onClick   | Click callback       | (event: MouseEvent) => void                                                     | -          |
+| Property  | Description          | Type                                                                                    | Default    |
+| --------- | -------------------- | --------------------------------------------------------------------------------------- | ---------- |
+| variant   | Button type          | `outlined` \| `text` \| `contained` \| `subtle`                                         | `outlined` |
+| color     | Button color         | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `vip` \| `light` \| `dark` | `neutral`  |
+| size      | Button size          | `small` \| `medium` \| `large` \| `full`                                                | `medium`   |
+| disabled  | Whether to disable   | boolean                                                                                 | false      |
+| startIcon | Content before child | React.ReactNode                                                                         | -          |
+| endIcon   | Content after child  | React.ReactNode                                                                         | -          |
+| openType  | WeChat open ability  | string                                                                                  | -          |
+| onClick   | Click callback       | (event: MouseEvent) => void                                                             | -          |
 
 Other properties see [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes)
 

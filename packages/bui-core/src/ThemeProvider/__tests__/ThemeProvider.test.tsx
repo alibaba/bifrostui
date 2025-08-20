@@ -37,7 +37,7 @@ describe('ThemeProvider', () => {
     expect(screen.getByText(placeHolder[theme.type])).toBeTruthy();
   });
 
-  it('should render function locale theme currently', () => {
+  it('should render function locale theme currently', async () => {
     const [dialog, contextHolder] = dialogHook;
     render(
       <ThemeProvider locale={EN}>
@@ -51,7 +51,8 @@ describe('ThemeProvider', () => {
         </Button>
       </ThemeProvider>,
     );
-    userEvent.click(screen.getByText(/Dialog/));
-    expect(screen.getByText('Cancel')).toBeTruthy();
+    await userEvent.click(screen.getByText(/Dialog/));
+    // 等待 Dialog 渲染完成，然后查找取消按钮
+    await screen.findByText('Cancel');
   });
 });

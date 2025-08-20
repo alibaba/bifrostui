@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Avatar prop: src should render children correctly, not src 1`] = `
+exports[`Avatar > prop: src > should render children correctly, not src 1`] = `
 <div>
   <div
     class="bui-avatar bui-avatar-medium bui-avatar-rounded"
@@ -14,7 +14,7 @@ exports[`Avatar prop: src should render children correctly, not src 1`] = `
 </div>
 `;
 
-exports[`Avatar prop: src should render containing an img 1`] = `
+exports[`Avatar > prop: src > should render containing an img 1`] = `
 <div>
   <div
     class="bui-avatar bui-avatar-medium bui-avatar-rounded"

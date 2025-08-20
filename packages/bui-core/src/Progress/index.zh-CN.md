@@ -105,6 +105,45 @@ export default () => {
 };
 ```
 
+## 无障碍性 (Accessibility)
+
+Progress 组件内置了完整的无障碍性支持，可以直接使用以下 ARIA 属性：
+
+- `aria-label`: 为进度条提供可访问的标签
+- `aria-describedby`: 关联描述进度条的元素
+- `aria-hidden`: 控制进度条在无障碍树中的可见性
+- `aria-details`: 提供进度条的详细信息
+- `aria-busy`: 表示进度条是否处于忙碌状态
+- `aria-readonly`: 表示进度条是否为只读
+- `aria-required`: 表示进度条是否为必填
+- `aria-valuenow`: 进度条的当前值（默认为percent值）
+- `aria-valuemin`: 进度条的最小值（默认为0）
+- `aria-valuemax`: 进度条的最大值（默认为100）
+- `aria-valuetext`: 进度条的文本描述
+
+使用示例：
+
+```tsx
+import React from 'react';
+import { Progress, Stack } from '@bifrostui/react';
+export default () => {
+  return (
+    <Stack direction="column" spacing="10px">
+      <Progress percent={50} aria-label="文件下载进度" />
+      <Progress
+        percent={75}
+        aria-label="数据加载进度"
+        aria-valuetext="已完成75%"
+      />
+      <Progress percent={30} aria-describedby="progress-description" />
+      <span id="progress-description" style={{ display: 'none' }}>
+        这是进度条的详细描述信息
+      </span>
+    </Stack>
+  );
+};
+```
+
 ## API
 
 | 属性        | 说明                               | 类型                                                                                                               | 默认值 |

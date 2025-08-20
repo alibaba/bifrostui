@@ -177,7 +177,7 @@ export default () => {
 
 | Property              | Description             | Default Value | Global Variable                  |
 | --------------------- | ----------------------- | ------------- | -------------------------------- |
-| --small-margin-right  | Right margin for small  | 0.5px         | --bui-rating-small-margin-right  |
+| --small-margin-right  | Right margin for small  | 0.5px         | --bui-rating-small-margin        |
 | --medium-margin-right | Right margin for medium | 1px           | --bui-rating-medium-margin-right |
-| --large-margin-right  | Right margin for large  | 2px           | --bui-rating-large-margin-right  |
+| --large-margin-right  | Right margin for large  | 2px           | --bui-rating-large-margin        |
 | --large-font-size     | Font size for large     | 22px          | --bui-rating-large-font-size     |

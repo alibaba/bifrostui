@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Radio Radio label placement label should on the bottom 1`] = `
+exports[`Radio > Radio label placement > label should on the bottom 1`] = `
 <div
   class="bui-radio bui-radio-label-bottom"
   data-testid="bui-radio"
@@ -46,7 +46,7 @@ exports[`Radio Radio label placement label should on the bottom 1`] = `
 </div>
 `;
 
-exports[`Radio Radio label placement label should on the left 1`] = `
+exports[`Radio > Radio label placement > label should on the left 1`] = `
 <div
   class="bui-radio bui-radio-label-left"
   data-testid="bui-radio"
@@ -92,7 +92,7 @@ exports[`Radio Radio label placement label should on the left 1`] = `
 </div>
 `;
 
-exports[`Radio Radio label placement label should on the right 1`] = `
+exports[`Radio > Radio label placement > label should on the right 1`] = `
 <div
   class="bui-radio bui-radio-label-right"
   data-testid="bui-radio"
@@ -138,7 +138,7 @@ exports[`Radio Radio label placement label should on the right 1`] = `
 </div>
 `;
 
-exports[`Radio Radio label placement label should on the top 1`] = `
+exports[`Radio > Radio label placement > label should on the top 1`] = `
 <div
   class="bui-radio bui-radio-label-top"
   data-testid="bui-radio"

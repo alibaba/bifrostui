@@ -1,9 +1,9 @@
-import { blockTouch, isMini, useForkRef } from '@bifrostui/utils';
 import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Backdrop from '../Backdrop';
 import Portal from '../Portal';
 import { ModalProps } from './Modal.types';
+import { useModal } from './useModal';
 import './index.less';
 
 const prefixCls = 'bui-modal';
@@ -11,70 +11,78 @@ const prefixCls = 'bui-modal';
 const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const {
     className,
-    open,
+    open = false,
     BackdropProps,
     children,
     container,
-    disablePortal,
-    disableScrollLock,
-    hideBackdrop,
+    disablePortal = false,
+    disableScrollLock = false,
+    hideBackdrop = false,
     onClose,
-    keepMounted,
+    keepMounted = false,
     ...others
   } = props;
-  const modalRef = React.useRef(null);
-  const handleRef = useForkRef(modalRef, ref);
-  const [backdropExited, setBackDropExited] = useState(hideBackdrop || !open);
-  const mounted = open || !backdropExited || keepMounted;
 
-  const handleBackdropClick = (event) => {
-    if (isMini && event.target.id !== event.currentTarget.id) {
-      return;
-    }
-    if (!isMini && event.target !== event.currentTarget) {
-      return;
-    }
+  const {
+    getRootProps,
+    getBackdropProps,
+    getTransitionProps,
+    portalRef,
+    exited,
+    hasTransition,
+  } = useModal({
+    ...props,
+    disableScrollLock,
+    children: React.isValidElement(children) ? children : undefined,
+    open,
+    onClose,
+    rootRef: ref,
+  });
 
-    if (onClose) {
-      onClose(event, { from: 'backdrop' });
-    }
-  };
-
-  useEffect(() => {
-    let cleanup;
-    if (!isMini && !disableScrollLock)
-      setTimeout(() => {
-        try {
-          if (open && modalRef.current) {
-            cleanup = blockTouch(modalRef.current);
-          }
-        } catch {
-          /* empty */
-        }
-      }, 0);
-    return () => {
-      cleanup?.();
-    };
-  }, [open, disableScrollLock]);
-
-  if (!mounted) {
+  // 如果不保持挂载且未打开，则不渲染
+  if (!keepMounted && !open && (!hasTransition || exited)) {
     return null;
   }
 
+  const rootProps = getRootProps({
+    ...others,
+    className: clsx(
+      prefixCls,
+      {
+        [`${prefixCls}-hidden`]: !open && exited,
+      },
+      className,
+    ),
+  });
+  const backdropProps = getBackdropProps({
+    ...BackdropProps,
+    className: clsx(`${prefixCls}-backdrop`, BackdropProps?.className),
+  });
+  const transitionProps = hasTransition ? getTransitionProps() : {};
+
+  // 渲染children，如果是React元素则克隆并添加transition props
+  const renderChildren = () => {
+    if (!children) {
+      return null;
+    }
+
+    if (React.isValidElement(children)) {
+      const childProps = (children.props as any) || {};
+      return React.cloneElement(children, {
+        tabIndex: -1,
+        ...childProps,
+        ...transitionProps,
+      });
+    }
+
+    return children;
+  };
+
   return (
-    <Portal container={container} disablePortal={disablePortal}>
-      <div className={clsx(prefixCls, className)} ref={handleRef} {...others}>
-        {!hideBackdrop ? (
-          <Backdrop
-            open={open}
-            onClick={handleBackdropClick}
-            onEnter={() => setBackDropExited(false)}
-            onExited={() => setBackDropExited(true)}
-            {...BackdropProps}
-            className={clsx(`${prefixCls}-backdrop`, BackdropProps?.className)}
-          />
-        ) : null}
-        {(open || keepMounted) && children}
+    <Portal container={container} disablePortal={disablePortal} ref={portalRef}>
+      <div {...rootProps}>
+        {!hideBackdrop && <Backdrop {...backdropProps} />}
+        {renderChildren()}
       </div>
     </Portal>
   );

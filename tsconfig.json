@@ -27,5 +27,8 @@
     },
     "allowSyntheticDefaultImports": true
   },
-  "exclude": ["node_modules", "lib", "es", "dist", "typings", "websites"]
+  "exclude": ["node_modules", "lib", "es", "dist", "typings", "websites"],
+  "types": [
+    "vitest/globals" // ← 新增这一行
+  ]
 }

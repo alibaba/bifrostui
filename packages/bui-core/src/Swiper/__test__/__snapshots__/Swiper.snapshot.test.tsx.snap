@@ -1,10 +1,10 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Swiper snapshot Swiper demo snapshot 0 1`] = `
+exports[`Swiper snapshot > Swiper demo snapshot 0 1`] = `
 <div
   className="swiper bui-swiper"
   style={
-    Object {
+    {
       "--indicator-color": "rgba(255, 255, 255, .4)",
       "--indicator-color-active": "var(--bui-color-bg-view)",
       "height": "200px",
@@ -26,7 +26,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 1`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -47,7 +47,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 1`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -68,7 +68,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 1`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -87,12 +87,12 @@ exports[`Swiper snapshot Swiper demo snapshot 0 1`] = `
 </div>
 `;
 
-exports[`Swiper snapshot Swiper demo snapshot 0 2`] = `
-Array [
+exports[`Swiper snapshot > Swiper demo snapshot 0 2`] = `
+[
   <div
     className="bui-stack"
     style={
-      Object {
+      {
         "--align-items": "center",
         "--flex-direction": "row",
         "--flex-wrap": "nowrap",
@@ -129,7 +129,7 @@ Array [
   <div
     className="swiper bui-swiper"
     style={
-      Object {
+      {
         "--indicator-color": "rgba(255, 255, 255, .4)",
         "--indicator-color-active": "var(--bui-color-bg-view)",
         "height": "200px",
@@ -151,7 +151,7 @@ Array [
         <div
           className="bui-stack"
           style={
-            Object {
+            {
               "--align-items": "center",
               "--flex-direction": "column",
               "--flex-wrap": "nowrap",
@@ -172,7 +172,7 @@ Array [
         <div
           className="bui-stack"
           style={
-            Object {
+            {
               "--align-items": "center",
               "--flex-direction": "column",
               "--flex-wrap": "nowrap",
@@ -193,7 +193,7 @@ Array [
         <div
           className="bui-stack"
           style={
-            Object {
+            {
               "--align-items": "center",
               "--flex-direction": "column",
               "--flex-wrap": "nowrap",
@@ -213,11 +213,11 @@ Array [
 ]
 `;
 
-exports[`Swiper snapshot Swiper demo snapshot 0 3`] = `
+exports[`Swiper snapshot > Swiper demo snapshot 0 3`] = `
 <div
   className="swiper bui-swiper"
   style={
-    Object {
+    {
       "--indicator-color": "rgba(255, 255, 255, .4)",
       "--indicator-color-active": "var(--bui-color-bg-view)",
       "height": "200px",
@@ -239,7 +239,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 3`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -260,7 +260,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 3`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -281,7 +281,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 3`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -300,11 +300,11 @@ exports[`Swiper snapshot Swiper demo snapshot 0 3`] = `
 </div>
 `;
 
-exports[`Swiper snapshot Swiper demo snapshot 0 4`] = `
+exports[`Swiper snapshot > Swiper demo snapshot 0 4`] = `
 <div
   className="swiper bui-swiper"
   style={
-    Object {
+    {
       "--indicator-color": "rgba(255, 255, 255, .4)",
       "--indicator-color-active": "var(--bui-color-bg-view)",
       "height": "200px",
@@ -327,7 +327,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 4`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -349,7 +349,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 4`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -371,7 +371,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 4`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -393,7 +393,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 4`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -415,7 +415,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 4`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -434,11 +434,11 @@ exports[`Swiper snapshot Swiper demo snapshot 0 4`] = `
 </div>
 `;
 
-exports[`Swiper snapshot Swiper demo snapshot 0 5`] = `
+exports[`Swiper snapshot > Swiper demo snapshot 0 5`] = `
 <div
   className="swiper bui-swiper"
   style={
-    Object {
+    {
       "--indicator-color": "rgba(255, 255, 255, .4)",
       "--indicator-color-active": "var(--bui-color-bg-view)",
       "height": "200px",
@@ -461,7 +461,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 5`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -483,7 +483,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 5`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -505,7 +505,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 5`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -527,7 +527,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 5`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -549,7 +549,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 5`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -568,11 +568,11 @@ exports[`Swiper snapshot Swiper demo snapshot 0 5`] = `
 </div>
 `;
 
-exports[`Swiper snapshot Swiper demo snapshot 0 6`] = `
+exports[`Swiper snapshot > Swiper demo snapshot 0 6`] = `
 <div
   className="swiper bui-swiper"
   style={
-    Object {
+    {
       "--indicator-color": "rgba(255, 255, 255, .4)",
       "--indicator-color-active": "var(--bui-color-bg-view)",
       "height": "200px",
@@ -594,7 +594,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 6`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -615,7 +615,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 6`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -636,7 +636,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 6`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -655,11 +655,11 @@ exports[`Swiper snapshot Swiper demo snapshot 0 6`] = `
 </div>
 `;
 
-exports[`Swiper snapshot Swiper demo snapshot 0 7`] = `
+exports[`Swiper snapshot > Swiper demo snapshot 0 7`] = `
 <div
   className="swiper bui-swiper"
   style={
-    Object {
+    {
       "--indicator-color": "#880000",
       "--indicator-color-active": "#FF0000",
       "height": "200px",
@@ -681,7 +681,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 7`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -702,7 +702,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 7`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -723,7 +723,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 7`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -745,11 +745,11 @@ exports[`Swiper snapshot Swiper demo snapshot 0 7`] = `
 </div>
 `;
 
-exports[`Swiper snapshot Swiper demo snapshot 0 8`] = `
+exports[`Swiper snapshot > Swiper demo snapshot 0 8`] = `
 <div
   className="swiper bui-swiper"
   style={
-    Object {
+    {
       "--indicator-color": "rgba(255, 255, 255, .4)",
       "--indicator-color-active": "var(--bui-color-bg-view)",
       "height": "200px",
@@ -771,7 +771,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 8`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -792,7 +792,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 8`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",
@@ -813,7 +813,7 @@ exports[`Swiper snapshot Swiper demo snapshot 0 8`] = `
       <div
         className="bui-stack"
         style={
-          Object {
+          {
             "--align-items": "center",
             "--flex-direction": "column",
             "--flex-wrap": "nowrap",

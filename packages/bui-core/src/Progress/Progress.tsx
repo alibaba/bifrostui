@@ -58,6 +58,18 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       strokeWidth, // 进度条高度
       strokeColor, // 进度条颜色或渐变
       trailColor, // 轨道颜色
+      // 无障碍属性
+      'aria-label': ariaLabel,
+      'aria-describedby': ariaDescribedby,
+      'aria-hidden': ariaHidden,
+      'aria-details': ariaDetails,
+      'aria-busy': ariaBusy,
+      'aria-readonly': ariaReadonly,
+      'aria-required': ariaRequired,
+      'aria-valuenow': ariaValueNow,
+      'aria-valuemin': ariaValueMin = 0,
+      'aria-valuemax': ariaValueMax = 100,
+      'aria-valuetext': ariaValueText,
       ...others
     } = props;
 
@@ -81,9 +93,31 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       background: trailColor || undefined,
     } as React.CSSProperties;
 
+    // 构建无障碍属性对象
+    const accessibilityProps = {
+      'aria-label': ariaLabel,
+      'aria-describedby': ariaDescribedby,
+      'aria-hidden': ariaHidden,
+      'aria-details': ariaDetails,
+      'aria-busy': ariaBusy,
+      'aria-readonly': ariaReadonly,
+      'aria-required': ariaRequired,
+      'aria-valuenow':
+        ariaValueNow !== undefined ? ariaValueNow : validProgress(percent),
+      'aria-valuemin': ariaValueMin,
+      'aria-valuemax': ariaValueMax,
+      'aria-valuetext': ariaValueText,
+      role: 'progressbar',
+    };
+
     return (
       // 外层容器
-      <div className={clsx(prefixCls, className)} ref={ref} {...others}>
+      <div
+        className={clsx(prefixCls, className)}
+        ref={ref}
+        {...accessibilityProps}
+        {...others}
+      >
         {/* 轨道 */}
         <div className={`${prefixCls}-inner`} style={trailStyle}>
           {/* 进度条 */}

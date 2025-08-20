@@ -39,6 +39,32 @@ export type BadgeProps<
        * 徽章形状
        */
       type?: 'dot' | 'standard' | 'bubble';
+      /**
+       * 无障碍功能：为Badge提供可访问的标签
+       * 如果不提供，将根据content和type自动生成
+       */
+      'aria-label'?: string;
+      /**
+       * 无障碍功能：引用描述此Badge的元素ID
+       */
+      'aria-describedby'?: string;
+      /**
+       * 无障碍功能：Badge的角色
+       * @default 'status'
+       */
+      role?: 'status' | 'img' | 'presentation';
+      /**
+       * 无障碍功能：是否对屏幕阅读器隐藏Badge
+       * 当为true时，Badge将被屏幕阅读器忽略
+       * @default false
+       */
+      'aria-hidden'?: boolean;
+      /**
+       * 无障碍功能：是否为装饰性Badge
+       * 当为true时，Badge将被标记为装饰性元素，屏幕阅读器会忽略
+       * @default false
+       */
+      decorative?: boolean;
     };
     defaultComponent: D;
   },

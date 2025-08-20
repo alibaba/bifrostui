@@ -120,6 +120,6 @@ export default () => {
 
 ## Style Variables
 
-| Property           | Description      | Default Value       | Global Variable                 |
-| ------------------ | ---------------- | ------------------- | ------------------------------- |
-| --background-color | Background color | rgba(0, 0, 0, 0.68) | --bui-backdrop-background-color |
+| Property           | Description      | Default Value       | Global Variable         |
+| ------------------ | ---------------- | ------------------- | ----------------------- |
+| --background-color | Background color | rgba(0, 0, 0, 0.68) | --bui-backdrop-bg-color |

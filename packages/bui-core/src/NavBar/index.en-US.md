@@ -176,14 +176,14 @@ export default () => {
 
 ## Style Variables
 
-| Property           | Description                                  | Default Value           | Global Variable               |
-| ------------------ | -------------------------------------------- | ----------------------- | ----------------------------- |
-| --width            | Width of the navigation bar                  | 100%                    | --bui-navbar-width            |
-| --height           | Height of the navigation bar                 | 45px                    | --bui-navbar-height           |
-| --padding          | Padding of the navigation bar                | 0 8px                   | --bui-navbar-padding          |
-| --title-max-width  | Maximum width of the title                   | 60%                     | --bui-navbar-title-max-width  |
-| --icon-size        | Size of the icons in the navigation bar      | 30px                    | --bui-navbar-icon-size        |
-| --icon-font-size   | Font size of the icons in the navigation bar | var(--bui-title-size-3) | --bui-navbar-icon-font-size   |
-| --background-color | Background color of the navigation bar       | var(--bui-color-white)  | --bui-navbar-background-color |
-| --border-bottom    | Bottom border style of the navigation bar    | none                    | --bui-navbar-border-bottom    |
-| --z-index          | Default z-index of the navigation bar        | auto                    | --bui-navbar-z-index          |
+| Property           | Description                                  | Default Value           | Global Variable              |
+| ------------------ | -------------------------------------------- | ----------------------- | ---------------------------- |
+| --width            | Width of the navigation bar                  | 100%                    | --bui-navbar-width           |
+| --height           | Height of the navigation bar                 | 45px                    | --bui-navbar-height          |
+| --padding          | Padding of the navigation bar                | 0 8px                   | --bui-navbar-padding         |
+| --title-max-width  | Maximum width of the title                   | 60%                     | --bui-navbar-title-max-width |
+| --icon-size        | Size of the icons in the navigation bar      | 30px                    | --bui-navbar-icon-size       |
+| --icon-font-size   | Font size of the icons in the navigation bar | var(--bui-title-size-3) | --bui-navbar-icon-font-size  |
+| --background-color | Background color of the navigation bar       | var(--bui-color-white)  | --bui-navbar-bg-color        |
+| --border-bottom    | Bottom border style of the navigation bar    | none                    | --bui-navbar-border-bottom   |
+| --z-index          | Default z-index of the navigation bar        | auto                    | --bui-navbar-z-index         |

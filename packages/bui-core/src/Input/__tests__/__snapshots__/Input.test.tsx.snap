@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Input should render end icon 1`] = `
+exports[`Input > should render end icon 1`] = `
 <div
   class="bui-input"
 >
@@ -21,7 +21,7 @@ exports[`Input should render end icon 1`] = `
 </div>
 `;
 
-exports[`Input should render placeholder 1`] = `
+exports[`Input > should render placeholder 1`] = `
 <input
   class="bui-input-input"
   placeholder="请输入内容"
@@ -30,7 +30,7 @@ exports[`Input should render placeholder 1`] = `
 />
 `;
 
-exports[`Input should render start icon 1`] = `
+exports[`Input > should render start icon 1`] = `
 <div
   class="bui-input"
 >

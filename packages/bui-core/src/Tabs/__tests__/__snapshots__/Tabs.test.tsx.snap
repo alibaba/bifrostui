@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Tabs test with TabPanel should be active by \`value\` property 1`] = `
+exports[`Tabs > test with TabPanel > should be active by \`value\` property 1`] = `
 <div
   data-testid="test-wrapper"
 >

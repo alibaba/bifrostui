@@ -1,10 +1,10 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Steps snapshot Steps demo snapshot 0 1`] = `
+exports[`Steps snapshot > Steps demo snapshot 0 1`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -15,7 +15,7 @@ exports[`Steps snapshot Steps demo snapshot 0 1`] = `
 >
   <div
     style={
-      Object {
+      {
         "width": "120px",
       }
     }
@@ -65,8 +65,8 @@ exports[`Steps snapshot Steps demo snapshot 0 1`] = `
             className="bui-svg-icon"
             color="var(--bui-color-fg-disabled)"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+              {
+                "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
               }
             }
             focusable="false"
@@ -101,8 +101,8 @@ exports[`Steps snapshot Steps demo snapshot 0 1`] = `
             className="bui-svg-icon"
             color="var(--bui-color-fg-disabled)"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+              {
+                "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
               }
             }
             focusable="false"
@@ -128,11 +128,11 @@ exports[`Steps snapshot Steps demo snapshot 0 1`] = `
 </div>
 `;
 
-exports[`Steps snapshot Steps demo snapshot 0 2`] = `
+exports[`Steps snapshot > Steps demo snapshot 0 2`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -186,8 +186,8 @@ exports[`Steps snapshot Steps demo snapshot 0 2`] = `
           className="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+            {
+              "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
             }
           }
           focusable="false"
@@ -222,8 +222,8 @@ exports[`Steps snapshot Steps demo snapshot 0 2`] = `
           className="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+            {
+              "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
             }
           }
           focusable="false"
@@ -248,11 +248,11 @@ exports[`Steps snapshot Steps demo snapshot 0 2`] = `
 </div>
 `;
 
-exports[`Steps snapshot Steps demo snapshot 0 3`] = `
+exports[`Steps snapshot > Steps demo snapshot 0 3`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -311,8 +311,8 @@ exports[`Steps snapshot Steps demo snapshot 0 3`] = `
           className="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+            {
+              "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
             }
           }
           focusable="false"
@@ -352,8 +352,8 @@ exports[`Steps snapshot Steps demo snapshot 0 3`] = `
           className="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+            {
+              "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
             }
           }
           focusable="false"
@@ -430,8 +430,8 @@ exports[`Steps snapshot Steps demo snapshot 0 3`] = `
           className="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+            {
+              "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
             }
           }
           focusable="false"
@@ -471,8 +471,8 @@ exports[`Steps snapshot Steps demo snapshot 0 3`] = `
           className="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+            {
+              "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
             }
           }
           focusable="false"
@@ -502,11 +502,11 @@ exports[`Steps snapshot Steps demo snapshot 0 3`] = `
 </div>
 `;
 
-exports[`Steps snapshot Steps demo snapshot 0 4`] = `
+exports[`Steps snapshot > Steps demo snapshot 0 4`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -570,8 +570,8 @@ exports[`Steps snapshot Steps demo snapshot 0 4`] = `
           className="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+            {
+              "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
             }
           }
           focusable="false"
@@ -616,8 +616,8 @@ exports[`Steps snapshot Steps demo snapshot 0 4`] = `
           className="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+            {
+              "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
             }
           }
           focusable="false"
@@ -662,8 +662,8 @@ exports[`Steps snapshot Steps demo snapshot 0 4`] = `
           className="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+            {
+              "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
             }
           }
           focusable="false"
@@ -698,11 +698,11 @@ exports[`Steps snapshot Steps demo snapshot 0 4`] = `
 </div>
 `;
 
-exports[`Steps snapshot Steps demo snapshot 0 5`] = `
+exports[`Steps snapshot > Steps demo snapshot 0 5`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -728,8 +728,8 @@ exports[`Steps snapshot Steps demo snapshot 0 5`] = `
           className="bui-svg-icon"
           color="var(--bui-color-primary)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm-8.1 27.8c-1.1-1.1-2.9-1.1-4.1 0s-1.1 2.9 0 4.1l8.1 8.1-8.1 8.1c-1.1 1.1-1.1 2.9 0 4.1s2.9 1.1 4.1 0l8.1-8.1 8.1 8.1c1.1 1.1 2.9 1.1 4.1 0s1.1-2.9 0-4.1L52.1 48l8.1-8.1c1.1-1.1 1.1-2.9 0-4.1s-2.9-1.1-4.1 0L48 43.9l-8.1-8.1z\\"/>",
+            {
+              "__html": "<path d="M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm-8.1 27.8c-1.1-1.1-2.9-1.1-4.1 0s-1.1 2.9 0 4.1l8.1 8.1-8.1 8.1c-1.1 1.1-1.1 2.9 0 4.1s2.9 1.1 4.1 0l8.1-8.1 8.1 8.1c1.1 1.1 2.9 1.1 4.1 0s1.1-2.9 0-4.1L52.1 48l8.1-8.1c1.1-1.1 1.1-2.9 0-4.1s-2.9-1.1-4.1 0L48 43.9l-8.1-8.1z"/>",
             }
           }
           focusable="false"
@@ -774,8 +774,8 @@ exports[`Steps snapshot Steps demo snapshot 0 5`] = `
           className="bui-svg-icon"
           color="var(--bui-color-primary)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm17.1 27.9c-1.2-1.2-3.1-1.2-4.2 0L43 53.8l-7.9-7.9c-1.2-1.2-3.1-1.2-4.2 0s-1.2 3.1 0 4.2l10 10c1.2 1.2 3.1 1.2 4.2 0l20-20c1.2-1.2 1.2-3.1 0-4.2z\\"/>",
+            {
+              "__html": "<path d="M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm17.1 27.9c-1.2-1.2-3.1-1.2-4.2 0L43 53.8l-7.9-7.9c-1.2-1.2-3.1-1.2-4.2 0s-1.2 3.1 0 4.2l10 10c1.2 1.2 3.1 1.2 4.2 0l20-20c1.2-1.2 1.2-3.1 0-4.2z"/>",
             }
           }
           focusable="false"
@@ -858,8 +858,8 @@ exports[`Steps snapshot Steps demo snapshot 0 5`] = `
           className="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+            {
+              "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
             }
           }
           focusable="false"
@@ -894,11 +894,11 @@ exports[`Steps snapshot Steps demo snapshot 0 5`] = `
 </div>
 `;
 
-exports[`Steps snapshot Steps demo snapshot 0 6`] = `
+exports[`Steps snapshot > Steps demo snapshot 0 6`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -924,8 +924,8 @@ exports[`Steps snapshot Steps demo snapshot 0 6`] = `
           className="bui-svg-icon"
           color="var(--bui-color-primary)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M62.6 11C78.1 11 88 23.4 88 40.1c0 13-11.7 27.2-34.8 43.3-3.1 2.2-7.2 2.2-10.3 0C19.7 67.3 8 53.1 8 40.1 8 23.4 17.9 11 33.4 11c5.6 0 9.4 2 14.6 6.4C53.2 13 57 11 62.6 11z\\"/>",
+            {
+              "__html": "<path d="M62.6 11C78.1 11 88 23.4 88 40.1c0 13-11.7 27.2-34.8 43.3-3.1 2.2-7.2 2.2-10.3 0C19.7 67.3 8 53.1 8 40.1 8 23.4 17.9 11 33.4 11c5.6 0 9.4 2 14.6 6.4C53.2 13 57 11 62.6 11z"/>",
             }
           }
           focusable="false"
@@ -970,8 +970,8 @@ exports[`Steps snapshot Steps demo snapshot 0 6`] = `
           className="bui-svg-icon"
           color="var(--bui-color-primary)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 91C42.6 91 9 65.1 9 43.7S26.5 5 48 5s39 17.3 39 38.7S53.4 91 48 91zm0-35c6.6 0 12-5.4 12-12s-5.4-12-12-12-12 5.4-12 12 5.4 12 12 12z\\"/>",
+            {
+              "__html": "<path d="M48 91C42.6 91 9 65.1 9 43.7S26.5 5 48 5s39 17.3 39 38.7S53.4 91 48 91zm0-35c6.6 0 12-5.4 12-12s-5.4-12-12-12-12 5.4-12 12 5.4 12 12 12z"/>",
             }
           }
           focusable="false"
@@ -1016,8 +1016,8 @@ exports[`Steps snapshot Steps demo snapshot 0 6`] = `
           className="bui-svg-icon"
           color="var(--bui-color-primary)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm0 6c-18.8 0-34 15.2-34 34s15.2 34 34 34 34-15.2 34-34-15.2-34-34-34zm4.1 34 8.1 8.1c1.1 1.1 1.1 2.9 0 4.1s-2.9 1.1-4.1 0L48 52.1l-8.1 8.1c-1.1 1.1-2.9 1.1-4.1 0s-1.1-2.9 0-4.1l8.1-8.1-8.1-8.1c-1.1-1.1-1.1-2.9 0-4.1s2.9-1.1 4.1 0l8.1 8.1 8.1-8.1c1.1-1.1 2.9-1.1 4.1 0s1.1 2.9 0 4.1L52.1 48z\\"/>",
+            {
+              "__html": "<path d="M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm0 6c-18.8 0-34 15.2-34 34s15.2 34 34 34 34-15.2 34-34-15.2-34-34-34zm4.1 34 8.1 8.1c1.1 1.1 1.1 2.9 0 4.1s-2.9 1.1-4.1 0L48 52.1l-8.1 8.1c-1.1 1.1-2.9 1.1-4.1 0s-1.1-2.9 0-4.1l8.1-8.1-8.1-8.1c-1.1-1.1-1.1-2.9 0-4.1s2.9-1.1 4.1 0l8.1 8.1 8.1-8.1c1.1-1.1 2.9-1.1 4.1 0s1.1 2.9 0 4.1L52.1 48z"/>",
             }
           }
           focusable="false"
@@ -1062,8 +1062,8 @@ exports[`Steps snapshot Steps demo snapshot 0 6`] = `
           className="bui-svg-icon"
           color="var(--bui-color-primary)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 88c22.1 0 40-17.9 40-40S70.1 8 48 8 8 25.9 8 48s17.9 40 40 40zM30.9 60.9 45 46.8V30c0-1.7 1.3-3 3-3s3 1.3 3 3v18c0 .8-.3 1.6-.9 2.1l-15 15c-1.2 1.2-3.1 1.2-4.2 0-1.2-1.2-1.2-3 0-4.2z\\"/>",
+            {
+              "__html": "<path d="M48 88c22.1 0 40-17.9 40-40S70.1 8 48 8 8 25.9 8 48s17.9 40 40 40zM30.9 60.9 45 46.8V30c0-1.7 1.3-3 3-3s3 1.3 3 3v18c0 .8-.3 1.6-.9 2.1l-15 15c-1.2 1.2-3.1 1.2-4.2 0-1.2-1.2-1.2-3 0-4.2z"/>",
             }
           }
           focusable="false"
@@ -1098,11 +1098,11 @@ exports[`Steps snapshot Steps demo snapshot 0 6`] = `
 </div>
 `;
 
-exports[`Steps snapshot Steps demo snapshot 0 7`] = `
+exports[`Steps snapshot > Steps demo snapshot 0 7`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -1128,8 +1128,8 @@ exports[`Steps snapshot Steps demo snapshot 0 7`] = `
           className="bui-svg-icon"
           color="var(--bui-color-primary)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm-8.1 27.8c-1.1-1.1-2.9-1.1-4.1 0s-1.1 2.9 0 4.1l8.1 8.1-8.1 8.1c-1.1 1.1-1.1 2.9 0 4.1s2.9 1.1 4.1 0l8.1-8.1 8.1 8.1c1.1 1.1 2.9 1.1 4.1 0s1.1-2.9 0-4.1L52.1 48l8.1-8.1c1.1-1.1 1.1-2.9 0-4.1s-2.9-1.1-4.1 0L48 43.9l-8.1-8.1z\\"/>",
+            {
+              "__html": "<path d="M48 8c22.1 0 40 17.9 40 40S70.1 88 48 88 8 70.1 8 48 25.9 8 48 8zm-8.1 27.8c-1.1-1.1-2.9-1.1-4.1 0s-1.1 2.9 0 4.1l8.1 8.1-8.1 8.1c-1.1 1.1-1.1 2.9 0 4.1s2.9 1.1 4.1 0l8.1-8.1 8.1 8.1c1.1 1.1 2.9 1.1 4.1 0s1.1-2.9 0-4.1L52.1 48l8.1-8.1c1.1-1.1 1.1-2.9 0-4.1s-2.9-1.1-4.1 0L48 43.9l-8.1-8.1z"/>",
             }
           }
           focusable="false"
@@ -1197,8 +1197,8 @@ exports[`Steps snapshot Steps demo snapshot 0 7`] = `
           className="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           dangerouslySetInnerHTML={
-            Object {
-              "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+            {
+              "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
             }
           }
           focusable="false"
@@ -1233,7 +1233,7 @@ exports[`Steps snapshot Steps demo snapshot 0 7`] = `
 </div>
 `;
 
-exports[`Steps snapshot Steps demo snapshot 0 8`] = `
+exports[`Steps snapshot > Steps demo snapshot 0 8`] = `
 <div
   className="bui-steps bui-steps-vertical"
 >
@@ -1274,7 +1274,7 @@ exports[`Steps snapshot Steps demo snapshot 0 8`] = `
         <div
           className="bui-stack"
           style={
-            Object {
+            {
               "--align-items": "flex-start",
               "--flex-direction": "column",
               "--flex-wrap": "nowrap",
@@ -1285,7 +1285,7 @@ exports[`Steps snapshot Steps demo snapshot 0 8`] = `
         >
           <div
             style={
-              Object {
+              {
                 "backgroundColor": "var(--bui-color-bg-view)",
                 "borderRadius": "10px",
                 "display": "flex",
@@ -1301,7 +1301,7 @@ exports[`Steps snapshot Steps demo snapshot 0 8`] = `
             <div>
               <span
                 style={
-                  Object {
+                  {
                     "color": "#5F6672",
                   }
                 }
@@ -1310,7 +1310,7 @@ exports[`Steps snapshot Steps demo snapshot 0 8`] = `
               </span>
               <span
                 style={
-                  Object {
+                  {
                     "color": "#2E333E",
                     "paddingLeft": "20px",
                   }
@@ -1322,7 +1322,7 @@ exports[`Steps snapshot Steps demo snapshot 0 8`] = `
             <div>
               <span
                 style={
-                  Object {
+                  {
                     "color": "#5F6672",
                   }
                 }
@@ -1331,7 +1331,7 @@ exports[`Steps snapshot Steps demo snapshot 0 8`] = `
               </span>
               <span
                 style={
-                  Object {
+                  {
                     "color": "#2E333E",
                     "paddingLeft": "20px",
                   }
@@ -1343,7 +1343,7 @@ exports[`Steps snapshot Steps demo snapshot 0 8`] = `
             <div>
               <span
                 style={
-                  Object {
+                  {
                     "color": "#5F6672",
                   }
                 }
@@ -1352,7 +1352,7 @@ exports[`Steps snapshot Steps demo snapshot 0 8`] = `
               </span>
               <span
                 style={
-                  Object {
+                  {
                     "color": "#2E333E",
                     "paddingLeft": "34px",
                   }
@@ -1380,8 +1380,8 @@ exports[`Steps snapshot Steps demo snapshot 0 8`] = `
         className="bui-svg-icon"
         color="var(--bui-color-fg-disabled)"
         dangerouslySetInnerHTML={
-          Object {
-            "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+          {
+            "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
           }
         }
         focusable="false"
@@ -1426,8 +1426,8 @@ exports[`Steps snapshot Steps demo snapshot 0 8`] = `
         className="bui-svg-icon"
         color="var(--bui-color-fg-disabled)"
         dangerouslySetInnerHTML={
-          Object {
-            "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+          {
+            "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
           }
         }
         focusable="false"
@@ -1461,11 +1461,11 @@ exports[`Steps snapshot Steps demo snapshot 0 8`] = `
 </div>
 `;
 
-exports[`Steps snapshot Steps demo snapshot 0 9`] = `
+exports[`Steps snapshot > Steps demo snapshot 0 9`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -1476,7 +1476,7 @@ exports[`Steps snapshot Steps demo snapshot 0 9`] = `
 >
   <div
     style={
-      Object {
+      {
         "width": "176px",
       }
     }
@@ -1484,7 +1484,7 @@ exports[`Steps snapshot Steps demo snapshot 0 9`] = `
     <div
       className="bui-steps bui-steps-vertical"
       style={
-        Object {
+        {
           "--step-icon-margin": "12px 4px 0 0",
           "--step-line-padding": "36px 0 0 0",
           "--title-font-size": "30px",
@@ -1533,8 +1533,8 @@ exports[`Steps snapshot Steps demo snapshot 0 9`] = `
             className="bui-svg-icon"
             color="var(--bui-color-fg-disabled)"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+              {
+                "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
               }
             }
             focusable="false"
@@ -1569,8 +1569,8 @@ exports[`Steps snapshot Steps demo snapshot 0 9`] = `
             className="bui-svg-icon"
             color="var(--bui-color-fg-disabled)"
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<path d=\\"M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z\\"/>",
+              {
+                "__html": "<path d="M48 88C25.9 88 8 70.1 8 48S25.9 8 48 8s40 17.9 40 40-17.9 40-40 40zm0-6c18.8 0 34-15.2 34-34S66.8 14 48 14 14 29.2 14 48s15.2 34 34 34z"/>",
               }
             }
             focusable="false"

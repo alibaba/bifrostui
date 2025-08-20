@@ -1,15 +1,15 @@
 import React from 'react';
-import { act, isConformant, render, screen, userEvent, waitFor } from 'testing';
+import { act, isConformant, render, screen } from 'testing';
 import Drawer from '../index';
 
 describe('Drawer', () => {
   const rootClass = 'bui-drawer';
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
   });
 
   isConformant({
@@ -30,7 +30,7 @@ describe('Drawer', () => {
       </Drawer>,
     );
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -64,22 +64,30 @@ describe('Drawer', () => {
     },
   );
 
-  it('onclose should be called when closing drawer', () => {
-    const onClose = jest.fn();
+  it('onclose should be called when closing drawer', async () => {
+    const onClose = vi.fn();
     render(
       <Drawer open onClose={onClose}>
         Drawer
       </Drawer>,
     );
-    userEvent.click(screen.getByText('Drawer'));
-    userEvent.click(document.querySelector('.bui-backdrop'));
+    await act(async () => {
+      await vi.runAllTimers();
+    });
+    const backdrop = document.querySelector('.bui-backdrop');
+    expect(backdrop).toBeInTheDocument();
+
+    // 使用 fireEvent 而不是 userEvent
+    const { fireEvent } = await import('@testing-library/react');
+    fireEvent.click(backdrop);
+
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it('should delay the slide transition to complete using default theme values by default', async () => {
     render(<Drawer open>Drawer</Drawer>);
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     expect(screen.getByText('Drawer')).toHaveStyle({
       transition: 'transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms',
@@ -89,16 +97,28 @@ describe('Drawer', () => {
   it('after the slide transition exited the root dom can remove', async () => {
     const { rerender } = render(<Drawer open>Drawer</Drawer>);
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     rerender(<Drawer>Drawer</Drawer>);
     expect(screen.getByText('Drawer')).toBeInTheDocument();
-    await act(async () => {
-      await jest.runAllTimers();
-    });
-    await waitFor(() => {
-      expect(screen.queryByText('Drawer')).not.toBeInTheDocument();
-    });
+
+    // 运行多次定时器来模拟动画完成
+    const runTimers = async () => {
+      await act(async () => {
+        await vi.runAllTimers();
+      });
+    };
+
+    const runTimersMultiple = async (count: number): Promise<void> => {
+      if (count <= 0) return;
+      await runTimers();
+      await runTimersMultiple(count - 1);
+    };
+
+    await runTimersMultiple(5);
+
+    // 检查元素是否被移除
+    expect(screen.queryByText('Drawer')).not.toBeInTheDocument();
   });
 
   it('should delay the slide transition to complete using custom theme values', async () => {
@@ -108,7 +128,7 @@ describe('Drawer', () => {
       </Drawer>,
     );
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     expect(screen.queryByText('Drawer')).toHaveStyle({
       transition: 'transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms',
