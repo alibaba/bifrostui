@@ -87,8 +87,8 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
         nextCallback?.current?.();
       });
     };
-    const performEnter = async () => {
-      if (!enter) {
+    const performEnter = async (mounting) => {
+      if (!enter && !mounting) {
         safeSetState(ENTERED, async () => {
           await onEntered?.(innerNodeRef?.current);
         });
@@ -123,18 +123,18 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       });
     };
 
-    const updateStatus = (nextStatus) => {
+    const updateStatus = (nextStatus, mounting) => {
       if (nextStatus !== null) {
         cancelNextCallback();
         if (nextStatus === ENTERING) {
-          performEnter();
+          performEnter(mounting);
         } else if (nextStatus === EXITING) {
           performExit();
         }
       }
     };
     useEffect(() => {
-      nextTick(() => updateStatus(appearStatus.current));
+      nextTick(() => updateStatus(appearStatus.current, true));
       return () => {
         cancelNextCallback();
       };
@@ -154,13 +154,13 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       } else if (status === ENTERING || status === ENTERED) {
         nextStatus = EXITING;
       }
-      if (isMounted) updateStatus(nextStatus);
+      if (isMounted) updateStatus(nextStatus, false);
       else
         safeSetState(inProp ? 'EXITED' : 'ENTERED', () => {
           // With unmountOnExit or mountOnEnter, the enter animation should happen at the transition between `exited` and `entering`.
           // To make the animation happen,  we have to separate each rendering and avoid being processed as batched.
           forceReflow(innerNodeRef?.current);
-          updateStatus(nextStatus);
+          updateStatus(nextStatus, false);
         });
     }, [inProp]);
 
