@@ -17,7 +17,7 @@ const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
     inputRef,
     name,
     value,
-    disabled = false,
+    disabled,
     icon,
     checkedIcon,
     labelPlacement = 'right',
@@ -43,13 +43,14 @@ const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
     value: validChecked,
   });
   if (groupContext && !value) {
+    // eslint-disable-next-line no-console
     console.error('RadioGroup模式下Radio须传入value属性');
   }
 
   const radioCheckIcon = checkedIcon || <RadioButtonIcon checked />;
   const radioUncheckIcon = icon || <RadioButtonIcon checked={false} />;
   const radioDisabled =
-    disabled !== undefined ? disabled : groupContext?.disabled;
+    disabled !== undefined ? disabled : groupContext?.disabled || false;
 
   const changeAction = (e, isChecked: boolean) => {
     // Radio

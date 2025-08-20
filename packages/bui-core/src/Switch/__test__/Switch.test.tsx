@@ -20,7 +20,7 @@ describe('Switch', () => {
   });
 
   it('should be checked', () => {
-    render(<Switch defaultChecked>Switch</Switch>);
+    render(<Switch checked>Switch</Switch>);
     const checkbox = screen.getByRole<HTMLInputElement>('checkbox');
     expect(checkbox.checked).toBeTruthy();
   });
@@ -48,13 +48,13 @@ describe('Switch', () => {
 
   it('should use custom checked icon', () => {
     const checkedIcon = <div className="test-checked-icon">icon</div>;
-    render(<Switch checkedChildren={checkedIcon} defaultChecked />);
+    render(<Switch checkedChildren={checkedIcon} checked />);
     const icon = screen.getByText('icon');
     expect(icon).toBeVisible();
   });
 
   it('should render with custom color', () => {
-    const { container } = render(<Switch color="success" defaultChecked />);
+    const { container } = render(<Switch color="success" checked />);
     expect(container.querySelectorAll(`.${classPrefix}-success`).length).toBe(
       1,
     );

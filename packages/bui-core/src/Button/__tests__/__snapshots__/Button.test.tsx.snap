@@ -8,12 +8,3 @@ exports[`Button > renders correctly 1`] = `
   button
 </button>
 `;
-
-exports[`Button renders correctly 1`] = `
-<button
-  class="bui-btn bui-btn-outlined bui-btn-medium"
-  type="button"
->
-  button
-</button>
-`;

@@ -10,14 +10,3 @@ exports[`TextArea > can auto size 1`] = `
   test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.
 </textarea>
 `;
-
-exports[`TextArea can auto size 1`] = `
-<textarea
-  class="bui-textarea-content"
-  maxlength="-1"
-  rows="2"
-  style="height: 0px;"
->
-  test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.test autoSize.
-</textarea>
-`;

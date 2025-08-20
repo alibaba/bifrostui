@@ -17,7 +17,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 1`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="12条通知"
       className="bui-badge-primary bui-badge-contained bui-badge-standard"
+      role="status"
     >
       12
     </div>
@@ -68,7 +70,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 2`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="1条通知"
       className="bui-badge-primary bui-badge-contained bui-badge-standard"
+      role="status"
     >
       1
     </div>
@@ -119,7 +123,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 3`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="有新通知"
       className="bui-badge-primary bui-badge-contained bui-badge-dot"
+      role="status"
     />
     <div
       className="bui-avatar bui-avatar-medium bui-avatar-rounded"
@@ -168,7 +174,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 4`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="12条通知"
       className="bui-badge-primary bui-badge-contained bui-badge-bubble"
+      role="status"
     >
       12
     </div>
@@ -219,7 +227,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 5`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="12条通知"
       className="bui-badge-primary bui-badge-contained bui-badge-standard"
+      role="status"
     >
       12
     </div>
@@ -254,7 +264,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 5`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="12条通知"
       className="bui-badge-primary bui-badge-contained bui-badge-bubble"
+      role="status"
     >
       12
     </div>
@@ -305,7 +317,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 6`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="12条通知"
       className="bui-badge-primary bui-badge-outlined bui-badge-standard"
+      role="status"
     >
       12
     </div>
@@ -340,7 +354,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 6`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="12条通知"
       className="bui-badge-primary bui-badge-outlined bui-badge-bubble"
+      role="status"
     >
       12
     </div>
@@ -391,7 +407,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 7`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="通知：99+"
       className="bui-badge-primary bui-badge-contained bui-badge-standard"
+      role="status"
     >
       99+
     </div>
@@ -445,7 +463,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 8`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="5条通知"
       className="bui-badge-success bui-badge-contained bui-badge-standard"
+      role="status"
     >
       5
     </div>
@@ -470,7 +490,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 8`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="5条通知"
       className="bui-badge-warning bui-badge-contained bui-badge-standard"
+      role="status"
     >
       5
     </div>
@@ -495,7 +517,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 8`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="5条通知"
       className="bui-badge-info bui-badge-contained bui-badge-standard"
+      role="status"
     >
       5
     </div>
@@ -520,7 +544,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 8`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="5条通知"
       className="bui-badge-primary bui-badge-contained bui-badge-standard"
+      role="status"
     >
       5
     </div>
@@ -545,7 +571,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 8`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="5条通知"
       className="bui-badge-danger bui-badge-contained bui-badge-standard"
+      role="status"
     >
       5
     </div>
@@ -570,7 +598,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 8`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="5条通知"
       className="bui-badge-light bui-badge-contained bui-badge-standard"
+      role="status"
     >
       5
     </div>
@@ -594,7 +624,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 8`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="5条通知"
       className="bui-badge-dark bui-badge-contained bui-badge-standard"
+      role="status"
     >
       5
     </div>
@@ -638,7 +670,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 9`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="5条通知"
       className="bui-badge-success bui-badge-outlined bui-badge-standard"
+      role="status"
     >
       5
     </div>
@@ -663,7 +697,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 9`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="5条通知"
       className="bui-badge-warning bui-badge-outlined bui-badge-standard"
+      role="status"
     >
       5
     </div>
@@ -688,7 +724,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 9`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="5条通知"
       className="bui-badge-info bui-badge-outlined bui-badge-standard"
+      role="status"
     >
       5
     </div>
@@ -713,7 +751,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 9`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="5条通知"
       className="bui-badge-primary bui-badge-outlined bui-badge-standard"
+      role="status"
     >
       5
     </div>
@@ -738,7 +778,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 9`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="5条通知"
       className="bui-badge-danger bui-badge-outlined bui-badge-standard"
+      role="status"
     >
       5
     </div>
@@ -763,7 +805,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 9`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="5条通知"
       className="bui-badge-light bui-badge-outlined bui-badge-standard"
+      role="status"
     >
       5
     </div>
@@ -787,7 +831,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 9`] = `
     className="bui-badge bui-badge-position"
   >
     <div
+      aria-label="5条通知"
       className="bui-badge-dark bui-badge-outlined bui-badge-standard"
+      role="status"
     >
       5
     </div>
@@ -816,7 +862,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 10`] = `
   className="bui-badge bui-badge-position"
 >
   <div
+    aria-label="通知：99+"
     className="bui-badge-primary bui-badge-contained bui-badge-standard"
+    role="status"
   >
     99+
   </div>
@@ -844,7 +892,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 11`] = `
   className="bui-badge bui-badge-position"
 >
   <div
+    aria-label="无通知"
     className="bui-badge-primary bui-badge-contained bui-badge-standard"
+    role="status"
   >
     0
   </div>
@@ -882,7 +932,9 @@ exports[`Badge snapshot > Badge demo snapshot 0 12`] = `
   className="bui-badge bui-badge-position"
 >
   <div
+    aria-label="10条通知"
     className="bui-badge-primary bui-badge-contained bui-badge-standard"
+    role="status"
   >
     10
   </div>
@@ -910,431 +962,6 @@ exports[`Badge snapshot > Badge demo snapshot 0 12`] = `
           }
         }
       />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Badge snapshot Badge demo snapshot 0 1`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "20px",
-    }
-  }
->
-  <div
-    className="bui-badge bui-badge-position"
-  >
-    <div
-      className="bui-badge-primary bui-badge-contained bui-badge-standard"
-    >
-      12
-    </div>
-    <div
-      className="bui-avatar bui-avatar-medium bui-avatar-rounded"
-    >
-      <div
-        className="bui-image bui-avatar-img"
-        style={
-          Object {
-            "height": undefined,
-            "width": undefined,
-          }
-        }
-      >
-        <img
-          className="bui-image-img bui-image-loaded"
-          loading="eager"
-          onError={[Function]}
-          onLoad={[Function]}
-          src="//perico.damai.cn/userheadphotos/927551/185510204.jpg"
-          style={
-            Object {
-              "objectFit": "cover",
-            }
-          }
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Badge snapshot Badge demo snapshot 0 2`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "column",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "0",
-    }
-  }
->
-  <div
-    className="bui-badge bui-badge-position"
-  >
-    <div
-      className="bui-badge-primary bui-badge-contained bui-badge-standard"
-    >
-      1
-    </div>
-    <div
-      className="bui-avatar bui-avatar-medium bui-avatar-rounded"
-    >
-      <div
-        className="bui-image bui-avatar-img"
-        style={
-          Object {
-            "height": undefined,
-            "width": undefined,
-          }
-        }
-      >
-        <img
-          className="bui-image-img bui-image-loaded"
-          loading="eager"
-          onError={[Function]}
-          onLoad={[Function]}
-          src="//perico.damai.cn/userheadphotos/927551/185510204.jpg"
-          style={
-            Object {
-              "objectFit": "cover",
-            }
-          }
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Badge snapshot Badge demo snapshot 0 3`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <div
-    className="bui-badge bui-badge-position"
-  >
-    <div
-      className="bui-badge-primary bui-badge-contained bui-badge-dot"
-    />
-    <div
-      className="bui-avatar bui-avatar-medium bui-avatar-rounded"
-    >
-      <div
-        className="bui-image bui-avatar-img"
-        style={
-          Object {
-            "height": undefined,
-            "width": undefined,
-          }
-        }
-      >
-        <img
-          className="bui-image-img bui-image-loaded"
-          loading="eager"
-          onError={[Function]}
-          onLoad={[Function]}
-          src="//perico.damai.cn/userheadphotos/927551/185510204.jpg"
-          style={
-            Object {
-              "objectFit": "cover",
-            }
-          }
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Badge snapshot Badge demo snapshot 0 4`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <div
-    className="bui-badge bui-badge-position"
-  >
-    <div
-      className="bui-badge-primary bui-badge-contained bui-badge-bubble"
-    >
-      12
-    </div>
-    <div
-      className="bui-avatar bui-avatar-medium bui-avatar-rounded"
-    >
-      <div
-        className="bui-image bui-avatar-img"
-        style={
-          Object {
-            "height": undefined,
-            "width": undefined,
-          }
-        }
-      >
-        <img
-          className="bui-image-img bui-image-loaded"
-          loading="eager"
-          onError={[Function]}
-          onLoad={[Function]}
-          src="//perico.damai.cn/userheadphotos/927551/185510204.jpg"
-          style={
-            Object {
-              "objectFit": "cover",
-            }
-          }
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Badge snapshot Badge demo snapshot 0 5`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <div
-    className="bui-badge bui-badge-position"
-  >
-    <div
-      className="bui-badge-primary bui-badge-contained bui-badge-standard"
-    >
-      12
-    </div>
-    <div
-      className="bui-avatar bui-avatar-medium bui-avatar-rounded"
-    >
-      <div
-        className="bui-image bui-avatar-img"
-        style={
-          Object {
-            "height": undefined,
-            "width": undefined,
-          }
-        }
-      >
-        <img
-          className="bui-image-img bui-image-loaded"
-          loading="eager"
-          onError={[Function]}
-          onLoad={[Function]}
-          src="//perico.damai.cn/userheadphotos/927551/185510204.jpg"
-          style={
-            Object {
-              "objectFit": "cover",
-            }
-          }
-        />
-      </div>
-    </div>
-  </div>
-  <div
-    className="bui-badge bui-badge-position"
-  >
-    <div
-      className="bui-badge-primary bui-badge-contained bui-badge-bubble"
-    >
-      12
-    </div>
-    <div
-      className="bui-avatar bui-avatar-medium bui-avatar-rounded"
-    >
-      <div
-        className="bui-image bui-avatar-img"
-        style={
-          Object {
-            "height": undefined,
-            "width": undefined,
-          }
-        }
-      >
-        <img
-          className="bui-image-img bui-image-loaded"
-          loading="eager"
-          onError={[Function]}
-          onLoad={[Function]}
-          src="//perico.damai.cn/userheadphotos/927551/185510204.jpg"
-          style={
-            Object {
-              "objectFit": "cover",
-            }
-          }
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Badge snapshot Badge demo snapshot 0 6`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "20",
-    }
-  }
->
-  <div
-    className="bui-badge bui-badge-position"
-  >
-    <div
-      className="bui-badge-primary bui-badge-outlined bui-badge-standard"
-    >
-      12
-    </div>
-    <div
-      className="bui-avatar bui-avatar-medium bui-avatar-rounded"
-    >
-      <div
-        className="bui-image bui-avatar-img"
-        style={
-          Object {
-            "height": undefined,
-            "width": undefined,
-          }
-        }
-      >
-        <img
-          className="bui-image-img bui-image-loaded"
-          loading="eager"
-          onError={[Function]}
-          onLoad={[Function]}
-          src="//perico.damai.cn/userheadphotos/927551/185510204.jpg"
-          style={
-            Object {
-              "objectFit": "cover",
-            }
-          }
-        />
-      </div>
-    </div>
-  </div>
-  <div
-    className="bui-badge bui-badge-position"
-  >
-    <div
-      className="bui-badge-primary bui-badge-outlined bui-badge-bubble"
-    >
-      12
-    </div>
-    <div
-      className="bui-avatar bui-avatar-medium bui-avatar-rounded"
-    >
-      <div
-        className="bui-image bui-avatar-img"
-        style={
-          Object {
-            "height": undefined,
-            "width": undefined,
-          }
-        }
-      >
-        <img
-          className="bui-image-img bui-image-loaded"
-          loading="eager"
-          onError={[Function]}
-          onLoad={[Function]}
-          src="//perico.damai.cn/userheadphotos/927551/185510204.jpg"
-          style={
-            Object {
-              "objectFit": "cover",
-            }
-          }
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Badge snapshot Badge demo snapshot 0 7`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "column",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "0",
-    }
-  }
->
-  <div
-    className="bui-badge bui-badge-position"
-  >
-    <div
-      className="bui-badge-primary bui-badge-contained bui-badge-standard"
-    >
-      99+
-    </div>
-    <div
-      className="bui-avatar bui-avatar-medium bui-avatar-rounded"
-    >
-      <div
-        className="bui-image bui-avatar-img"
-        style={
-          Object {
-            "height": undefined,
-            "width": undefined,
-          }
-        }
-      >
-        <img
-          className="bui-image-img bui-image-loaded"
-          loading="eager"
-          onError={[Function]}
-          onLoad={[Function]}
-          src="//perico.damai.cn/userheadphotos/927551/185510204.jpg"
-          style={
-            Object {
-              "objectFit": "cover",
-            }
-          }
-        />
-      </div>
     </div>
   </div>
 </div>

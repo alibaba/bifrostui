@@ -2,24 +2,12 @@
 
 exports[`Progress > renders correctly 1`] = `
 <div
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="54"
   class="bui-progress"
   data-testid="progress"
->
-  <div
-    class="bui-progress-inner"
-  >
-    <div
-      class="bui-progress-bg"
-      style="width: 54%; background: rgb(88, 35, 49);"
-    />
-  </div>
-</div>
-`;
-
-exports[`Progress renders correctly 1`] = `
-<div
-  class="bui-progress"
-  data-testid="progress"
+  role="progressbar"
 >
   <div
     class="bui-progress-inner"

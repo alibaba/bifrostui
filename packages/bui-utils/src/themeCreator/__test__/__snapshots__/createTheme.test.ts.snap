@@ -7,11 +7,3 @@ exports[`Theme Utilities > convertToCss > should convert style object to CSS str
 	--bui-btn-font-size: 14PX;
  }"
 `;
-
-exports[`Theme Utilities convertToCss should convert style object to CSS string 1`] = `
-":root, [data-color-mode='light'][data-theme] {
-	--bui-color-primary: #1890ff;
-	/* prettier-ignore */
-	--bui-btn-font-size: 14PX;
- }"
-`;
