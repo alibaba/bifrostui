@@ -1,10 +1,10 @@
-import { debounce, isMini, throttle, useEventCallback } from '@bifrostui/utils';
-import clsx from 'clsx';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import clsx from 'clsx';
+import { debounce, isMini, throttle, useEventCallback } from '@bifrostui/utils';
+import scrollLeftTo from './utils/scroll';
 import Tab from './Tab';
 import { TabsProps } from './Tabs.types';
 import { TabsContextProvider } from './TabsContext';
-import scrollLeftTo from './utils/scroll';
 import './Tabs.less';
 
 const prefixCls = 'bui-tabs';
@@ -23,50 +23,43 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     rightMaskOpacity: 0,
   });
 
-  const getActiveTabElement = () => {
-    const container = tabsRef.current;
-    if (!container) return undefined;
+  const getActiveTabElement = (): HTMLDivElement | undefined => {
+    const tabsEl = tabsRef.current;
+    if (!tabsEl) return;
 
-    const activeIndex =
-      !!tabs.length && tabs.findIndex((item) => item.index === value);
-
-    let activeTab;
+    const activeIndex = tabs.findIndex((item) => item.index === value);
 
     if (tabs.length) {
-      activeTab =
-        activeIndex > -1
-          ? (container.childNodes[activeIndex + 1] as HTMLDivElement)
-          : undefined;
-    } else {
-      activeTab = [...container.childNodes].find((child: any) => {
-        if (isMini) {
-          return [...(child?.classList?.tokenList ?? [])].includes(
-            'bui-tab-miniapp-active',
-          );
-        }
-        return [...child.classList].includes('bui-tab-active');
-      }) as HTMLDivElement;
+      return activeIndex > -1
+        ? (tabsEl.childNodes[activeIndex + 1] as HTMLDivElement)
+        : undefined;
     }
 
-    return activeTab;
+    return [...tabsEl.childNodes].find((child: any) => {
+      if (isMini) {
+        return [...(child?.classList?.tokenList ?? [])].includes(
+          'bui-tab-miniapp-active',
+        );
+      }
+      return [...child.classList].includes('bui-tab-active');
+    }) as HTMLDivElement;
   };
 
   const scrollIntoView = () => {
-    const tabsContainer = tabsRef.current;
+    const tabsEl = tabsRef.current;
     const activeTab = getActiveTabElement();
-    if (!tabsContainer || !activeTab) {
+    if (!tabsEl || !activeTab) {
       return;
     }
 
     const to =
-      activeTab.offsetLeft -
-      (tabsContainer.offsetWidth - activeTab.offsetWidth) / 2;
-    scrollLeftTo(tabsContainer, to, duration);
+      activeTab.offsetLeft - (tabsEl.offsetWidth - activeTab.offsetWidth) / 2;
+    scrollLeftTo(tabsEl, to, duration);
   };
 
   const animate = useEventCallback(() => {
-    const container = tabsRef.current;
-    if (!container) return;
+    const tabsEl = tabsRef.current;
+    if (!tabsEl) return;
 
     const activeLine = activeLineRef.current;
     if (!activeLine) return;
@@ -82,8 +75,8 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     if (activeTab) {
       activeTabLeft = activeTab.offsetLeft;
       activeTabWidth = activeTab.offsetWidth;
-      containerWidth = container.offsetWidth;
-      containerScrollWidth = container.scrollWidth;
+      containerWidth = tabsEl.offsetWidth;
+      containerScrollWidth = tabsEl.scrollWidth;
       activeLineWidth = activeLine.offsetWidth;
       x = activeTabLeft + (activeTabWidth - activeLineWidth) / 2;
     }
@@ -104,13 +97,13 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     () =>
       throttle(
         () => {
-          const container = tabsRef.current;
-          if (!container) return;
+          const tabsEl = tabsRef.current;
+          if (!tabsEl) return;
 
-          const scrollLeft = container?.scrollLeft;
+          const scrollLeft = tabsEl?.scrollLeft;
           const showLeftMask = scrollLeft > 0;
           const rightRange = Math.abs(
-            container.scrollWidth - (scrollLeft + container.offsetWidth),
+            tabsEl.scrollWidth - (scrollLeft + tabsEl.offsetWidth),
           );
           // 右侧遮罩rightRange在0-1范围内即可隐藏，处理浏览器兼容问题
           const showRightMask = rightRange > 1;
@@ -135,6 +128,9 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   }, [value, tabs.length, React.Children.toArray(children).length]);
 
   useEffect(() => {
+    // 页面渲染完毕后立即执行一次
+    updateMask();
+
     const handleResize = debounce(() => {
       animate();
       updateMask();
@@ -147,25 +143,13 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     };
   }, []);
 
-  useEffect(() => {
-    updateMask();
-  }, []);
-
   const handleClick = (e, item) => {
     const { index, disabled = false } = item;
-    if (disabled) return;
-    if (index === undefined || index === null) {
-      return;
-    }
-
+    if (disabled || [undefined, null].includes(index)) return;
     if (index !== value) {
       onChange?.(e, { index });
     }
   };
-
-  const providerValue = useMemo(() => {
-    return { value, triggerChange: handleClick };
-  }, [value, children, handleClick]);
 
   return (
     <div ref={ref} className={clsx(prefixCls, className)} {...others}>
@@ -174,15 +158,23 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         style={{
           opacity: maskData.leftMaskOpacity,
         }}
+        aria-hidden="true"
       />
       <div
         className={clsx(`${prefixCls}-mask`, `${prefixCls}-mask-right`)}
         style={{
           opacity: maskData.rightMaskOpacity,
         }}
+        aria-hidden="true"
       />
 
-      <div className={`${prefixCls}-tabs`} ref={tabsRef} onScroll={updateMask}>
+      <div
+        className={`${prefixCls}-tabs`}
+        ref={tabsRef}
+        onScroll={updateMask}
+        role="tablist"
+        aria-orientation="horizontal"
+      >
         <div
           ref={activeLineRef}
           className={clsx(`${prefixCls}-indicator`, {
@@ -192,9 +184,10 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
             transition: 'transform 0.3s ease-in-out',
             transform: `translate(${indicatorData.x}px, 0px)`,
           }}
+          aria-hidden="true"
         />
 
-        <TabsContextProvider value={providerValue}>
+        <TabsContextProvider value={{ value, triggerChange: handleClick }}>
           {/* 支持通过tabs生成Tab */}
           {!!tabs.length &&
             tabs.map((item) => {
@@ -203,6 +196,10 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
                   key={item.index}
                   index={item?.index}
                   disabled={item?.disabled}
+                  role="tab"
+                  aria-selected={value === item.index}
+                  aria-disabled={item?.disabled}
+                  tabIndex={value === item.index && !item?.disabled ? 0 : -1}
                 >
                   {item.title}
                 </Tab>
