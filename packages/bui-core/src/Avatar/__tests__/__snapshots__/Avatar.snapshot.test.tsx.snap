@@ -1,10 +1,10 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Avatar snapshot Avatar demo snapshot 0 1`] = `
+exports[`Avatar snapshot > Avatar demo snapshot 0 1`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -19,7 +19,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 1`] = `
     <div
       className="bui-image bui-avatar-img"
       style={
-        Object {
+        {
           "height": undefined,
           "width": undefined,
         }
@@ -32,7 +32,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 1`] = `
         onLoad={[Function]}
         src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
         style={
-          Object {
+          {
             "objectFit": "cover",
           }
         }
@@ -42,11 +42,11 @@ exports[`Avatar snapshot Avatar demo snapshot 0 1`] = `
 </div>
 `;
 
-exports[`Avatar snapshot Avatar demo snapshot 0 2`] = `
+exports[`Avatar snapshot > Avatar demo snapshot 0 2`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
@@ -76,11 +76,11 @@ exports[`Avatar snapshot Avatar demo snapshot 0 2`] = `
 </div>
 `;
 
-exports[`Avatar snapshot Avatar demo snapshot 0 3`] = `
+exports[`Avatar snapshot > Avatar demo snapshot 0 3`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
@@ -98,8 +98,8 @@ exports[`Avatar snapshot Avatar demo snapshot 0 3`] = `
       <svg
         className="bui-svg-icon"
         dangerouslySetInnerHTML={
-          Object {
-            "__html": "<path d=\\"m46.4 16 .3-.3c.9-.7 2.1-.5 2.8.3L66 36.8c.6.7 1.5 1 2.4.6l16.1-6.9c.4-.2.8-.2 1.2-.1 1.1.2 1.8 1.3 1.6 2.4l-8.9 42.9c-.8 3.7-4 6.4-7.8 6.4h-45c-3.8 0-7.1-2.7-7.8-6.4l-9-42.9c-.1-.4 0-.8.1-1.2.4-1 1.6-1.5 2.6-1.1l16.1 6.9c.8.4 1.8.1 2.4-.6L46.4 16z\\"/>",
+          {
+            "__html": "<path d="m46.4 16 .3-.3c.9-.7 2.1-.5 2.8.3L66 36.8c.6.7 1.5 1 2.4.6l16.1-6.9c.4-.2.8-.2 1.2-.1 1.1.2 1.8 1.3 1.6 2.4l-8.9 42.9c-.8 3.7-4 6.4-7.8 6.4h-45c-3.8 0-7.1-2.7-7.8-6.4l-9-42.9c-.1-.4 0-.8.1-1.2.4-1 1.6-1.5 2.6-1.1l16.1 6.9c.8.4 1.8.1 2.4-.6L46.4 16z"/>",
           }
         }
         focusable="false"
@@ -110,11 +110,11 @@ exports[`Avatar snapshot Avatar demo snapshot 0 3`] = `
 </div>
 `;
 
-exports[`Avatar snapshot Avatar demo snapshot 0 4`] = `
+exports[`Avatar snapshot > Avatar demo snapshot 0 4`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
@@ -129,7 +129,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 4`] = `
     <div
       className="bui-image bui-avatar-img"
       style={
-        Object {
+        {
           "height": undefined,
           "width": undefined,
         }
@@ -142,7 +142,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 4`] = `
         onLoad={[Function]}
         src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
         style={
-          Object {
+          {
             "objectFit": "cover",
           }
         }
@@ -155,7 +155,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 4`] = `
     <div
       className="bui-image bui-avatar-img"
       style={
-        Object {
+        {
           "height": undefined,
           "width": undefined,
         }
@@ -168,7 +168,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 4`] = `
         onLoad={[Function]}
         src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
         style={
-          Object {
+          {
             "objectFit": "cover",
           }
         }
@@ -178,11 +178,11 @@ exports[`Avatar snapshot Avatar demo snapshot 0 4`] = `
 </div>
 `;
 
-exports[`Avatar snapshot Avatar demo snapshot 0 5`] = `
+exports[`Avatar snapshot > Avatar demo snapshot 0 5`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
@@ -197,7 +197,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 5`] = `
     <div
       className="bui-image bui-avatar-img"
       style={
-        Object {
+        {
           "height": undefined,
           "width": undefined,
         }
@@ -210,7 +210,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 5`] = `
         onLoad={[Function]}
         src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
         style={
-          Object {
+          {
             "objectFit": "cover",
           }
         }
@@ -223,7 +223,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 5`] = `
     <div
       className="bui-image bui-avatar-img"
       style={
-        Object {
+        {
           "height": undefined,
           "width": undefined,
         }
@@ -236,7 +236,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 5`] = `
         onLoad={[Function]}
         src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
         style={
-          Object {
+          {
             "objectFit": "cover",
           }
         }
@@ -249,7 +249,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 5`] = `
     <div
       className="bui-image bui-avatar-img"
       style={
-        Object {
+        {
           "height": undefined,
           "width": undefined,
         }
@@ -262,7 +262,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 5`] = `
         onLoad={[Function]}
         src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
         style={
-          Object {
+          {
             "objectFit": "cover",
           }
         }
@@ -275,7 +275,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 5`] = `
     <div
       className="bui-image bui-avatar-img"
       style={
-        Object {
+        {
           "height": undefined,
           "width": undefined,
         }
@@ -288,7 +288,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 5`] = `
         onLoad={[Function]}
         src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
         style={
-          Object {
+          {
             "objectFit": "cover",
           }
         }
@@ -298,11 +298,11 @@ exports[`Avatar snapshot Avatar demo snapshot 0 5`] = `
 </div>
 `;
 
-exports[`Avatar snapshot Avatar demo snapshot 0 6`] = `
+exports[`Avatar snapshot > Avatar demo snapshot 0 6`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -317,7 +317,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 6`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 4,
         }
@@ -326,7 +326,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 6`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -339,7 +339,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 6`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -349,7 +349,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 6`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 3,
         }
@@ -358,7 +358,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 6`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -371,7 +371,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 6`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -381,7 +381,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 6`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 2,
         }
@@ -390,7 +390,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 6`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -403,7 +403,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 6`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -413,7 +413,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 6`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 1,
         }
@@ -422,7 +422,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 6`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -435,7 +435,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 6`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -446,11 +446,11 @@ exports[`Avatar snapshot Avatar demo snapshot 0 6`] = `
 </div>
 `;
 
-exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
+exports[`Avatar snapshot > Avatar demo snapshot 0 7`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -465,7 +465,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 4,
         }
@@ -474,7 +474,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -487,7 +487,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -497,7 +497,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 3,
         }
@@ -506,7 +506,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -519,7 +519,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -529,7 +529,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 2,
         }
@@ -538,7 +538,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -551,7 +551,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -561,7 +561,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 1,
         }
@@ -570,7 +570,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -583,7 +583,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -597,7 +597,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-square"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 4,
         }
@@ -606,7 +606,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -619,7 +619,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -629,7 +629,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-square"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 3,
         }
@@ -638,7 +638,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -651,7 +651,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -661,7 +661,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-square"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 2,
         }
@@ -670,7 +670,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -683,7 +683,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -693,7 +693,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-square"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 1,
         }
@@ -702,7 +702,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -715,7 +715,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -726,11 +726,11 @@ exports[`Avatar snapshot Avatar demo snapshot 0 7`] = `
 </div>
 `;
 
-exports[`Avatar snapshot Avatar demo snapshot 0 8`] = `
+exports[`Avatar snapshot > Avatar demo snapshot 0 8`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -745,7 +745,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 8`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 4,
         }
@@ -754,7 +754,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 8`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -767,7 +767,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 8`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -777,7 +777,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 8`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 3,
         }
@@ -786,7 +786,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 8`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -799,7 +799,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 8`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -809,7 +809,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 8`] = `
     <div
       className="bui-avatar bui-avatar-group-extra bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 2,
         }
@@ -825,11 +825,11 @@ exports[`Avatar snapshot Avatar demo snapshot 0 8`] = `
 </div>
 `;
 
-exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
+exports[`Avatar snapshot > Avatar demo snapshot 0 9`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -844,7 +844,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 4,
         }
@@ -853,7 +853,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -866,7 +866,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -876,7 +876,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 3,
         }
@@ -885,7 +885,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -898,7 +898,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -908,7 +908,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 2,
         }
@@ -917,7 +917,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -930,7 +930,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -940,7 +940,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 1,
         }
@@ -949,7 +949,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -962,7 +962,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -976,7 +976,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 0,
         }
@@ -985,7 +985,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -998,7 +998,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -1008,7 +1008,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 1,
         }
@@ -1017,7 +1017,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -1030,7 +1030,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -1040,7 +1040,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 2,
         }
@@ -1049,7 +1049,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -1062,7 +1062,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -1072,7 +1072,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-undefined",
           "zIndex": 3,
         }
@@ -1081,7 +1081,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -1094,7 +1094,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -1105,11 +1105,11 @@ exports[`Avatar snapshot Avatar demo snapshot 0 9`] = `
 </div>
 `;
 
-exports[`Avatar snapshot Avatar demo snapshot 0 10`] = `
+exports[`Avatar snapshot > Avatar demo snapshot 0 10`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -1124,7 +1124,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 10`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-10px",
           "zIndex": 4,
         }
@@ -1133,7 +1133,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 10`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -1146,7 +1146,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 10`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -1156,7 +1156,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 10`] = `
     <div
       className="bui-avatar bui-avatar-group-avatar bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-10px",
           "zIndex": 3,
         }
@@ -1165,7 +1165,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 10`] = `
       <div
         className="bui-image bui-avatar-img"
         style={
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           }
@@ -1178,7 +1178,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 10`] = `
           onLoad={[Function]}
           src="https://gw.alicdn.com/tfs/TB1Q2zRXuL2gK0jSZFmXXc7iXXa-120-120.png"
           style={
-            Object {
+            {
               "objectFit": "cover",
             }
           }
@@ -1188,7 +1188,7 @@ exports[`Avatar snapshot Avatar demo snapshot 0 10`] = `
     <div
       className="bui-avatar bui-avatar-group-extra bui-avatar-medium bui-avatar-rounded"
       style={
-        Object {
+        {
           "marginLeft": "-10px",
           "zIndex": 2,
         }

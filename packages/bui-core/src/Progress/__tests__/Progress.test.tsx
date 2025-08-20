@@ -64,10 +64,10 @@ describe('Progress', () => {
     });
   });
 
-  it('can trigger a function by being clicked', () => {
-    const onClick = jest.fn();
+  it('can trigger a function by being clicked', async () => {
+    const onClick = vi.fn();
     render(<Progress percent={55} data-testid="progress" onClick={onClick} />);
-    userEvent.click(screen.getByTestId('progress'));
+    await userEvent.click(screen.getByTestId('progress'));
     expect(onClick).toHaveBeenCalled();
   });
 });

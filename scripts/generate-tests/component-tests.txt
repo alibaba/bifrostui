@@ -4,16 +4,17 @@
 
 import React from 'react';
 import { act, isConformant, render, screen, userEvent } from 'testing';
+import { vi } from 'vitest';
 import { ActionSheet, ActionSheetItem } from '../index';
 
 describe('ActionSheet', () => {
   const rootClass = 'bui-action-sheet';
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
   });
 
   isConformant({
@@ -40,7 +41,7 @@ describe('ActionSheet', () => {
       </ActionSheet>,
     );
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -85,7 +86,7 @@ describe('ActionSheet', () => {
   });
 
   it('onClick can not be called when actions item disabled', () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(
       <ActionSheet open>
         <ActionSheetItem>action item copy</ActionSheetItem>
@@ -101,7 +102,7 @@ describe('ActionSheet', () => {
   });
 
   it('actions item onclick function should be called', () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(
       <ActionSheet open>
         <ActionSheetItem>action item copy</ActionSheetItem>
@@ -161,7 +162,7 @@ describe('ActionSheet', () => {
     },
   );
   it('action item triggers click event', () => {
-    const onClick = jest.fn((_, { index }) => index);
+    const onClick = vi.fn((_, { index }) => index);
     render(
       <ActionSheet open>
         <ActionSheetItem index={2} onClick={onClick}>
@@ -174,7 +175,7 @@ describe('ActionSheet', () => {
     expect(onClick).toReturnWith(2);
   });
   it('When action item triggers a click event onSelect will respond', () => {
-    const onSelect = jest.fn((_, { index }) => index);
+    const onSelect = vi.fn((_, { index }) => index);
     render(
       <ActionSheet onSelect={onSelect} open>
         <ActionSheetItem index={1}>action item copy</ActionSheetItem>
@@ -203,7 +204,7 @@ describe('ActionSheet', () => {
 
   describe('handle onClose function', () => {
     it('onClose callback not work with default', () => {
-      const onClose = jest.fn();
+      const onClose = vi.fn();
       render(
         <ActionSheet onClose={onClose} open>
           <ActionSheetItem>action item copy</ActionSheetItem>
@@ -214,7 +215,7 @@ describe('ActionSheet', () => {
       expect(onClose).not.toHaveBeenCalled();
     });
     it('onClose should be called width closeOnAction equal true', () => {
-      const onClose = jest.fn();
+      const onClose = vi.fn();
       render(
         <ActionSheet onClose={onClose} open cancelText="cancel">
           <ActionSheetItem>action item copy</ActionSheetItem>
@@ -283,8 +284,8 @@ describe('Alert', () => {
       expect(container).toHaveTextContent('close');
     });
     it('should render icon current in miniapp', async () => {
-      jest.resetModules();
-      jest.doMock('@bifrostui/utils', () => ({
+      vi.resetModules();
+      vi.doMock('@bifrostui/utils', () => ({
         isMini: true,
       }));
       const { default: MiniAlert } = await import('../index');
@@ -293,8 +294,8 @@ describe('Alert', () => {
       expect(container.querySelector('.bui-alert-default-icon')).toBeTruthy();
     });
     it('should render icon color current in miniapp', async () => {
-      jest.resetModules();
-      jest.doMock('@bifrostui/utils', () => ({
+      vi.resetModules();
+      vi.doMock('@bifrostui/utils', () => ({
         isMini: true,
       }));
       const { default: MiniAlert } = await import('../index');
@@ -316,7 +317,7 @@ describe('Alert', () => {
 
   describe('action', () => {
     it('should close alert when click close', () => {
-      const onClose = jest.fn();
+      const onClose = vi.fn();
       render(<Alert onClose={onClose}>warning alert!!</Alert>);
       userEvent.click(document.querySelector('.bui-alert-action'));
       expect(onClose).toHaveBeenCalled();
@@ -428,7 +429,7 @@ describe('Avatar', () => {
 
   describe('events', () => {
     it('responses click events', () => {
-      const onClick = jest.fn();
+      const onClick = vi.fn();
       render(<Avatar onClick={onClick}>hello world</Avatar>);
       userEvent.click(screen.getByText('hello world'));
       expect(onClick).toHaveBeenCalled();
@@ -451,7 +452,7 @@ describe('Backdrop', () => {
   const classPrefix = 'bui-backdrop';
 
   it('should fire onClick event when click backdrop', () => {
-    const clickFn = jest.fn();
+    const clickFn = vi.fn();
     const { container } = render(
       <Backdrop open timeout={1000} onClick={clickFn} />,
     );
@@ -662,7 +663,7 @@ describe('Breadcrumb', () => {
     expect(separator).toHaveTextContent(':');
   });
   it('should trigger item onClick', () => {
-    const fakeClick = jest.fn();
+    const fakeClick = vi.fn();
     setup({
       items: [
         {
@@ -728,7 +729,7 @@ describe('Breadcrumb', () => {
       expect(separator).toHaveTextContent(':');
     });
     it('should trigger item onClick', () => {
-      const fakeClick = jest.fn();
+      const fakeClick = vi.fn();
       render(
         <Breadcrumb>
           <BreadcrumbItem onClick={fakeClick}>路径1</BreadcrumbItem>
@@ -778,13 +779,13 @@ describe('Button', () => {
   });
 
   it('can trigger a function by being clicked', () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(<Button onClick={onClick}>This is a button</Button>);
     userEvent.click(screen.getByRole('button'));
     expect(onClick).toHaveBeenCalled();
   });
   it('does not trigger a function when render a disabled button', () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(<Button disabled>disabled button</Button>);
     const disabledBtn = screen.getByRole('button');
     expect(disabledBtn).toHaveClass(`${rootClass}-disabled`);
@@ -861,7 +862,7 @@ describe('Calendar', () => {
   });
 
   it('handles month navigation correctly', async () => {
-    const onMonthChange = jest.fn();
+    const onMonthChange = vi.fn();
     render(<Calendar onMonthChange={onMonthChange} />);
 
     const currentMonth = dayjs().format('YYYY/MM');
@@ -894,7 +895,7 @@ describe('Calendar', () => {
   });
 
   it('selects a date in single mode', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     render(<Calendar onChange={onChange} />);
 
     // Find a non-disabled day in the current month
@@ -906,7 +907,7 @@ describe('Calendar', () => {
   });
 
   it('selects a date range in range mode', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     render(<Calendar mode="range" onChange={onChange} />);
 
     // Find non-disabled days in the current month
@@ -925,7 +926,7 @@ describe('Calendar', () => {
 
   it('handles disabled dates correctly', () => {
     const disabledDate = (date) => dayjs(date).date() === 15;
-    const onChange = jest.fn();
+    const onChange = vi.fn();
 
     render(<Calendar disabledDate={disabledDate} onChange={onChange} />);
 
@@ -1143,7 +1144,7 @@ describe('Card', () => {
     });
     describe('action', () => {
       it('title click', () => {
-        const onClick = jest.fn();
+        const onClick = vi.fn();
         const { getByTestId } = render(
           <Card>
             <CardHeader
@@ -1158,7 +1159,7 @@ describe('Card', () => {
         expect(onClick).toHaveBeenCalled();
       });
       // it('extra click', () => {
-      //   const onClick = jest.fn();
+      //   const onClick = vi.fn();
       //   const { getByTestId } = render(
       //     <Card>
       //       <CardHeader
@@ -1378,8 +1379,8 @@ const currentCity = { code: '310100', name: '上海' };
 const currentCityGroupName = '定位城市';
 const hotCitiesGroupName = '热门城市';
 const title = '选择城市';
-const onSelect = jest.fn();
-const onClose = jest.fn();
+const onSelect = vi.fn();
+const onClose = vi.fn();
 
 const queryEle = (container, selector) => {
   return container.querySelector(selector);
@@ -1731,7 +1732,7 @@ describe('CollapsePanel', () => {
     });
   });
   it('should call onChange', async () => {
-    const fakeChange = jest.fn();
+    const fakeChange = vi.fn();
     const Component = () => {
       const [activeKeys, setActiveKeys] = useState(['1']);
       const handleChange = (event, params) => {
@@ -1850,7 +1851,7 @@ describe('CollapsePanel', () => {
       });
     });
     it('should call onChange', async () => {
-      const fakeChange = jest.fn();
+      const fakeChange = vi.fn();
       const Component = () => {
         const [activeKeys, setActiveKeys] = useState(['1']);
         const handleChange = (event, params) => {
@@ -1904,7 +1905,7 @@ import React from 'react';
 import { isConformant, render, act, screen } from 'testing';
 import { Countdown } from '..';
 
-jest.useFakeTimers();
+vi.useFakeTimers();
 
 describe('Countdown', () => {
   const rootClass = 'bui-countdown';
@@ -2010,7 +2011,7 @@ describe('Countdown', () => {
   });
 
   it('onFinish prop has been trigger when countdown finished', () => {
-    const fakeFinish = jest.fn();
+    const fakeFinish = vi.fn();
     render(
       <Countdown endTimestamp={Date.now() + 10 * 1000} onFinish={fakeFinish} />,
     );
@@ -2021,7 +2022,7 @@ describe('Countdown', () => {
   });
 
   it('onChange prop has been trigger when countdown change', () => {
-    const fakeChange = jest.fn();
+    const fakeChange = vi.fn();
     render(
       <Countdown endTimestamp={Date.now() + 10 * 1000} onChange={fakeChange} />,
     );
@@ -2069,15 +2070,15 @@ describe('Dialog Functional Calls', () => {
 
   beforeEach(() => {
     document.body.innerHTML = '';
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     renderHook(() => {
       dialogHook = Dialog.useDialog();
     });
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
     jest.clearAllMocks();
   });
 
@@ -2177,7 +2178,7 @@ describe('Dialog Functional Calls', () => {
     fireEvent.click(screen.getByText('Confirm'));
     await waitFor(() => expect(promptPromise).resolves.toBe('Test Input'));
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     expect(
       document.body.querySelector(`.${rootClass}`),
@@ -2206,8 +2207,8 @@ describe('Dialog Functional Calls', () => {
     await waitFor(() => expect(promptPromise).resolves.toBe(false));
   });
   it('the default type of useDialog is confirm', async () => {
-    const onConfirm = jest.fn();
-    const onCancel = jest.fn();
+    const onConfirm = vi.fn();
+    const onCancel = vi.fn();
     const { getByTestId } = render(
       <Button
         data-testid="emit-button"
@@ -2242,8 +2243,8 @@ describe('Dialog Functional Calls', () => {
     'should support basic api with useDialog',
     async (type) => {
       const dialog = dialogHook?.[0];
-      const onConfirm = jest.fn();
-      const onCancel = jest.fn();
+      const onConfirm = vi.fn();
+      const onCancel = vi.fn();
 
       render(
         <Button
@@ -2341,11 +2342,11 @@ import Drawer from '../index';
 describe('Drawer', () => {
   const rootClass = 'bui-drawer';
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
   });
 
   isConformant({
@@ -2366,7 +2367,7 @@ describe('Drawer', () => {
       </Drawer>,
     );
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -2401,7 +2402,7 @@ describe('Drawer', () => {
   );
 
   it('onclose should be called when closing drawer', () => {
-    const onClose = jest.fn();
+    const onClose = vi.fn();
     render(
       <Drawer open onClose={onClose}>
         Drawer
@@ -2415,7 +2416,7 @@ describe('Drawer', () => {
   it('should delay the slide transition to complete using default theme values by default', async () => {
     render(<Drawer open>Drawer</Drawer>);
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     expect(screen.getByText('Drawer')).toHaveStyle({
       transition: 'transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms',
@@ -2425,12 +2426,12 @@ describe('Drawer', () => {
   it('after the slide transition exited the root dom can remove', async () => {
     const { rerender } = render(<Drawer open>Drawer</Drawer>);
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     rerender(<Drawer>Drawer</Drawer>);
     expect(screen.getByText('Drawer')).toBeInTheDocument();
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     await waitFor(() => {
       expect(screen.queryByText('Drawer')).not.toBeInTheDocument();
@@ -2444,7 +2445,7 @@ describe('Drawer', () => {
       </Drawer>,
     );
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     expect(screen.queryByText('Drawer')).toHaveStyle({
       transition: 'transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms',
@@ -2528,7 +2529,7 @@ describe('IconButton', () => {
   });
 
   it('can trigger a function by being clicked', () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(<IconButton onClick={onClick}>IconButton</IconButton>);
     userEvent.click(screen.getByRole('button'));
     expect(onClick).toHaveBeenCalled();
@@ -2570,8 +2571,8 @@ describe('IconButton', () => {
     });
   });
   it('in miniapp children can set color props', async () => {
-    jest.resetModules();
-    jest.doMock('@bifrostui/utils', () => ({
+    vi.resetModules();
+    vi.doMock('@bifrostui/utils', () => ({
       isMini: true,
     }));
     const { default: MiniIconButton } = await import('../index');
@@ -2581,7 +2582,7 @@ describe('IconButton', () => {
       </MiniIconButton>,
     );
     expect(screen.getByText('icon')).toHaveAttribute('color', 'success');
-    const mockBackdropFn = jest.fn();
+    const mockBackdropFn = vi.fn();
     const TestChildren = (props) => {
       mockBackdropFn(props);
       return <div />;
@@ -2666,7 +2667,7 @@ describe('Image', () => {
     expect(screen.getByTestId('test-placeholder'));
   });
   it('should call onLoad callback', async () => {
-    const onLoad = jest.fn();
+    const onLoad = vi.fn();
     render(
       <Image
         src={src}
@@ -2680,7 +2681,7 @@ describe('Image', () => {
     expect(onLoad).toHaveBeenCalled();
   });
   it('should call onError callback', async () => {
-    const onLoad = jest.fn();
+    const onLoad = vi.fn();
     render(
       <Image
         src={src}
@@ -2694,7 +2695,7 @@ describe('Image', () => {
     expect(onLoad).toHaveBeenCalled();
   });
   it('should call onClick', async () => {
-    const onLoad = jest.fn();
+    const onLoad = vi.fn();
     render(
       <Image
         src={src}
@@ -2813,7 +2814,7 @@ describe('Input', () => {
   });
 
   it('should clear input after `onClear` event has been called', () => {
-    const fakeClear = jest.fn();
+    const fakeClear = vi.fn();
     const { container } = render(
       <Input defaultValue="123" clearable onClear={fakeClear} />,
     );
@@ -2826,7 +2827,7 @@ describe('Input', () => {
   });
 
   it('`onChange` event should be called when input value change', () => {
-    const fakeChange = jest.fn();
+    const fakeChange = vi.fn();
     render(<Input onChange={fakeChange} defaultValue="" />);
     const input = screen.getByRole('textbox');
     userEvent.type(input, '1234');
@@ -2838,17 +2839,17 @@ describe('Input', () => {
     const originalModule = jest.requireActual('@bifrostui/utils');
     const restApi = jest.requireActual('react');
     it('`onChange` event should be called when input value change', async () => {
-      jest.spyOn(console, 'error').mockImplementation();
-      jest.resetModules();
-      jest.doMock('@bifrostui/utils', () => ({
+      vi.spyOn(console, 'error').mockImplementation();
+      vi.resetModules();
+      vi.doMock('@bifrostui/utils', () => ({
         ...originalModule,
         isMini: true,
       }));
-      jest.doMock('react', () => ({
+      vi.doMock('react', () => ({
         ...restApi,
       }));
       const { default: MiniInput } = await import('../index');
-      const fakeChange = jest.fn();
+      const fakeChange = vi.fn();
       render(<MiniInput onChange={fakeChange} defaultValue="" />);
       const input = screen.getByRole('textbox');
       userEvent.type(input, '1234');
@@ -2962,7 +2963,7 @@ describe('ListItem', () => {
   });
   describe('prop: disabled', () => {
     it('could click default', () => {
-      const onClick = jest.fn();
+      const onClick = vi.fn();
       render(
         <List>
           <ListItem onClick={onClick}>list-item</ListItem>
@@ -3058,9 +3059,9 @@ import React from 'react';
 import { render, screen } from 'testing';
 import Modal from '../Modal';
 
-const mockBackdropFn = jest.fn();
+const mockBackdropFn = vi.fn();
 // eslint-disable-next-line react/display-name
-jest.mock('../../Backdrop', () => (props: any) => {
+vi.mock('../../Backdrop', () => (props: any) => {
   mockBackdropFn(props);
   const { children, onClick } = props;
   return (
@@ -3070,8 +3071,8 @@ jest.mock('../../Backdrop', () => (props: any) => {
   );
 });
 
-const mockPortalFn = jest.fn();
-jest.mock('../../Portal', () =>
+const mockPortalFn = vi.fn();
+vi.mock('../../Portal', () =>
   // eslint-disable-next-line react/display-name
   React.forwardRef((props: any, ref: any) => {
     mockPortalFn(props);
@@ -3133,7 +3134,7 @@ describe('Modal', () => {
     );
   });
   it('should call onClose when backdrop clicked', () => {
-    const closefn = jest.fn();
+    const closefn = vi.fn();
     render(
       <Modal open onClose={closefn}>
         <div className="content" data-testid="test-modal-content">
@@ -3157,7 +3158,7 @@ import React from 'react';
 import { render, screen, isConformant } from 'testing';
 import NavBar from '../index';
 
-jest.mock('@bifrostui/utils', () => {
+vi.mock('@bifrostui/utils', () => {
   const originalModule = jest.requireActual('@bifrostui/utils');
   return {
     ...originalModule,
@@ -3438,12 +3439,12 @@ describe('Picker', () => {
   ];
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
     jest.clearAllMocks();
   });
 
@@ -3696,7 +3697,7 @@ describe('Picker', () => {
     render(<Picker open onOptionChange={change} options={cascadeData} />);
 
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     const [panel1] = document.querySelectorAll(`.${rootClass}-panel`);
@@ -3732,7 +3733,7 @@ describe('Picker', () => {
     render(<Picker open onOptionChange={change} options={multiData} />);
 
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     const [, panel2] = document.querySelectorAll(`.${rootClass}-panel`);
@@ -3768,7 +3769,7 @@ describe('Picker', () => {
     render(<Picker open onOptionChange={change} options={multiData} />);
 
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     const [, panel2] = document.querySelectorAll(`.${rootClass}-panel`);
@@ -3811,14 +3812,14 @@ describe('Picker', () => {
   });
 
   it('should call `onCancel` when click cancel button', () => {
-    const cancel = jest.fn();
+    const cancel = vi.fn();
     render(<Picker open onCancel={cancel} options={cascadeData} />);
     userEvent.click(document.querySelector(`.${rootClass}-cancel`));
     expect(cancel).toBeCalled();
   });
 
   it('should call `onClose` when Picker hidden', () => {
-    const close = jest.fn();
+    const close = vi.fn();
     render(<Picker open onClose={close} options={cascadeData} />);
     userEvent.click(document.querySelector(`.${rootClass}-cancel`));
     expect(close).toBeCalled();
@@ -3895,7 +3896,7 @@ describe('Popover', () => {
   });
 
   it('test open onOpenChange props', () => {
-    const onOpenChange = jest.fn();
+    const onOpenChange = vi.fn();
     render(
       <Popover title="This is a popover2" open>
         <div data-testid="popoverTestid">children</div>
@@ -3923,7 +3924,7 @@ describe('Popover', () => {
   });
 
   it('test trigger onOpenChange props', () => {
-    const onOpenChange = jest.fn();
+    const onOpenChange = vi.fn();
     render(
       <Popover
         title="This is a popover4"
@@ -3940,7 +3941,7 @@ describe('Popover', () => {
   });
 
   it('test trigger click anywhere hide props', () => {
-    const onOpenChange = jest.fn();
+    const onOpenChange = vi.fn();
     render(
       <Popover
         title="This is a popover4"
@@ -3956,7 +3957,7 @@ describe('Popover', () => {
   });
 
   it('test trigger hover onOpenChange props', () => {
-    const onOpenChange = jest.fn();
+    const onOpenChange = vi.fn();
     render(
       <Popover
         title="This is a popover4"
@@ -4083,7 +4084,7 @@ describe('Portal', () => {
   });
 
   it('test onRootElementMouted props', () => {
-    const onRootElementMouted = jest.fn();
+    const onRootElementMouted = vi.fn();
     const containerRef = React.createRef<HTMLDivElement>();
     render(
       <>
@@ -4174,7 +4175,7 @@ describe('Progress', () => {
   });
 
   it('can trigger a function by being clicked', () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(<Progress percent={55} data-testid="progress" onClick={onClick} />);
     userEvent.click(screen.getByTestId('progress'));
     expect(onClick).toHaveBeenCalled();
@@ -4202,7 +4203,7 @@ describe('Radio', () => {
   });
 
   it('should be checked', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     render(
       <Radio checked onChange={onChange}>
         淘票票
@@ -4238,7 +4239,7 @@ describe('Radio', () => {
   });
 
   it('should use custom checked icon', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const checkedIcon = <div className="test-checked-icon">icon</div>;
     render(<Radio checkedIcon={checkedIcon} checked onChange={onChange} />);
     const icon = screen.getByText('icon');
@@ -4330,12 +4331,12 @@ describe('Radio', () => {
     const originalModule = jest.requireActual('@bifrostui/utils');
     const restApi = jest.requireActual('react');
     it('should call `onChange`', async () => {
-      jest.resetModules();
-      jest.doMock('@bifrostui/utils', () => ({
+      vi.resetModules();
+      vi.doMock('@bifrostui/utils', () => ({
         ...originalModule,
         isMini: true,
       }));
-      jest.doMock('react', () => ({
+      vi.doMock('react', () => ({
         ...restApi,
       }));
       const { default: MiniRadio } = await import('../index');
@@ -4424,7 +4425,7 @@ describe('Rating', () => {
   });
 
   it('read only not clickable', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     const { container } = render(<Rating readOnly onChange={handleChange} />);
     userEvent.click(container.querySelector(`.${rootClass}-item-readonly`));
     expect(handleChange).not.toBeCalled();
@@ -4447,7 +4448,7 @@ describe('Rating', () => {
   // );
 
   it('should fire change event when click rate item', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     const { container } = render(<Rating onChange={handleChange} />);
     expect(container.querySelectorAll(`.${rootClass}-item-active`).length).toBe(
       0,
@@ -4539,9 +4540,9 @@ describe('ScrollView', () => {
       value: 2000,
     });
 
-    const onScrollToUpper = jest.fn();
-    const onScrollToLower = jest.fn();
-    const onScroll = jest.fn();
+    const onScrollToUpper = vi.fn();
+    const onScrollToLower = vi.fn();
+    const onScroll = vi.fn();
     const { container } = render(
       <ScrollView
         scrollY
@@ -4647,7 +4648,7 @@ describe('ScrollView', () => {
     );
   });
   it('can scroll to scrollTop/scrollLeft', async () => {
-    window.HTMLElement.prototype.scrollIntoView = jest.fn();
+    window.HTMLElement.prototype.scrollIntoView = vi.fn();
     // eslint-disable-next-line react/prop-types
     const App = ({ x = false, isAnimated = false, isInit = false }) => {
       const [scrollTop, setScrollTop] = useState(isInit ? 3000 : 0);
@@ -4723,7 +4724,7 @@ const classPrefix = 'bui-select';
 
 describe('Select', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
   isConformant({
     Component: Select,
@@ -4780,7 +4781,7 @@ describe('Select', () => {
   });
   describe('action', () => {
     it('should call onClose when click close', async () => {
-      const onClose = jest.fn();
+      const onClose = vi.fn();
       render(
         <Select onClose={onClose} open>
           <SelectOption value={1}>option1</SelectOption>
@@ -4793,7 +4794,7 @@ describe('Select', () => {
       expect(onClose).toHaveBeenCalled();
     });
     it('should call onOpen when click open', async () => {
-      const onOpen = jest.fn();
+      const onOpen = vi.fn();
       render(
         <Select onOpen={onOpen} open={false}>
           <SelectOption value={1}>option1</SelectOption>
@@ -4804,12 +4805,12 @@ describe('Select', () => {
         userEvent.click(document.querySelector('.bui-select'));
       });
       await act(async () => {
-        await jest.runAllTimers();
+        await vi.runAllTimers();
       });
       expect(onOpen).toHaveBeenCalled();
     });
     it('should call onClick when click open', async () => {
-      const onClick = jest.fn();
+      const onClick = vi.fn();
       render(
         <Select onClick={onClick} open={false}>
           <SelectOption value={1}>option1</SelectOption>
@@ -4840,7 +4841,7 @@ describe('Select', () => {
       expect(onClick).not.toHaveBeenCalled();
     });
     it('should not select  when it is disabled', async () => {
-      const onClick = jest.fn();
+      const onClick = vi.fn();
       const { container } = render(
         <Select disabled onClick={onClick}>
           <SelectOption disabled value={1}>
@@ -5044,12 +5045,12 @@ describe('Slider', () => {
   const rootClass = 'bui-slider';
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
     jest.clearAllMocks();
   });
 
@@ -5060,7 +5061,7 @@ describe('Slider', () => {
   });
 
   it('should render with default properties', () => {
-    const fakeFn = jest.fn();
+    const fakeFn = vi.fn();
     const { container } = render(<Slider value={10} onChange={fakeFn} />);
     const slider = container.querySelector(`.${rootClass}`);
     expect(slider).toMatchSnapshot();
@@ -5125,7 +5126,7 @@ describe('Slider', () => {
   });
 
   it('should render startIcon', () => {
-    const fakeChange = jest.fn();
+    const fakeChange = vi.fn();
     const { container } = render(
       <Slider
         value={10}
@@ -5138,7 +5139,7 @@ describe('Slider', () => {
   });
 
   it('should render endIcon', () => {
-    const fakeChange = jest.fn();
+    const fakeChange = vi.fn();
     const { container } = render(
       <Slider
         value={[10, 20]}
@@ -5158,7 +5159,7 @@ describe('Slider', () => {
       />,
     );
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     act(() => {
       const button = screen.getByRole('slider');
@@ -5170,7 +5171,7 @@ describe('Slider', () => {
         cancelable: true,
         bubbles: true,
       });
-      const touchMove = jest.fn();
+      const touchMove = vi.fn();
       button.addEventListener('touchmove', touchMove, false);
 
       button.dispatchEvent(mousedown);
@@ -5189,7 +5190,7 @@ describe('Slider', () => {
       />,
     );
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     act(() => {
       const button = screen.getByRole('slider');
@@ -5205,7 +5206,7 @@ describe('Slider', () => {
         cancelable: true,
         bubbles: true,
       });
-      const touchEnd = jest.fn();
+      const touchEnd = vi.fn();
       button.addEventListener('touchend', touchEnd, false);
 
       button.dispatchEvent(mousedown);
@@ -5219,9 +5220,9 @@ describe('Slider', () => {
   it('should trigger touchmove event with range mode', async () => {
     const pageX = 30;
     const totalWidth = 300;
-    jest.resetModules();
+    vi.resetModules();
     // mock getBoundingClientRect
-    jest.doMock('@bifrostui/utils', () => ({
+    vi.doMock('@bifrostui/utils', () => ({
       ...originalModule,
       getBoundingClientRect: () => {
         return Promise.resolve({
@@ -5229,7 +5230,7 @@ describe('Slider', () => {
         });
       },
     }));
-    jest.doMock('react', () => ({
+    vi.doMock('react', () => ({
       ...restApi,
     }));
 
@@ -5237,7 +5238,7 @@ describe('Slider', () => {
 
     render(<FakeSlider defaultValue={[0, 5]} />);
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     const [button1] = screen.getAllByRole('slider');
@@ -5270,9 +5271,9 @@ describe('Slider', () => {
   it('should not swap end button', async () => {
     const pageX = 30;
     const totalWidth = 300;
-    jest.resetModules();
+    vi.resetModules();
     // mock getBoundingClientRect
-    jest.doMock('@bifrostui/utils', () => ({
+    vi.doMock('@bifrostui/utils', () => ({
       ...originalModule,
       getBoundingClientRect: () => {
         return Promise.resolve({
@@ -5280,7 +5281,7 @@ describe('Slider', () => {
         });
       },
     }));
-    jest.doMock('react', () => ({
+    vi.doMock('react', () => ({
       ...restApi,
     }));
 
@@ -5288,7 +5289,7 @@ describe('Slider', () => {
 
     render(<FakeSlider defaultValue={[0, 5]} disableSwap />);
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     const [button1, button2] = screen.getAllByRole('slider');
@@ -5320,9 +5321,9 @@ describe('Slider', () => {
   it('should not swap start button', async () => {
     const pageX = 60;
     const totalWidth = 300;
-    jest.resetModules();
+    vi.resetModules();
     // mock getBoundingClientRect
-    jest.doMock('@bifrostui/utils', () => ({
+    vi.doMock('@bifrostui/utils', () => ({
       ...originalModule,
       getBoundingClientRect: () => {
         return Promise.resolve({
@@ -5330,7 +5331,7 @@ describe('Slider', () => {
         });
       },
     }));
-    jest.doMock('react', () => ({
+    vi.doMock('react', () => ({
       ...restApi,
     }));
 
@@ -5338,7 +5339,7 @@ describe('Slider', () => {
 
     render(<FakeSlider defaultValue={[30, 60]} disableSwap />);
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     const [button1, button2] = screen.getAllByRole('slider');
@@ -5654,7 +5655,7 @@ describe('Steps', () => {
     });
 
     it('should be disabled when value of true', () => {
-      const fakeChange = jest.fn();
+      const fakeChange = vi.fn();
       const { container } = render(
         <Steps onChange={fakeChange}>
           <Step key={1} disabled />
@@ -5900,7 +5901,7 @@ describe('Switch', () => {
   });
 
   it('should call onChange', async () => {
-    const changeFn = jest.fn();
+    const changeFn = vi.fn();
     function Component() {
       const [checked] = useState(false);
       return <Switch checked={checked} onChange={changeFn} />;
@@ -6071,12 +6072,12 @@ describe('Tabs', () => {
 
   beforeEach(() => {
     document.body.innerHTML = '';
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
     jest.clearAllMocks();
   });
 
@@ -6287,7 +6288,7 @@ describe('Tabs', () => {
     });
 
     it('should disable click', () => {
-      const handleChange = jest.fn();
+      const handleChange = vi.fn();
       function Component(props: { handleChange: any }) {
         const { handleChange: change } = props;
         const [value] = useState('fruits');
@@ -6356,12 +6357,12 @@ describe('Tabs', () => {
   });
 
   it('should render when resize', async () => {
-    jest.resetModules();
-    jest.doMock('@bifrostui/utils', () => ({
+    vi.resetModules();
+    vi.doMock('@bifrostui/utils', () => ({
       ...originalModule,
       debounce: jest.fn((fn) => fn),
     }));
-    jest.doMock('react', () => ({
+    vi.doMock('react', () => ({
       ...restApi,
     }));
     const { default: FakeTabs } = await import('../index');
@@ -6398,7 +6399,7 @@ describe('Tabs', () => {
 
     const { container } = render(<Component />);
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     act(() => {
@@ -6718,7 +6719,7 @@ describe('Tag', () => {
   });
 
   it('should be clickable', () => {
-    const fakeClick = jest.fn();
+    const fakeClick = vi.fn();
     const { container } = render(<Tag onClick={fakeClick} />);
     const tag = container.querySelectorAll(`.${rootClass}`)[0];
     fireEvent.click(tag);
@@ -6820,7 +6821,7 @@ describe('TagGroup', () => {
   });
 
   it('should be clickable', () => {
-    const fakeClick = jest.fn();
+    const fakeClick = vi.fn();
     const { container } = render(<TagGroup onClick={fakeClick} />);
     const tagGroup = container.querySelectorAll(`.${rootClass}`)[0];
     fireEvent.click(tagGroup);
@@ -7049,11 +7050,11 @@ import {
   breakpoints,
 } from '..';
 
-let consoleSpy: jest.SpyInstance;
-let isValidElement: jest.SpyInstance;
+let consoleSpy: ReturnType<typeof vi.spyOn>;
+let isValidElement: ReturnType<typeof vi.spyOn>;
 const testId = 'bui-var-bl';
 
-jest.mock('@bifrostui/utils', () => ({
+vi.mock('@bifrostui/utils', () => ({
   isMini: false,
 }));
 
@@ -7086,7 +7087,7 @@ afterAll(() => {
 
 describe('MountToken Functions', () => {
   test('mountTokens should not execute when isMini is true', () => {
-    jest.mock('@bifrostui/utils', () => ({
+    vi.mock('@bifrostui/utils', () => ({
       isMini: true,
     }));
 
@@ -7277,15 +7278,15 @@ describe('Toast', () => {
 
   beforeEach(() => {
     document.body.innerHTML = '';
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     renderHook(() => {
       toastHook = Toast.useToast();
     });
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
     jest.clearAllMocks();
   });
 
@@ -7342,7 +7343,7 @@ describe('Toast', () => {
     fireEvent.click(getByTestId('emit-button'));
     toast.close();
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     expect(
       document.body.querySelector(`.${rootClass}`),
@@ -7550,7 +7551,7 @@ describe('Toast', () => {
   });
 
   it('should call onClose when Toast hidden', async () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     const { getByTestId } = render(
       <Button
         data-testid="emit-button"
@@ -7566,7 +7567,7 @@ describe('Toast', () => {
     );
     fireEvent.click(getByTestId('emit-button'));
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     expect(fn).toBeCalled();
   });
@@ -7613,7 +7614,7 @@ describe('Toast', () => {
     expect(document.body.innerHTML.split('提示内容').length - 1).toBe(2);
     fireEvent.click(getByTestId('emit-button3'));
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     expect(document.body.innerHTML.includes('提示内容')).toBeFalsy();
   });
@@ -7660,7 +7661,7 @@ describe('Toast', () => {
         expect(document.body.innerHTML.split('提示内容').length - 1).toBe(2);
         fireEvent.click(screen.getByText('button three'));
         await act(async () => {
-          await jest.runAllTimers();
+          await vi.runAllTimers();
         });
         expect(document.body.innerHTML.includes('提示内容')).toBeFalsy();
       } else {
@@ -7725,7 +7726,7 @@ describe('Tooltip', () => {
   });
 
   it('test open props', () => {
-    const onOpenChange = jest.fn();
+    const onOpenChange = vi.fn();
     render(
       <Tooltip title="This is a tooltip2" open onOpenChange={onOpenChange}>
         <div data-testid="tooltipTestid">children</div>
@@ -7753,7 +7754,7 @@ describe('Tooltip', () => {
   });
 
   it('test trigger onOpenChange props', () => {
-    const onOpenChange = jest.fn();
+    const onOpenChange = vi.fn();
     render(
       <Tooltip
         title="This is a tooltip4"
@@ -7770,7 +7771,7 @@ describe('Tooltip', () => {
   });
 
   it('test trigger click anywhere hide props', () => {
-    const onOpenChange = jest.fn();
+    const onOpenChange = vi.fn();
     render(
       <Tooltip
         title="This is a tooltip4"
@@ -7787,7 +7788,7 @@ describe('Tooltip', () => {
   });
 
   it('test trigger hover onOpenChange props', () => {
-    const onOpenChange = jest.fn();
+    const onOpenChange = vi.fn();
     render(
       <Tooltip
         title="This is a tooltip4"
@@ -7823,7 +7824,7 @@ describe('Tooltip', () => {
 
   it('renders correctly', () => {
     // mock位置
-    const mockGetBoundingClientRect = jest.fn().mockReturnValue({
+    const mockGetBoundingClientRect = vi.fn().mockReturnValue({
       width: 100,
       height: 50,
       top: 10,
@@ -7850,7 +7851,7 @@ describe('Tooltip', () => {
 
   it('renders correctly offset cacl topCenter', () => {
     // mock位置
-    const mockGetBoundingClientRect = jest.fn().mockReturnValue({
+    const mockGetBoundingClientRect = vi.fn().mockReturnValue({
       width: 100,
       height: 50,
       top: 10,
@@ -7884,7 +7885,7 @@ describe('Tooltip', () => {
 
   it('renders correctly offset cacl leftCenter', () => {
     // mock位置
-    const mockGetBoundingClientRect = jest.fn().mockReturnValue({
+    const mockGetBoundingClientRect = vi.fn().mockReturnValue({
       width: 100,
       height: 50,
       top: 10,
@@ -7931,12 +7932,12 @@ import { Transition } from '../Transition';
 describe('Transition', () => {
   it('will change status and execute callbacks by in prop', async () => {
     const ons = {
-      onEnter: jest.fn(),
-      onEntering: jest.fn(),
-      onEntered: jest.fn(),
-      onExit: jest.fn(),
-      onExiting: jest.fn(),
-      onExited: jest.fn(),
+      onEnter: vi.fn(),
+      onEntering: vi.fn(),
+      onEntered: vi.fn(),
+      onExit: vi.fn(),
+      onExiting: vi.fn(),
+      onExited: vi.fn(),
     };
     const renderFn = (s) => <div data-testid="status">{s}</div>;
     const { rerender } = render(
@@ -7998,12 +7999,12 @@ describe('Transition', () => {
 
   it('will appear', async () => {
     const ons = {
-      onEnter: jest.fn(),
-      onEntering: jest.fn(),
-      onEntered: jest.fn(),
-      onExit: jest.fn(),
-      onExiting: jest.fn(),
-      onExited: jest.fn(),
+      onEnter: vi.fn(),
+      onEntering: vi.fn(),
+      onEntered: vi.fn(),
+      onExit: vi.fn(),
+      onExiting: vi.fn(),
+      onExited: vi.fn(),
     };
     const renderFn = (s) => <div data-testid="status">{s}</div>;
     render(

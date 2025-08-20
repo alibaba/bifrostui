@@ -282,12 +282,12 @@ export default () => {
 
 ### AvatarGroup
 
-| 全局变量                              | 说明           | 默认值                               |
-| ------------------------------------- | -------------- | ------------------------------------ |
-| --bui-avatar-group-xsmall-margin-left | 迷你头像组间距 | `-5px`                               |
-| --bui-avatar-group-small-margin-left  | 小头像组间距   | `-9px`                               |
-| --bui-avatar-group-small-box-shadow   | 小头像组阴影   | `0 0 0 1px var(--bui-color-bg-view)` |
-| --bui-avatar-group-medium-margin-left | 中头像组间距   | `-13px`                              |
-| --bui-avatar-group-medium-box-shadow  | 中头像组阴影   | `0 0 0 2px var(--bui-color-bg-view)` |
-| --bui-avatar-group-large-margin-left  | 大头像组间距   | `-21px`                              |
-| --bui-avatar-group-large-box-shadow   | 大头像组阴影   | `0 0 0 3px var(--bui-color-bg-view)` |
+| 全局变量                             | 说明           | 默认值                               |
+| ------------------------------------ | -------------- | ------------------------------------ |
+| --bui-avatar-group-xsmall-margin     | 迷你头像组间距 | `0 0 0 -5px`                         |
+| --bui-avatar-group-small-margin      | 小头像组间距   | `0 0 0 -9px`                         |
+| --bui-avatar-group-small-box-shadow  | 小头像组阴影   | `0 0 0 1px var(--bui-color-bg-view)` |
+| --bui-avatar-group-medium-margin     | 中头像组间距   | `0 0 0-13px`                         |
+| --bui-avatar-group-medium-box-shadow | 中头像组阴影   | `0 0 0 2px var(--bui-color-bg-view)` |
+| --bui-avatar-group-large-margin      | 大头像组间距   | `0 0 0 -21px`                        |
+| --bui-avatar-group-large-box-shadow  | 大头像组阴影   | `0 0 0 3px var(--bui-color-bg-view)` |

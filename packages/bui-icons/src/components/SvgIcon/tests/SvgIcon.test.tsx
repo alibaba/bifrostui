@@ -63,7 +63,9 @@ describe('SvgIcon', () => {
       children:
         '<path d="M48 20c2.2 0 4 1.8 4 4v20h20c2.2 0 4 1.8 4 4s-1.8 4-4 4H52v20c0 2.2-1.8 4-4 4s-4-1.8-4-4V52H24c-2.2 0-4-1.8-4-4s1.8-4 4-4h20V24c0-2.2 1.8-4 4-4z"/>',
     };
-    jest.spyOn(console, 'warn').mockImplementation();
+    vi.spyOn(console, 'warn').mockImplementation(() => {
+      // 空实现
+    });
     render(<SvgIcon {...props} data-testid="test-icon" />);
     expect(screen.getByTestId('test-icon').nodeName).toEqual('DIV');
   });

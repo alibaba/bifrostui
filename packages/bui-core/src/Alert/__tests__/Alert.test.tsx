@@ -3,7 +3,6 @@ import { render, isConformant, userEvent, screen } from 'testing';
 import Alert from '../Alert';
 
 describe('Alert', () => {
-  const originalModule = jest.requireActual('@bifrostui/utils');
   isConformant({
     Component: Alert,
     displayName: 'BuiAlert',
@@ -48,22 +47,28 @@ describe('Alert', () => {
       expect(container).toHaveTextContent('close');
     });
     it('should render icon current in miniapp', async () => {
-      jest.resetModules();
-      jest.doMock('@bifrostui/utils', () => ({
-        ...originalModule,
-        isMini: true,
-      }));
+      vi.resetModules();
+      vi.doMock('@bifrostui/utils', async () => {
+        const actual = await vi.importActual('@bifrostui/utils');
+        return {
+          ...actual,
+          isMini: true,
+        };
+      });
       const { default: MiniAlert } = await import('../index');
       const component = <MiniAlert>warning alert!!</MiniAlert>;
       const { container } = render(component);
       expect(container.querySelector('.bui-alert-default-icon')).toBeTruthy();
     });
     it('should render icon color current in miniapp', async () => {
-      jest.resetModules();
-      jest.doMock('@bifrostui/utils', () => ({
-        ...originalModule,
-        isMini: true,
-      }));
+      vi.resetModules();
+      vi.doMock('@bifrostui/utils', async () => {
+        const actual = await vi.importActual('@bifrostui/utils');
+        return {
+          ...actual,
+          isMini: true,
+        };
+      });
       const { default: MiniAlert } = await import('../index');
       const component = <MiniAlert color="success">warning alert!!</MiniAlert>;
       const { container } = render(component);
@@ -82,10 +87,10 @@ describe('Alert', () => {
   });
 
   describe('action', () => {
-    it('should close alert when click close', () => {
-      const onClose = jest.fn();
+    it('should close alert when click close', async () => {
+      const onClose = vi.fn();
       render(<Alert onClose={onClose}>warning alert!!</Alert>);
-      userEvent.click(document.querySelector('.bui-alert-action'));
+      await userEvent.click(document.querySelector('.bui-alert-action'));
       expect(onClose).toHaveBeenCalled();
     });
     it('should render action current', () => {

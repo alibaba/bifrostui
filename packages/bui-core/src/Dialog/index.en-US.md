@@ -358,16 +358,16 @@ Parameters accepted by `Dialog.prompt` are the same as those for `Dialog.confirm
 
 ### Style Variables
 
-| Property                         | Description                          | Default Value                 | Global Variables                            |
-| -------------------------------- | ------------------------------------ | ----------------------------- | ------------------------------------------- |
-| --max-width                      | Dialog maximum width                 | 300px                         | --bui-dialog-max-width                      |
-| --border-radius                  | Dialog border radius                 | --bui-shape-radius-drawer     | --bui-dialog-border-radius                  |
-| --title-padding                  | Header padding                       | 0 40px 9px                    | --bui-dialog-title-padding                  |
-| --desc-padding                   | Message padding                      | 0 24px                        | --bui-dialog-desc-padding                   |
-| --footer-margin-top              | Footer top margin                    | 15px                          | --bui-dialog-footer-margin-top              |
-| --button-height                  | Button height                        | 53px                          | --bui-dialog-button-height                  |
-| --button-line-height             | Button line height                   | 25px                          | --bui-dialog-button-line-height             |
-| --button-padding                 | Button padding                       | 12px 0 13px                   | --bui-dialog-button-padding                 |
-| --button-font-size               | Button font size                     | 17px                          | --bui-dialog-button-font-size               |
-| --button-border-left             | Button left border                   | 1px solid rgba(0, 0, 0, 0.05) | --bui-dialog-button-border-left             |
-| --button-active-background-color | Button active state background color | rgba(54, 57, 64, 0.05)        | --bui-dialog-button-active-background-color |
+| Property                         | Description                          | Default Value                 | Global Variables                    |
+| -------------------------------- | ------------------------------------ | ----------------------------- | ----------------------------------- |
+| --max-width                      | Dialog maximum width                 | 300px                         | --bui-dialog-max-width              |
+| --border-radius                  | Dialog border radius                 | --bui-shape-radius-drawer     | --bui-dialog-border-radius          |
+| --title-padding                  | Header padding                       | 0 40px 9px                    | --bui-dialog-title-padding          |
+| --desc-padding                   | Message padding                      | 0 24px                        | --bui-dialog-desc-padding           |
+| --footer-margin-top              | Footer top margin                    | 15px                          | --bui-dialog-footer-margin          |
+| --button-height                  | Button height                        | 53px                          | --bui-dialog-button-height          |
+| --button-line-height             | Button line height                   | 25px                          | --bui-dialog-button-line-height     |
+| --button-padding                 | Button padding                       | 12px 0 13px                   | --bui-dialog-button-padding         |
+| --button-font-size               | Button font size                     | 17px                          | --bui-dialog-button-font-size       |
+| --button-border-left             | Button left border                   | 1px solid rgba(0, 0, 0, 0.05) | --bui-dialog-button-border-left     |
+| --button-active-background-color | Button active state background color | rgba(54, 57, 64, 0.05)        | --bui-dialog-button-active-bg-color |

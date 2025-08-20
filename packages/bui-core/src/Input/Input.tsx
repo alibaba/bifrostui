@@ -10,7 +10,7 @@ const prefixCls = 'bui-input';
 const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
   const {
     className,
-    defaultValue = '',
+    defaultValue,
     value,
     inputProps,
     inputRef,

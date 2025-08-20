@@ -10,8 +10,8 @@ const Switch = forwardRef<HTMLDivElement, SwitchProps>(
   (
     {
       className,
-      checked,
-      defaultChecked,
+      checked = false,
+      defaultChecked = false,
       inputProps,
       inputRef,
       name,

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Slider should render with default properties 1`] = `
+exports[`Slider > should render with default properties 1`] = `
 <div
   class="bui-slider"
 >

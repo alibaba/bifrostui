@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom/vitest';
 import { render } from '@testing-library/react';
 import * as React from 'react';
 import path from 'path';
@@ -122,19 +122,35 @@ export const snapshotTest = async (componentName) => {
     }
     const snapshot = (index) => {
       return new Promise((resolve) => {
-        import(`./snapshot.${componentName}${index}`)
-          .then((component) => {
-            const Component = component.default;
-            const renderer = ReactTestRenderer.create(<Component />).toJSON();
-            expect(renderer).toMatchSnapshot();
+        try {
+          // 使用动态 import，但需要确保路径是绝对路径
+          const snapshotPath = path.resolve(__dirname, `./snapshot.${componentName}${index}.tsx`);
+          import(snapshotPath)
+            .then((component) => {
+              const Component = component.default;
+              const renderer = ReactTestRenderer.create(<Component />).toJSON();
+              expect(renderer).toMatchSnapshot();
+              fs.unlinkSync(`./tests/snapshot.${componentName}${index}.tsx`);
+              resolve(true);
+            })
+            .catch((err) => {
+              console.log(err, 'err');
+              try {
+                fs.unlinkSync(`./tests/snapshot.${componentName}${index}.tsx`);
+              } catch (unlinkErr) {
+                // 忽略删除文件时的错误
+              }
+              resolve(true);
+            });
+        } catch (err) {
+          console.log(err, 'err');
+          try {
             fs.unlinkSync(`./tests/snapshot.${componentName}${index}.tsx`);
-            resolve(true);
-          })
-          .catch((err) => {
-            console.log(err, 'err');
-            fs.unlinkSync(`./tests/snapshot.${componentName}${index}.tsx`);
-            resolve(true);
-          });
+          } catch (unlinkErr) {
+            // 忽略删除文件时的错误
+          }
+          resolve(true);
+        }
       });
     };
     it(`${componentName} demo snapshot ${fileIndex}`, async () => {
@@ -191,27 +207,27 @@ export const getMdDemoCodes = (
     // console.log(demofiles, 'demofiles12');
     // eslint-disable-next-line no-restricted-syntax
     for (const [index, item] of demofiles.entries()) {
-      // 读取每个文件中导出的default
-      // eslint-disable-next-line import/no-dynamic-require, global-require
-      const demo = require(item);
-      const Component = demo.default;
-      // 取出文件名字取出后缀作为componentDemoName
-      const componentDemoName = `${componentName}_${path.basename(item).replace('.tsx', '')}`;
-      // console.log(Component, 'Component', index, componentDemoName);
-      // 调用callback，传入Component
-      callback({
-        demoComponent: Component,
-        demoComponentName: componentDemoName,
-        demoComponentIndex: index,
-        demoTotal: demofiles.length,
-        finishCallback: (finishIndex = 0) => {
-          // console.log('finishCallback running.......', finishIndex);
-          if (finishIndex === demofiles.length - 1) {
-            // 删除tempDemos文件夹
-            fs.rmdirSync(tempDemoPath, { recursive: true });
-          }
-        },
-      });
+       // 取出文件名字取出后缀作为componentDemoName
+       const componentDemoName = `${componentName}_${path.basename(item).replace('.tsx', '')}`;
+
+       // 同步创建测试用例，但异步加载组件
+       callback({
+         demoComponent: () => {
+           // 使用动态 import，但需要确保路径是绝对路径
+           const absolutePath = path.resolve(item);
+           return import(absolutePath).then((demo) => demo.default);
+         },
+         demoComponentName: componentDemoName,
+         demoComponentIndex: index,
+         demoTotal: demofiles.length,
+         finishCallback: (finishIndex = 0) => {
+           console.log('finishCallback running.......', finishIndex);
+           if (finishIndex === demofiles.length - 1) {
+             // 删除tempDemos文件夹
+             fs.rmSync(tempDemoPath, { recursive: true });
+           }
+         },
+       });
     }
   });
 };

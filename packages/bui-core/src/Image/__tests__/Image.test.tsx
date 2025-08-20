@@ -60,7 +60,7 @@ describe('Image', () => {
     expect(screen.getByTestId('test-placeholder'));
   });
   it('should call onLoad callback', async () => {
-    const onLoad = jest.fn();
+    const onLoad = vi.fn();
     render(
       <Image
         src={src}
@@ -74,32 +74,32 @@ describe('Image', () => {
     expect(onLoad).toHaveBeenCalled();
   });
   it('should call onError callback', async () => {
-    const onLoad = jest.fn();
+    const onError = vi.fn();
     render(
       <Image
         src={src}
         fit="contain"
         width={100}
         height={100}
-        onError={onLoad}
+        onError={onError}
       />,
     );
     fireEvent.error(screen.getByRole('img'));
-    expect(onLoad).toHaveBeenCalled();
+    expect(onError).toHaveBeenCalled();
   });
   it('should call onClick', async () => {
-    const onLoad = jest.fn();
+    const onClick = vi.fn();
     render(
       <Image
         src={src}
         fit="contain"
         width={100}
         height={100}
-        onClick={onLoad}
+        onClick={onClick}
       />,
     );
-    userEvent.click(screen.getByRole('img'));
-    expect(onLoad).toHaveBeenCalled();
+    await userEvent.click(screen.getByRole('img'));
+    expect(onClick).toHaveBeenCalled();
   });
   it('supports vanilla lazyload', async () => {
     global.HTMLImageElement.prototype.loading = 'eager';

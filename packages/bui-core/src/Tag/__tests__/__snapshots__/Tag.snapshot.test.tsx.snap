@@ -1,10 +1,10 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Tag snapshot Tag demo snapshot 0 1`] = `
+exports[`Tag snapshot > Tag demo snapshot 0 1`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "row",
       "--flex-wrap": "nowrap",
@@ -15,30 +15,30 @@ exports[`Tag snapshot Tag demo snapshot 0 1`] = `
 >
   <div
     className="bui-tag bui-tag-outlined bui-tag-neutral"
-    style={Object {}}
+    style={{}}
   >
     默认标签
   </div>
   <div
     className="bui-tag bui-tag-contained bui-tag-neutral"
-    style={Object {}}
+    style={{}}
   >
     填充标签
   </div>
   <div
     className="bui-tag bui-tag-subtle bui-tag-neutral"
-    style={Object {}}
+    style={{}}
   >
     浅亮标签
   </div>
 </div>
 `;
 
-exports[`Tag snapshot Tag demo snapshot 0 2`] = `
+exports[`Tag snapshot > Tag demo snapshot 0 2`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -53,7 +53,7 @@ exports[`Tag snapshot Tag demo snapshot 0 2`] = `
   <div
     className="bui-stack"
     style={
-      Object {
+      {
         "--align-items": "center",
         "--flex-direction": "row",
         "--flex-wrap": "nowrap",
@@ -64,49 +64,49 @@ exports[`Tag snapshot Tag demo snapshot 0 2`] = `
   >
     <div
       className="bui-tag bui-tag-outlined bui-tag-primary"
-      style={Object {}}
+      style={{}}
     >
       限时特价
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       音乐剧
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-success"
-      style={Object {}}
+      style={{}}
     >
       音乐剧
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-warning"
-      style={Object {}}
+      style={{}}
     >
       点映
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-danger"
-      style={Object {}}
+      style={{}}
     >
       限时优惠
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-light"
-      style={Object {}}
+      style={{}}
     >
       优惠
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-dark"
-      style={Object {}}
+      style={{}}
     >
       优惠
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-vip"
-      style={Object {}}
+      style={{}}
     >
       会员
     </div>
@@ -114,7 +114,7 @@ exports[`Tag snapshot Tag demo snapshot 0 2`] = `
   <div
     className="bui-stack"
     style={
-      Object {
+      {
         "--align-items": "center",
         "--flex-direction": "row",
         "--flex-wrap": "nowrap",
@@ -125,49 +125,49 @@ exports[`Tag snapshot Tag demo snapshot 0 2`] = `
   >
     <div
       className="bui-tag bui-tag-contained bui-tag-primary"
-      style={Object {}}
+      style={{}}
     >
       早鸟优惠
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       音乐剧
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-success"
-      style={Object {}}
+      style={{}}
     >
       影城卡
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-warning"
-      style={Object {}}
+      style={{}}
     >
       点映
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-danger"
-      style={Object {}}
+      style={{}}
     >
       限时优惠
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-light"
-      style={Object {}}
+      style={{}}
     >
       优惠
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-dark"
-      style={Object {}}
+      style={{}}
     >
       优惠
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-vip"
-      style={Object {}}
+      style={{}}
     >
       会员
     </div>
@@ -175,7 +175,7 @@ exports[`Tag snapshot Tag demo snapshot 0 2`] = `
   <div
     className="bui-stack"
     style={
-      Object {
+      {
         "--align-items": "center",
         "--flex-direction": "row",
         "--flex-wrap": "nowrap",
@@ -186,49 +186,49 @@ exports[`Tag snapshot Tag demo snapshot 0 2`] = `
   >
     <div
       className="bui-tag bui-tag-subtle bui-tag-primary"
-      style={Object {}}
+      style={{}}
     >
       早鸟优惠
     </div>
     <div
       className="bui-tag bui-tag-subtle bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       音乐剧
     </div>
     <div
       className="bui-tag bui-tag-subtle bui-tag-success"
-      style={Object {}}
+      style={{}}
     >
       影城卡
     </div>
     <div
       className="bui-tag bui-tag-subtle bui-tag-warning"
-      style={Object {}}
+      style={{}}
     >
       点映
     </div>
     <div
       className="bui-tag bui-tag-subtle bui-tag-danger"
-      style={Object {}}
+      style={{}}
     >
       限时优惠
     </div>
     <div
       className="bui-tag bui-tag-subtle bui-tag-light"
-      style={Object {}}
+      style={{}}
     >
       优惠
     </div>
     <div
       className="bui-tag bui-tag-subtle bui-tag-dark"
-      style={Object {}}
+      style={{}}
     >
       优惠
     </div>
     <div
       className="bui-tag bui-tag-subtle bui-tag-vip"
-      style={Object {}}
+      style={{}}
     >
       会员
     </div>
@@ -236,11 +236,11 @@ exports[`Tag snapshot Tag demo snapshot 0 2`] = `
 </div>
 `;
 
-exports[`Tag snapshot Tag demo snapshot 0 3`] = `
+exports[`Tag snapshot > Tag demo snapshot 0 3`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "column",
       "--flex-wrap": "nowrap",
@@ -252,7 +252,7 @@ exports[`Tag snapshot Tag demo snapshot 0 3`] = `
   <div
     className="bui-tag bui-tag-contained bui-tag-neutral"
     style={
-      Object {
+      {
         "backgroundColor": "#69eeff",
       }
     }
@@ -262,7 +262,7 @@ exports[`Tag snapshot Tag demo snapshot 0 3`] = `
   <div
     className="bui-tag bui-tag-subtle bui-tag-neutral"
     style={
-      Object {
+      {
         "backgroundColor": "rgba(105,238,255,0.3)",
         "color": "#69eeff",
       }
@@ -273,7 +273,7 @@ exports[`Tag snapshot Tag demo snapshot 0 3`] = `
   <div
     className="bui-tag bui-tag-outlined bui-tag-neutral"
     style={
-      Object {
+      {
         "borderColor": "rgba(105,238,255,0.4)",
         "color": "#69eeff",
       }
@@ -284,11 +284,11 @@ exports[`Tag snapshot Tag demo snapshot 0 3`] = `
 </div>
 `;
 
-exports[`Tag snapshot Tag demo snapshot 0 4`] = `
+exports[`Tag snapshot > Tag demo snapshot 0 4`] = `
 <div
   className="bui-stack"
   style={
-    Object {
+    {
       "--align-items": "center",
       "--flex-direction": "row",
       "--flex-wrap": "wrap",
@@ -302,13 +302,13 @@ exports[`Tag snapshot Tag demo snapshot 0 4`] = `
   >
     <div
       className="bui-tag bui-tag-contained bui-tag-primary"
-      style={Object {}}
+      style={{}}
     >
       primary
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
@@ -318,13 +318,13 @@ exports[`Tag snapshot Tag demo snapshot 0 4`] = `
   >
     <div
       className="bui-tag bui-tag-contained bui-tag-success"
-      style={Object {}}
+      style={{}}
     >
       success
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-warning"
-      style={Object {}}
+      style={{}}
     >
       warning
     </div>
@@ -334,13 +334,13 @@ exports[`Tag snapshot Tag demo snapshot 0 4`] = `
   >
     <div
       className="bui-tag bui-tag-outlined bui-tag-warning"
-      style={Object {}}
+      style={{}}
     >
       warning
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-success"
-      style={Object {}}
+      style={{}}
     >
       success
     </div>
@@ -350,13 +350,13 @@ exports[`Tag snapshot Tag demo snapshot 0 4`] = `
   >
     <div
       className="bui-tag bui-tag-outlined bui-tag-primary"
-      style={Object {}}
+      style={{}}
     >
       primary
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
@@ -366,19 +366,19 @@ exports[`Tag snapshot Tag demo snapshot 0 4`] = `
   >
     <div
       className="bui-tag bui-tag-contained bui-tag-primary"
-      style={Object {}}
+      style={{}}
     >
       primary
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
@@ -388,19 +388,19 @@ exports[`Tag snapshot Tag demo snapshot 0 4`] = `
   >
     <div
       className="bui-tag bui-tag-outlined bui-tag-primary"
-      style={Object {}}
+      style={{}}
     >
       primary
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
@@ -410,19 +410,19 @@ exports[`Tag snapshot Tag demo snapshot 0 4`] = `
   >
     <div
       className="bui-tag bui-tag-outlined bui-tag-primary"
-      style={Object {}}
+      style={{}}
     >
       primary
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
@@ -432,19 +432,19 @@ exports[`Tag snapshot Tag demo snapshot 0 4`] = `
   >
     <div
       className="bui-tag bui-tag-outlined bui-tag-primary"
-      style={Object {}}
+      style={{}}
     >
       primary
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
@@ -454,19 +454,19 @@ exports[`Tag snapshot Tag demo snapshot 0 4`] = `
   >
     <div
       className="bui-tag bui-tag-contained bui-tag-primary"
-      style={Object {}}
+      style={{}}
     >
       primary
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
@@ -476,19 +476,19 @@ exports[`Tag snapshot Tag demo snapshot 0 4`] = `
   >
     <div
       className="bui-tag bui-tag-contained bui-tag-primary"
-      style={Object {}}
+      style={{}}
     >
       primary
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
@@ -498,19 +498,19 @@ exports[`Tag snapshot Tag demo snapshot 0 4`] = `
   >
     <div
       className="bui-tag bui-tag-contained bui-tag-primary"
-      style={Object {}}
+      style={{}}
     >
       primary
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
     <div
       className="bui-tag bui-tag-outlined bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
@@ -520,19 +520,19 @@ exports[`Tag snapshot Tag demo snapshot 0 4`] = `
   >
     <div
       className="bui-tag bui-tag-outlined bui-tag-primary"
-      style={Object {}}
+      style={{}}
     >
       primary
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
     <div
       className="bui-tag bui-tag-contained bui-tag-info"
-      style={Object {}}
+      style={{}}
     >
       info
     </div>
@@ -542,7 +542,7 @@ exports[`Tag snapshot Tag demo snapshot 0 4`] = `
   >
     <div
       className="bui-tag bui-tag-outlined bui-tag-warning"
-      style={Object {}}
+      style={{}}
     >
       warning
     </div>

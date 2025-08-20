@@ -102,8 +102,8 @@ describe('TabBar', () => {
     expect(screen.getByText('20')).toBeTruthy();
     expect(document.querySelector('.bui-badge')).toBeTruthy();
   });
-  it('should pass value as part of event.target of change', () => {
-    const onChange = jest.fn((e, value) => value);
+  it('should pass value as part of event.target of change', async () => {
+    const onChange = vi.fn((e, value) => value);
     render(
       <TabBar activeColor="info" onChange={onChange}>
         <TabBarItem title="主页" icon={<HomeFilledIcon />} />
@@ -111,7 +111,8 @@ describe('TabBar', () => {
         <TabBarItem title="帮助" icon={<PhoneFilledIcon />} />
       </TabBar>,
     );
-    userEvent.click(screen.getByText('商店'));
-    expect(onChange).toReturnWith({ value: 1 });
+    await userEvent.click(screen.getByText('商店'));
+    expect(onChange).toHaveBeenCalled();
+    expect(onChange).toHaveReturnedWith({ value: 1 });
   });
 });

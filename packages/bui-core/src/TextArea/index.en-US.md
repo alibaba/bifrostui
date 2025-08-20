@@ -195,9 +195,9 @@ export default () => {
 | ------------------------- | --------------------------------------------------------- | ------------------------ | -------------------------------------- |
 | --border-radius           | Border radius                                             | --bui-shape-radius-label | --bui-textarea-border-radius           |
 | --width                   | Width                                                     | 100%                     | --bui-textarea-width                   |
-| --bg-color                | Background color of the textarea                          | --bui-color-bg-default   | --bui-textarea-background-color        |
+| --bg-color                | Background color of the textarea                          | --bui-color-bg-default   | --bui-textarea-bg-color                |
 | --text-color              | Text color of the textarea                                | --bui-color-fg-subtle    | --bui-textarea-text-color              |
-| --count-bg-color          | Background color of the count bar                         | --bui-color-bg-default   | --bui-textarea-background-color        |
+| --count-bg-color          | Background color of the count bar                         | --bui-color-bg-default   | --bui-textarea-bg-color                |
 | --count-text-color        | Text color of the count bar                               | --bui-color-fg-subtle    | --bui-textarea-count-color             |
 | --text-font-size          | Font size of the textarea                                 | --bui-text-size-2        | --bui-textarea-text-font-size          |
 | --count-font-size         | Font size of the count bar                                | --bui-title-size-3       | --bui-textarea-count-font-size         |

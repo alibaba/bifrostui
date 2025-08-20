@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`TextArea can auto size 1`] = `
+exports[`TextArea > can auto size 1`] = `
 <textarea
   class="bui-textarea-content"
   maxlength="-1"

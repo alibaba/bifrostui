@@ -6,15 +6,15 @@ import { SwipeActionRef } from '../SwipeAction.types';
 import { SideTypeEnum } from '../constants';
 
 describe('SwipeAction', () => {
-  // 在每个测试用例之前，启用Jest的假定时器
+  // 在每个测试用例之前，启用Vitest的假定时器
   beforeEach(() => {
-    jest.useFakeTimers(); // 启用Jest的假定时器
+    vi.useFakeTimers(); // 启用Vitest的假定时器
   });
 
   // 在每个测试用例之后，恢复真实定时器
   afterEach(() => {
-    jest.useRealTimers(); // 恢复真实定时器
-    jest.clearAllTimers();
+    vi.useRealTimers(); // 恢复真实定时器
+    vi.clearAllTimers();
   });
 
   beforeAll(() => {
@@ -59,11 +59,11 @@ describe('SwipeAction', () => {
       };
 
       fireEvent.touchStart(element, touchStartEvent);
-      jest.advanceTimersByTime(100); // 给动画时间
+      vi.advanceTimersByTime(100); // 给动画时间
       fireEvent.touchMove(element, touchMoveEndEvent);
-      jest.advanceTimersByTime(300); // 给动画时间
+      vi.advanceTimersByTime(300); // 给动画时间
       fireEvent.touchEnd(element, touchMoveEndEvent);
-      jest.advanceTimersByTime(500); // 等待状态更新
+      vi.advanceTimersByTime(500); // 等待状态更新
     });
   };
 
@@ -128,7 +128,7 @@ describe('SwipeAction', () => {
 
     // 测试滑动操作时调用onActionsReveal函数
     it('should call onActionsReveal when actions are revealed', async () => {
-      const onActionsReveal = jest.fn();
+      const onActionsReveal = vi.fn();
       const rightAction = (
         <SwipeActionItem key="right">Right Action</SwipeActionItem>
       );
@@ -172,7 +172,7 @@ describe('SwipeAction', () => {
         fireEvent.click(
           container.querySelector('.bui-swipe-action-content-mask'),
         );
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
         'transform: translate3d(0px, 0, 0)',
@@ -181,7 +181,7 @@ describe('SwipeAction', () => {
 
     // 测试滑动操作被禁用时，不调用onActionsReveal函数
     it('should not call onActionsReveal when swipe is disabled', async () => {
-      const onActionsReveal = jest.fn();
+      const onActionsReveal = vi.fn();
       const rightAction = (
         <SwipeActionItem key="right">Right Action</SwipeActionItem>
       );
@@ -205,7 +205,7 @@ describe('SwipeAction', () => {
 
     // 测试滑动未达到阈值时不触发动作
     it('should not trigger actions when swipe distance is below threshold', async () => {
-      const onActionsReveal = jest.fn();
+      const onActionsReveal = vi.fn();
       const rightAction = (
         <SwipeActionItem key="right">Right Action</SwipeActionItem>
       );
@@ -231,7 +231,7 @@ describe('SwipeAction', () => {
 
     // 测试滑动超过阈值后回弹
     it('should snap back when swipe distance is above threshold but not enough to open', async () => {
-      const onActionsReveal = jest.fn();
+      const onActionsReveal = vi.fn();
       const rightAction = (
         <SwipeActionItem key="right">Right Action</SwipeActionItem>
       );
@@ -282,7 +282,7 @@ describe('SwipeAction', () => {
       );
       await act(async () => {
         fireEvent.click(container.querySelector('.bui-swipe-action-item'));
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
         'transform: translate3d(0px, 0, 0)',
@@ -316,7 +316,7 @@ describe('SwipeAction', () => {
       );
       await act(async () => {
         fireEvent.click(container.querySelector('.bui-swipe-action-item'));
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
         'transform: translate3d(-62px, 0, 0)',
@@ -325,7 +325,7 @@ describe('SwipeAction', () => {
 
     // 测试点击滑动操作项时触发点击事件
     it('should trigger onClick event on action item click', async () => {
-      const onClick = jest.fn();
+      const onClick = vi.fn();
       const rightAction = (
         <SwipeActionItem key="right" onClick={onClick}>
           Right Action
@@ -347,7 +347,7 @@ describe('SwipeAction', () => {
       );
       await act(async () => {
         fireEvent.click(container.querySelector('.bui-swipe-action-item'));
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
       expect(onClick).toHaveBeenCalledWith(expect.any(Object), {
         color: 'primary',
@@ -402,7 +402,7 @@ describe('SwipeAction', () => {
       );
       await act(async () => {
         swipeActionRef.current.show({ side: SideTypeEnum.RIGHT });
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
         'transform: translate3d(-62px, 0, 0)',
@@ -422,7 +422,7 @@ describe('SwipeAction', () => {
       );
       await act(async () => {
         swipeActionRef.current.show({ side: SideTypeEnum.LEFT });
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
         'transform: translate3d(62px, 0, 0)',
@@ -442,14 +442,14 @@ describe('SwipeAction', () => {
       );
       await act(async () => {
         swipeActionRef.current.show({ side: SideTypeEnum.RIGHT });
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
         'transform: translate3d(-62px, 0, 0)',
       );
       await act(async () => {
         swipeActionRef.current.close();
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
       expect(container.querySelector('.bui-swipe-action-track')).toHaveStyle(
         'transform: translate3d(0px, 0, 0)',
@@ -470,12 +470,12 @@ describe('SwipeAction', () => {
       expect(swipeActionRef.current.open).toBe(false);
       await act(async () => {
         swipeActionRef.current.show({ side: SideTypeEnum.RIGHT });
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
       expect(swipeActionRef.current.open).toBe(true);
       await act(async () => {
         swipeActionRef.current.close();
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
       expect(swipeActionRef.current.open).toBe(false);
     });
