@@ -21,6 +21,7 @@ const Modal = React.forwardRef<HTMLDivElement, ViewProps & ModalProps>(
       disableScrollLock = false,
       hideBackdrop = false,
       onClose,
+      onClick,
       keepMounted,
       ...others
     } = props;
@@ -79,7 +80,13 @@ const Modal = React.forwardRef<HTMLDivElement, ViewProps & ModalProps>(
 
     return (
       <Portal container={container} disablePortal={disablePortal}>
-        <View catchMove={!disableScrollLock} {...rootProps}>
+        <View
+          catchMove={!disableScrollLock}
+          {...rootProps}
+          onClick={(event) => {
+            onClick?.(event);
+          }}
+        >
           {!hideBackdrop && <Backdrop {...backdropProps} />}
           {renderChildren()}
         </View>

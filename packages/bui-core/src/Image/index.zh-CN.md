@@ -126,6 +126,22 @@ export default () => {
         style={{ borderRadius: 4 }}
         fallback={<>MY FALLBACK</>}
       />
+      <Image
+        src="https://localhost:3000/failed"
+        fit="fill"
+        height={100}
+        style={{ borderRadius: 4 }}
+        fallback={
+          <Image
+            src={
+              'https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg'
+            }
+            fit="cover"
+            width={150}
+            height={150}
+          />
+        }
+      />
     </Stack>
   );
 };
