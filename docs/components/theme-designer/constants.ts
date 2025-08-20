@@ -1,6 +1,10 @@
-/**
- * 选用主题模式
- */
+import {
+  defaultLight,
+  dmLight,
+  pioneerLight,
+} from '@bifrostui/styles/registry';
+
+// 选用主题模式
 export enum THEME_MODE {
   // 使用内置主题
   BUILTIN = 'builtin',
@@ -8,9 +12,7 @@ export enum THEME_MODE {
   CUSTOM = 'custom',
 }
 
-/**
- * css 变量类型
- */
+// css 变量类型
 export enum VARS_TYPE {
   // 通用变量
   COMMON = 'common',
@@ -42,9 +44,17 @@ export const THEME_ROOT_SELECTOR =
   ":root, [data-color-mode='light'][data-theme]";
 
 export const builtinThemes = [
-  { text: '默认', value: BUILTIN_THEME.DEFAULT },
-  { text: '大麦', value: BUILTIN_THEME.DM },
-  { text: '活力橙', value: BUILTIN_THEME.PIONEER },
+  {
+    text: '默认',
+    value: BUILTIN_THEME.DEFAULT,
+    themeData: defaultLight,
+  },
+  { text: '大麦', value: BUILTIN_THEME.DM, themeData: dmLight },
+  {
+    text: '活力橙',
+    value: BUILTIN_THEME.PIONEER,
+    themeData: pioneerLight,
+  },
 ];
 
 export const tabList = [

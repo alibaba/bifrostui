@@ -30,6 +30,7 @@
     "ui:test": "dumi dev & chmod +x ./scripts/ui-test.sh &&  ./scripts/ui-test.sh",
     "ci:eslint": "pnpm run lint:script -f json -o ./.ci/eslint.json",
     "generate:mini:files": "node scripts/mini-program-site/generateMiniFiles.js",
+    "generate:theme:demo": "node scripts/generate-theme-demo/index.mjs",
     "lint": "pnpm run lint:script && pnpm run lint:style",
     "lint:script": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
     "lint:style": "stylelint ./**/*.less",
@@ -48,7 +49,9 @@
     "@bifrostui/icons": "workspace:*",
     "@bifrostui/react": "workspace:*",
     "@bifrostui/styles": "workspace:*",
-    "backstopjs": "^6.3.25"
+    "backstopjs": "^6.3.25",
+    "react-color": "^2.19.3",
+    "dayjs": "^1.11.7"
   },
   "devDependencies": {
     "@ant-design/icons-svg": "4.4.2",

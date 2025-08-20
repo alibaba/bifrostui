@@ -1,6 +1,7 @@
 websites
 scripts
 coverage
+**/canvas-demos/**
 node_modules
 dist
 **/es/**
