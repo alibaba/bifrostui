@@ -79,7 +79,7 @@ describe('ListItem', () => {
         <List>
           <ListItem
             onClick={() => {
-              console.log('test');
+              // console.log('test');
             }}
           >
             test
@@ -94,20 +94,20 @@ describe('ListItem', () => {
     });
   });
   describe('prop: disabled', () => {
-    it('could click default', () => {
-      const onClick = jest.fn();
+    it('could click default', async () => {
+      const onClick = vi.fn();
       render(
         <List>
           <ListItem onClick={onClick}>list-item</ListItem>
         </List>,
       );
 
-      userEvent.click(screen.getByText(/list-item/));
+      await userEvent.click(screen.getByText(/list-item/));
       expect(onClick).toHaveBeenCalled();
     });
     it('could not click when it is disabled', () => {
-      const onClick = jest.fn(() => {
-        console.log('成功点击List');
+      const onClick = vi.fn(() => {
+        // console.log('成功点击List');
       });
       const { container } = render(
         <List>

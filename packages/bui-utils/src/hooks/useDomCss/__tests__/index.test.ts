@@ -3,18 +3,18 @@ import { renderHook } from '@testing-library/react-hooks';
 import useDomCss from '../index'; // 根据实际路径调整这里的导入
 
 // 模拟`@bifrostui/utils`中的useDomReadied
-jest.mock('@bifrostui/utils', () => ({
-  useDomReady: jest.fn((cb) => cb()),
+vi.mock('@bifrostui/utils', () => ({
+  useDomReady: vi.fn((cb) => cb()),
 }));
 
 beforeEach(() => {
-  jest
-    .spyOn(window, 'getComputedStyle')
-    .mockImplementation(() => ({ color: 'black' }) as any);
+  vi.spyOn(window, 'getComputedStyle').mockImplementation(
+    () => ({ color: 'black' }) as CSSStyleDeclaration,
+  );
 });
 
 afterEach(() => {
-  jest.restoreAllMocks();
+  vi.restoreAllMocks();
 });
 
 describe('useDomCss', () => {
@@ -23,7 +23,7 @@ describe('useDomCss', () => {
 
   it('should get computed CSS values and invoke callback with results', () => {
     const computedStyle = ['color'];
-    const mockCallback = jest.fn();
+    const mockCallback = vi.fn();
 
     renderHook(() => useDomCss(mockTarget, computedStyle, mockCallback));
 

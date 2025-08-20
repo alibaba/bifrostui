@@ -11,16 +11,16 @@ describe('Toast', () => {
 
   beforeEach(() => {
     document.body.innerHTML = '';
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     renderHook(() => {
       toastHook = Toast.useToast();
     });
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
-    jest.clearAllMocks();
+    vi.clearAllTimers();
+    vi.useRealTimers();
+    vi.clearAllMocks();
   });
 
   it('should render in document body', () => {
@@ -95,9 +95,9 @@ describe('Toast', () => {
       </Button>,
     );
     fireEvent.click(getByTestId('emit-button'));
-    toast.close();
     await act(async () => {
-      await jest.runAllTimers();
+      toast.close();
+      await vi.runAllTimers();
     });
     expect(
       document.body.querySelector(`.${rootClass}`),
@@ -305,7 +305,7 @@ describe('Toast', () => {
   });
 
   it('should call onClose when Toast hidden', async () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     const { getByTestId } = render(
       <Button
         data-testid="emit-button"
@@ -321,7 +321,7 @@ describe('Toast', () => {
     );
     fireEvent.click(getByTestId('emit-button'));
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     expect(fn).toBeCalled();
   });
@@ -368,7 +368,7 @@ describe('Toast', () => {
     expect(document.body.innerHTML.split('提示内容').length - 1).toBe(2);
     fireEvent.click(getByTestId('emit-button3'));
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     expect(document.body.innerHTML.includes('提示内容')).toBeFalsy();
   });
@@ -415,7 +415,7 @@ describe('Toast', () => {
         expect(document.body.innerHTML.split('提示内容').length - 1).toBe(2);
         fireEvent.click(screen.getByText('button three'));
         await act(async () => {
-          await jest.runAllTimers();
+          await vi.runAllTimers();
         });
         expect(document.body.innerHTML.includes('提示内容')).toBeFalsy();
       } else {

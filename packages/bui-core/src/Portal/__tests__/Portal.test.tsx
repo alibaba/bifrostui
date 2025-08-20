@@ -96,7 +96,7 @@ describe('Portal', () => {
   });
 
   it('test onRootElementMouted props', () => {
-    const onRootElementMouted = jest.fn();
+    const onRootElementMouted = vi.fn();
     const containerRef = React.createRef<HTMLDivElement>();
     render(
       <>

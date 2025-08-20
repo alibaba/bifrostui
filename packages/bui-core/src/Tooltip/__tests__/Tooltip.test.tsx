@@ -39,7 +39,7 @@ describe('Tooltip', () => {
   // });
 
   it('test open props', async () => {
-    const onOpenChange = jest.fn();
+    const onOpenChange = vi.fn();
     render(
       <Tooltip title="This is a tooltip2" open onOpenChange={onOpenChange}>
         <div data-testid="tooltipTestid">children</div>
@@ -71,7 +71,7 @@ describe('Tooltip', () => {
   });
 
   it('test trigger onOpenChange props', async () => {
-    const onOpenChange = jest.fn();
+    const onOpenChange = vi.fn();
     render(
       <Tooltip
         title="This is a tooltip4"
@@ -82,17 +82,14 @@ describe('Tooltip', () => {
         <div data-testid="tooltipTestid">children</div>
       </Tooltip>,
     );
-    await act(async () => {
-      const $childrenDom = screen.getByTestId('tooltipTestid');
-      setTimeout(() => {
-        userEvent.click($childrenDom);
-        expect(onOpenChange).toHaveBeenCalled();
-      }, 100);
-    });
+
+    const $childrenDom = screen.getByTestId('tooltipTestid');
+    await userEvent.click($childrenDom);
+    expect(onOpenChange).toHaveBeenCalled();
   });
 
   it('test trigger click anywhere hide props', async () => {
-    const onOpenChange = jest.fn();
+    const onOpenChange = vi.fn();
     render(
       <Tooltip
         title="This is a tooltip4"
@@ -103,16 +100,13 @@ describe('Tooltip', () => {
         <div data-testid="tooltipTestid">children</div>
       </Tooltip>,
     );
-    await act(async () => {
-      setTimeout(() => {
-        userEvent.click(document.body);
-        expect(onOpenChange).toHaveBeenCalled();
-      }, 100);
-    });
+
+    await userEvent.click(document.body);
+    expect(onOpenChange).toHaveBeenCalled();
   });
 
   it('test trigger hover onOpenChange props', async () => {
-    const onOpenChange = jest.fn();
+    const onOpenChange = vi.fn();
     render(
       <Tooltip
         title="This is a tooltip4"
@@ -207,7 +201,7 @@ describe('Tooltip', () => {
 
   // 新增测试：修复后的 trigger 逻辑 - hover 不应该监听全局点击
   it('test trigger hover should not hide on global click', async () => {
-    const onOpenChange = jest.fn();
+    const onOpenChange = vi.fn();
     render(
       <Tooltip
         title="Hover tooltip"
@@ -238,7 +232,26 @@ describe('Tooltip', () => {
 
   // 新增测试：混合 trigger 时的全局点击行为
   it('test mixed trigger with click should hide on global click', async () => {
-    const onOpenChange = jest.fn();
+    const onOpenChange = vi.fn();
+
+    // Mock getBoundingClientRect 来确保 Tooltip 能正确显示
+    const mockGetBoundingClientRect = vi.fn().mockReturnValue({
+      width: 100,
+      height: 50,
+      top: 10,
+      left: 0,
+      right: 100,
+      bottom: 50,
+    });
+    Object.defineProperty(
+      window.HTMLElement.prototype,
+      'getBoundingClientRect',
+      {
+        configurable: true,
+        value: mockGetBoundingClientRect,
+      },
+    );
+
     render(
       <Tooltip
         title="Mixed trigger tooltip"
@@ -253,29 +266,38 @@ describe('Tooltip', () => {
 
     // 点击显示
     await act(async () => {
-      userEvent.click($childrenDom);
+      fireEvent.click($childrenDom);
     });
+
+    // 验证 onOpenChange 被调用
     expect(onOpenChange).toHaveBeenCalledWith(expect.any(Object), {
       open: true,
     });
 
     // 全局点击应该隐藏（因为包含 click trigger）
     await act(async () => {
-      userEvent.click(document.body);
+      // 使用 fireEvent 而不是 userEvent 来避免递归调用
+      fireEvent.click(document.body);
     });
-    expect(onOpenChange).toHaveBeenCalledWith(expect.any(Object), {
+
+    // 检查 onOpenChange 至少被调用2次（显示和隐藏）
+    expect(onOpenChange).toHaveBeenCalledTimes(2);
+
+    // 验证最后一次调用是隐藏
+    expect(onOpenChange).toHaveBeenLastCalledWith(expect.any(Object), {
       open: false,
     });
-    expect(onOpenChange).toHaveBeenCalledTimes(2);
   });
 
   // 新增测试：children 必须是有效的 React 元素
   it('test invalid children warning', () => {
-    const consoleSpy = jest.spyOn(console, 'warn').mockImplementation();
+    const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {
+      // 空实现
+    });
 
     render(
       <Tooltip title="Test tooltip" defaultOpen>
-        {'Invalid children' as any}
+        {'Invalid children' as unknown as React.ReactElement}
       </Tooltip>,
     );
 
@@ -314,7 +336,7 @@ describe('Tooltip', () => {
 
   it('renders correctly', () => {
     // mock位置
-    const mockGetBoundingClientRect = jest.fn().mockReturnValue({
+    const mockGetBoundingClientRect = vi.fn().mockReturnValue({
       width: 100,
       height: 50,
       top: 10,
@@ -341,7 +363,7 @@ describe('Tooltip', () => {
 
   it('renders correctly offset cacl topCenter', () => {
     // mock位置
-    const mockGetBoundingClientRect = jest.fn().mockReturnValue({
+    const mockGetBoundingClientRect = vi.fn().mockReturnValue({
       width: 100,
       height: 50,
       top: 10,
@@ -375,7 +397,7 @@ describe('Tooltip', () => {
 
   it('renders correctly offset cacl leftCenter', () => {
     // mock位置
-    const mockGetBoundingClientRect = jest.fn().mockReturnValue({
+    const mockGetBoundingClientRect = vi.fn().mockReturnValue({
       width: 100,
       height: 50,
       top: 10,

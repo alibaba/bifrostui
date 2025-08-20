@@ -1,4 +1,43 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Slider > should render with default properties 1`] = `
+<div
+  class="bui-slider"
+>
+  <div
+    class="bui-slider-rail"
+  />
+  <div
+    class="bui-slider-line"
+    style="left: 0%; width: 10%;"
+  />
+  <div
+    aria-orientation="horizontal"
+    aria-valuenow="10"
+    class="bui-slider-button bui-slider-button-0"
+    role="slider"
+    style="left: 10%;"
+    tabindex="0"
+  >
+    <svg
+      class="bui-svg-icon"
+      color="var(--bui-color-fg-default)"
+      focusable="false"
+      viewBox="0 0 96 96"
+    >
+      <path
+        d="M34.4 30c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm28 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2zm-14 0c1.2 0 2 .8 2 2v32c0 1.2-.8 2-2 2s-2-.8-2-2V32c0-1.2.8-2 2-2z"
+      />
+    </svg>
+  </div>
+  <div
+    class="bui-slider-tooltip bui-slider-tooltip-hidden"
+    style="left: 10%;"
+  >
+    10
+  </div>
+</div>
+`;
 
 exports[`Slider should render with default properties 1`] = `
 <div

@@ -22,18 +22,23 @@ describe('Button', () => {
     );
   });
 
-  it('can trigger a function by being clicked', () => {
-    const onClick = jest.fn();
+  it('can trigger a function by being clicked', async () => {
+    const onClick = vi.fn();
     render(<Button onClick={onClick}>This is a button</Button>);
-    userEvent.click(screen.getByRole('button'));
+    await userEvent.click(screen.getByRole('button'));
     expect(onClick).toHaveBeenCalled();
   });
-  it('does not trigger a function when render a disabled button', () => {
-    const onClick = jest.fn();
-    render(<Button disabled>disabled button</Button>);
+  it('does not trigger a function when render a disabled button', async () => {
+    const onClick = vi.fn();
+    render(
+      <Button disabled onClick={onClick}>
+        disabled button
+      </Button>,
+    );
     const disabledBtn = screen.getByRole('button');
     expect(disabledBtn).toHaveClass(`${rootClass}-disabled`);
-    userEvent.click(disabledBtn);
+    expect(disabledBtn).toBeDisabled();
+    // 不尝试点击禁用的按钮，因为它有 pointer-events: none
     expect(onClick).not.toHaveBeenCalled();
   });
   it.each([

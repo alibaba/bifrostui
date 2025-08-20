@@ -7,12 +7,12 @@ describe('Calendar', () => {
   const rootClass = 'bui-calendar';
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
   });
 
   isConformant({
@@ -138,7 +138,7 @@ describe('Calendar', () => {
   });
 
   it('should render week item by `weekRender` property', () => {
-    const fakeWeekItemRender = jest.fn((item) => (
+    const fakeWeekItemRender = vi.fn((item) => (
       <span className="week-custom-item" key={item}>
         周{item}
       </span>
@@ -158,7 +158,7 @@ describe('Calendar', () => {
   });
 
   it('should be called when change prev month', () => {
-    const fakeMonthChange = jest.fn((e, data) => data.type);
+    const fakeMonthChange = vi.fn((e, data) => data.type);
     const { container } = render(
       <Calendar
         mode="single"
@@ -174,7 +174,7 @@ describe('Calendar', () => {
   });
 
   it('should be called when change next month', () => {
-    const fakeMonthChange = jest.fn((e, data) => data.type);
+    const fakeMonthChange = vi.fn((e, data) => data.type);
     const { container } = render(
       <Calendar
         mode="single"
@@ -209,7 +209,7 @@ describe('Calendar', () => {
   });
 
   it('should render handler bar icons by `headerBarLeftIcon` or `headerBarRightIcon`', () => {
-    const fakeMonthChange = jest.fn((e, data) => data.type);
+    const fakeMonthChange = vi.fn((e, data) => data.type);
     const { container } = render(
       <Calendar
         headerBarLeftIcon={({ isMinMonth }) => {
@@ -270,7 +270,7 @@ describe('Calendar', () => {
     });
 
     it('onChange should be called when click date item', () => {
-      const fakeChange = jest.fn((e, data) => dayjs(data.value).format('D'));
+      const fakeChange = vi.fn((e, data) => dayjs(data.value).format('D'));
       const { container } = render(
         <Calendar
           mode="single"
@@ -327,7 +327,7 @@ describe('Calendar', () => {
     });
 
     it('onChange should be called when change date range', () => {
-      const fakeChange = jest.fn((e, data) => {
+      const fakeChange = vi.fn((e, data) => {
         return Array.isArray(data.value);
       });
       const { container } = render(

@@ -2,26 +2,40 @@ import React from 'react';
 import { render, screen } from 'testing';
 import Modal from '../Modal';
 
-const mockBackdropFn = jest.fn();
+const mockBackdropFn = vi.fn();
 // eslint-disable-next-line react/display-name
-jest.mock('../../Backdrop', () => (props: any) => {
-  mockBackdropFn(props);
-  const { children, onClick } = props;
-  return (
-    <div data-testid="backdrop-mock" onClick={onClick}>
-      {children}
-    </div>
-  );
-});
+vi.mock('../../Backdrop', () => ({
+  default: function MockBackdrop(props: Record<string, unknown>) {
+    mockBackdropFn(props);
+    const { children, onClick } = props;
+    return (
+      <div
+        data-testid="backdrop-mock"
+        onClick={onClick}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            onClick?.(e);
+          }
+        }}
+        role="button"
+        tabIndex={0}
+      >
+        {children}
+      </div>
+    );
+  },
+}));
 
-const mockPortalFn = jest.fn();
-jest.mock('../../Portal', () =>
-  // eslint-disable-next-line react/display-name
-  React.forwardRef((props: any, ref: any) => {
+const mockPortalFn = vi.fn();
+vi.mock('../../Portal', () => ({
+  default: React.forwardRef(function MockPortal(
+    props: Record<string, unknown>,
+    ref: React.Ref<HTMLDivElement>,
+  ) {
     mockPortalFn(props);
     return <div ref={ref}>{props.children}</div>;
   }),
-);
+}));
 
 describe('Modal', () => {
   it('should render content when open', () => {
@@ -77,7 +91,7 @@ describe('Modal', () => {
     );
   });
   it('should call onClose when backdrop clicked', () => {
-    const closefn = jest.fn();
+    const closefn = vi.fn();
     render(
       <Modal open onClose={closefn}>
         <div className="content" data-testid="test-modal-content">

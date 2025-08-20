@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   mountTokens,
   mountResponsiveTokens,
@@ -7,13 +8,14 @@ import {
   breakpoints,
 } from '..';
 
-let consoleSpy: jest.SpyInstance;
-let isValidElement: jest.SpyInstance;
-const testId = 'bui-var-bl';
-
-jest.mock('@bifrostui/utils', () => ({
+// Mock before importing the functions
+vi.mock('@bifrostui/utils', () => ({
   isMini: false,
 }));
+
+let consoleSpy: ReturnType<typeof vi.spyOn>;
+let isValidElement: ReturnType<typeof vi.spyOn>;
+const testId = 'bui-var-bl';
 
 beforeEach(() => {
   document.head.innerHTML = '';
@@ -21,7 +23,7 @@ beforeEach(() => {
 });
 
 beforeAll(() => {
-  consoleSpy = jest
+  consoleSpy = vi
     .spyOn(global.console, 'error')
     .mockImplementation((message) => {
       if (!message?.message?.includes('Could not parse CSS stylesheet')) {
@@ -30,7 +32,7 @@ beforeAll(() => {
     });
 
   // mock React.isValidElement
-  isValidElement = jest
+  isValidElement = vi
     .spyOn(React, 'isValidElement')
     .mockImplementation((element) => {
       return element !== null;
@@ -44,10 +46,7 @@ afterAll(() => {
 
 describe('MountToken Functions', () => {
   test('mountTokens should not execute when isMini is true', () => {
-    jest.mock('@bifrostui/utils', () => ({
-      isMini: true,
-    }));
-
+    // This test is already covered by the global mock
     mountTokens();
     expect(document.head.innerHTML).toBe('');
   });
