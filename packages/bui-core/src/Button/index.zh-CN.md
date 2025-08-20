@@ -403,7 +403,7 @@ export default () => {
 | --bui-btn-large-border-radius | 大尺寸按钮边框圆角 | `120px`                                |
 | --bui-btn-full-border-radius  | 全宽按钮边框圆角   | `120px`                                |
 | --bui-btn-color               | 文字颜色           | `var(--bui-color-fg-muted)`            |
-| --bui-btn-background          | 背景颜色           | `var(--bui-color-bg-view)`             |
+| --bui-btn-bg                  | 背景颜色           | `var(--bui-color-bg-view)`             |
 | --bui-btn-border              | 边框样式           | `0`                                    |
 | --bui-btn-height              | 按钮高度           | `27px`                                 |
 | --bui-btn-small-height        | 小尺寸按钮高度     | `24px`                                 |

@@ -185,17 +185,17 @@ export default () => {
 
 ## 样式变量
 
-| 变量名                                 | 说明           | 默认值                                                              |
-| -------------------------------------- | -------------- | ------------------------------------------------------------------- |
-| --bui-textarea-border-radius           | 文本域圆角     | `var(--bui-shape-radius-label)`                                     |
-| --bui-textarea-width                   | 文本域宽度     | `100%`                                                              |
-| --bui-textarea-background-color        | 背景颜色       | `var(--bui-color-bg-default)`                                       |
-| --bui-textarea-text-color              | 文字颜色       | `var(--bui-color-fg-subtle)`                                        |
-| --bui-textarea-count-background-color  | 计数器背景色   | `var(--bui-textarea-background-color, var(--bui-color-bg-default))` |
-| --bui-textarea-count-color             | 计数器文字颜色 | `var(--bui-color-fg-subtle)`                                        |
-| --bui-textarea-text-font-size          | 文字大小       | `var(--bui-text-size-2)`                                            |
-| --bui-textarea-count-font-size         | 计数器字体大小 | `var(--bui-title-size-3)`                                           |
-| --bui-textarea-padding                 | 内边距         | `8px`                                                               |
-| --bui-textarea-count-padding           | 计数器内边距   | `0 4px`                                                             |
-| --bui-textarea-placeholder-color       | 占位符颜色     | `#ced1d6`                                                           |
-| --bui-textarea-placeholder-line-height | 占位符行高     | `1.3`                                                               |
+| 变量名                                 | 说明           | 默认值                                                      |
+| -------------------------------------- | -------------- | ----------------------------------------------------------- |
+| --bui-textarea-border-radius           | 文本域圆角     | `var(--bui-shape-radius-label)`                             |
+| --bui-textarea-width                   | 文本域宽度     | `100%`                                                      |
+| --bui-textarea-bg-color                | 背景颜色       | `var(--bui-color-bg-default)`                               |
+| --bui-textarea-text-color              | 文字颜色       | `var(--bui-color-fg-subtle)`                                |
+| --bui-textarea-count-bg-color          | 计数器背景色   | `var(--bui-textarea-bg-color, var(--bui-color-bg-default))` |
+| --bui-textarea-count-color             | 计数器文字颜色 | `var(--bui-color-fg-subtle)`                                |
+| --bui-textarea-text-font-size          | 文字大小       | `var(--bui-text-size-2)`                                    |
+| --bui-textarea-count-font-size         | 计数器字体大小 | `var(--bui-title-size-3)`                                   |
+| --bui-textarea-padding                 | 内边距         | `8px`                                                       |
+| --bui-textarea-count-padding           | 计数器内边距   | `0 4px`                                                     |
+| --bui-textarea-placeholder-color       | 占位符颜色     | `#ced1d6`                                                   |
+| --bui-textarea-placeholder-line-height | 占位符行高     | `1.3`                                                       |

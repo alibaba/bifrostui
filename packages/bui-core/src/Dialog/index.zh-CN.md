@@ -350,16 +350,16 @@ export default () => {
 
 ## 样式变量
 
-| 变量名                                      | 说明           | 默认值                           |
-| ------------------------------------------- | -------------- | -------------------------------- |
-| --bui-dialog-max-width                      | 对话框最大宽度 | `300px`                          |
-| --bui-dialog-border-radius                  | 边框圆角       | `var(--bui-shape-radius-drawer)` |
-| --bui-dialog-title-padding                  | 标题内边距     | `0 40px 9px`                     |
-| --bui-dialog-desc-padding                   | 描述内边距     | `0 24px`                         |
-| --bui-dialog-footer-margin-top              | 底部区域上边距 | `15px`                           |
-| --bui-dialog-button-height                  | 按钮高度       | `53px`                           |
-| --bui-dialog-button-line-height             | 按钮行高       | `25px`                           |
-| --bui-dialog-button-padding                 | 按钮内边距     | `12px 0 13px`                    |
-| --bui-dialog-button-font-size               | 按钮字体大小   | `17px`                           |
-| --bui-dialog-button-border-left             | 按钮左边框     | `1px solid rgba(0, 0, 0, 0.05)`  |
-| --bui-dialog-button-active-background-color | 按钮激活背景色 | `rgba(54, 57, 64, 0.05)`         |
+| 变量名                              | 说明           | 默认值                           |
+| ----------------------------------- | -------------- | -------------------------------- |
+| --bui-dialog-max-width              | 对话框最大宽度 | `300px`                          |
+| --bui-dialog-border-radius          | 边框圆角       | `var(--bui-shape-radius-drawer)` |
+| --bui-dialog-title-padding          | 标题内边距     | `0 40px 9px`                     |
+| --bui-dialog-desc-padding           | 描述内边距     | `0 24px`                         |
+| --bui-dialog-footer-margin          | 底部区域边距   | `15px 0 0 0`                     |
+| --bui-dialog-button-height          | 按钮高度       | `53px`                           |
+| --bui-dialog-button-line-height     | 按钮行高       | `25px`                           |
+| --bui-dialog-button-padding         | 按钮内边距     | `12px 0 13px`                    |
+| --bui-dialog-button-font-size       | 按钮字体大小   | `17px`                           |
+| --bui-dialog-button-border-left     | 按钮左边框     | `1px solid rgba(0, 0, 0, 0.05)`  |
+| --bui-dialog-button-active-bg-color | 按钮激活背景色 | `rgba(54, 57, 64, 0.05)`         |
