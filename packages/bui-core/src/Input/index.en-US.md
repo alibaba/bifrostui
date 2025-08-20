@@ -248,12 +248,12 @@ export default () => {
 
 ## Style Variables
 
-| Property                    | Description                | Default Value              | Global Variable                       |
-| --------------------------- | -------------------------- | -------------------------- | ------------------------------------- |
-| --height                    | Height                     | 32px                       | --bui-input-height                    |
-| --padding                   | Padding                    | 4px 10px                   | --bui-input-padding                   |
-| --border-radius             | Border Radius              | --bui-shape-radius-default | --bui-input-border-radius             |
-| --icon-start-margin-right   | Right Margin of Start Icon | 3px                        | --bui-input-icon-start-margin-right   |
-| --icon-end-margin-left      | Left Margin of End Icon    | 3px                        | --bui-input-icon-end-margin-left      |
-| --background-color          | Background Color           | transparent                | --bui-input-background-color          |
-| --disabled-background-color | Disabled Background Color  | rgba(0, 0, 0, 0.04)        | --bui-input-disabled-background-color |
+| Property                    | Description                | Default Value              | Global Variable               |
+| --------------------------- | -------------------------- | -------------------------- | ----------------------------- |
+| --height                    | Height                     | 32px                       | --bui-input-height            |
+| --padding                   | Padding                    | 4px 10px                   | --bui-input-padding           |
+| --border-radius             | Border Radius              | --bui-shape-radius-default | --bui-input-border-radius     |
+| --icon-start-margin-right   | Right Margin of Start Icon | 3px                        | --bui-input-icon-start-margin |
+| --icon-end-margin-left      | Left Margin of End Icon    | 3px                        | --bui-input-icon-end-margin   |
+| --background-color          | Background Color           | transparent                | --bui-input-bg-color          |
+| --disabled-background-color | Disabled Background Color  | rgba(0, 0, 0, 0.04)        | --bui-input-disabled-bg-color |

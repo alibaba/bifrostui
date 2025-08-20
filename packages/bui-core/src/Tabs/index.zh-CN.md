@@ -322,7 +322,7 @@ export default () => {
 | ---------------------------------- | -------------- | -------------------------------------------------- |
 | --bui-tabs-height                  | 标签页高度     | `39px`                                             |
 | --bui-tabs-font-weight             | 字体粗细       | `var(--bui-font-weight-medium)`                    |
-| --bui-tabs-indicator-background    | 指示器背景色   | `var(--bui-color-primary)`                         |
+| --bui-tabs-indicator-bg            | 指示器背景色   | `var(--bui-color-primary)`                         |
 | --bui-tabs-indicator-height        | 指示器高度     | `3PX`                                              |
 | --bui-tabs-indicator-width         | 指示器宽度     | `24px`                                             |
 | --bui-tabs-indicator-border-radius | 指示器圆角     | `3px 3px 0 0`                                      |

@@ -188,6 +188,6 @@ export default () => {
 
 ## Style Variables
 
-| Property                   | Description                          | Default Value            | Global Variable                      |
-| -------------------------- | ------------------------------------ | ------------------------ | ------------------------------------ |
-| --default-background-color | Default placeholder background color | rgba(127, 127, 127, 0.2) | --bui-image-default-background-color |
+| Property                   | Description                          | Default Value            | Global Variable              |
+| -------------------------- | ------------------------------------ | ------------------------ | ---------------------------- |
+| --default-background-color | Default placeholder background color | rgba(127, 127, 127, 0.2) | --bui-image-default-bg-color |

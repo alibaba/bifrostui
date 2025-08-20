@@ -232,12 +232,12 @@ export default () => {
 
 ### 样式变量
 
-| 属性                     | 说明           | 默认值             | 全局变量                           |
-| ------------------------ | -------------- | ------------------ | ---------------------------------- |
-| --content-marquee-speed  | 内容滚动速度   | 10s                | --bui-alert-content-marquee-speed  |
-| --padding                | 内边距         | 8px                | --bui-alert-padding                |
-| --line-height            | 行高           | 16px               | --bui-alert-line-height            |
-| --default-icon-font-size | 默认图标字号   | 15px               | --bui-alert-default-icon-font-size |
-| --action-margin-left     | 操作区左外边距 | 16px               | --bui-alert-action-margin-left     |
-| --icon-margin-right      | 图标右外边距   | --bui-spacing-xs   | --bui-alert-icon-margin-right      |
-| --icon-font-size         | 图标字号       | --bui-title-size-4 | --bui-alert-icon-font-size         |
+| 属性                     | 说明         | 默认值                 | 全局变量                           |
+| ------------------------ | ------------ | ---------------------- | ---------------------------------- |
+| --content-marquee-speed  | 内容滚动速度 | 10s                    | --bui-alert-content-marquee-speed  |
+| --padding                | 内边距       | 8px                    | --bui-alert-padding                |
+| --line-height            | 行高         | 16px                   | --bui-alert-line-height            |
+| --default-icon-font-size | 默认图标字号 | 15px                   | --bui-alert-default-icon-font-size |
+| --action-margin-left     | 操作区外边距 | 0 0 0 16px             | --bui-alert-action-margin          |
+| --icon-margin-right      | 图标右外边距 | 0 --bui-spacing-xs 0 0 | --bui-alert-icon-margin            |
+| --icon-font-size         | 图标字号     | --bui-title-size-4     | --bui-alert-icon-font-size         |
