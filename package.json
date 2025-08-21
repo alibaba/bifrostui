@@ -28,6 +28,7 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
+    "test:snapshot": "vitest -u --run",
     "ci:test": "pnpm run test:run --coverage",
     "ui:test": "dumi dev & chmod +x ./scripts/ui-test.sh &&  ./scripts/ui-test.sh",
     "ci:eslint": "pnpm run lint:script -f json -o ./.ci/eslint.json",
