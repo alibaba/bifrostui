@@ -10,32 +10,27 @@ export const isSame = (start: Date, end: Date) =>
 /**
  * 计算日期差
  */
-export const geteDateDiff = (a: Date, b: Date) => {
-  return dayjs(dayjs(a).format('YYYYMMDD')).diff(
-    dayjs(dayjs(b).format('YYYYMMDD')),
-    'day',
-  );
+export const getDateDiff = (a: Date, b: Date) => {
+  const aDate = dayjs(dayjs(a).format('YYYYMMDD'));
+  const bDate = dayjs(dayjs(b).format('YYYYMMDD'));
+  return aDate.diff(bDate, 'day');
 };
 
 /**
  * 判断是否在日期区间内
  */
-export const isRange = (current: Date, start: Date, end: Date) => {
-  let flag = true;
-
-  if (geteDateDiff(current, start) < 0 || geteDateDiff(current, end) > 0) {
-    flag = false;
-  }
-
-  return flag;
+export const isDateInRange = (current: Date, start: Date, end: Date) => {
+  return getDateDiff(current, start) >= 0 && getDateDiff(current, end) <= 0;
 };
 
 /**
  * 取数组第一个日期为开始日期，最后一个日期为结束日期
  */
-export const generateRangeDate = (value: Date[]) => {
+export const generateDateRange = (value: Date[]) => {
+  if (!Array.isArray(value) || value.length === 0) {
+    return { start: null, end: null };
+  }
   const finalIndex = value.length - 1;
-
   return {
     start: value[0],
     end: value[finalIndex],
@@ -58,18 +53,20 @@ export const formatDate = (
   let defaultStartDate = null;
   let defaultEndDate = null;
   if (mode === 'single' && value) {
-    defaultStartDate = isRange(value as Date, minDate, maxDate) ? value : null;
+    defaultStartDate = isDateInRange(value as Date, minDate, maxDate)
+      ? value
+      : null;
   } else if (mode === 'range') {
-    const { start, end } = generateRangeDate(value as Date[]);
+    const { start, end } = generateDateRange(value as Date[]);
     if (start) {
-      defaultStartDate = isRange(start, minDate, maxDate) ? start : null;
+      defaultStartDate = isDateInRange(start, minDate, maxDate) ? start : null;
     }
 
     if (end) {
-      defaultEndDate = isRange(end, minDate, maxDate) ? end : null;
+      defaultEndDate = isDateInRange(end, minDate, maxDate) ? end : null;
     }
 
-    if (start && end && geteDateDiff(start, end) > 0) {
+    if (start && end && getDateDiff(start, end) > 0) {
       // 传入的开始日期晚于结束日期，纠正日期范围
       defaultStartDate = end;
       defaultEndDate = start;
