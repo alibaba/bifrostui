@@ -23,9 +23,7 @@ describe('Image', () => {
     const { container } = render(
       <Image src={src} fit="contain" width={100} height={100} placeholder />,
     );
-    expect(
-      container.querySelector(`.${classPrefix}-default-icon-item`),
-    ).not.toBeNull();
+    expect(container.querySelector('.default-holder')).not.toBeNull();
   });
 
   it.each(['contain', 'cover', 'fill', 'none', 'scale-down'])(
