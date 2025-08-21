@@ -406,9 +406,10 @@
       "--bui-select-option-main-padding": "3px 0",
       "--bui-select-option-padding": "0 14px",
       "--bui-select-option-border-radius": "5px",
-      "--bui-select-option-margin": "0 3px",
+      "--bui-select-option-margin": "2px 3px",
       "--bui-select-option-height": "32px",
-      "--bui-select-option-active-bg-color": "#fff2f0"
+      "--bui-select-option-active-bg-color": "#fff2f0",
+      "--bui-select-option-hover-bg-color": "rgba(255, 242, 240, 0.4)"
     }
   },
   "Skeleton": {

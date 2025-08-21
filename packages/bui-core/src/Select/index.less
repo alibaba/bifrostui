@@ -8,9 +8,10 @@
   --bui-select-option-main-padding: 3px 0;
   --bui-select-option-padding: 0 14px;
   --bui-select-option-border-radius: 5px;
-  --bui-select-option-margin: 0 3px;
+  --bui-select-option-margin: 2px 3px;
   --bui-select-option-height: 32px;
   --bui-select-option-active-bg-color: #fff2f0;
+  --bui-select-option-hover-bg-color: rgba(255, 242, 240, 0.4);
 }
 
 @class-prefix-select: ~'bui-select';
@@ -95,16 +96,16 @@
   }
 
   &-option {
-    display: flex;
-    align-items: center;
     height: var(--bui-select-option-height);
+    line-height: var(--bui-select-option-height);
     padding: var(--bui-select-option-padding);
     border-radius: var(--bui-select-option-border-radius);
     margin: var(--bui-select-option-margin);
+    .ellipsis();
   }
 
   &-option:hover {
-    background-color: var(--bui-select-option-active-bg-color);
+    background-color: var(--bui-select-option-hover-bg-color);
     color: var(--bui-color-primary);
   }
 
@@ -112,6 +113,10 @@
     font-weight: var(--bui-font-weight-medium);
     color: var(--bui-color-primary);
     background-color: var(--bui-select-option-active-bg-color);
+
+    &:hover {
+      background-color: var(--bui-select-option-active-bg-color);
+    }
   }
 
   &-option-hide {
