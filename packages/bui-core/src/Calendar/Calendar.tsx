@@ -1,13 +1,13 @@
-import { CaretLeftIcon, CaretRightIcon } from '@bifrostui/icons';
-import { useDidMountEffect, useValue } from '@bifrostui/utils';
+import React, { SyntheticEvent, useMemo, useState } from 'react';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import React, { SyntheticEvent, useMemo, useState } from 'react';
+import { CaretLeftIcon, CaretRightIcon } from '@bifrostui/icons';
+import { useDidMountEffect, useValue } from '@bifrostui/utils';
+import { useLocaleText } from '../locales';
 import { CalendarProps, ICalendarInstance } from './Calendar.types';
 import { formatDate, isRange, isSame } from './utils';
-import { useLocaleText } from '../locales';
 import './index.less';
 
 dayjs.extend(isoWeek);
@@ -83,11 +83,8 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       onChange,
     });
     // 根据calendarValue计算选中开始/结束日期
-    const selectedStartDate = useMemo(() => {
-      return calendarValue?.[0];
-    }, [calendarValue]);
-    const selectedEndDate = useMemo(() => {
-      return calendarValue?.[1];
+    const [selectedStartDate, selectedEndDate] = useMemo(() => {
+      return [calendarValue?.[0], calendarValue?.[1]];
     }, [calendarValue]);
 
     const isMinMonth = dayjs(minDate).isSame(renderMonth, 'month');
@@ -218,6 +215,10 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
             ins?.disabled && classes.disabled,
             dayClassName,
           )}
+          aria-disabled={ins?.disabled}
+          aria-current={
+            dayjs(ins.day).isSame(dayjs(), 'day') ? 'date' : undefined
+          }
         >
           {ins.day && dayjs(ins.day).format('D')}
         </div>
@@ -261,26 +262,34 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       triggerChange?.(e, hasSelectedDate ? null : ins.day);
     };
 
-    const renderDayList = () =>
-      getDaysInMonth(renderMonth).map(
-        (ins: ICalendarInstance, index: number) => {
-          const dayStr = dayjs(ins.day).format('YYYYMMDD');
-          return (
-            <div
-              className={clsx(`${classes.day}-box`, {
-                [`${classes.root}-highlight-day`]:
-                  highlightDate === 'weekend' &&
-                  !ins.disabled &&
-                  (index % 7 === 0 || index % 7 === 6),
-              })}
-              key={`${dayStr}-${index}`}
-              onClick={(e) => onClickDay(e, ins)}
-            >
-              {dateRender ? dateRender(ins) : defaultDateRender(ins)}
-            </div>
-          );
-        },
-      );
+    const renderDayList = () => {
+      const days = getDaysInMonth(renderMonth);
+      return days.map((ins: ICalendarInstance, index: number) => {
+        const dayStr = dayjs(ins.day).format('YYYYMMDD');
+        const isSelected =
+          (selectedStartDate && isSame(selectedStartDate, ins.day)) ||
+          (selectedEndDate && isSame(selectedEndDate, ins.day));
+
+        return (
+          <div
+            className={clsx(`${classes.day}-box`, {
+              [`${classes.root}-highlight-day`]:
+                highlightDate === 'weekend' &&
+                !ins.disabled &&
+                (index % 7 === 0 || index % 7 === 6),
+            })}
+            key={`${dayStr}-${index}`}
+            onClick={(e) => onClickDay(e, ins)}
+            role="gridcell"
+            aria-selected={isSelected}
+            aria-disabled={ins.disabled}
+            tabIndex={isSelected && !ins.disabled ? 0 : -1}
+          >
+            {dateRender ? dateRender(ins) : defaultDateRender(ins)}
+          </div>
+        );
+      });
+    };
 
     /**
      * 切换上一个月
@@ -310,17 +319,14 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       }
     };
 
-    let data: Record<string, string> = {};
-    if (isRangeMode) {
-      data = {
-        'data-start': dayjs(selectedStartDate).format('YYYYMMDD'),
-        'data-end': dayjs(selectedEndDate).format('YYYYMMDD'),
-      };
-    } else {
-      data = {
-        'data-selected': dayjs(selectedStartDate).format('YYYYMMDD'),
-      };
-    }
+    const data: Record<string, string> = isRangeMode
+      ? {
+          'data-start': dayjs(selectedStartDate).format('YYYYMMDD'),
+          'data-end': dayjs(selectedEndDate).format('YYYYMMDD'),
+        }
+      : {
+          'data-selected': dayjs(selectedStartDate).format('YYYYMMDD'),
+        };
 
     return (
       <div
@@ -331,36 +337,61 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         {...others}
         data-mode={mode}
         {...data}
+        role="application"
+        aria-label="Calendar"
       >
         {/* 顶部操作栏 */}
         {!headerVisible && (
           <div className={classes.handler}>
-            <div onClick={onClickPrev} className={`${classes.handler}-btn`}>
+            <div
+              role="button"
+              onClick={onClickPrev}
+              className={`${classes.handler}-btn`}
+              aria-label="prev month"
+              tabIndex={0}
+            >
               {headerBarIcon.left}
             </div>
-            <div className={`${classes.handler}-text`}>
+            <div className={`${classes.handler}-text`} aria-live="polite">
               {dayjs(renderMonth).format(headerBarFormat)}
             </div>
-            <div onClick={onClickNext} className={`${classes.handler}-btn`}>
+            <div
+              role="button"
+              onClick={onClickNext}
+              className={`${classes.handler}-btn`}
+              aria-label="next month"
+              tabIndex={0}
+            >
               {headerBarIcon.right}
             </div>
           </div>
         )}
 
         {/* 周横条 */}
-        <div className={classes.week}>
-          {SUNDAY_WEEK_DATA?.map((w) => {
+        <div className={classes.week} role="row">
+          {SUNDAY_WEEK_DATA?.map((w, idx) => {
             return weekRender ? (
               weekRender(w)
             ) : (
-              <div key={w} className={`${classes.week}-item`}>
+              <div
+                key={w}
+                className={`${classes.week}-item`}
+                role="columnheader"
+                aria-colindex={idx + 1}
+              >
                 {w}
               </div>
             );
           })}
         </div>
 
-        <div className={clsx(`${classes.root}-month`)}>{renderDayList()}</div>
+        <div
+          className={clsx(`${classes.root}-month`)}
+          role="grid"
+          aria-label="date select"
+        >
+          {renderDayList()}
+        </div>
       </div>
     );
   },
