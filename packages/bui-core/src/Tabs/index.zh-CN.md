@@ -5,16 +5,16 @@ name: Tabs 标签页
 
 # Tabs 标签页
 
-标签页切换组件。
+用于在多个内容区域之间切换的标签页组件，支持键盘无障碍访问和自定义渲染。
 
 ## 小程序与H5差异
 
-1. 小程序切换 Tab 底部 Indicator 使用渐变动画，H5 使用位移动画;
-2. 小程序对于超出可滚动的 Tabs，点击激活无法移动到视图中间位置。
+1. 小程序切换 Tab 底部指示器使用渐变动画，H5 使用位移动画。
+2. 小程序中超出可滚动的 Tabs，点击激活不会自动滚动到视图中间。
 
 ## 基础用法
 
-搭配 Tab 组件完成布局
+搭配 `Tab` 和 `TabPanel` 组件完成布局。
 
 ```tsx
 import React, { useState } from 'react';
@@ -34,7 +34,7 @@ export default () => {
 
   return (
     <Stack alignItems="stretch">
-      <Tabs style={{ marginBottom: '12px' }} value={value}>
+      <Tabs style={{ marginBottom: 12 }} value={value}>
         {tabList.map((item) => (
           <Tab key={item.index} index={item.index} onClick={handleClick}>
             {item.title}
@@ -55,9 +55,9 @@ export default () => {
 };
 ```
 
-## 支持使用 tabs
+## 使用 `tabs` 属性生成 Tab
 
-使用 `tabs` 生成 Tab。
+通过 `tabs` 属性快速生成标签页。
 
 ```tsx
 import { Stack, TabPanel, Tabs } from '@bifrostui/react';
@@ -73,7 +73,7 @@ export default () => {
   return (
     <Stack>
       <Tabs
-        style={{ marginBottom: '12px' }}
+        style={{ marginBottom: 12 }}
         onChange={handleChange}
         value={value}
         tabs={[
@@ -98,7 +98,7 @@ export default () => {
 
 ## 禁用状态
 
-通过 `disabled` 禁止 Tab 触发点击。
+通过 `disabled` 属性禁用某个 Tab。
 
 ```tsx
 import { Stack, TabPanel, Tabs } from '@bifrostui/react';
@@ -114,7 +114,7 @@ export default () => {
   return (
     <Stack>
       <Tabs
-        style={{ marginBottom: '12px' }}
+        style={{ marginBottom: 12 }}
         value={value}
         tabs={[
           { title: 'TAB ONE', index: 'one' },
@@ -137,9 +137,9 @@ export default () => {
 };
 ```
 
-## 受控 tabs 组件
+## 受控用法
 
-可通过 `value` 属性控制Tabs组件的选中态。
+通过 `value` 属性控制 Tabs 组件的选中态。
 
 ```tsx
 import { Button, Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
@@ -157,14 +157,10 @@ export default () => {
     setValue(index);
   };
 
-  const handleButton = (index) => {
-    setValue(index);
-  };
-
   return (
     <Stack>
       <Tabs
-        style={{ marginBottom: '12px' }}
+        style={{ marginBottom: 12 }}
         align="start"
         onChange={handleChange}
         value={value}
@@ -177,54 +173,18 @@ export default () => {
       </Tabs>
       <TabPanel value={value} index="one">
         <div>Tab Panel 1</div>
-        <Button
-          onClick={() => {
-            handleButton('three');
-          }}
-        >
-          GOTO TAB THREE
-        </Button>
-        <Button
-          onClick={() => {
-            handleButton('two');
-          }}
-        >
-          GOTO TAB TWO
-        </Button>
+        <Button onClick={() => setValue('three')}>GOTO TAB THREE</Button>
+        <Button onClick={() => setValue('two')}>GOTO TAB TWO</Button>
       </TabPanel>
       <TabPanel value={value} index="two">
         <div>Tab Panel 2</div>
-        <Button
-          onClick={() => {
-            handleButton('one');
-          }}
-        >
-          GOTO TAB ONE
-        </Button>
-        <Button
-          onClick={() => {
-            handleButton('three');
-          }}
-        >
-          GOTO TAB THREE
-        </Button>
+        <Button onClick={() => setValue('one')}>GOTO TAB ONE</Button>
+        <Button onClick={() => setValue('three')}>GOTO TAB THREE</Button>
       </TabPanel>
       <TabPanel value={value} index="three">
         <div>Tab Panel 3</div>
-        <Button
-          onClick={() => {
-            handleButton('one');
-          }}
-        >
-          GOTO TAB ONE
-        </Button>
-        <Button
-          onClick={() => {
-            handleButton('two');
-          }}
-        >
-          GOTO TAB TWO
-        </Button>
+        <Button onClick={() => setValue('one')}>GOTO TAB ONE</Button>
+        <Button onClick={() => setValue('two')}>GOTO TAB TWO</Button>
       </TabPanel>
     </Stack>
   );
@@ -233,7 +193,7 @@ export default () => {
 
 ## 超出可滑动
 
-当Tab过多时，超出可滑动。
+当 Tab 数量较多时，支持横向滚动。
 
 ```tsx
 import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
@@ -243,7 +203,7 @@ export default () => {
   const [value, setValue] = useState('2');
   const tabList = [
     { title: 'Item 1', index: '1' },
-    { title: 'Item 3', index: '2' },
+    { title: 'Item 2', index: '2' },
     { title: 'Item 3', index: '3' },
     { title: 'Item 4', index: '4' },
     { title: 'Item 5', index: '5' },
@@ -259,9 +219,9 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '325px' }}>
+      <div style={{ width: 325 }}>
         <Tabs
-          style={{ marginTop: '20px', marginBottom: '12px' }}
+          style={{ marginTop: 20, marginBottom: 12 }}
           value={value}
           onChange={handleChange}
         >
@@ -281,6 +241,11 @@ export default () => {
   );
 };
 ```
+
+## 无障碍访问
+
+- Tab 具备 `role="tab"`、`aria-disabled`、`aria-controls`、`tabindex` 等属性。
+- TabPanel 具备 `role="tabpanel"`、`tabindex`、`aria-hidden` 等属性。
 
 ## API
 
