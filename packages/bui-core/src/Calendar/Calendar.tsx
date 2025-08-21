@@ -7,7 +7,7 @@ import { CaretLeftIcon, CaretRightIcon } from '@bifrostui/icons';
 import { useDidMountEffect, useValue } from '@bifrostui/utils';
 import { useLocaleText } from '../locales';
 import { CalendarProps, ICalendarInstance } from './Calendar.types';
-import { formatDate, isRange, isSame } from './utils';
+import { formatDate, isDateInRange, isSame } from './utils';
 import './index.less';
 
 dayjs.extend(isoWeek);
@@ -149,7 +149,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         const day = dayjs(`${m}/${i + 1}`).toDate();
 
         // 先判断是否minDate与maxDate之间，再判断传入的方法
-        const defaultDisable = !isRange(day, minDate, maxDate);
+        const defaultDisable = !isDateInRange(day, minDate, maxDate);
         const propsDisable = disabledDate ? !!disabledDate?.(day) : false;
 
         list.push({
