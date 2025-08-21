@@ -1,6 +1,6 @@
-import { isMini } from '@bifrostui/utils';
+import React, { SyntheticEvent } from 'react';
 import clsx from 'clsx';
-import React from 'react';
+import { isMini } from '@bifrostui/utils';
 import { TabProps } from './Tab.types';
 import TabsContext from './TabsContext';
 import './Tab.less';
@@ -14,36 +14,51 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
     index,
     disabled = false,
     onClick,
+    role = 'tab',
+    tabIndex,
+    'aria-selected': ariaSelected,
+    'aria-disabled': ariaDisabled,
+    'aria-controls': ariaControls,
     ...others
   } = props;
   const tabsContext = React.useContext(TabsContext);
   const { value, triggerChange } = tabsContext;
+  const isActive = index === value;
+
+  const rootCls = clsx(
+    prefixCls,
+    {
+      [`${prefixCls}-active`]: !isMini && isActive,
+      [`${prefixCls}-miniapp-active`]: isMini && isActive,
+      [`${prefixCls}-disabled`]: disabled,
+    },
+    className,
+  );
+
+  const handleClick = (e: SyntheticEvent) => {
+    if (disabled) return;
+    e.preventDefault();
+    triggerChange(e, { index });
+    onClick?.(e, { index });
+  };
 
   return (
     <div
+      role={role}
+      aria-selected={ariaSelected ?? isActive}
+      aria-disabled={ariaDisabled ?? disabled}
+      aria-controls={ariaControls ?? `bui-tabpanel-${index}`}
+      tabIndex={tabIndex ?? (isActive && !disabled ? 0 : -1)}
       ref={ref}
-      className={clsx(
-        prefixCls,
-        {
-          [`${prefixCls}-active`]: !isMini && index === value,
-          [`${prefixCls}-miniapp-active`]: isMini && index === value,
-          [`${prefixCls}-disabled`]: disabled,
-        },
-        className,
-      )}
+      className={rootCls}
       {...others}
-      onClick={(e) => {
-        if (disabled) return;
-        e.preventDefault();
-        triggerChange(e, { index });
-        onClick?.(e, { index });
-      }}
+      onClick={handleClick}
     >
       {children}
       {isMini && (
         <div
           className={clsx(`${prefixCls}-miniapp-active-line`, {
-            'bui-indicator-invisible': index !== value,
+            'bui-indicator-invisible': !isActive,
           })}
         />
       )}

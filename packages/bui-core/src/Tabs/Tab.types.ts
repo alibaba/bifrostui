@@ -1,5 +1,5 @@
-import { OverrideProps } from '@bifrostui/types';
 import React from 'react';
+import { OverrideProps } from '@bifrostui/types';
 import { ITabItem, TabChangeEvent } from './Tabs.types';
 
 export type TabProps<
