@@ -1,5 +1,5 @@
-import { OverrideProps } from '@bifrostui/types';
 import React, { SyntheticEvent } from 'react';
+import { OverrideProps } from '@bifrostui/types';
 
 export interface TabHeaderItem {
   title: React.ReactNode;
