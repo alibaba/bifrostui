@@ -23,6 +23,16 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
       autoSize = false, // 是否自适应高度
       autoFocus = false, // 是否自动聚焦
       showCount = false, // 是否展示字数统计
+      // 无障碍属性
+      'aria-label': ariaLabel,
+      'aria-describedby': ariaDescribedby,
+      'aria-hidden': ariaHidden,
+      'aria-details': ariaDetails,
+      'aria-required': ariaRequired,
+      'aria-readonly': ariaReadonly,
+      'aria-rowcount': ariaRowcount,
+      'aria-rowindex': ariaRowindex,
+      'aria-colcount': ariaColcount,
       onChange,
       ...others
     } = props;
@@ -97,6 +107,27 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
     let nativeProps: Record<string, any> = {
       [isMini ? 'maxlength' : 'maxLength']: maxLength ?? -1,
     };
+
+    // 添加无障碍属性到原生属性中
+    const accessibilityProps = {
+      'aria-label': ariaLabel,
+      'aria-describedby': ariaDescribedby,
+      'aria-hidden': ariaHidden,
+      'aria-details': ariaDetails,
+      'aria-required': ariaRequired,
+      'aria-readonly': ariaReadonly,
+      'aria-rowcount': ariaRowcount,
+      'aria-rowindex': ariaRowindex,
+      'aria-colcount': ariaColcount,
+    };
+
+    // 过滤掉 undefined 的无障碍属性
+    Object.keys(accessibilityProps).forEach((key) => {
+      if (accessibilityProps[key] !== undefined) {
+        nativeProps[key] = accessibilityProps[key];
+      }
+    });
+
     if (isMini) {
       nativeProps = {
         ...nativeProps,
