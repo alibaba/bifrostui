@@ -7,7 +7,9 @@ name: TextArea 文本框
 
 文本输入框，用于输入较长内容时使用。
 
-## 基本用法
+## 代码示例
+
+### 基本用法
 
 支持`textarea`标签的基础属性透传，若要透传的属性不在该文档中，放入`textareaProps`字段中才会透传至内部`textarea`标签。
 
@@ -33,7 +35,7 @@ export default () => {
 
 ### 显示文字个数
 
-`showCount`会控制展示输入的字数，一般可搭配`maxLength`使用。
+`showCount` 属性控制展示输入的字数，一般可搭配 `maxLength` 使用。
 
 ```tsx
 import { Stack, TextArea } from '@bifrostui/react';
@@ -178,10 +180,26 @@ export default () => {
 |   disabled    |                                        是否禁用                                        |                                  boolean                                   | false  |
 |     rows      |                                       文本框行数                                       |                                   number                                   |   2    |
 |   maxLength   |                                      内容最大长度                                      |                                   number                                   |   -    |
-|   autoSize    | 自适应内容高度，可设置为 true \| false 或对象：{minHeight?: number;maxHeight?: number} |                                  boolean                                   | false  |
+|   autoSize    | 自适应内容高度，可设置为 true \| false 或对象：{minHeight?: number;maxHeight?: number} |                          boolean \| AutoSizeType                           | false  |
 |   autoFocus   |                                      是否自动聚焦                                      |                                  boolean                                   | false  |
 |   showCount   |                                        展示字数                                        |                                  boolean                                   | false  |
-|   onChange    |                                 文本框内容变化时的回调                                 | (e: React.ChangeEvent<HTMLTextAreaElement\>,data: {value: string}) => void |   -    |
+|   onChange    |                               文本框内容变化时的回调函数                               | (e: React.ChangeEvent<HTMLTextAreaElement\>,data: {value: string}) => void |   -    |
+
+### 无障碍属性
+
+TextArea 组件支持以下无障碍属性，用于提升可访问性：
+
+|       属性       |          说明           |  类型   | 默认值 |
+| :--------------: | :---------------------: | :-----: | :----: |
+|    aria-label    |      ARIA 标签描述      | string  |   -    |
+| aria-describedby | 描述元素的详细信息的 ID | string  |   -    |
+|   aria-hidden    |      是否隐藏元素       | boolean |   -    |
+|   aria-details   | 元素在无障碍树中的细节  | string  |   -    |
+|  aria-required   |   当前元素是否为必填    | boolean |   -    |
+|  aria-readonly   |   当前元素是否为只读    | boolean |   -    |
+|  aria-rowcount   |    多行文本框的行数     | number  |   -    |
+|  aria-rowindex   | 多行文本框的第一行索引  | number  |   -    |
+|  aria-colcount   |    多行文本框的列数     | number  |   -    |
 
 ## 样式变量
 
