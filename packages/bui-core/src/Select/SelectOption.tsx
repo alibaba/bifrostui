@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { SetStateAction, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { SelectOptionProps } from './Select.types';
 import BuiSelectContext from './selectContext';
 
@@ -17,7 +17,7 @@ const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(
     // 自定义label值+defaultValue初始化时，传递自定义label值到select
     useEffect(() => {
       if (value === selectValue) {
-        setRenderValue(label as SetStateAction<string>);
+        setRenderValue(label);
       }
       return () => {
         setRenderValue('');

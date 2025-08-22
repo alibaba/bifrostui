@@ -51,7 +51,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
 
   const [internalOpen, setInternalOpen] = useState<boolean>(false);
   // 根选择器展示的内容
-  const [renderValue, setRenderValue] = useState<string>('');
+  const [renderValue, setRenderValue] = useState('');
   const [placement, setPlacement] = useState<string>(defaultPlacement);
   const [optionStyle, setOptionStyle] = useState({});
   const isOpen = open !== undefined ? open : internalOpen;
