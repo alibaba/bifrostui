@@ -1,14 +1,14 @@
-import clsx from 'clsx';
 import React, { useImperativeHandle } from 'react';
+import clsx from 'clsx';
 import {
   ErrorCircleFilledBoldIcon,
   AccessTimeCircleFilledBoldIcon,
   AlertCircleFilledBoldIcon,
   SuccessCircleFilledBoldIcon,
 } from '@bifrostui/icons';
-import { ToastProps, ToastRef } from './Toast.types';
 import Fade from '../Fade';
 import { useTheme } from '../ThemeProvider';
+import { ToastProps, ToastRef } from './Toast.types';
 import './index.less';
 
 const prefixCls = 'bui-toast';
@@ -32,14 +32,40 @@ const ToastComponent = React.forwardRef<ToastRef, ToastProps>((props, ref) => {
   }, []);
 
   const iconMap = {
-    fail: <ErrorCircleFilledBoldIcon htmlColor="var(--bui-color-white)" />,
-    loading: (
-      <AccessTimeCircleFilledBoldIcon htmlColor="var(--bui-color-white)" />
+    fail: (
+      <ErrorCircleFilledBoldIcon
+        htmlColor="var(--bui-color-white)"
+        aria-hidden="true"
+      />
     ),
-    warning: <AlertCircleFilledBoldIcon htmlColor="var(--bui-color-white)" />,
-    success: <SuccessCircleFilledBoldIcon htmlColor="var(--bui-color-white)" />,
+    loading: (
+      <AccessTimeCircleFilledBoldIcon
+        htmlColor="var(--bui-color-white)"
+        aria-hidden="true"
+      />
+    ),
+    warning: (
+      <AlertCircleFilledBoldIcon
+        htmlColor="var(--bui-color-white)"
+        aria-hidden="true"
+      />
+    ),
+    success: (
+      <SuccessCircleFilledBoldIcon
+        htmlColor="var(--bui-color-white)"
+        aria-hidden="true"
+      />
+    ),
   };
   const iconDom = iconMap[type] || icon;
+
+  // 根据类型设置无障碍role和aria-live
+  let role: 'status' | 'alert' = 'status';
+  let ariaLive: 'polite' | 'assertive' = 'polite';
+  if (type === 'fail' || type === 'warning') {
+    role = 'alert';
+    ariaLive = 'assertive';
+  }
 
   return (
     <Fade {...others} in={open} appear={false} unmountOnExit>
@@ -54,6 +80,9 @@ const ToastComponent = React.forwardRef<ToastRef, ToastProps>((props, ref) => {
           className,
         )}
         style={style}
+        role={role}
+        aria-live={ariaLive}
+        aria-atomic="true"
       >
         {iconDom}
         {message}
