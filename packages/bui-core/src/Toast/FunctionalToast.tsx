@@ -1,5 +1,6 @@
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { render, unmount, getRootContainer } from '@bifrostui/utils';
-import React, { useCallback, useEffect, useState } from 'react';
+import { ThemeProps } from '../ThemeProvider/ThemeProvider.types';
 import ToastView from './Toast';
 import {
   ToastOptions,
@@ -9,16 +10,13 @@ import {
   ToastReturnType,
 } from './Toast.types';
 
-let toastCloses = [];
+let toastCloses: Array<() => void> = [];
 
 /**
  * 参数格式化，支持直接传文案
  */
-const formatProps = (props) => {
-  if (typeof props === 'string') {
-    return { message: props };
-  }
-  return props;
+const formatProps = (props: ToastProps | string): ToastProps => {
+  return typeof props === 'string' ? { message: props } : props;
 };
 
 /**
@@ -32,8 +30,8 @@ const destroyAll = () => {
   }
 };
 
-const functionalToast = (props: ToastProps | string) => {
-  const options = {
+const Toast = (props: ToastProps | string): ToastReturnType => {
+  const options: ToastProps = {
     duration: 2000,
     position: 'center',
     allowMultiple: false,
@@ -46,16 +44,13 @@ const functionalToast = (props: ToastProps | string) => {
   };
   const rootWrapper = document.createElement('div');
   if (options.disableClick) {
-    const styles = {
+    Object.assign(rootWrapper.style, {
       position: 'fixed',
       top: '0',
       bottom: '0',
       left: '0',
       right: '0',
       zIndex: 'var(--bui-z-index-toast)',
-    };
-    Object.keys(styles).forEach((property) => {
-      rootWrapper.style[property] = styles[property];
     });
   }
 
@@ -72,11 +67,11 @@ const functionalToast = (props: ToastProps | string) => {
       ...others
     } = options;
     const [open, setOpen] = useState(false);
-    let timer;
     const fadeTimeout = {
       enter: 350,
       exit: 150,
     };
+    const timerRef = useRef<number | null>(null);
 
     const close = useCallback(() => {
       setOpen(false);
@@ -87,7 +82,7 @@ const functionalToast = (props: ToastProps | string) => {
         }
       }, fadeTimeout.exit);
       onClose?.();
-    }, [rootWrapper]);
+    }, [rootWrapper, onClose]);
 
     useEffect(() => {
       setOpen(true);
@@ -95,7 +90,7 @@ const functionalToast = (props: ToastProps | string) => {
       toastCloses.push(close);
 
       if (duration !== 0 && typeof duration === 'number') {
-        timer = setTimeout(() => {
+        timerRef.current = window.setTimeout(() => {
           close();
           // 不允许共存的场景下，当前Toast关闭后，应清空toastCloses
           if (!allowMultiple) {
@@ -105,7 +100,9 @@ const functionalToast = (props: ToastProps | string) => {
       }
 
       return () => {
-        clearTimeout(timer);
+        if (timerRef.current) {
+          clearTimeout(timerRef.current);
+        }
       };
     }, []);
 
@@ -128,24 +125,27 @@ const functionalToast = (props: ToastProps | string) => {
 };
 
 /**
+ * 扩展方法
  * Toast.warning(options: ToastOptions)
  * Toast.loading(options: ToastOptions)
  * Toast.success(options: ToastOptions)
  * Toast.fail(options: ToastOptions)
  */
-['warning', 'loading', 'success', 'fail'].forEach((methodName: ToastType) => {
-  functionalToast[methodName] = (options: ToastOptions) =>
-    functionalToast({
-      type: methodName,
-      ...formatProps(options),
-    });
-});
+(['warning', 'loading', 'success', 'fail'] as ToastType[]).forEach(
+  (methodName) => {
+    Toast[methodName] = (options: ToastOptions) =>
+      Toast({
+        type: methodName,
+        ...formatProps(options),
+      });
+  },
+);
 
 /**
  * 清除所有Toast
  * Toast.clear()
  */
-functionalToast.clear = () => {
+Toast.clear = () => {
   // 处理toast还未弹出就立刻销毁的情况，将销毁放到下一个时间循环中，避免销毁失败
   setTimeout(() => {
     destroyAll();
@@ -156,7 +156,7 @@ functionalToast.clear = () => {
  * 适配主题定制等场景下，静态方法获取不到context 上下文
  */
 const useToast = () => {
-  const holderRef = React.useRef(null);
+  const holderRef = useRef<{ theme: ThemeProps } | null>(null);
 
   /**
    * Toast.warning(options: ToastOptions)
@@ -164,31 +164,30 @@ const useToast = () => {
    * Toast.success(options: ToastOptions)
    * Toast.fail(options: ToastOptions)
    */
-  ['warning', 'loading', 'success', 'fail'].forEach((methodName: ToastType) => {
-    functionalToast[methodName] = (options: ToastOptions) =>
-      functionalToast({
-        type: methodName,
-        ...formatProps(options),
-        theme: holderRef.current?.theme,
-      });
-  });
+  (['warning', 'loading', 'success', 'fail'] as ToastType[]).forEach(
+    (methodName) => {
+      Toast[methodName] = (options: ToastOptions) =>
+        Toast({
+          type: methodName,
+          ...formatProps(options),
+          theme: holderRef.current?.theme,
+        });
+    },
+  );
 
   /**
    * 清除所有Toast
    * Toast.clear()
    */
-  functionalToast.clear = () => {
+  Toast.clear = () => {
     // 处理toast还未弹出就立刻销毁的情况，将销毁放到下一个时间循环中，避免销毁失败
     setTimeout(() => {
       destroyAll();
     });
   };
-  const wrapAPI = functionalToast;
 
-  return [wrapAPI, <ToastView key="toast-holder" ref={holderRef} />];
+  return [Toast, <ToastView key="toast-holder" ref={holderRef} />];
 };
-functionalToast.useToast = useToast;
+Toast.useToast = useToast;
 
-const Toast = functionalToast as ToastInstance;
-
-export default Toast;
+export default Toast as ToastInstance;
