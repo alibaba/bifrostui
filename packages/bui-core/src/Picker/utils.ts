@@ -7,7 +7,9 @@ import {
 /**
  * 根据第一列数据判断选择器类型
  */
-export const pickerPanelType = (options = []) => {
+export const pickerPanelType = (
+  options: (IPickerOptionItem[] | ICascadePickerOptionItem)[] = [],
+) => {
   const firstColumn: IPickerOptionItem[] | ICascadePickerOptionItem =
     options[0];
 
@@ -56,22 +58,24 @@ export const formatCascade = (
 /**
  * 统一options数据格式
  */
-export const formatOptions = (internalValue, options = []) => {
-  const panelType = pickerPanelType(options);
-  switch (panelType) {
-    case 'multiple':
-      return options;
-    case 'cascade':
-      return formatCascade(options, internalValue);
-    default:
-      return options;
-  }
+export const formatOptions = (
+  internalValue: (number | string)[],
+  options = [],
+) => {
+  const panelType = pickerPanelType(options as ICascadePickerOptionItem[]);
+  if (panelType === 'multiple') return options;
+  if (panelType === 'cascade')
+    return formatCascade(options as ICascadePickerOptionItem[], internalValue);
+  return options;
 };
 
 /**
  * 在格式化后的数据源中是否存在等长子项的value
  */
-export const existSameLengthValue = (value, formatted) => {
+export const existSameLengthValue = (
+  value: unknown[],
+  formatted: { value: string | number; [index: string]: unknown }[][],
+) => {
   const result = formatted.every((item, idx) =>
     item.some((i) => value?.[idx] === i?.value),
   );
@@ -84,23 +88,23 @@ export const existSameLengthValue = (value, formatted) => {
  */
 export const safeData = ({ value, formatted, options }) => {
   let safeValue = [];
-  let safeFormatted = [];
+  let safeFormattedValue = [];
 
   const existValidChildren = existSameLengthValue(value, formatted);
 
   if (existValidChildren) {
     safeValue = value;
-    safeFormatted = formatted;
+    safeFormattedValue = formatted;
   } else {
     formatted.forEach((item, index) => {
       const childIndex = item.findIndex((i) => i.value === value[index]);
       safeValue[index] = item?.[childIndex]?.value || item?.[0]?.value;
     });
-    safeFormatted = formatOptions(safeValue, options);
+    safeFormattedValue = formatOptions(safeValue, options);
   }
 
   return {
     safeValue,
-    safeFormatted,
+    safeFormattedValue,
   };
 };

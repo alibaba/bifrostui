@@ -1,10 +1,10 @@
-import clsx from 'clsx';
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import clsx from 'clsx';
 import Drawer from '../Drawer';
-import PickerPanel from './PickerPanel';
 import { useLocaleText } from '../locales';
-import { PickerProps, ICascadePickerChildOptionItem } from './Picker.types';
 import { formatOptions, pickerPanelType, safeData } from './utils';
+import PickerPanel from './PickerPanel';
+import { PickerProps, ICascadePickerChildOptionItem } from './Picker.types';
 import './Picker.less';
 
 const prefixCls = 'bui-picker';
@@ -188,28 +188,52 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
       open={open}
       className={clsx(prefixCls, className)}
       onClose={handleClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={title || 'Picker'}
       {...others}
     >
       <div
         {...contentProps}
         className={clsx(`${prefixCls}-content`, contentProps?.className)}
       >
-        <div className={`${prefixCls}-header`}>
-          <div className={`${prefixCls}-cancel`} onClick={cancel}>
+        <div
+          className={`${prefixCls}-header`}
+          role="toolbar"
+          aria-label="Toolbar"
+        >
+          <div
+            className={`${prefixCls}-cancel`}
+            onClick={cancel}
+            type="button"
+            aria-label="Cancel"
+            tabIndex={0}
+          >
             {propCancelText || cancelText}
           </div>
-          {title && <div className={`${prefixCls}-title`}>{title}</div>}
+          {title && (
+            <div className={`${prefixCls}-title`} role="heading" aria-level={2}>
+              {title}
+            </div>
+          )}
           <div
             className={clsx(`${prefixCls}-confirm`, {
               [`${prefixCls}-confirm-disabled`]: disabled,
             })}
             onClick={confirm}
+            type="button"
+            aria-label="Confirm"
+            tabIndex={disabled ? -1 : 0}
           >
             {propConfirmText || confirmText}
           </div>
         </div>
 
-        <div className={`${prefixCls}-container`}>
+        <div
+          className={`${prefixCls}-container`}
+          role="listbox"
+          aria-label="Options"
+        >
           {columns.map((column, index) => (
             <PickerPanel
               ref={setRefs(index)}
