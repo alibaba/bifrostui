@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import React, {
   useEffect,
   useState,
@@ -6,6 +5,7 @@ import React, {
   useImperativeHandle,
   useLayoutEffect,
 } from 'react';
+import clsx from 'clsx';
 import {
   useTouch,
   useForkRef,
@@ -16,6 +16,16 @@ import { PickerPanelProps } from './Picker.types';
 import './PickerPanel.less';
 
 const prefixCls = 'bui-picker-panel';
+
+// 在手指离开屏幕时，如果和上一次 move 时的间隔小于 `INERTIA_TIME` 且 move 距离大于 `INERTIA_DISTANCE` 时，触发惯性滑动
+const INERTIA_TIME = 200;
+const INERTIA_DISTANCE = 15;
+
+const DEFAULT_DURATION = 200;
+const ROTATION = 20;
+const TOUCH_END = 'end';
+// 默认行高
+const DEFAULT_LINE_SPACING = 36;
 
 const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
   (props, ref) => {
@@ -29,16 +39,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
     } = props;
 
     const touch = useTouch();
-    let timer;
-    // 在手指离开屏幕时，如果和上一次 move 时的间隔小于 `INERTIA_TIME` 且 move 距离大于 `INERTIA_DISTANCE` 时，触发惯性滑动
-    const INERTIA_TIME = 200;
-    const INERTIA_DISTANCE = 15;
-
-    const DEFAULT_DURATION = 200;
-    const ROTATION = 20;
-    const TOUCH_END = 'end';
-    // 默认行高
-    const DEFAULT_LINE_SPACING = 36;
+    const timerRef = useRef(null);
     const lineSpacing = useRef(DEFAULT_LINE_SPACING);
     const [indicatorOffset, setIndicatorOffset] = useState(108);
 
@@ -65,32 +66,6 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
         setIndicatorOffset((lineSpacing.current * 108) / DEFAULT_LINE_SPACING);
       });
     }, [open]);
-
-    const updateSelect = () => {
-      let index = -1;
-      if (value) {
-        options.some((item, idx) => {
-          if (item.value === value) {
-            index = idx;
-            return true;
-          }
-          return false;
-        });
-      }
-
-      setCurrIndex(index === -1 ? 1 : index + 1);
-      const move = index === -1 ? 0 : index * lineSpacing.current;
-      setMove({ move: -move });
-    };
-
-    useEffect(() => {
-      setScrollDistance(0);
-      transformY.current = 0;
-      updateSelect();
-      return () => {
-        clearTimeout(timer);
-      };
-    }, [options, value]);
 
     const setTransform = (
       type: string,
@@ -152,6 +127,32 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       }
     };
 
+    const updateSelect = () => {
+      let index = -1;
+      if (value) {
+        options.some((item, idx) => {
+          if (item.value === value) {
+            index = idx;
+            return true;
+          }
+          return false;
+        });
+      }
+
+      setCurrIndex(index === -1 ? 1 : index + 1);
+      const move = index === -1 ? 0 : index * lineSpacing.current;
+      setMove({ move: -move });
+    };
+
+    useEffect(() => {
+      setScrollDistance(0);
+      transformY.current = 0;
+      updateSelect();
+      return () => {
+        clearTimeout(timerRef.current);
+      };
+    }, [options, value]);
+
     // 惯性滚动距离
     const momentum = (distance: number, duration: number) => {
       let nDistance = distance;
@@ -199,7 +200,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
           type: TOUCH_END,
         });
       }
-      timer = setTimeout(() => {
+      timerRef.current = setTimeout(() => {
         touch.reset();
       }, 0);
     };
@@ -219,7 +220,7 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
         );
         PickerPanelRef.current?.removeEventListener('touchend', panelTouchEnd);
       };
-    });
+    }, [panelTouchStart, panelTouchMove, panelTouchEnd]);
 
     const onTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
       isVerticalMoving.current = false;
@@ -231,10 +232,13 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
       });
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    useImperativeHandle(ref, (): any => ({
-      isMoving: isVerticalMoving.current,
-    }));
+    useImperativeHandle(
+      ref,
+      () =>
+        ({
+          isMoving: isVerticalMoving.current,
+        }) as HTMLDivElement & { isMoving: boolean },
+    );
 
     return (
       <div
@@ -243,6 +247,10 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
         onTouchStart={panelTouchStart}
         onTouchMove={panelTouchMove}
         onTouchEnd={panelTouchEnd}
+        role="listbox"
+        aria-label="options"
+        aria-orientation="vertical"
+        tabIndex={0}
         {...others}
       >
         <div
@@ -270,6 +278,9 @@ const PickerPanel = React.forwardRef<HTMLDivElement, PickerPanelProps>(
                   -ROTATION * (i + 1)
                 }deg) translate3d(0px, 0px, ${indicatorOffset}px)`,
               }}
+              role="option"
+              aria-selected={item.value === value}
+              aria-disabled={!!item?.disabled}
             >
               {item?.label}
             </div>
