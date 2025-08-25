@@ -119,7 +119,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
     if (isMini) return;
     if (open) {
       handleOpen();
-    } else if (!hasTransition) {
+    } else {
       handleClose();
     }
   }, [open, handleClose, hasTransition, handleOpen, isMini]);
