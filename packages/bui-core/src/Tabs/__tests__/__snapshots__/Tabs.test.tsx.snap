@@ -8,47 +8,76 @@ exports[`Tabs > test with TabPanel > should be active by \`value\` property 1`] 
     class="bui-tabs"
   >
     <div
+      aria-hidden="true"
       class="bui-tabs-mask bui-tabs-mask-left"
       style="opacity: 0;"
     />
     <div
+      aria-hidden="true"
       class="bui-tabs-mask bui-tabs-mask-right"
       style="opacity: 0;"
     />
     <div
+      aria-orientation="horizontal"
       class="bui-tabs-tabs"
+      role="tablist"
     >
       <div
+        aria-hidden="true"
         class="bui-tabs-indicator"
         style="transition: transform 0.3s ease-in-out; transform: translate(0px, 0px);"
       />
       <div
+        aria-controls="bui-tabpanel-fruits"
+        aria-disabled="false"
+        aria-selected="false"
         class="bui-tab"
+        role="tab"
+        tabindex="-1"
       >
         水果
       </div>
       <div
+        aria-controls="bui-tabpanel-vegetables"
+        aria-disabled="false"
+        aria-selected="true"
         class="bui-tab bui-tab-active"
+        role="tab"
+        tabindex="0"
       >
         蔬菜
       </div>
       <div
+        aria-controls="bui-tabpanel-animals"
+        aria-disabled="false"
+        aria-selected="false"
         class="bui-tab"
+        role="tab"
+        tabindex="-1"
       >
         动物
       </div>
     </div>
   </div>
   <div
+    aria-hidden="true"
     class="bui-tabpanel bui-tabpanel-inactive"
+    role="tabpanel"
+    tabindex="0"
   />
   <div
+    aria-hidden="false"
     class="bui-tabpanel bui-tabpanel-active"
+    role="tabpanel"
+    tabindex="0"
   >
     西红柿
   </div>
   <div
+    aria-hidden="true"
     class="bui-tabpanel bui-tabpanel-inactive"
+    role="tabpanel"
+    tabindex="0"
   />
 </div>
 `;
