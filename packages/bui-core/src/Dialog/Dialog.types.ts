@@ -6,13 +6,14 @@ import { ThemeProps } from '../ThemeProvider/ThemeProvider.types';
 /**
  * 对话框类型
  */
-export type DialogType = 'confirm' | 'prompt';
-export type Dispatch = (action: boolean, val?: string) => void;
+export type DialogType = 'confirm' | 'prompt' | 'alert';
+export type Dispatch = (
+  action: boolean,
+  e: React.SyntheticEvent,
+  val?: string,
+) => void;
 
-export type DialogRef = {
-  theme?: ThemeProps;
-};
-export interface DialogProps extends ModalProps {
+export interface DialogProps extends Omit<ModalProps, 'title' | 'content'> {
   /**
    * 对话框类型
    * @default confirm
@@ -21,11 +22,11 @@ export interface DialogProps extends ModalProps {
   /**
    * 自定义标题
    */
-  header?: ReactNode;
+  title?: ReactNode;
   /**
    * 自定义内容
    */
-  message?: ReactNode;
+  content?: ReactNode;
   /**
    * 输入框占位文本
    */
@@ -35,9 +36,9 @@ export interface DialogProps extends ModalProps {
    */
   InputProps?: Partial<InputProps>;
   /**
-   * 确认文本内容
+   * 确认按钮文本内容
    */
-  confirmText?: ReactNode;
+  okText?: ReactNode;
   /**
    * 取消文本内容
    */
@@ -54,11 +55,11 @@ export interface DialogProps extends ModalProps {
   /**
    * 确认回调
    */
-  onOk?: (val?: string) => void;
+  onOk?: (e: React.SyntheticEvent, data: { value: string }) => void;
   /**
    * 取消回调
    */
-  onClose?: () => void;
+  onCancel?: (e: React.SyntheticEvent) => void;
 }
 
 /**
@@ -66,16 +67,16 @@ export interface DialogProps extends ModalProps {
  */
 export type DialogOptions = Omit<
   DialogProps,
-  'placeholder' | 'inputProps' | 'onOk' | 'onClose'
+  'placeholder' | 'inputProps' | 'onOk' | 'onCancel'
 > & {
   /**
    * 确认回调
    */
-  onConfirm?: (val?: string) => void | Promise<void>;
+  onOk?: (e: React.SyntheticEvent, data: { value: string }) => void;
   /**
    * 取消回调
    */
-  onCancel?: () => void | Promise<void>;
+  onCancel?: (e: React.SyntheticEvent) => void;
 };
 
 /**
@@ -98,10 +99,15 @@ export type PromptOptions =
  * confirm函数式调用配置参数
  */
 export type ConfirmOptions = DialogOptions | string;
+
+/**
+ * alert函数式调用配置参数
+ */
+export type AlertOptions = DialogOptions | string;
+
 /**
  * Dialog函数式调用返回值类型
  */
-
 export type DialogPromise = Promise<boolean | string>;
 
 /**
@@ -109,18 +115,40 @@ export type DialogPromise = Promise<boolean | string>;
  */
 export interface DialogFunction {
   /**
-   * 直接调用显示确认框 Dialog
-   */
-  (options: ConfirmOptions): DialogPromise;
-  /**
    * 显示确认框 Dialog.confirm
    */
-  confirm?: (options: ConfirmOptions) => DialogPromise;
+  confirm?: (options: ConfirmOptions) => Promise<boolean>;
   /**
    * 显示提示对话框 Dialog.prompt
    */
-  prompt?: (options: PromptOptions, val?: string) => DialogPromise;
+  prompt?: (options: PromptOptions, val?: string) => Promise<string | null>;
+  /**
+   * 显示警告对话框 Dialog.alert
+   */
+  alert?: (options: AlertOptions) => Promise<boolean>;
 }
-export interface DialogInstance extends DialogFunction {
+
+/**
+ * Dialog组件类型，支持组件式调用和函数式调用
+ */
+export interface DialogComponent
+  extends React.ForwardRefExoticComponent<
+    DialogProps & React.RefAttributes<HTMLDivElement>
+  > {
+  /**
+   * 显示确认框
+   */
+  confirm: (options: ConfirmOptions) => Promise<boolean>;
+  /**
+   * 显示提示对话框
+   */
+  prompt: (options: PromptOptions) => Promise<string | null>;
+  /**
+   * 显示警告对话框
+   */
+  alert: (options: AlertOptions) => Promise<boolean>;
+  /**
+   * 使用Dialog Hook
+   */
   useDialog: () => [DialogFunction, React.JSX.Element];
 }

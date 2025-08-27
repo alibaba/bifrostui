@@ -3,7 +3,7 @@ import { BaseLang } from './base';
 const zhTW: BaseLang = {
   dialog: {
     cancel: '取消',
-    confirm: '確認',
+    ok: '確認',
     placeholder: '請輸入內容',
   },
   picker: {
