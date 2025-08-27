@@ -49,6 +49,32 @@ export const handleGradient = (strokeColor: ProgressGradient) => {
   return { backgroundImage: `linear-gradient(${direction}, ${from}, ${to})` };
 };
 
+// 获取进度文本
+const progressText = {
+  notStarted: 'Not started',
+  justBegun: 'Just begun',
+  gettingStarted: 'Getting started',
+  inProgress: 'In progress',
+  moreThanHalfway: 'More than halfway',
+  nearingCompletion: 'Nearing completion',
+  almostComplete: 'Almost complete',
+  complete: 'Complete',
+};
+
+function getValueText(progress: number | undefined): string {
+  const t = progressText;
+  const validatedProgress = validProgress(progress);
+
+  if (validatedProgress === 0) return t.notStarted;
+  if (validatedProgress < 10) return t.justBegun;
+  if (validatedProgress < 25) return t.gettingStarted;
+  if (validatedProgress < 50) return t.inProgress;
+  if (validatedProgress < 75) return t.moreThanHalfway;
+  if (validatedProgress < 90) return t.nearingCompletion;
+  if (validatedProgress < 100) return t.almostComplete;
+  return t.complete;
+}
+
 // 进度条主组件
 const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
   (props, ref) => {
@@ -58,14 +84,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       strokeWidth, // 进度条高度
       strokeColor, // 进度条颜色或渐变
       trailColor, // 轨道颜色
-      // 无障碍属性
       'aria-label': ariaLabel,
-      'aria-describedby': ariaDescribedby,
-      'aria-hidden': ariaHidden,
-      'aria-details': ariaDetails,
-      'aria-busy': ariaBusy,
-      'aria-readonly': ariaReadonly,
-      'aria-required': ariaRequired,
       'aria-valuenow': ariaValueNow,
       'aria-valuemin': ariaValueMin = 0,
       'aria-valuemax': ariaValueMax = 100,
@@ -96,17 +115,14 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
     // 构建无障碍属性对象
     const accessibilityProps = {
       'aria-label': ariaLabel,
-      'aria-describedby': ariaDescribedby,
-      'aria-hidden': ariaHidden,
-      'aria-details': ariaDetails,
-      'aria-busy': ariaBusy,
-      'aria-readonly': ariaReadonly,
-      'aria-required': ariaRequired,
       'aria-valuenow':
-        ariaValueNow !== undefined ? ariaValueNow : validProgress(percent),
+        typeof ariaValueNow === 'number'
+          ? ariaValueNow
+          : validProgress(percent),
       'aria-valuemin': ariaValueMin,
       'aria-valuemax': ariaValueMax,
-      'aria-valuetext': ariaValueText,
+      'aria-valuetext':
+        ariaValueText !== undefined ? ariaValueText : getValueText(percent),
       role: 'progressbar',
     };
 
