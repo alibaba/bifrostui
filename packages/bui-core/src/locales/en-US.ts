@@ -3,7 +3,7 @@ import { BaseLang } from './base';
 const enUS: BaseLang = {
   dialog: {
     cancel: 'Cancel',
-    confirm: 'Confirm',
+    ok: 'OK',
     placeholder: 'Placeholder',
   },
   picker: {

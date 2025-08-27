@@ -1,24 +1,27 @@
 import clsx from 'clsx';
-import React, { useImperativeHandle, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Input } from '../Input';
 import { Button } from '../Button';
 import { useLocaleText } from '../locales';
-import { DialogProps, DialogRef } from './Dialog.types';
+import { DialogProps } from './Dialog.types';
 import Modal from '../Modal';
 import { useTheme } from '../ThemeProvider';
 import './index.less';
 
 const prefixCls = 'bui-dialog';
 
-const Dialog = React.forwardRef<DialogRef, DialogProps>((props, ref) => {
+/**
+ * Dialog组件 - 既可以作为组件使用，也可以函数式调用
+ */
+const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   const {
     open,
     onOk,
-    onClose,
-    header,
-    message,
-    type,
-    confirmText,
+    onCancel,
+    title,
+    content,
+    type = 'confirm',
+    okText,
     cancelText,
     placeholder,
     InputProps,
@@ -27,63 +30,77 @@ const Dialog = React.forwardRef<DialogRef, DialogProps>((props, ref) => {
     ...others
   } = props;
 
-  const InputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const themeConfig = useTheme(theme);
   const {
     cancel,
-    confirm,
+    ok,
     placeholder: placeholderLocaleName,
   } = useLocaleText('dialog', themeConfig);
-  useImperativeHandle(ref, () => {
-    return { theme: themeConfig };
-  });
-  const footerNode = (
-    <div className={`${prefixCls}-body-footer`}>
-      <Button
-        variant="text"
-        onClick={onClose}
-        className={`${prefixCls}-body-button`}
-      >
-        {cancelText || cancel}
-      </Button>
+
+  // alert 模式只显示确认按钮
+  const isAlertMode = type === 'alert';
+  const isPromptMode = type === 'prompt';
+
+  // 处理确认按钮点击
+  const handleOk = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const inputValue = inputRef.current?.value || '';
+    onOk?.(event, { value: inputValue });
+  };
+
+  // 处理取消按钮点击
+  const handleCancel = (event: React.MouseEvent<HTMLButtonElement>) => {
+    onCancel?.(event);
+  };
+
+  // 渲染操作按钮区域
+  const actionsNode = (
+    <div className={`${prefixCls}-actions`}>
+      {!isAlertMode && (
+        <Button
+          variant="text"
+          onClick={handleCancel}
+          className={`${prefixCls}-actions-btn`}
+        >
+          {cancelText || cancel}
+        </Button>
+      )}
       <Button
         variant="text"
         color="primary"
-        onClick={() => {
-          onOk(InputRef?.current?.value);
-        }}
-        className={`${prefixCls}-body-button`}
+        onClick={handleOk}
+        className={`${prefixCls}-actions-btn`}
       >
-        {confirmText || confirm}
+        {okText || ok}
       </Button>
     </div>
   );
 
-  const inputNode = type === 'prompt' && (
+  // 渲染输入框（仅在prompt模式下显示）
+  const inputNode = isPromptMode && (
     <Input
       {...InputProps}
-      inputRef={InputRef}
-      className={`${prefixCls}-body-input`}
-      placeholder={`${placeholder || placeholderLocaleName}`}
+      inputRef={inputRef}
+      className={`${prefixCls}-input`}
+      placeholder={placeholder || placeholderLocaleName}
+      autoFocus
     />
   );
-
-  if (!open) return null;
 
   return (
     <Modal
       {...others}
-      open
-      className={clsx(prefixCls, className)}
-      disablePortal
-      onClose={onClose}
+      open={open}
+      ref={ref}
+      className={clsx(prefixCls, `${prefixCls}-${type}`, className)}
+      onClose={!isAlertMode ? handleCancel : undefined}
     >
-      <div className={`${prefixCls}-body`}>
-        {header && <h1 className={`${prefixCls}-body-title`}>{header}</h1>}
-        {message && <div className={`${prefixCls}-body-desc`}>{message}</div>}
+      <div className={`${prefixCls}-container`}>
+        {title && <h1 className={`${prefixCls}-title`}>{title}</h1>}
+        {content && <div className={`${prefixCls}-content`}>{content}</div>}
         {inputNode}
-        {footerNode}
+        {actionsNode}
       </div>
     </Modal>
   );

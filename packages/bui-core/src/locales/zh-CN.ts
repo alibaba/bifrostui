@@ -3,7 +3,7 @@ import { BaseLang } from './base';
 const zhCN: BaseLang = {
   dialog: {
     cancel: '取消',
-    confirm: '确定',
+    ok: '确定',
     placeholder: '请输入内容',
   },
   picker: {

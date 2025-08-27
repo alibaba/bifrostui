@@ -4,8 +4,8 @@
   --bui-dialog-max-width: 300px;
   --bui-dialog-border-radius: var(--bui-shape-radius-drawer);
   --bui-dialog-title-padding: 0 40px 9px;
-  --bui-dialog-desc-padding: 0 24px;
-  --bui-dialog-footer-margin: 15px 0 0 0;
+  --bui-dialog-content-padding: 0 24px;
+  --bui-dialog-actions-margin: 15px 0 0 0;
   --bui-dialog-button-height: 53px;
   --bui-dialog-button-line-height: 25px;
   --bui-dialog-button-padding: 12px 0 13px;
@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: center;
 
-  &-body {
+  &-container {
     padding-top: 21px;
     min-width: var(--bui-dialog-max-width);
     margin: 0 auto;
@@ -27,42 +27,37 @@
     background-clip: padding-box;
     background-color: var(--bui-color-bg-view);
     line-height: 21px;
+  }
 
-    &-title {
-      padding: var(--bui-dialog-title-padding);
-      font-size: var(--bui-title-size-2);
-      text-align: center;
-      color: var(--bui-color-fg-default);
-      font-weight: var(--bui-font-weight-medium);
+  &-title {
+    padding: var(--bui-dialog-title-padding);
+    font-size: var(--bui-title-size-2);
+    text-align: center;
+    color: var(--bui-color-fg-default);
+    font-weight: var(--bui-font-weight-medium);
+  }
+
+  &-title + &-actions {
+    margin-top: var(--bui-spacing-sm);
+  }
+
+  &-content {
+    padding: var(--bui-dialog-content-padding);
+    color: var(--bui-color-fg-muted);
+    font-size: var(--bui-title-size-4);
+    text-align: center;
+
+    &:first-child {
+      padding-top: 0;
     }
+  }
 
-    &-title + &-footer {
-      margin-top: var(--bui-spacing-sm);
-    }
+  &-actions {
+    margin: var(--bui-dialog-actions-margin);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
 
-    &-desc {
-      padding: var(--bui-dialog-desc-padding);
-      color: var(--bui-color-fg-muted);
-      font-size: var(--bui-title-size-4);
-      text-align: center;
-
-      &:first-child {
-        padding-top: 0;
-      }
-    }
-
-    &-footer {
-      margin: var(--bui-dialog-footer-margin);
-      border-top: 1px solid rgba(0, 0, 0, 0.05);
-      display: flex;
-    }
-
-    &-input {
-      width: calc(100% - 48px);
-      margin: 14px 24px 0;
-    }
-
-    &-button {
+    &-btn {
       flex: 1;
       display: block;
       width: 100%;
@@ -85,5 +80,10 @@
         background-color: var(--bui-dialog-button-active-bg-color);
       }
     }
+  }
+
+  &-input {
+    width: calc(100% - 48px);
+    margin: 14px 24px 0;
   }
 }
