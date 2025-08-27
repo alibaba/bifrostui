@@ -46,9 +46,9 @@ describe('Dialog Functional Calls', () => {
         data-testid="emit-button"
         onClick={() => {
           confirmPromise = Dialog.confirm({
-            header: 'Confirm Title',
-            message: 'Are you sure?',
-            confirmText: 'Yes',
+            title: 'Confirm Title',
+            content: 'Are you sure?',
+            okText: 'Yes',
             cancelText: 'No',
           });
         }}
@@ -67,6 +67,38 @@ describe('Dialog Functional Calls', () => {
     expect(result).toBe(true);
   });
 
+  it('should resolve with true when Dialog.alert is confirmed', async () => {
+    let alertPromise;
+    const { getByTestId } = render(
+      <Button
+        data-testid="emit-button"
+        onClick={() => {
+          alertPromise = Dialog.alert({
+            title: 'Alert Title',
+            content: 'This is an alert message',
+            okText: 'OK',
+          });
+        }}
+      >
+        test
+      </Button>,
+    );
+    fireEvent.click(getByTestId('emit-button'));
+    expect(screen.getByText('Alert Title')).toBeInTheDocument();
+    expect(screen.getByText('This is an alert message')).toBeInTheDocument();
+
+    // Alert 模式应该只有一个确认按钮
+    expect(screen.getByText('OK')).toBeInTheDocument();
+    expect(screen.queryByText('取消')).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByText('OK'));
+    await act(async () => {
+      await vi.runAllTimers();
+    });
+    const result = await alertPromise;
+    expect(result).toBe(true);
+  });
+
   it('should render in container', async () => {
     const { getByTestId } = render(
       <>
@@ -75,7 +107,7 @@ describe('Dialog Functional Calls', () => {
           data-testid="emit-button"
           onClick={() => {
             Dialog.confirm({
-              message: 'Are you sure?',
+              content: 'Are you sure?',
               container: document.getElementById('render-container'),
             });
           }}
@@ -95,9 +127,9 @@ describe('Dialog Functional Calls', () => {
         data-testid="emit-button"
         onClick={() => {
           confirmPromise = Dialog.confirm({
-            header: 'Confirm Title',
-            message: 'Are you sure?',
-            confirmText: 'Yes',
+            title: 'Confirm Title',
+            content: 'Are you sure?',
+            okText: 'Yes',
             cancelText: 'Del',
           });
         }}
@@ -121,9 +153,9 @@ describe('Dialog Functional Calls', () => {
         data-testid="emit-button"
         onClick={() => {
           promptPromise = Dialog.prompt({
-            header: 'Prompt Title',
-            message: 'Please enter a value:',
-            confirmText: 'Confirm',
+            title: 'Prompt Title',
+            content: 'Please enter a value:',
+            okText: 'Confirm',
             cancelText: 'Cancel',
           });
         }}
@@ -162,9 +194,9 @@ describe('Dialog Functional Calls', () => {
         data-testid="emit-button"
         onClick={() => {
           promptPromise = Dialog.prompt({
-            header: 'Prompt Title',
-            message: 'Please enter a value:',
-            confirmText: 'Confirm',
+            title: 'Prompt Title',
+            content: 'Please enter a value:',
+            okText: 'Confirm',
             cancelText: 'Delete',
           });
         }}
@@ -180,17 +212,18 @@ describe('Dialog Functional Calls', () => {
     const result = await promptPromise;
     expect(result).toBe(false);
   });
+
   it('the default type of useDialog is confirm', async () => {
-    const onConfirm = vi.fn();
+    const onOk = vi.fn();
     const onCancel = vi.fn();
     const { getByTestId } = render(
       <Button
         data-testid="emit-button"
         onClick={() => {
           dialogHook[0]({
-            header: '标题',
-            message: '描述内容',
-            onConfirm,
+            title: '标题',
+            content: '描述内容',
+            onOk,
             onCancel,
           });
         }}
@@ -210,19 +243,19 @@ describe('Dialog Functional Calls', () => {
     expect(onCancel).toHaveBeenCalled();
   });
 
-  it.each(['confirm', 'prompt'])(
+  it.each(['confirm', 'prompt', 'alert'])(
     'should support basic api with useDialog',
     async (type) => {
       const dialog = dialogHook?.[0];
-      const onConfirm = vi.fn();
+      const onOk = vi.fn();
       const onCancel = vi.fn();
 
       render(
         <Button
           onClick={() => {
             dialog[type]({
-              message: `${type} message`,
-              onConfirm,
+              content: `${type} message`,
+              onOk,
               onCancel,
             });
           }}
@@ -232,11 +265,23 @@ describe('Dialog Functional Calls', () => {
       );
       fireEvent.click(screen.getByText('dialog button'));
       expect(screen.getByText(`${type} message`)).toBeInTheDocument();
-      fireEvent.click(screen.getByText('取消'));
-      await act(async () => {
-        await vi.runAllTimers();
-      });
-      expect(onCancel).toHaveBeenCalled();
+
+      if (type === 'alert') {
+        // Alert 模式只有确认按钮
+        expect(screen.queryByText('取消')).not.toBeInTheDocument();
+        fireEvent.click(screen.getByText('确认'));
+        await act(async () => {
+          await vi.runAllTimers();
+        });
+        expect(onOk).toHaveBeenCalled();
+      } else {
+        // Confirm 和 Prompt 模式有取消按钮
+        fireEvent.click(screen.getByText('取消'));
+        await act(async () => {
+          await vi.runAllTimers();
+        });
+        expect(onCancel).toHaveBeenCalled();
+      }
     },
   );
 });

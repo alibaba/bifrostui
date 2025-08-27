@@ -1,7 +1,7 @@
 export interface BaseLang {
   dialog?: {
     cancel?: string;
-    confirm?: string;
+    ok?: string;
     placeholder?: string;
   };
   picker?: {

@@ -1,169 +1,193 @@
-import React, { LegacyRef, useCallback, useEffect, useState } from 'react';
-import { getRootContainer, render, unmount } from '@bifrostui/utils';
-import Popup from './Dialog';
+import React, { useCallback, useState } from 'react';
+import { getRootContainer, render, unmount, isMini } from '@bifrostui/utils';
+import Dialog from './Dialog';
 import {
   DialogPromise,
-  DialogInstance,
   PromptOptions,
   ConfirmOptions,
+  AlertOptions,
   DialogOptions,
   Dispatch,
   DialogFunction,
-  DialogRef,
 } from './Dialog.types';
 
-const { isValidElement, Component } = React;
+const { isValidElement } = React;
 
 /**
  * 参数格式化，支持直接传文案
  */
 const formatProps = (props) => {
   if (typeof props === 'string' || isValidElement(props)) {
-    return { message: props };
+    return { content: props };
   }
   return props;
 };
 
 const DialogGenerator = (options: DialogOptions) => {
-  const rootWrapper = document.createElement('div');
+  const dialogFragment = isMini
+    ? document.createElement('div')
+    : document.createDocumentFragment();
   const rootElement = getRootContainer(options?.container);
-  rootElement.appendChild(rootWrapper);
+  rootElement.appendChild(dialogFragment);
 
-  const DialogComponent = () => {
-    const {
-      onConfirm,
-      onCancel,
-      ref,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      container,
-      ...others
-    } = options;
-    const [visible, setVisible] = useState(false);
+  const DialogWrapper = () => {
+    const { onOk, onCancel, ...rest } = options;
 
     const close = useCallback(() => {
-      setVisible(false);
       setTimeout(() => {
-        const unmountRes = unmount(rootWrapper);
-        if (unmountRes && rootWrapper.parentNode) {
-          rootWrapper.parentNode.removeChild(rootWrapper);
+        const unmountRes = unmount(dialogFragment);
+        if (unmountRes && dialogFragment.parentNode) {
+          dialogFragment.parentNode.removeChild(dialogFragment);
         }
       }, 150);
-    }, [rootWrapper]);
+    }, [dialogFragment]);
 
-    useEffect(() => {
-      setVisible(true);
-    }, []);
-
-    const dispatch: Dispatch = async (action, val) => {
+    const dispatch: Dispatch = async (action, e, val) => {
       if (action === true) {
-        try {
-          await onConfirm?.(val);
-        } catch (error) {
-          /* empty */
-        }
+        await onOk?.(e, { value: val });
       } else if (action === false) {
-        try {
-          await onCancel?.();
-        } catch (error) {
-          /* empty */
-        }
+        await onCancel?.(e);
       }
       close();
     };
 
     return (
-      <Popup
-        ref={ref as LegacyRef<DialogRef>}
-        {...others}
-        open={visible}
-        onOk={(val) => dispatch(true, val)}
-        onClose={() => dispatch(false)}
+      <Dialog
+        {...rest}
+        open
+        onOk={(e, { value }) => dispatch(true, e, value)}
+        onCancel={(e) => dispatch(false, e)}
       />
     );
   };
 
-  return render(<DialogComponent />, rootWrapper);
+  return render(<DialogWrapper />, dialogFragment);
 };
 
-const Dialog: DialogInstance = (
-  props: DialogOptions | string,
-): DialogPromise => {
+const FunctionalDialog = (props: DialogOptions | string): DialogPromise => {
   const options = formatProps(props);
-  const { onConfirm, onCancel, ...rest } = options;
+  const { onOk, onCancel, ...rest } = options;
+
   return new Promise((resolve) => {
     DialogGenerator({
       ...rest,
-      onConfirm: async (val) => {
-        await onConfirm?.(val);
+      onOk: async (e, { value: val }) => {
+        await onOk?.(e, { value: val });
         if (rest.type === 'prompt') resolve(val);
         else resolve(true);
       },
-      onCancel: async () => {
-        await onCancel?.();
-        resolve(false);
+      onCancel: async (e) => {
+        await onCancel?.(e);
+        if (rest.type === 'prompt') resolve(null);
+        else resolve(false);
       },
     });
   });
 };
 
-Dialog.prototype = Component.prototype;
-
-const confirm = (options: ConfirmOptions) => {
-  return Dialog({
+const confirm = (options: ConfirmOptions): Promise<boolean> => {
+  return FunctionalDialog({
     type: 'confirm',
     ...formatProps(options),
-  });
+  }) as Promise<boolean>;
 };
 
-const prompt = (options: PromptOptions) => {
-  return Dialog({
+const prompt = (options: PromptOptions): Promise<string> => {
+  return FunctionalDialog({
     type: 'prompt',
     ...formatProps(options),
-  });
+  }) as Promise<string>;
 };
+
+const alert = (options: AlertOptions): Promise<boolean> => {
+  return FunctionalDialog({
+    type: 'alert',
+    ...formatProps(options),
+  }) as Promise<boolean>;
+};
+
 const useDialog = () => {
-  const holderRef = React.useRef(null);
-  const wrapAPI: DialogFunction = (
-    props: DialogOptions | string,
-  ): DialogPromise => {
-    const options = { theme: holderRef.current?.theme, ...formatProps(props) };
-    const { onConfirm, onCancel, ...rest } = options;
-    return new Promise((resolve) => {
-      DialogGenerator({
-        ...rest,
+  const [elements, setElements] = useState<React.ReactElement[]>([]);
 
-        onConfirm: async (val) => {
-          await onConfirm?.(val);
-          if (rest.type === 'prompt') resolve(val);
-          else resolve(true);
-        },
-        onCancel: async () => {
-          await onCancel?.();
-          resolve(false);
-        },
-      });
+  const createDialog = useCallback((config: DialogOptions): DialogPromise => {
+    return new Promise((resolve) => {
+      const key = `dialog-${Date.now()}-${Math.random()}`;
+
+      const destroy = () => {
+        setElements((prev) => prev.filter((el) => el.key !== key));
+      };
+
+      const onInternalOk = async (
+        e: React.SyntheticEvent,
+        data: { value: string },
+      ) => {
+        await config.onOk?.(e, data);
+        if (config.type === 'prompt') resolve(data.value);
+        else resolve(true);
+        destroy();
+      };
+
+      const onInternalCancel = async (e: React.SyntheticEvent) => {
+        await config.onCancel?.(e);
+        if (config.type === 'prompt') resolve(null);
+        else resolve(false);
+        destroy();
+      };
+
+      const dialogElement = (
+        <Dialog
+          key={key}
+          {...config}
+          open
+          onOk={onInternalOk}
+          onCancel={onInternalCancel}
+        />
+      );
+
+      setElements((prev) => [...prev, dialogElement]);
     });
-  };
-  wrapAPI.confirm = (options: ConfirmOptions) =>
-    Dialog({
-      type: 'confirm',
-      ...formatProps(options),
-      theme: holderRef.current?.theme,
-    });
-  wrapAPI.prompt = (options: PromptOptions) =>
-    Dialog({
-      type: 'prompt',
-      ...formatProps(options),
-      theme: holderRef.current?.theme,
-    });
-  return [wrapAPI, <Popup key="dialog-holder" ref={holderRef} />] as [
-    DialogFunction,
-    React.JSX.Element,
-  ];
+  }, []);
+
+  const wrapAPI = {} as DialogFunction;
+
+  wrapAPI.confirm = useCallback(
+    (options: ConfirmOptions) => {
+      return createDialog({
+        type: 'confirm',
+        ...formatProps(options),
+      }) as Promise<boolean>;
+    },
+    [createDialog],
+  );
+
+  wrapAPI.prompt = useCallback(
+    (options: PromptOptions) => {
+      return createDialog({
+        type: 'prompt',
+        ...formatProps(options),
+      }) as Promise<string>;
+    },
+    [createDialog],
+  );
+
+  wrapAPI.alert = useCallback(
+    (options: AlertOptions) => {
+      return createDialog({
+        type: 'alert',
+        ...formatProps(options),
+      }) as Promise<boolean>;
+    },
+    [createDialog],
+  );
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  const contextHolder = <>{elements}</>;
+
+  return [wrapAPI, contextHolder] as [DialogFunction, React.JSX.Element];
 };
 
-Dialog.confirm = confirm;
-Dialog.prompt = prompt;
-Dialog.useDialog = useDialog;
+FunctionalDialog.confirm = confirm;
+FunctionalDialog.prompt = prompt;
+FunctionalDialog.alert = alert;
+FunctionalDialog.useDialog = useDialog;
 
-export default Dialog;
+export default FunctionalDialog;
