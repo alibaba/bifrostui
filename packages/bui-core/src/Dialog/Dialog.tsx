@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import React, { useRef } from 'react';
+import { useId } from '@bifrostui/utils';
 import { Input } from '../Input';
 import { Button } from '../Button';
 import { useLocaleText } from '../locales';
@@ -31,6 +32,9 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const titleId = useId();
+  const contentId = useId();
 
   const themeConfig = useTheme(theme);
   const {
@@ -85,8 +89,12 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       className={`${prefixCls}-input`}
       placeholder={placeholder || placeholderLocaleName}
       autoFocus
+      aria-describedby={content ? contentId : undefined}
     />
   );
+
+  const ariaLabelledBy = title ? titleId : undefined;
+  const ariaDescribedBy = content ? contentId : undefined;
 
   return (
     <Modal
@@ -96,9 +104,23 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       className={clsx(prefixCls, `${prefixCls}-${type}`, className)}
       onClose={!isAlertMode ? handleCancel : undefined}
     >
-      <div className={`${prefixCls}-container`}>
-        {title && <h1 className={`${prefixCls}-title`}>{title}</h1>}
-        {content && <div className={`${prefixCls}-content`}>{content}</div>}
+      <div
+        className={`${prefixCls}-container`}
+        role={type === 'alert' ? 'alertdialog' : 'dialog'}
+        aria-modal="true"
+        aria-labelledby={ariaLabelledBy}
+        aria-describedby={ariaDescribedBy}
+      >
+        {title && (
+          <h1 id={titleId} className={`${prefixCls}-title`}>
+            {title}
+          </h1>
+        )}
+        {content && (
+          <div id={contentId} className={`${prefixCls}-content`}>
+            {content}
+          </div>
+        )}
         {inputNode}
         {actionsNode}
       </div>

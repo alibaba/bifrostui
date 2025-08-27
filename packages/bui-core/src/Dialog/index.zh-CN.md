@@ -420,7 +420,9 @@ export default () => {
   return (
     <ThemeProvider>
       {contextHolder}
-      <Button onClick={showCustomStyle}>自定义样式</Button>
+      <Stack direction="row" spacing="10px">
+        <Button onClick={showCustomStyle}>自定义样式</Button>
+      </Stack>
     </ThemeProvider>
   );
 };
