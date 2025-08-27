@@ -338,45 +338,6 @@ export default () => {
 };
 ```
 
-## 无障碍性 (Accessibility)
-
-Button 组件内置了完整的无障碍性支持，可以直接使用以下 ARIA 属性：
-
-- `aria-label`: 为按钮提供可访问的标签
-- `aria-describedby`: 关联描述按钮的元素
-- `aria-hidden`: 控制按钮在无障碍树中的可见性
-- `aria-details`: 提供按钮的详细信息
-- `aria-keyshortcuts`: 定义按钮的键盘快捷键
-- `aria-busy`: 表示按钮是否处于忙碌状态
-- `aria-readonly`: 表示按钮是否为只读
-- `aria-required`: 表示按钮是否为必填
-
-使用示例：
-
-```tsx
-import { Button, Stack } from '@bifrostui/react';
-import React from 'react';
-
-export default () => {
-  return (
-    <Stack spacing="9px">
-      <Button aria-label="关闭对话框">X</Button>
-      <Button aria-describedby="description">按钮</Button>
-      <span id="description" style={{ display: 'none' }}>
-        这是按钮的描述信息
-      </span>
-      <Button
-        aria-label="保存文档"
-        aria-keyshortcuts="Ctrl+S"
-        aria-busy={false}
-      >
-        保存
-      </Button>
-    </Stack>
-  );
-};
-```
-
 ## API
 
 | 属性      | 说明                 | 类型                                                                                    | 默认值     |

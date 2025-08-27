@@ -157,45 +157,6 @@ export default () => {
 };
 ```
 
-### Accessibility
-
-The Button component has built-in accessibility support and can directly use the following ARIA attributes:
-
-- `aria-label`: Provides an accessible label for the button
-- `aria-describedby`: Associates an element that describes the button
-- `aria-hidden`: Controls the visibility of the button in the accessibility tree
-- `aria-details`: Provides detailed information about the button
-- `aria-keyshortcuts`: Defines keyboard shortcuts for the button
-- `aria-busy`: Indicates whether the button is in a busy state
-- `aria-readonly`: Indicates whether the button is read-only
-- `aria-required`: Indicates whether the button is required
-
-Usage example:
-
-```tsx
-import { Button, Stack } from '@bifrostui/react';
-import React from 'react';
-
-export default () => {
-  return (
-    <Stack spacing="8px">
-      <Button aria-label="Close dialog">X</Button>
-      <Button aria-describedby="description">Button</Button>
-      <span id="description" style={{ display: 'none' }}>
-        This is a description of the button
-      </span>
-      <Button
-        aria-label="Save document"
-        aria-keyshortcuts="Ctrl+S"
-        aria-busy={false}
-      >
-        Save
-      </Button>
-    </Stack>
-  );
-};
-```
-
 ## API
 
 | Property  | Description          | Type                                                                                    | Default    |

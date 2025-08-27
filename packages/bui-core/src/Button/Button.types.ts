@@ -53,38 +53,6 @@ export type ButtonProps<
        * 仅微信小程序支持的button开放能力
        */
       openType?: ButtonOpenType;
-      /**
-       * 无障碍功能：ARIA标签
-       */
-      'aria-label'?: string;
-      /**
-       * 无障碍功能：描述元素的详细信息
-       */
-      'aria-describedby'?: string;
-      /**
-       * 无障碍功能：是否隐藏元素
-       */
-      'aria-hidden'?: boolean;
-      /**
-       * 无障碍功能：元素在无障碍树中的细节程度
-       */
-      'aria-details'?: string;
-      /**
-       * 无障碍功能：键盘快捷键
-       */
-      'aria-keyshortcuts'?: string;
-      /**
-       * 无障碍功能：当前元素是否处于忙碌状态
-       */
-      'aria-busy'?: boolean;
-      /**
-       * 无障碍功能：当前元素是否为只读
-       */
-      'aria-readonly'?: boolean;
-      /**
-       * 无障碍功能：当前元素是否为必填
-       */
-      'aria-required'?: boolean;
     };
     defaultComponent: D;
   },

@@ -25,29 +25,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       variant = 'outlined',
       color,
       disabled = false,
-      // 无障碍属性
-      'aria-label': ariaLabel,
-      'aria-describedby': ariaDescribedby,
-      'aria-hidden': ariaHidden,
-      'aria-details': ariaDetails,
-      'aria-keyshortcuts': ariaKeyshortcuts,
-      'aria-busy': ariaBusy,
-      'aria-readonly': ariaReadonly,
-      'aria-required': ariaRequired,
       ...others
     } = props;
-
-    // 构建无障碍属性对象
-    const accessibilityProps = {
-      'aria-label': ariaLabel,
-      'aria-describedby': ariaDescribedby,
-      'aria-hidden': ariaHidden,
-      'aria-details': ariaDetails,
-      'aria-keyshortcuts': ariaKeyshortcuts,
-      'aria-busy': ariaBusy,
-      'aria-readonly': ariaReadonly,
-      'aria-required': ariaRequired,
-    };
 
     return (
       <button
@@ -64,7 +43,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         ref={ref}
         disabled={disabled}
-        {...accessibilityProps}
         {...others}
       >
         {startIcon && <ButtonIcon iconPosition="start">{startIcon}</ButtonIcon>}
