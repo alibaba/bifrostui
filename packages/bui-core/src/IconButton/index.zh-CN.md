@@ -229,6 +229,87 @@ export default () => {
 };
 ```
 
+## 无障碍属性（Accessibility）
+
+IconButton 组件内置了精简的无障碍功能支持
+
+- **aria-label**（必需）- 图标按钮的可访问名称
+- **aria-disabled** - 图标是否禁用
+- **aria-pressed** - 切换按钮状态
+- **aria-expanded** - 展开/折叠状态
+- **aria-haspopup** - 弹出内容类型
+- **aria-describedby** - 关联描述元素
+
+### aria-label
+
+```tsx
+import React from 'react';
+import { IconButton, Stack } from '@bifrostui/react';
+import {
+  CloseIcon,
+  SettingsOutlinedIcon,
+  SearchGapOutlinedIcon,
+} from '@bifrostui/icons';
+
+export default () => {
+  return (
+    <Stack direction="row" spacing="8px">
+      <IconButton aria-label="Search">
+        <SearchGapOutlinedIcon />
+      </IconButton>
+      <IconButton>
+        <CloseIcon />
+      </IconButton>
+      <IconButton aria-label="Settings">
+        <SettingsOutlinedIcon />
+      </IconButton>
+    </Stack>
+  );
+};
+```
+
+### 交互状态
+
+```tsx
+import React, { useState } from 'react';
+import { IconButton, Stack, Toast } from '@bifrostui/react';
+import { HeartAddOutlinedIcon, ListOutlinedIcon } from '@bifrostui/icons';
+
+export default () => {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <Stack direction="row" spacing="8px">
+      <IconButton
+        aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+        aria-pressed={isFavorite}
+        onClick={() => {
+          Toast('change aria attribute');
+          setIsFavorite(!isFavorite);
+        }}
+        color={isFavorite ? 'primary' : 'neutral'}
+      >
+        <HeartAddOutlinedIcon />
+      </IconButton>
+
+      <IconButton
+        aria-label={isExpanded ? 'Collapse menu' : 'Expand menu'}
+        aria-expanded={isExpanded}
+        aria-haspopup="menu"
+        color={isExpanded ? 'primary' : 'neutral'}
+        onClick={() => {
+          Toast('change aria attribute');
+          setIsExpanded(!isExpanded);
+        }}
+      >
+        <ListOutlinedIcon />
+      </IconButton>
+    </Stack>
+  );
+};
+```
+
 ## API
 
 | 属性      | 说明                 | 类型                                                                                      | 默认值    |
