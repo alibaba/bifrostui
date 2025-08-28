@@ -165,6 +165,11 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
           }}
           onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
             // 小程序中无onChange事件，通过onInput模拟
+            if (showCount) {
+              const remaining = maxLength - e.target.value.length;
+              // 动态更新 aria-description
+              e.target.setAttribute('aria-description', `剩余 ${remaining} 字`);
+            }
             if (isMini) {
               triggerChange(e, e.target.value);
             }
