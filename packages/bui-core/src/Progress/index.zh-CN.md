@@ -109,13 +109,6 @@ export default () => {
 
 Progress 组件内置了完整的无障碍性支持，可以直接使用以下 ARIA 属性：
 
-- `aria-label`: 为进度条提供可访问的标签
-- `aria-describedby`: 关联描述进度条的元素
-- `aria-hidden`: 控制进度条在无障碍树中的可见性
-- `aria-details`: 提供进度条的详细信息
-- `aria-busy`: 表示进度条是否处于忙碌状态
-- `aria-readonly`: 表示进度条是否为只读
-- `aria-required`: 表示进度条是否为必填
 - `aria-valuenow`: 进度条的当前值（默认为percent值）
 - `aria-valuemin`: 进度条的最小值（默认为0）
 - `aria-valuemax`: 进度条的最大值（默认为100）
