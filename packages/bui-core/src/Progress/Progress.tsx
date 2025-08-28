@@ -61,7 +61,7 @@ const progressText = {
   complete: 'Complete',
 };
 
-function getValueText(progress: number | undefined): string {
+function getAriaValueText(progress: number | undefined): string {
   const t = progressText;
   const validatedProgress = validProgress(progress);
 
@@ -84,7 +84,6 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       strokeWidth, // 进度条高度
       strokeColor, // 进度条颜色或渐变
       trailColor, // 轨道颜色
-      'aria-label': ariaLabel,
       'aria-valuenow': ariaValueNow,
       'aria-valuemin': ariaValueMin = 0,
       'aria-valuemax': ariaValueMax = 100,
@@ -114,7 +113,6 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
 
     // 构建无障碍属性对象
     const accessibilityProps = {
-      'aria-label': ariaLabel,
       'aria-valuenow':
         typeof ariaValueNow === 'number'
           ? ariaValueNow
@@ -122,7 +120,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       'aria-valuemin': ariaValueMin,
       'aria-valuemax': ariaValueMax,
       'aria-valuetext':
-        ariaValueText !== undefined ? ariaValueText : getValueText(percent),
+        ariaValueText !== undefined ? ariaValueText : getAriaValueText(percent),
       role: 'progressbar',
     };
 
