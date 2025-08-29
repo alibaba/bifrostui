@@ -80,10 +80,8 @@ const Slide = React.forwardRef<HTMLElement, SlideProps>(
     /**
      * Refs & State
      */
-    const isFirstMount = useRef(true);
-    const [isMounted, setIsMounted] = useState(
-      () => !mountOnEnter || !unmountOnExit,
-    );
+    const isFirstMount = useRef(inProp || !mountOnEnter);
+    const [isMounted, setIsMounted] = useState(inProp || !mountOnEnter);
     const elementRef = useRef(null);
     // @ts-expect-error will upstream fix
     const handleRef = useForkRef(ref, children?.ref, elementRef);
@@ -146,7 +144,6 @@ const Slide = React.forwardRef<HTMLElement, SlideProps>(
         isFirstMount.current = false;
       }
     }, [isMounted]);
-
     /**
      * Animation event handlers
      */
