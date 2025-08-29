@@ -13,6 +13,7 @@ import {
   createTransitions,
   getBoundingClientRect,
 } from '@bifrostui/utils';
+import Taro from '@tarojs/taro';
 import { CollapseProps } from './Collapse.types';
 import './Collapse.less';
 
@@ -77,12 +78,9 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
 
   const size = isHorizontal ? 'width' : 'height';
 
-  const shouldAnimateOnFirstMount = inProp && appear;
-  const shouldAnimate = (inProp && enter) || (!inProp && exit);
-
   // 初始化wrapperSize
   const [wrapperSize, setWrapperSize] = useState(() => {
-    if (mountOnEnter || unmountOnExit) return '0px';
+    if (mountOnEnter || unmountOnExit) return collapsedSize;
 
     // 当appear为true且inProp为true时，初始应该是collapsed状态
     if (appear && inProp) {
@@ -95,16 +93,6 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
     // inProp为true且非appear情况，初始为空，等待获取实际尺寸
     return '';
   });
-  /**
-   * Animation configuration
-   */
-  const getAnimationDuration = () => {
-    return shouldAnimate ? timeout : 0;
-  };
-
-  // Whether to skip the initial animation
-  const shouldSkipFirstAnimation =
-    isFirstMount.current && !shouldAnimateOnFirstMount;
 
   const getCollapseWrapperSize = (reactNode) => {
     return new Promise((resolve) => {
@@ -122,12 +110,12 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
         return;
       }
 
-      // 使用setTimeout确保DOM渲染完成
-      setTimeout(() => {
+      // 确保DOM渲染完成
+      Taro.nextTick(() => {
         if (!isMountedRef.current) return; // 防止内存泄漏
 
         getBoundingClientRect(reactNodeChild).then((res) => {
-          if (!isMountedRef.current) return; // 防止内存泄漏
+          if (!isMountedRef.current) return;
 
           if (!res) {
             actualSizeRef.current = FIT_CONTENT;
@@ -140,29 +128,35 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
             resolve(newSize);
           }
         });
-      }, 0);
+      });
     });
   };
 
-  /**
-   * Generate animation configuration
-   */
-  const animationDuration = getAnimationDuration();
-  const transition = transitions.create(
-    size,
-    getTransitionProps(
-      {
-        timeout: animationDuration,
-        style,
-        easing: easingProp,
-        delay,
-      },
-      { mode: inProp ? 'enter' : 'exit' },
-    ),
-  );
+  const transition = (() => {
+    // 当enter=false且正在进入时，或exit=false且正在退出时，禁用CSS动画
+    const shouldDisableTransition = (inProp && !enter) || (!inProp && !exit);
+
+    if (shouldDisableTransition) {
+      return 'none';
+    }
+
+    return transitions.create(
+      size,
+      getTransitionProps(
+        {
+          timeout,
+          style,
+          easing: easingProp,
+          delay,
+        },
+        { mode: inProp ? 'enter' : 'exit' },
+      ),
+    );
+  })();
 
   /**
    * Lifecycle management
+   * 在所有异步操作中添加 isMountedRef 检查，防止组件卸载后更新状态导致错误，避免内存泄漏风险
    */
   useEffect(() => {
     isMountedRef.current = true;
@@ -181,29 +175,31 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
   useEffect(() => {
     if (!isMounted) return;
     // 组件挂载后初始化尺寸
-    // 获取实际尺寸（只计算一次）
     if (elementRef.current) {
+      // 获取实际尺寸（只计算一次）
       getCollapseWrapperSize(elementRef.current).then((actualSize) => {
-        if (!isMountedRef.current) return;
-        // 如果是appear动画且初次挂载
-        if (
-          (unmountOnExit || mountOnEnter || appear) &&
-          inProp &&
-          isFirstMount.current
-        ) {
-          // 触发appear动画：从 collapsedSize 到 actualSize
-          setTimeout(() => {
-            if (isMountedRef.current) {
-              setWrapperSize(actualSize as string);
-            }
-          }, 16); // 使用下一个帧来触发动画
-        }
-        // 非appear且inProp为true情况下的初次挂载，立即设置为实际尺寸
-        else if (inProp && wrapperSize === '') {
+        // 初次挂载时
+        if (!isFirstMount.current) return;
+        if (inProp) {
           setWrapperSize(actualSize as string);
+
+          // 处理动画的生命周期回调
+          if (appear || enter) {
+            onEnter?.(elementRef.current);
+            // appear动画开始后
+            if (onEntering) {
+              setTimeout(() => {
+                if (!isMountedRef.current) return;
+                onEntering(elementRef.current);
+              }, 0);
+            }
+          } else if (!enter) {
+            // 没有动画，手动触发onEntered事件
+            onEntered?.(elementRef.current);
+          }
         }
 
-        if (isMounted && isFirstMount.current) {
+        if (isMounted) {
           isFirstMount.current = false;
         }
       });
@@ -215,50 +211,52 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
    */
   useEffect(() => {
     if (!isMounted) return;
-
-    // 处理appear动画的生命周期回调
-    if (appear && inProp && isFirstMount.current) {
-      onEnter?.(elementRef.current);
-      return;
-    }
-
-    // 非appear情况下的inProp变化处理（不包括初次挂载）
+    // 非初次挂载时的inProp变化处理
     if (!isFirstMount.current) {
       if (inProp) {
-        // 展开时，调用onEnter并设置为实际尺寸
-        onEnter?.(elementRef.current);
         // 使用缓存的尺寸，不再重复计算
         if (actualSizeRef.current) {
           setWrapperSize(actualSizeRef.current);
         }
+        // 处理动画的生命周期回调函数
+        if (enter) {
+          onEnter?.(elementRef.current);
+          if (onEntering) {
+            setTimeout(() => {
+              if (!isMountedRef.current) return;
+              onEntering(elementRef.current);
+            }, 0);
+          }
+        } else {
+          onEntered?.(elementRef.current);
+        }
       } else {
-        // 收起时，调用onExit并设置为折叠尺寸
-        onExit?.(elementRef.current);
         setWrapperSize(collapsedSize);
+        if (exit) {
+          onExit?.(elementRef.current);
+          // 立即触发onExiting回调
+          if (onExiting) {
+            setTimeout(() => {
+              if (!isMountedRef.current) return;
+              onExiting(elementRef.current);
+            }, 0);
+          }
+        } else {
+          onExited?.(elementRef.current);
+        }
       }
     }
-  }, [inProp, isMounted, appear, onEnter, onExit, collapsedSize]);
-
-  const handleTransitionStart = () => {
-    if (animationDuration === 0) return;
-
-    if (inProp) {
-      onEntering?.(elementRef.current);
-    } else {
-      onExiting?.(elementRef.current);
-    }
-  };
+  }, [inProp, isMounted, collapsedSize]);
 
   const handleTransitionEnd = () => {
-    if (shouldSkipFirstAnimation) return;
     if (inProp) {
       onEntered?.(elementRef.current);
     } else {
-      onExited?.(elementRef.current);
       if (unmountOnExit) {
         isFirstMount.current = true;
         setIsMounted(false);
       }
+      onExited?.(elementRef.current);
     }
   };
 
@@ -290,7 +288,6 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
           ? { width: currentSize, WebKitWidth: currentSize }
           : { height: currentSize, WebKitHeight: currentSize }),
       },
-      onTransitionStart: handleTransitionStart,
       onTransitionEnd: handleTransitionEnd,
       ref: handleRef,
     },
