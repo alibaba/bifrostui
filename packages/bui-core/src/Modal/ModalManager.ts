@@ -163,7 +163,7 @@ export class ModalManager {
     hiddenSiblings?: Element[];
   }> = [];
 
-  add(modal: ManagedModal, container: HTMLElement): number {
+  add(modal: ManagedModal, container: Element): number {
     let modalIndex = this.modals.indexOf(modal);
     if (modalIndex !== -1) {
       return modalIndex;
@@ -212,7 +212,7 @@ export class ModalManager {
 
     if (!containerInfo.restore) {
       containerInfo.restore = handleContainer({
-        container: containerInfo.container,
+        container: document.body,
         disableScrollLock: props.disableScrollLock,
       });
     }

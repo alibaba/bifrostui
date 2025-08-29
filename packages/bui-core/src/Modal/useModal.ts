@@ -5,6 +5,7 @@ import { modalManager, ariaHidden } from './ModalManager';
 import { ModalProps } from './Modal.types';
 
 export interface UseModalParameters {
+  container: ModalProps['container'];
   disableScrollLock?: boolean;
   children?: React.ReactElement;
   onClose?: ModalProps['onClose'];
@@ -37,9 +38,13 @@ function getHasTransition(children: UseModalParameters['children']): boolean {
     ? Object.prototype.hasOwnProperty.call(children.props, 'in')
     : false;
 }
+function getContainer(container: UseModalParameters['container']) {
+  return typeof container === 'function' ? container() : container;
+}
 
 export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
+    container,
     disableScrollLock = false,
     children,
     onClose,
@@ -79,7 +84,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   };
 
   const handleOpen = useEventCallback(() => {
-    const resolvedContainer = document.body;
+    const resolvedContainer = getContainer(container) || document.body;
 
     modalManager.add(getModal(), resolvedContainer);
 

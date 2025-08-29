@@ -32,6 +32,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     hasTransition,
   } = useModal({
     ...props,
+    container,
     disableScrollLock,
     children: React.isValidElement(children) ? children : undefined,
     open,
