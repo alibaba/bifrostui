@@ -158,18 +158,16 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
   useEffect(() => {
     // Control component mount state
     if (!isMounted) return;
-    if (inProp) {
-      setIsMounted(true);
-      if (isAppearTransition) {
-        isAppearTransition.current = false;
-      }
+    getCollapseWrapperSize(elementRef.current).then((actualSize) => {
+      if (inProp) {
+        setIsMounted(true);
+        if (isAppearTransition) {
+          isAppearTransition.current = false;
+        }
 
-      getCollapseWrapperSize(elementRef.current).then((actualSize) => {
-        setWrapperSize(actualSize as string);
-
-        // 处理动画的生命周期回调
         if (enter) {
           onEnter?.(elementRef.current);
+          setWrapperSize(actualSize as string);
           // appear动画开始后
           if (onEntering) {
             setTimeout(() => {
@@ -178,25 +176,26 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
             }, 0);
           }
         } else if (!enter) {
+          setWrapperSize('auto');
           // 没有动画，手动触发onEntered事件
           onEntered?.(elementRef.current);
         }
-      });
-    } else {
-      setWrapperSize(collapsedSize);
-      if (exit) {
+      } else if (exit) {
         onExit?.(elementRef.current);
-        // 立即触发onExiting回调
-        if (onExiting) {
-          setTimeout(() => {
-            if (!isMountedRef.current) return;
-            onExiting(elementRef.current);
-          }, 0);
-        }
+        // 1.从 auto 状态设置回实际宽高
+        setWrapperSize(actualSize as string);
+        // 触发onExiting回调
+        setTimeout(() => {
+          if (!isMountedRef.current) return;
+          onExiting?.(elementRef.current);
+          // 2.设置折叠状态
+          setWrapperSize(collapsedSize);
+        }, 16);
       } else {
         onExited?.(elementRef.current);
+        setWrapperSize(collapsedSize);
       }
-    }
+    });
   }, [inProp, isMounted]);
 
   /**
@@ -205,6 +204,7 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
   const handleTransitionEnd = () => {
     if (inProp) {
       onEntered?.(elementRef.current);
+      setWrapperSize('auto');
     } else {
       if (unmountOnExit) {
         setIsMounted(false);
