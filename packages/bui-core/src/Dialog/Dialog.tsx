@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useRef } from 'react';
+import React, { useRef, SyntheticEvent } from 'react';
 import { useId } from '@bifrostui/utils';
 import { Input } from '../Input';
 import { Button } from '../Button';
@@ -54,7 +54,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   };
 
   // 处理取消按钮点击
-  const handleCancel = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleCancel = (event: SyntheticEvent<Element, Event>) => {
     onCancel?.(event);
   };
 
