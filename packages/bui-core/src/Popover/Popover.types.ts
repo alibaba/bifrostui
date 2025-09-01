@@ -69,7 +69,7 @@ export type PopoverProps<
        * @returns
        */
       onOpenChange?: (
-        event: React.SyntheticEvent,
+        event: React.SyntheticEvent | Event,
         data: { open: boolean },
       ) => void;
       /**

@@ -94,7 +94,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     }
   };
 
-  const changeOpenStatus = (event, status) => {
+  const changeOpenStatus = (event: React.SyntheticEvent | Event, status) => {
     if (controlByUser) return;
     // 隐藏时 清空tipRef
     clearRef(status);
@@ -107,7 +107,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     const targetStatus = !openStatus;
     changeOpenStatus(event, targetStatus);
   };
-  const hidePopover = (event) => {
+  const hidePopover = (event: React.SyntheticEvent | Event) => {
     changeOpenStatus(event, false);
   };
   const showPopover = (event) => {
@@ -115,17 +115,20 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   };
 
   // 无障碍功能：键盘事件处理
-  const handleKeyDown = useCallback((event: KeyboardEvent) => {
-    if (closeOnEscape && event.key === 'Escape' && isOpen) {
-      event.preventDefault();
-      event.stopPropagation();
-      hidePopover(event as any);
-      // 焦点返回到触发元素
-      if (childrenRef.current && 'focus' in childrenRef.current) {
-        (childrenRef.current as HTMLElement).focus();
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (closeOnEscape && event.key === 'Escape' && isOpen) {
+        event.preventDefault();
+        event.stopPropagation();
+        hidePopover(event);
+        // 焦点返回到触发元素
+        if (childrenRef.current && 'focus' in childrenRef.current) {
+          (childrenRef.current as HTMLElement).focus();
+        }
       }
-    }
-  }, [closeOnEscape, isOpen, hidePopover]);
+    },
+    [closeOnEscape, isOpen, hidePopover],
+  );
 
   // 无障碍功能：焦点管理
   useEffect(() => {
@@ -138,34 +141,38 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
       }, 0);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [isOpen, autoFocus]);
 
   // 无障碍功能：焦点陷阱
-  const handleFocusTrap = useCallback((event: KeyboardEvent) => {
-    if (!trapFocus || !isOpen || !tipRef.current) return;
+  const handleFocusTrap = useCallback(
+    (event: KeyboardEvent) => {
+      if (!trapFocus || !isOpen || !tipRef.current) return;
 
-    if (event.key === 'Tab') {
-      const focusableElements = tipRef.current.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
-      const firstElement = focusableElements[0] as HTMLElement;
-      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+      if (event.key === 'Tab') {
+        const focusableElements = tipRef.current.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        );
+        const firstElement = focusableElements[0] as HTMLElement;
+        const lastElement = focusableElements[
+          focusableElements.length - 1
+        ] as HTMLElement;
 
-      if (event.shiftKey) {
-        // Shift + Tab
-        if (document.activeElement === firstElement) {
-          event.preventDefault();
-          lastElement?.focus();
-        }
-      } else {
-        // Tab
-        if (document.activeElement === lastElement) {
+        if (event.shiftKey) {
+          // Shift + Tab
+          if (document.activeElement === firstElement) {
+            event.preventDefault();
+            lastElement?.focus();
+          }
+        } else if (document.activeElement === lastElement) {
+          // Tab
           event.preventDefault();
           firstElement?.focus();
         }
       }
-    }
-  }, [trapFocus, isOpen]);
+    },
+    [trapFocus, isOpen],
+  );
 
   useEffect(() => {
     if (!controlByUser) return;
@@ -288,6 +295,12 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     });
   }
 
+  const getAriaHasPopup = () => {
+    if (role === 'menu') return 'menu';
+    if (role === 'listbox') return 'listbox';
+    return 'dialog';
+  };
+
   // 无障碍功能：为触发元素添加ARIA属性
   const childrenOptions = {
     ref: childrenRef,
@@ -295,7 +308,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     // ARIA属性
     'aria-describedby': isOpen ? popoverId : undefined,
     'aria-expanded': isOpen,
-    'aria-haspopup': role === 'menu' ? 'menu' : role === 'listbox' ? 'listbox' : 'dialog',
+    'aria-haspopup': getAriaHasPopup(),
   };
   return (
     <>
