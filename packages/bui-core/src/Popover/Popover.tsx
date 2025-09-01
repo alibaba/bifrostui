@@ -192,7 +192,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     hidePopover(event);
   };
 
-  const onRootElementMouted = throttle(async () => {
+  const onMounted = throttle(async () => {
     if (!tipRef.current) return;
 
     const {
@@ -239,7 +239,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
         document.addEventListener('click', clickEventHandler);
       }
       if (!isMini) {
-        window.addEventListener('resize', onRootElementMouted);
+        window.addEventListener('resize', onMounted);
       }
       // 无障碍功能：绑定键盘事件
       if (isOpen) {
@@ -260,7 +260,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
         document.removeEventListener('click', clickEventHandler);
       }
       if (!isMini) {
-        window.removeEventListener('resize', onRootElementMouted);
+        window.removeEventListener('resize', onMounted);
       }
       // 无障碍功能：解绑键盘事件
       document.removeEventListener('keydown', handleKeyDown);
@@ -300,7 +300,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   return (
     <>
       {open || openStatus ? (
-        <Portal onRootElementMouted={onRootElementMouted}>
+        <Portal onMounted={onMounted}>
           <div
             className={clsx(prefixCls, className, `popover-${arrowDirection}`, {
               'bui-popover-arrow-hide': hideArrow,

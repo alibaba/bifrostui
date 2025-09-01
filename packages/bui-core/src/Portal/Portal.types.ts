@@ -22,7 +22,7 @@ export interface PortalCoreProps {
   /**
    * 挂载成功的回调方法
    */
-  onRootElementMouted?: (e: Element) => void;
+  onMounted?: (e: Element) => void;
 }
 
 export type PortalProps = Omit<PortalCoreProps, 'rootElement'>;
