@@ -164,7 +164,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     [shouldListenGlobalClick, hideTooltip],
   );
 
-  const onRootElementMouted = throttle(async () => {
+  const onMounted = throttle(async () => {
     if (!tipRef.current) return;
     const {
       direction: newParsedDirection,
@@ -203,7 +203,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
         document.addEventListener('click', clickEventHandler);
       }
       if (!isMini) {
-        window.addEventListener('resize', onRootElementMouted);
+        window.addEventListener('resize', onMounted);
       }
       // 无障碍功能：绑定键盘事件
       if (isOpen) {
@@ -215,7 +215,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
         document.removeEventListener('click', clickEventHandler);
       }
       if (!isMini) {
-        window.removeEventListener('resize', onRootElementMouted);
+        window.removeEventListener('resize', onMounted);
       }
       // 无障碍功能：解绑键盘事件
       document.removeEventListener('keydown', handleKeyDown);
@@ -230,7 +230,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     controlByUser,
     shouldListenGlobalClick,
     clickEventHandler,
-    onRootElementMouted,
+    onMounted,
     isOpen,
     handleKeyDown,
   ]);
@@ -267,7 +267,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   return (
     <>
       {(open || openStatus) && title ? (
-        <Portal onRootElementMouted={onRootElementMouted}>
+        <Portal onMounted={onMounted}>
           <div
             className={clsx(prefixCls, className, `tooltip-${arrowDirection}`)}
             style={{ ...style, ...toolStyles }}

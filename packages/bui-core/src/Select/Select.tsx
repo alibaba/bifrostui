@@ -205,7 +205,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           {icon || defaultIcon}
         </div>
       </div>
-      <Portal onRootElementMouted={updateOptionStyle}>{renderOptions()}</Portal>
+      <Portal onMounted={updateOptionStyle}>{renderOptions()}</Portal>
       <Backdrop
         open={isOpen}
         invisible
