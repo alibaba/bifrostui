@@ -42,7 +42,7 @@ const DialogGenerator = (options: DialogOptions) => {
       }, 150);
     }, [dialogFragment]);
 
-    const dispatch: Dispatch = async (action, e, val) => {
+    const dispatch: Dispatch = async (action, e, val = '') => {
       if (action === true) {
         await onOk?.(e, { value: val });
       } else if (action === false) {
