@@ -6,7 +6,6 @@ import {
   getTransitionProps,
   createTransitions,
 } from '@bifrostui/utils';
-import clsx from 'clsx';
 import { Transition } from '../Transition';
 import { CollapseProps } from './Collapse.types';
 import './Collapse.less';
@@ -65,7 +64,37 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
         wrapperRef.current?.children?.[0],
       );
     }
-  }, [appear, inProp]);
+  }, [appear, inProp, size]);
+
+  // 监听 children 内容变化，重新计算尺寸（无动画）
+  useEffect(() => {
+    // 只有在展开状态且DOM已渲染时才重新计算尺寸
+    if (inProp && wrapperRef.current) {
+      // 先计算新的尺寸
+      const newSize = getCollapseWrapperSize(wrapperRef.current?.children?.[0]);
+
+      // 如果尺寸发生变化，则更新（无动画）
+      if (
+        newSize !== FIT_CONTENT &&
+        wrapperRef.current.style[size] !== newSize
+      ) {
+        // 临时禁用 transition
+        const currentTransition = wrapperRef.current.style.transition;
+        const currentWebKitTransition =
+          wrapperRef.current.style.WebkitTransition;
+
+        wrapperRef.current.style.transition = 'none';
+        wrapperRef.current.style.WebkitTransition = 'none';
+
+        // 设置新尺寸
+        wrapperRef.current.style[size] = newSize;
+
+        // 恢复 transition 设置
+        wrapperRef.current.style.transition = currentTransition;
+        wrapperRef.current.style.WebkitTransition = currentWebKitTransition;
+      }
+    }
+  }, [children]); // 依赖 children 来检测内容变化
 
   if (!children) return null;
 
@@ -78,13 +107,27 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
       appear={appear}
     >
       {(state, childProps) => {
-        const transition = transitions.create(
-          size,
-          getTransitionProps(
-            { timeout, style, easing: easingProp, delay },
-            { mode: state },
-          ),
-        );
+        // 修复：当 enter=false 或 exit=false 时禁用对应的动画
+        const shouldAnimate = (() => {
+          if (state === 'entering' || state === 'entered') {
+            return other.enter !== false;
+          }
+          if (state === 'exiting' || state === 'exited') {
+            return other.exit !== false;
+          }
+          return true;
+        })();
+
+        const transition = shouldAnimate
+          ? transitions.create(
+              size,
+              getTransitionProps(
+                { timeout, style, easing: easingProp, delay },
+                { mode: state },
+              ),
+            )
+          : 'none';
+
         const wrapperSize = () => {
           const collapseWrapperSize =
             state === 'entering' || state === 'entered'
@@ -100,12 +143,11 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
                 WebKitHeight: collapseWrapperSize,
               };
         };
+
         return React.createElement(
           'div',
           {
-            className: clsx('bui-collapse', {
-              className,
-            }),
+            className: `bui-collapse ${className || ''}`,
             style: {
               ...style,
               transition,
