@@ -94,7 +94,7 @@ getMdDemoCodes(
       finishCallback,
     );
   },
-  [], // 如需跳过特定的demo，在此数组中添加，如 ['demo1', 'demo2']
+  [], // 如需跳过特定的demo，在此数组中添加，如 ['md_demo_1', 'md_demo_2']
 );
 `;
 };

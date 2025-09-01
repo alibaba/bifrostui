@@ -120,5 +120,5 @@ getMdDemoCodes(
       finishCallback,
     );
   },
-  ['demo6', 'demo5', 'demo4'], // 如需跳过特定的demo，在此数组中添加，如 ['demo1', 'demo2']
+  ['md_demo_6', 'md_demo_5', 'md_demo_4'], // 如需跳过特定的demo，在此数组中添加，如md_demo_1', 'md_demo_2'
 );
