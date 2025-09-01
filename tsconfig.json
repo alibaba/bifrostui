@@ -15,6 +15,7 @@
     "baseUrl": ".",
     "strict": false,
     "resolveJsonModule": true,
+    "types": ["vitest/globals"],
     "paths": {
       "@bifrostui/react": ["./packages/bui-core/src/index.ts"],
       "@bifrostui/icons": ["./packages/bui-icons/src/index.ts"],
@@ -27,8 +28,5 @@
     },
     "allowSyntheticDefaultImports": true
   },
-  "exclude": ["node_modules", "lib", "es", "dist", "typings", "websites"],
-  "types": [
-    "vitest/globals" // ← 新增这一行
-  ]
+  "exclude": ["node_modules", "lib", "es", "dist", "typings", "websites"]
 }
