@@ -1,62 +1,79 @@
-import { useForkRef, useEventCallback, isMini } from '@bifrostui/utils';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { IClickEvent } from '@bifrostui/types';
-import { modalManager, ariaHidden } from './ModalManager';
-import { ModalProps } from './Modal.types';
+import { useForkRef, useEventCallback } from '@bifrostui/utils';
+import { ariaHidden, modalManager } from './ModalManager';
+
+function getContainer(
+  container?: Element | (() => Element | null) | null,
+): Element | null {
+  if (typeof container === 'function') {
+    return container();
+  }
+  return container || null;
+}
 
 export interface UseModalParameters {
-  container: ModalProps['container'];
+  container?: Element | (() => Element | null) | null;
   disableScrollLock?: boolean;
-  children?: React.ReactElement;
-  onClose?: ModalProps['onClose'];
+  onClose?: (
+    event: React.SyntheticEvent<Element, Event>,
+    detail?: { from: 'backdropClick' | 'escapeKeyDown' },
+  ) => void;
   open: boolean;
-  rootRef?: React.Ref<HTMLDivElement>;
+  rootRef?: React.Ref<Element>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
+}
+
+interface IClickEvent extends React.MouseEvent<HTMLDivElement> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  target: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  currentTarget: any;
 }
 
 export interface UseModalReturnValue {
-  getRootProps: (otherHandlers?: Record<string, any>) => {
-    ref: React.RefCallback<HTMLDivElement>;
-    [key: string]: any;
-  };
-  getBackdropProps: (otherHandlers?: Record<string, any>) => {
-    'aria-hidden'?: boolean;
-    open?: boolean;
-    [key: string]: any;
-  };
+  getRootProps: (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    otherHandlers?: Record<string, any>,
+  ) => Record<string, unknown>;
+  getBackdropProps: (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    otherHandlers?: Record<string, any>,
+  ) => Record<string, unknown>;
   getTransitionProps: () => {
-    onEnter?: () => void;
-    onExited?: () => void;
+    onEnter: () => void;
+    onExited: () => void;
   };
-  rootRef: React.RefCallback<HTMLDivElement>;
+  rootRef: React.RefCallback<Element>;
   portalRef: React.RefCallback<HTMLElement>;
   exited: boolean;
   hasTransition: boolean;
 }
 
-function getHasTransition(children: UseModalParameters['children']): boolean {
-  return children
-    ? Object.prototype.hasOwnProperty.call(children.props, 'in')
-    : false;
-}
-function getContainer(container: UseModalParameters['container']) {
-  return typeof container === 'function' ? container() : container;
+function getHasTransition(children: React.ReactElement): boolean {
+  return Object.prototype.hasOwnProperty.call(children?.props || {}, 'in');
 }
 
 export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
     container,
     disableScrollLock = false,
-    children,
     onClose,
     open,
     rootRef,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    children,
   } = parameters;
 
-  const modal = useRef<{ modalRef: HTMLDivElement; mount: HTMLElement }>(
-    {} as any,
-  );
+  const modal = useRef<{
+    modalRef: HTMLElement | null;
+    mount: HTMLElement | null;
+  }>({
+    modalRef: null,
+    mount: null,
+  });
+  const modalRef = useRef<HTMLElement>(null);
   const mountNodeRef = useRef<HTMLElement>(null);
-  const modalRef = useRef<HTMLDivElement>(null);
   const handleRef = useForkRef(modalRef, rootRef);
   const [exited, setExited] = useState(!open);
   const hasTransition = getHasTransition(children);
@@ -70,8 +87,10 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   }
 
   const getModal = () => {
-    modal.current.modalRef = modalRef.current!;
-    modal.current.mount = mountNodeRef.current!;
+    if (modalRef.current && mountNodeRef.current) {
+      modal.current.modalRef = modalRef.current;
+      modal.current.mount = mountNodeRef.current;
+    }
     return modal.current;
   };
 
@@ -114,43 +133,39 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
   useEffect(() => {
     return () => {
-      if (!isMini) {
-        handleClose();
-      }
+      handleClose();
     };
-  }, [isMini, handleClose]);
+  }, [handleClose]);
 
   useEffect(() => {
-    if (isMini) return;
     if (open) {
       handleOpen();
     } else {
       handleClose();
     }
-  }, [open, handleClose, hasTransition, handleOpen, isMini]);
+  }, [open, handleClose, hasTransition, handleOpen]);
 
   const createHandleBackdropClick =
-    (otherHandlers: Record<string, React.EventHandler<any>>) =>
-    (event: IClickEvent) => {
-      otherHandlers.onClick?.(event);
-      // @ts-ignore
-      if (isMini && event.target.id !== event.currentTarget.id) {
-        return;
-      }
-      if (!isMini && event.target !== event.currentTarget) {
-        return;
-      }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (backdropHandlers: Record<string, React.EventHandler<any>> = {}) =>
+      (event: IClickEvent) => {
+        backdropHandlers.onClick?.(event);
 
-      if (onClose) {
-        onClose(event, { from: 'backdropClick' });
-      }
-    };
+        if (event.target !== event.currentTarget) {
+          return;
+        }
+
+        if (onClose) {
+          onClose(event, { from: 'backdropClick' });
+        }
+      };
 
   const getRootProps = useCallback(
-    (otherHandlers?: Record<string, any>) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (rootHandlers?: Record<string, any>) => {
       return {
         role: 'presentation',
-        ...otherHandlers,
+        ...rootHandlers,
         ref: handleRef,
       };
     },
@@ -158,16 +173,19 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   );
 
   const getBackdropProps = useCallback(
-    (otherHandlers?: Record<string, any>) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (backdropHandlers: Record<string, any> = {}) => {
       const propsEventHandlers = {
-        onClick: createHandleBackdropClick(otherHandlers),
+        onClick: createHandleBackdropClick(backdropHandlers),
       };
-      // 删除已处理的事件处理器
-      delete otherHandlers.onClick;
+
+      // Create a copy to avoid mutating the original object
+      const cleanedHandlers = { ...backdropHandlers };
+      delete cleanedHandlers.onClick;
 
       return {
         'aria-hidden': true,
-        ...otherHandlers,
+        ...cleanedHandlers,
         ...propsEventHandlers,
         open,
       };
@@ -190,7 +208,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
       onEnter: handleEnter,
       onExited: handleExited,
     };
-  }, [handleClose]);
+  }, [children]);
 
   return {
     getRootProps,
