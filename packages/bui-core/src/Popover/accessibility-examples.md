@@ -14,11 +14,11 @@ export default () => {
       // 默认role为tooltip，支持屏幕阅读器
       role="tooltip"
       // 自动获取焦点，方便键盘用户
-      autoFocus={true}
+      autoFocus
       // 支持Escape键关闭
-      closeOnEscape={true}
+      closeOnEscape
     >
-      <button>显示帮助</button>
+      <button type="button">显示帮助</button>
     </Popover>
   );
 };
@@ -36,16 +36,16 @@ export default () => {
       title="用户菜单"
       content={
         <div>
-          <button>个人资料</button>
-          <button>设置</button>
-          <button>退出登录</button>
+          <button type="button">个人资料</button>
+          <button type="button">设置</button>
+          <button type="button">退出登录</button>
         </div>
       }
       role="menu"
       aria-label="用户操作菜单"
-      autoFocus={true}
+      autoFocus
     >
-      <button aria-label="打开用户菜单">
+      <button type="button" aria-label="打开用户菜单">
         用户头像
       </button>
     </Popover>
@@ -69,19 +69,19 @@ export default () => {
         <div>
           <input placeholder="用户名" />
           <input type="password" placeholder="密码" />
-          <button>确认</button>
-          <button onClick={() => setOpen(false)}>取消</button>
+          <button type="button">确认</button>
+          <button type="button" onClick={() => setOpen(false)}>取消</button>
         </div>
       }
       role="dialog"
       aria-label="登录表单"
       open={open}
-      onOpenChange={(_, { open }) => setOpen(open)}
+      onOpenChange={(_, { open: newOpen }) => setOpen(newOpen)}
       // 启用焦点陷阱，Tab键只能在弹窗内循环
-      trapFocus={true}
-      autoFocus={true}
+      trapFocus
+      autoFocus
     >
-      <button onClick={() => setOpen(true)}>
+      <button type="button" onClick={() => setOpen(true)}>
         登录
       </button>
     </Popover>
@@ -110,10 +110,17 @@ export default () => {
             <div
               key={option}
               role="option"
+              tabIndex={0}
               aria-selected={selected === option}
               onClick={() => {
                 setSelected(option);
                 setOpen(false);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  setSelected(option);
+                  setOpen(false);
+                }
               }}
               style={{
                 padding: '8px',
@@ -129,10 +136,11 @@ export default () => {
       role="listbox"
       aria-label="选项列表"
       open={open}
-      onOpenChange={(_, { open }) => setOpen(open)}
-      autoFocus={true}
+      onOpenChange={(_, { open: newOpen }) => setOpen(newOpen)}
+      autoFocus
     >
       <button 
+        type="button"
         onClick={() => setOpen(true)}
         aria-label={`当前选择: ${selected}, 点击打开选项列表`}
       >
