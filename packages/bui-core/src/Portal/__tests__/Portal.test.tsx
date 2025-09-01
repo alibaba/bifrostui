@@ -95,20 +95,20 @@ describe('Portal', () => {
     ).toEqual(true);
   });
 
-  it('test onRootElementMouted props', () => {
-    const onRootElementMouted = vi.fn();
+  it('test onMounted props', () => {
+    const onMounted = vi.fn();
     const containerRef = React.createRef<HTMLDivElement>();
     render(
       <>
         <div ref={containerRef} data-testid="container" />
         <Portal
           container={() => containerRef.current}
-          onRootElementMouted={onRootElementMouted}
+          onMounted={onMounted}
         >
           <div data-testid="test" />
         </Portal>
       </>,
     );
-    expect(onRootElementMouted).toHaveBeenCalled();
+    expect(onMounted).toHaveBeenCalled();
   });
 });
