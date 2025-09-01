@@ -66,36 +66,6 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
     }
   }, [appear, inProp, size]);
 
-  // 监听 children 内容变化，重新计算尺寸（无动画）
-  useEffect(() => {
-    // 只有在展开状态且DOM已渲染时才重新计算尺寸
-    if (inProp && wrapperRef.current) {
-      // 先计算新的尺寸
-      const newSize = getCollapseWrapperSize(wrapperRef.current?.children?.[0]);
-
-      // 如果尺寸发生变化，则更新（无动画）
-      if (
-        newSize !== FIT_CONTENT &&
-        wrapperRef.current.style[size] !== newSize
-      ) {
-        // 临时禁用 transition
-        const currentTransition = wrapperRef.current.style.transition;
-        const currentWebKitTransition =
-          wrapperRef.current.style.WebkitTransition;
-
-        wrapperRef.current.style.transition = 'none';
-        wrapperRef.current.style.WebkitTransition = 'none';
-
-        // 设置新尺寸
-        wrapperRef.current.style[size] = newSize;
-
-        // 恢复 transition 设置
-        wrapperRef.current.style.transition = currentTransition;
-        wrapperRef.current.style.WebkitTransition = currentWebKitTransition;
-      }
-    }
-  }, [children]); // 依赖 children 来检测内容变化
-
   if (!children) return null;
 
   return (
@@ -107,32 +77,31 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
       appear={appear}
     >
       {(state, childProps) => {
-        // 修复：当 enter=false 或 exit=false 时禁用对应的动画
-        const shouldAnimate = (() => {
-          if (state === 'entering' || state === 'entered') {
-            return other.enter !== false;
-          }
-          if (state === 'exiting' || state === 'exited') {
-            return other.exit !== false;
-          }
-          return true;
-        })();
-
-        const transition = shouldAnimate
-          ? transitions.create(
-              size,
-              getTransitionProps(
-                { timeout, style, easing: easingProp, delay },
-                { mode: state },
-              ),
-            )
-          : 'none';
+        const transition = transitions.create(
+          size,
+          getTransitionProps(
+            { timeout, style, easing: easingProp, delay },
+            { mode: state },
+          ),
+        );
 
         const wrapperSize = () => {
-          const collapseWrapperSize =
-            state === 'entering' || state === 'entered'
-              ? getCollapseWrapperSize(wrapperRef.current?.children?.[0])
-              : collapsedSize;
+          let collapseWrapperSize = collapsedSize;
+
+          if (inProp && state === 'entered') {
+            // 展开结束，size设置为auto
+            collapseWrapperSize = 'auto';
+          } else if (state === 'entering' || state === 'entered') {
+            collapseWrapperSize = getCollapseWrapperSize(
+              wrapperRef.current?.children?.[0],
+            );
+          }
+
+          // 强制重绘
+          if (wrapperRef.current && state === 'exiting') {
+            const _ = wrapperRef.current.offsetHeight;
+            console.log(_);
+          }
           return isHorizontal
             ? {
                 width: collapseWrapperSize,
