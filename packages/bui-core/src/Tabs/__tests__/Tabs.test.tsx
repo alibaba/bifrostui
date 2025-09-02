@@ -235,7 +235,10 @@ describe('Tabs', () => {
     it('should disable click', () => {
       const handleChange = vi.fn();
       function Component(props: {
-        handleChange: (e: React.MouseEvent, data: { index: string }) => void;
+        readonly handleChange: (
+          e: React.MouseEvent,
+          data: { index: string },
+        ) => void;
       }) {
         const { handleChange: change } = props;
         const [value] = useState('fruits');
