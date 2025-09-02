@@ -3,7 +3,6 @@ import {
   getCustomDemoCodesFromFile,
   accessibilityDemoTest,
 } from 'testing';
-import path from 'path';
 
 /**
  * Alert 组件无障碍测试
@@ -56,7 +55,6 @@ getMdDemoCodes(
 // 2. 基于自定义 Demo 组件的测试
 getCustomDemoCodesFromFile(
   'Alert',
-  path.join(__dirname, './'), // customDemoComponent.tsx所在目录
   (params) => {
     const {
       demoComponent,
