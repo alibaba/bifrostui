@@ -18,7 +18,6 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
     tabIndex,
     'aria-selected': ariaSelected,
     'aria-disabled': ariaDisabled,
-    'aria-controls': ariaControls,
     ...others
   } = props;
   const tabsContext = React.useContext(TabsContext);
@@ -47,8 +46,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
       role={role}
       aria-selected={ariaSelected ?? isActive}
       aria-disabled={ariaDisabled ?? disabled}
-      aria-controls={ariaControls ?? `bui-tabpanel-${index}`}
-      tabIndex={tabIndex ?? (isActive && !disabled ? 0 : -1)}
+      tabIndex={tabIndex ?? (disabled ? -1 : 0)}
       ref={ref}
       className={rootCls}
       {...others}
