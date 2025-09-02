@@ -231,3 +231,122 @@ export const getMdDemoCodes = (
     }
   });
 };
+
+
+
+// 支持单个文件中多个 demo 的测试函数
+export const getCustomDemoCodesFromFile = (
+  componentName = '',
+  customDemoPath = '',
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  callback = (...args: any[]) => {},
+  skips = [],
+) => {
+  if (!componentName) throw Error('componentName is required');
+  if (!customDemoPath) throw Error('customDemoPath is required');
+  
+  // 构建自定义 demo 文件的完整路径
+  const fullDemoPath = path.resolve(customDemoPath);
+  
+  // 检查路径是否存在
+  if (!fs.existsSync(fullDemoPath)) {
+    throw Error(`Custom demo path does not exist: ${fullDemoPath}`);
+  }
+  
+  // 直接读取固定的文件名 customDemoComponent.tsx
+  const demoFilePath = path.join(fullDemoPath, 'customDemoComponent.tsx');
+  
+  // 检查文件是否存在
+  if (!fs.existsSync(demoFilePath)) {
+    console.warn(`Custom demo file not found: ${demoFilePath}`);
+    return;
+  }
+  
+  // 先同步导入文件，然后为每个 demo 创建测试用例
+  const absolutePath = path.resolve(demoFilePath);
+  
+  // 使用同步的方式读取文件内容，然后解析出所有的 demo
+  try {
+    const fileContent = fs.readFileSync(absolutePath, 'utf-8');
+    
+    // 简单的解析逻辑：查找 export const 和 export default
+    const namedExports = [];
+    const defaultExport = [];
+    
+    // 查找命名导出
+    const namedExportRegex = /export\s+const\s+(\w+)\s*=/g;
+    let match;
+    while ((match = namedExportRegex.exec(fileContent)) !== null) {
+      namedExports.push(match[1]);
+    }
+    // 查找默认导出中的属性
+    const defaultExportRegex = /export\s+default\s*\{([^}]+)\}/s;
+    const defaultMatch = defaultExportRegex.exec(fileContent);
+    if (defaultMatch) {
+      const props = defaultMatch[1].split(',').map(prop => prop.trim());
+      props.forEach(prop => {
+        const cleanProp = prop.replace(/\s+/g, '');
+        if (cleanProp && !cleanProp.includes(':')) {
+          defaultExport.push(cleanProp);
+        }
+      });
+    }
+    // 确定要测试的 demos
+    let demosToTest = [];
+    if (defaultExport.length > 0) {
+      // 使用默认导出中的属性
+      demosToTest = defaultExport.map((key, index) => ({
+        key,
+        index,
+        name: `${componentName}_customDemo_${key}`
+      }));
+    } else if (namedExports.length > 0) {
+      // 使用命名导出
+      demosToTest = namedExports.map((key, index) => ({
+        key,
+        index,
+        name: `${componentName}_customDemo_${key}`
+      }));
+    }
+    // 过滤掉 skip 中的 demo
+    if (skips.length) {
+      demosToTest = demosToTest.filter((demoInfo) => {
+        return !skips.some((skipPattern) => 
+          typeof skipPattern === 'string' 
+            ? demoInfo.key.includes(skipPattern)
+            : demoInfo.key === skipPattern
+        );
+      });
+    }
+    // 为每个 demo 创建测试用例
+    demosToTest.forEach((demoInfo, demoIndex) => {
+      callback({
+        demoComponent: () => {
+          return import(absolutePath).then((demo) => {
+            if (demo.default && typeof demo.default === 'object' && demo.default !== null) {
+              // 从默认导出对象中获取特定的 demo
+              return demo.default[demoInfo.key];
+            } else if (demo[demoInfo.key]) {
+              // 从命名导出中获取特定的 demo
+              return demo[demoInfo.key];
+            }
+            throw new Error(`Demo ${demoInfo.key} not found in ${demoFilePath}`);
+          });
+        },
+        demoComponentName: demoInfo.name,
+        demoComponentIndex: demoIndex,
+        demoTotal: demosToTest.length,
+        demoFilePath: demoFilePath,
+        demoKey: demoInfo.key,
+        finishCallback: (finishIndex = 0) => {
+          console.log(`Custom demo ${demoInfo.key} finishCallback running.......`, finishIndex);
+          if (finishIndex === demosToTest.length - 1) {
+            console.log(`All custom demos from ${componentName} completed`);
+          }
+        },
+      });
+    });
+  } catch (error) {
+    console.error(`Failed to parse custom demo file ${demoFilePath}:`, error);
+  }
+};
