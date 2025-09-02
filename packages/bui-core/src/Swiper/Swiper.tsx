@@ -52,15 +52,26 @@ const Swiper = forwardRef<SwiperRef, SwiperProps>((props, ref) => {
       isInit.current = false;
       return;
     }
-    swiperInstance?.current?.slideTo?.(current);
-  }, [current]);
+    if (circular) {
+      swiperInstance?.current?.slideToLoop?.(current);
+    } else {
+      swiperInstance?.current?.slideTo?.(current);
+    }
+  }, [current, circular]);
+  useEffect(() => {
+    if (swiperInstance?.current) {
+      if (autoplay) {
+        swiperInstance?.current?.autoplay.start();
+      } else {
+        swiperInstance?.current?.autoplay.stop();
+      }
+    }
+  }, [autoplay]);
   return (
     <SwiperReact
       modules={[Pagination, Autoplay, EffectFade]}
       loop={circular}
-      autoplay={
-        autoplay ? { delay: interval, disableOnInteraction: false } : false
-      }
+      autoplay={{ delay: interval, disableOnInteraction: false }}
       speed={duration}
       slidesPerView={displayMultipleItems}
       direction={vertical ? 'vertical' : 'horizontal'}

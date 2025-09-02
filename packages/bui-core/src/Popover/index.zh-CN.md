@@ -100,6 +100,7 @@ export default () => {
 ### anchorOrigin 气泡框位置
 
 `anchorOrigin` 设置气泡浮层相对于锚点的位置。通过 `vertical` 和 `horizontal` 两个属性来控制位置：
+
 - `vertical`: 可选值为 `top`、`center`、`bottom`
 - `horizontal`: 可选值为 `left`、`center`、`right`
 
@@ -118,12 +119,12 @@ export default () => {
         content={`vertical: ${anchorOrigin.vertical}, horizontal: ${anchorOrigin.horizontal}`}
         anchorOrigin={anchorOrigin}
       >
-        <Button 
-          style={{ 
-            width: '100px', 
-            height: '40px', 
+        <Button
+          style={{
+            width: '100px',
+            height: '40px',
             margin: '4px',
-            fontSize: '12px'
+            fontSize: '12px',
           }}
         >
           {text}
@@ -133,31 +134,51 @@ export default () => {
   };
 
   return (
-    <div style={{ 
-      display: 'grid', 
-      gridTemplateColumns: 'repeat(3, 1fr)', 
-      gap: '8px',
-      maxWidth: '400px',
-      margin: '20px auto',
-      padding: '20px',
-      border: '1px solid #e0e0e0',
-      borderRadius: '8px',
-      backgroundColor: '#fafafa'
-    }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gap: '8px',
+        maxWidth: '400px',
+        margin: '20px auto',
+        padding: '20px',
+        border: '1px solid #e0e0e0',
+        borderRadius: '8px',
+        backgroundColor: '#fafafa',
+      }}
+    >
       {/* 第一行：top */}
       {createButton('top + left', { vertical: 'top', horizontal: 'left' })}
       {createButton('top + center', { vertical: 'top', horizontal: 'center' })}
       {createButton('top + right', { vertical: 'top', horizontal: 'right' })}
-      
+
       {/* 第二行：center */}
-      {createButton('center + left', { vertical: 'center', horizontal: 'left' })}
-      {createButton('center + center', { vertical: 'center', horizontal: 'center' })}
-      {createButton('center + right', { vertical: 'center', horizontal: 'right' })}
-      
+      {createButton('center + left', {
+        vertical: 'center',
+        horizontal: 'left',
+      })}
+      {createButton('center + center', {
+        vertical: 'center',
+        horizontal: 'center',
+      })}
+      {createButton('center + right', {
+        vertical: 'center',
+        horizontal: 'right',
+      })}
+
       {/* 第三行：bottom */}
-      {createButton('bottom + left', { vertical: 'bottom', horizontal: 'left' })}
-      {createButton('bottom + center', { vertical: 'bottom', horizontal: 'center' })}
-      {createButton('bottom + right', { vertical: 'bottom', horizontal: 'right' })}
+      {createButton('bottom + left', {
+        vertical: 'bottom',
+        horizontal: 'left',
+      })}
+      {createButton('bottom + center', {
+        vertical: 'bottom',
+        horizontal: 'center',
+      })}
+      {createButton('bottom + right', {
+        vertical: 'bottom',
+        horizontal: 'right',
+      })}
     </div>
   );
 };
@@ -173,7 +194,7 @@ import React, { useState } from 'react';
 
 export default () => {
   const [manualOpen, setManualOpen] = useState(false);
-  
+
   return (
     <div>
       <p>
@@ -186,11 +207,7 @@ export default () => {
         </Popover>
       </p>
       <p>
-        <Popover
-          title="This is a popover"
-          content="hover触发"
-          trigger="hover"
-        >
+        <Popover title="This is a popover" content="hover触发" trigger="hover">
           <span>hover触发</span>
         </Popover>
       </p>
@@ -223,17 +240,17 @@ export default () => {
 
 ### API
 
-| 属性          | 说明                     | 类型                                                                         | 默认值                                         |
-| ------------- | ------------------------ | ---------------------------------------------------------------------------- | ---------------------------------------------- |
-| title         | 气泡浮层的标题浮层内容   | ReactNode                                                                    | -                                              |
-| content       | 气泡浮层的内容           | ReactNode                                                                    | -                                              |
-| defaultOpen   | 默认是否显隐             | boolean                                                                      | false                                          |
-| open          | 用于手动控制气泡浮层显隐 | boolean                                                                      | -                                              |
-| hideArrow     | 是否展示箭头             | boolean                                                                      | false                                          |
-| offsetSpacing | 浮层与目标元素的偏移量   | number                                                                       | 0                                              |
-| anchorOrigin  | 气泡框相对于锚点的位置   | { vertical: 'top' \| 'center' \| 'bottom', horizontal: 'left' \| 'center' \| 'right' } | { vertical: 'top', horizontal: 'center' }      |
-| trigger       | 触发行为                 | string \| string[]，枚举值是 'click' \| 'hover' \| 'none'                     | 'click'                                        |
-| onOpenChange  | 气泡浮层显隐的回调方法   | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void         | -                                              |
+| 属性          | 说明                     | 类型                                                                                   | 默认值                                    |
+| ------------- | ------------------------ | -------------------------------------------------------------------------------------- | ----------------------------------------- |
+| title         | 气泡浮层的标题浮层内容   | ReactNode                                                                              | -                                         |
+| content       | 气泡浮层的内容           | ReactNode                                                                              | -                                         |
+| defaultOpen   | 默认是否显隐             | boolean                                                                                | false                                     |
+| open          | 用于手动控制气泡浮层显隐 | boolean                                                                                | -                                         |
+| hideArrow     | 是否展示箭头             | boolean                                                                                | false                                     |
+| offsetSpacing | 浮层与目标元素的偏移量   | number                                                                                 | 0                                         |
+| anchorOrigin  | 气泡框相对于锚点的位置   | { vertical: 'top' \| 'center' \| 'bottom', horizontal: 'left' \| 'center' \| 'right' } | { vertical: 'top', horizontal: 'center' } |
+| trigger       | 触发行为                 | string \| string[]，枚举值是 'click' \| 'hover' \| 'none'                              | 'click'                                   |
+| onOpenChange  | 气泡浮层显隐的回调方法   | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                   | -                                         |
 
 ## 样式变量
 
