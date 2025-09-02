@@ -283,7 +283,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
             role="gridcell"
             aria-selected={isSelected}
             aria-disabled={ins.disabled}
-            tabIndex={isSelected && !ins.disabled ? 0 : -1}
+            tabIndex={ins.disabled ? -1 : 0}
           >
             {dateRender ? dateRender(ins) : defaultDateRender(ins)}
           </div>
