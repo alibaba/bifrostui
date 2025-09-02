@@ -15,7 +15,7 @@ On the mini-program side, Taro's ScrollView component is used directly, while on
 ### Basic Usage
 
 ```tsx
-import { ScrollView, Button, Stack } from '@bifrostui/react';
+import { ScrollView, Stack } from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
@@ -134,32 +134,40 @@ export default () => {
 ## Performance Guidelines
 
 ### Handling Large Datasets
+
 To avoid performance issues from rendering a large number of DOM nodes at once, it's recommended to use virtual scrolling techniques or render only the data within the visible viewport.
 
 ```tsx
 import { ScrollView } from '@bifrostui/react';
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 export default () => {
-  const allItems = useMemo(() => 
-    [...new Array(10000)].map((_, index) => ({ id: index, text: `Item ${index}` }))
-  , []);
-  
+  const allItems = useMemo(
+    () =>
+      [...new Array(10000)].map((_, index) => ({
+        id: index,
+        text: `Item ${index}`,
+      })),
+    [],
+  );
+
   const [visibleCount, setVisibleCount] = useState(100);
 
   const onScrollToLower = () => {
     // Load more data when scrolling to the bottom
-    setVisibleCount(prev => Math.min(prev + 100, allItems.length));
+    setVisibleCount((prev) => Math.min(prev + 100, allItems.length));
   };
 
   return (
-    <ScrollView 
-      scrollY 
+    <ScrollView
+      scrollY
       style={{ height: '400px' }}
       onScrollToLower={onScrollToLower}
     >
-      {allItems.slice(0, visibleCount).map(item => (
-        <div key={item.id} className="item">{item.text}</div>
+      {allItems.slice(0, visibleCount).map((item) => (
+        <div key={item.id} className="item">
+          {item.text}
+        </div>
       ))}
     </ScrollView>
   );
@@ -169,12 +177,49 @@ export default () => {
 ## Best Practices
 
 ### Scroll Performance
+
 - **Event Throttling**: Avoid expensive computations in the `onScroll` callback. If necessary, use throttling or debouncing to limit the event handling frequency.
 - **Animation Duration**: When using `scrollWithAnimation`, set a reasonable `scrollAnimationDuration` to achieve a smooth animation effect.
 
 ### Accessibility
+
 - **ARIA Label**: Add a descriptive `aria-label` attribute to the scroll container to enhance screen reader usability.
-- **Keyboard Navigation**: Ensure that the content can be scrolled and accessed via the keyboard (e.g., `Tab` and arrow keys).
+- **Keyboard Navigation**: Ensure that the content can be scrolled and accessed via the keyboard with the following shortcuts:
+  - `↑/↓` Arrow keys: Vertical scrolling (requires scrollY enabled)
+  - `←/→` Arrow keys: Horizontal scrolling (requires scrollX enabled)
+  - `Page Up/Page Down`: Page-level scrolling
+  - `Home/End`: Scroll to beginning/end position
+  - `Space`: Scroll down one page, `Shift + Space`: Scroll up one page
+- **Auto Focus**: Use the `autoFocus` property to automatically set focus to the scroll container
+- **Role Definition**: Use the `role` attribute to define the semantic role of the element, defaults to `region`
+
+```tsx
+// Accessibility example
+import { ScrollView } from '@bifrostui/react';
+import React from 'react';
+
+export default () => {
+  const newsItems = [
+    { id: 1, title: 'News Title 1' },
+    { id: 2, title: 'News Title 2' },
+  ];
+  return (
+    <ScrollView
+      scrollY
+      style={{ height: '300px' }}
+      aria-label="News list"
+      tabIndex={0}
+      autoFocus
+    >
+      {newsItems.map((item) => (
+        <div key={item.id} role="article">
+          {item.title}
+        </div>
+      ))}
+    </ScrollView>
+  );
+};
+```
 
 ## API
 
@@ -192,3 +237,14 @@ export default () => {
 | onScrollToLower     | Callback when scrolled to bottom     | event=>void |         |
 | onScroll            | Callback during scrolling            | event=>void |         |
 | onTouchMove         | Callback during touch movement       | event=>void |         |
+
+### Accessibility Properties
+
+| Property        | Description                                                       | Type                           | Default  |
+| --------------- | ----------------------------------------------------------------- | ------------------------------ | -------- |
+| role            | Specifies the element's role for assistive technologies           | string                         | 'region' |
+| aria-label      | Provides an accessible name for the element                       | string                         |          |
+| aria-labelledby | References other elements by ID to provide an accessible name     | string                         |          |
+| tabIndex        | Indicates if the scroll view can receive focus for keyboard users | number                         | 0        |
+| autoFocus       | Whether to automatically focus the element                        | boolean                        | false    |
+| onKeyDown       | Keyboard event handler for supporting keyboard navigation         | (event: KeyboardEvent) => void |          |

@@ -1,6 +1,8 @@
 import React from 'react';
 import { OverrideProps } from '@bifrostui/types';
 
+type ScrollLogicalPosition = 'start' | 'center' | 'end' | 'nearest';
+
 export interface ScrollViewScrollEvent extends Event {
   detail?: {
     scrollLeft: number;
@@ -171,6 +173,29 @@ export type ScrollViewProps<
        * @default false
        */
       enablePassive?: string;
+
+      // 无障碍功能相关属性
+      /** 指定元素的角色，用于辅助技术识别元素类型
+       * @default 'region'
+       */
+      role?: string;
+      /** 为元素提供可访问的名称，用于屏幕阅读器
+       */
+      'aria-label'?: string;
+      /** 通过引用其他元素的ID来提供可访问的名称
+       */
+      'aria-labelledby'?: string;
+      /** 指示滚动视图是否可获取焦点，为键盘用户提供访问
+       * @default 0
+       */
+      tabIndex?: number;
+      /** 是否自动获取焦点
+       * @default false
+       */
+      autoFocus?: boolean;
+      /** 键盘事件处理器，用于支持键盘导航
+       */
+      onKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void;
       /** 渲染模式
        * list - 列表模式。只会渲染在屏节点，会根据直接子节点是否在屏来按需渲染，若只有一个直接子节点则性能会退化
        * custom - 自定义模式。只会渲染在屏节点，子节点可以是 sticky-section list-view grid-view 等组件
