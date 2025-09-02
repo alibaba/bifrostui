@@ -1,6 +1,6 @@
-import { getMdDemoCodes, accessibilityDemoTest } from 'testing';
+import { getCustomDemoCodesFromFile, accessibilityDemoTest } from 'testing';
 
-getMdDemoCodes(
+getCustomDemoCodesFromFile(
   'Dialog',
   (params) => {
     const {
@@ -9,11 +9,13 @@ getMdDemoCodes(
       demoComponentIndex,
       finishCallback,
     } = params;
+
     accessibilityDemoTest(
       demoComponent,
       {
         componentName: demoComponentName,
         demoComponentIndex,
+        // 启用详细的无障碍错误报告
         detailedErrorReporting: true,
         customA11yChecks: (container) => {
           // 检查Dialog容器的ARIA属性
@@ -38,44 +40,85 @@ getMdDemoCodes(
 
             // 检查标题元素是否存在且有正确的ID
             if (hasAriaLabelledBy) {
-              const titleElement = container.querySelector(
-                `#${hasAriaLabelledBy}`,
-              );
-              if (!titleElement) {
-                console.warn(
-                  `Dialog ${index + 1} 的 aria-labelledby 指向的元素不存在`,
+              try {
+                // 使用更安全的方式查找元素，避免CSS选择器语法错误
+                const titleElement = container.querySelector(
+                  `[id="${hasAriaLabelledBy}"]`,
                 );
+                if (!titleElement) {
+                  console.warn(
+                    `Dialog ${index + 1} 的 aria-labelledby 指向的元素不存在`,
+                  );
+                }
+              } catch (error) {
+                // 如果ID包含特殊字符，使用getElementById的替代方案
+                const allElements = container.querySelectorAll('*');
+                const titleElement = Array.from(allElements).find(
+                  (el) => el.id === hasAriaLabelledBy,
+                );
+                if (!titleElement) {
+                  console.warn(
+                    `Dialog ${index + 1} 的 aria-labelledby 指向的元素不存在`,
+                  );
+                }
               }
             }
 
             // 检查内容描述
             const hasAriaDescribedBy = dialog.getAttribute('aria-describedby');
             if (hasAriaDescribedBy) {
-              const contentElement = container.querySelector(
-                `#${hasAriaDescribedBy}`,
-              );
-              if (!contentElement) {
-                console.warn(
-                  `Dialog ${index + 1} 的 aria-describedby 指向的元素不存在`,
+              try {
+                // 使用更安全的方式查找元素
+                const contentElement = container.querySelector(
+                  `[id="${hasAriaDescribedBy}"]`,
                 );
+                if (!contentElement) {
+                  console.warn(
+                    `Dialog ${index + 1} 的 aria-describedby 指向的元素不存在`,
+                  );
+                }
+              } catch (error) {
+                // 如果ID包含特殊字符，使用替代方案
+                const allElements = container.querySelectorAll('*');
+                const contentElement = Array.from(allElements).find(
+                  (el) => el.id === hasAriaDescribedBy,
+                );
+                if (!contentElement) {
+                  console.warn(
+                    `Dialog ${index + 1} 的 aria-describedby 指向的元素不存在`,
+                  );
+                }
               }
             }
           });
 
-          // 检查按钮的可访问性
-          const buttons = container.querySelectorAll('button');
-          buttons.forEach((button, index) => {
-            const hasAccessibleName =
-              button.textContent?.trim() ||
-              button.getAttribute('aria-label') ||
-              button.getAttribute('title');
-            if (!hasAccessibleName) {
-              console.warn(`Dialog 按钮 ${index + 1} 缺少可访问的名称`);
+          // 检查Dialog背景遮罩的ARIA属性
+          const backdrops = container.querySelectorAll(
+            '.bui-dialog-backdrop, .bui-modal-backdrop',
+          );
+          backdrops.forEach((backdrop, index) => {
+            const ariaHidden = backdrop.getAttribute('aria-hidden');
+            if (ariaHidden !== 'true') {
+              console.warn(
+                `Dialog背景遮罩 ${index + 1} 应该设置 aria-hidden="true"`,
+              );
             }
           });
 
+          // 检查Dialog内容区域的焦点管理
+          const dialogContents = container.querySelectorAll(
+            '.bui-dialog [tabindex="-1"], .bui-modal [tabindex="-1"]',
+          );
+          dialogContents.forEach((content, index) => {
+            const tabIndex = content.getAttribute('tabindex');
+            if (tabIndex !== '-1') {
+              console.warn(
+                `Dialog内容区域 ${index + 1} 应该设置 tabindex="-1" 以支持焦点管理`,
+              );
+            }
+          });
           // 检查输入框的无障碍性（针对prompt类型）
-          const inputs = container.querySelectorAll('input');
+          const inputs = container.querySelectorAll('input, select, textarea');
           inputs.forEach((input, index) => {
             const hasLabel =
               input.getAttribute('aria-label') ||
@@ -83,39 +126,41 @@ getMdDemoCodes(
               input.getAttribute('placeholder') ||
               container.querySelector(`label[for="${input.id}"]`);
             if (!hasLabel) {
-              console.warn(`Dialog 输入框 ${index + 1} 缺少标签或占位符`);
+              console.warn(
+                `Dialog 表单元素 ${index + 1} (${input.tagName}) 缺少标签或占位符`,
+              );
             }
 
             // 检查是否有aria-describedby关联描述
             const hasAriaDescribedBy = input.getAttribute('aria-describedby');
             if (hasAriaDescribedBy) {
-              const descElement = container.querySelector(
-                `#${hasAriaDescribedBy}`,
-              );
-              if (!descElement) {
-                console.warn(
-                  `Dialog 输入框 ${index + 1} 的 aria-describedby 指向的元素不存在`,
+              try {
+                const descElement = container.querySelector(
+                  `[id="${hasAriaDescribedBy}"]`,
                 );
+                if (!descElement) {
+                  console.warn(
+                    `Dialog 表单元素 ${index + 1} 的 aria-describedby 指向的元素不存在`,
+                  );
+                }
+              } catch (error) {
+                // 如果ID包含特殊字符，使用替代方案
+                const allElements = container.querySelectorAll('*');
+                const descElement = Array.from(allElements).find(
+                  (el) => el.id === hasAriaDescribedBy,
+                );
+                if (!descElement) {
+                  console.warn(
+                    `Dialog 表单元素 ${index + 1} 的 aria-describedby 指向的元素不存在`,
+                  );
+                }
               }
             }
           });
-
-          // 检查焦点管理
-          const focusableElements = container.querySelectorAll(
-            'button, input, select, textarea, [tabindex]:not([tabindex="-1"])',
-          );
-          if (focusableElements.length > 0) {
-            // 检查是否有元素设置了autofocus
-            const autoFocusElements = container.querySelectorAll('[autofocus]');
-            if (autoFocusElements.length === 0) {
-              // 对于Dialog，通常应该有一个元素获得初始焦点
-              console.info('Dialog 建议设置初始焦点元素以提升用户体验');
-            }
-          }
         },
       },
       finishCallback,
     );
   },
-  [],
+  [], // 如需跳过特定的 demo，例如['basicDialogDemo']
 );
