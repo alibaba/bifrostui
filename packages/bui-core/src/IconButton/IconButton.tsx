@@ -43,6 +43,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
           ? React.cloneElement(children, {
               ...(!isContainedVariant && {
                 color: children.props?.color || color,
+                htmlColor: children.props?.htmlColor || '#959aa5',
               }),
               ...(isContainedVariant && {
                 htmlColor: children.props?.htmlColor || '#fff',
