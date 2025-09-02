@@ -199,7 +199,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
                   role="tab"
                   aria-selected={value === item.index}
                   aria-disabled={item?.disabled}
-                  tabIndex={value === item.index && !item?.disabled ? 0 : -1}
+                  tabIndex={item?.disabled ? -1 : 0}
                 >
                   {item.title}
                 </Tab>

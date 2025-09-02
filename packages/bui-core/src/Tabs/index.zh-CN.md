@@ -244,7 +244,7 @@ export default () => {
 
 ## 无障碍访问
 
-- Tab 具备 `role="tab"`、`aria-disabled`、`aria-controls`、`tabindex` 等属性。
+- Tab 具备 `role="tab"`、`aria-disabled`、`tabindex` 等属性。
 - TabPanel 具备 `role="tabpanel"`、`tabindex`、`aria-hidden` 等属性。
 
 ## API
