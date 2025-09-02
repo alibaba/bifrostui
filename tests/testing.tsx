@@ -237,24 +237,26 @@ export const getMdDemoCodes = (
 // 支持单个文件中多个 demo 的测试函数
 export const getCustomDemoCodesFromFile = (
   componentName = '',
-  customDemoPath = '',
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   callback = (...args: any[]) => {},
   skips = [],
 ) => {
   if (!componentName) throw Error('componentName is required');
-  if (!customDemoPath) throw Error('customDemoPath is required');
+  const cusDemoPath = path.join(
+    __dirname,
+    `../packages/bui-core/src/${componentName}/__tests__/fixtures`,
+  );
   
   // 构建自定义 demo 文件的完整路径
-  const fullDemoPath = path.resolve(customDemoPath);
+  const fullDemoPath = path.resolve(cusDemoPath);
   
   // 检查路径是否存在
   if (!fs.existsSync(fullDemoPath)) {
     throw Error(`Custom demo path does not exist: ${fullDemoPath}`);
   }
   
-  // 直接读取固定的文件名 customDemoComponent.tsx
-  const demoFilePath = path.join(fullDemoPath, 'customDemoComponent.tsx');
+  // 直接读取固定的文件名 A11yDemos.tsx
+  const demoFilePath = path.join(fullDemoPath, 'A11yDemos.tsx');
   
   // 检查文件是否存在
   if (!fs.existsSync(demoFilePath)) {

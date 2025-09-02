@@ -25,7 +25,6 @@ const componentsDir = path.resolve(__dirname, '../packages/bui-core/src');
 // 无障碍测试模板
 const getA11yTestTemplate = (componentName) => {
   return `import { getMdDemoCodes, getCustomDemoCodesFromFile, accessibilityDemoTest } from 'testing';
-import path from 'path';
 
 /**
  * ${componentName} 组件无障碍测试
@@ -112,7 +111,6 @@ getMdDemoCodes(
 
 // getCustomDemoCodesFromFile(
 //   '${componentName}',
-//   path.join(__dirname, './'),// customDemoComponent.tsx所在目录
 //   (params) => {
 //     const {
 //       demoComponent,
