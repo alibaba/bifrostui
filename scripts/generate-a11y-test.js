@@ -107,7 +107,7 @@ getMdDemoCodes(
   [], // 如需跳过特定的demo，在此数组中添加，如 ['md_demo_1', 'md_demo_2']
 );
 
-// 2. 基于自定义 Demo 组件的测试: 请在 __tests__ 目录下创建 customDemoComponent.tsx 文件，可以包含多个 demo 组件（可参考Alert组件）
+// 2. 基于自定义 Demo 组件的测试: 请在 __tests__ 目录下创建 fixtures/A11yDemos.tsx 文件，可以包含多个 demo 组件（可参考Alert组件）
 
 // getCustomDemoCodesFromFile(
 //   '${componentName}',
