@@ -1,5 +1,5 @@
 import React from 'react';
-import Alert from '../Alert';
+import Alert from '../../Alert';
 
 /**
  * 自定义 Alert 组件 Demo 集合
