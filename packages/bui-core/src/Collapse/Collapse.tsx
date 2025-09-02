@@ -6,7 +6,6 @@ import {
   getTransitionProps,
   createTransitions,
 } from '@bifrostui/utils';
-import clsx from 'clsx';
 import { Transition } from '../Transition';
 import { CollapseProps } from './Collapse.types';
 import './Collapse.less';
@@ -65,7 +64,7 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
         wrapperRef.current?.children?.[0],
       );
     }
-  }, [appear, inProp]);
+  }, [appear, inProp, size]);
 
   if (!children) return null;
 
@@ -78,18 +77,36 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
       appear={appear}
     >
       {(state, childProps) => {
-        const transition = transitions.create(
-          size,
-          getTransitionProps(
-            { timeout, style, easing: easingProp, delay },
-            { mode: state },
-          ),
-        );
+        const transition =
+          state === 'entering' || state === 'exiting'
+            ? transitions.create(
+                size,
+                getTransitionProps(
+                  { timeout, style, easing: easingProp, delay },
+                  {
+                    mode: state,
+                  },
+                ),
+              )
+            : 'none';
+
         const wrapperSize = () => {
-          const collapseWrapperSize =
-            state === 'entering' || state === 'entered'
-              ? getCollapseWrapperSize(wrapperRef.current?.children?.[0])
-              : collapsedSize;
+          let collapseWrapperSize = collapsedSize;
+
+          if (inProp && state === 'entered') {
+            // 展开结束，size设置为auto
+            collapseWrapperSize = 'auto';
+          } else if (state === 'entering' || state === 'entered') {
+            collapseWrapperSize = getCollapseWrapperSize(
+              wrapperRef.current?.children?.[0],
+            );
+          }
+
+          // 强制重绘
+          if (wrapperRef.current && state === 'exiting') {
+            const _ = wrapperRef.current.offsetHeight;
+            console.log(_);
+          }
           return isHorizontal
             ? {
                 width: collapseWrapperSize,
@@ -103,9 +120,7 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
         return React.createElement(
           'div',
           {
-            className: clsx('bui-collapse', {
-              className,
-            }),
+            className: `bui-collapse ${className || ''}`,
             style: {
               ...style,
               transition,
