@@ -5,12 +5,17 @@ const { input } = require('@inquirer/prompts');
 /**
  * 为指定组件生成无障碍测试模板脚本
  * 
+ * 新功能支持：
+ * - 基于 Markdown 文档的测试（原有方式）
+ * - 基于自定义 Demo 组件的测试（新增方式）
+ * - 可以在一个文件中包含多个 demo，每个都会独立测试
+ * 
  * 使用方式：
- * node tests/a11y-template.test.tsx [组件名]
+ * node scripts/generate-a11y-test.js [组件名]
  * 
  * 示例：
- * node tests/a11y-template.test.tsx Button
- * node tests/a11y-template.test.tsx Calendar
+ * node scripts/generate-a11y-test.js Button
+ * node scripts/generate-a11y-test.js Calendar
  * 
  * 如果不提供组件名，将交互式询问
  */
@@ -19,15 +24,20 @@ const componentsDir = path.resolve(__dirname, '../packages/bui-core/src');
 
 // 无障碍测试模板
 const getA11yTestTemplate = (componentName) => {
-  return `import { getMdDemoCodes, accessibilityDemoTest } from 'testing';
+  return `import { getMdDemoCodes, getCustomDemoCodesFromFile, accessibilityDemoTest } from 'testing';
 
 /**
  * ${componentName} 组件无障碍测试
  * 
  * 此文件由 a11y-template 脚本自动生成
  * 生成时间: ${new Date().toLocaleString()}
+ * 
+ * 本文件同时支持两种测试方式：
+ * 1. 基于 Markdown 文档的测试（原有方式）
+ * 2. 基于自定义 Demo 组件的测试（新增方式）
  */
 
+// 1. 基于 Markdown 文档的测试
 getMdDemoCodes(
   '${componentName}',
   (params) => {
@@ -96,6 +106,51 @@ getMdDemoCodes(
   },
   [], // 如需跳过特定的demo，在此数组中添加，如 ['md_demo_1', 'md_demo_2']
 );
+
+// 2. 基于自定义 Demo 组件的测试: 请在 __tests__ 目录下创建 fixtures/A11yDemos.tsx 文件，可以包含多个 demo 组件（可参考Alert组件）
+
+// getCustomDemoCodesFromFile(
+//   '${componentName}',
+//   (params) => {
+//     const {
+//       demoComponent,
+//       demoComponentName,
+//       demoComponentIndex,
+//       demoTotal,
+//       demoFilePath,
+//       demoKey,
+//       finishCallback,
+//     } = params;
+    
+//     console.log(\`开始测试自定义 Demo: \${demoComponentName} (\${demoKey})\`);
+//     console.log(\`Demo 文件路径: \${demoFilePath}\`);
+//     console.log(\`当前进度: \${demoComponentIndex + 1}/\${demoTotal}\`);
+    
+//     accessibilityDemoTest(
+//       demoComponent,
+//       {
+//         componentName: demoComponentName,
+//         demoComponentIndex,
+//         axeOptions: {},
+//         // 启用详细的无障碍错误报告
+//         detailedErrorReporting: true,
+//          // ${componentName} 组件的自定义无障碍检查
+//         customA11yChecks: (container) => {},
+//         beforeAllFn: () => {
+//           console.log(\`🧪 开始 \${demoComponentName} 自定义 Demo 无障碍测试...\`);
+//         },
+//         beforeEachFn: () => {
+//           console.log(\`📝 准备测试 \${demoComponentName}...\`);
+//         },
+//         afterEachFn: () => {
+//           console.log(\`✅ \${demoComponentName} 测试完成\`);
+//         },
+//       },
+//       finishCallback,
+//     );
+//   },
+//   [], //  如需跳过特定的 demo，例如[''basicAlertDemo']
+// );
 `;
 };
 
@@ -211,6 +266,13 @@ async function main() {
       console.log(`1. 根据 ${componentName} 组件的特性，完善 customA11yChecks 中的自定义检查逻辑`);
       console.log(`2. 如果组件有特殊的无障碍要求，调整 disabledRules 配置`);
       console.log(`3. 运行测试验证组件的无障碍性`);
+      console.log(`\n🚀 新功能支持:`);
+      console.log(`   - 支持基于 Markdown 文档的测试（原有方式）`);
+      console.log(`   - 支持基于自定义 Demo 组件的测试（新增方式）`);
+      console.log(`   - 可以在一个文件中包含多个 demo，每个都会独立测试`);
+      console.log(`\n📝 创建自定义 Demo 组件:`);
+      console.log(`   在 __tests__ 目录下创建 customDemoComponent.tsx 文件`);
+      console.log(`   可以包含多个 demo 组件默认导出对象`);
       console.log(`\n🧪 运行测试命令:`);
       console.log(`   pnpm test:run packages/bui-core/src/${componentName}/__tests__/a11y.test.tsx`);
     }

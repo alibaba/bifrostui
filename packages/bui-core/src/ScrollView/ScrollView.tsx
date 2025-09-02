@@ -8,6 +8,7 @@ import React, {
   UIEvent,
   SyntheticEvent,
   TouchEvent,
+  KeyboardEvent,
 } from 'react';
 import './index.less';
 
@@ -83,7 +84,63 @@ const ScrollView = forwardRef<HTMLDivElement, ScrollViewProps>((props, ref) => {
     scrollWithAnimation,
     upperThreshold = 50,
     lowerThreshold = 50,
+    // 无障碍功能相关属性
+    role = 'region',
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
+    tabIndex = 0,
+    autoFocus = false,
+    onKeyDown: propsOnKeyDown,
+    ...restProps
   } = props;
+
+  // 过滤掉小程序特有的属性，只保留标准 HTML 属性
+  const miniProgramProps = [
+    'enableBackToTop',
+    'enableFlex',
+    'scrollAnchoring',
+    'refresherEnabled',
+    'refresherDefaultStyle',
+    'refresherBackground',
+    'refresherTriggered',
+    'enhanced',
+    'bounces',
+    'showScrollbar',
+    'pagingEnabled',
+    'fastDeceleration',
+    'trapScroll',
+    'disableLowerScroll',
+    'disableUpperScroll',
+    'ariaLabel',
+    'enablePassive',
+    'type',
+    'reverse',
+    'cacheExtent',
+    'scrollIntoViewWithinExtent',
+    'onScrollStart',
+    'onScrollEnd',
+    'onRefresherPulling',
+    'onRefresherRefresh',
+    'onRefresherRestore',
+    'onRefresherAbort',
+    'onRefresherWillRefresh',
+    'onDragStart',
+    'onDragging',
+    'onDragEnd',
+    'onTouchStart',
+    'onTouchEnd',
+    'onTouchCancel',
+  ];
+
+  const otherProps = Object.keys(restProps).reduce(
+    (acc, key) => {
+      if (!miniProgramProps.includes(key)) {
+        acc[key] = restProps[key];
+      }
+      return acc;
+    },
+    {} as Record<string, unknown>,
+  );
 
   const containerRef = useRef<HTMLDivElement>(null);
   const handleRef = useForkRef(ref, containerRef);
@@ -136,6 +193,118 @@ const ScrollView = forwardRef<HTMLDivElement, ScrollViewProps>((props, ref) => {
     },
     [scrollAnimationDuration],
   );
+
+  // 无障碍功能：键盘导航支持
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>) => {
+      if (!containerRef.current) return;
+
+      const {
+        scrollTop,
+        scrollLeft,
+        clientHeight,
+        clientWidth,
+        scrollHeight,
+        scrollWidth,
+      } = containerRef.current;
+      const step = 40; // 每次键盘滚动的步长
+      const pageStep = clientHeight * 0.8; // Page Up/Down 的滚动距离
+
+      switch (event.key) {
+        case 'ArrowUp':
+          if (scrollY) {
+            event.preventDefault();
+            scrollVertical(Math.max(0, scrollTop - step));
+          }
+          break;
+        case 'ArrowDown':
+          if (scrollY) {
+            event.preventDefault();
+            scrollVertical(
+              Math.min(scrollHeight - clientHeight, scrollTop + step),
+            );
+          }
+          break;
+        case 'ArrowLeft':
+          if (scrollX) {
+            event.preventDefault();
+            scrollHorizontal(Math.max(0, scrollLeft - step));
+          }
+          break;
+        case 'ArrowRight':
+          if (scrollX) {
+            event.preventDefault();
+            scrollHorizontal(
+              Math.min(scrollWidth - clientWidth, scrollLeft + step),
+            );
+          }
+          break;
+        case 'PageUp':
+          if (scrollY) {
+            event.preventDefault();
+            scrollVertical(Math.max(0, scrollTop - pageStep));
+          }
+          break;
+        case 'PageDown':
+          if (scrollY) {
+            event.preventDefault();
+            scrollVertical(
+              Math.min(scrollHeight - clientHeight, scrollTop + pageStep),
+            );
+          }
+          break;
+        case 'Home':
+          event.preventDefault();
+          if (scrollY) {
+            scrollVertical(0);
+          }
+          if (scrollX) {
+            scrollHorizontal(0);
+          }
+          break;
+        case 'End':
+          event.preventDefault();
+          if (scrollY) {
+            scrollVertical(scrollHeight - clientHeight);
+          }
+          if (scrollX) {
+            scrollHorizontal(scrollWidth - clientWidth);
+          }
+          break;
+        case ' ': // Space key
+          if (scrollY) {
+            event.preventDefault();
+            if (event.shiftKey) {
+              // Shift + Space = Page Up
+              scrollVertical(Math.max(0, scrollTop - pageStep));
+            } else {
+              // Space = Page Down
+              scrollVertical(
+                Math.min(scrollHeight - clientHeight, scrollTop + pageStep),
+              );
+            }
+          }
+          break;
+        default:
+          break;
+      }
+
+      // 调用用户自定义的键盘事件处理器
+      propsOnKeyDown?.(event);
+    },
+    [scrollX, scrollY, scrollVertical, scrollHorizontal, propsOnKeyDown],
+  );
+
+  // 无障碍功能：自动获取焦点
+  useEffect(() => {
+    if (autoFocus && containerRef.current) {
+      const timer = setTimeout(() => {
+        containerRef.current?.focus();
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+    return undefined;
+  }, [autoFocus]);
 
   /**
    * 核心滚动处理：处理滚动到指定元素或位置
@@ -344,6 +513,13 @@ const ScrollView = forwardRef<HTMLDivElement, ScrollViewProps>((props, ref) => {
       className={cls}
       onScroll={onScrollHandler}
       onTouchMove={onTouchMoveHandler}
+      onKeyDown={handleKeyDown}
+      // 无障碍功能属性
+      role={role}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledby}
+      tabIndex={tabIndex}
+      {...otherProps}
     >
       {children}
     </div>
