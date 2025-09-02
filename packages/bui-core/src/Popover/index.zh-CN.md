@@ -100,6 +100,7 @@ export default () => {
 ### anchorOrigin 气泡框位置
 
 `anchorOrigin` 设置气泡浮层相对于锚点的位置。通过 `vertical` 和 `horizontal` 两个属性来控制位置：
+
 - `vertical`: 可选值为 `top`、`center`、`bottom`
 - `horizontal`: 可选值为 `left`、`center`、`right`
 
@@ -118,12 +119,12 @@ export default () => {
         content={`vertical: ${anchorOrigin.vertical}, horizontal: ${anchorOrigin.horizontal}`}
         anchorOrigin={anchorOrigin}
       >
-        <Button 
-          style={{ 
-            width: '100px', 
-            height: '40px', 
+        <Button
+          style={{
+            width: '100px',
+            height: '40px',
             margin: '4px',
-            fontSize: '12px'
+            fontSize: '12px',
           }}
         >
           {text}
@@ -133,31 +134,51 @@ export default () => {
   };
 
   return (
-    <div style={{ 
-      display: 'grid', 
-      gridTemplateColumns: 'repeat(3, 1fr)', 
-      gap: '8px',
-      maxWidth: '400px',
-      margin: '20px auto',
-      padding: '20px',
-      border: '1px solid #e0e0e0',
-      borderRadius: '8px',
-      backgroundColor: '#fafafa'
-    }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gap: '8px',
+        maxWidth: '400px',
+        margin: '20px auto',
+        padding: '20px',
+        border: '1px solid #e0e0e0',
+        borderRadius: '8px',
+        backgroundColor: '#fafafa',
+      }}
+    >
       {/* 第一行：top */}
       {createButton('top + left', { vertical: 'top', horizontal: 'left' })}
       {createButton('top + center', { vertical: 'top', horizontal: 'center' })}
       {createButton('top + right', { vertical: 'top', horizontal: 'right' })}
-      
+
       {/* 第二行：center */}
-      {createButton('center + left', { vertical: 'center', horizontal: 'left' })}
-      {createButton('center + center', { vertical: 'center', horizontal: 'center' })}
-      {createButton('center + right', { vertical: 'center', horizontal: 'right' })}
-      
+      {createButton('center + left', {
+        vertical: 'center',
+        horizontal: 'left',
+      })}
+      {createButton('center + center', {
+        vertical: 'center',
+        horizontal: 'center',
+      })}
+      {createButton('center + right', {
+        vertical: 'center',
+        horizontal: 'right',
+      })}
+
       {/* 第三行：bottom */}
-      {createButton('bottom + left', { vertical: 'bottom', horizontal: 'left' })}
-      {createButton('bottom + center', { vertical: 'bottom', horizontal: 'center' })}
-      {createButton('bottom + right', { vertical: 'bottom', horizontal: 'right' })}
+      {createButton('bottom + left', {
+        vertical: 'bottom',
+        horizontal: 'left',
+      })}
+      {createButton('bottom + center', {
+        vertical: 'bottom',
+        horizontal: 'center',
+      })}
+      {createButton('bottom + right', {
+        vertical: 'bottom',
+        horizontal: 'right',
+      })}
     </div>
   );
 };
@@ -173,7 +194,7 @@ import React, { useState } from 'react';
 
 export default () => {
   const [manualOpen, setManualOpen] = useState(false);
-  
+
   return (
     <div>
       <p>
@@ -186,11 +207,7 @@ export default () => {
         </Popover>
       </p>
       <p>
-        <Popover
-          title="This is a popover"
-          content="hover触发"
-          trigger="hover"
-        >
+        <Popover title="This is a popover" content="hover触发" trigger="hover">
           <span>hover触发</span>
         </Popover>
       </p>
@@ -204,7 +221,7 @@ export default () => {
         </Popover>
       </p>
       <p>
-        <button onClick={() => setManualOpen(!manualOpen)}>
+        <button type="button" onClick={() => setManualOpen(!manualOpen)}>
           外部控制按钮 {manualOpen ? '(点击隐藏)' : '(点击显示)'}
         </button>
         <Popover
@@ -221,19 +238,93 @@ export default () => {
 };
 ```
 
+### 无障碍功能
+
+Popover 组件提供了完整的无障碍功能支持，包括键盘导航、屏幕阅读器支持和焦点管理。
+
+```tsx
+import { Popover, Button } from '@bifrostui/react';
+import React from 'react';
+
+export default () => {
+  return (
+    <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+      {/* 基础无障碍支持 */}
+      <Popover
+        title="基础无障碍"
+        content="支持 ESC 键关闭，自动焦点管理"
+        role="tooltip"
+        aria-label="帮助信息"
+      >
+        <Button>基础无障碍</Button>
+      </Popover>
+
+      {/* 对话框模式 */}
+      <Popover
+        title="对话框模式"
+        content={
+          <div>
+            <p>这是一个对话框模式的气泡</p>
+            <button type="button">确定</button>
+            <button type="button">取消</button>
+          </div>
+        }
+        role="dialog"
+        trapFocus
+        aria-label="操作确认对话框"
+      >
+        <Button>对话框模式</Button>
+      </Popover>
+
+      {/* 菜单模式 */}
+      <Popover
+        title="菜单选项"
+        content={
+          <div>
+            <button type="button">选项 1</button>
+            <button type="button">选项 2</button>
+            <button type="button">选项 3</button>
+          </div>
+        }
+        role="menu"
+        trapFocus
+        aria-label="操作菜单"
+      >
+        <Button>菜单模式</Button>
+      </Popover>
+
+      {/* 禁用 ESC 键关闭 */}
+      <Popover
+        title="禁用 ESC 键"
+        content="这个气泡不能通过 ESC 键关闭"
+        closeOnEscape={false}
+      >
+        <Button>禁用 ESC 键</Button>
+      </Popover>
+    </div>
+  );
+};
+```
+
 ### API
 
-| 属性          | 说明                     | 类型                                                                         | 默认值                                         |
-| ------------- | ------------------------ | ---------------------------------------------------------------------------- | ---------------------------------------------- |
-| title         | 气泡浮层的标题浮层内容   | ReactNode                                                                    | -                                              |
-| content       | 气泡浮层的内容           | ReactNode                                                                    | -                                              |
-| defaultOpen   | 默认是否显隐             | boolean                                                                      | false                                          |
-| open          | 用于手动控制气泡浮层显隐 | boolean                                                                      | -                                              |
-| hideArrow     | 是否展示箭头             | boolean                                                                      | false                                          |
-| offsetSpacing | 浮层与目标元素的偏移量   | number                                                                       | 0                                              |
-| anchorOrigin  | 气泡框相对于锚点的位置   | { vertical: 'top' \| 'center' \| 'bottom', horizontal: 'left' \| 'center' \| 'right' } | { vertical: 'top', horizontal: 'center' }      |
-| trigger       | 触发行为                 | string \| string[]，枚举值是 'click' \| 'hover' \| 'none'                     | 'click'                                        |
-| onOpenChange  | 气泡浮层显隐的回调方法   | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void         | -                                              |
+| 属性            | 说明                       | 类型                                                                                   | 默认值                                    |
+| --------------- | -------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------- |
+| title           | 气泡浮层的标题浮层内容     | ReactNode                                                                              | -                                         |
+| content         | 气泡浮层的内容             | ReactNode                                                                              | -                                         |
+| defaultOpen     | 默认是否显隐               | boolean                                                                                | false                                     |
+| open            | 用于手动控制气泡浮层显隐   | boolean                                                                                | -                                         |
+| hideArrow       | 是否展示箭头               | boolean                                                                                | false                                     |
+| offsetSpacing   | 浮层与目标元素的偏移量     | number                                                                                 | 0                                         |
+| anchorOrigin    | 气泡框相对于锚点的位置     | { vertical: 'top' \| 'center' \| 'bottom', horizontal: 'left' \| 'center' \| 'right' } | { vertical: 'top', horizontal: 'center' } |
+| trigger         | 触发行为                   | string \| string[]，枚举值是 'click' \| 'hover' \| 'none'                              | 'click'                                   |
+| onOpenChange    | 气泡浮层显隐的回调方法     | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                   | -                                         |
+| role            | 无障碍功能：气泡的语义角色 | 'tooltip' \| 'dialog' \| 'menu' \| 'listbox'                                           | 'tooltip'                                 |
+| aria-label      | 无障碍功能：气泡的标签     | string                                                                                 | -                                         |
+| aria-labelledby | 无障碍功能：关联标签元素ID | string                                                                                 | -                                         |
+| autoFocus       | 无障碍功能：打开时自动聚焦 | boolean                                                                                | true                                      |
+| trapFocus       | 无障碍功能：焦点陷阱       | boolean                                                                                | false                                     |
+| closeOnEscape   | 无障碍功能：ESC键关闭      | boolean                                                                                | true                                      |
 
 ## 样式变量
 
