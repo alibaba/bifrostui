@@ -272,9 +272,8 @@ describe('ScrollView', () => {
       if (scrollView) {
         (scrollView as HTMLElement).focus();
         fireEvent.keyDown(scrollView, { key: 'ArrowDown', code: 'ArrowDown' });
-        // Note: JSDOM does not implement layouting, so scrollTop will not change.
-        // We are just testing that the event does not throw an error.
-        expect(scrollView.scrollTop).toBe(0);
+        // 键盘导航功能现在应该正常工作，按下 ArrowDown 会滚动 40px
+        expect(scrollView.scrollTop).toBe(40);
       }
     });
   });
