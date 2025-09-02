@@ -280,7 +280,6 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
             })}
             key={`${dayStr}-${index}`}
             onClick={(e) => onClickDay(e, ins)}
-            role="gridcell"
             aria-selected={isSelected}
             aria-disabled={ins.disabled}
             tabIndex={ins.disabled ? -1 : 0}
@@ -368,28 +367,19 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         )}
 
         {/* 周横条 */}
-        <div className={classes.week} role="row">
+        <div className={classes.week}>
           {SUNDAY_WEEK_DATA?.map((w, idx) => {
             return weekRender ? (
               weekRender(w)
             ) : (
-              <div
-                key={w}
-                className={`${classes.week}-item`}
-                role="columnheader"
-                aria-colindex={idx + 1}
-              >
+              <div key={w} className={`${classes.week}-item`}>
                 {w}
               </div>
             );
           })}
         </div>
 
-        <div
-          className={clsx(`${classes.root}-month`)}
-          role="grid"
-          aria-label="date select"
-        >
+        <div className={clsx(`${classes.root}-month`)} aria-label="date select">
           {renderDayList()}
         </div>
       </div>
