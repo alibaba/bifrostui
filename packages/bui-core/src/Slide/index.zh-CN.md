@@ -88,6 +88,93 @@ export default () => {
 };
 ```
 
+### 禁用动画
+
+通过设置 `enter=false` 或 `exit=false` 可以禁用进入或退出动画，元素将立即显示或隐藏而不经过过渡效果。
+
+```tsx
+import React, { useState } from 'react';
+import { Button, Slide, Stack } from '@bifrostui/react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Stack direction="column" spacing="16px">
+      <Button
+        onClick={() => {
+          setOpen((prev) => !prev);
+        }}
+      >
+        切换状态
+      </Button>
+
+      {/* 只有进入动画，没有退出动画 */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>只有进入动画：</div>
+        <div
+          style={{
+            overflow: 'hidden',
+            width: '200px',
+            border: '1px solid #eee',
+            padding: '8px',
+          }}
+        >
+          <Slide
+            in={open}
+            direction="right"
+            enter={true}
+            exit={false}
+            timeout={500}
+          >
+            <div>立即退出，平滑进入</div>
+          </Slide>
+        </div>
+      </Stack>
+
+      {/* 只有退出动画，没有进入动画 */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>只有退出动画：</div>
+        <div
+          style={{
+            overflow: 'hidden',
+            width: '200px',
+            border: '1px solid #eee',
+            padding: '8px',
+          }}
+        >
+          <Slide
+            in={open}
+            direction="left"
+            enter={false}
+            exit={true}
+            timeout={500}
+          >
+            <div>立即进入，平滑退出</div>
+          </Slide>
+        </div>
+      </Stack>
+
+      {/* 禁用所有动画 */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>禁用所有动画：</div>
+        <div
+          style={{
+            overflow: 'hidden',
+            width: '200px',
+            border: '1px solid #eee',
+            padding: '8px',
+          }}
+        >
+          <Slide in={open} direction="down" enter={false} exit={false}>
+            <div>立即切换，无动画效果</div>
+          </Slide>
+        </div>
+      </Stack>
+    </Stack>
+  );
+};
+```
+
 ### 事件及其他属性
 
 `Slide` 继承自 `Transition` 其他属性见 [Transition](/cores/transition)
