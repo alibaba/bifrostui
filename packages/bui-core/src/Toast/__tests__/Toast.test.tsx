@@ -23,6 +23,54 @@ describe('Toast', () => {
     vi.clearAllMocks();
   });
 
+  it('Toast role should be "status"', () => {
+    const { getByTestId } = render(
+      <Button
+        data-testid="emit-button"
+        onClick={() => {
+          Toast('提示内容');
+        }}
+      >
+        test
+      </Button>,
+    );
+    fireEvent.click(getByTestId('emit-button'));
+    const toastEl = document.body.querySelector(`.${rootClass}`);
+    expect(toastEl).toHaveAttribute('role', 'status');
+  });
+
+  it('Toast aria-live should be "polite"', () => {
+    const { getByTestId } = render(
+      <Button
+        data-testid="emit-button"
+        onClick={() => {
+          Toast('提示内容');
+        }}
+      >
+        test
+      </Button>,
+    );
+    fireEvent.click(getByTestId('emit-button'));
+    const toastEl = document.body.querySelector(`.${rootClass}`);
+    expect(toastEl).toHaveAttribute('aria-live', 'polite');
+  });
+
+  it('Toast aria-atomic should be "true"', () => {
+    const { getByTestId } = render(
+      <Button
+        data-testid="emit-button"
+        onClick={() => {
+          Toast('提示内容');
+        }}
+      >
+        test
+      </Button>,
+    );
+    fireEvent.click(getByTestId('emit-button'));
+    const toastEl = document.body.querySelector(`.${rootClass}`);
+    expect(toastEl).toHaveAttribute('aria-atomic', 'true');
+  });
+
   it('should render in document body', () => {
     const { getByTestId } = render(
       <Button
