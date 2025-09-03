@@ -2,6 +2,165 @@ import React from 'react';
 import { act, fireEvent, isConformant, render, screen } from 'testing';
 import Picker from '..';
 
+describe('Picker Accessibility', () => {
+  const singleData = [
+    [
+      {
+        value: 1,
+        label: '周一',
+      },
+      {
+        value: 2,
+        label: '周二',
+      },
+      {
+        value: 3,
+        label: '周三',
+      },
+      {
+        value: 4,
+        label: '周四',
+      },
+      {
+        value: 5,
+        label: '周五',
+      },
+      {
+        value: 6,
+        label: '周六',
+      },
+      {
+        value: 7,
+        label: '周日',
+      },
+    ],
+  ];
+  it('Picker aria-label should be "Picker"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    expect(picker).toHaveAttribute('aria-label', 'Picker');
+  });
+
+  it('Picker backdrop aria-hidden should be "true"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const backdrop = picker.querySelector('.bui-modal-backdrop');
+    expect(backdrop).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('Picker header role should be "toolbar"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const pickerHeader = picker.querySelector('.bui-picker-header');
+    expect(pickerHeader).toHaveAttribute('role', 'toolbar');
+  });
+
+  it('Picker header aria-label should be "Toolbar"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const pickerHeader = picker.querySelector('.bui-picker-header');
+    expect(pickerHeader).toHaveAttribute('aria-label', 'Toolbar');
+  });
+
+  it('Picker cancel button type should be "button"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const cancelBtn = picker.querySelector('.bui-picker-cancel');
+    expect(cancelBtn).toHaveAttribute('type', 'button');
+  });
+
+  it('Picker cancel button aria-label should be "Cancel"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const cancelBtn = picker.querySelector('.bui-picker-cancel');
+    expect(cancelBtn).toHaveAttribute('aria-label', 'Cancel');
+  });
+
+  it('Picker cancel button tabindex should be "0"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const cancelBtn = picker.querySelector('.bui-picker-cancel');
+    expect(cancelBtn).toHaveAttribute('tabindex', '0');
+  });
+
+  it('Picker confirm button type should be "button"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const confirmBtn = picker.querySelector('.bui-picker-confirm');
+    expect(confirmBtn).toHaveAttribute('type', 'button');
+  });
+
+  it('Picker confirm button aria-label should be "Confirm"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const confirmBtn = picker.querySelector('.bui-picker-confirm');
+    expect(confirmBtn).toHaveAttribute('aria-label', 'Confirm');
+  });
+
+  it('Picker confirm button tabindex should be "0"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const panel = picker.querySelector('.bui-picker-confirm');
+    expect(panel).toHaveAttribute('tabindex', '0');
+  });
+
+  it('Picker panel role should be "listbox"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const panel = picker.querySelector('.bui-picker-panel');
+    expect(panel).toHaveAttribute('role', 'listbox');
+  });
+
+  it('Picker panel aria-label should be "options"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const panel = picker.querySelector('.bui-picker-panel');
+    expect(panel).toHaveAttribute('aria-label', 'options');
+  });
+
+  it('Picker panel aria-orientation should be "vertical"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const panel = picker.querySelector('.bui-picker-panel');
+    expect(panel).toHaveAttribute('aria-orientation', 'vertical');
+  });
+
+  it('Picker panel option role should be "option"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const panelOptions = picker.querySelectorAll('.bui-picker-panel-option');
+
+    panelOptions.forEach((panelOption) => {
+      expect(panelOption).toHaveAttribute('role', 'option');
+    });
+  });
+
+  it('Picker panel option aria-disabled should be "false"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const panelOptions = picker.querySelectorAll('.bui-picker-panel-option');
+
+    panelOptions.forEach((panelOption) => {
+      expect(panelOption).toHaveAttribute('aria-disabled', 'false');
+    });
+  });
+});
+
 describe('Picker', () => {
   const rootClass = 'bui-picker';
   const singleData = [
