@@ -2,4 +2,60 @@
   overflow: hidden;
   height: fit-content;
   width: fit-content;
+
+  /* CSS变量用于动态设置尺寸 */
+  --collapse-size: auto;
+  --collapse-collapsed-size: 0px;
+
+  /* 垂直方向 */
+  &.bui-collapse-vertical {
+    height: var(--collapse-size);
+  }
+
+  /* 水平方向 */
+  &.bui-collapse-horizontal {
+    width: var(--collapse-size);
+  }
+}
+
+/* 垂直方向动画关键帧 */
+@keyframes bui-collapse-enter-vertical {
+  from {
+    height: var(--collapse-collapsed-size);
+  }
+
+  to {
+    height: var(--collapse-size);
+  }
+}
+
+@keyframes bui-collapse-exit-vertical {
+  from {
+    height: var(--collapse-size);
+  }
+
+  to {
+    height: var(--collapse-collapsed-size);
+  }
+}
+
+/* 水平方向动画关键帧 */
+@keyframes bui-collapse-enter-horizontal {
+  from {
+    width: var(--collapse-collapsed-size);
+  }
+
+  to {
+    width: var(--collapse-size);
+  }
+}
+
+@keyframes bui-collapse-exit-horizontal {
+  from {
+    width: var(--collapse-size);
+  }
+
+  to {
+    width: var(--collapse-collapsed-size);
+  }
 }
