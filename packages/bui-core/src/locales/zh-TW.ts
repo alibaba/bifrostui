@@ -54,16 +54,16 @@ const zhTW: BaseLang = {
   countdown: {
     remain: {
       year: '年',
-      month: '个月',
+      month: '個月',
       day: '天',
-      hour: '小时',
-      minute: '分钟',
+      hour: '小時',
+      minute: '分鐘',
       second: '秒',
     },
-    remainTime: '剩余时间',
-    hasEnd: '倒计时已结束',
-    willEnd: '即将结束',
-    timer: '倒计时器',
+    remainTime: '剩餘時間',
+    hasEnd: '倒數計時已結束',
+    willEnd: '即將結束',
+    timer: '倒數計時器',
   },
 };
 
