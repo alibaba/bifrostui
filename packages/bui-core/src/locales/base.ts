@@ -48,4 +48,18 @@ export interface BaseLang {
     minute: string;
     second: string;
   };
+  countdown?: {
+    remain: {
+      year: string;
+      month: string;
+      day: string;
+      hour: string;
+      minute: string;
+      second: string;
+    };
+    remainTime: string;
+    hasEnd: string;
+    willEnd: string;
+    timer: string;
+  };
 }

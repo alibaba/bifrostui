@@ -16,6 +16,18 @@
   font-weight: var(--bui-countdown-font-weight);
   font-family: var(--bui-font-family);
 
+  &-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   &-slice {
     display: flex;
     flex-direction: row;
@@ -28,9 +40,9 @@
     }
 
     &-value {
-      font-family: 'Helvetica Neue', helvetica, 'PingFang SC', 'Chinese Quote',
-        'Segoe UI', roboto, 'Hiragino Sans GB', 'Microsoft YaHei', arial,
-        sans-serif;
+      font-family:
+        'Helvetica Neue', helvetica, 'PingFang SC', 'Chinese Quote', 'Segoe UI',
+        roboto, 'Hiragino Sans GB', 'Microsoft YaHei', arial, sans-serif;
     }
 
     &-unit {

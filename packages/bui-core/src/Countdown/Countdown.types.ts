@@ -75,6 +75,23 @@ export type CountdownProps<
        * 自定义render内容
        */
       renderContent?: (data: CurrentTime) => React.ReactNode;
+      /**
+       * 无障碍标签，为屏幕阅读器提供组件描述
+       */
+      'aria-label'?: string;
+      /**
+       * 引用其他元素ID作为标签
+       */
+      'aria-labelledby'?: string;
+      /**
+       * 引用其他元素ID作为描述
+       */
+      'aria-describedby'?: string;
+      /**
+       * 组件的语义角色
+       * @default 'timer'
+       */
+      role?: string;
     };
     defaultComponent: D;
   },
@@ -84,7 +101,7 @@ export type CountdownProps<
 /**
  * 倒计时格式化后分割项
  */
-interface CountdownItem {
+export interface CountdownItem {
   /**
    * 倒计时切片字符串
    */
