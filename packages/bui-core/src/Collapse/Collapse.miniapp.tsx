@@ -123,6 +123,7 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
   useDidMountEffect(() => {
     if (inProp && !isMounted) {
       setIsMounted(true);
+      return;
     }
     getCollapseWrapperSize(elementRef.current).then((size) => {
       setActualSize(size as string);
