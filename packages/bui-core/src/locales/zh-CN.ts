@@ -65,6 +65,16 @@ const zhCN: BaseLang = {
     willEnd: '即将结束',
     timer: '倒计时器',
   },
+  progress: {
+    notStarted: '未开始',
+    justBegun: '刚刚开始',
+    gettingStarted: '开始进行',
+    inProgress: '进行中',
+    moreThanHalfway: '过半完成',
+    nearingCompletion: '接近完成',
+    almostComplete: '即将完成',
+    complete: '已完成',
+  },
 };
 
 export default zhCN;

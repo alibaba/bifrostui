@@ -83,6 +83,16 @@ const enUS: BaseLang = {
     willEnd: 'About to end',
     timer: 'Timer',
   },
+  progress: {
+    notStarted: 'Not started',
+    justBegun: 'Just begun',
+    gettingStarted: 'Getting started',
+    inProgress: 'In progress',
+    moreThanHalfway: 'More than halfway',
+    nearingCompletion: 'Nearing completion',
+    almostComplete: 'Almost complete',
+    complete: 'Complete',
+  },
 };
 
 export default enUS;
