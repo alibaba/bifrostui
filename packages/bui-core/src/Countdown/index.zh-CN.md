@@ -228,29 +228,3 @@ export default () => {
 | --bui-countdown-color             | 字体颜色 | `var(--bui-color-fg-default)`   |
 | --bui-countdown-font-weight       | 字体粗细 | `var(--bui-font-weight-normal)` |
 | --bui-countdown-slice-unit-margin | 单位间隔 | `0 2px`                         |
-
-## 无障碍指南
-
-倒计时组件遵循 WAI-ARIA 无障碍标准，确保所有用户都能获得良好的使用体验：
-
-### 内置无障碍特性
-
-- **语义角色**：默认使用 `role="timer"` 标识倒计时组件
-- **动态更新**：使用 `aria-live="polite"` 向屏幕阅读器通知时间变化
-- **原子更新**：使用 `aria-atomic="true"` 确保完整的时间信息被朗读
-- **屏幕阅读器支持**：提供专门的文本描述，与视觉显示分离
-- **自动标签**：当未提供自定义标签时，自动生成描述性的 `aria-label`
-
-### 最佳实践
-
-1. **提供有意义的标签**：使用 `aria-label` 或 `aria-labelledby` 描述倒计时的目的
-2. **添加上下文描述**：使用 `aria-describedby` 提供额外的上下文信息
-3. **考虑认知负荷**：避免过于频繁的更新，默认使用 `aria-live="polite"`
-4. **测试兼容性**：使用屏幕阅读器（如 NVDA、JAWS、VoiceOver）测试组件
-
-### 时间格式说明
-
-屏幕阅读器会听到易于理解的时间描述：
-
-- 视觉显示：`01:30:45`
-- 屏幕阅读器："剩余时间：1小时30分钟45秒"

@@ -237,29 +237,3 @@ export default () => {
 | --color             | Text color            | --bui-color-fg-default   | --bui-countdown-color             |
 | --font-weight       | Font weight           | --bui-font-weight-normal | --bui-countdown-font-weight       |
 | --slice-unit-margin | Margin between slices | 0 2px                    | --bui-countdown-slice-unit-margin |
-
-## Accessibility Guide
-
-The Countdown component follows WAI-ARIA accessibility standards to ensure a good experience for all users:
-
-### Built-in Accessibility Features
-
-- **Semantic Role**: Uses `role="timer"` by default to identify the countdown component
-- **Dynamic Updates**: Uses `aria-live="polite"` to notify screen readers of time changes
-- **Atomic Updates**: Uses `aria-atomic="true"` to ensure complete time information is read
-- **Screen Reader Support**: Provides dedicated text descriptions separate from visual display
-- **Auto Labeling**: Automatically generates descriptive `aria-label` when custom labels aren't provided
-
-### Best Practices
-
-1. **Provide Meaningful Labels**: Use `aria-label` or `aria-labelledby` to describe the purpose of the countdown
-2. **Add Contextual Descriptions**: Use `aria-describedby` to provide additional context information
-3. **Consider Cognitive Load**: Avoid overly frequent updates, default uses `aria-live="polite"`
-4. **Test Compatibility**: Test the component with screen readers (like NVDA, JAWS, VoiceOver)
-
-### Time Format Description
-
-Screen readers will hear easy-to-understand time descriptions:
-
-- Visual display: `01:30:45`
-- Screen reader: "Remaining time: 1 hour 30 minutes 45 seconds"
