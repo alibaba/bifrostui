@@ -21,6 +21,7 @@ import { Collapse, Switch, Card, Stack } from '@bifrostui/react';
 
 export default () => {
   const [open, setOpen] = useState(false);
+  return (
     <Stack direction="column" spacing="8px" flexWrap="wrap">
       <Switch
         checked={open}
