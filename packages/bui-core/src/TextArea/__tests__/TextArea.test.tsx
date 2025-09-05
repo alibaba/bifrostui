@@ -131,4 +131,161 @@ describe('TextArea', () => {
     textarea.blur();
     expect(textarea).not.toHaveFocus();
   });
+
+  // 无障碍功能测试
+  describe('Accessibility', () => {
+    it('should have correct role', () => {
+      render(<TextArea />);
+      const textarea = screen.getByRole('textbox');
+      expect(textarea).toBeInTheDocument();
+    });
+
+    it('should support aria-label', () => {
+      render(<TextArea aria-label="User feedback" />);
+      const textarea = screen.getByLabelText('User feedback');
+      expect(textarea).toBeInTheDocument();
+      expect(textarea).toHaveAttribute('aria-label', 'User feedback');
+    });
+
+    it('should support aria-describedby', () => {
+      render(
+        <div>
+          <TextArea aria-describedby="help-text" />
+          <div id="help-text">Please enter your feedback</div>
+        </div>,
+      );
+      const textarea = screen.getByRole('textbox');
+      expect(textarea).toHaveAttribute('aria-describedby', 'help-text');
+    });
+
+    it('should support aria-hidden', () => {
+      render(<TextArea aria-hidden />);
+      const textarea = screen.getByRole('textbox', { hidden: true });
+      expect(textarea).toHaveAttribute('aria-hidden', 'true');
+    });
+
+    it('should support aria-details', () => {
+      render(<TextArea aria-details="detailed-info" />);
+      const textarea = screen.getByRole('textbox');
+      expect(textarea).toHaveAttribute('aria-details', 'detailed-info');
+    });
+
+    it('should support aria-required', () => {
+      render(<TextArea aria-required />);
+      const textarea = screen.getByRole('textbox');
+      expect(textarea).toHaveAttribute('aria-required', 'true');
+      expect(textarea).toBeRequired();
+    });
+
+    it('should support aria-readonly', () => {
+      render(<TextArea aria-readonly />);
+      const textarea = screen.getByRole('textbox');
+      expect(textarea).toHaveAttribute('aria-readonly', 'true');
+    });
+
+    it('should support aria-rowcount', () => {
+      render(<TextArea aria-rowcount={5} />);
+      const textarea = screen.getByRole('textbox');
+      expect(textarea).toHaveAttribute('aria-rowcount', '5');
+    });
+
+    it('should support aria-rowindex', () => {
+      render(<TextArea aria-rowindex={2} />);
+      const textarea = screen.getByRole('textbox');
+      expect(textarea).toHaveAttribute('aria-rowindex', '2');
+    });
+
+    it('should support aria-colcount', () => {
+      render(<TextArea aria-colcount={80} />);
+      const textarea = screen.getByRole('textbox');
+      expect(textarea).toHaveAttribute('aria-colcount', '80');
+    });
+
+    it('should support multiple aria attributes', () => {
+      render(
+        <TextArea
+          aria-label="Feedback form"
+          aria-describedby="feedback-help"
+          aria-required
+          aria-rowcount={10}
+          aria-colcount={50}
+        />,
+      );
+      const textarea = screen.getByRole('textbox');
+      expect(textarea).toHaveAttribute('aria-label', 'Feedback form');
+      expect(textarea).toHaveAttribute('aria-describedby', 'feedback-help');
+      expect(textarea).toHaveAttribute('aria-required', 'true');
+      expect(textarea).toHaveAttribute('aria-rowcount', '10');
+      expect(textarea).toHaveAttribute('aria-colcount', '50');
+    });
+
+    it('should be accessible via keyboard navigation', async () => {
+      render(<TextArea placeholder="Type here" />);
+      const textarea = screen.getByRole('textbox');
+
+      // Tab 键聚焦
+      await userEvent.tab();
+      expect(textarea).toHaveFocus();
+
+      // 输入文本
+      await userEvent.type(textarea, 'Hello World');
+      expect(textarea).toHaveValue('Hello World');
+
+      // Shift+Tab 失去焦点
+      await userEvent.tab({ shift: true });
+      expect(textarea).not.toHaveFocus();
+    });
+
+    it('should announce character count when showCount is enabled', async () => {
+      render(<TextArea showCount maxLength={10} />);
+      const textarea = screen.getByRole('textbox');
+
+      await userEvent.type(textarea, 'test');
+
+      // 检查是否有字符计数显示
+      const { container } = render(
+        <TextArea value="test" showCount maxLength={10} />,
+      );
+      const count = container.querySelector(`.${rootClass}-count`);
+      expect(count).toHaveTextContent('4/10');
+    });
+
+    it('should work with screen readers when disabled', () => {
+      render(<TextArea disabled aria-label="Disabled textarea" />);
+      const textarea = screen.getByRole('textbox');
+      expect(textarea).toBeDisabled();
+      expect(textarea).toHaveAttribute('aria-label', 'Disabled textarea');
+    });
+
+    it('should maintain accessibility when autoSize is enabled', () => {
+      render(
+        <TextArea
+          autoSize
+          aria-label="Auto-sizing textarea"
+          value="This is a long text that should cause the textarea to auto-resize"
+        />,
+      );
+      const textarea = screen.getByRole('textbox');
+      expect(textarea).toHaveAttribute('aria-label', 'Auto-sizing textarea');
+      expect(textarea).toHaveValue(
+        'This is a long text that should cause the textarea to auto-resize',
+      );
+    });
+
+    it('should not render undefined aria attributes', () => {
+      render(<TextArea />);
+      const textarea = screen.getByRole('textbox');
+
+      // 确保未定义的 aria 属性不会被渲染
+      expect(textarea).not.toHaveAttribute('aria-label');
+      expect(textarea).not.toHaveAttribute('aria-describedby');
+      expect(textarea).not.toHaveAttribute('aria-hidden');
+      expect(textarea).not.toHaveAttribute('aria-details');
+      expect(textarea).not.toHaveAttribute('aria-required');
+      expect(textarea).not.toHaveAttribute('aria-readonly');
+      expect(textarea).not.toHaveAttribute('aria-rowcount');
+      expect(textarea).not.toHaveAttribute('aria-rowindex');
+      expect(textarea).not.toHaveAttribute('aria-colcount');
+    });
+  });
 });
