@@ -118,6 +118,72 @@ export default () => {
 };
 ```
 
+### 禁用动画
+
+通过设置 `enter=false` 或 `exit=false`，可以禁用进入或退出动画。元素将立即显示或隐藏，无过渡效果。
+
+```tsx
+import React, { useState } from 'react';
+import { Button, Fade, Stack } from '@bifrostui/react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Stack direction="column" spacing="16px">
+      <Button
+        onClick={() => {
+          setOpen((prev) => !prev);
+        }}
+      >
+        切换状态
+      </Button>
+
+      {/* 仅进入动画，无退出动画 */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>仅进入动画:</div>
+        <div
+          style={{
+            padding: '8px',
+          }}
+        >
+          <Fade in={open} enter={true} exit={false} timeout={500}>
+            <div>瞬间退出，平滑进入</div>
+          </Fade>
+        </div>
+      </Stack>
+
+      {/* 仅退出动画，无进入动画 */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>仅退出动画:</div>
+        <div
+          style={{
+            padding: '8px',
+          }}
+        >
+          <Fade in={open} enter={false} exit={true} timeout={500}>
+            <div>瞬间进入，平滑退出</div>
+          </Fade>
+        </div>
+      </Stack>
+
+      {/* 禁用所有动画 */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>全部禁用:</div>
+        <div
+          style={{
+            padding: '8px',
+          }}
+        >
+          <Fade in={open} enter={false} exit={false}>
+            <div>瞬间切换，无动画</div>
+          </Fade>
+        </div>
+      </Stack>
+    </Stack>
+  );
+};
+```
+
 ## 事件及其他属性
 
 `Fade` 继承自 `Transition` 其他属性见 [Transition](/cores/transition)
