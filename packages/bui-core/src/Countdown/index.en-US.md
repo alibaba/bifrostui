@@ -153,19 +153,68 @@ export default () => {
 };
 ```
 
+### Accessibility Design
+
+The Countdown component includes comprehensive accessibility support to ensure all users can access countdown information.
+
+```tsx
+import { Countdown, Stack } from '@bifrostui/react';
+import React from 'react';
+
+export default () => {
+  return (
+    <Stack spacing={16}>
+      {/* Basic accessibility support - auto-generated aria-label */}
+      <Countdown remainingTime={60 * 1000} />
+
+      {/* Custom accessibility label */}
+      <Countdown
+        remainingTime={120 * 1000}
+        aria-label="Flash sale countdown timer"
+      />
+
+      {/* Associate with title via ID */}
+      <div>
+        <h3 id="flash-sale-title">Limited Time Offer</h3>
+        <Countdown
+          remainingTime={180 * 1000}
+          aria-labelledby="flash-sale-title"
+        />
+      </div>
+
+      {/* Add detailed description */}
+      <div>
+        <Countdown
+          remainingTime={240 * 1000}
+          aria-describedby="countdown-description"
+        />
+        <p id="countdown-description">
+          When the countdown ends, the discounted price will revert to the
+          original price
+        </p>
+      </div>
+    </Stack>
+  );
+};
+```
+
 ## API
 
 ### Countdown
 
-| Property        | Description                                                                                                                                        | Type                                    | Default  |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | -------- |
-| remainingTime   | The remaining countdown duration, as a time interval (in milliseconds), mutually exclusive with `endTimestamp`                                     | number                                  | 0        |
-| endTimestamp    | The end timestamp of the countdown, as a specific point in time, mutually exclusive with `remainingTime`, has higher priority than `remainingTime` | number                                  | -        |
-| serverTimestamp | The server timestamp, as a specific point in time, can be used in conjunction with `endTimestamp`                                                  | number                                  | -        |
-| format          | Format for displaying the countdown, see dayjs for reference                                                                                       | string                                  | HH:mm:ss |
-| onFinish        | Triggered when the countdown completes                                                                                                             | () => void                              | -        |
-| onChange        | Triggered when the countdown time changes                                                                                                          | (data: { value: CurrentTime }) => void; | -        |
-| renderContent   | Customizes the rendered content                                                                                                                    | (data: CurrentTime) => React.ReactNode; | -        |
+| Property         | Description                                                                                                                                        | Type                                    | Default  |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | -------- |
+| remainingTime    | The remaining countdown duration, as a time interval (in milliseconds), mutually exclusive with `endTimestamp`                                     | number                                  | 0        |
+| endTimestamp     | The end timestamp of the countdown, as a specific point in time, mutually exclusive with `remainingTime`, has higher priority than `remainingTime` | number                                  | -        |
+| serverTimestamp  | The server timestamp, as a specific point in time, can be used in conjunction with `endTimestamp`                                                  | number                                  | -        |
+| format           | Format for displaying the countdown, see dayjs for reference                                                                                       | string                                  | HH:mm:ss |
+| onFinish         | Triggered when the countdown completes                                                                                                             | () => void                              | -        |
+| onChange         | Triggered when the countdown time changes                                                                                                          | (data: { value: CurrentTime }) => void; | -        |
+| renderContent    | Customizes the rendered content                                                                                                                    | (data: CurrentTime) => React.ReactNode; | -        |
+| aria-label       | Accessibility label that provides component description for screen readers                                                                         | string                                  | -        |
+| aria-labelledby  | References other element IDs as labels                                                                                                             | string                                  | -        |
+| aria-describedby | References other element IDs as descriptions                                                                                                       | string                                  | -        |
+| role             | Semantic role of the component                                                                                                                     | string                                  | timer    |
 
 #### CurrentTime
 
@@ -188,3 +237,29 @@ export default () => {
 | --color             | Text color            | --bui-color-fg-default   | --bui-countdown-color             |
 | --font-weight       | Font weight           | --bui-font-weight-normal | --bui-countdown-font-weight       |
 | --slice-unit-margin | Margin between slices | 0 2px                    | --bui-countdown-slice-unit-margin |
+
+## Accessibility Guide
+
+The Countdown component follows WAI-ARIA accessibility standards to ensure a good experience for all users:
+
+### Built-in Accessibility Features
+
+- **Semantic Role**: Uses `role="timer"` by default to identify the countdown component
+- **Dynamic Updates**: Uses `aria-live="polite"` to notify screen readers of time changes
+- **Atomic Updates**: Uses `aria-atomic="true"` to ensure complete time information is read
+- **Screen Reader Support**: Provides dedicated text descriptions separate from visual display
+- **Auto Labeling**: Automatically generates descriptive `aria-label` when custom labels aren't provided
+
+### Best Practices
+
+1. **Provide Meaningful Labels**: Use `aria-label` or `aria-labelledby` to describe the purpose of the countdown
+2. **Add Contextual Descriptions**: Use `aria-describedby` to provide additional context information
+3. **Consider Cognitive Load**: Avoid overly frequent updates, default uses `aria-live="polite"`
+4. **Test Compatibility**: Test the component with screen readers (like NVDA, JAWS, VoiceOver)
+
+### Time Format Description
+
+Screen readers will hear easy-to-understand time descriptions:
+
+- Visual display: `01:30:45`
+- Screen reader: "Remaining time: 1 hour 30 minutes 45 seconds"
