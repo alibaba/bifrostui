@@ -75,6 +75,11 @@ const zhCN: BaseLang = {
     almostComplete: '即将完成',
     complete: '已完成',
   },
+  textarea: {
+    placeholder: '请输入内容',
+    remaining: '剩余',
+    characters: '个字',
+  },
 };
 
 export default zhCN;
