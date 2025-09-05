@@ -170,4 +170,145 @@ describe('useLocaleText', () => {
       expect(result).toEqual(zhCN.countdown);
     });
   });
+
+  describe('progress localization', () => {
+    it('should return the default Chinese progress localization', () => {
+      (useTheme as Mock).mockReturnValue({ locale: undefined });
+
+      const result = useLocaleText('progress');
+      expect(result).toEqual(zhCN.progress);
+      expect(result.notStarted).toBe('未开始');
+      expect(result.justBegun).toBe('刚刚开始');
+      expect(result.gettingStarted).toBe('开始进行');
+      expect(result.inProgress).toBe('进行中');
+      expect(result.moreThanHalfway).toBe('过半完成');
+      expect(result.nearingCompletion).toBe('接近完成');
+      expect(result.almostComplete).toBe('即将完成');
+      expect(result.complete).toBe('已完成');
+    });
+
+    it('should return the English progress localization', () => {
+      (useTheme as Mock).mockReturnValue({ locale: enUS });
+
+      const result = useLocaleText('progress');
+      expect(result).toEqual(enUS.progress);
+      expect(result.notStarted).toBe('Not started');
+      expect(result.justBegun).toBe('Just begun');
+      expect(result.gettingStarted).toBe('Getting started');
+      expect(result.inProgress).toBe('In progress');
+      expect(result.moreThanHalfway).toBe('More than halfway');
+      expect(result.nearingCompletion).toBe('Nearing completion');
+      expect(result.almostComplete).toBe('Almost complete');
+      expect(result.complete).toBe('Complete');
+    });
+
+    it('should return the Traditional Chinese progress localization', () => {
+      (useTheme as Mock).mockReturnValue({ locale: zhTW });
+
+      const result = useLocaleText('progress');
+      expect(result).toEqual(zhTW.progress);
+      expect(result.notStarted).toBe('未開始');
+      expect(result.justBegun).toBe('剛剛開始');
+      expect(result.gettingStarted).toBe('開始進行');
+      expect(result.inProgress).toBe('進行中');
+      expect(result.moreThanHalfway).toBe('過半完成');
+      expect(result.nearingCompletion).toBe('接近完成');
+      expect(result.almostComplete).toBe('即將完成');
+      expect(result.complete).toBe('已完成');
+    });
+
+    it('should merge custom progress localization with default', () => {
+      const customLocale = {
+        progress: {
+          notStarted: 'Custom Not Started',
+          inProgress: 'Custom In Progress',
+          complete: 'Custom Complete',
+        },
+      };
+
+      (useTheme as Mock).mockReturnValue({ locale: customLocale });
+
+      const result = useLocaleText('progress');
+      expect(result).toEqual({
+        notStarted: 'Custom Not Started',
+        inProgress: 'Custom In Progress',
+        complete: 'Custom Complete',
+        justBegun: '刚刚开始',
+        gettingStarted: '开始进行',
+        moreThanHalfway: '过半完成',
+        nearingCompletion: '接近完成',
+        almostComplete: '即将完成',
+      });
+    });
+
+    it('should merge partial custom progress localization', () => {
+      const customLocale = {
+        progress: {
+          complete: 'Custom Complete',
+        },
+      };
+
+      (useTheme as Mock).mockReturnValue({ locale: customLocale });
+
+      const result = useLocaleText('progress');
+      expect(result.complete).toBe('Custom Complete');
+      expect(result.notStarted).toBe('未开始');
+      expect(result.justBegun).toBe('刚刚开始');
+      expect(result.gettingStarted).toBe('开始进行');
+      expect(result.inProgress).toBe('进行中');
+      expect(result.moreThanHalfway).toBe('过半完成');
+      expect(result.nearingCompletion).toBe('接近完成');
+      expect(result.almostComplete).toBe('即将完成');
+    });
+
+    it('should handle empty custom progress localization', () => {
+      const customLocale = {
+        progress: {},
+      };
+
+      (useTheme as Mock).mockReturnValue({ locale: customLocale });
+
+      const result = useLocaleText('progress');
+      expect(result).toEqual(zhCN.progress);
+    });
+
+    it('should handle undefined progress in custom locale', () => {
+      const customLocale = {
+        dialog: {
+          cancel: 'Custom Cancel',
+        },
+      };
+
+      (useTheme as Mock).mockReturnValue({ locale: customLocale });
+
+      const result = useLocaleText('progress');
+      expect(result).toEqual(zhCN.progress);
+    });
+
+    it('should handle progress states correctly', () => {
+      (useTheme as Mock).mockReturnValue({ locale: undefined });
+
+      const result = useLocaleText('progress');
+
+      // Test all progress states are available
+      expect(result.notStarted).toBeDefined();
+      expect(result.justBegun).toBeDefined();
+      expect(result.gettingStarted).toBeDefined();
+      expect(result.inProgress).toBeDefined();
+      expect(result.moreThanHalfway).toBeDefined();
+      expect(result.nearingCompletion).toBeDefined();
+      expect(result.almostComplete).toBeDefined();
+      expect(result.complete).toBeDefined();
+
+      // Test they are all strings
+      expect(typeof result.notStarted).toBe('string');
+      expect(typeof result.justBegun).toBe('string');
+      expect(typeof result.gettingStarted).toBe('string');
+      expect(typeof result.inProgress).toBe('string');
+      expect(typeof result.moreThanHalfway).toBe('string');
+      expect(typeof result.nearingCompletion).toBe('string');
+      expect(typeof result.almostComplete).toBe('string');
+      expect(typeof result.complete).toBe('string');
+    });
+  });
 });
