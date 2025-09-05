@@ -22,6 +22,8 @@ export interface BaseLang {
   };
   textarea?: {
     placeholder?: string;
+    remaining?: string;
+    characters?: string;
   };
   selector?: {
     select?: string;

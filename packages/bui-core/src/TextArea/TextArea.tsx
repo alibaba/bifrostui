@@ -2,6 +2,7 @@ import { isMini, useForkRef, useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import React, { useEffect, useRef } from 'react';
 import { TextAreaProps } from './TextArea.types';
+import { useLocaleText } from '../locales';
 import './index.less';
 
 const prefixCls = 'bui-textarea';
@@ -36,7 +37,7 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
       onChange,
       ...others
     } = props;
-
+    const textareaText = useLocaleText('textarea');
     // 受控/非受控 value 处理
     const [textAreaValue, triggerChange] = useValue({
       value,
@@ -168,7 +169,10 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
             if (showCount) {
               const remaining = maxLength - e.target.value.length;
               // 动态更新 aria-description
-              e.target.setAttribute('aria-description', `剩余 ${remaining} 字`);
+              e.target.setAttribute(
+                'aria-description',
+                `${textareaText.remaining} ${remaining} ${textareaText.characters}`,
+              );
             }
             if (isMini) {
               triggerChange(e, e.target.value);
