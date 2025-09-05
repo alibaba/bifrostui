@@ -114,8 +114,6 @@ export default () => {
         <div
           style={{
             overflow: 'hidden',
-            width: '200px',
-            border: '1px solid #eee',
             padding: '8px',
           }}
         >
@@ -137,8 +135,6 @@ export default () => {
         <div
           style={{
             overflow: 'hidden',
-            width: '200px',
-            border: '1px solid #eee',
             padding: '8px',
           }}
         >
@@ -160,8 +156,6 @@ export default () => {
         <div
           style={{
             overflow: 'hidden',
-            width: '200px',
-            border: '1px solid #eee',
             padding: '8px',
           }}
         >
