@@ -51,6 +51,20 @@ const zhCN: BaseLang = {
     minute: '分',
     second: '秒',
   },
+  countdown: {
+    remain: {
+      year: '年',
+      month: '个月',
+      day: '天',
+      hour: '小时',
+      minute: '分钟',
+      second: '秒',
+    },
+    remainTime: '剩余时间',
+    hasEnd: '倒计时已结束',
+    willEnd: '即将结束',
+    timer: '倒计时器',
+  },
 };
 
 export default zhCN;
