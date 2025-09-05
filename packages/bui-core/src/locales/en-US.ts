@@ -24,6 +24,8 @@ const enUS: BaseLang = {
   },
   textarea: {
     placeholder: 'Placeholder',
+    remaining: 'remaining',
+    characters: 'characters',
   },
   selector: {
     select: 'Please select',

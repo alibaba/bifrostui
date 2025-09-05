@@ -75,6 +75,11 @@ const zhTW: BaseLang = {
     almostComplete: '即將完成',
     complete: '已完成',
   },
+  textarea: {
+    placeholder: '請輸入內容',
+    remaining: '剩餘',
+    characters: '個字',
+  },
 };
 
 export default zhTW;
