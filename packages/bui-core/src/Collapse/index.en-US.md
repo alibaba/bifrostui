@@ -95,7 +95,7 @@ export default () => {
           setOpen(data?.checked);
         }}
       ></Switch>
-      <Collapse collapsedSize={40} in={open} timeout={1500}>
+      <Collapse collapsedSize={40} in={open} timeout={1500} >
         <Card
           style={{
             background: '#CCCCCC',
@@ -104,6 +104,93 @@ export default () => {
           }}
         ></Card>
       </Collapse>
+    </Stack>
+  );
+};
+```
+
+### Disable Animation
+
+By setting `enter=false` or `exit=false`, you can disable entry or exit animations. Elements will immediately show or hide without transition effects.
+
+```tsx
+import React, { useState } from 'react';
+import { Button, Collapse, Stack, Card } from '@bifrostui/react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Stack direction="column" spacing="16px">
+      <Button
+        onClick={() => {
+          setOpen((prev) => !prev);
+        }}
+      >
+        Toggle State
+      </Button>
+
+      {/* Only entry animation, no exit animation */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>Entry only:</div>
+        <Collapse
+          in={open}
+          direction="vertical"
+          enter={true}
+          exit={false}
+          timeout={500}
+        >
+          <Card
+            style={{
+              background: '#CCCCCC',
+              width: '100px',
+              height: '80px',
+              padding: '8px',
+            }}
+          >
+            <div>Instant exit, smooth entry</div>
+          </Card>
+        </Collapse>
+      </Stack>
+
+      {/* Only exit animation, no entry animation */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>Exit only:</div>
+        <Collapse
+          in={open}
+          direction="horizontal"
+          enter={false}
+          exit={true}
+          timeout={500}
+        >
+          <Card
+            style={{
+              background: '#CCCCCC',
+              width: '100px',
+              height: '80px',
+              padding: '8px',
+            }}
+          >
+            <div>Instant entry, smooth exit</div>
+          </Card>
+        </Collapse>
+      </Stack>
+
+      {/* Disable all animations */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>All disabled:</div>
+        <Collapse in={open} direction="vertical" enter={false} exit={false}>
+          <Card
+            style={{
+              background: '#CCCCCC',
+              width: '100px',
+              height: '80px',
+              padding: '8px',
+            }}
+          >
+            <div>Instant toggle, no animation</div>
+          </Card>
+        </Collapse>
+      </Stack>
     </Stack>
   );
 };

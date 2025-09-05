@@ -8,9 +8,7 @@ name: Slide In/Out
 Basic slide-in and slide-out animations encapsulated using Transition.
 Considering the compatibility with mini-programs, sliding is performed along one edge of the element itself rather than from the screen edge.
 
-## Code Demonstrations
-
-### Basic Usage
+## Basic Usage
 
 The Slide component supports four sliding directions, which can be passed via the `direction` parameter.
 The component only handles the internal element's movement; you may need to add external styles such as `overflow:hidden`.
@@ -85,6 +83,87 @@ export default () => {
           <div>Sliding effect Appear</div>
         </Slide>
       )}
+    </Stack>
+  );
+};
+```
+
+### Disable Animation
+
+By setting `enter=false` or `exit=false`, you can disable entry or exit animations. Elements will immediately show or hide without transition effects.
+
+```tsx
+import React, { useState } from 'react';
+import { Button, Slide, Stack } from '@bifrostui/react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Stack direction="column" spacing="16px">
+      <Button
+        onClick={() => {
+          setOpen((prev) => !prev);
+        }}
+      >
+        Toggle State
+      </Button>
+
+      {/* Only entry animation, no exit animation */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>Entry only:</div>
+        <div
+          style={{
+            overflow: 'hidden',
+            padding: '8px',
+          }}
+        >
+          <Slide
+            in={open}
+            direction="right"
+            enter={true}
+            exit={false}
+            timeout={500}
+          >
+            <div>Instant exit, smooth entry</div>
+          </Slide>
+        </div>
+      </Stack>
+
+      {/* Only exit animation, no entry animation */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>Exit only:</div>
+        <div
+          style={{
+            overflow: 'hidden',
+            padding: '8px',
+          }}
+        >
+          <Slide
+            in={open}
+            direction="left"
+            enter={false}
+            exit={true}
+            timeout={500}
+          >
+            <div>Instant entry, smooth exit</div>
+          </Slide>
+        </div>
+      </Stack>
+
+      {/* Disable all animations */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>All disabled:</div>
+        <div
+          style={{
+            overflow: 'hidden',
+            padding: '8px',
+          }}
+        >
+          <Slide in={open} direction="down" enter={false} exit={false}>
+            <div>Instant toggle, no animation</div>
+          </Slide>
+        </div>
+      </Stack>
     </Stack>
   );
 };

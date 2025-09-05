@@ -21,7 +21,6 @@ import { Collapse, Switch, Card, Stack } from '@bifrostui/react';
 
 export default () => {
   const [open, setOpen] = useState(false);
-  return (
     <Stack direction="column" spacing="8px" flexWrap="wrap">
       <Switch
         checked={open}
@@ -102,6 +101,93 @@ export default () => {
           }}
         ></Card>
       </Collapse>
+    </Stack>
+  );
+};
+```
+
+### 禁用动画
+
+通过设置 `enter=false` 或 `exit=false`，可以禁用进入或退出动画。元素将立即显示或隐藏，无过渡效果。
+
+```tsx
+import React, { useState } from 'react';
+import { Button, Collapse, Stack, Card } from '@bifrostui/react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Stack direction="column" spacing="16px">
+      <Button
+        onClick={() => {
+          setOpen((prev) => !prev);
+        }}
+      >
+        切换状态
+      </Button>
+
+      {/* 仅进入动画，无退出动画 */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>仅进入动画:</div>
+        <Collapse
+          in={open}
+          direction="vertical"
+          enter={true}
+          exit={false}
+          timeout={500}
+        >
+          <Card
+            style={{
+              background: '#CCCCCC',
+              width: '100px',
+              height: '80px',
+              padding: '8px',
+            }}
+          >
+            <div>瞬间退出，平滑进入</div>
+          </Card>
+        </Collapse>
+      </Stack>
+
+      {/* 仅退出动画，无进入动画 */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>仅退出动画:</div>
+        <Collapse
+          in={open}
+          direction="horizontal"
+          enter={false}
+          exit={true}
+          timeout={500}
+        >
+          <Card
+            style={{
+              background: '#CCCCCC',
+              width: '100px',
+              height: '80px',
+              padding: '8px',
+            }}
+          >
+            <div>瞬间进入，平滑退出</div>
+          </Card>
+        </Collapse>
+      </Stack>
+
+      {/* 禁用所有动画 */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>全部禁用:</div>
+        <Collapse in={open} direction="vertical" enter={false} exit={false}>
+          <Card
+            style={{
+              background: '#CCCCCC',
+              width: '100px',
+              height: '80px',
+              padding: '8px',
+            }}
+          >
+            <div>瞬间切换，无动画</div>
+          </Card>
+        </Collapse>
+      </Stack>
     </Stack>
   );
 };

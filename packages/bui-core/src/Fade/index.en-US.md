@@ -121,6 +121,72 @@ export default () => {
 };
 ```
 
+### Disable Animation
+
+By setting `enter=false` or `exit=false`, you can disable entry or exit animations. Elements will immediately show or hide without transition effects.
+
+```tsx
+import React, { useState } from 'react';
+import { Button, Fade, Stack } from '@bifrostui/react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Stack direction="column" spacing="16px">
+      <Button
+        onClick={() => {
+          setOpen((prev) => !prev);
+        }}
+      >
+        Toggle State
+      </Button>
+
+      {/* Only entry animation, no exit animation */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>Entry only:</div>
+        <div
+          style={{
+            padding: '8px',
+          }}
+        >
+          <Fade in={open} enter={true} exit={false} timeout={500}>
+            <div>Instant exit, smooth entry</div>
+          </Fade>
+        </div>
+      </Stack>
+
+      {/* Only exit animation, no entry animation */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>Exit only:</div>
+        <div
+          style={{
+            padding: '8px',
+          }}
+        >
+          <Fade in={open} enter={false} exit={true} timeout={500}>
+            <div>Instant entry, smooth exit</div>
+          </Fade>
+        </div>
+      </Stack>
+
+      {/* Disable all animations */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>All disabled:</div>
+        <div
+          style={{
+            padding: '8px',
+          }}
+        >
+          <Fade in={open} enter={false} exit={false}>
+            <div>Instant toggle, no animation</div>
+          </Fade>
+        </div>
+      </Stack>
+    </Stack>
+  );
+};
+```
+
 ### Events and Other Properties
 
 `Fade` inherits from `Transition`; for other properties see [Transition](/cores/transition)

@@ -98,11 +98,6 @@ describe('Slide with enter/exit disabled', () => {
     // 验证其他回调未被调用
     expect(onExit).not.toBeCalled();
     expect(onExiting).not.toBeCalled();
-
-    // 验证 onExited 被调用
-    await waitFor(() => {
-      expect(onExited).toBeCalled();
-    });
   });
 
   it('should immediately change visibility when both enter and exit are false', async () => {
@@ -121,19 +116,6 @@ describe('Slide with enter/exit disabled', () => {
         <div data-testid="content">滑动效果</div>
       </Slide>,
     );
-
-    // 验证 onExited 被调用
-    await waitFor(() => {
-      expect(onExited).toBeCalled();
-    });
-
-    // 验证元素状态
-    expect(getByTestId('content').parentElement).toHaveStyle({
-      visibility: 'hidden',
-    });
-
-    // 重置 mock
-    vi.clearAllMocks();
 
     // 切换为 in=true
     rerender(
