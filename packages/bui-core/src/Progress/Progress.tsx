@@ -5,6 +5,7 @@ import {
   ProgressProps,
   ProgressStringGradients,
 } from './Progress.types';
+import { useLocaleText } from '../locales';
 import './index.less';
 
 const prefixCls = 'bui-progress';
@@ -50,19 +51,8 @@ export const handleGradient = (strokeColor: ProgressGradient) => {
 };
 
 // 获取进度文本
-const progressText = {
-  notStarted: 'Not started',
-  justBegun: 'Just begun',
-  gettingStarted: 'Getting started',
-  inProgress: 'In progress',
-  moreThanHalfway: 'More than halfway',
-  nearingCompletion: 'Nearing completion',
-  almostComplete: 'Almost complete',
-  complete: 'Complete',
-};
 
-function getAriaValueText(progress: number | undefined): string {
-  const t = progressText;
+function getAriaValueText(progress: number | undefined, t): string {
   const validatedProgress = validProgress(progress);
 
   if (validatedProgress === 0) return t.notStarted;
@@ -90,6 +80,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       'aria-valuetext': ariaValueText,
       ...others
     } = props;
+    const progressText = useLocaleText('progress');
 
     // 处理进度条颜色，支持渐变和纯色
     const backgroundProps =
@@ -120,7 +111,9 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       'aria-valuemin': ariaValueMin,
       'aria-valuemax': ariaValueMax,
       'aria-valuetext':
-        ariaValueText !== undefined ? ariaValueText : getAriaValueText(percent),
+        ariaValueText !== undefined
+          ? ariaValueText
+          : getAriaValueText(percent, progressText),
       role: 'progressbar',
     };
 
