@@ -49,17 +49,27 @@ export interface BaseLang {
     second: string;
   };
   countdown?: {
-    remain: {
-      year: string;
-      month: string;
-      day: string;
-      hour: string;
-      minute: string;
-      second: string;
+    remain?: {
+      year?: string;
+      month?: string;
+      day?: string;
+      hour?: string;
+      minute?: string;
+      second?: string;
     };
-    remainTime: string;
-    hasEnd: string;
-    willEnd: string;
-    timer: string;
+    remainTime?: string;
+    hasEnd?: string;
+    willEnd?: string;
+    timer?: string;
+  };
+  progress?: {
+    notStarted?: string;
+    justBegun?: string;
+    gettingStarted?: string;
+    inProgress?: string;
+    moreThanHalfway?: string;
+    almostComplete?: string;
+    complete?: string;
+    nearingCompletion?: string;
   };
 }
