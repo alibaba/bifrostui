@@ -65,6 +65,16 @@ const zhTW: BaseLang = {
     willEnd: '即將結束',
     timer: '倒數計時器',
   },
+  progress: {
+    notStarted: '未開始',
+    justBegun: '剛剛開始',
+    gettingStarted: '開始進行',
+    inProgress: '進行中',
+    moreThanHalfway: '過半完成',
+    nearingCompletion: '接近完成',
+    almostComplete: '即將完成',
+    complete: '已完成',
+  },
 };
 
 export default zhTW;
