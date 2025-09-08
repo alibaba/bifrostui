@@ -122,6 +122,7 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
 
   useDidMountEffect(() => {
     if (inProp && !isMounted) {
+      setActualSize(collapsedSize);
       setIsMounted(true);
       return;
     }
