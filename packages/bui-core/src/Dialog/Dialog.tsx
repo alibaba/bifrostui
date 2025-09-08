@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import React, { useRef, SyntheticEvent } from 'react';
-import { useId } from '@bifrostui/utils';
+import { useUniqueId } from '@bifrostui/utils';
 import { Input } from '../Input';
 import { Button } from '../Button';
 import { useLocaleText } from '../locales';
@@ -33,8 +33,8 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const titleId = useId();
-  const contentId = useId();
+  const titleId = useUniqueId();
+  const contentId = useUniqueId();
 
   const themeConfig = useTheme(theme);
   const {
