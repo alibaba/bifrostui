@@ -46,3 +46,4 @@ backstop_data/html_report
 project.private.config.json
 .tgz
 .env
+CLAUDE.md

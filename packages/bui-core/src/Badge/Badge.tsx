@@ -13,7 +13,6 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     content,
     color = 'primary',
     max,
-    maxCount, // 兼容老属性
     showZero = false,
     visibility = true,
     variant = 'contained',
@@ -27,21 +26,14 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     ...others
   } = props;
 
-  // 兼容maxCount，优先使用max
-  const realMax = typeof max === 'number' ? max : maxCount;
-  if (maxCount !== undefined && max === undefined) {
-    // eslint-disable-next-line no-console
-    console.warn('[Badge] maxCount属性即将废弃，请使用max替代');
-  }
-
   // 优化displayValue逻辑
   let displayValue: React.ReactNode = null;
   if (
     type !== 'dot' &&
     !Number.isNaN(Number(content)) &&
-    typeof realMax === 'number'
+    typeof max === 'number'
   ) {
-    displayValue = Number(content) > Number(realMax) ? `${realMax}+` : content;
+    displayValue = Number(content) > Number(max) ? `${max}+` : content;
   } else if (type !== 'dot') {
     displayValue = content;
   }
@@ -114,12 +106,24 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
   // 获取ARIA属性
   const ariaAttributes = getAriaAttributes();
 
+  // 处理键盘事件以支持无障碍访问
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (onClick && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault();
+      // 先转换为unknown再转换为目标类型
+      onClick(event as unknown as React.MouseEvent<HTMLDivElement>);
+    }
+  };
+
   return (
     <div
       className={clsx(`${prefixCls}`, className, {
         [`${prefixCls}-position`]: children,
       })}
       onClick={onClick}
+      onKeyDown={onClick ? handleKeyDown : undefined}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
       ref={ref}
       {...others}
     >
