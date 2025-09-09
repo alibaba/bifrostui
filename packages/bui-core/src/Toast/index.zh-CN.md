@@ -36,6 +36,62 @@ export default () => {
 #### Hooks调用（推荐）
 
 ```tsx
+import React, { createContext, useContext, useState } from 'react';
+import { Dialog, Button, Card, Toast } from '@bifrostui/react';
+
+// 1. 创建自定义 Context
+const UserContext = createContext(null);
+
+// 2. 消费 Context 的 message 内容组件
+const MessageContent = () => {
+  const user = useContext(UserContext);
+  return <span>你好，{user || '未知用户'}！</span>;
+};
+
+// 3. 主组件
+export default function App() {
+  const [user, setUser] = useState('Ant');
+
+  const [api, contextHolder] = Dialog.useDialog();
+  const [toast, contextHolder1] = Toast.useToast();
+
+  const showMessageWithContext = () => {
+    api.confirm({
+      content: <MessageContent />,
+    });
+  };
+  const showToastWithContext = () => {
+    toast({
+      message: <MessageContent />,
+    });
+  };
+
+  return (
+    <div style={{ padding: 20 }}>
+      <h2>📌 Context 与 message.useMessage() 演示</h2>
+      <p>
+        当前用户: <strong>{user}</strong>
+      </p>
+
+      {/* ✅ 正确情况：UserContext 包裹 contextHolder */}
+      <UserContext.Provider value={user}>
+        {/* ✅ 关键：contextHolder 必须放在这里，才能捕获 UserContext */}
+        {contextHolder}
+        {contextHolder1}
+
+        <Button onClick={showMessageWithContext}>
+          2. 正确渲染 contextHolder（Context 有效）
+        </Button>
+        <Button onClick={showToastWithContext}>
+          2. 正确渲染Toast contextHolder（Context 有效）
+        </Button>
+      </UserContext.Provider>
+    </div>
+  );
+}
+```
+
+```tsx
 import React from 'react';
 import {
   Stack,
