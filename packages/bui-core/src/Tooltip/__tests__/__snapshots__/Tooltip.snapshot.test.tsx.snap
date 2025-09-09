@@ -1,0 +1,334 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tooltip snapshot > Tooltip demo snapshot 0 1`] = `
+<span
+  aria-expanded={false}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+>
+  click显示
+</span>
+`;
+
+exports[`Tooltip snapshot > Tooltip demo snapshot 0 2`] = `
+<div>
+  <div
+    style={
+      {
+        "display": "flex",
+        "justifyContent": "space-between",
+        "marginLeft": "100px",
+        "width": "300px",
+      }
+    }
+  >
+    <button
+      aria-expanded={false}
+      className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        {
+          "borderRadius": 0,
+          "marginTop": "4px",
+          "width": "80px",
+        }
+      }
+      type="button"
+    >
+      <span>
+        topLeft
+      </span>
+    </button>
+    <button
+      aria-expanded={false}
+      className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        {
+          "borderRadius": 0,
+          "marginTop": "4px",
+          "width": "80px",
+        }
+      }
+      type="button"
+    >
+      <span>
+        top
+      </span>
+    </button>
+    <button
+      aria-expanded={false}
+      className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        {
+          "borderRadius": 0,
+          "marginTop": "4px",
+          "width": "80px",
+        }
+      }
+      type="button"
+    >
+      <span>
+        topRight
+      </span>
+    </button>
+  </div>
+  <div
+    style={
+      {
+        "display": "inline-flex",
+        "flexDirection": "column",
+        "marginTop": "20px",
+        "width": "100px",
+      }
+    }
+  >
+    <button
+      aria-expanded={false}
+      className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        {
+          "borderRadius": 0,
+          "marginTop": "4px",
+          "width": "80px",
+        }
+      }
+      type="button"
+    >
+      <span>
+        leftTop
+      </span>
+    </button>
+    <button
+      aria-expanded={false}
+      className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        {
+          "borderRadius": 0,
+          "marginTop": "4px",
+          "width": "80px",
+        }
+      }
+      type="button"
+    >
+      <span>
+        left
+      </span>
+    </button>
+    <button
+      aria-expanded={false}
+      className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        {
+          "borderRadius": 0,
+          "marginTop": "4px",
+          "width": "80px",
+        }
+      }
+      type="button"
+    >
+      <span>
+        leftBottom
+      </span>
+    </button>
+  </div>
+  <div
+    style={
+      {
+        "display": "inline-flex",
+        "flexDirection": "column",
+        "marginLeft": "300px",
+        "width": "100px",
+      }
+    }
+  >
+    <button
+      aria-expanded={false}
+      className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        {
+          "borderRadius": 0,
+          "marginTop": "4px",
+          "width": "80px",
+        }
+      }
+      type="button"
+    >
+      <span>
+        rightTop
+      </span>
+    </button>
+    <button
+      aria-expanded={false}
+      className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        {
+          "borderRadius": 0,
+          "marginTop": "4px",
+          "width": "80px",
+        }
+      }
+      type="button"
+    >
+      <span>
+        right
+      </span>
+    </button>
+    <button
+      aria-expanded={false}
+      className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        {
+          "borderRadius": 0,
+          "marginTop": "4px",
+          "width": "80px",
+        }
+      }
+      type="button"
+    >
+      <span>
+        rightBottom
+      </span>
+    </button>
+  </div>
+  <div
+    style={
+      {
+        "display": "flex",
+        "justifyContent": "space-between",
+        "marginLeft": "100px",
+        "marginTop": "20px",
+        "width": "300px",
+      }
+    }
+  >
+    <button
+      aria-expanded={false}
+      className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        {
+          "borderRadius": 0,
+          "marginTop": "4px",
+          "width": "80px",
+        }
+      }
+      type="button"
+    >
+      <span>
+        bottomLeft
+      </span>
+    </button>
+    <button
+      aria-expanded={false}
+      className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        {
+          "borderRadius": 0,
+          "marginTop": "4px",
+          "width": "80px",
+        }
+      }
+      type="button"
+    >
+      <span>
+        bottom
+      </span>
+    </button>
+    <button
+      aria-expanded={false}
+      className="bui-btn bui-btn-outlined bui-btn-medium"
+      disabled={false}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        {
+          "borderRadius": 0,
+          "marginTop": "4px",
+          "width": "80px",
+        }
+      }
+      type="button"
+    >
+      <span>
+        bottomRight
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Tooltip snapshot > Tooltip demo snapshot 0 3`] = `
+<span
+  aria-expanded={false}
+  onKeyDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  hover触发方式
+</span>
+`;
+
+exports[`Tooltip snapshot > Tooltip demo snapshot 0 4`] = `
+<span
+  aria-expanded={false}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+>
+  onOpenChange 回调方法
+</span>
+`;
