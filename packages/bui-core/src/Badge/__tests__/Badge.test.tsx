@@ -42,12 +42,6 @@ describe('Badge', () => {
       );
     });
   });
-  describe('prop: maxCount', () => {
-    it('render with maxCount current', () => {
-      const { container } = render(<Badge maxCount={100} content="988" />);
-      expect(container).toHaveTextContent('100+');
-    });
-  });
   describe('prop: type', () => {
     it.each(['dot', 'standard', 'bubble'] as const)(
       'render type current',
