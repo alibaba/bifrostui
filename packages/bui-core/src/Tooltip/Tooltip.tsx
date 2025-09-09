@@ -23,7 +23,6 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     title,
     defaultOpen = false,
     offset,
-    offsetSpacing = 0,
     placement = 'top',
     trigger = 'click',
     open,
@@ -40,9 +39,6 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   } = props;
 
   const controlByUser = typeof open !== 'undefined';
-
-  // 使用 offset 优先，如果没有则使用 offsetSpacing（向后兼容）
-  const actualOffset = offset !== undefined ? offset : offsetSpacing;
 
   const { direction, location = 'center' } = parsePlacement(placement);
   const childrenRef = useRef<Element>();
@@ -87,31 +83,38 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   };
 
   // 无障碍功能：键盘事件处理
-  const handleKeyDown = useCallback((event: KeyboardEvent) => {
-    if (closeOnEscape && event.key === 'Escape' && isOpen) {
-      event.preventDefault();
-      event.stopPropagation();
-      hideTooltip(event as any);
-      // 焦点返回到触发元素
-      if (childrenRef.current && 'focus' in childrenRef.current) {
-        (childrenRef.current as HTMLElement).focus();
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (closeOnEscape && event.key === 'Escape' && isOpen) {
+        event.preventDefault();
+        event.stopPropagation();
+        hideTooltip(event as unknown as React.SyntheticEvent);
+        // 焦点返回到触发元素
+        if (childrenRef.current && 'focus' in childrenRef.current) {
+          (childrenRef.current as HTMLElement).focus();
+        }
       }
-    }
-  }, [closeOnEscape, isOpen, hideTooltip]);
+    },
+    [closeOnEscape, isOpen, hideTooltip],
+  );
 
   // 无障碍功能：触发元素的键盘事件处理
-  const handleTriggerKeyDown = useCallback((event: React.KeyboardEvent) => {
-    if (!keyboardTrigger || controlByUser) return;
+  const handleTriggerKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      if (!keyboardTrigger || controlByUser) return;
 
-    const shouldTrigger = trigger === 'click' ||
-      (Array.isArray(trigger) && trigger.includes('click'));
+      const shouldTrigger =
+        trigger === 'click' ||
+        (Array.isArray(trigger) && trigger.includes('click'));
 
-    if (shouldTrigger && (event.key === 'Enter' || event.key === ' ')) {
-      event.preventDefault();
-      event.stopPropagation();
-      triggerClick(event as any);
-    }
-  }, [keyboardTrigger, controlByUser, trigger, triggerClick]);
+      if (shouldTrigger && (event.key === 'Enter' || event.key === ' ')) {
+        event.preventDefault();
+        event.stopPropagation();
+        triggerClick(event as unknown as React.MouseEvent);
+      }
+    },
+    [keyboardTrigger, controlByUser, trigger, triggerClick],
+  );
 
   // 无障碍功能：焦点管理
   useEffect(() => {
@@ -174,7 +177,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
       childrenRef,
       arrowDirection: newParsedDirection,
       arrowLocation: newParsedLocation,
-      offsetSpacing: actualOffset,
+      offsetSpacing: offset || 0,
       tipRef,
     });
     if (!result) return;
@@ -258,6 +261,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
 
   // 确保 children 是有效的 React 元素
   if (!React.isValidElement(children)) {
+    // eslint-disable-next-line no-console
     console.warn(
       'BUI Tooltip: children must be a valid React element that can accept a ref.',
     );

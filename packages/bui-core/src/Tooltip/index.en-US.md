@@ -270,12 +270,9 @@ export default () => {
 | defaultOpen   | Default visibility           | boolean                                                                                                                                                        | false   |
 | open          | Manual control of visibility | boolean                                                                                                                                                        | -       |
 | offset        | Offset from target element   | number                                                                                                                                                         | 0       |
-| offsetSpacing | Offset from target element   | number                                                                                                                                                         | 0       |
 | placement     | Position of the bubble       | string, enum values are `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` | 'top'   |
 | trigger       | Trigger behavior             | string \| string[], enum values are 'click' \| 'hover'                                                                                                         | 'click' |
 | onOpenChange  | Callback for visibility      | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                           | -       |
-
-> **Note:** The `offsetSpacing` property is deprecated. Use `offset` instead. Both properties have the same functionality, with `offset` taking higher precedence.
 
 ### Style Variables
 

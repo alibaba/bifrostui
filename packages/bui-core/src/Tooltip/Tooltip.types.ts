@@ -60,13 +60,6 @@ export interface TooltipBaseProps {
   offset?: number;
 
   /**
-   * 浮层与目标元素的偏移距离（像素）
-   * @deprecated 请使用 offset 属性替代
-   * @default 0
-   */
-  offsetSpacing?: number;
-
-  /**
    * 气泡框相对于目标元素的位置
    * @default 'top'
    */
