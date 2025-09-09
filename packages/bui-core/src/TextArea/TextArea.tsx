@@ -91,7 +91,7 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
       const { height, lineCount } = e?.detail || {};
       const line = lineCount <= 1 ? rows : lineCount;
       // 总高度 = 行数 * 单行高度
-      const textAreaHeight = handleAutoHeight(line * (height / lineCount) + 4);
+      const textAreaHeight = handleAutoHeight(line * (height / lineCount));
       // autoSize=false也需要初始化小程序textarea高度
       if (!initLock.current && !autoSize && rows === DEFAULT_ROWS) {
         textArea.style.height = `${textAreaHeight}px`;
