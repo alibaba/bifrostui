@@ -314,8 +314,14 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     ...triggerEventOption,
     // ARIA属性
     'aria-describedby': isOpen ? popoverId : undefined,
-    'aria-expanded': isOpen,
     'aria-haspopup': getAriaHasPopup(),
+    // 只为语义化的交互元素添加 aria-expanded
+    ...(React.isValidElement(children) &&
+      (children.type === 'button' ||
+        children.type === 'a' ||
+        children.props?.role === 'button') && {
+        'aria-expanded': isOpen,
+      }),
   };
   return (
     <>
