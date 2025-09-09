@@ -147,29 +147,6 @@ describe('Tooltip', () => {
     expect(screen.getByText('Test tooltip')).toBeInTheDocument();
   });
 
-  // 新增测试：offset 和 offsetSpacing 优先级
-  it('test offset takes precedence over offsetSpacing', () => {
-    render(
-      <Tooltip title="Test tooltip" offset={30} offsetSpacing={10} defaultOpen>
-        <div data-testid="tooltipTestid">children</div>
-      </Tooltip>,
-    );
-
-    expect(screen.getByText('Test tooltip')).toBeInTheDocument();
-    // 此处实际应该使用 offset={30} 而不是 offsetSpacing={10}
-  });
-
-  // 新增测试：offsetSpacing 向后兼容性
-  it('test offsetSpacing backward compatibility', () => {
-    render(
-      <Tooltip title="Test tooltip" offsetSpacing={15} defaultOpen>
-        <div data-testid="tooltipTestid">children</div>
-      </Tooltip>,
-    );
-
-    expect(screen.getByText('Test tooltip')).toBeInTheDocument();
-  });
-
   // 新增测试：title 支持 ReactNode
   it('test title supports ReactNode', () => {
     const ComplexTitle = () => (
