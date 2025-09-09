@@ -16,13 +16,9 @@ export type BadgeProps<
        */
       color?: Exclude<ThemeColor, 'neutral'>;
       /**
-       * 最大值（替代maxCount，推荐使用）
+       * 最大值
        */
       max?: number;
-      /**
-       * @deprecated 即将废弃，请使用max
-       */
-      maxCount?: number;
       /**
        * content为0时是否展示
        */
