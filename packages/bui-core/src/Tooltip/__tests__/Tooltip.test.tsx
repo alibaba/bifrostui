@@ -5,7 +5,6 @@ import {
   screen,
   userEvent,
   fireEvent,
-  act,
 } from 'testing';
 import Tooltip from '../index';
 
@@ -25,18 +24,33 @@ const directions = [
 ];
 const rootClass = 'bui-tooltip';
 
+// Mock getBoundingClientRect for consistent positioning
+const mockGetBoundingClientRect = vi.fn().mockReturnValue({
+  width: 100,
+  height: 50,
+  top: 10,
+  left: 0,
+  right: 100,
+  bottom: 50,
+});
+
+Object.defineProperty(window.HTMLElement.prototype, 'getBoundingClientRect', {
+  configurable: true,
+  value: mockGetBoundingClientRect,
+});
+
 describe('Tooltip', () => {
-  // isConformant({
-  //   Component: Tooltip,
-  //   displayName: 'BuiTooltip',
-  //   className: rootClass,
-  //   skip: [
-  //     'component-has-root-ref',
-  //     'component-handles-classNames',
-  //     'component-has-default-className',
-  //     'component-handles-style',
-  //   ],
-  // });
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mockGetBoundingClientRect.mockReturnValue({
+      width: 100,
+      height: 50,
+      top: 10,
+      left: 0,
+      right: 100,
+      bottom: 50,
+    });
+  });
 
   it('test open props', async () => {
     const onOpenChange = vi.fn();
@@ -48,25 +62,22 @@ describe('Tooltip', () => {
     expect(screen.getByText('This is a tooltip2')).toBeInTheDocument();
 
     const $childrenDom = screen.getByTestId('tooltipTestid');
-    await act(async () => {
-      userEvent.click($childrenDom);
-    });
+    await userEvent.click($childrenDom);
     expect(onOpenChange).toHaveBeenCalledTimes(0);
   });
 
   directions.forEach((placement) => {
-    it(`test placement props the ${placement}`, async () => {
+    it(`test placement props the ${placement}`, () => {
       render(
         // @ts-ignore
         <Tooltip title="This is a tooltip3" defaultOpen placement={placement}>
           <div>children</div>
         </Tooltip>,
       );
-      await act(async () => {
-        const direction = placement.split(/[A-Z]/)[0];
-        const $dom = document.querySelector('.bui-tooltip');
-        expect($dom).toHaveClass(`tooltip-${direction}`);
-      });
+      
+      const direction = placement.split(/[A-Z]/)[0];
+      const $dom = document.querySelector('.bui-tooltip');
+      expect($dom).toHaveClass(`tooltip-${direction}`);
     });
   });
 
@@ -110,22 +121,20 @@ describe('Tooltip', () => {
     render(
       <Tooltip
         title="This is a tooltip4"
-        // defaultOpen
         trigger={['hover']}
         onOpenChange={onOpenChange}
       >
         <div data-testid="tooltipTestid">children</div>
       </Tooltip>,
     );
-    await act(async () => {
-      const $childrenDom = screen.getByTestId('tooltipTestid');
-      fireEvent.mouseEnter($childrenDom);
-      fireEvent.mouseLeave($childrenDom);
-      expect(onOpenChange).toBeCalledTimes(2);
-      // 代表不触发隐藏
-      userEvent.click(document.body);
-      expect(onOpenChange).toBeCalledTimes(2);
-    });
+    
+    const $childrenDom = screen.getByTestId('tooltipTestid');
+    fireEvent.mouseEnter($childrenDom);
+    fireEvent.mouseLeave($childrenDom);
+    expect(onOpenChange).toBeCalledTimes(2);
+    // 代表不触发隐藏
+    await userEvent.click(document.body);
+    expect(onOpenChange).toBeCalledTimes(2);
   });
 
   // 新增测试：offset 属性
@@ -192,17 +201,13 @@ describe('Tooltip', () => {
     const $childrenDom = screen.getByTestId('tooltipTestid');
 
     // 鼠标进入显示
-    await act(async () => {
-      fireEvent.mouseEnter($childrenDom);
-    });
+    fireEvent.mouseEnter($childrenDom);
     expect(onOpenChange).toHaveBeenCalledWith(expect.any(Object), {
       open: true,
     });
 
     // 全局点击不应该隐藏（这是修复的 bug）
-    await act(async () => {
-      userEvent.click(document.body);
-    });
+    await userEvent.click(document.body);
     // onOpenChange 应该只调用一次（显示），不应该因为全局点击而隐藏
     expect(onOpenChange).toHaveBeenCalledTimes(1);
   });
@@ -210,24 +215,6 @@ describe('Tooltip', () => {
   // 新增测试：混合 trigger 时的全局点击行为
   it('test mixed trigger with click should hide on global click', async () => {
     const onOpenChange = vi.fn();
-
-    // Mock getBoundingClientRect 来确保 Tooltip 能正确显示
-    const mockGetBoundingClientRect = vi.fn().mockReturnValue({
-      width: 100,
-      height: 50,
-      top: 10,
-      left: 0,
-      right: 100,
-      bottom: 50,
-    });
-    Object.defineProperty(
-      window.HTMLElement.prototype,
-      'getBoundingClientRect',
-      {
-        configurable: true,
-        value: mockGetBoundingClientRect,
-      },
-    );
 
     render(
       <Tooltip
@@ -242,9 +229,7 @@ describe('Tooltip', () => {
     const $childrenDom = screen.getByTestId('tooltipTestid');
 
     // 点击显示
-    await act(async () => {
-      fireEvent.click($childrenDom);
-    });
+    fireEvent.click($childrenDom);
 
     // 验证 onOpenChange 被调用
     expect(onOpenChange).toHaveBeenCalledWith(expect.any(Object), {
@@ -252,10 +237,7 @@ describe('Tooltip', () => {
     });
 
     // 全局点击应该隐藏（因为包含 click trigger）
-    await act(async () => {
-      // 使用 fireEvent 而不是 userEvent 来避免递归调用
-      fireEvent.click(document.body);
-    });
+    fireEvent.click(document.body);
 
     // 检查 onOpenChange 至少被调用2次（显示和隐藏）
     expect(onOpenChange).toHaveBeenCalledTimes(2);
@@ -296,9 +278,7 @@ describe('Tooltip', () => {
     // 默认不显示
     expect(screen.queryByText('Test tooltip')).not.toBeInTheDocument();
   });
-});
-
-describe('Tooltip', () => {
+  // Conformant test
   isConformant({
     Component: Tooltip,
     displayName: 'BuiTooltip',
@@ -312,23 +292,6 @@ describe('Tooltip', () => {
   });
 
   it('renders correctly', () => {
-    // mock位置
-    const mockGetBoundingClientRect = vi.fn().mockReturnValue({
-      width: 100,
-      height: 50,
-      top: 10,
-      left: 0,
-      right: 100,
-      bottom: 50,
-    });
-    Object.defineProperty(
-      window.HTMLElement.prototype,
-      'getBoundingClientRect',
-      {
-        configurable: true,
-        value: mockGetBoundingClientRect,
-      },
-    );
     render(
       <Tooltip title="This is a tooltip" defaultOpen>
         <div data-testid="tooltipTestid">children</div>
@@ -338,66 +301,17 @@ describe('Tooltip', () => {
     expect(screen.getByText('This is a tooltip')).toBeInTheDocument();
   });
 
-  it('renders correctly offset cacl topCenter', () => {
-    // mock位置
-    const mockGetBoundingClientRect = vi.fn().mockReturnValue({
-      width: 100,
-      height: 50,
-      top: 10,
-      left: 50,
-      right: 50,
-      bottom: 50,
-    });
-    Object.defineProperty(
-      window.HTMLElement.prototype,
-      'getBoundingClientRect',
-      {
-        configurable: true,
-        value: mockGetBoundingClientRect,
-      },
-    );
-
-    Object.defineProperty(document.documentElement, 'clientWidth', {
-      get: () => {
-        return 375;
-      },
-    });
-
-    render(
+  it('renders correctly with different positioning scenarios', () => {
+    const { rerender } = render(
       <Tooltip title="This is a tooltip" defaultOpen>
         <div data-testid="tooltipTestid">children</div>
       </Tooltip>,
     );
 
     expect(screen.getByText('This is a tooltip')).toBeInTheDocument();
-  });
 
-  it('renders correctly offset cacl leftCenter', () => {
-    // mock位置
-    const mockGetBoundingClientRect = vi.fn().mockReturnValue({
-      width: 100,
-      height: 50,
-      top: 10,
-      left: 50,
-      right: 50,
-      bottom: 20,
-    });
-    Object.defineProperty(
-      window.HTMLElement.prototype,
-      'getBoundingClientRect',
-      {
-        configurable: true,
-        value: mockGetBoundingClientRect,
-      },
-    );
-
-    Object.defineProperty(document.documentElement, 'clientHeight', {
-      get: () => {
-        return 667;
-      },
-    });
-
-    render(
+    // Test different placement
+    rerender(
       <Tooltip title="This is a tooltip" placement="left" defaultOpen>
         <div data-testid="tooltipTestid">children</div>
       </Tooltip>,
