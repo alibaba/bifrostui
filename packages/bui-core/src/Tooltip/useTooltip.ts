@@ -203,7 +203,7 @@ export function useTooltip(
     if (newArrowLocation !== arrowLocation) {
       setArrowLocation(newArrowLocation);
     }
-    setToolStyles(styles);
+    setToolStyles(styles as React.CSSProperties);
   }, 100);
 
   useEffect(() => {
@@ -281,7 +281,7 @@ export function useTooltip(
       const elementType =
         typeof children.type === 'string'
           ? children.type
-          : children.type?.displayName || '';
+          : (children.type as React.ComponentType)?.displayName || '';
       const interactiveElements = [
         'button',
         'a',
@@ -289,12 +289,13 @@ export function useTooltip(
         'select',
         'textarea',
       ];
+      const childElementProps = children.props as Record<string, unknown>;
       const isInteractive =
         interactiveElements.includes(elementType.toLowerCase()) ||
-        children.props?.role === 'button' ||
-        children.props?.role === 'menuitem' ||
-        children.props?.role === 'tab' ||
-        children.props?.tabIndex !== undefined;
+        childElementProps?.role === 'button' ||
+        childElementProps?.role === 'menuitem' ||
+        childElementProps?.role === 'tab' ||
+        childElementProps?.tabIndex !== undefined;
 
       if (isInteractive) {
         childProps['aria-expanded'] = isOpen;
