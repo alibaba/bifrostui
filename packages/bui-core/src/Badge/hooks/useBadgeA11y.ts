@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo } from 'react';
 
 export interface UseBadgeA11yProps {
   displayValue: React.ReactNode;
@@ -8,7 +8,6 @@ export interface UseBadgeA11yProps {
   role?: 'status' | 'img' | 'presentation';
   'aria-hidden'?: boolean;
   decorative?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export interface UseBadgeA11yResult {
@@ -19,14 +18,11 @@ export interface UseBadgeA11yResult {
     'aria-describedby'?: string;
     'aria-hidden'?: boolean;
   };
-  handleKeyDown:
-    | ((event: React.KeyboardEvent<HTMLDivElement>) => void)
-    | undefined;
 }
 
 /**
  * Badge 无障碍功能的自定义 Hook
- * 负责处理可访问性标签、ARIA属性和键盘事件
+ * 负责处理可访问性标签和ARIA属性
  */
 export const useBadgeA11y = ({
   displayValue,
@@ -36,7 +32,6 @@ export const useBadgeA11y = ({
   role = 'status',
   'aria-hidden': ariaHidden = false,
   decorative = false,
-  onClick,
 }: UseBadgeA11yProps): UseBadgeA11yResult => {
   // 生成可访问性标签
   const accessibilityLabel = useMemo((): string | undefined => {
@@ -93,22 +88,9 @@ export const useBadgeA11y = ({
     };
   }, [decorative, ariaHidden, role, accessibilityLabel, ariaDescribedby]);
 
-  // 处理键盘事件以支持无障碍访问
-  const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (onClick && (event.key === 'Enter' || event.key === ' ')) {
-        event.preventDefault();
-        // 先转换为unknown再转换为目标类型
-        onClick(event as unknown as React.MouseEvent<HTMLDivElement>);
-      }
-    },
-    [onClick],
-  );
-
   return {
     accessibilityLabel,
     ariaAttributes,
-    handleKeyDown: onClick ? handleKeyDown : undefined,
   };
 };
 

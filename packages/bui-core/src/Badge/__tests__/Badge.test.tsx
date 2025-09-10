@@ -181,69 +181,9 @@ describe('Badge', () => {
     });
   });
 
-  describe('Event handling', () => {
-    it('should call onClick when badge is clicked', () => {
-      const onClick = vi.fn();
-      const { container } = render(<Badge content="1" onClick={onClick} />);
-
-      const badgeRoot = container.querySelector('.bui-badge');
-      fireEvent.click(badgeRoot!);
-
-      expect(onClick).toHaveBeenCalledTimes(1);
-      expect(onClick).toHaveBeenCalledWith(expect.any(Object));
-    });
-
-    it('should not throw when clicked without onClick handler', () => {
-      const { container } = render(<Badge content="1" />);
-      const badgeRoot = container.querySelector('.bui-badge');
-
-      expect(() => {
-        fireEvent.click(badgeRoot!);
-      }).not.toThrow();
-    });
-
-    it('should handle Enter key press when clickable', () => {
-      const onClick = vi.fn();
-      const { container } = render(<Badge content="1" onClick={onClick} />);
-
-      const badgeRoot = container.querySelector('.bui-badge');
-      fireEvent.keyDown(badgeRoot!, { key: 'Enter' });
-
-      expect(onClick).toHaveBeenCalledTimes(1);
-    });
-
-    it('should handle Space key press when clickable', () => {
-      const onClick = vi.fn();
-      const { container } = render(<Badge content="1" onClick={onClick} />);
-
-      const badgeRoot = container.querySelector('.bui-badge');
-      fireEvent.keyDown(badgeRoot!, { key: ' ' });
-
-      expect(onClick).toHaveBeenCalledTimes(1);
-    });
-
-    it('should not handle other key presses', () => {
-      const onClick = vi.fn();
-      const { container } = render(<Badge content="1" onClick={onClick} />);
-
-      const badgeRoot = container.querySelector('.bui-badge');
-      fireEvent.keyDown(badgeRoot!, { key: 'Tab' });
-
-      expect(onClick).not.toHaveBeenCalled();
-    });
-  });
 
   describe('Accessibility', () => {
-    it('should set correct role for clickable badge', () => {
-      const onClick = vi.fn();
-      const { container } = render(<Badge content="1" onClick={onClick} />);
-
-      const badgeRoot = container.querySelector('.bui-badge');
-      expect(badgeRoot).toHaveAttribute('role', 'button');
-      expect(badgeRoot).toHaveAttribute('tabIndex', '0');
-    });
-
-    it('should not set button role for non-clickable badge', () => {
+    it('should not set button role for badge', () => {
       const { container } = render(<Badge content="1" />);
 
       const badgeRoot = container.querySelector('.bui-badge');
