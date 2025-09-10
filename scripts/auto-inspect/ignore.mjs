@@ -7,6 +7,8 @@ export const ignoreCssVarDeclare = [
   'Modal',
   'ScrollView',
   'Stack',
+  'Fade',
+  'Slide',
 ];
 
 /**

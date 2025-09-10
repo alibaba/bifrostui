@@ -181,7 +181,7 @@ export default () => {
 
 ### Display Control
 
-The Badge provides `showZero` and `visibility` props to control badge display.
+The Badge provides `showZero` and `invisible` props to control badge display.
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
@@ -200,7 +200,7 @@ export default () => {
       <Badge content={0} showZero={false}>
         <Avatar src="//perico.damai.cn/userheadphotos/927551/185510204.jpg" />
       </Badge>
-      <Badge content={10} visibility>
+      <Badge content={10} invisible={false}>
         <Avatar src="//perico.damai.cn/userheadphotos/927551/185510204.jpg" />
       </Badge>
     </Stack>
@@ -218,7 +218,7 @@ export default () => {
 | color      | Badge theme color               | `primary` ｜ `info` ｜ `success` ｜ `warning` ｜ `danger` | `primary`   |
 | max        | Maximum value for number badges | number                                                    | -           |
 | showZero   | Whether to show badge when content is 0 | boolean                                          | false       |
-| visibility | Whether to show badge           | boolean                                                   | true        |
+| invisible  | Whether to hide badge           | boolean                                                   | false       |
 | variant    | Badge variant                   | `contained` ｜ `outlined`                                 | `contained` |
 | type       | Badge shape                     | `dot` ｜ `standard` ｜ `bubble`                           | `standard`  |
 

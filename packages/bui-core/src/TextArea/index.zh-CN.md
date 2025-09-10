@@ -145,7 +145,31 @@ export default () => {
 
 ### 自动撑高
 
-通过 `autoSize` 字段控制是否自动撑高，该字段传入 `boolean` 时不限制高度大小，传入 `object` 时可控制高度大小，超出最大值可滚动。该功能不支持支付宝小程序。
+通过 `autoSize` 字段控制是否自动撑高，该字段传入 `boolean` 时不限制高度大小。该功能不支持支付宝小程序。
+
+```tsx
+import { Stack, TextArea } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+export default () => {
+  const [value, setValue] = useState('');
+
+  return (
+    <Stack alignItems="stretch">
+      <TextArea
+        value={value}
+        placeholder="文案过多会自动撑高"
+        onChange={(e, data) => setValue(data?.value)}
+        autoSize={true}
+      />
+    </Stack>
+  );
+};
+```
+
+### 自定义最大最小高度
+
+通过 `autoSize` 字段控制是否自动撑高，该字段传入 `object` 时可控制高度大小，超出最大值可滚动。该功能不支持支付宝小程序。
 
 ```tsx
 import { Stack, TextArea } from '@bifrostui/react';
