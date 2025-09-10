@@ -283,7 +283,7 @@ describe('Toast', () => {
             Toast({
               message: '提示内容',
               position: 'top',
-              allowMultiple: true,
+              multiple: true,
             });
           }}
         >
@@ -295,7 +295,7 @@ describe('Toast', () => {
             Toast({
               message: '提示内容',
               position: 'center',
-              allowMultiple: true,
+              multiple: true,
             });
           }}
         >
@@ -382,7 +382,7 @@ describe('Toast', () => {
           onClick={() => {
             Toast({
               message: '提示内容',
-              allowMultiple: true,
+              multiple: true,
               duration: 0,
             });
           }}
@@ -394,7 +394,7 @@ describe('Toast', () => {
           onClick={() => {
             Toast({
               message: '提示内容',
-              allowMultiple: true,
+              multiple: true,
               duration: 0,
             });
           }}
@@ -431,7 +431,7 @@ describe('Toast', () => {
               onClick={() => {
                 toast({
                   message: '提示内容',
-                  allowMultiple: true,
+                  multiple: true,
                   duration: 0,
                 });
               }}
@@ -442,7 +442,7 @@ describe('Toast', () => {
               onClick={() => {
                 toast({
                   message: '提示内容',
-                  allowMultiple: true,
+                  multiple: true,
                   duration: 0,
                 });
               }}

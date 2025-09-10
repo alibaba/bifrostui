@@ -209,13 +209,12 @@ import {
   useTheme,
 } from '@bifrostui/react';
 
+let toastA;
 export default () => {
   const [toast, contextHolder] = Toast.useToast();
   const theme = useTheme();
-
-  let toastA;
-  const showToastA = () => {
-    toastA = toast({
+  const showToastA = async () => {
+    toastA = await toast({
       message: '我不会自动关闭',
       duration: 0,
     });
@@ -309,7 +308,7 @@ export default () => {
 
 ## 同时存在多个Toast
 
-使用 `allowMultiple` 可允许页面中同时存在多个 Toast 提示，默认每次只展示一个 Toast。
+使用 `multiple` 可允许页面中同时存在多个 Toast 提示，默认每次只展示一个 Toast。
 
 ```tsx
 import React from 'react';
@@ -334,7 +333,7 @@ export default () => {
             toast({
               message: '顶部展示',
               position: 'top',
-              allowMultiple: true,
+              multiple: true,
             });
           }}
         >
@@ -345,7 +344,7 @@ export default () => {
             toast({
               message: '居中展示',
               position: 'center',
-              allowMultiple: true,
+              multiple: true,
             });
           }}
         >
@@ -356,7 +355,7 @@ export default () => {
             toast({
               message: '底部展示',
               position: 'bottom',
-              allowMultiple: false,
+              multiple: false,
             });
           }}
         >
@@ -513,7 +512,7 @@ export default () => {
             toast({
               message: '提示内容1',
               position: 'top',
-              allowMultiple: true,
+              multiple: true,
               duration: 0,
             });
           }}
@@ -525,7 +524,7 @@ export default () => {
             toast({
               message: '提示内容2',
               position: 'center',
-              allowMultiple: true,
+              multiple: true,
               duration: 0,
             });
           }}
@@ -603,16 +602,16 @@ export default () => {
 
 ### ToastOptions
 
-| 属性          | 说明                                    | 类型                                    | 默认值        |
-| ------------- | --------------------------------------- | --------------------------------------- | ------------- |
-| message       | toast内容，支持使用`\n`换行             | string                                  | -             |
-| duration      | 展示时长(ms)，值为 0 时，toast 不会消失 | number                                  | 2000          |
-| position      | 展示位置                                | `top` \| `center` \| `bottom`           | `center`      |
-| allowMultiple | 是否允许同时存在多个Toast               | boolean                                 | false         |
-| icon          | 自定义图标                              | React.ReactNode                         | -             |
-| disableClick  | 展示Toast时，页面内容是否可以点击       | boolean                                 | false         |
-| container     | 渲染容器                                | `HTMLElement` \| `(() => HTMLElement) ` | document.body |
-| onClose       | 关闭时的回调函数                        | () => void                              | -             |
+| 属性         | 说明                                    | 类型                                    | 默认值        |
+| ------------ | --------------------------------------- | --------------------------------------- | ------------- |
+| message      | toast内容，支持使用`\n`换行             | string                                  | -             |
+| duration     | 展示时长(ms)，值为 0 时，toast 不会消失 | number                                  | 2000          |
+| position     | 展示位置                                | `top` \| `center` \| `bottom`           | `center`      |
+| multiple     | 是否允许同时存在多个Toast               | boolean                                 | false         |
+| icon         | 自定义图标                              | React.ReactNode                         | -             |
+| disableClick | 展示Toast时，页面内容是否可以点击       | boolean                                 | false         |
+| container    | 渲染容器                                | `HTMLElement` \| `(() => HTMLElement) ` | document.body |
+| onClose      | 关闭时的回调函数                        | () => void                              | -             |
 
 ### 方法
 
