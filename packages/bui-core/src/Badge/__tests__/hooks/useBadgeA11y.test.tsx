@@ -13,7 +13,6 @@ describe('useBadgeA11y', () => {
         'aria-label': '5条通知',
         'aria-describedby': undefined,
       });
-      expect(result.current.handleKeyDown).toBeUndefined();
     });
 
     it('should handle undefined displayValue', () => {
@@ -141,86 +140,6 @@ describe('useBadgeA11y', () => {
     });
   });
 
-  describe('Keyboard event handling', () => {
-    it('should not provide handleKeyDown when no onClick', () => {
-      const { result } = renderHook(() => useBadgeA11y({ displayValue: 5 }));
-
-      expect(result.current.handleKeyDown).toBeUndefined();
-    });
-
-    it('should provide handleKeyDown when onClick is provided', () => {
-      const onClick = vi.fn();
-      const { result } = renderHook(() =>
-        useBadgeA11y({
-          displayValue: 5,
-          onClick,
-        }),
-      );
-
-      expect(result.current.handleKeyDown).toBeDefined();
-      expect(typeof result.current.handleKeyDown).toBe('function');
-    });
-
-    it('should handle Enter key press', () => {
-      const onClick = vi.fn();
-      const { result } = renderHook(() =>
-        useBadgeA11y({
-          displayValue: 5,
-          onClick,
-        }),
-      );
-
-      const mockEvent = {
-        key: 'Enter',
-        preventDefault: vi.fn(),
-      } as unknown as React.KeyboardEvent<HTMLDivElement>;
-
-      result.current.handleKeyDown?.(mockEvent);
-
-      expect(mockEvent.preventDefault).toHaveBeenCalled();
-      expect(onClick).toHaveBeenCalledWith(mockEvent);
-    });
-
-    it('should handle Space key press', () => {
-      const onClick = vi.fn();
-      const { result } = renderHook(() =>
-        useBadgeA11y({
-          displayValue: 5,
-          onClick,
-        }),
-      );
-
-      const mockEvent = {
-        key: ' ',
-        preventDefault: vi.fn(),
-      } as unknown as React.KeyboardEvent<HTMLDivElement>;
-
-      result.current.handleKeyDown?.(mockEvent);
-
-      expect(mockEvent.preventDefault).toHaveBeenCalled();
-      expect(onClick).toHaveBeenCalledWith(mockEvent);
-    });
-
-    it('should not handle other key presses', () => {
-      const onClick = vi.fn();
-      const { result } = renderHook(() =>
-        useBadgeA11y({
-          displayValue: 5,
-          onClick,
-        }),
-      );
-
-      const mockEvent = {
-        key: 'Tab',
-        preventDefault: vi.fn(),
-      } as unknown as React.KeyboardEvent<HTMLDivElement>;
-
-      result.current.handleKeyDown?.(mockEvent);
-
-      expect(mockEvent.preventDefault).not.toHaveBeenCalled();
-      expect(onClick).not.toHaveBeenCalled();
-    });
-  });
 
   describe('Type variations', () => {
     it('should handle standard type', () => {
@@ -360,34 +279,6 @@ describe('useBadgeA11y', () => {
       expect(result.current.accessibilityLabel).toBe('自定义标签');
     });
 
-    it('should update handleKeyDown when onClick changes', () => {
-      const onClick1 = vi.fn();
-      const onClick2 = vi.fn();
-
-      const { result, rerender } = renderHook(
-        ({ onClick }) => useBadgeA11y({ displayValue: 5, onClick }),
-        { initialProps: { onClick: undefined } },
-      );
-
-      expect(result.current.handleKeyDown).toBeUndefined();
-
-      rerender({ onClick: onClick1 });
-
-      expect(result.current.handleKeyDown).toBeDefined();
-
-      const mockEvent = {
-        key: 'Enter',
-        preventDefault: vi.fn(),
-      } as unknown as React.KeyboardEvent<HTMLDivElement>;
-
-      result.current.handleKeyDown?.(mockEvent);
-      expect(onClick1).toHaveBeenCalled();
-
-      rerender({ onClick: onClick2 });
-
-      result.current.handleKeyDown?.(mockEvent);
-      expect(onClick2).toHaveBeenCalled();
-    });
   });
 });
 

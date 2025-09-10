@@ -141,13 +141,9 @@ export const complexInteractionBadgeDemo = () => {
         <Badge
           content={count}
           invisible={!visible}
-          onClick={() => {
-            // eslint-disable-next-line no-console
-            console.log('Badge clicked');
-          }}
         >
           <div style={{ width: 40, height: 40, background: '#f0f0f0' }}>
-            可点击
+            内容
           </div>
         </Badge>
         <button

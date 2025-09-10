@@ -10,7 +10,6 @@ const prefixCls = 'bui-badge';
 const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
   const {
     className,
-    onClick,
     children,
     content,
     color = 'primary',
@@ -37,7 +36,7 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
   });
 
   // 使用无障碍功能 Hook
-  const { ariaAttributes, handleKeyDown } = useBadgeA11y({
+  const { ariaAttributes } = useBadgeA11y({
     displayValue,
     type,
     'aria-label': ariaLabel,
@@ -45,7 +44,6 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     role,
     'aria-hidden': ariaHidden,
     decorative,
-    onClick,
   });
 
   // invisible为true时不渲染
@@ -56,10 +54,6 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
       className={clsx(`${prefixCls}`, className, {
         [`${prefixCls}-position`]: children,
       })}
-      onClick={onClick}
-      onKeyDown={onClick ? handleKeyDown : undefined}
-      role={onClick ? 'button' : undefined}
-      tabIndex={onClick ? 0 : undefined}
       ref={ref}
       {...others}
     >
