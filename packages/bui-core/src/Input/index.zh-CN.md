@@ -214,6 +214,13 @@ export default () => {
 };
 ```
 
+## Accessibility
+
+- 当属性 disabled=true 时，会自动添加 aria-disabled 属性
+- 当属性 placeholder 存在时，会自动添加 aria-placeholder 属性
+- 当属性 inputProps.required=true 时，会自动添加 aria-required 属性
+- 当属性 inputProps.readOnly=true 时，会自动添加 aria-readonly 属性
+
 ## API
 
 | 属性         | 说明                                                                        | 类型                                                                   | 默认值 |

@@ -223,6 +223,10 @@ export default () => {
 };
 ```
 
+## Accessibility
+
+- BackDrop 默认会添加 `aria-hidden="true"`
+
 ## API
 
 ### Backdrop Props

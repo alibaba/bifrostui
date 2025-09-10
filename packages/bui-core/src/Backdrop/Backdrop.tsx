@@ -11,8 +11,8 @@ const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(
     const {
       children,
       className,
-      invisible,
-      open,
+      invisible = false,
+      open = false,
       transitionDuration,
       ...others
     } = props;
@@ -20,6 +20,7 @@ const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(
     return (
       <Fade in={open} timeout={transitionDuration} {...others}>
         <div
+          aria-hidden="true"
           className={clsx(
             prefixCls,
             {
