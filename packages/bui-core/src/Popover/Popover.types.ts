@@ -88,7 +88,7 @@ export type PopoverProps<
       /**
        * 无障碍功能：是否自动管理焦点
        * 当为true时，Popover打开时会自动获取焦点，关闭时焦点返回到触发元素
-       * @default true
+       * @default false
        */
       autoFocus?: boolean;
       /**

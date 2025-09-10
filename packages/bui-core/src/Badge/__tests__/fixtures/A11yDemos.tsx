@@ -107,8 +107,8 @@ export const accessibilityBadgeDemo = () => {
   );
 };
 
-// Demo 6: showZero 和 visibility 测试
-export const visibilityBadgeDemo = () => {
+// Demo 6: showZero 和 invisible 测试
+export const invisibilityBadgeDemo = () => {
   return (
     <div style={{ display: 'flex', gap: '10px' }}>
       <Badge content={0} showZero>
@@ -121,7 +121,7 @@ export const visibilityBadgeDemo = () => {
           HideZero
         </div>
       </Badge>
-      <Badge content={5} visibility>
+      <Badge content={5} invisible={false}>
         <div style={{ width: 40, height: 40, background: '#f0f0f0' }}>
           Visible
         </div>
@@ -140,14 +140,10 @@ export const complexInteractionBadgeDemo = () => {
       <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
         <Badge
           content={count}
-          visibility={visible}
-          onClick={() => {
-            // eslint-disable-next-line no-console
-            console.log('Badge clicked');
-          }}
+          invisible={!visible}
         >
           <div style={{ width: 40, height: 40, background: '#f0f0f0' }}>
-            可点击
+            内容
           </div>
         </Badge>
         <button
@@ -200,7 +196,7 @@ export default {
   typeBadgeDemo,
   maxBadgeDemo,
   accessibilityBadgeDemo,
-  visibilityBadgeDemo,
+  invisibilityBadgeDemo,
   complexInteractionBadgeDemo,
   specialContentBadgeDemo,
 };

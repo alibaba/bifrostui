@@ -5,11 +5,11 @@ name: Popover 气泡卡片
 
 # Popover 气泡卡片
 
-click或hover触发弹出气泡式的卡片浮层，可以自定义事件
+Popover组件，常用于展示气泡式的卡片浮层，通过 click 或 hover 触发弹出，可以自定义触发事件。
 
-## 基础用法
+## 基本用法
 
-鼠标点击则显示提示，再点击消失，气泡浮层不承载复杂文本和操作。
+Popover 组件可通过使用 `children` 设置触发元素，通过 `title` 和 `content` 设置气泡内容。
 
 ```tsx
 import { Popover } from '@bifrostui/react';
@@ -28,9 +28,9 @@ export default () => {
 };
 ```
 
-### open 外部控制
+## 外部控制显隐
 
-外部通过open设置气泡浮层显隐
+通过 `open` 属性可以外部控制气泡浮层的显示和隐藏。
 
 ```tsx
 import { Popover } from '@bifrostui/react';
@@ -46,9 +46,9 @@ export default () => {
 };
 ```
 
-### defaultOpen 默认显示
+## 默认显示
 
-可以设置defaultOpen为true默认显示气泡浮层
+通过设置 `defaultOpen` 为 `true` 可以让气泡浮层默认显示。
 
 ```tsx
 import { Popover } from '@bifrostui/react';
@@ -63,9 +63,9 @@ export default () => {
 };
 ```
 
-### offsetSpacing 浮层和目标元素间隔
+## 偏移距离
 
-可以设置offsetSpacing来控制和目标元素的距离
+通过 `offsetSpacing` 属性可以设置气泡浮层与目标元素之间的距离。
 
 ```tsx
 import { Popover } from '@bifrostui/react';
@@ -80,9 +80,9 @@ export default () => {
 };
 ```
 
-### hideArrow 箭头展示
+## 隐藏箭头
 
-可以设置 `hideArrow` 为 true 隐藏箭头
+通过设置 `hideArrow` 为 `true` 可以隐藏气泡浮层的箭头。
 
 ```tsx
 import { Popover } from '@bifrostui/react';
@@ -97,14 +97,14 @@ export default () => {
 };
 ```
 
-### anchorOrigin 气泡框位置
+## 位置设置
 
-`anchorOrigin` 设置气泡浮层相对于锚点的位置。通过 `vertical` 和 `horizontal` 两个属性来控制位置：
+通过 `anchorOrigin` 属性可以设置气泡浮层相对于锚点的位置。该属性包含 `vertical` 和 `horizontal` 两个子属性：
 
-- `vertical`: 可选值为 `top`、`center`、`bottom`
-- `horizontal`: 可选值为 `left`、`center`、`right`
+- `vertical`: 垂直位置，可选值为 `top`、`center`、`bottom`  
+- `horizontal`: 水平位置，可选值为 `left`、`center`、`right`
 
-以下展示了所有 9 种位置组合（3×3 网格）：
+以下展示了所有 9 种位置组合：
 
 ```tsx
 import { Popover, Button } from '@bifrostui/react';
@@ -184,9 +184,9 @@ export default () => {
 };
 ```
 
-### trigger 触发方式
+## 触发方式
 
-气泡浮层可以通过 `trigger` 属性配置触发方式。
+通过 `trigger` 属性可以配置气泡浮层的触发方式，支持点击、悬停、组合触发和手动控制。
 
 ```tsx
 import { Popover } from '@bifrostui/react';
@@ -238,9 +238,9 @@ export default () => {
 };
 ```
 
-### 无障碍功能
+## 无障碍功能
 
-Popover 组件提供了完整的无障碍功能支持，包括键盘导航、屏幕阅读器支持和焦点管理。
+Popover 组件提供完整的无障碍功能支持，包括键盘导航、屏幕阅读器支持、焦点管理和语义化角色设置。
 
 ```tsx
 import { Popover, Button } from '@bifrostui/react';
@@ -306,15 +306,17 @@ export default () => {
 };
 ```
 
-### API
+## API
+
+### PopoverProps
 
 | 属性            | 说明                       | 类型                                                                                   | 默认值                                    |
 | --------------- | -------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------- |
-| title           | 气泡浮层的标题浮层内容     | ReactNode                                                                              | -                                         |
+| title           | 气泡浮层的标题             | ReactNode                                                                              | -                                         |
 | content         | 气泡浮层的内容             | ReactNode                                                                              | -                                         |
-| defaultOpen     | 默认是否显隐               | boolean                                                                                | false                                     |
+| defaultOpen     | 默认是否显示               | boolean                                                                                | false                                     |
 | open            | 用于手动控制气泡浮层显隐   | boolean                                                                                | -                                         |
-| hideArrow       | 是否展示箭头               | boolean                                                                                | false                                     |
+| hideArrow       | 是否隐藏箭头               | boolean                                                                                | false                                     |
 | offsetSpacing   | 浮层与目标元素的偏移量     | number                                                                                 | 0                                         |
 | anchorOrigin    | 气泡框相对于锚点的位置     | { vertical: 'top' \| 'center' \| 'bottom', horizontal: 'left' \| 'center' \| 'right' } | { vertical: 'top', horizontal: 'center' } |
 | trigger         | 触发行为                   | string \| string[]，枚举值是 'click' \| 'hover' \| 'none'                              | 'click'                                   |
@@ -322,16 +324,16 @@ export default () => {
 | role            | 无障碍功能：气泡的语义角色 | 'tooltip' \| 'dialog' \| 'menu' \| 'listbox'                                           | 'tooltip'                                 |
 | aria-label      | 无障碍功能：气泡的标签     | string                                                                                 | -                                         |
 | aria-labelledby | 无障碍功能：关联标签元素ID | string                                                                                 | -                                         |
-| autoFocus       | 无障碍功能：打开时自动聚焦 | boolean                                                                                | true                                      |
+| autoFocus       | 无障碍功能：打开时自动聚焦 | boolean                                                                                | false                                     |
 | trapFocus       | 无障碍功能：焦点陷阱       | boolean                                                                                | false                                     |
 | closeOnEscape   | 无障碍功能：ESC键关闭      | boolean                                                                                | true                                      |
 
-## 样式变量
+### 样式变量
 
-| 全局变量                        | 说明           | 默认值    |
-| ------------------------------- | -------------- | --------- |
-| --bui-popover-arrow-size        | 箭头大小       | `8px`     |
-| --bui-popover-location-position | 箭头位置偏移量 | `8px`     |
-| --bui-popover-max-width         | 气泡最大宽度   | `350px`   |
-| --bui-popover-content-min-width | 内容最小宽度   | `30px`    |
-| --bui-popover-content-padding   | 内容内边距     | `6px 8px` |
+| 属性                            | 说明           | 默认值                 | 全局变量                           |
+| ------------------------------- | -------------- | ---------------------- | ---------------------------------- |
+| --arrow-size                    | 箭头大小       | 8px                    | --bui-popover-arrow-size           |
+| --location-position             | 箭头位置偏移量 | 8px                    | --bui-popover-location-position    |
+| --max-width                     | 气泡最大宽度   | 350px                  | --bui-popover-max-width            |
+| --content-min-width             | 内容最小宽度   | 30px                   | --bui-popover-content-min-width    |
+| --content-padding               | 内容内边距     | 6px 8px                | --bui-popover-content-padding      |
