@@ -7,7 +7,6 @@ import React, {
   useImperativeHandle,
 } from 'react';
 import { render, unmount, getRootContainer } from '@bifrostui/utils';
-import { ThemeProps } from '../ThemeProvider/ThemeProvider.types';
 import ToastView from './Toast';
 import {
   ToastOptions,
@@ -20,7 +19,7 @@ import {
 const defaultProps: ToastProps = {
   duration: 2000,
   position: 'center',
-  allowMultiple: false,
+  multiple: false,
   disableClick: false,
 };
 
@@ -50,22 +49,11 @@ const Toast = (props: ToastProps | string): ToastReturnType => {
     close: () => null,
   };
   const rootWrapper = document.createElement('div');
-  if (options.disableClick) {
-    Object.assign(rootWrapper.style, {
-      position: 'fixed',
-      top: '0',
-      bottom: '0',
-      left: '0',
-      right: '0',
-      zIndex: 'var(--bui-z-index-toast)',
-    });
-  }
-
   const rootElement = getRootContainer(options?.container);
   rootElement.appendChild(rootWrapper);
 
   const ToastComponent = () => {
-    const { duration, allowMultiple, onClose, ...others } = options;
+    const { duration, multiple, onClose, ...others } = options;
     const [open, setOpen] = useState(false);
     const fadeTimeout = {
       enter: 350,
@@ -86,14 +74,14 @@ const Toast = (props: ToastProps | string): ToastReturnType => {
 
     useEffect(() => {
       setOpen(true);
-      if (!allowMultiple) destroyAll();
+      if (!multiple) destroyAll();
       toastCloses.push(close);
 
       if (duration !== 0 && typeof duration === 'number') {
         timerRef.current = window.setTimeout(() => {
           close();
           // 不允许共存的场景下，当前Toast关闭后，应清空toastCloses
-          if (!allowMultiple) {
+          if (!multiple) {
             toastCloses = [];
           }
         }, duration);
@@ -155,33 +143,7 @@ const UseToastComponent = forwardRef<ToastReturnType, ToastProps>(
       ...defaultProps,
       ...formatProps(props),
     };
-
-    const instance: ToastReturnType = {
-      close: () => null,
-    };
-
-    useImperativeHandle(ref, () => {
-      return {
-        close: instance.close,
-      };
-    });
-
-    const rootWrapper = document.createElement('div');
-    if (options.disableClick) {
-      Object.assign(rootWrapper.style, {
-        position: 'fixed',
-        top: '0',
-        bottom: '0',
-        left: '0',
-        right: '0',
-        zIndex: 'var(--bui-z-index-toast)',
-      });
-    }
-
-    const rootElement = getRootContainer(options?.container);
-    rootElement.appendChild(rootWrapper);
-
-    const { duration, allowMultiple, onClose, ...others } = options;
+    const { duration, multiple, onClose, ...others } = options;
     const [open, setOpen] = useState(false);
     const fadeTimeout = {
       enter: 350,
@@ -189,27 +151,29 @@ const UseToastComponent = forwardRef<ToastReturnType, ToastProps>(
     };
     const timerRef = useRef<number | null>(null);
 
-    const close = useCallback(() => {
+    const close = () => {
       setOpen(false);
       setTimeout(() => {
-        const unmountRes = unmount(rootWrapper);
-        if (unmountRes && rootWrapper.parentNode) {
-          rootWrapper.parentNode.removeChild(rootWrapper);
-        }
+        onClose?.();
       }, fadeTimeout.exit);
-      onClose?.();
-    }, [rootWrapper, onClose]);
+    };
+
+    useImperativeHandle(ref, () => {
+      return {
+        close,
+      };
+    }, [close]);
 
     useEffect(() => {
       setOpen(true);
-      if (!allowMultiple) destroyAll();
+      if (!multiple) destroyAll();
       toastCloses.push(close);
 
       if (duration !== 0 && typeof duration === 'number') {
         timerRef.current = window.setTimeout(() => {
           close();
           // 不允许共存的场景下，当前Toast关闭后，应清空toastCloses
-          if (!allowMultiple) {
+          if (!multiple) {
             toastCloses = [];
           }
         }, duration);
@@ -221,9 +185,6 @@ const UseToastComponent = forwardRef<ToastReturnType, ToastProps>(
         }
       };
     }, []);
-
-    // 关闭当前Toast
-    instance.close = close;
 
     return (
       <ToastView
@@ -238,13 +199,12 @@ const UseToastComponent = forwardRef<ToastReturnType, ToastProps>(
 UseToastComponent.displayName = 'UseToastComponent';
 
 const useToast = () => {
-  const holderRef = useRef<{ theme: ThemeProps } | null>(null);
   const [elements, setElements] = useState<React.ReactElement[]>([]);
   const toastComponentRef = useRef<ToastReturnType>();
 
   const createToast = (options: ToastProps) => {
     return new Promise((resolve) => {
-      const key = `dialog-${Date.now()}-${Math.random()}`;
+      const key = `toast-${Date.now()}-${Math.random()}`;
 
       const onProxyClose = () => {
         options?.onClose?.();
@@ -272,7 +232,6 @@ const useToast = () => {
   const hookToast = (options: ToastOptions) =>
     createToast({
       ...formatProps(options),
-      theme: holderRef.current?.theme,
     });
   (['warning', 'loading', 'success', 'fail'] as ToastType[]).forEach(
     (methodName) => {
@@ -280,7 +239,6 @@ const useToast = () => {
         createToast({
           type: methodName,
           ...formatProps(options),
-          theme: holderRef.current?.theme,
         });
     },
   );
@@ -292,6 +250,7 @@ const useToast = () => {
     });
   };
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   return [hookToast, <>{elements}</>];
 };
 Toast.useToast = useToast;

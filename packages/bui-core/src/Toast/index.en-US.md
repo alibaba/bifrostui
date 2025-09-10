@@ -312,7 +312,7 @@ export default () => {
 
 ### Multiple Toast Instances
 
-Use `allowMultiple` to allow multiple Toast notifications to exist simultaneously on the page. By default, only one Toast is displayed at a time.
+Use `multiple` to allow multiple Toast notifications to exist simultaneously on the page. By default, only one Toast is displayed at a time.
 
 ```tsx
 import {
@@ -337,7 +337,7 @@ export default () => {
             toast({
               message: 'Displayed at the top',
               position: 'top',
-              allowMultiple: true,
+              multiple: true,
             });
           }}
         >
@@ -348,7 +348,7 @@ export default () => {
             toast({
               message: 'Displayed at center',
               position: 'center',
-              allowMultiple: true,
+              multiple: true,
             });
           }}
         >
@@ -359,7 +359,7 @@ export default () => {
             toast({
               message: 'Displayed at bottom',
               position: 'bottom',
-              allowMultiple: false,
+              multiple: false,
             });
           }}
         >
@@ -516,7 +516,7 @@ export default () => {
             toast({
               message: 'Notification content 1',
               position: 'top',
-              allowMultiple: true,
+              multiple: true,
               duration: 0,
             });
           }}
@@ -528,7 +528,7 @@ export default () => {
             toast({
               message: 'Notification content 2',
               position: 'center',
-              allowMultiple: true,
+              multiple: true,
               duration: 0,
             });
           }}
@@ -600,16 +600,16 @@ export default () => {
 
 ##### ToastOptions
 
-| Property      | Description                                                       | Type                                    | Default Value |
-| ------------- | ----------------------------------------------------------------- | --------------------------------------- | ------------- |
-| message       | Toast content, supports `\n` for line breaks                      | string                                  | -             |
-| duration      | Display duration(ms). When set to 0, the toast will not disappear | number                                  | 2000          |
-| position      | Display position                                                  | `top` \| `center` \| `bottom`           | `center`      |
-| allowMultiple | Whether to allow multiple Toasts simultaneously                   | boolean                                 | false         |
-| icon          | Custom icon                                                       | React.ReactNode                         | -             |
-| disableClick  | Whether page content is clickable when Toast is displayed         | boolean                                 | false         |
-| container     | Render container                                                  | `HTMLElement` \| `(() => HTMLElement) ` | document.body |
-| onClose       | Callback function when closed                                     | () => void                              | -             |
+| Property     | Description                                                       | Type                                    | Default Value |
+| ------------ | ----------------------------------------------------------------- | --------------------------------------- | ------------- |
+| message      | Toast content, supports `\n` for line breaks                      | string                                  | -             |
+| duration     | Display duration(ms). When set to 0, the toast will not disappear | number                                  | 2000          |
+| position     | Display position                                                  | `top` \| `center` \| `bottom`           | `center`      |
+| multiple     | Whether to allow multiple Toasts simultaneously                   | boolean                                 | false         |
+| icon         | Custom icon                                                       | React.ReactNode                         | -             |
+| disableClick | Whether page content is clickable when Toast is displayed         | boolean                                 | false         |
+| container    | Render container                                                  | `HTMLElement` \| `(() => HTMLElement) ` | document.body |
+| onClose      | Callback function when closed                                     | () => void                              | -             |
 
 ##### Methods
 

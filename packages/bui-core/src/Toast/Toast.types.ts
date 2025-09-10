@@ -1,10 +1,6 @@
 import React from 'react';
 import { FadeProps } from '../Fade/Fade.types';
-import { ThemeProps } from '../ThemeProvider/ThemeProvider.types';
 
-export type ToastRef = {
-  theme?: ThemeProps;
-};
 /**
  * 提示类型
  */
@@ -37,15 +33,11 @@ export interface ToastProps extends FadeProps {
    * 是否允许同时存在多个Toast
    * @default false
    */
-  allowMultiple?: boolean;
+  multiple?: boolean;
   /**
    * 自定义图标
    */
   icon?: React.ReactNode;
-  /**
-   * theme 主题定制
-   */
-  theme?: ThemeProps;
   /**
    * 展示Toast时，页面内容是否可以点击
    * @default false
