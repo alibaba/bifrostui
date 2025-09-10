@@ -24,9 +24,10 @@ export type BadgeProps<
        */
       showZero?: boolean;
       /**
-       * 是否展示badge
+       * 是否隐藏badge
+       * @default false
        */
-      visibility?: boolean;
+      invisible?: boolean;
       /**
        *徽章类型
        */
