@@ -1,6 +1,6 @@
 import { isMini, useForkRef, useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { TextAreaProps } from './TextArea.types';
 import { useLocaleText } from '../locales';
 import './index.less';
@@ -103,9 +103,12 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
       }
     };
 
+    const [ariaDescription, setAriaDescription] = useState('');
+
     // 组装原生属性，兼容小程序和H5
     let nativeProps: Record<string, any> = {
       [isMini ? 'maxlength' : 'maxLength']: maxLength ?? -1,
+      'aria-description': ariaDescription,
     };
 
     // 添加无障碍属性到原生属性中
@@ -168,8 +171,7 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
             if (showCount) {
               const remaining = maxLength - e.target.value.length;
               // 动态更新 aria-description
-              e.target.setAttribute(
-                'aria-description',
+              setAriaDescription(
                 `${textareaText.remaining} ${remaining} ${textareaText.characters}`,
               );
             }
