@@ -5,7 +5,7 @@ name: Popover 气泡卡片
 
 # Popover 气泡卡片
 
-Popover 组件，常用于展示气泡式的卡片浮层，通过 click 或 hover 触发弹出，可以自定义触发事件。
+Popover组件，常用于展示气泡式的卡片浮层，通过 click 或 hover 触发弹出，可以自定义触发事件。
 
 ## 基本用法
 
@@ -324,7 +324,7 @@ export default () => {
 | role            | 无障碍功能：气泡的语义角色 | 'tooltip' \| 'dialog' \| 'menu' \| 'listbox'                                           | 'tooltip'                                 |
 | aria-label      | 无障碍功能：气泡的标签     | string                                                                                 | -                                         |
 | aria-labelledby | 无障碍功能：关联标签元素ID | string                                                                                 | -                                         |
-| autoFocus       | 无障碍功能：打开时自动聚焦 | boolean                                                                                | true                                      |
+| autoFocus       | 无障碍功能：打开时自动聚焦 | boolean                                                                                | false                                     |
 | trapFocus       | 无障碍功能：焦点陷阱       | boolean                                                                                | false                                     |
 | closeOnEscape   | 无障碍功能：ESC键关闭      | boolean                                                                                | true                                      |
 

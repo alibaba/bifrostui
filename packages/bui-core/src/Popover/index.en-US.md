@@ -310,7 +310,7 @@ export default () => {
 | role            | Accessibility: semantic role     | 'tooltip' \| 'dialog' \| 'menu' \| 'listbox'                                           | 'tooltip'                                 |
 | aria-label      | Accessibility: popover label     | string                                                                                 | -                                         |
 | aria-labelledby | Accessibility: associated label element ID | string                                                                         | -                                         |
-| autoFocus       | Accessibility: auto focus on open | boolean                                                                               | true                                      |
+| autoFocus       | Accessibility: auto focus on open | boolean                                                                               | false                                     |
 | trapFocus       | Accessibility: focus trap        | boolean                                                                                | false                                     |
 | closeOnEscape   | Accessibility: close with ESC key | boolean                                                                               | true                                      |
 
