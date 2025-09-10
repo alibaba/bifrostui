@@ -27,6 +27,15 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     onBlur,
     ...others
   } = props;
+  // 原生属性
+  const { required, readOnly } = inputProps || {};
+  // 无障碍支持
+  const ariaProps = {
+    ...(required && { 'aria-required': required }),
+    ...(readOnly && { 'aria-readonly': readOnly }),
+    ...(disabled && { 'aria-disabled': disabled }),
+    ...(placeholder && { 'aria-placeholder': placeholder }),
+  };
 
   const [inputValue, triggerChange] = useValue({
     value,
@@ -101,6 +110,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
         value={inputValue}
         disabled={disabled}
         placeholder={placeholder}
+        {...ariaProps}
         {...inputProps}
         onChange={handleChange}
         onFocus={handleFocus}
