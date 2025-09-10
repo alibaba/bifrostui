@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 import React from 'react';
 import { BadgeProps } from './Badge.types';
+import { useBadgeDisplay } from './hooks/useBadgeDisplay';
+import { useBadgeA11y } from './hooks/useBadgeA11y';
 import './index.less';
 
 const prefixCls = 'bui-badge';
@@ -14,7 +16,7 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     color = 'primary',
     max,
     showZero = false,
-    visibility = true,
+    invisible = false,
     variant = 'contained',
     type = 'standard',
     // 无障碍功能相关属性
@@ -26,94 +28,28 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     ...others
   } = props;
 
-  // 优化displayValue逻辑
-  let displayValue: React.ReactNode = null;
-  if (
-    type !== 'dot' &&
-    !Number.isNaN(Number(content)) &&
-    typeof max === 'number'
-  ) {
-    displayValue = Number(content) > Number(max) ? `${max}+` : content;
-  } else if (type !== 'dot') {
-    displayValue = content;
-  }
+  // 使用显示逻辑 Hook
+  const { displayValue, shouldShowBadge } = useBadgeDisplay({
+    content,
+    max,
+    showZero,
+    type,
+  });
 
-  // visibility为false时不渲染
-  if (!visibility) return null;
+  // 使用无障碍功能 Hook
+  const { ariaAttributes, handleKeyDown } = useBadgeA11y({
+    displayValue,
+    type,
+    'aria-label': ariaLabel,
+    'aria-describedby': ariaDescribedby,
+    role,
+    'aria-hidden': ariaHidden,
+    decorative,
+    onClick,
+  });
 
-  // 判断是否需要渲染badge
-  const shouldShowBadge = () => {
-    if (type === 'dot') return true;
-    if (content === 0 && !showZero) return false;
-    return !!content || content === 0;
-  };
-
-  // 无障碍功能：生成可访问性标签
-  const getAccessibilityLabel = (): string | undefined => {
-    // 如果用户提供了自定义标签，直接使用
-    if (ariaLabel) return ariaLabel;
-
-    // 如果是装饰性的或者被隐藏，不需要标签
-    if (decorative || ariaHidden) return undefined;
-
-    // 根据类型和内容生成标签
-    if (type === 'dot') {
-      return '有新通知';
-    }
-
-    if (displayValue !== null) {
-      const numValue = Number(displayValue);
-      if (!Number.isNaN(numValue)) {
-        if (numValue === 0) return '无通知';
-        if (numValue === 1) return '1条通知';
-        if (String(displayValue).includes('+')) {
-          return `超过${String(displayValue).replace('+', '')}条通知`;
-        }
-        return `${displayValue}条通知`;
-      }
-      return `通知：${displayValue}`;
-    }
-
-    return undefined;
-  };
-
-  // 无障碍功能：确定最终的ARIA属性
-  const getAriaAttributes = () => {
-    const accessibilityLabel = getAccessibilityLabel();
-
-    // 如果是装饰性的，设置为presentation角色并隐藏
-    if (decorative) {
-      return {
-        role: 'presentation',
-        'aria-hidden': true,
-      };
-    }
-
-    // 如果明确设置为隐藏
-    if (ariaHidden) {
-      return {
-        'aria-hidden': true,
-      };
-    }
-
-    return {
-      role,
-      'aria-label': accessibilityLabel,
-      'aria-describedby': ariaDescribedby,
-    };
-  };
-
-  // 获取ARIA属性
-  const ariaAttributes = getAriaAttributes();
-
-  // 处理键盘事件以支持无障碍访问
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (onClick && (event.key === 'Enter' || event.key === ' ')) {
-      event.preventDefault();
-      // 先转换为unknown再转换为目标类型
-      onClick(event as unknown as React.MouseEvent<HTMLDivElement>);
-    }
-  };
+  // invisible为true时不渲染
+  if (invisible) return null;
 
   return (
     <div
@@ -127,7 +63,7 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
       ref={ref}
       {...others}
     >
-      {shouldShowBadge() && (
+      {shouldShowBadge && (
         <div
           className={clsx(
             `${prefixCls}-${color}`,

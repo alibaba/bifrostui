@@ -181,7 +181,7 @@ export default () => {
 
 ## 显示控制
 
-Badge 提供了 `showZero` 和 `visibility` 属性来控制徽章的显示。
+Badge 提供了 `showZero` 和 `invisible` 属性来控制徽章的显示。
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
@@ -200,7 +200,7 @@ export default () => {
       <Badge content={0} showZero={false}>
         <Avatar src="//perico.damai.cn/userheadphotos/927551/185510204.jpg" />
       </Badge>
-      <Badge content={10} visibility>
+      <Badge content={10} invisible={false}>
         <Avatar src="//perico.damai.cn/userheadphotos/927551/185510204.jpg" />
       </Badge>
     </Stack>
@@ -218,7 +218,7 @@ export default () => {
 | color      | 徽章主题色                   | `primary` ｜ `info` ｜ `success` ｜ `warning` ｜ `danger` | `primary`   |
 | max        | 数字徽章的最大值             | number                                                    | -           |
 | showZero   | content为0时是否展示         | boolean                                                   | false       |
-| visibility | 是否展示badge                | boolean                                                   | true        |
+| invisible  | 是否隐藏badge                | boolean                                                   | false       |
 | variant    | 徽章类型                     | `contained` ｜`outlined`                                  | `contained` |
 | type       | 徽章形状                     | `dot`｜`standard`｜`bubble`                               | `standard`  |
 
