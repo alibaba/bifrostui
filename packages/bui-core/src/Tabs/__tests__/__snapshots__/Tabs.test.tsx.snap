@@ -28,17 +28,15 @@ exports[`Tabs > test with TabPanel > should be active by \`value\` property 1`] 
         style="transition: transform 0.3s ease-in-out; transform: translate(0px, 0px);"
       />
       <div
-        aria-controls="bui-tabpanel-fruits"
         aria-disabled="false"
         aria-selected="false"
         class="bui-tab"
         role="tab"
-        tabindex="-1"
+        tabindex="0"
       >
         水果
       </div>
       <div
-        aria-controls="bui-tabpanel-vegetables"
         aria-disabled="false"
         aria-selected="true"
         class="bui-tab bui-tab-active"
@@ -48,12 +46,11 @@ exports[`Tabs > test with TabPanel > should be active by \`value\` property 1`] 
         蔬菜
       </div>
       <div
-        aria-controls="bui-tabpanel-animals"
         aria-disabled="false"
         aria-selected="false"
         class="bui-tab"
         role="tab"
-        tabindex="-1"
+        tabindex="0"
       >
         动物
       </div>

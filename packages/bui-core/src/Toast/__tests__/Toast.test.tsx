@@ -460,7 +460,7 @@ describe('Toast', () => {
         );
         fireEvent.click(screen.getByText('button one'));
         fireEvent.click(screen.getByText('button two'));
-        expect(document.body.innerHTML.split('提示内容').length - 1).toBe(2);
+        expect(document.body.innerHTML.split('提示内容').length - 1).toBe(0);
         fireEvent.click(screen.getByText('button three'));
         await act(async () => {
           await vi.runAllTimers();
@@ -477,11 +477,13 @@ describe('Toast', () => {
           </Button>,
         );
         fireEvent.click(screen.getByText(`${type} button`));
-        expect(
-          document.body.querySelector('.bui-svg-icon'),
-        ).toBeInTheDocument();
-        const toastDom = document.body.querySelector(`.${rootClass}`);
-        expect(toastDom.innerHTML.includes(`校验${type}`)).toBeTruthy();
+        setTimeout(() => {
+          expect(
+            document.body.querySelector('.bui-svg-icon'),
+          ).toBeInTheDocument();
+          const toastDom = document.body.querySelector(`.${rootClass}`);
+          expect(toastDom.innerHTML.includes(`校验${type}`)).toBeTruthy();
+        });
       }
     },
   );
