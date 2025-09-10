@@ -100,6 +100,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     handleFocusTrap,
     trapFocus,
     tipRef,
+    childrenRef,
   });
 
   if (!title && !content) return null;

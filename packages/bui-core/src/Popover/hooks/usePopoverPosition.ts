@@ -87,7 +87,7 @@ export const usePopoverPosition = ({
       setArrowLocation(newArrowLocation);
     }
     setToolStyles(styles as React.CSSProperties);
-  }, 100);
+  }, 16);
 
   useEffect(() => {
     if (!isOpen) {
