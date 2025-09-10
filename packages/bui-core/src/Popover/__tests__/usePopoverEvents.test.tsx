@@ -55,6 +55,7 @@ describe('usePopoverEvents', () => {
     handleFocusTrap: vi.fn(),
     trapFocus: false,
     tipRef: createMockRef(null),
+    childrenRef: createMockRef(null),
   };
 
   beforeEach(() => {
@@ -141,6 +142,21 @@ describe('usePopoverEvents', () => {
 
       // Should bind resize event on window when not mini (isMini is mocked as false)
       expect(mockAddEventListener).toHaveBeenCalledWith('resize', defaultProps.onMounted);
+    });
+
+    it('should bind scroll event when not mini', () => {
+      const mockTipElement = document.createElement('div') as HTMLDivElement;
+      const tipRef = createMockRef(mockTipElement);
+
+      renderHook(() => usePopoverEvents({
+        ...defaultProps,
+        tipRef,
+        isOpen: false,
+        trigger: 'click',
+      }));
+
+      // Should bind scroll event on window when not mini (isMini is mocked as false)
+      expect(mockAddEventListener).toHaveBeenCalledWith('scroll', defaultProps.onMounted, true);
     });
 
     it('should not bind click events for hover trigger', () => {
