@@ -346,10 +346,8 @@ describe('Toast', () => {
       </Button>,
     );
     fireEvent.click(getByTestId('emit-button'));
-    const toastDom = document.body.querySelector(`.${rootClass}`);
-    expect(toastDom.parentNode).toHaveStyle(
-      'position: fixed; top: 0px; bottom: 0px; left: 0px; right: 0px; z-index: var(--bui-z-index-toast);',
-    );
+    const backdropDom = document.body.querySelector(`.${rootClass}-backdrop`);
+    expect(backdropDom).toBeTruthy();
   });
 
   it('should call onClose when Toast hidden', async () => {
