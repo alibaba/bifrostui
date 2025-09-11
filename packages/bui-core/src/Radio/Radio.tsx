@@ -25,6 +25,10 @@ const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
     children,
     ...others
   } = props;
+  // 无障碍支持
+  const ariaProps = {
+    ...(disabled && { 'aria-disabled': disabled }),
+  };
   const groupContext = useContext(RadioContext);
   let validDefaultChecked = defaultChecked;
   let validChecked = checked;
@@ -106,6 +110,7 @@ const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
         name={name}
         checked={radioChecked}
         disabled={radioDisabled}
+        {...ariaProps}
         {...inputProps}
         onChange={handleChange}
         className={clsx(`${prefixCls}-input`, inputProps?.className)}
