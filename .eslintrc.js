@@ -54,7 +54,14 @@ module.exports = {
     },
     // 每个markdown文档中的代码块都有个虚拟文件名，针对[```tsx,```ts,```jsx,```js]代码块配置校验规则
     {
-      files: ['**/*.md/*.tsx', '**/*.md/*.ts', '**/*.md/*.jsx', '**/*.md/*.js'],
+      files: [
+        '**/*.md/*.tsx',
+        '**/*.md/*.ts',
+        '**/*.md/*.jsx',
+        '**/*.md/*.js',
+        '**/*.test.{ts,tsx}',
+        '**/__tests__/**/*.{ts,tsx}',
+      ],
       rules: {
         'import/newline-after-import': 0,
         'react/react-in-jsx-scope': 0,
@@ -84,8 +91,8 @@ module.exports = {
       'warn',
       { functions: false, classes: true, variables: true },
     ],
-    "no-shadow": "off",
-    "@typescript-eslint/no-shadow": "error",
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'error',
     'no-redeclare': 'error',
     'no-multi-assign': 'error',
     'no-dupe-class-members': 'error',
@@ -134,8 +141,8 @@ module.exports = {
     'import/no-cycle': ['warn', { maxDepth: Infinity }],
     'import/prefer-default-export': 'off',
     'no-extra-boolean-cast': 'warn',
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": [2, { vars: 'all', args: 'none' }],
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': [2, { vars: 'all', args: 'none' }],
     'react/jsx-no-undef': 'error',
     'react/jsx-uses-vars': 'error',
     'react/jsx-uses-react': 'error',
