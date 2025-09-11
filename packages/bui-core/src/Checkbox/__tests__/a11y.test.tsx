@@ -1,13 +1,13 @@
 import { getCustomDemoCodesFromFile, accessibilityDemoTest } from 'testing';
 
 /**
- * Input 组件无障碍测试：
+ * Checkbox 组件无障碍测试：
  *  基于自定义 Demo 组件的测试（新增方式）
  */
 
 // 2. 基于自定义 Demo 组件的测试
 getCustomDemoCodesFromFile(
-  'Input',
+  'Checkbox',
   (params) => {
     const {
       demoComponent,
@@ -35,38 +35,22 @@ getCustomDemoCodesFromFile(
         detailedErrorReporting: true,
         // 自定义无障碍检查
         customA11yChecks: (container) => {
-          // 验证 input 元素存在
-          const input = container.querySelector('input');
-          expect(input).not.toBeNull();
-          // 验证 input 元素有正确的类型
-          if (input) {
-            const type = input.getAttribute('type');
-            expect(type).toBe('text');
+          // 验证 checkbox 元素存在
+          const checkbox = container.querySelector('input[type="checkbox"]');
+          expect(checkbox).not.toBeNull();
+          // 验证 checkbox 元素有正确的类型
+          if (checkbox) {
+            const type = checkbox.getAttribute('type');
+            expect(type).toBe('checkbox');
           }
           // 验证禁用状态，有正确的 aria-disabled 属性
-          if (input && input.hasAttribute('disabled')) {
-            const ariaDisabled = input.getAttribute('aria-disabled');
+          if (checkbox && checkbox.hasAttribute('disabled')) {
+            const ariaDisabled = checkbox.getAttribute('aria-disabled');
             expect(ariaDisabled).toBe('true');
           }
-          // 验证必填，有正确的 aria-required 属性
-          if (input && input.hasAttribute('required')) {
-            const ariaRequired = input.getAttribute('aria-required');
-            expect(ariaRequired).toBe('true');
-          }
-          // 验证只读，有正确的 aria-readonly 属性
-          if (input && input.hasAttribute('readonly')) {
-            const ariaReadonly = input.getAttribute('aria-readonly');
-            expect(ariaReadonly).toBe('true');
-          }
-          // 验证占位内容，有正确的 aria-placeholder 属性
-          if (input && input.hasAttribute('placeholder')) {
-            const placeholder = input.getAttribute('placeholder');
-            const ariaPlaceholder = input.getAttribute('aria-placeholder');
-            expect(placeholder).toEqual(ariaPlaceholder);
-          }
           // 验证输入框有可访问的名称， aria-label 属性
-          const ariaLabel = input.getAttribute('aria-label');
-          if (input && ariaLabel) {
+          const ariaLabel = checkbox.getAttribute('aria-label');
+          if (checkbox && ariaLabel) {
             expect(ariaLabel).toBeTruthy();
           }
         },
@@ -86,5 +70,5 @@ getCustomDemoCodesFromFile(
       finishCallback,
     );
   },
-  [], // 如需跳过特定的 demo，例如[''basicInputDemo']
+  [], // 如需跳过特定的 demo，例如[''basicCheckboxDemo']
 );
