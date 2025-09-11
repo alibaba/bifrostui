@@ -158,6 +158,13 @@ export default () => {
 };
 ```
 
+## Accessibility
+
+默认无障碍属性支持如下：
+
+- 当属性 `disabled=true` 时，会自动添加 aria-disabled 属性
+- 更多无障碍属性，可通过 `inputProps` 属性设置，如 inputProps={{ 'aria-label': 'Switch label' }}
+
 ## API
 
 | 属性              | 说明                             | 类型                                                          | 默认值    |
