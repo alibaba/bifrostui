@@ -25,6 +25,11 @@ const Switch = forwardRef<HTMLDivElement, SwitchProps>(
     },
     ref,
   ) => {
+    // 无障碍支持
+    const ariaProps = {
+      ...(disabled && { 'aria-disabled': disabled }),
+    };
+
     const [switchChecked, triggerChange] = useValue({
       value: checked,
       defaultValue: !!defaultChecked,
@@ -63,6 +68,7 @@ const Switch = forwardRef<HTMLDivElement, SwitchProps>(
           name={name}
           checked={switchChecked}
           disabled={disabled}
+          {...ariaProps}
           {...inputProps}
           onChange={handleChange}
           className={clsx(`${prefixCls}-input`, inputProps?.className)}
