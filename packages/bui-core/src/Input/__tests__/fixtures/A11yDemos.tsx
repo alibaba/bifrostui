@@ -18,7 +18,19 @@ export const basicInputDemo = () => {
   );
 };
 
-// Demo 2: 必填的 Input
+// Demo 2: 禁用的 Input
+export const disabledInputDemo = () => {
+  return (
+    <div>
+      <label>
+        First name:
+        <Input placeholder="请输入内容" disabled />
+      </label>
+    </div>
+  );
+};
+
+// Demo 3: 必填的 Input
 export const requiredInputDemo = () => {
   return (
     <div>
@@ -30,7 +42,7 @@ export const requiredInputDemo = () => {
   );
 };
 
-// Demo 3: 只读的 Input
+// Demo 4: 只读的 Input
 export const readOnlyInputDemo = () => {
   return (
     <div>
@@ -42,8 +54,20 @@ export const readOnlyInputDemo = () => {
   );
 };
 
-// Demo 4: 带 aria-label 的 Input
-export const ariaLabelTextAreaDemo = () => {
+// Demo 5: 占位内容 的 Input
+export const placeholderInputDemo = () => {
+  return (
+    <div>
+      <label>
+        First name:
+        <Input placeholder="请输入内容" />
+      </label>
+    </div>
+  );
+};
+
+// Demo 6: 带 aria-label 的 Input
+export const ariaLabelInputDemo = () => {
   return (
     <div>
       <label>
@@ -60,7 +84,9 @@ export const ariaLabelTextAreaDemo = () => {
 // 默认导出所有 demo
 export default {
   basicInputDemo,
+  disabledInputDemo,
   requiredInputDemo,
   readOnlyInputDemo,
-  ariaLabelTextAreaDemo,
+  placeholderInputDemo,
+  ariaLabelInputDemo,
 };

@@ -25,6 +25,11 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
     children,
     ...others
   } = props;
+  // 无障碍支持
+  const ariaProps = {
+    ...(disabled && { 'aria-disabled': disabled }),
+  };
+
   const groupContext = useContext(CheckboxContext);
   let validDefaultChecked = defaultChecked;
   let validChecked = checked;
@@ -87,6 +92,7 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
         name={name}
         checked={checkboxChecked}
         disabled={checkboxDisabled}
+        {...ariaProps}
         {...inputProps}
         onChange={handleChange}
         className={clsx(`${prefixCls}-input`, inputProps?.className)}
