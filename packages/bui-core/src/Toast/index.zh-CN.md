@@ -129,7 +129,6 @@ export default () => {
           onClick={() => {
             toast({
               message: '提示内容: hook-container',
-              duration: 0,
               container: document.getElementById('hook-container'),
             });
           }}
