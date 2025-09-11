@@ -209,24 +209,26 @@ export function useTooltip(
   useEffect(() => {
     const bindEvent = () => {
       if (!openStatus) return;
-      if (!controlByUser && shouldListenGlobalClick()) {
+      if (!controlByUser && shouldListenGlobalClick() && !isMini) {
         document.addEventListener('click', clickEventHandler);
       }
       if (!isMini) {
         window.addEventListener('resize', onMounted);
       }
-      if (isOpen) {
+      if (isOpen && !isMini) {
         document.addEventListener('keydown', handleKeyDown);
       }
     };
     const unbindEvent = () => {
-      if (!controlByUser && shouldListenGlobalClick()) {
+      if (!controlByUser && shouldListenGlobalClick() && !isMini) {
         document.removeEventListener('click', clickEventHandler);
       }
       if (!isMini) {
         window.removeEventListener('resize', onMounted);
       }
-      document.removeEventListener('keydown', handleKeyDown);
+      if (!isMini) {
+        document.removeEventListener('keydown', handleKeyDown);
+      }
     };
 
     bindEvent();
