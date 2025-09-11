@@ -6,7 +6,7 @@ import { PopoverProps } from '../Popover.types';
 const getScrollParents = (element: Element): Element[] => {
   const scrollParents: Element[] = [];
   let parent = element.parentElement;
-  
+
   while (parent && parent !== document.body) {
     const { overflow, overflowX, overflowY } = getComputedStyle(parent);
     if (/auto|scroll|overlay|hidden/.test(overflow + overflowX + overflowY)) {
@@ -14,7 +14,7 @@ const getScrollParents = (element: Element): Element[] => {
     }
     parent = parent.parentElement;
   }
-  
+
   return scrollParents;
 };
 
@@ -67,38 +67,41 @@ export const usePopoverEvents = ({
   useEffect(() => {
     let scrollParents: Element[] = [];
     let resizeObserver: ResizeObserver | null = null;
-    
+
     const bindEvent = () => {
       // 只有当tipRef存在时才绑定任何事件
       if (!tipRef.current) return;
-      
+
       if (
         !controlByUser &&
         trigger !== 'none' &&
         trigger !== 'hover' &&
-        !(trigger?.length === 1 && trigger?.[0] === 'hover')
+        !(trigger?.length === 1 && trigger?.[0] === 'hover') &&
+        !isMini
       ) {
         document.addEventListener('click', clickEventHandler);
       }
-      
+
       if (isOpen) {
-        document.addEventListener('keydown', handleKeyDown);
-        if (trapFocus) {
-          document.addEventListener('keydown', handleFocusTrap);
+        if (!isMini) {
+          document.addEventListener('keydown', handleKeyDown);
+          if (trapFocus) {
+            document.addEventListener('keydown', handleFocusTrap);
+          }
         }
       }
-      
+
       if (!isMini) {
         window.addEventListener('resize', onMounted);
         window.addEventListener('scroll', onMounted, true);
-        
+
         // 绑定所有滚动父元素的scroll事件
         if (childrenRef.current) {
           scrollParents = getScrollParents(childrenRef.current);
-          scrollParents.forEach(parent => {
+          scrollParents.forEach((parent) => {
             parent.addEventListener('scroll', onMounted);
           });
-          
+
           // 只有在打开时才启用ResizeObserver
           if (isOpen && typeof ResizeObserver !== 'undefined') {
             resizeObserver = new ResizeObserver(() => {
@@ -107,15 +110,15 @@ export const usePopoverEvents = ({
                 onMounted();
               }, 0);
             });
-            
+
             // 观察目标元素
             resizeObserver.observe(childrenRef.current);
-            
+
             // 观察所有滚动父元素
-            scrollParents.forEach(parent => {
+            scrollParents.forEach((parent) => {
               resizeObserver!.observe(parent);
             });
-            
+
             // 观察document.body
             resizeObserver.observe(document.body);
           }
@@ -128,28 +131,32 @@ export const usePopoverEvents = ({
         !controlByUser &&
         trigger !== 'none' &&
         trigger !== 'hover' &&
-        !(trigger?.length === 1 && trigger?.[0] === 'hover')
+        !(trigger?.length === 1 && trigger?.[0] === 'hover') &&
+        !isMini
       ) {
         document.removeEventListener('click', clickEventHandler);
       }
       if (!isMini) {
         window.removeEventListener('resize', onMounted);
         window.removeEventListener('scroll', onMounted, true);
-        
+
         // 解绑所有滚动父元素的scroll事件
-        scrollParents.forEach(parent => {
+        scrollParents.forEach((parent) => {
           parent.removeEventListener('scroll', onMounted);
         });
-        
+
         // 清理ResizeObserver
         if (resizeObserver) {
           resizeObserver.disconnect();
           resizeObserver = null;
         }
-      }
-      document.removeEventListener('keydown', handleKeyDown);
-      if (trapFocus) {
-        document.removeEventListener('keydown', handleFocusTrap);
+
+        if (!isMini) {
+          document.removeEventListener('keydown', handleKeyDown);
+          if (trapFocus) {
+            document.removeEventListener('keydown', handleFocusTrap);
+          }
+        }
       }
     };
 
@@ -157,7 +164,18 @@ export const usePopoverEvents = ({
     return () => {
       unbindEvent();
     };
-  }, [isOpen, handleKeyDown, handleFocusTrap, trapFocus, controlByUser, trigger, onHide, onMounted, tipRef, childrenRef]);
+  }, [
+    isOpen,
+    handleKeyDown,
+    handleFocusTrap,
+    trapFocus,
+    controlByUser,
+    trigger,
+    onHide,
+    onMounted,
+    tipRef,
+    childrenRef,
+  ]);
 
   let triggerEventOption: Record<string, unknown> | undefined;
   if (!controlByUser && trigger !== 'none') {
