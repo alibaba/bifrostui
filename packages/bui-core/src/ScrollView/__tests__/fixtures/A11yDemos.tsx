@@ -1,198 +1,256 @@
 import React from 'react';
 import ScrollView from '../../ScrollView';
 
-/**
- * 自定义 ScrollView 组件 Demo 集合
- * 这个文件包含多个测试 demo，展示如何使用 getCustomDemoCodesFromFile 进行无障碍测试
- * 文件名必须是 A11yDemos.tsx（固定约定）
- */
-
-// Demo 1: 基础 ScrollView 组件
-export const basicScrollViewDemo = () => {
+// Basic ScrollView demo for testing
+export const BasicScrollViewDemo: React.FC = () => {
   return (
-    <div>
-      <ScrollView scrollY style={{ height: '300px' }}>
-        <div>基础滚动视图内容</div>
-        <div>更多内容项目</div>
-        <div>长列表项目</div>
-      </ScrollView>
-    </div>
-  );
-};
-
-// Demo 2: 带 ARIA 标签的 ScrollView
-export const ariaScrollViewDemo = () => {
-  return (
-    <div>
-      <h3 id="scroll-title">新闻列表</h3>
-      <ScrollView
-        scrollY
-        style={{ height: '300px' }}
-        aria-label="新闻滚动区域"
-        aria-labelledby="scroll-title"
-        role="region"
-      >
-        <div role="article">新闻标题 1</div>
-        <div role="article">新闻标题 2</div>
-        <div role="article">新闻标题 3</div>
-      </ScrollView>
-    </div>
-  );
-};
-
-// Demo 3: 键盘导航 ScrollView
-export const keyboardNavigationDemo = () => {
-  return (
-    <div>
-      <ScrollView
-        scrollY
-        style={{ height: '300px' }}
-        tabIndex={0}
-        aria-label="可键盘导航的滚动区域"
-      >
-        <div>使用箭头键进行滚动</div>
-        <div>支持 Page Up/Page Down</div>
-        <div>支持 Home/End 键</div>
-        <div>支持 Space 键滚动</div>
-      </ScrollView>
-    </div>
-  );
-};
-
-// Demo 4: 自动焦点 ScrollView
-export const autoFocusScrollViewDemo = () => {
-  return (
-    <div>
-      <ScrollView
-        scrollY
-        style={{ height: '300px' }}
-        autoFocus
-        aria-label="自动获取焦点的滚动区域"
-      >
-        <div>这个滚动视图会自动获取焦点</div>
-        <div>便于键盘用户快速访问</div>
-      </ScrollView>
-    </div>
-  );
-};
-
-// Demo 5: 水平滚动 ScrollView
-export const horizontalScrollViewDemo = () => {
-  return (
-    <div>
-      <ScrollView
-        scrollX
-        style={{ width: '300px' }}
-        aria-label="水平滚动区域"
-        tabIndex={0}
-      >
-        <div style={{ display: 'flex', width: '600px' }}>
-          <div style={{ minWidth: '100px', marginRight: '10px' }}>项目 1</div>
-          <div style={{ minWidth: '100px', marginRight: '10px' }}>项目 2</div>
-          <div style={{ minWidth: '100px', marginRight: '10px' }}>项目 3</div>
-          <div style={{ minWidth: '100px', marginRight: '10px' }}>项目 4</div>
+    <ScrollView scrollY style={{ height: '300px', width: '100%' }}>
+      {Array.from({ length: 50 }, (_, index) => (
+        <div key={index} style={{ padding: '10px', borderBottom: '1px solid #eee' }}>
+          Item {index + 1}
         </div>
-      </ScrollView>
-    </div>
+      ))}
+    </ScrollView>
   );
 };
 
-// Demo 6: 复杂交互 ScrollView
-export const complexInteractionDemo = () => {
-  const ComplexInteractionDemo = () => {
-    const [scrollPosition, setScrollPosition] = React.useState(0);
-
-    const handleScroll = (event: React.SyntheticEvent<HTMLDivElement>) => {
-      setScrollPosition((event.target as HTMLDivElement).scrollTop);
-    };
-
-    return (
-      <div>
-        <p>当前滚动位置: {scrollPosition}px</p>
-        <ScrollView
-          scrollY
-          style={{ height: '300px' }}
-          onScroll={handleScroll}
-          aria-label="交互式滚动区域"
-          tabIndex={0}
-        >
-          <div>交互式滚动内容</div>
-          <div>实时显示滚动位置</div>
-          <div style={{ height: '200px' }}>长内容区域</div>
-        </ScrollView>
+// Horizontal ScrollView demo
+export const HorizontalScrollViewDemo: React.FC = () => {
+  return (
+    <ScrollView scrollX style={{ width: '300px' }}>
+      <div style={{ display: 'flex', width: 'max-content' }}>
+        {Array.from({ length: 20 }, (_, index) => (
+          <div 
+            key={index} 
+            style={{ 
+              minWidth: '100px', 
+              height: '80px', 
+              margin: '0 5px',
+              padding: '10px',
+              backgroundColor: '#f0f0f0',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            Item {index + 1}
+          </div>
+        ))}
       </div>
-    );
+    </ScrollView>
+  );
+};
+
+// ScrollView with scroll events demo
+export const ScrollEventsDemo: React.FC = () => {
+  const [scrollInfo, setScrollInfo] = React.useState({
+    scrollTop: 0,
+    atTop: false,
+    atBottom: false,
+  });
+
+  const handleScroll = (e: React.SyntheticEvent<HTMLDivElement>) => {
+    const event = e as React.SyntheticEvent<HTMLDivElement, Event> & {
+      detail?: {
+        scrollTop: number;
+        scrollHeight: number;
+        offsetHeight?: number;
+      };
+    };
+    
+    const scrollTop = event.detail?.scrollTop || 0;
+    setScrollInfo(prev => ({
+      ...prev,
+      scrollTop,
+    }));
   };
 
-  return <ComplexInteractionDemo />;
-};
+  const handleScrollToUpper = () => {
+    setScrollInfo(prev => ({ ...prev, atTop: true, atBottom: false }));
+  };
 
-// Demo 7: 双向滚动 ScrollView
-export const bidirectionalScrollViewDemo = () => {
+  const handleScrollToLower = () => {
+    setScrollInfo(prev => ({ ...prev, atTop: false, atBottom: true }));
+  };
+
   return (
     <div>
-      <ScrollView
-        scrollX
-        scrollY
-        style={{ width: '300px', height: '200px' }}
-        aria-label="双向滚动区域"
-        tabIndex={0}
+      <div data-testid="scroll-info" style={{ marginBottom: '10px', padding: '10px', backgroundColor: '#f9f9f9' }}>
+        <p>Scroll Top: {scrollInfo.scrollTop}</p>
+        <p>At Top: {scrollInfo.atTop ? 'Yes' : 'No'}</p>
+        <p>At Bottom: {scrollInfo.atBottom ? 'Yes' : 'No'}</p>
+      </div>
+      <ScrollView 
+        scrollY 
+        style={{ height: '200px', width: '100%' }}
+        onScroll={handleScroll}
+        onScrollToUpper={handleScrollToUpper}
+        onScrollToLower={handleScrollToLower}
+        upperThreshold={30}
+        lowerThreshold={30}
       >
-        <div style={{ width: '500px', height: '400px', padding: '20px' }}>
-          <p>这是一个可以双向滚动的区域</p>
-          <p>内容宽度和高度都超出容器</p>
-          <p>支持水平和垂直方向的键盘导航</p>
-        </div>
+        {Array.from({ length: 30 }, (_, index) => (
+          <div key={index} style={{ padding: '15px', borderBottom: '1px solid #ddd' }}>
+            Scroll Item {index + 1}
+          </div>
+        ))}
       </ScrollView>
     </div>
   );
 };
 
-// Demo 8: 带回调的 ScrollView
-export const callbackScrollViewDemo = () => {
-  const CallbackScrollViewDemo = () => {
-    const [message, setMessage] = React.useState('未触发滚动事件');
+// ScrollView with controlled scroll position
+export const ControlledScrollDemo: React.FC = () => {
+  const [scrollTop, setScrollTop] = React.useState(0);
+  const [scrollIntoView, setScrollIntoView] = React.useState<string>('');
 
-    const handleScrollToUpper = () => {
-      setMessage('已滚动到顶部');
-    };
-
-    const handleScrollToLower = () => {
-      setMessage('已滚动到底部');
-    };
-
-    return (
-      <div>
-        <p>状态: {message}</p>
-        <ScrollView
-          scrollY
-          style={{ height: '200px' }}
-          onScrollToUpper={handleScrollToUpper}
-          onScrollToLower={handleScrollToLower}
-          upperThreshold={50}
-          lowerThreshold={50}
-          aria-label="带回调的滚动区域"
-          tabIndex={0}
-        >
-          <div style={{ height: '100px' }}>顶部内容</div>
-          <div style={{ height: '200px' }}>中间内容</div>
-          <div style={{ height: '100px' }}>底部内容</div>
-        </ScrollView>
-      </div>
-    );
+  const scrollToPosition = (position: number) => {
+    setScrollIntoView('');
+    setScrollTop(position);
   };
 
-  return <CallbackScrollViewDemo />;
+  const scrollToElement = (elementId: string) => {
+    setScrollTop(0);
+    setScrollIntoView(elementId);
+  };
+
+  return (
+    <div>
+      <div style={{ marginBottom: '10px', padding: '10px', backgroundColor: '#f5f5f5' }}>
+        <button 
+          type="button"
+          onClick={() => scrollToPosition(0)}
+          style={{ marginRight: '5px' }}
+        >
+          Top
+        </button>
+        <button 
+          type="button"
+          onClick={() => scrollToPosition(200)}
+          style={{ marginRight: '5px' }}
+        >
+          200px
+        </button>
+        <button 
+          type="button"
+          onClick={() => scrollToElement('item-10')}
+          style={{ marginRight: '5px' }}
+        >
+          Item 10
+        </button>
+        <button 
+          type="button"
+          onClick={() => scrollToElement('item-20')}
+        >
+          Item 20
+        </button>
+      </div>
+      <ScrollView 
+        scrollY 
+        style={{ height: '250px', width: '100%' }}
+        scrollTop={scrollTop}
+        scrollIntoView={scrollIntoView}
+        scrollWithAnimation
+      >
+        {Array.from({ length: 30 }, (_, index) => (
+          <div 
+            key={index} 
+            id={`item-${index + 1}`}
+            style={{ 
+              padding: '20px', 
+              borderBottom: '1px solid #ccc',
+              backgroundColor: (index + 1) % 10 === 0 ? '#e6f3ff' : 'white'
+            }}
+          >
+            Item {index + 1} {(index + 1) % 10 === 0 && '(Highlighted)'}
+          </div>
+        ))}
+      </ScrollView>
+    </div>
+  );
 };
 
-// 默认导出所有 demo
-export default {
-  basicScrollViewDemo,
-  ariaScrollViewDemo,
-  keyboardNavigationDemo,
-  autoFocusScrollViewDemo,
-  horizontalScrollViewDemo,
-  complexInteractionDemo,
-  bidirectionalScrollViewDemo,
-  callbackScrollViewDemo,
+// ScrollView with both directions
+export const BidirectionalScrollDemo: React.FC = () => {
+  return (
+    <ScrollView 
+      scrollX 
+      scrollY 
+      style={{ 
+        width: '300px', 
+        height: '200px', 
+        border: '1px solid #ddd',
+        borderRadius: '4px'
+      }}
+    >
+      <div style={{ 
+        width: '600px', 
+        height: '400px',
+        backgroundImage: 'linear-gradient(45deg, #f0f0f0 25%, transparent 25%), linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f0f0f0 75%), linear-gradient(-45deg, transparent 75%, #f0f0f0 75%)',
+        backgroundSize: '20px 20px',
+        backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px',
+        position: 'relative'
+      }}>
+        <div style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          padding: '20px',
+          backgroundColor: 'white',
+          border: '2px solid #007acc',
+          borderRadius: '8px',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+        }}>
+          <h3 style={{ margin: '0 0 10px 0', color: '#007acc' }}>Scroll in both directions!</h3>
+          <p style={{ margin: 0, color: '#666' }}>This content area is larger than the viewport</p>
+        </div>
+      </div>
+    </ScrollView>
+  );
+};
+
+// ScrollView with custom threshold testing
+export const ThresholdTestDemo: React.FC = () => {
+  const [thresholdEvents, setThresholdEvents] = React.useState<string[]>([]);
+
+  const addEvent = (event: string) => {
+    setThresholdEvents(prev => [...prev.slice(-4), `${new Date().toLocaleTimeString()}: ${event}`]);
+  };
+
+  return (
+    <div>
+      <div data-testid="threshold-events" style={{ 
+        marginBottom: '10px', 
+        padding: '10px', 
+        backgroundColor: '#f0f8ff',
+        minHeight: '80px'
+      }}>
+        <strong>Threshold Events:</strong>
+        {thresholdEvents.map((event, index) => (
+          <div key={index} style={{ fontSize: '12px', color: '#666' }}>{event}</div>
+        ))}
+      </div>
+      <ScrollView 
+        scrollY 
+        style={{ height: '150px', width: '100%' }}
+        upperThreshold={20}
+        lowerThreshold={20}
+        onScrollToUpper={() => addEvent('Reached upper threshold (20px)')}
+        onScrollToLower={() => addEvent('Reached lower threshold (20px)')}
+      >
+        {Array.from({ length: 20 }, (_, index) => (
+          <div key={index} style={{ 
+            padding: '12px', 
+            borderBottom: '1px solid #eee',
+            backgroundColor: index === 0 || index === 19 ? '#fff3cd' : 'white'
+          }}>
+            {index === 0 && 'First Item (Top Threshold Test)'}
+            {index === 19 && 'Last Item (Bottom Threshold Test)'}
+            {index !== 0 && index !== 19 && `Item ${index + 1}`}
+          </div>
+        ))}
+      </ScrollView>
+    </div>
+  );
 };
