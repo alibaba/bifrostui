@@ -56,6 +56,7 @@ const Image = React.forwardRef<HTMLDivElement, ImageProps>(
           className={clsx(`${prefixCls}-default-icon-wrap`, {
             'default-holder': !icon,
           })}
+          aria-hidden="true"
         >
           {icon}
         </div>
@@ -87,7 +88,7 @@ const Image = React.forwardRef<HTMLDivElement, ImageProps>(
           setFailed(true);
           onError?.(e);
         }}
-        alt={alt}
+        alt={alt || ''}
         {...imgProps}
         // @ts-ignore
         style={{ objectFit: fit, ...(imgProps?.style || {}) }}

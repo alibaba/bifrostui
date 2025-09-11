@@ -55,6 +55,10 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
             `${prefixCls}-content-${anchorProp}`,
             contentProps?.className,
           )}
+          role="dialog"
+          aria-modal="true"
+          aria-label={contentProps?.['aria-label'] || 'Drawer'}
+          tabIndex={-1}
         >
           {children}
         </div>

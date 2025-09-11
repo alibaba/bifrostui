@@ -168,6 +168,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             <div
               className={clsx(`${prefixCls}-option-main`)}
               ref={optionMainRef}
+              role="listbox"
+              aria-label="option list"
             >
               {children}
             </div>
@@ -185,6 +187,11 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           [`${prefixCls}-active`]: isOpen,
         })}
         ref={rootRef}
+        role="combobox"
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+        aria-label={others['aria-label'] || 'Select'}
+        tabIndex={disabled ? -1 : 0}
         {...others}
         onClick={handleSelectClick}
       >
@@ -197,6 +204,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             readOnly
             ref={inputRef}
             value={selectValue}
+            aria-hidden="true"
+            tabIndex={-1}
             {...inputProps}
             className={clsx(`${prefixCls}-input`, {
               [inputProps?.className]: inputProps?.className,
