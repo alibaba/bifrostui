@@ -36,6 +36,43 @@ export default () => {
 #### Hooks调用（推荐）
 
 ```tsx
+import React, { createContext, useContext, useState } from 'react';
+import { Stack, Button, Toast, ThemeProvider } from '@bifrostui/react';
+
+const UserContext = createContext(null);
+
+const ToastContent = () => {
+  const user = useContext(UserContext);
+  return <span>你好，{user || '未知用户'}！</span>;
+};
+
+export default () => {
+  const [toast, contextHolder] = Toast.useToast();
+  const [user, setUser] = useState('BUI');
+  const showToastWithContext = () => {
+    toast({
+      message: <ToastContent />,
+    });
+  };
+
+  return (
+    <UserContext.Provider value={user}>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button onClick={showToastWithContext}>toast</Button>
+      </Stack>
+    </UserContext.Provider>
+  );
+};
+```
+
+## 指定渲染容器
+
+可以通过 `container` 指定渲染的父容器。
+
+#### 静态方法
+
+```tsx
 import React from 'react';
 import {
   Stack,
@@ -46,29 +83,29 @@ import {
 } from '@bifrostui/react';
 
 export default () => {
-  const [toast, contextHolder] = Toast.useToast();
   const theme = useTheme();
 
   return (
     <ThemeProvider locale={theme.locale}>
-      {contextHolder}
       <Stack direction="row" spacing="10px">
         <Button
           onClick={() => {
-            toast('提示内容');
+            Toast({
+              message: '提示内容: static-container',
+              container: document.getElementById('static-container'),
+            });
           }}
         >
           toast
         </Button>
       </Stack>
+      <div id="static-container" />
     </ThemeProvider>
   );
 };
 ```
 
-## 指定渲染容器
-
-可以通过 `container` 指定渲染的父容器。
+#### Hooks调用
 
 ```tsx
 import React from 'react';
@@ -91,15 +128,16 @@ export default () => {
         <Button
           onClick={() => {
             toast({
-              message: '提示内容',
-              container: document.getElementById('container'),
+              message: '提示内容: hook-container',
+              duration: 0,
+              container: document.getElementById('hook-container'),
             });
           }}
         >
           toast
         </Button>
       </Stack>
-      <div id="container" />
+      <div id="hook-container" />
     </ThemeProvider>
   );
 };
@@ -334,6 +372,7 @@ export default () => {
               message: '顶部展示',
               position: 'top',
               multiple: true,
+              duration: 5000,
             });
           }}
         >
@@ -345,6 +384,7 @@ export default () => {
               message: '居中展示',
               position: 'center',
               multiple: true,
+              duration: 5000,
             });
           }}
         >
@@ -356,6 +396,7 @@ export default () => {
               message: '底部展示',
               position: 'bottom',
               multiple: false,
+              duration: 5000,
             });
           }}
         >
@@ -547,6 +588,47 @@ export default () => {
 ## 自定义提示样式
 
 可以根据提供的 CSS 变量，以及 `className` 等属性自定义 Toast 样式。
+
+#### 静态方法
+
+```tsx
+import {
+  Stack,
+  Button,
+  Toast,
+  ThemeProvider,
+  useTheme,
+} from '@bifrostui/react';
+import React, { useRef } from 'react';
+
+export default () => {
+  const ref = useRef();
+
+  return (
+    <Stack direction="row" spacing="10px">
+      <Button
+        onClick={() => {
+          Toast({
+            ref,
+            message: '提示内容',
+            className: 'my-toast',
+            style: {
+              '--bui-toast-border-radius': '30px',
+            },
+            onEntered: () => {
+              console.log('ref', ref);
+            },
+          });
+        }}
+      >
+        toast
+      </Button>
+    </Stack>
+  );
+};
+```
+
+#### Hooks调用
 
 ```tsx
 import {

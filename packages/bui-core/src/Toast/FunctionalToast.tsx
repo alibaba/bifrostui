@@ -5,7 +5,9 @@ import React, {
   useRef,
   forwardRef,
   useImperativeHandle,
+  MutableRefObject,
 } from 'react';
+import ReactDOM from 'react-dom';
 import { render, unmount, getRootContainer } from '@bifrostui/utils';
 import ToastView from './Toast';
 import {
@@ -48,12 +50,14 @@ const Toast = (props: ToastProps | string): ToastReturnType => {
   const instance: ToastReturnType = {
     close: () => null,
   };
+  const { container, ...restOptions } = options;
+
   const rootWrapper = document.createElement('div');
-  const rootElement = getRootContainer(options?.container);
+  const rootElement = getRootContainer(container);
   rootElement.appendChild(rootWrapper);
 
   const ToastComponent = () => {
-    const { duration, multiple, onClose, ...others } = options;
+    const { duration, multiple, onClose, ...others } = restOptions;
     const [open, setOpen] = useState(false);
     const fadeTimeout = {
       enter: 350,
@@ -137,65 +141,71 @@ Toast.clear = () => {
   });
 };
 
-const UseToastComponent = forwardRef<ToastReturnType, ToastProps>(
-  (props, ref) => {
-    const options: ToastProps = {
-      ...defaultProps,
-      ...formatProps(props),
+const UseToastComponent = forwardRef<
+  ToastReturnType,
+  // eslint-disable-next-line react/require-default-props
+  Omit<ToastProps, 'ref'> & { domRef?: MutableRefObject<HTMLDivElement> }
+>((props, ref) => {
+  const { domRef = null, ...restProps } = props;
+  const options: ToastProps = {
+    ...defaultProps,
+    ...formatProps(restProps),
+  };
+  const { duration, multiple, onClose, container, ...others } = options;
+  const rootElement = getRootContainer(container);
+  const [open, setOpen] = useState(false);
+  const fadeTimeout = {
+    enter: 350,
+    exit: 150,
+  };
+  const timerRef = useRef<number | null>(null);
+
+  const close = () => {
+    setOpen(false);
+    setTimeout(() => {
+      onClose?.();
+    }, fadeTimeout.exit);
+  };
+
+  useImperativeHandle(ref, () => {
+    return {
+      close,
     };
-    const { duration, multiple, onClose, ...others } = options;
-    const [open, setOpen] = useState(false);
-    const fadeTimeout = {
-      enter: 350,
-      exit: 150,
-    };
-    const timerRef = useRef<number | null>(null);
+  }, [close]);
 
-    const close = () => {
-      setOpen(false);
-      setTimeout(() => {
-        onClose?.();
-      }, fadeTimeout.exit);
-    };
+  useEffect(() => {
+    setOpen(true);
+    if (!multiple) destroyAll();
+    toastCloses.push(close);
 
-    useImperativeHandle(ref, () => {
-      return {
-        close,
-      };
-    }, [close]);
-
-    useEffect(() => {
-      setOpen(true);
-      if (!multiple) destroyAll();
-      toastCloses.push(close);
-
-      if (duration !== 0 && typeof duration === 'number') {
-        timerRef.current = window.setTimeout(() => {
-          close();
-          // 不允许共存的场景下，当前Toast关闭后，应清空toastCloses
-          if (!multiple) {
-            toastCloses = [];
-          }
-        }, duration);
-      }
-
-      return () => {
-        if (timerRef.current) {
-          clearTimeout(timerRef.current);
+    if (duration !== 0 && typeof duration === 'number') {
+      timerRef.current = window.setTimeout(() => {
+        close();
+        // 不允许共存的场景下，当前Toast关闭后，应清空toastCloses
+        if (!multiple) {
+          toastCloses = [];
         }
-      };
-    }, []);
+      }, duration);
+    }
 
-    return (
-      <ToastView
-        {...others}
-        open={open}
-        timeout={fadeTimeout}
-        onClose={close}
-      />
-    );
-  },
-);
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
+
+  return ReactDOM.createPortal(
+    <ToastView
+      {...others}
+      open={open}
+      timeout={fadeTimeout}
+      onClose={close}
+      ref={domRef}
+    />,
+    rootElement,
+  );
+});
 UseToastComponent.displayName = 'UseToastComponent';
 
 const useToast = () => {
@@ -205,19 +215,21 @@ const useToast = () => {
   const createToast = (options: ToastProps) => {
     return new Promise((resolve) => {
       const key = `toast-${Date.now()}-${Math.random()}`;
+      const { ref, ...restOtions } = options;
 
       const onProxyClose = () => {
-        options?.onClose?.();
+        restOtions?.onClose?.();
         setElements((prev) => prev.filter((el) => el.key !== key));
       };
 
       const toastElement = (
         <UseToastComponent
           key={key}
-          {...options}
+          {...restOtions}
           open
           onClose={onProxyClose}
           ref={toastComponentRef}
+          domRef={ref}
         />
       );
       setElements((prev) => [...prev, toastElement]);

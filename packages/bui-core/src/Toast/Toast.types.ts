@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MutableRefObject } from 'react';
 import { FadeProps } from '../Fade/Fade.types';
 
 /**
@@ -52,6 +52,8 @@ export interface ToastProps extends FadeProps {
    * 关闭时的回调函数
    */
   onClose?: () => void;
+  // Toast Div Element
+  ref?: MutableRefObject<HTMLDivElement>;
 }
 
 /**
