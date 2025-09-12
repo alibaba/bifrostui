@@ -60,8 +60,8 @@ export const accessibilityTooltipDemo = () => {
         <button type="button">状态提示</button>
       </Tooltip>
 
-      <Tooltip title="支持键盘触发" keyboardTrigger trigger="click">
-        <button type="button">键盘触发</button>
+      <Tooltip title="支持Escape键关闭" closeOnEscape trigger="click">
+        <button type="button">Escape键关闭</button>
       </Tooltip>
     </div>
   );

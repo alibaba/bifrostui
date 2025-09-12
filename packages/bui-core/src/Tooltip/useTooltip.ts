@@ -20,7 +20,6 @@ export interface UseTooltipParameters {
   onOpenChange?: TooltipProps['onOpenChange'];
   autoFocus?: boolean;
   closeOnEscape?: boolean;
-  keyboardTrigger?: boolean;
   children: React.ReactElement;
   rootRef?: React.Ref<HTMLElement>;
 }
@@ -52,8 +51,7 @@ export function useTooltip(
     trigger = 'click',
     onOpenChange,
     autoFocus = false,
-    closeOnEscape = true,
-    keyboardTrigger = true,
+    closeOnEscape = false,
     children,
     rootRef,
   } = parameters;
@@ -116,23 +114,6 @@ export function useTooltip(
       }
     },
     [closeOnEscape, isOpen, hideTooltip],
-  );
-
-  const handleTriggerKeyDown = useCallback(
-    (event: React.KeyboardEvent) => {
-      if (!keyboardTrigger || controlByUser) return;
-
-      const shouldTrigger =
-        trigger === 'click' ||
-        (Array.isArray(trigger) && trigger.includes('click'));
-
-      if (shouldTrigger && (event.key === 'Enter' || event.key === ' ')) {
-        event.preventDefault();
-        event.stopPropagation();
-        triggerClick(event as unknown as React.MouseEvent);
-      }
-    },
-    [keyboardTrigger, controlByUser, trigger, triggerClick],
   );
 
   useEffect(() => {
@@ -275,7 +256,6 @@ export function useTooltip(
       ref: childrenRef,
       ...triggerEventOption,
       'aria-describedby': isOpen ? tooltipId : undefined,
-      onKeyDown: handleTriggerKeyDown,
     };
 
     // 检查子元素是否是可交互的元素类型，如果是则添加 aria-expanded
@@ -313,7 +293,6 @@ export function useTooltip(
     hideTooltip,
     isOpen,
     tooltipId,
-    handleTriggerKeyDown,
     children,
   ]);
 

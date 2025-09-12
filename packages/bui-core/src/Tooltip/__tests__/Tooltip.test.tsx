@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  isConformant,
-  render,
-  screen,
-  userEvent,
-  fireEvent,
-} from 'testing';
+import { isConformant, render, screen, userEvent, fireEvent } from 'testing';
 import Tooltip from '../index';
 
 const directions = [
@@ -74,7 +68,7 @@ describe('Tooltip', () => {
           <div>children</div>
         </Tooltip>,
       );
-      
+
       const direction = placement.split(/[A-Z]/)[0];
       const $dom = document.querySelector('.bui-tooltip');
       expect($dom).toHaveClass(`tooltip-${direction}`);
@@ -127,7 +121,7 @@ describe('Tooltip', () => {
         <div data-testid="tooltipTestid">children</div>
       </Tooltip>,
     );
-    
+
     const $childrenDom = screen.getByTestId('tooltipTestid');
     fireEvent.mouseEnter($childrenDom);
     fireEvent.mouseLeave($childrenDom);

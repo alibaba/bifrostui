@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderHook, act, fireEvent } from 'testing';
+import { renderHook, act } from 'testing';
 import { useTooltip } from '../useTooltip';
 
 // Mock utils functions
@@ -130,11 +130,10 @@ describe('useTooltip', () => {
         expect.objectContaining({
           ref: expect.any(Object),
           'aria-describedby': undefined,
-          onKeyDown: expect.any(Function),
           onClick: expect.any(Function), // Default trigger is click
         }),
       );
-      
+
       // aria-expanded should not be present for non-interactive elements
       expect(childProps['aria-expanded']).toBeUndefined();
     });
@@ -152,7 +151,7 @@ describe('useTooltip', () => {
           onClick: expect.any(Function),
         }),
       );
-      
+
       // aria-expanded should not be present for non-interactive elements
       expect(childProps['aria-expanded']).toBeUndefined();
     });
@@ -185,14 +184,15 @@ describe('useTooltip', () => {
   describe('State management', () => {
     it('should handle placement changes', () => {
       const { result, rerender } = renderHook(
-        ({ placement }) => useTooltip({ ...defaultParams, placement }),
+        ({ placement }: { placement: 'top' | 'bottomLeft' }) =>
+          useTooltip({ ...defaultParams, placement }),
         { initialProps: { placement: 'top' as const } },
       );
 
       expect(result.current.arrowDirection).toBe('top');
       expect(result.current.arrowLocation).toBe('center');
 
-      rerender({ placement: 'bottomLeft' as const });
+      rerender({ placement: 'bottomLeft' });
 
       expect(result.current.arrowDirection).toBe('bottom');
       expect(result.current.arrowLocation).toBe('left');
@@ -204,78 +204,6 @@ describe('useTooltip', () => {
       expect(result.current.toolStyles).toEqual({
         visibility: 'hidden',
       });
-    });
-  });
-
-  describe('Event handling', () => {
-    it('should handle keyboard events for trigger elements', () => {
-      const onOpenChange = vi.fn();
-      const { result } = renderHook(() =>
-        useTooltip({ ...defaultParams, onOpenChange }),
-      );
-
-      const childProps = result.current.getChildProps();
-      const keyboardEvent = new KeyboardEvent('keydown', { key: 'Enter' });
-
-      act(() => {
-        childProps.onKeyDown(keyboardEvent);
-      });
-
-      expect(onOpenChange).toHaveBeenCalledWith(
-        expect.any(Object),
-        { open: true }
-      );
-    });
-
-    it('should handle space key for trigger elements', () => {
-      const onOpenChange = vi.fn();
-      const { result } = renderHook(() =>
-        useTooltip({ ...defaultParams, onOpenChange }),
-      );
-
-      const childProps = result.current.getChildProps();
-      const keyboardEvent = new KeyboardEvent('keydown', { key: ' ' });
-
-      act(() => {
-        childProps.onKeyDown(keyboardEvent);
-      });
-
-      expect(onOpenChange).toHaveBeenCalledWith(
-        expect.any(Object),
-        { open: true }
-      );
-    });
-
-    it('should not trigger on keyboard when keyboardTrigger is false', () => {
-      const onOpenChange = vi.fn();
-      const { result } = renderHook(() =>
-        useTooltip({ ...defaultParams, onOpenChange, keyboardTrigger: false }),
-      );
-
-      const childProps = result.current.getChildProps();
-      const keyboardEvent = new KeyboardEvent('keydown', { key: 'Enter' });
-
-      act(() => {
-        childProps.onKeyDown(keyboardEvent);
-      });
-
-      expect(onOpenChange).not.toHaveBeenCalled();
-    });
-
-    it('should not trigger keyboard events in controlled mode', () => {
-      const onOpenChange = vi.fn();
-      const { result } = renderHook(() =>
-        useTooltip({ ...defaultParams, open: false, onOpenChange }),
-      );
-
-      const childProps = result.current.getChildProps();
-      const keyboardEvent = new KeyboardEvent('keydown', { key: 'Enter' });
-
-      act(() => {
-        childProps.onKeyDown(keyboardEvent);
-      });
-
-      expect(onOpenChange).not.toHaveBeenCalled();
     });
   });
 
@@ -330,10 +258,9 @@ describe('useTooltip', () => {
         document.dispatchEvent(escapeEvent);
       });
 
-      expect(onOpenChange).toHaveBeenCalledWith(
-        expect.any(Object),
-        { open: false }
-      );
+      expect(onOpenChange).toHaveBeenCalledWith(expect.any(Object), {
+        open: false,
+      });
     });
 
     it('should not close on escape when closeOnEscape is false', () => {
@@ -456,7 +383,9 @@ describe('useTooltip', () => {
 
       // Open the tooltip
       act(() => {
-        const childProps = result.current.getChildProps();
+        const childProps = result.current.getChildProps() as {
+          onClick?: (event: MouseEvent) => void;
+        };
         const clickEvent = new MouseEvent('click');
         childProps.onClick?.(clickEvent);
       });

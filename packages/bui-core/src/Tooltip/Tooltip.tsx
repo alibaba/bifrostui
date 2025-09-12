@@ -24,8 +24,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledby,
     autoFocus = false,
-    closeOnEscape = true,
-    keyboardTrigger = true,
+    closeOnEscape = false,
     'aria-hidden': ariaHidden = false,
     ...others
   } = props;
@@ -48,7 +47,6 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     onOpenChange,
     autoFocus,
     closeOnEscape,
-    keyboardTrigger,
     children,
     rootRef: ref,
   });

@@ -295,9 +295,6 @@ import React from 'react';
 export default () => {
   return (
     <Stack spacing={2}>
-      <Tooltip title="支持 Enter 键触发" keyboardTrigger>
-        <Button>按 Enter 或空格键触发</Button>
-      </Tooltip>
       <Tooltip title="支持 Esc 键关闭" closeOnEscape>
         <Button>打开后按 Esc 键关闭</Button>
       </Tooltip>
@@ -348,8 +345,7 @@ export default () => {
 | aria-labelledby   | 引用描述元素的 ID              | string                                              | -         |
 | aria-hidden       | 是否对屏幕阅读器隐藏           | boolean                                             | false     |
 | autoFocus         | 是否自动获取焦点               | boolean                                             | false     |
-| closeOnEscape     | 是否支持 Esc 键关闭            | boolean                                             | true      |
-| keyboardTrigger   | 是否支持键盘触发               | boolean                                             | true      |
+| closeOnEscape     | 是否支持 Esc 键关闭            | boolean                                             | false     |
 
 ### TooltipPlacement
 
