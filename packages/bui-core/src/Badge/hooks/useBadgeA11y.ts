@@ -7,7 +7,6 @@ export interface UseBadgeA11yProps {
   'aria-describedby'?: string;
   role?: 'status' | 'img' | 'presentation';
   'aria-hidden'?: boolean;
-  decorative?: boolean;
 }
 
 export interface UseBadgeA11yResult {
@@ -31,15 +30,14 @@ export const useBadgeA11y = ({
   'aria-describedby': ariaDescribedby,
   role = 'status',
   'aria-hidden': ariaHidden = false,
-  decorative = false,
 }: UseBadgeA11yProps): UseBadgeA11yResult => {
   // 生成可访问性标签
   const accessibilityLabel = useMemo((): string | undefined => {
     // 如果用户提供了自定义标签，直接使用
     if (ariaLabel) return ariaLabel;
 
-    // 如果是装饰性的或者被隐藏，不需要标签
-    if (decorative || ariaHidden) return undefined;
+    // 如果被隐藏，不需要标签
+    if (ariaHidden) return undefined;
 
     // 根据类型和内容生成标签
     if (type === 'dot') {
@@ -62,18 +60,10 @@ export const useBadgeA11y = ({
     }
 
     return undefined;
-  }, [ariaLabel, decorative, ariaHidden, type, displayValue]);
+  }, [ariaLabel, ariaHidden, type, displayValue]);
 
   // 确定最终的ARIA属性
   const ariaAttributes = useMemo(() => {
-    // 如果是装饰性的，设置为presentation角色并隐藏
-    if (decorative) {
-      return {
-        role: 'presentation',
-        'aria-hidden': true,
-      };
-    }
-
     // 如果明确设置为隐藏
     if (ariaHidden) {
       return {
@@ -86,11 +76,10 @@ export const useBadgeA11y = ({
       'aria-label': accessibilityLabel,
       'aria-describedby': ariaDescribedby,
     };
-  }, [decorative, ariaHidden, role, accessibilityLabel, ariaDescribedby]);
+  }, [ariaHidden, role, accessibilityLabel, ariaDescribedby]);
 
   return {
     accessibilityLabel,
     ariaAttributes,
   };
 };
-

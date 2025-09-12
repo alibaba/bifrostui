@@ -56,12 +56,6 @@ export type BadgeProps<
        * @default false
        */
       'aria-hidden'?: boolean;
-      /**
-       * 无障碍功能：是否为装饰性Badge
-       * 当为true时，Badge将被标记为装饰性元素，屏幕阅读器会忽略
-       * @default false
-       */
-      decorative?: boolean;
     };
     defaultComponent: D;
   },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from 'testing';
+import { render } from 'testing';
 import Badge from '../Badge';
 
 const classPrefix = 'bui-badge';
@@ -181,7 +181,6 @@ describe('Badge', () => {
     });
   });
 
-
   describe('Accessibility', () => {
     it('should not set button role for badge', () => {
       const { container } = render(<Badge content="1" />);
@@ -219,14 +218,6 @@ describe('Badge', () => {
       const { container } = render(<Badge content="5" aria-hidden />);
 
       const badgeContent = container.querySelector('.bui-badge > div');
-      expect(badgeContent).toHaveAttribute('aria-hidden', 'true');
-    });
-
-    it('should set presentation role when decorative', () => {
-      const { container } = render(<Badge content="5" decorative />);
-
-      const badgeContent = container.querySelector('.bui-badge > div');
-      expect(badgeContent).toHaveAttribute('role', 'presentation');
       expect(badgeContent).toHaveAttribute('aria-hidden', 'true');
     });
 

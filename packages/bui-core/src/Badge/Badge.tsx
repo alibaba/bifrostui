@@ -23,7 +23,6 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     'aria-describedby': ariaDescribedby,
     role = 'status',
     'aria-hidden': ariaHidden = false,
-    decorative = false,
     ...others
   } = props;
 
@@ -43,7 +42,6 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     'aria-describedby': ariaDescribedby,
     role,
     'aria-hidden': ariaHidden,
-    decorative,
   });
 
   // invisible为true时不渲染
