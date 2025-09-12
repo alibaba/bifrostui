@@ -41,6 +41,7 @@ export { default as BogoOutlinedIcon } from './BogoOutlined';
 export { default as BoltFilledIcon } from './BoltFilled';
 export { default as BoltOutlinedIcon } from './BoltOutlined';
 export { default as BuildingOutlinedIcon } from './BuildingOutlined';
+export { default as CalendarCancelOutilnedIcon } from './CalendarCancelOutilned';
 export { default as CalendarInvisibleOutlinedIcon } from './CalendarInvisibleOutlined';
 export { default as CalendarOutlinedIcon } from './CalendarOutlined';
 export { default as CalendarVisibleOutlinedIcon } from './CalendarVisibleOutlined';
