@@ -116,16 +116,9 @@ export interface TooltipBaseProps {
 
   /**
    * 无障碍功能：是否支持Escape键关闭
-   * @default true
+   * @default false
    */
   closeOnEscape?: boolean;
-
-  /**
-   * 无障碍功能：是否支持Enter/空格键触发
-   * 仅在trigger包含'click'时有效
-   * @default true
-   */
-  keyboardTrigger?: boolean;
 
   /**
    * 无障碍功能：是否对屏幕阅读器隐藏Tooltip
