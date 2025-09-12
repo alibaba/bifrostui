@@ -68,7 +68,6 @@ export const accessibilityPopoverDemo = () => {
         role="dialog"
         aria-label="操作确认对话框"
         autoFocus
-        trapFocus
       >
         <button type="button">无障碍气泡</button>
       </Popover>
@@ -99,7 +98,6 @@ export const complexInteractionPopoverDemo = () => {
           open={open}
           trigger="none"
           role="dialog"
-          trapFocus
           onOpenChange={(e, data) => {
             setOpen(data.open);
           }}
@@ -129,7 +127,6 @@ export const complexContentPopoverDemo = () => {
         }
         defaultOpen
         role="dialog"
-        trapFocus
         aria-label="复杂内容对话框"
       >
         <button type="button">复杂内容</button>

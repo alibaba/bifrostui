@@ -31,16 +31,16 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledby,
     autoFocus = false,
-    trapFocus = false,
-    closeOnEscape = true,
+    closeOnEscape = false,
     ...others
   } = props;
 
-  const { isOpen, openStatus, controlByUser, changeOpenStatus } = usePopoverState({
-    defaultOpen,
-    open,
-    onOpenChange,
-  });
+  const { isOpen, openStatus, controlByUser, changeOpenStatus } =
+    usePopoverState({
+      defaultOpen,
+      open,
+      onOpenChange,
+    });
 
   const {
     arrowDirection,
@@ -78,10 +78,9 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     }
   };
 
-  const { popoverId, handleKeyDown, handleFocusTrap } = usePopoverA11y({
+  const { popoverId, handleKeyDown } = usePopoverA11y({
     isOpen,
     autoFocus,
-    trapFocus,
     closeOnEscape,
     onClose: handleHide,
     tipRef,
@@ -97,8 +96,6 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     onTriggerClick: handleTriggerClick,
     onMounted,
     handleKeyDown,
-    handleFocusTrap,
-    trapFocus,
     tipRef,
     childrenRef,
   });

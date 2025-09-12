@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { isMini, triggerEventTransform } from '@bifrostui/utils';
 import { PopoverProps } from '../Popover.types';
 
@@ -29,8 +29,6 @@ export interface UsePopoverEventsProps {
   onTriggerClick: (event: React.SyntheticEvent | Event) => void;
   onMounted: () => void;
   handleKeyDown: (event: KeyboardEvent) => void;
-  handleFocusTrap: (event: KeyboardEvent) => void;
-  trapFocus: boolean;
   tipRef: React.RefObject<HTMLDivElement>;
   childrenRef: React.RefObject<Element>;
 }
@@ -48,8 +46,6 @@ export const usePopoverEvents = ({
   onTriggerClick,
   onMounted,
   handleKeyDown,
-  handleFocusTrap,
-  trapFocus,
   tipRef,
   childrenRef,
 }: UsePopoverEventsProps): UsePopoverEventsReturn => {
@@ -69,7 +65,12 @@ export const usePopoverEvents = ({
     let resizeObserver: ResizeObserver | null = null;
 
     const bindEvent = () => {
-      // 只有当tipRef存在时才绑定任何事件
+      // 键盘事件监听器不依赖于 tipRef 的存在
+      if (isOpen && !isMini) {
+        document.addEventListener('keydown', handleKeyDown);
+      }
+
+      // 只有当tipRef存在时才绑定其他事件
       if (!tipRef.current) return;
 
       if (
@@ -80,15 +81,6 @@ export const usePopoverEvents = ({
         !isMini
       ) {
         document.addEventListener('click', clickEventHandler);
-      }
-
-      if (isOpen) {
-        if (!isMini) {
-          document.addEventListener('keydown', handleKeyDown);
-          if (trapFocus) {
-            document.addEventListener('keydown', handleFocusTrap);
-          }
-        }
       }
 
       if (!isMini) {
@@ -116,7 +108,9 @@ export const usePopoverEvents = ({
 
             // 观察所有滚动父元素
             scrollParents.forEach((parent) => {
-              resizeObserver!.observe(parent);
+              if (resizeObserver) {
+                resizeObserver.observe(parent);
+              }
             });
 
             // 观察document.body
@@ -127,6 +121,11 @@ export const usePopoverEvents = ({
     };
 
     const unbindEvent = () => {
+      // 键盘事件监听器总是需要清理
+      if (!isMini) {
+        document.removeEventListener('keydown', handleKeyDown);
+      }
+
       if (
         !controlByUser &&
         trigger !== 'none' &&
@@ -150,13 +149,6 @@ export const usePopoverEvents = ({
           resizeObserver.disconnect();
           resizeObserver = null;
         }
-
-        if (!isMini) {
-          document.removeEventListener('keydown', handleKeyDown);
-          if (trapFocus) {
-            document.removeEventListener('keydown', handleFocusTrap);
-          }
-        }
       }
     };
 
@@ -167,8 +159,6 @@ export const usePopoverEvents = ({
   }, [
     isOpen,
     handleKeyDown,
-    handleFocusTrap,
-    trapFocus,
     controlByUser,
     trigger,
     onHide,

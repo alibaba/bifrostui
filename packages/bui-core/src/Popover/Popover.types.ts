@@ -92,14 +92,8 @@ export type PopoverProps<
        */
       autoFocus?: boolean;
       /**
-       * 无障碍功能：是否在Popover内部捕获焦点
-       * 当为true时，Tab键只能在Popover内部的可聚焦元素间循环
-       * @default false
-       */
-      trapFocus?: boolean;
-      /**
        * 无障碍功能：是否支持Escape键关闭
-       * @default true
+       * @default false
        */
       closeOnEscape?: boolean;
     };

@@ -1,16 +1,22 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export interface UsePopoverStateProps {
   defaultOpen?: boolean;
   open?: boolean;
-  onOpenChange?: (event: React.SyntheticEvent | Event, data: { open: boolean }) => void;
+  onOpenChange?: (
+    event: React.SyntheticEvent | Event,
+    data: { open: boolean },
+  ) => void;
 }
 
 export interface UsePopoverStateReturn {
   isOpen: boolean;
   openStatus: boolean;
   controlByUser: boolean;
-  changeOpenStatus: (event: React.SyntheticEvent | Event, status: boolean) => void;
+  changeOpenStatus: (
+    event: React.SyntheticEvent | Event,
+    status: boolean,
+  ) => void;
   setOpenStatus: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -23,7 +29,10 @@ export const usePopoverState = ({
   const [openStatus, setOpenStatus] = useState(defaultOpen);
   const isOpen = controlByUser ? open : openStatus;
 
-  const changeOpenStatus = (event: React.SyntheticEvent | Event, status: boolean) => {
+  const changeOpenStatus = (
+    event: React.SyntheticEvent | Event,
+    status: boolean,
+  ) => {
     if (controlByUser) return;
     setOpenStatus(status);
     onOpenChange?.(event, { open: status });

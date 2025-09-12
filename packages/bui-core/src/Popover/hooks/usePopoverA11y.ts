@@ -1,10 +1,9 @@
-import { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useUniqueId } from '@bifrostui/utils';
 
 export interface UsePopoverA11yProps {
   isOpen: boolean;
   autoFocus: boolean;
-  trapFocus: boolean;
   closeOnEscape: boolean;
   onClose: (event: React.SyntheticEvent | Event) => void;
   tipRef: React.RefObject<HTMLDivElement>;
@@ -14,13 +13,11 @@ export interface UsePopoverA11yProps {
 export interface UsePopoverA11yReturn {
   popoverId: string;
   handleKeyDown: (event: KeyboardEvent) => void;
-  handleFocusTrap: (event: KeyboardEvent) => void;
 }
 
 export const usePopoverA11y = ({
   isOpen,
   autoFocus,
-  trapFocus,
   closeOnEscape,
   onClose,
   tipRef,
@@ -42,39 +39,6 @@ export const usePopoverA11y = ({
     [closeOnEscape, isOpen, onClose, childrenRef],
   );
 
-  const handleFocusTrap = useCallback(
-    (event: KeyboardEvent) => {
-      if (!trapFocus || !isOpen || !tipRef.current) return;
-
-      if (event.key === 'Tab') {
-        const focusableElements = tipRef.current.querySelectorAll(
-          'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]), [contenteditable="true"]',
-        );
-
-        if (focusableElements.length === 0) {
-          event.preventDefault();
-          return;
-        }
-
-        const firstElement = focusableElements[0] as HTMLElement;
-        const lastElement = focusableElements[
-          focusableElements.length - 1
-        ] as HTMLElement;
-
-        if (event.shiftKey) {
-          if (document.activeElement === firstElement) {
-            event.preventDefault();
-            lastElement?.focus();
-          }
-        } else if (document.activeElement === lastElement) {
-          event.preventDefault();
-          firstElement?.focus();
-        }
-      }
-    },
-    [trapFocus, isOpen, tipRef],
-  );
-
   useEffect(() => {
     if (isOpen && autoFocus && tipRef.current) {
       const timer = setTimeout(() => {
@@ -90,6 +54,5 @@ export const usePopoverA11y = ({
   return {
     popoverId,
     handleKeyDown,
-    handleFocusTrap,
   };
 };
