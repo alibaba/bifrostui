@@ -87,7 +87,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     childrenRef,
   });
 
-  const { triggerEventOption } = usePopoverEvents({
+  const { triggerEventOption, backdropProps } = usePopoverEvents({
     isOpen,
     controlByUser,
     trigger,
@@ -124,6 +124,37 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     <>
       {isOpen ? (
         <Portal onMounted={onMounted}>
+          {/* 小程序环境下的背景遮罩层 */}
+          {backdropProps && (
+            <div
+              className="bui-popover-backdrop"
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                zIndex: 999,
+                backgroundColor: 'transparent',
+              }}
+              role="button"
+              tabIndex={-1}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  if (
+                    backdropProps?.onClick &&
+                    typeof backdropProps.onClick === 'function'
+                  ) {
+                    backdropProps.onClick(
+                      e as unknown as React.MouseEvent<HTMLDivElement>,
+                    );
+                  }
+                }
+              }}
+              {...backdropProps}
+            />
+          )}
           <div
             className={clsx(prefixCls, className, `popover-${arrowDirection}`, {
               'bui-popover-arrow-hide': hideArrow,
@@ -136,6 +167,13 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledby}
             tabIndex={autoFocus ? 0 : undefined}
+            onClick={(e) => e.stopPropagation()} // 阻止气泡内容的点击事件冒泡到背景层
+            onKeyDown={(e) => {
+              // 仅处理键盘交互，不执行特定操作
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.stopPropagation();
+              }
+            }}
             {...others}
           >
             {!hideArrow ? (
