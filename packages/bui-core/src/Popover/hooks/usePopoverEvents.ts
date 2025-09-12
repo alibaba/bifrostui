@@ -35,6 +35,7 @@ export interface UsePopoverEventsProps {
 
 export interface UsePopoverEventsReturn {
   triggerEventOption?: Record<string, unknown>;
+  backdropProps?: Record<string, unknown>;
 }
 
 export const usePopoverEvents = ({
@@ -177,7 +178,27 @@ export const usePopoverEvents = ({
     });
   }
 
+  // 为小程序环境提供背景点击支持
+  let backdropProps: Record<string, unknown> | undefined;
+  if (
+    isMini &&
+    isOpen &&
+    !controlByUser &&
+    trigger !== 'none' &&
+    trigger !== 'hover' &&
+    !(trigger?.length === 1 && trigger?.[0] === 'hover')
+  ) {
+    backdropProps = {
+      onClick: (event: React.MouseEvent) => {
+        // 阻止事件冒泡，避免触发其他元素的点击事件
+        event.stopPropagation();
+        onHide(event);
+      },
+    };
+  }
+
   return {
     triggerEventOption,
+    backdropProps,
   };
 };
