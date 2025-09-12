@@ -52,8 +52,6 @@ describe('usePopoverEvents', () => {
     onTriggerClick: vi.fn(),
     onMounted: vi.fn(),
     handleKeyDown: vi.fn(),
-    handleFocusTrap: vi.fn(),
-    trapFocus: false,
     tipRef: createMockRef(null),
     childrenRef: createMockRef(null),
   };
@@ -210,38 +208,6 @@ describe('usePopoverEvents', () => {
       expect(clickCalls).toHaveLength(0);
     });
 
-    it('should bind focus trap events when trapFocus is true and open', () => {
-      const mockTipElement = document.createElement('div') as HTMLDivElement;
-      const tipRef = createMockRef(mockTipElement);
-
-      renderHook(() => usePopoverEvents({
-        ...defaultProps,
-        tipRef,
-        isOpen: true,
-        trapFocus: true,
-      }));
-
-      // Should bind handleFocusTrap when trapFocus is true
-      expect(mockAddEventListener).toHaveBeenCalledWith('keydown', defaultProps.handleFocusTrap);
-    });
-
-    it('should not bind focus trap events when trapFocus is false', () => {
-      const mockTipElement = document.createElement('div') as HTMLDivElement;
-      const tipRef = createMockRef(mockTipElement);
-
-      renderHook(() => usePopoverEvents({
-        ...defaultProps,
-        tipRef,
-        isOpen: true,
-        trapFocus: false,
-      }));
-
-      // Should not bind handleFocusTrap when trapFocus is false
-      const focusTrapCalls = mockAddEventListener.mock.calls.filter(
-        call => call[1] === defaultProps.handleFocusTrap
-      );
-      expect(focusTrapCalls).toHaveLength(0);
-    });
 
     it('should not bind resize event when isMini is true', () => {
       // This test will require a separate test file or different mock setup
@@ -268,7 +234,6 @@ describe('usePopoverEvents', () => {
         ...defaultProps,
         tipRef,
         isOpen: true,
-        trapFocus: true,
       }));
 
       unmount();
@@ -353,19 +318,18 @@ describe('usePopoverEvents', () => {
       const tipRef = createMockRef(mockTipElement);
 
       const { rerender } = renderHook(
-        ({ isOpen, trapFocus }) => usePopoverEvents({
+        ({ isOpen }) => usePopoverEvents({
           ...defaultProps,
           tipRef,
           isOpen,
-          trapFocus,
         }),
-        { initialProps: { isOpen: false, trapFocus: false } }
+        { initialProps: { isOpen: false } }
       );
 
       // Rapid changes
-      rerender({ isOpen: true, trapFocus: true });
-      rerender({ isOpen: false, trapFocus: false });
-      rerender({ isOpen: true, trapFocus: true });
+      rerender({ isOpen: true });
+      rerender({ isOpen: false });
+      rerender({ isOpen: true });
 
       // Should not throw errors
       expect(true).toBe(true);

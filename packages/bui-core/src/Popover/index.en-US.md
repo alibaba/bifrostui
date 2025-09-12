@@ -256,7 +256,6 @@ export default () => {
           </div>
         }
         role="dialog"
-        trapFocus
         aria-label="Operation confirmation dialog"
       >
         <Button>Dialog Mode</Button>
@@ -273,7 +272,6 @@ export default () => {
           </div>
         }
         role="menu"
-        trapFocus
         aria-label="Operation menu"
       >
         <Button>Menu Mode</Button>
@@ -311,8 +309,7 @@ export default () => {
 | aria-label      | Accessibility: popover label     | string                                                                                 | -                                         |
 | aria-labelledby | Accessibility: associated label element ID | string                                                                         | -                                         |
 | autoFocus       | Accessibility: auto focus on open | boolean                                                                               | false                                     |
-| trapFocus       | Accessibility: focus trap        | boolean                                                                                | false                                     |
-| closeOnEscape   | Accessibility: close with ESC key | boolean                                                                               | true                                      |
+| closeOnEscape   | Accessibility: close with ESC key | boolean                                                                               | false                                     |
 
 ### Style Variables
 

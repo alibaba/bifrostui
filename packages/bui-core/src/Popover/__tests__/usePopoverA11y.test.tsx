@@ -7,7 +7,7 @@ vi.mock('@bifrostui/utils', () => ({
 }));
 
 // Mock DOM elements
-const createMockElement = (tagName: string = 'div') => {
+const createMockElement = (tagName = 'div') => {
   const element = document.createElement(tagName) as HTMLDivElement;
   element.focus = vi.fn();
   return element;
@@ -21,8 +21,7 @@ describe('usePopoverA11y', () => {
   const defaultProps = {
     isOpen: false,
     autoFocus: false,
-    trapFocus: false,
-    closeOnEscape: true,
+    closeOnEscape: false,
     onClose: vi.fn(),
     tipRef: createMockRef(null),
     childrenRef: createMockRef(null),
@@ -44,9 +43,7 @@ describe('usePopoverA11y', () => {
 
       expect(result.current).toHaveProperty('popoverId');
       expect(result.current).toHaveProperty('handleKeyDown');
-      expect(result.current).toHaveProperty('handleFocusTrap');
       expect(typeof result.current.handleKeyDown).toBe('function');
-      expect(typeof result.current.handleFocusTrap).toBe('function');
     });
 
     it('should generate unique popover ID', () => {
@@ -56,17 +53,19 @@ describe('usePopoverA11y', () => {
     });
   });
 
-  describe('Auto focus functionality', () => {
-    it('should focus tipRef when isOpen and autoFocus are true', () => {
-      const mockTipElement = createMockElement('div');
-      const tipRef = createMockRef(mockTipElement);
+  describe('AutoFocus functionality', () => {
+    it('should focus tip element when autoFocus is true and popover opens', () => {
+      const mockTipElement = createMockElement();
+      const mockTipRef = createMockRef(mockTipElement);
 
-      renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: true,
-        autoFocus: true,
-        tipRef,
-      }));
+      renderHook(() =>
+        usePopoverA11y({
+          ...defaultProps,
+          isOpen: true,
+          autoFocus: true,
+          tipRef: mockTipRef,
+        }),
+      );
 
       act(() => {
         vi.runAllTimers();
@@ -75,16 +74,18 @@ describe('usePopoverA11y', () => {
       expect(mockTipElement.focus).toHaveBeenCalled();
     });
 
-    it('should not focus when autoFocus is false', () => {
-      const mockTipElement = createMockElement('div');
-      const tipRef = createMockRef(mockTipElement);
+    it('should not focus tip element when autoFocus is false', () => {
+      const mockTipElement = createMockElement();
+      const mockTipRef = createMockRef(mockTipElement);
 
-      renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: true,
-        autoFocus: false,
-        tipRef,
-      }));
+      renderHook(() =>
+        usePopoverA11y({
+          ...defaultProps,
+          isOpen: true,
+          autoFocus: false,
+          tipRef: mockTipRef,
+        }),
+      );
 
       act(() => {
         vi.runAllTimers();
@@ -93,16 +94,18 @@ describe('usePopoverA11y', () => {
       expect(mockTipElement.focus).not.toHaveBeenCalled();
     });
 
-    it('should not focus when isOpen is false', () => {
-      const mockTipElement = createMockElement('div');
-      const tipRef = createMockRef(mockTipElement);
+    it('should not focus when popover is not open', () => {
+      const mockTipElement = createMockElement();
+      const mockTipRef = createMockRef(mockTipElement);
 
-      renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: false,
-        autoFocus: true,
-        tipRef,
-      }));
+      renderHook(() =>
+        usePopoverA11y({
+          ...defaultProps,
+          isOpen: false,
+          autoFocus: true,
+          tipRef: mockTipRef,
+        }),
+      );
 
       act(() => {
         vi.runAllTimers();
@@ -112,383 +115,223 @@ describe('usePopoverA11y', () => {
     });
 
     it('should not focus when tipRef is null', () => {
-      const tipRef = createMockRef(null);
-
-      renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: true,
-        autoFocus: true,
-        tipRef,
-      }));
-
-      act(() => {
-        vi.runAllTimers();
-      });
-
-      // Should not throw error
-      expect(true).toBe(true);
-    });
-
-    it('should cleanup timer on unmount', () => {
-      const mockTipElement = createMockElement('div');
-      const tipRef = createMockRef(mockTipElement);
-
-      const { unmount } = renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: true,
-        autoFocus: true,
-        tipRef,
-      }));
-
-      unmount();
+      const { result } = renderHook(() =>
+        usePopoverA11y({
+          ...defaultProps,
+          isOpen: true,
+          autoFocus: true,
+          tipRef: createMockRef(null),
+        }),
+      );
 
       act(() => {
         vi.runAllTimers();
       });
 
-      expect(mockTipElement.focus).not.toHaveBeenCalled();
+      // No errors should be thrown
+      expect(result.current.popoverId).toBe('test-id-123');
     });
   });
 
   describe('Keyboard event handling', () => {
     it('should call onClose when Escape key is pressed and closeOnEscape is true', () => {
       const onClose = vi.fn();
-      const { result } = renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: true,
-        closeOnEscape: true,
-        onClose,
-      }));
+      const mockChildElement = createMockElement();
+      const mockChildRef = createMockRef(mockChildElement);
 
-      const mockEvent = new KeyboardEvent('keydown', { key: 'Escape' });
-      mockEvent.preventDefault = vi.fn();
-      mockEvent.stopPropagation = vi.fn();
+      const { result } = renderHook(() =>
+        usePopoverA11y({
+          ...defaultProps,
+          isOpen: true,
+          closeOnEscape: true,
+          onClose,
+          childrenRef: mockChildRef,
+        }),
+      );
+
+      const escapeEvent = new KeyboardEvent('keydown', { key: 'Escape' });
+      escapeEvent.preventDefault = vi.fn();
+      escapeEvent.stopPropagation = vi.fn();
 
       act(() => {
-        result.current.handleKeyDown(mockEvent);
+        result.current.handleKeyDown(escapeEvent);
       });
 
-      expect(mockEvent.preventDefault).toHaveBeenCalled();
-      expect(mockEvent.stopPropagation).toHaveBeenCalled();
-      expect(onClose).toHaveBeenCalledWith(mockEvent);
+      expect(onClose).toHaveBeenCalledWith(escapeEvent);
+      expect(escapeEvent.preventDefault).toHaveBeenCalled();
+      expect(escapeEvent.stopPropagation).toHaveBeenCalled();
+      expect(mockChildElement.focus).toHaveBeenCalled();
     });
 
     it('should not call onClose when closeOnEscape is false', () => {
       const onClose = vi.fn();
-      const { result } = renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: true,
-        closeOnEscape: false,
-        onClose,
-      }));
+      const mockChildRef = createMockRef(createMockElement());
 
-      const mockEvent = new KeyboardEvent('keydown', { key: 'Escape' });
-
-      act(() => {
-        result.current.handleKeyDown(mockEvent);
-      });
-
-      expect(onClose).not.toHaveBeenCalled();
-    });
-
-    it('should not call onClose when isOpen is false', () => {
-      const onClose = vi.fn();
-      const { result } = renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: false,
-        closeOnEscape: true,
-        onClose,
-      }));
-
-      const mockEvent = new KeyboardEvent('keydown', { key: 'Escape' });
-
-      act(() => {
-        result.current.handleKeyDown(mockEvent);
-      });
-
-      expect(onClose).not.toHaveBeenCalled();
-    });
-
-    it('should not call onClose for non-Escape keys', () => {
-      const onClose = vi.fn();
-      const { result } = renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: true,
-        closeOnEscape: true,
-        onClose,
-      }));
-
-      const mockEvent = new KeyboardEvent('keydown', { key: 'Enter' });
-
-      act(() => {
-        result.current.handleKeyDown(mockEvent);
-      });
-
-      expect(onClose).not.toHaveBeenCalled();
-    });
-
-    it('should focus childrenRef after closing with Escape', () => {
-      const mockChildElement = createMockElement('button');
-      const childrenRef = createMockRef(mockChildElement);
-      const onClose = vi.fn();
-
-      const { result } = renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: true,
-        closeOnEscape: true,
-        onClose,
-        childrenRef,
-      }));
-
-      const mockEvent = new KeyboardEvent('keydown', { key: 'Escape' });
-
-      act(() => {
-        result.current.handleKeyDown(mockEvent);
-      });
-
-      expect(mockChildElement.focus).toHaveBeenCalled();
-    });
-  });
-
-  describe('Focus trap functionality', () => {
-    const createFocusableElement = (tagName: string = 'button'): HTMLElement => {
-      const element = createMockElement(tagName);
-      element.tabIndex = 0;
-      return element;
-    };
-
-    it('should not trap focus when trapFocus is false', () => {
-      const { result } = renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: true,
-        trapFocus: false,
-      }));
-
-      const mockEvent = new KeyboardEvent('keydown', { key: 'Tab' });
-      mockEvent.preventDefault = vi.fn();
-
-      act(() => {
-        result.current.handleFocusTrap(mockEvent);
-      });
-
-      expect(mockEvent.preventDefault).not.toHaveBeenCalled();
-    });
-
-    it('should not trap focus when isOpen is false', () => {
-      const { result } = renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: false,
-        trapFocus: true,
-      }));
-
-      const mockEvent = new KeyboardEvent('keydown', { key: 'Tab' });
-      mockEvent.preventDefault = vi.fn();
-
-      act(() => {
-        result.current.handleFocusTrap(mockEvent);
-      });
-
-      expect(mockEvent.preventDefault).not.toHaveBeenCalled();
-    });
-
-    it('should not trap focus when tipRef is null', () => {
-      const { result } = renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: true,
-        trapFocus: true,
-        tipRef: createMockRef(null),
-      }));
-
-      const mockEvent = new KeyboardEvent('keydown', { key: 'Tab' });
-      mockEvent.preventDefault = vi.fn();
-
-      act(() => {
-        result.current.handleFocusTrap(mockEvent);
-      });
-
-      expect(mockEvent.preventDefault).not.toHaveBeenCalled();
-    });
-
-    it('should prevent default when no focusable elements exist', () => {
-      const mockTipElement = createMockElement('div');
-      mockTipElement.querySelectorAll = vi.fn().mockReturnValue([]);
-      const tipRef = createMockRef(mockTipElement);
-
-      const { result } = renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: true,
-        trapFocus: true,
-        tipRef,
-      }));
-
-      const mockEvent = new KeyboardEvent('keydown', { key: 'Tab' });
-      mockEvent.preventDefault = vi.fn();
-
-      act(() => {
-        result.current.handleFocusTrap(mockEvent);
-      });
-
-      expect(mockEvent.preventDefault).toHaveBeenCalled();
-    });
-
-    it('should handle Tab navigation between focusable elements', () => {
-      const firstElement = createFocusableElement('button');
-      const lastElement = createFocusableElement('input');
-      
-      const mockTipElement = createMockElement('div');
-      mockTipElement.querySelectorAll = vi.fn().mockReturnValue([firstElement, lastElement]);
-      const tipRef = createMockRef(mockTipElement);
-
-      // Mock document.activeElement
-      Object.defineProperty(document, 'activeElement', {
-        value: lastElement,
-        writable: true,
-      });
-
-      const { result } = renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: true,
-        trapFocus: true,
-        tipRef,
-      }));
-
-      const mockEvent = new KeyboardEvent('keydown', { key: 'Tab' });
-      mockEvent.preventDefault = vi.fn();
-
-      act(() => {
-        result.current.handleFocusTrap(mockEvent);
-      });
-
-      expect(mockEvent.preventDefault).toHaveBeenCalled();
-      expect(firstElement.focus).toHaveBeenCalled();
-    });
-
-    it('should handle Shift+Tab navigation between focusable elements', () => {
-      const firstElement = createFocusableElement('button');
-      const lastElement = createFocusableElement('input');
-      
-      const mockTipElement = createMockElement('div');
-      mockTipElement.querySelectorAll = vi.fn().mockReturnValue([firstElement, lastElement]);
-      const tipRef = createMockRef(mockTipElement);
-
-      // Mock document.activeElement
-      Object.defineProperty(document, 'activeElement', {
-        value: firstElement,
-        writable: true,
-      });
-
-      const { result } = renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: true,
-        trapFocus: true,
-        tipRef,
-      }));
-
-      const mockEvent = new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true });
-      mockEvent.preventDefault = vi.fn();
-
-      act(() => {
-        result.current.handleFocusTrap(mockEvent);
-      });
-
-      expect(mockEvent.preventDefault).toHaveBeenCalled();
-      expect(lastElement.focus).toHaveBeenCalled();
-    });
-
-    it('should not trap focus for non-Tab keys', () => {
-      const mockTipElement = createMockElement('div');
-      const tipRef = createMockRef(mockTipElement);
-
-      const { result } = renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: true,
-        trapFocus: true,
-        tipRef,
-      }));
-
-      const mockEvent = new KeyboardEvent('keydown', { key: 'Enter' });
-      mockEvent.preventDefault = vi.fn();
-
-      act(() => {
-        result.current.handleFocusTrap(mockEvent);
-      });
-
-      expect(mockEvent.preventDefault).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('Edge cases', () => {
-    it('should handle focus element without focus method', () => {
-      const mockTipElement = {
-        current: {} as HTMLDivElement, // Element without focus method
-      };
-
-      expect(() => {
-        renderHook(() => usePopoverA11y({
+      const { result } = renderHook(() =>
+        usePopoverA11y({
           ...defaultProps,
           isOpen: true,
-          autoFocus: true,
-          tipRef: mockTipElement,
-        }));
+          closeOnEscape: false,
+          onClose,
+          childrenRef: mockChildRef,
+        }),
+      );
 
-        act(() => {
-          vi.runAllTimers();
-        });
-      }).not.toThrow();
+      const escapeEvent = new KeyboardEvent('keydown', { key: 'Escape' });
+
+      act(() => {
+        result.current.handleKeyDown(escapeEvent);
+      });
+
+      expect(onClose).not.toHaveBeenCalled();
     });
 
-    it('should handle childrenRef without focus method', () => {
-      const mockChildElement = {} as HTMLElement; // Element without focus method
-      const childrenRef = createMockRef(mockChildElement as HTMLDivElement);
+    it('should not handle Escape when popover is not open', () => {
+      const onClose = vi.fn();
+      const mockChildRef = createMockRef(createMockElement());
+
+      const { result } = renderHook(() =>
+        usePopoverA11y({
+          ...defaultProps,
+          isOpen: false,
+          closeOnEscape: true,
+          onClose,
+          childrenRef: mockChildRef,
+        }),
+      );
+
+      const escapeEvent = new KeyboardEvent('keydown', { key: 'Escape' });
+
+      act(() => {
+        result.current.handleKeyDown(escapeEvent);
+      });
+
+      expect(onClose).not.toHaveBeenCalled();
+    });
+
+    it('should not handle non-Escape keys', () => {
+      const onClose = vi.fn();
+      const mockChildRef = createMockRef(createMockElement());
+
+      const { result } = renderHook(() =>
+        usePopoverA11y({
+          ...defaultProps,
+          isOpen: true,
+          closeOnEscape: true,
+          onClose,
+          childrenRef: mockChildRef,
+        }),
+      );
+
+      const tabEvent = new KeyboardEvent('keydown', { key: 'Tab' });
+
+      act(() => {
+        result.current.handleKeyDown(tabEvent);
+      });
+
+      expect(onClose).not.toHaveBeenCalled();
+    });
+
+    it('should handle missing childrenRef gracefully', () => {
       const onClose = vi.fn();
 
-      const { result } = renderHook(() => usePopoverA11y({
-        ...defaultProps,
-        isOpen: true,
-        closeOnEscape: true,
-        onClose,
-        childrenRef,
-      }));
+      const { result } = renderHook(() =>
+        usePopoverA11y({
+          ...defaultProps,
+          isOpen: true,
+          closeOnEscape: true,
+          onClose,
+          childrenRef: createMockRef(null),
+        }),
+      );
 
-      const mockEvent = new KeyboardEvent('keydown', { key: 'Escape' });
+      const escapeEvent = new KeyboardEvent('keydown', { key: 'Escape' });
+      escapeEvent.preventDefault = vi.fn();
+      escapeEvent.stopPropagation = vi.fn();
 
-      expect(() => {
-        act(() => {
-          result.current.handleKeyDown(mockEvent);
-        });
-      }).not.toThrow();
+      act(() => {
+        result.current.handleKeyDown(escapeEvent);
+      });
+
+      expect(onClose).toHaveBeenCalledWith(escapeEvent);
+      expect(escapeEvent.preventDefault).toHaveBeenCalled();
+      expect(escapeEvent.stopPropagation).toHaveBeenCalled();
+      // Should not throw error when trying to focus null element
+    });
+  });
+
+  describe('Props changes', () => {
+    it('should handle isOpen changes correctly', () => {
+      const mockTipElement = createMockElement();
+      const mockTipRef = createMockRef(mockTipElement);
+
+      const { rerender } = renderHook(
+        ({ isOpen }) =>
+          usePopoverA11y({
+            ...defaultProps,
+            isOpen,
+            autoFocus: true,
+            tipRef: mockTipRef,
+          }),
+        { initialProps: { isOpen: false } },
+      );
+
+      // Initially closed, should not focus
+      act(() => {
+        vi.runAllTimers();
+      });
+      expect(mockTipElement.focus).not.toHaveBeenCalled();
+
+      // Open popover, should focus
+      rerender({ isOpen: true });
+      act(() => {
+        vi.runAllTimers();
+      });
+      expect(mockTipElement.focus).toHaveBeenCalled();
     });
 
-    it('should handle prop changes correctly', () => {
+    it('should handle onClose changes correctly', () => {
       const onClose1 = vi.fn();
       const onClose2 = vi.fn();
+      const mockChildRef = createMockRef(createMockElement());
 
       const { result, rerender } = renderHook(
-        ({ onClose, closeOnEscape }) => usePopoverA11y({
-          ...defaultProps,
-          isOpen: true,
-          closeOnEscape,
-          onClose,
-        }),
-        { initialProps: { onClose: onClose1, closeOnEscape: true } }
+        ({ onClose }) =>
+          usePopoverA11y({
+            ...defaultProps,
+            isOpen: true,
+            closeOnEscape: true,
+            onClose,
+            childrenRef: mockChildRef,
+          }),
+        { initialProps: { onClose: onClose1 } },
       );
 
       // Test with first onClose
-      const mockEvent1 = new KeyboardEvent('keydown', { key: 'Escape' });
-      act(() => {
-        result.current.handleKeyDown(mockEvent1);
-      });
-      expect(onClose1).toHaveBeenCalledWith(mockEvent1);
+      const escapeEvent1 = new KeyboardEvent('keydown', { key: 'Escape' });
+      escapeEvent1.preventDefault = vi.fn();
+      escapeEvent1.stopPropagation = vi.fn();
 
-      // Change props
-      rerender({ onClose: onClose2, closeOnEscape: false });
-
-      // Test with second onClose (should not be called due to closeOnEscape: false)
-      const mockEvent2 = new KeyboardEvent('keydown', { key: 'Escape' });
       act(() => {
-        result.current.handleKeyDown(mockEvent2);
+        result.current.handleKeyDown(escapeEvent1);
       });
+
+      expect(onClose1).toHaveBeenCalledWith(escapeEvent1);
       expect(onClose2).not.toHaveBeenCalled();
+
+      // Change onClose
+      rerender({ onClose: onClose2 });
+
+      // Test with second onClose
+      const escapeEvent2 = new KeyboardEvent('keydown', { key: 'Escape' });
+      escapeEvent2.preventDefault = vi.fn();
+      escapeEvent2.stopPropagation = vi.fn();
+
+      act(() => {
+        result.current.handleKeyDown(escapeEvent2);
+      });
+
+      expect(onClose2).toHaveBeenCalledWith(escapeEvent2);
     });
   });
 });

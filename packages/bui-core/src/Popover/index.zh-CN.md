@@ -254,7 +254,8 @@ export default () => {
         title="基础无障碍"
         content="支持 ESC 键关闭，自动焦点管理"
         role="tooltip"
-        aria-label="帮助信息"
+        aria-label="Help information"
+        closeOnEscape
       >
         <Button>基础无障碍</Button>
       </Popover>
@@ -270,7 +271,6 @@ export default () => {
           </div>
         }
         role="dialog"
-        trapFocus
         aria-label="操作确认对话框"
       >
         <Button>对话框模式</Button>
@@ -287,7 +287,6 @@ export default () => {
           </div>
         }
         role="menu"
-        trapFocus
         aria-label="操作菜单"
       >
         <Button>菜单模式</Button>
@@ -325,8 +324,7 @@ export default () => {
 | aria-label      | 无障碍功能：气泡的标签     | string                                                                                 | -                                         |
 | aria-labelledby | 无障碍功能：关联标签元素ID | string                                                                                 | -                                         |
 | autoFocus       | 无障碍功能：打开时自动聚焦 | boolean                                                                                | false                                     |
-| trapFocus       | 无障碍功能：焦点陷阱       | boolean                                                                                | false                                     |
-| closeOnEscape   | 无障碍功能：ESC键关闭      | boolean                                                                                | true                                      |
+| closeOnEscape   | 无障碍功能：ESC键关闭      | boolean                                                                                | false                                     |
 
 ### 样式变量
 

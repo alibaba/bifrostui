@@ -49,10 +49,9 @@ describe('Popover Accessibility', () => {
       fireEvent.keyDown(document, { key: 'Escape' });
 
       await waitFor(() => {
-        expect(onOpenChange).toHaveBeenCalledWith(
-          expect.any(Object),
-          { open: false },
-        );
+        expect(onOpenChange).toHaveBeenCalledWith(expect.any(Object), {
+          open: false,
+        });
       });
     });
 
@@ -106,7 +105,7 @@ describe('Popover Accessibility', () => {
           title="Test Popover"
           content="Test content"
           defaultOpen
-          autoFocus={true}
+          autoFocus
         >
           <button type="button">Trigger</button>
         </Popover>,
@@ -136,47 +135,13 @@ describe('Popover Accessibility', () => {
 
     it('should not focus popover by default (autoFocus defaults to false)', () => {
       render(
-        <Popover
-          title="Test Popover"
-          content="Test content"
-          defaultOpen
-        >
+        <Popover title="Test Popover" content="Test content" defaultOpen>
           <button type="button">Trigger</button>
         </Popover>,
       );
 
       const popoverElement = document.querySelector('.bui-popover');
       expect(popoverElement).not.toHaveAttribute('tabIndex');
-    });
-
-    it('should trap focus when trapFocus is enabled', async () => {
-      render(
-        <Popover
-          title="Test Popover"
-          content={
-            <div>
-              <button type="button">First Button</button>
-              <button type="button">Second Button</button>
-            </div>
-          }
-          defaultOpen
-          trapFocus
-        >
-          <button type="button">Trigger</button>
-        </Popover>,
-      );
-
-      const firstButton = screen.getByText('First Button');
-      const secondButton = screen.getByText('Second Button');
-
-      firstButton.focus();
-      expect(document.activeElement).toBe(firstButton);
-
-      fireEvent.keyDown(document, { key: 'Tab', shiftKey: true });
-      
-      await waitFor(() => {
-        expect(document.activeElement).toBe(secondButton);
-      });
     });
   });
 
@@ -185,7 +150,7 @@ describe('Popover Accessibility', () => {
       render(
         <Popover
           title="Test Popover"
-          content="Test content" 
+          content="Test content"
           defaultOpen
           role="tooltip"
           aria-label="Help information"
@@ -259,11 +224,7 @@ describe('Popover Accessibility', () => {
 
     it('should update aria-describedby when popover opens/closes', () => {
       const { rerender } = render(
-        <Popover
-          title="Test Popover"
-          content="Test content"
-          open={false}
-        >
+        <Popover title="Test Popover" content="Test content" open={false}>
           <button type="button">Trigger</button>
         </Popover>,
       );
@@ -272,11 +233,7 @@ describe('Popover Accessibility', () => {
       expect(triggerElement).not.toHaveAttribute('aria-describedby');
 
       rerender(
-        <Popover
-          title="Test Popover"
-          content="Test content"
-          open
-        >
+        <Popover title="Test Popover" content="Test content" open>
           <button type="button">Trigger</button>
         </Popover>,
       );
@@ -299,7 +256,6 @@ describe('Popover Accessibility', () => {
           }
           defaultOpen
           role="dialog"
-          trapFocus
         >
           <button type="button">Open Complex Popover</button>
         </Popover>,
@@ -307,7 +263,7 @@ describe('Popover Accessibility', () => {
 
       const popoverElement = document.querySelector('.bui-popover');
       expect(popoverElement).toHaveAttribute('role', 'dialog');
-      
+
       const input = screen.getByPlaceholderText('Enter text');
       const submitButton = screen.getByText('Submit');
       const link = screen.getByText('Link');
@@ -319,11 +275,7 @@ describe('Popover Accessibility', () => {
 
     it('should work with non-button trigger elements', () => {
       render(
-        <Popover
-          title="Test Popover"
-          content="Test content"
-          defaultOpen
-        >
+        <Popover title="Test Popover" content="Test content" defaultOpen>
           <span>Span Trigger</span>
         </Popover>,
       );
@@ -336,11 +288,7 @@ describe('Popover Accessibility', () => {
 
     it('should handle anchor elements correctly', () => {
       render(
-        <Popover
-          title="Test Popover"
-          content="Test content"
-          defaultOpen
-        >
+        <Popover title="Test Popover" content="Test content" defaultOpen>
           <a href="#test">Link Trigger</a>
         </Popover>,
       );
@@ -373,12 +321,14 @@ getMdDemoCodes(
           rules: {
             'color-contrast': { enabled: true },
             'focus-order-semantics': { enabled: true },
-            'tabindex': { enabled: true },
+            tabindex: { enabled: true },
           },
         },
         detailedErrorReporting: true,
         customA11yChecks: (container) => {
-          const popoverElements = container.querySelectorAll('[role="tooltip"], [role="dialog"], [role="menu"], [role="listbox"]');
+          const popoverElements = container.querySelectorAll(
+            '[role="tooltip"], [role="dialog"], [role="menu"], [role="listbox"]',
+          );
           if (popoverElements.length > 0) {
             popoverElements.forEach((element) => {
               expect(element).toHaveAttribute('id');

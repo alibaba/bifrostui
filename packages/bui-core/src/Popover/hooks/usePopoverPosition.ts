@@ -1,5 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
-import { getStylesAndLocation, parsePlacement, throttle } from '@bifrostui/utils';
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  getStylesAndLocation,
+  parsePlacement,
+  throttle,
+} from '@bifrostui/utils';
 import { AnchorOrigin } from '../Popover.types';
 
 const anchorOriginToPlacement = (anchorOrigin: AnchorOrigin): string => {
@@ -48,7 +52,7 @@ export const usePopoverPosition = ({
 }: UsePopoverPositionProps): UsePopoverPositionReturn => {
   const placement = anchorOriginToPlacement(anchorOrigin);
   const { direction, location = 'center' } = parsePlacement(placement);
-  
+
   const childrenRef = useRef<Element>();
   const [arrowDirection, setArrowDirection] = useState(direction);
   const [arrowLocation, setArrowLocation] = useState(location);
@@ -68,7 +72,7 @@ export const usePopoverPosition = ({
       direction: newParsedDirection,
       location: newParsedLocation = 'center',
     } = parsePlacement(placement);
-    
+
     const result = await getStylesAndLocation({
       childrenRef,
       arrowDirection: newParsedDirection,
@@ -76,7 +80,7 @@ export const usePopoverPosition = ({
       offsetSpacing,
       tipRef,
     });
-    
+
     if (!result) return;
     const { styles, newArrowDirection, newArrowLocation } = result;
 
