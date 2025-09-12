@@ -124,22 +124,7 @@ describe('useBadgeA11y', () => {
         'aria-hidden': true,
       });
     });
-
-    it('should set presentation role when decorative', () => {
-      const { result } = renderHook(() =>
-        useBadgeA11y({
-          displayValue: 5,
-          decorative: true,
-        }),
-      );
-
-      expect(result.current.ariaAttributes).toEqual({
-        role: 'presentation',
-        'aria-hidden': true,
-      });
-    });
   });
-
 
   describe('Type variations', () => {
     it('should handle standard type', () => {
@@ -205,37 +190,6 @@ describe('useBadgeA11y', () => {
 
       expect(result.current.accessibilityLabel).toBe('通知：[object Object]');
     });
-
-    it('should prioritize decorative over aria-hidden', () => {
-      const { result } = renderHook(() =>
-        useBadgeA11y({
-          displayValue: 5,
-          decorative: true,
-          'aria-hidden': false,
-        }),
-      );
-
-      expect(result.current.ariaAttributes).toEqual({
-        role: 'presentation',
-        'aria-hidden': true,
-      });
-    });
-
-    it('should handle both custom aria-label and decorative', () => {
-      const { result } = renderHook(() =>
-        useBadgeA11y({
-          displayValue: 5,
-          'aria-label': '自定义标签',
-          decorative: true,
-        }),
-      );
-
-      expect(result.current.accessibilityLabel).toBe('自定义标签');
-      expect(result.current.ariaAttributes).toEqual({
-        role: 'presentation',
-        'aria-hidden': true,
-      });
-    });
   });
 
   describe('Hook updates', () => {
@@ -254,7 +208,8 @@ describe('useBadgeA11y', () => {
 
     it('should update when type changes', () => {
       const { result, rerender } = renderHook(
-        ({ type }: { type: 'dot' | 'standard' | 'bubble' }) => useBadgeA11y({ displayValue: 5, type }),
+        ({ type }: { type: 'dot' | 'standard' | 'bubble' }) =>
+          useBadgeA11y({ displayValue: 5, type }),
         { initialProps: { type: 'standard' as const } },
       );
 
@@ -278,7 +233,5 @@ describe('useBadgeA11y', () => {
 
       expect(result.current.accessibilityLabel).toBe('自定义标签');
     });
-
   });
 });
-

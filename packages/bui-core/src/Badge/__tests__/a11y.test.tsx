@@ -40,17 +40,9 @@ getMdDemoCodes(
             const ariaLabel = badge.getAttribute('aria-label');
             if (ariaLabel) {
               expect(ariaLabel).toMatch(
-                /^\d+(条通知|条消息)|通知：.+|有新通知|无通知$/,
+                /^\d+(条通知|条消息)|超过\d+条通知|通知：.+|有新通知|无通知$/,
               );
             }
-          });
-
-          // 检查装饰性 Badge 是否正确设置了 aria-hidden
-          const decorativeBadges = container.querySelectorAll(
-            '[role="presentation"]',
-          );
-          decorativeBadges.forEach((badge) => {
-            expect(badge).toHaveAttribute('aria-hidden', 'true');
           });
         },
         beforeAllFn: () => {

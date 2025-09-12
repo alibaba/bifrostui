@@ -243,7 +243,8 @@ describe('useBadgeDisplay', () => {
 
     it('should update when type changes', () => {
       const { result, rerender } = renderHook(
-        ({ type }: { type: 'dot' | 'standard' | 'bubble' }) => useBadgeDisplay({ content: 5, type }),
+        ({ type }: { type: 'dot' | 'standard' | 'bubble' }) =>
+          useBadgeDisplay({ content: 5, type }),
         { initialProps: { type: 'standard' as const } },
       );
 
@@ -269,4 +270,3 @@ describe('useBadgeDisplay', () => {
     });
   });
 });
-

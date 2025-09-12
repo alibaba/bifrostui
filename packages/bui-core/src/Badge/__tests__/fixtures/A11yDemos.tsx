@@ -95,9 +95,9 @@ export const accessibilityBadgeDemo = () => {
           自定义角色
         </div>
       </Badge>
-      <Badge content={1} decorative>
+      <Badge content={1} aria-hidden>
         <div style={{ width: 40, height: 40, background: '#f0f0f0' }}>
-          装饰性
+          隐藏角色
         </div>
       </Badge>
       <Badge content={2} aria-hidden>
@@ -138,10 +138,7 @@ export const complexInteractionBadgeDemo = () => {
 
     return (
       <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-        <Badge
-          content={count}
-          invisible={!visible}
-        >
+        <Badge content={count} invisible={!visible}>
           <div style={{ width: 40, height: 40, background: '#f0f0f0' }}>
             内容
           </div>
