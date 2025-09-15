@@ -101,10 +101,7 @@ describe('Portal', () => {
     render(
       <>
         <div ref={containerRef} data-testid="container" />
-        <Portal
-          container={() => containerRef.current}
-          onMounted={onMounted}
-        >
+        <Portal container={() => containerRef.current} onMounted={onMounted}>
           <div data-testid="test" />
         </Portal>
       </>,
