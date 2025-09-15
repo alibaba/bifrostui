@@ -250,8 +250,8 @@ let toastA;
 export default () => {
   const [toast, contextHolder] = Toast.useToast();
   const theme = useTheme();
-  const showToastA = async () => {
-    toastA = await toast({
+  const showToastA = () => {
+    toastA = toast({
       message: '我不会自动关闭',
       duration: 0,
     });

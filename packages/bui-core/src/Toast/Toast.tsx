@@ -14,7 +14,7 @@ const prefixCls = 'bui-toast';
 
 const ToastComponent = React.forwardRef<
   HTMLDivElement,
-  Omit<ToastProps, 'container'>
+  Omit<Omit<ToastProps, 'onClose'>, 'container'>
 >((props, ref) => {
   const {
     className,
