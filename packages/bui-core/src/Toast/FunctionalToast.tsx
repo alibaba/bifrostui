@@ -3,8 +3,7 @@ import React, {
   useEffect,
   useState,
   useRef,
-  forwardRef,
-  useImperativeHandle,
+  FC,
   MutableRefObject,
 } from 'react';
 import ReactDOM from 'react-dom';
@@ -17,6 +16,13 @@ import {
   ToastInstance,
   ToastReturnType,
 } from './Toast.types';
+
+interface ToastElement {
+  key: string;
+  open: boolean;
+  props: Partial<ToastProps>;
+  ref?: MutableRefObject<HTMLDivElement>;
+}
 
 const defaultProps: ToastProps = {
   duration: 2000,
@@ -57,7 +63,7 @@ const Toast = (props: ToastProps | string): ToastReturnType => {
   rootElement.appendChild(rootWrapper);
 
   const ToastComponent = () => {
-    const { duration, multiple, onClose, ...others } = restOptions;
+    const { duration, multiple, onClose, onExited, ...others } = restOptions;
     const [open, setOpen] = useState(false);
     const fadeTimeout = {
       enter: 350,
@@ -67,12 +73,6 @@ const Toast = (props: ToastProps | string): ToastReturnType => {
 
     const close = useCallback(() => {
       setOpen(false);
-      setTimeout(() => {
-        const unmountRes = unmount(rootWrapper);
-        if (unmountRes && rootWrapper.parentNode) {
-          rootWrapper.parentNode.removeChild(rootWrapper);
-        }
-      }, fadeTimeout.exit);
       onClose?.();
     }, [rootWrapper, onClose]);
 
@@ -98,6 +98,16 @@ const Toast = (props: ToastProps | string): ToastReturnType => {
       };
     }, []);
 
+    const onProxyExited = () => {
+      onExited?.();
+
+      // 卸载DOM
+      const unmountRes = unmount(rootWrapper);
+      if (unmountRes && rootWrapper.parentNode) {
+        rootWrapper.parentNode.removeChild(rootWrapper);
+      }
+    };
+
     // 关闭当前Toast
     instance.close = close;
 
@@ -106,7 +116,7 @@ const Toast = (props: ToastProps | string): ToastReturnType => {
         {...others}
         open={open}
         timeout={fadeTimeout}
-        onClose={close}
+        onExited={onProxyExited}
       />
     );
   };
@@ -141,19 +151,28 @@ Toast.clear = () => {
   });
 };
 
-const UseToastComponent = forwardRef<
-  ToastReturnType,
+const UseToastComponent: FC<
   // eslint-disable-next-line react/require-default-props
-  Omit<ToastProps, 'ref'> & { domRef?: MutableRefObject<HTMLDivElement> }
->((props, ref) => {
-  const { domRef = null, ...restProps } = props;
+  Omit<ToastProps, 'ref'> & {
+    domRef?: MutableRefObject<HTMLDivElement>;
+    onSetOpenFalse?: () => void;
+    onAnimationEnd?: () => void;
+  }
+> = (props) => {
+  const {
+    domRef,
+    onExited,
+    onSetOpenFalse,
+    onAnimationEnd,
+    open,
+    ...restProps
+  } = props;
   const options: ToastProps = {
     ...defaultProps,
     ...formatProps(restProps),
   };
   const { duration, multiple, onClose, container, ...others } = options;
   const rootElement = getRootContainer(container);
-  const [open, setOpen] = useState(false);
   const fadeTimeout = {
     enter: 350,
     exit: 150,
@@ -161,20 +180,11 @@ const UseToastComponent = forwardRef<
   const timerRef = useRef<number | null>(null);
 
   const close = () => {
-    setOpen(false);
-    setTimeout(() => {
-      onClose?.();
-    }, fadeTimeout.exit);
+    onSetOpenFalse?.();
+    onClose?.();
   };
 
-  useImperativeHandle(ref, () => {
-    return {
-      close,
-    };
-  }, [close]);
-
   useEffect(() => {
-    setOpen(true);
     if (!multiple) destroyAll();
     toastCloses.push(close);
 
@@ -195,59 +205,68 @@ const UseToastComponent = forwardRef<
     };
   }, []);
 
+  const onProxyExited = () => {
+    onAnimationEnd?.();
+    onExited?.();
+  };
+
   return ReactDOM.createPortal(
     <ToastView
       {...others}
       open={open}
       timeout={fadeTimeout}
-      onClose={close}
+      onExited={onProxyExited}
       ref={domRef}
     />,
     rootElement,
   );
-});
+};
 UseToastComponent.displayName = 'UseToastComponent';
 
 const useToast = () => {
-  const [elements, setElements] = useState<React.ReactElement[]>([]);
-  const toastComponentRef = useRef<ToastReturnType>();
+  const [elements, setElements] = useState<ToastElement[]>([]);
 
   const createToast = (options: ToastProps) => {
-    return new Promise((resolve) => {
-      const key = `toast-${Date.now()}-${Math.random()}`;
-      const { ref, ...restOtions } = options;
+    const key = `toast-${Date.now()}-${Math.random()}`;
+    const { ref, ...restOptions } = options;
 
-      const onProxyClose = () => {
-        restOtions?.onClose?.();
-        setElements((prev) => prev.filter((el) => el.key !== key));
-      };
+    const instance: ToastReturnType = {
+      close: () => {
+        // 通过改变open状态来关闭Toast，而不是直接从数组中移除
+        setElements((prev) =>
+          prev.map((element) =>
+            element.key === key ? { ...element, open: false } : element,
+          ),
+        );
+      },
+    };
+    const handleAnimationEnd = () => {
+      // 动画结束后从elements数组中移除组件
+      setElements((prev) => prev.filter((element) => element.key !== key));
+    };
 
-      const toastElement = (
-        <UseToastComponent
-          key={key}
-          {...restOtions}
-          open
-          onClose={onProxyClose}
-          ref={toastComponentRef}
-          domRef={ref}
-        />
-      );
-      setElements((prev) => [...prev, toastElement]);
+    const toastElement: ToastElement = {
+      key,
+      open: true,
+      props: {
+        ...restOptions,
+        onAnimationEnd: handleAnimationEnd,
+      },
+      ref,
+    };
 
-      // 返回close函数
-      setTimeout(() => {
-        resolve(toastComponentRef.current);
-      });
-    });
+    setElements((prev) => [...prev, toastElement]);
+
+    return instance;
   };
 
-  const hookToast = (options: ToastOptions) =>
+  const hookToast = (options: ToastOptions): ToastReturnType =>
     createToast({
       ...formatProps(options),
     });
   (['warning', 'loading', 'success', 'fail'] as ToastType[]).forEach(
     (methodName) => {
-      hookToast[methodName] = (options: ToastOptions) =>
+      hookToast[methodName] = (options: ToastOptions): ToastReturnType =>
         createToast({
           type: methodName,
           ...formatProps(options),
@@ -262,9 +281,30 @@ const useToast = () => {
     });
   };
 
+  // 直接渲染
+  const renderedElements = elements.map((element) => {
+    const onSetOpenFalse = () => {
+      setElements((prev) =>
+        prev.map((el) =>
+          el.key === element.key ? { ...el, open: false } : el,
+        ),
+      );
+    };
+    return (
+      <UseToastComponent
+        key={element.key}
+        {...element.props}
+        open={element.open}
+        onSetOpenFalse={onSetOpenFalse}
+        domRef={element.ref}
+      />
+    );
+  });
+
   // eslint-disable-next-line react/jsx-no-useless-fragment
-  return [hookToast, <>{elements}</>];
+  return [hookToast, <>{renderedElements}</>];
 };
+
 Toast.useToast = useToast;
 
 export default Toast as ToastInstance;
