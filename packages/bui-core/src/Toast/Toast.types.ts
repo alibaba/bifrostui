@@ -1,5 +1,6 @@
 import React, { MutableRefObject } from 'react';
 import { FadeProps } from '../Fade/Fade.types';
+import { TransitionProps } from '../Transition';
 
 /**
  * 提示类型
@@ -52,6 +53,10 @@ export interface ToastProps extends FadeProps {
    * 关闭时的回调函数
    */
   onClose?: () => void;
+  /**
+   * Toast动画时长(ms)
+   */
+  transitionDuration?: TransitionProps['timeout'];
   // Toast Div Element
   ref?: MutableRefObject<HTMLDivElement>;
 }
