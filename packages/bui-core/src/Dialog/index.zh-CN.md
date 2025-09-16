@@ -193,8 +193,10 @@ export default () => {
   };
 
   const showAlert = async () => {
-    await Dialog.alert('操作完成！');
-    Toast({ message: '已确认' });
+    const result = await Dialog.alert('操作完成！');
+    if (result) {
+      Toast({ message: '已确认' });
+    }
   };
 
   return (
@@ -312,11 +314,13 @@ export default () => {
   };
 
   const showAlert = async () => {
-    await dialog.alert({
+    const result = await dialog.alert({
       title: '系统通知',
       content: '您有一条新消息！',
     });
-    Toast({ message: '通知已确认' });
+    if (result) {
+      // Toast({ message: '通知已确认' });
+    }
   };
 
   return (

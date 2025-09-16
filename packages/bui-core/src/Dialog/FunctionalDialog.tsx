@@ -55,7 +55,6 @@ const DialogGenerator = (options: DialogOptions) => {
       <Dialog
         {...rest}
         open
-        disablePortal
         onOk={(e, { value }) => dispatch(true, e, value)}
         onCancel={(e) => dispatch(false, e)}
       />
