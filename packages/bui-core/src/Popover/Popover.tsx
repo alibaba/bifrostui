@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { useForkRef } from '@bifrostui/utils';
 import Portal from '../Portal';
+import Backdrop from '../Backdrop';
 import { PopoverProps } from './Popover.types';
 import {
   usePopoverState,
@@ -126,17 +127,13 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
         <Portal onMounted={onMounted}>
           {/* 小程序环境下的背景遮罩层 */}
           {backdropProps && (
-            <div
+            <Backdrop
               className="bui-popover-backdrop"
               style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
                 zIndex: 999,
-                backgroundColor: 'transparent',
               }}
+              open={isOpen}
+              invisible
               role="button"
               tabIndex={-1}
               onKeyDown={(e) => {
