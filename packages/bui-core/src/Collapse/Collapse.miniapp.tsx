@@ -225,6 +225,6 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
   );
 });
 
-Collapse.displayName = 'Collapse';
+Collapse.displayName = 'BuiCollapse';
 
 export default Collapse;

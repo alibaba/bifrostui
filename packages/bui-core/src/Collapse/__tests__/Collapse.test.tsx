@@ -31,18 +31,15 @@ describe('Collapse Component', () => {
 
     // Rerender with `in` prop set to true to trigger entering state
     rerender(
-      <Collapse
-        in={true}
-        appear
-        timeout={1000}
-        easing="cubic-bezier(0.0, 0, 0.2, 1)"
-      >
+      <Collapse in appear timeout={1000} easing="cubic-bezier(0.0, 0, 0.2, 1)">
         <div>Collapse</div>
       </Collapse>,
     );
 
     // Wait for the transition to be applied
-    await new Promise((resolve) => setTimeout(resolve, 50));
+    await new Promise((resolve) => {
+      setTimeout(resolve, 50);
+    });
 
     const collapseElement = document.querySelector('.bui-collapse')!;
     expect(collapseElement).toHaveStyle(

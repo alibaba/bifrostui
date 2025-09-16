@@ -6,7 +6,10 @@ export const BasicScrollViewDemo: React.FC = () => {
   return (
     <ScrollView scrollY style={{ height: '300px', width: '100%' }}>
       {Array.from({ length: 50 }, (_, index) => (
-        <div key={index} style={{ padding: '10px', borderBottom: '1px solid #eee' }}>
+        <div
+          key={index}
+          style={{ padding: '10px', borderBottom: '1px solid #eee' }}
+        >
           Item {index + 1}
         </div>
       ))}
@@ -20,17 +23,17 @@ export const HorizontalScrollViewDemo: React.FC = () => {
     <ScrollView scrollX style={{ width: '300px' }}>
       <div style={{ display: 'flex', width: 'max-content' }}>
         {Array.from({ length: 20 }, (_, index) => (
-          <div 
-            key={index} 
-            style={{ 
-              minWidth: '100px', 
-              height: '80px', 
+          <div
+            key={index}
+            style={{
+              minWidth: '100px',
+              height: '80px',
               margin: '0 5px',
               padding: '10px',
               backgroundColor: '#f0f0f0',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
             }}
           >
             Item {index + 1}
@@ -57,31 +60,38 @@ export const ScrollEventsDemo: React.FC = () => {
         offsetHeight?: number;
       };
     };
-    
+
     const scrollTop = event.detail?.scrollTop || 0;
-    setScrollInfo(prev => ({
+    setScrollInfo((prev) => ({
       ...prev,
       scrollTop,
     }));
   };
 
   const handleScrollToUpper = () => {
-    setScrollInfo(prev => ({ ...prev, atTop: true, atBottom: false }));
+    setScrollInfo((prev) => ({ ...prev, atTop: true, atBottom: false }));
   };
 
   const handleScrollToLower = () => {
-    setScrollInfo(prev => ({ ...prev, atTop: false, atBottom: true }));
+    setScrollInfo((prev) => ({ ...prev, atTop: false, atBottom: true }));
   };
 
   return (
     <div>
-      <div data-testid="scroll-info" style={{ marginBottom: '10px', padding: '10px', backgroundColor: '#f9f9f9' }}>
+      <div
+        data-testid="scroll-info"
+        style={{
+          marginBottom: '10px',
+          padding: '10px',
+          backgroundColor: '#f9f9f9',
+        }}
+      >
         <p>Scroll Top: {scrollInfo.scrollTop}</p>
         <p>At Top: {scrollInfo.atTop ? 'Yes' : 'No'}</p>
         <p>At Bottom: {scrollInfo.atBottom ? 'Yes' : 'No'}</p>
       </div>
-      <ScrollView 
-        scrollY 
+      <ScrollView
+        scrollY
         style={{ height: '200px', width: '100%' }}
         onScroll={handleScroll}
         onScrollToUpper={handleScrollToUpper}
@@ -90,7 +100,10 @@ export const ScrollEventsDemo: React.FC = () => {
         lowerThreshold={30}
       >
         {Array.from({ length: 30 }, (_, index) => (
-          <div key={index} style={{ padding: '15px', borderBottom: '1px solid #ddd' }}>
+          <div
+            key={index}
+            style={{ padding: '15px', borderBottom: '1px solid #ddd' }}
+          >
             Scroll Item {index + 1}
           </div>
         ))}
@@ -116,50 +129,53 @@ export const ControlledScrollDemo: React.FC = () => {
 
   return (
     <div>
-      <div style={{ marginBottom: '10px', padding: '10px', backgroundColor: '#f5f5f5' }}>
-        <button 
+      <div
+        style={{
+          marginBottom: '10px',
+          padding: '10px',
+          backgroundColor: '#f5f5f5',
+        }}
+      >
+        <button
           type="button"
           onClick={() => scrollToPosition(0)}
           style={{ marginRight: '5px' }}
         >
           Top
         </button>
-        <button 
+        <button
           type="button"
           onClick={() => scrollToPosition(200)}
           style={{ marginRight: '5px' }}
         >
           200px
         </button>
-        <button 
+        <button
           type="button"
           onClick={() => scrollToElement('item-10')}
           style={{ marginRight: '5px' }}
         >
           Item 10
         </button>
-        <button 
-          type="button"
-          onClick={() => scrollToElement('item-20')}
-        >
+        <button type="button" onClick={() => scrollToElement('item-20')}>
           Item 20
         </button>
       </div>
-      <ScrollView 
-        scrollY 
+      <ScrollView
+        scrollY
         style={{ height: '250px', width: '100%' }}
         scrollTop={scrollTop}
         scrollIntoView={scrollIntoView}
         scrollWithAnimation
       >
         {Array.from({ length: 30 }, (_, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             id={`item-${index + 1}`}
-            style={{ 
-              padding: '20px', 
+            style={{
+              padding: '20px',
               borderBottom: '1px solid #ccc',
-              backgroundColor: (index + 1) % 10 === 0 ? '#e6f3ff' : 'white'
+              backgroundColor: (index + 1) % 10 === 0 ? '#e6f3ff' : 'white',
             }}
           >
             Item {index + 1} {(index + 1) % 10 === 0 && '(Highlighted)'}
@@ -173,37 +189,46 @@ export const ControlledScrollDemo: React.FC = () => {
 // ScrollView with both directions
 export const BidirectionalScrollDemo: React.FC = () => {
   return (
-    <ScrollView 
-      scrollX 
-      scrollY 
-      style={{ 
-        width: '300px', 
-        height: '200px', 
+    <ScrollView
+      scrollX
+      scrollY
+      style={{
+        width: '300px',
+        height: '200px',
         border: '1px solid #ddd',
-        borderRadius: '4px'
+        borderRadius: '4px',
       }}
     >
-      <div style={{ 
-        width: '600px', 
-        height: '400px',
-        backgroundImage: 'linear-gradient(45deg, #f0f0f0 25%, transparent 25%), linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f0f0f0 75%), linear-gradient(-45deg, transparent 75%, #f0f0f0 75%)',
-        backgroundSize: '20px 20px',
-        backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px',
-        position: 'relative'
-      }}>
-        <div style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          padding: '20px',
-          backgroundColor: 'white',
-          border: '2px solid #007acc',
-          borderRadius: '8px',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-        }}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#007acc' }}>Scroll in both directions!</h3>
-          <p style={{ margin: 0, color: '#666' }}>This content area is larger than the viewport</p>
+      <div
+        style={{
+          width: '600px',
+          height: '400px',
+          backgroundImage:
+            'linear-gradient(45deg, #f0f0f0 25%, transparent 25%), linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f0f0f0 75%), linear-gradient(-45deg, transparent 75%, #f0f0f0 75%)',
+          backgroundSize: '20px 20px',
+          backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px',
+          position: 'relative',
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            padding: '20px',
+            backgroundColor: 'white',
+            border: '2px solid #007acc',
+            borderRadius: '8px',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          }}
+        >
+          <h3 style={{ margin: '0 0 10px 0', color: '#007acc' }}>
+            Scroll in both directions!
+          </h3>
+          <p style={{ margin: 0, color: '#666' }}>
+            This content area is larger than the viewport
+          </p>
         </div>
       </div>
     </ScrollView>
@@ -215,24 +240,32 @@ export const ThresholdTestDemo: React.FC = () => {
   const [thresholdEvents, setThresholdEvents] = React.useState<string[]>([]);
 
   const addEvent = (event: string) => {
-    setThresholdEvents(prev => [...prev.slice(-4), `${new Date().toLocaleTimeString()}: ${event}`]);
+    setThresholdEvents((prev) => [
+      ...prev.slice(-4),
+      `${new Date().toLocaleTimeString()}: ${event}`,
+    ]);
   };
 
   return (
     <div>
-      <div data-testid="threshold-events" style={{ 
-        marginBottom: '10px', 
-        padding: '10px', 
-        backgroundColor: '#f0f8ff',
-        minHeight: '80px'
-      }}>
+      <div
+        data-testid="threshold-events"
+        style={{
+          marginBottom: '10px',
+          padding: '10px',
+          backgroundColor: '#f0f8ff',
+          minHeight: '80px',
+        }}
+      >
         <strong>Threshold Events:</strong>
         {thresholdEvents.map((event, index) => (
-          <div key={index} style={{ fontSize: '12px', color: '#666' }}>{event}</div>
+          <div key={index} style={{ fontSize: '12px', color: '#666' }}>
+            {event}
+          </div>
         ))}
       </div>
-      <ScrollView 
-        scrollY 
+      <ScrollView
+        scrollY
         style={{ height: '150px', width: '100%' }}
         upperThreshold={20}
         lowerThreshold={20}
@@ -240,11 +273,15 @@ export const ThresholdTestDemo: React.FC = () => {
         onScrollToLower={() => addEvent('Reached lower threshold (20px)')}
       >
         {Array.from({ length: 20 }, (_, index) => (
-          <div key={index} style={{ 
-            padding: '12px', 
-            borderBottom: '1px solid #eee',
-            backgroundColor: index === 0 || index === 19 ? '#fff3cd' : 'white'
-          }}>
+          <div
+            key={index}
+            style={{
+              padding: '12px',
+              borderBottom: '1px solid #eee',
+              backgroundColor:
+                index === 0 || index === 19 ? '#fff3cd' : 'white',
+            }}
+          >
             {index === 0 && 'First Item (Top Threshold Test)'}
             {index === 19 && 'Last Item (Bottom Threshold Test)'}
             {index !== 0 && index !== 19 && `Item ${index + 1}`}

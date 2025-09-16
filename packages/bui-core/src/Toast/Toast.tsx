@@ -27,7 +27,7 @@ const ToastComponent = React.forwardRef<
     position = 'center',
     disableClick = false,
     appear = false,
-    timeout = 150,
+    transitionDuration = 150,
     ...others
   } = props;
 
@@ -69,12 +69,12 @@ const ToastComponent = React.forwardRef<
 
   return (
     <>
-      <Backdrop invisible open={disableClick} />
+      {disableClick && <Backdrop invisible open />}
       <Fade
         {...others}
         in={open}
         appear={appear}
-        timeout={timeout}
+        timeout={transitionDuration}
         unmountOnExit
       >
         <div

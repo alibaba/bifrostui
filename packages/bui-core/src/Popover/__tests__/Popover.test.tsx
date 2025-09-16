@@ -75,7 +75,9 @@ describe('Popover', () => {
       );
       await act(async () => {
         expect(screen.getByText('This is a popover title')).toBeInTheDocument();
-        expect(screen.getByText('This is a popover content')).toBeInTheDocument();
+        expect(
+          screen.getByText('This is a popover content'),
+        ).toBeInTheDocument();
       });
     });
 
@@ -90,7 +92,12 @@ describe('Popover', () => {
 
     it('should apply correct CSS classes', async () => {
       render(
-        <Popover title="Test" content="Content" defaultOpen className="custom-class">
+        <Popover
+          title="Test"
+          content="Content"
+          defaultOpen
+          className="custom-class"
+        >
           <div>children</div>
         </Popover>,
       );
@@ -107,7 +114,9 @@ describe('Popover', () => {
         </Popover>,
       );
       expect(screen.getByText('Content only')).toBeInTheDocument();
-      expect(screen.queryByText('This is a popover title')).not.toBeInTheDocument();
+      expect(
+        screen.queryByText('This is a popover title'),
+      ).not.toBeInTheDocument();
     });
 
     it('should render without content', () => {
@@ -230,7 +239,7 @@ describe('Popover', () => {
 
       const childrenDom = screen.getByTestId('popoverTestid');
       await userEvent.click(childrenDom);
-      
+
       expect(onOpenChange).toHaveBeenCalledTimes(1);
       expect(onOpenChange).toHaveBeenCalledWith(expect.any(Object), {
         open: true,
@@ -254,13 +263,17 @@ describe('Popover', () => {
           <div data-testid="popoverTestid">children</div>
         </Popover>,
       );
-      
+
       const childrenDom = screen.getByTestId('popoverTestid');
       fireEvent.mouseEnter(childrenDom);
-      expect(onOpenChange).toHaveBeenCalledWith(expect.any(Object), { open: true });
-      
+      expect(onOpenChange).toHaveBeenCalledWith(expect.any(Object), {
+        open: true,
+      });
+
       fireEvent.mouseLeave(childrenDom);
-      expect(onOpenChange).toHaveBeenCalledWith(expect.any(Object), { open: false });
+      expect(onOpenChange).toHaveBeenCalledWith(expect.any(Object), {
+        open: false,
+      });
       expect(onOpenChange).toBeCalledTimes(2);
 
       await userEvent.click(document.body);
@@ -338,7 +351,7 @@ describe('Popover', () => {
 
       await delay(100);
       await userEvent.click(document.body);
-      
+
       if (onOpenChange.mock.calls.length > 0) {
         expect(onOpenChange).toHaveBeenCalled();
       }
@@ -348,7 +361,13 @@ describe('Popover', () => {
   describe('Accessibility', () => {
     it('should have correct ARIA attributes', () => {
       render(
-        <Popover title="Test" content="Content" defaultOpen role="dialog" autoFocus>
+        <Popover
+          title="Test"
+          content="Content"
+          defaultOpen
+          role="dialog"
+          autoFocus
+        >
           <button type="button">Trigger</button>
         </Popover>,
       );

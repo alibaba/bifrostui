@@ -102,7 +102,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       open={open}
       ref={ref}
       className={clsx(prefixCls, `${prefixCls}-${type}`, className)}
-      onClose={!isAlertMode ? handleCancel : undefined}
+      onClose={handleCancel}
     >
       <div
         className={`${prefixCls}-container`}

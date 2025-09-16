@@ -46,7 +46,11 @@ describe('ScrollView', () => {
         </ScrollView>,
       );
       const scrollElement = container.querySelector('.bui-scroll');
-      expect(scrollElement).toHaveClass('bui-scroll', 'custom-scroll', 'bui-scroll-view-scroll-y');
+      expect(scrollElement).toHaveClass(
+        'bui-scroll',
+        'custom-scroll',
+        'bui-scroll-view-scroll-y',
+      );
     });
 
     it('should apply scroll-x class when scrollX is true', () => {
@@ -66,7 +70,10 @@ describe('ScrollView', () => {
         </ScrollView>,
       );
       const scrollElement = container.querySelector('.bui-scroll');
-      expect(scrollElement).toHaveClass('bui-scroll-view-scroll-x', 'bui-scroll-view-scroll-y');
+      expect(scrollElement).toHaveClass(
+        'bui-scroll-view-scroll-x',
+        'bui-scroll-view-scroll-y',
+      );
     });
 
     it('should forward ref correctly', () => {
@@ -101,11 +108,13 @@ describe('ScrollView', () => {
           <div style={{ height: '1000px' }}>Long content</div>
         </ScrollView>,
       );
-      
-      const scrollElement = container.querySelector('.bui-scroll') as HTMLDivElement;
-      
+
+      const scrollElement = container.querySelector(
+        '.bui-scroll',
+      ) as HTMLDivElement;
+
       fireEvent.scroll(scrollElement, { target: { scrollTop: 100 } });
-      
+
       expect(onScroll).toHaveBeenCalled();
       const event = onScroll.mock.calls[0][0];
       expect(event.detail).toBeDefined();
@@ -114,49 +123,74 @@ describe('ScrollView', () => {
     it('should call onScrollToUpper when scrolling to top', () => {
       const onScrollToUpper = vi.fn();
       const { container } = render(
-        <ScrollView 
-          scrollY 
+        <ScrollView
+          scrollY
           onScrollToUpper={onScrollToUpper}
           upperThreshold={50}
         >
           <div style={{ height: '1000px' }}>Long content</div>
         </ScrollView>,
       );
-      
-      const scrollElement = container.querySelector('.bui-scroll') as HTMLDivElement;
-      
+
+      const scrollElement = container.querySelector(
+        '.bui-scroll',
+      ) as HTMLDivElement;
+
       // Mock scroll position at the top
-      Object.defineProperty(scrollElement, 'scrollTop', { value: 10, writable: true });
-      Object.defineProperty(scrollElement, 'offsetHeight', { value: 400, writable: true });
-      Object.defineProperty(scrollElement, 'scrollHeight', { value: 1000, writable: true });
-      
+      Object.defineProperty(scrollElement, 'scrollTop', {
+        value: 10,
+        writable: true,
+      });
+      Object.defineProperty(scrollElement, 'offsetHeight', {
+        value: 400,
+        writable: true,
+      });
+      Object.defineProperty(scrollElement, 'scrollHeight', {
+        value: 1000,
+        writable: true,
+      });
+
       fireEvent.scroll(scrollElement);
-      
+
       expect(onScrollToUpper).toHaveBeenCalled();
     });
 
     it('should call onScrollToLower when scrolling to bottom', () => {
       const onScrollToLower = vi.fn();
       const { container } = render(
-        <ScrollView 
-          scrollY 
+        <ScrollView
+          scrollY
           onScrollToLower={onScrollToLower}
           lowerThreshold={50}
         >
           <div style={{ height: '1000px' }}>Long content</div>
         </ScrollView>,
       );
-      
-      const scrollElement = container.querySelector('.bui-scroll') as HTMLDivElement;
-      
+
+      const scrollElement = container.querySelector(
+        '.bui-scroll',
+      ) as HTMLDivElement;
+
       // Mock scroll position near the bottom
-      Object.defineProperty(scrollElement, 'scrollTop', { value: 550, writable: true });
-      Object.defineProperty(scrollElement, 'offsetHeight', { value: 400, writable: true });
-      Object.defineProperty(scrollElement, 'scrollHeight', { value: 1000, writable: true });
-      Object.defineProperty(scrollElement, 'scrollWidth', { value: 400, writable: true });
-      
+      Object.defineProperty(scrollElement, 'scrollTop', {
+        value: 550,
+        writable: true,
+      });
+      Object.defineProperty(scrollElement, 'offsetHeight', {
+        value: 400,
+        writable: true,
+      });
+      Object.defineProperty(scrollElement, 'scrollHeight', {
+        value: 1000,
+        writable: true,
+      });
+      Object.defineProperty(scrollElement, 'scrollWidth', {
+        value: 400,
+        writable: true,
+      });
+
       fireEvent.scroll(scrollElement);
-      
+
       expect(onScrollToLower).toHaveBeenCalled();
     });
 
@@ -167,11 +201,13 @@ describe('ScrollView', () => {
           <div>content</div>
         </ScrollView>,
       );
-      
-      const scrollElement = container.querySelector('.bui-scroll') as HTMLDivElement;
-      
+
+      const scrollElement = container.querySelector(
+        '.bui-scroll',
+      ) as HTMLDivElement;
+
       fireEvent.touchMove(scrollElement);
-      
+
       expect(onTouchMove).toHaveBeenCalled();
     });
   });
@@ -179,8 +215,8 @@ describe('ScrollView', () => {
   describe('Props filtering', () => {
     it('should pass through other HTML div props', () => {
       const { container } = render(
-        <ScrollView 
-          scrollY 
+        <ScrollView
+          scrollY
           data-testid="scroll-container"
           role="region"
           aria-label="Scrollable content"
@@ -188,7 +224,7 @@ describe('ScrollView', () => {
           <div>content</div>
         </ScrollView>,
       );
-      
+
       const scrollElement = container.querySelector('.bui-scroll');
       expect(scrollElement).toHaveAttribute('data-testid', 'scroll-container');
       expect(scrollElement).toHaveAttribute('role', 'region');
@@ -203,16 +239,18 @@ describe('ScrollView', () => {
           <div style={{ height: '1000px' }}>Long content</div>
         </ScrollView>,
       );
-      
-      const scrollElement = container.querySelector('.bui-scroll') as HTMLDivElement;
-      
+
+      const scrollElement = container.querySelector(
+        '.bui-scroll',
+      ) as HTMLDivElement;
+
       // Rerender with new scrollTop
       rerender(
         <ScrollView scrollY scrollTop={200}>
           <div style={{ height: '1000px' }}>Long content</div>
         </ScrollView>,
       );
-      
+
       // Wait for the scroll effect to apply
       await waitFor(() => {
         expect(scrollElement.scrollTop).toBe(200);
@@ -225,16 +263,18 @@ describe('ScrollView', () => {
           <div style={{ width: '1000px' }}>Wide content</div>
         </ScrollView>,
       );
-      
-      const scrollElement = container.querySelector('.bui-scroll') as HTMLDivElement;
-      
+
+      const scrollElement = container.querySelector(
+        '.bui-scroll',
+      ) as HTMLDivElement;
+
       // Rerender with new scrollLeft
       rerender(
         <ScrollView scrollX scrollLeft={200}>
           <div style={{ width: '1000px' }}>Wide content</div>
         </ScrollView>,
       );
-      
+
       // Wait for the scroll effect to apply
       await waitFor(() => {
         expect(scrollElement.scrollLeft).toBe(200);
@@ -249,13 +289,13 @@ describe('ScrollView', () => {
           <div style={{ height: '1000px' }}>Long content</div>
         </ScrollView>,
       );
-      
+
       rerender(
         <ScrollView scrollY scrollTop={200} scrollWithAnimation>
           <div style={{ height: '1000px' }}>Long content</div>
         </ScrollView>,
       );
-      
+
       // Should trigger requestAnimationFrame for animation
       await waitFor(() => {
         expect(mockRequestAnimationFrame).toHaveBeenCalled();
@@ -268,19 +308,34 @@ describe('ScrollView', () => {
       const { container } = render(
         <ScrollView scrollY scrollIntoView="target-element">
           <div style={{ height: '500px' }}>Top content</div>
-          <div id="target-element" style={{ height: '100px' }}>Target</div>
+          <div id="target-element" style={{ height: '100px' }}>
+            Target
+          </div>
           <div style={{ height: '500px' }}>Bottom content</div>
         </ScrollView>,
       );
-      
-      const scrollElement = container.querySelector('.bui-scroll') as HTMLDivElement;
-      const targetElement = container.querySelector('#target-element') as HTMLElement;
-      
+
+      const scrollElement = container.querySelector(
+        '.bui-scroll',
+      ) as HTMLDivElement;
+      const targetElement = container.querySelector(
+        '#target-element',
+      ) as HTMLElement;
+
       // Mock offsetTop for the target element
-      Object.defineProperty(targetElement, 'offsetTop', { value: 500, writable: true });
-      Object.defineProperty(targetElement, 'offsetHeight', { value: 100, writable: true });
-      Object.defineProperty(scrollElement, 'clientHeight', { value: 400, writable: true });
-      
+      Object.defineProperty(targetElement, 'offsetTop', {
+        value: 500,
+        writable: true,
+      });
+      Object.defineProperty(targetElement, 'offsetHeight', {
+        value: 100,
+        writable: true,
+      });
+      Object.defineProperty(scrollElement, 'clientHeight', {
+        value: 400,
+        writable: true,
+      });
+
       // Wait for scroll into view effect
       await waitFor(() => {
         // The scroll position should be set to show the target element
@@ -304,7 +359,7 @@ describe('ScrollView', () => {
           <div>Child 3</div>
         </ScrollView>,
       );
-      
+
       expect(getByText('Child 1')).toBeInTheDocument();
       expect(getByText('Child 2')).toBeInTheDocument();
       expect(getByText('Child 3')).toBeInTheDocument();
@@ -316,9 +371,11 @@ describe('ScrollView', () => {
           <div style={{ height: '1000px' }}>Long content</div>
         </ScrollView>,
       );
-      
-      const scrollElement = container.querySelector('.bui-scroll') as HTMLDivElement;
-      
+
+      const scrollElement = container.querySelector(
+        '.bui-scroll',
+      ) as HTMLDivElement;
+
       expect(() => {
         fireEvent.scroll(scrollElement);
       }).not.toThrow();
@@ -332,7 +389,7 @@ describe('ScrollView', () => {
           <div>content</div>
         </ScrollView>,
       );
-      
+
       expect(() => {
         unmount();
       }).not.toThrow();
@@ -344,7 +401,7 @@ describe('ScrollView', () => {
           <div>content</div>
         </ScrollView>,
       );
-      
+
       expect(() => {
         rerender(
           <ScrollView scrollX scrollY>

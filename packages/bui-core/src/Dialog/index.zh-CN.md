@@ -193,8 +193,10 @@ export default () => {
   };
 
   const showAlert = async () => {
-    await Dialog.alert('操作完成！');
-    Toast({ message: '已确认' });
+    const result = await Dialog.alert('操作完成！');
+    if (result) {
+      Toast({ message: '已确认' });
+    }
   };
 
   return (
@@ -312,11 +314,13 @@ export default () => {
   };
 
   const showAlert = async () => {
-    await dialog.alert({
+    const result = await dialog.alert({
       title: '系统通知',
       content: '您有一条新消息！',
     });
-    Toast({ message: '通知已确认' });
+    if (result) {
+      // Toast({ message: '通知已确认' });
+    }
   };
 
   return (
@@ -428,6 +432,14 @@ export default () => {
 };
 ```
 
+## Accessibility
+
+- Dialog弹出时根据类型自动设置role属性：当type === 'alert'时设置role="alertdialog"，其他类型设置role="dialog"
+- Dialog弹出时，Dialog的兄弟元素自动会添加aria-hidden属性，Dialog关闭去除aria-hidden属性
+- 内置ARIA标签：
+  - aria-labelledby：当提供title时，自动关联到标题元素的ID，为屏幕阅读器提供对话框的标题信息
+  - aria-describedby：当提供content时，自动关联到内容元素的ID，为屏幕阅读器提供对话框的详细描述信息
+
 ## API
 
 ### Dialog Props
@@ -501,12 +513,3 @@ interface DialogOptions {
 | `--bui-dialog-button-font-size`     | 按钮字体大小   | `17px`                           |
 | `--bui-dialog-button-border-radius` | 按钮圆角       | `4px`                            |
 | `--bui-dialog-button-border-left`   | 按钮左边框     | `1px solid rgba(0, 0, 0, 0.05)`  |
-
-## 注意事项
-
-1. **推荐使用 useDialog Hook**：可以访问 React Context，支持主题配置
-2. **必须渲染 contextHolder**：使用 useDialog 时必须在组件中渲染返回的 contextHolder
-3. **异步操作处理**：onOk 和 onCancel 支持异步函数，可以在其中处理异步逻辑
-4. **表单验证**：可以在 onOk 中进行验证，验证失败时不关闭对话框
-5. **无障碍支持**：Dialog 组件内置了完整的无障碍访问支持
-6. **主题定制**：支持通过 CSS 变量和 theme 属性进行主题定制
