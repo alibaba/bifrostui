@@ -591,13 +591,7 @@ export default () => {
 #### 静态方法
 
 ```tsx
-import {
-  Stack,
-  Button,
-  Toast,
-  ThemeProvider,
-  useTheme,
-} from '@bifrostui/react';
+import { Stack, Button, Toast } from '@bifrostui/react';
 import React, { useRef } from 'react';
 
 export default () => {
@@ -610,10 +604,11 @@ export default () => {
           Toast({
             ref,
             message: '提示内容',
-            className: 'my-toast',
+            className: 'my-toast-static',
             style: {
               '--bui-toast-border-radius': '30px',
             },
+            appear: true,
             onEntered: () => {
               console.log('ref', ref);
             },
@@ -630,22 +625,15 @@ export default () => {
 #### Hooks调用
 
 ```tsx
-import {
-  Stack,
-  Button,
-  Toast,
-  ThemeProvider,
-  useTheme,
-} from '@bifrostui/react';
+import { Stack, Button, Toast } from '@bifrostui/react';
 import React, { useRef } from 'react';
 
 export default () => {
   const ref = useRef();
   const [toast, contextHolder] = Toast.useToast();
-  const theme = useTheme();
 
   return (
-    <ThemeProvider locale={theme.locale}>
+    <>
       {contextHolder}
       <Stack direction="row" spacing="10px">
         <Button
@@ -653,10 +641,11 @@ export default () => {
             toast({
               ref,
               message: '提示内容',
-              className: 'my-toast',
+              className: 'my-toast-hook',
               style: {
                 '--bui-toast-border-radius': '30px',
               },
+              appear: true,
               onEntered: () => {
                 console.log('ref', ref);
               },
@@ -666,7 +655,7 @@ export default () => {
           toast
         </Button>
       </Stack>
-    </ThemeProvider>
+    </>
   );
 };
 ```

@@ -7,6 +7,7 @@ import {
   SuccessCircleFilledBoldIcon,
 } from '@bifrostui/icons';
 import Fade from '../Fade';
+import Backdrop from '../Backdrop';
 import { ToastProps } from './Toast.types';
 import './index.less';
 
@@ -25,6 +26,8 @@ const ToastComponent = React.forwardRef<
     message,
     position = 'center',
     disableClick = false,
+    appear = false,
+    timeout = 150,
     ...others
   } = props;
 
@@ -66,8 +69,14 @@ const ToastComponent = React.forwardRef<
 
   return (
     <>
-      <div className={clsx({ [`${prefixCls}-backdrop`]: disableClick })} />
-      <Fade {...others} in={open} appear={false} unmountOnExit>
+      <Backdrop invisible open={disableClick} />
+      <Fade
+        {...others}
+        in={open}
+        appear={appear}
+        timeout={timeout}
+        unmountOnExit
+      >
         <div
           ref={ref}
           className={clsx(
