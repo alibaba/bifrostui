@@ -14,15 +14,11 @@ const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(
       invisible = false,
       open = false,
       transitionDuration,
-      timeout,
       ...others
     } = props;
 
-    // 使用 timeout 或 transitionDuration，优先使用 timeout（与测试保持一致）
-    const duration = timeout || transitionDuration;
-
     return (
-      <Fade in={open} timeout={duration} {...others}>
+      <Fade in={open} timeout={transitionDuration} {...others}>
         <div
           aria-hidden="true"
           className={clsx(
