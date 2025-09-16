@@ -28,11 +28,11 @@ afterEach(() => {
 // Test component that uses the hook
 const TestComponent: React.FC<{
   hookProps: Parameters<typeof useScrollView>[0];
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }> = ({ hookProps, children }) => {
   const { getRootProps } = useScrollView(hookProps);
   const rootProps = getRootProps();
-  
+
   return <div {...rootProps}>{children}</div>;
 };
 
@@ -86,12 +86,24 @@ describe('useScrollView', () => {
       );
 
       const element = container.firstChild as HTMLDivElement;
-      
+
       // Mock scroll properties
-      Object.defineProperty(element, 'scrollTop', { value: 100, writable: true });
-      Object.defineProperty(element, 'scrollLeft', { value: 50, writable: true });
-      Object.defineProperty(element, 'scrollHeight', { value: 1000, writable: true });
-      Object.defineProperty(element, 'scrollWidth', { value: 500, writable: true });
+      Object.defineProperty(element, 'scrollTop', {
+        value: 100,
+        writable: true,
+      });
+      Object.defineProperty(element, 'scrollLeft', {
+        value: 50,
+        writable: true,
+      });
+      Object.defineProperty(element, 'scrollHeight', {
+        value: 1000,
+        writable: true,
+      });
+      Object.defineProperty(element, 'scrollWidth', {
+        value: 500,
+        writable: true,
+      });
 
       fireEvent.scroll(element);
 
@@ -120,11 +132,20 @@ describe('useScrollView', () => {
       );
 
       const element = container.firstChild as HTMLDivElement;
-      
+
       // Mock scroll position near top
-      Object.defineProperty(element, 'scrollTop', { value: 30, writable: true });
-      Object.defineProperty(element, 'offsetHeight', { value: 400, writable: true });
-      Object.defineProperty(element, 'scrollHeight', { value: 1000, writable: true });
+      Object.defineProperty(element, 'scrollTop', {
+        value: 30,
+        writable: true,
+      });
+      Object.defineProperty(element, 'offsetHeight', {
+        value: 400,
+        writable: true,
+      });
+      Object.defineProperty(element, 'scrollHeight', {
+        value: 1000,
+        writable: true,
+      });
 
       fireEvent.scroll(element);
 
@@ -146,11 +167,20 @@ describe('useScrollView', () => {
       );
 
       const element = container.firstChild as HTMLDivElement;
-      
+
       // Mock scroll position near bottom
-      Object.defineProperty(element, 'scrollTop', { value: 550, writable: true });
-      Object.defineProperty(element, 'offsetHeight', { value: 400, writable: true });
-      Object.defineProperty(element, 'scrollHeight', { value: 1000, writable: true });
+      Object.defineProperty(element, 'scrollTop', {
+        value: 550,
+        writable: true,
+      });
+      Object.defineProperty(element, 'offsetHeight', {
+        value: 400,
+        writable: true,
+      });
+      Object.defineProperty(element, 'scrollHeight', {
+        value: 1000,
+        writable: true,
+      });
 
       fireEvent.scroll(element);
 
@@ -172,11 +202,20 @@ describe('useScrollView', () => {
       );
 
       const element = container.firstChild as HTMLDivElement;
-      
+
       // Mock scroll position at top
-      Object.defineProperty(element, 'scrollTop', { value: 30, writable: true });
-      Object.defineProperty(element, 'offsetHeight', { value: 400, writable: true });
-      Object.defineProperty(element, 'scrollHeight', { value: 1000, writable: true });
+      Object.defineProperty(element, 'scrollTop', {
+        value: 30,
+        writable: true,
+      });
+      Object.defineProperty(element, 'offsetHeight', {
+        value: 400,
+        writable: true,
+      });
+      Object.defineProperty(element, 'scrollHeight', {
+        value: 1000,
+        writable: true,
+      });
 
       // Trigger scroll multiple times
       fireEvent.scroll(element);
@@ -202,11 +241,20 @@ describe('useScrollView', () => {
       );
 
       const element = container.firstChild as HTMLDivElement;
-      
+
       // Mock horizontal scroll position near right edge
-      Object.defineProperty(element, 'scrollLeft', { value: 550, writable: true });
-      Object.defineProperty(element, 'offsetWidth', { value: 400, writable: true });
-      Object.defineProperty(element, 'scrollWidth', { value: 1000, writable: true });
+      Object.defineProperty(element, 'scrollLeft', {
+        value: 550,
+        writable: true,
+      });
+      Object.defineProperty(element, 'offsetWidth', {
+        value: 400,
+        writable: true,
+      });
+      Object.defineProperty(element, 'scrollWidth', {
+        value: 1000,
+        writable: true,
+      });
 
       fireEvent.scroll(element);
 
@@ -229,7 +277,7 @@ describe('useScrollView', () => {
       );
 
       const element = container.firstChild as HTMLDivElement;
-      
+
       fireEvent.touchMove(element);
 
       expect(onTouchMove).toHaveBeenCalled();
@@ -247,7 +295,7 @@ describe('useScrollView', () => {
       );
 
       const element = container.firstChild as HTMLDivElement;
-      
+
       expect(() => {
         fireEvent.touchMove(element);
       }).not.toThrow();
@@ -359,18 +407,31 @@ describe('useScrollView', () => {
           }}
         >
           <div style={{ height: '500px' }}>Top content</div>
-          <div id="target-element" style={{ height: '100px' }}>Target</div>
+          <div id="target-element" style={{ height: '100px' }}>
+            Target
+          </div>
           <div style={{ height: '500px' }}>Bottom content</div>
         </TestComponent>,
       );
 
       const element = container.firstChild as HTMLDivElement;
-      const targetElement = container.querySelector('#target-element') as HTMLElement;
-      
+      const targetElement = container.querySelector(
+        '#target-element',
+      ) as HTMLElement;
+
       // Mock target element properties
-      Object.defineProperty(targetElement, 'offsetTop', { value: 500, writable: true });
-      Object.defineProperty(targetElement, 'offsetHeight', { value: 100, writable: true });
-      Object.defineProperty(element, 'clientHeight', { value: 400, writable: true });
+      Object.defineProperty(targetElement, 'offsetTop', {
+        value: 500,
+        writable: true,
+      });
+      Object.defineProperty(targetElement, 'offsetHeight', {
+        value: 100,
+        writable: true,
+      });
+      Object.defineProperty(element, 'clientHeight', {
+        value: 400,
+        writable: true,
+      });
 
       // ScrollIntoView should trigger scroll position change
       await waitFor(() => {
@@ -388,18 +449,31 @@ describe('useScrollView', () => {
           }}
         >
           <div style={{ height: '500px' }}>Top content</div>
-          <div id="target-element" style={{ height: '100px' }}>Target</div>
+          <div id="target-element" style={{ height: '100px' }}>
+            Target
+          </div>
           <div style={{ height: '500px' }}>Bottom content</div>
         </TestComponent>,
       );
 
       const element = container.firstChild as HTMLDivElement;
-      const targetElement = container.querySelector('#target-element') as HTMLElement;
-      
+      const targetElement = container.querySelector(
+        '#target-element',
+      ) as HTMLElement;
+
       // Mock target element properties
-      Object.defineProperty(targetElement, 'offsetTop', { value: 500, writable: true });
-      Object.defineProperty(targetElement, 'offsetHeight', { value: 100, writable: true });
-      Object.defineProperty(element, 'clientHeight', { value: 400, writable: true });
+      Object.defineProperty(targetElement, 'offsetTop', {
+        value: 500,
+        writable: true,
+      });
+      Object.defineProperty(targetElement, 'offsetHeight', {
+        value: 100,
+        writable: true,
+      });
+      Object.defineProperty(element, 'clientHeight', {
+        value: 400,
+        writable: true,
+      });
 
       // Should handle different alignment values
       await waitFor(() => {
@@ -425,13 +499,14 @@ describe('useScrollView', () => {
 
   describe('Prop passing', () => {
     it('should pass through other props to getRootProps', () => {
-      const { result } = renderHook(() =>
-        useScrollView({
-          scrollY: true,
-          'data-testid': 'scroll-container',
-          role: 'region',
-          'aria-label': 'Scrollable content',
-        } as any), // 使用类型断言来传递额外的HTML属性
+      const { result } = renderHook(
+        () =>
+          useScrollView({
+            scrollY: true,
+            'data-testid': 'scroll-container',
+            role: 'region',
+            'aria-label': 'Scrollable content',
+          } as any), // 使用类型断言来传递额外的HTML属性
       );
 
       const rootProps = result.current.getRootProps({
@@ -439,7 +514,7 @@ describe('useScrollView', () => {
         role: 'region',
         'aria-label': 'Scrollable content',
       });
-      
+
       expect(rootProps).toMatchObject({
         'data-testid': 'scroll-container',
         role: 'region',
@@ -458,7 +533,7 @@ describe('useScrollView', () => {
       const rootProps = result.current.getRootProps({
         onClick: customHandler,
       });
-      
+
       expect(rootProps.onClick).toBe(customHandler);
       expect(rootProps.onScroll).toBeInstanceOf(Function);
       expect(rootProps.onTouchMove).toBeInstanceOf(Function);
@@ -481,11 +556,20 @@ describe('useScrollView', () => {
       );
 
       const element = container.firstChild as HTMLDivElement;
-      
+
       // Mock scroll position within custom threshold
-      Object.defineProperty(element, 'scrollTop', { value: 80, writable: true });
-      Object.defineProperty(element, 'offsetHeight', { value: 400, writable: true });
-      Object.defineProperty(element, 'scrollHeight', { value: 1000, writable: true });
+      Object.defineProperty(element, 'scrollTop', {
+        value: 80,
+        writable: true,
+      });
+      Object.defineProperty(element, 'offsetHeight', {
+        value: 400,
+        writable: true,
+      });
+      Object.defineProperty(element, 'scrollHeight', {
+        value: 1000,
+        writable: true,
+      });
 
       fireEvent.scroll(element);
 
@@ -507,11 +591,20 @@ describe('useScrollView', () => {
       );
 
       const element = container.firstChild as HTMLDivElement;
-      
+
       // Mock scroll position within custom threshold
-      Object.defineProperty(element, 'scrollTop', { value: 500, writable: true });
-      Object.defineProperty(element, 'offsetHeight', { value: 400, writable: true });
-      Object.defineProperty(element, 'scrollHeight', { value: 1000, writable: true });
+      Object.defineProperty(element, 'scrollTop', {
+        value: 500,
+        writable: true,
+      });
+      Object.defineProperty(element, 'offsetHeight', {
+        value: 400,
+        writable: true,
+      });
+      Object.defineProperty(element, 'scrollHeight', {
+        value: 1000,
+        writable: true,
+      });
 
       fireEvent.scroll(element);
 
