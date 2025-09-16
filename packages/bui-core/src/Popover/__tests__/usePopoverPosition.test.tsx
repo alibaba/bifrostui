@@ -1,6 +1,10 @@
 import { renderHook, act } from 'testing';
+import {
+  getStylesAndLocation,
+  parsePlacement,
+  throttle,
+} from '@bifrostui/utils';
 import { usePopoverPosition } from '../hooks/usePopoverPosition';
-import { getStylesAndLocation, parsePlacement, throttle } from '@bifrostui/utils';
 
 // Mock utils functions
 vi.mock('@bifrostui/utils', () => ({
@@ -22,7 +26,10 @@ describe('usePopoverPosition', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mockParsePlacement.mockReturnValue({ direction: 'top', location: 'center' });
+    mockParsePlacement.mockReturnValue({
+      direction: 'top',
+      location: 'center',
+    });
     mockGetStylesAndLocation.mockResolvedValue({
       styles: { top: 0, left: 0, transform: 'translate3d(0, 0, 0)' },
       childrenStyle: {},
@@ -52,12 +59,17 @@ describe('usePopoverPosition', () => {
     });
 
     it('should initialize with correct default values', () => {
-      mockParsePlacement.mockReturnValue({ direction: 'bottom', location: 'left' });
-      
-      const { result } = renderHook(() => usePopoverPosition({
-        ...defaultProps,
-        anchorOrigin: { vertical: 'bottom', horizontal: 'left' },
-      }));
+      mockParsePlacement.mockReturnValue({
+        direction: 'bottom',
+        location: 'left',
+      });
+
+      const { result } = renderHook(() =>
+        usePopoverPosition({
+          ...defaultProps,
+          anchorOrigin: { vertical: 'bottom', horizontal: 'left' },
+        }),
+      );
 
       expect(result.current.arrowDirection).toBe('bottom');
       expect(result.current.arrowLocation).toBe('left');
@@ -68,29 +80,43 @@ describe('usePopoverPosition', () => {
     it('should parse different anchor origins correctly', () => {
       const testCases = [
         {
-          anchorOrigin: { vertical: 'top' as const, horizontal: 'center' as const },
+          anchorOrigin: {
+            vertical: 'top' as const,
+            horizontal: 'center' as const,
+          },
           expectedPlacement: 'top',
         },
         {
-          anchorOrigin: { vertical: 'center' as const, horizontal: 'left' as const },
+          anchorOrigin: {
+            vertical: 'center' as const,
+            horizontal: 'left' as const,
+          },
           expectedPlacement: 'left',
         },
         {
-          anchorOrigin: { vertical: 'bottom' as const, horizontal: 'right' as const },
+          anchorOrigin: {
+            vertical: 'bottom' as const,
+            horizontal: 'right' as const,
+          },
           expectedPlacement: 'bottomRight',
         },
         {
-          anchorOrigin: { vertical: 'center' as const, horizontal: 'center' as const },
+          anchorOrigin: {
+            vertical: 'center' as const,
+            horizontal: 'center' as const,
+          },
           expectedPlacement: 'top', // Special case: center + center -> top
         },
       ];
 
       testCases.forEach(({ anchorOrigin, expectedPlacement }) => {
         vi.clearAllMocks();
-        renderHook(() => usePopoverPosition({
-          ...defaultProps,
-          anchorOrigin,
-        }));
+        renderHook(() =>
+          usePopoverPosition({
+            ...defaultProps,
+            anchorOrigin,
+          }),
+        );
 
         // Should be called with the expected placement for anchor origin conversion
         expect(mockParsePlacement).toHaveBeenCalledWith(expectedPlacement);
@@ -176,7 +202,7 @@ describe('usePopoverPosition', () => {
 
     it('should update only changed direction and location', async () => {
       const mockTipElement = document.createElement('div');
-      
+
       mockGetStylesAndLocation.mockResolvedValue({
         styles: { top: 0, left: 0 },
         childrenStyle: {},
@@ -204,10 +230,12 @@ describe('usePopoverPosition', () => {
 
   describe('Visibility handling', () => {
     it('should set visibility hidden when not open', () => {
-      const { result } = renderHook(() => usePopoverPosition({
-        ...defaultProps,
-        isOpen: false,
-      }));
+      const { result } = renderHook(() =>
+        usePopoverPosition({
+          ...defaultProps,
+          isOpen: false,
+        }),
+      );
 
       expect(result.current.toolStyles).toEqual({
         visibility: 'hidden',
@@ -215,10 +243,12 @@ describe('usePopoverPosition', () => {
     });
 
     it('should not set visibility hidden when open', () => {
-      const { result } = renderHook(() => usePopoverPosition({
-        ...defaultProps,
-        isOpen: true,
-      }));
+      const { result } = renderHook(() =>
+        usePopoverPosition({
+          ...defaultProps,
+          isOpen: true,
+        }),
+      );
 
       // When open, visibility should not be explicitly set to hidden
       expect(result.current.toolStyles.visibility).not.toBe('hidden');
@@ -227,7 +257,7 @@ describe('usePopoverPosition', () => {
     it('should update visibility when isOpen changes', () => {
       const { result, rerender } = renderHook(
         ({ isOpen }) => usePopoverPosition({ ...defaultProps, isOpen }),
-        { initialProps: { isOpen: true } }
+        { initialProps: { isOpen: true } },
       );
 
       // Initially open - no hidden visibility
@@ -294,17 +324,22 @@ describe('usePopoverPosition', () => {
   describe('Edge cases', () => {
     it('should handle different offsetSpacing values', () => {
       const offsetSpacing = 20;
-      const { result } = renderHook(() => usePopoverPosition({
-        ...defaultProps,
-        offsetSpacing,
-      }));
+      const { result } = renderHook(() =>
+        usePopoverPosition({
+          ...defaultProps,
+          offsetSpacing,
+        }),
+      );
 
       expect(result.current).toBeTruthy();
       // The offsetSpacing should be passed to getStylesAndLocation when onMounted is called
     });
 
     it('should handle missing location in parsePlacement result', () => {
-      mockParsePlacement.mockReturnValue({ direction: 'top', location: undefined }); // No location
+      mockParsePlacement.mockReturnValue({
+        direction: 'top',
+        location: undefined,
+      }); // No location
 
       const { result } = renderHook(() => usePopoverPosition(defaultProps));
 
@@ -314,7 +349,7 @@ describe('usePopoverPosition', () => {
     it('should handle rapid isOpen changes', () => {
       const { result, rerender } = renderHook(
         ({ isOpen }) => usePopoverPosition({ ...defaultProps, isOpen }),
-        { initialProps: { isOpen: false } }
+        { initialProps: { isOpen: false } },
       );
 
       // Initial state should be hidden

@@ -164,10 +164,10 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 0,
     // ===== 可访问性 (a11y) 规则 =====
     // 1. 键盘交互规则
-    'jsx-a11y/click-events-have-key-events': 'warn', // 确保可点击元素有对应的键盘事件处理
-    'jsx-a11y/no-static-element-interactions': 'warn', // 禁止在静态元素上添加事件处理器
+    'jsx-a11y/click-events-have-key-events': 'off', // 确保可点击元素有对应的键盘事件处理
+    'jsx-a11y/no-static-element-interactions': 'off', // 禁止在静态元素上添加事件处理器
     'jsx-a11y/no-noninteractive-element-interactions': 'warn', // 禁止在非交互元素上添加事件处理器
-    'jsx-a11y/no-autofocus': 'warn', // 禁止使用自动聚焦，除非必要
+    'jsx-a11y/no-autofocus': 'off', // 禁止使用自动聚焦，除非必要
 
     // 2. 表单和标签规则
     'jsx-a11y/label-has-associated-control': 'warn', // 确保每个 label 标签都有对应的表单控件

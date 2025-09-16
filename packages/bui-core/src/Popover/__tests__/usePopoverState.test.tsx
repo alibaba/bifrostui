@@ -32,7 +32,9 @@ describe('usePopoverState', () => {
     });
 
     it('should initialize with defaultOpen', () => {
-      const { result } = renderHook(() => usePopoverState({ defaultOpen: true }));
+      const { result } = renderHook(() =>
+        usePopoverState({ defaultOpen: true }),
+      );
 
       expect(result.current.isOpen).toBe(true);
       expect(result.current.openStatus).toBe(true);
@@ -52,7 +54,7 @@ describe('usePopoverState', () => {
     it('should update when open prop changes', () => {
       const { result, rerender } = renderHook(
         ({ open }) => usePopoverState({ open }),
-        { initialProps: { open: false } }
+        { initialProps: { open: false } },
       );
 
       expect(result.current.isOpen).toBe(false);
@@ -68,10 +70,12 @@ describe('usePopoverState', () => {
 
     it('should not allow changeOpenStatus in controlled mode', () => {
       const onOpenChange = vi.fn();
-      const { result } = renderHook(() => usePopoverState({ 
-        open: false, 
-        onOpenChange 
-      }));
+      const { result } = renderHook(() =>
+        usePopoverState({
+          open: false,
+          onOpenChange,
+        }),
+      );
 
       const mockEvent = new Event('click');
       act(() => {
@@ -86,10 +90,12 @@ describe('usePopoverState', () => {
   describe('Uncontrolled mode', () => {
     it('should allow changeOpenStatus in uncontrolled mode', () => {
       const onOpenChange = vi.fn();
-      const { result } = renderHook(() => usePopoverState({ 
-        defaultOpen: false,
-        onOpenChange 
-      }));
+      const { result } = renderHook(() =>
+        usePopoverState({
+          defaultOpen: false,
+          onOpenChange,
+        }),
+      );
 
       const mockEvent = new Event('click');
       act(() => {
@@ -103,10 +109,12 @@ describe('usePopoverState', () => {
 
     it('should toggle state correctly', () => {
       const onOpenChange = vi.fn();
-      const { result } = renderHook(() => usePopoverState({ 
-        defaultOpen: false,
-        onOpenChange 
-      }));
+      const { result } = renderHook(() =>
+        usePopoverState({
+          defaultOpen: false,
+          onOpenChange,
+        }),
+      );
 
       const mockEvent = new Event('click');
 
@@ -126,12 +134,14 @@ describe('usePopoverState', () => {
     });
 
     it('should work without onOpenChange callback', () => {
-      const { result } = renderHook(() => usePopoverState({ 
-        defaultOpen: false
-      }));
+      const { result } = renderHook(() =>
+        usePopoverState({
+          defaultOpen: false,
+        }),
+      );
 
       const mockEvent = new Event('click');
-      
+
       expect(() => {
         act(() => {
           result.current.changeOpenStatus(mockEvent, true);
@@ -144,9 +154,11 @@ describe('usePopoverState', () => {
 
   describe('setOpenStatus direct usage', () => {
     it('should allow direct state updates via setOpenStatus', () => {
-      const { result } = renderHook(() => usePopoverState({ 
-        defaultOpen: false
-      }));
+      const { result } = renderHook(() =>
+        usePopoverState({
+          defaultOpen: false,
+        }),
+      );
 
       act(() => {
         result.current.setOpenStatus(true);
@@ -157,12 +169,14 @@ describe('usePopoverState', () => {
     });
 
     it('should work with functional updates', () => {
-      const { result } = renderHook(() => usePopoverState({ 
-        defaultOpen: false
-      }));
+      const { result } = renderHook(() =>
+        usePopoverState({
+          defaultOpen: false,
+        }),
+      );
 
       act(() => {
-        result.current.setOpenStatus(prev => !prev);
+        result.current.setOpenStatus((prev) => !prev);
       });
 
       expect(result.current.openStatus).toBe(true);
@@ -172,10 +186,12 @@ describe('usePopoverState', () => {
 
   describe('Edge cases', () => {
     it('should handle undefined open prop correctly', () => {
-      const { result } = renderHook(() => usePopoverState({ 
-        open: undefined,
-        defaultOpen: true
-      }));
+      const { result } = renderHook(() =>
+        usePopoverState({
+          open: undefined,
+          defaultOpen: true,
+        }),
+      );
 
       expect(result.current.controlByUser).toBe(false);
       expect(result.current.isOpen).toBe(true);
@@ -184,7 +200,7 @@ describe('usePopoverState', () => {
     it('should handle rapid prop changes', () => {
       const { result, rerender } = renderHook(
         ({ open }) => usePopoverState({ open }),
-        { initialProps: { open: false } }
+        { initialProps: { open: false } },
       );
 
       // Rapid changes
@@ -199,7 +215,7 @@ describe('usePopoverState', () => {
     it('should maintain controlled state consistency', () => {
       const { result, rerender } = renderHook(
         ({ open }) => usePopoverState({ open }),
-        { initialProps: { open: true } }
+        { initialProps: { open: true } },
       );
 
       expect(result.current.isOpen).toBe(true);
