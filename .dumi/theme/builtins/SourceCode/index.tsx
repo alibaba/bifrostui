@@ -70,19 +70,18 @@ const SourceCode: FC<SourceCodeProps> = (props) => {
                   <span className="token-line-num">{i + 1}</span>
                 )}
                 <div
-                  {...getLineProps({
-                    line,
-                    key: i,
-                  })}
+
                   className={clsx({
                     'line-cell': themeConfig.showLineNum,
                   })}
                 >
-                  {line.map((token, key) => (
-                    // getTokenProps 返回值包含 key
-                    // eslint-disable-next-line react/jsx-key
-                    <span {...getTokenProps({ token, key })} />
-                  ))}
+                  {line.map((token, key) => {
+                    const tokenProps = getTokenProps({ token, key });
+                    const { key: tokenKey, ...restTokenProps } = tokenProps;
+                    return (
+                      <span key={tokenKey} {...restTokenProps} />
+                    );
+                  })}
                 </div>
               </div>
             ))}
