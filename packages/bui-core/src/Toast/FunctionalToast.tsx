@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 import React, {
   useCallback,
   useEffect,
@@ -6,8 +8,8 @@ import React, {
   FC,
   MutableRefObject,
 } from 'react';
-import ReactDOM from 'react-dom';
 import { render, unmount, getRootContainer } from '@bifrostui/utils';
+import Portal from '../Portal';
 import ToastView from './Toast';
 import {
   ToastOptions,
@@ -20,7 +22,7 @@ import {
 interface ToastElement {
   key: string;
   open: boolean;
-  props: Partial<ToastProps>;
+  props: Partial<ToastProps> & { onEnd?: () => void };
   ref?: MutableRefObject<HTMLDivElement>;
 }
 
@@ -64,11 +66,7 @@ const Toast = (props: ToastProps | string): ToastReturnType => {
 
   const ToastComponent = () => {
     const { duration, multiple, onClose, onExited, ...others } = restOptions;
-    const [open, setOpen] = useState(false);
-    const fadeTimeout = {
-      enter: 350,
-      exit: 150,
-    };
+    const [open, setOpen] = useState(true);
     const timerRef = useRef<number | null>(null);
 
     const close = useCallback(() => {
@@ -77,7 +75,6 @@ const Toast = (props: ToastProps | string): ToastReturnType => {
     }, [rootWrapper, onClose]);
 
     useEffect(() => {
-      setOpen(true);
       if (!multiple) destroyAll();
       toastCloses.push(close);
 
@@ -111,14 +108,7 @@ const Toast = (props: ToastProps | string): ToastReturnType => {
     // 关闭当前Toast
     instance.close = close;
 
-    return (
-      <ToastView
-        {...others}
-        open={open}
-        timeout={fadeTimeout}
-        onExited={onProxyExited}
-      />
-    );
+    return <ToastView {...others} open={open} onExited={onProxyExited} />;
   };
 
   render(<ToastComponent />, rootWrapper);
@@ -152,31 +142,19 @@ Toast.clear = () => {
 };
 
 const UseToastComponent: FC<
-  // eslint-disable-next-line react/require-default-props
   Omit<ToastProps, 'ref'> & {
     domRef?: MutableRefObject<HTMLDivElement>;
     onSetOpenFalse?: () => void;
-    onAnimationEnd?: () => void;
+    onEnd?: () => void;
   }
 > = (props) => {
-  const {
-    domRef,
-    onExited,
-    onSetOpenFalse,
-    onAnimationEnd,
-    open,
-    ...restProps
-  } = props;
+  const { domRef, onExited, onSetOpenFalse, onEnd, open, ...restProps } = props;
   const options: ToastProps = {
     ...defaultProps,
     ...formatProps(restProps),
   };
   const { duration, multiple, onClose, container, ...others } = options;
   const rootElement = getRootContainer(container);
-  const fadeTimeout = {
-    enter: 350,
-    exit: 150,
-  };
   const timerRef = useRef<number | null>(null);
 
   const close = () => {
@@ -206,19 +184,19 @@ const UseToastComponent: FC<
   }, []);
 
   const onProxyExited = () => {
-    onAnimationEnd?.();
+    onEnd?.();
     onExited?.();
   };
 
-  return ReactDOM.createPortal(
-    <ToastView
-      {...others}
-      open={open}
-      timeout={fadeTimeout}
-      onExited={onProxyExited}
-      ref={domRef}
-    />,
-    rootElement,
+  return (
+    <Portal container={rootElement}>
+      <ToastView
+        {...others}
+        open={open}
+        onExited={onProxyExited}
+        ref={domRef}
+      />
+    </Portal>
   );
 };
 UseToastComponent.displayName = 'UseToastComponent';
@@ -250,7 +228,7 @@ const useToast = () => {
       open: true,
       props: {
         ...restOptions,
-        onAnimationEnd: handleAnimationEnd,
+        onEnd: handleAnimationEnd,
       },
       ref,
     };
