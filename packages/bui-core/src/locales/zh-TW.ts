@@ -77,6 +77,7 @@ const zhTW: BaseLang = {
     complete: '已完成',
   },
   textarea: {
+    labelName: '文本區域',
     placeholder: '請輸入內容',
     remaining: '剩餘',
     characters: '個字',

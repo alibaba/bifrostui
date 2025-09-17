@@ -10,6 +10,7 @@ const DEFAULT_ROWS = 2;
 
 const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
   (props, ref) => {
+    const textareaText = useLocaleText('textarea');
     const {
       className,
       value,
@@ -25,7 +26,7 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
       autoFocus = false, // 是否自动聚焦
       showCount = false, // 是否展示字数统计
       // 无障碍属性
-      'aria-label': ariaLabel = '文本框',
+      'aria-label': ariaLabel = textareaText.labelName,
       'aria-hidden': ariaHidden,
       'aria-details': ariaDetails,
       'aria-required': ariaRequired,
@@ -35,7 +36,6 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
       onChange,
       ...others
     } = props;
-    const textareaText = useLocaleText('textarea');
     // 受控/非受控 value 处理
     const [textAreaValue, triggerChange] = useValue({
       value,

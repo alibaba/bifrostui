@@ -77,6 +77,7 @@ const zhCN: BaseLang = {
     complete: '已完成',
   },
   textarea: {
+    labelName: '文本区域',
     placeholder: '请输入内容',
     remaining: '剩余',
     characters: '个字',

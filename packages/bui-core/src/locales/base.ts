@@ -21,6 +21,7 @@ export interface BaseLang {
     placeholder?: string;
   };
   textarea?: {
+    labelName?: string;
     placeholder?: string;
     remaining?: string;
     characters?: string;
