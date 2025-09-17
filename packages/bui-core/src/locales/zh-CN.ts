@@ -66,6 +66,7 @@ const zhCN: BaseLang = {
     timer: '倒计时器',
   },
   progress: {
+    labelName: '进度条',
     notStarted: '未开始',
     justBegun: '刚刚开始',
     gettingStarted: '开始进行',

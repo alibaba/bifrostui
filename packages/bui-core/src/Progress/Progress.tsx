@@ -68,19 +68,21 @@ function getAriaValueText(progress: number | undefined, t): string {
 // 进度条主组件
 const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
   (props, ref) => {
+    const progressText = useLocaleText('progress');
     const {
       className,
       percent = 0, // 当前进度百分比
       strokeWidth, // 进度条高度
       strokeColor, // 进度条颜色或渐变
       trailColor, // 轨道颜色
+      'aria-label': ariaLabel = progressText.labelName,
+      'aria-labelledby': ariaLabelledby = '',
       'aria-valuenow': ariaValueNow,
       'aria-valuemin': ariaValueMin = 0,
       'aria-valuemax': ariaValueMax = 100,
       'aria-valuetext': ariaValueText,
       ...others
     } = props;
-    const progressText = useLocaleText('progress');
 
     // 处理进度条颜色，支持渐变和纯色
     const backgroundProps =
@@ -108,6 +110,8 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
         typeof ariaValueNow === 'number'
           ? ariaValueNow
           : validProgress(percent),
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledby,
       'aria-valuemin': ariaValueMin,
       'aria-valuemax': ariaValueMax,
       'aria-valuetext':

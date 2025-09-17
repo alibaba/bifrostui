@@ -65,6 +65,7 @@ export interface BaseLang {
     timer?: string;
   };
   progress?: {
+    labelName?: string;
     notStarted?: string;
     justBegun?: string;
     gettingStarted?: string;
