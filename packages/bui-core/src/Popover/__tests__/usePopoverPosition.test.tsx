@@ -317,7 +317,7 @@ describe('usePopoverPosition', () => {
     it('should throttle onMounted function', () => {
       renderHook(() => usePopoverPosition(defaultProps));
 
-      expect(mockThrottle).toHaveBeenCalledWith(expect.any(Function), 100);
+      expect(mockThrottle).toHaveBeenCalledWith(expect.any(Function), 16);
     });
   });
 
