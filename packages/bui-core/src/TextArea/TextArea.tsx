@@ -25,13 +25,11 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
       autoFocus = false, // 是否自动聚焦
       showCount = false, // 是否展示字数统计
       // 无障碍属性
-      'aria-label': ariaLabel,
-      'aria-describedby': ariaDescribedby,
+      'aria-label': ariaLabel = '文本框',
       'aria-hidden': ariaHidden,
       'aria-details': ariaDetails,
       'aria-required': ariaRequired,
       'aria-readonly': ariaReadonly,
-      'aria-rowcount': ariaRowcount,
       'aria-rowindex': ariaRowindex,
       'aria-colcount': ariaColcount,
       onChange,
@@ -114,12 +112,10 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
     // 添加无障碍属性到原生属性中
     const accessibilityProps = {
       'aria-label': ariaLabel,
-      'aria-describedby': ariaDescribedby,
       'aria-hidden': ariaHidden,
       'aria-details': ariaDetails,
       'aria-required': ariaRequired,
       'aria-readonly': ariaReadonly,
-      'aria-rowcount': ariaRowcount,
       'aria-rowindex': ariaRowindex,
       'aria-colcount': ariaColcount,
     };

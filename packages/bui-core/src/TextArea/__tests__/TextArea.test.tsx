@@ -147,17 +147,6 @@ describe('TextArea', () => {
       expect(textarea).toHaveAttribute('aria-label', 'User feedback');
     });
 
-    it('should support aria-describedby', () => {
-      render(
-        <div>
-          <TextArea aria-describedby="help-text" />
-          <div id="help-text">Please enter your feedback</div>
-        </div>,
-      );
-      const textarea = screen.getByRole('textbox');
-      expect(textarea).toHaveAttribute('aria-describedby', 'help-text');
-    });
-
     it('should support aria-hidden', () => {
       render(<TextArea aria-hidden />);
       const textarea = screen.getByRole('textbox', { hidden: true });
@@ -183,12 +172,6 @@ describe('TextArea', () => {
       expect(textarea).toHaveAttribute('aria-readonly', 'true');
     });
 
-    it('should support aria-rowcount', () => {
-      render(<TextArea aria-rowcount={5} />);
-      const textarea = screen.getByRole('textbox');
-      expect(textarea).toHaveAttribute('aria-rowcount', '5');
-    });
-
     it('should support aria-rowindex', () => {
       render(<TextArea aria-rowindex={2} />);
       const textarea = screen.getByRole('textbox');
@@ -205,17 +188,13 @@ describe('TextArea', () => {
       render(
         <TextArea
           aria-label="Feedback form"
-          aria-describedby="feedback-help"
           aria-required
-          aria-rowcount={10}
           aria-colcount={50}
         />,
       );
       const textarea = screen.getByRole('textbox');
       expect(textarea).toHaveAttribute('aria-label', 'Feedback form');
-      expect(textarea).toHaveAttribute('aria-describedby', 'feedback-help');
       expect(textarea).toHaveAttribute('aria-required', 'true');
-      expect(textarea).toHaveAttribute('aria-rowcount', '10');
       expect(textarea).toHaveAttribute('aria-colcount', '50');
     });
 
@@ -278,12 +257,10 @@ describe('TextArea', () => {
 
       // 确保未定义的 aria 属性不会被渲染
       expect(textarea).not.toHaveAttribute('aria-label');
-      expect(textarea).not.toHaveAttribute('aria-describedby');
       expect(textarea).not.toHaveAttribute('aria-hidden');
       expect(textarea).not.toHaveAttribute('aria-details');
       expect(textarea).not.toHaveAttribute('aria-required');
       expect(textarea).not.toHaveAttribute('aria-readonly');
-      expect(textarea).not.toHaveAttribute('aria-rowcount');
       expect(textarea).not.toHaveAttribute('aria-rowindex');
       expect(textarea).not.toHaveAttribute('aria-colcount');
     });

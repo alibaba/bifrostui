@@ -41,11 +41,6 @@ getMdDemoCodes(
             if (ariaLabel !== null) {
               expect(ariaLabel).toBeTruthy();
             }
-            // 验证 aria-describedby 属性（如果存在）
-            const ariaDescribedby = textarea.getAttribute('aria-describedby');
-            if (ariaDescribedby !== null) {
-              expect(ariaDescribedby).toBeTruthy();
-            }
             // 验证 aria-required 属性（如果存在）
             const ariaRequired = textarea.getAttribute('aria-required');
             if (ariaRequired !== null) {
@@ -112,11 +107,6 @@ getCustomDemoCodesFromFile(
             const ariaLabel = textarea.getAttribute('aria-label');
             if (ariaLabel !== null) {
               expect(ariaLabel).toBeTruthy();
-            }
-            // 验证 aria-describedby 属性（如果存在）
-            const ariaDescribedby = textarea.getAttribute('aria-describedby');
-            if (ariaDescribedby !== null) {
-              expect(ariaDescribedby).toBeTruthy();
             }
             // 验证 aria-required 属性（如果存在）
             const ariaRequired = textarea.getAttribute('aria-required');
