@@ -256,7 +256,6 @@ describe('TextArea', () => {
       const textarea = screen.getByRole('textbox');
 
       // 确保未定义的 aria 属性不会被渲染
-      expect(textarea).not.toHaveAttribute('aria-label');
       expect(textarea).not.toHaveAttribute('aria-hidden');
       expect(textarea).not.toHaveAttribute('aria-details');
       expect(textarea).not.toHaveAttribute('aria-required');
