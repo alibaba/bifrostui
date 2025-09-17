@@ -43,6 +43,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         ref={ref}
         disabled={disabled}
+        aria-disabled={disabled ? 'true' : undefined}
         {...others}
       >
         {startIcon && <ButtonIcon iconPosition="start">{startIcon}</ButtonIcon>}
