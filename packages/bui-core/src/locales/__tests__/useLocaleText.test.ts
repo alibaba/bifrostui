@@ -102,8 +102,15 @@ describe('useLocaleText', () => {
           remain: {
             year: 'Custom Year',
             hour: 'Custom Hour',
+            month: '个月',
+            day: '天',
+            minute: '分钟',
+            second: '秒',
           },
           timer: 'Custom Timer',
+          remainTime: '剩余时间',
+          hasEnd: '倒计时已结束',
+          willEnd: '即将结束',
         },
       };
 
@@ -131,6 +138,11 @@ describe('useLocaleText', () => {
         countdown: {
           remain: {
             day: 'Custom Day',
+            year: '中国年',
+            month: '本月',
+            hour: 'Custom hour',
+            minute: 'Custom minute',
+            second: 'Custom second',
           },
         },
       };
@@ -139,11 +151,11 @@ describe('useLocaleText', () => {
 
       const result = useLocaleText('countdown');
       expect(result.remain.day).toBe('Custom Day');
-      expect(result.remain.year).toBe('年');
-      expect(result.remain.month).toBe('个月');
-      expect(result.remain.hour).toBe('小时');
-      expect(result.remain.minute).toBe('分钟');
-      expect(result.remain.second).toBe('秒');
+      expect(result.remain.year).toBe('中国年');
+      expect(result.remain.month).toBe('本月');
+      expect(result.remain.hour).toBe('Custom hour');
+      expect(result.remain.minute).toBe('Custom minute');
+      expect(result.remain.second).toBe('Custom second');
     });
 
     it('should handle empty custom countdown localization', () => {
@@ -230,6 +242,7 @@ describe('useLocaleText', () => {
 
       const result = useLocaleText('progress');
       expect(result).toEqual({
+        labelName: '进度条',
         notStarted: 'Custom Not Started',
         inProgress: 'Custom In Progress',
         complete: 'Custom Complete',
