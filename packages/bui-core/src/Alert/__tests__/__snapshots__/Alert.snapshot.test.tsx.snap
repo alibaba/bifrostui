@@ -651,6 +651,7 @@ exports[`Alert snapshot > Alert demo snapshot 0 7`] = `
       开票提醒2020.0802下午14:00开售
     </div>
     <button
+      aria-disabled={false}
       aria-label="按钮"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular bui-icon-btn-success bui-alert-action"
       onClick={[Function]}

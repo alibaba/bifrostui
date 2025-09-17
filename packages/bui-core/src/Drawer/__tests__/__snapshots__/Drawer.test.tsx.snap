@@ -11,7 +11,10 @@ exports[`Drawer > renders correctly 1`] = `
     style="visibility: visible; transition: opacity 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; opacity: 1;"
   />
   <div
+    aria-label="Drawer"
+    aria-modal="true"
     class="bui-drawer-content bui-drawer-content-bottom"
+    role="dialog"
     style="visibility: visible; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transform: none;"
     tabindex="-1"
   >

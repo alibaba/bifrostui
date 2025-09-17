@@ -673,7 +673,7 @@ describe('Collapse.miniapp', () => {
 
   describe('Component behavior validation', () => {
     it('should have correct displayName', () => {
-      expect(CollapseMiniapp.displayName).toBe('Collapse');
+      expect(CollapseMiniapp.displayName).toBe('BuiCollapse');
     });
 
     it('should handle complex animation scenarios', () => {

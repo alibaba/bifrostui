@@ -23,6 +23,7 @@ exports[`Avatar > prop: src > should render containing an img 1`] = `
       class="bui-image bui-avatar-img"
     >
       <img
+        alt=""
         class="bui-image-img bui-image-loaded"
         loading="eager"
         src="https://gw.alicdn.com/imgextra/i3/O1CN01tp2YUs1WFD8lboMDu_!!6000000002758-2-tps-126-126.png"
