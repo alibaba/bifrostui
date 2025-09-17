@@ -78,10 +78,6 @@ export type TextAreaProps<
        */
       'aria-label'?: string;
       /**
-       * 无障碍功能：描述元素的详细信息
-       */
-      'aria-describedby'?: string;
-      /**
        * 无障碍功能：是否隐藏元素
        */
       'aria-hidden'?: boolean;
@@ -97,10 +93,6 @@ export type TextAreaProps<
        * 无障碍功能：当前元素是否为只读
        */
       'aria-readonly'?: boolean;
-      /**
-       * 无障碍功能：多行文本框的行数
-       */
-      'aria-rowcount'?: number;
       /**
        * 无障碍功能：多行文本框的第一行索引
        */

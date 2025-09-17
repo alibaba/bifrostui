@@ -213,17 +213,15 @@ export default () => {
 
 TextArea 组件支持以下无障碍属性，用于提升可访问性：
 
-|       属性       |          说明           |  类型   | 默认值 |
-| :--------------: | :---------------------: | :-----: | :----: |
-|    aria-label    |      ARIA 标签描述      | string  |   -    |
-| aria-describedby | 描述元素的详细信息的 ID | string  |   -    |
-|   aria-hidden    |      是否隐藏元素       | boolean |   -    |
-|   aria-details   | 元素在无障碍树中的细节  | string  |   -    |
-|  aria-required   |   当前元素是否为必填    | boolean |   -    |
-|  aria-readonly   |   当前元素是否为只读    | boolean |   -    |
-|  aria-rowcount   |    多行文本框的行数     | number  |   -    |
-|  aria-rowindex   | 多行文本框的第一行索引  | number  |   -    |
-|  aria-colcount   |    多行文本框的列数     | number  |   -    |
+|     属性      |          说明          |  类型   | 默认值 |
+| :-----------: | :--------------------: | :-----: | :----: |
+|  aria-label   |     ARIA 标签描述      | string  |   -    |
+|  aria-hidden  |      是否隐藏元素      | boolean |   -    |
+| aria-details  | 元素在无障碍树中的细节 | string  |   -    |
+| aria-required |   当前元素是否为必填   | boolean |   -    |
+| aria-readonly |   当前元素是否为只读   | boolean |   -    |
+| aria-rowindex | 多行文本框的第一行索引 | number  |   -    |
+| aria-colcount |    多行文本框的列数    | number  |   -    |
 
 ## 样式变量
 

@@ -25,22 +25,7 @@ export const ariaLabelTextAreaDemo = () => {
   );
 };
 
-// Demo 3: 带 aria-describedby 的 TextArea
-export const ariaDescribedbyTextAreaDemo = () => {
-  return (
-    <div>
-      <TextArea
-        placeholder="请输入内容"
-        aria-describedby="textarea-description"
-      />
-      <span id="textarea-description" style={{ display: 'none' }}>
-        请输入您的评论，最多200字
-      </span>
-    </div>
-  );
-};
-
-// Demo 4: 必填和只读的 TextArea
+// Demo 3: 必填和只读的 TextArea
 export const requiredAndReadonlyTextAreaDemo = () => {
   return (
     <div>
@@ -54,7 +39,7 @@ export const requiredAndReadonlyTextAreaDemo = () => {
   );
 };
 
-// Demo 5: 带字数统计的 TextArea
+// Demo 4: 带字数统计的 TextArea
 export const showCountTextAreaDemo = () => {
   return (
     <div>
@@ -68,7 +53,7 @@ export const showCountTextAreaDemo = () => {
   );
 };
 
-// Demo 6: 自动聚焦的 TextArea
+// Demo 5: 自动聚焦的 TextArea
 export const autoFocusTextAreaDemo = () => {
   return (
     <div>
@@ -81,27 +66,11 @@ export const autoFocusTextAreaDemo = () => {
   );
 };
 
-// Demo 7: 多行 TextArea
-export const multiLineTextAreaDemo = () => {
-  return (
-    <div>
-      <TextArea
-        placeholder="多行输入"
-        rows={4}
-        aria-rowcount={4}
-        aria-label="多行文本输入框"
-      />
-    </div>
-  );
-};
-
 // 默认导出所有 demo
 export default {
   basicTextAreaDemo,
   ariaLabelTextAreaDemo,
-  ariaDescribedbyTextAreaDemo,
   requiredAndReadonlyTextAreaDemo,
   showCountTextAreaDemo,
   autoFocusTextAreaDemo,
-  multiLineTextAreaDemo,
 };
