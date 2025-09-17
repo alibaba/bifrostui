@@ -262,8 +262,8 @@ describe('Countdown', () => {
       const srText = container.querySelector('.bui-countdown-sr-only');
 
       expect(srText?.textContent).toContain('1年');
-      expect(srText?.textContent).toContain('1个月');
-      expect(srText?.textContent).toContain('1天');
+      expect(srText?.textContent).toContain('13个月');
+      expect(srText?.textContent).toContain('396天');
       expect(srText?.textContent).toContain('1小时');
       expect(srText?.textContent).toContain('1分钟');
       expect(srText?.textContent).toContain('1秒');
