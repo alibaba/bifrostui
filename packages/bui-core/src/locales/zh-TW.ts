@@ -66,6 +66,7 @@ const zhTW: BaseLang = {
     timer: '倒數計時器',
   },
   progress: {
+    labelName: '進度條',
     notStarted: '未開始',
     justBegun: '剛剛開始',
     gettingStarted: '開始進行',

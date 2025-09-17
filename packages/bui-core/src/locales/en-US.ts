@@ -86,6 +86,7 @@ const enUS: BaseLang = {
     timer: 'Timer',
   },
   progress: {
+    labelName: 'Progress Bar',
     notStarted: 'Not started',
     justBegun: 'Just begun',
     gettingStarted: 'Getting started',
