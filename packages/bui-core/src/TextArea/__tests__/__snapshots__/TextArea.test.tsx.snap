@@ -2,6 +2,8 @@
 
 exports[`TextArea > can auto size 1`] = `
 <textarea
+  aria-description=""
+  aria-label="文本区域"
   class="bui-textarea-content"
   maxlength="-1"
   rows="2"

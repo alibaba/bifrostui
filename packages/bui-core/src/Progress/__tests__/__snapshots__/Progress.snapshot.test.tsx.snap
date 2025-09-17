@@ -2,9 +2,12 @@
 
 exports[`Progress demo snapshot > Progress demo snapshot 0 1`] = `
 <div
+  aria-label="进度条"
+  aria-labelledby=""
   aria-valuemax={100}
   aria-valuemin={0}
   aria-valuenow={40}
+  aria-valuetext="进行中"
   className="bui-progress"
   role="progressbar"
 >
@@ -44,9 +47,12 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 2`] = `
   }
 >
   <div
+    aria-label="进度条"
+    aria-labelledby=""
     aria-valuemax={100}
     aria-valuemin={0}
     aria-valuenow={40}
+    aria-valuetext="进行中"
     className="bui-progress"
     role="progressbar"
   >
@@ -71,9 +77,12 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 2`] = `
     </div>
   </div>
   <div
+    aria-label="进度条"
+    aria-labelledby=""
     aria-valuemax={100}
     aria-valuemin={0}
     aria-valuenow={50}
+    aria-valuetext="过半完成"
     className="bui-progress"
     role="progressbar"
   >
@@ -98,9 +107,12 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 2`] = `
     </div>
   </div>
   <div
+    aria-label="进度条"
+    aria-labelledby=""
     aria-valuemax={100}
     aria-valuemin={0}
     aria-valuenow={30}
+    aria-valuetext="进行中"
     className="bui-progress"
     role="progressbar"
   >
@@ -125,9 +137,12 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 2`] = `
     </div>
   </div>
   <div
+    aria-label="进度条"
+    aria-labelledby=""
     aria-valuemax={100}
     aria-valuemin={0}
     aria-valuenow={80}
+    aria-valuetext="接近完成"
     className="bui-progress"
     role="progressbar"
   >
@@ -152,9 +167,12 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 2`] = `
     </div>
   </div>
   <div
+    aria-label="进度条"
+    aria-labelledby=""
     aria-valuemax={100}
     aria-valuemin={0}
     aria-valuenow={90}
+    aria-valuetext="即将完成"
     className="bui-progress"
     role="progressbar"
   >
@@ -195,9 +213,12 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 3`] = `
   }
 >
   <div
+    aria-label="进度条"
+    aria-labelledby=""
     aria-valuemax={100}
     aria-valuemin={0}
     aria-valuenow={60}
+    aria-valuetext="过半完成"
     className="bui-progress"
     role="progressbar"
   >
@@ -222,9 +243,12 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 3`] = `
     </div>
   </div>
   <div
+    aria-label="进度条"
+    aria-labelledby=""
     aria-valuemax={100}
     aria-valuemin={0}
     aria-valuenow={60}
+    aria-valuetext="过半完成"
     className="bui-progress"
     role="progressbar"
   >
@@ -265,9 +289,12 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 4`] = `
   }
 >
   <div
+    aria-label="进度条"
+    aria-labelledby=""
     aria-valuemax={100}
     aria-valuemin={0}
     aria-valuenow={60}
+    aria-valuetext="过半完成"
     className="bui-progress"
     role="progressbar"
   >
@@ -292,9 +319,12 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 4`] = `
     </div>
   </div>
   <div
+    aria-label="进度条"
+    aria-labelledby=""
     aria-valuemax={100}
     aria-valuemin={0}
     aria-valuenow={90}
+    aria-valuetext="即将完成"
     className="bui-progress"
     role="progressbar"
   >
@@ -323,9 +353,12 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 4`] = `
 
 exports[`Progress demo snapshot > Progress demo snapshot 0 5`] = `
 <div
+  aria-label="进度条"
+  aria-labelledby=""
   aria-valuemax={100}
   aria-valuemin={0}
   aria-valuenow={60}
+  aria-valuetext="过半完成"
   className="bui-progress"
   role="progressbar"
 >
@@ -366,9 +399,11 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 6`] = `
 >
   <div
     aria-label="文件下载进度"
+    aria-labelledby=""
     aria-valuemax={100}
     aria-valuemin={0}
     aria-valuenow={50}
+    aria-valuetext="过半完成"
     className="bui-progress"
     role="progressbar"
   >
@@ -394,6 +429,7 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 6`] = `
   </div>
   <div
     aria-label="数据加载进度"
+    aria-labelledby=""
     aria-valuemax={100}
     aria-valuemin={0}
     aria-valuenow={75}
@@ -423,9 +459,12 @@ exports[`Progress demo snapshot > Progress demo snapshot 0 6`] = `
   </div>
   <div
     aria-describedby="progress-description"
+    aria-label="进度条"
+    aria-labelledby=""
     aria-valuemax={100}
     aria-valuemin={0}
     aria-valuenow={30}
+    aria-valuetext="进行中"
     className="bui-progress"
     role="progressbar"
   >
