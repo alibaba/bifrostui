@@ -251,6 +251,14 @@ describe('TextArea', () => {
       );
     });
 
+    it('should have default aria-label when no custom label is provided', () => {
+      render(<TextArea />);
+      const textarea = screen.getByRole('textbox');
+
+      // 现在组件默认提供 aria-label，所以应该期望有这个属性
+      expect(textarea).toHaveAttribute('aria-label', '文本区域');
+    });
+
     it('should not render undefined aria attributes', () => {
       render(<TextArea />);
       const textarea = screen.getByRole('textbox');
@@ -262,6 +270,12 @@ describe('TextArea', () => {
       expect(textarea).not.toHaveAttribute('aria-readonly');
       expect(textarea).not.toHaveAttribute('aria-rowindex');
       expect(textarea).not.toHaveAttribute('aria-colcount');
+    });
+
+    it('should override default aria-label when custom label is provided', () => {
+      render(<TextArea aria-label="Custom label" />);
+      const textarea = screen.getByRole('textbox');
+      expect(textarea).toHaveAttribute('aria-label', 'Custom label');
     });
   });
 });

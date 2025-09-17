@@ -5,6 +5,7 @@ exports[`Input snapshot > Input demo snapshot 0 1`] = `
   className="bui-input"
 >
   <input
+    aria-placeholder="请填写内容"
     className="bui-input-input"
     disabled={false}
     onBlur={[Function]}
@@ -38,6 +39,7 @@ exports[`Input snapshot > Input demo snapshot 0 2`] = `
     />
   </div>
   <input
+    aria-placeholder="请填写内容"
     className="bui-input-input"
     disabled={false}
     onBlur={[Function]}
@@ -56,6 +58,7 @@ exports[`Input snapshot > Input demo snapshot 0 3`] = `
   className="bui-input"
 >
   <input
+    aria-placeholder="请填写内容"
     className="bui-input-input"
     disabled={false}
     onBlur={[Function]}
@@ -90,6 +93,7 @@ exports[`Input snapshot > Input demo snapshot 0 4`] = `
     className="bui-input"
   >
     <input
+      aria-placeholder="请填写内容"
       className="bui-input-input"
       disabled={false}
       onBlur={[Function]}
@@ -132,6 +136,8 @@ exports[`Input snapshot > Input demo snapshot 0 5`] = `
   className="bui-input bui-input-disabled"
 >
   <input
+    aria-disabled={true}
+    aria-placeholder="请填写内容"
     className="bui-input-input"
     disabled={true}
     onBlur={[Function]}
@@ -231,6 +237,7 @@ exports[`Input snapshot > Input demo snapshot 0 7`] = `
   className="bui-input"
 >
   <input
+    aria-placeholder="number类型"
     className="bui-input-input"
     disabled={false}
     onBlur={[Function]}

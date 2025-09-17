@@ -305,6 +305,11 @@ describe('Calendar', () => {
       />,
     );
     const btns = container.querySelectorAll(`.${rootClass}-handler-btn`);
+
+    // 检查按钮是否存在且索引1有效
+    expect(btns.length).toBeGreaterThan(1);
+    expect(btns[1]).toBeDefined();
+
     fireEvent.click(btns[1]);
     expect(fakeMonthChange).toReturnWith('next');
   });
@@ -367,6 +372,11 @@ describe('Calendar', () => {
     expect(rightIcon).not.toHaveStyle('color: #cccccc');
 
     const btns = container.querySelectorAll(`.${rootClass}-handler-btn`);
+
+    // 检查按钮是否存在且索引1有效
+    expect(btns.length).toBeGreaterThan(1);
+    expect(btns[1]).toBeDefined();
+
     fireEvent.click(btns[1]);
     expect(fakeMonthChange).toReturnWith('next');
     expect(leftIcon).not.toHaveStyle('color: #cccccc');

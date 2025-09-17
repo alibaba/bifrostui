@@ -23,6 +23,7 @@ exports[`Input > should render end icon 1`] = `
 
 exports[`Input > should render placeholder 1`] = `
 <input
+  aria-placeholder="请输入内容"
   class="bui-input-input"
   placeholder="请输入内容"
   type="text"

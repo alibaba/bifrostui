@@ -2,9 +2,12 @@
 
 exports[`Progress > renders correctly 1`] = `
 <div
+  aria-label="进度条"
+  aria-labelledby=""
   aria-valuemax="100"
   aria-valuemin="0"
   aria-valuenow="54"
+  aria-valuetext="过半完成"
   class="bui-progress"
   data-testid="progress"
   role="progressbar"
