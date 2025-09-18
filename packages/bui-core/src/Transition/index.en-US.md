@@ -1,4 +1,3 @@
-````markdown
 ---
 group: Animation
 name: Transition Basic Transition
@@ -53,6 +52,7 @@ export default () => {
   );
 };
 ```
+
 ````
 
 ## Events
@@ -141,3 +141,4 @@ export default () => {
 ```
 
 ```
+````

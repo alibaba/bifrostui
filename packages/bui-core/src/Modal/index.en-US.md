@@ -1,4 +1,3 @@
-````markdown
 ---
 group: Feedback
 name: Modal Dialog
@@ -72,6 +71,7 @@ export default () => {
   );
 };
 ```
+
 ````
 
 ## Nested Modals
@@ -776,3 +776,4 @@ type ModalCloseDetail = {
 ```
 
 ```
+````

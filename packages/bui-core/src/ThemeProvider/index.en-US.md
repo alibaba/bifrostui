@@ -1,4 +1,3 @@
-````markdown
 ---
 group: Theme
 name: ThemeProvider Configuration
@@ -78,6 +77,7 @@ export default () => {
   );
 };
 ```
+
 ````
 
 ### Local Theme (Nested Theme)
@@ -402,3 +402,4 @@ export default () => {
 ```
 
 ```
+````

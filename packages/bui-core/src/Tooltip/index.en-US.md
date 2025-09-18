@@ -1,4 +1,3 @@
-````markdown
 ---
 group: Data Display
 name: Tooltip
@@ -39,6 +38,7 @@ export default () => {
   );
 };
 ```
+
 ````
 
 ## Controlled Mode
@@ -396,3 +396,4 @@ type OnOpenChange = (
 ```
 
 ```
+````
