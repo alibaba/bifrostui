@@ -229,7 +229,7 @@ export default () => {
 };
 ```
 
-## 无障碍属性（Accessibility）
+## Accessibility
 
 IconButton 组件内置了精简的无障碍功能支持
 

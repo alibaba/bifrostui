@@ -458,7 +458,7 @@ export default () => {
 };
 ```
 
-## 无障碍访问
+## Accessibility
 
 - 主要无障碍特性包括：
   - 日历整体使用 `role="application"` 和 `aria-label="Calendar"`。

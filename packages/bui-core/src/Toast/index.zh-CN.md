@@ -660,7 +660,7 @@ export default () => {
 };
 ```
 
-## 无障碍访问
+## Accessibility
 
 - 主要无障碍特性包括：
   - 根节点自动添加 `role` 属性（如 `status` 或 `alert`），根据提示类型自动切换，确保读屏器能及时播报。

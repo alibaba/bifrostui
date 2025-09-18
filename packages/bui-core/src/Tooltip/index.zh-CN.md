@@ -49,7 +49,7 @@ import React, { useState } from 'react';
 
 export default () => {
   const [open, setOpen] = useState(false);
-  
+
   return (
     <Stack direction="row" spacing={2}>
       <Button onClick={() => setOpen(!open)}>
@@ -282,7 +282,7 @@ export default () => {
 };
 ```
 
-## 无障碍功能
+## Accessibility
 
 Tooltip 组件内置了完整的无障碍支持，确保屏幕阅读器用户和键盘用户都能正常使用。
 
@@ -311,11 +311,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <Tooltip 
-      title="提示内容会自动获取焦点" 
-      autoFocus
-      role="dialog"
-    >
+    <Tooltip title="提示内容会自动获取焦点" autoFocus role="dialog">
       <Button>自动焦点管理</Button>
     </Tooltip>
   );
@@ -326,36 +322,43 @@ export default () => {
 
 ### Tooltip Props
 
-| 属性              | 说明                           | 类型                                                | 默认值    |
-| ----------------- | ------------------------------ | --------------------------------------------------- | --------- |
-| title             | 气泡浮层内容                   | React.ReactNode                                     | -         |
-| defaultOpen       | 默认是否显隐                   | boolean                                             | false     |
-| open              | 用于手动控制气泡浮层显隐       | boolean                                             | -         |
-| offset            | 浮层与目标元素的偏移量（像素） | number                                              | 0         |
-| placement         | 气泡框位置                     | TooltipPlacement                                    | 'top'     |
-| trigger           | 触发行为                       | TooltipTriggerType \| TooltipTriggerType[]          | 'click'   |
-| onOpenChange      | 气泡浮层显隐的回调方法         | (event, data) => void                               | -         |
+| 属性         | 说明                           | 类型                                       | 默认值  |
+| ------------ | ------------------------------ | ------------------------------------------ | ------- |
+| title        | 气泡浮层内容                   | React.ReactNode                            | -       |
+| defaultOpen  | 默认是否显隐                   | boolean                                    | false   |
+| open         | 用于手动控制气泡浮层显隐       | boolean                                    | -       |
+| offset       | 浮层与目标元素的偏移量（像素） | number                                     | 0       |
+| placement    | 气泡框位置                     | TooltipPlacement                           | 'top'   |
+| trigger      | 触发行为                       | TooltipTriggerType \| TooltipTriggerType[] | 'click' |
+| onOpenChange | 气泡浮层显隐的回调方法         | (event, data) => void                      | -       |
 
 ### 无障碍属性
 
-| 属性              | 说明                           | 类型                                                | 默认值    |
-| ----------------- | ------------------------------ | --------------------------------------------------- | --------- |
-| role              | ARIA 角色                      | 'tooltip' \| 'dialog' \| 'status' \| 'alert'       | 'tooltip' |
-| aria-label        | 无障碍标签                     | string                                              | -         |
-| aria-labelledby   | 引用描述元素的 ID              | string                                              | -         |
-| aria-hidden       | 是否对屏幕阅读器隐藏           | boolean                                             | false     |
-| autoFocus         | 是否自动获取焦点               | boolean                                             | false     |
-| closeOnEscape     | 是否支持 Esc 键关闭            | boolean                                             | false     |
+| 属性            | 说明                 | 类型                                         | 默认值    |
+| --------------- | -------------------- | -------------------------------------------- | --------- |
+| role            | ARIA 角色            | 'tooltip' \| 'dialog' \| 'status' \| 'alert' | 'tooltip' |
+| aria-label      | 无障碍标签           | string                                       | -         |
+| aria-labelledby | 引用描述元素的 ID    | string                                       | -         |
+| aria-hidden     | 是否对屏幕阅读器隐藏 | boolean                                      | false     |
+| autoFocus       | 是否自动获取焦点     | boolean                                      | false     |
+| closeOnEscape   | 是否支持 Esc 键关闭  | boolean                                      | false     |
 
 ### TooltipPlacement
 
 ```typescript
 type TooltipPlacement =
-  | 'top' | 'left' | 'right' | 'bottom'
-  | 'topLeft' | 'topRight' 
-  | 'bottomLeft' | 'bottomRight'
-  | 'leftTop' | 'leftBottom'
-  | 'rightTop' | 'rightBottom';
+  | 'top'
+  | 'left'
+  | 'right'
+  | 'bottom'
+  | 'topLeft'
+  | 'topRight'
+  | 'bottomLeft'
+  | 'bottomRight'
+  | 'leftTop'
+  | 'leftBottom'
+  | 'rightTop'
+  | 'rightBottom';
 ```
 
 ### TooltipTriggerType
@@ -373,7 +376,7 @@ interface TooltipOpenChangeData {
 
 type OnOpenChange = (
   event: React.SyntheticEvent,
-  data: TooltipOpenChangeData
+  data: TooltipOpenChangeData,
 ) => void;
 ```
 
