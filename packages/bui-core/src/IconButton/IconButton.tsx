@@ -18,10 +18,6 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       shape = 'circular',
       // 无障碍属性
       'aria-label': ariaLabel,
-      'aria-pressed': ariaPressed,
-      'aria-expanded': ariaExpanded,
-      'aria-haspopup': ariaHaspopup,
-      'aria-describedby': ariaDescribedby,
       ...others
     } = props;
 
@@ -40,14 +36,6 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       'aria-label': ariaLabel || childrenDisplayName,
       // 禁用状态
       'aria-disabled': disabled,
-      // 切换按钮的状态
-      'aria-pressed': ariaPressed,
-      // 用于控制下拉菜单、面板等可展开内容的按钮
-      'aria-expanded': ariaExpanded,
-      // 按钮触发弹出菜单（如上下文菜单）
-      'aria-haspopup': ariaHaspopup,
-      // 用户界面控件提供更加详细的描述性标签
-      'aria-describedby': ariaDescribedby,
     };
 
     return (
