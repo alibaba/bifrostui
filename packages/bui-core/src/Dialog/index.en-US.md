@@ -5,972 +5,522 @@ name: Dialog
 
 # Dialog
 
-Used for communicating important information or feedback related to operations, the Dialog component supports `Dialog`, `Dialog.confirm`, and `Dialog.prompt`. It is recommended to use Hooks for invocation since static methods cannot access context, and the ThemeProvider data will not be applied. Therefore, it's suggested to use `Dialog.useDialog` to create a contextHolder that supports context reading, using top-level registration methods instead of static methods provided by `Dialog`.
+Utilized for conveying important information or providing operational feedback.
 
-## Code Demonstration
+## When to Use
 
-### Confirmation Box
+- Use Dialog when users need to handle tasks without page transitions that disrupt the workflow, opening a floating layer in the center of the current page to carry out corresponding operations.
+- When users need to confirm an operation, such as deletion, submission, or other significant actions.
+- When users need to input information, such as changing usernames or entering passwords.
+- When crucial information or warnings need to be displayed to users.
 
-### Static Method (Not Recommended)
+## Comparison of Invocation Methods
 
-Use `Dialog` (default type is confirm) or `Dialog.confirm` to display a confirmation dialog. `Dialog.confirm` returns a `Promise` that lets you determine if the user clicked confirm or cancel.
+Dialog supports three invocation methods: Component Invocation, Static Method Invocation, and Hook Invocation.
 
-```tsx
-import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
-import React from 'react';
+| Invocation Method    | Advantages                                                     | Disadvantages                       | Recommended Usage Scenario                               |
+| -------------------- | -------------------------------------------------------------- | ----------------------------------- | -------------------------------------------------------- |
+| Component Invocation | Traditional usage, full control, supports complex interactions | Requires state management           | Complex business logic and custom interaction needs      |
+| Static Method        | Simple invocation, no need for state management                | Cannot access React Context         | Simple confirmation scenarios, context access not needed |
+| useDialog Hook       | Relatively simple invocation, Context access, theme support    | Requires rendering of contextHolder | Suitable for scenarios needing context access            |
 
-export default () => {
-  const handleClickConfirm = async () => {
-    const res = await Dialog({
-      title: 'Title',
-      content: 'This is a description',
-    });
-    if (res) {
-      Toast({ message: 'Clicked confirm', position: 'bottom' });
-    } else {
-      Toast({ message: 'Clicked cancel', position: 'bottom' });
-    }
-  };
+## Component Invocation
 
-  return (
-    <Stack direction="row" spacing="10px">
-      <Button onClick={() => Dialog('Submit the application?')}>
-        Default is confirm
-      </Button>
-      <Button
-        onClick={() =>
-          Dialog.confirm({
-            title: 'Title',
-            content: 'Detailed description',
-          })
-        }
-      >
-        confirm
-      </Button>
-      <Button onClick={handleClickConfirm}>Await confirm completion</Button>
-    </Stack>
-  );
-};
-```
-
-### Hook Invocation (Recommended)
-
-```tsx
-import {
-  Stack,
-  Button,
-  Dialog,
-  Toast,
-  useTheme,
-  ThemeProvider,
-} from '@bifrostui/react';
-import React from 'react';
-
-export default () => {
-  const theme = useTheme();
-  const [dialog, contextHolder] = Dialog.useDialog();
-
-  const handleClickConfirm = async () => {
-    const res = await dialog({
-      title: 'Title',
-      content: 'This is a description',
-    });
-    if (res) {
-      Toast({ message: 'Clicked confirm', position: 'bottom' });
-    } else {
-      Toast({ message: 'Clicked cancel', position: 'bottom' });
-    }
-  };
-
-  return (
-    <ThemeProvider locale={theme.locale}>
-      {contextHolder}
-      <Stack direction="row" spacing="10px">
-        <Button onClick={() => dialog('Submit the application?')}>
-          Default is confirm
-        </Button>
-        <Button
-          onClick={() =>
-            dialog.confirm({
-              title: 'Title',
-              content: 'Detailed description',
-            })
-          }
-        >
-          confirm
-        </Button>
-        <Button onClick={handleClickConfirm}>Await confirm completion</Button>
-      </Stack>
-    </ThemeProvider>
-  );
-};
-```
-
-### Specify Render Container
-
-You can specify the `container` to set the parent container where it renders.
-
-```tsx
-import {
-  Stack,
-  Button,
-  Dialog,
-  Toast,
-  useTheme,
-  ThemeProvider,
-} from '@bifrostui/react';
-import React from 'react';
-
-export default () => {
-  const theme = useTheme();
-  const [dialog, contextHolder] = Dialog.useDialog();
-
-  return (
-    <ThemeProvider locale={theme.locale}>
-      {contextHolder}
-      <Stack direction="row" spacing="10px">
-        <Button
-          onClick={() =>
-            dialog.confirm({
-              title: 'Title',
-              content: 'Detailed description',
-              container: document.getElementById('container'),
-            })
-          }
-        >
-          confirm
-        </Button>
-        <div id="container" />
-      </Stack>
-    </ThemeProvider>
-  );
-};
-```
-
-### Asynchronous Operations Success/Failure
-
-Use `onOk` to define the callback when confirm is clicked.
-
-```tsx
-import {
-  Stack,
-  Button,
-  Dialog,
-  Toast,
-  useTheme,
-  ThemeProvider,
-} from '@bifrostui/react';
-import React from 'react';
-
-const sleep = (time: number) =>
-  // eslint-disable-next-line no-promise-executor-return
-  new Promise((resolve) => setTimeout(resolve, time));
-
-export default () => {
-  const theme = useTheme();
-  const [dialog, contextHolder] = Dialog.useDialog();
-
-  const handleClickConfirm = async () => {
-    const res = await dialog.confirm({
-      content: 'Submit the application?',
-      onOk: async () => {
-        await sleep(3000);
-        Toast({
-          icon: 'success',
-          content: 'Submission successful',
-          position: 'bottom',
-        });
-      },
-    });
-    console.log('res', res);
-  };
-
-  const handleClickConfirmError = async () => {
-    const res = await dialog.confirm({
-      content: 'Submit the application?',
-      onOk: async () => {
-        await sleep(3000);
-        Toast({
-          icon: 'fail',
-          content: 'Submission failed',
-          position: 'bottom',
-        });
-        throw new Error();
-      },
-    });
-    console.log('res', res);
-  };
-
-  return (
-    <ThemeProvider locale={theme.locale}>
-      {contextHolder}
-      <Stack direction="row" spacing="10px">
-        <Button onClick={handleClickConfirm}>Async Operation Success</Button>
-        <Button onClick={handleClickConfirmError}>
-          Async Operation Failure
-        </Button>
-      </Stack>
-    </ThemeProvider>
-  );
-};
-```
-
-### Custom Content Area
-
-You can use `title` and `content` to customize the title and content area respectively. You can also use `okText` and `cancelText` to customize the text of the confirm and cancel buttons.
-
-```tsx
-import {
-  Stack,
-  Button,
-  Dialog,
-  useTheme,
-  ThemeProvider,
-} from '@bifrostui/react';
-import React from 'react';
-
-export default () => {
-  const theme = useTheme();
-  const [dialog, contextHolder] = Dialog.useDialog();
-
-  return (
-    <ThemeProvider locale={theme.locale}>
-      {contextHolder}
-      <Stack direction="row" spacing="10px">
-        <Button
-          onClick={() => {
-            dialog.confirm({
-              title: 'Custom Title and Message',
-              content: (
-                <>
-                  <div>Please refer to the instructions below</div>
-                  <div>
-                    For detailed instructions, please refer to
-                    <span>the operation guide</span>
-                  </div>
-                </>
-              ),
-            });
-          }}
-        >
-          Custom Title and Message
-        </Button>
-        <Button
-          onClick={() => {
-            dialog.confirm({
-              title: 'Customize Footer Button Text',
-              content: 'Are you sure you want to delete?',
-              okText: 'Delete',
-              cancelText: 'Let me think',
-            });
-          }}
-        >
-          Customize Footer Button Text
-        </Button>
-      </Stack>
-    </ThemeProvider>
-  );
-};
-```
-
-## Input Box
-
-### Static Method (Not Recommended)
-
-Use `Dialog.prompt` to display an input dialog. `Dialog.prompt` returns a `Promise` that lets you determine if the user clicked confirm or cancel. If confirmed, the return value is the input content.
-
-```tsx
-import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
-import React from 'react';
-
-export default () => {
-  const handleClickPrompt = async () => {
-    const res = await Dialog.prompt({
-      title: 'Title',
-      content: 'This is a description',
-    });
-    if (res) {
-      Toast({ message: `Input content: ${res}`, position: 'bottom' });
-    } else {
-      Toast({ message: 'Clicked cancel', position: 'bottom' });
-    }
-  };
-
-  return (
-    <Stack direction="row" spacing="10px">
-      <Button onClick={() => Dialog.prompt('Please enter your name')}>
-        Default is prompt
-      </Button>
-      <Button
-        onClick={() =>
-          Dialog.prompt({
-            title: 'Title',
-            content: 'Detailed description',
-          })
-        }
-      >
-        prompt
-      </Button>
-      <Button onClick={handleClickPrompt}>Await prompt completion</Button>
-    </Stack>
-  );
-};
-```
-
-### Hook Invocation (Recommended)
-
-```tsx
-import {
-  Stack,
-  Button,
-  Dialog,
-  Toast,
-  useTheme,
-  ThemeProvider,
-} from '@bifrostui/react';
-import React from 'react';
-
-export default () => {
-  const theme = useTheme();
-  const [dialog, contextHolder] = Dialog.useDialog();
-
-  const handleClickPrompt = async () => {
-    const res = await dialog.prompt({
-      title: 'Title',
-      content: 'This is a description',
-    });
-    if (res) {
-      Toast({ message: `Input content: ${res}`, position: 'bottom' });
-    } else {
-      Toast({ message: 'Clicked cancel', position: 'bottom' });
-    }
-  };
-
-  return (
-    <ThemeProvider locale={theme.locale}>
-      {contextHolder}
-      <Stack direction="row" spacing="10px">
-        <Button onClick={() => dialog.prompt('Please enter your name')}>
-          Default is prompt
-        </Button>
-        <Button
-          onClick={() =>
-            dialog.prompt({
-              title: 'Title',
-              content: 'Detailed description',
-            })
-          }
-        >
-          prompt
-        </Button>
-        <Button onClick={handleClickPrompt}>Await prompt completion</Button>
-      </Stack>
-    </ThemeProvider>
-  );
-};
-```
-
-## API
-
-### DialogProps
-
-| Property    | Description                              | Type                     | Default     |
-| ----------- | ---------------------------------------- | ------------------------ | ----------- |
-| title       | Dialog title                             | `ReactNode`              | -           |
-| content     | Dialog content                           | `ReactNode`              | -           |
-| type        | Dialog type                              | `'confirm' \| 'prompt'`  | `'confirm'` |
-| okText      | Confirm button text                      | `ReactNode`              | `'确认'`    |
-| cancelText  | Cancel button text                       | `ReactNode`              | `'取消'`    |
-| onOk        | Callback when confirm button is clicked  | `(val?: string) => void` | -           |
-| onCancel    | Callback when cancel button is clicked   | `() => void`             | -           |
-| placeholder | Input placeholder text (for prompt type) | `string`                 | -           |
-| InputProps  | Props passed to internal Input component | `Partial<InputProps>`    | -           |
-
-### Deprecated Properties (Backward Compatible)
-
-| Property    | Description                      | Type                     | Default | Replacement            |
-| ----------- | -------------------------------- | ------------------------ | ------- | ---------------------- |
-| header      | Dialog title (deprecated)        | `ReactNode`              | -       | Use `title` instead    |
-| message     | Dialog content (deprecated)      | `ReactNode`              | -       | Use `content` instead  |
-| confirmText | Confirm button text (deprecated) | `ReactNode`              | -       | Use `okText` instead   |
-| onConfirm   | Confirm callback (deprecated)    | `(val?: string) => void` | -       | Use `onOk` instead     |
-| onClose     | Cancel callback (deprecated)     | `() => void`             | -       | Use `onCancel` instead |
-
-### Style Variables
-
-| Property                         | Description                          | Default Value                 | Global Variables                            |
-| -------------------------------- | ------------------------------------ | ----------------------------- | ------------------------------------------- |
-| --max-width                      | Dialog maximum width                 | 300px                         | --bui-dialog-max-width                      |
-| --border-radius                  | Dialog border radius                 | --bui-shape-radius-drawer     | --bui-dialog-border-radius                  |
-| --title-padding                  | Header padding                       | 0 40px 9px                    | --bui-dialog-title-padding                  |
-| --desc-padding                   | Message padding                      | 0 24px                        | --bui-dialog-desc-padding                   |
-| --footer-margin-top              | Footer top margin                    | 15px                          | --bui-dialog-footer-margin-top              |
-| --button-height                  | Button height                        | 53px                          | --bui-dialog-button-height                  |
-| --button-line-height             | Button line height                   | 25px                          | --bui-dialog-button-line-height             |
-| --button-padding                 | Button padding                       | 12px 0 13px                   | --bui-dialog-button-padding                 |
-| --button-font-size               | Button font size                     | 17px                          | --bui-dialog-button-font-size               |
-| --button-border-left             | Button left border                   | 1px solid rgba(0, 0, 0, 0.05) | --bui-dialog-button-border-left             |
-| --button-active-background-color | Button active state background color | rgba(54, 57, 64, 0.05)        | --bui-dialog-button-active-background-color |
-
-## here are the updates to merge:
-
----
-
-group: Feedback
-name: Dialog
-
----
-
-# Dialog
-
-Used for communicating important information or feedback related to operations, the Dialog component supports `Dialog`, `Dialog.confirm`, `Dialog.prompt`, and `Dialog.alert`. It is recommended to use Hooks for invocation since static methods cannot access context, and the ThemeProvider data will not be applied. Therefore, it's suggested to use `Dialog.useDialog` to create a contextHolder that supports context reading, using top-level registration methods instead of static methods provided by `Dialog`.
-
-## Component Usage
-
-Dialog component supports direct use as a React component, controlled by the `open` property.
+The Dialog component is supported as a React component and can be directly used; the `open` attribute controls its display state, suitable for scenarios requiring complex interactive logic.
 
 ### Basic Usage
 
+The simplest way to use Dialog, controlling its display and hide status through state, presenting basic confirmation and cancellation operations.
+
 ```tsx
-import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
+import { Button, Dialog, Toast, Stack } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
   const [open, setOpen] = useState(false);
-  const [confirmOpen, setConfirmOpen] = useState(false);
-  const [alertOpen, setAlertOpen] = useState(false);
-
-  const handleOk = (value) => {
-    Toast({ message: 'Clicked confirm', position: 'bottom' });
-    setOpen(false);
-  };
-
-  const handleCancel = () => {
-    Toast({ message: 'Clicked cancel', position: 'bottom' });
-    setOpen(false);
-  };
-
-  const handleConfirmOk = () => {
-    Toast({ message: 'Confirm delete operation', position: 'bottom' });
-    setConfirmOpen(false);
-  };
-
-  const handleAlertOk = () => {
-    Toast({ message: 'Alert confirmed', position: 'bottom' });
-    setAlertOpen(false);
-  };
 
   return (
     <>
       <Stack direction="row" spacing="10px">
-        <Button onClick={() => setOpen(true)}>Basic Dialog</Button>
-        <Button onClick={() => setConfirmOpen(true)}>Confirm Dialog</Button>
-        <Button onClick={() => setAlertOpen(true)}>Alert Dialog</Button>
+        <Button onClick={() => setOpen(true)}>Open Dialog</Button>
       </Stack>
 
       <Dialog
         open={open}
         title="Notice"
-        content="This is a basic dialog example"
-        onOk={handleOk}
-        onCancel={handleCancel}
-      />
-
-      <Dialog
-        open={confirmOpen}
-        title="Confirm Delete"
-        content="Data cannot be recovered after deletion. Are you sure you want to delete?"
-        okText="Delete"
-        cancelText="Cancel"
-        onOk={handleConfirmOk}
-        onCancel={() => setConfirmOpen(false)}
-      />
-
-      <Dialog
-        open={alertOpen}
-        type="alert"
-        title="Warning"
-        content="System detected abnormal operation, please pay attention to security!"
-        okText="I understand"
-        onOk={handleAlertOk}
+        content="This is a basic Dialog example"
+        onOk={() => {
+          Toast({ message: 'Clicked confirm' });
+          setOpen(false);
+        }}
+        onCancel={() => setOpen(false)}
       />
     </>
   );
 };
 ```
 
-## Code Demonstration
+### Component Types
 
-### Confirmation Box
+Showcasing three types of Dialog: confirmation Dialog (confirm), warning Dialog (alert), and input Dialog (prompt). Each type has different button configuration and interaction behavior.
 
-### Static Method (Not Recommended)
+```tsx
+import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
+import React, { useState } from 'react';
 
-Use `Dialog` (default type is confirm) or `Dialog.confirm` to display a confirmation dialog. `Dialog.confirm` returns a `Promise` that lets you determine if the user clicked confirm or cancel.
+export default () => {
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [promptOpen, setPromptOpen] = useState(false);
+
+  return (
+    <>
+      <Stack direction="row" spacing="10px">
+        <Button onClick={() => setConfirmOpen(true)}>Confirm Dialog</Button>
+        <Button onClick={() => setAlertOpen(true)}>Alert Dialog</Button>
+        <Button onClick={() => setPromptOpen(true)}>Prompt Dialog</Button>
+      </Stack>
+
+      {/* Confirmation Dialog */}
+      <Dialog
+        open={confirmOpen}
+        title="Confirm Deletion"
+        content="Data cannot be recovered after deletion, are you sure you want to delete?"
+        okText="Delete"
+        onOk={() => {
+          Toast({ message: 'Deleted' });
+          setConfirmOpen(false);
+        }}
+        onCancel={() => setConfirmOpen(false)}
+      />
+
+      {/* Warning Dialog */}
+      <Dialog
+        open={alertOpen}
+        type="alert"
+        title="Warning"
+        content="The system detected an abnormal operation!"
+        okText="Got it"
+        onOk={() => setAlertOpen(false)}
+      />
+
+      {/* Input Dialog */}
+      <Dialog
+        open={promptOpen}
+        type="prompt"
+        title="Please Enter"
+        content="Please enter your name"
+        placeholder="Enter name"
+        onOk={(_, { value }) => {
+          if (value?.trim()) {
+            Toast({ message: `Hello, ${value}!` });
+            setPromptOpen(false);
+          } else {
+            Toast({ message: 'Please enter valid content' });
+          }
+        }}
+        onCancel={() => setPromptOpen(false)}
+      />
+    </>
+  );
+};
+```
+
+### Custom Content
+
+Illustrates how to customize Dialog's title and content area, supporting rendering complex React components and HTML structures.
+
+```tsx
+import { Button, Dialog, Stack } from '@bifrostui/react';
+import React, { useState } from 'react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <Stack direction="row" spacing="10px">
+        <Button onClick={() => setOpen(true)}>Custom Content</Button>
+      </Stack>
+
+      <Dialog
+        open={open}
+        title={<span style={{ color: '#ff4d4f' }}>⚠️ Important Reminder</span>}
+        content={
+          <div>
+            <p>Please read the following terms carefully:</p>
+            <ul style={{ textAlign: 'left', margin: '10px 0' }}>
+              <li>Operations are irreversible</li>
+              <li>Data will be permanently deleted</li>
+              <li>Ensure backup is complete</li>
+            </ul>
+          </div>
+        }
+        okText="I Understand"
+        onOk={() => setOpen(false)}
+        onCancel={() => setOpen(false)}
+      />
+    </>
+  );
+};
+```
+
+## Static Method Invocation
+
+Static method invocation is straightforward but cannot access React Context; theme configurations might not be effective. If these features are needed, please use useDialog Hook.
+
+### Basic Usage
+
+Demonstrates the basic invocation method of static methods, suitable for simple confirmation scenarios but not recommended for use in complex applications.
 
 ```tsx
 import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
-  const handleClickConfirm = async () => {
-    const res = await Dialog({
-      title: 'Title',
-      content: 'This is a description',
+  const showConfirm = async () => {
+    const result = await Dialog.confirm({
+      title: 'Confirm Operation',
+      content: 'This is the description content',
     });
-    if (res) {
-      Toast({ message: 'Clicked confirm', position: 'bottom' });
-    } else {
-      Toast({ message: 'Clicked cancel', position: 'bottom' });
+    Toast({ message: result ? 'Confirmed' : 'Cancelled' });
+  };
+
+  const showPrompt = async () => {
+    const result = await Dialog.prompt('Please enter your name');
+    if (result) {
+      Toast({ message: `Hello, ${result}!` });
+    }
+  };
+
+  const showAlert = async () => {
+    const result = await Dialog.alert('Operation Complete!');
+    if (result) {
+      Toast({ message: 'Confirmed' });
     }
   };
 
   return (
     <Stack direction="row" spacing="10px">
-      <Button onClick={() => Dialog('Submit the application?')}>
-        Default is confirm
-      </Button>
-      <Button
-        onClick={() =>
-          Dialog.confirm({
-            title: 'Title',
-            content: 'Detailed description',
-          })
-        }
-      >
-        confirm
-      </Button>
-      <Button onClick={handleClickConfirm}>Await confirm completion</Button>
+      <Button onClick={showConfirm}>Confirm Dialog</Button>
+      <Button onClick={showPrompt}>Prompt Dialog</Button>
+      <Button onClick={showAlert}>Alert Dialog</Button>
     </Stack>
   );
 };
 ```
 
-### Hook Invocation (Recommended)
+### Handling Asynchronous Operations
+
+Shows how Dialog handles asynchronous operations; using functional invocation methods can simplify asynchronous flow handling. Functional invocation returns a Promise by default, with true indicating confirmation and false indicating cancellation. If it's a prompt type, the return value is the input content. onOk and onCancel callback functions can also return a Promise; the dialog waits for the Promise in the callback function to resolve successfully before closing.
 
 ```tsx
-import {
-  Stack,
-  Button,
-  Dialog,
-  Toast,
-  useTheme,
-  ThemeProvider,
-} from '@bifrostui/react';
+import { Button, Dialog, Toast, Stack } from '@bifrostui/react';
 import React from 'react';
 
-export default () => {
-  const theme = useTheme();
-  const [dialog, contextHolder] = Dialog.useDialog();
+// Simulate asynchronous API call
+const mockApiCall = (delay = 2000) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true);
+    }, delay);
+  });
+};
 
-  const handleClickConfirm = async () => {
-    const res = await dialog({
-      title: 'Title',
-      content: 'This is a description',
+export default () => {
+  // Basic async operation handling
+  const handleBasicAsync = async () => {
+    const confirmed = await Dialog.confirm({
+      title: 'Confirm Deletion',
+      content:
+        'Are you sure you want to delete this record? This operation cannot be undone.',
+      okText: 'Confirm Deletion',
+      cancelText: 'Cancel',
     });
-    if (res) {
-      Toast({ message: 'Clicked confirm', position: 'bottom' });
-    } else {
-      Toast({ message: 'Clicked cancel', position: 'bottom' });
+
+    if (confirmed) {
+      Toast({ message: 'Deleting...', duration: 1000 });
+      await mockApiCall();
+      Toast({ message: 'Deletion Successful!', color: 'success' });
     }
   };
 
-  return (
-    <ThemeProvider locale={theme.locale}>
-      {contextHolder}
-      <Stack direction="row" spacing="10px">
-        <Button onClick={() => dialog('Submit the application?')}>
-          Default is confirm
-        </Button>
-        <Button
-          onClick={() =>
-            dialog.confirm({
-              title: 'Title',
-              content: 'Detailed description',
-            })
+  // Input Validation + Async Submission
+  const handlePromptAsync = async () => {
+    await Dialog.prompt({
+      title: 'Create User',
+      content: 'Please enter a username (3-20 characters)',
+      placeholder: 'Enter username',
+      onOk: async (_, { value: username }) => {
+        return new Promise(async (resolve) => {
+          if (username.length < 3 || username.length > 20) {
+            Toast({
+              message: 'Username length must be between 3-20 characters',
+              duration: 1000,
+            });
+          } else {
+            Toast({ message: 'Creating user...', duration: 1000 });
+            await mockApiCall();
+            Toast({ message: 'User Created Successfully', duration: 500 });
+            resolve();
           }
-        >
-          confirm
-        </Button>
-        <Button onClick={handleClickConfirm}>Await confirm completion</Button>
-      </Stack>
-    </ThemeProvider>
-  );
-};
-```
-
-### Specify Render Container
-
-You can specify the `container` to set the parent container where it renders.
-
-```tsx
-import {
-  Stack,
-  Button,
-  Dialog,
-  Toast,
-  useTheme,
-  ThemeProvider,
-} from '@bifrostui/react';
-import React from 'react';
-
-export default () => {
-  const theme = useTheme();
-  const [dialog, contextHolder] = Dialog.useDialog();
-
-  return (
-    <ThemeProvider locale={theme.locale}>
-      {contextHolder}
-      <Stack direction="row" spacing="10px">
-        <Button
-          onClick={() =>
-            dialog.confirm({
-              title: 'Title',
-              content: 'Detailed description',
-              container: document.getElementById('container'),
-            })
-          }
-        >
-          confirm
-        </Button>
-        <div id="container" />
-      </Stack>
-    </ThemeProvider>
-  );
-};
-```
-
-### Asynchronous Operations Success/Failure
-
-Use `onOk` to define the callback when confirm is clicked.
-
-```tsx
-import {
-  Stack,
-  Button,
-  Dialog,
-  Toast,
-  useTheme,
-  ThemeProvider,
-} from '@bifrostui/react';
-import React from 'react';
-
-const sleep = (time: number) =>
-  // eslint-disable-next-line no-promise-executor-return
-  new Promise((resolve) => setTimeout(resolve, time));
-
-export default () => {
-  const theme = useTheme();
-  const [dialog, contextHolder] = Dialog.useDialog();
-
-  const handleClickConfirm = async () => {
-    const res = await dialog.confirm({
-      content: 'Submit the application?',
-      onOk: async () => {
-        await sleep(3000);
-        Toast({
-          icon: 'success',
-          content: 'Submission successful',
-          position: 'bottom',
         });
       },
-    });
-    console.log('res', res);
-  };
-
-  const handleClickConfirmError = async () => {
-    const res = await dialog.confirm({
-      content: 'Submit the application?',
-      onOk: async () => {
-        await sleep(3000);
-        Toast({
-          icon: 'fail',
-          content: 'Submission failed',
-          position: 'bottom',
-        });
-        throw new Error();
+      onCancel: async () => {
+        await mockApiCall();
       },
     });
-    console.log('res', res);
-  };
-
-  return (
-    <ThemeProvider locale={theme.locale}>
-      {contextHolder}
-      <Stack direction="row" spacing="10px">
-        <Button onClick={handleClickConfirm}>Async Operation Success</Button>
-        <Button onClick={handleClickConfirmError}>
-          Async Operation Failure
-        </Button>
-      </Stack>
-    </ThemeProvider>
-  );
-};
-```
-
-### Custom Content Area
-
-You can use `title` and `content` to customize the title and content area respectively. You can also use `okText` and `cancelText` to customize the text of the confirm and cancel buttons.
-
-```tsx
-import {
-  Stack,
-  Button,
-  Dialog,
-  useTheme,
-  ThemeProvider,
-} from '@bifrostui/react';
-import React from 'react';
-
-export default () => {
-  const theme = useTheme();
-  const [dialog, contextHolder] = Dialog.useDialog();
-
-  return (
-    <ThemeProvider locale={theme.locale}>
-      {contextHolder}
-      <Stack direction="row" spacing="10px">
-        <Button
-          onClick={() => {
-            dialog.confirm({
-              title: 'Custom Title and Message',
-              content: (
-                <>
-                  <div>Please refer to the instructions below</div>
-                  <div>
-                    For detailed instructions, please refer to
-                    <span>the operation guide</span>
-                  </div>
-                </>
-              ),
-            });
-          }}
-        >
-          Custom Title and Message
-        </Button>
-        <Button
-          onClick={() => {
-            dialog.confirm({
-              title: 'Customize Footer Button Text',
-              content: 'Are you sure you want to delete?',
-              okText: 'Delete',
-              cancelText: 'Let me think',
-            });
-          }}
-        >
-          Customize Footer Button Text
-        </Button>
-      </Stack>
-    </ThemeProvider>
-  );
-};
-```
-
-## Alert Box
-
-### Static Method (Not Recommended)
-
-Use `Dialog.alert` to display an alert dialog. `Dialog.alert` returns a `Promise`. Alert dialogs only have a confirm button, clicking confirm returns `true`.
-
-```tsx
-import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
-import React from 'react';
-
-export default () => {
-  const handleClickAlert = async () => {
-    const res = await Dialog.alert({
-      title: 'Warning',
-      content: 'System detected abnormal operation!',
-    });
-    if (res) {
-      Toast({ message: 'User confirmed the warning', position: 'bottom' });
-    }
   };
 
   return (
     <Stack direction="row" spacing="10px">
-      <Button onClick={() => Dialog.alert('Operation failed, please retry')}>
-        Default is alert
+      <Button onClick={handleBasicAsync}>
+        Invoke Dialog Returning Promise
       </Button>
-      <Button
-        onClick={() =>
-          Dialog.alert({
-            title: 'System Warning',
-            content:
-              'Abnormal login detected, please pay attention to account security!',
-            okText: 'I understand',
-          })
-        }
-      >
-        alert
+      <Button onClick={handlePromptAsync}>
+        Callback Function Passing Promise
       </Button>
-      <Button onClick={handleClickAlert}>Await alert completion</Button>
     </Stack>
   );
 };
 ```
 
-### Hook Invocation (Recommended)
+## useDialog Hook
+
+Use `Dialog.useDialog()` to create a dialog that can access React Context.
+
+### Basic Usage
+
+`const [dialog, contextHolder] = Dialog.useDialog();`
+Basic way to use the useDialog Hook, create contextHolder supporting context reading and insert contextHolder into child nodes. Temporary Modals created by hooks will receive all contexts where contextHolder is located. Dialog has the same creation notification methods as Dialog.method. Supports asynchronous operations as well.
 
 ```tsx
-import {
-  Stack,
-  Button,
-  Dialog,
-  Toast,
-  useTheme,
-  ThemeProvider,
-} from '@bifrostui/react';
+import { Stack, Button, Dialog, Toast, ThemeProvider } from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
-  const theme = useTheme();
   const [dialog, contextHolder] = Dialog.useDialog();
 
-  const handleClickAlert = async () => {
-    const res = await dialog.alert({
-      title: 'Warning',
-      content: 'System detected abnormal operation!',
+  const showConfirm = async () => {
+    const result = await dialog.confirm({
+      title: 'Confirm Operation',
+      content: 'Please confirm whether to proceed?',
     });
-    if (res) {
-      Toast({ message: 'User confirmed the warning', position: 'bottom' });
+    Toast({ message: result ? 'Confirmed' : 'Cancelled' });
+  };
+
+  const showPrompt = async () => {
+    const result = await dialog.prompt({
+      title: 'Please Enter',
+      content: 'Please enter your feedback',
+      placeholder: 'Enter content...',
+    });
+    if (result) {
+      Toast({ message: `Your Feedback: ${result}` });
+    }
+  };
+
+  const showAlert = async () => {
+    const result = await dialog.alert({
+      title: 'System Notification',
+      content: 'You have a new message!',
+    });
+    if (result) {
+      // Toast({ message: 'Notification Confirmed' });
     }
   };
 
   return (
-    <ThemeProvider locale={theme.locale}>
+    <ThemeProvider>
       {contextHolder}
       <Stack direction="row" spacing="10px">
-        <Button onClick={() => dialog.alert('Operation failed, please retry')}>
-          Default is alert
-        </Button>
-        <Button
-          onClick={() =>
-            dialog.alert({
-              title: 'System Warning',
-              content:
-                'Abnormal login detected, please pay attention to account security!',
-              okText: 'I understand',
-            })
-          }
-        >
-          alert
-        </Button>
-        <Button onClick={handleClickAlert}>Await alert completion</Button>
+        <Button onClick={showConfirm}>Confirm Dialog</Button>
+        <Button onClick={showPrompt}>Prompt Dialog</Button>
+        <Button onClick={showAlert}>Alert Dialog</Button>
       </Stack>
     </ThemeProvider>
   );
 };
 ```
 
-## Input Box
+### Accessing Custom Context
 
-### Static Method (Not Recommended)
-
-Use `Dialog.prompt` to display an input dialog. `Dialog.prompt` returns a `Promise` that lets you determine if the user clicked confirm or cancel. If confirmed, the return value is the input content.
+Demonstrates the core advantage of useDialog Hook: the ability to access any custom React Context, compensating for the inability of function calls to access context.
 
 ```tsx
-import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
-import React from 'react';
+import { Stack, Button, Dialog, Toast, ThemeProvider } from '@bifrostui/react';
+import React, { createContext, useContext, useState } from 'react';
 
-export default () => {
-  const handleClickPrompt = async () => {
-    const res = await Dialog.prompt({
-      title: 'Title',
-      content: 'This is a description',
+// Create custom Context
+const UserContext = createContext(null);
+
+const ContextExample = () => {
+  const [dialog, contextHolder] = Dialog.useDialog();
+  const userContext = useContext(UserContext);
+
+  const showUserInfo = async () => {
+    await dialog.alert({
+      title: 'User Information',
+      content: (
+        <div style={{ textAlign: 'left' }}>
+          <p>
+            <strong>Username:</strong>
+            {userContext.currentUser.name}
+          </p>
+          <p>
+            <strong>Role:</strong>
+            {userContext.currentUser.role}
+          </p>
+          <p>
+            <strong>Permissions:</strong>
+            {userContext.permissions.join(', ')}
+          </p>
+        </div>
+      ),
     });
-    if (res) {
-      Toast({ message: `Input content: ${res}`, position: 'bottom' });
-    } else {
-      Toast({ message: 'Clicked cancel', position: 'bottom' });
-    }
   };
 
   return (
-    <Stack direction="row" spacing="10px">
-      <Button onClick={() => Dialog.prompt('Please enter your name')}>
-        Default is prompt
-      </Button>
-      <Button
-        onClick={() =>
-          Dialog.prompt({
-            title: 'Title',
-            content: 'Detailed description',
-          })
-        }
-      >
-        prompt
-      </Button>
-      <Button onClick={handleClickPrompt}>Await prompt completion</Button>
-    </Stack>
+    <>
+      {contextHolder}
+      <Stack direction="row" spacing="10px">
+        <Button onClick={showUserInfo}>Display User Information</Button>
+      </Stack>
+    </>
+  );
+};
+
+export default () => {
+  const userState = {
+    currentUser: { name: 'Zhang San', role: 'admin' },
+    permissions: ['read', 'write', 'delete'],
+  };
+
+  return (
+    <ThemeProvider>
+      <UserContext.Provider value={userState}>
+        <ContextExample />
+      </UserContext.Provider>
+    </ThemeProvider>
   );
 };
 ```
 
-### Hook Invocation (Recommended)
+## Custom Styles
+
+Demonstrates how to customize Dialog's appearance via CSS variables, achieving personalized visual effects.
 
 ```tsx
-import {
-  Stack,
-  Button,
-  Dialog,
-  Toast,
-  useTheme,
-  ThemeProvider,
-} from '@bifrostui/react';
+import { Stack, Button, Dialog, ThemeProvider } from '@bifrostui/react';
 import React from 'react';
 
 export default () => {
-  const theme = useTheme();
   const [dialog, contextHolder] = Dialog.useDialog();
 
-  const handleClickPrompt = async () => {
-    const res = await dialog.prompt({
-      title: 'Title',
-      content: 'This is a description',
+  const showCustomStyle = async () => {
+    await dialog.confirm({
+      title: 'Custom Styled Dialog',
+      content: 'This is an example of a custom styled Dialog',
+      style: {
+        '--bui-dialog-max-width': '400px',
+        '--bui-dialog-border-radius': '12px',
+      },
     });
-    if (res) {
-      Toast({ message: `Input content: ${res}`, position: 'bottom' });
-    } else {
-      Toast({ message: 'Clicked cancel', position: 'bottom' });
-    }
   };
 
   return (
-    <ThemeProvider locale={theme.locale}>
+    <ThemeProvider>
       {contextHolder}
       <Stack direction="row" spacing="10px">
-        <Button onClick={() => dialog.prompt('Please enter your name')}>
-          Default is prompt
-        </Button>
-        <Button
-          onClick={() =>
-            dialog.prompt({
-              title: 'Title',
-              content: 'Detailed description',
-            })
-          }
-        >
-          prompt
-        </Button>
-        <Button onClick={handleClickPrompt}>Await prompt completion</Button>
+        <Button onClick={showCustomStyle}>Custom Style</Button>
       </Stack>
     </ThemeProvider>
   );
 };
 ```
+
+## Accessibility
+
+- Dialog sets role attributes automatically based on its type when it pops up: when type === 'alert', role="alertdialog" is set; otherwise, role="dialog" is set.
+- When Dialog pops up, Dialog's sibling elements will automatically have the aria-hidden attribute added. The aria-hidden attribute is removed when Dialog closes.
+- Built-in ARIA labels:
+  - aria-labelledby: Automatically links to the ID of the title element when a title is provided, offering screen readers the title information of the dialog.
+  - aria-describedby: Automatically links to the ID of the content element when content is provided, offering screen readers a detailed description of the dialog.
 
 ## API
 
-### DialogProps
+### Dialog Props
 
-| Property    | Description                              | Type                               | Default     |
-| ----------- | ---------------------------------------- | ---------------------------------- | ----------- |
-| type        | Dialog type                              | `'confirm' \| 'prompt' \| 'alert'` | `'confirm'` |
-| title       | Dialog title                             | `ReactNode`                        | -           |
-| content     | Dialog content                           | `ReactNode`                        | -           |
-| okText      | Confirm button text                      | `ReactNode`                        | `'确认'`    |
-| cancelText  | Cancel button text                       | `ReactNode`                        | `'取消'`    |
-| onOk        | Callback when confirm button is clicked  | `(val?: string) => void`           | -           |
-| onCancel    | Callback when cancel button is clicked   | `() => void`                       | -           |
-| placeholder | Input placeholder text (for prompt type) | `string`                           | -           |
-| InputProps  | Props passed to internal Input component | `Partial<InputProps>`              | -           |
+| Property    | Description                                   | Type                                                   | Default         |
+| ----------- | --------------------------------------------- | ------------------------------------------------------ | --------------- |
+| open        | Whether the dialog is visible                 | `boolean`                                              | `false`         |
+| type        | Dialog type                                   | `'confirm' \| 'prompt' \| 'alert'`                     | `'confirm'`     |
+| title       | Dialog title                                  | `ReactNode`                                            | -               |
+| content     | Dialog content                                | `ReactNode`                                            | -               |
+| placeholder | Placeholder text for input (prompt type only) | `string`                                               | -               |
+| InputProps  | Props passed to the internal Input component  | `Partial<InputProps>`                                  | -               |
+| okText      | Confirm button text                           | `ReactNode`                                            | `'OK'`          |
+| cancelText  | Cancel button text                            | `ReactNode`                                            | `'Cancel'`      |
+| onOk        | Confirm callback                              | `(e: SyntheticEvent, data: { value: string }) => void` | -               |
+| onCancel    | Cancel callback                               | `(e: SyntheticEvent) => void`                          | -               |
+| container   | Rendering container                           | `HTMLElement \| (() => HTMLElement)`                   | `document.body` |
+| theme       | Theme configuration                           | `ThemeProps`                                           | -               |
+
+### Static Methods
+
+| Method             | Description                           | Parameter                  | Return Value                     |
+| ------------------ | ------------------------------------- | -------------------------- | -------------------------------- |
+| Dialog()           | Display a confirmation dialog         | `ConfirmOptions \| string` | `Promise<boolean>`               |
+| Dialog.confirm()   | Display a confirmation dialog         | `ConfirmOptions \| string` | `Promise<boolean>`               |
+| Dialog.prompt()    | Display an input dialog               | `PromptOptions \| string`  | `Promise<string \| false>`       |
+| Dialog.alert()     | Display a warning dialog              | `AlertOptions \| string`   | `Promise<boolean>`               |
+| Dialog.useDialog() | Get dialog instance and contextHolder | -                          | `[DialogFunction, ReactElement]` |
+
+### Type Definitions
+
+```typescript
+// Confirmation Dialog Options
+type ConfirmOptions = DialogOptions | string;
+
+// Input Dialog Options
+type PromptOptions =
+  | (DialogOptions & {
+      placeholder?: string;
+      inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+    })
+  | string;
+
+// Warning Dialog Options
+type AlertOptions = DialogOptions | string;
+
+// Basic Options
+interface DialogOptions {
+  title?: ReactNode;
+  content?: ReactNode;
+  okText?: ReactNode;
+  cancelText?: ReactNode;
+  onOk?: (e: SyntheticEvent, data: { value: string }) => void;
+  onCancel?: (e: SyntheticEvent) => void;
+  // ... other Modal properties
+}
+```
+
+## Style Variables
+
+| Variable Name                       | Description          | Default Value                    |
+| ----------------------------------- | -------------------- | -------------------------------- |
+| `--bui-dialog-max-width`            | Dialog max-width     | `300px`                          |
+| `--bui-dialog-border-radius`        | Dialog border-radius | `var(--bui-shape-radius-drawer)` |
+| `--bui-dialog-title-padding`        | Title padding        | `0 40px 9px`                     |
+| `--bui-dialog-content-padding`      | Content padding      | `0 24px`                         |
+| `--bui-dialog-actions-margin`       | Actions margin       | `15px 0 0 0`                     |
+| `--bui-dialog-button-height`        | Button height        | `53px`                           |
+| `--bui-dialog-button-line-height`   | Button line-height   | `25px`                           |
+| `--bui-dialog-button-padding`       | Button padding       | `12px 0 13px`                    |
+| `--bui-dialog-button-font-size`     | Button font-size     | `17px`                           |
+| `--bui-dialog-button-border-radius` | Button border-radius | `4px`                            |
+| `--bui-dialog-button-border-left`   | Button border-left   | `1px solid rgba(0, 0, 0, 0.05)`  |
+
+```
+
+```

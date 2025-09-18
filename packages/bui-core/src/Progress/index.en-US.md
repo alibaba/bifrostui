@@ -5,11 +5,9 @@ name: Progress Bar
 
 # Progress Bar
 
-Display the current progress of an operation.
+Displays the current progress of an operation.
 
-## Code Demos
-
-### Basic Usage
+## Basic Usage
 
 Set the operation progress using `percent`.
 
@@ -21,9 +19,9 @@ export default () => {
 };
 ```
 
-### Specifying Line Color
+### Specify Stroke Color
 
-Set the line color using `strokeColor`; its default value is `--bui-color-primary`.
+Set the stroke color with `strokeColor`, which defaults to `--bui-color-primary`.
 
 ```tsx
 import React from 'react';
@@ -43,7 +41,7 @@ export default () => {
 
 ### Progress Bar Width
 
-Set the width of the progress bar using `strokeWidth`.
+You can set the progress bar width using `strokeWidth`.
 
 ```tsx
 import React from 'react';
@@ -66,9 +64,9 @@ export default () => {
 };
 ```
 
-### Custom Gradient for Progress Bar
+### Custom Gradient Color for Progress Bar
 
-Encapsulation of `linear-gradient`. It's recommended to use only two colors.
+Encapsulation of `linear-gradient`. It is recommended to pass only two colors.
 
 ```tsx
 import React from 'react';
@@ -95,9 +93,9 @@ export default () => {
 };
 ```
 
-### Customizing the Color of Unfilled Segments
+### Custom Trail Color
 
-Specify the color of unfilled segments using `trailColor`.
+Specify the color of the unfinished segment using `trailColor`.
 
 ```tsx
 import React from 'react';
@@ -107,21 +105,53 @@ export default () => {
 };
 ```
 
+## Accessibility
+
+The Progress component comes with full accessibility support and directly uses the following ARIA attributes:
+
+- `aria-valuenow`: The current value of the progress bar (defaults to the percent value)
+- `aria-valuemin`: The minimum value of the progress bar (defaults to 0)
+- `aria-valuemax`: The maximum value of the progress bar (defaults to 100)
+- `aria-valuetext`: The textual description of the progress bar
+
+Usage example:
+
+```tsx
+import React from 'react';
+import { Progress, Stack } from '@bifrostui/react';
+export default () => {
+  return (
+    <Stack direction="column" spacing="10px">
+      <Progress percent={50} aria-label="File download progress" />
+      <Progress
+        percent={75}
+        aria-label="Data loading progress"
+        aria-valuetext="Completed 75%"
+      />
+      <Progress percent={30} aria-describedby="progress-description" />
+      <span id="progress-description" style={{ display: 'none' }}>
+        This is a detailed description of the progress bar
+      </span>
+    </Stack>
+  );
+};
+```
+
 ## API
 
-| Property    | Description                                               | Type                                                                                                               | Default |
-| ----------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------- |
-| percent     | Percentage                                                | number                                                                                                             | -       |
-| strokeColor | Color of the progress bar, gradient when object is passed | string \| { from: string; to: string; direction?: string } \| { [percentage: string]: string; direction?: string } | -       |
-| trailColor  | Color of the unfilled part of the progress bar            | string                                                                                                             | -       |
-| strokeWidth | Width of the progress bar line                            | number \| string                                                                                                   | -       |
+| Property    | Description                                    | Type                                                                                                               | Default |
+| ----------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------- |
+| percent     | Percentage                                     | number                                                                                                             | -       |
+| strokeColor | Color of the progress bar, object for gradient | string \| { from: string; to: string; direction?: string } \| { [percentage: string]: string; direction?: string } | -       |
+| trailColor  | Color of the unfilled progress bar             | string                                                                                                             | -       |
+| strokeWidth | Width of the progress bar line                 | number \| string                                                                                                   | -       |
 
 ## Style Variables
 
-| Property        | Description                       | Default Value            | Global Variable              |
-| --------------- | --------------------------------- | ------------------------ | ---------------------------- |
-| --fill-color    | Color of the progress bar         | --bui-color-primary      | --bui-progress-fill-color    |
-| --trail-color   | Color of the unfilled part        | rgba(156, 156, 165, 0.2) | --bui-progress-trail-color   |
-| --stroke-width  | Width of the progress bar         | 8px                      | --bui-progress-stroke-width  |
-| --width         | Width of the progress bar         | 100%                     | --bui-progress-width         |
-| --border-radius | Border radius of the progress bar | 100px                    | --bui-progress-border-radius |
+| Global Variable              | Description                   | Default Value              |
+| ---------------------------- | ----------------------------- | -------------------------- |
+| --bui-progress-fill-color    | Progress bar fill color       | `var(--bui-color-primary)` |
+| --bui-progress-trail-color   | Progress bar background color | `rgba(156, 156, 165, 0.2)` |
+| --bui-progress-stroke-width  | Progress bar height           | `8px`                      |
+| --bui-progress-width         | Progress bar width            | `100%`                     |
+| --bui-progress-border-radius | Progress bar border radius    | `100px`                    |

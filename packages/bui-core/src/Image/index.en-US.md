@@ -1,15 +1,13 @@
 ---
+
 group: Data Display
 name: Image
----
 
 # Image
 
-Based on the img tag, it adds Placeholder and Fallback capabilities, supports native lazy loading across multiple platforms, and provides a more complete image component.
+Enhances the img tag with Placeholder and Fallback capabilities, supports native lazy loading across multiple platforms, providing a more comprehensive image component.
 
-## Code Demos
-
-### Basic Usage
+## Basic Usage
 
 ```tsx
 import React from 'react';
@@ -29,7 +27,8 @@ export default () => {
 
 ## Various Fill Modes
 
-Customize the fill mode using the `fit` parameter. `widthFix` and `heightFix` are only available for mini-programs.
+Customize fill mode using the fit parameter.
+`widthFix` and `heightFix` are only available for mini-programs.
 
 ```tsx
 import React from 'react';
@@ -59,7 +58,8 @@ export default () => {
 
 ## Styles and Other HTML Attributes
 
-Properties passed directly to `Image` will appear on the top-level div. If you need to pass properties to the `img` element, use `imgProps`.
+The attributes passed directly to the Image component will apply to the top-level div.
+If you need to pass attributes to the img element, use `imgProps`.
 
 ```tsx
 import React from 'react';
@@ -99,7 +99,9 @@ export default () => {
 
 ## Fallback State
 
-When an image fails to load, it displays the fallback. The default fallback is the same as the placeholder. If neither is provided, there is no fallback capability. You can also provide a custom fallback object.
+When an image fails to load, a fallback will be shown.
+By default, the fallback is the same as the placeholder; if neither is provided, the fallback capability is absent.
+You can also provide a custom fallback object.
 
 ```tsx
 import React from 'react';
@@ -124,6 +126,22 @@ export default () => {
         style={{ borderRadius: 4 }}
         fallback={<>MY FALLBACK</>}
       />
+      <Image
+        src="https://localhost:3000/failed"
+        fit="fill"
+        height={100}
+        style={{ borderRadius: 4 }}
+        fallback={
+          <Image
+            src={
+              'https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg'
+            }
+            fit="cover"
+            width={150}
+            height={150}
+          />
+        }
+      />
     </Stack>
   );
 };
@@ -131,7 +149,8 @@ export default () => {
 
 ## Placeholder
 
-When an image is still loading, it shows a placeholder via the `placeholder` parameter. Passing `true` shows a gray background, or you can provide a custom placeholder element.
+When the image is loading, the placeholder parameter will display a placeholder.
+Passing true will display a gray background, or you can provide a custom placeholder element.
 
 ```tsx
 import React, { useState } from 'react';
@@ -172,22 +191,22 @@ export default () => {
 
 ## API
 
-| Property    | Description                                  | Type                                                                            | Default |
-| ----------- | -------------------------------------------- | ------------------------------------------------------------------------------- | ------- |
-| src         | Image URL                                    | string                                                                          | -       |
-| lazy        | Use native lazy loading                      | boolean                                                                         | false   |
-| alt         | Alternative text                             | string                                                                          | -       |
-| fallback    | Placeholder for failed load                  | ReactNode                                                                       | -       |
-| placeholder | Placeholder during loading                   | ReactNode \| boolean                                                            | -       |
-| width       | Image width                                  | string \| number                                                                | -       |
-| height      | Image height                                 | string \| number                                                                | -       |
-| fit         | Width and height fitting mode                | `contain`\| `cover`\| `fill`\| `none`\| `scale-down`\| `widthFix`\| `heightFix` | `fill`  |
-| webp        | Parse webp                                   | boolean                                                                         | false   |
-| showMenu    | (Mini-program) Long press menu configuration | boolean                                                                         | false   |
-| imgProps    | Pass-through parameters to img               | React.HTMLAttributes\<HTMLImageElement\>                                        | -       |
+| Property    | Description                      | Type                                                                            | Default |
+| ----------- | -------------------------------- | ------------------------------------------------------------------------------- | ------- |
+| src         | Image URL                        | string                                                                          | -       |
+| lazy        | Use native lazy loading          | boolean                                                                         | false   |
+| alt         | Alternative text                 | string                                                                          | -       |
+| fallback    | Placeholder when loading fails   | ReactNode                                                                       | -       |
+| placeholder | Placeholder during loading       | ReactNode \| boolean                                                            | -       |
+| width       | Image width                      | string \| number                                                                | -       |
+| height      | Image height                     | string \| number                                                                | -       |
+| fit         | Fill mode                        | `contain`\| `cover`\| `fill`\| `none`\| `scale-down`\| `widthFix`\| `heightFix` | `fill`  |
+| webp        | Parse webp                       | boolean                                                                         | false   |
+| showMenu    | (Mini-program) Long press menu   | boolean                                                                         | false   |
+| imgProps    | Attributes passed to img element | React.HTMLAttributes\<HTMLImageElement\>                                        | -       |
 
 ## Style Variables
 
-| Property                   | Description                          | Default Value            | Global Variable              |
-| -------------------------- | ------------------------------------ | ------------------------ | ---------------------------- |
-| --default-background-color | Default placeholder background color | rgba(127, 127, 127, 0.2) | --bui-image-default-bg-color |
+| Global Variable              | Description                          | Default                    |
+| ---------------------------- | ------------------------------------ | -------------------------- |
+| --bui-image-default-bg-color | Default placeholder background color | `rgba(127, 127, 127, 0.2)` |

@@ -5,13 +5,11 @@ name: Badge
 
 # Badge
 
-The Badge component is commonly used to display a badge in the corner of a container, typically used for notification icons or message counts on avatars' upper right corner.
+The Badge component is typically used to display a badge in a corner of a container, often utilized to show message counts in the upper right corner of notification icons or avatars.
 
-## Code Demos
+## Basic Usage
 
-### Basic Usage
-
-The Badge component can set its content using the `content` prop.
+The Badge component allows you to set badge content using `content`.
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
@@ -19,7 +17,11 @@ import React from 'react';
 
 export default () => {
   return (
-    <Stack spacing="20px" direction="row" style={{ maxWidth: 350, margin: '0 auto' }}>
+    <Stack
+      spacing="20px"
+      direction="row"
+      style={{ maxWidth: 350, margin: '0 auto' }}
+    >
       <Badge content="12">
         <Avatar src="//perico.damai.cn/userheadphotos/927551/185510204.jpg" />
       </Badge>
@@ -28,9 +30,9 @@ export default () => {
 };
 ```
 
-### Badge Shapes
+## Badge Shapes
 
-The Badge component provides three badge shapes: `standard`, `dot`, and `bubble`. You can control the shape using the `type` prop.
+Badge offers three badge shapes: `standard`, `dot`, and `bubble`. You can control the badge shape via the `type` attribute.
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
@@ -57,10 +59,9 @@ export default () => {
 };
 ```
 
-### Badge Themes
+## Badge Themes
 
-The Badge component provides seven color themes: `primary`, `success`, `warning`, `info`, `danger`, `light`, and `dark`. You can set the theme color using the `color` prop.
-The default value for the `color` prop is `primary`.
+The Badge component provides seven color themes: `primary`, `success`, `warning`, `info`, `danger`, `light`, and `dark`. You can set the component theme color using the `color` attribute. The default value for the color attribute is `primary`.
 
 ```tsx
 import React from 'react';
@@ -94,12 +95,11 @@ export default () => {
 };
 ```
 
-### Badge Variants
+## Badge Variants
 
-The Badge component supports two variants: filled (`contained`) and outlined (`outlined`). You can set the variant using the `variant` prop.
-The default value for the `variant` prop is `contained`.
+The Badge component supports two modes: filled `contained` and outlined `outlined`. You can set the component mode using the `variant` attribute. The default value for the `variant` attribute is `contained`.
 
-##### Contained
+### contained
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
@@ -126,7 +126,7 @@ export default () => {
 };
 ```
 
-##### Outlined
+### outlined
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
@@ -153,9 +153,9 @@ export default () => {
 };
 ```
 
-### Setting Maximum Value
+## Setting Maximum Value
 
-You can limit the badge value using the `max` prop. When the value exceeds the maximum, it will display the maximum value plus a plus sign.
+You can limit the badge value using the `max` attribute. When the value exceeds the maximum value set, the maximum value plus a plus sign will be displayed.
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
@@ -179,9 +179,9 @@ export default () => {
 };
 ```
 
-### Display Control
+## Display Control
 
-The Badge provides `showZero` and `invisible` props to control badge display.
+Badge provides `showZero` and `invisible` attributes to control the badge display.
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
@@ -208,31 +208,35 @@ export default () => {
 };
 ```
 
-### API
+## API
 
-#### BadgeProps
+### BadgeProps
 
-| Property   | Description                     | Type                                                      | Default     |
-| ---------- | ------------------------------- | --------------------------------------------------------- | ----------- |
-| content    | Badge content                   | ReactNode                                                 | -           |
-| color      | Badge theme color               | `primary` ｜ `info` ｜ `success` ｜ `warning` ｜ `danger` | `primary`   |
-| max        | Maximum value for number badges | number                                                    | -           |
-| showZero   | Whether to show badge when content is 0 | boolean                                          | false       |
-| invisible  | Whether to hide badge           | boolean                                                   | false       |
-| variant    | Badge variant                   | `contained` ｜ `outlined`                                 | `contained` |
-| type       | Badge shape                     | `dot` ｜ `standard` ｜ `bubble`                           | `standard`  |
+| Attribute | Description                          | Type                                                      | Default     |
+| --------- | ------------------------------------ | --------------------------------------------------------- | ----------- |
+| content   | Badge content                        | ReactNode                                                 | -           |
+| color     | Badge theme color                    | `primary` ｜ `info` ｜ `success` ｜ `warning` ｜ `danger` | `primary`   |
+| max       | Maximum value for number badge       | number                                                    | -           |
+| showZero  | Whether to display when content is 0 | boolean                                                   | false       |
+| invisible | Whether to hide badge                | boolean                                                   | false       |
+| variant   | Badge type                           | `contained` ｜`outlined`                                  | `contained` |
+| type      | Badge shape                          | `dot`｜`standard`｜`bubble`                               | `standard`  |
 
 ### Style Variables
 
-| Property                 | Description                      | Default Value   | Global Variable                  |
-| ------------------------ | -------------------------------- | --------------- | -------------------------------- |
-| --position               | Position offset percentage       | 14%             | --bui-badge-position             |
-| --min-width              | Minimum width                    | 15px            | --bui-badge-min-width            |
-| --height                 | Height                           | 15px            | --bui-badge-height               |
-| --line-height            | Line height                      | 15px            | --bui-badge-line-height          |
-| --padding                | Padding                          | 0 3px           | --bui-badge-padding              |
-| --border-radius          | Border radius                    | 8px             | --bui-badge-border-radius        |
-| --outlined-padding       | Padding for outlined badges      | 0 2px           | --bui-badge-outlined-padding     |
-| --dot-size               | Dot size                         | 9px             | --bui-badge-dot-size             |
-| --bubble-padding         | Padding for bubble badges        | 0 5px           | --bui-badge-bubble-padding       |
-| --bubble-border-radius   | Border radius for bubble badges  | 6px 6px 6px 0   | --bui-badge-bubble-border-radius |
+| Attribute              | Description                | Default Value | Global Variable                  |
+| ---------------------- | -------------------------- | ------------- | -------------------------------- |
+| --position             | Position offset percentage | 14%           | --bui-badge-position             |
+| --min-width            | Minimum width              | 15px          | --bui-badge-min-width            |
+| --height               | Height                     | 15px          | --bui-badge-height               |
+| --line-height          | Line height                | 15px          | --bui-badge-line-height          |
+| --padding              | Padding                    | 0 3px         | --bui-badge-padding              |
+| --border-radius        | Border radius              | 8px           | --bui-badge-border-radius        |
+| --outlined-padding     | Padding for outlined style | 0 2px         | --bui-badge-outlined-padding     |
+| --dot-size             | Dot size                   | 9px           | --bui-badge-dot-size             |
+| --bubble-padding       | Bubble padding             | 0 5px         | --bui-badge-bubble-padding       |
+| --bubble-border-radius | Bubble border radius       | 6px 6px 6px 0 | --bui-badge-bubble-border-radius |
+
+```
+
+```

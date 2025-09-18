@@ -1,15 +1,13 @@
 ---
 group: Animation
-name: Fade In/Out
+name: Fade
 ---
 
-# Fade In/Out
+# Fade
 
-Basic fade in/out animation encapsulated using Transition.
+Basic fade-in and fade-out animation wrapped with Transition
 
-## Code Demonstrations
-
-### Basic Usage
+## Basic Usage
 
 ```tsx
 import { Button, Fade, Stack } from '@bifrostui/react';
@@ -26,7 +24,7 @@ export default () => {
           console.log(ref);
         }}
       >
-        Click to Toggle
+        Click to toggle in
       </Button>
       <Fade
         appear={false}
@@ -35,19 +33,17 @@ export default () => {
           enter: 2000,
           exit: 1000,
         }}
-        className="test-clsnm"
       >
-        <div ref={ref}>Fade In/Out</div>
+        <div ref={ref}>Fade In Out</div>
       </Fade>
     </Stack>
   );
 };
 ```
 
-### Play Animation on Entry
+## Animation on Enter
 
-When both `appear` and `in` are `true`,
-the component will immediately play the animation upon mounting.
+When both `appear` and `in` are `true`, the component will animate immediately upon mounting
 
 ```tsx
 import { Button, Fade, Stack } from '@bifrostui/react';
@@ -62,11 +58,11 @@ export default () => {
           setOpen((prev) => !prev);
         }}
       >
-        Click to Mount/Unmount Component
+        Click to mount/unmount component
       </Button>
       {open && (
         <Fade appear in timeout={1500}>
-          <div>Fade In/Out Appear True</div>
+          <div>Fade Appear True</div>
         </Fade>
       )}
     </Stack>
@@ -74,10 +70,9 @@ export default () => {
 };
 ```
 
-### Delayed Mounting/Unmounting
+## Delayed Mount/Unmount
 
-Using `mountOnEnter` ensures the component is mounted only when it first enters.
-Using `unmountOnExit` unmounts the component each time it exits.
+Use `mountOnEnter` to only mount the component the first time `in` is true. Use `unmountOnExit` to unmount every time it exits.
 
 ```tsx
 import { Button, Fade, Stack } from '@bifrostui/react';
@@ -92,7 +87,7 @@ export default () => {
           setOpen((prev) => !prev);
         }}
       >
-        Click to Toggle
+        Click to toggle in
       </Button>
       <Fade
         appear={false}
@@ -103,7 +98,7 @@ export default () => {
           exit: 1000,
         }}
       >
-        <div>Fade In/Out with mountOnEnter</div>
+        <div>Fade mountOnEnter</div>
       </Fade>
       <Fade
         appear={false}
@@ -114,7 +109,7 @@ export default () => {
           exit: 1000,
         }}
       >
-        <div>Fade In/Out with unmountOnExit</div>
+        <div>Fade unmountOnExit</div>
       </Fade>
     </Stack>
   );
@@ -123,7 +118,7 @@ export default () => {
 
 ### Disable Animation
 
-By setting `enter=false` or `exit=false`, you can disable entry or exit animations. Elements will immediately show or hide without transition effects.
+By setting `enter=false` or `exit=false`, you can disable the enter or exit animation. The element will immediately show or hide without transition effects.
 
 ```tsx
 import React, { useState } from 'react';
@@ -138,33 +133,33 @@ export default () => {
           setOpen((prev) => !prev);
         }}
       >
-        Toggle State
+        Toggle state
       </Button>
 
-      {/* Only entry animation, no exit animation */}
+      {/* Only enter animation, no exit animation */}
       <Stack direction="row" spacing="16px" alignItems="center">
-        <div style={{ width: '120px' }}>Entry only:</div>
+        <div style={{ width: '120px' }}>Enter animation only:</div>
         <div
           style={{
             padding: '8px',
           }}
         >
           <Fade in={open} enter={true} exit={false} timeout={500}>
-            <div>Instant exit, smooth entry</div>
+            <div>Instant exit, smooth enter</div>
           </Fade>
         </div>
       </Stack>
 
-      {/* Only exit animation, no entry animation */}
+      {/* Only exit animation, no enter animation */}
       <Stack direction="row" spacing="16px" alignItems="center">
-        <div style={{ width: '120px' }}>Exit only:</div>
+        <div style={{ width: '120px' }}>Exit animation only:</div>
         <div
           style={{
             padding: '8px',
           }}
         >
           <Fade in={open} enter={false} exit={true} timeout={500}>
-            <div>Instant entry, smooth exit</div>
+            <div>Instant enter, smooth exit</div>
           </Fade>
         </div>
       </Stack>
@@ -187,26 +182,26 @@ export default () => {
 };
 ```
 
-### Events and Other Properties
+## Events and Other Attributes
 
-`Fade` inherits from `Transition`; for other properties see [Transition](/cores/transition)
+`Fade` inherits from `Transition`. Other attributes can be seen at [Transition](/cores/transition).
 
 ## API
 
-| Property      | Description                                  | Type                            | Default |
-| ------------- | -------------------------------------------- | ------------------------------- | ------- |
-| in            | Whether to enter                             | boolean                         | false   |
-| appear        | Whether to play animation on mount           | boolean                         | false   |
-| timeout       | Animation duration configuration             | number \| {appear, enter, exit} | -       |
-| delay         | Animation delay configuration                | number \| {appear, enter, exit} | -       |
-| enter         | Whether to play entry animation              | boolean                         | true    |
-| exit          | Whether to play exit animation               | boolean                         | true    |
-| mountOnEnter  | Mount children only on first entry           | boolean                         | false   |
-| unmountOnExit | Unmount children on exit                     | boolean                         | false   |
-| onEnter       | Callback before entering starts              | node=>void                      | -       |
-| onEntering    | Callback after entering starts               | node=>void                      | -       |
-| onEntered     | Callback after entering completes            | node=>void                      | -       |
-| onExit        | Callback before exiting starts               | node=>void                      | -       |
-| onExiting     | Callback after exiting starts                | node=>void                      | -       |
-| onExited      | Callback after exiting completes             | node=>void                      | -       |
-| easing        | Easing function (transition-timing-function) | string \| {enter, exit}         | -       |
+| Attribute     | Description                      | Type                            | Default |
+| ------------- | -------------------------------- | ------------------------------- | ------- |
+| in            | Whether to enter                 | boolean                         | false   |
+| appear        | Whether to animate on mount      | boolean                         | false   |
+| timeout       | Animation duration configuration | number \| {appear, enter, exit} | -       |
+| delay         | Animation delay configuration    | number \| {appear, enter, exit} | -       |
+| enter         | Whether to play enter animation  | boolean                         | true    |
+| exit          | Whether to play exit animation   | boolean                         | true    |
+| mountOnEnter  | Mount children on first enter    | boolean                         | false   |
+| unmountOnExit | Unmount children on exit         | boolean                         | false   |
+| onEnter       | Callback before enter starts     | node=>void                      | -       |
+| onEntering    | Callback after enter starts      | node=>void                      | -       |
+| onEntered     | Callback after enter completes   | node=>void                      | -       |
+| onExit        | Callback before exit starts      | node=>void                      | -       |
+| onExiting     | Callback after exit starts       | node=>void                      | -       |
+| onExited      | Callback after exit completes    | node=>void                      | -       |
+| easing        | Transition timing function       | string \| {enter, exit}         | -       |

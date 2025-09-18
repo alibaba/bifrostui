@@ -1,21 +1,18 @@
 ---
 group: Layout
-name: Swiper Slider View Container
+name: Swiper Slide View Container
 ---
 
-# Swiper Slider View Container
+# Swiper Slide View Container
 
-A slider view container used to create common layouts such as carousels and paginated displays.
-In the mini-program, Taro's Swiper component is used directly, while on the H5 end, Swiper/react is used with aligned parameters.
+A slide view container used for creating carousels, paginated displays, and other common layouts. On the mini-program side, Taro's Swiper component is used directly; on the H5 side, Swiper/react is used, aligning the parameters.
 
 > Mini-program documentation reference: <https://taro-docs.jd.com/docs/components/viewContainer/swiper>;
-> For the H5 end, it is encapsulated based on the community swiper/react v8.x, and its properties are passed through. Documentation can be found at: <https://v8.swiperjs.com/swiper-api>
+> H5 version is based on Swiper/react v8.x community package, with its properties forwarded. Documentation can be found at: <https://v8.swiperjs.com/swiper-api>
 
-## Code Demonstrations
+## Basic Swiper
 
-### Basic Swiper
-
-Embedding SwiperItem inside Swiper constructs a basic slider view container.
+Nest SwiperItem within Swiper to construct a basic slide view container.
 
 ```tsx
 import React from 'react';
@@ -48,10 +45,9 @@ export default () => {
 };
 ```
 
-### Setting Current Page
+## Set Current Page
 
-Pass `current` to set the current page. When data changes, it triggers a page switch.
-If you need to support both sliding and `current` control simultaneously, you also need to use the `onChange` event to synchronize the current page position.
+Pass in current to set the current page, and page transitions will be triggered when data changes. To ensure compatibility with both swiping and current control, use the onChange event to sync the current page position.
 
 ```tsx
 import React, { useState } from 'react';
@@ -98,10 +94,9 @@ export default () => {
 };
 ```
 
-### Auto Switching
+## Auto Switching
 
-Pass `autoplay` to enable auto-switching.
-Use `interval` to control the interval between two automatic switches (in milliseconds).
+Pass in autoplay to enable auto switching. Use interval to control the time between two automatic switches (in milliseconds).
 
 ```tsx
 import React from 'react';
@@ -134,9 +129,9 @@ export default () => {
 };
 ```
 
-### Looping Scroll
+## Continuous Scrolling
 
-Pass `circular` to make the container scroll infinitely in one direction.
+Pass in circular to allow the container to scroll infinitely in the same direction.
 
 ```tsx
 import React from 'react';
@@ -174,9 +169,9 @@ export default () => {
 };
 ```
 
-### Fade Effect
+## Fade Effects
 
-Pass the `effect` parameter to choose the transition effect.
+Pass in effect parameter to choose transition effects.
 
 ```tsx
 import React from 'react';
@@ -215,9 +210,9 @@ export default () => {
 };
 ```
 
-### Vertical Scroll
+## Vertical Scrolling
 
-Pass `vertical` to make the container scroll vertically instead of horizontally.
+Pass in vertical to make the container scroll vertically (instead of horizontally).
 
 ```tsx
 import React from 'react';
@@ -255,10 +250,9 @@ export default () => {
 };
 ```
 
-### Page Indicators
+## Page Indicators
 
-Pass `indicatorDots` to enable page indicators (small dots).
-Use `indicatorColor` and `indicatorActiveColor` to set the color of the small dots.
+Pass in indicatorDots to enable page indicators (small dots). Use indicatorColor and indicatorActiveColor to set the color of the dots.
 
 ```tsx
 import React from 'react';
@@ -298,10 +292,9 @@ export default () => {
 };
 ```
 
-### Events
+## Events
 
-Supports `onChange` and `onAnimationFinish` events.
-Specific return values are in the detail of the corresponding event object.
+The Swiper component supports onChange and onAnimationFinish events. Specific return values can be found in the detail of the corresponding event object.
 
 ```tsx
 import React from 'react';
@@ -340,26 +333,26 @@ export default () => {
 
 ## API
 
-| Property             | Description                          | Type             | Default |
-| -------------------- | ------------------------------------ | ---------------- | ------- |
-| current              | Index of the current page            | number           | -       |
-| autoplay             | Enable auto-switching                | boolean          | false   |
-| interval             | Interval for auto-switching          | number           | 5000    |
-| duration             | Duration of the switching animation  | number           | 500     |
-| displayMultipleItems | Number of items displayed per screen | number           | 1       |
-| circular             | Enable circular display              | boolean          | false   |
-| vertical             | Vertical mode                        | boolean          | false   |
-| spaceBetween         | Spacing between items                | number           | -       |
-| previousMargin       | Width (height) of the previous item  | number \| string | -       |
-| nextMargin           | Width (height) of the next item      | number \| string | -       |
-| indicatorDots        | Enable page indicators (dots)        | boolean          | false   |
-| indicatorColor       | Color of non-active page indicators  | string           | -       |
-| indicatorActiveColor | Color of active page indicator       | string           | -       |
-| onChange             | Callback when switching pages        | event=>void      | -       |
-| onAnimationFinish    | Callback when animation finishes     | event=>void      | -       |
+| Property             | Description                                                           | Type             | Default value |
+| -------------------- | --------------------------------------------------------------------- | ---------------- | ------------- |
+| current              | Index of the current page                                             | number           | -             |
+| autoplay             | Automatic switching                                                   | boolean          | false         |
+| interval             | Interval time between automatic switches                              | number           | 5000          |
+| duration             | Duration of the transition animation                                  | number           | 500           |
+| displayMultipleItems | Number of items displayed per screen                                  | number           | 1             |
+| circular             | Circular display                                                      | boolean          | false         |
+| vertical             | Vertical mode                                                         | boolean          | false         |
+| spaceBetween         | Spacing between two items                                             | number           | -             |
+| previousMargin       | Width (height) of the previous item exposed                           | number \| string | -             |
+| nextMargin           | Width (height) of the next item exposed                               | number \| string | -             |
+| indicatorDots        | Page indicators (small dots)                                          | boolean          | false         |
+| indicatorColor       | Color of page indicators for non-current page                         | string           | -             |
+| indicatorActiveColor | Color of page indicators for the current page                         | string           | -             |
+| onChange             | Callback for switching events (triggered on swipe and switch release) | event=>void      | -             |
+| onAnimationFinish    | Callback for animation end (triggered when animation ends)            | event=>void      | -             |
 
 ## Style Variables
 
-| Property | Description | Default | Global Variable     |
-| -------- | ----------- | ------- | ------------------- |
-| --height | Height      | 150px   | --bui-swiper-height |
+| Global Variable     | Description | Default Value |
+| ------------------- | ----------- | ------------- |
+| --bui-swiper-height | Height      | 150px         |

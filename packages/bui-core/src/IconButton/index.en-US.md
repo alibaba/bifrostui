@@ -5,11 +5,11 @@ name: IconButton
 
 # IconButton
 
-An icon button is a button that displays only an icon without a text label. They are primarily used in control bars, toolbars, and are also useful when a compact button is needed.
+An icon button is a button that displays an icon without a text label. It is particularly useful in control bars, toolbars, and when a compact button is needed.
 
 ## Basic Button
 
-Buttons support three display styles: `Default Button`, `Outlined Button`, and `Contained Button`.
+The button supports three display variants: `default`, `outlined`, and `contained`.
 
 ```tsx
 import React from 'react';
@@ -35,7 +35,7 @@ export default () => {
 
 ## Shape
 
-Buttons support three shapes: `Circular`, `Rounded`, and `Square`.
+The button supports three shapes: `circular`, `rounded`, and `square`.
 
 ```tsx
 import React from 'react';
@@ -61,7 +61,9 @@ export default () => {
 
 ## Button Size
 
-Buttons are available in large, medium, and small sizes. Set the `size` attribute to large or small to change the button size accordingly. If `size` is not set, the button defaults to medium size.
+The button has three sizes: large, medium, and small.
+
+Set the `size` property to large or small to define it respectively. If `size` is not set, the default is medium.
 
 ```tsx
 import React from 'react';
@@ -87,7 +89,7 @@ export default () => {
 
 ## Button Colors
 
-Buttons support theme definitions `primary`, `success`, `info`, `warning`, `danger`, `light`, `neutral`, and `dark`. If `color` is not set, it defaults to `neutral`.
+The button supports theme definitions for `primary`, `success`, `info`, `warning`, `danger`, `light`, `neutral`, and `dark`. If color is not specified, `neutral` is the default.
 
 ```tsx
 import React from 'react';
@@ -203,7 +205,7 @@ export default () => {
 
 ## Disabled State
 
-Use the `disabled` attribute to disable a button, making it non-clickable.
+Use the disabled attribute to disable a button, making it unclickable.
 
 ```tsx
 import React from 'react';
@@ -229,14 +231,14 @@ export default () => {
 
 ## Accessibility
 
-The IconButton component has built-in streamlined accessibility support.
+The IconButton component has built-in accessibility features.
 
 - **aria-label** (required) - Accessible name for the icon button
 - **aria-disabled** - Indicates if the icon is disabled
-- **aria-pressed** - Toggle button state
-- **aria-expanded** - Expanded/collapsed state
-- **aria-haspopup** - Type of pop-up content
-- **aria-describedby** - Associated description element
+- **aria-pressed** - Button toggle state
+- **aria-expanded** - Expand/collapse state
+- **aria-haspopup** - Type of popup content
+- **aria-describedby** - Associates description elements
 
 ### aria-label
 
@@ -266,7 +268,7 @@ export default () => {
 };
 ```
 
-### Interactive State
+### Interactive States
 
 ```tsx
 import React, { useState } from 'react';
@@ -310,31 +312,31 @@ export default () => {
 
 ## API
 
-| Attribute | Description              | Type                                                                                      | Default   |
-| --------- | ------------------------ | ----------------------------------------------------------------------------------------- | --------- |
-| variant   | Button type              | `default` \| `text` \| `contained` \| `subtle`                                            | `default` |
-| color     | Button color             | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `neutral`\| `light`\| `dark` | `neutral` |
-| size      | Button size              | `small` \| `medium` \| `large`                                                            | `medium`  |
-| disabled  | Disabled state           | boolean                                                                                   | false     |
-| startIcon | Content before children  | React.ReactNode                                                                           | -         |
-| openType  | WeChat open capability   | string                                                                                    | -         |
-| onClick   | Callback on button click | (event: MouseEvent) => void                                                               | -         |
+| Attribute | Description                    | Type                                                                                      | Default   |
+| --------- | ------------------------------ | ----------------------------------------------------------------------------------------- | --------- |
+| variant   | Button type                    | `default` \| `text` \| `contained` \| `subtle`                                            | `default` |
+| color     | Button color                   | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `neutral`\| `light`\| `dark` | `neutral` |
+| size      | Button size                    | `small` \| `medium` \| `large`                                                            | `medium`  |
+| disabled  | Disabled state                 | boolean                                                                                   | false     |
+| startIcon | Content placed before children | React.ReactNode                                                                           | -         |
+| openType  | WeChat open capability         | string                                                                                    | -         |
+| onClick   | Callback on button click       | (event: MouseEvent) => void                                                               | -         |
 
-For other attributes, see [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes).
+Refer to other attributes at [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes)
 
 ## Style Variables
 
-| Global Variable                   | Description                       | Default Value                |
-| --------------------------------- | --------------------------------- | ---------------------------- |
-| --bui-icon-btn-contained-bg-color | Contained button background color | `var(--bui-color-neutral-5)` |
-| --bui-icon-btn-color              | Button color                      | `var(--bui-color-fg-muted)`  |
-| --bui-icon-btn-small-font-size    | Small button font size            | `var(--bui-text-size-4)`     |
-| --bui-icon-btn-font-size          | Default button font size          | `17px`                       |
-| --bui-icon-btn-small-padding      | Small button padding              | `var(--bui-spacing-xs)`      |
-| --bui-icon-btn-padding            | Default button padding            | `5px`                        |
-| --bui-icon-btn-large-padding      | Large button padding              | `var(--bui-spacing-sm)`      |
-| --bui-icon-btn-large-font-size    | Large button font size            | `23px`                       |
-| --bui-icon-btn-disabled-opacity   | Disabled button opacity           | `0.5`                        |
-| --bui-icon-btn-outlined-border    | Outlined button border            | `1px solid`                  |
-| --bui-icon-btn-subtle-border      | Subtle button border              | `1px solid transparent`      |
-| --bui-icon-btn-border             | Default button border             | `1px solid transparent`      |
+| Global Variable                   | Description                           | Default Value                |
+| --------------------------------- | ------------------------------------- | ---------------------------- |
+| --bui-icon-btn-contained-bg-color | Background color for contained button | `var(--bui-color-neutral-5)` |
+| --bui-icon-btn-color              | Button color                          | `var(--bui-color-fg-muted)`  |
+| --bui-icon-btn-small-font-size    | Font size for small button            | `var(--bui-text-size-4)`     |
+| --bui-icon-btn-font-size          | Font size for default button          | `17px`                       |
+| --bui-icon-btn-small-padding      | Padding for small button              | `var(--bui-spacing-xs)`      |
+| --bui-icon-btn-padding            | Padding for default button            | `5px`                        |
+| --bui-icon-btn-large-padding      | Padding for large button              | `var(--bui-spacing-sm)`      |
+| --bui-icon-btn-large-font-size    | Font size for large button            | `23px`                       |
+| --bui-icon-btn-disabled-opacity   | Opacity for disabled button           | `0.5`                        |
+| --bui-icon-btn-outlined-border    | Border for outlined button            | `1px solid`                  |
+| --bui-icon-btn-subtle-border      | Border for subtle button              | `1px solid transparent`      |
+| --bui-icon-btn-border             | Default button border                 | `1px solid transparent`      |
