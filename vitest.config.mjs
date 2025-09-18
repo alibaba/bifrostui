@@ -3,12 +3,8 @@ import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 
-function getModulePath(modlue: string) {
-  return resolve(__dirname, `./modules/${modlue}/src/index.ts`);
-}
-
 export default defineConfig({
-  plugins: [react()] as any,
+  plugins: [react()],
   test: {
     // css作用是设置是否支持CSS，这里设置为true，表示支持CSS
     css: true,
@@ -18,24 +14,14 @@ export default defineConfig({
     globals: true,
     // setupFiles作用是设置测试文件的初始化文件，这里设置为tests/setup.ts，表示所有的测试文件都会先执行tests/setup.ts中的代码
     setupFiles: ['./tests/setup.ts'],
-    // 启用动态导入支持
-    // deps: {
-    //   inline: [
-    //     "@tarojs/runtime",
-    //     "@tarojs/taro"
-    //   ]
-    // },
     // 减少控制台输出
     silent: false,
     // 设置测试超时时间
     testTimeout: 10000,
     server: {
       deps: {
-        inline: [
-          "@tarojs/runtime",
-          "@tarojs/taro"
-        ]
-      }
+        inline: ['@tarojs/runtime', '@tarojs/taro'],
+      },
     },
     coverage: {
       // provider作用是设置覆盖率报告的提供者，这里设置为v8，表示使用v8引擎来计算覆盖率
