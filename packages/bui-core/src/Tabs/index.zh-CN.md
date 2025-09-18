@@ -242,7 +242,7 @@ export default () => {
 };
 ```
 
-## 无障碍访问
+## Accessibility
 
 - Tab 具备 `role="tab"`、`aria-disabled`、`tabindex` 等属性。
 - TabPanel 具备 `role="tabpanel"`、`tabindex`、`aria-hidden` 等属性。

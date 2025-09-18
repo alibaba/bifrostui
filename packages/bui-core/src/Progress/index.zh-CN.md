@@ -105,7 +105,7 @@ export default () => {
 };
 ```
 
-## 无障碍性 (Accessibility)
+## Accessibility
 
 Progress 组件内置了完整的无障碍性支持，可以直接使用以下 ARIA 属性：
 

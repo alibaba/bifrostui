@@ -1322,7 +1322,7 @@ export default () => {
 };
 ```
 
-## 无障碍访问
+## Accessibility
 
 - 主要无障碍特性包括：
   - 外层弹窗使用 `role="dialog"`、`aria-modal="true"`、`aria-label`。

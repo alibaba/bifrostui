@@ -101,7 +101,7 @@ export default () => {
 
 通过 `anchorOrigin` 属性可以设置气泡浮层相对于锚点的位置。该属性包含 `vertical` 和 `horizontal` 两个子属性：
 
-- `vertical`: 垂直位置，可选值为 `top`、`center`、`bottom`  
+- `vertical`: 垂直位置，可选值为 `top`、`center`、`bottom`
 - `horizontal`: 水平位置，可选值为 `left`、`center`、`right`
 
 以下展示了所有 9 种位置组合：
@@ -238,7 +238,7 @@ export default () => {
 };
 ```
 
-## 无障碍功能
+## Accessibility
 
 Popover 组件提供完整的无障碍功能支持，包括键盘导航、屏幕阅读器支持、焦点管理和语义化角色设置。
 
@@ -328,10 +328,10 @@ export default () => {
 
 ### 样式变量
 
-| 属性                            | 说明           | 默认值                 | 全局变量                           |
-| ------------------------------- | -------------- | ---------------------- | ---------------------------------- |
-| --arrow-size                    | 箭头大小       | 8px                    | --bui-popover-arrow-size           |
-| --location-position             | 箭头位置偏移量 | 8px                    | --bui-popover-location-position    |
-| --max-width                     | 气泡最大宽度   | 350px                  | --bui-popover-max-width            |
-| --content-min-width             | 内容最小宽度   | 30px                   | --bui-popover-content-min-width    |
-| --content-padding               | 内容内边距     | 6px 8px                | --bui-popover-content-padding      |
+| 属性                | 说明           | 默认值  | 全局变量                        |
+| ------------------- | -------------- | ------- | ------------------------------- |
+| --arrow-size        | 箭头大小       | 8px     | --bui-popover-arrow-size        |
+| --location-position | 箭头位置偏移量 | 8px     | --bui-popover-location-position |
+| --max-width         | 气泡最大宽度   | 350px   | --bui-popover-max-width         |
+| --content-min-width | 内容最小宽度   | 30px    | --bui-popover-content-min-width |
+| --content-padding   | 内容内边距     | 6px 8px | --bui-popover-content-padding   |
