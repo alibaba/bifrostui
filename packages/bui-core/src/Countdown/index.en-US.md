@@ -1,17 +1,15 @@
 ---
 group: Data Display
-name: Countdown Timer
+name: Countdown
 ---
 
-# Countdown Timer
+# Countdown
 
-Used to display countdown values in real time.
+Used for displaying countdown values in real-time.
 
-## Code Demos
+## Basic Usage
 
-### Basic Usage
-
-Control the remaining countdown duration using `remainingTime`, which is mutually exclusive with the `endTimestamp` field.
+Use `remainingTime` to control the countdown duration, or choose `endTimestamp` as an alternative.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -28,7 +26,7 @@ export default () => {
 
 ### End Timestamp
 
-Specify the end time of the countdown using `endTimestamp`, which is mutually exclusive with `remainingTime`. It has a higher priority than `remainingTime`.
+Use `endTimestamp` to specify the countdown end time, or choose `remainingTime` instead; `endTimestamp` has a higher priority than `remainingTime`.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -43,9 +41,9 @@ export default () => {
 };
 ```
 
-### Server Timestamp Calculation
+### Calculating Server Timestamp
 
-Set the server timestamp using `serverTimestamp`, which can be used in conjunction with `endTimestamp`. This property prevents local time modifications from causing incorrect countdowns.
+Set the server timestamp with `serverTimestamp`, which can be used with `endTimestamp` to prevent countdown errors due to local time adjustments.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -64,9 +62,9 @@ export default () => {
 };
 ```
 
-### Formatting the Countdown
+### Formatting Countdown
 
-Customize the format of the countdown using `format`. The default value is `HH:mm:ss`.
+The countdown format can be set with `format`, with a default value of `HH:mm:ss`.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -107,7 +105,7 @@ export default () => {
 
 ### Countdown Change Event
 
-The `onChange` event is triggered when the countdown changes.
+The `onChange` event is triggered during countdown changes.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -115,7 +113,7 @@ import React from 'react';
 
 export default () => {
   const change = (data) => {
-    console.log('Counting down, current data:', data);
+    console.log('Countdown in progress, current data', data);
   };
 
   return (
@@ -128,7 +126,7 @@ export default () => {
 
 ### Custom Countdown Content
 
-Customize the content of the countdown component using `renderContent`.
+Customize the countdown component content with `renderContent`.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -142,8 +140,8 @@ export default () => {
         renderContent={({ hours, minutes, seconds }) => {
           return (
             <span>
-              Remaining time until countdown ends: {hours} hours {minutes}{' '}
-              minutes {seconds} seconds
+              There are {hours} hours {minutes} minutes {seconds} seconds left
+              until the countdown ends.
             </span>
           );
         }}
@@ -153,9 +151,9 @@ export default () => {
 };
 ```
 
-### Accessibility Design
+## Accessibility
 
-The Countdown component includes comprehensive accessibility support to ensure all users can access countdown information.
+The countdown component includes comprehensive accessibility support, ensuring all users can access countdown information.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
@@ -164,33 +162,33 @@ import React from 'react';
 export default () => {
   return (
     <Stack spacing={16}>
-      {/* Basic accessibility support - auto-generated aria-label */}
+      {/* Basic accessibility support - automatically generates aria-label */}
       <Countdown remainingTime={60 * 1000} />
 
-      {/* Custom accessibility label */}
+      {/* Custom accessibility labels */}
       <Countdown
         remainingTime={120 * 1000}
-        aria-label="Flash sale countdown timer"
+        aria-label="Countdown to the end of the promotion"
       />
 
-      {/* Associate with title via ID */}
+      {/* Linking titles with ID */}
       <div>
-        <h3 id="flash-sale-title">Limited Time Offer</h3>
+        <h3 id="flash-sale-title">Flash Sale</h3>
         <Countdown
           remainingTime={180 * 1000}
           aria-labelledby="flash-sale-title"
         />
       </div>
 
-      {/* Add detailed description */}
+      {/* Adding a detailed description */}
       <div>
         <Countdown
           remainingTime={240 * 1000}
           aria-describedby="countdown-description"
         />
         <p id="countdown-description">
-          When the countdown ends, the discounted price will revert to the
-          original price
+          The discounted price will revert to the original price after the
+          countdown ends
         </p>
       </div>
     </Stack>
@@ -202,38 +200,42 @@ export default () => {
 
 ### Countdown
 
-| Property         | Description                                                                                                                                        | Type                                    | Default  |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | -------- |
-| remainingTime    | The remaining countdown duration, as a time interval (in milliseconds), mutually exclusive with `endTimestamp`                                     | number                                  | 0        |
-| endTimestamp     | The end timestamp of the countdown, as a specific point in time, mutually exclusive with `remainingTime`, has higher priority than `remainingTime` | number                                  | -        |
-| serverTimestamp  | The server timestamp, as a specific point in time, can be used in conjunction with `endTimestamp`                                                  | number                                  | -        |
-| format           | Format for displaying the countdown, see dayjs for reference                                                                                       | string                                  | HH:mm:ss |
-| onFinish         | Triggered when the countdown completes                                                                                                             | () => void                              | -        |
-| onChange         | Triggered when the countdown time changes                                                                                                          | (data: { value: CurrentTime }) => void; | -        |
-| renderContent    | Customizes the rendered content                                                                                                                    | (data: CurrentTime) => React.ReactNode; | -        |
-| aria-label       | Accessibility label that provides component description for screen readers                                                                         | string                                  | -        |
-| aria-labelledby  | References other element IDs as labels                                                                                                             | string                                  | -        |
-| aria-describedby | References other element IDs as descriptions                                                                                                       | string                                  | -        |
-| role             | Semantic role of the component                                                                                                                     | string                                  | timer    |
+| Property         | Description                                                                                            | Type                                    | Default  |
+| ---------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------- | -------- |
+| remainingTime    | The remaining countdown time in milliseconds, mutually exclusive with endTimestamp                     | number                                  | 0        |
+| endTimestamp     | The countdown end timestamp, mutually exclusive with remainingTime; higher priority than remainingTime | number                                  | -        |
+| serverTimestamp  | The server timestamp, used in conjunction with endTimestamp                                            | number                                  | -        |
+| format           | Formatting the countdown display, refer to dayjs                                                       | string                                  | HH:mm:ss |
+| onFinish         | Triggered when the countdown completes                                                                 | () => void                              | -        |
+| onChange         | Triggered when the countdown time changes                                                              | (data: { value: CurrentTime }) => void; | -        |
+| renderContent    | Customize the rendered content                                                                         | (data: CurrentTime) => React.ReactNode; | -        |
+| aria-label       | Accessibility label for screen reader description                                                      | string                                  | -        |
+| aria-labelledby  | References other element IDs as a label                                                                | string                                  | -        |
+| aria-describedby | References other element IDs as a description                                                          | string                                  | -        |
+| role             | Semantic role of the component                                                                         | string                                  | timer    |
 
 #### CurrentTime
 
-| Property      | Description                           | Type   | Default |
-| ------------- | ------------------------------------- | ------ | ------- |
-| total         | Total remaining time, in milliseconds | number | -       |
-| years         | Remaining years                       | string | -       |
-| months        | Remaining months                      | string | -       |
-| days          | Remaining days                        | string | -       |
-| hours         | Remaining hours                       | string | -       |
-| minutes       | Remaining minutes                     | string | -       |
-| seconds       | Remaining seconds                     | string | -       |
-| hoursWithDays | Remaining hours after whole days      | string | -       |
+| Property      | Description                          | Type   | Default |
+| ------------- | ------------------------------------ | ------ | ------- |
+| total         | Total remaining time in milliseconds | number | -       |
+| years         | Remaining years                      | string | -       |
+| months        | Remaining months                     | string | -       |
+| days          | Remaining days                       | string | -       |
+| hours         | Remaining hours                      | string | -       |
+| minutes       | Remaining minutes                    | string | -       |
+| seconds       | Remaining seconds                    | string | -       |
+| hoursWithDays | Hours remaining after whole days     | string | -       |
 
 ## Style Variables
 
-| Property            | Description           | Default                  | Global Variable                   |
-| ------------------- | --------------------- | ------------------------ | --------------------------------- |
-| --font-size         | Font size for text    | --bui-text-size-1        | --bui-countdown-font-size         |
-| --color             | Text color            | --bui-color-fg-default   | --bui-countdown-color             |
-| --font-weight       | Font weight           | --bui-font-weight-normal | --bui-countdown-font-weight       |
-| --slice-unit-margin | Margin between slices | 0 2px                    | --bui-countdown-slice-unit-margin |
+| Variable Name                     | Description | Default Value                   |
+| --------------------------------- | ----------- | ------------------------------- |
+| --bui-countdown-font-size         | Font size   | `var(--bui-text-size-1)`        |
+| --bui-countdown-color             | Font color  | `var(--bui-color-fg-default)`   |
+| --bui-countdown-font-weight       | Font weight | `var(--bui-font-weight-normal)` |
+| --bui-countdown-slice-unit-margin | Unit margin | `0 2px`                         |
+
+```
+
+```

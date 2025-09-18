@@ -1,33 +1,31 @@
 ---
+
 group: Data Display
-name: Tabs Tab Pages
----
+name: Tabs
 
-# Tabs Tab Pages
+# Tabs
 
-Tab page switching component.
+A tab component used to switch between multiple content areas, supporting keyboard accessibility and custom rendering.
 
-## Two Differences Between Mini Programs and H5:
+## Differences between Mini Program and H5
 
-1. Mini programs use a gradient animation for the bottom line of the Tab switch, while H5 uses a position move animation;
-2. For Tabs that exceed the scrollable area in mini programs, clicking to activate cannot move them to the center of the view.
+1. The Mini Program uses a gradient animation for the bottom indicator when switching tabs, while H5 uses a displacement animation.
+2. In the Mini Program, when tabs exceed the scrollable area, clicking to activate will not automatically scroll the tab into the center of the view.
 
-## Code Demonstrations
+## Basic Usage
 
-### Basic Usage
-
-Use with Tab components to complete the layout.
+Use `Tab` and `TabPanel` components for layout.
 
 ```tsx
-import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
+import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
 
 export default () => {
-  const [value, setValue] = useState('fruits');
+  const [value, setValue] = useState('one');
   const tabList = [
-    { title: 'Fruits', index: 'fruits' },
-    { title: 'Vegetables', index: 'vegetables' },
-    { title: 'Animals', index: 'animals' },
+    { title: 'TAB ONE', index: 'one' },
+    { title: 'TAB TWO', index: 'two' },
+    { title: 'TAB THREE', index: 'three' },
   ];
   const handleClick = (e, { index }) => {
     console.log(`Click Tab, value index is: ${index}`);
@@ -36,37 +34,37 @@ export default () => {
 
   return (
     <Stack alignItems="stretch">
-      <Tabs style={{ marginBottom: '12px' }} value={value}>
+      <Tabs style={{ marginBottom: 12 }} value={value}>
         {tabList.map((item) => (
           <Tab key={item.index} index={item.index} onClick={handleClick}>
             {item.title}
           </Tab>
         ))}
       </Tabs>
-      <TabPanel value={value} index="fruits">
-        Pineapple
+      <TabPanel value={value} index="one">
+        Tab Panel 1
       </TabPanel>
-      <TabPanel value={value} index="vegetables">
-        Tomato
+      <TabPanel value={value} index="two">
+        Tab Panel 2
       </TabPanel>
-      <TabPanel value={value} index="animals">
-        Ant
+      <TabPanel value={value} index="three">
+        Tab Panel 3
       </TabPanel>
     </Stack>
   );
 };
 ```
 
-### Support Using tabs
+## Generate Tabs using `tabs` attribute
 
-Using `tabs` to generate Tabs.
+Quickly generate tabs using the `tabs` attribute.
 
 ```tsx
-import { Stack, TabPanel, Tabs, Button } from '@bifrostui/react';
+import { Stack, TabPanel, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState('fruits');
+  const [value, setValue] = useState('one');
   const handleChange = (e, { index }) => {
     console.log(`Tabs change, value index is: ${index}`);
     setValue(index);
@@ -75,185 +73,39 @@ export default () => {
   return (
     <Stack>
       <Tabs
-        style={{ marginBottom: '12px' }}
+        style={{ marginBottom: 12 }}
         onChange={handleChange}
         value={value}
         tabs={[
-          { title: 'Fruits', index: 'fruits' },
-          { title: 'Vegetables', index: 'vegetables', disabled: true },
-          { title: 'Animals', index: 'animals' },
+          { title: 'TAB ONE', index: 'one' },
+          { title: 'TAB TWO', index: 'two' },
+          { title: 'TAB THREE', index: 'three' },
         ]}
       />
-      <TabPanel value={value} index="fruits">
-        Pineapple
+      <TabPanel value={value} index="one">
+        Tab Panel 1
       </TabPanel>
-      <TabPanel value={value} index="vegetables">
-        Tomato
+      <TabPanel value={value} index="two">
+        Tab Panel 2
       </TabPanel>
-      <TabPanel value={value} index="animals">
-        Ant
+      <TabPanel value={value} index="three">
+        Tab Panel 3
       </TabPanel>
     </Stack>
   );
 };
 ```
 
-### No Selection When Value Is Invalid
+## Disabled State
 
-No Tab is selected when the value is invalid.
+Disable a specific tab with the `disabled` attribute.
 
 ```tsx
-import { Stack, Tab, TabPanel, Tabs, Button } from '@bifrostui/react';
+import { Stack, TabPanel, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState('2');
-  const defultList = [
-    { title: 'The Battle at Lake Changjin', index: '1' },
-    { title: 'Wolf Warrior 2', index: '2' },
-    { title: 'Hi, Mom', index: '3' },
-    { title: 'Ne Zha', index: '4' },
-    { title: 'The Wandering Earth', index: '5' },
-    { title: 'Detective Chinatown 3', index: '6' },
-  ];
-  const [tabList, setTabList] = useState(defultList);
-
-  const handleChange = (e, { index }) => {
-    console.log(e, `Tab Change, value index is: ${index}`);
-    setValue(index);
-  };
-
-  return (
-    <Stack>
-      <Button
-        onClick={() => {
-          setValue('');
-        }}
-      >
-        Set to Invalid Value
-      </Button>
-      <Button
-        onClick={() => {
-          if (tabList.length === 4) {
-            setTabList(defultList);
-          } else {
-            const newTabList = defultList.slice(0, 4);
-            setTabList(newTabList);
-            if (!newTabList.some((item) => item.index === value)) {
-              setValue('1');
-            }
-          }
-        }}
-      >
-        {tabList.length === 4 ? 'Increase' : 'Decrease'} TabList Length
-      </Button>
-      <div style={{ width: '325px' }}>
-        <Tabs
-          style={{ marginTop: '20px', marginBottom: '12px' }}
-          value={value}
-          onChange={handleChange}
-        >
-          {tabList.map((item) => (
-            <Tab key={item.index} {...item}>
-              {item.title}
-            </Tab>
-          ))}
-        </Tabs>
-
-        {tabList.map((item) => (
-          <TabPanel key={item.index} value={value} index={item.index}>
-            {item.index}
-          </TabPanel>
-        ))}
-      </div>
-    </Stack>
-  );
-};
-```
-
-### No Selection When Value Is Invalid (Using tabs)
-
-No Tab is selected when the value is invalid.
-
-```tsx
-import { Stack, Tab, TabPanel, Tabs, Button } from '@bifrostui/react';
-import React, { useState } from 'react';
-
-export default () => {
-  const [value, setValue] = useState('2');
-  const defultList = [
-    { title: 'The Battle at Lake Changjin', index: '1' },
-    { title: 'Wolf Warrior 2', index: '2' },
-    { title: 'Hi, Mom', index: '3' },
-    { title: 'Ne Zha', index: '4' },
-    { title: 'The Wandering Earth', index: '5' },
-    { title: 'Detective Chinatown 3', index: '6' },
-  ];
-  const [tabList, setTabList] = useState(defultList);
-
-  const handleChange = (e, { index }) => {
-    console.log(e, `Tab Change, value index is: ${index}`);
-    setValue(index);
-  };
-
-  return (
-    <Stack>
-      <Button
-        onClick={() => {
-          setValue('');
-        }}
-      >
-        Set to Invalid Value
-      </Button>
-      <Button
-        onClick={() => {
-          if (tabList.length === 4) {
-            setTabList(defultList);
-          } else {
-            const newTabList = defultList.slice(0, 4);
-            setTabList(newTabList);
-            if (!newTabList.some((item) => item.index === value)) {
-              setValue('1');
-            }
-          }
-        }}
-      >
-        {tabList.length === 4 ? 'Increase' : 'Decrease'} TabList Length
-      </Button>
-      <div style={{ width: '325px' }}>
-        <Tabs
-          style={{ marginTop: '20px', marginBottom: '12px' }}
-          tabs={tabList}
-          value={value}
-          onChange={handleChange}
-        />
-
-        {tabList.map((item) => (
-          <TabPanel key={item.index} value={value} index={item.index}>
-            {item.index}
-          </TabPanel>
-        ))}
-      </div>
-    </Stack>
-  );
-};
-```
-
-### Disabled State
-
-Disable Tab clicks using `disabled`.
-
-```tsx
-import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
-import React, { useState } from 'react';
-
-export default () => {
-  const [value, setValue] = useState('fruits');
-  const tabList = [
-    { title: 'Fruits', index: 'fruits' },
-    { title: 'Vegetables', index: 'vegetables' },
-    { title: 'Animals', index: 'animals' },
-  ];
+  const [value, setValue] = useState('one');
   const handleClick = (e, { index }) => {
     console.log(`Click Tab, value index is: ${index}`);
     setValue(index);
@@ -261,62 +113,54 @@ export default () => {
 
   return (
     <Stack>
-      <Tabs style={{ marginBottom: '12px' }} value={value}>
-        {tabList.map((item) => (
-          <Tab
-            key={item.index}
-            index={item.index}
-            disabled
-            onClick={handleClick}
-          >
-            {item.title}
-          </Tab>
-        ))}
-      </Tabs>
-      <TabPanel value={value} index="fruits">
-        Pineapple
+      <Tabs
+        style={{ marginBottom: 12 }}
+        value={value}
+        tabs={[
+          { title: 'TAB ONE', index: 'one' },
+          { title: 'TAB DISABLED', index: 'two', disabled: true },
+          { title: 'TAB THREE', index: 'three' },
+        ]}
+        onChange={handleClick}
+      />
+      <TabPanel value={value} index="one">
+        Tab Panel 1
       </TabPanel>
-      <TabPanel value={value} index="vegetables">
-        Tomato
+      <TabPanel value={value} index="two">
+        Tab Panel 2
       </TabPanel>
-      <TabPanel value={value} index="animals">
-        Ant
+      <TabPanel value={value} index="three">
+        Tab Panel 3
       </TabPanel>
     </Stack>
   );
 };
 ```
 
-## Controlled Tabs Component
+## Controlled Usage
 
-The selection status of Tabs components can be controlled through the 'value' attribute.
-
-Control the selected state of Tabs using the `value` property.
+Control the selected state of the Tabs component using the `value` attribute.
 
 ```tsx
 import { Button, Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState('fruits');
+  const [value, setValue] = useState('one');
   const tabList = [
-    { title: 'Fruits', index: 'fruits' },
-    { title: 'Vegetables', index: 'vegetables' },
-    { title: 'Animals', index: 'animals' },
+    { title: 'TAB ONE', index: 'one' },
+    { title: 'TAB TWO', index: 'two' },
+    { title: 'TAB THREE', index: 'three' },
   ];
   const handleChange = (e, { index }) => {
     console.log(e, `Tab change, value index is: ${index}`);
     setValue(index);
   };
 
-  const handleButton = (index) => {
-    setValue(index);
-  };
-
   return (
     <Stack>
       <Tabs
-        style={{ marginBottom: '12px' }}
+        style={{ marginBottom: 12 }}
         align="start"
         onChange={handleChange}
         value={value}
@@ -327,65 +171,29 @@ export default () => {
           </Tab>
         ))}
       </Tabs>
-      <TabPanel value={value} index="fruits">
-        <div>Pineapple</div>
-        <Button
-          onClick={() => {
-            handleButton('animals');
-          }}
-        >
-          I want Ants
-        </Button>
-        <Button
-          onClick={() => {
-            handleButton('vegetables');
-          }}
-        >
-          I want Tomatoes
-        </Button>
+      <TabPanel value={value} index="one">
+        <div>Tab Panel 1</div>
+        <Button onClick={() => setValue('three')}>GOTO TAB THREE</Button>
+        <Button onClick={() => setValue('two')}>GOTO TAB TWO</Button>
       </TabPanel>
-      <TabPanel value={value} index="vegetables">
-        <div>Tomato</div>
-        <Button
-          onClick={() => {
-            handleButton('fruits');
-          }}
-        >
-          I want Pineapples
-        </Button>
-        <Button
-          onClick={() => {
-            handleButton('animals');
-          }}
-        >
-          I want Ants
-        </Button>
+      <TabPanel value={value} index="two">
+        <div>Tab Panel 2</div>
+        <Button onClick={() => setValue('one')}>GOTO TAB ONE</Button>
+        <Button onClick={() => setValue('three')}>GOTO TAB THREE</Button>
       </TabPanel>
-      <TabPanel value={value} index="animals">
-        <div>Ant</div>
-        <Button
-          onClick={() => {
-            handleButton('fruits');
-          }}
-        >
-          I want Pineapples
-        </Button>
-        <Button
-          onClick={() => {
-            handleButton('vegetables');
-          }}
-        >
-          I want Tomatoes
-        </Button>
+      <TabPanel value={value} index="three">
+        <div>Tab Panel 3</div>
+        <Button onClick={() => setValue('one')}>GOTO TAB ONE</Button>
+        <Button onClick={() => setValue('two')}>GOTO TAB TWO</Button>
       </TabPanel>
     </Stack>
   );
 };
 ```
 
-### Scrollable When Exceeding
+## Overflow Scroll
 
-Tabs become scrollable when there are too many.
+Supports horizontal scrolling when there are many tabs.
 
 ```tsx
 import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
@@ -394,15 +202,15 @@ import React, { useState } from 'react';
 export default () => {
   const [value, setValue] = useState('2');
   const tabList = [
-    { title: 'The Battle at Lake Changjin', index: '1' },
-    { title: 'Wolf Warrior 2', index: '2' },
-    { title: 'Hi, Mom', index: '3' },
-    { title: 'Ne Zha', index: '4' },
-    { title: 'The Wandering Earth', index: '5' },
-    { title: 'Detective Chinatown 3', index: '6' },
-    { title: 'Avengers: Endgame', index: '7' },
-    { title: 'The Battle at Lake Changjin II: The Bridge', index: '8' },
-    { title: 'Operation Red Sea', index: '9' },
+    { title: 'Item 1', index: '1' },
+    { title: 'Item 2', index: '2' },
+    { title: 'Item 3', index: '3' },
+    { title: 'Item 4', index: '4' },
+    { title: 'Item 5', index: '5' },
+    { title: 'Item 6', index: '6' },
+    { title: 'Item 7', index: '7' },
+    { title: 'Item 8', index: '8' },
+    { title: 'Item 9', index: '9' },
   ];
   const handleChange = (e, { index }) => {
     console.log(e, `Tab Change, value index is: ${index}`);
@@ -411,9 +219,9 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '325px' }}>
+      <div style={{ width: 325 }}>
         <Tabs
-          style={{ marginTop: '20px', marginBottom: '12px' }}
+          style={{ marginTop: 20, marginBottom: 12 }}
           value={value}
           onChange={handleChange}
         >
@@ -434,60 +242,62 @@ export default () => {
 };
 ```
 
+## Accessibility
+
+- Tab has attributes such as `role="tab"`, `aria-disabled`, and `tabindex`.
+- TabPanel has attributes such as `role="tabpanel"`, `tabindex`, and `aria-hidden`.
+
 ## API
 
 ### Tabs
 
-| Property | Description                                                              | Type                                               | Default  |
-| -------- | ------------------------------------------------------------------------ | -------------------------------------------------- | -------- |
-| value    | Index value of the currently selected panel, corresponding to tabs.index | string                                             | -        |
-| tabs     | Data for the switch panels                                               | ITabItem[]                                         | -        |
-| align    | Alignment method                                                         | `start` \| `center`                                | `center` |
-| onChange | Callback function for switching panels                                   | (e?: SyntheticEvent,data?:{index: string}) => void | -        |
+| Attribute | Description                                                          | Type                                               | Default |
+| --------- | -------------------------------------------------------------------- | -------------------------------------------------- | ------- |
+| value     | Index value of the current selected panel; corresponds to tabs.index | string                                             | -       |
+| tabs      | Data for switching panels                                            | ITabItem[]                                         | -       |
+| onChange  | Callback for switching panels                                        | (e?: SyntheticEvent,data?:{index: string}) => void | -       |
 
 ### ITabItem
 
-| Property | Description                   | Type            | Default |
-| -------- | ----------------------------- | --------------- | ------- |
-| title    | Panel title                   | React.ReactNode | -       |
-| index    | Panel index value             | string          | -       |
-| disabled | Whether the panel is disabled | boolean         | false   |
+| Attribute | Description                   | Type            | Default |
+| --------- | ----------------------------- | --------------- | ------- |
+| title     | Panel title                   | React.ReactNode | -       |
+| index     | Index value of the panel      | string          | -       |
+| disabled  | Whether the panel is disabled | boolean         | false   |
 
 ### Tab
 
-| Property | Description                   | Type                                               | Default |
-| -------- | ----------------------------- | -------------------------------------------------- | ------- |
-| index    | Panel index value             | string                                             | -       |
-| disabled | Whether the panel is disabled | boolean                                            | false   |
-| onClick  | Callback for clicking on Tab  | (e?: SyntheticEvent,data?:{index: string}) => void | -       |
+| Attribute | Description                   | Type                                               | Default |
+| --------- | ----------------------------- | -------------------------------------------------- | ------- |
+| index     | Index value of the panel      | string                                             | -       |
+| disabled  | Whether the panel is disabled | boolean                                            | false   |
+| onClick   | Callback when Tab is clicked  | (e?: SyntheticEvent,data?:{index: string}) => void | -       |
 
 ### TabPanel
 
-| Property    | Description                                  | Type    | Default |
-| ----------- | -------------------------------------------- | ------- | ------- |
-| value       | Current selected panel's value               | string  | -       |
-| index       | Corresponding index of tabs data             | string  | -       |
-| keepMounted | Render DOM structure when TabPanel is hidden | boolean | false   |
+| Attribute   | Description                                             | Type    | Default |
+| ----------- | ------------------------------------------------------- | ------- | ------- |
+| value       | Value of the currently selected panel                   | string  | -       |
+| index       | Corresponding index in tabs switching panel data        | string  | -       |
+| keepMounted | Whether to render DOM structure when TabPanel is hidden | boolean | false   |
 
 ## Style Variables
 
-### Tabs
-
-| Property       | Description           | Default Value          | Global Variable         |
-| -------------- | --------------------- | ---------------------- | ----------------------- |
-| --height       | Tabs height           | 39px                   | --bui-tabs-height       |
-| --color        | Font color            | --bui-color-fg-subtle  | --bui-tabs-color        |
-| --active-color | Active Tab font color | --bui-color-fg-default | --bui-tabs-active-color |
-| --line-width   | Bottom line width     | 18px                   | --bui-tabs-line-width   |
-| --line-height  | Bottom line height    | 3PX                    | --bui-tabs-line-height  |
-| --line-color   | Bottom line color     | --bui-color-primary    | --bui-tabs-line-color   |
-| --mask-width   | Mask layer width      | 12px                   | --bui-tabs-mask-width   |
-| --mask-height  | Mask layer height     | 100%                   | --bui-tabs-mask-height  |
-
-### Tab
-
-| Property    | Description   | Default Value                                    | Global Variable     |
-| ----------- | ------------- | ------------------------------------------------ | ------------------- |
-| --height    | Tab height    | 100%                                             | --bui-tab-height    |
-| --padding   | Tab padding   | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding   |
-| --font-size | Tab font size | --bui-text-size-1                                | --bui-tab-font-size |
+| Global Variable                    | Description                | Default Value                                      |
+| ---------------------------------- | -------------------------- | -------------------------------------------------- |
+| --bui-tabs-height                  | Tab height                 | `39px`                                             |
+| --bui-tabs-font-weight             | Font weight                | `var(--bui-font-weight-medium)`                    |
+| --bui-tabs-indicator-bg            | Indicator background color | `var(--bui-color-primary)`                         |
+| --bui-tabs-indicator-height        | Indicator height           | `3PX`                                              |
+| --bui-tabs-indicator-width         | Indicator width            | `24px`                                             |
+| --bui-tabs-indicator-border-radius | Indicator border radius    | `3px 3px 0 0`                                      |
+| --bui-tabs-indicator-bottom        | Indicator bottom position  | `0`                                                |
+| --bui-tabs-indicator-box-shadow    | Indicator shadow           | `none`                                             |
+| --bui-tabs-mask-width              | Mask width                 | `12px`                                             |
+| --bui-tabs-mask-height             | Mask height                | `100%`                                             |
+| --bui-tab-font-size                | Tab font size              | `var(--bui-text-size-1)`                           |
+| --bui-tab-color                    | Tab color                  | `var(--bui-color-fg-subtle)`                       |
+| --bui-tab-height                   | Tab height                 | `100%`                                             |
+| --bui-tab-padding                  | Tab padding                | `var(--bui-spacing-lg) var(--bui-spacing-lg) 10px` |
+| --bui-tab-active-color             | Active tab color           | `var(--bui-color-fg-default)`                      |
+| --bui-tab-active-font-family       | Active tab font            | `var(--bui-font-family-accent, inherit)`           |

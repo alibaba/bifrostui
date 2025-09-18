@@ -5,13 +5,11 @@ name: Checkbox
 
 # Checkbox
 
-Checkbox, providing users with the option to select multiple items or deselect selected items when a series of options are displayed.
+Checkbox provides users with the option to select multiple items or deselect selections when displaying a series of options.
 
-## Code Demos
+## Basic Usage
 
-### Basic Usage
-
-Control the state via `checked` and `onChange`.
+Control state through `checked` and `onChange`.
 
 ```tsx
 import { Checkbox, Stack } from '@bifrostui/react';
@@ -34,9 +32,9 @@ export default () => {
 };
 ```
 
-### Passing Attributes to Internal Input Tag
+## Passing Attributes to Internal input Tag
 
-Attributes passed via `inputProps` can be forwarded to the internal `<input>` tag.
+Input attributes passed through `inputProps` can be forwarded to the inner `input` tag.
 
 ```tsx
 import { Checkbox, Stack } from '@bifrostui/react';
@@ -62,9 +60,9 @@ export default () => {
 };
 ```
 
-### Internal Input Tag's Name and Value
+## name and value for Internal input Tag
 
-`name` and `value` can be directly passed to the internal `<input>` tag and will not be overridden by properties with the same name in `inputProps`.
+`name` and `value` can be directly forwarded to the internal `input` tag and will not be overridden by properties with the same name passed through `inputProps`.
 
 ```tsx
 import { Checkbox, Stack } from '@bifrostui/react';
@@ -89,9 +87,9 @@ export default () => {
 };
 ```
 
-### Label Placement
+## Label Placement
 
-Use `labelPlacement` to control the position of the label relative to the checkbox icon.
+Control the position of the label relative to the checkbox icon through `labelPlacement`.
 
 ```tsx
 import { Checkbox, Stack } from '@bifrostui/react';
@@ -112,7 +110,7 @@ export default () => {
             setChecked1(checked);
           }}
         >
-          Label on top
+          Label above
         </Checkbox>
         <Checkbox
           labelPlacement="right"
@@ -130,7 +128,7 @@ export default () => {
             setChecked3(checked);
           }}
         >
-          Label on bottom
+          Label below
         </Checkbox>
         <Checkbox
           labelPlacement="left"
@@ -147,9 +145,9 @@ export default () => {
 };
 ```
 
-### Custom Icons
+## Custom Icons
 
-Customize the icons for unchecked (`icon`) and checked (`checkedIcon`) states.
+Customize the icon for the unchecked state with `icon`, and customize the checked state icon with `checkedIcon`.
 
 ```tsx
 import React, { useState } from 'react';
@@ -175,9 +173,9 @@ export default () => {
 };
 ```
 
-### Disabled State
+## Disabled State
 
-Use `disabled` to disable the component. `CheckboxGroup.disabled` can disable the entire group.
+Disable the component using `disabled`. The entire group can be disabled with `CheckboxGroup.disabled`.
 
 ```tsx
 import { Checkbox, Stack } from '@bifrostui/react';
@@ -197,7 +195,7 @@ export default () => {
 
 #### Checkbox Group
 
-Combine `CheckboxGroup` and `Checkbox` to create a group of checkboxes. In this case, each `Checkbox` should have a `value` attribute.
+Use `CheckboxGroup` with `Checkbox` to create a group of checkboxes. In this case, `Checkbox` should provide the `value` attribute.
 
 ```tsx
 import { Checkbox, CheckboxGroup, Stack } from '@bifrostui/react';
@@ -212,47 +210,41 @@ export default () => {
   return (
     <Stack>
       <CheckboxGroup value={value} onChange={handleGroupChange}>
-        <Checkbox value="watergate">Watergate</Checkbox>
-        <Checkbox value="taopiaopiao">Taopiaopiao</Checkbox>
-        <Checkbox value="xiyangyang">Xiyangyang</Checkbox>
+        <Checkbox value="水门桥">水门桥</Checkbox>
+        <Checkbox value="淘票票">淘票票</Checkbox>
+        <Checkbox value="喜洋洋">喜洋洋</Checkbox>
       </CheckboxGroup>
     </Stack>
   );
 };
 ```
 
-### Controlled Checkbox
+## Controlled Checkbox
 
-Control `CheckboxGroup` using `value`, and control `Checkbox` using `checked`.
+Control `CheckboxGroup` component with `value`, and `Checkbox` component with `checked`.
 
 ```tsx
 import { Button, Checkbox, CheckboxGroup, Stack } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState([
-    'watergate',
-    'taopiaopiao',
-    'xiyangyang',
-  ]);
+  const [value, setValue] = useState(['水门桥', '淘票票', '喜洋洋']);
   const [checked, setChecked] = useState(true);
   return (
     <Stack>
       <div style={{ width: '100px' }}>
         <Button
           onClick={() => {
-            const data = value.length
-              ? []
-              : ['watergate', 'taopiaopiao', 'xiyangyang'];
+            const data = value.length ? [] : ['水门桥', '淘票票', '喜洋洋'];
             setValue(data);
           }}
         >
           {value.length ? 'Uncheck' : 'Check'} All
         </Button>
         <CheckboxGroup value={value}>
-          <Checkbox value="watergate">Watergate</Checkbox>
-          <Checkbox value="taopiaopiao">Taopiaopiao</Checkbox>
-          <Checkbox value="xiyangyang">Xiyangyang</Checkbox>
+          <Checkbox value="水门桥">水门桥</Checkbox>
+          <Checkbox value="淘票票">淘票票</Checkbox>
+          <Checkbox value="喜洋洋">喜洋洋</Checkbox>
         </CheckboxGroup>
       </div>
       <div style={{ width: '100px' }}>
@@ -261,18 +253,18 @@ export default () => {
             setChecked(!checked);
           }}
         >
-          {checked ? 'Uncheck' : 'Check'}
+          {checked ? 'Cancel' : 'Select'}
         </Button>
-        <Checkbox checked={checked}>Taopiaopiao</Checkbox>
+        <Checkbox checked={checked}>淘票票</Checkbox>
       </div>
     </Stack>
   );
 };
 ```
 
-### Using Default Values
+## Using Default Values
 
-Use `defaultValue` to specify the default values for `CheckboxGroup` and `defaultChecked` for `Checkbox`.
+Specify default values for `CheckboxGroup` using `defaultValue`, and for `Checkbox` using `defaultChecked`.
 
 ```tsx
 import { Checkbox, CheckboxGroup, Stack } from '@bifrostui/react';
@@ -283,57 +275,66 @@ export default () => {
     <Stack>
       <div style={{ width: '100px' }}>
         <div>CheckboxGroup:</div>
-        <CheckboxGroup
-          defaultValue={['watergate', 'taopiaopiao', 'xiyangyang']}
-        >
-          <Checkbox value="watergate">Watergate</Checkbox>
-          <Checkbox value="taopiaopiao">Taopiaopiao</Checkbox>
-          <Checkbox value="xiyangyang">Xiyangyang</Checkbox>
+        <CheckboxGroup defaultValue={['水门桥', '淘票票', '喜洋洋']}>
+          <Checkbox value="水门桥">水门桥</Checkbox>
+          <Checkbox value="淘票票">淘票票</Checkbox>
+          <Checkbox value="喜洋洋">喜洋洋</Checkbox>
         </CheckboxGroup>
       </div>
 
       <div>
         <div>Checkbox:</div>
-        <Checkbox defaultChecked>Taopiaopiao</Checkbox>
+        <Checkbox defaultChecked>淘票票</Checkbox>
       </div>
     </Stack>
   );
 };
 ```
 
+## Accessibility
+
+Default accessibility features include:
+
+- When `disabled=true`, the aria-disabled attribute is automatically added.
+- Additional accessibility attributes can be set using the `inputProps` attribute, such as inputProps={{ 'aria-label': 'Checkbox label' }}
+
 ## API
 
 ### CheckboxGroup
 
-| Property     | Description                                      | Type                                                       | Default |
-| ------------ | ------------------------------------------------ | ---------------------------------------------------------- | ------- |
-| defaultValue | Default selected options, used when uncontrolled | string[]                                                   | -       |
-| value        | Selected options, used when controlled           | string[]                                                   | -       |
-| disabled     | Whether the entire group is disabled             | boolean                                                    | false   |
-| onChange     | Callback function when the selection changes     | (e: React.SyntheticEvent, data: {value: string[]}) => void | -       |
+| Property     | Description                                   | Type                                                       | Default |
+| ------------ | --------------------------------------------- | ---------------------------------------------------------- | ------- |
+| defaultValue | Default selected options for uncontrolled use | string[]                                                   | -       |
+| value        | Selected options for controlled use           | string[]                                                   | -       |
+| disabled     | Disable the entire group                      | boolean                                                    | false   |
+| onChange     | Callback function when changes occur          | (e: React.SyntheticEvent, data: {value: string[]}) => void | -       |
 
 ### Checkbox
 
-| Property       | Description                                        | Type                                                        | Default |
-| -------------- | -------------------------------------------------- | ----------------------------------------------------------- | ------- |
-| defaultChecked | Default checked state, used when uncontrolled      | boolean                                                     | -       |
-| checked        | Checked state, used when controlled                | boolean                                                     | -       |
-| inputProps     | Standard attributes for the internal `<input>` tag | React.InputHTMLAttributes<HTMLInputElement\>                | -       |
-| inputRef       | Ref for the internal `<input>` tag                 | React.Ref<HTMLInputElement\>                                | -       |
-| name           | Name attribute for the `<input>`                   | string                                                      | -       |
-| value          | Component value, required if used in CheckboxGroup | string                                                      | -       |
-| disabled       | Whether the checkbox is disabled                   | boolean                                                     | false   |
-| icon           | Icon for unchecked state                           | ReactNode                                                   | -       |
-| checkedIcon    | Icon for checked state                             | ReactNode                                                   | -       |
-| labelPlacement | Position of the label                              | `left` \| `top` \| `right` \| `bottom`                      | `right` |
-| onChange       | Callback function when the state changes           | (e: React.SyntheticEvent, data: {checked: boolean}) => void | -       |
+| Property       | Description                                           | Type                                                        | Default |
+| -------------- | ----------------------------------------------------- | ----------------------------------------------------------- | ------- |
+| defaultChecked | Whether checked by default for uncontrolled use       | boolean                                                     | false   |
+| checked        | Whether checked for controlled use                    | boolean                                                     | false   |
+| inputProps     | Standard attributes for the internal `<input>` tag    | React.InputHTMLAttributes<HTMLInputElement\>                | -       |
+| inputRef       | Ref for the internal `<input>` tag                    | React.Ref<HTMLInputElement\>                                | -       |
+| name           | `<input>` name identifier                             | string                                                      | -       |
+| value          | Component value, should be provided for CheckboxGroup | string                                                      | -       |
+| disabled       | Whether the component is disabled                     | boolean                                                     | false   |
+| icon           | Icon for unchecked state                              | ReactNode                                                   | -       |
+| checkedIcon    | Icon for checked state                                | ReactNode                                                   | -       |
+| labelPlacement | Position of the label                                 | `left` \| `top` \| `right` \| `bottom`                      | `right` |
+| onChange       | Callback function when changes occur                  | (e: React.SyntheticEvent, data: {checked: boolean}) => void | -       |
 
 ## Style Variables
 
-| Property           | Description            | Default Value          | Global Variable                 |
-| ------------------ | ---------------------- | ---------------------- | ------------------------------- |
-| --label-color      | Label text color       | --bui-color-fg-default | --bui-checkbox-label-color      |
-| --label-font-size  | Label font size        | --bui-text-size-1      | --bui-checkbox-label-font-size  |
-| --icon-font-size   | Icon font size         | --bui-title-size-2     | --bui-checkbox-icon-font-size   |
-| --disabled-opacity | Disabled state opacity | 0.5                    | --bui-checkbox-disabled-opacity |
-| --icon-padding     | Icon padding           | 5px                    | --bui-checkbox-icon-padding     |
+| Global Variable                 | Description               | Default                       |
+| ------------------------------- | ------------------------- | ----------------------------- |
+| --bui-checkbox-label-color      | Color of the label text   | `var(--bui-color-fg-default)` |
+| --bui-checkbox-label-font-size  | Font size of the label    | `var(--bui-text-size-1)`      |
+| --bui-checkbox-icon-font-size   | Size of the icon          | `var(--bui-title-size-2)`     |
+| --bui-checkbox-disabled-opacity | Opacity of disabled state | `0.5`                         |
+| --bui-checkbox-icon-padding     | Padding of the icon       | `5px`                         |
+
+```
+
+```

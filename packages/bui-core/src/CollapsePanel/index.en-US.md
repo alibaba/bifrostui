@@ -1,17 +1,15 @@
 ---
 group: Data Display
-name: CollapsePanel Collapsible Panel
+name: CollapsePanel
 ---
 
-# CollapsePanel Collapsible Panel
+# CollapsePanel
 
-A collapsible/expandable content area.
+A content area that can be collapsed/expanded.
 
-## Code Demos
+## Basic Usage
 
-### Basic Usage
-
-Multiple panels can be expanded at the same time; this example defaults to expanding the first panel.
+Multiple panels can be expanded simultaneously; in this example, the first panel is expanded by default.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -19,9 +17,9 @@ import React from 'react';
 
 export default () => {
   const text = `
-    A dog is a domesticated animal.
-    It is known for its loyalty,
-    and it is a welcome guest in many families around the world.
+    Dogs are domesticated animals.
+    They are known for their loyalty and fidelity,
+    and they are popular guests in many households around the world.
   `;
 
   return (
@@ -30,17 +28,17 @@ export default () => {
       items={[
         {
           key: '1',
-          label: 'This is Panel Title 1',
+          label: 'This is panel header 1',
           children: <p>{text}</p>,
         },
         {
           key: '2',
-          label: 'This is Panel Title 2',
+          label: 'This is panel header 2',
           children: <p>{text}</p>,
         },
         {
           key: '3',
-          label: 'This is Panel Title 3',
+          label: 'This is panel header 3',
           children: <p>{text}</p>,
         },
       ]}
@@ -51,7 +49,7 @@ export default () => {
 
 ### Using CollapseItem
 
-Use CollapseItem instead of Items for rendering
+Use CollapseItem instead of items for rendering.
 
 ```tsx
 import { CollapsePanel, CollapsePanelItem } from '@bifrostui/react';
@@ -59,20 +57,20 @@ import React from 'react';
 
 export default () => {
   const text = `
-    A dog is a domesticated animal.
-    It is known for its loyalty,
-    and it is a welcome guest in many families around the world.
+    Dogs are domesticated animals.
+    They are known for their loyalty and fidelity,
+    and they are popular guests in many households around the world.
   `;
 
   return (
     <CollapsePanel defaultActiveKeys={['1']}>
-      <CollapsePanelItem key="1" label="This is Panel Title 1">
+      <CollapsePanelItem key="1" label="This is panel header 1">
         {text}
       </CollapsePanelItem>
-      <CollapsePanelItem key="2" label="This is Panel Title 2">
+      <CollapsePanelItem key="2" label="This is panel header 2">
         {text}
       </CollapsePanelItem>
-      <CollapsePanelItem key="3" label="This is Panel Title 3">
+      <CollapsePanelItem key="3" label="This is panel header 3">
         {text}
       </CollapsePanelItem>
     </CollapsePanel>
@@ -82,7 +80,7 @@ export default () => {
 
 ### Accordion Mode
 
-In accordion mode, only one panel remains active at any time.
+In accordion mode, only one panel can be active at a time.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -90,9 +88,9 @@ import React from 'react';
 
 export default () => {
   const text = `
-    A dog is a domesticated animal.
-    It is known for its loyalty,
-    and it is a welcome guest in many families around the world.
+    Dogs are domesticated animals.
+    They are known for their loyalty and fidelity,
+    and they are popular guests in many households around the world.
   `;
 
   return (
@@ -102,17 +100,17 @@ export default () => {
       items={[
         {
           key: '1',
-          label: 'This is Panel Title 1',
+          label: 'This is panel header 1',
           children: <p>{text}</p>,
         },
         {
           key: '2',
-          label: 'This is Panel Title 2',
+          label: 'This is panel header 2',
           children: <p>{text}</p>,
         },
         {
           key: '3',
-          label: 'This is Panel Title 3',
+          label: 'This is panel header 3',
           children: <p>{text}</p>,
         },
       ]}
@@ -123,7 +121,7 @@ export default () => {
 
 ### Specifying Currently Expanded Panels with activeKeys
 
-By setting activeKeys, you can manually specify which panels are currently expanded. This needs to be used with onChange to achieve controlled expand/collapse effects.
+You can manually specify the currently expanded panels via activeKeys. Use onChange for controlled expansion and collapse.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -132,9 +130,9 @@ import React, { useState } from 'react';
 export default () => {
   const [activeKeys, setActiveKeys] = useState(['1']);
   const text = `
-    A dog is a domesticated animal.
-    It is known for its loyalty,
-    and it is a welcome guest in many families around the world.
+    Dogs are domesticated animals.
+    They are known for their loyalty and fidelity,
+    and they are popular guests in many households around the world.
   `;
 
   const handleChange = (event, params) => {
@@ -147,17 +145,17 @@ export default () => {
       items={[
         {
           key: '1',
-          label: 'This is Panel Title 1',
+          label: 'This is panel header 1',
           children: <p>{text}</p>,
         },
         {
           key: '2',
-          label: 'This is Panel Title 2',
+          label: 'This is panel header 2',
           children: <p>{text}</p>,
         },
         {
           key: '3',
-          label: 'This is Panel Title 3',
+          label: 'This is panel header 3',
           children: <p>{text}</p>,
         },
       ]}
@@ -169,7 +167,7 @@ export default () => {
 
 ### Implementing Accordion Mode with activeKeys
 
-By setting activeKeys, you can manually specify which panels are currently expanded. By setting accordion to true, you enable accordion mode.
+By setting activeKeys, you can manually specify the currently expanded panel, and by setting accordion, enable accordion mode.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -178,9 +176,9 @@ import React, { useState } from 'react';
 export default () => {
   const [activeKeys, setActiveKeys] = useState(['1']);
   const text = `
-    A dog is a domesticated animal.
-    It is known for its loyalty,
-    and it is a welcome guest in many families around the world.
+    Dogs are domesticated animals.
+    They are known for their loyalty and fidelity,
+    and they are popular guests in many households around the world.
   `;
 
   const handleChange = (event, params) => {
@@ -194,17 +192,17 @@ export default () => {
       items={[
         {
           key: '1',
-          label: 'This is Panel Title 1',
+          label: 'This is panel header 1',
           children: <p>{text}</p>,
         },
         {
           key: '2',
-          label: 'This is Panel Title 2',
+          label: 'This is panel header 2',
           children: <p>{text}</p>,
         },
         {
           key: '3',
-          label: 'This is Panel Title 3',
+          label: 'This is panel header 3',
           children: <p>{text}</p>,
         },
       ]}
@@ -214,9 +212,9 @@ export default () => {
 };
 ```
 
-### Customizing Icons
+### Custom Icons
 
-Set custom icons using arrowIcon. If it's a ReactNode, it will automatically add a rotation animation effect.
+Use arrowIcon to set custom icons. If it is a ReactNode, a rotation animation effect will be automatically added.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -225,9 +223,9 @@ import React from 'react';
 
 export default () => {
   const text = `
-    A dog is a domesticated animal.
-    It is known for its loyalty,
-    and it is a welcome guest in many families around the world.
+    Dogs are domesticated animals.
+    They are known for their loyalty and fidelity,
+    and they are popular guests in many households around the world.
   `;
 
   return (
@@ -236,17 +234,17 @@ export default () => {
       items={[
         {
           key: '1',
-          label: 'This is Panel Title 1',
+          label: 'This is panel header 1',
           children: <p>{text}</p>,
         },
         {
           key: '2',
-          label: 'This is Panel Title 2',
+          label: 'This is panel header 2',
           children: <p>{text}</p>,
         },
         {
           key: '3',
-          label: 'This is Panel Title 3',
+          label: 'This is panel header 3',
           children: <p>{text}</p>,
         },
       ]}
@@ -256,9 +254,9 @@ export default () => {
 };
 ```
 
-### Customizing Expand/Collapse Icons
+### Custom Expand/Collapse Icons
 
-arrowIcon can accept a function that takes an activation state as a parameter and returns a specific icon based on that state.
+The arrowIcon can take a function as a parameter to check if it's active and return a specific icon based on the state.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
@@ -270,9 +268,9 @@ import React from 'react';
 
 export default () => {
   const text = `
-    A dog is a domesticated animal.
-    It is known for its loyalty,
-    and it is a welcome guest in many families around the world.
+    Dogs are domesticated animals.
+    They are known for their loyalty and fidelity,
+    and they are popular guests in many households around the world.
   `;
 
   const renderArrowIcon = (active) => {
@@ -288,17 +286,17 @@ export default () => {
       items={[
         {
           key: '1',
-          label: 'This is Panel Title 1',
+          label: 'This is panel header 1',
           children: <p>{text}</p>,
         },
         {
           key: '2',
-          label: 'This is Panel Title 2',
+          label: 'This is panel header 2',
           children: <p>{text}</p>,
         },
         {
           key: '3',
-          label: 'This is Panel Title 3',
+          label: 'This is panel header 3',
           children: <p>{text}</p>,
         },
       ]}
@@ -312,29 +310,33 @@ export default () => {
 
 ##### CollapsePanelProps
 
-| Property          | Description                                    | Type                                                      | Default |
-| ----------------- | ---------------------------------------------- | --------------------------------------------------------- | ------- |
-| accordion         | Whether to enable accordion mode               | boolean                                                   | false   |
-| activeKeys        | Keys of currently active panels                | string[]                                                  | -       |
-| defaultActiveKeys | Keys of default expanded panels                | string[]                                                  | -       |
-| items             | Collapsible item contents                      | CollapsePanelItemProps[]                                  | -       |
-| children          | Body content area, rendered using CollapseItem | React.ReactNode                                           | -       |
-| arrowIcon         | Custom arrow icon                              | React.ReactNode \| ((active: boolean) => React.ReactNode) | -       |
-| onChange          | Triggered when switching panels                | (activeKeys: string[]) => void                            | -       |
+| Property          | Description                                          | Type                                                      | Default |
+| ----------------- | ---------------------------------------------------- | --------------------------------------------------------- | ------- |
+| accordion         | Whether to enable accordion mode                     | boolean                                                   | false   |
+| activeKeys        | The keys of the currently active panel               | string[]                                                  | -       |
+| defaultActiveKeys | The keys of the default expanded panel               | string[]                                                  | -       |
+| items             | Collapse item content                                | CollapsePanelItemProps[]                                  | -       |
+| children          | Content of the body area, rendered with CollapseItem | React.ReactNode                                           | -       |
+| arrowIcon         | Custom arrow icon                                    | React.ReactNode \| ((active: boolean) => React.ReactNode) | -       |
+| onChange          | Callback when the panel is toggled                   | (activeKeys: string[]) => void                            | -       |
 
 ##### CollapsePanelItemProps
 
-| Property | Description                           | Type                                                      | Default |
-| -------- | ------------------------------------- | --------------------------------------------------------- | ------- |
-| key      | Unique identifier, matching activeKey | string                                                    | -       |
-| label    | Panel title                           | React.ReactNode                                           | -       |
-| icon     | Custom icon, overriding arrowIcon     | React.ReactNode \| ((active: boolean) => React.ReactNode) | -       |
-| children | Body content area                     | React.ReactNode                                           | -       |
+| Property | Description                                 | Type                                                      | Default |
+| -------- | ------------------------------------------- | --------------------------------------------------------- | ------- |
+| key      | Unique identifier, corresponds to activeKey | string                                                    | -       |
+| label    | Panel title                                 | React.ReactNode                                           | -       |
+| icon     | Custom icon, overrides arrowIcon            | React.ReactNode \| ((active: boolean) => React.ReactNode) | -       |
+| children | Content of the body area                    | React.ReactNode                                           | -       |
 
-### Style Variables
+## Style Variables
 
-| Property          | Description          | Default Value           | Global Variable                      |
-| ----------------- | -------------------- | ----------------------- | ------------------------------------ |
-| --width           | Width                | 100%                    | --bui-collapse-panel-width           |
-| --header-padding  | Panel header padding | var(--bui-spacing-lg) 0 | --bui-collapse-panel-header-padding  |
-| --content-padding | Panel body padding   | var(--bui-spacing-lg) 0 | --bui-collapse-panel-content-padding |
+| Variable                             | Description          | Default                   |
+| ------------------------------------ | -------------------- | ------------------------- |
+| --bui-collapse-panel-width           | Collapse panel width | `100%`                    |
+| --bui-collapse-panel-header-padding  | Panel header padding | `var(--bui-spacing-lg) 0` |
+| --bui-collapse-panel-content-padding | Content area padding | `var(--bui-spacing-lg) 0` |
+
+```
+
+```

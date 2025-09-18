@@ -5,13 +5,13 @@ name: DesktopDatePicker Component
 
 # DesktopDatePicker Component
 
-The DesktopDatePicker component is commonly used for selecting dates, including year, month, and day.
+The DesktopDatePicker component is commonly used for selecting a date, including year, month, and day.
 
-## Code Demo
+## Code Demonstration
 
 ### Basic Usage
 
-The default `value` should be a `Date`, and the selectable range includes the current year plus/minus 10 years.
+By default, the `value` should be passed as a `Date`, with a selectable range that includes 10 years before and after the current year.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -37,7 +37,7 @@ export default () => {
 
 ### Disable Popup
 
-Use `disableOpenPicker` to disable the popup feature, allowing date changes only through input.
+Use `disableOpenPicker` to disable the popup selection feature, allowing date change only via input.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -65,9 +65,9 @@ export default () => {
 };
 ```
 
-### Disabled
+### Disable Component
 
-Use `disabled` to disable the date picker component.
+Use `disabled` to disable the date component.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -93,7 +93,7 @@ export default () => {
 
 ### Disable Specific Dates
 
-Use `disabledDate` to customize disabled dates.
+Use `disabledDate` to customize disabling specific dates.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -128,9 +128,9 @@ export default () => {
 };
 ```
 
-### Close Popup After Selecting Date
+### Close Popup Immediately After Selection
 
-Use `closeOnSelect` to control whether the popup is closed immediately after selecting a date.
+Use `closeOnSelect` to determine if the popup should close immediately after date selection.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -188,9 +188,9 @@ export default () => {
 };
 ```
 
-### Control Popup Visibility
+### Control Popup Open State
 
-Use `open` to control whether the date picker is open or not.
+Use `open` to control whether the date component popup is open.
 
 ```tsx
 import { DesktopDatePicker, Stack, Button } from '@bifrostui/react';
@@ -255,7 +255,7 @@ export default () => {
 
 ### Customize Input Icon
 
-Use `icon` to specify the input icon.
+Use `icon` to specify the input field icon.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -283,9 +283,9 @@ export default () => {
 };
 ```
 
-### Date Picker Types
+### Date Picker Type
 
-Use `picker` to specify the selection type.
+Use `picker` to specify the selectable range.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -313,9 +313,9 @@ export default () => {
 };
 ```
 
-### Customize Header Icons
+### Customize Header Bar Icons
 
-Use `headerBarLeftIcon` and `headerBarRightIcon` to customize the left and right header icons.
+Use `headerBarLeftIcon` and `headerBarRightIcon` to customize the left and right icons of the header bar.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -360,7 +360,7 @@ export default () => {
 
 ### Customize Month Cell Content
 
-Enable `monthRender` to customize the content of the month cells.
+Enable `monthRender` to customize the content of month cells.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -396,7 +396,7 @@ export default () => {
 
 ### Customize Year Cell Content
 
-Enable `yearRender` to customize the content of the year cells.
+Enable `yearRender` to customize the content of year cells.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -431,9 +431,9 @@ export default () => {
 };
 ```
 
-### Open/Close Callbacks
+### Callback for Open/Close
 
-`onClose`, `onOpen` to customize callbacks for opening and closing.
+Customize the callback with `onClose` and `onOpen`.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
@@ -469,7 +469,7 @@ export default () => {
 };
 ```
 
-### Month Change Callback
+### Callback for Month Change
 
 Enable `onMonthChange` to customize the month change callback.
 
@@ -502,7 +502,7 @@ export default () => {
 };
 ```
 
-### Year Change Callback
+### Callback for Year Change
 
 Enable `onYearChange` to customize the year change callback.
 
@@ -556,14 +556,14 @@ export default () => {
   return (
     <Stack>
       <div style={{ width: '320px' }}>
-        Enter date
+        Input time
         <Input onChange={(e) => setValue(e.target.value)} />
         <DesktopDatePicker
           mode="single"
           onChange={handleChange}
           value={value}
         />
-        <Button onClick={onSingleClick}>Return to Today</Button>
+        <Button onClick={onSingleClick}>Back to Today</Button>
       </div>
     </Stack>
   );
@@ -572,7 +572,7 @@ export default () => {
 
 ### Uncontrolled Calendar Component
 
-Render the component via the `defaultValue` property, and the selected date will be reflected in the input. Use `inputRef` to access it.
+Render the component with the `defaultValue` attribute; the selected state will be reflected in the input, and you can retrieve it using inputRef.
 
 ```tsx
 import { DesktopDatePicker, Button, Stack } from '@bifrostui/react';
@@ -587,13 +587,13 @@ export default () => {
   return (
     <Stack>
       <Button onClick={() => setDate(inputRef.current?.value)}>
-        Get Date from Component
+        Get Internal Date
       </Button>
       <Button onClick={() => setDefault(dayjs().toDate())}>
-        Return to Today
+        Back to Today
       </Button>
       <div>defaultValue: {dayjs(defaultValue).format('YYYY/MM/DD')}</div>
-      <div>Component Date: {dayjs(date).format('YYYY/MM/DD')}</div>
+      <div>Internal Component Date: {dayjs(date).format('YYYY/MM/DD')}</div>
       <div style={{ width: '320px' }}>
         <DesktopDatePicker inputRef={inputRef} defaultValue={defaultValue} />
       </div>
@@ -606,18 +606,84 @@ export default () => {
 
 ### DesktopDatePicker
 
-| Property           | Description                                       | Type                                                       | Default                                 |
-| ------------------ | ------------------------------------------------- | ---------------------------------------------------------- | --------------------------------------- |
-| defaultValue       | Default selected value for uncontrolled component | `Date \| null`                                             | -                                       |
-| value              | Selected value for controlled component           | `Date \| null`                                             | -                                       |
-| placeholder        | Input placeholder                                 | `string`                                                   | -                                       |
-| minDate            | Minimum selectable date                           | `Date`                                                     | `dayjs().subtract(10, 'year').toDate()` |
-| maxDate            | Maximum selectable date                           | `Date`                                                     | `dayjs().add(10, 'year').toDate()`      |
-| open               | Whether the popup is open                         | `boolean`                                                  | -                                       |
-| icon               | Input icon                                        | `React.ReactNode`                                          | `<DateOutlinedIcon />`                  |
-| inputRef           | Input reference                                   | `Ref<HTMLInputElement>`                                    | -                                       |
-| inputProps         | Input properties                                  | `React.InputHTMLAttributes<HTMLInputElement>`              | -                                       |
-| picker             | Date picker type                                  | `'year' \| 'month' \| 'day'`                               | `'day'`                                 |
-| headerBarLeftIcon  | Custom left icon for header                       | `(options: IDatePickerCustomIconProps) => React.ReactNode` | -                                       |
-| headerBarRightIcon | Custom right icon for header                      | `(options: IDatePickerCustomIconProps) => React.ReactNode` | -                                       |
-| disabled           | Whether the date picker is disabled               | `boolean`                                                  | `                                       |
+| Property           | Description                                                  | Type                                                                                                         | Default Value                           |
+| ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | --------------------------------------- |
+| defaultValue       | Default selected value when uncontrolled component is in use | `Date \| null`                                                                                               | -                                       |
+| value              | Selected value when controlled component is in use           | `Date \| null`                                                                                               | -                                       |
+| placeholder        | Input placeholder content                                    | `string`                                                                                                     | -                                       |
+| minDate            | Minimum selectable date                                      | `Date`                                                                                                       | `dayjs().subtract(10, 'year').toDate()` |
+| maxDate            | Maximum selectable date                                      | `Date`                                                                                                       | `dayjs().add(10, 'year').toDate()`      |
+| open               | Whether the layer is open                                    | `boolean`                                                                                                    | -                                       |
+| icon               | Input icon                                                   | `React.ReactNode`                                                                                            | `<DateOutlinedIcon />`                  |
+| inputRef           | Input field reference                                        | `Ref<HTMLInputElement>`                                                                                      | -                                       |
+| inputProps         | Input field properties                                       | `React.InputHTMLAttributes<HTMLInputElement>`                                                                | -                                       |
+| picker             | Date picker type                                             | `'year' \| 'month' \| 'day'`                                                                                 | `'day'`                                 |
+| headerBarLeftIcon  | Left icon in the header bar                                  | `(options: IDatePickerCustomIconProps) => React.ReactNode`                                                   | -                                       |
+| headerBarRightIcon | Right icon in the header bar                                 | `(options: IDatePickerCustomIconProps) => React.ReactNode`                                                   | -                                       |
+| disabled           | Whether the date picker is disabled                          | `boolean`                                                                                                    | `false`                                 |
+| disabledDate       | Unselectable dates                                           | `(currentDate: Date) => boolean`                                                                             | -                                       |
+| monthRender        | Custom month cell content                                    | `({ month, currentDate }: { month: string \| number; currentDate: IDatePickerInstance }) => React.ReactNode` | -                                       |
+| yearRender         | Custom year cell content                                     | `({ year, currentDate }: { year: string \| number; currentDate: IDatePickerInstance }) => React.ReactNode`   | -                                       |
+| onChange           | Date change callback                                         | `(e: React.SyntheticEvent, data: { value: Date \| null }) => void`                                           | -                                       |
+| closeOnSelect      | Immediately close after selection                            | `boolean`                                                                                                    | `true`                                  |
+| disableOpenPicker  | Disable popup selection functionality                        | `boolean`                                                                                                    | `false`                                 |
+| format             | Date format                                                  | `string`                                                                                                     | `'YYYY/MM/DD'`                          |
+| onClose            | Layer close callback                                         | `() => void`                                                                                                 | -                                       |
+| onOpen             | Layer open callback                                          | `() => void`                                                                                                 | -                                       |
+| onMonthChange      | Month change callback                                        | `(e: React.SyntheticEvent, data: { value: Date }) => void`                                                   | -                                       |
+| onYearChange       | Year change callback                                         | `(e: React.SyntheticEvent, data: { value: Date }) => void`                                                   | -                                       |
+| DesktopPickerProps | Properties for the desktop picker                            | `DesktopPickerProps`                                                                                         | -                                       |
+| CalendarProps      | Properties for the calendar component                        | `CalendarProps`                                                                                              | -                                       |
+
+### IDatePickerCustomIconProps
+
+| Property   | Description                    | Type      | Default Value |
+| ---------- | ------------------------------ | --------- | ------------- |
+| isMinMonth | Whether it's the minimum month | `boolean` | -             |
+| isMaxMonth | Whether it's the maximum month | `boolean` | -             |
+
+### IDatePickerCalendarProps
+
+| Property                    | Description                                    | Type                                                    | Default Value |
+| --------------------------- | ---------------------------------------------- | ------------------------------------------------------- | ------------- |
+| hideDaysOutsideCurrentMonth | Whether to hide days outside the current month | `boolean`                                               | `false`       |
+| highlightDate               | Date to be highlighted, default is today       | `'today' \| 'weekend'`                                  | -             |
+| dateRender                  | Custom content of date cells                   | `(currentDate: IDatePickerInstance) => React.ReactNode` | -             |
+| weekRender                  | Custom content of week cells                   | `(week: string) => React.ReactNode`                     | -             |
+
+## Style Variables
+
+| Global Variable                       | Description         | Default Value                               |
+| ------------------------------------- | ------------------- | ------------------------------------------- |
+| --bui-d-date-picker-height            | Input field height  | `var(--bui-input-height, 32px)`             |
+| --bui-d-date-picker-min-width         | Minimum width       | `var(--bui-input-min-width, 100px)`         |
+| --bui-d-date-picker-font-size         | Font size           | `var(--bui-title-size-3, 16px)`             |
+| --bui-d-date-picker-icon-size         | Icon size           | `var(--bui-title-size-3, 16px)`             |
+| --bui-d-date-picker-container-padding | Inner padding       | `var(--bui-spacing-md, 9px)`                |
+| --bui-d-date-picker-bg                | Background color    | `var(--bui-color-bg-view)`                  |
+| --bui-d-date-picker-font-family       | Font family         | `var(--bui-font-family)`                    |
+| --bui-d-date-picker-border            | Border              | `1px solid var(--bui-color-border-default)` |
+| --bui-d-date-picker-shadow            | Shadow              | `0 0 0 2px var(--bui-color-bg-default)`     |
+| --bui-d-date-picker-disabled-color    | Disabled text color | `var(--bui-color-fg-subtle)`                |
+
+### Date Selection Panel
+
+| Global Variable                             | Description             | Default Value                           |
+| ------------------------------------------- | ----------------------- | --------------------------------------- |
+| --bui-d-date-picker-lay-font-family         | Font family             | `var(--bui-font-family)`                |
+| --bui-d-date-picker-lay-main-radius         | Border radius           | `3px`                                   |
+| --bui-d-date-picker-lay-content-padding     | Content padding         | `10px 16px`                             |
+| --bui-d-date-picker-lay-content-height      | Content height          | `30px`                                  |
+| --bui-d-date-picker-lay-content-line-height | Content line height     | `30px`                                  |
+| --bui-d-date-picker-lay-content-width       | Content width           | `60px`                                  |
+| --bui-d-date-picker-lay-calendar-padding    | Calendar padding        | `6px 12px 7px`                          |
+| --bui-d-date-picker-lay-shadow              | Shadow                  | `0 0 0 2px var(--bui-color-bg-default)` |
+| --bui-d-date-picker-title-size              | Title font size         | `var(--bui-title-size-3)`               |
+| --bui-d-date-picker-list-padding            | List padding            | `6px 12px 7px`                          |
+| --bui-d-date-picker-col-bg                  | Column background color | `var(--bui-color-bg-view)`              |
+| --bui-d-date-picker-content-radius          | Content radius          | `var(--bui-shape-radius-default, 6px)`  |
+| --bui-d-date-picker-col-font-size           | Column font size        | `var(--bui-title-size-4)`               |
+
+```
+
+```

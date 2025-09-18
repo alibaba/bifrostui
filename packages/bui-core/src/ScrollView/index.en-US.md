@@ -1,18 +1,15 @@
 ---
+
 group: Layout
-name: ScrollView Scroll View
----
+name: ScrollView
 
-# ScrollView Scroll View
+# ScrollView
 
-Used to handle scenarios where scrolling occurs within elements, and it encapsulates events for scrolling as well as reaching the start or end of a scroll. It can also actively control its scroll position.
-On the mini-program side, Taro's ScrollView component is used directly, while on the H5 side, it is implemented directly using React and aligns with the parameters.
+Handles scenarios where scrolling is required within an element, encapsulating events for scrolling and reaching the start or end. It also allows manual control of scroll positions. On the mini-program side, it directly uses Taro's ScrollView component, while on the H5 side, it employs React for implementation, aligning the parameters.
 
 > Mini-program documentation reference: <https://docs.taro.zone/docs/components/viewContainer/scroll-view>
 
-## Code Examples
-
-### Basic Usage
+## Basic Usage
 
 ```tsx
 import { ScrollView, Button, Stack } from '@bifrostui/react';
@@ -33,9 +30,9 @@ export default () => {
 };
 ```
 
-### Horizontal Scrolling
+## Horizontal Scrolling
 
-Pass `scrollX` to enable horizontal scrolling.
+Pass `scrollX` to enable horizontal scrolling
 
 ```tsx
 import React from 'react';
@@ -61,10 +58,9 @@ export default () => {
 };
 ```
 
-### Events and Control
+## Events and Control
 
-Use `onScrollToLower`, `onScrollToUpper` to receive callbacks when scrolling reaches the top or bottom.
-Pass `scrollTop`/`scrollLeft`, `scrollIntoView` to scroll to a specific coordinate or element by ID.
+Use `onScrollToLower`, `onScrollToUpper` to receive callbacks when scrolling reaches the start or end. Pass `scrollTop`/`scrollLeft`, `scrollIntoView` to scroll to the specified coordinates or the element with the corresponding id.
 
 ```tsx
 import { ScrollView, Button, Stack } from '@bifrostui/react';
@@ -72,10 +68,10 @@ import React, { useState } from 'react';
 
 export default () => {
   const onScrollToLower = () => {
-    console.log('Scrolled to bottom');
+    console.log('Scrolled to the bottom');
   };
   const onScrollToUpper = () => {
-    console.log('Scrolled to top');
+    console.log('Scrolled to the top');
   };
   const [h, sH] = useState(undefined);
   const [id, sId] = useState(undefined);
@@ -87,7 +83,7 @@ export default () => {
           sH(0);
         }}
       >
-        Back to Top
+        Scroll to Top
       </Button>
       <Button
         onClick={() => {
@@ -103,7 +99,7 @@ export default () => {
           sH(undefined);
         }}
       >
-        Scroll to [50] Text
+        Scroll to [50] text
       </Button>
       <ScrollView
         scrollY
@@ -133,17 +129,17 @@ export default () => {
 
 ## API
 
-| Property            | Description                          | Type        | Default |
-| ------------------- | ------------------------------------ | ----------- | ------- |
-| scrollX             | Enable horizontal scrolling          | boolean     | false   |
-| scrollY             | Enable vertical scrolling            | boolean     | false   |
-| upperThreshold      | Threshold to trigger onScrollToUpper | number      | 50      |
-| lowerThreshold      | Threshold to trigger onScrollToLower | number      | 50      |
-| scrollTop           | Set vertical scroll position         | number      |         |
-| scrollLeft          | Set horizontal scroll position       | number      |         |
-| scrollIntoView      | Scroll an element into view by ID    | string      |         |
-| scrollWithAnimation | Enable smooth scrolling              | boolean     | false   |
-| onScrollToUpper     | Callback when scrolled to top        | event=>void |         |
-| onScrollToLower     | Callback when scrolled to bottom     | event=>void |         |
-| onScroll            | Callback during scrolling            | event=>void |         |
-| onTouchMove         | Callback during touch movement       | event=>void |         |
+| Property            | Description                                        | Type        | Default |
+| ------------------- | -------------------------------------------------- | ----------- | ------- |
+| scrollX             | Horizontal scrolling                               | boolean     | false   |
+| scrollY             | Vertical scrolling                                 | boolean     | false   |
+| upperThreshold      | Threshold for triggering onScrollToUpper           | number      | 50      |
+| lowerThreshold      | Threshold for triggering onScrollToLower           | number      | 50      |
+| scrollTop           | Set vertical scroll position                       | number      |         |
+| scrollLeft          | Set horizontal scroll position                     | number      |         |
+| scrollIntoView      | Scroll element with corresponding Id into viewport | string      |         |
+| scrollWithAnimation | Enable smooth scrolling                            | boolean     | false   |
+| onScrollToUpper     | Callback when scrolled to the top                  | event=>void |         |
+| onScrollToLower     | Callback when scrolled to the bottom               | event=>void |         |
+| onScroll            | Callback during scrolling                          | event=>void |         |
+| onTouchMove         | Callback during touch movement                     | event=>void |         |
