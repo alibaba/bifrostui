@@ -37,11 +37,17 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
     const timeout =
       typeof _timeout === 'object'
         ? { ..._timeout }
-        : { enter: _timeout, exit: _timeout };
+        : { enter: _timeout, exit: _timeout, appear: _timeout };
+
     const delay =
-      typeof _delay === 'object' ? _delay : { enter: _delay, exit: _delay };
-    timeout.enter += delay.enter;
-    timeout.exit += delay.exit;
+      typeof _delay === 'object'
+        ? _delay
+        : { enter: _delay, exit: _delay, appear: _delay };
+
+    // Apply delay to timeout
+    if (timeout.enter !== undefined) timeout.enter += delay.enter || 0;
+    if (timeout.exit !== undefined) timeout.exit += delay.exit || 0;
+    if (timeout.appear !== undefined) timeout.appear += delay.appear || 0;
     const nextCallback = useRef(null);
     const appearStatus = useRef(inProp && appear ? ENTERING : null);
 
