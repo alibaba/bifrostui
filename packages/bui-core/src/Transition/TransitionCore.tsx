@@ -1,4 +1,4 @@
-import { useForkRef } from '@bifrostui/utils';
+import { useForkRef, useDidMountEffect } from '@bifrostui/utils';
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import { TransitionCoreProps, TransitionStatus } from './Transition.types';
 
@@ -13,7 +13,7 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       enter = true,
       exit = true,
       timeout: _timeout,
-      delay: _delay,
+      delay: _delay = 0,
       onEnter,
       onEntering,
       onEntered,
@@ -44,7 +44,6 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
     timeout.exit += delay.exit;
     const nextCallback = useRef(null);
     const appearStatus = useRef(inProp && appear ? ENTERING : null);
-    const isFirstRender = useRef(false);
 
     const cancelNextCallback = () => {
       if (nextCallback.current !== null) {
@@ -107,7 +106,8 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
 
     const performExit = async () => {
       if (!exit) {
-        safeSetState(unmountOnExit ? UNMOUNTED : EXITED, async () => {
+        safeSetState(EXITED, async () => {
+          if (unmountOnExit) setStatus(UNMOUNTED);
           await onExited?.(innerNodeRef?.current);
         });
         return;
@@ -116,7 +116,8 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       safeSetState(EXITING, async () => {
         await onExiting?.(innerNodeRef?.current);
         onTransitionEnd(timeout.exit, () => {
-          safeSetState(unmountOnExit ? UNMOUNTED : EXITED, async () => {
+          safeSetState(EXITED, async () => {
+            if (unmountOnExit) setStatus(UNMOUNTED);
             await onExited?.(innerNodeRef?.current);
           });
         });
@@ -127,6 +128,9 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       if (nextStatus !== null) {
         cancelNextCallback();
         if (nextStatus === ENTERING) {
+          if (unmountOnExit || mountOnEnter) {
+            forceReflow(innerNodeRef?.current);
+          }
           performEnter(mounting);
         } else if (nextStatus === EXITING) {
           performExit();
@@ -140,12 +144,7 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       };
     }, []);
 
-    useEffect(() => {
-      const isMounted = status !== UNMOUNTED;
-      if (!isFirstRender.current) {
-        isFirstRender.current = true;
-        return;
-      }
+    useDidMountEffect(() => {
       let nextStatus = null;
       if (inProp) {
         if (status !== ENTERING && status !== ENTERED) {
@@ -154,14 +153,13 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       } else if (status === ENTERING || status === ENTERED) {
         nextStatus = EXITING;
       }
-      if (isMounted) updateStatus(nextStatus, false);
-      else
-        safeSetState(inProp ? 'EXITED' : 'ENTERED', () => {
-          // With unmountOnExit or mountOnEnter, the enter animation should happen at the transition between `exited` and `entering`.
-          // To make the animation happen,  we have to separate each rendering and avoid being processed as batched.
-          forceReflow(innerNodeRef?.current);
+      if (inProp && status === UNMOUNTED) {
+        safeSetState(EXITED, () => {
           updateStatus(nextStatus, false);
         });
+      } else {
+        updateStatus(nextStatus, false);
+      }
     }, [inProp]);
 
     if (status === UNMOUNTED) return null;
