@@ -41,12 +41,11 @@ const formatProps = (props: ToastProps | string): ToastProps => {
 };
 
 // 销毁全部Toast
-const destroyAll = () => {
-  let closeToast = toastCloses.pop();
-  while (closeToast) {
-    closeToast();
-    closeToast = toastCloses.pop();
-  }
+const destroyAll = (closes: Array<() => void>) => {
+  do {
+    const closeToast = closes.pop();
+    closeToast?.();
+  } while (closes.length > 0);
 };
 
 const Toast = (props: ToastProps | string): ToastReturnType => {
@@ -75,7 +74,7 @@ const Toast = (props: ToastProps | string): ToastReturnType => {
     }, [rootWrapper, onClose]);
 
     useEffect(() => {
-      if (!multiple) destroyAll();
+      if (!multiple) destroyAll(toastCloses);
       toastCloses.push(close);
 
       if (duration !== 0 && typeof duration === 'number') {
@@ -137,7 +136,7 @@ const Toast = (props: ToastProps | string): ToastReturnType => {
 Toast.clear = () => {
   // 处理toast还未弹出就立刻销毁的情况，将销毁放到下一个时间循环中，避免销毁失败
   setTimeout(() => {
-    destroyAll();
+    destroyAll(toastCloses);
   });
 };
 
@@ -146,9 +145,22 @@ const UseToastComponent: FC<
     domRef?: MutableRefObject<HTMLDivElement>;
     onSetOpenFalse?: () => void;
     onEnd?: () => void;
+    destroyAllCloses: () => void;
+    addClose: (close: () => void) => void;
+    clearAllCloses: () => void;
   }
 > = (props) => {
-  const { domRef, onExited, onSetOpenFalse, onEnd, open, ...restProps } = props;
+  const {
+    domRef,
+    onExited,
+    onSetOpenFalse,
+    onEnd,
+    destroyAllCloses,
+    addClose,
+    clearAllCloses,
+    open,
+    ...restProps
+  } = props;
   const options: ToastProps = {
     ...defaultProps,
     ...formatProps(restProps),
@@ -163,15 +175,15 @@ const UseToastComponent: FC<
   };
 
   useEffect(() => {
-    if (!multiple) destroyAll();
-    toastCloses.push(close);
+    if (!multiple) destroyAllCloses();
+    addClose(close);
 
     if (duration !== 0 && typeof duration === 'number') {
       timerRef.current = window.setTimeout(() => {
         close();
         // 不允许共存的场景下，当前Toast关闭后，应清空toastCloses
         if (!multiple) {
-          toastCloses = [];
+          clearAllCloses();
         }
       }, duration);
     }
@@ -203,6 +215,7 @@ UseToastComponent.displayName = 'UseToastComponent';
 
 const useToast = () => {
   const [elements, setElements] = useState<ToastElement[]>([]);
+  const hookToastClosesRef = useRef<Array<() => void>>([]);
 
   const createToast = (options: ToastProps) => {
     const key = `toast-${Date.now()}-${Math.random()}`;
@@ -255,8 +268,12 @@ const useToast = () => {
   hookToast.clear = () => {
     // 处理toast还未弹出就立刻销毁的情况，将销毁放到下一个时间循环中，避免销毁失败
     setTimeout(() => {
-      destroyAll();
+      destroyAll(hookToastClosesRef.current);
     });
+  };
+
+  const destroyAllCloses = () => {
+    destroyAll(hookToastClosesRef.current);
   };
 
   // 直接渲染
@@ -275,6 +292,11 @@ const useToast = () => {
         open={element.open}
         onSetOpenFalse={onSetOpenFalse}
         domRef={element.ref}
+        destroyAllCloses={destroyAllCloses}
+        addClose={(close) => hookToastClosesRef.current.push(close)}
+        clearAllCloses={() => {
+          hookToastClosesRef.current = [];
+        }}
       />
     );
   });
