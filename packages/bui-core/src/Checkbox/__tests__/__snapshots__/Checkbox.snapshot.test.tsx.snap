@@ -355,6 +355,7 @@ exports[`Checkbox snapshot > Checkbox demo snapshot 0 6`] = `
     className="bui-checkbox bui-checkbox-label-right bui-checkbox-disabled"
   >
     <input
+      aria-disabled={true}
       checked={false}
       className="bui-checkbox-input"
       disabled={true}

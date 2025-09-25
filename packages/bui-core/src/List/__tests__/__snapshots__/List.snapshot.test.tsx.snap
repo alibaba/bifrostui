@@ -681,6 +681,7 @@ exports[`List snapshot > List demo snapshot 0 7`] = `
               }
             >
               <img
+                alt=""
                 className="bui-image-img bui-image-loaded"
                 loading="eager"
                 onError={[Function]}

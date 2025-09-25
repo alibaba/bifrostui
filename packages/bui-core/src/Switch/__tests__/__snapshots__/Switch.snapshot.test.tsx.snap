@@ -302,6 +302,7 @@ exports[`Switch demo snapshot > Switch demo snapshot 0 7`] = `
     className="bui-switch bui-switch-medium bui-switch-primary bui-switch-disabled"
   >
     <input
+      aria-disabled={true}
       checked={false}
       className="bui-switch-input"
       disabled={true}
@@ -313,6 +314,7 @@ exports[`Switch demo snapshot > Switch demo snapshot 0 7`] = `
     className="bui-switch bui-switch-medium bui-switch-primary bui-switch-disabled"
   >
     <input
+      aria-disabled={true}
       checked={false}
       className="bui-switch-input"
       disabled={true}

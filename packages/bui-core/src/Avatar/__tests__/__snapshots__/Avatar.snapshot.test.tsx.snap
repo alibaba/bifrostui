@@ -26,6 +26,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 1`] = `
       }
     >
       <img
+        alt=""
         className="bui-image-img bui-image-loaded"
         loading="eager"
         onError={[Function]}
@@ -136,6 +137,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 4`] = `
       }
     >
       <img
+        alt=""
         className="bui-image-img bui-image-loaded"
         loading="eager"
         onError={[Function]}
@@ -162,6 +164,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 4`] = `
       }
     >
       <img
+        alt=""
         className="bui-image-img bui-image-loaded"
         loading="eager"
         onError={[Function]}
@@ -204,6 +207,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 5`] = `
       }
     >
       <img
+        alt=""
         className="bui-image-img bui-image-loaded"
         loading="eager"
         onError={[Function]}
@@ -230,6 +234,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 5`] = `
       }
     >
       <img
+        alt=""
         className="bui-image-img bui-image-loaded"
         loading="eager"
         onError={[Function]}
@@ -256,6 +261,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 5`] = `
       }
     >
       <img
+        alt=""
         className="bui-image-img bui-image-loaded"
         loading="eager"
         onError={[Function]}
@@ -282,6 +288,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 5`] = `
       }
     >
       <img
+        alt=""
         className="bui-image-img bui-image-loaded"
         loading="eager"
         onError={[Function]}
@@ -333,6 +340,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 6`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -365,6 +373,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 6`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -397,6 +406,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 6`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -429,6 +439,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 6`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -481,6 +492,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 7`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -513,6 +525,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 7`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -545,6 +558,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 7`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -577,6 +591,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 7`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -613,6 +628,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 7`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -645,6 +661,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 7`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -677,6 +694,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 7`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -709,6 +727,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 7`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -761,6 +780,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 8`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -793,6 +813,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 8`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -860,6 +881,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 9`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -892,6 +914,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 9`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -924,6 +947,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 9`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -956,6 +980,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 9`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -992,6 +1017,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 9`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -1024,6 +1050,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 9`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -1056,6 +1083,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 9`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -1088,6 +1116,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 9`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -1140,6 +1169,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 10`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
@@ -1172,6 +1202,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 10`] = `
         }
       >
         <img
+          alt=""
           className="bui-image-img bui-image-loaded"
           loading="eager"
           onError={[Function]}
