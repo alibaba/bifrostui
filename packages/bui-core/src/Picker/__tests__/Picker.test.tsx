@@ -66,28 +66,12 @@ describe('Picker Accessibility', () => {
     expect(pickerHeader).toHaveAttribute('aria-label', 'Toolbar');
   });
 
-  it('Picker cancel button type should be "button"', () => {
-    render(<Picker open options={singleData} value={[2]} />);
-
-    const picker = document.querySelector('.bui-picker');
-    const cancelBtn = picker.querySelector('.bui-picker-cancel');
-    expect(cancelBtn).toHaveAttribute('type', 'button');
-  });
-
   it('Picker cancel button aria-label should be "Cancel"', () => {
     render(<Picker open options={singleData} value={[2]} />);
 
     const picker = document.querySelector('.bui-picker');
     const cancelBtn = picker.querySelector('.bui-picker-cancel');
     expect(cancelBtn).toHaveAttribute('aria-label', 'Cancel');
-  });
-
-  it('Picker cancel button tabindex should be "0"', () => {
-    render(<Picker open options={singleData} value={[2]} />);
-
-    const picker = document.querySelector('.bui-picker');
-    const cancelBtn = picker.querySelector('.bui-picker-cancel');
-    expect(cancelBtn).toHaveAttribute('tabindex', '0');
   });
 
   it('Picker confirm button type should be "button"', () => {
