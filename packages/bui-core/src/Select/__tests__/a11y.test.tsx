@@ -29,6 +29,7 @@ getMdDemoCodes(
         componentName: demoComponentName,
         demoComponentIndex,
         axeOptions: {},
+        timeout: 30000,
         // 启用详细的无障碍错误报告（默认启用）
         detailedErrorReporting: true,
         customA11yChecks: (container) => {
