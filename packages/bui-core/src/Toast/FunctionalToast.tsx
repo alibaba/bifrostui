@@ -33,7 +33,7 @@ const defaultProps: ToastProps = {
   disableClick: false,
 };
 
-let toastCloses: Array<() => void> = [];
+const toastCloses: Array<() => void> = [];
 
 // 参数格式化，支持直接传文案
 const formatProps = (props: ToastProps | string): ToastProps => {
@@ -80,9 +80,11 @@ const Toast = (props: ToastProps | string): ToastReturnType => {
       if (duration !== 0 && typeof duration === 'number') {
         timerRef.current = window.setTimeout(() => {
           close();
-          // 不允许共存的场景下，当前Toast关闭后，应清空toastCloses
           if (!multiple) {
-            toastCloses = [];
+            const index = toastCloses.indexOf(close);
+            if (index > -1) {
+              toastCloses.splice(index, 1);
+            }
           }
         }, duration);
       }
@@ -147,7 +149,7 @@ const UseToastComponent: FC<
     onEnd?: () => void;
     destroyAllCloses: () => void;
     addClose: (close: () => void) => void;
-    clearAllCloses: () => void;
+    removeClose: (close: () => void) => void;
   }
 > = (props) => {
   const {
@@ -157,7 +159,7 @@ const UseToastComponent: FC<
     onEnd,
     destroyAllCloses,
     addClose,
-    clearAllCloses,
+    removeClose,
     open,
     ...restProps
   } = props;
@@ -183,7 +185,7 @@ const UseToastComponent: FC<
         close();
         // 不允许共存的场景下，当前Toast关闭后，应清空toastCloses
         if (!multiple) {
-          clearAllCloses();
+          removeClose(close);
         }
       }, duration);
     }
@@ -294,8 +296,11 @@ const useToast = () => {
         domRef={element.ref}
         destroyAllCloses={destroyAllCloses}
         addClose={(close) => hookToastClosesRef.current.push(close)}
-        clearAllCloses={() => {
-          hookToastClosesRef.current = [];
+        removeClose={(close) => {
+          const index = hookToastClosesRef.current.indexOf(close);
+          if (index > -1) {
+            hookToastClosesRef.current.splice(index, 1);
+          }
         }}
       />
     );
