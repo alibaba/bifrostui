@@ -6,6 +6,7 @@ import {
   getTransitionProps,
   createTransitions,
 } from '@bifrostui/utils';
+import clsx from 'clsx';
 import { Transition } from '../Transition';
 import { CollapseProps } from './Collapse.types';
 import './index.less';
@@ -120,7 +121,7 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
         return React.createElement(
           'div',
           {
-            className: `bui-collapse ${className || ''}`,
+            className: clsx('bui-collapse', className),
             style: {
               ...style,
               transition,
