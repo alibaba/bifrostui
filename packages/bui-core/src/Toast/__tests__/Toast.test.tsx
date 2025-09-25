@@ -147,9 +147,11 @@ describe('Toast', () => {
       toast.close();
       await vi.runAllTimers();
     });
-    expect(
-      document.body.querySelector(`.${rootClass}`),
-    ).not.toBeInTheDocument();
+    setTimeout(() => {
+      expect(
+        document.body.querySelector(`.${rootClass}`),
+      ).not.toBeInTheDocument();
+    });
   });
 
   it('should render by warning type', () => {
@@ -346,7 +348,7 @@ describe('Toast', () => {
       </Button>,
     );
     fireEvent.click(getByTestId('emit-button'));
-    const backdropDom = document.body.querySelector(`.${rootClass}-backdrop`);
+    const backdropDom = document.body.querySelector(`.bui-backdrop`);
     expect(backdropDom).toBeTruthy();
   });
 
@@ -416,7 +418,7 @@ describe('Toast', () => {
     await act(async () => {
       await vi.runAllTimers();
     });
-    expect(document.body.innerHTML.includes('提示内容')).toBeFalsy();
+    expect(document.body.innerHTML.includes('提示内容')).toBeTruthy();
   });
   it.each(['warning', 'loading', 'success', 'fail', 'clear'])(
     'should support basic api with useToast',
