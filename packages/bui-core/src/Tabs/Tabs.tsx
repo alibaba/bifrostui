@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { debounce, isMini, throttle, useEventCallback } from '@bifrostui/utils';

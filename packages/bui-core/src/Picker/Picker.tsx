@@ -205,9 +205,7 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
           <div
             className={`${prefixCls}-cancel`}
             onClick={cancel}
-            type="button"
             aria-label="Cancel"
-            tabIndex={0}
           >
             {propCancelText || cancelText}
           </div>
