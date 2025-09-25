@@ -19,23 +19,7 @@ exports[`Dialog snapshot > Dialog demo snapshot 0 1`] = `
     onClick={[Function]}
     type="button"
   >
-    默认为confirm
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    confirm
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    等待confirm完成
+    打开对话框
   </button>
 </div>
 `;
@@ -59,7 +43,7 @@ exports[`Dialog snapshot > Dialog demo snapshot 0 2`] = `
     onClick={[Function]}
     type="button"
   >
-    默认为confirm
+    确认对话框
   </button>
   <button
     className="bui-btn bui-btn-outlined bui-btn-medium"
@@ -67,7 +51,7 @@ exports[`Dialog snapshot > Dialog demo snapshot 0 2`] = `
     onClick={[Function]}
     type="button"
   >
-    confirm
+    警告对话框
   </button>
   <button
     className="bui-btn bui-btn-outlined bui-btn-medium"
@@ -75,7 +59,7 @@ exports[`Dialog snapshot > Dialog demo snapshot 0 2`] = `
     onClick={[Function]}
     type="button"
   >
-    等待confirm完成
+    输入对话框
   </button>
 </div>
 `;
@@ -99,11 +83,8 @@ exports[`Dialog snapshot > Dialog demo snapshot 0 3`] = `
     onClick={[Function]}
     type="button"
   >
-    confirm
+    自定义内容
   </button>
-  <div
-    id="container"
-  />
 </div>
 `;
 
@@ -126,7 +107,7 @@ exports[`Dialog snapshot > Dialog demo snapshot 0 4`] = `
     onClick={[Function]}
     type="button"
   >
-    异步操作执行成功
+    确认对话框
   </button>
   <button
     className="bui-btn bui-btn-outlined bui-btn-medium"
@@ -134,7 +115,15 @@ exports[`Dialog snapshot > Dialog demo snapshot 0 4`] = `
     onClick={[Function]}
     type="button"
   >
-    异步操作执行失败
+    输入对话框
+  </button>
+  <button
+    className="bui-btn bui-btn-outlined bui-btn-medium"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    警告对话框
   </button>
 </div>
 `;
@@ -158,7 +147,7 @@ exports[`Dialog snapshot > Dialog demo snapshot 0 5`] = `
     onClick={[Function]}
     type="button"
   >
-    自定义标题和消息
+    调用Dialog返回 Promise
   </button>
   <button
     className="bui-btn bui-btn-outlined bui-btn-medium"
@@ -166,7 +155,7 @@ exports[`Dialog snapshot > Dialog demo snapshot 0 5`] = `
     onClick={[Function]}
     type="button"
   >
-    自定义确认按钮文本
+    回调函数传入Promise
   </button>
 </div>
 `;
@@ -190,7 +179,7 @@ exports[`Dialog snapshot > Dialog demo snapshot 0 6`] = `
     onClick={[Function]}
     type="button"
   >
-    prompt
+    确认对话框
   </button>
   <button
     className="bui-btn bui-btn-outlined bui-btn-medium"
@@ -198,7 +187,15 @@ exports[`Dialog snapshot > Dialog demo snapshot 0 6`] = `
     onClick={[Function]}
     type="button"
   >
-    传入InputProps
+    输入对话框
+  </button>
+  <button
+    className="bui-btn bui-btn-outlined bui-btn-medium"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    警告对话框
   </button>
 </div>
 `;
@@ -222,15 +219,7 @@ exports[`Dialog snapshot > Dialog demo snapshot 0 7`] = `
     onClick={[Function]}
     type="button"
   >
-    异步操作执行成功
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    异步操作执行失败
+    显示用户信息
   </button>
 </div>
 `;
@@ -254,290 +243,7 @@ exports[`Dialog snapshot > Dialog demo snapshot 0 8`] = `
     onClick={[Function]}
     type="button"
   >
-    自定义标题和消息
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    自定义确认按钮文本
-  </button>
-</div>
-`;
-
-exports[`Dialog snapshot > Dialog demo snapshot 0 9`] = `
-<div
-  className="bui-stack"
-  style={
-    {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    prompt
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    传入InputProps
-  </button>
-</div>
-`;
-
-exports[`Dialog snapshot > Dialog demo snapshot 0 10`] = `
-<div
-  className="bui-stack"
-  style={
-    {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    默认为prompt
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    prompt
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    等待prompt完成
-  </button>
-</div>
-`;
-
-exports[`Dialog snapshot Dialog demo snapshot 0 1`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    默认为confirm
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    confirm
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    等待confirm完成
-  </button>
-</div>
-`;
-
-exports[`Dialog snapshot Dialog demo snapshot 0 2`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    默认为confirm
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    confirm
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    等待confirm完成
-  </button>
-</div>
-`;
-
-exports[`Dialog snapshot Dialog demo snapshot 0 3`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    confirm
-  </button>
-  <div
-    id="container"
-  />
-</div>
-`;
-
-exports[`Dialog snapshot Dialog demo snapshot 0 4`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    异步操作执行成功
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    异步操作执行失败
-  </button>
-</div>
-`;
-
-exports[`Dialog snapshot Dialog demo snapshot 0 5`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    自定义标题和消息
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    自定义确认按钮文本
-  </button>
-</div>
-`;
-
-exports[`Dialog snapshot Dialog demo snapshot 0 6`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    prompt
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    传入InputProps
+    自定义样式
   </button>
 </div>
 `;

@@ -14,6 +14,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 1`] = `
   }
 >
   <button
+    aria-disabled={false}
+    aria-label="PhoneFilledIconIcon"
     className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular"
     type="button"
   >
@@ -29,6 +31,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 1`] = `
     />
   </button>
   <button
+    aria-disabled={false}
+    aria-label="PhoneFilledIconIcon"
     className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-outlined bui-icon-btn-circular"
     type="button"
   >
@@ -44,6 +48,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 1`] = `
     />
   </button>
   <button
+    aria-disabled={false}
+    aria-label="PhoneFilledIconIcon"
     className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-circular"
     type="button"
   >
@@ -75,6 +81,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 2`] = `
   }
 >
   <button
+    aria-disabled={false}
+    aria-label="PhoneFilledIconIcon"
     className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-circular"
     type="button"
   >
@@ -90,6 +98,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 2`] = `
     />
   </button>
   <button
+    aria-disabled={false}
+    aria-label="PhoneFilledIconIcon"
     className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-rounded"
     type="button"
   >
@@ -105,6 +115,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 2`] = `
     />
   </button>
   <button
+    aria-disabled={false}
+    aria-label="PhoneFilledIconIcon"
     className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-square"
     type="button"
   >
@@ -136,6 +148,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 3`] = `
   }
 >
   <button
+    aria-disabled={false}
+    aria-label="PhoneFilledIconIcon"
     className="bui-icon-btn bui-icon-btn-small bui-icon-btn-default bui-icon-btn-circular"
     type="button"
   >
@@ -151,6 +165,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 3`] = `
     />
   </button>
   <button
+    aria-disabled={false}
+    aria-label="PhoneFilledIconIcon"
     className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular"
     type="button"
   >
@@ -166,6 +182,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 3`] = `
     />
   </button>
   <button
+    aria-disabled={false}
+    aria-label="PhoneFilledIconIcon"
     className="bui-icon-btn bui-icon-btn-large bui-icon-btn-default bui-icon-btn-circular"
     type="button"
   >
@@ -212,6 +230,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
     }
   >
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular bui-icon-btn-primary"
       type="button"
     >
@@ -227,6 +247,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular bui-icon-btn-success"
       type="button"
     >
@@ -242,6 +264,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular bui-icon-btn-info"
       type="button"
     >
@@ -257,6 +281,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular bui-icon-btn-warning"
       type="button"
     >
@@ -272,6 +298,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular bui-icon-btn-danger"
       type="button"
     >
@@ -287,6 +315,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular bui-icon-btn-light"
       type="button"
     >
@@ -302,6 +332,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular bui-icon-btn-dark"
       type="button"
     >
@@ -330,6 +362,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
     }
   >
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-outlined bui-icon-btn-circular bui-icon-btn-primary"
       type="button"
     >
@@ -345,6 +379,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-outlined bui-icon-btn-circular bui-icon-btn-success"
       type="button"
     >
@@ -360,6 +396,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-outlined bui-icon-btn-circular bui-icon-btn-info"
       type="button"
     >
@@ -375,6 +413,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-outlined bui-icon-btn-circular bui-icon-btn-warning"
       type="button"
     >
@@ -390,6 +430,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-outlined bui-icon-btn-circular bui-icon-btn-danger"
       type="button"
     >
@@ -405,6 +447,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-outlined bui-icon-btn-circular bui-icon-btn-light"
       type="button"
     >
@@ -420,6 +464,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-outlined bui-icon-btn-circular bui-icon-btn-dark"
       type="button"
     >
@@ -448,6 +494,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
     }
   >
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-circular bui-icon-btn-primary"
       type="button"
     >
@@ -463,6 +511,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-circular bui-icon-btn-success"
       type="button"
     >
@@ -478,6 +528,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-circular bui-icon-btn-info"
       type="button"
     >
@@ -493,6 +545,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-circular bui-icon-btn-warning"
       type="button"
     >
@@ -508,6 +562,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-circular bui-icon-btn-danger"
       type="button"
     >
@@ -523,6 +579,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-circular bui-icon-btn-light"
       type="button"
     >
@@ -538,6 +596,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-circular bui-icon-btn-dark"
       type="button"
     >
@@ -566,6 +626,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
     }
   >
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-subtle bui-icon-btn-circular bui-icon-btn-primary"
       type="button"
     >
@@ -581,6 +643,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-subtle bui-icon-btn-circular bui-icon-btn-success"
       type="button"
     >
@@ -596,6 +660,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-subtle bui-icon-btn-circular bui-icon-btn-info"
       type="button"
     >
@@ -611,6 +677,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-subtle bui-icon-btn-circular bui-icon-btn-warning"
       type="button"
     >
@@ -626,6 +694,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-subtle bui-icon-btn-circular bui-icon-btn-danger"
       type="button"
     >
@@ -641,6 +711,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-subtle bui-icon-btn-circular bui-icon-btn-light"
       type="button"
     >
@@ -656,6 +728,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 4`] = `
       />
     </button>
     <button
+      aria-disabled={false}
+      aria-label="PhoneFilledIconIcon"
       className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-subtle bui-icon-btn-circular bui-icon-btn-dark"
       type="button"
     >
@@ -688,6 +762,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 5`] = `
   }
 >
   <button
+    aria-disabled={true}
+    aria-label="PhoneFilledIconIcon"
     className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular bui-icon-btn-primary bui-icon-btn-disabled"
     type="button"
   >
@@ -703,6 +779,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 5`] = `
     />
   </button>
   <button
+    aria-disabled={true}
+    aria-label="PhoneFilledIconIcon"
     className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-outlined bui-icon-btn-circular bui-icon-btn-primary bui-icon-btn-disabled"
     type="button"
   >
@@ -718,6 +796,8 @@ exports[`IconButton demo snapshot > IconButton demo snapshot 0 5`] = `
     />
   </button>
   <button
+    aria-disabled={true}
+    aria-label="PhoneFilledIconIcon"
     className="bui-icon-btn bui-icon-btn-medium bui-icon-btn-contained bui-icon-btn-circular bui-icon-btn-primary bui-icon-btn-disabled"
     type="button"
   >

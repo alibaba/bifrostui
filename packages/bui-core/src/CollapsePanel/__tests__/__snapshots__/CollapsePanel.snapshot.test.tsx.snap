@@ -38,10 +38,10 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 1`] = `
         className="bui-collapse"
         style={
           {
-            "WebKitHeight": "fit-content",
-            "WebkitTransition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
-            "height": "fit-content",
-            "transition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
+            "WebKitHeight": "auto",
+            "WebkitTransition": "none",
+            "height": "auto",
+            "transition": "none",
           }
         }
       >
@@ -91,9 +91,9 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 1`] = `
         style={
           {
             "WebKitHeight": "0px",
-            "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "WebkitTransition": "none",
             "height": "0px",
-            "transition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "transition": "none",
           }
         }
       >
@@ -143,9 +143,9 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 1`] = `
         style={
           {
             "WebKitHeight": "0px",
-            "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "WebkitTransition": "none",
             "height": "0px",
-            "transition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "transition": "none",
           }
         }
       >
@@ -205,10 +205,10 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 2`] = `
         className="bui-collapse"
         style={
           {
-            "WebKitHeight": "fit-content",
-            "WebkitTransition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
-            "height": "fit-content",
-            "transition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
+            "WebKitHeight": "auto",
+            "WebkitTransition": "none",
+            "height": "auto",
+            "transition": "none",
           }
         }
       >
@@ -256,9 +256,9 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 2`] = `
         style={
           {
             "WebKitHeight": "0px",
-            "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "WebkitTransition": "none",
             "height": "0px",
-            "transition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "transition": "none",
           }
         }
       >
@@ -306,9 +306,9 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 2`] = `
         style={
           {
             "WebKitHeight": "0px",
-            "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "WebkitTransition": "none",
             "height": "0px",
-            "transition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "transition": "none",
           }
         }
       >
@@ -366,10 +366,10 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 3`] = `
         className="bui-collapse"
         style={
           {
-            "WebKitHeight": "fit-content",
-            "WebkitTransition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
-            "height": "fit-content",
-            "transition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
+            "WebKitHeight": "auto",
+            "WebkitTransition": "none",
+            "height": "auto",
+            "transition": "none",
           }
         }
       >
@@ -419,9 +419,9 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 3`] = `
         style={
           {
             "WebKitHeight": "0px",
-            "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "WebkitTransition": "none",
             "height": "0px",
-            "transition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "transition": "none",
           }
         }
       >
@@ -471,9 +471,9 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 3`] = `
         style={
           {
             "WebKitHeight": "0px",
-            "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "WebkitTransition": "none",
             "height": "0px",
-            "transition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "transition": "none",
           }
         }
       >
@@ -533,10 +533,10 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 4`] = `
         className="bui-collapse"
         style={
           {
-            "WebKitHeight": "fit-content",
-            "WebkitTransition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
-            "height": "fit-content",
-            "transition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
+            "WebKitHeight": "auto",
+            "WebkitTransition": "none",
+            "height": "auto",
+            "transition": "none",
           }
         }
       >
@@ -586,9 +586,9 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 4`] = `
         style={
           {
             "WebKitHeight": "0px",
-            "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "WebkitTransition": "none",
             "height": "0px",
-            "transition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "transition": "none",
           }
         }
       >
@@ -638,9 +638,9 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 4`] = `
         style={
           {
             "WebKitHeight": "0px",
-            "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "WebkitTransition": "none",
             "height": "0px",
-            "transition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "transition": "none",
           }
         }
       >
@@ -700,10 +700,10 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 5`] = `
         className="bui-collapse"
         style={
           {
-            "WebKitHeight": "fit-content",
-            "WebkitTransition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
-            "height": "fit-content",
-            "transition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
+            "WebKitHeight": "auto",
+            "WebkitTransition": "none",
+            "height": "auto",
+            "transition": "none",
           }
         }
       >
@@ -753,9 +753,9 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 5`] = `
         style={
           {
             "WebKitHeight": "0px",
-            "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "WebkitTransition": "none",
             "height": "0px",
-            "transition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "transition": "none",
           }
         }
       >
@@ -805,9 +805,9 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 5`] = `
         style={
           {
             "WebKitHeight": "0px",
-            "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "WebkitTransition": "none",
             "height": "0px",
-            "transition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "transition": "none",
           }
         }
       >
@@ -867,10 +867,10 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 6`] = `
         className="bui-collapse"
         style={
           {
-            "WebKitHeight": "fit-content",
-            "WebkitTransition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
-            "height": "fit-content",
-            "transition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
+            "WebKitHeight": "auto",
+            "WebkitTransition": "none",
+            "height": "auto",
+            "transition": "none",
           }
         }
       >
@@ -920,9 +920,9 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 6`] = `
         style={
           {
             "WebKitHeight": "0px",
-            "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "WebkitTransition": "none",
             "height": "0px",
-            "transition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "transition": "none",
           }
         }
       >
@@ -972,9 +972,9 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 6`] = `
         style={
           {
             "WebKitHeight": "0px",
-            "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "WebkitTransition": "none",
             "height": "0px",
-            "transition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "transition": "none",
           }
         }
       >
@@ -1034,10 +1034,10 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 7`] = `
         className="bui-collapse"
         style={
           {
-            "WebKitHeight": "fit-content",
-            "WebkitTransition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
-            "height": "fit-content",
-            "transition": "height 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
+            "WebKitHeight": "auto",
+            "WebkitTransition": "none",
+            "height": "auto",
+            "transition": "none",
           }
         }
       >
@@ -1087,9 +1087,9 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 7`] = `
         style={
           {
             "WebKitHeight": "0px",
-            "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "WebkitTransition": "none",
             "height": "0px",
-            "transition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "transition": "none",
           }
         }
       >
@@ -1139,9 +1139,9 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 7`] = `
         style={
           {
             "WebKitHeight": "0px",
-            "WebkitTransition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "WebkitTransition": "none",
             "height": "0px",
-            "transition": "height 300ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+            "transition": "none",
           }
         }
       >

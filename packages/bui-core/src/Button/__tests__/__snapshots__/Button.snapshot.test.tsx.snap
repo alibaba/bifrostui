@@ -560,6 +560,7 @@ exports[`Button demo snapshot > Button demo snapshot 0 4`] = `
   }
 >
   <button
+    aria-disabled="true"
     className="bui-btn bui-btn-text bui-btn-medium bui-btn-disabled"
     disabled={true}
     type="button"
@@ -567,6 +568,7 @@ exports[`Button demo snapshot > Button demo snapshot 0 4`] = `
     文字禁用
   </button>
   <button
+    aria-disabled="true"
     className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-disabled"
     disabled={true}
     type="button"
@@ -574,6 +576,7 @@ exports[`Button demo snapshot > Button demo snapshot 0 4`] = `
     描边禁用
   </button>
   <button
+    aria-disabled="true"
     className="bui-btn bui-btn-contained bui-btn-medium bui-btn-disabled"
     disabled={true}
     type="button"
@@ -638,58 +641,6 @@ exports[`Button demo snapshot > Button demo snapshot 0 5`] = `
         viewBox="0 0 96 96"
       />
     </span>
-  </button>
-</div>
-`;
-
-exports[`Button demo snapshot > Button demo snapshot 0 6`] = `
-<div
-  className="bui-stack"
-  style={
-    {
-      "--align-items": "center",
-      "--flex-direction": "column",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "9px",
-    }
-  }
->
-  <button
-    aria-label="关闭对话框"
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    type="button"
-  >
-    X
-  </button>
-  <button
-    aria-describedby="description"
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    type="button"
-  >
-    按钮
-  </button>
-  <span
-    id="description"
-    style={
-      {
-        "display": "none",
-      }
-    }
-  >
-    这是按钮的描述信息
-  </span>
-  <button
-    aria-busy={false}
-    aria-keyshortcuts="Ctrl+S"
-    aria-label="保存文档"
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    type="button"
-  >
-    保存
   </button>
 </div>
 `;
