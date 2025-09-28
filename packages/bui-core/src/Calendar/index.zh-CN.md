@@ -34,7 +34,33 @@ export default () => {
 };
 ```
 
-## 指定可选范围
+### 过渡效果
+
+默认不开启过渡效果，可使用`enableTransition`开启过渡动效。小程序与浏览器动效效果可能存在差异，可以使用`--bui-calendar-transition-enter`和`--bui-calendar-transition-exit`进行微调。此外，当开启过渡效果后，日期面板会有一个最小高度。
+
+```tsx
+import { Calendar, Stack } from '@bifrostui/react';
+import dayjs from 'dayjs/esm/index';
+import React, { useState } from 'react';
+
+export default () => {
+  const [value, setValue] = useState(dayjs().toDate());
+  const handleChange = (e, res) => {
+    console.log('date change:', res);
+    setValue(res.value);
+  };
+
+  return (
+    <Stack>
+      <div style={{ width: '320px' }}>
+        <Calendar value={value} onChange={handleChange} enableTransition />
+      </div>
+    </Stack>
+  );
+};
+```
+
+### 指定可选范围
 
 通过 `minDate` 和 `maxDate` 指定可选范围，支持渲染指定月。渲染指定月时：value=null 并指定 `minDate`。
 
@@ -470,23 +496,26 @@ export default () => {
 
 ## API
 
-| 属性                        | 说明                     | 类型                                                              | 默认值              |
-| --------------------------- | ------------------------ | ----------------------------------------------------------------- | ------------------- |
-| defaultValue                | 默认选中的值，非受控用法 | Date \| Date[] \| null                                            | -                   |
-| value                       | 选中的值，受控用法       | Date \| Date[] \| null                                            | -                   |
-| minDate                     | 可选择的最小日期         | Date                                                              | 当前月第一天        |
-| maxDate                     | 可选择的最大日期         | Date                                                              | 当前日期的一年后    |
-| mode                        | 日历选择类型             | `single` \| `range`                                               | `single`            |
-| hideDaysOutsideCurrentMonth | 是否隐藏当前月之外的日期 | boolean                                                           | false               |
-| headerBarFormat             | 头部操作栏日期显示格式   | string                                                            | YYYY/MM             |
-| headerBarLeftIcon           | 头部操作栏左边图标       | (options: ICustomIconProps) => React.ReactNode                    | \<CaretLeftIcon />  |
-| headerBarRightIcon          | 头部操作栏右边图标       | (options: ICustomIconProps) => React.ReactNode                    | \<CaretRightIcon /> |
-| disabledDate                | 不可选择的日期           | (currentDate: Date) => boolean                                    | 当天之前的日期      |
-| highlightDate               | 高亮的日期               | `today` \| `weekend`                                              | `today`             |
-| dateRender                  | 自定义日期单元格的内容   | (currentDate: ICalendarInstance) => React.ReactNode               | -                   |
-| weekRender                  | 自定义周单元格的内容     | (week: string) => React.ReactNode                                 | -                   |
-| onMonthChange               | 月份变化时的回调函数     | (e: React.SyntheticEvent,data: ICalendarMonthChangeData) => void  | -                   |
-| onChange                    | 日期发生变化时的回调函数 | (e: React.SyntheticEvent,data: { value: ICalendarValue }) => void | -                   |
+| 属性                        | 说明                                                 | 类型                                                              | 默认值              |
+| --------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------- | ------------------- |
+| defaultValue                | 默认选中的值，非受控用法                             | Date \| Date[] \| null                                            | -                   |
+| value                       | 选中的值，受控用法                                   | Date \| Date[] \| null                                            | -                   |
+| minDate                     | 可选择的最小日期                                     | Date                                                              | 当前月第一天        |
+| maxDate                     | 可选择的最大日期                                     | Date                                                              | 当前日期的一年后    |
+| mode                        | 日历选择类型                                         | `single` \| `range`                                               | `single`            |
+| hideDaysOutsideCurrentMonth | 是否隐藏当前月之外的日期                             | boolean                                                           | false               |
+| headerBarFormat             | 头部操作栏日期显示格式                               | string                                                            | YYYY/MM             |
+| headerBarLeftIcon           | 头部操作栏左边图标                                   | (options: ICustomIconProps) => React.ReactNode                    | \<CaretLeftIcon />  |
+| headerBarRightIcon          | 头部操作栏右边图标                                   | (options: ICustomIconProps) => React.ReactNode                    | \<CaretRightIcon /> |
+| disabledDate                | 不可选择的日期                                       | (currentDate: Date) => boolean                                    | 当天之前的日期      |
+| highlightDate               | 高亮的日期                                           | `today` \| `weekend`                                              | `today`             |
+| headerVisible               | 是否隐藏头部                                         | boolean                                                           | false               |
+| enableTransition            | 是否开启切换动效                                     | boolean                                                           | false               |
+| CSSTransitionProps          | CSSTransition组件属性，仅enableTransition=true时生效 | CSSTransitionProps                                                | -                   |
+| dateRender                  | 自定义日期单元格的内容                               | (currentDate: ICalendarInstance) => React.ReactNode               | -                   |
+| weekRender                  | 自定义周单元格的内容                                 | (week: string) => React.ReactNode                                 | -                   |
+| onMonthChange               | 月份变化时的回调函数                                 | (e: React.SyntheticEvent,data: ICalendarMonthChangeData) => void  | -                   |
+| onChange                    | 日期发生变化时的回调函数                             | (e: React.SyntheticEvent,data: { value: ICalendarValue }) => void | -                   |
 
 ### ICalendarMonthChangeData
 
@@ -511,20 +540,23 @@ export default () => {
 
 ## 样式变量
 
-| 全局变量                                  | 说明                   | 默认值         |
-| ----------------------------------------- | ---------------------- | -------------- |
-| --bui-calendar-padding                    | 日历内边距             | `6px 12px 7px` |
-| --bui-calendar-week-height                | 星期栏高度             | `30px`         |
-| --bui-calendar-handler-height             | 操作栏高度             | `28px`         |
-| --bui-calendar-handler-margin             | 操作栏外边距           | `0 0 7px 0`    |
-| --bui-calendar-handler-text-width         | 操作栏文本宽度         | `80px`         |
-| --bui-calendar-handler-btn-width          | 操作栏按钮宽度         | `46px`         |
-| --bui-calendar-handler-btn-height         | 操作栏按钮高度         | `100%`         |
-| --bui-calendar-handler-btn-icon-font-size | 操作栏按钮图标字体大小 | `28px`         |
-| --bui-calendar-day-box-height             | 日期单元格高度         | `30px`         |
-| --bui-calendar-day-box-margin             | 日期单元格外边距       | `0 0 7px 0`    |
-| --bui-calendar-day-disabled-color         | 禁用日期颜色           | `#9c9ca5`      |
-| --bui-calendar-middle-color               | 区间中间日期文字颜色   | `#000`         |
-| --bui-calendar-middle-bg-color            | 区间中间日期背景颜色   | `#ffeaf1`      |
-| --bui-calendar-range-both-ends-color      | 区间两端日期文字颜色   | `#000`         |
-| --bui-calendar-range-both-ends-bg-color   | 区间两端日期背景颜色   | `#ffc7da`      |
+| 全局变量                                   | 说明                   | 默认值                   |
+| ------------------------------------------ | ---------------------- | ------------------------ |
+| --bui-calendar-transition-exit             | 退出动效               | transform 300ms ease 0ms |
+| --bui-calendar-transition-enter            | 进入动效               | transform 300ms ease 0ms |
+| --bui-calendar-transition-group-min-height | 动效容器最小高度       | 228px                    |
+| --bui-calendar-padding                     | 日历内边距             | `6px 12px 7px`           |
+| --bui-calendar-week-height                 | 星期栏高度             | `30px`                   |
+| --bui-calendar-handler-height              | 操作栏高度             | `28px`                   |
+| --bui-calendar-handler-margin              | 操作栏外边距           | `0 0 7px 0`              |
+| --bui-calendar-handler-text-width          | 操作栏文本宽度         | `80px`                   |
+| --bui-calendar-handler-btn-width           | 操作栏按钮宽度         | `46px`                   |
+| --bui-calendar-handler-btn-height          | 操作栏按钮高度         | `100%`                   |
+| --bui-calendar-handler-btn-icon-font-size  | 操作栏按钮图标字体大小 | `28px`                   |
+| --bui-calendar-day-box-height              | 日期单元格高度         | `30px`                   |
+| --bui-calendar-day-box-margin              | 日期单元格外边距       | `0 0 7px 0`              |
+| --bui-calendar-day-disabled-color          | 禁用日期颜色           | `#9c9ca5`                |
+| --bui-calendar-middle-color                | 区间中间日期文字颜色   | `#000`                   |
+| --bui-calendar-middle-bg-color             | 区间中间日期背景颜色   | `#ffeaf1`                |
+| --bui-calendar-range-both-ends-color       | 区间两端日期文字颜色   | `#000`                   |
+| --bui-calendar-range-both-ends-bg-color    | 区间两端日期背景颜色   | `#ffc7da`                |

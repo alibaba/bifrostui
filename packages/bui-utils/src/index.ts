@@ -36,7 +36,7 @@ export {
 } from './transitions';
 export { default as getRootContainer } from './getRootContainer';
 export { default as getBoundingClientRect } from './getBoundingClientRect';
-export { getScrollRect, getClientRect } from './domUtils';
+export * from './domUtils';
 export * from './isType';
 export * from './render';
 export * from './themeCreator';

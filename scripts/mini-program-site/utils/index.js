@@ -34,6 +34,7 @@ const parseCodeModules = (modules, theme, index) => {
     if (isCodeFlagModule && childrenItem) {
       const reg = /(?<=src=(['|"])).*?(?=(['|"]))/gi;
       const relativePath = `${childrenItem.value}`.match(reg)?.[0];
+      const relativeComponents = ['TransitionGroup', 'CSSTransition', 'Stack'];
       const isSvgIcons = theme.enName === 'Icons';
       const rootDir = isSvgIcons ? iconsDir : coreDir;
       const realPath = path.join(
@@ -42,11 +43,17 @@ const parseCodeModules = (modules, theme, index) => {
         relativePath,
       );
       code = fse.readFileSync(realPath, 'utf-8');
+      // 对 demo/index.tsx 中的import相对路径做特殊处理
       if (isSvgIcons) {
-        // TODO 暂时对SVG demo/index.tsx中的import相对路径做特殊处理
         code = code
           .replace('../components', `${iconsDir}/components`)
           .replace('./index.less', `${iconsDir}/demo/index.less`);
+      }
+      if (relativeComponents.includes(theme.enName)) {
+        code = code.replace(
+          './index.less',
+          `${coreDir}/${theme.enName}/demo/index.less`,
+        );
       }
     }
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { OverrideProps } from '@bifrostui/types';
+import { CSSTransitionProps } from '../CSSTransition/CSSTransition.types';
 
 export interface ICalendarInstance {
   /** 日期对象 */
@@ -89,6 +90,15 @@ export type CalendarProps<
        * default: false
        */
       headerVisible?: boolean;
+      /**
+       * 是否开启切换动效
+       * default: false
+       */
+      enableTransition?: boolean;
+      /**
+       * CSSTransition组件属性，仅enableTransition=true时生效
+       */
+      CSSTransitionProps?: CSSTransitionProps;
       /**
        * 自定义日期单元格的内容
        */
