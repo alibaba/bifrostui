@@ -3,12 +3,12 @@ import { render, screen, act, waitFor } from 'testing';
 import CSSTransition from '..';
 
 // Mock DOM methods for class manipulation
-const mockAddClass = jest.fn();
-const mockRemoveClass = jest.fn();
+const mockAddClass = vi.fn();
+const mockRemoveClass = vi.fn();
 
 // Mock the addClass and removeClass utilities before importing CSSTransition
-jest.mock('@bifrostui/utils', () => {
-  const originalModule = jest.requireActual('@bifrostui/utils');
+vi.mock('@bifrostui/utils', async () => {
+  const originalModule = await vi.importActual('@bifrostui/utils');
   return {
     __esModule: true,
     ...originalModule,
@@ -30,11 +30,11 @@ describe('CSSTransition', () => {
     });
 
     // Use fake timers for async transitions
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   it('should render children', () => {
@@ -100,7 +100,7 @@ describe('CSSTransition', () => {
 
     // Advance timers to allow transition to complete
     act(() => {
-      jest.advanceTimersByTime(300);
+      vi.advanceTimersByTime(300);
     });
 
     // Reset mocks for next phase
@@ -129,7 +129,7 @@ describe('CSSTransition', () => {
 
     // Advance timers to allow transition to complete
     act(() => {
-      jest.advanceTimersByTime(300);
+      vi.advanceTimersByTime(300);
     });
 
     await waitFor(() => {
@@ -171,12 +171,12 @@ describe('CSSTransition', () => {
   });
 
   it('should call lifecycle callbacks with correct timing', async () => {
-    const onEnter = jest.fn();
-    const onEntering = jest.fn();
-    const onEntered = jest.fn();
-    const onExit = jest.fn();
-    const onExiting = jest.fn();
-    const onExited = jest.fn();
+    const onEnter = vi.fn();
+    const onEntering = vi.fn();
+    const onEntered = vi.fn();
+    const onExit = vi.fn();
+    const onExiting = vi.fn();
+    const onExited = vi.fn();
 
     const classNames = {
       enter: 'slide-enter',
@@ -233,7 +233,7 @@ describe('CSSTransition', () => {
 
     // Advance timers to allow transition to complete
     act(() => {
-      jest.advanceTimersByTime(100);
+      vi.advanceTimersByTime(100);
     });
 
     await waitFor(() => {
@@ -273,7 +273,7 @@ describe('CSSTransition', () => {
 
     // Advance timers to allow transition to complete
     act(() => {
-      jest.advanceTimersByTime(100);
+      vi.advanceTimersByTime(100);
     });
 
     await waitFor(() => {
@@ -283,7 +283,7 @@ describe('CSSTransition', () => {
   });
 
   it('should not call callbacks when enter is false', () => {
-    const onEnter = jest.fn();
+    const onEnter = vi.fn();
 
     render(
       <CSSTransition in enter={false} timeout={100} onEnter={onEnter}>
@@ -295,7 +295,7 @@ describe('CSSTransition', () => {
   });
 
   it('should not call callbacks when exit is false', () => {
-    const onExit = jest.fn();
+    const onExit = vi.fn();
     render(
       <CSSTransition in timeout={100} onExit={onExit}>
         <div>Content</div>
@@ -328,7 +328,7 @@ describe('CSSTransition', () => {
 
     // Advance timers to allow transition to complete
     act(() => {
-      jest.advanceTimersByTime(100);
+      vi.advanceTimersByTime(100);
     });
   });
 
@@ -384,7 +384,7 @@ describe('CSSTransition', () => {
 
     // Advance timers to allow transition to complete
     act(() => {
-      jest.advanceTimersByTime(300);
+      vi.advanceTimersByTime(300);
     });
 
     await waitFor(() => {
@@ -453,7 +453,7 @@ describe('CSSTransition', () => {
 
     // Advance timers to allow transition to complete
     act(() => {
-      jest.advanceTimersByTime(300);
+      vi.advanceTimersByTime(300);
     });
 
     await waitFor(() => {
