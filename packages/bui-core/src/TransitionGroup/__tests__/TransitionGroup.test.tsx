@@ -1,12 +1,9 @@
 import React from 'react';
-import { render, screen, act, waitFor, fireEvent } from 'testing';
+import { render, screen, waitFor, fireEvent } from 'testing';
 import Button from '../../Button';
 import TransitionGroup from '../TransitionGroup';
 import Transition from '../../Transition/Transition';
 import CSSTransition from '../../CSSTransition/CSSTransition';
-
-// Use fake timers for async transitions
-jest.useFakeTimers();
 
 describe('TransitionGroup', () => {
   it('should render children correctly', () => {
@@ -105,7 +102,7 @@ describe('TransitionGroup', () => {
 
   // 测试handleExitedRef相关逻辑 - 使用实际的Transition组件
   it('should handle child exit and removal correctly with Transition', () => {
-    const onExited = jest.fn();
+    const onExited = vi.fn();
 
     // 初始渲染两个Transition组件
     const { rerender } = render(
@@ -139,7 +136,7 @@ describe('TransitionGroup', () => {
 
   // 完全模拟demo中的操作，测试handleExitedRef逻辑
   it('should properly handle child exit through handleExitedRef by simulating demo operations', async () => {
-    const onExited = jest.fn();
+    const onExited = vi.fn();
 
     // 使用React状态来模拟demo中的操作
     const TestComponent = () => {
@@ -203,17 +200,10 @@ describe('TransitionGroup', () => {
 
     rerender(<TestComponent />);
 
-    await waitFor(() => {
-      // 验证Item 2应该仍然在DOM中，因为TransitionGroup会处理退出动画
-      expect(screen.getByText('Item 1')).toBeInTheDocument();
-      expect(screen.getByText('Item 2')).toBeInTheDocument();
-      expect(screen.getByText('Item 3')).toBeInTheDocument();
-    });
-
-    // Advance timers to allow transition to complete
-    act(() => {
-      jest.advanceTimersByTime(0);
-    });
+    // 验证Item 2应该仍然在DOM中，因为TransitionGroup会处理退出动画
+    expect(screen.getByText('Item 1')).toBeInTheDocument();
+    expect(screen.getByText('Item 2')).toBeInTheDocument();
+    expect(screen.getByText('Item 3')).toBeInTheDocument();
 
     // 测试handleExitedRef if (child.key in currentChildMapping) return;之后的逻辑
     // 先添加新项目
@@ -222,18 +212,11 @@ describe('TransitionGroup', () => {
 
     rerender(<TestComponent />);
 
-    await waitFor(() => {
-      // 验证新项目已添加
-      expect(screen.getByText('Item 1')).toBeInTheDocument();
-      expect(screen.getByText('Item 2')).toBeInTheDocument(); // 已标记为退出但仍在DOM中
-      expect(screen.getByText('Item 3')).toBeInTheDocument();
-      expect(screen.getByText('Item 4')).toBeInTheDocument();
-    });
-
-    // Advance timers to allow transition to complete
-    act(() => {
-      jest.advanceTimersByTime(0);
-    });
+    // 验证新项目已添加
+    expect(screen.getByText('Item 1')).toBeInTheDocument();
+    expect(screen.getByText('Item 2')).toBeInTheDocument(); // 已标记为退出但仍在DOM中
+    expect(screen.getByText('Item 3')).toBeInTheDocument();
+    expect(screen.getByText('Item 4')).toBeInTheDocument();
 
     // 测试handleExitedRef if (child.key in currentChildMapping) return;之后的逻辑
     // 直接删除现有的项目

@@ -458,7 +458,9 @@ describe('Calendar', () => {
 
     it('should update renderMonth when value changes to a different month', () => {
       // Mock console.log to verify our test
-      const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+      const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {
+        // no code
+      });
 
       const { rerender } = render(
         <Calendar
@@ -492,9 +494,11 @@ describe('Calendar', () => {
 
     it('should not update renderMonth when clicking on a date in the same month', () => {
       // Mock console.log to verify our test
-      const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+      const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {
+        // no code
+      });
 
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { container } = render(
         <Calendar
           mode="single"
