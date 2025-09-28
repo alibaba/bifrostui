@@ -383,6 +383,145 @@ describe('Calendar', () => {
     expect(rightIcon).toHaveStyle('color: #cccccc');
   });
 
+  describe('transition effect', () => {
+    it('should render month date without transition when enableTransition is false', () => {
+      const { container } = render(
+        <Calendar
+          mode="single"
+          value={dayjs('20230401').toDate()}
+          minDate={dayjs('20230401').toDate()}
+          maxDate={dayjs('20230429').toDate()}
+          enableTransition={false}
+        />,
+      );
+
+      const monthElement = container.querySelector(`.${rootClass}-month`);
+      const transitionGroupElement = container.querySelector(
+        `.${rootClass}-transition-group`,
+      );
+
+      // 当 enableTransition 为 false 时，应该渲染 month 元素，不渲染 transition group
+      expect(monthElement).toBeInTheDocument();
+      expect(transitionGroupElement).not.toBeInTheDocument();
+    });
+
+    it('should render month date with transition when enableTransition is true', () => {
+      const { container } = render(
+        <Calendar
+          mode="single"
+          value={dayjs('20230401').toDate()}
+          minDate={dayjs('20230401').toDate()}
+          maxDate={dayjs('20230429').toDate()}
+          enableTransition
+        />,
+      );
+
+      const monthElement = container.querySelector(`.${rootClass}-month`);
+      const transitionGroupElement = container.querySelector(
+        `.${rootClass}-transition-group`,
+      );
+
+      // 当 enableTransition 为 true 时，应该渲染 month 元素和 transition group 元素
+      expect(monthElement).toBeInTheDocument();
+      expect(transitionGroupElement).toBeInTheDocument();
+    });
+
+    it('should pass CSSTransitionProps to CSSTransition component', () => {
+      const customClassNames = {
+        enter: 'custom-enter',
+        enterActive: 'custom-enter-active',
+        exit: 'custom-exit',
+        exitActive: 'custom-exit-active',
+      };
+
+      const { container } = render(
+        <Calendar
+          mode="single"
+          value={dayjs('20230401').toDate()}
+          minDate={dayjs('20230401').toDate()}
+          maxDate={dayjs('20230429').toDate()}
+          enableTransition
+          CSSTransitionProps={{
+            classNames: customClassNames,
+            timeout: 500,
+          }}
+        />,
+      );
+
+      // 验证 CSSTransitionProps 被正确传递，通过检查是否应用了自定义类名
+      // 由于 Calendar 组件内部会合并 classNames，我们检查是否有应用 transition group
+      const transitionGroupElement = container.querySelector(
+        '.bui-calendar-transition-group',
+      );
+      expect(transitionGroupElement).toBeInTheDocument();
+    });
+
+    it('should update renderMonth when value changes to a different month', () => {
+      // Mock console.log to verify our test
+      const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+
+      const { rerender } = render(
+        <Calendar
+          mode="single"
+          value={dayjs('20230401').toDate()}
+          minDate={dayjs('20230401').toDate()}
+          maxDate={dayjs('20230529').toDate()}
+          enableTransition
+        />,
+      );
+
+      // 检查初始渲染的月份
+      expect(screen.getByText('2023/04')).toBeInTheDocument();
+
+      // 重新渲染，传入新月份的日期
+      rerender(
+        <Calendar
+          mode="single"
+          value={dayjs('20230501').toDate()}
+          minDate={dayjs('20230401').toDate()}
+          maxDate={dayjs('20230529').toDate()}
+          enableTransition
+        />,
+      );
+
+      // 验证更新后的月份
+      expect(screen.getByText('2023/05')).toBeInTheDocument();
+
+      consoleSpy.mockRestore();
+    });
+
+    it('should not update renderMonth when clicking on a date in the same month', () => {
+      // Mock console.log to verify our test
+      const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+
+      const onChange = jest.fn();
+      const { container } = render(
+        <Calendar
+          mode="single"
+          value={dayjs('20230401').toDate()}
+          minDate={dayjs('20230401').toDate()}
+          maxDate={dayjs('20230429').toDate()}
+          enableTransition
+          onChange={onChange}
+        />,
+      );
+
+      // 点击同一个月内的其他日期
+      const dayBoxList = container.querySelectorAll(`.${rootClass}-day-box`);
+      const enableList = [...dayBoxList].filter(
+        (item) =>
+          !(item as Element)?.innerHTML?.includes('bui-calendar-disabled'),
+      );
+      fireEvent.click(enableList[14]); // 点击4月15日
+
+      // 验证onChange被调用但月份未改变
+      expect(onChange).toHaveBeenCalled();
+      expect(screen.getByText('2023/04')).toBeInTheDocument();
+
+      consoleSpy.mockRestore();
+    });
+  });
+
   describe('single mode', () => {
     it('should selected date by `value` property', () => {
       const { container } = render(

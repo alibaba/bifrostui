@@ -8,6 +8,20 @@ export const isSame = (start: Date, end: Date) =>
   dayjs(start).isSame(end, 'day');
 
 /**
+ * 判断value、defaultValue是否相同
+ */
+export const isEqualVal = (a: ICalendarValue, b: ICalendarValue) => {
+  if (Array.isArray(a) && Array.isArray(b)) {
+    if (a.length !== b.length) return false;
+    return a.every((item, index) => isSame(item, b[index]));
+  }
+
+  if (typeof a !== typeof b) return false;
+
+  return a instanceof Date && b instanceof Date && isSame(a, b);
+};
+
+/**
  * 计算日期差
  */
 export const getDateDiff = (a: Date, b: Date) => {
