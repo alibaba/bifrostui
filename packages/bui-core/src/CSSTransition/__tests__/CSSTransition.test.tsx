@@ -28,18 +28,11 @@ describe('CSSTransition', () => {
       value: 0,
       writable: true,
     });
-
-    // Use fake timers for async transitions
-    vi.useFakeTimers();
-  });
-
-  afterEach(() => {
-    vi.useRealTimers();
   });
 
   it('should render children', () => {
     const { container } = render(
-      <CSSTransition in timeout={300}>
+      <CSSTransition in timeout={0}>
         <div>Content</div>
       </CSSTransition>,
     );
@@ -49,7 +42,7 @@ describe('CSSTransition', () => {
 
   it('should apply string classNames correctly', () => {
     render(
-      <CSSTransition in timeout={300} classNames="fade">
+      <CSSTransition in timeout={0} classNames="fade">
         <div className="content">Content</div>
       </CSSTransition>,
     );
@@ -69,7 +62,7 @@ describe('CSSTransition', () => {
 
     // Test with in={false} initially to trigger enter transition
     const { rerender } = render(
-      <CSSTransition in={false} timeout={300} classNames={classNames}>
+      <CSSTransition in={false} timeout={0} classNames={classNames}>
         <div className="content">Content</div>
       </CSSTransition>,
     );
@@ -80,7 +73,7 @@ describe('CSSTransition', () => {
 
     // Re-render with in=true to trigger enter transition
     rerender(
-      <CSSTransition in timeout={300} classNames={classNames}>
+      <CSSTransition in timeout={0} classNames={classNames}>
         <div className="content">Content</div>
       </CSSTransition>,
     );
@@ -98,18 +91,13 @@ describe('CSSTransition', () => {
       );
     });
 
-    // Advance timers to allow transition to complete
-    act(() => {
-      vi.advanceTimersByTime(300);
-    });
-
     // Reset mocks for next phase
     mockAddClass.mockClear();
     mockRemoveClass.mockClear();
 
     // Rerender with in=false to trigger exit
     rerender(
-      <CSSTransition in={false} timeout={300} classNames={classNames}>
+      <CSSTransition in={false} timeout={0} classNames={classNames}>
         <div className="content">Content</div>
       </CSSTransition>,
     );
@@ -125,11 +113,6 @@ describe('CSSTransition', () => {
         expect.any(HTMLElement),
         'slide-exit-active',
       );
-    });
-
-    // Advance timers to allow transition to complete
-    act(() => {
-      vi.advanceTimersByTime(300);
     });
 
     await waitFor(() => {
@@ -152,7 +135,7 @@ describe('CSSTransition', () => {
     };
 
     render(
-      <CSSTransition in timeout={300} appear classNames={classNames}>
+      <CSSTransition in timeout={0} appear classNames={classNames}>
         <div className="content">Content</div>
       </CSSTransition>,
     );
@@ -191,7 +174,7 @@ describe('CSSTransition', () => {
     const { rerender } = render(
       <CSSTransition
         in={false}
-        timeout={100}
+        timeout={0}
         classNames={classNames}
         onEnter={onEnter}
         onEntering={onEntering}
@@ -210,7 +193,7 @@ describe('CSSTransition', () => {
     rerender(
       <CSSTransition
         in
-        timeout={100}
+        timeout={0}
         classNames={classNames}
         onEnter={onEnter}
         onEntering={onEntering}
@@ -231,11 +214,6 @@ describe('CSSTransition', () => {
       expect(onEntering).toHaveBeenCalled();
     });
 
-    // Advance timers to allow transition to complete
-    act(() => {
-      vi.advanceTimersByTime(100);
-    });
-
     await waitFor(() => {
       // Check that entered callback was called
       expect(onEntered).toHaveBeenCalled();
@@ -250,7 +228,7 @@ describe('CSSTransition', () => {
     rerender(
       <CSSTransition
         in={false}
-        timeout={100}
+        timeout={0}
         classNames={classNames}
         onExit={onExit}
         onExiting={onExiting}
@@ -260,20 +238,10 @@ describe('CSSTransition', () => {
       </CSSTransition>,
     );
 
-    // Wait for all state updates to complete
-    act(() => {
-      // Flush any pending state updates
-    });
-
     // Check that exit callbacks were called
     expect(onExit).toHaveBeenCalled();
     await waitFor(() => {
       expect(onExiting).toHaveBeenCalled();
-    });
-
-    // Advance timers to allow transition to complete
-    act(() => {
-      vi.advanceTimersByTime(100);
     });
 
     await waitFor(() => {
@@ -286,7 +254,7 @@ describe('CSSTransition', () => {
     const onEnter = vi.fn();
 
     render(
-      <CSSTransition in enter={false} timeout={100} onEnter={onEnter}>
+      <CSSTransition in enter={false} timeout={0} onEnter={onEnter}>
         <div>Content</div>
       </CSSTransition>,
     );
@@ -297,13 +265,13 @@ describe('CSSTransition', () => {
   it('should not call callbacks when exit is false', () => {
     const onExit = vi.fn();
     render(
-      <CSSTransition in timeout={100} onExit={onExit}>
+      <CSSTransition in timeout={0} onExit={onExit}>
         <div>Content</div>
       </CSSTransition>,
     );
 
     render(
-      <CSSTransition in={false} exit={false} timeout={100} onExit={onExit}>
+      <CSSTransition in={false} exit={false} timeout={0} onExit={onExit}>
         <div>Content</div>
       </CSSTransition>,
     );
@@ -313,7 +281,7 @@ describe('CSSTransition', () => {
 
   it('should handle unmountOnExit', () => {
     const { rerender } = render(
-      <CSSTransition in timeout={100} unmountOnExit>
+      <CSSTransition in timeout={0} unmountOnExit>
         <div>Content</div>
       </CSSTransition>,
     );
@@ -321,20 +289,15 @@ describe('CSSTransition', () => {
     expect(screen.getByText('Content')).toBeInTheDocument();
 
     rerender(
-      <CSSTransition in={false} timeout={100} unmountOnExit>
+      <CSSTransition in={false} timeout={0} unmountOnExit>
         <div>Content</div>
       </CSSTransition>,
     );
-
-    // Advance timers to allow transition to complete
-    act(() => {
-      vi.advanceTimersByTime(100);
-    });
   });
 
   it('should handle mountOnEnter', () => {
     render(
-      <CSSTransition in={false} timeout={100} mountOnEnter>
+      <CSSTransition in={false} timeout={0} mountOnEnter>
         <div>Content</div>
       </CSSTransition>,
     );
@@ -351,7 +314,7 @@ describe('CSSTransition', () => {
     };
 
     const { rerender } = render(
-      <CSSTransition in={false} timeout={300} classNames={classNames}>
+      <CSSTransition in={false} timeout={0} classNames={classNames}>
         <div className="content">Content</div>
       </CSSTransition>,
     );
@@ -362,7 +325,7 @@ describe('CSSTransition', () => {
 
     // Re-render with in=true to trigger enter transition
     rerender(
-      <CSSTransition in timeout={300} classNames={classNames}>
+      <CSSTransition in timeout={0} classNames={classNames}>
         <div className="content">Content</div>
       </CSSTransition>,
     );
@@ -380,11 +343,6 @@ describe('CSSTransition', () => {
         expect.any(HTMLElement),
         'slide-enter-active',
       );
-    });
-
-    // Advance timers to allow transition to complete
-    act(() => {
-      vi.advanceTimersByTime(300);
     });
 
     await waitFor(() => {
@@ -415,7 +373,7 @@ describe('CSSTransition', () => {
     const { rerender } = render(
       <CSSTransition
         in
-        timeout={300}
+        timeout={0}
         classNames={classNames}
         unmountOnExit={false}
       >
@@ -431,7 +389,7 @@ describe('CSSTransition', () => {
     rerender(
       <CSSTransition
         in={false}
-        timeout={300}
+        timeout={0}
         classNames={classNames}
         unmountOnExit={false}
       >
@@ -449,11 +407,6 @@ describe('CSSTransition', () => {
         expect.any(HTMLElement),
         'slide-exit-active',
       );
-    });
-
-    // Advance timers to allow transition to complete
-    act(() => {
-      vi.advanceTimersByTime(300);
     });
 
     await waitFor(() => {

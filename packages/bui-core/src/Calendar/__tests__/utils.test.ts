@@ -3,8 +3,8 @@ import {
   isSame,
   isEqualVal,
   getDateDiff,
-  isRange,
-  generateRangeDate,
+  isDateInRange,
+  generateDateRange,
   formatDate,
 } from '../utils';
 import { ICalendarMode } from '../Calendar.types';
@@ -113,37 +113,37 @@ describe('Calendar utils', () => {
     });
   });
 
-  describe('isRange', () => {
+  describe('isDateInRange', () => {
     const startDate = dayjs('2023-04-01').toDate();
     const endDate = dayjs('2023-04-30').toDate();
 
     it('should return true for date within range', () => {
       const date = dayjs('2023-04-15').toDate();
-      expect(isRange(date, startDate, endDate)).toBe(true);
+      expect(isDateInRange(date, startDate, endDate)).toBe(true);
     });
 
     it('should return true for start date', () => {
       const date = dayjs('2023-04-01').toDate();
-      expect(isRange(date, startDate, endDate)).toBe(true);
+      expect(isDateInRange(date, startDate, endDate)).toBe(true);
     });
 
     it('should return true for end date', () => {
       const date = dayjs('2023-04-30').toDate();
-      expect(isRange(date, startDate, endDate)).toBe(true);
+      expect(isDateInRange(date, startDate, endDate)).toBe(true);
     });
 
     it('should return false for date before start', () => {
       const date = dayjs('2023-03-31').toDate();
-      expect(isRange(date, startDate, endDate)).toBe(false);
+      expect(isDateInRange(date, startDate, endDate)).toBe(false);
     });
 
     it('should return false for date after end', () => {
       const date = dayjs('2023-05-01').toDate();
-      expect(isRange(date, startDate, endDate)).toBe(false);
+      expect(isDateInRange(date, startDate, endDate)).toBe(false);
     });
   });
 
-  describe('generateRangeDate', () => {
+  describe('generateDateRange', () => {
     it('should return first and last dates from array', () => {
       const dates = [
         dayjs('2023-04-15').toDate(),
@@ -151,14 +151,14 @@ describe('Calendar utils', () => {
         dayjs('2023-04-17').toDate(),
         dayjs('2023-04-18').toDate(),
       ];
-      const result = generateRangeDate(dates);
+      const result = generateDateRange(dates);
       expect(result.start).toBe(dates[0]);
       expect(result.end).toBe(dates[3]);
     });
 
     it('should return same date for single element array', () => {
       const dates = [dayjs('2023-04-15').toDate()];
-      const result = generateRangeDate(dates);
+      const result = generateDateRange(dates);
       expect(result.start).toBe(dates[0]);
       expect(result.end).toBe(dates[0]);
     });

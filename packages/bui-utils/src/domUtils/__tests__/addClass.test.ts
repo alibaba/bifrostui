@@ -11,8 +11,8 @@ describe('addClass', () => {
     // Mock classList support
     Object.defineProperty(element, 'classList', {
       value: {
-        add: jest.fn(),
-        contains: jest.fn().mockReturnValue(false),
+        add: vi.fn(),
+        contains: vi.fn().mockReturnValue(false),
       },
       writable: true,
     });
@@ -54,8 +54,8 @@ describe('addClass', () => {
     // Mock classList support for SVG
     Object.defineProperty(svgElement, 'classList', {
       value: {
-        add: jest.fn(),
-        contains: jest.fn().mockReturnValue(false),
+        add: vi.fn(),
+        contains: vi.fn().mockReturnValue(false),
       },
       writable: true,
     });
