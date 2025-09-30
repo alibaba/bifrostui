@@ -12,7 +12,7 @@ describe('removeClass', () => {
     element.className = 'class1 class2 class3';
     Object.defineProperty(element, 'classList', {
       value: {
-        remove: jest.fn(),
+        remove: vi.fn(),
       },
       writable: true,
     });
@@ -91,7 +91,7 @@ describe('removeClass', () => {
     svgElement.setAttribute('class', 'class1 class2 class3');
     Object.defineProperty(svgElement, 'classList', {
       value: {
-        remove: jest.fn(),
+        remove: vi.fn(),
       },
       writable: true,
     });

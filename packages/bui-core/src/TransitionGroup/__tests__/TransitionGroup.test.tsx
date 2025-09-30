@@ -166,7 +166,7 @@ describe('TransitionGroup', () => {
               <CSSTransition
                 key={item.id}
                 unmountOnExit
-                timeout={300}
+                timeout={0}
                 classNames="item"
                 onExited={onExited}
               >
