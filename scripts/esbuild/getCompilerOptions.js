@@ -11,7 +11,7 @@ function getCompilerOptions(opts) {
   compilerOptions.emitDeclarationOnly = true;
   compilerOptions.declarationDir =
     compilerOptions.baseUrl + '/' + opts.esbuildOptions.outdir;
-
+  compilerOptions.rootDir = resolve(compilerOptions.baseUrl, 'src');
   if (opts.willBundleDeclarations) {
     compilerOptions.declarationDir = resolve(
       compilerOptions.declarationDir,
