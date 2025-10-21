@@ -47,3 +47,4 @@ project.private.config.json
 .tgz
 .env
 CLAUDE.md
+.cursor
