@@ -48,3 +48,4 @@ project.private.config.json
 .env
 CLAUDE.md
 .cursor
+.qoder
