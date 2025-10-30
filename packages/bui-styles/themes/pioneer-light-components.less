@@ -1,7 +1,7 @@
 // 无法用css variables实现的先锋版高亮主题色
 @import '../mixins/variables.less';
 
-@{theme-selector-pioneer-light} {
+.pioneer-light-components() {
   .bui-btn {
     &.bui-btn-contained {
       &.bui-btn-primary {
@@ -48,4 +48,8 @@
       );
     }
   }
+}
+
+@{theme-selector-pioneer-light} {
+  .pioneer-light-components();
 }
