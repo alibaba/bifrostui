@@ -45,7 +45,7 @@ export const pioneerLight = {
     /** 智能蓝 */
     '--bui-color-aiblue': '#5cfffa',
     '--bui-color-aiblue-light': '#f0fffc',
-    '--bui-color-aiblue-dark': '#1d858c',
+    '--bui-color-aiblue-dark': '#00898e',
 
     /** 主题 */
     '--bui-color-primary': 'var(--bui-color-orange)',

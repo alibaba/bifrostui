@@ -36,7 +36,7 @@ export const dmLight = {
     /** 智能蓝 */
     '--bui-color-aiblue': '#5cfffa',
     '--bui-color-aiblue-light': '#f0fffc',
-    '--bui-color-aiblue-dark': '#1d858c',
+    '--bui-color-aiblue-dark': '#00898e',
 
     /** 主题色渐变 */
     '--bui-color-primary-start': 'var(--bui-color-red)',
