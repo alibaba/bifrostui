@@ -52,6 +52,11 @@ export const pioneerLight = {
     '--bui-color-primary-light': 'var(--bui-color-orange-light)',
     '--bui-color-primary-dark': 'var(--bui-color-orange-dark)',
 
+    /** 警告 */
+    '--bui-color-warning': 'var(--bui-color-yellow)',
+    '--bui-color-warning-light': 'var(--bui-color-yellow-light)',
+    '--bui-color-warning-dark': 'var(--bui-color-yellow-dark)',
+
     /** 语义化字号 */
     '--bui-title-size-4': 'var(--bui-font-size-md1)',
 
@@ -62,7 +67,7 @@ export const pioneerLight = {
     '--bui-color-border-primary': 'rgba(255, 80, 0, 0.4)',
     '--bui-color-border-info': 'rgba(34, 154, 240, 0.4)',
     '--bui-color-border-success': 'rgba(64, 191, 0, 0.4)',
-    '--bui-color-border-warning': 'rgba(255, 80, 0, 0.4)',
+    '--bui-color-border-warning': 'rgba(255, 166, 8, 0.4)',
     '--bui-color-border-danger': 'rgba(255, 71, 26, 0.4)',
 
     /** 主题色渐变 */
@@ -85,14 +90,16 @@ export const pioneerLight = {
     '--bui-shape-radius-default': 'var(--bui-radius-4)',
 
     // Button
+    '--bui-btn-small-height': '21px',
     '--bui-btn-full-height': '45px',
-    '--bui-btn-large-height': '30px',
-    '--bui-btn-full-font-size': '18px',
+    '--bui-btn-large-height': '45px',
+    '--bui-btn-full-font-size': 'var(--bui-title-size-3)',
+    '--bui-btn-large-font-size': 'var(--bui-title-size-3)',
     '--bui-btn-full-font-family': 'var(--bui-font-family-accent)',
-    '--bui-btn-small-border-radius': '6px',
-    '--bui-btn-border-radius': '6px',
-    '--bui-btn-large-border-radius': '7px',
-    '--bui-btn-full-border-radius': '14px',
+    '--bui-btn-small-border-radius': 'var(--bui-radius-3)',
+    '--bui-btn-border-radius': 'var(--bui-radius-4)',
+    '--bui-btn-large-border-radius': 'var(--bui-radius-5)',
+    '--bui-btn-full-border-radius': 'var(--bui-radius-5)',
 
     // Card
     '--bui-card-header-title-font-size': 'var(--bui-title-size-3)',
@@ -103,5 +110,7 @@ export const pioneerLight = {
     '--bui-tabs-indicator-height': '4PX',
     '--bui-tabs-indicator-border-radius': '2px',
     '--bui-tabs-indicator-box-shadow': '0 2px 4px 0 rgba(255, 98, 0, 0.2)',
+    '--bui-tabs-indicator-bg':
+      'linear-gradient(90deg,var(--bui-color-primary-start) 0%,var(--bui-color-primary-end) 100%)',
   },
 };

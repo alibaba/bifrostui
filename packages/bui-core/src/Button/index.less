@@ -20,8 +20,8 @@
   --bui-btn-small-padding: 0 11px;
   --bui-btn-padding: 0 14px;
   --bui-btn-large-padding: 0 14px;
+  --bui-btn-large-font-size: var(--bui-text-size-2);
   --bui-btn-full-font-size: var(--bui-title-size-4);
-  --bui-btn-full-font-family: var(--bui-font-family);
 }
 
 .btn-icon() {
@@ -126,14 +126,13 @@
   }
 
   &-large {
-    font-size: var(--bui-text-size-2);
+    font-size: var(--bui-btn-large-font-size);
     padding: var(--bui-btn-large-padding);
     height: var(--bui-btn-large-height);
     border-radius: var(--bui-btn-large-border-radius);
   }
 
   &-full {
-    font-family: var(--bui-btn-full-font-family);
     font-size: var(--bui-btn-full-font-size);
     width: 100%;
     height: var(--bui-btn-full-height);

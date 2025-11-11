@@ -38,9 +38,6 @@ const generateTheme = () => {
   });
 
   const indexPath = path.join(__dirname, '../themes/index.less');
-  // 添加 pioneer-light-components.less 特殊逻辑
-  entryContent += "@import './pioneer-light-components.less';";
-  fse.outputFileSync(indexPath, `${commemt}${entryContent}`, 'utf8');
 };
 
 generateTheme();
