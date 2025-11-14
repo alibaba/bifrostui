@@ -71,7 +71,7 @@ export const pioneerLight = {
     '--bui-color-border-danger': 'rgba(255, 71, 26, 0.4)',
 
     /** 主题色渐变 */
-    '--bui-color-primary-start': '#ffb300',
+    '--bui-color-primary-start': '#ff8500',
     '--bui-color-primary-end': 'var(--bui-color-primary)',
     '--bui-color-info-start': '#5bc8ff',
     '--bui-color-info-end': 'var(--bui-color-info)',
