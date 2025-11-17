@@ -3,7 +3,7 @@
  * @description A component that implements fade in/out animation effects for elements
  * @component Fade
  */
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import {
   createTransitions,
   duration,
@@ -86,16 +86,20 @@ const Fade = React.forwardRef<HTMLElement, FadeProps>((props, ref) => {
   const transitions = createTransitions();
   const animationName = inProp ? 'bui-fade-in' : 'bui-fade-out';
   const animationDurationAndDelay = getAnimationDurationAndDelay();
-  const animation = transitions.create(
-    animationName,
-    getTransitionProps(
-      {
-        ...animationDurationAndDelay,
-        style,
-        easing: easingProp,
-      },
-      { mode: inProp ? 'enter' : 'exit' },
-    ),
+  const animation = useMemo(
+    () =>
+      transitions.create(
+        animationName,
+        getTransitionProps(
+          {
+            ...animationDurationAndDelay,
+            style,
+            easing: easingProp,
+          },
+          { mode: inProp ? 'enter' : 'exit' },
+        ),
+      ),
+    [inProp, animationName, animationDurationAndDelay, easingProp, style],
   );
 
   /**
@@ -128,7 +132,7 @@ const Fade = React.forwardRef<HTMLElement, FadeProps>((props, ref) => {
     } else {
       onExit?.(elementRef.current);
     }
-  }, [inProp, isMounted, shouldExecuteAnimation, onEnter, onExit]);
+  }, [inProp, isMounted]);
 
   const handleAnimationStart = () => {
     if (!shouldExecuteAnimation) return;

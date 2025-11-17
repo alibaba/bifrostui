@@ -582,4 +582,365 @@ describe('Fade.miniapp', () => {
       expect(element.style.animation).toMatch(/bui-fade-in/);
     });
   });
+
+  describe('Parent re-render should not trigger animation', () => {
+    it('should NOT trigger animation callbacks when in=false and parent re-renders multiple times', async () => {
+      const onEnter = vi.fn();
+      const onEntering = vi.fn();
+      const onEntered = vi.fn();
+      const onExit = vi.fn();
+      const onExiting = vi.fn();
+      const onExited = vi.fn();
+
+      function TestComponent() {
+        const [counter, setCounter] = React.useState(0);
+
+        React.useEffect(() => {
+          // Simulate parent component re-rendering multiple times
+          // This should NOT trigger Fade animation since in prop stays false
+          setTimeout(() => setCounter(1), 100);
+          setTimeout(() => setCounter(2), 200);
+          setTimeout(() => setCounter(3), 300);
+          setTimeout(() => setCounter(4), 400);
+        }, []);
+
+        return (
+          <FadeMiniapp
+            in={false}
+            timeout={{ enter: 2000, exit: 5000 }}
+            onEnter={onEnter}
+            onEntering={onEntering}
+            onEntered={onEntered}
+            onExit={onExit}
+            onExiting={onExiting}
+            onExited={onExited}
+          >
+            <div data-testid="fade-element">Counter: {counter}</div>
+          </FadeMiniapp>
+        );
+      }
+
+      render(<TestComponent />);
+
+      // Wait for all parent re-renders to complete
+      await waitFor(
+        () => {
+          // Wait for timeouts to complete
+        },
+        { timeout: 600 },
+      );
+
+      // CRITICAL: onEnter callbacks should NOT be called
+      // because in prop never changed (always false)
+      expect(onEnter).not.toHaveBeenCalled();
+      expect(onEntering).not.toHaveBeenCalled();
+      expect(onEntered).not.toHaveBeenCalled();
+
+      // onExit might be called on initial mount, but should not be called
+      // multiple times due to parent re-renders
+      expect(onExit.mock.calls.length).toBeLessThanOrEqual(1);
+      expect(onExiting.mock.calls.length).toBeLessThanOrEqual(1);
+      expect(onExited.mock.calls.length).toBeLessThanOrEqual(1);
+    });
+
+    it('should NOT trigger animation callbacks when in=true and parent re-renders multiple times', async () => {
+      const onEnter = vi.fn();
+      const onEntering = vi.fn();
+      const onEntered = vi.fn();
+      const onExit = vi.fn();
+      const onExiting = vi.fn();
+      const onExited = vi.fn();
+
+      function TestComponent() {
+        const [counter, setCounter] = React.useState(0);
+
+        React.useEffect(() => {
+          setTimeout(() => setCounter(1), 100);
+          setTimeout(() => setCounter(2), 200);
+          setTimeout(() => setCounter(3), 300);
+          setTimeout(() => setCounter(4), 400);
+        }, []);
+
+        return (
+          <FadeMiniapp
+            in
+            appear={false}
+            timeout={{ enter: 2000, exit: 5000 }}
+            onEnter={onEnter}
+            onEntering={onEntering}
+            onEntered={onEntered}
+            onExit={onExit}
+            onExiting={onExiting}
+            onExited={onExited}
+          >
+            <div data-testid="fade-element">Counter: {counter}</div>
+          </FadeMiniapp>
+        );
+      }
+
+      render(<TestComponent />);
+
+      await waitFor(
+        () => {
+          // Wait for timeouts to complete
+        },
+        { timeout: 600 },
+      );
+
+      // Since in=true and appear=false, no animation should execute
+      // and callbacks should not be triggered by parent re-renders
+      expect(onEnter).not.toHaveBeenCalled();
+      expect(onEntering).not.toHaveBeenCalled();
+      expect(onEntered).not.toHaveBeenCalled();
+      expect(onExit).not.toHaveBeenCalled();
+      expect(onExiting).not.toHaveBeenCalled();
+      expect(onExited).not.toHaveBeenCalled();
+    });
+
+    it('should only trigger animation callbacks when in prop actually changes', async () => {
+      const onEnter = vi.fn();
+      const onExit = vi.fn();
+
+      function TestComponent() {
+        const [counter, setCounter] = React.useState(0);
+        const [inProp, setInProp] = React.useState(false);
+
+        React.useEffect(() => {
+          // Parent re-renders before in prop changes
+          setTimeout(() => setCounter(1), 50);
+          setTimeout(() => setCounter(2), 100);
+
+          // Change in prop
+          setTimeout(() => setInProp(true), 150);
+
+          // More parent re-renders after in prop changes
+          setTimeout(() => setCounter(3), 200);
+          setTimeout(() => setCounter(4), 250);
+
+          // Change in prop again
+          setTimeout(() => setInProp(false), 300);
+
+          // Final parent re-renders
+          setTimeout(() => setCounter(5), 350);
+        }, []);
+
+        return (
+          <FadeMiniapp
+            in={inProp}
+            timeout={1000}
+            onEnter={onEnter}
+            onExit={onExit}
+          >
+            <div data-testid="fade-element">
+              Counter: {counter}, In: {String(inProp)}
+            </div>
+          </FadeMiniapp>
+        );
+      }
+
+      render(<TestComponent />);
+
+      // Wait for first in prop change (false -> true)
+      await waitFor(
+        () => {
+          expect(onEnter).toHaveBeenCalled();
+        },
+        { timeout: 250 },
+      );
+
+      // Wait for second in prop change (true -> false)
+      await waitFor(
+        () => {
+          expect(onExit).toHaveBeenCalled();
+        },
+        { timeout: 400 },
+      );
+
+      // onEnter should be called exactly once (when in changes from false to true)
+      expect(onEnter).toHaveBeenCalledTimes(1);
+
+      // onExit should be called exactly once (when in changes from true to false)
+      expect(onExit).toHaveBeenCalledTimes(1);
+
+      // This confirms that parent re-renders (setCounter calls) did not trigger
+      // additional animation callbacks
+    });
+
+    it('should handle the documentation bug scenario - in=false with parent re-renders', async () => {
+      const onExit = vi.fn();
+      const onExiting = vi.fn();
+      const onExited = vi.fn();
+
+      function TestComponent() {
+        const [open, setOpen] = React.useState(true);
+
+        React.useEffect(() => {
+          setTimeout(() => {
+            setOpen(false);
+            setTimeout(() => {
+              setOpen(true);
+            }, 100);
+          }, 100);
+        }, []);
+
+        return (
+          <FadeMiniapp
+            in={false} // Important: in is hardcoded to false
+            timeout={{ enter: 10000, exit: 10000 }}
+            onExit={onExit}
+            onExiting={onExiting}
+            onExited={onExited}
+          >
+            <div data-testid="fade-element">Open: {String(open)}</div>
+          </FadeMiniapp>
+        );
+      }
+
+      const { getByTestId } = render(<TestComponent />);
+
+      // Wait for all state changes
+      await waitFor(
+        () => {
+          const element = getByTestId('fade-element');
+          expect(element).toHaveTextContent('Open: true');
+        },
+        { timeout: 400 },
+      );
+
+      // CRITICAL: Even though parent re-rendered twice (setOpen calls),
+      // the animation callbacks should NOT be triggered multiple times
+      // With the fix, callbacks are called minimally
+      expect(onExit.mock.calls.length).toBeLessThanOrEqual(1);
+      expect(onExiting.mock.calls.length).toBeLessThanOrEqual(1);
+      expect(onExited.mock.calls.length).toBeLessThanOrEqual(1);
+    });
+
+    it('should correctly handle interactive parent re-renders with button clicks', async () => {
+      const onEnter = vi.fn();
+      const onExit = vi.fn();
+
+      function TestComponent() {
+        const [count, setCount] = React.useState(0);
+        const [inProp, setInProp] = React.useState(false);
+
+        return (
+          <>
+            <button
+              type="button"
+              data-testid="increment-button"
+              onClick={() => setCount((c) => c + 1)}
+            >
+              Count: {count}
+            </button>
+            <button
+              type="button"
+              data-testid="toggle-button"
+              onClick={() => setInProp((i) => !i)}
+            >
+              Toggle
+            </button>
+            <FadeMiniapp
+              in={inProp}
+              timeout={1000}
+              onEnter={onEnter}
+              onExit={onExit}
+            >
+              <div data-testid="fade-element">
+                Count: {count}, In: {String(inProp)}
+              </div>
+            </FadeMiniapp>
+          </>
+        );
+      }
+
+      const { getByTestId } = render(<TestComponent />);
+
+      const incrementButton = getByTestId('increment-button');
+      const toggleButton = getByTestId('toggle-button');
+
+      // Trigger multiple parent re-renders while in=false
+      incrementButton.click();
+      incrementButton.click();
+      incrementButton.click();
+
+      // No callbacks should be triggered
+      expect(onEnter).not.toHaveBeenCalled();
+      expect(onExit.mock.calls.length).toBeLessThanOrEqual(1);
+
+      // Now toggle in to true
+      toggleButton.click();
+
+      await waitFor(() => {
+        expect(onEnter).toHaveBeenCalled();
+      });
+
+      // onEnter should be called exactly once
+      expect(onEnter).toHaveBeenCalledTimes(1);
+
+      // Reset mocks
+      onEnter.mockClear();
+      onExit.mockClear();
+
+      // More parent re-renders while in=true
+      incrementButton.click();
+      incrementButton.click();
+
+      // No new callbacks
+      expect(onEnter).not.toHaveBeenCalled();
+      expect(onExit).not.toHaveBeenCalled();
+
+      // Toggle in back to false
+      toggleButton.click();
+
+      await waitFor(() => {
+        expect(onExit).toHaveBeenCalled();
+      });
+
+      // onExit should be called exactly once
+      expect(onExit).toHaveBeenCalledTimes(1);
+    });
+
+    it('should prevent animation duration changes from triggering unwanted animations', async () => {
+      const onEntering = vi.fn();
+      const onExiting = vi.fn();
+
+      function TestComponent() {
+        const [trigger, setTrigger] = React.useState(false);
+
+        React.useEffect(() => {
+          // This will cause isFirstMount.current to change
+          // and potentially change shouldExecuteAnimation
+          setTimeout(() => {
+            setTrigger(true);
+          }, 150);
+        }, []);
+
+        return (
+          <FadeMiniapp
+            in={false}
+            timeout={5000}
+            onEntering={onEntering}
+            onExiting={onExiting}
+          >
+            <div data-testid="fade-element">Trigger: {String(trigger)}</div>
+          </FadeMiniapp>
+        );
+      }
+
+      render(<TestComponent />);
+
+      // Wait for the parent re-render
+      await waitFor(
+        () => {
+          // Wait for timeout to complete
+        },
+        { timeout: 300 },
+      );
+
+      // The fix ensures that even when isFirstMount changes,
+      // parent re-renders don't trigger animation callbacks
+      expect(onEntering).not.toHaveBeenCalled();
+      expect(onExiting.mock.calls.length).toBeLessThanOrEqual(1);
+    });
+  });
 });
