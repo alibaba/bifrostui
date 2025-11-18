@@ -99,7 +99,7 @@ const Fade = React.forwardRef<HTMLElement, FadeProps>((props, ref) => {
           { mode: inProp ? 'enter' : 'exit' },
         ),
       ),
-    [inProp, animationName, animationDurationAndDelay, easingProp, style],
+    [inProp],
   );
 
   /**
