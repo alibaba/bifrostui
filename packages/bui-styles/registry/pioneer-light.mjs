@@ -112,5 +112,9 @@ export const pioneerLight = {
     '--bui-tabs-indicator-box-shadow': '0 2px 4px 0 rgba(255, 98, 0, 0.2)',
     '--bui-tabs-indicator-bg':
       'linear-gradient(90deg,var(--bui-color-primary-start) 0%,var(--bui-color-primary-end) 100%)',
+
+    // Calendar
+    '--bui-calendar-middle-bg-color': 'var(--bui-color-primary-light)',
+    '--bui-calendar-range-both-ends-bg-color': '#ffb999',
   },
 };
