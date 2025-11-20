@@ -107,8 +107,9 @@ export const pioneerLight = {
     // Tabs
     '--bui-tab-font-size': 'var(--bui-title-size-4)',
     '--bui-tab-color': 'var(--bui-color-fg-muted)',
-    '--bui-tabs-indicator-height': '4PX',
+    '--bui-tabs-indicator-height': '6PX',
     '--bui-tabs-indicator-border-radius': '2px',
+    '--bui-tabs-indicator-width': '27px',
     '--bui-tabs-indicator-box-shadow': '0 2px 4px 0 rgba(255, 98, 0, 0.2)',
     '--bui-tabs-indicator-bg':
       'linear-gradient(90deg,var(--bui-color-primary-start) 0%,var(--bui-color-primary-end) 100%)',
