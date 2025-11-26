@@ -87,8 +87,8 @@
       "--bui-btn-small-padding": "0 11px",
       "--bui-btn-padding": "0 14px",
       "--bui-btn-large-padding": "0 14px",
-      "--bui-btn-full-font-size": "var(--bui-title-size-4)",
-      "--bui-btn-full-font-family": "var(--bui-font-family)"
+      "--bui-btn-large-font-size": "var(--bui-text-size-2)",
+      "--bui-btn-full-font-size": "var(--bui-title-size-4)"
     }
   },
   "CSSTransition": {},
