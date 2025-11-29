@@ -5,6 +5,10 @@
   "private": true,
   "license": "MIT",
   "homepage": "https://bui.taopiaopiao.com",
+  "engines": {
+    "node": ">=18.0.0 <23.0.0",
+    "pnpm": ">=9.0.0"
+  },
   "scripts": {
     "v:online": "npx lerna version --force-publish --message 'Publish'",
     "v:alpha": "npx lerna version prerelease --preid=alpha --force-publish --message 'Publish'",
