@@ -12,7 +12,7 @@ City Selection
 The City Selector displays the current city, the location city, popular cities, and all cities. It supports right-side alphabetical navigation.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { CitySelector } from '@bifrostui/react';
 
 const hotCities = [
@@ -124,7 +124,7 @@ export default () => {
 Users can control the display of the right-side alphabetical navigation by setting disableIndex, which defaults to false and thus shows the alphabetical navigation.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { CitySelector } from '@bifrostui/react';
 
 const hotCities = [
@@ -239,7 +239,7 @@ export default () => {
 Users can control the display of the header by setting the title.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { CitySelector } from '@bifrostui/react';
 
 const hotCities = [

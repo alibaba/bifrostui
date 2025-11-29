@@ -12,7 +12,7 @@ Provides a placeholder graphic combination at locations that require loading con
 Set width and height using `width` and `height`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Skeleton, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -34,7 +34,7 @@ The component supports 4 variants `variant`:
 `circular`, `rectangular`, `rounded`: Size can be adjusted based on `width` and `height`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Skeleton, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -54,7 +54,7 @@ export default () => {
 The default is `wave`. You can set different animations or disable them altogether based on `animation`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Skeleton, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -73,7 +73,7 @@ export default () => {
 Different graphic combinations can be used.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Skeleton, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -101,7 +101,7 @@ export default () => {
 Size can be set based on `style`'s `height` and `width` properties.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Skeleton, Stack } from '@bifrostui/react';
 
 export default () => {

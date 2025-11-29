@@ -1,5 +1,5 @@
 import { ThemeProvider, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 /**
  * 响应式：不同屏幕尺寸下自定义Tokens

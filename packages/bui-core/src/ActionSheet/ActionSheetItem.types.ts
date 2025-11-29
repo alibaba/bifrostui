@@ -1,5 +1,5 @@
 import { OverrideProps, ThemeColor } from '@bifrostui/types';
-import React from 'react';
+import * as React from 'react';
 
 export type ActionSheetItemProps<
   D extends React.ElementType = 'div',

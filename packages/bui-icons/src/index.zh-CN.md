@@ -30,7 +30,7 @@ import { SettingsOutlinedIcon } from '@bifrostui/icons';
 通过`size`属性设置图标大小。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack } from '@bifrostui/react';
 import { SettingsOutlinedIcon } from '@bifrostui/icons';
 
@@ -50,7 +50,7 @@ export default () => {
 通过`color`属性设置图标色彩。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack } from '@bifrostui/react';
 import { SettingsOutlinedIcon } from '@bifrostui/icons';
 
@@ -75,7 +75,7 @@ export default () => {
 如果预定义的图标大小、色彩不能满足需要的话，可以通过通过`htmlColor`属性定制颜色, 或者`style`属性自定义。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack } from '@bifrostui/react';
 import { SettingsOutlinedIcon } from '@bifrostui/icons';
 

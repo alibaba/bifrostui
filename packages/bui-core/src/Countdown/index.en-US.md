@@ -13,7 +13,7 @@ Use `remainingTime` to control the countdown duration, or choose `endTimestamp` 
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -30,7 +30,7 @@ Use `endTimestamp` to specify the countdown end time, or choose `remainingTime` 
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -47,7 +47,7 @@ Set the server timestamp with `serverTimestamp`, which can be used with `endTime
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -68,7 +68,7 @@ The countdown format can be set with `format`, with a default value of `HH:mm:ss
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -88,7 +88,7 @@ The `onFinish` event is triggered when the countdown ends.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const finish = () => {
@@ -109,7 +109,7 @@ The `onChange` event is triggered during countdown changes.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const change = (data) => {
@@ -130,7 +130,7 @@ Customize the countdown component content with `renderContent`.
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -157,7 +157,7 @@ The countdown component includes comprehensive accessibility support, ensuring a
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

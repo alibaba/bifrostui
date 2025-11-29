@@ -1,6 +1,6 @@
 import { ArrowForwardIcon } from '@bifrostui/icons';
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import ListContext from './ListContext';
 import { ListItemProps } from './ListItem.types';
 import ListItemFooter from './ListItemFooter';

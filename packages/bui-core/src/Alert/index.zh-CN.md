@@ -13,7 +13,7 @@ Alert 组件可通过使用 `children` 设置 Alert 组件内容。
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -32,7 +32,7 @@ export default () => {
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
 import { HelpCircleOutlinedIcon } from '@bifrostui/icons';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -58,7 +58,7 @@ export default () => {
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
 import { HelpCircleOutlinedIcon } from '@bifrostui/icons';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -85,7 +85,7 @@ color 属性默认值：`primary`。
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -114,7 +114,7 @@ Alert 组件支持两种模式：填充`standard`、轮廓`outlined`。
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -146,7 +146,7 @@ export default () => {
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

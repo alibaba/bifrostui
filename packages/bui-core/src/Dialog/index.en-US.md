@@ -175,7 +175,7 @@ Demonstrates the basic invocation method of static methods, suitable for simple 
 
 ```tsx
 import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const showConfirm = async () => {
@@ -216,7 +216,7 @@ Shows how Dialog handles asynchronous operations; using functional invocation me
 
 ```tsx
 import { Button, Dialog, Toast, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 // Simulate asynchronous API call
 const mockApiCall = (delay = 2000) => {
@@ -296,7 +296,7 @@ Basic way to use the useDialog Hook, create contextHolder supporting context rea
 
 ```tsx
 import { Stack, Button, Dialog, Toast, ThemeProvider } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const [dialog, contextHolder] = Dialog.useDialog();
@@ -412,7 +412,7 @@ Demonstrates how to customize Dialog's appearance via CSS variables, achieving p
 
 ```tsx
 import { Stack, Button, Dialog, ThemeProvider } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const [dialog, contextHolder] = Dialog.useDialog();

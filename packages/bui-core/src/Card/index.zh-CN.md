@@ -17,7 +17,7 @@ name: Card 卡片
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -38,7 +38,7 @@ export default () => {
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -57,7 +57,7 @@ export default () => {
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -82,7 +82,7 @@ export default () => {
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -107,7 +107,7 @@ export default () => {
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -135,7 +135,7 @@ export default () => {
 
 ```tsx
 import { Card, CardContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -167,7 +167,7 @@ import {
   CardHeader,
   Stack,
 } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -203,7 +203,7 @@ import {
   CardHeader,
   Stack,
 } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -232,7 +232,7 @@ export default () => {
 
 ```tsx
 import { Card, CardContent, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -283,7 +283,7 @@ export default () => {
 
 ```tsx
 import { Card, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

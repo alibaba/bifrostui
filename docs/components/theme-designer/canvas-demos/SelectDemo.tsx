@@ -1,5 +1,5 @@
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {

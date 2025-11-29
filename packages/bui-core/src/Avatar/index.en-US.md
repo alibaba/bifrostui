@@ -14,7 +14,7 @@ The Avatar component creates an image avatar via the `src` attribute to pass the
 
 ```tsx
 import { Avatar, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -31,7 +31,7 @@ In addition to image avatars, you can create simple text avatars using `children
 
 ```tsx
 import { Avatar, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -48,7 +48,7 @@ export default () => {
 You can also create custom avatars like icons using `children`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Avatar, Stack } from '@bifrostui/react';
 import { VipFilledIcon } from '@bifrostui/icons';
 
@@ -69,7 +69,7 @@ The Avatar component provides two avatar modes: circular `rounded`, and square `
 
 ```tsx
 import { Avatar, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -90,7 +90,7 @@ export default () => {
 
 ```tsx
 import { Avatar, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -122,7 +122,7 @@ In addition to providing single avatars, we also provide avatar groups using `Av
 
 ```tsx
 import { Avatar, AvatarGroup, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -144,7 +144,7 @@ The AvatarGroup component provides two avatar modes: circular `rounded`, and squ
 
 ```tsx
 import { Avatar, AvatarGroup, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -172,7 +172,7 @@ The AvatarGroup component provides the `maxCount` attribute to limit the number 
 
 ```tsx
 import { Avatar, AvatarGroup, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -194,7 +194,7 @@ The AvatarGroup component provides the `orientation` attribute to control the di
 
 ```tsx
 import { Avatar, AvatarGroup, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -222,7 +222,7 @@ The AvatarGroup component provides the `spacing` attribute to control the spacin
 
 ```tsx
 import { Avatar, AvatarGroup, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

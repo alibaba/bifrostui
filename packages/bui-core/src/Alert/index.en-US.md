@@ -13,7 +13,7 @@ The content of the Alert component can be set using the `children` property.
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -31,7 +31,7 @@ The `icon` attribute allows you to add an icon to the head of the Alert componen
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
 import { HelpCircleOutlinedIcon } from '@bifrostui/icons';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -59,7 +59,7 @@ The `marquee` attribute allows the content of the Alert component to scroll.
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
 import { HelpCircleOutlinedIcon } from '@bifrostui/icons';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -89,7 +89,7 @@ The Alert component provides 5 color themes: `warning`, `success`, `error`, `inf
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -124,7 +124,7 @@ The Alert component supports two modes: filled `standard`, and outlined `outline
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -158,7 +158,7 @@ export default () => {
 
 ```tsx
 import { Alert, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

@@ -13,7 +13,7 @@ Multiple panels can be expanded simultaneously; in this example, the first panel
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const text = `
@@ -53,7 +53,7 @@ Use CollapseItem instead of items for rendering.
 
 ```tsx
 import { CollapsePanel, CollapsePanelItem } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const text = `
@@ -84,7 +84,7 @@ In accordion mode, only one panel can be active at a time.
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const text = `
@@ -219,7 +219,7 @@ Use arrowIcon to set custom icons. If it is a ReactNode, a rotation animation ef
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
 import { DoubleArrowDownTwoToneIcon } from '@bifrostui/icons';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const text = `
@@ -264,7 +264,7 @@ import {
   DoubleArrowDownTwoToneIcon,
   DoubleArrowUpTwoToneIcon,
 } from '@bifrostui/icons';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const text = `

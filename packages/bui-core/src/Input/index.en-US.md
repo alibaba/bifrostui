@@ -131,7 +131,7 @@ Disable the input using `disabled`.
 
 ```tsx
 import { Input } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return <Input disabled placeholder="Please enter content" />;

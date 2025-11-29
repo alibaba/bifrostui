@@ -76,8 +76,8 @@ describe('Tabs', () => {
     }
     const { container } = render(<Component />);
 
-    const tabLine = container.querySelector(`.${rootClass.tabs}-indicator`);
-    expect(tabLine).toHaveStyle({
+    const indicator = container.querySelector(`.${rootClass.tabs}-indicator`);
+    expect(indicator).toHaveStyle({
       transform: 'translate(0px, 0px)',
       transition: 'transform 0.3s ease-in-out',
     });
@@ -136,11 +136,11 @@ describe('Tabs', () => {
       }
       const { container, getByTestId } = render(<Component />);
 
-      const tabLine = container.querySelector(`.${rootClass.tabs}-indicator`);
+      const indicator = container.querySelector(`.${rootClass.tabs}-indicator`);
       const activePanel = container.querySelector(
         `.${rootClass.tabpanel}-active`,
       );
-      expect(tabLine).toBeVisible();
+      expect(indicator).toBeVisible();
       expect(activePanel).toHaveTextContent('西红柿');
       expect(getByTestId('test-wrapper')).toMatchSnapshot();
     });

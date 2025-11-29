@@ -13,7 +13,7 @@ The default direction is vertical, and if `current` is not specified, it default
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const handleChange = (e, data) => {
@@ -40,7 +40,7 @@ Change the direction of the step bar through `direction`.
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -61,7 +61,7 @@ If there is a subtitle, change its display position through `labelPlacement`.
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -87,7 +87,7 @@ Add description by passing in `description`.
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -129,7 +129,7 @@ Control step status with `status`. `wait` is pending, `active` is currently acti
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -174,7 +174,7 @@ export default () => {
 Customize icons for each status using `icon`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Step, Steps } from '@bifrostui/react';
 import {
   AccessTimeCircleFilledIcon,
@@ -230,7 +230,7 @@ Make step bar non-clickable via `disabled`.
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const handleChange = (e, data) => {
@@ -265,7 +265,7 @@ export default () => {
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const detail = () => {
   return (
@@ -338,7 +338,7 @@ Change component styles using common CSS variables.
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

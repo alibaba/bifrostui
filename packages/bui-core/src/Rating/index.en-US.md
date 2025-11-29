@@ -51,7 +51,7 @@ Specify `Rating` to support half selection using `allowHalf`.
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 export default () => {
   return (
     <Stack spacing="8px">
@@ -68,7 +68,7 @@ Specify `Rating` as read-only using `readOnly`.
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 export default () => {
   return (
     <Stack spacing="8px">
@@ -85,7 +85,7 @@ Specify the size of `Rating` using `size`.
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 export default () => {
   return (
     <Stack spacing="8px">
@@ -104,7 +104,7 @@ Specify the number of display icons for `Rating` using `count`.
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 export default () => {
   return (
     <Stack>
@@ -120,7 +120,7 @@ Specify `Rating` as disabled using `disabled`.
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 export default () => {
   return (
     <Stack spacing="8px">
@@ -137,7 +137,7 @@ Replace stars with other characters using `icon` and `emptyIcon`, such as emojis
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
 import { HeartFilledIcon, HeartOutlinedIcon } from '@bifrostui/icons';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

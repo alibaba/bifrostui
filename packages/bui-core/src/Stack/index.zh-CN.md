@@ -24,7 +24,7 @@ Stack 是用来控制垂直或者水平排列元素的容器组件。
 
 ```tsx
 import { Button, Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

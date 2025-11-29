@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { isConformant, render, screen, userEvent, fireEvent } from 'testing';
 import Tooltip from '../index';
 

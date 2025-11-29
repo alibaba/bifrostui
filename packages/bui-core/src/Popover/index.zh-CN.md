@@ -13,7 +13,7 @@ Popover 组件可通过使用 `children` 设置触发元素，通过 `title` 和
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -52,7 +52,7 @@ export default () => {
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -69,7 +69,7 @@ export default () => {
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -86,7 +86,7 @@ export default () => {
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -108,7 +108,7 @@ export default () => {
 
 ```tsx
 import { Popover, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const createButton = (text, anchorOrigin) => {
@@ -244,7 +244,7 @@ Popover 组件提供完整的无障碍功能支持，包括键盘导航、屏幕
 
 ```tsx
 import { Popover, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

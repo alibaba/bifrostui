@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { ThemeProps } from '../ThemeProvider.types';
 
 const ThemeContext = React.createContext<ThemeProps | null>(null);

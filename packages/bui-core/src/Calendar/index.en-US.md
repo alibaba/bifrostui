@@ -370,7 +370,7 @@ export default () => {
 Render the component using `defaultValue`. The selection state of the calendar will be reflected in the outermost DOM's `data-selected` or `data-start` and `data-end` attributes.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
 import dayjs from 'dayjs/esm/index';
 

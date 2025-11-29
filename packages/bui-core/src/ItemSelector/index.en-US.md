@@ -12,7 +12,7 @@ Item Selection
 The item selector displays the current Item, positioning Item, popular Items, and all Items, supporting right-side letter navigation.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { ItemSelector } from '@bifrostui/react';
 
 const items = [
@@ -139,7 +139,7 @@ export default () => {
 Users can customize `indexName`|`indexCode` to control the display text of the right-side letter navigation.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { ItemSelector } from '@bifrostui/react';
 
 const items = [
@@ -318,7 +318,7 @@ export default () => {
 Users can set `disableIndex` to control the display of the right-side letter navigation, default is `false`, which means the letter navigation is displayed.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { ItemSelector } from '@bifrostui/react';
 
 const items = [
@@ -444,7 +444,7 @@ export default () => {
 Users can set the `title` to control the display of the header.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { ItemSelector } from '@bifrostui/react';
 
 const items = [

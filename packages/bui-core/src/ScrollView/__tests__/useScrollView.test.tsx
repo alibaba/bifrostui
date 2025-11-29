@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render, fireEvent, waitFor } from 'testing';
 import { renderHook } from '@testing-library/react';
 import { useScrollView } from '../useScrollView';
@@ -10,8 +10,8 @@ Object.defineProperty(window, 'scrollTo', {
 });
 
 // Mock requestAnimationFrame for scroll animation tests
-let animationFrameCallbacks: (() => void)[] = [];
-const mockRequestAnimationFrame = vi.fn((callback: () => void) => {
+let animationFrameCallbacks: FrameRequestCallback[] = [];
+const mockRequestAnimationFrame = vi.fn((callback: FrameRequestCallback) => {
   animationFrameCallbacks.push(callback);
   return 1;
 });

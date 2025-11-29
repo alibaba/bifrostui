@@ -13,7 +13,7 @@ The most basic list display, suitable for carrying text, images, paragraphs, etc
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -168,7 +168,7 @@ The list component can set the list header through `header` and `subheader`.
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -205,7 +205,7 @@ export default () => {
 The list component provides the `ListItemHeader` sub-component to customize the left action area of list items, commonly used for customizing icons in the header of list items.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   List,
   ListItem,
@@ -254,7 +254,7 @@ You can set the primary and secondary content areas of list items using the `pri
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -288,7 +288,7 @@ import {
   ListItemFooter,
   Stack,
 } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -365,7 +365,7 @@ You can also hide the divider using `hideDivider`.
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -401,7 +401,7 @@ export default () => {
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -441,7 +441,7 @@ The list component offers three sizes: `small`, `medium`, and `large`. You can c
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

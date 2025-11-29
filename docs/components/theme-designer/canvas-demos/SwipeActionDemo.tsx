@@ -6,18 +6,26 @@ import {
   ListItem,
   SwipeActionItem,
 } from '@bifrostui/react';
-import { PhoneFilledIcon } from '@bifrostui/icons';
-import React from 'react';
+import { ThemeColor } from '@bifrostui/types';
+import * as React from 'react';
 
 export default () => {
-  const leftActions = [
+  const leftActions: {
+    key: string;
+    text: string;
+    color: ThemeColor | 'vip';
+  }[] = [
     {
       key: 'delete-left',
       text: '删除',
       color: 'danger',
     },
   ];
-  const rightActions = [
+  const rightActions: {
+    key: string;
+    text: string;
+    color: ThemeColor | 'vip';
+  }[] = [
     {
       key: 'delete-right',
       color: 'info',

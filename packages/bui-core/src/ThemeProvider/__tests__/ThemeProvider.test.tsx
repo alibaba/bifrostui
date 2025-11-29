@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render, userEvent, screen, waitFor } from 'testing';
 import dayjs from 'dayjs/esm/index';
 import {

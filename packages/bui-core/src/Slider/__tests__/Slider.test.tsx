@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { act, fireEvent, isConformant, render, screen } from 'testing';
 import Slider from '..';
 

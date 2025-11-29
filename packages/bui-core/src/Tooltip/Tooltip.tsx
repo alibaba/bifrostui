@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import Portal from '../Portal';
 import { TooltipProps } from './Tooltip.types';
 import { useTooltip } from './useTooltip';

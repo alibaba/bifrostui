@@ -13,7 +13,7 @@ name: CollapsePanel 折叠面板
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const text = `
@@ -53,7 +53,7 @@ export default () => {
 
 ```tsx
 import { CollapsePanel, CollapsePanelItem } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const text = `
@@ -84,7 +84,7 @@ export default () => {
 
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const text = `
@@ -219,7 +219,7 @@ export default () => {
 ```tsx
 import { CollapsePanel } from '@bifrostui/react';
 import { DoubleArrowDownTwoToneIcon } from '@bifrostui/icons';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const text = `
@@ -264,7 +264,7 @@ import {
   DoubleArrowDownTwoToneIcon,
   DoubleArrowUpTwoToneIcon,
 } from '@bifrostui/icons';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const text = `

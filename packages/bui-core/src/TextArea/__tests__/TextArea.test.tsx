@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, isConformant, render, screen, userEvent } from 'testing';
 import { TextArea } from '..';
 

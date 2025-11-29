@@ -6,7 +6,7 @@ import {
   VolumeUpOutlinedIcon,
 } from '@bifrostui/icons';
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import { isMini } from '@bifrostui/utils';
 import { IconButton } from '../IconButton';
 import { AlertActionProps, AlertIconProps, AlertProps } from './Alert.types';

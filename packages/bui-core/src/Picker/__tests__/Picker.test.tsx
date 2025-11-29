@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { act, fireEvent, isConformant, render, screen } from 'testing';
 import Picker from '..';
 
@@ -74,12 +74,12 @@ describe('Picker Accessibility', () => {
     expect(cancelBtn).toHaveAttribute('aria-label', 'Cancel');
   });
 
-  it('Picker confirm button type should be "button"', () => {
+  it('Picker confirm button should not have type attribute', () => {
     render(<Picker open options={singleData} value={[2]} />);
 
     const picker = document.querySelector('.bui-picker');
     const confirmBtn = picker.querySelector('.bui-picker-confirm');
-    expect(confirmBtn).toHaveAttribute('type', 'button');
+    expect(confirmBtn).not.toHaveAttribute('type');
   });
 
   it('Picker confirm button aria-label should be "Confirm"', () => {

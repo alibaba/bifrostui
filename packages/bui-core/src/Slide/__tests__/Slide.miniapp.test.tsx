@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { vi } from 'vitest';
 import { render, waitFor } from 'testing';
 

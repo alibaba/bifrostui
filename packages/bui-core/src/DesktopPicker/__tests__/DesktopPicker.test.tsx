@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { act, userEvent, render, fireEvent } from 'testing';
 
 // 辅助函数：创建延迟Promise

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import Fade from '../Fade';
 import { BackdropProps } from './Backdrop.types';
 import './index.less';

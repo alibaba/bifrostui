@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { CitySelector } from '@bifrostui/react';
 
 const hotCities = [

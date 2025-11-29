@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { act, fireEvent, render, screen } from 'testing';
 import { Button } from '@bifrostui/react';
 import { ErrorCircleFilledBoldIcon } from '@bifrostui/icons';

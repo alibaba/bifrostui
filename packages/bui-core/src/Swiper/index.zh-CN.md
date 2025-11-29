@@ -16,7 +16,7 @@ name: Swiper 滑块视图容器
 Swiper内嵌套SwiperItem即可构建一个基础的滑块视图容器。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -102,7 +102,7 @@ export default () => {
 使用interval控制两次自动切换的间隔时间（单位为毫秒）。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -137,7 +137,7 @@ export default () => {
 传入circular使得该容器能够向同一方向无限循环滚动。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -177,7 +177,7 @@ export default () => {
 传入effect参数选择切换效果。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -218,7 +218,7 @@ export default () => {
 传入vertical使得该容器垂直（而非水平）滚动。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -259,7 +259,7 @@ export default () => {
 使用indicatorColor和indicatorActiveColor设置小圆点的颜色。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -302,7 +302,7 @@ export default () => {
 具体返回值在对应事件对象的detail中。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {

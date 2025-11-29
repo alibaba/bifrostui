@@ -15,7 +15,7 @@ name: NavBar 导航栏
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, NavBar } from '@bifrostui/react';
 
 export default () => {
@@ -35,7 +35,7 @@ export default () => {
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, NavBar } from '@bifrostui/react';
 import { CloseLargeIcon } from '@bifrostui/icons';
 
@@ -57,7 +57,7 @@ export default () => {
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, NavBar } from '@bifrostui/react';
 
 export default () => {
@@ -77,7 +77,7 @@ export default () => {
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, NavBar } from '@bifrostui/react';
 
 export default () => {
@@ -97,7 +97,7 @@ export default () => {
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, NavBar } from '@bifrostui/react';
 
 export default () => {
@@ -120,7 +120,7 @@ export default () => {
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, NavBar } from '@bifrostui/react';
 import { MoreIcon } from '@bifrostui/icons';
 
@@ -144,7 +144,7 @@ export default () => {
  * iframe: 812
  * transform: true
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, NavBar } from '@bifrostui/react';
 
 export default () => {

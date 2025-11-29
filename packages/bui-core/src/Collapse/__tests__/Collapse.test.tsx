@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { vi } from 'vitest';
 import { render, screen, waitFor } from 'testing';
 import Collapse from '../Collapse';

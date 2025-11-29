@@ -4,7 +4,7 @@ import {
   RadioCheckedFilledIcon as RadioButtonCheckedIcon,
 } from '@bifrostui/icons';
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 
 export interface IRadioButtonIconProps extends ISvgIconProps {
   checked: boolean;

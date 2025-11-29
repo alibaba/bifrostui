@@ -12,7 +12,7 @@ An icon button is a button that displays an icon without a text label. It is par
 The button supports three display variants: `default`, `outlined`, and `contained`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { IconButton, Stack } from '@bifrostui/react';
 import { PhoneFilledIcon } from '@bifrostui/icons';
 
@@ -38,7 +38,7 @@ export default () => {
 The button supports three shapes: `circular`, `rounded`, and `square`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { IconButton, Stack } from '@bifrostui/react';
 import { PhoneFilledIcon } from '@bifrostui/icons';
 
@@ -66,7 +66,7 @@ The button has three sizes: large, medium, and small.
 Set the `size` property to large or small to define it respectively. If `size` is not set, the default is medium.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { IconButton, Stack } from '@bifrostui/react';
 import { PhoneFilledIcon } from '@bifrostui/icons';
 
@@ -92,7 +92,7 @@ export default () => {
 The button supports theme definitions for `primary`, `success`, `info`, `warning`, `danger`, `light`, `neutral`, and `dark`. If color is not specified, `neutral` is the default.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { IconButton, Stack } from '@bifrostui/react';
 import { PhoneFilledIcon } from '@bifrostui/icons';
 
@@ -208,7 +208,7 @@ export default () => {
 Use the disabled attribute to disable a button, making it unclickable.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { IconButton, Stack } from '@bifrostui/react';
 import { PhoneFilledIcon } from '@bifrostui/icons';
 
@@ -243,7 +243,7 @@ The IconButton component has built-in accessibility features.
 ### aria-label
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { IconButton, Stack } from '@bifrostui/react';
 import {
   CloseIcon,

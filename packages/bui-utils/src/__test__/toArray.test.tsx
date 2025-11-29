@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import toArray from '../toArray';
 
 describe('toArray', () => {

@@ -4,19 +4,19 @@ const { input } = require('@inquirer/prompts');
 
 /**
  * 为指定组件生成无障碍测试模板脚本
- * 
+ *
  * 新功能支持：
  * - 基于 Markdown 文档的测试（原有方式）
  * - 基于自定义 Demo 组件的测试（新增方式）
  * - 可以在一个文件中包含多个 demo，每个都会独立测试
- * 
+ *
  * 使用方式：
  * node scripts/generate-a11y-test.js [组件名]
- * 
+ *
  * 示例：
  * node scripts/generate-a11y-test.js Button
  * node scripts/generate-a11y-test.js Calendar
- * 
+ *
  * 如果不提供组件名，将交互式询问
  */
 
@@ -122,9 +122,9 @@ getMdDemoCodes(
 //       finishCallback,
 //     } = params;
     
-//     console.log(\`开始测试自定义 Demo: \${demoComponentName} (\${demoKey})\`);
-//     console.log(\`Demo 文件路径: \${demoFilePath}\`);
-//     console.log(\`当前进度: \${demoComponentIndex + 1}/\${demoTotal}\`);
+//     console.log(\`start testing custom demo: \${demoComponentName} (\${demoKey})\`);
+//     console.log(\`demo file path: \${demoFilePath}\`);
+//     console.log(\`progress: \${demoComponentIndex + 1}/\${demoTotal}\`);
     
 //     accessibilityDemoTest(
 //       demoComponent,
@@ -158,13 +158,14 @@ getMdDemoCodes(
 function getAvailableComponents() {
   const entries = fs.readdirSync(componentsDir, { withFileTypes: true });
   return entries
-    .filter(entry => entry.isDirectory())
-    .map(dir => dir.name)
-    .filter(name => 
-      !name.startsWith('.') && 
-      name !== 'utils' && 
-      name !== 'styles' &&
-      name !== 'locales'
+    .filter((entry) => entry.isDirectory())
+    .map((dir) => dir.name)
+    .filter(
+      (name) =>
+        !name.startsWith('.') &&
+        name !== 'utils' &&
+        name !== 'styles' &&
+        name !== 'locales',
     );
 }
 
@@ -174,44 +175,52 @@ function validateComponent(componentName) {
   if (!fs.existsSync(componentDir)) {
     return false;
   }
-  
+
   // 检查是否有 markdown 文档
   const mdFile = path.resolve(componentDir, 'index.zh-CN.md');
   if (!fs.existsSync(mdFile)) {
-    console.warn(`⚠️  警告: ${componentName} 组件没有找到 index.zh-CN.md 文档文件`);
+    console.warn(
+      `⚠️  警告: ${componentName} 组件没有找到 index.zh-CN.md 文档文件`,
+    );
     console.warn(`   无障碍测试依赖于组件文档中的 demo 示例`);
   }
-  
+
   return true;
 }
 
 // 为组件生成无障碍测试文件
 function generateA11yTestForComponent(componentName) {
-  const componentTestDir = path.resolve(componentsDir, componentName, '__tests__');
+  const componentTestDir = path.resolve(
+    componentsDir,
+    componentName,
+    '__tests__',
+  );
   const testFilePath = path.resolve(componentTestDir, 'a11y.test.tsx');
-  
+
   // 检查测试文件是否已存在
   if (fs.existsSync(testFilePath)) {
     console.log(`⚠️  ${componentName} 的无障碍测试文件已存在: ${testFilePath}`);
     console.log(`   如果需要重新生成，请先删除现有文件`);
     return false;
   }
-  
+
   // 确保测试目录存在
   if (!fs.existsSync(componentTestDir)) {
     fs.mkdirSync(componentTestDir, { recursive: true });
     console.log(`📁 创建测试目录: ${componentTestDir}`);
   }
-  
+
   // 生成测试文件内容
   const testContent = getA11yTestTemplate(componentName);
-  
+
   // 写入测试文件
   fs.writeFileSync(testFilePath, testContent);
-  
+
   console.log(`✅ 成功为 ${componentName} 生成无障碍测试文件: ${testFilePath}`);
-  console.log(`💡 运行测试: pnpm test:run packages/bui-core/src/${componentName}/__tests__/a11y.test.tsx`);
-  
+  console.log(
+    `💡 运行测试: pnpm test:run packages/bui-core/src/${componentName}/__tests__/a11y.test.tsx`,
+  );
+
   return true;
 }
 
@@ -221,7 +230,7 @@ async function main() {
     // 获取命令行参数
     const args = process.argv.slice(2);
     let componentName = args[0];
-    
+
     // 如果没有提供组件名，交互式询问
     if (!componentName) {
       const availableComponents = getAvailableComponents();
@@ -230,8 +239,8 @@ async function main() {
         console.log(`  ${index + 1}. ${name}`);
       });
       console.log('');
-      
-      componentName = await input({ 
+
+      componentName = await input({
         message: '请输入要生成无障碍测试的组件名称:',
         validate: (input) => {
           if (!input.trim()) {
@@ -241,12 +250,12 @@ async function main() {
             return `组件 "${input.trim()}" 不存在。可用组件: ${availableComponents.join(', ')}`;
           }
           return true;
-        }
+        },
       });
     }
-    
+
     componentName = componentName.trim();
-    
+
     // 验证组件是否存在
     if (!validateComponent(componentName)) {
       const availableComponents = getAvailableComponents();
@@ -254,16 +263,18 @@ async function main() {
       console.error(`💡 可用组件: ${availableComponents.join(', ')}`);
       process.exit(1);
     }
-    
+
     console.log(`\n🚀 开始为 ${componentName} 组件生成无障碍测试模板...\n`);
-    
+
     // 生成无障碍测试文件
     const success = generateA11yTestForComponent(componentName);
-    
+
     if (success) {
       console.log(`\n✨ 无障碍测试模板生成完成！`);
       console.log(`\n📖 接下来的步骤:`);
-      console.log(`1. 根据 ${componentName} 组件的特性，完善 customA11yChecks 中的自定义检查逻辑`);
+      console.log(
+        `1. 根据 ${componentName} 组件的特性，完善 customA11yChecks 中的自定义检查逻辑`,
+      );
       console.log(`2. 如果组件有特殊的无障碍要求，调整 disabledRules 配置`);
       console.log(`3. 运行测试验证组件的无障碍性`);
       console.log(`\n🚀 新功能支持:`);
@@ -274,9 +285,10 @@ async function main() {
       console.log(`   在 __tests__ 目录下创建 customDemoComponent.tsx 文件`);
       console.log(`   可以包含多个 demo 组件默认导出对象`);
       console.log(`\n🧪 运行测试命令:`);
-      console.log(`   pnpm test:run packages/bui-core/src/${componentName}/__tests__/a11y.test.tsx`);
+      console.log(
+        `   pnpm test:run packages/bui-core/src/${componentName}/__tests__/a11y.test.tsx`,
+      );
     }
-    
   } catch (error) {
     console.error('❌ 生成过程中发生错误:', error.message);
     process.exit(1);
@@ -290,5 +302,5 @@ if (require.main === module) {
 
 module.exports = {
   generateA11yTestForComponent,
-  getA11yTestTemplate
+  getA11yTestTemplate,
 };

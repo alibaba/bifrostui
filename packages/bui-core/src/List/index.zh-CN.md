@@ -13,7 +13,7 @@ name: List 列表组件
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -166,7 +166,7 @@ export default () => {
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -203,7 +203,7 @@ export default () => {
 列表组件提供`ListItemHeader`子组件，用于定制列表项头部操作区，常用于定制列表项头部图标。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   List,
   ListItem,
@@ -252,7 +252,7 @@ export default () => {
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -286,7 +286,7 @@ import {
   ListItemFooter,
   Stack,
 } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -359,7 +359,7 @@ export default () => {
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -392,7 +392,7 @@ export default () => {
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -429,7 +429,7 @@ export default () => {
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

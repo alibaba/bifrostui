@@ -370,7 +370,7 @@ export default () => {
 通过 `defaultValue` 属性渲染组件，日历的选中态会体现在最外层 dom 的 `data-selected` 或 `data-start` 和 `data-end` 属性中。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
 import dayjs from 'dayjs/esm/index';
 

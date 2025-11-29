@@ -28,7 +28,7 @@ Tooltip 组件为用户提供简洁的文字提示气泡框，适用于对页面
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -69,7 +69,7 @@ export default () => {
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -86,7 +86,7 @@ export default () => {
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -103,7 +103,7 @@ placement设置气泡浮层的位置，可选 top left right bottom topLeft topR
 
 ```tsx
 import { Tooltip, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const packageButton = (inner) => {
@@ -248,7 +248,7 @@ export default () => {
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -263,7 +263,7 @@ export default () => {
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const onOpenChange = (event, data) => {
@@ -290,7 +290,7 @@ Tooltip 组件内置了完整的无障碍支持，确保屏幕阅读器用户和
 
 ```tsx
 import { Tooltip, Button, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -307,7 +307,7 @@ export default () => {
 
 ```tsx
 import { Tooltip, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

@@ -12,7 +12,7 @@ Users can trigger actions or make choices by simply tapping the button.
 Basic usage of `Switch`. The default color for Switch is `primary`, and the default size is `medium`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Switch } from '@bifrostui/react';
 export default () => {
   return (
@@ -30,7 +30,7 @@ export default () => {
 The `Switch` component provides 5 theme colors: `primary`, `info`, `success`, `warning`, `danger`, which can be set via the `color` property. The default value of the `color` attribute is `primary`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Switch } from '@bifrostui/react';
 export default () => {
   return (
@@ -50,7 +50,7 @@ export default () => {
 The size of the component can be specified via the `size` property, with options including `small`, `medium`, and `large`. The default is `medium`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Switch } from '@bifrostui/react';
 export default () => {
   return (
@@ -68,7 +68,7 @@ export default () => {
 Customize state text or icons via `checkedChildren` and `unCheckedChildren`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Switch } from '@bifrostui/react';
 import { MoonOutlinedIcon, SunOutlinedIcon } from '@bifrostui/icons';
 
@@ -145,7 +145,7 @@ export default () => {
 Specify the `Switch` to be disabled via the `disabled` attribute.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Switch } from '@bifrostui/react';
 
 export default () => {

@@ -14,7 +14,7 @@ Select 组件用于从选项列表收集用户提供的信息。
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
@@ -50,7 +50,7 @@ export default () => {
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
@@ -86,7 +86,7 @@ export default () => {
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
@@ -197,7 +197,7 @@ export default () => {
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
@@ -292,7 +292,7 @@ export default () => {
 提供自定义图标能力，可以通过`icon`属性来定制图标。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Select, SelectOption, Stack } from '@bifrostui/react';
 import { ArrowDownwardIcon } from '@bifrostui/icons';
 
@@ -330,7 +330,7 @@ export default () => {
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
@@ -371,7 +371,7 @@ export default () => {
 `label`支持 `ReactNode`类型，当您想定制选择器`Select`展示内容，可以通过`SelectOption`组件属性：`label`与`children`，两者配合使用实现定制化。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Select, SelectOption, Stack } from '@bifrostui/react';
 import { SettingsOutlinedIcon } from '@bifrostui/icons';
 
@@ -520,7 +520,7 @@ className除了会挂载在根组件上，还会以`className-option-container`�
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {

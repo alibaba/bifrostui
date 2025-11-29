@@ -15,7 +15,7 @@ Displays a notification message.
 #### Static Methods (Not Recommended)
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Button, Toast } from '@bifrostui/react';
 
 export default () => {
@@ -73,7 +73,7 @@ The `container` can be used to specify the parent container for rendering.
 #### Static Methods
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -108,7 +108,7 @@ export default () => {
 #### Hooks Invocation
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -147,7 +147,7 @@ export default () => {
 Toast provides four common modes: `warning`, `loading`, `success`, and `fail`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -203,7 +203,7 @@ export default () => {
 Notification message supports `\n` for line breaks.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -237,7 +237,7 @@ export default () => {
 Control the display duration using `duration`. The default display time is 2 seconds. When `duration` is set to 0, the Toast will not close automatically. You can receive the return value and manually close the current Toast using its `close` function.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -292,7 +292,7 @@ export default () => {
 Toast provides three display positions: `top`, `center`, and `bottom`, with the default being `center`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -350,7 +350,7 @@ export default () => {
 Use `multiple` to allow multiple Toast notifications on the page simultaneously. By default, only one Toast is displayed at a time.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -414,7 +414,7 @@ export default () => {
 Customize icons using `icon`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -453,7 +453,7 @@ export default () => {
 Control whether the page content can be clicked when displaying the Toast notification using `disableClick`. Default is clickable.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -492,7 +492,7 @@ export default () => {
 Listen for the Toast close callback using `onClose`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -532,7 +532,7 @@ export default () => {
 Toast provides the `clear` method to close all existing pop-ups on the page.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,

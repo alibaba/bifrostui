@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { isConformant, render, act, screen } from 'testing';
 import { Countdown } from '..';
 

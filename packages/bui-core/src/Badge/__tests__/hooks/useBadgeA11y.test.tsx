@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { renderHook } from 'testing';
 import { useBadgeA11y } from '../../hooks/useBadgeA11y';
 

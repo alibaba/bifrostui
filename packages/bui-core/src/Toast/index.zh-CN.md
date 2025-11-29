@@ -15,7 +15,7 @@ name: Toast 轻提示
 #### 静态方法（不推荐）
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Button, Toast } from '@bifrostui/react';
 
 export default () => {
@@ -73,7 +73,7 @@ export default () => {
 #### 静态方法
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -108,7 +108,7 @@ export default () => {
 #### Hooks调用
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -147,7 +147,7 @@ export default () => {
 Toast 提供了 `warning`、`loading`、`success`、`fail` 四种常用模式。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -203,7 +203,7 @@ export default () => {
 提示文案支持使用 `\n` 换行。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -237,7 +237,7 @@ export default () => {
 使用 `duration` 控制提示展示时长，默认展示 2 秒。当 `duration` 为 0 时，Toast 不会自动关闭，你可以接收返回值并使用其 `close` 函数，手动关闭当前 Toast。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -290,7 +290,7 @@ export default () => {
 Toast提供了 `top`、`center`、`bottom` 三种展示位置，默认为 `center`。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -348,7 +348,7 @@ export default () => {
 使用 `multiple` 可允许页面中同时存在多个 Toast 提示，默认每次只展示一个 Toast。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -412,7 +412,7 @@ export default () => {
 使用 `icon` 可定制图标。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -451,7 +451,7 @@ export default () => {
 使用 `disableClick` 可控制展示 Toast 提示时，页面其他内容是否可点击，默认可点击。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -490,7 +490,7 @@ export default () => {
 可通过 `onClose` 监听 Toast 关闭时的回调。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,
@@ -530,7 +530,7 @@ export default () => {
 Toast 提供了 `clear` 方法，用于关闭页面中所有存在的弹窗。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   Stack,
   Button,

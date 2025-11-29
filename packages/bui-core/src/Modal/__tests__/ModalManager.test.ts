@@ -6,8 +6,8 @@ describe('ModalManager', () => {
 
   beforeEach(() => {
     // Reset modal manager state
-    modalManager.modals = [];
-    modalManager.containers = [];
+    (modalManager as any).modals = [];
+    (modalManager as any).containers = [];
 
     // Create test container and modal elements
     container = document.createElement('div');
@@ -24,15 +24,15 @@ describe('ModalManager', () => {
     if (container.parentNode) {
       container.parentNode.removeChild(container);
     }
-    modalManager.modals = [];
-    modalManager.containers = [];
+    (modalManager as any).modals = [];
+    (modalManager as any).containers = [];
   });
 
   describe('add', () => {
     it('should add modal to manager', () => {
       const index = modalManager.add(modal, container);
       expect(index).toBe(0);
-      expect(modalManager.modals).toContain(modal);
+      expect((modalManager as any).modals).toContain(modal);
     });
 
     it('should return existing index if modal already exists', () => {
@@ -50,7 +50,7 @@ describe('ModalManager', () => {
       modalManager.add(modal, container);
       modalManager.add(modal2, container);
 
-      const containerInfo = modalManager.containers.find(
+      const containerInfo = (modalManager as any).containers.find(
         (c) => c.container === container,
       );
       expect(containerInfo?.modals).toHaveLength(2);
@@ -68,7 +68,7 @@ describe('ModalManager', () => {
       };
       modalManager.add(modal2, container2);
 
-      expect(modalManager.containers).toHaveLength(2);
+      expect((modalManager as any).containers).toHaveLength(2);
 
       document.body.removeChild(container2);
     });
@@ -87,7 +87,7 @@ describe('ModalManager', () => {
       modalManager.add(modal, container);
       modalManager.mount(modal, { disableScrollLock: false });
 
-      const containerInfo = modalManager.containers.find((c) =>
+      const containerInfo = (modalManager as any).containers.find((c) =>
         c.modals.includes(modal),
       );
       expect(containerInfo?.restore).toBeDefined();
@@ -97,7 +97,7 @@ describe('ModalManager', () => {
       modalManager.add(modal, container);
       modalManager.mount(modal, { disableScrollLock: true });
 
-      const containerInfo = modalManager.containers.find((c) =>
+      const containerInfo = (modalManager as any).containers.find((c) =>
         c.modals.includes(modal),
       );
       expect(containerInfo?.restore).toBeDefined();
@@ -110,7 +110,7 @@ describe('ModalManager', () => {
       const index = modalManager.remove(modal);
 
       expect(index).toBe(0);
-      expect(modalManager.modals).not.toContain(modal);
+      expect((modalManager as any).modals).not.toContain(modal);
     });
 
     it('should return -1 if modal not found', () => {
@@ -122,7 +122,7 @@ describe('ModalManager', () => {
       modalManager.add(modal, container);
       modalManager.mount(modal, { disableScrollLock: false });
 
-      const containerInfo = modalManager.containers.find((c) =>
+      const containerInfo = (modalManager as any).containers.find((c) =>
         c.modals.includes(modal),
       );
       const restoreSpy = vi.fn();
@@ -146,8 +146,8 @@ describe('ModalManager', () => {
 
       modalManager.remove(modal2);
 
-      expect(modalManager.modals).toContain(modal);
-      expect(modalManager.modals).not.toContain(modal2);
+      expect((modalManager as any).modals).toContain(modal);
+      expect((modalManager as any).modals).not.toContain(modal2);
     });
 
     it('should set aria-hidden on next top modal', () => {
@@ -171,7 +171,7 @@ describe('ModalManager', () => {
       modalManager.add(modal, container);
       modalManager.remove(modal);
 
-      expect(modalManager.containers).toHaveLength(0);
+      expect((modalManager as any).containers).toHaveLength(0);
     });
 
     it('should set aria-hidden on modal ref when specified', () => {

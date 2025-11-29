@@ -22,7 +22,7 @@ name: Button 按钮
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -50,7 +50,7 @@ export default () => {
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -102,7 +102,7 @@ export default () => {
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -296,7 +296,7 @@ export default () => {
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -318,7 +318,7 @@ export default () => {
 因为相比纯文本来说用户对图标更敏感，所以有些时候你可能希望为某些按钮设置图标，以增强应用程序的用户体验。例如，如果您有日期按钮，则可以使用日期图标对其进行标记。`startIcon` 位于子元素的前面，`endIcon` 位于子元素的后面。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Button, Stack } from '@bifrostui/react';
 import { CalendarOutlinedIcon, HeartFilledIcon } from '@bifrostui/icons';
 

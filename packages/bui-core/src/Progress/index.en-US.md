@@ -12,7 +12,7 @@ Displays the current progress of an operation.
 Set the operation progress using `percent`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Progress } from '@bifrostui/react';
 export default () => {
   return <Progress percent={40} />;
@@ -24,7 +24,7 @@ export default () => {
 Set the stroke color with `strokeColor`, which defaults to `--bui-color-primary`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Progress, Stack } from '@bifrostui/react';
 export default () => {
   return (
@@ -44,7 +44,7 @@ export default () => {
 You can set the progress bar width using `strokeWidth`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Progress, Stack } from '@bifrostui/react';
 export default () => {
   return (
@@ -69,7 +69,7 @@ export default () => {
 Encapsulation of `linear-gradient`. It is recommended to pass only two colors.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Progress, Stack } from '@bifrostui/react';
 export default () => {
   return (
@@ -98,7 +98,7 @@ export default () => {
 Specify the color of the unfinished segment using `trailColor`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Progress } from '@bifrostui/react';
 export default () => {
   return <Progress percent={60} trailColor="var(--bui-color-primary-light)" />;
@@ -117,7 +117,7 @@ The Progress component comes with full accessibility support and directly uses t
 Usage example:
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Progress, Stack } from '@bifrostui/react';
 export default () => {
   return (

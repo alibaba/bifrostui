@@ -10,7 +10,7 @@ name: Loading 加载
 展示一个加载中的图标
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Loading } from '@bifrostui/react';
 
 export default () => {
@@ -30,7 +30,7 @@ export default () => {
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, Loading } from '@bifrostui/react';
 
 export default () => {
@@ -50,7 +50,7 @@ export default () => {
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, Loading } from '@bifrostui/react';
 
 export default () => {
@@ -70,7 +70,7 @@ export default () => {
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, Loading } from '@bifrostui/react';
 
 export default () => {

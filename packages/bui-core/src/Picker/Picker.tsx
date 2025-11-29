@@ -219,7 +219,6 @@ const Picker = React.forwardRef<HTMLDivElement, PickerProps>((props, ref) => {
               [`${prefixCls}-confirm-disabled`]: disabled,
             })}
             onClick={confirm}
-            type="button"
             aria-label="Confirm"
             tabIndex={disabled ? -1 : 0}
           >

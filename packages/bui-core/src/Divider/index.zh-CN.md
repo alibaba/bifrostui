@@ -13,7 +13,7 @@ name: Divider 分割线
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -32,7 +32,7 @@ export default () => {
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -54,7 +54,7 @@ export default () => {
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -71,7 +71,7 @@ export default () => {
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -92,7 +92,7 @@ export default () => {
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -109,7 +109,7 @@ export default () => {
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -129,7 +129,7 @@ export default () => {
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -150,7 +150,7 @@ export default () => {
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

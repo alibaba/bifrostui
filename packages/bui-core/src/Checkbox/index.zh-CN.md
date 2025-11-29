@@ -268,7 +268,7 @@ export default () => {
 
 ```tsx
 import { Checkbox, CheckboxGroup, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

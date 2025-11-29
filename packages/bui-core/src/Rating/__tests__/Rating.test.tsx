@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { act, isConformant, render, screen, userEvent } from 'testing';
 import { vi } from 'vitest';
 import Rating from '../index';

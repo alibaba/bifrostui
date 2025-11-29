@@ -13,7 +13,7 @@ The Popover component can use `children` to set the trigger element, and `title`
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -52,7 +52,7 @@ Setting `defaultOpen` to `true` allows the bubble overlay to be displayed by def
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -69,7 +69,7 @@ The `offsetSpacing` property can be used to set the distance between the bubble 
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -88,7 +88,7 @@ Setting `hideArrow` to `true` hides the arrow of the bubble overlay.
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -110,7 +110,7 @@ Below are all 9 position combinations:
 
 ```tsx
 import { Popover, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const createButton = (text, anchorOrigin) => {
@@ -253,7 +253,7 @@ The Popover component provides complete accessibility support, including keyboar
 
 ```tsx
 import { Popover, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

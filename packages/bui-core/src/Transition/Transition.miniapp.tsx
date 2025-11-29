@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro';
-import React from 'react';
+import * as React from 'react';
 import { TransitionProps } from './Transition.types';
 import TransitionCore from './TransitionCore';
 

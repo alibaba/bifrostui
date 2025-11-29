@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   act,
   fireEvent,
@@ -114,7 +114,9 @@ describe('Input', () => {
 
   describe('miniapp Input', () => {
     it('`onChange` event should be called when input value change', async () => {
-      vi.spyOn(console, 'error').mockImplementation();
+      vi.spyOn(console, 'error').mockImplementation(() => {
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+      });
       vi.resetModules();
       vi.doMock('@bifrostui/utils', async () => {
         const actual = await vi.importActual('@bifrostui/utils');

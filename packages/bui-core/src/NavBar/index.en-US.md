@@ -15,7 +15,7 @@ Simply import the component to add a navigation bar at the top of the page.
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, NavBar } from '@bifrostui/react';
 
 export default () => {
@@ -35,7 +35,7 @@ The component allows you to modify the style of the left return arrow. You can c
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, NavBar } from '@bifrostui/react';
 import { CloseLargeIcon } from '@bifrostui/icons';
 
@@ -57,7 +57,7 @@ Control internal icons by setting `IconProps`.
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, NavBar } from '@bifrostui/react';
 
 export default () => {
@@ -77,7 +77,7 @@ Modify the text content to the left of the return arrow by passing a `ReactNode`
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, NavBar } from '@bifrostui/react';
 
 export default () => {
@@ -97,7 +97,7 @@ The component supports a custom title, which can be changed by passing a `ReactN
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, NavBar } from '@bifrostui/react';
 
 export default () => {
@@ -120,7 +120,7 @@ Users can customize the contents of the right-side area by passing a `ReactNode`
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, NavBar } from '@bifrostui/react';
 import { MoreIcon } from '@bifrostui/icons';
 
@@ -144,7 +144,7 @@ Users can fix the NavBar at the top of the page by passing `true` to the `fixed`
  * iframe: 812
  * transform: true
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, NavBar } from '@bifrostui/react';
 
 export default () => {

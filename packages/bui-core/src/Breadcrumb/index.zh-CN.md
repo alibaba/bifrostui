@@ -13,7 +13,7 @@ name: Breadcrumb 面包屑
 
 ```tsx
 import { Breadcrumb } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -46,7 +46,7 @@ export default () => {
 
 ```tsx
 import { Breadcrumb, BreadcrumbItem } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const handleHomeClick = () => {
@@ -74,7 +74,7 @@ export default () => {
 ```tsx
 import { Breadcrumb, BreadcrumbItem } from '@bifrostui/react';
 import { HomeIcon, ListOutlinedIcon } from '@bifrostui/icons';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const handleHomeClick = () => {
@@ -113,7 +113,7 @@ export default () => {
 
 ```tsx
 import { Breadcrumb } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -147,7 +147,7 @@ export default () => {
 
 ```tsx
 import { Breadcrumb } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

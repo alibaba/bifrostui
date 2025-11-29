@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Image, Stack } from '@bifrostui/react';
 
 const src =

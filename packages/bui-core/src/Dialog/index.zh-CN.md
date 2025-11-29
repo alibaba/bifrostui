@@ -174,7 +174,7 @@ export default () => {
 
 ```tsx
 import { Stack, Button, Dialog, Toast } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const showConfirm = async () => {
@@ -215,7 +215,7 @@ export default () => {
 
 ```tsx
 import { Button, Dialog, Toast, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 // 模拟异步API调用
 const mockApiCall = (delay = 2000) => {
@@ -289,7 +289,7 @@ export default () => {
 
 ```tsx
 import { Stack, Button, Dialog, Toast, ThemeProvider } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const [dialog, contextHolder] = Dialog.useDialog();
@@ -405,7 +405,7 @@ export default () => {
 
 ```tsx
 import { Stack, Button, Dialog, ThemeProvider } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const [dialog, contextHolder] = Dialog.useDialog();

@@ -12,7 +12,7 @@ name: Progress 进度条
 通过`percent`设置操作进度。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Progress } from '@bifrostui/react';
 export default () => {
   return <Progress percent={40} />;
@@ -24,7 +24,7 @@ export default () => {
 通过`strokeColor`设置线条颜色，其默认值为`--bui-color-primary`。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Progress, Stack } from '@bifrostui/react';
 export default () => {
   return (
@@ -44,7 +44,7 @@ export default () => {
 可以通过`strokeWidth`设置进度条宽度。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Progress, Stack } from '@bifrostui/react';
 export default () => {
   return (
@@ -69,7 +69,7 @@ export default () => {
 `linear-gradient`的封装。推荐只传两种颜色。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Progress, Stack } from '@bifrostui/react';
 export default () => {
   return (
@@ -98,7 +98,7 @@ export default () => {
 通过`trailColor`指定未完成的分段的颜色。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Progress } from '@bifrostui/react';
 export default () => {
   return <Progress percent={60} trailColor="var(--bui-color-primary-light)" />;
@@ -117,7 +117,7 @@ Progress 组件内置了完整的无障碍性支持，可以直接使用以下 A
 使用示例：
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Progress, Stack } from '@bifrostui/react';
 export default () => {
   return (

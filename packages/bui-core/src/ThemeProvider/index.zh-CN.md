@@ -21,7 +21,7 @@ name: ThemeProvider 主题配置
 
 ```tsx
 import { ThemeProvider, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 /**
  * 响应式：不同屏幕尺寸下自定义Tokens
@@ -85,7 +85,7 @@ export default () => {
 
 ```tsx
 import { ThemeProvider, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const token = {
   '--bui-btn-height': '40px',
@@ -120,7 +120,7 @@ export default () => {
 
 ```tsx
 import { Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 /**
  * 1.小程序全局或页面级主题，可在入口或页面级样式文件中自行书写选择器对应的样式变量，页面级会覆盖全局样式
  * app.less

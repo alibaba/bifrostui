@@ -36,7 +36,7 @@ export default () => {
 传入scrollX以进行横向滚动
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { ScrollView, Stack } from '@bifrostui/react';
 
 export default () => {

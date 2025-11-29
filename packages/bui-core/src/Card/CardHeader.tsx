@@ -1,6 +1,6 @@
 import { ArrowForwardIcon } from '@bifrostui/icons';
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import { CardHeaderProps } from './CardHeader.types';
 
 import './CardHeader.less';

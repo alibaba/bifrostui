@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Backdrop from '../../Backdrop';
 
 export const basicBackdropDemo = () => {

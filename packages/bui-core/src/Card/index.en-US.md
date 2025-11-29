@@ -17,7 +17,7 @@ The card component provides the `CardHeader` subcomponent to set the card header
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -38,7 +38,7 @@ You can also set the subtitle of the card container through `subtitle`.
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -57,7 +57,7 @@ Combine `title` and `subtitle`.
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -81,7 +81,7 @@ In addition to providing title and subtitle, the `CardHeader` subcomponent also 
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -106,7 +106,7 @@ Set `endIcon` to `false`.
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -134,7 +134,7 @@ The `Card` component provides the `CardContent` subcomponent, which is usually u
 
 ```tsx
 import { Card, CardContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -166,7 +166,7 @@ import {
   CardHeader,
   Stack,
 } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -202,7 +202,7 @@ import {
   CardHeader,
   Stack,
 } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -231,7 +231,7 @@ The `Card` component supports nested use.
 
 ```tsx
 import { Card, CardContent, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -282,7 +282,7 @@ In addition to using the `CardHeader`, `CardContent`, and `CardFooter` subcompon
 
 ```tsx
 import { Card, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

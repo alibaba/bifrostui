@@ -20,7 +20,7 @@ In the browser, Design Tokens can be customized flexibly.
 
 ```tsx
 import { ThemeProvider, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 /**
  * Responsive: Customize Tokens for different screen sizes
@@ -86,7 +86,7 @@ Design Tokens for components can be configured by nesting `ThemeProvider` compon
 
 ```tsx
 import { ThemeProvider, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const token = {
   '--bui-btn-height': '40px',
@@ -121,7 +121,7 @@ In mini programs, it is not possible to inject code dynamically or use the `Them
 
 ```tsx
 import { Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 /**
  * 1. Global or page-level theme for mini programs can be written by yourself in the entry or page-level styles files; page-level will override global styles
  * app.less

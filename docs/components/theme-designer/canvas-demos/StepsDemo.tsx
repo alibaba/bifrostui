@@ -1,5 +1,5 @@
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const handleChange = (e, data) => {

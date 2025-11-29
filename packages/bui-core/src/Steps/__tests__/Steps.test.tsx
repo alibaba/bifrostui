@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { isConformant, render, userEvent } from 'testing';
 import { Step, Steps } from '..';
 

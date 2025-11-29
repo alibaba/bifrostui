@@ -543,7 +543,6 @@ describe('Dialog Enhanced Tests', () => {
                       },
                     });
                   } catch (error) {
-                    // console.error('Prompt error:', error);
                     promptResult = null;
                   }
                 }}
@@ -877,16 +876,12 @@ describe('Dialog Enhanced Tests', () => {
 
   describe('ThemeProvider Integration', () => {
     it('should work with ThemeProvider', () => {
-      const customTheme = {
-        palette: {
-          primary: {
-            main: '#ff0000',
-          },
-        },
+      const customTokens = {
+        '--bui-color-primary': '#ff0000',
       };
 
       render(
-        <ThemeProvider theme={customTheme}>
+        <ThemeProvider token={customTokens}>
           <Dialog open title="主题测试对话框" content="测试ThemeProvider集成" />
         </ThemeProvider>,
       );

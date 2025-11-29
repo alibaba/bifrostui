@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render, isConformant, fireEvent, act } from 'testing';
 import SwipeAction from '../SwipeAction';
 import SwipeActionItem from '../SwipeActionItem';

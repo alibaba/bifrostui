@@ -25,7 +25,7 @@ export const basicTagDemo = () => {
 export const variantTagDemo = () => {
   return (
     <div>
-      <Tag variant="filled" color="primary">
+      <Tag variant="contained" color="primary">
         填充标签
       </Tag>
       <Tag variant="outlined" color="success">
@@ -91,7 +91,7 @@ export const ClickableTagDemo = () => {
 export const customColorTagDemo = () => {
   return (
     <div>
-      <Tag htmlColor="#ff6b6b" variant="filled">
+      <Tag htmlColor="#ff6b6b" variant="contained">
         自定义红色
       </Tag>
       <Tag htmlColor="#4ecdc4" variant="outlined">
@@ -100,7 +100,7 @@ export const customColorTagDemo = () => {
       <Tag htmlColor="#45b7d1" variant="subtle">
         自定义蓝色
       </Tag>
-      <Tag htmlColor="rgb(255, 193, 7)" variant="filled">
+      <Tag htmlColor="rgb(255, 193, 7)" variant="contained">
         RGB 黄色
       </Tag>
     </div>
@@ -166,7 +166,7 @@ const ComplexTagListDemo = () => {
           <Tag
             key={tag.id}
             color={tag.color}
-            variant={tag.active ? 'filled' : 'outlined'}
+            variant={tag.active ? 'contained' : 'outlined'}
             onClick={() => toggleTag(tag.id)}
             aria-label={`${tag.active ? '取消选择' : '选择'} ${tag.name} 技术标签`}
             style={{

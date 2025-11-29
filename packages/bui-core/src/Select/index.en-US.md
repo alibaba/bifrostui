@@ -13,7 +13,7 @@ Achieve dropdown functionality by combining the `SelectOption` component.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
@@ -49,7 +49,7 @@ Support configuring default display content in the select box via `placeholder`.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
@@ -85,7 +85,7 @@ Support initializing the selected value via the `defaultValue` attribute.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
@@ -196,7 +196,7 @@ You can disable all interactions by setting `disabled` on the `Select`, or disab
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
@@ -291,7 +291,7 @@ export default () => {
 Provide the capability to customize icons through the `icon` attribute.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Select, SelectOption, Stack } from '@bifrostui/react';
 import { ArrowDownwardIcon } from '@bifrostui/icons';
 
@@ -329,7 +329,7 @@ When you do not want to use `label` as the display content of the option `Select
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
@@ -370,7 +370,7 @@ export default () => {
 `label` supports the `ReactNode` type. When you want to customize the `Select` display content, you can use the `label` and `children` attributes of the `SelectOption` component to achieve customization.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Select, SelectOption, Stack } from '@bifrostui/react';
 import { SettingsOutlinedIcon } from '@bifrostui/icons';
 
@@ -518,7 +518,7 @@ className will be mounted on the root component and on the dropdown container as
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {

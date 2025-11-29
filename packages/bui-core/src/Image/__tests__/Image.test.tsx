@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render, screen, userEvent } from 'testing';
 import { waitFor } from '@testing-library/react';
 import Image from '../index';

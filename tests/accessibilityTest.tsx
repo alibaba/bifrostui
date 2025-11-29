@@ -44,7 +44,7 @@
  * - timeout: 测试超时时间
  * - customA11yChecks: 自定义无障碍检查函数
  */
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 import { axe } from 'vitest-axe';
 import { resultGroups } from 'axe-core';

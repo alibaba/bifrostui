@@ -28,13 +28,11 @@ const DocLayout: FC = () => {
   const outlet = useOutlet();
   const sidebar = useSidebarData();
   const { hash, pathname } = useLocation();
-  const { loading, hostname, themeConfig } = useSiteData();
-  const [activateSidebar, updateActivateSidebar] = useState(false);
+  const { loading, hostname } = useSiteData();
+  const [activateSidebar, setActivateSidebar] = useState(false);
   const { frontmatter: fm } = useRouteMeta();
   const [color] = usePrefersColor();
   fm.toc = 'content';
-
-  // const curColor = themeConfig.switch ? 'dark' : 'light';
 
   const showSidebar = fm.sidebar !== false && sidebar?.length > 0;
   const hideToc = fm.title === 'bifrostui' && fm.filename === 'docs/index.md';
@@ -58,10 +56,11 @@ const DocLayout: FC = () => {
   }, [loading, hash]);
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
     <div
       className="dumi-default-doc-layout"
       data-mobile-sidebar-active={activateSidebar || undefined}
-      onClick={() => updateActivateSidebar(false)}
+      onClick={() => setActivateSidebar(false)}
     >
       <Helmet>
         <html
@@ -78,10 +77,9 @@ const DocLayout: FC = () => {
         {fm.keywords && (
           <meta name="keywords" content={fm.keywords.join(',')} />
         )}
-        {fm.keywords &&
-          fm.keywords.map((keyword) => (
-            <meta key={keyword} property="article:tag" content={keyword}></meta>
-          ))}
+        {fm.keywords?.map((keyword) => (
+          <meta key={keyword} property="article:tag" content={keyword} />
+        ))}
         {hostname && <link rel="canonical" href={hostname + pathname} />}
       </Helmet>
       <ThemeProvider locale={intl.locale === 'en-US' ? En : CN}>
@@ -95,7 +93,7 @@ const DocLayout: FC = () => {
               className="dumi-default-sidebar-btn"
               onClick={(ev) => {
                 ev.stopPropagation();
-                updateActivateSidebar((v) => !v);
+                setActivateSidebar((v) => !v);
               }}
             >
               <IconSidebar />

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { isConformant, render, screen, userEvent } from 'testing';
 import Avatar from '../Avatar';
 
@@ -71,14 +71,10 @@ describe('Avatar', () => {
       expect(screen.getByRole('img').style.objectFit).toBe('fill');
     });
   });
-  // it('has placeholder', async () => {
-  //   render(<Avatar src="https://not.exists.image/" placeholder="加载失败" />);
-  //   expect(screen.getByText('加载失败')).toBeTruthy();
-  // });
 
-  it.each(['contain', 'cover', 'fill', 'none', 'scale-down'])(
+  it.each(['contain', 'cover', 'fill', 'none', 'scale-down'] as const)(
     'renders with different fit modes',
-    async (fit: string) => {
+    async (fit) => {
       render(
         <Avatar
           src="https://gw.alicdn.com/imgextra/i3/O1CN01tp2YUs1WFD8lboMDu_!!6000000002758-2-tps-126-126.png"

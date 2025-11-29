@@ -13,11 +13,15 @@ Badge 组件可通过使用 `content` 设置徽章内容。
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
-    <Stack spacing="20px" direction="row" style={{ maxWidth: 350, margin: '0 auto' }}>
+    <Stack
+      spacing="20px"
+      direction="row"
+      style={{ maxWidth: 350, margin: '0 auto' }}
+    >
       <Badge content="12">
         <Avatar src="//perico.damai.cn/userheadphotos/927551/185510204.jpg" />
       </Badge>
@@ -33,7 +37,7 @@ Badge 提供 3 种徽章形状：`standard`、`dot`、`bubble`。
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -62,7 +66,7 @@ Badge 组件提供了 7 种颜色主题：`primary`、`success`、`warning`、`i
 color 属性默认值：`primary`。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Badge, Stack } from '@bifrostui/react';
 import { PhoneFilledIcon } from '@bifrostui/icons';
 
@@ -103,7 +107,7 @@ Badge 组件支持两种模式：填充 `contained`、轮廓 `outlined`。
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -130,7 +134,7 @@ export default () => {
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -159,7 +163,7 @@ export default () => {
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -185,7 +189,7 @@ Badge 提供了 `showZero` 和 `invisible` 属性来控制徽章的显示。
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -212,27 +216,27 @@ export default () => {
 
 ### BadgeProps
 
-| 属性       | 说明                         | 类型                                                      | 默认值      |
-| ---------- | ---------------------------- | --------------------------------------------------------- | ----------- |
-| content    | 徽章内容                     | ReactNode                                                 | -           |
-| color      | 徽章主题色                   | `primary` ｜ `info` ｜ `success` ｜ `warning` ｜ `danger` | `primary`   |
-| max        | 数字徽章的最大值             | number                                                    | -           |
-| showZero   | content为0时是否展示         | boolean                                                   | false       |
-| invisible  | 是否隐藏badge                | boolean                                                   | false       |
-| variant    | 徽章类型                     | `contained` ｜`outlined`                                  | `contained` |
-| type       | 徽章形状                     | `dot`｜`standard`｜`bubble`                               | `standard`  |
+| 属性      | 说明                 | 类型                                                      | 默认值      |
+| --------- | -------------------- | --------------------------------------------------------- | ----------- |
+| content   | 徽章内容             | ReactNode                                                 | -           |
+| color     | 徽章主题色           | `primary` ｜ `info` ｜ `success` ｜ `warning` ｜ `danger` | `primary`   |
+| max       | 数字徽章的最大值     | number                                                    | -           |
+| showZero  | content为0时是否展示 | boolean                                                   | false       |
+| invisible | 是否隐藏badge        | boolean                                                   | false       |
+| variant   | 徽章类型             | `contained` ｜`outlined`                                  | `contained` |
+| type      | 徽章形状             | `dot`｜`standard`｜`bubble`                               | `standard`  |
 
 ### 样式变量
 
-| 属性                     | 说明           | 默认值          | 全局变量                         |
-| ------------------------ | -------------- | --------------- | -------------------------------- |
-| --position               | 位置偏移百分比 | 14%             | --bui-badge-position             |
-| --min-width              | 最小宽度       | 15px            | --bui-badge-min-width            |
-| --height                 | 高度           | 15px            | --bui-badge-height               |
-| --line-height            | 行高           | 15px            | --bui-badge-line-height          |
-| --padding                | 内边距         | 0 3px           | --bui-badge-padding              |
-| --border-radius          | 边框圆角       | 8px             | --bui-badge-border-radius        |
-| --outlined-padding       | 描边样式内边距 | 0 2px           | --bui-badge-outlined-padding     |
-| --dot-size               | 圆点大小       | 9px             | --bui-badge-dot-size             |
-| --bubble-padding         | 气泡内边距     | 0 5px           | --bui-badge-bubble-padding       |
-| --bubble-border-radius   | 气泡圆角       | 6px 6px 6px 0   | --bui-badge-bubble-border-radius |
+| 属性                   | 说明           | 默认值        | 全局变量                         |
+| ---------------------- | -------------- | ------------- | -------------------------------- |
+| --position             | 位置偏移百分比 | 14%           | --bui-badge-position             |
+| --min-width            | 最小宽度       | 15px          | --bui-badge-min-width            |
+| --height               | 高度           | 15px          | --bui-badge-height               |
+| --line-height          | 行高           | 15px          | --bui-badge-line-height          |
+| --padding              | 内边距         | 0 3px         | --bui-badge-padding              |
+| --border-radius        | 边框圆角       | 8px           | --bui-badge-border-radius        |
+| --outlined-padding     | 描边样式内边距 | 0 2px         | --bui-badge-outlined-padding     |
+| --dot-size             | 圆点大小       | 9px           | --bui-badge-dot-size             |
+| --bubble-padding       | 气泡内边距     | 0 5px         | --bui-badge-bubble-padding       |
+| --bubble-border-radius | 气泡圆角       | 6px 6px 6px 0 | --bui-badge-bubble-border-radius |

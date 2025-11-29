@@ -1,5 +1,5 @@
 import { Stack, Tag } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

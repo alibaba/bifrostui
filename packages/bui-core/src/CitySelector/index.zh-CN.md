@@ -12,7 +12,7 @@ name: CitySelector 城市选择
 城市选择展示当前城市、定位城市、热门城市及所有城市，支持右侧字母导航
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { CitySelector } from '@bifrostui/react';
 
 const hotCities = [
@@ -124,7 +124,7 @@ export default () => {
 用户可以设置disableIndex控制右侧字母导航的展示，默认为false，即展示字母导航
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { CitySelector } from '@bifrostui/react';
 
 const hotCities = [
@@ -239,7 +239,7 @@ export default () => {
 用户可以设置title来控制头部的展示
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { CitySelector } from '@bifrostui/react';
 
 const hotCities = [

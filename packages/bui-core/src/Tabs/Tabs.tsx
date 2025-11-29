@@ -179,7 +179,8 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         <div
           ref={activeLineRef}
           className={clsx(`${prefixCls}-indicator`, {
-            'bui-indicator-invisible': isMini || !indicatorData.hasActiveTab,
+            'bui-tabs-indicator-invisible':
+              isMini || !indicatorData.hasActiveTab,
           })}
           style={{
             transition: 'transform 0.3s ease-in-out',

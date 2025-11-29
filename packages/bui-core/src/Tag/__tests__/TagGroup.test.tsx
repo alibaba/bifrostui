@@ -1,5 +1,5 @@
 import { fireEvent, isConformant, render } from 'testing';
-import React from 'react';
+import * as React from 'react';
 import TagGroup from '../TagGroup';
 
 describe('TagGroup', () => {

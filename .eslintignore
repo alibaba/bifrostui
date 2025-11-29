@@ -11,3 +11,4 @@ dist
 .vscode
 .github
 pnpm-workspace.yaml
+!/.dumi

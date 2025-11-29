@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import { BadgeProps } from './Badge.types';
 import { useBadgeDisplay } from './hooks/useBadgeDisplay';
 import { useBadgeA11y } from './hooks/useBadgeA11y';

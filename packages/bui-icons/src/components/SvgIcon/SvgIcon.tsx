@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import { cssVarToValue } from '@bifrostui/utils';
 import { ISvgIconProps } from '../../SvgIcon.types';
 import './SvgIcon.less';

@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React from 'react';
+import * as React from 'react';
 import { Button } from '@bifrostui/react';
 import { usePrefersColor, useNavigate, useIntl } from 'dumi';
 import { ToTopOutlinedIcon } from '@bifrostui/icons';
@@ -13,6 +13,7 @@ export default () => {
   const { locale } = useIntl();
   const current = locale === 'zh-CN' ? 'zhCN' : 'enUS';
   const navigate = useNavigate();
+
   return (
     <div className="main-container home-page">
       <div className="main-head">

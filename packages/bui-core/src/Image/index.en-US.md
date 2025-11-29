@@ -10,7 +10,7 @@ Enhances the img tag with Placeholder and Fallback capabilities, supports native
 ## Basic Usage
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Image, Stack } from '@bifrostui/react';
 
 const src =
@@ -31,7 +31,7 @@ Customize fill mode using the fit parameter.
 `widthFix` and `heightFix` are only available for mini-programs.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Image, Stack } from '@bifrostui/react';
 
 const src =
@@ -62,7 +62,7 @@ The attributes passed directly to the Image component will apply to the top-leve
 If you need to pass attributes to the img element, use `imgProps`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Image, Stack } from '@bifrostui/react';
 
 const src =
@@ -104,7 +104,7 @@ By default, the fallback is the same as the placeholder; if neither is provided,
 You can also provide a custom fallback object.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Image, Stack } from '@bifrostui/react';
 
 export default () => {

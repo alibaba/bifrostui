@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { isConformant, render, screen, userEvent } from 'testing';
 import Progress from '../index';
 import { handleGradient } from '../Progress';

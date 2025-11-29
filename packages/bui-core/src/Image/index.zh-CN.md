@@ -10,7 +10,7 @@ name: Image 图片
 ## 基础使用
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Image, Stack } from '@bifrostui/react';
 
 const src =
@@ -31,7 +31,7 @@ export default () => {
 `widthFix`和`heightFix`仅小程序可用
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Image, Stack } from '@bifrostui/react';
 
 const src =
@@ -62,7 +62,7 @@ export default () => {
 如果需要传到img上，可以使用`imgProps`
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Image, Stack } from '@bifrostui/react';
 
 const src =
@@ -104,7 +104,7 @@ export default () => {
 也可以单独传入fallback对象进行自定义。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Image, Stack } from '@bifrostui/react';
 
 export default () => {

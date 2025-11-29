@@ -13,7 +13,7 @@ The simplest usage.
 
 ```tsx
 import { Breadcrumb } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -46,7 +46,7 @@ Use BreadcrumbItem instead of items for rendering.
 
 ```tsx
 import { Breadcrumb, BreadcrumbItem } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const handleHomeClick = () => {
@@ -74,7 +74,7 @@ Place icons before text.
 ```tsx
 import { Breadcrumb, BreadcrumbItem } from '@bifrostui/react';
 import { HomeIcon, ListOutlinedIcon } from '@bifrostui/icons';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const handleHomeClick = () => {
@@ -113,7 +113,7 @@ Use separator=">" to customize the separator.
 
 ```tsx
 import { Breadcrumb } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -147,7 +147,7 @@ Customize a separate separator.
 
 ```tsx
 import { Breadcrumb } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

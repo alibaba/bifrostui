@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render, screen, waitFor } from 'testing';
 import { vi } from 'vitest';
 import { Transition } from '../Transition';

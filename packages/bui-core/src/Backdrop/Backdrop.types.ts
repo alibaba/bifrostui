@@ -1,5 +1,5 @@
 import { OverrideProps } from '@bifrostui/types';
-import React from 'react';
+import * as React from 'react';
 import { FadeProps } from '../Fade/Fade.types';
 import { TransitionProps } from '../Transition';
 

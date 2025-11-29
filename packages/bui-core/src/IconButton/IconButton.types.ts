@@ -1,5 +1,5 @@
 import { OverrideProps, ThemeColor, ButtonOpenType } from '@bifrostui/types';
-import React from 'react';
+import * as React from 'react';
 
 export type IconButtonProps<
   D extends React.ElementType = 'button',

@@ -12,7 +12,7 @@ name: IconButton 图标按钮
 按钮支持 `默认按钮`、`描边按钮`、`填充按钮` 三种展示形态
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { IconButton, Stack } from '@bifrostui/react';
 import { PhoneFilledIcon } from '@bifrostui/icons';
 
@@ -38,7 +38,7 @@ export default () => {
 按钮支持 `圆形`、`圆角`、`正方形` 三种形状
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { IconButton, Stack } from '@bifrostui/react';
 import { PhoneFilledIcon } from '@bifrostui/icons';
 
@@ -66,7 +66,7 @@ export default () => {
 通过设置 `size` 为 large small 分别把按钮设为大、小。若不设置 `size`，则尺寸为中等尺寸。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { IconButton, Stack } from '@bifrostui/react';
 import { PhoneFilledIcon } from '@bifrostui/icons';
 
@@ -92,7 +92,7 @@ export default () => {
 按钮支持 `primary`、`success`、`info`、`warning`、`danger`、`light`、`neutral`、`dark` 主题定义。若不设置color，则默认为`neutral`
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { IconButton, Stack } from '@bifrostui/react';
 import { PhoneFilledIcon } from '@bifrostui/icons';
 
@@ -208,7 +208,7 @@ export default () => {
 通过 disabled 属性来禁用按钮，禁用状态下按钮不可点击。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { IconButton, Stack } from '@bifrostui/react';
 import { PhoneFilledIcon } from '@bifrostui/icons';
 
@@ -243,7 +243,7 @@ IconButton 组件内置了精简的无障碍功能支持
 ### aria-label
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { IconButton, Stack } from '@bifrostui/react';
 import {
   CloseIcon,

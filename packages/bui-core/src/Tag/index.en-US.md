@@ -16,7 +16,7 @@ Tags support three display modes: `outlined`, `contained`, and `subtle`. The def
 
 ```tsx
 import { Stack, Tag } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -35,7 +35,7 @@ Tag labels can be defined with `primary`, `success`, `info`, `warning`, or `dang
 
 ```tsx
 import { Stack, Tag } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -136,7 +136,7 @@ In addition to using the provided theme colors, you can customize colors using t
 
 ```tsx
 import { Stack, Tag } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -161,7 +161,7 @@ Aside from single Tag labels, you can use the `TagGroup` component to implement 
 
 ```tsx
 import { Stack, Tag, TagGroup } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

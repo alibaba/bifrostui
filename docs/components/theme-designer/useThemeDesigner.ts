@@ -2,12 +2,7 @@ import { Toast, Dialog } from '@bifrostui/react';
 import { useEffect, useState } from 'react';
 import { createTheme, mountThemeVars } from '@bifrostui/utils';
 import { defaultLight } from '@bifrostui/styles/registry';
-import {
-  THEME_MODE,
-  VARS_TYPE,
-  BUILTIN_THEME,
-  THEME_ROOT_SELECTOR,
-} from './constants';
+import { THEME_MODE, VARS_TYPE, THEME_ROOT_SELECTOR } from './constants';
 import componentThemeData from '../../constants/theme-vars.json';
 import { setStorage, getStorage, clearStorage, toKebabCase } from './utils';
 
@@ -120,9 +115,9 @@ export const useThemeDesigner = () => {
 
   const resetAll = async () => {
     await Dialog.confirm({
-      header: '确定清空自定义主题?',
-      message: '清空自定义主题后，刷新页面将恢复为默认主题',
-      onConfirm: () => {
+      title: '确定清空自定义主题?',
+      content: '清空自定义主题后，刷新页面将恢复为默认主题',
+      onOk: () => {
         clearStorage();
         applicateTheme(defaultLight.cssVars);
       },
@@ -133,9 +128,9 @@ export const useThemeDesigner = () => {
   const changeToBuiltin = () => {
     if (customThemes.length) {
       Dialog.confirm({
-        header: '切换主题',
-        message: '当前存在自定义主题，切换后将清空自定义主题',
-        onConfirm: () => {
+        title: '切换主题',
+        content: '当前存在自定义主题，切换后将清空自定义主题',
+        onOk: () => {
           clearStorage();
           applicateTheme(defaultLight.cssVars);
           setVarsType('');

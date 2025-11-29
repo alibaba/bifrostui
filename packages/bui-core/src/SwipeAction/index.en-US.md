@@ -25,7 +25,7 @@ import {
   SwipeActionItem,
 } from '@bifrostui/react';
 import { PhoneFilledIcon } from '@bifrostui/icons';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const leftActions = [
@@ -90,7 +90,7 @@ import {
   SwipeActionItem,
 } from '@bifrostui/react';
 import { DeleteOutlinedIcon } from '@bifrostui/icons';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const rightActions = [
@@ -139,7 +139,7 @@ import {
   ListItem,
   SwipeActionItem,
 } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const rightActions = [
@@ -189,7 +189,7 @@ import {
   Dialog,
   SwipeActionItem,
 } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const leftActions = [
@@ -287,7 +287,7 @@ import {
   Toast,
   SwipeActionItem,
 } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   let swipeActionRef = React.createRef<SwipeAction>();
@@ -410,7 +410,7 @@ import {
   SwipeActionItem,
 } from '@bifrostui/react';
 import { DeleteOutlinedIcon } from '@bifrostui/icons';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const rightActions = [
@@ -463,7 +463,7 @@ import {
   Divider,
   SwipeActionItem,
 } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const leftActions = [

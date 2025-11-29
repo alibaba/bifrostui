@@ -13,7 +13,7 @@ The default divider is a fine line.
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -32,7 +32,7 @@ You can also control the divider style to be dashed or solid using the `dashed` 
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -54,7 +54,7 @@ You can control the divider's orientation using the `direction` attribute.
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -71,7 +71,7 @@ export default () => {
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -92,7 +92,7 @@ By default, the divider fills the width/height of the parent element, but you ca
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -109,7 +109,7 @@ export default () => {
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -129,7 +129,7 @@ Currently only supported when `direction` is set to `horizontal`.
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -150,7 +150,7 @@ For other special styles, you can customize the divider via `style`, such as adj
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

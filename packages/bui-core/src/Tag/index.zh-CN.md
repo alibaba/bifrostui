@@ -16,7 +16,7 @@ name: Tag 标签
 
 ```tsx
 import { Stack, Tag } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -35,7 +35,7 @@ Tag 标签支持 `primary`、`success`、`info`、`warning`、`danger` 主题定
 
 ```tsx
 import { Stack, Tag } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -136,7 +136,7 @@ export default () => {
 
 ```tsx
 import { Stack, Tag } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -161,7 +161,7 @@ export default () => {
 
 ```tsx
 import { Stack, Tag, TagGroup } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

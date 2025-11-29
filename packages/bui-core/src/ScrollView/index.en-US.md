@@ -35,7 +35,7 @@ export default () => {
 Pass `scrollX` to enable horizontal scrolling
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { ScrollView, Stack } from '@bifrostui/react';
 
 export default () => {

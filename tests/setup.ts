@@ -2,7 +2,42 @@ import '@testing-library/jest-dom/vitest';
 import 'vitest-axe/extend-expect';
 import { vi } from 'vitest';
 
-
+// Mock canvas module to avoid native build errors
+vi.mock('canvas', () => ({
+  default: {},
+  createCanvas: vi.fn(() => ({
+    getContext: vi.fn(() => ({
+      fillRect: vi.fn(),
+      clearRect: vi.fn(),
+      getImageData: vi.fn(),
+      putImageData: vi.fn(),
+      createImageData: vi.fn(),
+      setTransform: vi.fn(),
+      drawImage: vi.fn(),
+      save: vi.fn(),
+      fillText: vi.fn(),
+      restore: vi.fn(),
+      beginPath: vi.fn(),
+      moveTo: vi.fn(),
+      lineTo: vi.fn(),
+      closePath: vi.fn(),
+      stroke: vi.fn(),
+      translate: vi.fn(),
+      scale: vi.fn(),
+      rotate: vi.fn(),
+      arc: vi.fn(),
+      fill: vi.fn(),
+      measureText: vi.fn(() => ({ width: 0 })),
+      transform: vi.fn(),
+      rect: vi.fn(),
+      clip: vi.fn(),
+    })),
+    toBuffer: vi.fn(),
+    toDataURL: vi.fn(),
+  })),
+  createImageData: vi.fn(),
+  loadImage: vi.fn(),
+}));
 
 // Mock CSS modules
 vi.mock('*.less', () => ({}));
@@ -45,7 +80,7 @@ global.IntersectionObserver = vi.fn().mockImplementation(() => ({
 // Mock matchMedia
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
-  value: vi.fn().mockImplementation(query => ({
+  value: vi.fn().mockImplementation((query) => ({
     matches: false,
     media: query,
     onchange: null,
@@ -66,13 +101,13 @@ beforeAll(() => {
     if (
       typeof args[0] === 'string' &&
       (args[0].includes('Could not parse CSS stylesheet') ||
-       args[0].includes('Warning: An update to') ||
-       args[0].includes('React does not recognize the') ||
-       args[0].includes('maxCount属性即将废弃') ||
-       args[0].includes('BUI Tooltip: children must be') ||
-       args[0].includes('检测到CSS变量循环引用') ||
-       args[0].includes('ReactDOM.render is no longer supported') ||
-       args[0].includes('unmountComponentAtNode is deprecated'))
+        args[0].includes('Warning: An update to') ||
+        args[0].includes('React does not recognize the') ||
+        args[0].includes('maxCount属性即将废弃') ||
+        args[0].includes('BUI Tooltip: children must be') ||
+        args[0].includes('检测到CSS变量循环引用') ||
+        args[0].includes('ReactDOM.render is no longer supported') ||
+        args[0].includes('unmountComponentAtNode is deprecated'))
     ) {
       return;
     }
@@ -83,7 +118,7 @@ beforeAll(() => {
     if (
       typeof args[0] === 'string' &&
       (args[0].includes('Warning: An update to') ||
-       args[0].includes('inside a test was not wrapped in act(...)'))
+        args[0].includes('inside a test was not wrapped in act(...)'))
     ) {
       return;
     }
@@ -94,4 +129,4 @@ beforeAll(() => {
 afterAll(() => {
   console.warn = originalWarn;
   console.error = originalError;
-}); 
+});

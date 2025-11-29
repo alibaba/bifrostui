@@ -10,7 +10,7 @@ name: Loading
 Display a loading icon.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Loading } from '@bifrostui/react';
 
 export default () => {
@@ -30,7 +30,7 @@ You can pass text via the `children` property. Content that is not of type `Reac
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, Loading } from '@bifrostui/react';
 
 export default () => {
@@ -50,7 +50,7 @@ You can control the display arrangement by setting `direction` to either `vertic
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, Loading } from '@bifrostui/react';
 
 export default () => {
@@ -70,7 +70,7 @@ Control the internal icon via `IconProps`.
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, Loading } from '@bifrostui/react';
 
 export default () => {

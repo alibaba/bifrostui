@@ -145,7 +145,7 @@ export default () => {
 通过 `startIcon` 可自定义前按钮图标，通过 `endIcon` 可自定义后按钮图标。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Slider, SliderValue, Stack } from '@bifrostui/react';
 import { StarFilledIcon, StarOutlinedIcon } from '@bifrostui/icons';
 
@@ -169,7 +169,7 @@ export default () => {
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

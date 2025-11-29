@@ -8,7 +8,7 @@ import {
   getTransitionProps,
   useForkRef,
 } from '@bifrostui/utils';
-import React from 'react';
+import * as React from 'react';
 import Transition from '../Transition';
 import { FadeProps } from './Fade.types';
 

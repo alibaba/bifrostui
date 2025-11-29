@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render, isConformant, userEvent, screen } from 'testing';
 import Breadcrumb, { BreadcrumbItem, BreadcrumbProps } from '../index';
 

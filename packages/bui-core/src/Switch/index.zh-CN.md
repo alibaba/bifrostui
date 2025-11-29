@@ -12,7 +12,7 @@ name: Switch 开关
 `Switch`基础用法。Switch 默认颜色为`primary`，默认大小为`medium`。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Switch } from '@bifrostui/react';
 export default () => {
   return (
@@ -30,7 +30,7 @@ export default () => {
 `Switch`组件提供了 5 种主题颜色：`primary`、`info`、`success`、`warning`、`danger`，可通过`color`来设置组件主题色。`color`属性默认值`primary`。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Switch } from '@bifrostui/react';
 export default () => {
   return (
@@ -50,7 +50,7 @@ export default () => {
 可通过`size`来规定组件大小，可选值有`small`、`medium`、`large`。默认为`medium`。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Switch } from '@bifrostui/react';
 export default () => {
   return (
@@ -68,7 +68,7 @@ export default () => {
 通过`checkedChildren`和`unCheckedChildren`来自定义状态文字或图标。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Switch } from '@bifrostui/react';
 import { MoonOutlinedIcon, SunOutlinedIcon } from '@bifrostui/icons';
 
@@ -145,7 +145,7 @@ export default () => {
 通过`disabled`指定 `Switch`为禁用状态。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Switch } from '@bifrostui/react';
 
 export default () => {

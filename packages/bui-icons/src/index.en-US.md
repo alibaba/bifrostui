@@ -32,7 +32,7 @@ import { SettingsOutlinedIcon } from '@bifrostui/icons';
 Set the icon size through the 'size' attribute.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack } from '@bifrostui/react';
 import { SettingsOutlinedIcon } from '@bifrostui/icons';
 
@@ -52,7 +52,7 @@ export default () => {
 Set the icon color through the 'color' attribute.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack } from '@bifrostui/react';
 import { SettingsOutlinedIcon } from '@bifrostui/icons';
 
@@ -77,7 +77,7 @@ export default () => {
 If the predefined icon size and color cannot meet the needs, you can customize the color through the 'htmlColor' property or the 'style' property.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack } from '@bifrostui/react';
 import { SettingsOutlinedIcon } from '@bifrostui/icons';
 

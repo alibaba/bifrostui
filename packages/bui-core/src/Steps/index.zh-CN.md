@@ -13,7 +13,7 @@ name: Steps 步骤条
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const handleChange = (e, data) => {
@@ -40,7 +40,7 @@ export default () => {
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -61,7 +61,7 @@ export default () => {
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -87,7 +87,7 @@ export default () => {
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -129,7 +129,7 @@ export default () => {
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -174,7 +174,7 @@ export default () => {
 通过`icon`可以自定义各个状态的图标。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Step, Steps } from '@bifrostui/react';
 import {
   AccessTimeCircleFilledIcon,
@@ -230,7 +230,7 @@ export default () => {
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const handleChange = (e, data) => {
@@ -265,7 +265,7 @@ export default () => {
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const detail = () => {
   return (
@@ -336,7 +336,7 @@ export default () => {
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

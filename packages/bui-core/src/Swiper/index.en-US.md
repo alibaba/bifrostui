@@ -15,7 +15,7 @@ A slide view container used for creating carousels, paginated displays, and othe
 Nest SwiperItem within Swiper to construct a basic slide view container.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -99,7 +99,7 @@ export default () => {
 Pass in autoplay to enable auto switching. Use interval to control the time between two automatic switches (in milliseconds).
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -134,7 +134,7 @@ export default () => {
 Pass in circular to allow the container to scroll infinitely in the same direction.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -174,7 +174,7 @@ export default () => {
 Pass in effect parameter to choose transition effects.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -215,7 +215,7 @@ export default () => {
 Pass in vertical to make the container scroll vertically (instead of horizontally).
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -255,7 +255,7 @@ export default () => {
 Pass in indicatorDots to enable page indicators (small dots). Use indicatorColor and indicatorActiveColor to set the color of the dots.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -297,7 +297,7 @@ export default () => {
 The Swiper component supports onChange and onAnimationFinish events. Specific return values can be found in the detail of the corresponding event object.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {

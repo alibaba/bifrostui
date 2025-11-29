@@ -28,7 +28,7 @@ The simplest Tooltip usage, with default click trigger for display/hide toggling
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -71,7 +71,7 @@ Set `defaultOpen` to `true` to display the Tooltip by default.
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -88,7 +88,7 @@ You can set the offset to control the distance from the target element.
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -105,7 +105,7 @@ Placement sets the position of the tooltip bubble layer, options are top, left, 
 
 ```tsx
 import { Tooltip, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const packageButton = (inner) => {
@@ -250,7 +250,7 @@ The trigger method for displaying the bubble, "click" or "hover", default is cli
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -265,7 +265,7 @@ export default () => {
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const onOpenChange = (event, data) => {
@@ -292,7 +292,7 @@ The Tooltip component is equipped with complete accessibility support to ensure 
 
 ```tsx
 import { Tooltip, Button, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -309,7 +309,7 @@ export default () => {
 
 ```tsx
 import { Tooltip, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

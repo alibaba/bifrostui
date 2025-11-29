@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { isMini } from '@bifrostui/utils';
 import { breakpoints as defaultBreakpoints, rootSelector } from './constants';
 import {

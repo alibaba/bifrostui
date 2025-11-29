@@ -11,7 +11,9 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         moduleDirectory: ['node_modules', 'packages/', 'test/'],
       },
-      typescript: {},
+      typescript: {
+        project: ['tsconfig.json', '.dumi/tsconfig.json'],
+      },
     },
   },
   extends: [
@@ -67,6 +69,8 @@ module.exports = {
         'react/react-in-jsx-scope': 0,
         'react/display-name': 0,
         'no-console': 0,
+        'import/no-extraneous-dependencies': 0, // 文档示例代码不需要检查依赖
+        '@typescript-eslint/no-unused-vars': 0, // 文档示例代码可能有未使用的变量
       },
     },
   ],
@@ -124,12 +128,18 @@ module.exports = {
       {
         devDependencies: [
           'scripts/**',
+          'tests/**',
           '**/*.test.js',
+          '**/*.test.ts',
+          '**/*.test.tsx',
           '**/__tests__/*',
           '*.config.js',
           '**/*.config.js',
           '**/*.md',
           '**/builder.js',
+          '.dumi/**',
+          '.dumi/**/*.ts',
+          '.dumi/**/*.tsx',
         ],
       },
     ],
@@ -148,6 +158,8 @@ module.exports = {
     'react/jsx-uses-react': 'error',
     'react/jsx-no-duplicate-props': ['error', { ignoreCase: true }],
     'react/no-this-in-sfc': 'error',
+    'react/prop-types': 'off',
+    'react/display-name': 'off',
     'react/require-render-return': 'warn',
     'react/no-children-prop': 'warn',
     'react/jsx-filename-extension': [

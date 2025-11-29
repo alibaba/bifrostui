@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import { useForkRef } from '@bifrostui/utils';
 import Portal from '../Portal';
 import Backdrop from '../Backdrop';

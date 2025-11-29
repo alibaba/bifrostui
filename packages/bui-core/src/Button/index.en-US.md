@@ -22,7 +22,7 @@ Buttons support four variants: `Text Button`, `Outlined Button`, `Contained Butt
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -50,7 +50,7 @@ By setting `size` to `large`, `small`, or `full`, the button can be adjusted to 
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -102,7 +102,7 @@ Buttons support theme definitions of `primary`, `success`, `info`, `warning`, `d
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -296,7 +296,7 @@ Buttons can be disabled using the `disabled` property, rendering them non-clicka
 
 ```tsx
 import { Button, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -318,7 +318,7 @@ export default () => {
 Users are more visually attuned to icons compared to plain text, so you might want to add icons to certain buttons to enhance user experience. For instance, a date button could be labeled with a date icon. `startIcon` appears before children elements, and `endIcon` appears after them.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Button, Stack } from '@bifrostui/react';
 import { CalendarOutlinedIcon, HeartFilledIcon } from '@bifrostui/icons';
 

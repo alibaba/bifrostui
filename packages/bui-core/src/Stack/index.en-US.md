@@ -21,7 +21,7 @@ With the `divider` attribute, you can insert an element between each child.
 
 ```tsx
 import { Button, Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

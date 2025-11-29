@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import { View, ViewProps } from '@tarojs/components';
 import Backdrop from '../Backdrop';
 import Portal from '../Portal';
@@ -68,10 +68,10 @@ const Modal = React.forwardRef<HTMLDivElement, ViewProps & ModalProps>(
       }
 
       if (React.isValidElement(children)) {
-        return React.cloneElement(children, {
+        return React.cloneElement(children as React.ReactElement<any>, {
           ...transitionProps,
           tabIndex: -1,
-          ...children.props,
+          ...(children.props as object),
         });
       }
 

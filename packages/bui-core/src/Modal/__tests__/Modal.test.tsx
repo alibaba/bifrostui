@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render, screen, fireEvent, waitFor } from 'testing';
 import Modal from '../Modal';
 import { modalManager } from '../ModalManager';
@@ -21,7 +21,7 @@ vi.mock('../../Backdrop', () => ({
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             (onClick as React.MouseEventHandler<HTMLDivElement>)?.(
-              e as React.KeyboardEvent<HTMLDivElement>,
+              e as unknown as React.MouseEvent<HTMLDivElement>,
             );
           }
         }}
@@ -44,40 +44,41 @@ vi.mock('../../Portal', () => ({
     mockPortalFn(props);
     return (
       <div ref={ref} data-testid="portal-mock">
-        {props.children}
+        {props.children as React.ReactNode}
       </div>
     );
   }),
 }));
 
 // Mock Transition component for testing
-const MockTransition = React.forwardRef<
-  HTMLDivElement,
-  {
-    in?: boolean;
-    onEnter?: () => void;
-    onExited?: () => void;
-    children: React.ReactNode;
-    [key: string]: unknown;
-  }
->(({ in: inProp, onEnter, onExited, children, ...props }, ref) => {
-  React.useEffect(() => {
-    if (inProp && onEnter) {
-      onEnter();
-    } else if (!inProp && onExited) {
-      // Simulate async transition
-      const timer = setTimeout(onExited, 10);
-      return () => clearTimeout(timer);
-    }
-    return undefined;
-  }, [inProp, onEnter, onExited]);
+interface MockTransitionProps {
+  in?: boolean;
+  onEnter?: () => void;
+  onExited?: () => void;
+  children: React.ReactNode;
+  [key: string]: any;
+}
 
-  return (
-    <div ref={ref} data-testid="transition-mock" data-in={inProp} {...props}>
-      {children}
-    </div>
-  );
-});
+const MockTransition = React.forwardRef<HTMLDivElement, MockTransitionProps>(
+  ({ in: inProp, onEnter, onExited, children, ...props }, ref) => {
+    React.useEffect(() => {
+      if (inProp && onEnter) {
+        onEnter();
+      } else if (!inProp && onExited) {
+        // Simulate async transition
+        const timer = setTimeout(onExited, 10);
+        return () => clearTimeout(timer);
+      }
+      return undefined;
+    }, [inProp, onEnter, onExited]);
+
+    return (
+      <div ref={ref} data-testid="transition-mock" data-in={inProp} {...props}>
+        {children as React.ReactNode}
+      </div>
+    );
+  },
+);
 
 MockTransition.displayName = 'MockTransition';
 MockTransition.defaultProps = {
@@ -90,8 +91,8 @@ describe('Modal', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     // Clear modal manager state before each test
-    modalManager.modals = [];
-    modalManager.containers = [];
+    (modalManager as any).modals = [];
+    (modalManager as any).containers = [];
     // Reset document body styles
     document.body.style.overflow = '';
     document.body.style.paddingRight = '';

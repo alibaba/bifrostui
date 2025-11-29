@@ -125,7 +125,7 @@ export default () => {
 
 ```tsx
 import { Input } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return <Input disabled placeholder="请填写内容" />;

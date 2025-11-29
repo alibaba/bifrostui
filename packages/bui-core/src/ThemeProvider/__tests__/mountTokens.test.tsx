@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import {
   mountTokens,
@@ -14,7 +14,6 @@ vi.mock('@bifrostui/utils', () => ({
 }));
 
 let consoleSpy: ReturnType<typeof vi.spyOn>;
-let isValidElement: ReturnType<typeof vi.spyOn>;
 const testId = 'bui-var-bl';
 
 beforeEach(() => {
@@ -30,18 +29,10 @@ beforeAll(() => {
         global.console.warn(message);
       }
     });
-
-  // mock React.isValidElement
-  isValidElement = vi
-    .spyOn(React, 'isValidElement')
-    .mockImplementation((element) => {
-      return element !== null;
-    });
 });
 
 afterAll(() => {
   consoleSpy.mockRestore();
-  isValidElement.mockRestore();
 });
 
 describe('MountToken Functions', () => {
@@ -192,7 +183,7 @@ describe('MountToken Functions', () => {
         '--bui-btn-border-radius': '2px',
       },
       containerId: testId,
-      container: 'test',
+      container: React.createElement('div'),
     };
 
     expect(document.body.innerHTML).toContain('<div class="bui-var-bl"></div>');

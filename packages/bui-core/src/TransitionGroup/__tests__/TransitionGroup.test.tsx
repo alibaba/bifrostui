@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render, screen, waitFor, fireEvent } from 'testing';
 import Button from '../../Button';
 import TransitionGroup from '../TransitionGroup';

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { CloseIcon } from '@bifrostui/icons';
 import { render, isConformant, screen, userEvent } from 'testing';
 import List, { ListItem, ListProps, ListItemContent } from '../index';

@@ -13,7 +13,7 @@ name: Countdown 倒计时
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -30,7 +30,7 @@ export default () => {
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -47,7 +47,7 @@ export default () => {
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -68,7 +68,7 @@ export default () => {
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -88,7 +88,7 @@ export default () => {
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const finish = () => {
@@ -109,7 +109,7 @@ export default () => {
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const change = (data) => {
@@ -130,7 +130,7 @@ export default () => {
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -156,7 +156,7 @@ export default () => {
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

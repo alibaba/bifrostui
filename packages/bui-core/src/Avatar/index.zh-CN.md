@@ -15,7 +15,7 @@ name: Avatar 头像
 
 ```tsx
 import { Avatar, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -32,7 +32,7 @@ export default () => {
 
 ```tsx
 import { Avatar, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -49,7 +49,7 @@ export default () => {
 通过`children`还可以创建图标等自定义头像。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Avatar, Stack } from '@bifrostui/react';
 import { VipFilledIcon } from '@bifrostui/icons';
 
@@ -71,7 +71,7 @@ variant 默认值为：`rounded`。
 
 ```tsx
 import { Avatar, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -93,7 +93,7 @@ size 默认尺寸为： `medium`。
 
 ```tsx
 import { Avatar, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -125,7 +125,7 @@ export default () => {
 
 ```tsx
 import { Avatar, AvatarGroup, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -148,7 +148,7 @@ variant 默认值为：`rounded`。
 
 ```tsx
 import { Avatar, AvatarGroup, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -176,7 +176,7 @@ AvatarGroup 组件提供`maxCount`属性来限制显示的头像数量，并自�
 
 ```tsx
 import { Avatar, AvatarGroup, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -199,7 +199,7 @@ orientation 默认为：`left`。
 
 ```tsx
 import { Avatar, AvatarGroup, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -227,7 +227,7 @@ AvatarGroup 组件提供`spacing`属性来控制头像间距。
 
 ```tsx
 import { Avatar, AvatarGroup, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

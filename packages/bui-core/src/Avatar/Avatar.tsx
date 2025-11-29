@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import Image from '../Image';
 import { AvatarProps } from './Avatar.types';
 import './Avatar.less';

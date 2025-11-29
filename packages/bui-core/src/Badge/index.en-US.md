@@ -13,7 +13,7 @@ The Badge component allows you to set badge content using `content`.
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -36,7 +36,7 @@ Badge offers three badge shapes: `standard`, `dot`, and `bubble`. You can contro
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -64,7 +64,7 @@ export default () => {
 The Badge component provides seven color themes: `primary`, `success`, `warning`, `info`, `danger`, `light`, and `dark`. You can set the component theme color using the `color` attribute. The default value for the color attribute is `primary`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Badge, Stack } from '@bifrostui/react';
 import { PhoneFilledIcon } from '@bifrostui/icons';
 
@@ -103,7 +103,7 @@ The Badge component supports two modes: filled `contained` and outlined `outline
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -130,7 +130,7 @@ export default () => {
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -159,7 +159,7 @@ You can limit the badge value using the `max` attribute. When the value exceeds 
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -185,7 +185,7 @@ Badge provides `showZero` and `invisible` attributes to control the badge displa
 
 ```tsx
 import { Avatar, Badge, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

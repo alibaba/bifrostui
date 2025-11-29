@@ -50,6 +50,7 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
     if (timeout.appear !== undefined) timeout.appear += delay.appear || 0;
     const nextCallback = useRef(null);
     const appearStatus = useRef(inProp && appear ? ENTERING : null);
+    const isMountedRef = useRef(true);
 
     const cancelNextCallback = () => {
       if (nextCallback.current !== null) {
@@ -63,7 +64,7 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       let active = true;
 
       nextCallback.current = (event) => {
-        if (active) {
+        if (active && isMountedRef.current) {
           active = false;
           nextCallback.current = null;
           callback(event);
@@ -86,10 +87,13 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       // This shouldn't be necessary, but there are weird race conditions with
       // setState callbacks and unmounting in testing, so always make sure that
       // we can cancel any pending setState callbacks after we unmount.
+      if (!isMountedRef.current) return;
       setStatus(nextState);
       setNextCallback(callback);
       nextTick(() => {
-        nextCallback?.current?.();
+        if (isMountedRef.current) {
+          nextCallback?.current?.();
+        }
       });
     };
     const performEnter = async (mounting) => {
@@ -146,6 +150,7 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
     useEffect(() => {
       nextTick(() => updateStatus(appearStatus.current, true));
       return () => {
+        isMountedRef.current = false;
         cancelNextCallback();
       };
     }, []);

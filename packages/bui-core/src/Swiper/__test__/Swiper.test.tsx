@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render } from 'testing';
 import Swiper from '../Swiper';
 import SwiperItem from '../SwiperItem';

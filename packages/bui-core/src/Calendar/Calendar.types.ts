@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { OverrideProps } from '@bifrostui/types';
 import { CSSTransitionProps } from '../CSSTransition/CSSTransition.types';
 

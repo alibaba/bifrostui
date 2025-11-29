@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render, screen, isConformant } from 'testing';
 import NavBar from '../index';
 

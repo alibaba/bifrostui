@@ -67,11 +67,11 @@ getCustomDemoCodesFromFile(
     } = params;
 
     // eslint-disable-next-line no-console
-    console.log(`开始测试自定义 Demo: ${demoComponentName} (${demoKey})`);
+    console.log(`start testing custom demo: ${demoComponentName} (${demoKey})`);
     // eslint-disable-next-line no-console
-    console.log(`Demo 文件路径: ${demoFilePath}`);
+    console.log(`demo file path: ${demoFilePath}`);
     // eslint-disable-next-line no-console
-    console.log(`当前进度: ${demoComponentIndex + 1}/${demoTotal}`);
+    console.log(`progress: ${demoComponentIndex + 1}/${demoTotal}`);
     accessibilityDemoTest(
       demoComponent,
       {

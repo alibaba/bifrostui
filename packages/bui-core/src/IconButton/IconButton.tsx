@@ -1,6 +1,6 @@
 import { isMini } from '@bifrostui/utils';
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import { IconButtonProps } from './IconButton.types';
 import './index.less';
 

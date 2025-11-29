@@ -145,7 +145,7 @@ export default () => {
 Customize the start icon with `startIcon` and the end icon with `endIcon`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Slider, SliderValue, Stack } from '@bifrostui/react';
 import { StarFilledIcon, StarOutlinedIcon } from '@bifrostui/icons';
 
@@ -169,7 +169,7 @@ Disable the component using `disabled`.
 
 ```tsx
 import { Slider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

@@ -1,4 +1,3 @@
-import type { SocialTypes } from '@/client/theme-api/types';
 import { ReactComponent as IconClose } from '@ant-design/icons-svg/inline-svg/outlined/close.svg';
 import { ReactComponent as IconMenu } from '@ant-design/icons-svg/inline-svg/outlined/menu.svg';
 import { useRouteMeta, useSiteData } from 'dumi';
@@ -10,26 +9,13 @@ import VersionSelect from 'dumi/theme/slots/VersionSelect';
 import Navbar from 'dumi/theme/slots/Navbar';
 import RtlSwitch from 'dumi/theme/slots/RtlSwitch';
 import SearchBar from 'dumi/theme/slots/SearchBar';
-import React, { useMemo, useState, type FC } from 'react';
+import React, { useState, type FC } from 'react';
 import './index.less';
 
 const Header: FC = () => {
   const { frontmatter } = useRouteMeta();
   const [showMenu, setShowMenu] = useState(false);
   const { themeConfig } = useSiteData();
-
-  const socialIcons = useMemo(
-    () =>
-      themeConfig.socialLinks
-        ? Object.keys(themeConfig.socialLinks)
-            .slice(0, 5)
-            .map((key) => ({
-              icon: key as SocialTypes,
-              link: themeConfig.socialLinks[key as SocialTypes],
-            }))
-        : [],
-    [themeConfig.socialLinks],
-  );
 
   return (
     <div
@@ -44,15 +30,11 @@ const Header: FC = () => {
           <VersionSelect />
         </section>
         <section className="dumi-default-header-right">
-          {/* <div className="dumi-default-header-right-aside"> */}
           <SearchBar />
           <Navbar />
           <LangSwitch />
           <RtlSwitch />
           {themeConfig.prefersColor.switch && <ColorSwitch />}
-          {/* {socialIcons.map((item) => (
-              <SocialIcon icon={item.icon} link={item.link} key={item.link} />
-            ))} */}
           <HeaderExtra />
           {/* </div> */}
         </section>

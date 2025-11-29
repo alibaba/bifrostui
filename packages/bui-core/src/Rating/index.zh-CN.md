@@ -51,7 +51,7 @@ export default () => {
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 export default () => {
   return (
     <Stack spacing="8px">
@@ -68,7 +68,7 @@ export default () => {
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 export default () => {
   return (
     <Stack spacing="8px">
@@ -85,7 +85,7 @@ export default () => {
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 export default () => {
   return (
     <Stack spacing="8px">
@@ -104,7 +104,7 @@ export default () => {
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 export default () => {
   return (
     <Stack>
@@ -120,7 +120,7 @@ export default () => {
 
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 export default () => {
   return (
     <Stack spacing="8px">
@@ -137,7 +137,7 @@ export default () => {
 ```tsx
 import { Rating, Stack } from '@bifrostui/react';
 import { HeartFilledIcon, HeartOutlinedIcon } from '@bifrostui/icons';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (

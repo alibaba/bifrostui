@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { act, isConformant, render, screen } from 'testing';
 import Drawer from '../index';
 

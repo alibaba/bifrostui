@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { act, fireEvent, isConformant, render } from 'testing';
 import DatePicker, { DatePickerOption } from '..';
 import DatePickerType from '../constants';

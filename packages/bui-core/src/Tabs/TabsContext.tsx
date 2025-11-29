@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { TabChangeEvent, TabsProps } from './Tabs.types';
 
 type TabsContextValueType = Omit<TabsProps, 'onChange'> & {
