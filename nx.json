@@ -1,0 +1,88 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "affected": {
+    "defaultBase": "main"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "test",
+          "test:run",
+          "lint",
+          "lint:script",
+          "lint:style"
+        ],
+        "parallel": 3
+      }
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"],
+      "outputs": ["{projectRoot}/dist", "{projectRoot}/es"]
+    },
+    "test": {
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/vitest.config.mjs",
+        "{workspaceRoot}/tests/**/*"
+      ],
+      "outputs": ["{workspaceRoot}/coverage"]
+    },
+    "test:run": {
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/vitest.config.mjs",
+        "{workspaceRoot}/tests/**/*"
+      ],
+      "outputs": ["{workspaceRoot}/coverage"]
+    },
+    "lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc*",
+        "{workspaceRoot}/.stylelintrc*"
+      ]
+    },
+    "lint:script": {
+      "inputs": ["default", "{workspaceRoot}/.eslintrc*"]
+    },
+    "lint:style": {
+      "inputs": ["default", "{workspaceRoot}/.stylelintrc*"]
+    }
+  },
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals",
+      "!{projectRoot}/**/*.md"
+    ],
+    "production": [
+      "default",
+      "!{projectRoot}/**/*.spec.ts",
+      "!{projectRoot}/**/*.test.ts",
+      "!{projectRoot}/**/*.spec.tsx",
+      "!{projectRoot}/**/*.test.tsx",
+      "!{projectRoot}/**/__tests__/**/*",
+      "!{projectRoot}/**/__mocks__/**/*",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/tsconfig.spec.json"
+    ],
+    "sharedGlobals": [
+      "{workspaceRoot}/tsconfig.json",
+      "{workspaceRoot}/tsconfig.*.json",
+      "{workspaceRoot}/package.json",
+      "{workspaceRoot}/pnpm-lock.yaml",
+      "{workspaceRoot}/.gitignore"
+    ]
+  },
+  "nxCloudAccessToken": null,
+  "defaultProject": "bui-core",
+  "useDaemonProcess": true
+}
