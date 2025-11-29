@@ -130,7 +130,7 @@ getCustomDemoCodesFromFile(
         },
         afterEachFn: () => {
           // eslint-disable-next-line no-console
-          console.log(`✅ ${demoComponentName} 测试完成`);
+          console.log(`✅ ${demoComponentName} test completed`);
         },
       },
       finishCallback,

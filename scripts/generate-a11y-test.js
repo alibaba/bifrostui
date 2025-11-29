@@ -132,18 +132,16 @@ getMdDemoCodes(
 //         componentName: demoComponentName,
 //         demoComponentIndex,
 //         axeOptions: {},
-//         // 启用详细的无障碍错误报告
 //         detailedErrorReporting: true,
-//          // ${componentName} 组件的自定义无障碍检查
 //         customA11yChecks: (container) => {},
 //         beforeAllFn: () => {
-//           console.log(\`🧪 开始 \${demoComponentName} 自定义 Demo 无障碍测试...\`);
+//           console.log(\`🧪 start custom demo accessibility test for \${demoComponentName}...\`);
 //         },
 //         beforeEachFn: () => {
-//           console.log(\`📝 准备测试 \${demoComponentName}...\`);
+//           console.log(\`📝 prepare to test \${demoComponentName}...\`);
 //         },
 //         afterEachFn: () => {
-//           console.log(\`✅ \${demoComponentName} 测试完成\`);
+//           console.log(\`✅ \${demoComponentName} test completed\`);
 //         },
 //       },
 //       finishCallback,

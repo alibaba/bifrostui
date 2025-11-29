@@ -122,15 +122,17 @@ getCustomDemoCodesFromFile(
         },
         beforeAllFn: () => {
           // eslint-disable-next-line no-console
-          console.log(`🧪 开始 ${demoComponentName} 自定义 Demo 无障碍测试...`);
+          console.log(
+            `🧪 start custom demo accessibility test for ${demoComponentName}...`,
+          );
         },
         beforeEachFn: () => {
           // eslint-disable-next-line no-console
-          console.log(`📝 准备测试 ${demoComponentName}...`);
+          console.log(`📝 prepare to test ${demoComponentName}...`);
         },
         afterEachFn: () => {
           // eslint-disable-next-line no-console
-          console.log(`✅ ${demoComponentName} 测试完成`);
+          console.log(`✅ ${demoComponentName} test completed`);
         },
       },
       finishCallback,
