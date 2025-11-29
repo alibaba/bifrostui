@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "node esbuild.config.js",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "cd ../.. && vitest run --project bui-utils"
   },
   "devDependencies": {
     "esbuild": "^0.19.7",

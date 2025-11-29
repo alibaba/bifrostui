@@ -1,0 +1,15 @@
+{
+  "name": "Collapse",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/bui-core/src/Collapse",
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm vitest run --project Collapse",
+        "cwd": "{workspaceRoot}"
+      }
+    }
+  }
+}

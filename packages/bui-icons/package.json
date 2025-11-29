@@ -43,6 +43,7 @@
   },
   "scripts": {
     "build": "node esbuild.config.js",
-    "create:icon": "node ./builder.js --output-dir ./src/components --svg-dir ./src/svgs"
+    "create:icon": "node ./builder.js --output-dir ./src/components --svg-dir ./src/svgs",
+    "test": "cd ../.. && vitest run --project bui-icons"
   }
 }

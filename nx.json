@@ -27,19 +27,20 @@
     },
     "test": {
       "inputs": [
-        "default",
-        "^production",
+        "{projectRoot}/**/*.{ts,tsx}",
+        "!{projectRoot}/**/*.md",
         "{workspaceRoot}/vitest.config.mjs",
-        "{workspaceRoot}/tests/**/*"
+        "{workspaceRoot}/tests/**/*",
+        "sharedGlobals"
       ],
       "outputs": ["{workspaceRoot}/coverage"]
     },
     "test:run": {
       "inputs": [
-        "default",
-        "^production",
+        "{projectRoot}/src/**/*.{ts,tsx}",
         "{workspaceRoot}/vitest.config.mjs",
-        "{workspaceRoot}/tests/**/*"
+        "{workspaceRoot}/tests/**/*",
+        "sharedGlobals"
       ],
       "outputs": ["{workspaceRoot}/coverage"]
     },

@@ -67,6 +67,7 @@ const AlertIcon = (props: AlertIconProps) => {
 // 警告框操作区
 const AlertAction = (props: AlertActionProps) => {
   const { color, action, onClose } = props;
+
   if (!action && !onClose) return null;
   if (action) {
     return (

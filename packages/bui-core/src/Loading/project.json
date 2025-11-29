@@ -1,0 +1,15 @@
+{
+  "name": "Loading",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/bui-core/src/Loading",
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm vitest run --project Loading",
+        "cwd": "{workspaceRoot}"
+      }
+    }
+  }
+}

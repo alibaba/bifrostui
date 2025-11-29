@@ -40,7 +40,8 @@
   },
   "scripts": {
     "build": "node esbuild.config.js",
-    "build:benchmark": "rspack build"
+    "build:benchmark": "rspack build",
+    "test": "cd ../.. && vitest run --project all packages/bui-core"
   },
   "sideEffects": [
     "*.css",

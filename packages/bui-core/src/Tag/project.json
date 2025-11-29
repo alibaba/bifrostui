@@ -1,0 +1,15 @@
+{
+  "name": "Tag",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/bui-core/src/Tag",
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm vitest run --project Tag",
+        "cwd": "{workspaceRoot}"
+      }
+    }
+  }
+}
