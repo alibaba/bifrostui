@@ -1,7 +1,7 @@
 import mdastFromMarkdown from 'mdast-util-from-markdown';
 import pinyin from 'pinyin';
 import fse from 'fs-extra';
-import path from 'path';
+import path from 'node:path';
 
 const coreDir = path.resolve(
   import.meta.dirname,

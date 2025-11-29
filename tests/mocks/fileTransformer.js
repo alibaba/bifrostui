@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 
 // https://jestjs.io/docs/code-transformation#transforming-images-to-their-path
 module.exports = {

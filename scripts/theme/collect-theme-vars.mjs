@@ -1,8 +1,8 @@
-import path from 'path';
+import path from 'node:path';
 import fse from 'fs-extra';
 import { rootSelectorContentRegex, convertToJson } from '../utils/index.mjs';
 
-const igonredDirs = ['locales'];
+const ignoredDirs = ['locales'];
 const componentsDir = path.join(
   import.meta.dirname,
   '../../packages/bui-core/src',
@@ -17,7 +17,7 @@ const getComponentsFiles = (directory) => {
   fse.readdirSync(directory).forEach((file) => {
     const filePath = path.join(directory, file);
     const stat = fse.statSync(filePath);
-    if (stat && stat.isDirectory() && !igonredDirs.includes(file)) {
+    if (stat && stat.isDirectory() && !ignoredDirs.includes(file)) {
       result[file] = {
         path: filePath,
       };
@@ -56,7 +56,7 @@ const collectThemeVars = () => {
 
   fse.outputFileSync(
     outputFilePath,
-    JSON.stringify(components, null, 2),
+    `${JSON.stringify(components, null, 2)}\n`,
     'utf8',
   );
 };

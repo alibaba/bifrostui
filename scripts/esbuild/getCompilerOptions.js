@@ -1,5 +1,5 @@
-const { createHash } = require('crypto');
-const { resolve } = require('path');
+const { createHash } = require('node:crypto');
+const { resolve } = require('node:path');
 const ts = require('typescript');
 
 function getCompilerOptions(opts) {

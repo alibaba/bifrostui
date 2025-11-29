@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import fse from 'fs-extra';
 import getAllComponents from '../utils/getAllComponents.mjs';
 import { formatMarkdown } from '../utils/formatMarkdown.mjs';

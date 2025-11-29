@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 
 const fs = require('fs-extra');
-const path = require('path');
+const path = require('node:path');
 const { glob } = require('glob');
 const esBuilder = require('../../esbuild.base.ts');
 

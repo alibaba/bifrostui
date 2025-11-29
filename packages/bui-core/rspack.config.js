@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 const { defineConfig } = require('@rspack/cli');
 const { DefinePlugin } = require('@rspack/core');
-const { execSync } = require('child_process');
+const { execSync } = require('node:child_process');
 
 const isMainBranch = () => {
   try {

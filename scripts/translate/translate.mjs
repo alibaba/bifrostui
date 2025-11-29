@@ -9,11 +9,11 @@
 import OpenAI from 'openai';
 import dotenv from 'dotenv';
 import fs from 'node:fs';
-import path from 'path';
+import path from 'node:path';
 import minimist from 'minimist';
 import ora from 'ora';
 import { input } from '@inquirer/prompts';
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'node:url';
 
 dotenv.config();
 const __filename = fileURLToPath(import.meta.url);

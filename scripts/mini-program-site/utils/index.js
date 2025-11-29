@@ -1,7 +1,7 @@
 const mdastFromMarkdown = require('mdast-util-from-markdown');
 const pinyin = require('pinyin');
 const fse = require('fs-extra');
-const path = require('path');
+const path = require('node:path');
 
 const coreDir = path.resolve(__dirname, '../../../packages/bui-core/src');
 const iconsDir = path.resolve(__dirname, '../../../packages/bui-icons/src');
@@ -14,9 +14,6 @@ const flatten = (arr) => {
 
 /** 解析markdown代码模块 */
 const parseCodeModules = (modules, theme, index) => {
-  // if (theme.enName === 'Tabs') {
-  //   debugger;
-  // }
   const codeItem = modules.find((moduleItem) => moduleItem.type === 'code');
 
   let code = '';

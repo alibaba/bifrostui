@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const path = require('path');
+const path = require('node:path');
 const chokidar = require('chokidar');
 const fse = require('fs-extra');
 const shelljs = require('shelljs');

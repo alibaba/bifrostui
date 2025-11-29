@@ -1,5 +1,5 @@
-const path = require('path');
-const { execSync } = require('child_process');
+const path = require('node:path');
+const { execSync } = require('node:child_process');
 const chalk = require('chalk');
 
 const args = process.argv.slice(2);

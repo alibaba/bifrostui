@@ -49,7 +49,6 @@ module.exports = {
         '@typescript-eslint/ban-types': 0,
       },
     },
-    // .md文档使用markdown处理器
     {
       files: ['**/*.md'],
       processor: 'markdown/markdown',

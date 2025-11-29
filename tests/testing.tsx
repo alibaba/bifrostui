@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom/vitest';
 import { render } from '@testing-library/react';
 import * as React from 'react';
-import path from 'path';
+import path from 'node:path';
 import { glob } from 'glob';
-import fs from 'fs';
+import fs from 'node:fs';
 import ReactTestRenderer from 'react-test-renderer';
 import { formatMarkdown } from '../scripts/mini-program-site/utils';
 
@@ -124,7 +124,10 @@ export const snapshotTest = async (componentName) => {
       return new Promise((resolve) => {
         try {
           // 使用动态 import，但需要确保路径是绝对路径
-          const snapshotPath = path.resolve(__dirname, `./snapshot.${componentName}${index}.tsx`);
+          const snapshotPath = path.resolve(
+            __dirname,
+            `./snapshot.${componentName}${index}.tsx`,
+          );
           import(snapshotPath)
             .then((component) => {
               const Component = component.default;
@@ -207,32 +210,30 @@ export const getMdDemoCodes = (
     // console.log(demofiles, 'demofiles12');
     // eslint-disable-next-line no-restricted-syntax
     for (const [index, item] of demofiles.entries()) {
-       // 取出文件名字取出后缀作为componentDemoName
-       const componentDemoName = `${componentName}_${path.basename(item).replace('.tsx', '')}`;
+      // 取出文件名字取出后缀作为componentDemoName
+      const componentDemoName = `${componentName}_${path.basename(item).replace('.tsx', '')}`;
 
-       // 同步创建测试用例，但异步加载组件
-       callback({
-         demoComponent: () => {
-           // 使用动态 import，但需要确保路径是绝对路径
-           const absolutePath = path.resolve(item);
-           return import(absolutePath).then((demo) => demo.default);
-         },
-         demoComponentName: componentDemoName,
-         demoComponentIndex: index,
-         demoTotal: demofiles.length,
-         finishCallback: (finishIndex = 0) => {
-           console.log('finishCallback running.......', finishIndex);
-           if (finishIndex === demofiles.length - 1) {
-             // 删除tempDemos文件夹
-             fs.rmSync(tempDemoPath, { recursive: true });
-           }
-         },
-       });
+      // 同步创建测试用例，但异步加载组件
+      callback({
+        demoComponent: () => {
+          // 使用动态 import，但需要确保路径是绝对路径
+          const absolutePath = path.resolve(item);
+          return import(absolutePath).then((demo) => demo.default);
+        },
+        demoComponentName: componentDemoName,
+        demoComponentIndex: index,
+        demoTotal: demofiles.length,
+        finishCallback: (finishIndex = 0) => {
+          console.log('finishCallback running.......', finishIndex);
+          if (finishIndex === demofiles.length - 1) {
+            // 删除tempDemos文件夹
+            fs.rmSync(tempDemoPath, { recursive: true });
+          }
+        },
+      });
     }
   });
 };
-
-
 
 // 支持单个文件中多个 demo 的测试函数
 export const getCustomDemoCodesFromFile = (
@@ -246,35 +247,35 @@ export const getCustomDemoCodesFromFile = (
     __dirname,
     `../packages/bui-core/src/${componentName}/__tests__/fixtures`,
   );
-  
+
   // 构建自定义 demo 文件的完整路径
   const fullDemoPath = path.resolve(cusDemoPath);
-  
+
   // 检查路径是否存在
   if (!fs.existsSync(fullDemoPath)) {
     throw Error(`Custom demo path does not exist: ${fullDemoPath}`);
   }
-  
+
   // 直接读取固定的文件名 A11yDemos.tsx
   const demoFilePath = path.join(fullDemoPath, 'A11yDemos.tsx');
-  
+
   // 检查文件是否存在
   if (!fs.existsSync(demoFilePath)) {
     console.warn(`Custom demo file not found: ${demoFilePath}`);
     return;
   }
-  
+
   // 先同步导入文件，然后为每个 demo 创建测试用例
   const absolutePath = path.resolve(demoFilePath);
-  
+
   // 使用同步的方式读取文件内容，然后解析出所有的 demo
   try {
     const fileContent = fs.readFileSync(absolutePath, 'utf-8');
-    
+
     // 简单的解析逻辑：查找 export const 和 export default
     const namedExports = [];
     const defaultExport = [];
-    
+
     // 查找命名导出
     const namedExportRegex = /export\s+const\s+(\w+)\s*=/g;
     let match;
@@ -285,8 +286,8 @@ export const getCustomDemoCodesFromFile = (
     const defaultExportRegex = /export\s+default\s*\{([^}]+)\}/s;
     const defaultMatch = defaultExportRegex.exec(fileContent);
     if (defaultMatch) {
-      const props = defaultMatch[1].split(',').map(prop => prop.trim());
-      props.forEach(prop => {
+      const props = defaultMatch[1].split(',').map((prop) => prop.trim());
+      props.forEach((prop) => {
         const cleanProp = prop.replace(/\s+/g, '');
         if (cleanProp && !cleanProp.includes(':')) {
           defaultExport.push(cleanProp);
@@ -300,23 +301,23 @@ export const getCustomDemoCodesFromFile = (
       demosToTest = defaultExport.map((key, index) => ({
         key,
         index,
-        name: `${componentName}_customDemo_${key}`
+        name: `${componentName}_customDemo_${key}`,
       }));
     } else if (namedExports.length > 0) {
       // 使用命名导出
       demosToTest = namedExports.map((key, index) => ({
         key,
         index,
-        name: `${componentName}_customDemo_${key}`
+        name: `${componentName}_customDemo_${key}`,
       }));
     }
     // 过滤掉 skip 中的 demo
     if (skips.length) {
       demosToTest = demosToTest.filter((demoInfo) => {
-        return !skips.some((skipPattern) => 
-          typeof skipPattern === 'string' 
+        return !skips.some((skipPattern) =>
+          typeof skipPattern === 'string'
             ? demoInfo.key.includes(skipPattern)
-            : demoInfo.key === skipPattern
+            : demoInfo.key === skipPattern,
         );
       });
     }
@@ -325,14 +326,20 @@ export const getCustomDemoCodesFromFile = (
       callback({
         demoComponent: () => {
           return import(absolutePath).then((demo) => {
-            if (demo.default && typeof demo.default === 'object' && demo.default !== null) {
+            if (
+              demo.default &&
+              typeof demo.default === 'object' &&
+              demo.default !== null
+            ) {
               // 从默认导出对象中获取特定的 demo
               return demo.default[demoInfo.key];
             } else if (demo[demoInfo.key]) {
               // 从命名导出中获取特定的 demo
               return demo[demoInfo.key];
             }
-            throw new Error(`Demo ${demoInfo.key} not found in ${demoFilePath}`);
+            throw new Error(
+              `Demo ${demoInfo.key} not found in ${demoFilePath}`,
+            );
           });
         },
         demoComponentName: demoInfo.name,
@@ -341,7 +348,10 @@ export const getCustomDemoCodesFromFile = (
         demoFilePath: demoFilePath,
         demoKey: demoInfo.key,
         finishCallback: (finishIndex = 0) => {
-          console.log(`Custom demo ${demoInfo.key} finishCallback running.......`, finishIndex);
+          console.log(
+            `Custom demo ${demoInfo.key} finishCallback running.......`,
+            finishIndex,
+          );
           if (finishIndex === demosToTest.length - 1) {
             console.log(`All custom demos from ${componentName} completed`);
           }

@@ -1,6 +1,6 @@
 import fg from 'fast-glob';
 import ora from 'ora';
-import path from 'path';
+import path from 'node:path';
 import fse from 'fs-extra';
 import chalk from 'chalk';
 import Task from '../task-runner/task.mjs';

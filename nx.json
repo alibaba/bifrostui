@@ -14,8 +14,7 @@
           "lint",
           "lint:script",
           "lint:style"
-        ],
-        "parallel": 3
+        ]
       }
     }
   },

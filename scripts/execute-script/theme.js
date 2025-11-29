@@ -1,5 +1,5 @@
-const path = require('path');
-const { exec } = require('child_process');
+const path = require('node:path');
+const { exec } = require('node:child_process');
 
 exec(
   `pnpm theme:create`,

@@ -1,5 +1,5 @@
 const fse = require('fs-extra');
-const path = require('path');
+const path = require('node:path');
 const chalk = require('chalk');
 const { formatMarkdown } = require('./utils/index');
 const { FILE_COMMENT } = require('./utils/constants');

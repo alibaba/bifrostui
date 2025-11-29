@@ -1,7 +1,7 @@
 import ora from 'ora';
-import path from 'path';
+import path from 'node:path';
 import chalk from 'chalk';
-import { execSync } from 'child_process';
+import { execSync } from 'node:child_process';
 import Task from '../task-runner/task.mjs';
 import { ignoreTestCoverage } from '../ignore.mjs';
 

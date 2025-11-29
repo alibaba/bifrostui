@@ -1,5 +1,5 @@
-import { fileURLToPath } from 'url';
-import path, { dirname } from 'path';
+import { fileURLToPath } from 'node:url';
+import path, { dirname } from 'node:path';
 import fse from 'fs-extra';
 import { defaultLight } from '../registry/default-light.mjs';
 import { defaultDark } from '../registry/default-dark.mjs';
