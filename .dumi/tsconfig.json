@@ -16,10 +16,6 @@
     "jsx": "react",
     "allowSyntheticDefaultImports": true
   },
-  "include": [
-    "**/*",
-    "../.dumi/tmp/**/*",
-    "../packages/**/*"
-  ],
+  "include": ["**/*", "../.dumi/tmp/**/*", "../packages/**/*"],
   "exclude": ["node_modules", "tmp/node_modules"]
 }
