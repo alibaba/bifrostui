@@ -42,7 +42,7 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./tests/setup.ts'],
-    silent: false,
+    silent: true,
     testTimeout: 10000,
     // Per-component projects for fine-grained testing
     projects: testProjects.map((project) => {
@@ -69,6 +69,9 @@ export default defineConfig({
       provider: 'v8',
       // reporter作用是设置覆盖率报告的格式，这里设置为text、json和html，表示生成文本、JSON和HTML格式的覆盖率报告
       reporter: ['text', 'json', 'html'],
+      // 允许多个进程同时收集 coverage
+      allowExternal: true,
+      reportsDirectory: './coverage',
       // exclude作用是设置需要排除的文件，这里设置为node_modules、scripts、tests、*.d.ts、*.config.*和*.setup.*，表示这些文件不需要计算覆盖率
       exclude: [
         'node_modules/',

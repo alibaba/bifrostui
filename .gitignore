@@ -49,3 +49,6 @@ project.private.config.json
 CLAUDE.md
 .cursor
 .qoder
+
+# Test temp folders
+**/tempDemos*

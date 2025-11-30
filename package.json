@@ -37,7 +37,7 @@
     "test:ui": "vitest --ui",
     "test:run": "pnpm generate:nx-projects && nx run-many --target=test --all --exclude=@bifrostui/monorepo,@bifrostui/react,@bifrostui/styles,@bifrostui/types",
     "test:snapshot": "vitest -u --run",
-    "ci:test": "pnpm generate:nx-projects && vitest run --coverage",
+    "ci:test": "pnpm test",
     "ui:test": "dumi dev & chmod +x ./scripts/ui-test.sh &&  ./scripts/ui-test.sh",
     "ci:eslint": "pnpm run lint:js -f json -o ./.ci/eslint.json",
     "generate:mini:files": "node scripts/mini-program-site/generateMiniFiles.js",

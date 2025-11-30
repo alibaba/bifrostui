@@ -185,7 +185,9 @@ export const getMdDemoCodes = (
   files.forEach((file, fileIndex) => {
     const mdFile = formatMarkdown(file);
     // 先在componentTestPath项目下创建一个名叫tempDemos的文件夹
-    const tempDemoPath = path.join(componentTestPath, 'tempDemos');
+    // 使用唯一标识避免并行测试时的冲突
+    const uniqueId = `${Date.now()}_${fileIndex}_${Math.random().toString(36).slice(2, 9)}`;
+    const tempDemoPath = path.join(componentTestPath, `tempDemos_${uniqueId}`);
     if (fs.existsSync(tempDemoPath)) {
       // 如果存在，则删除文件夹
       fs.rmdirSync(tempDemoPath, { recursive: true });
