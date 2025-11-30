@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, no-console */
 import { useMemo, useRef } from 'react';
 import isDev from '../isDev';
 import { isFunction } from '../isType';

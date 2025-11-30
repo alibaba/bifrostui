@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { OverrideProps } from '@bifrostui/types';
 
 export type itemType = {

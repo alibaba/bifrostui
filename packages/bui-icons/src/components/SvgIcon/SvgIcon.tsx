@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import clsx from 'clsx';
 import * as React from 'react';
 import { cssVarToValue } from '@bifrostui/utils';

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { renderHook } from 'testing';
 import { triggerEventTransform } from '@bifrostui/utils';
 import { usePopoverEvents } from '../hooks/usePopoverEvents';

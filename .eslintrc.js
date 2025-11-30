@@ -28,6 +28,12 @@ module.exports = {
   ],
   overrides: [
     {
+      files: ['**/*.ts', '**/*.tsx'],
+      rules: {
+        'no-undef': 'off', // TypeScript handles this better
+      },
+    },
+    {
       files: ['**/*.test.{ts,tsx}', '**/demo/*', '**/docs/**/*.{ts,tsx}'],
       globals: {
         vi: 'readonly',
@@ -68,8 +74,9 @@ module.exports = {
         'react/react-in-jsx-scope': 0,
         'react/display-name': 0,
         'no-console': 0,
-        'import/no-extraneous-dependencies': 0, // 文档示例代码不需要检查依赖
-        '@typescript-eslint/no-unused-vars': 0, // 文档示例代码可能有未使用的变量
+        'import/no-extraneous-dependencies': 0,
+        '@typescript-eslint/no-unused-vars': 0,
+        '@typescript-eslint/no-explicit-any': 0,
       },
     },
   ],
@@ -161,6 +168,7 @@ module.exports = {
     'react/no-this-in-sfc': 'error',
     'react/prop-types': 'off',
     'react/display-name': 'off',
+    'react/destructuring-assignment': 'off',
     'react/require-render-return': 'warn',
     'react/no-children-prop': 'warn',
     'react/jsx-filename-extension': [
@@ -168,11 +176,10 @@ module.exports = {
       { extensions: ['.jsx', '.js', '.tsx', '.ts', '.vue'] },
     ],
     'react-hooks/rules-of-hooks': 'error',
-    'no-restricted-exports': 0,
-    // **********
     'react/function-component-definition': 0,
     'react/jsx-props-no-spreading': 0,
     'react/no-array-index-key': 0,
+    'no-restricted-exports': 0,
     '@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/no-var-requires': 0,
     // ===== 可访问性 (a11y) 规则 =====

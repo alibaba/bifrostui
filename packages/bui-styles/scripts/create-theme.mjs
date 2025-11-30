@@ -9,7 +9,7 @@ import { pioneerLight } from '../registry/pioneer-light.mjs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const themes = [defaultLight, defaultDark, dmLight, pioneerLight];
-const commemt =
+const comments =
   '/** 此文件由脚本自动生成，请勿直接修改，若有变更请维护bui-styles/registry/*.mjs，再执行`pnpm theme:js2less`更新主题 */\n';
 
 const convertToLess = (styles) => {
@@ -32,12 +32,10 @@ const generateTheme = () => {
   themes.forEach((theme) => {
     const { mixinName, cssVars } = theme;
     const filePath = path.join(__dirname, `../themes/${mixinName}.less`);
-    const fileContent = `${commemt}.${mixinName}() {\n\t${convertToLess(cssVars)}}`;
+    const fileContent = `${comments}.${mixinName}() {\n  ${convertToLess(cssVars)}}`;
     entryContent += `@import "./${mixinName}.less";\n`;
     fse.outputFileSync(filePath, fileContent, 'utf8');
   });
-
-  const indexPath = path.join(__dirname, '../themes/index.less');
 };
 
 generateTheme();

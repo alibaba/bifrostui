@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { modalManager, ariaHidden } from '../ModalManager';
 
 describe('ModalManager', () => {
