@@ -19,9 +19,9 @@ const convertToLess = (styles) => {
   cssVarKeys.forEach((key, index) => {
     const value = styles[key];
     if (value.includes('PX')) {
-      result += '/* prettier-ignore */\n\t';
+      result += '/* prettier-ignore */\n  ';
     }
-    result += `${key}: ${value};\n${index === cssVarKeys.length - 1 ? '' : '\t'}`;
+    result += `${key}: ${value};\n${index === cssVarKeys.length - 1 ? '' : '  '}`;
   });
 
   return result;
@@ -32,7 +32,7 @@ const generateTheme = () => {
   themes.forEach((theme) => {
     const { mixinName, cssVars } = theme;
     const filePath = path.join(__dirname, `../themes/${mixinName}.less`);
-    const fileContent = `${comments}.${mixinName}() {\n  ${convertToLess(cssVars)}}`;
+    const fileContent = `${comments}.${mixinName}() {\n  ${convertToLess(cssVars)}}\n`;
     entryContent += `@import "./${mixinName}.less";\n`;
     fse.outputFileSync(filePath, fileContent, 'utf8');
   });
