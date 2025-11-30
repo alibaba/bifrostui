@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-const root = window || global;
+const root = typeof window !== 'undefined' ? window : global;
 let prev = Date.now();
 
 // 用于存储每个元素的 rafId，避免多个 Tabs 实例相互干扰
