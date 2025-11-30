@@ -1,4 +1,4 @@
-import { CurrentTime, FormatedCountdown } from './Countdown.types';
+import { CurrentTime, FormattedCountdown } from './Countdown.types';
 
 const SECOND = 1000;
 const MINUTE = 60 * SECOND;
@@ -26,9 +26,9 @@ const preAppend = (num: number): string => {
  * 解析时间，将结束时间戳拆分为剩余时间对象
  */
 export const parseTime = (endTime: number, offsetTime: number): CurrentTime => {
-  const now = new Date().getTime();
-  let total = endTime - now - offsetTime || 0;
-  total = total < 0 ? 0 : total;
+  const now = Date.now();
+  const t = endTime - now - offsetTime || 0;
+  const total = Math.max(0, t);
 
   const years = Math.floor(total / YEAR);
   const months = Math.floor(total / MONTH);
@@ -56,11 +56,11 @@ export const parseTime = (endTime: number, offsetTime: number): CurrentTime => {
 export const formatCountdown = (
   duration: number,
   format: string,
-): FormatedCountdown => {
+): FormattedCountdown => {
   let timeList = [];
   let leftDuration: number = duration;
 
-  const escapeRegex = /\[[^\]]*]/g;
+  const escapeRegex = /\[(?:[^\]])*\]/g;
   const keepList: string[] = (format.match(escapeRegex) || []).map((str) =>
     str.slice(1, -1),
   );

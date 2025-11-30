@@ -123,7 +123,7 @@ export interface CountdownItem {
 /**
  * 格式化倒计时
  */
-export type FormatedCountdown = {
+export type FormattedCountdown = {
   /**
    * 剩余总时间
    */
