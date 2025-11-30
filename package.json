@@ -39,11 +39,11 @@
     "test:snapshot": "vitest -u --run",
     "ci:test": "pnpm generate:nx-projects && vitest run --coverage",
     "ui:test": "dumi dev & chmod +x ./scripts/ui-test.sh &&  ./scripts/ui-test.sh",
-    "ci:eslint": "pnpm run lint:script -f json -o ./.ci/eslint.json",
+    "ci:eslint": "pnpm run lint:js -f json -o ./.ci/eslint.json",
     "generate:mini:files": "node scripts/mini-program-site/generateMiniFiles.js",
     "generate:theme:demo": "node scripts/generate-theme-demo/index.mjs",
-    "lint": "pnpm run lint:script && pnpm run lint:style",
-    "lint:script": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
+    "lint": "pnpm run lint:js && pnpm run lint:style",
+    "lint:js": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
     "lint:style": "stylelint ./**/*.less",
     "prepare": "husky install",
     "docs:gen": "node scripts/generate-md/generateMd.mjs",
@@ -159,6 +159,7 @@
     "react-test-renderer": "^18.0.0",
     "rimraf": "^3.0.0",
     "shelljs": "^0.8.5",
+    "scheduler": "0.27.0",
     "style-loader": "^4.0.0",
     "stylelint": "^15.6.1",
     "stylelint-config-standard": "^33.0.0",
@@ -175,7 +176,7 @@
     "!script/**/*": [],
     "./{packages,.dumi}/**/*.{js,ts,jsx,tsx}": [
       "npx prettier --write",
-      "npx eslint --fix"
+      "pnpm run lint:js --fix"
     ],
     "*.less": [
       "npx prettier --write",

@@ -1,13 +1,24 @@
-import * as React from 'react';
-import { TabChangeEvent, TabsProps } from './Tabs.types';
+import React from 'react';
+import { createContext } from '@bifrostui/utils';
+import { TabChangeEvent } from './Tabs.types';
 
-type TabsContextValueType = Omit<TabsProps, 'onChange'> & {
-  triggerChange: TabChangeEvent;
-};
+export interface TabRegisterData {
+  value: string;
+  ref: React.RefObject<HTMLElement>;
+}
 
-const TabsContext = React.createContext<TabsContextValueType | undefined>(
-  undefined,
-);
+export interface TabsContextValueType {
+  value?: string;
+  triggerChange?: TabChangeEvent;
+  onRegister?: (data: TabRegisterData) => void;
+  onUnregister?: (data: { value: string }) => void;
+}
+
+const TabsContext = createContext<TabsContextValueType>({
+  triggerChange: undefined,
+  onRegister: undefined,
+  onUnregister: undefined,
+});
 
 if (process.env.NODE_ENV !== 'production') {
   TabsContext.displayName = 'BuiTabsContext';

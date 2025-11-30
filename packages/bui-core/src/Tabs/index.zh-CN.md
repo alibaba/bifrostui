@@ -14,48 +14,38 @@ name: Tabs 标签页
 
 ## 基础用法
 
-搭配 `Tab` 和 `TabPanel` 组件完成布局。
-
 ```tsx
 import React, { useState } from 'react';
 import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
 
 export default () => {
-  const [value, setValue] = useState('one');
-  const tabList = [
-    { title: 'TAB ONE', index: 'one' },
-    { title: 'TAB TWO', index: 'two' },
-    { title: 'TAB THREE', index: 'three' },
-  ];
-  const handleClick = (e, { index }) => {
+  const handleChange = (e, { index }) => {
     console.log(`Click Tab, value index is: ${index}`);
-    setValue(index);
   };
 
   return (
     <Stack alignItems="stretch">
-      <Tabs style={{ marginBottom: 12 }} value={value}>
-        {tabList.map((item) => (
-          <Tab key={item.index} index={item.index} onClick={handleClick}>
-            {item.title}
-          </Tab>
-        ))}
+      <Tabs
+        style={{ marginBottom: 12 }}
+        defaultValue="one"
+        onChange={handleChange}
+      >
+        <Tab key="one" index="one">
+          TAB ONE
+        </Tab>
+        <Tab key="two" index="two">
+          TAB TWO
+        </Tab>
+        <Tab key="three" index="three">
+          TAB THREE
+        </Tab>
       </Tabs>
-      <TabPanel value={value} index="one">
-        Tab Panel 1
-      </TabPanel>
-      <TabPanel value={value} index="two">
-        Tab Panel 2
-      </TabPanel>
-      <TabPanel value={value} index="three">
-        Tab Panel 3
-      </TabPanel>
     </Stack>
   );
 };
 ```
 
-## 使用 `tabs` 属性生成 Tab
+## 使用 `tabs`
 
 通过 `tabs` 属性快速生成标签页。
 
@@ -251,11 +241,14 @@ export default () => {
 
 ### Tabs
 
-| 属性     | 说明                                     | 类型                                               | 默认值 |
-| -------- | ---------------------------------------- | -------------------------------------------------- | ------ |
-| value    | 当前选中面板的索引值，与 tabs.index 对应 | string                                             | -      |
-| tabs     | 切换面板的数据                           | ITabItem[]                                         | -      |
-| onChange | 切换面板的回调                           | (e?: SyntheticEvent,data?:{index: string}) => void | -      |
+| 属性         | 说明                                     | 类型                                               | 默认值 |
+| ------------ | ---------------------------------------- | -------------------------------------------------- | ------ |
+| value        | 当前选中面板的索引值，与 tabs.index 对应 | string                                             | -      |
+| defaultValue | 默认选中面板的索引值（非受控模式）       | string                                             | -      |
+| tabs         | 切换面板的数据                           | ITabItem[]                                         | -      |
+| onChange     | 切换面板的回调                           | (e?: SyntheticEvent,data?:{index: string}) => void | -      |
+
+**注意：** `tabs` 属性和 `children` 是互斥的，只能使用其中一种方式。如果同时提供，将优先使用 `tabs` 属性。
 
 ### ITabItem
 

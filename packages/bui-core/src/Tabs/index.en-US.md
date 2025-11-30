@@ -1,7 +1,7 @@
 ---
-
 group: Data Display
 name: Tabs
+---
 
 # Tabs
 
@@ -22,24 +22,23 @@ import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
 
 export default () => {
   const [value, setValue] = useState('one');
-  const tabList = [
-    { title: 'TAB ONE', index: 'one' },
-    { title: 'TAB TWO', index: 'two' },
-    { title: 'TAB THREE', index: 'three' },
-  ];
-  const handleClick = (e, { index }) => {
+  const handleChange = (e, { index }) => {
     console.log(`Click Tab, value index is: ${index}`);
     setValue(index);
   };
 
   return (
     <Stack alignItems="stretch">
-      <Tabs style={{ marginBottom: 12 }} value={value}>
-        {tabList.map((item) => (
-          <Tab key={item.index} index={item.index} onClick={handleClick}>
-            {item.title}
-          </Tab>
-        ))}
+      <Tabs style={{ marginBottom: 12 }} value={value} onChange={handleChange}>
+        <Tab key="one" index="one">
+          TAB ONE
+        </Tab>
+        <Tab key="two" index="two">
+          TAB TWO
+        </Tab>
+        <Tab key="three" index="three">
+          TAB THREE
+        </Tab>
       </Tabs>
       <TabPanel value={value} index="one">
         Tab Panel 1
@@ -251,11 +250,14 @@ export default () => {
 
 ### Tabs
 
-| Attribute | Description                                                          | Type                                               | Default |
-| --------- | -------------------------------------------------------------------- | -------------------------------------------------- | ------- |
-| value     | Index value of the current selected panel; corresponds to tabs.index | string                                             | -       |
-| tabs      | Data for switching panels                                            | ITabItem[]                                         | -       |
-| onChange  | Callback for switching panels                                        | (e?: SyntheticEvent,data?:{index: string}) => void | -       |
+| Attribute    | Description                                                          | Type                                               | Default |
+| ------------ | -------------------------------------------------------------------- | -------------------------------------------------- | ------- |
+| value        | Index value of the current selected panel; corresponds to tabs.index | string                                             | -       |
+| defaultValue | Default index value for uncontrolled mode                            | string                                             | -       |
+| tabs         | Data for switching panels                                            | ITabItem[]                                         | -       |
+| onChange     | Callback for switching panels                                        | (e?: SyntheticEvent,data?:{index: string}) => void | -       |
+
+**Note:** The `tabs` property and `children` are mutually exclusive. Only one method can be used at a time. If both are provided, the `tabs` property takes precedence.
 
 ### ITabItem
 

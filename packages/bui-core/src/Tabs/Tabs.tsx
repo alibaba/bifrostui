@@ -1,214 +1,134 @@
 /* eslint-disable consistent-return */
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
-import { debounce, isMini, throttle, useEventCallback } from '@bifrostui/utils';
-import scrollLeftTo from './utils/scroll';
+import { useValue, useEventCallback } from '@bifrostui/utils';
 import Tab from './Tab';
+import TabIndicator from './TabIndicator';
+import TabMask from './TabMask';
 import { TabsProps } from './Tabs.types';
 import { TabsContextProvider } from './TabsContext';
 import './Tabs.less';
 
-const prefixCls = 'bui-tabs';
-const duration = 300;
+const rootClass = 'bui-tabs';
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
-  const { children, className, value, tabs = [], onChange, ...others } = props;
-  const tabsRef = useRef<HTMLDivElement>(null);
-  const activeLineRef = useRef<HTMLDivElement>(null);
-  const [indicatorData, setIndicatorData] = useState({
-    x: 0,
-    hasActiveTab: false,
-  });
-  const [maskData, setMaskData] = useState({
-    leftMaskOpacity: 0,
-    rightMaskOpacity: 0,
-  });
+  const {
+    children,
+    className,
+    value,
+    defaultValue,
+    tabs = [],
+    onChange,
+    ...others
+  } = props;
 
-  const getActiveTabElement = (): HTMLDivElement | undefined => {
-    const tabsEl = tabsRef.current;
-    if (!tabsEl) return;
-
-    const activeIndex = tabs.findIndex((item) => item.index === value);
-
-    if (tabs.length) {
-      return activeIndex > -1
-        ? (tabsEl.childNodes[activeIndex + 1] as HTMLDivElement)
-        : undefined;
-    }
-
-    return [...tabsEl.childNodes].find((child: any) => {
-      if (isMini) {
-        return [...(child?.classList?.tokenList ?? [])].includes(
-          'bui-tab-miniapp-active',
-        );
-      }
-      return [...child.classList].includes('bui-tab-active');
-    }) as HTMLDivElement;
-  };
-
-  const scrollIntoView = () => {
-    const tabsEl = tabsRef.current;
-    const activeTab = getActiveTabElement();
-    if (!tabsEl || !activeTab) {
-      return;
-    }
-
-    const to =
-      activeTab.offsetLeft - (tabsEl.offsetWidth - activeTab.offsetWidth) / 2;
-    scrollLeftTo(tabsEl, to, duration);
-  };
-
-  const animate = useEventCallback(() => {
-    const tabsEl = tabsRef.current;
-    if (!tabsEl) return;
-
-    const activeLine = activeLineRef.current;
-    if (!activeLine) return;
-
-    const activeTab = getActiveTabElement();
-
-    let activeTabLeft = 0;
-    let activeTabWidth = 0;
-    let containerWidth = 0;
-    let containerScrollWidth = 0;
-    let activeLineWidth = 0;
-    let x = 0;
-    if (activeTab) {
-      activeTabLeft = activeTab.offsetLeft;
-      activeTabWidth = activeTab.offsetWidth;
-      containerWidth = tabsEl.offsetWidth;
-      containerScrollWidth = tabsEl.scrollWidth;
-      activeLineWidth = activeLine.offsetWidth;
-      x = activeTabLeft + (activeTabWidth - activeLineWidth) / 2;
-    }
-    setIndicatorData({
-      x,
-      hasActiveTab: !!activeTab,
-    });
-
-    const maxScrollDistance = containerScrollWidth - containerWidth;
-    if (maxScrollDistance <= 0 || !activeTab) return;
-
-    if (!isMini) {
-      scrollIntoView();
-    }
-  });
-
-  const updateMask = useMemo(
-    () =>
-      throttle(
-        () => {
-          const tabsEl = tabsRef.current;
-          if (!tabsEl) return;
-
-          const scrollLeft = tabsEl?.scrollLeft;
-          const showLeftMask = scrollLeft > 0;
-          const rightRange = Math.abs(
-            tabsEl.scrollWidth - (scrollLeft + tabsEl.offsetWidth),
-          );
-          // 右侧遮罩rightRange在0-1范围内即可隐藏，处理浏览器兼容问题
-          const showRightMask = rightRange > 1;
-
-          setMaskData({
-            leftMaskOpacity: showLeftMask ? 1 : 0,
-            rightMaskOpacity: showRightMask ? 1 : 0,
-          });
-        },
-        100,
-        {
-          trailing: true,
-          leading: true,
-        },
-      ),
-    [],
+  const handleOnChange = useEventCallback(
+    (e: React.SyntheticEvent, data: { value: string }) => {
+      onChange?.(e, { index: data.value });
+    },
   );
 
-  useEffect(() => {
-    // value变化，或value没变但tab数量变化时，indicator位置要更新
-    animate();
-  }, [value, tabs.length, React.Children.toArray(children).length]);
+  const [currentValue, triggerValueChange] = useValue({
+    value,
+    defaultValue: defaultValue ?? '',
+    onChange: handleOnChange,
+    config: {
+      name: 'Tabs',
+      state: 'value',
+    },
+  });
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const registeredTabs = useRef<Record<string, React.RefObject<HTMLElement>>>(
+    {},
+  );
+  // Track registration changes to trigger indicator updates explicitly
+  const [registrationVersion, setRegistrationVersion] = useState(0);
 
-  useEffect(() => {
-    // 页面渲染完毕后立即执行一次
-    updateMask();
-
-    const handleResize = debounce(() => {
-      animate();
-      updateMask();
-    }, 100);
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const handleClick = (e, item) => {
-    const { index, disabled = false } = item;
-    if (disabled || [undefined, null].includes(index)) return;
-    if (index !== value) {
-      onChange?.(e, { index });
+  // 开发环境警告：tabs 和 children 不应该同时使用
+  if (process.env.NODE_ENV !== 'production') {
+    if (tabs.length > 0 && React.Children.count(children) > 0) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        'BUI Warning: Tabs 组件不应该同时使用 tabs 属性和 children。' +
+          '请只使用其中一种方式。当前将优先使用 tabs 属性，children 将被忽略。',
+      );
     }
-  };
+  }
+
+  // 注册和取消注册 Tab 的回调函数
+  const onRegister = useEventCallback(
+    (data: { value: string; ref: React.RefObject<HTMLElement> }) => {
+      if (data.value !== undefined && data.value !== null) {
+        registeredTabs.current[data.value] = data.ref;
+        // Increment version to signal registration change
+        setRegistrationVersion((v) => v + 1);
+      }
+    },
+  );
+
+  const onUnregister = useEventCallback((data: { value: string }) => {
+    delete registeredTabs.current[data.value];
+    setRegistrationVersion((v) => v + 1);
+  });
+
+  // 使用 useEventCallback 保持回调引用稳定，同时能访问最新的 currentValue 和 triggerValueChange
+  const handleClick = useEventCallback(
+    (e: React.SyntheticEvent, item: { index: string; disabled?: boolean }) => {
+      const { index, disabled = false } = item;
+      if (disabled || [undefined, null].includes(index)) return;
+      if (index !== currentValue) {
+        triggerValueChange(e, index);
+      }
+    },
+  );
+
+  const contextValue = useMemo(
+    () => ({
+      value: currentValue,
+      triggerChange: handleClick,
+      onRegister,
+      onUnregister,
+    }),
+    [currentValue, handleClick, onRegister, onUnregister],
+  );
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line no-console
+    console.count('Tabs render');
+  }
 
   return (
-    <div ref={ref} className={clsx(prefixCls, className)} {...others}>
-      <div
-        className={clsx(`${prefixCls}-mask`, `${prefixCls}-mask-left`)}
-        style={{
-          opacity: maskData.leftMaskOpacity,
-        }}
-        aria-hidden="true"
-      />
-      <div
-        className={clsx(`${prefixCls}-mask`, `${prefixCls}-mask-right`)}
-        style={{
-          opacity: maskData.rightMaskOpacity,
-        }}
-        aria-hidden="true"
-      />
+    <div ref={ref} className={clsx(rootClass, className)} {...others}>
+      <TabMask tabsContainerRef={tabsRef} position="left" />
+      <TabMask tabsContainerRef={tabsRef} position="right" />
 
       <div
-        className={`${prefixCls}-tabs`}
+        className={`${rootClass}-tabs`}
         ref={tabsRef}
-        onScroll={updateMask}
         role="tablist"
         aria-orientation="horizontal"
       >
-        <div
-          ref={activeLineRef}
-          className={clsx(`${prefixCls}-indicator`, {
-            'bui-tabs-indicator-invisible':
-              isMini || !indicatorData.hasActiveTab,
-          })}
-          style={{
-            transition: 'transform 0.3s ease-in-out',
-            transform: `translate(${indicatorData.x}px, 0px)`,
-          }}
-          aria-hidden="true"
+        <TabIndicator
+          currentValue={currentValue}
+          registeredTabs={registeredTabs}
+          tabsContainerRef={tabsRef}
+          registrationVersion={registrationVersion}
         />
 
-        <TabsContextProvider value={{ value, triggerChange: handleClick }}>
-          {/* 支持通过tabs生成Tab */}
-          {!!tabs.length &&
-            tabs.map((item) => {
-              return (
-                <Tab
-                  key={item.index}
-                  index={item?.index}
-                  disabled={item?.disabled}
-                  role="tab"
-                  aria-selected={value === item.index}
-                  aria-disabled={item?.disabled}
-                  tabIndex={item?.disabled ? -1 : 0}
-                >
-                  {item.title}
-                </Tab>
-              );
-            })}
-
-          {children}
+        <TabsContextProvider value={contextValue}>
+          {tabs.length > 0
+            ? tabs.map((item) => {
+                return (
+                  <Tab
+                    key={item.index}
+                    index={item?.index}
+                    disabled={item?.disabled}
+                  >
+                    {item.title}
+                  </Tab>
+                );
+              })
+            : children}
         </TabsContextProvider>
       </div>
     </div>

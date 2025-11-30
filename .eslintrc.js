@@ -169,6 +169,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react/display-name': 'off',
     'react/destructuring-assignment': 'off',
+    'react/require-default-props': 'off',
     'react/require-render-return': 'warn',
     'react/no-children-prop': 'warn',
     'react/jsx-filename-extension': [

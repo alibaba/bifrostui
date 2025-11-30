@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { ChangeEvent, useCallback, useRef, useState, useEffect } from 'react';
 
 type Options<T> = {
@@ -18,7 +19,6 @@ export default function useValue<T>(options: Options<T>) {
 
   const isControlled = value !== undefined;
 
-  // 异常情况
   useEffect(() => {
     if (
       !isControlled &&

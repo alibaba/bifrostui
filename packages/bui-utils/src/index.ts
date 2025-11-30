@@ -40,3 +40,4 @@ export * from './domUtils';
 export * from './isType';
 export * from './render';
 export * from './themeCreator';
+export * from './context-selector';

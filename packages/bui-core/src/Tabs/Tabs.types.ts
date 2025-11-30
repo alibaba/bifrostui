@@ -1,12 +1,6 @@
 import React, { SyntheticEvent } from 'react';
 import { OverrideProps } from '@bifrostui/types';
 
-export interface TabHeaderItem {
-  title: React.ReactNode;
-  index: string;
-  disabled?: boolean;
-}
-
 export interface ITabsChangeData {
   /** 切换后的tab索引 */
   index: string;
@@ -32,9 +26,13 @@ export type TabsProps<
   {
     props: P & {
       /**
-       * 当前选中面板的索引值，与tabs.index对应
+       * 当前选中面板的索引值，与 ITabItem.index 对应
        */
       value?: string;
+      /**
+       * 默认选中面板的索引值（非受控模式）
+       */
+      defaultValue?: string;
       /**
        * 切换面板的数据
        */

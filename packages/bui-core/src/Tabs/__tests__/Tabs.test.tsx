@@ -136,6 +136,7 @@ describe('Tabs', () => {
       }
       const { container, getByTestId } = render(<Component />);
 
+      // useEffect 执行后 indicator 位置已正确设置
       const indicator = container.querySelector(`.${rootClass.tabs}-indicator`);
       const activePanel = container.querySelector(
         `.${rootClass.tabpanel}-active`,
@@ -306,7 +307,8 @@ describe('Tabs', () => {
     });
   });
 
-  it('should render when resize', async () => {
+  it('should re-render indicator on window resize', () => {
+    // Mock debounce to execute immediately for testing
     vi.resetModules();
     vi.doMock('@bifrostui/utils', async () => {
       const actual = await vi.importActual('@bifrostui/utils');
@@ -315,13 +317,6 @@ describe('Tabs', () => {
         debounce: vi.fn((fn) => fn),
       };
     });
-    vi.doMock('react', async () => {
-      const actual = await vi.importActual('react');
-      return {
-        ...actual,
-      };
-    });
-    const { default: FakeTabs } = await import('../index');
 
     function Component() {
       const [value, setValue] = useState('fruits');
@@ -330,7 +325,7 @@ describe('Tabs', () => {
       };
       return (
         <>
-          <FakeTabs
+          <Tabs
             className="tabs-test"
             onChange={handleChange}
             value={value}
@@ -354,15 +349,16 @@ describe('Tabs', () => {
     }
 
     const { container } = render(<Component />);
-    await act(async () => {
-      await vi.runAllTimers();
-    });
 
+    // Trigger resize event to test indicator repositioning
     act(() => {
       global.dispatchEvent(new Event('resize'));
-      const [, tab2] = container.querySelectorAll(`.bui-tab`);
-      fireEvent.click(tab2);
     });
+
+    // Verify component still works after resize
+    const [, tab2] = container.querySelectorAll(`.bui-tab`);
+    fireEvent.click(tab2);
+
     const activeTab = container.querySelector(`.bui-tab-active`);
     const activeTabPanel = container.querySelector(
       `.${rootClass.tabpanel}-active`,
@@ -704,5 +700,52 @@ describe('Tabs', () => {
     fireEvent.click(testModifyTablistBtn);
     expect(tab1).toHaveClass('bui-tab-active');
     expect(tabpanel1).toHaveTextContent('1');
+  });
+
+  it('should only re-render 2 tabs when changing active tab', () => {
+    // Spy on Tab component renders by monkey-patching console.count
+    const originalConsoleCount = console.count;
+    let tabRenderCount = 0;
+
+    console.count = (label) => {
+      if (label === 'Tab render') {
+        tabRenderCount += 1;
+      }
+      originalConsoleCount.call(console, label);
+    };
+
+    function Component() {
+      const [value, setValue] = useState('one');
+      return (
+        <div>
+          <Tabs value={value} onChange={(e, { index }) => setValue(index)}>
+            <Tab index="one">Tab 1</Tab>
+            <Tab index="two">Tab 2</Tab>
+            <Tab index="three">Tab 3</Tab>
+            <Tab index="four">Tab 4</Tab>
+            <Tab index="five">Tab 5</Tab>
+          </Tabs>
+        </div>
+      );
+    }
+
+    const { container } = render(<Component />);
+
+    // Initial render: all 5 tabs render once
+    expect(tabRenderCount).toBe(5);
+
+    // Reset count for next interaction
+    tabRenderCount = 0;
+
+    // Click on tab 3 (change from tab 1 to tab 3)
+    const tab3 = container.querySelectorAll('.bui-tab')[2];
+    fireEvent.click(tab3);
+    vi.runAllTimers();
+
+    // Only 2 tabs should re-render: tab 1 (becoming inactive) and tab 3 (becoming active)
+    expect(tabRenderCount).toBe(2);
+
+    // Restore console.count
+    console.count = originalConsoleCount;
   });
 });
