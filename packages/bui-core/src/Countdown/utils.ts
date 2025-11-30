@@ -60,7 +60,8 @@ export const formatCountdown = (
   let timeList = [];
   let leftDuration: number = duration;
 
-  const escapeRegex = /\[(?:[^\]])*\]/g;
+  // Use bounded quantifier to prevent ReDoS attacks
+  const escapeRegex = /\[(?:[^\]]{0,100})\]/g;
   const keepList: string[] = (format.match(escapeRegex) || []).map((str) =>
     str.slice(1, -1),
   );
