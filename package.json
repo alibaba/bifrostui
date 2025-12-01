@@ -28,6 +28,7 @@
     "docs:build": "cross-env PUBLIC_PATH=/ dumi build && chmod +x ./scripts/handle-docs.sh && ./scripts/handle-docs.sh $docs_version",
     "docs:build:alpha": "cross-env PUBLIC_PATH=/alpha/ dumi build && chmod +x ./scripts/handle-docs.sh && ./scripts/handle-docs.sh $docs_version",
     "docs:build:beta": "cross-env PUBLIC_PATH=/beta/ dumi build && chmod +x ./scripts/handle-docs.sh && ./scripts/handle-docs.sh $docs_version",
+    "check:type": "tsc --noEmit",
     "clear": "rimraf **/node_modules",
     "package": "chmod +x ./scripts/pack-packages.sh && ./scripts/pack-packages.sh",
     "test": "pnpm generate:nx-projects && nx run-many --target=test --all --exclude=@bifrostui/monorepo,@bifrostui/react,@bifrostui/styles,@bifrostui/types",

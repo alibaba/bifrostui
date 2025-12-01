@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { GripperBarVerticalIcon } from '@bifrostui/icons';
 import {
   isMini,
@@ -116,7 +117,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     defaultValue: formattedDefaultValue,
     onChange: (e, data) => {
       onChange?.(e, {
-        value: data?.value,
+        value: data?.value as SliderValue,
         buttonIndex: buttonIndex.current,
       });
     },

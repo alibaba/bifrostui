@@ -55,6 +55,7 @@ export default createSvgIcon(
   });
 
   tsxFiles.forEach(({ name, content }) => {
+    // eslint-disable-next-line no-console
     console.log(`${chalk.blue(name)} icon created`);
     const absDestPath = path.join(outputDir, `${name}.tsx`);
     fse.writeFileSync(absDestPath, content);

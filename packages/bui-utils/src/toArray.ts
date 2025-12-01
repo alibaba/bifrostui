@@ -11,17 +11,17 @@ export default function toArray(
 ): React.ReactElement[] {
   let ret: React.ReactElement[] = [];
 
-  React.Children.forEach(children, (child: any) => {
+  React.Children.forEach(children, (child: React.ReactNode) => {
     if ((child === undefined || child === null) && !option.keepEmpty) {
       return;
     }
 
     if (Array.isArray(child)) {
       ret = ret.concat(toArray(child));
-    } else if (isFragment(child) && child.props) {
+    } else if (isFragment(child) && React.isValidElement(child)) {
       ret = ret.concat(toArray(child.props.children, option));
     } else {
-      ret.push(child);
+      ret.push(child as React.ReactElement);
     }
   });
 

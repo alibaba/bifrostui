@@ -67,27 +67,34 @@ export function useScrollView(
   const upperLowerStatus = useRef(0);
 
   const onTouchMove = (_e: React.TouchEvent<HTMLDivElement>) => {
-    // 会导致埋点工具无法正确区分滑动和点击，必须去掉。
-    // e.stopPropagation();
+    // 会导致埋点工具无法正确区分滑动和点击，不能使用 e.stopPropagation();
   };
 
   const scrollVertical = useCallback((top: number, isAnimation?: boolean) => {
     if (top === undefined) return;
+    if (!container.current) return;
+
     if (isAnimation) {
-      easeOutScroll(container.current!.scrollTop, top, (pos) => {
+      easeOutScroll(container.current.scrollTop, top, (pos) => {
         if (container.current) container.current.scrollTop = pos;
       });
-    } else if (container.current) container.current.scrollTop = top;
+    } else {
+      container.current.scrollTop = top;
+    }
   }, []);
 
   const scrollHorizontal = useCallback(
     (left: number, isAnimation?: boolean) => {
       if (left === undefined) return;
+      if (!container.current) return;
+
       if (isAnimation) {
-        easeOutScroll(container.current!.scrollLeft, left, (pos) => {
+        easeOutScroll(container.current.scrollLeft, left, (pos) => {
           if (container.current) container.current.scrollLeft = pos;
         });
-      } else if (container.current) container.current.scrollLeft = left;
+      } else {
+        container.current.scrollLeft = left;
+      }
     },
     [],
   );
@@ -106,19 +113,23 @@ export function useScrollView(
           alignment: ScrollIntoViewAlignment = 'start',
           _isAnimation: boolean = isAnimation,
         ) => {
-          const target = container.current!.querySelector(
+          if (!container.current) return;
+
+          const target = container.current.querySelector(
             `#${id}`,
           ) as HTMLElement;
+          if (!target) return;
+
           if (scrollY) {
             const start = target.offsetTop;
             const end =
               target.offsetTop +
               target.offsetHeight -
-              container.current!.clientHeight;
+              container.current.clientHeight;
             let nearest: number;
-            if (container.current!.scrollTop < end) nearest = end;
-            else if (container.current!.scrollTop > start) nearest = start;
-            else nearest = container.current!.scrollTop;
+            if (container.current.scrollTop < end) nearest = end;
+            else if (container.current.scrollTop > start) nearest = start;
+            else nearest = container.current.scrollTop;
             const center = (start + end) / 2;
             const positions = { start, end, nearest, center };
             scrollVertical(
@@ -131,11 +142,11 @@ export function useScrollView(
             const end =
               target.offsetLeft +
               target.offsetWidth -
-              container.current!.clientWidth;
+              container.current.clientWidth;
             let nearest: number;
-            if (container.current!.scrollLeft < end) nearest = end;
-            else if (container.current!.scrollLeft > start) nearest = start;
-            else nearest = container.current!.scrollLeft;
+            if (container.current.scrollLeft < end) nearest = end;
+            else if (container.current.scrollLeft > start) nearest = start;
+            else nearest = container.current.scrollLeft;
             const center = (start + end) / 2;
             const positions = { start, end, nearest, center };
             scrollHorizontal(
@@ -166,7 +177,8 @@ export function useScrollView(
         if (
           scrollY &&
           typeof scrollTopProp === 'number' &&
-          scrollTopProp !== container.current!.scrollTop
+          container.current &&
+          scrollTopProp !== container.current.scrollTop
         ) {
           if (isInit) {
             setTimeout(() => scrollVertical(scrollTopProp, isAnimation), 10);
@@ -178,7 +190,8 @@ export function useScrollView(
         if (
           scrollX &&
           typeof scrollLeftProp === 'number' &&
-          scrollLeftProp !== container.current!.scrollLeft
+          container.current &&
+          scrollLeftProp !== container.current.scrollLeft
         ) {
           if (isInit) {
             setTimeout(() => scrollHorizontal(scrollLeftProp, isAnimation), 10);
@@ -250,10 +263,11 @@ export function useScrollView(
   };
 
   const onScrollHandler = (e: React.UIEvent<HTMLDivElement>) => {
+    if (!container.current) return;
+
     const { scrollLeft, scrollTop, scrollHeight, scrollWidth } =
-      container.current!;
-    // container.current.scrollLeft = scrollLeft;
-    // container.current.scrollTop = scrollTop;
+      container.current;
+
     Object.defineProperty(e, 'detail', {
       enumerable: true,
       writable: true,

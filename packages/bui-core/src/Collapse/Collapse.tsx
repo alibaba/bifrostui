@@ -106,6 +106,7 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
           // 强制重绘
           if (wrapperRef.current && state === 'exiting') {
             const _ = wrapperRef.current.offsetHeight;
+            // eslint-disable-next-line no-console
             console.log(_);
           }
           return isHorizontal

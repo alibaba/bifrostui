@@ -102,7 +102,8 @@ describe('Backdrop', () => {
         <Backdrop open timeout={1000} onClick={clickFn} />,
       );
       const backdrop = container.querySelector(`.${classPrefix}`);
-      fireEvent.click(backdrop!);
+      expect(backdrop).toBeTruthy();
+      fireEvent.click(backdrop as Element);
       expect(clickFn).toHaveBeenCalled();
     });
 
@@ -120,14 +121,15 @@ describe('Backdrop', () => {
         />,
       );
       const backdrop = container.querySelector(`.${classPrefix}`);
+      expect(backdrop).toBeTruthy();
 
-      fireEvent.mouseDown(backdrop!);
+      fireEvent.mouseDown(backdrop as Element);
       expect(mouseDownFn).toHaveBeenCalled();
 
-      fireEvent.mouseUp(backdrop!);
+      fireEvent.mouseUp(backdrop as Element);
       expect(mouseUpFn).toHaveBeenCalled();
 
-      fireEvent.click(backdrop!);
+      fireEvent.click(backdrop as Element);
       expect(clickFn).toHaveBeenCalled();
     });
   });

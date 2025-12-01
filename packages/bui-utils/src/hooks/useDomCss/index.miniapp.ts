@@ -6,6 +6,7 @@ import { getTargetElement } from '../../domTarget';
 function useDomCss(
   target: TaroElement,
   computedStyle: string[],
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   cb: (res: Record<string, any>) => void,
 ) {
   useDomReady(() => {

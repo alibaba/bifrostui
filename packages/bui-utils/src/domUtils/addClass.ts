@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 const hasClass = (element: Element | SVGElement, className: string) => {
   if (element.classList)
     return !!className && element.classList.contains(className);

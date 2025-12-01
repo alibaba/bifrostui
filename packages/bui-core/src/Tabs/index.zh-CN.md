@@ -216,7 +216,7 @@ export default () => {
   return (
     <Stack>
       <Tabs
-        style={{ width: '100%', marginBottom: 12 }}
+        style={{ width: 325, marginBottom: 12 }}
         value={value}
         onChange={handleChange}
       >

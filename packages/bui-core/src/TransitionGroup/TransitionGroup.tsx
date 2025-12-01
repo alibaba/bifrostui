@@ -31,6 +31,7 @@ const TransitionGroup = (props: TransitionGroupProps) => {
   const mountedRef = useRef(false);
 
   // 将 handleExited 定义为 useRef，以保持引用稳定
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleExitedRef = useRef((child: ReactElement, node: any) => {
     const currentChildMapping = getChildMapping(children);
 

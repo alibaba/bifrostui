@@ -75,6 +75,7 @@ module.exports = {
         'react/display-name': 0,
         'no-console': 0,
         'import/no-extraneous-dependencies': 0,
+        'jsx-a11y/label-has-associated-control': 0,
         '@typescript-eslint/no-unused-vars': 0,
         '@typescript-eslint/no-explicit-any': 0,
       },

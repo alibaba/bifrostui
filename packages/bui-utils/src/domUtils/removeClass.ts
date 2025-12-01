@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const replaceClassName = (origClass: string, classToRemove: string) => {
   return origClass
     .replace(new RegExp(`(^|\\s)${classToRemove}(?:\\s|$)`, 'g'), '$1')

@@ -2,8 +2,7 @@ websites
 scripts
 coverage
 **/canvas-demos/**
-node_modules
-dist
+**/node_modules/**
 **/es/**
 **/dist/**
 .idea

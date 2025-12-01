@@ -104,6 +104,7 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
     const [ariaDescription, setAriaDescription] = useState('');
 
     // 组装原生属性，兼容小程序和H5
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let nativeProps: Record<string, any> = {
       [isMini ? 'maxlength' : 'maxLength']: maxLength ?? -1,
       'aria-description': ariaDescription,

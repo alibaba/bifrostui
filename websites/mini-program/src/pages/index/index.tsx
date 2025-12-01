@@ -47,7 +47,7 @@ const Index = () => {
                     key={component.enName}
                     onClick={() => goDemo(component)}
                   >
-                    {`${component.enName} - ${component.zhName}`}
+                    {`${component.enName} ${component.zhName}`}
                   </div>
                 ))}
             </div>

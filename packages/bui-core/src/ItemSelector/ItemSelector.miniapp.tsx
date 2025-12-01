@@ -38,10 +38,12 @@ const ItemSelector = React.forwardRef<HTMLDivElement, ItemSelectorProps>(
       query
         .select('.bui-item-selector-scroll-view-container')
         .boundingClientRect();
-      query.exec((codeRect: any) => {
-        const domHeight = codeRect?.[0]?.height;
-        setHeight(`${(domHeight / screenHeight) * 100}vh`);
-      });
+      query.exec(
+        (codeRect: Taro.NodesRef.BoundingClientRectCallbackResult[]) => {
+          const domHeight = codeRect?.[0]?.height;
+          setHeight(`${(domHeight / screenHeight) * 100}vh`);
+        },
+      );
     }, [items]);
 
     const parseIndex = (length, index) => {

@@ -4,7 +4,11 @@ import { ChangeEvent, useCallback, useRef, useState, useEffect } from 'react';
 type Options<T> = {
   value?: T;
   defaultValue: T;
-  onChange?: (e: ChangeEvent<HTMLElement>, data: Record<string, any>) => void;
+  onChange?: (
+    e: ChangeEvent<HTMLElement>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data: Record<string, any>,
+  ) => void;
   config?: {
     name?: string;
     state?: string;
