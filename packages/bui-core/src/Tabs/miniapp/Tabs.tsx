@@ -15,6 +15,10 @@ import {
   tabsScrollClass,
   tabsScrollWrapperClass,
 } from '../classes';
+import {
+  batchQueryContainerSize,
+  batchQueryForScroll,
+} from './utils/queryBatch';
 import '../Tabs.less';
 
 const Tabs: React.FC<TabsProps> = (props) => {
@@ -134,26 +138,20 @@ const Tabs: React.FC<TabsProps> = (props) => {
     },
   );
 
-  // 初始化容器尺寸（优化：延迟到DOM渲染完成）
+  // 初始化容器尺寸（优化：使用批量查询）
   React.useEffect(() => {
     if (!scrollViewId || registeredTabValues.length === 0) return;
 
     // 使用nextTick确保DOM已渲染
-    Taro.nextTick(() => {
-      const query = Taro.createSelectorQuery();
-      query.select(`#${scrollViewId}`).boundingClientRect();
-      query.select(`#${scrollViewId}`).scrollOffset();
+    Taro.nextTick(async () => {
+      const { rect, fields } = await batchQueryContainerSize(scrollViewId);
 
-      query.exec((res) => {
-        const rect = res[0];
-        const scroll = res[1];
-        if (rect) {
-          setContainerWidth(rect.width);
-        }
-        if (scroll) {
-          setScrollWidth(scroll.scrollWidth || 0);
-        }
-      });
+      if (rect) {
+        setContainerWidth(rect.width);
+      }
+      if (fields) {
+        setScrollWidth(fields.scrollWidth || 0);
+      }
     });
   }, [scrollViewId, registrationVersion, registeredTabValues.length]);
 
@@ -163,55 +161,46 @@ const Tabs: React.FC<TabsProps> = (props) => {
     }
 
     // 使用 nextTick 确保 DOM 已更新
-    Taro.nextTick(() => {
-      const query = Taro.createSelectorQuery();
-      // 查询ScrollView容器
-      query.select(`#${scrollViewId}`).boundingClientRect();
-      // 查询ScrollView的scrollOffset（获取scrollWidth）
-      query.select(`#${scrollViewId}`).scrollOffset();
-      // 查询wrapper容器
-      query.select(`#${wrapperId}`).boundingClientRect();
-      // 查询当前选中的Tab
-      query.select(`#${wrapperId}-tab-${currentValue}`).boundingClientRect();
+    Taro.nextTick(async () => {
+      // 批量查询：一次性获取所有需要的DOM信息
+      const { scrollView, scrollFields, wrapper, currentTab } =
+        await batchQueryForScroll({
+          scrollViewId,
+          wrapperId,
+          currentTabValue: currentValue,
+        });
 
-      query.exec((res) => {
-        const scrollViewRect = res[0];
-        const scrollInfo = res[1];
-        const wrapperRect = res[2];
-        const tabRect = res[3];
+      // 验证查询结果
+      if (
+        !scrollView ||
+        !scrollFields ||
+        !wrapper ||
+        !currentTab ||
+        currentTab.width === 0
+      ) {
+        return;
+      }
 
-        if (
-          !scrollViewRect ||
-          !scrollInfo ||
-          !wrapperRect ||
-          !tabRect ||
-          tabRect.width === 0
-        ) {
-          return;
-        }
+      // 计算Tab相对于wrapper的位置
+      const tabLeftRelativeToWrapper = currentTab.left - wrapper.left;
+      const tabWidth = currentTab.width;
+      const containerViewWidth = scrollView.width;
+      const currentScrollWidth = scrollFields.scrollWidth || scrollView.width;
 
-        // 计算Tab相对于wrapper的位置
-        const tabLeftRelativeToWrapper = tabRect.left - wrapperRect.left;
-        const tabWidth = tabRect.width;
-        const containerViewWidth = scrollViewRect.width;
-        const currentScrollWidth =
-          scrollInfo.scrollWidth || scrollViewRect.width;
+      // 计算将Tab滚动到中心的位置
+      const targetScrollLeft =
+        tabLeftRelativeToWrapper - (containerViewWidth - tabWidth) / 2;
 
-        // 计算将Tab滚动到中心的位置
-        const targetScrollLeft =
-          tabLeftRelativeToWrapper - (containerViewWidth - tabWidth) / 2;
+      // 限制在有效范围内
+      const maxScrollDistance = currentScrollWidth - containerViewWidth;
+      const finalScrollLeft = Math.max(
+        0,
+        Math.min(targetScrollLeft, maxScrollDistance),
+      );
 
-        // 限制在有效范围内
-        const maxScrollDistance = currentScrollWidth - containerViewWidth;
-        const finalScrollLeft = Math.max(
-          0,
-          Math.min(targetScrollLeft, maxScrollDistance),
-        );
-
-        // 设置scrollLeft，触发ScrollView滚动到居中位置
-        setScrollLeft(finalScrollLeft);
-        lastScrollLeftRef.current = finalScrollLeft;
-      });
+      // 设置scrollLeft，触发ScrollView滚动到居中位置
+      setScrollLeft(finalScrollLeft);
+      lastScrollLeftRef.current = finalScrollLeft;
     });
 
     // ⚠️ 关键优化：只依赖 currentValue，不依赖其他会频繁变化的状态

@@ -4,6 +4,7 @@ import Taro from '@tarojs/taro';
 import { View } from '@tarojs/components';
 import { useEventCallback } from '@bifrostui/utils';
 import { tabIndicatorClass } from '../classes';
+import { batchQueryTabs } from './utils/queryBatch';
 
 export interface TabIndicatorProps {
   /** 当前选中的 tab 值 */
@@ -43,37 +44,57 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
   const initRetryCountRef = useRef(0);
   const maxInitRetries = 5;
 
-  // 初始化：查询所有Tab和容器信息并缓存
-  const initializePositions = useEventCallback(() => {
-    const query = Taro.createSelectorQuery();
+  // 快速更新指示器位置（使用缓存）
+  const updateIndicatorPosition = useEventCallback(() => {
+    if (!currentValue || !registeredTabValues.includes(currentValue)) {
+      setVisibility('hidden');
+      return;
+    }
 
-    // 查询ScrollView（用于获取视口宽度和滚动信息）
-    query.select(`#${scrollViewId}`).boundingClientRect();
-    query.select(`#${scrollViewId}`).scrollOffset();
-    // 查询wrapper（Tab的定位参考）
-    query.select(`#${wrapperId}`).boundingClientRect();
-    // 查询指示器自身
-    query.select(`#${wrapperId}-indicator`).boundingClientRect();
+    const cachedPosition = positionCacheRef.current.get(currentValue);
+    const containerInfo = containerInfoRef.current;
 
-    // 查询所有已注册的Tab
-    registeredTabValues.forEach((value) => {
-      query.select(`#${wrapperId}-tab-${value}`).boundingClientRect();
-    });
+    if (!cachedPosition || !containerInfo) {
+      // 缓存未准备好，触发初始化
+      if (!isInitializedRef.current) {
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        initializePositions();
+      }
+      return;
+    }
 
-    query.exec((res) => {
-      const scrollViewRect = res[0];
-      const scrollInfo = res[1];
-      const wrapperRect = res[2];
-      const indicatorRect = res[3];
+    // 使用缓存的位置信息计算
+    const activeTabLeft = cachedPosition.left;
+    const activeTabWidth = cachedPosition.width;
+    const indicatorWidth = indicatorWidthRef.current;
+    const x = activeTabLeft + (activeTabWidth - indicatorWidth) / 2;
+
+    // 立即更新位置，无延迟
+    setTransform(`translate(${x}px, 0px)`);
+    setVisibility('visible');
+  });
+
+  // 初始化：批量查询所有Tab和容器信息并缓存
+  const initializePositions = useEventCallback(async () => {
+    try {
+      // ⚠️ 性能优化：使用批量查询，一次性获取所有DOM信息
+      const result = await batchQueryTabs({
+        scrollViewId,
+        wrapperId,
+        tabValues: registeredTabValues,
+      });
+
+      const { scrollView, scrollFields, wrapper, indicator, tabs } = result;
 
       // 基础验证
-      if (!scrollViewRect || !wrapperRect || !indicatorRect || !scrollInfo) {
+      if (!scrollView || !wrapper || !indicator || !scrollFields) {
         if (initRetryCountRef.current < maxInitRetries) {
           initRetryCountRef.current += 1;
           if (process.env.NODE_ENV !== 'production') {
+            // eslint-disable-next-line no-console
             console.warn(
               `[TabIndicator] 基础查询失败，重试 ${initRetryCountRef.current}/${maxInitRetries}`,
-              { scrollViewRect, wrapperRect, indicatorRect, scrollInfo },
+              { scrollView, wrapper, indicator, scrollFields },
             );
           }
           if (animationTimerRef.current) {
@@ -83,6 +104,7 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
             initializePositions();
           }, 100);
         } else {
+          // eslint-disable-next-line no-console
           console.error('[TabIndicator] 初始化失败：基础查询失败次数过多');
         }
         return;
@@ -90,12 +112,12 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
 
       // 缓存容器信息（使用ScrollView的尺寸作为视口）
       containerInfoRef.current = {
-        width: scrollViewRect.width,
-        scrollWidth: scrollInfo.scrollWidth || scrollViewRect.width,
+        width: scrollView.width,
+        scrollWidth: scrollFields.scrollWidth || scrollView.width,
       };
 
       // 缓存指示器宽度
-      indicatorWidthRef.current = indicatorRect.width;
+      indicatorWidthRef.current = indicator.width;
 
       // 缓存所有Tab的位置
       // ✅ 关键：Indicator和Tab都在wrapper内部，一起随ScrollView滚动
@@ -103,23 +125,23 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
       const newCache = new Map<string, TabPositionCache>();
 
       registeredTabValues.forEach((value, index) => {
-        const tabRect = res[4 + index]; // 注意：现在是从res[4]开始
+        const tabRect = tabs[index];
 
         if (process.env.NODE_ENV !== 'production') {
+          // eslint-disable-next-line no-console
           console.log(`[TabIndicator] 处理 Tab ${value}:`, {
             index,
-            resIndex: 4 + index,
             rect: tabRect,
             hasRect: !!tabRect,
             width: tabRect?.width,
             tabLeft: tabRect?.left,
-            wrapperLeft: wrapperRect.left,
+            wrapperLeft: wrapper.left,
           });
         }
 
         if (tabRect && tabRect.width > 0) {
           // ✅ Tab相对于wrapper的位置
-          const relativeLeft = tabRect.left - wrapperRect.left;
+          const relativeLeft = tabRect.left - wrapper.left;
 
           newCache.set(value, {
             left: relativeLeft,
@@ -153,36 +175,10 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
 
       // 初始化完成后立即更新指示器位置
       updateIndicatorPosition();
-    });
-  });
-
-  // 快速更新指示器位置（使用缓存）
-  const updateIndicatorPosition = useEventCallback(() => {
-    if (!currentValue || !registeredTabValues.includes(currentValue)) {
-      setVisibility('hidden');
-      return;
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('[TabIndicator] 批量查询失败:', error);
     }
-
-    const cachedPosition = positionCacheRef.current.get(currentValue);
-    const containerInfo = containerInfoRef.current;
-
-    if (!cachedPosition || !containerInfo) {
-      // 缓存未准备好，触发初始化
-      if (!isInitializedRef.current) {
-        initializePositions();
-      }
-      return;
-    }
-
-    // 使用缓存的位置信息计算
-    const activeTabLeft = cachedPosition.left;
-    const activeTabWidth = cachedPosition.width;
-    const indicatorWidth = indicatorWidthRef.current;
-    const x = activeTabLeft + (activeTabWidth - indicatorWidth) / 2;
-
-    // 立即更新位置，无延迟
-    setTransform(`translate(${x}px, 0px)`);
-    setVisibility('visible');
   });
 
   // 当 Tab 注册状态变化时，重新初始化缓存
