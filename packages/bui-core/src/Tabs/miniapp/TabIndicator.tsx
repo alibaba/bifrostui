@@ -57,7 +57,7 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
     if (!cachedPosition || !containerInfo) {
       // 缓存未准备好，触发初始化
       if (!isInitializedRef.current) {
-        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        // eslint-disable-next-line no-use-before-define
         initializePositions();
       }
       return;
@@ -90,23 +90,15 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
       if (!scrollView || !wrapper || !indicator || !scrollFields) {
         if (initRetryCountRef.current < maxInitRetries) {
           initRetryCountRef.current += 1;
-          if (process.env.NODE_ENV !== 'production') {
-            // eslint-disable-next-line no-console
-            console.warn(
-              `[TabIndicator] 基础查询失败，重试 ${initRetryCountRef.current}/${maxInitRetries}`,
-              { scrollView, wrapper, indicator, scrollFields },
-            );
-          }
+
           if (animationTimerRef.current) {
             clearTimeout(animationTimerRef.current);
           }
           animationTimerRef.current = setTimeout(() => {
             initializePositions();
           }, 100);
-        } else {
-          // eslint-disable-next-line no-console
-          console.error('[TabIndicator] 初始化失败：基础查询失败次数过多');
         }
+
         return;
       }
 
@@ -126,18 +118,6 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
 
       registeredTabValues.forEach((value, index) => {
         const tabRect = tabs[index];
-
-        if (process.env.NODE_ENV !== 'production') {
-          // eslint-disable-next-line no-console
-          console.log(`[TabIndicator] 处理 Tab ${value}:`, {
-            index,
-            rect: tabRect,
-            hasRect: !!tabRect,
-            width: tabRect?.width,
-            tabLeft: tabRect?.left,
-            wrapperLeft: wrapper.left,
-          });
-        }
 
         if (tabRect && tabRect.width > 0) {
           // ✅ Tab相对于wrapper的位置

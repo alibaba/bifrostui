@@ -220,6 +220,17 @@ const Tabs: React.FC<TabsProps> = (props) => {
     [currentValue, handleClick, onRegister, onUnregister, wrapperId],
   );
 
+  const renderedTabs = useMemo(() => {
+    if (tabs.length > 0) {
+      return tabs.map((item) => (
+        <Tab key={item.index} index={item?.index} disabled={item?.disabled}>
+          {item.title}
+        </Tab>
+      ));
+    }
+    return children;
+  }, [tabs, children]);
+
   // 清理定时器
   React.useEffect(() => {
     return () => {
@@ -255,6 +266,7 @@ const Tabs: React.FC<TabsProps> = (props) => {
         enhanced
         showScrollbar={false}
         enablePassive
+        enableFlex
       >
         {/** `bottom: 0` 在小程序的 ScrollView 内不生效，所以引入了wrapper容器，让Indicator在wrapper内 */}
         <View id={wrapperId} className={tabsScrollWrapperClass}>
@@ -267,19 +279,7 @@ const Tabs: React.FC<TabsProps> = (props) => {
           />
 
           <TabsContextProvider value={contextValue}>
-            {tabs.length > 0
-              ? tabs.map((item) => {
-                  return (
-                    <Tab
-                      key={item.index}
-                      index={item?.index}
-                      disabled={item?.disabled}
-                    >
-                      {item.title}
-                    </Tab>
-                  );
-                })
-              : children}
+            {renderedTabs}
           </TabsContextProvider>
         </View>
       </ScrollView>

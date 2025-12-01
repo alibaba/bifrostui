@@ -7,9 +7,9 @@ import TabIndicator from './TabIndicator';
 import TabMask from './TabMask';
 import { TabsProps } from './Tabs.types';
 import { TabsContextProvider } from './TabsContext';
-import './Tabs.less';
+import { tabsRootClass } from './classes';
 
-const rootClass = 'bui-tabs';
+import './Tabs.less';
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const {
@@ -91,19 +91,29 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     }),
     [currentValue, handleClick, onRegister, onUnregister],
   );
+  const renderedTabs = useMemo(() => {
+    if (tabs.length > 0) {
+      return tabs.map((item) => (
+        <Tab key={item.index} index={item?.index} disabled={item?.disabled}>
+          {item.title}
+        </Tab>
+      ));
+    }
+    return children;
+  }, [tabs, children]);
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line no-console
-    console.count('Tabs render');
+    console.count('Tabs render......');
   }
 
   return (
-    <div ref={ref} className={clsx(rootClass, className)} {...others}>
+    <div ref={ref} className={clsx(tabsRootClass, className)} {...others}>
       <TabMask tabsContainerRef={tabsRef} position="left" />
       <TabMask tabsContainerRef={tabsRef} position="right" />
 
       <div
-        className={`${rootClass}-tabs`}
+        className={`${tabsRootClass}-tabs`}
         ref={tabsRef}
         role="tablist"
         aria-orientation="horizontal"
@@ -116,19 +126,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         />
 
         <TabsContextProvider value={contextValue}>
-          {tabs.length > 0
-            ? tabs.map((item) => {
-                return (
-                  <Tab
-                    key={item.index}
-                    index={item?.index}
-                    disabled={item?.disabled}
-                  >
-                    {item.title}
-                  </Tab>
-                );
-              })
-            : children}
+          {renderedTabs}
         </TabsContextProvider>
       </div>
     </div>
