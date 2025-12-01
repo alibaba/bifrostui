@@ -1,0 +1,303 @@
+/* eslint-disable consistent-return */
+import React, { useMemo, useState } from 'react';
+import clsx from 'clsx';
+import Taro from '@tarojs/taro';
+import { View, ScrollView } from '@tarojs/components';
+import { useValue, useEventCallback } from '@bifrostui/utils';
+import type { BaseEventOrig } from '@tarojs/components';
+import Tab from './Tab';
+import TabIndicator from './TabIndicator';
+import TabMask from './TabMask';
+import { TabsProps } from '../Tabs.types';
+import { TabsContextProvider } from './TabsContext';
+import {
+  tabsRootClass,
+  tabsScrollClass,
+  tabsScrollWrapperClass,
+} from '../classes';
+import '../Tabs.less';
+
+const Tabs: React.FC<TabsProps> = (props) => {
+  const {
+    children,
+    className,
+    value,
+    defaultValue,
+    tabs = [],
+    onChange,
+    style,
+  } = props;
+
+  const handleOnChange = useEventCallback(
+    (e: React.SyntheticEvent, data: { value: string }) => {
+      onChange?.(e, { index: data.value });
+    },
+  );
+
+  const [currentValue, triggerValueChange] = useValue({
+    value,
+    defaultValue: defaultValue ?? '',
+    onChange: handleOnChange,
+    config: {
+      name: 'Tabs',
+      state: 'value',
+    },
+  });
+
+  // 生成唯一的容器ID
+  const tabsContainerId = useMemo(
+    () => `bui-tabs-${Math.random().toString(36).slice(2, 11)}`,
+    [],
+  );
+  const scrollViewId = `${tabsContainerId}-scroll`;
+  const wrapperId = `${tabsContainerId}-wrapper`;
+
+  // 管理已注册的 tabs
+  const [registeredTabValues, setRegisteredTabValues] = useState<string[]>([]);
+  // Track registration changes to trigger indicator updates explicitly
+  const [registrationVersion, setRegistrationVersion] = useState(0);
+
+  // scroll-view 相关状态
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [scrollWidth, setScrollWidth] = useState(0);
+  // 用于节流更新scrollLeft（避免频繁渲染）
+  const scrollLeftUpdateTimerRef = React.useRef<NodeJS.Timeout | null>(null);
+  const lastScrollLeftRef = React.useRef(0);
+
+  // 开发环境警告：tabs 和 children 不应该同时使用
+  if (process.env.NODE_ENV !== 'production') {
+    if (tabs.length > 0 && React.Children.count(children) > 0) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        'BUI Warning: Tabs 组件不应该同时使用 tabs 属性和 children。' +
+          '请只使用其中一种方式。当前将优先使用 tabs 属性，children 将被忽略。',
+      );
+    }
+  }
+
+  // 注册和取消注册 Tab 的回调函数
+  const onRegister = useEventCallback((data: { value: string }) => {
+    if (data.value !== undefined && data.value !== null) {
+      setRegisteredTabValues((prev) => {
+        if (prev.includes(data.value)) return prev;
+        const newValues = [...prev, data.value];
+        return newValues;
+      });
+      // Increment version to signal registration change
+      setRegistrationVersion((v) => v + 1);
+    }
+  });
+
+  const onUnregister = useEventCallback((data: { value: string }) => {
+    setRegisteredTabValues((prev) => {
+      const newValues = prev.filter((v) => v !== data.value);
+      return newValues;
+    });
+    setRegistrationVersion((v) => v + 1);
+  });
+
+  // 使用 useEventCallback 保持回调引用稳定，同时能访问最新的 currentValue 和 triggerValueChange
+  const handleClick = useEventCallback(
+    (e: React.SyntheticEvent, item: { index: string; disabled?: boolean }) => {
+      const { index, disabled: isDisabled = false } = item;
+      if (isDisabled || [undefined, null].includes(index)) return;
+      if (index !== currentValue) {
+        triggerValueChange(e, index);
+      }
+    },
+  );
+
+  const handleScroll = useEventCallback(
+    (e: BaseEventOrig<{ scrollLeft: number; scrollWidth: number }>) => {
+      const { scrollLeft: newScrollLeft, scrollWidth: newScrollWidth } =
+        e.detail;
+
+      // 立即存储到ref
+      lastScrollLeftRef.current = newScrollLeft;
+
+      // ⚠️ 关键：延迟更新state，避免立即触发ScrollView重新定位
+      // 使用debounce机制：150ms内如果再次滚动，会取消之前的更新
+      if (scrollLeftUpdateTimerRef.current) {
+        clearTimeout(scrollLeftUpdateTimerRef.current);
+      }
+      scrollLeftUpdateTimerRef.current = setTimeout(() => {
+        // 检查值是否确实变化了
+        if (Math.abs(lastScrollLeftRef.current - scrollLeft) > 1) {
+          setScrollLeft(lastScrollLeftRef.current);
+        }
+      }, 150); // 150ms延迟，滚动停止后才更新TabMask
+
+      if (newScrollWidth && newScrollWidth !== scrollWidth) {
+        setScrollWidth(newScrollWidth);
+      }
+    },
+  );
+
+  // 初始化容器尺寸（优化：延迟到DOM渲染完成）
+  React.useEffect(() => {
+    if (!scrollViewId || registeredTabValues.length === 0) return;
+
+    // 使用nextTick确保DOM已渲染
+    Taro.nextTick(() => {
+      const query = Taro.createSelectorQuery();
+      query.select(`#${scrollViewId}`).boundingClientRect();
+      query.select(`#${scrollViewId}`).scrollOffset();
+
+      query.exec((res) => {
+        const rect = res[0];
+        const scroll = res[1];
+        if (rect) {
+          setContainerWidth(rect.width);
+        }
+        if (scroll) {
+          setScrollWidth(scroll.scrollWidth || 0);
+        }
+      });
+    });
+  }, [scrollViewId, registrationVersion, registeredTabValues.length]);
+
+  React.useEffect(() => {
+    if (!currentValue || registeredTabValues.length === 0) {
+      return;
+    }
+
+    // 使用 nextTick 确保 DOM 已更新
+    Taro.nextTick(() => {
+      const query = Taro.createSelectorQuery();
+      // 查询ScrollView容器
+      query.select(`#${scrollViewId}`).boundingClientRect();
+      // 查询ScrollView的scrollOffset（获取scrollWidth）
+      query.select(`#${scrollViewId}`).scrollOffset();
+      // 查询wrapper容器
+      query.select(`#${wrapperId}`).boundingClientRect();
+      // 查询当前选中的Tab
+      query.select(`#${wrapperId}-tab-${currentValue}`).boundingClientRect();
+
+      query.exec((res) => {
+        const scrollViewRect = res[0];
+        const scrollInfo = res[1];
+        const wrapperRect = res[2];
+        const tabRect = res[3];
+
+        if (
+          !scrollViewRect ||
+          !scrollInfo ||
+          !wrapperRect ||
+          !tabRect ||
+          tabRect.width === 0
+        ) {
+          return;
+        }
+
+        // 计算Tab相对于wrapper的位置
+        const tabLeftRelativeToWrapper = tabRect.left - wrapperRect.left;
+        const tabWidth = tabRect.width;
+        const containerViewWidth = scrollViewRect.width;
+        const currentScrollWidth =
+          scrollInfo.scrollWidth || scrollViewRect.width;
+
+        // 计算将Tab滚动到中心的位置
+        const targetScrollLeft =
+          tabLeftRelativeToWrapper - (containerViewWidth - tabWidth) / 2;
+
+        // 限制在有效范围内
+        const maxScrollDistance = currentScrollWidth - containerViewWidth;
+        const finalScrollLeft = Math.max(
+          0,
+          Math.min(targetScrollLeft, maxScrollDistance),
+        );
+
+        // 设置scrollLeft，触发ScrollView滚动到居中位置
+        setScrollLeft(finalScrollLeft);
+        lastScrollLeftRef.current = finalScrollLeft;
+      });
+    });
+
+    // ⚠️ 关键优化：只依赖 currentValue，不依赖其他会频繁变化的状态
+    // - currentValue 变化 → 选择新Tab，触发居中 ✅
+    // - 不依赖 scrollWidth、containerWidth、scrollLeft → 用户滚动不触发 ✅
+    // - 不依赖 registrationVersion → 避免Tab注册时频繁触发 ✅
+  }, [currentValue, scrollViewId, wrapperId]);
+
+  const contextValue = useMemo(
+    () => ({
+      value: currentValue,
+      triggerChange: handleClick,
+      onRegister,
+      onUnregister,
+      tabsContainerId: wrapperId,
+    }),
+    [currentValue, handleClick, onRegister, onUnregister, wrapperId],
+  );
+
+  // 清理定时器
+  React.useEffect(() => {
+    return () => {
+      if (scrollLeftUpdateTimerRef.current) {
+        clearTimeout(scrollLeftUpdateTimerRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <View className={clsx(tabsRootClass, className)} style={style}>
+      <TabMask
+        position="left"
+        scrollLeft={scrollLeft}
+        containerWidth={containerWidth}
+        scrollWidth={scrollWidth}
+      />
+      <TabMask
+        position="right"
+        scrollLeft={scrollLeft}
+        containerWidth={containerWidth}
+        scrollWidth={scrollWidth}
+      />
+
+      <ScrollView
+        id={scrollViewId}
+        className={tabsScrollClass}
+        scrollX
+        scrollWithAnimation
+        scrollLeft={scrollLeft}
+        scrollAnimationDuration="200"
+        onScroll={handleScroll}
+        enhanced
+        showScrollbar={false}
+        enablePassive
+      >
+        {/** `bottom: 0` 在小程序的 ScrollView 内不生效，所以引入了wrapper容器，让Indicator在wrapper内 */}
+        <View id={wrapperId} className={tabsScrollWrapperClass}>
+          <TabIndicator
+            currentValue={currentValue}
+            registeredTabValues={registeredTabValues}
+            wrapperId={wrapperId}
+            scrollViewId={scrollViewId}
+            registrationVersion={registrationVersion}
+          />
+
+          <TabsContextProvider value={contextValue}>
+            {tabs.length > 0
+              ? tabs.map((item) => {
+                  return (
+                    <Tab
+                      key={item.index}
+                      index={item?.index}
+                      disabled={item?.disabled}
+                    >
+                      {item.title}
+                    </Tab>
+                  );
+                })
+              : children}
+          </TabsContextProvider>
+        </View>
+      </ScrollView>
+    </View>
+  );
+};
+
+Tabs.displayName = 'BuiTabs';
+
+export default Tabs;

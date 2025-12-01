@@ -1,0 +1,10 @@
+export const tabsRootClass = 'bui-tabs';
+export const tabRootClass = 'bui-tab';
+export const tabsScrollClass = `${tabsRootClass}-tabs`;
+export const tabsScrollWrapperClass = `${tabsRootClass}-scroll-wrapper`;
+export const tabActiveClass = `${tabRootClass}-active`;
+export const tabDisabledClass = `${tabRootClass}-disabled`;
+export const tabIndicatorClass = `${tabsRootClass}-indicator`;
+export const tabMaskClass = `${tabsRootClass}-mask`;
+export const tabMaskLeftClass = `${tabMaskClass}-left`;
+export const tabMaskRightClass = `${tabMaskClass}-right`;

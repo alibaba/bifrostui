@@ -103,9 +103,7 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
   return (
     <div
       ref={indicatorRef}
-      className={clsx(`${rootClass}-indicator`, {
-        'bui-tabs-indicator-invisible': isMini,
-      })}
+      className={clsx(`${rootClass}-indicator`)}
       style={{
         transition: 'transform 0.3s ease-in-out',
         transform: 'translate(0px, 0px)',

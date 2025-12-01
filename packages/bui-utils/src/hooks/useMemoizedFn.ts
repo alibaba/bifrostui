@@ -25,7 +25,7 @@ export default function useMemoizedFn<T extends noop>(fn: T) {
 
   const memoizedFn = useRef<PickFunction<T>>();
   if (!memoizedFn.current) {
-    memoizedFn.current = function (this, ...args) {
+    memoizedFn.current = function memoized(this, ...args) {
       return fnRef.current.apply(this, args);
     };
   }

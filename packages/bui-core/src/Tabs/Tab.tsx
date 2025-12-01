@@ -51,7 +51,6 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
     rootClass,
     {
       [`${rootClass}-active`]: !isMini && isActive,
-      [`${rootClass}-miniapp-active`]: isMini && isActive,
       [`${rootClass}-disabled`]: disabled,
     },
     className,
@@ -81,13 +80,6 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
       onClick={handleClick}
     >
       {children}
-      {isMini && (
-        <div
-          className={clsx(`${rootClass}-miniapp-active-line`, {
-            'bui-tabs-indicator-invisible': !isActive,
-          })}
-        />
-      )}
     </div>
   );
 });

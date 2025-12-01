@@ -181,9 +181,9 @@ export default () => {
 };
 ```
 
-## 超出可滑动
+## 滑动居中
 
-当 Tab 数量较多时，支持横向滚动。
+当 Tab 数量较多时，选中的 Tab 自动滑动居中
 
 ```tsx
 import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
@@ -201,6 +201,12 @@ export default () => {
     { title: 'Item 7', index: '7' },
     { title: 'Item 8', index: '8' },
     { title: 'Item 9', index: '9' },
+    { title: 'Item 10', index: '10' },
+    { title: 'Item 11', index: '11' },
+    { title: 'Item 12', index: '12' },
+    { title: 'Item 13', index: '13' },
+    { title: 'Item 14', index: '14' },
+    { title: 'Item 15', index: '15' },
   ];
   const handleChange = (e, { index }) => {
     console.log(e, `Tab Change, value index is: ${index}`);
@@ -209,24 +215,22 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: 325 }}>
-        <Tabs
-          style={{ marginTop: 20, marginBottom: 12 }}
-          value={value}
-          onChange={handleChange}
-        >
-          {tabList.map((item) => (
-            <Tab key={item.index} {...item}>
-              {item.title}
-            </Tab>
-          ))}
-        </Tabs>
+      <Tabs
+        style={{ width: '100%', marginBottom: 12 }}
+        value={value}
+        onChange={handleChange}
+      >
         {tabList.map((item) => (
-          <TabPanel key={item.index} value={value} index={item.index}>
-            {item.index}
-          </TabPanel>
+          <Tab key={item.index} {...item}>
+            {item.title}
+          </Tab>
         ))}
-      </div>
+      </Tabs>
+      {tabList.map((item) => (
+        <TabPanel key={item.index} value={value} index={item.index}>
+          {item.index}
+        </TabPanel>
+      ))}
     </Stack>
   );
 };

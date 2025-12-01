@@ -67,10 +67,6 @@ const handleMdFile = (componentDir, file) => {
  * 生成mini-program/pages/* 目录文件
  */
 const generatePagesFile = ({ codeModules, theme }, componentDir) => {
-  // if (theme.enName === 'Tabs') {
-  //   debugger;
-  // }
-
   codeModules.forEach((codeModule) => {
     if (!fse.pathExistsSync(componentDir)) {
       fse.mkdirSync(componentDir, { recursive: true });
@@ -115,9 +111,6 @@ const generateRouteConfig = () => {
  * 收集页面
  */
 const collectPages = (theme, { demoComponentDir }) => {
-  // if (theme.enName === 'Progress') {
-  //   debugger;
-  // }
   const routePath = `${demoComponentDir}/index`.split(
     `${theme.groupEnName}/`,
   )[1];

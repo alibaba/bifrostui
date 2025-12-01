@@ -34,6 +34,7 @@
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
+    white-space: nowrap;
     position: relative;
     overflow-x: scroll;
 
@@ -43,15 +44,29 @@
     scrollbar-width: none;
   }
 
+  &-scroll-wrapper {
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    min-width: 100%;
+  }
+
   &-indicator {
     position: absolute;
+    top: unset;
+    bottom: var(--bui-tabs-indicator-bottom, 0);
+    left: 0;
     width: var(--bui-tabs-indicator-width);
-    bottom: var(--bui-tabs-indicator-bottom);
     height: var(--bui-tabs-indicator-height);
     color: var(--bui-color-primary);
     background: var(--bui-tabs-indicator-bg);
     border-radius: var(--bui-tabs-indicator-border-radius);
     box-shadow: var(--bui-tabs-indicator-box-shadow);
+    z-index: 1;
+    pointer-events: none;
   }
 
   &-content {
@@ -85,9 +100,4 @@
       rgba(255, 255, 255, 0)
     );
   }
-}
-
-.bui-tabs-indicator-invisible {
-  visibility: hidden;
-  background-color: transparent;
 }
