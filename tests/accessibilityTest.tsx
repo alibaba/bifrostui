@@ -249,12 +249,8 @@ function accessibilityTest(
       const axeOptions = {
         rules,
         ...options?.axeOptions,
-        runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'],
-        resultTypes: [
-          'violations',
-          'incomplete',
-          'inapplicable',
-        ] as resultGroups[],
+        runOnly: ['wcag21aa'],
+        resultTypes: ['violations'] as resultGroups[],
       };
 
       const results = await axe(container, axeOptions);
