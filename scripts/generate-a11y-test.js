@@ -216,7 +216,7 @@ function generateA11yTestForComponent(componentName) {
 
   console.log(`✅ 成功为 ${componentName} 生成无障碍测试文件: ${testFilePath}`);
   console.log(
-    `💡 运行测试: pnpm test:run packages/bui-core/src/${componentName}/__tests__/a11y.test.tsx`,
+    `💡 运行测试: pnpm test packages/bui-core/src/${componentName}/__tests__/a11y.test.tsx`,
   );
 
   return true;
@@ -284,7 +284,7 @@ async function main() {
       console.log(`   可以包含多个 demo 组件默认导出对象`);
       console.log(`\n🧪 运行测试命令:`);
       console.log(
-        `   pnpm test:run packages/bui-core/src/${componentName}/__tests__/a11y.test.tsx`,
+        `   pnpm test packages/bui-core/src/${componentName}/__tests__/a11y.test.tsx`,
       );
     }
   } catch (error) {

@@ -2,7 +2,6 @@
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'node:path';
-import { generateTestProjects } from './scripts/generate-test-projects.mjs';
 
 // Shared configuration for all projects
 const sharedConfig = {
@@ -31,48 +30,64 @@ const sharedConfig = {
   },
 };
 
-// Generate per-component test projects dynamically
-const testProjects = generateTestProjects();
-
 export default defineConfig({
   ...sharedConfig,
   test: {
-    // Shared test configuration for all workspace projects
     css: true,
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./tests/setup.ts'],
     silent: true,
     testTimeout: 10000,
-    // Per-component projects for fine-grained testing
-    projects: testProjects.map((project) => {
-      return {
+    // Per-package projects for package-level testing
+    projects: [
+      {
         ...sharedConfig,
         test: {
-          name: project.name,
-          include: project.include,
+          name: 'bui-core',
+          include: ['packages/bui-core/src/**/*.{test,spec}.{ts,tsx}'],
           css: true,
           environment: 'jsdom',
           globals: true,
           setupFiles: ['./tests/setup.ts'],
           testTimeout: 10000,
         },
-      };
-    }),
+      },
+      {
+        ...sharedConfig,
+        test: {
+          name: 'bui-icons',
+          include: ['packages/bui-icons/src/**/*.{test,spec}.{ts,tsx}'],
+          css: true,
+          environment: 'jsdom',
+          globals: true,
+          setupFiles: ['./tests/setup.ts'],
+          testTimeout: 10000,
+        },
+      },
+      {
+        ...sharedConfig,
+        test: {
+          name: 'bui-utils',
+          include: ['packages/bui-utils/src/**/*.{test,spec}.{ts,tsx}'],
+          css: true,
+          environment: 'jsdom',
+          globals: true,
+          setupFiles: ['./tests/setup.ts'],
+          testTimeout: 10000,
+        },
+      },
+    ],
     server: {
       deps: {
         inline: ['@tarojs/runtime', '@tarojs/taro'],
       },
     },
     coverage: {
-      // provider作用是设置覆盖率报告的提供者，这里设置为v8，表示使用v8引擎来计算覆盖率
       provider: 'v8',
-      // reporter作用是设置覆盖率报告的格式，这里设置为text、json和html，表示生成文本、JSON和HTML格式的覆盖率报告
       reporter: ['text', 'json', 'html'],
-      // 允许多个进程同时收集 coverage
       allowExternal: true,
       reportsDirectory: './coverage',
-      // exclude作用是设置需要排除的文件，这里设置为node_modules、scripts、tests、*.d.ts、*.config.*和*.setup.*，表示这些文件不需要计算覆盖率
       exclude: [
         'node_modules/',
         'scripts/',

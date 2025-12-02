@@ -1,10 +1,8 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "defaultBase": "main",
   "tui": {
     "enabled": false
-  },
-  "affected": {
-    "defaultBase": "main"
   },
   "tasksRunnerOptions": {
     "default": {
@@ -13,7 +11,6 @@
         "cacheableOperations": [
           "build",
           "test",
-          "test:run",
           "lint",
           "lint:js",
           "lint:style"
@@ -29,17 +26,8 @@
     },
     "test": {
       "inputs": [
-        "{projectRoot}/**/*.{ts,tsx}",
-        "!{projectRoot}/**/*.md",
-        "{workspaceRoot}/vitest.config.mjs",
-        "{workspaceRoot}/tests/**/*",
-        "sharedGlobals"
-      ],
-      "outputs": ["{workspaceRoot}/coverage"]
-    },
-    "test:run": {
-      "inputs": [
         "{projectRoot}/src/**/*.{ts,tsx}",
+        "!{projectRoot}/src/**/*.md",
         "{workspaceRoot}/vitest.config.mjs",
         "{workspaceRoot}/tests/**/*",
         "sharedGlobals"
@@ -85,7 +73,6 @@
       "{workspaceRoot}/.gitignore"
     ]
   },
-  "nxCloudAccessToken": null,
-  "defaultProject": "bui-core",
+  "defaultProject": "@bifrostui/react",
   "useDaemonProcess": true
 }
