@@ -53,3 +53,6 @@ CLAUDE.md
 
 # Test temp folders
 **/tempDemos*
+tests/.temp-snapshots/
+tests/.temp-demos/
+tests/snapshot.*.tsx

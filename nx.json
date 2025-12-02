@@ -28,8 +28,12 @@
       "inputs": [
         "{projectRoot}/src/**/*.{ts,tsx}",
         "!{projectRoot}/src/**/*.md",
+        "!{projectRoot}/src/**/tempDemos_*/**",
         "{workspaceRoot}/vitest.config.mjs",
         "{workspaceRoot}/tests/**/*",
+        "!{workspaceRoot}/tests/.temp-snapshots/**",
+        "!{workspaceRoot}/tests/.temp-demos/**",
+        "!{workspaceRoot}/tests/snapshot.*.tsx",
         "sharedGlobals"
       ],
       "outputs": ["{workspaceRoot}/coverage"]

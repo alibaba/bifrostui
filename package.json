@@ -23,7 +23,7 @@
     "build:weapp": "node scripts/mini-program-site/index.js --type weapp",
     "build:alipay": "node scripts/mini-program-site/index.js --type alipay",
     "build:tt": "node scripts/mini-program-site/index.js --type tt",
-    "build": "nx run-many --target=build --all --exclude=@bifrostui/monorepo",
+    "build": "nx run-many --target=build --all --output-style=stream --exclude=@bifrostui/monorepo",
     "docs:build": "cross-env PUBLIC_PATH=/ dumi build && chmod +x ./scripts/handle-docs.sh && ./scripts/handle-docs.sh $docs_version",
     "docs:build:alpha": "cross-env PUBLIC_PATH=/alpha/ dumi build && chmod +x ./scripts/handle-docs.sh && ./scripts/handle-docs.sh $docs_version",
     "docs:build:beta": "cross-env PUBLIC_PATH=/beta/ dumi build && chmod +x ./scripts/handle-docs.sh && ./scripts/handle-docs.sh $docs_version",

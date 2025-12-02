@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-empty-function */
 import '@testing-library/jest-dom/vitest';
 import { render } from '@testing-library/react';
 import * as React from 'react';
@@ -98,11 +99,12 @@ export const defaultTests = {
 };
 export const isConformant = (testInfo) => {
   const { skip = [] } = testInfo;
-  for (const test of Object.keys(defaultTests)?.filter(
-    (item) => skip?.indexOf(item) === -1,
-  )) {
+  const tests = Object.keys(defaultTests).filter(
+    (item) => skip.indexOf(item) === -1,
+  );
+  tests.forEach((test) => {
     defaultTests[test](testInfo);
-  }
+  });
 };
 
 export const snapshotTest = async (componentName) => {
@@ -111,53 +113,59 @@ export const snapshotTest = async (componentName) => {
     `../packages/bui-core/src/${componentName}/*.zh-CN.md`,
   );
   const files = glob.sync(filePath);
+  // Use a fixed temp directory in workspace root (excluded from Nx)
+  const tempDir = path.join(__dirname, '.temp-snapshots');
+
+  // Ensure temp directory exists
+  if (!fs.existsSync(tempDir)) {
+    fs.mkdirSync(tempDir, { recursive: true });
+  }
 
   files.forEach((file, fileIndex) => {
     const mdFile = formatMarkdown(file);
-    for (const [index, item] of mdFile.codeModules.entries()) {
+    mdFile.codeModules.forEach((item, index) => {
       fs.writeFileSync(
-        `./tests/snapshot.${componentName}${index}.tsx`,
+        path.join(tempDir, `snapshot.${componentName}${index}.tsx`),
         item.code,
       );
-    }
+    });
     const snapshot = (index) => {
       return new Promise((resolve) => {
         try {
           // 使用动态 import，但需要确保路径是绝对路径
           const snapshotPath = path.resolve(
-            __dirname,
-            `./snapshot.${componentName}${index}.tsx`,
+            tempDir,
+            `snapshot.${componentName}${index}.tsx`,
           );
           import(snapshotPath)
             .then((component) => {
               const Component = component.default;
               const renderer = ReactTestRenderer.create(<Component />).toJSON();
               expect(renderer).toMatchSnapshot();
-              fs.unlinkSync(`./tests/snapshot.${componentName}${index}.tsx`);
+              fs.unlinkSync(snapshotPath);
               resolve(true);
             })
             .catch((err) => {
+              // eslint-disable-next-line no-console
               console.log(err, 'err');
               try {
-                fs.unlinkSync(`./tests/snapshot.${componentName}${index}.tsx`);
+                fs.unlinkSync(snapshotPath);
               } catch (unlinkErr) {
-                // 忽略删除文件时的错误
+                // ignore
               }
               resolve(true);
             });
         } catch (err) {
+          // eslint-disable-next-line no-console
           console.log(err, 'err');
-          try {
-            fs.unlinkSync(`./tests/snapshot.${componentName}${index}.tsx`);
-          } catch (unlinkErr) {
-            // 忽略删除文件时的错误
-          }
           resolve(true);
         }
       });
     };
     it(`${componentName} demo snapshot ${fileIndex}`, async () => {
-      for (const [index, item] of mdFile.codeModules.entries()) {
+      // Execute snapshots sequentially to ensure deterministic order
+      for (let index = 0; index < mdFile.codeModules.length; index += 1) {
+        // eslint-disable-next-line no-await-in-loop
         await snapshot(index);
       }
     });
@@ -166,7 +174,6 @@ export const snapshotTest = async (componentName) => {
 
 export const getMdDemoCodes = (
   componentName = '',
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   callback = (...ags: any[]) => {},
   skips = [],
 ) => {
@@ -175,43 +182,35 @@ export const getMdDemoCodes = (
     __dirname,
     `../packages/bui-core/src/${componentName}/*.zh-CN.md`,
   );
-  const componentTestPath = path.join(
-    __dirname,
-    `../packages/bui-core/src/${componentName}/__tests__/`,
-  );
   const files = glob.sync(filePath);
   // 若果filePath没有
   if (!files.length) throw Error('componentName is not exist');
   files.forEach((file, fileIndex) => {
     const mdFile = formatMarkdown(file);
-    // 先在componentTestPath项目下创建一个名叫tempDemos的文件夹
-    // 使用唯一标识避免并行测试时的冲突
-    const uniqueId = `${Date.now()}_${fileIndex}_${Math.random().toString(36).slice(2, 9)}`;
-    const tempDemoPath = path.join(componentTestPath, `tempDemos_${uniqueId}`);
+    // Use a fixed temp directory in workspace root (excluded from Nx)
+    const tempDemoPath = path.join(__dirname, '.temp-demos', componentName);
     if (fs.existsSync(tempDemoPath)) {
       // 如果存在，则删除文件夹
-      fs.rmdirSync(tempDemoPath, { recursive: true });
+      fs.rmSync(tempDemoPath, { recursive: true, force: true });
     }
-    fs.mkdirSync(tempDemoPath);
-    // eslint-disable-next-line no-restricted-syntax
-    for (const [index, item] of mdFile.codeModules.entries()) {
-      // eslint-disable-next-line no-continue
-      if (!item.code) continue;
+    fs.mkdirSync(tempDemoPath, { recursive: true });
+
+    mdFile.codeModules.forEach((item, index) => {
+      if (!item.code) return;
       // 在文件夹下创建一个tsx文件，将item.code写入
       const createFilePath = path.join(tempDemoPath, `md_demo_${index}.tsx`);
       fs.writeFileSync(createFilePath, item.code);
-    }
+    });
     // 去读取tempDemos文件夹下的所有tsx文件
-    let demofiles = glob.sync(`${tempDemoPath}/*.tsx`);
+    let demoFiles = glob.sync(`${tempDemoPath}/*.tsx`);
     // 过滤掉skip中的文件
     if (skips.length) {
-      demofiles = demofiles.filter((item) => {
+      demoFiles = demoFiles.filter((item) => {
         return item && !skips.some((item2) => item.includes(item2));
       });
     }
-    // console.log(demofiles, 'demofiles12');
-    // eslint-disable-next-line no-restricted-syntax
-    for (const [index, item] of demofiles.entries()) {
+
+    demoFiles.forEach((item, index) => {
       // 取出文件名字取出后缀作为componentDemoName
       const componentDemoName = `${componentName}_${path.basename(item).replace('.tsx', '')}`;
 
@@ -224,23 +223,31 @@ export const getMdDemoCodes = (
         },
         demoComponentName: componentDemoName,
         demoComponentIndex: index,
-        demoTotal: demofiles.length,
+        demoTotal: demoFiles.length,
         finishCallback: (finishIndex = 0) => {
+          // eslint-disable-next-line no-console
           console.log('finishCallback running.......', finishIndex);
-          if (finishIndex === demofiles.length - 1) {
-            // 删除tempDemos文件夹
-            fs.rmSync(tempDemoPath, { recursive: true });
+          if (finishIndex === demoFiles.length - 1) {
+            // Delete temp directory
+            try {
+              fs.rmSync(tempDemoPath, { recursive: true, force: true });
+            } catch (err) {
+              // eslint-disable-next-line no-console
+              console.error(
+                `Failed to clean up temp directory ${tempDemoPath}:`,
+                err,
+              );
+            }
           }
         },
       });
-    }
+    });
   });
 };
 
 // 支持单个文件中多个 demo 的测试函数
 export const getCustomDemoCodesFromFile = (
   componentName = '',
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   callback = (...args: any[]) => {},
   skips = [],
 ) => {
@@ -263,6 +270,7 @@ export const getCustomDemoCodesFromFile = (
 
   // 检查文件是否存在
   if (!fs.existsSync(demoFilePath)) {
+    // eslint-disable-next-line no-console
     console.warn(`Custom demo file not found: ${demoFilePath}`);
     return;
   }
@@ -280,9 +288,10 @@ export const getCustomDemoCodesFromFile = (
 
     // 查找命名导出
     const namedExportRegex = /export\s+const\s+(\w+)\s*=/g;
-    let match;
-    while ((match = namedExportRegex.exec(fileContent)) !== null) {
+    let match = namedExportRegex.exec(fileContent);
+    while (match !== null) {
       namedExports.push(match[1]);
+      match = namedExportRegex.exec(fileContent);
     }
     // 查找默认导出中的属性
     const defaultExportRegex = /export\s+default\s*\{([^}]+)\}/s;
@@ -335,7 +344,8 @@ export const getCustomDemoCodesFromFile = (
             ) {
               // 从默认导出对象中获取特定的 demo
               return demo.default[demoInfo.key];
-            } else if (demo[demoInfo.key]) {
+            }
+            if (demo[demoInfo.key]) {
               // 从命名导出中获取特定的 demo
               return demo[demoInfo.key];
             }
@@ -347,20 +357,23 @@ export const getCustomDemoCodesFromFile = (
         demoComponentName: demoInfo.name,
         demoComponentIndex: demoIndex,
         demoTotal: demosToTest.length,
-        demoFilePath: demoFilePath,
+        demoFilePath,
         demoKey: demoInfo.key,
         finishCallback: (finishIndex = 0) => {
+          // eslint-disable-next-line no-console
           console.log(
             `Custom demo ${demoInfo.key} finishCallback running.......`,
             finishIndex,
           );
           if (finishIndex === demosToTest.length - 1) {
+            // eslint-disable-next-line no-console
             console.log(`All custom demos from ${componentName} completed`);
           }
         },
       });
     });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(`Failed to parse custom demo file ${demoFilePath}:`, error);
   }
 };
