@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, func-names */
 export default function debounce(func: any, wait: number, immediate?: boolean) {
   let timeout;
   return function (...args) {

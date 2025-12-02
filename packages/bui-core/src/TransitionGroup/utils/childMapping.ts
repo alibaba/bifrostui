@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, no-param-reassign */
 // code from https://github.com/reactjs/react-transition-group/blob/master/src/utils/ChildMapping.js
 // @ts-nocheck
 import { Children, cloneElement, isValidElement } from 'react';

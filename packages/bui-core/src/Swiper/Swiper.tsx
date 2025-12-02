@@ -1,6 +1,11 @@
 import clsx from 'clsx';
 import React, { forwardRef, useEffect, useRef } from 'react';
-import { Autoplay, EffectFade, Pagination } from 'swiper';
+import {
+  Autoplay,
+  EffectFade,
+  Pagination,
+  type Swiper as SwiperClass,
+} from 'swiper';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import 'swiper/css/pagination';
@@ -45,7 +50,7 @@ const Swiper = forwardRef<SwiperRef, SwiperProps>((props, ref) => {
     ...style,
   };
 
-  const swiperInstance = useRef<any>();
+  const swiperInstance = useRef<SwiperClass>();
   const isInit = useRef(true);
   useEffect(() => {
     if (isInit.current) {

@@ -41,7 +41,7 @@ describe('Collapse Component', () => {
       setTimeout(resolve, 50);
     });
 
-    const collapseElement = document.querySelector('.bui-collapse')!;
+    const collapseElement = document.querySelector('.bui-collapse');
     expect(collapseElement).toHaveStyle(
       'transition: height 1000ms cubic-bezier(0.0, 0, 0.2, 1) 0ms',
     );

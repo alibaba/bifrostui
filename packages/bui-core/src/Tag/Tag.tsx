@@ -15,9 +15,9 @@ const colorHandler = (color: string, opacity = 1) => {
 
   // rgb
   if (color.includes('rgb')) {
-    color = color.replace('rgb', 'rgba');
-    const len = color.length;
-    return `${color.slice(0, len - 1)}, ${opacity})`;
+    const rgbaColor = color.replace('rgb', 'rgba');
+    const len = rgbaColor.length;
+    return `${rgbaColor.slice(0, len - 1)}, ${opacity})`;
   }
 
   // hex

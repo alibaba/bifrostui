@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { CurrentTime, FormattedCountdown } from './Countdown.types';
 
 const SECOND = 1000;
