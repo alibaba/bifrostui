@@ -137,11 +137,11 @@ import React, { useState } from 'react';
 
 export default () => {
   const [value, setValue] = useState('one');
-  const tabList = [
+  const [tabs, setTabs] = useState([
     { title: 'TAB ONE', index: 'one' },
     { title: 'TAB TWO', index: 'two' },
     { title: 'TAB THREE', index: 'three' },
-  ];
+  ]);
   const handleChange = (e, { index }) => {
     console.log(e, `Tab change, value index is: ${index}`);
     setValue(index);
@@ -150,32 +150,34 @@ export default () => {
   return (
     <Stack>
       <Tabs
-        style={{ marginBottom: 12 }}
+        style={{ marginBottom: 12, width: 325 }}
         align="start"
         onChange={handleChange}
+        tabs={tabs}
         value={value}
-      >
-        {tabList.map((item) => (
-          <Tab key={item.index} {...item}>
-            {item.title}
-          </Tab>
-        ))}
-      </Tabs>
+      />
       <TabPanel value={value} index="one">
         <div>Tab Panel 1</div>
-        <Button onClick={() => setValue('three')}>GOTO TAB THREE</Button>
-        <Button onClick={() => setValue('two')}>GOTO TAB TWO</Button>
       </TabPanel>
       <TabPanel value={value} index="two">
         <div>Tab Panel 2</div>
-        <Button onClick={() => setValue('one')}>GOTO TAB ONE</Button>
-        <Button onClick={() => setValue('three')}>GOTO TAB THREE</Button>
       </TabPanel>
       <TabPanel value={value} index="three">
         <div>Tab Panel 3</div>
-        <Button onClick={() => setValue('one')}>GOTO TAB ONE</Button>
-        <Button onClick={() => setValue('two')}>GOTO TAB TWO</Button>
       </TabPanel>
+      <div>
+        <Button onClick={() => setValue('three')}>Select Tab Three</Button>
+        <Button
+          onClick={() => {
+            setTabs([
+              ...tabs,
+              { title: `Tab ${Date.now()}`, index: Date.now() },
+            ]);
+          }}
+        >
+          Add New Tab
+        </Button>
+      </div>
     </Stack>
   );
 };
@@ -186,12 +188,12 @@ export default () => {
 当 Tab 数量较多时，选中的 Tab 自动滑动居中
 
 ```tsx
-import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
+import { Stack, Tab, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
   const [value, setValue] = useState('2');
-  const tabList = [
+  const [tabs, setTabs] = useState([
     { title: 'Item 1', index: '1' },
     { title: 'Item 2', index: '2' },
     { title: 'Item 3', index: '3' },
@@ -207,7 +209,7 @@ export default () => {
     { title: 'Item 13', index: '13' },
     { title: 'Item 14', index: '14' },
     { title: 'Item 15', index: '15' },
-  ];
+  ]);
   const handleChange = (e, { index }) => {
     console.log(e, `Tab Change, value index is: ${index}`);
     setValue(index);
@@ -218,19 +220,9 @@ export default () => {
       <Tabs
         style={{ width: 325, marginBottom: 12 }}
         value={value}
+        tabs={tabs}
         onChange={handleChange}
-      >
-        {tabList.map((item) => (
-          <Tab key={item.index} {...item}>
-            {item.title}
-          </Tab>
-        ))}
-      </Tabs>
-      {tabList.map((item) => (
-        <TabPanel key={item.index} value={value} index={item.index}>
-          {item.index}
-        </TabPanel>
-      ))}
+      />
     </Stack>
   );
 };
