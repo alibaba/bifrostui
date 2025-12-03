@@ -585,6 +585,8 @@ describe('Fade.miniapp', () => {
 
   describe('Parent re-render should not trigger animation', () => {
     it('should NOT trigger animation callbacks when in=false and parent re-renders multiple times', async () => {
+      vi.useFakeTimers();
+
       const onEnter = vi.fn();
       const onEntering = vi.fn();
       const onEntered = vi.fn();
@@ -623,12 +625,7 @@ describe('Fade.miniapp', () => {
       render(<TestComponent />);
 
       // Wait for all parent re-renders to complete
-      await waitFor(
-        () => {
-          // Wait for timeouts to complete
-        },
-        { timeout: 600 },
-      );
+      await vi.advanceTimersByTimeAsync(600);
 
       // CRITICAL: onEnter callbacks should NOT be called
       // because in prop never changed (always false)
@@ -641,9 +638,13 @@ describe('Fade.miniapp', () => {
       expect(onExit.mock.calls.length).toBeLessThanOrEqual(1);
       expect(onExiting.mock.calls.length).toBeLessThanOrEqual(1);
       expect(onExited.mock.calls.length).toBeLessThanOrEqual(1);
+
+      vi.useRealTimers();
     });
 
     it('should NOT trigger animation callbacks when in=true and parent re-renders multiple times', async () => {
+      vi.useFakeTimers();
+
       const onEnter = vi.fn();
       const onEntering = vi.fn();
       const onEntered = vi.fn();
@@ -680,12 +681,7 @@ describe('Fade.miniapp', () => {
 
       render(<TestComponent />);
 
-      await waitFor(
-        () => {
-          // Wait for timeouts to complete
-        },
-        { timeout: 600 },
-      );
+      await vi.advanceTimersByTimeAsync(600);
 
       // Since in=true and appear=false, no animation should execute
       // and callbacks should not be triggered by parent re-renders
@@ -695,9 +691,13 @@ describe('Fade.miniapp', () => {
       expect(onExit).not.toHaveBeenCalled();
       expect(onExiting).not.toHaveBeenCalled();
       expect(onExited).not.toHaveBeenCalled();
+
+      vi.useRealTimers();
     });
 
     it('should only trigger animation callbacks when in prop actually changes', async () => {
+      vi.useFakeTimers();
+
       const onEnter = vi.fn();
       const onExit = vi.fn();
 
@@ -740,21 +740,13 @@ describe('Fade.miniapp', () => {
 
       render(<TestComponent />);
 
-      // Wait for first in prop change (false -> true)
-      await waitFor(
-        () => {
-          expect(onEnter).toHaveBeenCalled();
-        },
-        { timeout: 250 },
-      );
+      // Advance to first in prop change (false -> true)
+      await vi.advanceTimersByTimeAsync(160);
+      expect(onEnter).toHaveBeenCalled();
 
-      // Wait for second in prop change (true -> false)
-      await waitFor(
-        () => {
-          expect(onExit).toHaveBeenCalled();
-        },
-        { timeout: 400 },
-      );
+      // Advance to second in prop change (true -> false)
+      await vi.advanceTimersByTimeAsync(150);
+      expect(onExit).toHaveBeenCalled();
 
       // onEnter should be called exactly once (when in changes from false to true)
       expect(onEnter).toHaveBeenCalledTimes(1);
@@ -764,9 +756,13 @@ describe('Fade.miniapp', () => {
 
       // This confirms that parent re-renders (setCounter calls) did not trigger
       // additional animation callbacks
+
+      vi.useRealTimers();
     });
 
     it('should handle the documentation bug scenario - in=false with parent re-renders', async () => {
+      vi.useFakeTimers();
+
       const onExit = vi.fn();
       const onExiting = vi.fn();
       const onExited = vi.fn();
@@ -799,13 +795,7 @@ describe('Fade.miniapp', () => {
       const { getByTestId } = render(<TestComponent />);
 
       // Wait for all state changes
-      await waitFor(
-        () => {
-          const element = getByTestId('fade-element');
-          expect(element).toHaveTextContent('Open: true');
-        },
-        { timeout: 400 },
-      );
+      await vi.advanceTimersByTimeAsync(300);
 
       // CRITICAL: Even though parent re-rendered twice (setOpen calls),
       // the animation callbacks should NOT be triggered multiple times
@@ -813,6 +803,8 @@ describe('Fade.miniapp', () => {
       expect(onExit.mock.calls.length).toBeLessThanOrEqual(1);
       expect(onExiting.mock.calls.length).toBeLessThanOrEqual(1);
       expect(onExited.mock.calls.length).toBeLessThanOrEqual(1);
+
+      vi.useRealTimers();
     });
 
     it('should correctly handle interactive parent re-renders with button clicks', async () => {
@@ -901,6 +893,8 @@ describe('Fade.miniapp', () => {
     });
 
     it('should prevent animation duration changes from triggering unwanted animations', async () => {
+      vi.useFakeTimers();
+
       const onEntering = vi.fn();
       const onExiting = vi.fn();
 
@@ -930,17 +924,14 @@ describe('Fade.miniapp', () => {
       render(<TestComponent />);
 
       // Wait for the parent re-render
-      await waitFor(
-        () => {
-          // Wait for timeout to complete
-        },
-        { timeout: 300 },
-      );
+      await vi.advanceTimersByTimeAsync(200);
 
       // The fix ensures that even when isFirstMount changes,
       // parent re-renders don't trigger animation callbacks
       expect(onEntering).not.toHaveBeenCalled();
       expect(onExiting.mock.calls.length).toBeLessThanOrEqual(1);
+
+      vi.useRealTimers();
     });
   });
 });
