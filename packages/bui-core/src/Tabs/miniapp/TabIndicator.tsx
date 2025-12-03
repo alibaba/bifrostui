@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import Taro from '@tarojs/taro';
-import { View } from '@tarojs/components';
 import { useEventCallback } from '@bifrostui/utils';
 import { tabIndicatorClass } from '../classes';
 import { batchQueryTabs } from './utils/queryBatch';
@@ -221,7 +220,7 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
   }, [initializePositions]);
 
   return (
-    <View
+    <div
       id={`${wrapperId}-indicator`}
       className={clsx(tabIndicatorClass)}
       style={{

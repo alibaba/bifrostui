@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-import { View } from '@tarojs/components';
 import { tabMaskClass, tabMaskLeftClass, tabMaskRightClass } from '../classes';
 
 export interface TabMaskProps {
@@ -32,7 +31,7 @@ const TabMask: React.FC<TabMaskProps> = ({
   }, [position, scrollLeft, containerWidth, scrollWidth]);
 
   return (
-    <View
+    <div
       className={clsx(
         tabMaskClass,
         position === 'left' ? tabMaskLeftClass : tabMaskRightClass,

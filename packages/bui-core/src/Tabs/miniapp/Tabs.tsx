@@ -2,7 +2,7 @@
 import React, { useMemo, useState } from 'react';
 import clsx from 'clsx';
 import Taro from '@tarojs/taro';
-import { View, ScrollView } from '@tarojs/components';
+import { ScrollView } from '@tarojs/components';
 import { useValue, useEventCallback } from '@bifrostui/utils';
 import type { BaseEventOrig } from '@tarojs/components';
 import Tab from './Tab';
@@ -241,7 +241,7 @@ const Tabs: React.FC<TabsProps> = (props) => {
   }, []);
 
   return (
-    <View className={clsx(tabsRootClass, className)} style={style}>
+    <div className={clsx(tabsRootClass, className)} style={style}>
       <TabMask
         position="left"
         scrollLeft={scrollLeft}
@@ -269,7 +269,7 @@ const Tabs: React.FC<TabsProps> = (props) => {
         enableFlex
       >
         {/** `bottom: 0` 在小程序的 ScrollView 内不生效，所以引入了wrapper容器，让Indicator在wrapper内 */}
-        <View id={wrapperId} className={tabsScrollWrapperClass}>
+        <div id={wrapperId} className={tabsScrollWrapperClass}>
           <TabIndicator
             currentValue={currentValue}
             registeredTabValues={registeredTabValues}
@@ -281,9 +281,9 @@ const Tabs: React.FC<TabsProps> = (props) => {
           <TabsContextProvider value={contextValue}>
             {renderedTabs}
           </TabsContextProvider>
-        </View>
+        </div>
       </ScrollView>
-    </View>
+    </div>
   );
 };
 

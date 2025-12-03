@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import clsx from 'clsx';
-import { View } from '@tarojs/components';
 import { useContextSelector } from '@bifrostui/utils';
 import { TabProps } from '../Tab.types';
 import TabsContext from './TabsContext';
@@ -61,7 +60,7 @@ const Tab: React.FC<TabProps> = (props) => {
   const tabId = tabsContainerId ? `${tabsContainerId}-tab-${index}` : undefined;
 
   return (
-    <View
+    <div
       id={tabId}
       className={rootCls}
       style={style}
@@ -74,7 +73,7 @@ const Tab: React.FC<TabProps> = (props) => {
       }}
     >
       {children}
-    </View>
+    </div>
   );
 };
 
