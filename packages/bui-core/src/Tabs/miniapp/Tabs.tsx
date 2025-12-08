@@ -104,8 +104,8 @@ const Tabs: React.FC<TabsProps> = (props) => {
   // 使用 useEventCallback 保持回调引用稳定，同时能访问最新的 currentValue 和 triggerValueChange
   const handleClick = useEventCallback(
     (e: React.SyntheticEvent, item: { index: string; disabled?: boolean }) => {
-      const { index, disabled: isDisabled = false } = item;
-      if (isDisabled || [undefined, null].includes(index)) return;
+      const { index, disabled = false } = item;
+      if (disabled || [undefined, null].includes(index)) return;
       if (index !== currentValue) {
         triggerValueChange(e, index);
       }
@@ -155,59 +155,82 @@ const Tabs: React.FC<TabsProps> = (props) => {
     });
   }, [scrollViewId, registrationVersion, registeredTabValues.length]);
 
+  // 滚动到选中的Tab（居中显示）
+  const centerActiveTab = useEventCallback(async () => {
+    if (!currentValue || registeredTabValues.length === 0) {
+      return;
+    }
+
+    // 批量查询：一次性获取所有需要的DOM信息
+    const { scrollView, scrollFields, wrapper, currentTab } =
+      await batchQueryForScroll({
+        scrollViewId,
+        wrapperId,
+        currentTabValue: currentValue,
+      });
+
+    // 验证查询结果
+    if (
+      !scrollView ||
+      !scrollFields ||
+      !wrapper ||
+      !currentTab ||
+      currentTab.width === 0
+    ) {
+      return;
+    }
+
+    // 计算Tab相对于wrapper的位置
+    const tabLeftRelativeToWrapper = currentTab.left - wrapper.left;
+    const tabWidth = currentTab.width;
+    const containerViewWidth = scrollView.width;
+    const currentScrollWidth = scrollFields.scrollWidth || scrollView.width;
+
+    // 计算将Tab滚动到中心的位置
+    const targetScrollLeft =
+      tabLeftRelativeToWrapper - (containerViewWidth - tabWidth) / 2;
+
+    // 限制在有效范围内
+    const maxScrollDistance = currentScrollWidth - containerViewWidth;
+    const finalScrollLeft = Math.max(
+      0,
+      Math.min(targetScrollLeft, maxScrollDistance),
+    );
+
+    // 设置scrollLeft，触发ScrollView滚动到居中位置
+    setScrollLeft(finalScrollLeft);
+    lastScrollLeftRef.current = finalScrollLeft;
+  });
+
+  // 当 currentValue 变化时滚动
   React.useEffect(() => {
     if (!currentValue || registeredTabValues.length === 0) {
       return;
     }
 
     // 使用 nextTick 确保 DOM 已更新
-    Taro.nextTick(async () => {
-      // 批量查询：一次性获取所有需要的DOM信息
-      const { scrollView, scrollFields, wrapper, currentTab } =
-        await batchQueryForScroll({
-          scrollViewId,
-          wrapperId,
-          currentTabValue: currentValue,
-        });
-
-      // 验证查询结果
-      if (
-        !scrollView ||
-        !scrollFields ||
-        !wrapper ||
-        !currentTab ||
-        currentTab.width === 0
-      ) {
-        return;
-      }
-
-      // 计算Tab相对于wrapper的位置
-      const tabLeftRelativeToWrapper = currentTab.left - wrapper.left;
-      const tabWidth = currentTab.width;
-      const containerViewWidth = scrollView.width;
-      const currentScrollWidth = scrollFields.scrollWidth || scrollView.width;
-
-      // 计算将Tab滚动到中心的位置
-      const targetScrollLeft =
-        tabLeftRelativeToWrapper - (containerViewWidth - tabWidth) / 2;
-
-      // 限制在有效范围内
-      const maxScrollDistance = currentScrollWidth - containerViewWidth;
-      const finalScrollLeft = Math.max(
-        0,
-        Math.min(targetScrollLeft, maxScrollDistance),
-      );
-
-      // 设置scrollLeft，触发ScrollView滚动到居中位置
-      setScrollLeft(finalScrollLeft);
-      lastScrollLeftRef.current = finalScrollLeft;
+    Taro.nextTick(() => {
+      centerActiveTab();
     });
 
     // ⚠️ 关键优化：只依赖 currentValue，不依赖其他会频繁变化的状态
     // - currentValue 变化 → 选择新Tab，触发居中 ✅
     // - 不依赖 scrollWidth、containerWidth、scrollLeft → 用户滚动不触发 ✅
     // - 不依赖 registrationVersion → 避免Tab注册时频繁触发 ✅
-  }, [currentValue, scrollViewId, wrapperId]);
+  }, [currentValue, centerActiveTab]);
+
+  // 初始化时也需要滚动到选中的Tab
+  React.useEffect(() => {
+    if (!currentValue || registeredTabValues.length === 0) {
+      return;
+    }
+
+    // 当所有Tab注册完成后，滚动到当前选中的Tab
+    // 使用 nextTick 确保 DOM 渲染完成
+    Taro.nextTick(() => {
+      centerActiveTab();
+    });
+  }, [registrationVersion, centerActiveTab]);
 
   const contextValue = useMemo(
     () => ({

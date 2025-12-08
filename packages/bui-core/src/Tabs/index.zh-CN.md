@@ -192,7 +192,7 @@ import { Stack, Tab, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState('2');
+  const [value, setValue] = useState('13');
   const [tabs, setTabs] = useState([
     { title: 'Item 1', index: '1' },
     { title: 'Item 2', index: '2' },
