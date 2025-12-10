@@ -302,4 +302,3 @@ export default () => {
 | --bui-tab-height                   | Tab height                 | `100%`                                             |
 | --bui-tab-padding                  | Tab padding                | `var(--bui-spacing-lg) var(--bui-spacing-lg) 10px` |
 | --bui-tab-active-color             | Active tab color           | `var(--bui-color-fg-default)`                      |
-| --bui-tab-active-font-family       | Active tab font            | `var(--bui-font-family-accent, inherit)`           |

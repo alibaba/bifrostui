@@ -520,8 +520,7 @@
       "--bui-tab-color": "var(--bui-color-fg-subtle)",
       "--bui-tab-height": "100%",
       "--bui-tab-padding": "var(--bui-spacing-lg) var(--bui-spacing-lg) 10px",
-      "--bui-tab-active-color": "var(--bui-color-fg-default)",
-      "--bui-tab-active-font-family": "var(--bui-font-family-accent, inherit)"
+      "--bui-tab-active-color": "var(--bui-color-fg-default)"
     }
   },
   "Tag": {

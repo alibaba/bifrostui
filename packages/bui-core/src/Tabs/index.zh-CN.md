@@ -289,4 +289,3 @@ export default () => {
 | --bui-tab-height                   | 标签高度       | `100%`                                             |
 | --bui-tab-padding                  | 标签内边距     | `var(--bui-spacing-lg) var(--bui-spacing-lg) 10px` |
 | --bui-tab-active-color             | 激活标签颜色   | `var(--bui-color-fg-default)`                      |
-| --bui-tab-active-font-family       | 激活标签字体   | `var(--bui-font-family-accent, inherit)`           |
