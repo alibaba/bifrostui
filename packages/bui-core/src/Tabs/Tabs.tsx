@@ -108,7 +108,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   }
 
   return (
-    <div ref={ref} className={clsx(tabsRootClass, className)} {...others}>
+    <div className={clsx(tabsRootClass, className)} {...others} ref={ref}>
       <TabMask tabsContainerRef={tabsRef} position="left" />
       <TabMask tabsContainerRef={tabsRef} position="right" />
 

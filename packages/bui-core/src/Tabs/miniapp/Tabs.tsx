@@ -21,7 +21,7 @@ import {
 } from './utils/queryBatch';
 import '../Tabs.less';
 
-const Tabs: React.FC<TabsProps> = (props) => {
+const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const {
     children,
     className,
@@ -74,8 +74,7 @@ const Tabs: React.FC<TabsProps> = (props) => {
     if (tabs.length > 0 && React.Children.count(children) > 0) {
       // eslint-disable-next-line no-console
       console.warn(
-        'BUI Warning: Tabs 组件不应该同时使用 tabs 属性和 children。' +
-          '请只使用其中一种方式。当前将优先使用 tabs 属性，children 将被忽略。',
+        'BUI Warning: Tabs 组件不应该同时使用 tabs 属性和 children。请只使用其中一种方式。当前将优先使用 tabs 属性，children 将被忽略。',
       );
     }
   }
@@ -264,7 +263,7 @@ const Tabs: React.FC<TabsProps> = (props) => {
   }, []);
 
   return (
-    <div className={clsx(tabsRootClass, className)} style={style}>
+    <div className={clsx(tabsRootClass, className)} style={style} ref={ref}>
       <TabMask
         position="left"
         scrollLeft={scrollLeft}
@@ -308,7 +307,7 @@ const Tabs: React.FC<TabsProps> = (props) => {
       </ScrollView>
     </div>
   );
-};
+});
 
 Tabs.displayName = 'BuiTabs';
 

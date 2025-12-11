@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import clsx from 'clsx';
-import { useContextSelector } from '@bifrostui/utils';
+import { useContextSelector, useForkRef } from '@bifrostui/utils';
 import { TabProps } from '../Tab.types';
 import TabsContext from './TabsContext';
 import { tabRootClass, tabActiveClass, tabDisabledClass } from '../classes';
 import '../Tab.less';
 
-const Tab: React.FC<TabProps> = (props) => {
+const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
   const {
     className,
     children,
@@ -15,6 +15,9 @@ const Tab: React.FC<TabProps> = (props) => {
     onClick,
     style,
   } = props;
+
+  const innerRef = useRef<HTMLDivElement>(null);
+  const handleRef = useForkRef(ref, innerRef);
 
   // 只订阅当前tab是否active，而不是订阅整个value
   const isActive = useContextSelector(
@@ -62,6 +65,7 @@ const Tab: React.FC<TabProps> = (props) => {
   return (
     <div
       id={tabId}
+      ref={handleRef}
       className={rootCls}
       style={style}
       onClick={(e) => {
@@ -75,7 +79,7 @@ const Tab: React.FC<TabProps> = (props) => {
       {children}
     </div>
   );
-};
+});
 
 Tab.displayName = 'BuiTab';
 
