@@ -60,9 +60,6 @@ export const pioneerLight = {
     /** 语义化字号 */
     '--bui-title-size-4': 'var(--bui-font-size-md1)',
 
-    // 用于失效、不可用等状态
-    '--bui-color-fg-disabled': 'rgba(3, 11, 26, 0.5)',
-
     /** 分割线、边框 */
     '--bui-color-border-primary': 'rgba(255, 80, 0, 0.4)',
     '--bui-color-border-info': 'rgba(34, 154, 240, 0.4)',
