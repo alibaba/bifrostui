@@ -79,7 +79,7 @@ describe('Tabs', () => {
     const indicator = container.querySelector(`.${rootClass.tabs}-indicator`);
     expect(indicator).toHaveStyle({
       transform: 'translate(0px, 0px)',
-      transition: 'transform 0.3s ease-in-out',
+      transition: 'none',
     });
   });
 

@@ -8,16 +8,6 @@ exports[`Tabs > test with TabPanel > should be active by \`value\` property 1`] 
     class="bui-tabs"
   >
     <div
-      aria-hidden="true"
-      class="bui-tabs-mask bui-tabs-mask-left"
-      style="opacity: 0;"
-    />
-    <div
-      aria-hidden="true"
-      class="bui-tabs-mask bui-tabs-mask-right"
-      style="opacity: 0;"
-    />
-    <div
       aria-orientation="horizontal"
       class="bui-tabs-tabs"
       role="tablist"
@@ -25,7 +15,7 @@ exports[`Tabs > test with TabPanel > should be active by \`value\` property 1`] 
       <div
         aria-hidden="true"
         class="bui-tabs-indicator"
-        style="transition: transform 0.3s ease-in-out; transform: translate(0px, 0px); visibility: visible;"
+        style="transition: none; transform: translate(0px, 0px); visibility: visible;"
       />
       <div
         aria-disabled="false"

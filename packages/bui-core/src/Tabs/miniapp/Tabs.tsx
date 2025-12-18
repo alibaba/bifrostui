@@ -7,7 +7,7 @@ import { useValue, useEventCallback } from '@bifrostui/utils';
 import type { BaseEventOrig } from '@tarojs/components';
 import Tab from './Tab';
 import TabIndicator from './TabIndicator';
-import TabMask from './TabMask';
+import TabMask from '../TabMask';
 import { TabsProps } from '../Tabs.types';
 import { TabsContextProvider } from './TabsContext';
 import {
@@ -65,9 +65,12 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const [scrollLeft, setScrollLeft] = useState(0);
   const [containerWidth, setContainerWidth] = useState(0);
   const [scrollWidth, setScrollWidth] = useState(0);
-  // 用于节流更新scrollLeft（避免频繁渲染）
-  const scrollLeftUpdateTimerRef = React.useRef<NodeJS.Timeout | null>(null);
   const lastScrollLeftRef = React.useRef(0);
+  const isFirstScroll = React.useRef(true);
+  const [scrollWithAnimation, setScrollWithAnimation] = React.useState(false);
+
+  // 计算是否可滚动（用于显示 TabMask）
+  const isScrollable = scrollWidth > containerWidth;
 
   // 开发环境警告：tabs 和 children 不应该同时使用
   if (process.env.NODE_ENV !== 'production') {
@@ -116,21 +119,10 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
       const { scrollLeft: newScrollLeft, scrollWidth: newScrollWidth } =
         e.detail;
 
-      // 立即存储到ref
+      // 只存储到 ref，不更新 state（避免触发 ScrollView 重新定位）
       lastScrollLeftRef.current = newScrollLeft;
 
-      // ⚠️ 关键：延迟更新state，避免立即触发ScrollView重新定位
-      // 使用debounce机制：150ms内如果再次滚动，会取消之前的更新
-      if (scrollLeftUpdateTimerRef.current) {
-        clearTimeout(scrollLeftUpdateTimerRef.current);
-      }
-      scrollLeftUpdateTimerRef.current = setTimeout(() => {
-        // 检查值是否确实变化了
-        if (Math.abs(lastScrollLeftRef.current - scrollLeft) > 1) {
-          setScrollLeft(lastScrollLeftRef.current);
-        }
-      }, 150); // 150ms延迟，滚动停止后才更新TabMask
-
+      // 更新 scrollWidth（用于计算 isScrollable）
       if (newScrollWidth && newScrollWidth !== scrollWidth) {
         setScrollWidth(newScrollWidth);
       }
@@ -199,6 +191,14 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     // 设置scrollLeft，触发ScrollView滚动到居中位置
     setScrollLeft(finalScrollLeft);
     lastScrollLeftRef.current = finalScrollLeft;
+
+    // 首次滚动后，启用滚动动画
+    if (isFirstScroll.current) {
+      Taro.nextTick(() => {
+        setScrollWithAnimation(true);
+      });
+      isFirstScroll.current = false;
+    }
   });
 
   // 当 currentValue 变化时滚动
@@ -253,37 +253,21 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     return children;
   }, [tabs, children]);
 
-  // 清理定时器
-  React.useEffect(() => {
-    return () => {
-      if (scrollLeftUpdateTimerRef.current) {
-        clearTimeout(scrollLeftUpdateTimerRef.current);
-      }
-    };
-  }, []);
-
   return (
     <div className={clsx(tabsRootClass, className)} style={style} ref={ref}>
-      <TabMask
-        position="left"
-        scrollLeft={scrollLeft}
-        containerWidth={containerWidth}
-        scrollWidth={scrollWidth}
-      />
-      <TabMask
-        position="right"
-        scrollLeft={scrollLeft}
-        containerWidth={containerWidth}
-        scrollWidth={scrollWidth}
-      />
+      {isScrollable && (
+        <>
+          <TabMask position="left" />
+          <TabMask position="right" />
+        </>
+      )}
 
       <ScrollView
         id={scrollViewId}
         className={tabsScrollClass}
         scrollX
-        scrollWithAnimation
+        scrollWithAnimation={scrollWithAnimation}
         scrollLeft={scrollLeft}
-        scrollAnimationDuration="200"
         onScroll={handleScroll}
         enhanced
         showScrollbar={false}

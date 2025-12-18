@@ -20,12 +20,13 @@ getMdDemoCodes(
           const buiTabs = container.querySelector('.bui-tabs');
           const leftMask = buiTabs.querySelector('.bui-tabs-mask-left');
           const rightMask = buiTabs.querySelector('.bui-tabs-mask-right');
-          if (leftMask.getAttribute('aria-hidden') !== 'true') {
+          // 只有当遮罩层存在时才检查（遮罩层仅在可滚动时渲染）
+          if (leftMask && leftMask.getAttribute('aria-hidden') !== 'true') {
             console.warn(`Tabs左侧遮罩层 应该设置 aria-hidden="true"`);
           }
 
-          if (rightMask.getAttribute('aria-hidden') !== 'true') {
-            console.warn(`Tabs左侧遮罩层 应该设置 aria-hidden="true"`);
+          if (rightMask && rightMask.getAttribute('aria-hidden') !== 'true') {
+            console.warn(`Tabs右侧遮罩层 应该设置 aria-hidden="true"`);
           }
 
           const tabsList = buiTabs.querySelector('[role="tablist"]');

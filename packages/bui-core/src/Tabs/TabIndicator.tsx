@@ -26,6 +26,8 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
   registrationVersion,
 }) => {
   const indicatorRef = useRef<HTMLDivElement>(null);
+  // Track if this is the first render to disable animation on mount
+  const isFirstRender = useRef(true);
 
   // 通过注册表获取活动 Tab 元素
   const getActiveTabElement = useEventCallback(
@@ -36,18 +38,20 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
   );
 
   // 将活动 tab 滚动到视图中心
-  const scrollIntoView = useEventCallback((activeTab: HTMLDivElement) => {
-    const tabsEl = tabsContainerRef.current;
-    if (!tabsEl || !activeTab) {
-      return;
-    }
+  const scrollIntoView = useEventCallback(
+    (activeTab: HTMLDivElement, animate = true) => {
+      const tabsEl = tabsContainerRef.current;
+      if (!tabsEl || !activeTab) {
+        return;
+      }
 
-    scrollLeftTo(
-      tabsEl,
-      activeTab.offsetLeft - (tabsEl.offsetWidth - activeTab.offsetWidth) / 2,
-      duration,
-    );
-  });
+      scrollLeftTo(
+        tabsEl,
+        activeTab.offsetLeft - (tabsEl.offsetWidth - activeTab.offsetWidth) / 2,
+        animate ? duration : 0,
+      );
+    },
+  );
 
   // 动画函数：更新指示器位置
   const animate = useEventCallback(() => {
@@ -68,13 +72,25 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
       const activeLineWidth = indicator.offsetWidth;
       const x = activeTabLeft + (activeTabWidth - activeLineWidth) / 2;
 
-      // 直接设置 transform，不触发重新渲染
+      // 设置位置
       indicator.style.transform = `translate(${x}px, 0px)`;
       indicator.style.visibility = 'visible';
 
       const maxScrollDistance = containerScrollWidth - containerWidth;
       if (maxScrollDistance > 0 && !isMini) {
-        scrollIntoView(activeTab);
+        // 首次渲染时不启用滚动动画
+        scrollIntoView(activeTab, !isFirstRender.current);
+      }
+
+      // 首次渲染后，启用过渡动画（在设置位置之后）
+      // 这样可以确保下一次位置变化时才会有动画，而不是当前这次
+      if (isFirstRender.current) {
+        isFirstRender.current = false;
+        requestAnimationFrame(() => {
+          if (indicator) {
+            indicator.style.transition = 'transform 0.3s ease-in-out';
+          }
+        });
       }
     } else {
       // 没有 active tab 时隐藏 indicator
@@ -105,7 +121,7 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
       ref={indicatorRef}
       className={clsx(`${rootClass}-indicator`)}
       style={{
-        transition: 'transform 0.3s ease-in-out',
+        transition: 'none',
         transform: 'translate(0px, 0px)',
         visibility: 'hidden',
       }}

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import Taro from '@tarojs/taro';
 import { useEventCallback } from '@bifrostui/utils';
@@ -19,9 +19,14 @@ export interface TabIndicatorProps {
 }
 
 interface TabPositionCache {
-  left: number; // 相对于wrapper左边的位置
+  left: number;
   width: number;
 }
+
+/** 检查 tab value 是否有效（允许空字符串作为有效值） */
+const isValidTabValue = (value: string | undefined | null): value is string => {
+  return value !== undefined && value !== null;
+};
 
 const TabIndicator: React.FC<TabIndicatorProps> = ({
   currentValue,
@@ -30,31 +35,38 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
   scrollViewId,
   registrationVersion,
 }) => {
-  const [transform, setTransform] = useState('translate(0px, 0px)');
-  const [visibility, setVisibility] = useState<'visible' | 'hidden'>('hidden');
-  const animationTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const indicatorRef = useRef<HTMLDivElement>(null);
+  const animationTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const positionCacheRef = useRef<Map<string, TabPositionCache>>(new Map());
   const containerInfoRef = useRef<{
     width: number;
     scrollWidth: number;
   } | null>(null);
-  const indicatorWidthRef = useRef<number>(24); // 默认指示器宽度
+  const indicatorWidthRef = useRef<number>(24);
   const isInitializedRef = useRef(false);
   const initRetryCountRef = useRef(0);
   const maxInitRetries = 5;
+  const isFirstRender = useRef(true);
+  const isInitializingRef = useRef(false);
+  const initVersionRef = useRef(0);
+  const isMountedRef = useRef(true);
 
-  // 快速更新指示器位置（使用缓存）
   const updateIndicatorPosition = useEventCallback(() => {
-    if (!currentValue || !registeredTabValues.includes(currentValue)) {
-      setVisibility('hidden');
+    const indicator = indicatorRef.current;
+    if (!indicator) return;
+
+    if (
+      !isValidTabValue(currentValue) ||
+      !registeredTabValues.includes(currentValue)
+    ) {
+      indicator.style.visibility = 'hidden';
       return;
     }
 
     const cachedPosition = positionCacheRef.current.get(currentValue);
     const containerInfo = containerInfoRef.current;
 
-    if (!cachedPosition || !containerInfo) {
-      // 缓存未准备好，触发初始化
+    if (!cachedPosition || !containerInfo || !isInitializedRef.current) {
       if (!isInitializedRef.current) {
         // eslint-disable-next-line no-use-before-define
         initializePositions();
@@ -62,171 +74,237 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
       return;
     }
 
-    // 使用缓存的位置信息计算
     const activeTabLeft = cachedPosition.left;
     const activeTabWidth = cachedPosition.width;
     const indicatorWidth = indicatorWidthRef.current;
     const x = activeTabLeft + (activeTabWidth - indicatorWidth) / 2;
 
-    // 立即更新位置，无延迟
-    setTransform(`translate(${x}px, 0px)`);
-    setVisibility('visible');
+    indicator.style.transform = `translate(${x}px, 0px)`;
+
+    if (isFirstRender.current) {
+      Taro.nextTick(() => {
+        if (!isMountedRef.current || !indicatorRef.current) return;
+        indicatorRef.current.style.visibility = 'visible';
+        Taro.nextTick(() => {
+          if (!isMountedRef.current || !indicatorRef.current) return;
+          indicatorRef.current.style.transition = 'transform 0.3s ease-in-out';
+        });
+      });
+      isFirstRender.current = false;
+    } else {
+      indicator.style.visibility = 'visible';
+    }
   });
 
-  // 初始化：批量查询所有Tab和容器信息并缓存
   const initializePositions = useEventCallback(async () => {
+    if (!isMountedRef.current) return;
+    if (isInitializingRef.current) return;
+
+    isInitializingRef.current = true;
+    initVersionRef.current += 1;
+    const currentVersion = initVersionRef.current;
+
     try {
-      // ⚠️ 性能优化：使用批量查询，一次性获取所有DOM信息
       const result = await batchQueryTabs({
         scrollViewId,
         wrapperId,
         tabValues: registeredTabValues,
       });
 
+      if (!isMountedRef.current) return;
+      if (currentVersion !== initVersionRef.current) return;
+
       const { scrollView, scrollFields, wrapper, indicator, tabs } = result;
 
-      // 基础验证
       if (!scrollView || !wrapper || !indicator || !scrollFields) {
         if (initRetryCountRef.current < maxInitRetries) {
           initRetryCountRef.current += 1;
-
           if (animationTimerRef.current) {
             clearTimeout(animationTimerRef.current);
           }
           animationTimerRef.current = setTimeout(() => {
+            if (!isMountedRef.current) return;
+            isInitializingRef.current = false;
             initializePositions();
           }, 100);
+        } else {
+          isInitializingRef.current = false;
         }
-
         return;
       }
 
-      // 缓存容器信息（使用ScrollView的尺寸作为视口）
+      if (!indicator.width || indicator.width <= 0) {
+        if (initRetryCountRef.current < maxInitRetries) {
+          initRetryCountRef.current += 1;
+          if (animationTimerRef.current) {
+            clearTimeout(animationTimerRef.current);
+          }
+          animationTimerRef.current = setTimeout(() => {
+            if (!isMountedRef.current) return;
+            isInitializingRef.current = false;
+            initializePositions();
+          }, 100);
+        } else {
+          isInitializingRef.current = false;
+        }
+        return;
+      }
+
       containerInfoRef.current = {
         width: scrollView.width,
         scrollWidth: scrollFields.scrollWidth || scrollView.width,
       };
-
-      // 缓存指示器宽度
       indicatorWidthRef.current = indicator.width;
 
-      // 缓存所有Tab的位置
-      // ✅ 关键：Indicator和Tab都在wrapper内部，一起随ScrollView滚动
-      // 所以缓存相对于wrapper的位置即可，不需要考虑scrollLeft
+      // 缓存 Tab 相对于 wrapper 的位置（Indicator 和 Tab 一起随 ScrollView 滚动）
       const newCache = new Map<string, TabPositionCache>();
-
       registeredTabValues.forEach((value, index) => {
         const tabRect = tabs[index];
-
         if (tabRect && tabRect.width > 0) {
-          // ✅ Tab相对于wrapper的位置
-          const relativeLeft = tabRect.left - wrapper.left;
-
           newCache.set(value, {
-            left: relativeLeft,
+            left: tabRect.left - wrapper.left,
             width: tabRect.width,
           });
         }
       });
 
-      // 验证缓存的完整性
       if (newCache.size < registeredTabValues.length) {
         if (initRetryCountRef.current < maxInitRetries) {
           initRetryCountRef.current += 1;
-
-          // 缓存不完整，重试
           if (animationTimerRef.current) {
             clearTimeout(animationTimerRef.current);
           }
           animationTimerRef.current = setTimeout(() => {
+            if (!isMountedRef.current) return;
+            isInitializingRef.current = false;
             initializePositions();
           }, 100);
+        } else {
+          isInitializingRef.current = false;
         }
-
         return;
       }
 
-      // 成功，重置重试计数
+      if (currentVersion !== initVersionRef.current || !isMountedRef.current) {
+        return;
+      }
+
       initRetryCountRef.current = 0;
       positionCacheRef.current = newCache;
-
       isInitializedRef.current = true;
+      isInitializingRef.current = false;
 
-      // 初始化完成后立即更新指示器位置
       updateIndicatorPosition();
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error('[TabIndicator] 批量查询失败:', error);
+      isInitializingRef.current = false;
+
+      if (isMountedRef.current && initRetryCountRef.current < maxInitRetries) {
+        initRetryCountRef.current += 1;
+        if (animationTimerRef.current) {
+          clearTimeout(animationTimerRef.current);
+        }
+        animationTimerRef.current = setTimeout(() => {
+          if (!isMountedRef.current) return;
+          initializePositions();
+        }, 100);
+      }
     }
   });
 
-  // 当 Tab 注册状态变化时，重新初始化缓存
+  // Tab 注册状态变化时重新初始化
   useEffect(() => {
     if (registeredTabValues.length === 0) {
+      if (indicatorRef.current) {
+        indicatorRef.current.style.visibility = 'hidden';
+      }
       return undefined;
     }
 
-    // 清除之前的定时器
+    initVersionRef.current += 1;
     if (animationTimerRef.current) {
       clearTimeout(animationTimerRef.current);
+      animationTimerRef.current = null;
     }
 
-    // 标记需要重新初始化
     isInitializedRef.current = false;
-    // 重置重试计数
+    isInitializingRef.current = false;
     initRetryCountRef.current = 0;
 
-    // 使用 nextTick 确保 DOM 渲染完成
     Taro.nextTick(() => {
+      if (!isMountedRef.current) return;
       initializePositions();
     });
 
     return () => {
       if (animationTimerRef.current) {
         clearTimeout(animationTimerRef.current);
+        animationTimerRef.current = null;
       }
+      initVersionRef.current += 1;
+      isInitializingRef.current = false;
     };
   }, [registrationVersion, initializePositions]);
 
-  // 当 currentValue 变化时，立即更新指示器位置（使用缓存）
+  // currentValue 变化时更新指示器位置
   useEffect(() => {
-    if (!currentValue) {
-      setVisibility('hidden');
+    if (!isValidTabValue(currentValue)) {
+      if (indicatorRef.current) {
+        indicatorRef.current.style.visibility = 'hidden';
+      }
       return;
     }
-
-    // 立即更新，无延迟
     updateIndicatorPosition();
   }, [currentValue, updateIndicatorPosition]);
 
-  // 监听页面 resize（如屏幕旋转）
   useEffect(() => {
     const handleResize = () => {
-      // resize时需要重新查询所有位置
+      if (!isMountedRef.current) return;
+
+      initVersionRef.current += 1;
       isInitializedRef.current = false;
+      isInitializingRef.current = false;
       initRetryCountRef.current = 0;
       positionCacheRef.current.clear();
+
+      if (animationTimerRef.current) {
+        clearTimeout(animationTimerRef.current);
+        animationTimerRef.current = null;
+      }
+
       Taro.nextTick(() => {
+        if (!isMountedRef.current) return;
         initializePositions();
       });
     };
 
-    // 小程序环境监听窗口尺寸变化
     Taro.onWindowResize?.(handleResize);
-
     return () => {
       Taro.offWindowResize?.(handleResize);
     };
   }, [initializePositions]);
 
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+      if (animationTimerRef.current) {
+        clearTimeout(animationTimerRef.current);
+        animationTimerRef.current = null;
+      }
+    };
+  }, []);
+
   return (
     <div
+      ref={indicatorRef}
       id={`${wrapperId}-indicator`}
       className={clsx(tabIndicatorClass)}
       style={{
-        transition: 'transform 0.3s ease-in-out',
-        transform,
-        visibility,
+        transition: 'none',
+        transform: 'translate(0px, 0px)',
+        visibility: 'hidden',
       }}
     />
   );

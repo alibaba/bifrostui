@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { useValue, useEventCallback } from '@bifrostui/utils';
 import Tab from './Tab';
@@ -43,14 +43,14 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   );
   // Track registration changes to trigger indicator updates explicitly
   const [registrationVersion, setRegistrationVersion] = useState(0);
+  const [isScrollable, setIsScrollable] = useState(false);
 
   // 开发环境警告：tabs 和 children 不应该同时使用
   if (process.env.NODE_ENV !== 'production') {
     if (tabs.length > 0 && React.Children.count(children) > 0) {
       // eslint-disable-next-line no-console
       console.warn(
-        'BUI Warning: Tabs 组件不应该同时使用 tabs 属性和 children。' +
-          '请只使用其中一种方式。当前将优先使用 tabs 属性，children 将被忽略。',
+        'BUI Warning: Tabs 组件不应该同时使用 tabs 属性和 children。请只使用其中一种方式。当前将优先使用 tabs 属性，children 将被忽略。',
       );
     }
   }
@@ -102,15 +102,33 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     return children;
   }, [tabs, children]);
 
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line no-console
-    console.count('Tabs render......');
-  }
+  // 检测是否可滚动
+  useEffect(() => {
+    const tabsEl = tabsRef.current;
+    if (!tabsEl) return;
+
+    const checkScrollable = () => {
+      setIsScrollable(tabsEl.scrollWidth > tabsEl.offsetWidth);
+    };
+
+    checkScrollable();
+
+    const resizeObserver = new ResizeObserver(checkScrollable);
+    resizeObserver.observe(tabsEl);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [registrationVersion]);
 
   return (
     <div className={clsx(tabsRootClass, className)} {...others} ref={ref}>
-      <TabMask tabsContainerRef={tabsRef} position="left" />
-      <TabMask tabsContainerRef={tabsRef} position="right" />
+      {isScrollable && (
+        <>
+          <TabMask position="left" />
+          <TabMask position="right" />
+        </>
+      )}
 
       <div
         className={`${tabsRootClass}-tabs`}
