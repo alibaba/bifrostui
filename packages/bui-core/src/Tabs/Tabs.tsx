@@ -140,7 +140,6 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
           currentValue={currentValue}
           registeredTabs={registeredTabs}
           tabsContainerRef={tabsRef}
-          registrationVersion={registrationVersion}
         />
 
         <TabsContextProvider value={contextValue}>

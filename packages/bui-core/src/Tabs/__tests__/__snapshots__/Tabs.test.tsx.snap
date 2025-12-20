@@ -15,7 +15,7 @@ exports[`Tabs > test with TabPanel > should be active by \`value\` property 1`] 
       <div
         aria-hidden="true"
         class="bui-tabs-indicator"
-        style="transition: none; transform: translate(0px, 0px); visibility: visible;"
+        style="left: -12px;"
       />
       <div
         aria-disabled="false"

@@ -77,9 +77,9 @@ describe('Tabs', () => {
     const { container } = render(<Component />);
 
     const indicator = container.querySelector(`.${rootClass.tabs}-indicator`);
+    expect(indicator).toBeInTheDocument();
     expect(indicator).toHaveStyle({
-      transform: 'translate(0px, 0px)',
-      transition: 'none',
+      transition: 'left 0.3s ease-in-out',
     });
   });
 
@@ -136,7 +136,6 @@ describe('Tabs', () => {
       }
       const { container, getByTestId } = render(<Component />);
 
-      // useEffect 执行后 indicator 位置已正确设置
       const indicator = container.querySelector(`.${rootClass.tabs}-indicator`);
       const activePanel = container.querySelector(
         `.${rootClass.tabpanel}-active`,
@@ -274,7 +273,7 @@ describe('Tabs', () => {
       expect(handleChange).not.toBeCalled();
     });
 
-    it('should active default Tab when got error value', () => {
+    it('should not render indicator when value is invalid and tabs is empty', () => {
       function Component() {
         const [value, setValue] = useState('vegetables111');
         const handleChange = (e, { index }) => {
@@ -303,7 +302,8 @@ describe('Tabs', () => {
 
       const { container } = render(<Component />);
       const indicator = container.querySelector(`.bui-tabs-indicator`);
-      expect(indicator).toHaveClass('bui-tabs-indicator');
+      // When there's no valid tab, indicator should not render
+      expect(indicator).toBeNull();
     });
   });
 
