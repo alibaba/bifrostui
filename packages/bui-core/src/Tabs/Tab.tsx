@@ -3,9 +3,8 @@ import clsx from 'clsx';
 import { isMini, useContextSelector, useForkRef } from '@bifrostui/utils';
 import { TabProps } from './Tab.types';
 import TabsContext from './TabsContext';
+import { tabRootClass, tabActiveClass, tabDisabledClass } from './classes';
 import './Tab.less';
-
-const rootClass = 'bui-tab';
 
 const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
   const {
@@ -48,10 +47,10 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
   }, [onRegister, onUnregister, index]);
 
   const rootCls = clsx(
-    rootClass,
+    tabRootClass,
     {
-      [`${rootClass}-active`]: !isMini && isActive,
-      [`${rootClass}-disabled`]: disabled,
+      [tabActiveClass]: !isMini && isActive,
+      [tabDisabledClass]: disabled,
     },
     className,
   );

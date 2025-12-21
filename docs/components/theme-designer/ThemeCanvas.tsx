@@ -19,19 +19,19 @@ import './ThemeCanvas.less';
 
 const tabs = [
   {
-    title: '水果',
-    index: 'fruits',
-    children: '菠萝',
+    title: '演唱会',
+    index: 'concert',
+    children: '演唱会',
   },
   {
-    title: '蔬菜',
-    index: 'vegetables',
-    children: '西红柿',
+    title: '话剧音乐剧',
+    index: 'drama',
+    children: '话剧音乐剧',
   },
   {
-    title: '动物',
-    index: 'animals',
-    children: '蚂蚁',
+    title: '音乐节',
+    index: 'music',
+    children: '音乐节',
   },
 ];
 

@@ -1,9 +1,12 @@
 import React, { forwardRef } from 'react';
 import clsx from 'clsx';
 import { TabPanelProps } from './TabPanel.types';
+import {
+  tabPanelRootClass,
+  tabPanelActiveClass,
+  tabPanelInactiveClass,
+} from './classes';
 import './TabPanel.less';
-
-const prefixCls = 'bui-tabpanel';
 
 const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>((props, ref) => {
   const {
@@ -24,9 +27,9 @@ const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>((props, ref) => {
       aria-hidden={!isActive}
       tabIndex={0}
       ref={ref}
-      className={clsx(prefixCls, className, {
-        [`${prefixCls}-active`]: isActive,
-        [`${prefixCls}-inactive`]: !isActive,
+      className={clsx(tabPanelRootClass, className, {
+        [tabPanelActiveClass]: isActive,
+        [tabPanelInactiveClass]: !isActive,
       })}
       {...others}
     >

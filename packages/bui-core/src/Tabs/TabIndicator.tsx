@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { debounce, isMini, useEventCallback } from '@bifrostui/utils';
 import scrollLeftTo from './utils/scroll';
+import { tabIndicatorClass } from './classes';
 
-const rootClass = 'bui-tabs';
 const duration = 300;
 const DEFAULT_INDICATOR_WIDTH = 24;
 
@@ -29,7 +29,6 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
 }) => {
   const indicatorRef = useRef<HTMLDivElement>(null);
   const hasRenderedOnce = useRef(false);
-  const indicatorWidthCache = useRef<number | null>(null);
 
   const [indicatorStyle, setIndicatorStyle] = useState<IndicatorStyle | null>(
     null,
@@ -58,20 +57,11 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
   );
 
   const getIndicatorWidth = useEventCallback(() => {
-    if (indicatorWidthCache.current !== null) {
-      return indicatorWidthCache.current;
-    }
-
     const indicator = indicatorRef.current;
     if (!indicator) return DEFAULT_INDICATOR_WIDTH;
 
-    const cssValue = getComputedStyle(indicator).getPropertyValue(
-      '--bui-tabs-indicator-width',
-    );
-    const parsed = Number.parseFloat(cssValue);
-    const width = Number.isNaN(parsed) ? DEFAULT_INDICATOR_WIDTH : parsed;
-    indicatorWidthCache.current = width;
-    return width;
+    const rect = indicator.getBoundingClientRect();
+    return rect.width > 0 ? rect.width : DEFAULT_INDICATOR_WIDTH;
   });
 
   const getTabsMeta = useEventCallback(() => {
@@ -138,23 +128,63 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
     }
   });
 
-  // Make sure indicator is always synced to deal with edge cases
+  // Make sure indicator position is always synced to deal with edge cases
   // like font changed or tab content changed
   useEffect(() => {
     updateIndicatorState();
   });
 
+  // Observe tabs container children for size changes
   useEffect(() => {
+    const tabsContainer = tabsContainerRef.current;
+    if (!tabsContainer) return undefined;
+
     const handleResize = debounce(() => {
-      indicatorWidthCache.current = null;
-      updateIndicatorState();
+      if (tabsContainerRef.current) {
+        updateIndicatorState();
+      }
     }, 100);
 
     window.addEventListener('resize', handleResize);
+
+    let resizeObserver: ResizeObserver | undefined;
+    let mutationObserver: MutationObserver | undefined;
+
+    // Observe all tab children for size changes
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(handleResize);
+      Array.from(tabsContainer.children).forEach((child) => {
+        resizeObserver?.observe(child);
+      });
+    }
+
+    // Watch for child list changes
+    if (typeof MutationObserver !== 'undefined') {
+      const handleMutation = (records: MutationRecord[]) => {
+        records.forEach((record) => {
+          record.removedNodes.forEach((item) => {
+            if (item instanceof Element) {
+              resizeObserver?.unobserve(item);
+            }
+          });
+          record.addedNodes.forEach((item) => {
+            if (item instanceof Element) {
+              resizeObserver?.observe(item);
+            }
+          });
+        });
+        handleResize();
+      };
+      mutationObserver = new MutationObserver(handleMutation);
+      mutationObserver.observe(tabsContainer, { childList: true });
+    }
+
     return () => {
       window.removeEventListener('resize', handleResize);
+      mutationObserver?.disconnect();
+      resizeObserver?.disconnect();
     };
-  }, [updateIndicatorState]);
+  }, [updateIndicatorState, tabsContainerRef]);
 
   if (!indicatorStyle) {
     return null;
@@ -163,7 +193,7 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
   return (
     <div
       ref={indicatorRef}
-      className={clsx(`${rootClass}-indicator`)}
+      className={clsx(tabIndicatorClass)}
       style={indicatorStyle}
       aria-hidden="true"
     />

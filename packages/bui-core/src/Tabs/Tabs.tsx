@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { useValue, useEventCallback } from '@bifrostui/utils';
@@ -7,7 +6,7 @@ import TabIndicator from './TabIndicator';
 import TabMask from './TabMask';
 import { TabsProps } from './Tabs.types';
 import { TabsContextProvider } from './TabsContext';
-import { tabsRootClass } from './classes';
+import { tabsRootClass, tabsScrollClass } from './classes';
 
 import './Tabs.less';
 
@@ -15,8 +14,8 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const {
     children,
     className,
-    value,
     defaultValue,
+    value,
     tabs = [],
     onChange,
     ...others
@@ -45,7 +44,6 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const [registrationVersion, setRegistrationVersion] = useState(0);
   const [isScrollable, setIsScrollable] = useState(false);
 
-  // 开发环境警告：tabs 和 children 不应该同时使用
   if (process.env.NODE_ENV !== 'production') {
     if (tabs.length > 0 && React.Children.count(children) > 0) {
       // eslint-disable-next-line no-console
@@ -102,16 +100,19 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     return children;
   }, [tabs, children]);
 
-  // 检测是否可滚动
   useEffect(() => {
     const tabsEl = tabsRef.current;
-    if (!tabsEl) return;
+    if (!tabsEl) return undefined;
 
     const checkScrollable = () => {
       setIsScrollable(tabsEl.scrollWidth > tabsEl.offsetWidth);
     };
 
     checkScrollable();
+
+    if (typeof ResizeObserver === 'undefined') {
+      return undefined;
+    }
 
     const resizeObserver = new ResizeObserver(checkScrollable);
     resizeObserver.observe(tabsEl);
@@ -131,7 +132,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
       )}
 
       <div
-        className={`${tabsRootClass}-tabs`}
+        className={tabsScrollClass}
         ref={tabsRef}
         role="tablist"
         aria-orientation="horizontal"
