@@ -46,7 +46,6 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
   const isInitializedRef = useRef(false);
   const initRetryCountRef = useRef(0);
   const maxInitRetries = 5;
-  const isFirstRender = useRef(true);
   const isInitializingRef = useRef(false);
   const initVersionRef = useRef(0);
   const isMountedRef = useRef(true);
@@ -59,7 +58,7 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
       !isValidTabValue(currentValue) ||
       !registeredTabValues.includes(currentValue)
     ) {
-      indicator.style.visibility = 'hidden';
+      indicator.style.opacity = '0';
       return;
     }
 
@@ -80,20 +79,7 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
     const x = activeTabLeft + (activeTabWidth - indicatorWidth) / 2;
 
     indicator.style.transform = `translate(${x}px, 0px)`;
-
-    if (isFirstRender.current) {
-      Taro.nextTick(() => {
-        if (!isMountedRef.current || !indicatorRef.current) return;
-        indicatorRef.current.style.visibility = 'visible';
-        Taro.nextTick(() => {
-          if (!isMountedRef.current || !indicatorRef.current) return;
-          indicatorRef.current.style.transition = 'transform 0.3s ease-in-out';
-        });
-      });
-      isFirstRender.current = false;
-    } else {
-      indicator.style.visibility = 'visible';
-    }
+    indicator.style.opacity = '1';
   });
 
   const initializePositions = useEventCallback(async () => {
@@ -217,7 +203,7 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
   useEffect(() => {
     if (registeredTabValues.length === 0) {
       if (indicatorRef.current) {
-        indicatorRef.current.style.visibility = 'hidden';
+        indicatorRef.current.style.opacity = '0';
       }
       return undefined;
     }
@@ -251,7 +237,7 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
   useEffect(() => {
     if (!isValidTabValue(currentValue)) {
       if (indicatorRef.current) {
-        indicatorRef.current.style.visibility = 'hidden';
+        indicatorRef.current.style.opacity = '0';
       }
       return;
     }
@@ -302,9 +288,9 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
       id={`${wrapperId}-indicator`}
       className={clsx(tabIndicatorClass)}
       style={{
-        transition: 'none',
+        transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-in-out',
         transform: 'translate(0px, 0px)',
-        visibility: 'hidden',
+        opacity: 0,
       }}
     />
   );

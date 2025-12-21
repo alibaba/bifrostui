@@ -9,8 +9,7 @@ name: Tabs 标签页
 
 ## 小程序与H5差异
 
-- 小程序切换 Tab 底部指示器使用渐变动画，H5 使用位移动画
-- 小程序中超出可滚动的 Tabs，点击激活不会自动滚动到视图中间
+- 小程序获取元素位置是异步的，所以`indicator`初始渲染保留了动效，避免很突兀的**跳变**效果
 
 ## 基础用法
 
@@ -54,7 +53,7 @@ import { Stack, TabPanel, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState('one');
+  const [value, setValue] = useState('three');
   const handleChange = (e, { index }) => {
     console.log(`Tabs change, value index is: ${index}`);
     setValue(index);
