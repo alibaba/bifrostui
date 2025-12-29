@@ -415,7 +415,7 @@ export default () => {
       title: '自定义样式对话框',
       content: '这是一个自定义样式的对话框示例',
       style: {
-        '--bui-dialog-max-width': '400px',
+        '--bui-dialog-width': '400px',
         '--bui-dialog-border-radius': '12px',
       },
     });
@@ -500,16 +500,8 @@ interface DialogOptions {
 
 ## 样式变量
 
-| 变量名                              | 说明           | 默认值                           |
-| ----------------------------------- | -------------- | -------------------------------- |
-| `--bui-dialog-max-width`            | 对话框最大宽度 | `300px`                          |
-| `--bui-dialog-border-radius`        | 对话框圆角     | `var(--bui-shape-radius-drawer)` |
-| `--bui-dialog-title-padding`        | 标题内边距     | `0 40px 9px`                     |
-| `--bui-dialog-content-padding`      | 内容内边距     | `0 24px`                         |
-| `--bui-dialog-actions-margin`       | 操作区域外边距 | `15px 0 0 0`                     |
-| `--bui-dialog-button-height`        | 按钮高度       | `53px`                           |
-| `--bui-dialog-button-line-height`   | 按钮行高       | `25px`                           |
-| `--bui-dialog-button-padding`       | 按钮内边距     | `12px 0 13px`                    |
-| `--bui-dialog-button-font-size`     | 按钮字体大小   | `17px`                           |
-| `--bui-dialog-button-border-radius` | 按钮圆角       | `4px`                            |
-| `--bui-dialog-button-border-left`   | 按钮左边框     | `1px solid rgba(0, 0, 0, 0.05)`  |
+| 变量名                       | 说明         | 默认值                |
+| ---------------------------- | ------------ | --------------------- |
+| `--bui-dialog-width`         | 对话框宽度   | `300px`               |
+| `--bui-dialog-border-radius` | 对话框圆角   | `var(--bui-radius-8)` |
+| `--bui-dialog-padding`       | 对话框内边距 | `24px`                |

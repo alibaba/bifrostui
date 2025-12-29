@@ -422,7 +422,7 @@ export default () => {
       title: 'Custom Styled Dialog',
       content: 'This is an example of a custom styled Dialog',
       style: {
-        '--bui-dialog-max-width': '400px',
+        '--bui-dialog-width': '400px',
         '--bui-dialog-border-radius': '12px',
       },
     });
@@ -507,20 +507,8 @@ interface DialogOptions {
 
 ## Style Variables
 
-| Variable Name                       | Description          | Default Value                    |
-| ----------------------------------- | -------------------- | -------------------------------- |
-| `--bui-dialog-max-width`            | Dialog max-width     | `300px`                          |
-| `--bui-dialog-border-radius`        | Dialog border-radius | `var(--bui-shape-radius-drawer)` |
-| `--bui-dialog-title-padding`        | Title padding        | `0 40px 9px`                     |
-| `--bui-dialog-content-padding`      | Content padding      | `0 24px`                         |
-| `--bui-dialog-actions-margin`       | Actions margin       | `15px 0 0 0`                     |
-| `--bui-dialog-button-height`        | Button height        | `53px`                           |
-| `--bui-dialog-button-line-height`   | Button line-height   | `25px`                           |
-| `--bui-dialog-button-padding`       | Button padding       | `12px 0 13px`                    |
-| `--bui-dialog-button-font-size`     | Button font-size     | `17px`                           |
-| `--bui-dialog-button-border-radius` | Button border-radius | `4px`                            |
-| `--bui-dialog-button-border-left`   | Button border-left   | `1px solid rgba(0, 0, 0, 0.05)`  |
-
-```
-
-```
+| Variable Name                | Description          | Default Value         |
+| ---------------------------- | -------------------- | --------------------- |
+| `--bui-dialog-width`         | Dialog width         | `300px`               |
+| `--bui-dialog-border-radius` | Dialog border-radius | `var(--bui-radius-8)` |
+| `--bui-dialog-padding`       | Dialog padding       | `24px`                |

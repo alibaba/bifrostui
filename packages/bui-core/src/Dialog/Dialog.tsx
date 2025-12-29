@@ -63,7 +63,9 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     <div className={`${prefixCls}-actions`}>
       {!isAlertMode && (
         <Button
-          variant="text"
+          variant="subtle"
+          color="primary"
+          size="full"
           onClick={handleCancel}
           className={`${prefixCls}-actions-btn`}
         >
@@ -71,8 +73,9 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
         </Button>
       )}
       <Button
-        variant="text"
+        variant="contained"
         color="primary"
+        size="full"
         onClick={handleOk}
         className={`${prefixCls}-actions-btn`}
       >
