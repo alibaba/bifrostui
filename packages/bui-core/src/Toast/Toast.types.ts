@@ -48,7 +48,7 @@ export interface ToastProps extends FadeProps {
    * 渲染Toast的根容器
    * @default document.body
    */
-  container?: HTMLElement | (() => HTMLElement);
+  container?: HTMLElement | (() => HTMLElement) | null;
   /**
    * 关闭时的回调函数
    */
