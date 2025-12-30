@@ -168,7 +168,6 @@ const UseToastComponent: FC<
     ...formatProps(restProps),
   };
   const { duration, multiple, onClose, container, ...others } = options;
-  const rootElement = getRootContainer(container);
   const timerRef = useRef<number | null>(null);
 
   const close = () => {
@@ -203,7 +202,7 @@ const UseToastComponent: FC<
   };
 
   return (
-    <Portal container={rootElement}>
+    <Portal container={container}>
       <ToastView
         {...others}
         open={open}
