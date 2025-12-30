@@ -28,6 +28,8 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     InputProps,
     className,
     theme,
+    okButtonProps,
+    cancelButtonProps,
     ...others
   } = props;
 
@@ -67,7 +69,8 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
           color="primary"
           size="full"
           onClick={handleCancel}
-          className={`${prefixCls}-actions-btn`}
+          className={`${prefixCls}-actions-btn-cancel`}
+          {...cancelButtonProps}
         >
           {cancelText || cancel}
         </Button>
@@ -77,7 +80,8 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
         color="primary"
         size="full"
         onClick={handleOk}
-        className={`${prefixCls}-actions-btn`}
+        className={`${prefixCls}-actions-btn-ok`}
+        {...okButtonProps}
       >
         {okText || ok}
       </Button>
@@ -101,11 +105,11 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
 
   return (
     <Modal
-      {...others}
       open={open}
       ref={ref}
       className={clsx(prefixCls, `${prefixCls}-${type}`, className)}
       onClose={handleCancel}
+      {...others}
     >
       <div
         className={`${prefixCls}-container`}

@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ModalProps } from '../Modal/Modal.types';
 import { InputProps } from '../Input/Input.types';
+import { ButtonProps } from '../Button/Button.types';
 import { ThemeProps } from '../ThemeProvider/ThemeProvider.types';
 
 /**
@@ -35,6 +36,14 @@ export interface DialogProps extends Omit<ModalProps, 'title' | 'content'> {
    * 透传给内部Input组件的属性
    */
   InputProps?: Partial<InputProps>;
+  /**
+   * 透传给内部Button组件的属性
+   */
+  okButtonProps?: Partial<ButtonProps>;
+  /**
+   * 透传给内部Button组件的属性
+   */
+  cancelButtonProps?: Partial<ButtonProps>;
   /**
    * 确认按钮文本内容
    */
