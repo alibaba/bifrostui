@@ -8,6 +8,8 @@ name: Toast 轻提示
 在页面中弹出黑色半透明提示，用于操作结果提示等场景，支持`Toast`, `Toast.warning`, `Toast.loading`, `Toast.success`, `Toast.fail`。
 推荐使用 Hooks 调用方式，静态方法无法获取上下文，ThemeProvider 数据不会生效，因此推荐 `Toast.useToast` 创建支持读取 context 的 contextHolder, 通过顶层注册方式代替 `Toast` 静态方法。
 
+**注意：** 在小程序中，Toast组件节点会默认插在与页面根节点同级的位置（即页面根节点的兄弟节点），而Toast消失时会删除该节点，因此[触发Taro删除根节点相关问题](https://docs.taro.zone/docs/optimized#1-%E5%88%A0%E9%99%A4%E6%A5%BC%E5%B1%82%E8%8A%82%E7%82%B9%E8%A6%81%E8%B0%A8%E6%85%8E%E5%A4%84%E7%90%86)，你可以通过指定`container`来规避这个问题。
+
 ## 基础提示
 
 展示提示内容。

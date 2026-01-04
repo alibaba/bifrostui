@@ -1,3 +1,4 @@
+````markdown
 ---
 group: Feedback
 name: Toast Notification
@@ -5,14 +6,15 @@ name: Toast Notification
 
 # Toast Notification
 
-Displays a black semi-transparent notification on the page for operation results and similar scenarios. Supports `Toast`, `Toast.warning`, `Toast.loading`, `Toast.success`, `Toast.fail`.
-It is recommended to use Hooks for invocation, as static methods cannot access context and ThemeProvider data will not be effective. Therefore, it is recommended to use `Toast.useToast` to create a contextHolder that can read the context, replacing the `Toast` static methods with top-level registration.
+Displays a black translucent notification in page scenarios such as operation result prompts, supporting `Toast`, `Toast.warning`, `Toast.loading`, `Toast.success`, `Toast.fail`. It is recommended to use the Hooks invocation method, as static methods cannot access context, and ThemeProvider data will not be effective. Therefore, it is recommended to use `Toast.useToast` to create a contextHolder that supports reading context, and replace `Toast` static methods with top-level registration.
+
+**Note:** In mini-programs, Toast component nodes will by default be inserted at the same level as the page root node (i.e., sibling nodes of the page root node), and the node will be removed when Toast disappears. This may [trigger related issues with Taro deleting root nodes](https://docs.taro.zone/docs/optimized#1-%E5%88%A0%E9%99%A4%E6%A5%BC%E5%B1%82%E8%8A%82%E7%82%B9%E8%A6%81%E8%B0%A8%E6%85%8E%E5%A4%84%E7%90%86), which can be avoided by specifying `container`.
 
 ## Basic Notification
 
-Displays a notification message.
+Demonstrate notification content.
 
-#### Static Methods (Not Recommended)
+#### Static Method (Not Recommended)
 
 ```tsx
 import * as React from 'react';
@@ -23,7 +25,7 @@ export default () => {
     <Stack direction="row" spacing="10px">
       <Button
         onClick={() => {
-          Toast('Notification message');
+          Toast('Notification Content');
         }}
       >
         toast
@@ -32,6 +34,7 @@ export default () => {
   );
 };
 ```
+````
 
 #### Hooks Invocation (Recommended)
 
@@ -43,7 +46,7 @@ const UserContext = createContext(null);
 
 const ToastContent = () => {
   const user = useContext(UserContext);
-  return <span>Hello, {user || 'Unknown User'}!</span>;
+  return <span>Hi, {user || 'Unknown User'}!</span>;
 };
 
 export default () => {
@@ -66,11 +69,11 @@ export default () => {
 };
 ```
 
-## Specifying the Render Container
+## Specify Render Container
 
-The `container` can be used to specify the parent container for rendering.
+You can specify the parent container to render by setting the `container`.
 
-#### Static Methods
+#### Static Method
 
 ```tsx
 import * as React from 'react';
@@ -91,7 +94,7 @@ export default () => {
         <Button
           onClick={() => {
             Toast({
-              message: 'Notification message: static-container',
+              message: 'Notification Content: static-container',
               container: document.getElementById('static-container'),
             });
           }}
@@ -128,7 +131,7 @@ export default () => {
         <Button
           onClick={() => {
             toast({
-              message: 'Notification message: hook-container',
+              message: 'Notification Content: hook-container',
               container: document.getElementById('hook-container'),
             });
           }}
@@ -142,7 +145,7 @@ export default () => {
 };
 ```
 
-## Common Modes
+## Frequently Used Modes
 
 Toast provides four common modes: `warning`, `loading`, `success`, and `fail`.
 
@@ -180,7 +183,7 @@ export default () => {
         </Button>
         <Button
           onClick={() => {
-            toast.success('Operation successful');
+            toast.success('Operation succeeded');
           }}
         >
           success
@@ -198,9 +201,9 @@ export default () => {
 };
 ```
 
-## Line Break in Notification Message
+## Line Break in Notification Text
 
-Notification message supports `\n` for line breaks.
+Notification text supports `\n` for line breaks.
 
 ```tsx
 import * as React from 'react';
@@ -221,7 +224,7 @@ export default () => {
       <Stack direction="row" spacing="10px">
         <Button
           onClick={() => {
-            toast('I am busy\nThe system is tired, please try again later～');
+            toast('Busy Waiter\nThe system is tired, please try again later~');
           }}
         >
           toast
@@ -234,7 +237,7 @@ export default () => {
 
 ## Display Duration
 
-Control the display duration using `duration`. The default display time is 2 seconds. When `duration` is set to 0, the Toast will not close automatically. You can receive the return value and manually close the current Toast using its `close` function.
+Use `duration` to control the display duration of the notification, default is 2 seconds. When `duration` is 0, the Toast will not close automatically. You can receive the return value and use its `close` function to manually close the current Toast.
 
 ```tsx
 import * as React from 'react';
@@ -252,7 +255,7 @@ export default () => {
   const theme = useTheme();
   const showToastA = () => {
     toastA = toast({
-      message: 'I will not close automatically',
+      message: "I won't close automatically",
       duration: 0,
     });
   };
@@ -287,9 +290,9 @@ export default () => {
 };
 ```
 
-## Display Position
+## Display Positions
 
-Toast provides three display positions: `top`, `center`, and `bottom`, with the default being `center`.
+Toast provides three display positions: `top`, `center`, and `bottom`, with `center` as the default.
 
 ```tsx
 import * as React from 'react';
@@ -312,32 +315,32 @@ export default () => {
         <Button
           onClick={() => {
             toast({
-              message: 'Display at top',
+              message: 'Displayed at the top',
               position: 'top',
             });
           }}
         >
-          Display at top
+          Display at Top
         </Button>
         <Button
           onClick={() => {
             toast({
-              message: 'Display at center',
+              message: 'Displayed at the center',
               position: 'center',
             });
           }}
         >
-          Display at center
+          Display at Center
         </Button>
         <Button
           onClick={() => {
             toast({
-              message: 'Display at bottom',
+              message: 'Displayed at the bottom',
               position: 'bottom',
             });
           }}
         >
-          Display at bottom
+          Display at Bottom
         </Button>
       </Stack>
     </ThemeProvider>
@@ -345,9 +348,9 @@ export default () => {
 };
 ```
 
-## Multiple Toasts
+## Multiple Toasts Simultaneously
 
-Use `multiple` to allow multiple Toast notifications on the page simultaneously. By default, only one Toast is displayed at a time.
+Use `multiple` to allow multiple Toast notifications to exist on a page at the same time. By default, only one Toast is displayed at a time.
 
 ```tsx
 import * as React from 'react';
@@ -370,38 +373,38 @@ export default () => {
         <Button
           onClick={() => {
             toast({
-              message: 'Display at top',
+              message: 'Displayed at the top',
               position: 'top',
               multiple: true,
               duration: 5000,
             });
           }}
         >
-          Allow multiple Toasts
+          Allow Other Toasts
         </Button>
         <Button
           onClick={() => {
             toast({
-              message: 'Display at center',
+              message: 'Displayed at the center',
               position: 'center',
               multiple: true,
               duration: 5000,
             });
           }}
         >
-          Allow multiple Toasts
+          Allow Other Toasts
         </Button>
         <Button
           onClick={() => {
             toast({
-              message: 'Display at bottom',
+              message: 'Displayed at the bottom',
               position: 'bottom',
               multiple: false,
               duration: 5000,
             });
           }}
         >
-          Will clear other Toasts
+          Clear Other Toasts
         </Button>
       </Stack>
     </ThemeProvider>
@@ -411,7 +414,7 @@ export default () => {
 
 ## Custom Icons
 
-Customize icons using `icon`.
+Use `icon` to customize icons.
 
 ```tsx
 import * as React from 'react';
@@ -440,7 +443,7 @@ export default () => {
             });
           }}
         >
-          Custom Icon
+          Customize Icon
         </Button>
       </Stack>
     </ThemeProvider>
@@ -450,7 +453,7 @@ export default () => {
 
 ## Disable Background Click
 
-Control whether the page content can be clicked when displaying the Toast notification using `disableClick`. Default is clickable.
+Use `disableClick` to control whether the rest of the page is clickable while the Toast notification is displayed. By default, it is clickable.
 
 ```tsx
 import * as React from 'react';
@@ -473,13 +476,13 @@ export default () => {
         <Button
           onClick={() => {
             toast({
-              message: 'Notification message',
+              message: 'Notification Content',
               disableClick: true,
               duration: 3000,
             });
           }}
         >
-          Show Toast to disable page content clicks
+          Display Toast without Page Content Click
         </Button>
       </Stack>
     </ThemeProvider>
@@ -489,7 +492,7 @@ export default () => {
 
 ## Close Callback
 
-Listen for the Toast close callback using `onClose`.
+Listen for callbacks when the Toast is closed using `onClose`.
 
 ```tsx
 import * as React from 'react';
@@ -512,7 +515,7 @@ export default () => {
         <Button
           onClick={() => {
             toast({
-              message: 'Notification message',
+              message: 'Notification Content',
               onClose: () => {
                 toast('Closed');
               },
@@ -529,7 +532,7 @@ export default () => {
 
 ## Close All Toasts
 
-Toast provides the `clear` method to close all existing pop-ups on the page.
+Toast provides a `clear` method to close all existing pop-ups on the page.
 
 ```tsx
 import * as React from 'react';
@@ -552,7 +555,7 @@ export default () => {
         <Button
           onClick={() => {
             toast({
-              message: 'Notification message 1',
+              message: 'Notification Content 1',
               position: 'top',
               multiple: true,
               duration: 0,
@@ -564,7 +567,7 @@ export default () => {
         <Button
           onClick={() => {
             toast({
-              message: 'Notification message 2',
+              message: 'Notification Content 2',
               position: 'center',
               multiple: true,
               duration: 0,
@@ -586,11 +589,11 @@ export default () => {
 };
 ```
 
-## Custom Notification Style
+## Customize Toast Style
 
-You can customize the Toast style using the provided CSS variables and properties such as `className`.
+You can customize the style of Toast using provided CSS variables and attributes like `className`.
 
-#### Static Methods
+#### Static Method
 
 ```tsx
 import { Stack, Button, Toast } from '@bifrostui/react';
@@ -605,7 +608,7 @@ export default () => {
         onClick={() => {
           Toast({
             ref,
-            message: 'Notification message',
+            message: 'Notification Content',
             className: 'my-toast-static',
             style: {
               '--bui-toast-border-radius': '30px',
@@ -642,7 +645,7 @@ export default () => {
           onClick={() => {
             toast({
               ref,
-              message: 'Notification message',
+              message: 'Notification Content',
               className: 'my-toast-hook',
               style: {
                 '--bui-toast-border-radius': '30px',
@@ -664,59 +667,59 @@ export default () => {
 
 ## Accessibility
 
-- Key accessibility features include:
-  - The root node automatically adds the `role` attribute (such as `status` or `alert`), switching automatically depending on the notification type to ensure screen readers can promptly notify users.
-  - Automatically adds `aria-live` and `aria-atomic="true"` to ensure content changes are correctly perceived by assistive technologies.
-  - Icon elements come with `aria-hidden="true"` to avoid redundant reading.
-- When customizing `icon` or `message`, it is recommended to ensure the content is concise and clear, making it easier for assistive technologies to understand.
+- Major accessibility features include:
+  - Automatically adding `role` attribute (e.g., `status` or `alert`) to the root node, which switches based on the notification type to ensure screen readers can provide timely reports.
+  - Automatically adding `aria-live` and `aria-atomic="true"` to ensure content changes are correctly perceived by assistive technologies.
+  - `aria-hidden="true"` is added to icon elements to avoid repeated announcements.
+- When customizing `icon` or `message`, ensure content is concise and clear for easier understanding by assistive technologies.
 
 ## API
 
 ### ToastOptions
 
-| Property     | Description                                                        | Type                                    | Default       |
-| ------------ | ------------------------------------------------------------------ | --------------------------------------- | ------------- |
-| message      | Content of the toast, supports `\n` line breaks                    | string                                  | -             |
-| duration     | Display duration (ms), when set to 0, the toast will not disappear | number                                  | 2000          |
-| position     | Display position                                                   | `top` \| `center` \| `bottom`           | `center`      |
-| multiple     | Whether multiple Toasts can exist simultaneously                   | boolean                                 | false         |
-| icon         | Custom icon                                                        | React.ReactNode                         | -             |
-| disableClick | Whether content on the page can be clicked when Toast is displayed | boolean                                 | false         |
-| container    | Render container                                                   | `HTMLElement` \| `(() => HTMLElement) ` | document.body |
-| onClose      | Callback when closed                                               | () => void                              | -             |
+| Attribute    | Description                                                  | Type                                   | Default       |
+| ------------ | ------------------------------------------------------------ | -------------------------------------- | ------------- |
+| message      | Toast content, supports `\n` for line breaks                 | string                                 | -             |
+| duration     | Display duration (ms), if set to 0, toast won't disappear    | number                                 | 2000          |
+| position     | Display position                                             | `top` \| `center` \| `bottom`          | `center`      |
+| multiple     | Allow multiple toasts simultaneously                         | boolean                                | false         |
+| icon         | Custom icon                                                  | React.ReactNode                        | -             |
+| disableClick | Whether the page content is clickable while displaying Toast | boolean                                | false         |
+| container    | Render container                                             | `HTMLElement` \| `(() => HTMLElement)` | document.body |
+| onClose      | Callback function when closed                                | () => void                             | -             |
 
 ### Methods
 
-| Method Name   | Description          | Parameters             | Return Type     |
-| ------------- | -------------------- | ---------------------- | --------------- |
-| Toast         | Display notification | ToastOptions \| string | ToastReturnType |
-| Toast.warning | Warning notification | ToastOptions \| string | ToastReturnType |
-| Toast.loading | Loading notification | ToastOptions \| string | ToastReturnType |
-| Toast.success | Success notification | ToastOptions \| string | ToastReturnType |
-| Toast.fail    | Fail notification    | ToastOptions \| string | ToastReturnType |
-| Toast.clear   | Clear notifications  | -                      | -               |
+| Method Name   | Description             | Parameters             | Returns         |
+| ------------- | ----------------------- | ---------------------- | --------------- |
+| Toast         | Display notification    | ToastOptions \| string | ToastReturnType |
+| Toast.warning | Warning notification    | ToastOptions \| string | ToastReturnType |
+| Toast.loading | Loading notification    | ToastOptions \| string | ToastReturnType |
+| Toast.success | Success notification    | ToastOptions \| string | ToastReturnType |
+| Toast.fail    | Failure notification    | ToastOptions \| string | ToastReturnType |
+| Toast.clear   | Clear all notifications | -                      | -               |
 
 ### ToastReturnType
 
-| Property Name | Description                     | Type       | Return Value |
-| ------------- | ------------------------------- | ---------- | ------------ |
-| close         | Closes the current notification | () => void | -            |
+| Attribute | Description                | Type       | Returns |
+| --------- | -------------------------- | ---------- | ------- |
+| close     | Close current notification | () => void | -       |
 
 ## Style Variables
 
-| Global Variable             | Description      | Default                           |
+| Global Variables            | Description      | Default Value                     |
 | --------------------------- | ---------------- | --------------------------------- |
-| --bui-toast-min-width       | Minimum width    | `86px`                            |
-| --bui-toast-max-width       | Maximum width    | `80%`                             |
-| --bui-toast-text-align      | Text alignment   | `center`                          |
-| --bui-toast-flex-direction  | Layer direction  | `column`                          |
+| --bui-toast-min-width       | Minimum Width    | `86px`                            |
+| --bui-toast-max-width       | Maximum Width    | `80%`                             |
+| --bui-toast-text-align      | Text Alignment   | `center`                          |
+| --bui-toast-flex-direction  | Layer Direction  | `column`                          |
 | --bui-toast-padding         | Padding          | `var(--bui-spacing-xl)`           |
-| --bui-toast-position-top    | Top position     | `15%`                             |
-| --bui-toast-position-bottom | Bottom position  | `85%`                             |
-| --bui-toast-bg-color        | Background color | `rgba(0, 0, 0, 0.8)`              |
-| --bui-toast-border-radius   | Border radius    | `var(--bui-shape-radius-default)` |
-| --bui-toast-icon-margin     | Icon margin      | `0 0 8px`                         |
-| --bui-toast-icon-font-size  | Icon font size   | `30px`                            |
+| --bui-toast-position-top    | Top Position     | `15%`                             |
+| --bui-toast-position-bottom | Bottom Position  | `85%`                             |
+| --bui-toast-bg-color        | Background Color | `rgba(0, 0, 0, 0.8)`              |
+| --bui-toast-border-radius   | Border Radius    | `var(--bui-shape-radius-default)` |
+| --bui-toast-icon-margin     | Icon Margin      | `0 0 8px`                         |
+| --bui-toast-icon-font-size  | Icon Font Size   | `30px`                            |
 
 ```
 
