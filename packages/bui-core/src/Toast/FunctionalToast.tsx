@@ -61,7 +61,7 @@ const Toast = (props: ToastProps | string): ToastReturnType => {
 
   const rootWrapper = document.createElement('div');
   const rootElement = getRootContainer(container);
-  rootElement.appendChild(rootWrapper);
+  rootElement?.appendChild(rootWrapper);
 
   const ToastComponent = () => {
     const { duration, multiple, onClose, onExited, ...others } = restOptions;

@@ -27,7 +27,7 @@ const mountThemeVars = (options: MountThemeVarsOptions) => {
     document.head.appendChild(style);
     return;
   }
-  container.appendChild(style);
+  container?.appendChild(style);
 };
 
 /**

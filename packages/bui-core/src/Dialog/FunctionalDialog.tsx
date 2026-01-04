@@ -28,7 +28,7 @@ const DialogGenerator = (options: DialogOptions) => {
     ? document.createElement('div')
     : document.createDocumentFragment();
   const rootElement = getRootContainer(options?.container);
-  rootElement.appendChild(dialogFragment);
+  rootElement?.appendChild(dialogFragment);
 
   const DialogWrapper = () => {
     const { onOk, onCancel, ...rest } = options;
