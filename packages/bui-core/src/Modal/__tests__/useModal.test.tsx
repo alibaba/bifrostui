@@ -297,4 +297,153 @@ describe('useModal', () => {
       expect(onClose).not.toHaveBeenCalled();
     });
   });
+
+  describe('Focus management', () => {
+    let container: HTMLDivElement;
+
+    beforeEach(() => {
+      container = document.createElement('div');
+      document.body.appendChild(container);
+    });
+
+    afterEach(() => {
+      document.body.removeChild(container);
+    });
+
+    it('should focus on the element with tabindex="-1" when opened', () => {
+      const { result } = renderHook(() =>
+        useModal({ ...defaultParams, open: true }),
+      );
+
+      const modalRoot = document.createElement('div');
+      const childElement = document.createElement('div');
+      childElement.setAttribute('tabindex', '-1');
+      modalRoot.appendChild(childElement);
+      container.appendChild(modalRoot);
+
+      const focusSpy = vi.spyOn(childElement, 'focus');
+
+      // 模拟 ref 挂载
+      result.current.rootRef(modalRoot);
+
+      // 手动触发一次 rerender 以执行 useEffect (因为 ref 变化不会触发重新渲染)
+      // 在实际组件中，Modal 渲染时 ref 会先被赋值，然后执行 useEffect
+      const { rerender } = renderHook(
+        ({ open }) => useModal({ ...defaultParams, open }),
+        { initialProps: { open: true } },
+      );
+
+      // 为第二次 renderHook 模拟同样的环境
+      const modalRoot2 = document.createElement('div');
+      const childElement2 = document.createElement('div');
+      childElement2.setAttribute('tabindex', '-1');
+      modalRoot2.appendChild(childElement2);
+      container.appendChild(modalRoot2);
+      const focusSpy2 = vi.spyOn(childElement2, 'focus');
+
+      const hook = renderHook(
+        ({ open, children }) => useModal({ ...defaultParams, open, children }),
+        {
+          initialProps: {
+            open: true,
+            children: <div tabIndex="-1" />,
+          },
+        },
+      );
+
+      hook.result.current.rootRef(modalRoot2);
+      hook.rerender({ open: true, children: <div tabIndex="-1" /> });
+
+      expect(focusSpy2).toHaveBeenCalled();
+    });
+
+    it('should focus on the element with autofocus when opened', () => {
+      const modalRoot = document.createElement('div');
+      const childElement = document.createElement('input');
+      childElement.setAttribute('autofocus', '');
+      modalRoot.appendChild(childElement);
+      container.appendChild(modalRoot);
+
+      const focusSpy = vi.spyOn(childElement, 'focus');
+
+      const { result, rerender } = renderHook(
+        ({ open }) => useModal({ ...defaultParams, open }),
+        { initialProps: { open: false } }, // 初始为 false
+      );
+
+      result.current.rootRef(modalRoot);
+      rerender({ open: true }); // 变为 true，触发 effect
+
+      expect(focusSpy).toHaveBeenCalled();
+    });
+
+    it('should not auto focus when disableAutoFocus is true', () => {
+      const modalRoot = document.createElement('div');
+      const childElement = document.createElement('div');
+      childElement.setAttribute('tabindex', '-1');
+      modalRoot.appendChild(childElement);
+      container.appendChild(modalRoot);
+
+      const focusSpy = vi.spyOn(childElement, 'focus');
+
+      const { result, rerender } = renderHook(
+        ({ open }) =>
+          useModal({ ...defaultParams, open, disableAutoFocus: true }),
+        { initialProps: { open: false } },
+      );
+
+      result.current.rootRef(modalRoot);
+      rerender({ open: true });
+
+      expect(focusSpy).not.toHaveBeenCalled();
+    });
+
+    it('should restore focus when closed', () => {
+      const triggerButton = document.createElement('button');
+      container.appendChild(triggerButton);
+      triggerButton.focus();
+      // 在 capture 之后 spy
+      const focusSpy = vi.spyOn(triggerButton, 'focus');
+
+      const modalRoot = document.createElement('div');
+      container.appendChild(modalRoot);
+
+      const { result, rerender } = renderHook(
+        ({ open }) => useModal({ ...defaultParams, open }),
+        { initialProps: { open: false } },
+      );
+
+      result.current.rootRef(modalRoot);
+      rerender({ open: true });
+
+      // 关闭 Modal
+      rerender({ open: false });
+
+      expect(focusSpy).toHaveBeenCalled();
+    });
+
+    it('should not restore focus when disableRestoreFocus is true', () => {
+      const triggerButton = document.createElement('button');
+      container.appendChild(triggerButton);
+      triggerButton.focus();
+      const focusSpy = vi.spyOn(triggerButton, 'focus');
+
+      const modalRoot = document.createElement('div');
+      container.appendChild(modalRoot);
+
+      const { result, rerender } = renderHook(
+        ({ open }) =>
+          useModal({ ...defaultParams, open, disableRestoreFocus: true }),
+        { initialProps: { open: false } },
+      );
+
+      result.current.rootRef(modalRoot);
+      rerender({ open: true });
+
+      // 关闭 Modal
+      rerender({ open: false });
+
+      expect(focusSpy).not.toHaveBeenCalled();
+    });
+  });
 });
