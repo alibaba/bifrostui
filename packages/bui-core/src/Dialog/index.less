@@ -49,9 +49,12 @@
 
   &-actions {
     display: flex;
-    gap: var(--bui-spacing-lg);
     align-items: center;
     justify-content: center;
+
+    > * + * {
+      margin-left: var(--bui-spacing-lg);
+    }
   }
 
   &-input {
