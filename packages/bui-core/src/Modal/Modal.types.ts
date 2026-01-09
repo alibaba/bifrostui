@@ -45,19 +45,6 @@ export type ModalProps<
        * 是否保持挂载状态
        */
       keepMounted?: boolean;
-      /**
-       * 是否禁用自动焦点管理
-       * 仅web端生效
-       * @default false
-       *
-       */
-      disableAutoFocus?: boolean;
-      /**
-       * 是否禁用在关闭时恢复焦点到触发元素
-       * 仅web端生效
-       * @default false
-       */
-      disableRestoreFocus?: boolean;
     };
     defaultComponent: D;
   },

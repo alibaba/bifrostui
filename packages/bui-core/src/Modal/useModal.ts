@@ -15,8 +15,6 @@ function getContainer(
 export interface UseModalParameters {
   container?: Element | (() => Element | null) | null;
   disableScrollLock?: boolean;
-  disableAutoFocus?: boolean;
-  disableRestoreFocus?: boolean;
   onClose?: (
     event: React.SyntheticEvent<Element, Event>,
     detail?: { from: 'backdropClick' | 'escapeKeyDown' },
@@ -57,8 +55,6 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
     container,
     disableScrollLock = false,
-    disableAutoFocus = false,
-    disableRestoreFocus = false,
     onClose,
     open,
     rootRef,
@@ -77,9 +73,6 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const handleRef = useForkRef(modalRef, rootRef);
   const [exited, setExited] = useState(!open);
   const hasTransition = getHasTransition(children);
-
-  // Stores the element that was focused before the modal was opened to restore it when closed
-  const lastFocusedElement = useRef<HTMLElement | null>(null);
 
   let ariaHiddenProp = true;
   if (
@@ -150,55 +143,6 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
       handleClose();
     }
   }, [open, handleClose, hasTransition, handleOpen]);
-
-  // Focus management
-  useEffect(() => {
-    if (open && modalRef.current) {
-      const doc = modalRef.current.ownerDocument || document;
-
-      // Save the focused element before opening the modal
-      if (!lastFocusedElement.current) {
-        lastFocusedElement.current = doc.activeElement as HTMLElement;
-      }
-
-      if (!disableAutoFocus) {
-        // Check if the modal contains the current focus
-        if (!modalRef.current.contains(doc.activeElement)) {
-          // If the modal container doesn't have a tabIndex, set it to -1 to make it focusable
-          if (!modalRef.current.hasAttribute('tabIndex')) {
-            modalRef.current.setAttribute('tabIndex', '-1');
-          }
-
-          // Prioritize focusing on elements with the autofocus attribute, or the container where we injected -1
-          const autoFocusElement = modalRef.current.querySelector(
-            '[autofocus], [tabindex="-1"]',
-          ) as HTMLElement;
-
-          if (autoFocusElement) {
-            autoFocusElement.focus();
-          } else {
-            // Focus on the modal container so that children can receive focus
-            modalRef.current.focus();
-          }
-        }
-      }
-
-      // Cleanup function: restore focus when the modal is closed
-      return () => {
-        if (!disableRestoreFocus && lastFocusedElement.current) {
-          // Check if the element still exists and has a focus method
-          if (
-            lastFocusedElement.current &&
-            typeof lastFocusedElement.current.focus === 'function'
-          ) {
-            lastFocusedElement.current.focus();
-          }
-          lastFocusedElement.current = null;
-        }
-      };
-    }
-    return undefined;
-  }, [open, disableAutoFocus, disableRestoreFocus]);
 
   const createHandleBackdropClick =
     (backdropHandlers: Record<string, React.EventHandler<any>> = {}) =>
