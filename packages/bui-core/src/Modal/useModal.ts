@@ -198,7 +198,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
       };
     }
     return undefined;
-  }, [open, disableAutoFocus, disableRestoreFocus, children]);
+  }, [open, disableAutoFocus, disableRestoreFocus]);
 
   const createHandleBackdropClick =
     (backdropHandlers: Record<string, React.EventHandler<any>> = {}) =>
