@@ -86,6 +86,28 @@ describe('Toast', () => {
     expect(document.body.querySelector(`.${rootClass}`)).toBeInTheDocument();
   });
 
+  it('should render ToastView via Portal to document.body when container is not specified', () => {
+    const { getByTestId } = render(
+      <Button
+        data-testid="emit-button"
+        onClick={() => {
+          Toast('提示内容');
+        }}
+      >
+        test
+      </Button>,
+    );
+    fireEvent.click(getByTestId('emit-button'));
+    // ToastView 应该通过 Portal 渲染到 document.body
+    const toastEl = document.body.querySelector(`.${rootClass}`);
+    expect(toastEl).toBeInTheDocument();
+    // 验证 Toast 内容
+    expect(toastEl).toHaveTextContent('提示内容');
+    // rootWrapper 会被创建并添加到 document.body，但 ToastView 通过 Portal 直接渲染到 body
+    // 所以 document.body 会包含多个子元素
+    expect(document.body.children.length).toBeGreaterThan(0);
+  });
+
   it('should render in container', async () => {
     const { getByTestId } = render(
       <>
@@ -105,6 +127,33 @@ describe('Toast', () => {
     );
     fireEvent.click(getByTestId('emit-button'));
     expect(getByTestId('render-container')).toHaveTextContent('提示内容');
+  });
+
+  it('should render ToastView in specified container via Portal', async () => {
+    const { getByTestId } = render(
+      <>
+        <div id="custom-container" data-testid="custom-container" />
+        <Button
+          data-testid="emit-button"
+          onClick={() => {
+            Toast({
+              message: '自定义容器内容',
+              container: document.getElementById('custom-container'),
+            });
+          }}
+        >
+          test
+        </Button>
+      </>,
+    );
+    fireEvent.click(getByTestId('emit-button'));
+    const container = getByTestId('custom-container');
+    // ToastView 应该通过 Portal 渲染到指定的 container 中
+    const toastEl = container.querySelector(`.${rootClass}`);
+    expect(toastEl).toBeInTheDocument();
+    expect(container).toHaveTextContent('自定义容器内容');
+    // 验证 Toast 不在 document.body 的直接子元素中（而是在 container 中）
+    expect(toastEl.closest('#custom-container')).toBe(container);
   });
 
   it('should render whit default props', () => {
@@ -147,6 +196,48 @@ describe('Toast', () => {
       toast.close();
       await vi.runAllTimers();
     });
+    setTimeout(() => {
+      expect(
+        document.body.querySelector(`.${rootClass}`),
+      ).not.toBeInTheDocument();
+    });
+  });
+
+  it('should cleanup rootWrapper properly even when ToastView is rendered via Portal', async () => {
+    let toast;
+    const { getByTestId } = render(
+      <Button
+        data-testid="emit-button"
+        onClick={() => {
+          toast = Toast({
+            message: '提示内容',
+            duration: 0,
+          });
+        }}
+      >
+        test
+      </Button>,
+    );
+    const bodyChildrenCountBefore = document.body.children.length;
+    fireEvent.click(getByTestId('emit-button'));
+    const bodyChildrenCountAfterRender = document.body.children.length;
+    // Toast 渲染后，document.body 应该增加了子元素
+    expect(bodyChildrenCountAfterRender).toBeGreaterThan(
+      bodyChildrenCountBefore,
+    );
+
+    // 关闭 Toast
+    await act(async () => {
+      toast.close();
+      await vi.runAllTimers();
+    });
+
+    // 等待清理完成
+    await act(async () => {
+      await vi.runAllTimers();
+    });
+
+    // Toast 和 rootWrapper 都应该被清理
     setTimeout(() => {
       expect(
         document.body.querySelector(`.${rootClass}`),

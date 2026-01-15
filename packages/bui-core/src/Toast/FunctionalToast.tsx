@@ -8,7 +8,7 @@ import React, {
   FC,
   MutableRefObject,
 } from 'react';
-import { render, unmount, getRootContainer } from '@bifrostui/utils';
+import { render, unmount } from '@bifrostui/utils';
 import Portal from '../Portal';
 import ToastView from './Toast';
 import {
@@ -60,8 +60,7 @@ const Toast = (props: ToastProps | string): ToastReturnType => {
   const { container, ...restOptions } = options;
 
   const rootWrapper = document.createElement('div');
-  const rootElement = getRootContainer(container);
-  rootElement?.appendChild(rootWrapper);
+  document.body.appendChild(rootWrapper);
 
   const ToastComponent = () => {
     const { duration, multiple, onClose, onExited, ...others } = restOptions;
@@ -109,7 +108,11 @@ const Toast = (props: ToastProps | string): ToastReturnType => {
     // 关闭当前Toast
     instance.close = close;
 
-    return <ToastView {...others} open={open} onExited={onProxyExited} />;
+    return (
+      <Portal container={container}>
+        <ToastView {...others} open={open} onExited={onProxyExited} />
+      </Portal>
+    );
   };
 
   render(<ToastComponent />, rootWrapper);
