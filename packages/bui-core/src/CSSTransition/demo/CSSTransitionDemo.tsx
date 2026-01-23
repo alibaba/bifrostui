@@ -26,6 +26,9 @@ const StackDemo = () => {
         onClick={() => {
           setOpen((prev) => !prev);
         }}
+        style={{
+          marginBottom: '18px',
+        }}
       >
         {open ? 'Exit' : 'Enter'}
       </Button>
