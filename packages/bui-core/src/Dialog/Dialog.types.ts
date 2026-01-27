@@ -39,11 +39,11 @@ export interface DialogProps extends Omit<ModalProps, 'title' | 'content'> {
   /**
    * 透传给内部Button组件的属性
    */
-  okButtonProps?: Partial<ButtonProps> & Record<`data-${string}`, string>;
+  okButtonProps?: Partial<ButtonProps> & Record<`data-${string}`, any>;
   /**
    * 透传给内部Button组件的属性
    */
-  cancelButtonProps?: Partial<ButtonProps> & Record<`data-${string}`, string>;
+  cancelButtonProps?: Partial<ButtonProps> & Record<`data-${string}`, any>;
   /**
    * 确认按钮文本内容
    */
