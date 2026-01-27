@@ -86,6 +86,10 @@ export type DialogOptions = Omit<
    * 取消回调
    */
   onCancel?: (e: React.SyntheticEvent) => void;
+  /**
+   * 透传 data- 属性
+   */
+  [key: `data-${string}`]: any;
 };
 
 /**
