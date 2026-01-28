@@ -26,6 +26,9 @@ const StackDemo = () => {
         onClick={() => {
           setOpen((prev) => !prev);
         }}
+        style={{
+          marginBottom: '18px',
+        }}
       >
         {open ? 'Exit' : 'Enter'}
       </Button>
@@ -44,11 +47,7 @@ const StackDemo = () => {
 };
 
 export default StackDemo;
-`},69885:function(n,e){e.Z=`.bui-btn {
-  margin-bottom: 18px;
-}
-
-.slide-enter {
+`},69885:function(n,e){e.Z=`.slide-enter {
   transform: translate3d(-100%, 0, 0);
 }
 
