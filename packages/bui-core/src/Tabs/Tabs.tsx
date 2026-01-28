@@ -124,7 +124,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
 
   return (
     <div className={clsx(tabsRootClass, className)} {...others} ref={ref}>
-      {isScrollable && tabs.length > 1 && (
+      {isScrollable && (
         <>
           <TabMask position="left" />
           <TabMask position="right" />
