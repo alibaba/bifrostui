@@ -70,7 +70,8 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const [scrollWithAnimation, setScrollWithAnimation] = React.useState(false);
 
   // 计算是否可滚动（用于显示 TabMask）
-  const isScrollable = scrollWidth > containerWidth;
+  // 处理浏览器兼容问题，同一个元素的scrollWidth和containerWidth可能存在误差
+  const isScrollable = scrollWidth - containerWidth > 1;
 
   // 开发环境警告：tabs 和 children 不应该同时使用
   if (process.env.NODE_ENV !== 'production') {

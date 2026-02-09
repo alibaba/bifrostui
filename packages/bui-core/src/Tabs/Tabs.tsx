@@ -105,7 +105,10 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     if (!tabsEl) return undefined;
 
     const checkScrollable = () => {
-      setIsScrollable(tabsEl.scrollWidth > tabsEl.offsetWidth);
+      const { scrollWidth = 0, offsetWidth = 0 } = tabsEl;
+      // 处理浏览器兼容问题，同一个元素的scrollWidth和offsetWidth可能存在误差
+      const isOverflow = scrollWidth - offsetWidth > 1;
+      setIsScrollable(isOverflow);
     };
 
     checkScrollable();
