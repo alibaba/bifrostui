@@ -50,6 +50,7 @@ project.private.config.json
 CLAUDE.md
 .cursor
 .qoder
+.claude
 
 # Test temp folders
 **/tempDemos*
