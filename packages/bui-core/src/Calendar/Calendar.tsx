@@ -124,10 +124,23 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         const latestDate = formattedValue?.[0];
         // 上一次渲染传入的value初始值
         const lastInitialValue = renderMonth;
+
+        // 如果 latestDate 为空（即取消选中的情况），不需要更新月份
+        // 当选择日期范围时，如果两次点击同一天（第一次选中，第二次取消），保持在当前月份
+        if (!latestDate) {
+          prevValueRef.current = value;
+          return;
+        }
+
         // 最新一次的value与上一次渲染传入的value初始值是否在同一月份
-        const inSameMonth =
-          (isRangeMode && selectedStartDate && selectedEndDate) ||
-          (latestDate && dayjs(latestDate).isSame(lastInitialValue, 'month'));
+        // 对于范围模式：检查开始日期或结束日期是否在当前月份（任一在即可）
+        // 对于单选模式：检查选中日期是否在当前月份
+        const inSameMonth = isRangeMode
+          ? (selectedStartDate &&
+              dayjs(selectedStartDate).isSame(lastInitialValue, 'month')) ||
+            (selectedEndDate &&
+              dayjs(selectedEndDate).isSame(lastInitialValue, 'month'))
+          : latestDate && dayjs(latestDate).isSame(lastInitialValue, 'month');
 
         if (!inSameMonth) {
           const latestBeforeThanLast = dayjs(latestDate).isBefore(
