@@ -104,6 +104,7 @@ const Swiper = forwardRef<SwiperRef, SwiperProps>((props, ref) => {
       {...others}
       onSwiper={(o) => {
         swiperInstance.current = o;
+        props.onSwiper?.(o);
       }}
       style={{
         ...sty,
