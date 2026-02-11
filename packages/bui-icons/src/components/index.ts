@@ -227,6 +227,8 @@ export { default as TrendingCircleFilledIcon } from './TrendingCircleFilled';
 export { default as TrendingCircleOutlinedIcon } from './TrendingCircleOutlined';
 export { default as TripleVerticalLineIcon } from './TripleVerticalLine';
 export { default as UpIcon } from './Up';
+export { default as UploadPhotoOutlinedIcon } from './UploadPhotoOutlined';
+export { default as UploadVideoOutlinedIcon } from './UploadVideoOutlined';
 export { default as UserFollowedOutlinedIcon } from './UserFollowedOutlined';
 export { default as VerifiedFilledIcon } from './VerifiedFilled';
 export { default as VideoOutlinedIcon } from './VideoOutlined';
