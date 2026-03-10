@@ -88,6 +88,7 @@ export const pioneerLight = {
 
     // Button
     '--bui-btn-small-height': '21px',
+    '--bui-btn-height': '30px',
     '--bui-btn-full-height': '45px',
     '--bui-btn-large-height': '45px',
     '--bui-btn-full-font-size': 'var(--bui-title-size-3)',
