@@ -31,7 +31,7 @@ export default () => {
 
 ## 主题
 
-Tag 标签支持 `primary`、`success`、`info`、`warning`、`danger` 主题定义。若不设置color，则默认为`default`
+Tag 标签支持 `primary`、`success`、`info`、`warning`、`danger`、`purple` 等主题定义。若不设置color，则默认为`default`
 
 ```tsx
 import { Stack, Tag } from '@bifrostui/react';
@@ -63,6 +63,9 @@ export default () => {
         <Tag variant="outlined" color="danger">
           限时优惠
         </Tag>
+        <Tag variant="outlined" color="purple">
+          优惠
+        </Tag>
         <Tag variant="outlined" color="light">
           优惠
         </Tag>
@@ -89,6 +92,9 @@ export default () => {
         <Tag variant="contained" color="danger">
           限时优惠
         </Tag>
+        <Tag variant="contained" color="purple">
+          优惠
+        </Tag>
         <Tag variant="contained" color="light">
           优惠
         </Tag>
@@ -114,6 +120,9 @@ export default () => {
         </Tag>
         <Tag variant="subtle" color="danger">
           限时优惠
+        </Tag>
+        <Tag variant="subtle" color="purple">
+          优惠
         </Tag>
         <Tag variant="subtle" color="light">
           优惠
@@ -302,11 +311,11 @@ export default () => {
 
 ### TagProps
 
-| 属性      | 说明           | 类型                                                                                              | 默认值      |
-| --------- | -------------- | ------------------------------------------------------------------------------------------------- | ----------- |
-| color     | 标签主题色     | `primary` \| `info` \| `success` \| `warning` \| `danger` \|`light`\| `neutral` \|`dark` \| `vip` | `neutral`   |
-| htmlColor | 自定义标签颜色 | string                                                                                            | -           |
-| variant   | 标签类型       | `contained` ｜`outlined`｜`subtle`                                                                | `contained` |
+| 属性      | 说明           | 类型                                                                                                         | 默认值      |
+| --------- | -------------- | ------------------------------------------------------------------------------------------------------------ | ----------- |
+| color     | 标签主题色     | `primary` \| `info` \| `success` \| `warning` \| `danger` \|`purple` \|`light`\| `neutral` \|`dark` \| `vip` | `neutral`   |
+| htmlColor | 自定义标签颜色 | string                                                                                                       | -           |
+| variant   | 标签类型       | `contained` ｜`outlined`｜`subtle`                                                                           | `contained` |
 
 ## 样式变量
 

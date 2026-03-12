@@ -135,6 +135,7 @@ export const defaultLight = {
     '--bui-color-border-warning': 'rgba(255, 133, 51, 0.4)',
     '--bui-color-border-danger': 'rgba(255, 51, 92, 0.4)',
     '--bui-color-border-gray': 'rgba(136, 150, 177, 0.4)',
+    '--bui-color-border-purple': 'rgba(139, 82, 255, 0.4)',
 
     // 主题色渐变
     '--bui-color-primary-start': '#ef16b9',

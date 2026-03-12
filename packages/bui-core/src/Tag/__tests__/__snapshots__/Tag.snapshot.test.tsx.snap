@@ -93,6 +93,12 @@ exports[`Tag snapshot > Tag demo snapshot 0 2`] = `
       限时优惠
     </div>
     <div
+      className="bui-tag bui-tag-outlined bui-tag-purple"
+      style={{}}
+    >
+      优惠
+    </div>
+    <div
       className="bui-tag bui-tag-outlined bui-tag-light"
       style={{}}
     >
@@ -154,6 +160,12 @@ exports[`Tag snapshot > Tag demo snapshot 0 2`] = `
       限时优惠
     </div>
     <div
+      className="bui-tag bui-tag-contained bui-tag-purple"
+      style={{}}
+    >
+      优惠
+    </div>
+    <div
       className="bui-tag bui-tag-contained bui-tag-light"
       style={{}}
     >
@@ -213,6 +225,12 @@ exports[`Tag snapshot > Tag demo snapshot 0 2`] = `
       style={{}}
     >
       限时优惠
+    </div>
+    <div
+      className="bui-tag bui-tag-subtle bui-tag-purple"
+      style={{}}
+    >
+      优惠
     </div>
     <div
       className="bui-tag bui-tag-subtle bui-tag-light"

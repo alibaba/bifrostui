@@ -499,6 +499,7 @@
   "Tabs": {
     "cssVars": {
       "--bui-tabs-height": "39px",
+      "--bui-tabs-padding": "0",
       "--bui-tabs-font-weight": "var(--bui-font-weight-medium)",
       "--bui-tabs-indicator-bg": "var(--bui-color-primary)",
       "--bui-tabs-indicator-height": "3PX",

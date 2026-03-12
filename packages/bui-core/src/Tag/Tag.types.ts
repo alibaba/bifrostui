@@ -11,7 +11,7 @@ export type TagProps<
        * 预定义色彩
        * @default 'neutral'
        */
-      color?: ThemeColor | 'vip';
+      color?: ThemeColor | 'purple' | 'vip';
       /**
        * 自定义色彩
        */

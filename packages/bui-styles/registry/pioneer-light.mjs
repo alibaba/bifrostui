@@ -66,6 +66,7 @@ export const pioneerLight = {
     '--bui-color-border-success': 'rgba(64, 191, 0, 0.4)',
     '--bui-color-border-warning': 'rgba(255, 166, 8, 0.4)',
     '--bui-color-border-danger': 'rgba(255, 71, 26, 0.4)',
+    '--bui-color-border-purple': 'rgba(117, 77, 255, 0.4)',
 
     /** 主题色渐变 */
     '--bui-color-primary-start': '#ff8500',
