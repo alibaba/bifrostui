@@ -32,6 +32,7 @@
     "package": "chmod +x ./scripts/pack-packages.sh && ./scripts/pack-packages.sh",
     "test": "nx run-many --target=test --all --output-style=stream --exclude=@bifrostui/monorepo",
     "test:watch": "vitest",
+    "test:c": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "test:snapshot": "vitest -u --run",
     "ci:test": "pnpm test",
