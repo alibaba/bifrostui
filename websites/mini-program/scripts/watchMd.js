@@ -15,8 +15,12 @@ class MdWatcher {
       process.cwd(),
       '../../packages/bui-icons/src',
     );
+    const svgIconPioneerMdPath = path.resolve(
+      process.cwd(),
+      '../../packages/bui-icons-pioneer/src',
+    );
     const dirs = fse.readdirSync(rootPath);
-    const mdPathList = [svgIconMdPath];
+    const mdPathList = [svgIconMdPath, svgIconPioneerMdPath];
     dirs.forEach((dir) => {
       const componentPath = path.resolve(rootPath, dir);
       if (fse.lstatSync(componentPath).isDirectory()) {

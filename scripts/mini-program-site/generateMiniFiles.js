@@ -8,6 +8,10 @@ const { generateComponentIndex } = require('./generateComponentIndex');
 
 const coreDir = path.resolve(__dirname, '../../packages/bui-core/src');
 const iconsDir = path.resolve(__dirname, '../../packages/bui-icons/src');
+const iconsPioneerDir = path.resolve(
+  __dirname,
+  '../../packages/bui-icons-pioneer/src',
+);
 const targetDir = path.resolve(__dirname, '../../websites/mini-program');
 const subPackageDir = `${targetDir}/src/subpackages`;
 const appConfigPath = `${targetDir}/src/app.config.ts`;
@@ -36,9 +40,15 @@ const generateMiniPages = () => {
 
     // 处理bui-icons
     const iconMd = (fse.readdirSync(iconsDir) || []).find(
-      (item) => path.extname(item) === '.md',
+      (item) => item.split('.').slice(1).join('.') === 'zh-CN.md',
     );
     handleMdFile(iconsDir, iconMd);
+
+    // 处理bui-icons-pioneer
+    const iconPioneerMd = (fse.readdirSync(iconsPioneerDir) || []).find(
+      (item) => item.split('.').slice(1).join('.') === 'zh-CN.md',
+    );
+    handleMdFile(iconsPioneerDir, iconPioneerMd);
 
     console.log(chalk.green(`✅ 生成小程序页面：[${targetDir}/src/pages/*]`));
 

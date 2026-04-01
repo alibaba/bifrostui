@@ -56,7 +56,7 @@ name: Button 按钮
 2. 代码演示
    - 使用Stack组件进行布局
    - 优先使用组件库内置组件（如Button）
-   - 仅可使用@bifrostui/icons中的SettingsOutlinedIcon和HomeOutlinedIcon图标组件
+   - 仅可使用@bifrostui/icons中的SettingsOutlinedIcon和HomeOutlinedIcon图标组件，或@bifrostui/icons-pioneer中的图标组件
    - 示例代码应该简单且具有代表性
 
 3. API表格

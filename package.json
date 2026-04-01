@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "@bifrostui/icons": "workspace:*",
+    "@bifrostui/icons-pioneer": "workspace:*",
     "@bifrostui/react": "workspace:*",
     "@bifrostui/styles": "workspace:*",
     "backstopjs": "^6.3.25",

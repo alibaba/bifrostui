@@ -11,6 +11,10 @@ const iconsDir = path.resolve(
   import.meta.dirname,
   '../../packages/bui-icons/src',
 );
+const iconsPioneerDir = path.resolve(
+  import.meta.dirname,
+  '../../packages/bui-icons-pioneer/src',
+);
 
 const flatten = (arr) => {
   return arr.reduce((result, item) => {
@@ -41,18 +45,20 @@ const parseCodeModules = (modules, theme, index) => {
       const reg = /(?<=src=(['|"])).*?(?=(['|"]))/gi;
       const relativePath = `${childrenItem.value}`.match(reg)?.[0];
       const isSvgIcons = theme.enName === 'Icons';
-      const rootDir = isSvgIcons ? iconsDir : coreDir;
+      const isSvgIconsPioneer = theme.enName === 'IconsPioneer';
+      const isIconsPackage = isSvgIcons || isSvgIconsPioneer;
+      const iconsRootDir = isSvgIconsPioneer ? iconsPioneerDir : iconsDir;
+      const rootDir = isIconsPackage ? iconsRootDir : coreDir;
       const realPath = path.join(
         rootDir,
-        isSvgIcons ? './' : theme.enName,
+        isIconsPackage ? './' : theme.enName,
         relativePath,
       );
       code = fse.readFileSync(realPath, 'utf-8');
-      if (isSvgIcons) {
-        // TODO 暂时对SVG demo/index.tsx中的import相对路径做特殊处理
+      if (isIconsPackage) {
         code = code
-          .replace('../components', `${iconsDir}/components`)
-          .replace('./index.less', `${iconsDir}/demo/index.less`);
+          .replace('../components', `${iconsRootDir}/components`)
+          .replace('./index.less', `${iconsRootDir}/demo/index.less`);
       }
     }
   }

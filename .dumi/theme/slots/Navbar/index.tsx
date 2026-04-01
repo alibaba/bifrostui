@@ -5,9 +5,10 @@ import NavbarExtra from 'dumi/theme/slots/NavbarExtra';
 import React, { useState, type FC } from 'react';
 import './index.less';
 
-const NavbarItem: FC<{ data: ReturnType<typeof useNavData>[0] }> = ({
-  data,
-}) => {
+const NavbarItem: FC<{
+  data: ReturnType<typeof useNavData>[0];
+  isActive?: boolean;
+}> = ({ data, isActive }) => {
   const { pathname } = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(() => {
     return data.children?.some((item) => {
@@ -34,15 +35,18 @@ const NavbarItem: FC<{ data: ReturnType<typeof useNavData>[0] }> = ({
       className="dumi-default-navbar-dropdown"
       data-collapsed={isCollapsed || undefined}
     >
-      <NavbarContent data={data.children} />
+      <NavbarContent data={data.children} isDropdown />
     </ul>
   );
   // user custom nav has no activePath, so fallback to link
   const activePath = data.activePath || data.link;
-  const extraProps =
-    activePath && pathname.startsWith(activePath)
-      ? { className: 'active' }
-      : {};
+  // When inside a dropdown, use the pre-computed best-match flag to avoid
+  // multiple items being active when their paths share a common prefix.
+  const active =
+    isActive !== undefined
+      ? isActive
+      : !!(activePath && pathname.startsWith(activePath));
+  const extraProps = active ? { className: 'active' } : {};
 
   return data.link ? (
     <>
@@ -69,22 +73,40 @@ const NavbarItem: FC<{ data: ReturnType<typeof useNavData>[0] }> = ({
   );
 };
 
-const NavbarContent: FC<{ data: ReturnType<typeof useNavData> }> = ({
-  data,
-}) => {
+const NavbarContent: FC<{
+  data: ReturnType<typeof useNavData>;
+  isDropdown?: boolean;
+}> = ({ data, isDropdown = false }) => {
+  const { pathname } = useLocation();
+
+  // Within a dropdown, find the single best match (longest activePath prefix)
+  // so that only one item is ever marked active at a time.
+  const bestMatchPath = isDropdown
+    ? data.reduce<string | null>((best, item) => {
+        const ap = item.activePath || item.link;
+        if (!ap || !pathname.startsWith(ap)) return best;
+        if (!best || ap.length > best.length) return ap;
+        return best;
+      }, null)
+    : null;
+
   return (
     <>
-      {data.map((item) => (
-        <li key={item.activePath || item.link || item.title}>
-          {item.link && /^(\w+:)\/\/|^(mailto|tel):/.test(item.link) ? (
-            <a href={item.link} target="_blank" rel="noreferrer">
-              {item.title}
-            </a>
-          ) : (
-            <NavbarItem data={item} />
-          )}
-        </li>
-      ))}
+      {data.map((item) => {
+        const ap = item.activePath || item.link;
+        const isActive = isDropdown ? ap === bestMatchPath : undefined;
+        return (
+          <li key={item.activePath || item.link || item.title}>
+            {item.link && /^(\w+:)\/\/|^(mailto|tel):/.test(item.link) ? (
+              <a href={item.link} target="_blank" rel="noreferrer">
+                {item.title}
+              </a>
+            ) : (
+              <NavbarItem data={item} isActive={isActive} />
+            )}
+          </li>
+        );
+      })}
     </>
   );
 };

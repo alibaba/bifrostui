@@ -39,6 +39,7 @@
       text-decoration: none;
       transition: all 0.3s;
       white-space: nowrap;
+      margin-bottom: 2px;
 
       @{dark-selector} & {
         color: @c-text-secondary-dark;
@@ -104,7 +105,7 @@
         pointer-events: none;
 
         > svg {
-          width: 12px;
+          width: 9px;
           transition-delay: 0.1s;
         }
       }
@@ -118,28 +119,41 @@
     > .@{prefix}-navbar-dropdown {
       position: absolute;
       top: 100%;
-      left: -18px;
-      min-width: calc(100% + 16px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 140px;
       list-style: none;
-      padding: 0;
-      margin: 6px 0 0;
+      padding: 6px;
+      margin: 8px 0 0;
       background-color: #fff;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-      border-radius: 6px;
-      transition: all 0.2s ease-in-out;
+      box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.04);
+      border-radius: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 
       @{dark-selector} & {
         background-color: lighten(@c-site-bg-dark, 6%);
+        border-color: @c-border-dark;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
       }
 
       > li {
         > a {
-          display: block;
-          padding: 0 18px;
+          display: flex;
+          align-items: center;
+          padding: 8px 16px;
           color: @c-text-secondary;
-          font-size: 15px;
-          line-height: 1.6;
+          font-size: 14px;
+          line-height: 22px;
           text-align: left;
+          text-decoration: none;
+          border-radius: 6px;
+          transition:
+            background-color 0.2s,
+            color 0.2s;
+          white-space: nowrap;
 
           @media @mobile {
             display: inline;
@@ -147,23 +161,33 @@
 
           &:hover {
             color: @c-primary;
+            background-color: @c-primary-light;
+
+            @{dark-selector} & {
+              color: @c-primary-dark;
+              background-color: @c-light-bg-dark;
+            }
           }
-        }
 
-        &:first-child > a {
-          padding-top: 8px;
-        }
+          &.active {
+            color: @c-primary;
+            font-weight: 500;
 
-        &:last-child > a {
-          padding-bottom: 8px;
+            @{dark-selector} & {
+              color: @c-primary-dark;
+            }
+          }
         }
       }
 
       @media @mobile {
         position: static;
+        transform: none;
         background: transparent;
         box-shadow: none;
+        border: 0;
         min-width: 0;
+        padding: 0;
 
         @{dark-selector} & {
           background: transparent;
@@ -178,7 +202,7 @@
     &:not(:hover) > .@{prefix}-navbar-dropdown {
       visibility: hidden;
       opacity: 0;
-      transform: translateY(-6px) scale(0.98);
+      transform: translateX(-50%) translateY(-6px) scale(0.96);
       transition-delay: 0.1s;
 
       @media @mobile {

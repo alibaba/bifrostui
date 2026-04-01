@@ -4,6 +4,7 @@
  * @example node scripts/generate-md/generateMd.mjs
  * @example node scripts/translate/translate.mjs --all
  * @example node scripts/translate/translate.mjs --file ./packages/bui-icons/src/index.zh-CN.md
+ * @example node scripts/translate/translate.mjs --file ./packages/bui-icons-pioneer/src/index.zh-CN.md
  */
 
 import OpenAI from 'openai';

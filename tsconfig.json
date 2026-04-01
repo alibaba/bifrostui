@@ -19,6 +19,7 @@
     "paths": {
       "@bifrostui/react": ["./packages/bui-core/src/index.ts"],
       "@bifrostui/icons": ["./packages/bui-icons/src/index.ts"],
+      "@bifrostui/icons-pioneer": ["./packages/bui-icons-pioneer/src/index.ts"],
       "@bifrostui/types": ["./packages/bui-types/src/index.ts"],
       "@bifrostui/utils": ["./packages/bui-utils/src/index.ts"],
       "@bifrostui/styles/registry": [

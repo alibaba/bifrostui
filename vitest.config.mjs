@@ -14,6 +14,7 @@ const sharedConfig = {
       ),
       '@bifrostui/react': resolve(process.cwd(), './packages/bui-core/src'),
       '@bifrostui/icons': resolve(process.cwd(), './packages/bui-icons/src'),
+      '@bifrostui/icons-pioneer': resolve(process.cwd(), './packages/bui-icons-pioneer/src'),
       '@bifrostui/utils': resolve(process.cwd(), './packages/bui-utils/src'),
       '@bifrostui/types': resolve(process.cwd(), './packages/bui-types/src'),
       testing: resolve(process.cwd(), './tests'),
@@ -58,6 +59,18 @@ export default defineConfig({
         test: {
           name: 'bui-icons',
           include: ['packages/bui-icons/src/**/*.{test,spec}.{ts,tsx}'],
+          css: true,
+          environment: 'jsdom',
+          globals: true,
+          setupFiles: ['./tests/setup.ts'],
+          testTimeout: 10000,
+        },
+      },
+      {
+        ...sharedConfig,
+        test: {
+          name: 'bui-icons-pioneer',
+          include: ['packages/bui-icons-pioneer/src/**/*.{test,spec}.{ts,tsx}'],
           css: true,
           environment: 'jsdom',
           globals: true,
