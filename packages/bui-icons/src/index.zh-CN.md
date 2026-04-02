@@ -56,14 +56,19 @@ import { SettingsOutlinedIcon } from '@bifrostui/icons';
 
 export default () => {
   return (
-    <Stack direction="row" spacing="10px">
-      <SettingsOutlinedIcon size="large" />
+    <Stack
+      direction="row"
+      spacing="10px"
+      style={{ backgroundColor: '#eee', padding: '10px' }}
+    >
+      <SettingsOutlinedIcon color="light" size="large" />
+      <SettingsOutlinedIcon color="dark" size="large" />
+      <SettingsOutlinedIcon color="neutral" size="large" />
       <SettingsOutlinedIcon color="primary" size="large" />
-      <SettingsOutlinedIcon color="default" size="large" />
       <SettingsOutlinedIcon color="info" size="large" />
-      <SettingsOutlinedIcon color="warning" size="large" />
       <SettingsOutlinedIcon color="danger" size="large" />
       <SettingsOutlinedIcon color="success" size="large" />
+      <SettingsOutlinedIcon color="warning" size="large" />
       <SettingsOutlinedIcon color="disabled" size="large" />
     </Stack>
   );
@@ -95,9 +100,9 @@ export default () => {
 
 ## API
 
-| 属性      | 说明                                                            | 类型                                                                                 | 默认值               |
-| --------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------- |
-| color     | 图标主题颜                                                      | `default` \| `primary` \| `info` \| `success` \| `warning` \| `danger` \| `disabled` | -                    |
-| htmlColor | 自定义图标颜色                                                  | string                                                                               | -                    |
-| size      | 预置的图标大小，也可以通过元素的font-size来设置自定义的图标大小 | `small` \| `medium` \| `large`                                                       | 继承父元素的字体大小 |
-| viewBox   | SVG的viewBox属性                                                | string                                                                               | '0 0 96 96'          |
+| 属性      | 说明                                                            | 类型                                                                                                    | 默认值               |
+| --------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | -------------------- |
+| color     | 图标主题颜                                                      | `light` \| `dark` \| `neutral` \| `primary` \| `info` \| `danger` \|`success` \|`warning` \| `disabled` | -                    |
+| htmlColor | 自定义图标颜色                                                  | string                                                                                                  | -                    |
+| size      | 预置的图标大小，也可以通过元素的font-size来设置自定义的图标大小 | `small` \| `medium` \| `large`                                                                          | 继承父元素的字体大小 |
+| viewBox   | SVG的viewBox属性                                                | string                                                                                                  | '0 0 96 96'          |
