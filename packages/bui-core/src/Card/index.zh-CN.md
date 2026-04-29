@@ -5,7 +5,7 @@ name: Card 卡片
 
 # Card 卡片
 
-通用卡片容器，最基础的卡片容器，可用于承载文字、列表、图片、段落、常用于后台概览页面。
+最基础的通用容器，可用于承载文字、列表、图片、段落，常用于后台概览页面。
 
 ## 基础用法
 
@@ -24,7 +24,7 @@ export default () => {
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader title={<div>美味小食</div>} />
+          <CardHeader title={<div>项目 Alpha</div>} />
         </Card>
       </Stack>
     </Stack>
@@ -45,7 +45,7 @@ export default () => {
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader subtitle="（大桶爆米花1份+300ml自制奶茶2杯）" />
+          <CardHeader subtitle="最近更新：2024-04-29" />
         </Card>
       </Stack>
     </Stack>
@@ -64,10 +64,7 @@ export default () => {
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader
-            title="美味小食"
-            subtitle="（大桶爆米花1份+300ml自制奶茶2杯）"
-          />
+          <CardHeader title="项目 Alpha" subtitle="最近更新：2024-04-29" />
         </Card>
       </Stack>
     </Stack>
@@ -90,8 +87,8 @@ export default () => {
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
           <CardHeader
-            title="订单"
-            extra="查看更多"
+            title="最近订单"
+            extra="查看全部"
             onClick={(e) => {
               console.log(e);
             }}
@@ -115,8 +112,8 @@ export default () => {
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
           <CardHeader
-            title="订单"
-            extra="查看更多"
+            title="最近订单"
+            extra="查看全部"
             endIcon={false}
             onClick={(e) => {
               console.log(e);
@@ -144,8 +141,8 @@ export default () => {
         <Card style={{ width: '100%' }}>
           <CardContent>
             <div>订单号：7a73fcggert235fag4</div>
-            <div>取餐码：235634</div>
-            <div>手机号: 134****5427</div>
+            <div>物流单号：SF1204056789</div>
+            <div>手机号：134****5427</div>
           </CardContent>
         </Card>
       </Stack>
@@ -174,14 +171,14 @@ export default () => {
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader title="订单" />
+          <CardHeader title="订单详情" />
           <CardContent>
             <div>订单号：7a73fcggert235fag4</div>
-            <div>取餐码：235634</div>
-            <div>手机号: 134****5427</div>
+            <div>物流单号：SF1204056789</div>
+            <div>手机号：134****5427</div>
           </CardContent>
           <CardFooter>
-            <Button color="success">签收</Button>
+            <Button color="success">确认收货</Button>
           </CardFooter>
         </Card>
       </Stack>
@@ -210,14 +207,14 @@ export default () => {
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader title="订单" />
+          <CardHeader title="订单详情" />
           <CardContent>
             <div>订单号：7a73fcggert235fag4</div>
-            <div>取餐码：235634</div>
-            <div>手机号: 134****5427</div>
+            <div>物流单号：SF1204056789</div>
+            <div>手机号：134****5427</div>
           </CardContent>
           <CardFooter>
-            <Button color="success">签收</Button>
+            <Button color="success">确认收货</Button>
           </CardFooter>
         </Card>
       </Stack>
@@ -239,34 +236,34 @@ export default () => {
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader title="购买商品" />
+          <CardHeader title="我的订单" />
           <CardContent>
             <Card style={{ width: '100%' }}>
               <CardHeader
-                title="生鲜水果"
+                title="电子产品"
                 onClick={(e) => {
                   console.log(e);
                 }}
-                extra="共6件"
+                extra="共 6 件"
               />
               <CardContent>
-                <div>苹果*2</div>
-                <div>木瓜*1</div>
-                <div>菠菜*3</div>
+                <div>无线鼠标 × 2</div>
+                <div>机械键盘 × 1</div>
+                <div>USB-C 扩展坞 × 3</div>
               </CardContent>
             </Card>
             <Card className="subCard">
               <CardHeader
-                title="零食饮料"
+                title="办公用品"
                 onClick={(e) => {
                   console.log(e);
                 }}
-                extra="共14件"
+                extra="共 14 件"
               />
               <CardContent>
-                <div>薯片*2</div>
-                <div>橙汁*2</div>
-                <div>火腿肠*10</div>
+                <div>A4 打印纸 × 2</div>
+                <div>便利贴 × 2</div>
+                <div>中性笔 × 10</div>
               </CardContent>
             </Card>
           </CardContent>
@@ -290,9 +287,9 @@ export default () => {
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ padding: '10px' }}>
-          <div>配料表</div>
-          <div>主要成分：水，生牛乳</div>
-          <div>产品检验合格</div>
+          <div>产品规格</div>
+          <div>材质：100% 纯棉</div>
+          <div>认证：ISO 9001</div>
         </Card>
       </Stack>
     </Stack>

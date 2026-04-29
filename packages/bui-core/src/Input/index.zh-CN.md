@@ -24,7 +24,7 @@ export default () => {
   };
 
   return (
-    <Input value={value} placeholder="请填写内容" onChange={handleChange} />
+    <Input value={value} placeholder="请输入内容" onChange={handleChange} />
   );
 };
 ```
@@ -48,7 +48,7 @@ export default () => {
   return (
     <Input
       value={value}
-      placeholder="请填写内容"
+      placeholder="请输入内容"
       startIcon={<SearchOutlinedIcon htmlColor="#959aa5" />}
       onChange={handleChange}
     />
@@ -75,7 +75,7 @@ export default () => {
   return (
     <Input
       value={value}
-      placeholder="请填写内容"
+      placeholder="请输入内容"
       endIcon={<SearchOutlinedIcon htmlColor="#959aa5" />}
       onChange={handleChange}
     />
@@ -109,7 +109,7 @@ export default () => {
         value={value}
         clearable
         onClear={handleClear}
-        placeholder="请填写内容"
+        placeholder="请输入内容"
         onChange={handleChange}
       />
       <div style={{ margin: '20px 0 10px' }}>非受控也会清空输入框：</div>
@@ -128,7 +128,7 @@ import { Input } from '@bifrostui/react';
 import * as React from 'react';
 
 export default () => {
-  return <Input disabled placeholder="请填写内容" />;
+  return <Input disabled placeholder="请输入内容" />;
 };
 ```
 
@@ -206,7 +206,7 @@ export default () => {
   return (
     <Input
       type="number"
-      placeholder="number类型"
+      placeholder="请输入数字"
       value={value}
       onChange={handleChange}
     />

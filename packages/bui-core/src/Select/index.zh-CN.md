@@ -6,7 +6,7 @@ name: Select 下拉选择器
 # Select 下拉选择器
 
 Select 组件用于从选项列表收集用户提供的信息。
-目前 Select 组件仅支持`单项选择`，更多功能敬请期待我们解锁。
+目前 Select 组件仅支持`单项选择`，多选等能力将在后续版本中提供。
 
 ## 基础用法
 
@@ -18,15 +18,15 @@ import * as React from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员'
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑'
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客'
     value: 3,
   },
 ];
@@ -54,15 +54,15 @@ import * as React from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员'
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑'
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客'
     value: 3,
   },
 ];
@@ -70,7 +70,7 @@ const options = [
 export default () => {
   return (
     <Stack alignItems="stretch" style={{ background: '#eee', padding: '50px' }}>
-      <Select placeholder="下拉选择">
+      <Select placeholder="请选择角色">
         {options.map((item, index) => (
           <SelectOption key={index} value={item.value} label={item.label} />
         ))}
@@ -90,15 +90,15 @@ import * as React from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员'
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑'
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客'
     value: 3,
   },
 ];
@@ -128,15 +128,15 @@ import React, { useRef, useState } from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员'
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑'
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客'
     value: 3,
   },
 ];
@@ -149,7 +149,7 @@ export default () => {
   return (
     <>
       {alert && (
-        <Alert color="success">{`选择器A值：${curValue || ''}; 选择器B值: ${
+        <Alert color="success">{`受控选择器值：${curValue || ''}; 非受控选择器值：${
           selectRef.current.value
         }`}</Alert>
       )}
@@ -159,7 +159,7 @@ export default () => {
         style={{ background: '#eee', padding: '50px' }}
       >
         <Select
-          placeholder="选择器A"
+          placeholder="受控选择器"
           value={curValue}
           onChange={(e, { value = '' }) => {
             setCurValue(value);
@@ -169,7 +169,7 @@ export default () => {
             <SelectOption key={index} value={item.value} label={item.label} />
           ))}
         </Select>
-        <Select placeholder="选择器B" inputRef={selectRef}>
+        <Select placeholder="非受控选择器" inputRef={selectRef}>
           {options.map((item, index) => (
             <SelectOption key={index} value={item.value} label={item.label} />
           ))}
@@ -201,15 +201,15 @@ import * as React from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员'
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑'
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客'
     value: 3,
   },
 ];
@@ -251,15 +251,15 @@ import React, { useState } from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员'
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑'
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客'
     value: 3,
   },
 ];
@@ -298,15 +298,15 @@ import { ArrowDownwardIcon } from '@bifrostui/icons';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员'
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑'
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客'
     value: 3,
   },
 ];
@@ -334,15 +334,15 @@ import * as React from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员'
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑'
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客'
     value: 3,
   },
 ];
@@ -377,15 +377,15 @@ import { SettingsOutlinedIcon } from '@bifrostui/icons';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员'
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑'
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客'
     value: 3,
   },
 ];
@@ -425,15 +425,15 @@ import React, { useState } from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员'
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑'
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客'
     value: 3,
   },
 ];
@@ -473,15 +473,15 @@ import React, { useRef } from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员'
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑'
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客'
     value: 3,
   },
 ];
@@ -524,15 +524,15 @@ import * as React from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员'
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑'
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客'
     value: 3,
   },
 ];

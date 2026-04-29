@@ -5,7 +5,7 @@ name: List 列表组件
 
 # List 列表组件
 
-列表时一组连续的文本或者图像，由主要操作跟补充操作的项目组合成，常用于数据展示。
+列表是一组连续的文字或者图像，由主操作与补充操作的项目组合而成，常用于数据展示。
 
 ## 基础用法
 
@@ -334,8 +334,8 @@ export default () => {
         <List style={{ width: '100%' }}>
           <ListItem>
             <ListItemContent
-              primary={<div>在优酷展示想看记录</div>}
-              secondary={<div>影片可在线播放时会通知提醒你</div>}
+              primary={<div>展示观看记录</div>}
+              secondary={<div>根据您的观看偏好推荐相关视频</div>}
             />
             <ListItemExtra
               onClick={(e) => {

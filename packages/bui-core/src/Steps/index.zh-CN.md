@@ -24,9 +24,9 @@ export default () => {
     <Stack>
       <div style={{ width: '120px' }}>
         <Steps onChange={handleChange}>
-          <Step key={1} title="第一步" />
-          <Step key={2} title="第二步" />
-          <Step key={3} title="第三步" />
+          <Step key={1} title="选择活动" />
+          <Step key={2} title="创建内容" />
+          <Step key={3} title="发布上线" />
         </Steps>
       </div>
     </Stack>
@@ -46,9 +46,9 @@ export default () => {
   return (
     <Stack>
       <Steps direction="horizontal">
-        <Step key={1} title="第一步" />
-        <Step key={2} title="第二步" />
-        <Step key={3} title="第三步" />
+        <Step key={1} title="选择活动" />
+        <Step key={2} title="创建内容" />
+        <Step key={3} title="发布上线" />
       </Steps>
     </Stack>
   );
@@ -67,14 +67,14 @@ export default () => {
   return (
     <Stack>
       <Steps>
-        <Step key={1} title="第一步" subtitle="副标题 1" />
-        <Step key={2} title="第二步" subtitle="副标题 2" />
-        <Step key={3} title="第三步" subtitle="副标题 3" />
+        <Step key={1} title="选择活动" subtitle="选定目标受众" />
+        <Step key={2} title="创建内容" subtitle="上传创意素材" />
+        <Step key={3} title="发布上线" subtitle="审批活动" />
       </Steps>
       <Steps labelPlacement="vertical">
-        <Step key={1} title="第一步" subtitle="副标题 1" />
-        <Step key={2} title="第二步" subtitle="副标题 2" />
-        <Step key={3} title="第三步" subtitle="副标题 3" />
+        <Step key={1} title="选择活动" subtitle="选定目标受众" />
+        <Step key={2} title="创建内容" subtitle="上传创意素材" />
+        <Step key={3} title="发布上线" subtitle="审批活动" />
       </Steps>
     </Stack>
   );
@@ -95,27 +95,27 @@ export default () => {
       <Steps>
         <Step
           key={1}
-          title="标题 1"
-          subtitle="副标题 1"
-          description="这是一段描述文案"
+          title="选择活动"
+          subtitle="选定目标受众"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={2}
-          title="标题 2"
-          subtitle="副标题 2"
-          description="这是一段描述文案"
+          title="创建内容"
+          subtitle="上传创意素材"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={3}
-          title="标题 3"
-          subtitle="副标题 3"
-          description="这是一段描述文案"
+          title="审核确认"
+          subtitle="审批活动"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={4}
-          title="标题 4"
-          subtitle="副标题 4"
-          description="这是一段描述文案"
+          title="发布上线"
+          subtitle="正式上线"
+          description="配置当前步骤的详细项。"
         />
       </Steps>
     </Stack>
@@ -137,31 +137,31 @@ export default () => {
       <Steps>
         <Step
           key={1}
-          title="标题 1"
-          subtitle="副标题 1"
+          title="选择活动"
+          subtitle="选定目标受众"
           status="error"
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={2}
-          title="标题 2"
-          subtitle="副标题 2"
+          title="创建内容"
+          subtitle="上传创意素材"
           status="finish"
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={3}
-          title="标题 3"
-          subtitle="副标题 3"
+          title="审核确认"
+          subtitle="审批活动"
           status="active"
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={4}
-          title="标题 4"
-          subtitle="副标题 4"
+          title="发布上线"
+          subtitle="正式上线"
           status="wait"
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
         />
       </Steps>
     </Stack>
@@ -189,34 +189,34 @@ export default () => {
       <Steps>
         <Step
           key={1}
-          title="标题 1"
-          subtitle="副标题 1"
+          title="选择活动"
+          subtitle="选定目标受众"
           icon={<HeartFilledIcon color="primary" />}
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={2}
-          title="标题 2"
-          subtitle="副标题 2"
+          title="创建内容"
+          subtitle="上传创意素材"
           status="active"
           icon={<LocationFilledIcon color="primary" />}
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={3}
-          title="标题 3"
-          subtitle="副标题 3"
+          title="审核确认"
+          subtitle="审批活动"
           status="error"
           icon={<ErrorCircleOutlinedIcon color="primary" />}
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={4}
-          title="标题 4"
-          subtitle="副标题 4"
+          title="发布上线"
+          subtitle="正式上线"
           status="wait"
           icon={<AccessTimeCircleFilledIcon color="primary" />}
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
         />
       </Steps>
     </Stack>
@@ -226,7 +226,7 @@ export default () => {
 
 ## 禁用点击
 
-通过`disabled`使步骤台不可点击
+通过`disabled`使步骤条不可点击
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
@@ -242,17 +242,17 @@ export default () => {
       <Steps direction="horizontal" current={1} onChange={handleChange}>
         <Step
           key={1}
-          title="第一步"
+          title="选择活动"
           status="error"
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
           disabled
         />
-        <Step key={2} title="第二步" />
+        <Step key={2} title="创建内容" />
         <Step
           key={3}
-          title="第三步"
-          subtitle="副标题 3"
-          description="这是一段描述文案"
+          title="发布上线"
+          subtitle="审批活动"
+          description="配置当前步骤的详细项。"
           disabled
         />
       </Steps>
@@ -284,19 +284,19 @@ const detail = () => {
         }}
       >
         <div>
-          <span style={{ color: '#5F6672' }}>退票电影</span>
+          <span style={{ color: '#5F6672' }}>退货商品</span>
           <span style={{ color: '#2E333E', paddingLeft: '20px' }}>
-            复仇者联盟3（3张）
+            无线鼠标 × 3
           </span>
         </div>
         <div>
-          <span style={{ color: '#5F6672' }}>退票金额</span>
-          <span style={{ color: '#2E333E', paddingLeft: '20px' }}>38.9元</span>
+          <span style={{ color: '#5F6672' }}>退款金额</span>
+          <span style={{ color: '#2E333E', paddingLeft: '20px' }}>¥199.00</span>
         </div>
         <div>
-          <span style={{ color: '#5F6672' }}>服务费</span>
+          <span style={{ color: '#5F6672' }}>手续费</span>
           <span style={{ color: '#2E333E', paddingLeft: '34px' }}>
-            4元（影院、淘票票收取）
+            ¥10.00（平台处理费）
           </span>
         </div>
       </div>
@@ -309,21 +309,21 @@ export default () => {
     <Steps labelPlacement="vertical">
       <Step
         key={1}
-        title="退款申请 已提交"
-        subtitle="2021-03-30 19:00 "
+        title="退款申请已提交"
+        subtitle="2024-04-29 19:00"
         description={detail()}
       />
       <Step
         key={2}
-        title="退款申请 已提交"
-        subtitle="2021-03-30 19:08 "
-        description="正在处理退款申请，预计1-3天原路返回至你的付款账户。"
+        title="退款处理中"
+        subtitle="2024-04-29 19:08"
+        description="正在处理退款申请，预计 1-3 个工作日原路返回付款账户。"
       />
       <Step
         key={3}
         title="退款完成"
-        subtitle="2021-03-30 19:08 "
-        description="退款到账后，将结束本次退款流程。"
+        subtitle="2024-04-29 19:15"
+        description="退款已到账，本次退款流程已结束。"
       />
     </Steps>
   );
@@ -349,9 +349,9 @@ export default () => {
             '--step-line-padding': '36px 0 0 0',
           }}
         >
-          <Step key={1} title="第一步" />
-          <Step key={2} title="第二步" />
-          <Step key={3} title="第三步" />
+          <Step key={1} title="选择活动" />
+          <Step key={2} title="创建内容" />
+          <Step key={3} title="发布上线" />
         </Steps>
       </div>
     </Stack>
