@@ -1,5 +1,5 @@
 // useDomCss.test.js
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import useDomCss from '../index'; // 根据实际路径调整这里的导入
 
 // 模拟`@bifrostui/utils`中的useDomReadied

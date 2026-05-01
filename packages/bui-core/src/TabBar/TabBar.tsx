@@ -29,7 +29,7 @@ const TabBar = React.forwardRef<HTMLDivElement, TabBarProps>((props, ref) => {
     >
       <div ref={ref} className={clsx(`${prefixCls}`, className)} {...others}>
         {React.Children.toArray(children).map(
-          (item: React.ReactElement, index) => {
+          (item: React.ReactElement<any>, index) => {
             return React.cloneElement(item, {
               index,
             });

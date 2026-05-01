@@ -28,9 +28,9 @@ const ThemeProvider = React.forwardRef<HTMLDivElement, ThemeProviderProps>(
     let childrenNode = children;
 
     if (!isRoot && React.isValidElement(children)) {
-      childrenNode = React.cloneElement(children as React.ReactElement, {
+      childrenNode = React.cloneElement(children as React.ReactElement<any>, {
         className:
-          `${containerId} ${(children as React.ReactElement)?.props?.className || ''}`.trim(),
+          `${containerId} ${(children.props as any)?.className || ''}`.trim(),
       });
     }
 

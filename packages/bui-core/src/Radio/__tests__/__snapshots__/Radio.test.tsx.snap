@@ -8,7 +8,6 @@ exports[`Radio > Radio label placement > label should on the bottom 1`] = `
   <input
     class="bui-radio-input"
     type="radio"
-    value=""
   />
   <div
     class="bui-radio-icon"
@@ -54,7 +53,6 @@ exports[`Radio > Radio label placement > label should on the left 1`] = `
   <input
     class="bui-radio-input"
     type="radio"
-    value=""
   />
   <div
     class="bui-radio-icon"
@@ -100,7 +98,6 @@ exports[`Radio > Radio label placement > label should on the right 1`] = `
   <input
     class="bui-radio-input"
     type="radio"
-    value=""
   />
   <div
     class="bui-radio-icon"
@@ -146,7 +143,6 @@ exports[`Radio > Radio label placement > label should on the top 1`] = `
   <input
     class="bui-radio-input"
     type="radio"
-    value=""
   />
   <div
     class="bui-radio-icon"

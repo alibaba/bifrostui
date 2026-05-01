@@ -32,7 +32,7 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       if (inProp) return appear ? EXITED : ENTERED;
       return mountOnEnter || unmountOnExit ? UNMOUNTED : EXITED;
     });
-    const innerNodeRef = useRef();
+    const innerNodeRef = useRef<HTMLElement>(null);
     const nodeRef = useForkRef(innerNodeRef, ref);
     const timeout =
       typeof _timeout === 'object'
@@ -174,12 +174,17 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
     }, [inProp]);
 
     if (status === UNMOUNTED) return null;
-    return typeof children === 'function'
-      ? children(status as TransitionStatus, { ...childProps, ref: nodeRef })
-      : React.cloneElement(React.Children.only(children), {
-          ...childProps,
-          ref: nodeRef,
-        });
+    if (typeof children === 'function') {
+      return children(status as TransitionStatus, {
+        ...childProps,
+        ref: nodeRef,
+      });
+    }
+    const onlyChild = React.Children.only(children) as React.ReactElement<any>;
+    return React.cloneElement(onlyChild, {
+      ...childProps,
+      ref: nodeRef,
+    } as any);
   },
 );
 

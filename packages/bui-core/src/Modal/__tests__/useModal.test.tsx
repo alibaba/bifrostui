@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { renderHook } from 'testing';
+import { renderHook, act } from 'testing';
 import { useModal } from '../useModal';
 
 // Mock ModalManager - 直接在mock内部定义，避免变量提升问题
@@ -146,7 +146,9 @@ describe('useModal', () => {
       const transitionProps = result.current.getTransitionProps();
 
       // Call onExited
-      transitionProps.onExited();
+      act(() => {
+        transitionProps.onExited();
+      });
 
       // Should be true
       expect(result.current.exited).toBe(true);

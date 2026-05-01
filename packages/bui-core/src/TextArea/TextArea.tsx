@@ -163,7 +163,7 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
             triggerChange(e, e.target.value);
             textareaProps?.onChange?.(e);
           }}
-          onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+          onInput={(e: any) => {
             // 小程序中无onChange事件，通过onInput模拟
             if (showCount) {
               const remaining = maxLength - e.target.value.length;

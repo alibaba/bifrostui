@@ -22,12 +22,13 @@ const Steps = forwardRef<HTMLDivElement, StepsProps>(
   ) => {
     const renderStep = () => {
       return toArray(children).map((child, index) => {
-        const childProps = {
+        const typedChild = child as React.ReactElement<any>;
+        const childProps: Record<string, any> = {
           key: index,
-          ...child.props,
+          ...typedChild.props,
         };
 
-        if (!child.props.status) {
+        if (!typedChild.props.status) {
           if (index === current) {
             childProps.status = 'active';
           } else if (index < current) {
@@ -37,7 +38,7 @@ const Steps = forwardRef<HTMLDivElement, StepsProps>(
           }
         }
 
-        return cloneElement(child, childProps);
+        return cloneElement(typedChild, childProps);
       });
     };
 

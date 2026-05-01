@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import useDomReady from '../index'; // Adjust the import path according to your file structure
 
 describe('useDomReadiad', () => {

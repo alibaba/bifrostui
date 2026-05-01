@@ -58,15 +58,17 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       >
         {/* 小程序中svgIcon不能继承父元素的color */}
         {isMini && React.isValidElement(children)
-          ? React.cloneElement(children, {
+          ? React.cloneElement(children as React.ReactElement<any>, {
               ...(!isContainedVariant && {
-                color: children.props?.color || color,
+                color: (children.props as any)?.color || color,
                 htmlColor:
-                  children.props?.htmlColor || 'var(--bui-color-fg-subtle)',
+                  (children.props as any)?.htmlColor ||
+                  'var(--bui-color-fg-subtle)',
               }),
               ...(isContainedVariant && {
                 htmlColor:
-                  children.props?.htmlColor || 'var(--bui-color-white)',
+                  (children.props as any)?.htmlColor ||
+                  'var(--bui-color-white)',
               }),
             })
           : children}

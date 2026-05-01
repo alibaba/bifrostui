@@ -7,7 +7,6 @@ exports[`Input > should render end icon 1`] = `
   <input
     class="bui-input-input"
     type="text"
-    value=""
   />
   <div
     class="bui-input-icon bui-input-icon-end"
@@ -27,7 +26,6 @@ exports[`Input > should render placeholder 1`] = `
   class="bui-input-input"
   placeholder="请输入内容"
   type="text"
-  value=""
 />
 `;
 
@@ -47,7 +45,6 @@ exports[`Input > should render start icon 1`] = `
   <input
     class="bui-input-input"
     type="text"
-    value=""
   />
 </div>
 `;

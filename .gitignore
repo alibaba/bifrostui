@@ -25,7 +25,6 @@ yarn.lock
 coverage/
 *.history
 .node
-.vscode
 
 
 .dumi/tmp
@@ -40,7 +39,6 @@ backstop_data/html_report
 
 /.ci
 /.dumi/tmp
-/.vscode
 /inspect.json
 /inspect.html
 

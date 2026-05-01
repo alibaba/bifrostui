@@ -18,15 +18,15 @@ import * as React from 'react';
 
 const options = [
   {
-    label: '管理员'
+    label: '管理员',
     value: 1,
   },
   {
-    label: '编辑'
+    label: '编辑',
     value: 2,
   },
   {
-    label: '访客'
+    label: '访客',
     value: 3,
   },
 ];
@@ -54,15 +54,15 @@ import * as React from 'react';
 
 const options = [
   {
-    label: '管理员'
+    label: '管理员',
     value: 1,
   },
   {
-    label: '编辑'
+    label: '编辑',
     value: 2,
   },
   {
-    label: '访客'
+    label: '访客',
     value: 3,
   },
 ];
@@ -90,15 +90,15 @@ import * as React from 'react';
 
 const options = [
   {
-    label: '管理员'
+    label: '管理员',
     value: 1,
   },
   {
-    label: '编辑'
+    label: '编辑',
     value: 2,
   },
   {
-    label: '访客'
+    label: '访客',
     value: 3,
   },
 ];
@@ -128,15 +128,15 @@ import React, { useRef, useState } from 'react';
 
 const options = [
   {
-    label: '管理员'
+    label: '管理员',
     value: 1,
   },
   {
-    label: '编辑'
+    label: '编辑',
     value: 2,
   },
   {
-    label: '访客'
+    label: '访客',
     value: 3,
   },
 ];
@@ -201,15 +201,15 @@ import * as React from 'react';
 
 const options = [
   {
-    label: '管理员'
+    label: '管理员',
     value: 1,
   },
   {
-    label: '编辑'
+    label: '编辑',
     value: 2,
   },
   {
-    label: '访客'
+    label: '访客',
     value: 3,
   },
 ];
@@ -251,15 +251,15 @@ import React, { useState } from 'react';
 
 const options = [
   {
-    label: '管理员'
+    label: '管理员',
     value: 1,
   },
   {
-    label: '编辑'
+    label: '编辑',
     value: 2,
   },
   {
-    label: '访客'
+    label: '访客',
     value: 3,
   },
 ];
@@ -298,15 +298,15 @@ import { ArrowDownwardIcon } from '@bifrostui/icons';
 
 const options = [
   {
-    label: '管理员'
+    label: '管理员',
     value: 1,
   },
   {
-    label: '编辑'
+    label: '编辑',
     value: 2,
   },
   {
-    label: '访客'
+    label: '访客',
     value: 3,
   },
 ];
@@ -334,15 +334,15 @@ import * as React from 'react';
 
 const options = [
   {
-    label: '管理员'
+    label: '管理员',
     value: 1,
   },
   {
-    label: '编辑'
+    label: '编辑',
     value: 2,
   },
   {
-    label: '访客'
+    label: '访客',
     value: 3,
   },
 ];
@@ -377,15 +377,15 @@ import { SettingsOutlinedIcon } from '@bifrostui/icons';
 
 const options = [
   {
-    label: '管理员'
+    label: '管理员',
     value: 1,
   },
   {
-    label: '编辑'
+    label: '编辑',
     value: 2,
   },
   {
-    label: '访客'
+    label: '访客',
     value: 3,
   },
 ];
@@ -425,15 +425,15 @@ import React, { useState } from 'react';
 
 const options = [
   {
-    label: '管理员'
+    label: '管理员',
     value: 1,
   },
   {
-    label: '编辑'
+    label: '编辑',
     value: 2,
   },
   {
-    label: '访客'
+    label: '访客',
     value: 3,
   },
 ];
@@ -473,15 +473,15 @@ import React, { useRef } from 'react';
 
 const options = [
   {
-    label: '管理员'
+    label: '管理员',
     value: 1,
   },
   {
-    label: '编辑'
+    label: '编辑',
     value: 2,
   },
   {
-    label: '访客'
+    label: '访客',
     value: 3,
   },
 ];
@@ -524,15 +524,15 @@ import * as React from 'react';
 
 const options = [
   {
-    label: '管理员'
+    label: '管理员',
     value: 1,
   },
   {
-    label: '编辑'
+    label: '编辑',
     value: 2,
   },
   {
-    label: '访客'
+    label: '访客',
     value: 3,
   },
 ];

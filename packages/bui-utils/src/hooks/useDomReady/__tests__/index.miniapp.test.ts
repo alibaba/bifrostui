@@ -1,6 +1,6 @@
 // useDomReady.test.ts
 import Taro from '@tarojs/taro';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import useDomReady from '../index.miniapp'; // 根据实际路径调整
 
 // Mock Taro的useReady和nextTick方法

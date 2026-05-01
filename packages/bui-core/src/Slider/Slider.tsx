@@ -62,11 +62,11 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const handleRef = useForkRef(ref, setRootRef);
 
   // Slider BoundingClientRect
-  const sliderRect = useRef<Record<string, any>>();
+  const sliderRect = useRef<Record<string, any>>(null);
   // 滑动开始距离文档X轴原点距离
-  const touchStartPageX = useRef<number>();
+  const touchStartPageX = useRef<number>(0);
   // 按钮在滑动开始时距离左边的距离
-  const touchStartLeft = useRef<number>();
+  const touchStartLeft = useRef<number>(0);
   // 记录操作按钮
   const buttonIndex = useRef(0);
   // 记录双滑块touchMove之前的值

@@ -192,12 +192,12 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const getTransitionProps = useCallback(() => {
     const handleEnter = () => {
       setExited(false);
-      children?.props?.onEnter?.();
+      (children?.props as any)?.onEnter?.();
     };
 
     const handleExited = () => {
       setExited(true);
-      children?.props?.onExited?.();
+      (children?.props as any)?.onExited?.();
     };
 
     return {

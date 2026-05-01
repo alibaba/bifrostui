@@ -30,7 +30,7 @@ describe('Avatar', () => {
       );
       const { container } = render(component);
 
-      expect(screen.getByRole('img')).toHaveAttribute(
+      expect(container.querySelector('img')).toHaveAttribute(
         'src',
         'https://gw.alicdn.com/imgextra/i3/O1CN01tp2YUs1WFD8lboMDu_!!6000000002758-2-tps-126-126.png',
       );
@@ -65,23 +65,23 @@ describe('Avatar', () => {
 
   describe('prop: ImageProps', () => {
     it('should apply ImageProps correctly', () => {
-      render(
+      const { container } = render(
         <Avatar src="https://not.exists.image/" ImageProps={{ fit: 'fill' }} />,
       );
-      expect(screen.getByRole('img').style.objectFit).toBe('fill');
+      expect(container.querySelector('img').style.objectFit).toBe('fill');
     });
   });
 
   it.each(['contain', 'cover', 'fill', 'none', 'scale-down'] as const)(
     'renders with different fit modes',
     async (fit) => {
-      render(
+      const { container } = render(
         <Avatar
           src="https://gw.alicdn.com/imgextra/i3/O1CN01tp2YUs1WFD8lboMDu_!!6000000002758-2-tps-126-126.png"
           fit={fit}
         />,
       );
-      expect(screen.getByRole('img').style.objectFit === fit);
+      expect(container.querySelector('img').style.objectFit === fit);
     },
   );
 

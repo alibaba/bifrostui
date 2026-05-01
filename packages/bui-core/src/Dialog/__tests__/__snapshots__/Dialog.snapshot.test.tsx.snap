@@ -1,249 +1,171 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Dialog snapshot > Dialog demo snapshot 0 1`] = `
-<div
-  className="bui-stack"
-  style={
-    {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
+<div>
+  <div
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 10px; --flex-wrap: nowrap;"
   >
-    打开对话框
-  </button>
+    <button
+      class="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      打开对话框
+    </button>
+  </div>
 </div>
 `;
 
 exports[`Dialog snapshot > Dialog demo snapshot 0 2`] = `
-<div
-  className="bui-stack"
-  style={
-    {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
+<div>
+  <div
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 10px; --flex-wrap: nowrap;"
   >
-    确认对话框
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    警告对话框
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    输入对话框
-  </button>
+    <button
+      class="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      确认对话框
+    </button>
+    <button
+      class="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      警告对话框
+    </button>
+    <button
+      class="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      输入对话框
+    </button>
+  </div>
 </div>
 `;
 
 exports[`Dialog snapshot > Dialog demo snapshot 0 3`] = `
-<div
-  className="bui-stack"
-  style={
-    {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
+<div>
+  <div
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 10px; --flex-wrap: nowrap;"
   >
-    自定义内容
-  </button>
+    <button
+      class="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      自定义内容
+    </button>
+  </div>
 </div>
 `;
 
 exports[`Dialog snapshot > Dialog demo snapshot 0 4`] = `
-<div
-  className="bui-stack"
-  style={
-    {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
+<div>
+  <div
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 10px; --flex-wrap: nowrap;"
   >
-    确认对话框
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    输入对话框
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    警告对话框
-  </button>
+    <button
+      class="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      确认对话框
+    </button>
+    <button
+      class="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      输入对话框
+    </button>
+    <button
+      class="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      警告对话框
+    </button>
+  </div>
 </div>
 `;
 
 exports[`Dialog snapshot > Dialog demo snapshot 0 5`] = `
-<div
-  className="bui-stack"
-  style={
-    {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
+<div>
+  <div
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 10px; --flex-wrap: nowrap;"
   >
-    调用Dialog返回 Promise
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    回调函数传入Promise
-  </button>
+    <button
+      class="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      调用Dialog返回 Promise
+    </button>
+    <button
+      class="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      回调函数传入Promise
+    </button>
+  </div>
 </div>
 `;
 
 exports[`Dialog snapshot > Dialog demo snapshot 0 6`] = `
-<div
-  className="bui-stack"
-  style={
-    {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
+<div>
+  <div
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 10px; --flex-wrap: nowrap;"
   >
-    确认对话框
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    输入对话框
-  </button>
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    警告对话框
-  </button>
+    <button
+      class="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      确认对话框
+    </button>
+    <button
+      class="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      输入对话框
+    </button>
+    <button
+      class="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      警告对话框
+    </button>
+  </div>
 </div>
 `;
 
 exports[`Dialog snapshot > Dialog demo snapshot 0 7`] = `
-<div
-  className="bui-stack"
-  style={
-    {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
+<div>
+  <div
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 10px; --flex-wrap: nowrap;"
   >
-    显示用户信息
-  </button>
+    <button
+      class="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      显示用户信息
+    </button>
+  </div>
 </div>
 `;
 
 exports[`Dialog snapshot > Dialog demo snapshot 0 8`] = `
-<div
-  className="bui-stack"
-  style={
-    {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
-  <button
-    className="bui-btn bui-btn-outlined bui-btn-medium"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
+<div>
+  <div
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 10px; --flex-wrap: nowrap;"
   >
-    自定义样式
-  </button>
+    <button
+      class="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      自定义样式
+    </button>
+  </div>
 </div>
 `;

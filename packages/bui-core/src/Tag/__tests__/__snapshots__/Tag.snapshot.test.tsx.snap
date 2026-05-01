@@ -1,568 +1,440 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Tag snapshot > Tag demo snapshot 0 1`] = `
-<div
-  className="bui-stack"
-  style={
-    {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
+<div>
   <div
-    className="bui-tag bui-tag-outlined bui-tag-neutral"
-    style={{}}
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 10px; --flex-wrap: nowrap;"
   >
-    默认标签
-  </div>
-  <div
-    className="bui-tag bui-tag-contained bui-tag-neutral"
-    style={{}}
-  >
-    填充标签
-  </div>
-  <div
-    className="bui-tag bui-tag-subtle bui-tag-neutral"
-    style={{}}
-  >
-    浅亮标签
+    <div
+      class="bui-tag bui-tag-outlined bui-tag-neutral"
+    >
+      默认标签
+    </div>
+    <div
+      class="bui-tag bui-tag-contained bui-tag-neutral"
+    >
+      填充标签
+    </div>
+    <div
+      class="bui-tag bui-tag-subtle bui-tag-neutral"
+    >
+      浅亮标签
+    </div>
   </div>
 </div>
 `;
 
 exports[`Tag snapshot > Tag demo snapshot 0 2`] = `
-<div
-  className="bui-stack"
-  style={
-    {
-      "--align-items": "center",
-      "--flex-direction": "column",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-      "background": "var(--bui-color-bg-default)",
-      "borderRadius": "var(--bui-shape-radius-card)",
-      "padding": "24px",
-    }
-  }
->
+<div>
   <div
-    className="bui-stack"
-    style={
-      {
-        "--align-items": "center",
-        "--flex-direction": "row",
-        "--flex-wrap": "nowrap",
-        "--justify-content": "center",
-        "--spacing": "10px",
-      }
-    }
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: column; --spacing: 10px; --flex-wrap: nowrap; border-radius: var(--bui-shape-radius-card); padding: 24px;"
   >
     <div
-      className="bui-tag bui-tag-outlined bui-tag-primary"
-      style={{}}
+      class="bui-stack"
+      style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 10px; --flex-wrap: nowrap;"
     >
-      限时特价
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-primary"
+      >
+        限时特价
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-info"
+      >
+        音乐剧
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-success"
+      >
+        音乐剧
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-warning"
+      >
+        点映
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-danger"
+      >
+        限时优惠
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-purple"
+      >
+        优惠
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-light"
+      >
+        优惠
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-dark"
+      >
+        优惠
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-vip"
+      >
+        会员
+      </div>
     </div>
     <div
-      className="bui-tag bui-tag-outlined bui-tag-info"
-      style={{}}
+      class="bui-stack"
+      style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 10px; --flex-wrap: nowrap;"
     >
-      音乐剧
+      <div
+        class="bui-tag bui-tag-contained bui-tag-primary"
+      >
+        早鸟优惠
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-info"
+      >
+        音乐剧
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-success"
+      >
+        影城卡
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-warning"
+      >
+        点映
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-danger"
+      >
+        限时优惠
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-purple"
+      >
+        优惠
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-light"
+      >
+        优惠
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-dark"
+      >
+        优惠
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-vip"
+      >
+        会员
+      </div>
     </div>
     <div
-      className="bui-tag bui-tag-outlined bui-tag-success"
-      style={{}}
+      class="bui-stack"
+      style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 10px; --flex-wrap: nowrap;"
     >
-      音乐剧
-    </div>
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-warning"
-      style={{}}
-    >
-      点映
-    </div>
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-danger"
-      style={{}}
-    >
-      限时优惠
-    </div>
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-purple"
-      style={{}}
-    >
-      优惠
-    </div>
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-light"
-      style={{}}
-    >
-      优惠
-    </div>
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-dark"
-      style={{}}
-    >
-      优惠
-    </div>
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-vip"
-      style={{}}
-    >
-      会员
-    </div>
-  </div>
-  <div
-    className="bui-stack"
-    style={
-      {
-        "--align-items": "center",
-        "--flex-direction": "row",
-        "--flex-wrap": "nowrap",
-        "--justify-content": "center",
-        "--spacing": "10px",
-      }
-    }
-  >
-    <div
-      className="bui-tag bui-tag-contained bui-tag-primary"
-      style={{}}
-    >
-      早鸟优惠
-    </div>
-    <div
-      className="bui-tag bui-tag-contained bui-tag-info"
-      style={{}}
-    >
-      音乐剧
-    </div>
-    <div
-      className="bui-tag bui-tag-contained bui-tag-success"
-      style={{}}
-    >
-      影城卡
-    </div>
-    <div
-      className="bui-tag bui-tag-contained bui-tag-warning"
-      style={{}}
-    >
-      点映
-    </div>
-    <div
-      className="bui-tag bui-tag-contained bui-tag-danger"
-      style={{}}
-    >
-      限时优惠
-    </div>
-    <div
-      className="bui-tag bui-tag-contained bui-tag-purple"
-      style={{}}
-    >
-      优惠
-    </div>
-    <div
-      className="bui-tag bui-tag-contained bui-tag-light"
-      style={{}}
-    >
-      优惠
-    </div>
-    <div
-      className="bui-tag bui-tag-contained bui-tag-dark"
-      style={{}}
-    >
-      优惠
-    </div>
-    <div
-      className="bui-tag bui-tag-contained bui-tag-vip"
-      style={{}}
-    >
-      会员
-    </div>
-  </div>
-  <div
-    className="bui-stack"
-    style={
-      {
-        "--align-items": "center",
-        "--flex-direction": "row",
-        "--flex-wrap": "nowrap",
-        "--justify-content": "center",
-        "--spacing": "10px",
-      }
-    }
-  >
-    <div
-      className="bui-tag bui-tag-subtle bui-tag-primary"
-      style={{}}
-    >
-      早鸟优惠
-    </div>
-    <div
-      className="bui-tag bui-tag-subtle bui-tag-info"
-      style={{}}
-    >
-      音乐剧
-    </div>
-    <div
-      className="bui-tag bui-tag-subtle bui-tag-success"
-      style={{}}
-    >
-      影城卡
-    </div>
-    <div
-      className="bui-tag bui-tag-subtle bui-tag-warning"
-      style={{}}
-    >
-      点映
-    </div>
-    <div
-      className="bui-tag bui-tag-subtle bui-tag-danger"
-      style={{}}
-    >
-      限时优惠
-    </div>
-    <div
-      className="bui-tag bui-tag-subtle bui-tag-purple"
-      style={{}}
-    >
-      优惠
-    </div>
-    <div
-      className="bui-tag bui-tag-subtle bui-tag-light"
-      style={{}}
-    >
-      优惠
-    </div>
-    <div
-      className="bui-tag bui-tag-subtle bui-tag-dark"
-      style={{}}
-    >
-      优惠
-    </div>
-    <div
-      className="bui-tag bui-tag-subtle bui-tag-vip"
-      style={{}}
-    >
-      会员
+      <div
+        class="bui-tag bui-tag-subtle bui-tag-primary"
+      >
+        早鸟优惠
+      </div>
+      <div
+        class="bui-tag bui-tag-subtle bui-tag-info"
+      >
+        音乐剧
+      </div>
+      <div
+        class="bui-tag bui-tag-subtle bui-tag-success"
+      >
+        影城卡
+      </div>
+      <div
+        class="bui-tag bui-tag-subtle bui-tag-warning"
+      >
+        点映
+      </div>
+      <div
+        class="bui-tag bui-tag-subtle bui-tag-danger"
+      >
+        限时优惠
+      </div>
+      <div
+        class="bui-tag bui-tag-subtle bui-tag-purple"
+      >
+        优惠
+      </div>
+      <div
+        class="bui-tag bui-tag-subtle bui-tag-light"
+      >
+        优惠
+      </div>
+      <div
+        class="bui-tag bui-tag-subtle bui-tag-dark"
+      >
+        优惠
+      </div>
+      <div
+        class="bui-tag bui-tag-subtle bui-tag-vip"
+      >
+        会员
+      </div>
     </div>
   </div>
 </div>
 `;
 
 exports[`Tag snapshot > Tag demo snapshot 0 3`] = `
-<div
-  className="bui-stack"
-  style={
-    {
-      "--align-items": "center",
-      "--flex-direction": "column",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
+<div>
   <div
-    className="bui-tag bui-tag-contained bui-tag-neutral"
-    style={
-      {
-        "backgroundColor": "#69eeff",
-      }
-    }
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: column; --spacing: 10px; --flex-wrap: nowrap;"
   >
-    自定义色彩
-  </div>
-  <div
-    className="bui-tag bui-tag-subtle bui-tag-neutral"
-    style={
-      {
-        "backgroundColor": "rgba(105,238,255,0.3)",
-        "color": "#69eeff",
-      }
-    }
-  >
-    自定义色彩
-  </div>
-  <div
-    className="bui-tag bui-tag-outlined bui-tag-neutral"
-    style={
-      {
-        "borderColor": "rgba(105,238,255,0.4)",
-        "color": "#69eeff",
-      }
-    }
-  >
-    自定义色彩
+    <div
+      class="bui-tag bui-tag-contained bui-tag-neutral"
+      style="background-color: rgb(105, 238, 255);"
+    >
+      自定义色彩
+    </div>
+    <div
+      class="bui-tag bui-tag-subtle bui-tag-neutral"
+      style="color: rgb(105, 238, 255); background-color: rgba(105, 238, 255, 0.3);"
+    >
+      自定义色彩
+    </div>
+    <div
+      class="bui-tag bui-tag-outlined bui-tag-neutral"
+      style="color: rgb(105, 238, 255); border-color: rgba(105,238,255,0.4);"
+    >
+      自定义色彩
+    </div>
   </div>
 </div>
 `;
 
 exports[`Tag snapshot > Tag demo snapshot 0 4`] = `
-<div
-  className="bui-stack"
-  style={
-    {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "wrap",
-      "--justify-content": "center",
-      "--spacing": "10px",
-    }
-  }
->
+<div>
   <div
-    className="bui-tag-group"
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 10px; --flex-wrap: wrap;"
   >
     <div
-      className="bui-tag bui-tag-contained bui-tag-primary"
-      style={{}}
+      class="bui-tag-group"
     >
-      primary
+      <div
+        class="bui-tag bui-tag-contained bui-tag-primary"
+      >
+        primary
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-info"
+      >
+        info
+      </div>
     </div>
     <div
-      className="bui-tag bui-tag-contained bui-tag-info"
-      style={{}}
+      class="bui-tag-group"
     >
-      info
-    </div>
-  </div>
-  <div
-    className="bui-tag-group"
-  >
-    <div
-      className="bui-tag bui-tag-contained bui-tag-success"
-      style={{}}
-    >
-      success
+      <div
+        class="bui-tag bui-tag-contained bui-tag-success"
+      >
+        success
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-warning"
+      >
+        warning
+      </div>
     </div>
     <div
-      className="bui-tag bui-tag-outlined bui-tag-warning"
-      style={{}}
+      class="bui-tag-group"
     >
-      warning
-    </div>
-  </div>
-  <div
-    className="bui-tag-group"
-  >
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-warning"
-      style={{}}
-    >
-      warning
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-warning"
+      >
+        warning
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-success"
+      >
+        success
+      </div>
     </div>
     <div
-      className="bui-tag bui-tag-contained bui-tag-success"
-      style={{}}
+      class="bui-tag-group"
     >
-      success
-    </div>
-  </div>
-  <div
-    className="bui-tag-group"
-  >
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-primary"
-      style={{}}
-    >
-      primary
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-primary"
+      >
+        primary
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-info"
+      >
+        info
+      </div>
     </div>
     <div
-      className="bui-tag bui-tag-outlined bui-tag-info"
-      style={{}}
+      class="bui-tag-group"
     >
-      info
-    </div>
-  </div>
-  <div
-    className="bui-tag-group"
-  >
-    <div
-      className="bui-tag bui-tag-contained bui-tag-primary"
-      style={{}}
-    >
-      primary
-    </div>
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-info"
-      style={{}}
-    >
-      info
+      <div
+        class="bui-tag bui-tag-contained bui-tag-primary"
+      >
+        primary
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-info"
+      >
+        info
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-info"
+      >
+        info
+      </div>
     </div>
     <div
-      className="bui-tag bui-tag-outlined bui-tag-info"
-      style={{}}
+      class="bui-tag-group"
     >
-      info
-    </div>
-  </div>
-  <div
-    className="bui-tag-group"
-  >
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-primary"
-      style={{}}
-    >
-      primary
-    </div>
-    <div
-      className="bui-tag bui-tag-contained bui-tag-info"
-      style={{}}
-    >
-      info
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-primary"
+      >
+        primary
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-info"
+      >
+        info
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-info"
+      >
+        info
+      </div>
     </div>
     <div
-      className="bui-tag bui-tag-outlined bui-tag-info"
-      style={{}}
+      class="bui-tag-group"
     >
-      info
-    </div>
-  </div>
-  <div
-    className="bui-tag-group"
-  >
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-primary"
-      style={{}}
-    >
-      primary
-    </div>
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-info"
-      style={{}}
-    >
-      info
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-primary"
+      >
+        primary
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-info"
+      >
+        info
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-info"
+      >
+        info
+      </div>
     </div>
     <div
-      className="bui-tag bui-tag-contained bui-tag-info"
-      style={{}}
+      class="bui-tag-group"
     >
-      info
-    </div>
-  </div>
-  <div
-    className="bui-tag-group"
-  >
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-primary"
-      style={{}}
-    >
-      primary
-    </div>
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-info"
-      style={{}}
-    >
-      info
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-primary"
+      >
+        primary
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-info"
+      >
+        info
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-info"
+      >
+        info
+      </div>
     </div>
     <div
-      className="bui-tag bui-tag-outlined bui-tag-info"
-      style={{}}
+      class="bui-tag-group"
     >
-      info
-    </div>
-  </div>
-  <div
-    className="bui-tag-group"
-  >
-    <div
-      className="bui-tag bui-tag-contained bui-tag-primary"
-      style={{}}
-    >
-      primary
-    </div>
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-info"
-      style={{}}
-    >
-      info
+      <div
+        class="bui-tag bui-tag-contained bui-tag-primary"
+      >
+        primary
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-info"
+      >
+        info
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-info"
+      >
+        info
+      </div>
     </div>
     <div
-      className="bui-tag bui-tag-contained bui-tag-info"
-      style={{}}
+      class="bui-tag-group"
     >
-      info
-    </div>
-  </div>
-  <div
-    className="bui-tag-group"
-  >
-    <div
-      className="bui-tag bui-tag-contained bui-tag-primary"
-      style={{}}
-    >
-      primary
-    </div>
-    <div
-      className="bui-tag bui-tag-contained bui-tag-info"
-      style={{}}
-    >
-      info
+      <div
+        class="bui-tag bui-tag-contained bui-tag-primary"
+      >
+        primary
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-info"
+      >
+        info
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-info"
+      >
+        info
+      </div>
     </div>
     <div
-      className="bui-tag bui-tag-contained bui-tag-info"
-      style={{}}
+      class="bui-tag-group"
     >
-      info
-    </div>
-  </div>
-  <div
-    className="bui-tag-group"
-  >
-    <div
-      className="bui-tag bui-tag-contained bui-tag-primary"
-      style={{}}
-    >
-      primary
-    </div>
-    <div
-      className="bui-tag bui-tag-contained bui-tag-info"
-      style={{}}
-    >
-      info
+      <div
+        class="bui-tag bui-tag-contained bui-tag-primary"
+      >
+        primary
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-info"
+      >
+        info
+      </div>
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-info"
+      >
+        info
+      </div>
     </div>
     <div
-      className="bui-tag bui-tag-outlined bui-tag-info"
-      style={{}}
+      class="bui-tag-group"
     >
-      info
-    </div>
-  </div>
-  <div
-    className="bui-tag-group"
-  >
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-primary"
-      style={{}}
-    >
-      primary
-    </div>
-    <div
-      className="bui-tag bui-tag-contained bui-tag-info"
-      style={{}}
-    >
-      info
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-primary"
+      >
+        primary
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-info"
+      >
+        info
+      </div>
+      <div
+        class="bui-tag bui-tag-contained bui-tag-info"
+      >
+        info
+      </div>
     </div>
     <div
-      className="bui-tag bui-tag-contained bui-tag-info"
-      style={{}}
+      class="bui-tag-group"
     >
-      info
-    </div>
-  </div>
-  <div
-    className="bui-tag-group"
-  >
-    <div
-      className="bui-tag bui-tag-outlined bui-tag-warning"
-      style={{}}
-    >
-      warning
+      <div
+        class="bui-tag bui-tag-outlined bui-tag-warning"
+      >
+        warning
+      </div>
     </div>
   </div>
 </div>

@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 
 export default () => {
   const [open, setOpen] = useState(true);
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
   return (
     <Stack>
       <Button

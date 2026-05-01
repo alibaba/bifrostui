@@ -12,8 +12,8 @@ describe('Image', () => {
       <Image src={src} fit="contain" width={100} height={100} />,
     );
     const [wrapper] = [...container.getElementsByClassName(classPrefix)];
-    const image = screen.getByRole('img');
-    fireEvent.load(screen.getByRole('img'));
+    const image = container.querySelector('img');
+    fireEvent.load(image);
     await waitFor(() => {
       expect(wrapper).toContainElement(image);
       expect(image).toHaveAttribute('src', src);
@@ -38,8 +38,10 @@ describe('Image', () => {
         | 'widthFix'
         | 'heightFix',
     ) => {
-      render(<Image src={src} fit={fit} width={100} height={100} />);
-      expect(screen.getByRole('img').style.objectFit === fit);
+      const { container } = render(
+        <Image src={src} fit={fit} width={100} height={100} />,
+      );
+      expect(container.querySelector('img').style.objectFit === fit);
     },
   );
 
@@ -59,7 +61,7 @@ describe('Image', () => {
   });
   it('should call onLoad callback', async () => {
     const onLoad = vi.fn();
-    render(
+    const { container } = render(
       <Image
         src={src}
         fit="contain"
@@ -68,12 +70,12 @@ describe('Image', () => {
         onLoad={onLoad}
       />,
     );
-    fireEvent.load(screen.getByRole('img'));
+    fireEvent.load(container.querySelector('img'));
     expect(onLoad).toHaveBeenCalled();
   });
   it('should call onError callback', async () => {
     const onError = vi.fn();
-    render(
+    const { container } = render(
       <Image
         src={src}
         fit="contain"
@@ -82,12 +84,13 @@ describe('Image', () => {
         onError={onError}
       />,
     );
-    fireEvent.error(screen.getByRole('img'));
+    fireEvent.error(container.querySelector('img'));
     expect(onError).toHaveBeenCalled();
   });
+
   it('should call onClick', async () => {
     const onClick = vi.fn();
-    render(
+    const { container } = render(
       <Image
         src={src}
         fit="contain"
@@ -96,12 +99,15 @@ describe('Image', () => {
         onClick={onClick}
       />,
     );
-    await userEvent.click(screen.getByRole('img'));
+    await userEvent.click(container.querySelector('img'));
     expect(onClick).toHaveBeenCalled();
   });
+
   it('supports vanilla lazyload', async () => {
     global.HTMLImageElement.prototype.loading = 'eager';
-    render(<Image src={src} fit="contain" width={100} height={100} lazy />);
-    expect(screen.getByRole('img')).toHaveAttribute('loading', 'lazy');
+    const { container } = render(
+      <Image src={src} fit="contain" width={100} height={100} lazy />,
+    );
+    expect(container.querySelector('img')).toHaveAttribute('loading', 'lazy');
   });
 });

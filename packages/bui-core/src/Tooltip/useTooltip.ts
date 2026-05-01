@@ -59,7 +59,7 @@ export function useTooltip(
   const controlByUser = typeof open !== 'undefined';
   const { direction, location = 'center' } = parsePlacement(placement);
 
-  const childrenRef = useRef<Element>();
+  const childrenRef = useRef<Element>(null);
   const [openStatus, setOpenStatus] = useState(defaultOpen);
   const [arrowDirection, setArrowDirection] = useState(direction);
   const [arrowLocation, setArrowLocation] = useState(location);

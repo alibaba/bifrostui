@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { vi } from 'vitest';
-import { render, waitFor } from 'testing';
+import { render, waitFor, act } from 'testing';
 
 describe('Fade.miniapp', () => {
   let FadeMiniapp: any;
@@ -741,11 +741,15 @@ describe('Fade.miniapp', () => {
       render(<TestComponent />);
 
       // Advance to first in prop change (false -> true)
-      await vi.advanceTimersByTimeAsync(160);
+      await act(async () => {
+        await vi.advanceTimersByTimeAsync(160);
+      });
       expect(onEnter).toHaveBeenCalled();
 
       // Advance to second in prop change (true -> false)
-      await vi.advanceTimersByTimeAsync(150);
+      await act(async () => {
+        await vi.advanceTimersByTimeAsync(150);
+      });
       expect(onExit).toHaveBeenCalled();
 
       // onEnter should be called exactly once (when in changes from false to true)

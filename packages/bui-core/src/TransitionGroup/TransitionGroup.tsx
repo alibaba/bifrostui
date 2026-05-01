@@ -32,7 +32,7 @@ const TransitionGroup = (props: TransitionGroupProps) => {
 
   // 将 handleExited 定义为 useRef，以保持引用稳定
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleExitedRef = useRef((child: ReactElement, node: any) => {
+  const handleExitedRef = useRef((child: ReactElement<any>, node: any) => {
     const currentChildMapping = getChildMapping(children);
 
     if (child.key in currentChildMapping) return;

@@ -66,7 +66,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     inputProps?.onChange?.(e);
   };
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInput = (e: any) => {
     // 小程序中input实际有onChange事件，但文档没有标明，故统一通过onInput模拟
     if (isMini) {
       triggerChange(e, e.target.value);

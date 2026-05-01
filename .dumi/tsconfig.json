@@ -1,20 +1,21 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "..",
     "paths": {
-      "@@/*": [".dumi/tmp/*"],
-      "dumi": [".dumi/tmp/dumi/exports.ts"],
-      "dumi/theme/slots/*": [".dumi/theme/slots/*"],
-      "@/*": ["node_modules/dumi/dist/*"],
-      "@bifrostui/react": ["packages/bui-core/src/index.ts"],
-      "@bifrostui/react/*": ["packages/bui-core/src/*"],
-      "@bifrostui/icons": ["packages/bui-icons/src/index.ts"],
-      "@bifrostui/icons-pioneer": ["packages/bui-icons-pioneer/src/index.ts"],
-      "@bifrostui/types": ["packages/bui-types/src/index.ts"],
-      "@bifrostui/utils": ["packages/bui-utils/src/index.ts"]
+      "@@/*": ["./tmp/*"],
+      "dumi": ["./tmp/dumi/exports.ts"],
+      "dumi/theme/slots/*": ["./theme/slots/*"],
+      "@/*": ["../node_modules/dumi/dist/*"],
+      "@bifrostui/react": ["../packages/bui-core/src/index.ts"],
+      "@bifrostui/react/*": ["../packages/bui-core/src/*"],
+      "@bifrostui/icons": ["../packages/bui-icons/src/index.ts"],
+      "@bifrostui/icons-pioneer": [
+        "../packages/bui-icons-pioneer/src/index.ts"
+      ],
+      "@bifrostui/types": ["../packages/bui-types/src/index.ts"],
+      "@bifrostui/utils": ["../packages/bui-utils/src/index.ts"]
     },
-    "jsx": "react",
+    "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true
   },
   "include": ["**/*", "../.dumi/tmp/**/*", "../packages/**/*"],

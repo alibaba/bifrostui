@@ -217,9 +217,9 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
       onAnimationEnd: handleAnimationEnd,
       ref: handleRef,
     },
-    React.cloneElement(children, {
+    React.cloneElement(children as React.ReactElement<any>, {
       style: {
-        ...children.props?.style,
+        ...(children.props as any)?.style,
       },
     }),
   );

@@ -6,13 +6,12 @@
     "noImplicitAny": false,
     "declaration": true,
     "declarationDir": "./dist",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "skipLibCheck": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "esModuleInterop": true,
     "sourceMap": true,
-    "baseUrl": ".",
     "strict": false,
     "resolveJsonModule": true,
     "types": ["vitest/globals"],
@@ -29,5 +28,5 @@
     },
     "allowSyntheticDefaultImports": true
   },
-  "exclude": ["node_modules", "lib", "es", "dist", "typings", "websites"]
+  "exclude": ["node_modules", "lib", "es", "dist", "websites"]
 }

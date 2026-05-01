@@ -80,7 +80,7 @@ const Slide = React.forwardRef<HTMLElement, SlideProps>(
             state === 'entering' || state === 'entered'
               ? 'none'
               : getTranslateValue(direction);
-          return React.cloneElement(children, {
+          return React.cloneElement(children as React.ReactElement<any>, {
             style: {
               visibility: state === 'exited' ? 'hidden' : 'visible',
               transition,
@@ -88,7 +88,7 @@ const Slide = React.forwardRef<HTMLElement, SlideProps>(
               transform,
               WebkitTransform: transform,
               ...style,
-              ...children.props.style,
+              ...(children.props as any).style,
             },
             ...childProps,
           });

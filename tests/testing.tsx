@@ -5,7 +5,6 @@ import * as React from 'react';
 import path from 'node:path';
 import { glob } from 'glob';
 import fs from 'node:fs';
-import ReactTestRenderer from 'react-test-renderer';
 import { formatMarkdown } from '../scripts/mini-program-site/utils';
 
 // re-export everything
@@ -13,9 +12,9 @@ export * from '@testing-library/react';
 export {
   act as invoke,
   renderHook,
-  RenderHookOptions,
-  RenderHookResult,
-} from '@testing-library/react-hooks';
+  type RenderHookOptions,
+  type RenderHookResult,
+} from '@testing-library/react';
 
 export { default as userEvent } from '@testing-library/user-event';
 export { accessibilityDemoTest } from './accessibilityTest';
@@ -140,8 +139,9 @@ export const snapshotTest = async (componentName) => {
           import(snapshotPath)
             .then((component) => {
               const Component = component.default;
-              const renderer = ReactTestRenderer.create(<Component />).toJSON();
-              expect(renderer).toMatchSnapshot();
+              const { container, unmount } = render(<Component />);
+              expect(container).toMatchSnapshot();
+              unmount();
               fs.unlinkSync(snapshotPath);
               resolve(true);
             })

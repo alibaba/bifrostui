@@ -393,7 +393,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         <TransitionGroup
           className={clsx(`${classes.root}-transition-group`)}
           childFactory={(element: React.ReactElement) => {
-            return React.cloneElement(element, {
+            return React.cloneElement(element as React.ReactElement<any>, {
               classNames: transitionClasses,
             });
           }}

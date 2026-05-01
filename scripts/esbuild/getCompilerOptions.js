@@ -9,9 +9,11 @@ function getCompilerOptions(opts) {
   ).options;
   compilerOptions.declaration = true;
   compilerOptions.emitDeclarationOnly = true;
-  compilerOptions.declarationDir =
-    compilerOptions.baseUrl + '/' + opts.esbuildOptions.outdir;
-  compilerOptions.rootDir = resolve(compilerOptions.baseUrl, 'src');
+  compilerOptions.declarationDir = resolve(
+    process.cwd(),
+    opts.esbuildOptions.outdir,
+  );
+  compilerOptions.rootDir = resolve(process.cwd(), 'src');
   if (opts.willBundleDeclarations) {
     compilerOptions.declarationDir = resolve(
       compilerOptions.declarationDir,

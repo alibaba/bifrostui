@@ -74,7 +74,7 @@ describe('usePopoverPosition', () => {
       expect(result.current.arrowDirection).toBe('bottom');
       expect(result.current.arrowLocation).toBe('left');
       expect(result.current.tipRef.current).toBeNull();
-      expect(result.current.childrenRef.current).toBeUndefined();
+      expect(result.current.childrenRef.current).toBeNull();
     });
 
     it('should parse different anchor origins correctly', () => {

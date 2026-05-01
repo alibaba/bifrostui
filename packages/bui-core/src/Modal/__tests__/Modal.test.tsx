@@ -61,7 +61,16 @@ interface MockTransitionProps {
 }
 
 const MockTransition = React.forwardRef<HTMLDivElement, MockTransitionProps>(
-  ({ in: inProp, onEnter, onExited, children, ...props }, ref) => {
+  (
+    {
+      in: inProp = false,
+      onEnter = undefined,
+      onExited = undefined,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
     React.useEffect(() => {
       if (inProp && onEnter) {
         onEnter();
@@ -82,11 +91,6 @@ const MockTransition = React.forwardRef<HTMLDivElement, MockTransitionProps>(
 );
 
 MockTransition.displayName = 'MockTransition';
-MockTransition.defaultProps = {
-  in: false,
-  onEnter: undefined,
-  onExited: undefined,
-};
 
 describe('Modal', () => {
   beforeEach(() => {

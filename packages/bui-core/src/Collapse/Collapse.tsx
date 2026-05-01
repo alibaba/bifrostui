@@ -132,9 +132,9 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
             ...childProps,
             ref: collapseRef,
           },
-          React.cloneElement(children, {
+          React.cloneElement(children as React.ReactElement<any>, {
             style: {
-              ...children.props?.style,
+              ...(children.props as any)?.style,
             },
             ...childProps,
           }),

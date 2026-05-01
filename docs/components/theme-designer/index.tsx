@@ -56,7 +56,7 @@ const ThemeDesigner = () => {
   const [editableCssVar, setEditableCssVar] = useState<
     [token?: string, value?: string]
   >([]);
-  const themePlaygroundRef = useRef<HTMLDivElement>();
+  const themePlaygroundRef = useRef<HTMLDivElement>(null);
 
   const currentCssVars: Record<string, string> = useMemo(() => {
     // 展示组件变量

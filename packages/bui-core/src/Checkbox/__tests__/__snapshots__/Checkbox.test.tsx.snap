@@ -8,7 +8,6 @@ exports[`Checkbox > Checkbox label placement > label should on the bottom 1`] = 
   <input
     class="bui-checkbox-input"
     type="checkbox"
-    value=""
   />
   <div
     class="bui-checkbox-icon"
@@ -40,7 +39,6 @@ exports[`Checkbox > Checkbox label placement > label should on the left 1`] = `
   <input
     class="bui-checkbox-input"
     type="checkbox"
-    value=""
   />
   <div
     class="bui-checkbox-icon"
@@ -72,7 +70,6 @@ exports[`Checkbox > Checkbox label placement > label should on the right 1`] = `
   <input
     class="bui-checkbox-input"
     type="checkbox"
-    value=""
   />
   <div
     class="bui-checkbox-icon"
@@ -104,7 +101,6 @@ exports[`Checkbox > Checkbox label placement > label should on the top 1`] = `
   <input
     class="bui-checkbox-input"
     type="checkbox"
-    value=""
   />
   <div
     class="bui-checkbox-icon"

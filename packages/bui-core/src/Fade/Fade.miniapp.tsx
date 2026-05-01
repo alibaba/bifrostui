@@ -161,7 +161,7 @@ const Fade = React.forwardRef<HTMLElement, FadeProps>((props, ref) => {
    */
   if (!children || !isMounted) return null;
 
-  return React.cloneElement(children, {
+  return React.cloneElement(children as React.ReactElement<any>, {
     ...others,
     ref: handleRef,
     onAnimationEnd: handleAnimationEnd,
@@ -170,7 +170,7 @@ const Fade = React.forwardRef<HTMLElement, FadeProps>((props, ref) => {
       animation,
       animationFillMode: 'both',
       ...style,
-      ...children.props?.style,
+      ...(children.props as any)?.style,
     },
   });
 });

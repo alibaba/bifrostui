@@ -57,8 +57,8 @@ describe('Render and Unmount', () => {
     expect(div.querySelector('.test-react17-render')).toBeTruthy();
 
     // Unmount
-    act(() => {
-      testLegacyUnmount(div, true);
+    await act(async () => {
+      await testLegacyUnmount(div, true);
     });
     expect(div.querySelector('.test-react17-render')).toBeFalsy();
   });

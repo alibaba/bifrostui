@@ -62,14 +62,14 @@ const Fade = React.forwardRef<HTMLElement, FadeProps>(
                 )
               : 'none';
 
-          return React.cloneElement(children, {
+          return React.cloneElement(children as React.ReactElement<any>, {
             style: {
               visibility: state === 'exited' ? 'hidden' : 'visible',
               transition,
               WebkitTransition: transition,
               opacity: state === 'entering' || state === 'entered' ? '1' : '0',
               ...style,
-              ...children.props.style,
+              ...(children.props as any).style,
             },
             ...childProps,
           });

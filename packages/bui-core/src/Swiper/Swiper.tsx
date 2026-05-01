@@ -50,7 +50,7 @@ const Swiper = forwardRef<SwiperRef, SwiperProps>((props, ref) => {
     ...style,
   };
 
-  const swiperInstance = useRef<SwiperClass>();
+  const swiperInstance = useRef<SwiperClass>(null);
   const isInit = useRef(true);
   useEffect(() => {
     if (isInit.current) {

@@ -1,8 +1,14 @@
 import * as React from 'react';
-import { isFragment } from 'react-is';
 
 interface Option {
   keepEmpty?: boolean;
+}
+
+function isReactFragment(child: unknown): child is React.ReactElement {
+  return (
+    React.isValidElement(child) &&
+    (child as React.ReactElement).type === React.Fragment
+  );
 }
 
 export default function toArray(
@@ -18,10 +24,10 @@ export default function toArray(
 
     if (Array.isArray(child)) {
       ret = ret.concat(toArray(child));
-    } else if (isFragment(child) && React.isValidElement(child)) {
-      ret = ret.concat(toArray(child.props.children, option));
+    } else if (isReactFragment(child)) {
+      ret = ret.concat(toArray((child.props as any).children, option));
     } else {
-      ret.push(child as React.ReactElement);
+      ret.push(child as unknown as React.ReactElement);
     }
   });
 

@@ -117,7 +117,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     ...(React.isValidElement(children) &&
       (children.type === 'button' ||
         children.type === 'a' ||
-        children.props?.role === 'button') && {
+        (children.props as any)?.role === 'button') && {
         'aria-expanded': isOpen,
       }),
   };

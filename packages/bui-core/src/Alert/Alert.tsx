@@ -56,8 +56,8 @@ const AlertIcon = (props: AlertIconProps) => {
   return (
     <div className={clsx(`${prefixCls}-icon`)}>
       {isMini && React.isValidElement(icon)
-        ? React.cloneElement(icon, {
-            ...{ color: icon.props?.color || color },
+        ? React.cloneElement(icon as React.ReactElement<any>, {
+            ...{ color: (icon.props as any)?.color || color },
           })
         : icon}
     </div>
@@ -91,10 +91,10 @@ const AlertAction = (props: AlertActionProps) => {
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const {
-    color,
+    color = 'primary',
+    icon = true,
+    variant = 'standard',
     className,
-    icon,
-    variant,
     marquee,
     children,
     action,
@@ -133,10 +133,5 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
 });
 
 Alert.displayName = 'BuiAlert';
-Alert.defaultProps = {
-  icon: true,
-  color: 'primary',
-  variant: 'standard',
-};
 
 export default Alert;

@@ -53,7 +53,7 @@ export const usePopoverPosition = ({
   const placement = anchorOriginToPlacement(anchorOrigin);
   const { direction, location = 'center' } = parsePlacement(placement);
 
-  const childrenRef = useRef<Element>();
+  const childrenRef = useRef<Element>(null);
   const [arrowDirection, setArrowDirection] = useState(direction);
   const [arrowLocation, setArrowLocation] = useState(location);
   const [toolStyles, setToolStyles] = useState<React.CSSProperties>({});
