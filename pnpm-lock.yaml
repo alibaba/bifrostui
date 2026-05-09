@@ -323,6 +323,9 @@ importers:
       stylelint-prettier:
         specifier: ^4.0.0
         version: 4.1.0(prettier@3.8.3)(stylelint@15.11.0(typescript@5.1.6))
+      syncpack:
+        specifier: ^15.0.0
+        version: 15.0.0
       tachometer:
         specifier: ^0.7.2
         version: 0.7.2
@@ -13533,6 +13536,51 @@ packages:
   synckit@0.8.5:
     resolution: {integrity: sha512-L1dapNV6vu2s/4Sputv8xGsCdAVlb5nRDMFU/E27D44l5U6cw1g0dGd45uLc+OXjNMmF4ntiMdCimzcjFKQI8Q==}
     engines: {node: ^14.18.0 || >=16.0.0}
+
+  syncpack-darwin-arm64@15.0.0:
+    resolution: {integrity: sha512-xUIOGuWKHAUWOXRKPAlQ2I2XmyuJpEe25G0Vx2/eQoKakEFj3XpQePqOMJLj6ik71xEHxicdMljIKCxEPurahA==}
+    cpu: [arm64]
+    os: [darwin]
+
+  syncpack-darwin-x64@15.0.0:
+    resolution: {integrity: sha512-tcAZ3rbWgoWaT3jcDVZXqob2wgjmHh0GvxPx5oJ/pJ0b8ul2eSX0fhBoczEjV0v5WnBhueDVAfW/aQK7I8co3A==}
+    cpu: [x64]
+    os: [darwin]
+
+  syncpack-linux-arm64-musl@15.0.0:
+    resolution: {integrity: sha512-hVcSOv0D6eRACrCJHPjPMn1H8ovQpZadYoDUL2cW1oTwN/eWNPo2sDZaO+UONQsrWX0LU1Gq59pbIs3TyltDpQ==}
+    cpu: [arm64]
+    os: [linux]
+
+  syncpack-linux-arm64@15.0.0:
+    resolution: {integrity: sha512-xd3+1bqFI5ym2r1AtJH9MUPxAGB2SPYi6FeP1QmCOdAFsykp2yTYsMg9Qs9g8DwOfMM+nSoJGrE1H/eeldU8+A==}
+    cpu: [arm64]
+    os: [linux]
+
+  syncpack-linux-x64-musl@15.0.0:
+    resolution: {integrity: sha512-MCs1MC9iwqNADthJ8dfbINKHPoWZT49TmmkPvbrbV0/QKHcK4TqckrNrHEo7NFrL6BvLEWdWe/Vbdy7PbDluhw==}
+    cpu: [x64]
+    os: [linux]
+
+  syncpack-linux-x64@15.0.0:
+    resolution: {integrity: sha512-gaThoG8k+2UA5A6FFosoT9mSXf69RTZt68iHxqejxDVVPGuPdtAkf6rXIZWiElhJJ3kQwGW+Zo+e0ZdKviqJMg==}
+    cpu: [x64]
+    os: [linux]
+
+  syncpack-windows-arm64@15.0.0:
+    resolution: {integrity: sha512-hMm9zTYihwP9t86z5FIQ/7Hk1LcXw4SuqxjWy+Nylxwj82DIHr+fLzbSmDFQNiFqwz1gY56FuTGH+UavsWkgXQ==}
+    cpu: [arm64]
+    os: [win32]
+
+  syncpack-windows-x64@15.0.0:
+    resolution: {integrity: sha512-8dvfrgSBwVol2PCJeVyESnTdlxdA0ho1w3/EQCW6ixag6Ov0lw7mfEN9SHDim1TVihpr47wr7KKt9t3Qi6d9qQ==}
+    cpu: [x64]
+    os: [win32]
+
+  syncpack@15.0.0:
+    resolution: {integrity: sha512-8aCVifg97m3hig1dnDwvGSPk6g/SDMzYRDjyL58c7l74gq8BCpUFmJrZZUL/9w6kGrnHxl6HsqUeOVja4ZpqTA==}
+    engines: {node: '>=14.17.0'}
+    hasBin: true
 
   systeminformation@5.31.6:
     resolution: {integrity: sha512-Uv2b2uGGM6ns+26czgW2cYRabYdnswM0ddSOOlryHOaelzsmDSet1iM/NT7VOYxW8x/BW+HkY+b1Ve2pLTSGSA==}
@@ -30151,6 +30199,41 @@ snapshots:
     dependencies:
       '@pkgr/utils': 2.4.2
       tslib: 2.8.1
+
+  syncpack-darwin-arm64@15.0.0:
+    optional: true
+
+  syncpack-darwin-x64@15.0.0:
+    optional: true
+
+  syncpack-linux-arm64-musl@15.0.0:
+    optional: true
+
+  syncpack-linux-arm64@15.0.0:
+    optional: true
+
+  syncpack-linux-x64-musl@15.0.0:
+    optional: true
+
+  syncpack-linux-x64@15.0.0:
+    optional: true
+
+  syncpack-windows-arm64@15.0.0:
+    optional: true
+
+  syncpack-windows-x64@15.0.0:
+    optional: true
+
+  syncpack@15.0.0:
+    optionalDependencies:
+      syncpack-darwin-arm64: 15.0.0
+      syncpack-darwin-x64: 15.0.0
+      syncpack-linux-arm64: 15.0.0
+      syncpack-linux-arm64-musl: 15.0.0
+      syncpack-linux-x64: 15.0.0
+      syncpack-linux-x64-musl: 15.0.0
+      syncpack-windows-arm64: 15.0.0
+      syncpack-windows-x64: 15.0.0
 
   systeminformation@5.31.6: {}
 
