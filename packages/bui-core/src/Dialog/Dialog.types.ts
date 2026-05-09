@@ -144,10 +144,9 @@ export interface DialogFunction {
 /**
  * Dialog组件类型，支持组件式调用和函数式调用
  */
-export interface DialogComponent
-  extends React.ForwardRefExoticComponent<
-    DialogProps & React.RefAttributes<HTMLDivElement>
-  > {
+export interface DialogComponent extends React.ForwardRefExoticComponent<
+  DialogProps & React.RefAttributes<HTMLDivElement>
+> {
   /**
    * 显示确认框
    */

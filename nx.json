@@ -78,5 +78,6 @@
     ]
   },
   "defaultProject": "@bifrostui/react",
-  "useDaemonProcess": true
+  "useDaemonProcess": true,
+  "analytics": false
 }

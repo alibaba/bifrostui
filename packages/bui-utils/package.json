@@ -14,10 +14,15 @@
     "test": "cd ../.. && vitest run --project bui-utils"
   },
   "devDependencies": {
+    "@tarojs/runtime": "^3.0.0",
+    "@tarojs/taro": "^3.0.0",
     "esbuild": "^0.19.7",
     "esbuild-plugin-less": "1.3.38",
-    "fs-extra": "^11.2.0",
-    "glob": "11.0.0"
+    "fs-extra": "^10.0.0",
+    "glob": "11.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "scheduler": "0.27.0"
   },
   "dependencies": {
     "@bifrostui/styles": "workspace:*",
