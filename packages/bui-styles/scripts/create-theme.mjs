@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'node:url';
 import path, { dirname } from 'node:path';
 import fse from 'fs-extra';
+import prettier from 'prettier';
 import { defaultLight } from '../registry/default-light.mjs';
 import { defaultDark } from '../registry/default-dark.mjs';
 import { dmLight } from '../registry/dm-light.mjs';
@@ -27,15 +28,19 @@ const convertToLess = (styles) => {
   return result;
 };
 
-const generateTheme = () => {
+const generateTheme = async () => {
   let entryContent = '';
-  themes.forEach((theme) => {
+  for (const theme of themes) {
     const { mixinName, cssVars } = theme;
     const filePath = path.join(__dirname, `../themes/${mixinName}.less`);
-    const fileContent = `${comments}.${mixinName}() {\n  ${convertToLess(cssVars)}}\n`;
+    const rawContent = `${comments}.${mixinName}() {\n  ${convertToLess(cssVars)}}\n`;
+    const formatted = await prettier.format(rawContent, {
+      filepath: filePath,
+      singleQuote: true,
+    });
     entryContent += `@import "./${mixinName}.less";\n`;
-    fse.outputFileSync(filePath, fileContent, 'utf8');
-  });
+    fse.outputFileSync(filePath, formatted, 'utf8');
+  }
 };
 
 generateTheme();
