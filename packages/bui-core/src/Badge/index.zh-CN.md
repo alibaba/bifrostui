@@ -228,15 +228,15 @@ export default () => {
 
 ### 样式变量
 
-| 属性                   | 说明           | 默认值        | 全局变量                         |
-| ---------------------- | -------------- | ------------- | -------------------------------- |
-| --position             | 位置偏移百分比 | 14%           | --bui-badge-position             |
-| --min-width            | 最小宽度       | 15px          | --bui-badge-min-width            |
-| --height               | 高度           | 15px          | --bui-badge-height               |
-| --line-height          | 行高           | 15px          | --bui-badge-line-height          |
-| --padding              | 内边距         | 0 3px         | --bui-badge-padding              |
-| --border-radius        | 边框圆角       | 8px           | --bui-badge-border-radius        |
-| --outlined-padding     | 描边样式内边距 | 0 2px         | --bui-badge-outlined-padding     |
-| --dot-size             | 圆点大小       | 9px           | --bui-badge-dot-size             |
-| --bubble-padding       | 气泡内边距     | 0 5px         | --bui-badge-bubble-padding       |
-| --bubble-border-radius | 气泡圆角       | 6px 6px 6px 0 | --bui-badge-bubble-border-radius |
+| 全局变量                         | 说明           | 默认值        |
+| -------------------------------- | -------------- | ------------- |
+| --bui-badge-position             | 位置偏移百分比 | 14%           |
+| --bui-badge-min-width            | 最小宽度       | 15px          |
+| --bui-badge-height               | 高度           | 15px          |
+| --bui-badge-line-height          | 行高           | 15px          |
+| --bui-badge-padding              | 内边距         | 0 3px         |
+| --bui-badge-border-radius        | 边框圆角       | 8px           |
+| --bui-badge-outlined-padding     | 描边样式内边距 | 0 2px         |
+| --bui-badge-dot-size             | 圆点大小       | 10px          |
+| --bui-badge-bubble-padding       | 气泡内边距     | 0 5px         |
+| --bui-badge-bubble-border-radius | 气泡圆角       | 6px 6px 6px 0 |

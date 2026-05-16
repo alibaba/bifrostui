@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "@bifrostui/icons": "workspace:*",
+    "@bifrostui/icons-pioneer": "workspace:*",
     "@bifrostui/styles": "workspace:*",
     "@bifrostui/types": "workspace:*",
     "@bifrostui/utils": "workspace:*",

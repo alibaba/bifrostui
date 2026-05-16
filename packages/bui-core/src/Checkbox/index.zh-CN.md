@@ -327,10 +327,10 @@ export default () => {
 
 ## 样式变量
 
-| 全局变量                        | 说明           | 默认值                        |
-| ------------------------------- | -------------- | ----------------------------- |
-| --bui-checkbox-label-color      | 标签文字颜色   | `var(--bui-color-fg-default)` |
-| --bui-checkbox-label-font-size  | 标签文字大小   | `var(--bui-text-size-1)`      |
-| --bui-checkbox-icon-font-size   | 图标大小       | `var(--bui-title-size-2)`     |
-| --bui-checkbox-disabled-opacity | 禁用状态透明度 | `0.5`                         |
-| --bui-checkbox-icon-padding     | 图标内边距     | `5px`                         |
+| 全局变量                        | 说明           | 默认值                       |
+| ------------------------------- | -------------- | ---------------------------- |
+| --bui-checkbox-label-color      | 标签文字颜色   | `var(--bui-color-fg-subtle)` |
+| --bui-checkbox-label-font-size  | 标签文字大小   | `var(--bui-text-size-3)`     |
+| --bui-checkbox-icon-font-size   | 图标大小       | `var(--bui-font-size-md2)`   |
+| --bui-checkbox-disabled-opacity | 禁用状态透明度 | `0.5`                        |
+| --bui-checkbox-icon-padding     | 图标内边距     | `var(--bui-spacing-3)`       |

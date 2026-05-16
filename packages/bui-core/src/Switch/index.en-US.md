@@ -185,16 +185,16 @@ See other attributes in [label](https://developer.mozilla.org/en-US/docs/Web/HTM
 
 ## Style Variables
 
-| Variable Name                        | Description                       | Default Value            |
+| Global Variable                      | Description                       | Default Value            |
 | ------------------------------------ | --------------------------------- | ------------------------ |
 | --bui-switch-bg-color                | Background color                  | `#ccc`                   |
 | --bui-switch-padding                 | Padding                           | `0`                      |
 | --bui-switch-border-radius           | Border radius                     | `15px`                   |
-| --bui-switch-small-width             | Width for small size              | `24px`                   |
-| --bui-switch-small-height            | Height for small size             | `16px`                   |
+| --bui-switch-small-width             | Width for small size              | `27px`                   |
+| --bui-switch-small-height            | Height for small size             | `15px`                   |
 | --bui-switch-small-font-size         | Font size for small size          | `9px`                    |
-| --bui-switch-controller-small-width  | Controller width for small size   | `12px`                   |
-| --bui-switch-controller-small-height | Controller height for small size  | `12px`                   |
+| --bui-switch-controller-small-width  | Controller width for small size   | `11px`                   |
+| --bui-switch-controller-small-height | Controller height for small size  | `11px`                   |
 | --bui-switch-width                   | Width for medium size             | `44px`                   |
 | --bui-switch-height                  | Height for medium size            | `22px`                   |
 | --bui-switch-font-size               | Font size for medium size         | `var(--bui-text-size-3)` |
@@ -205,5 +205,5 @@ See other attributes in [label](https://developer.mozilla.org/en-US/docs/Web/HTM
 | --bui-switch-large-width             | Width for large size              | `51px`                   |
 | --bui-switch-large-height            | Height for large size             | `30px`                   |
 | --bui-switch-large-font-size         | Font size for large size          | `var(--bui-text-size-3)` |
-| --bui-switch-controller-large-width  | Controller width for large size   | `24px`                   |
-| --bui-switch-controller-large-height | Controller height for large size  | `24px`                   |
+| --bui-switch-controller-large-width  | Controller width for large size   | `26px`                   |
+| --bui-switch-controller-large-height | Controller height for large size  | `26px`                   |

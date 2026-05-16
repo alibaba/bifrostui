@@ -1,4 +1,7 @@
-import { CircleOutlinedIcon, SuccessCircleFilledIcon } from '@bifrostui/icons';
+import {
+  NotCheckedCircleOutlinedIcon,
+  SuccessCircleFilledIcon,
+} from '@bifrostui/icons-pioneer';
 import { useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import React, { forwardRef, useContext } from 'react';
@@ -51,7 +54,9 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
   const checkboxCheckIcon = checkedIcon || (
     <SuccessCircleFilledIcon color="primary" />
   );
-  const checkboxUncheckIcon = icon || <CircleOutlinedIcon color="neutral" />;
+  const checkboxUncheckIcon = icon || (
+    <NotCheckedCircleOutlinedIcon color="disabled" />
+  );
   const checkboxDisabled =
     disabled !== undefined ? disabled : groupContext?.disabled || false;
 

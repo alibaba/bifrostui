@@ -327,13 +327,13 @@ Default accessibility features include:
 
 ## Style Variables
 
-| Global Variable                 | Description               | Default                       |
-| ------------------------------- | ------------------------- | ----------------------------- |
-| --bui-checkbox-label-color      | Color of the label text   | `var(--bui-color-fg-default)` |
-| --bui-checkbox-label-font-size  | Font size of the label    | `var(--bui-text-size-1)`      |
-| --bui-checkbox-icon-font-size   | Size of the icon          | `var(--bui-title-size-2)`     |
-| --bui-checkbox-disabled-opacity | Opacity of disabled state | `0.5`                         |
-| --bui-checkbox-icon-padding     | Padding of the icon       | `5px`                         |
+| Global Variable                 | Description               | Default                      |
+| ------------------------------- | ------------------------- | ---------------------------- |
+| --bui-checkbox-label-color      | Color of the label text   | `var(--bui-color-fg-subtle)` |
+| --bui-checkbox-label-font-size  | Font size of the label    | `var(--bui-text-size-3)`     |
+| --bui-checkbox-icon-font-size   | Size of the icon          | `var(--bui-font-size-md2)`   |
+| --bui-checkbox-disabled-opacity | Opacity of disabled state | `0.5`                        |
+| --bui-checkbox-icon-padding     | Padding of the icon       | `var(--bui-spacing-3)`       |
 
 ```
 

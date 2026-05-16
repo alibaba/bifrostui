@@ -63,6 +63,7 @@ export { default as MoreHorizontalOutlinedIcon } from './MoreHorizontalOutlined'
 export { default as MoreVerticalOutlinedIcon } from './MoreVerticalOutlined';
 export { default as MovieFilledIcon } from './MovieFilled';
 export { default as MovieOutlinedIcon } from './MovieOutlined';
+export { default as NotCheckedCircleOutlinedIcon } from './NotCheckedCircleOutlined';
 export { default as OrderOutlinedIcon } from './OrderOutlined';
 export { default as PauseFilledIcon } from './PauseFilled';
 export { default as PauseOutlinedIcon } from './PauseOutlined';

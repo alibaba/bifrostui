@@ -224,18 +224,18 @@ export default () => {
 
 ### Style Variables
 
-| Attribute              | Description                | Default Value | Global Variable                  |
-| ---------------------- | -------------------------- | ------------- | -------------------------------- |
-| --position             | Position offset percentage | 14%           | --bui-badge-position             |
-| --min-width            | Minimum width              | 15px          | --bui-badge-min-width            |
-| --height               | Height                     | 15px          | --bui-badge-height               |
-| --line-height          | Line height                | 15px          | --bui-badge-line-height          |
-| --padding              | Padding                    | 0 3px         | --bui-badge-padding              |
-| --border-radius        | Border radius              | 8px           | --bui-badge-border-radius        |
-| --outlined-padding     | Padding for outlined style | 0 2px         | --bui-badge-outlined-padding     |
-| --dot-size             | Dot size                   | 9px           | --bui-badge-dot-size             |
-| --bubble-padding       | Bubble padding             | 0 5px         | --bui-badge-bubble-padding       |
-| --bubble-border-radius | Bubble border radius       | 6px 6px 6px 0 | --bui-badge-bubble-border-radius |
+| Global Variable                  | Description                | Default Value |
+| -------------------------------- | -------------------------- | ------------- |
+| --bui-badge-position             | Position offset percentage | 14%           |
+| --bui-badge-min-width            | Minimum width              | 15px          |
+| --bui-badge-height               | Height                     | 15px          |
+| --bui-badge-line-height          | Line height                | 15px          |
+| --bui-badge-padding              | Padding                    | 0 3px         |
+| --bui-badge-border-radius        | Border radius              | 8px           |
+| --bui-badge-outlined-padding     | Padding for outlined style | 0 2px         |
+| --bui-badge-dot-size             | Dot size                   | 10px          |
+| --bui-badge-bubble-padding       | Bubble padding             | 0 5px         |
+| --bui-badge-bubble-border-radius | Bubble border radius       | 6px 6px 6px 0 |
 
 ```
 

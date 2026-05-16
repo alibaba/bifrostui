@@ -185,16 +185,16 @@ export default () => {
 
 ## 样式变量
 
-| 变量名                               | 说明                   | 默认值                   |
+| 全局变量                             | 说明                   | 默认值                   |
 | ------------------------------------ | ---------------------- | ------------------------ |
 | --bui-switch-bg-color                | 背景颜色               | `#ccc`                   |
 | --bui-switch-padding                 | 内边距                 | `0`                      |
 | --bui-switch-border-radius           | 边框圆角               | `15px`                   |
-| --bui-switch-small-width             | 小尺寸宽度             | `24px`                   |
-| --bui-switch-small-height            | 小尺寸高度             | `16px`                   |
+| --bui-switch-small-width             | 小尺寸宽度             | `27px`                   |
+| --bui-switch-small-height            | 小尺寸高度             | `15px`                   |
 | --bui-switch-small-font-size         | 小尺寸字体大小         | `9px`                    |
-| --bui-switch-controller-small-width  | 小尺寸控制器宽度       | `12px`                   |
-| --bui-switch-controller-small-height | 小尺寸控制器高度       | `12px`                   |
+| --bui-switch-controller-small-width  | 小尺寸控制器宽度       | `11px`                   |
+| --bui-switch-controller-small-height | 小尺寸控制器高度       | `11px`                   |
 | --bui-switch-width                   | 中尺寸宽度             | `44px`                   |
 | --bui-switch-height                  | 中尺寸高度             | `22px`                   |
 | --bui-switch-font-size               | 中尺寸字体大小         | `var(--bui-text-size-3)` |
@@ -205,5 +205,5 @@ export default () => {
 | --bui-switch-large-width             | 大尺寸宽度             | `51px`                   |
 | --bui-switch-large-height            | 大尺寸高度             | `30px`                   |
 | --bui-switch-large-font-size         | 大尺寸字体大小         | `var(--bui-text-size-3)` |
-| --bui-switch-controller-large-width  | 大尺寸控制器宽度       | `24px`                   |
-| --bui-switch-controller-large-height | 大尺寸控制器高度       | `24px`                   |
+| --bui-switch-controller-large-width  | 大尺寸控制器宽度       | `26px`                   |
+| --bui-switch-controller-large-height | 大尺寸控制器高度       | `26px`                   |
