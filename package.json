@@ -69,6 +69,7 @@
     "@bifrostui/styles": "workspace:*",
     "@commitlint/cli": "^17.6.3",
     "@commitlint/config-conventional": "^17.6.3",
+    "cosmiconfig-typescript-loader": "^4.0.0",
     "@inquirer/prompts": "^7.3.1",
     "@makotot/ghostui": "2.0.0",
     "@manypkg/cli": "^0.25.1",

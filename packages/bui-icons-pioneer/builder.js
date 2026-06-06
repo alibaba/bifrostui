@@ -15,12 +15,21 @@ function normalizePath(pathToNormalize) {
   return pathToNormalize.replace(/\\/g, '/');
 }
 
+function removeHardcodedColors(svgContent) {
+  return svgContent.replace(/\s+fill="(?!none|currentColor)[^"]*"/g, '');
+}
+
+function getExportName(iconName) {
+  return iconName.endsWith('Icon') ? iconName : `${iconName}Icon`;
+}
+
 async function generateIndex() {
   const files = await globAsync(normalizePath(path.join(outputDir, '*.tsx')));
   const index = files
     .map((file) => {
       const typename = path.basename(file).replace('.tsx', '');
-      return `export { default as ${typename}Icon } from './${typename}';\n`;
+      const exportName = getExportName(typename);
+      return `export { default as ${exportName} } from './${typename}';\n`;
     })
     .join('');
 
@@ -35,11 +44,24 @@ async function createIcons() {
     normalizePath(path.join(inputDir, '**/*.svg')),
   );
 
+  const exportNameSet = new Set();
+
   svgPaths.forEach((svgPath) => {
     const data = fse.readFileSync(svgPath, { encoding: 'utf8' });
     const iconName = path.basename(svgPath).replace('.svg', '');
     const result = svgo.optimize(data);
-    const pathData = result.data.match(/<svg[^>]+?>([^$]+?)<\/svg>/)[1];
+    const pathData = removeHardcodedColors(
+      result.data.match(/<svg[^>]+?>([^$]+?)<\/svg>/)[1],
+    );
+    const exportName = getExportName(iconName);
+
+    if (exportNameSet.has(exportName)) {
+      console.log(
+        `${chalk.yellow('⚠')} ${chalk.red(iconName)} skipped: export name "${exportName}" conflicts with an existing icon`,
+      );
+      return;
+    }
+    exportNameSet.add(exportName);
 
     tsxFiles.push({
       name: iconName,
@@ -48,7 +70,7 @@ import createSvgIcon from '../utils/createSvgIcon';
 
 export default createSvgIcon(
   '${pathData}',
-  '${iconName}Icon',
+  '${exportName}',
 );
 `,
     });
