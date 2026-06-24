@@ -15,7 +15,7 @@ The default `value` should be a `Date`.
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import React, { useState } from 'react';
 dayjs.extend(customParseFormat);
@@ -41,7 +41,7 @@ Use `disableOpenPicker` to disable the popup selection feature, allowing time ch
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -70,7 +70,7 @@ Use `disabled` to disable the time component.
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -96,7 +96,7 @@ Customize disabled times using `disabledTimeView`.
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -141,7 +141,7 @@ Use `closeOnSelect` to determine whether to close the popup immediately after se
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -171,7 +171,7 @@ Use `format` to specify the time display format. Default is `HH:mm:ss`. If `ampm
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -201,7 +201,7 @@ Use `open` to control whether the time component is open.
 
 ```tsx
 import { DesktopTimePicker, Stack, Button } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -236,7 +236,7 @@ Specify a selectable range using `minTime` and `maxTime`.
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -275,7 +275,7 @@ Specify the input icon using `icon`.
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
 import { HelpCircleOutlinedIcon } from '@bifrostui/icons';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -304,7 +304,7 @@ Use `onClose` and `onOpen` to customize callbacks for opening and closing events
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -342,7 +342,7 @@ Control the time component using the `value` property.
 
 ```tsx
 import { Button, DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -377,7 +377,7 @@ Render the component using `defaultValue`. The selected state will be reflected 
 
 ```tsx
 import { DesktopTimePicker, Button, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -405,7 +405,7 @@ Enable `timeRender` to customize the content of the time cells.
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {

@@ -1,4 +1,4 @@
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import { ICalendarMode, ICalendarValue } from './Calendar.types';
 
 /**

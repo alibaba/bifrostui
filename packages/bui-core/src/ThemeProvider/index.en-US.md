@@ -162,7 +162,7 @@ import {
   TW,
 } from '@bifrostui/react';
 import React, { useState } from 'react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 const options = [
   {

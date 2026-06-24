@@ -15,7 +15,7 @@ By default, the `value` should be passed as a `Date`, with a selectable range th
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -41,7 +41,7 @@ Use `disableOpenPicker` to disable the popup selection feature, allowing date ch
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -71,7 +71,7 @@ Use `disabled` to disable the date component.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -97,7 +97,7 @@ Use `disabledDate` to customize disabling specific dates.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -134,7 +134,7 @@ Use `closeOnSelect` to determine if the popup should close immediately after dat
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -164,7 +164,7 @@ Use `format` to specify the date display format, default is `YYYY/MM/DD`.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -194,7 +194,7 @@ Use `open` to control whether the date component popup is open.
 
 ```tsx
 import { DesktopDatePicker, Stack, Button } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -229,7 +229,7 @@ Use `minDate` and `maxDate` to specify the selectable date range.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -260,7 +260,7 @@ Use `icon` to specify the input field icon.
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
 import { HelpCircleOutlinedIcon } from '@bifrostui/icons';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -289,7 +289,7 @@ Use `picker` to specify the selectable range.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -323,7 +323,7 @@ import {
   DoubleArrowLeftTwoToneIcon,
   DoubleArrowRightTwoToneIcon,
 } from '@bifrostui/icons';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -364,7 +364,7 @@ Enable `monthRender` to customize the content of month cells.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -400,7 +400,7 @@ Enable `yearRender` to customize the content of year cells.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -437,7 +437,7 @@ Customize the callback with `onClose` and `onOpen`.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -475,7 +475,7 @@ Enable `onMonthChange` to customize the month change callback.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -508,7 +508,7 @@ Enable `onYearChange` to customize the year change callback.
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -539,7 +539,7 @@ Control the calendar component via the `value` property.
 
 ```tsx
 import { Button, DesktopDatePicker, Input, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -576,7 +576,7 @@ Render the component with the `defaultValue` attribute; the selected state will 
 
 ```tsx
 import { DesktopDatePicker, Button, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {

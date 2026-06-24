@@ -1,5 +1,5 @@
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import React, { useState } from 'react';
 dayjs.extend(customParseFormat);

@@ -15,7 +15,7 @@ name: Calendar 日历
 ```tsx
 import React, { useState } from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -40,7 +40,7 @@ export default () => {
 
 ```tsx
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -67,7 +67,7 @@ export default () => {
 ```tsx
 import React, { useState } from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -97,7 +97,7 @@ export default () => {
 ```tsx
 import React, { useState } from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -127,7 +127,7 @@ export default () => {
 ```tsx
 import React, { useState } from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -165,7 +165,7 @@ import {
   DoubleArrowLeftTwoToneIcon,
   DoubleArrowRightTwoToneIcon,
 } from '@bifrostui/icons';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -206,7 +206,7 @@ export default () => {
 ```tsx
 import React, { useState } from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -245,7 +245,7 @@ export default () => {
 ```tsx
 import React, { useState } from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -274,7 +274,7 @@ export default () => {
 ```tsx
 import React, { useState } from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -303,7 +303,7 @@ export default () => {
 ```tsx
 import React, { useState } from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState<[Date, Date]>([
@@ -335,7 +335,7 @@ export default () => {
 ```tsx
 import React, { useState } from 'react';
 import { Button, Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().add(1, 'month').toDate());
@@ -372,7 +372,7 @@ export default () => {
 ```tsx
 import * as React from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   return (
@@ -399,7 +399,7 @@ export default () => {
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -446,7 +446,7 @@ export default () => {
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());

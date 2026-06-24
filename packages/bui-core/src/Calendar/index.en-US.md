@@ -15,7 +15,7 @@ The default mode is single selection. The `value` should be a single `Date`. The
 ```tsx
 import React, { useState } from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -40,7 +40,7 @@ Transitions are disabled by default, but can be enabled by using `enableTransiti
 
 ```tsx
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -67,7 +67,7 @@ Specify the selectable range using `minDate` and `maxDate`, supporting the rende
 ```tsx
 import React, { useState } from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -97,7 +97,7 @@ Set `hideDaysOutsideCurrentMonth` to hide dates not in the current month.
 ```tsx
 import React, { useState } from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -127,7 +127,7 @@ Customize the header bar date format using `headerBarFormat`; default is `YYYY/M
 ```tsx
 import React, { useState } from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -165,7 +165,7 @@ import {
   DoubleArrowLeftTwoToneIcon,
   DoubleArrowRightTwoToneIcon,
 } from '@bifrostui/icons';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -206,7 +206,7 @@ Customize disabled logic using `disabledDate`.
 ```tsx
 import React, { useState } from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -245,7 +245,7 @@ Highlight specific days or weekends using `highlightDate`.
 ```tsx
 import React, { useState } from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -274,7 +274,7 @@ Hide the header operations area using `headerVisible`.
 ```tsx
 import React, { useState } from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -303,7 +303,7 @@ Use `mode="range"` to select a date interval.
 ```tsx
 import React, { useState } from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState<[Date, Date]>([
@@ -335,7 +335,7 @@ Control the calendar component using the `value` attribute.
 ```tsx
 import React, { useState } from 'react';
 import { Button, Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().add(1, 'month').toDate());
@@ -372,7 +372,7 @@ Render the component using `defaultValue`. The selection state of the calendar w
 ```tsx
 import * as React from 'react';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   return (
@@ -399,7 +399,7 @@ Customize date cell content using `dateRender`.
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -446,7 +446,7 @@ Customize week cell content using `weekRender`.
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Calendar, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());

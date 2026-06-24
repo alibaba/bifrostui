@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { render, userEvent, screen, waitFor } from 'testing';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import {
   ThemeProvider,
   Calendar,
