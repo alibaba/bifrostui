@@ -5,6 +5,11 @@
   margin: 24px 0 32px;
   border-radius: 16px;
   background-color: inherit;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 20px rgba(255, 80, 0, 0.04);
+  }
 
   @{dark-selector} & {
     border-color: @c-border-dark;
@@ -66,11 +71,14 @@
 
   &-demo {
     position: relative;
-    border-radius: var(--bui-shape-radius-card, 9px);
-    padding: 12px 12px 42px;
+    border-radius: var(--bui-shape-radius-card, 12px);
+    padding: 24px 20px 48px;
     border: 1px solid @c-border;
+    background: var(--bui-color-bg-view, #f9f9fa);
+    transition: border-color 0.3s ease;
     @{dark-selector} & {
       border-color: @c-border-dark;
+      background: rgba(255, 255, 255, 0.02);
     }
 
     @media @mobile {
@@ -143,8 +151,9 @@
       top: -7px;
       left: 20px;
       margin: 0;
-      padding: 0 4px;
-      display: inline-block;
+      padding: 0 8px;
+      display: inline-flex;
+      align-items: center;
       font-size: 14px;
       line-height: 1;
       font-weight: bold;
@@ -155,6 +164,15 @@
           rgba(255, 255, 255, 0)
         )
         100%;
+
+      &::before {
+        content: '';
+        width: 3px;
+        height: 12px;
+        border-radius: 2px;
+        background: var(--bui-color-primary, @c-primary);
+        margin-right: 6px;
+      }
 
       @{dark-selector} & {
         background: linear-gradient(

@@ -15,9 +15,10 @@
   }
 
   > li {
-    color: @c-text-secondary;
+    color: var(--bui-color-fg-muted, #444b5b);
     font-size: 14px;
-    font-family: PingFangSC-Regular;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
     line-height: 14px;
     text-align: center;
     position: relative;
@@ -35,36 +36,35 @@
       line-height: 38px;
       display: inline-block;
       border-radius: 4px;
-      color: @c-text-secondary;
+      color: var(--bui-color-fg-muted, #444b5b);
       text-decoration: none;
-      transition: all 0.3s;
+      transition: color 0.3s;
       white-space: nowrap;
-      margin-bottom: 2px;
+      font-weight: 500;
 
       @{dark-selector} & {
         color: @c-text-secondary-dark;
       }
 
       &:hover {
-        background-color: @c-bg-grey;
+        color: var(--bui-color-primary, @c-primary);
         @{dark-selector} & {
-          color: @c-primary-dark;
+          color: var(--bui-color-primary, @c-primary-dark);
         }
       }
 
       &.active {
-        color: @c-primary;
+        color: var(--bui-color-primary, @c-primary);
         font-family: PingFangSC-Medium;
-        background-color: @c-primary-light;
         @{dark-selector} & {
-          color: @c-primary-dark;
+          color: var(--bui-color-primary, @c-primary-dark);
         }
       }
     }
 
     > span.active,
     > .@{prefix}-navbar-dropdown > li > a.active {
-      color: @c-text;
+      color: var(--bui-color-fg-default, #030b1a);
       font-weight: bold;
 
       @{dark-selector} & {
@@ -73,42 +73,7 @@
     }
 
     > .@{prefix}-navbar-collapse-btn {
-      appearance: none;
-      margin-left: 6px;
-      margin-right: -24px;
-      width: 18px;
-      height: 18px;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      vertical-align: middle;
-
-      > svg {
-        fill: @c-text-note;
-        width: 14px;
-        transition: transform 0.3s;
-
-        @{dark-selector} & {
-          fill: @c-text-note-dark;
-        }
-      }
-
-      @media @mobile {
-        &[data-collapsed] > svg {
-          transform: rotate(180deg);
-        }
-      }
-
-      @media @desktop {
-        margin-left: 4px;
-        margin-right: 0;
-        pointer-events: none;
-
-        > svg {
-          width: 9px;
-          transition-delay: 0.1s;
-        }
-      }
+      display: none;
     }
 
     &:hover > .@{prefix}-navbar-collapse-btn > svg {
@@ -144,7 +109,7 @@
           display: flex;
           align-items: center;
           padding: 8px 16px;
-          color: @c-text-secondary;
+          color: var(--bui-color-fg-muted, #444b5b);
           font-size: 14px;
           line-height: 22px;
           text-align: left;
@@ -155,26 +120,32 @@
             color 0.2s;
           white-space: nowrap;
 
+          @{dark-selector} & {
+            color: @c-text-secondary-dark;
+          }
+
           @media @mobile {
-            display: inline;
+            display: block;
+            padding: 10px 24px;
+            text-align: center;
           }
 
           &:hover {
-            color: @c-primary;
-            background-color: @c-primary-light;
+            color: var(--bui-color-primary, @c-primary);
+            background-color: var(--bui-color-primary-light, @c-primary-light);
 
             @{dark-selector} & {
-              color: @c-primary-dark;
+              color: var(--bui-color-primary, @c-primary-dark);
               background-color: @c-light-bg-dark;
             }
           }
 
           &.active {
-            color: @c-primary;
+            color: var(--bui-color-primary, @c-primary);
             font-weight: 500;
 
             @{dark-selector} & {
-              color: @c-primary-dark;
+              color: var(--bui-color-primary, @c-primary-dark);
             }
           }
         }
@@ -213,11 +184,7 @@
     }
 
     &:not(:last-child) {
-      margin-inline-end: 16px;
-
-      @media @mobile {
-        margin-inline-end: 0;
-      }
+      margin-inline-end: 0;
     }
   }
 }

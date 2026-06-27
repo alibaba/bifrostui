@@ -1,6 +1,6 @@
 import { ReactComponent as IconClose } from '@ant-design/icons-svg/inline-svg/outlined/close.svg';
 import { ReactComponent as IconMenu } from '@ant-design/icons-svg/inline-svg/outlined/menu.svg';
-import { useRouteMeta, useSiteData } from 'dumi';
+import { useRouteMeta, useSiteData, useLocation } from 'dumi';
 import ColorSwitch from 'dumi/theme/slots/ColorSwitch';
 import HeaderExtra from 'dumi/theme/slots/HeaderExtra';
 import LangSwitch from 'dumi/theme/slots/LangSwitch';
@@ -9,18 +9,33 @@ import VersionSelect from 'dumi/theme/slots/VersionSelect';
 import Navbar from 'dumi/theme/slots/Navbar';
 import RtlSwitch from 'dumi/theme/slots/RtlSwitch';
 import SearchBar from 'dumi/theme/slots/SearchBar';
-import React, { useState, type FC } from 'react';
+import ThemeSwitch from 'dumi/theme/slots/ThemeSwitch';
+import React, { useState, useEffect, type FC } from 'react';
 import './index.less';
 
 const Header: FC = () => {
   const { frontmatter } = useRouteMeta();
   const [showMenu, setShowMenu] = useState(false);
   const { themeConfig } = useSiteData();
+  const { pathname } = useLocation();
+  const isHomePage =
+    pathname === '/' || pathname === '/index-en' || Boolean(frontmatter.hero);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    if (!isHomePage) return undefined;
+    const onScroll = () => {
+      setScrolled(window.scrollY > 80);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [isHomePage]);
 
   return (
     <div
       className="dumi-default-header"
-      data-static={Boolean(frontmatter.hero) || undefined}
+      data-static={(isHomePage && !scrolled) || undefined}
       data-mobile-active={showMenu || undefined}
       onClick={() => setShowMenu(false)}
     >
@@ -32,11 +47,13 @@ const Header: FC = () => {
         <section className="dumi-default-header-right">
           <SearchBar />
           <Navbar />
-          <LangSwitch />
+          <div className="dumi-default-header-actions">
+            <LangSwitch />
+            <ThemeSwitch />
+            {themeConfig.prefersColor.switch && <ColorSwitch />}
+          </div>
           <RtlSwitch />
-          {themeConfig.prefersColor.switch && <ColorSwitch />}
           <HeaderExtra />
-          {/* </div> */}
         </section>
         <button
           type="button"

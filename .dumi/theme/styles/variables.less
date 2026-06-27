@@ -9,31 +9,29 @@
 @s-header-height-m: 52px;
 @s-header-icon-width: 180px;
 
-/* 颜色表 */
-@c-primary: #2356df;
-@c-primary-light: #f2f5ff;
-@c-warning: #ff8533;
-@c-success: #00d68f;
-@c-error: #ff335c;
-@c-text: #000000;
-@c-text-secondary: #000000;
-@c-text-grey: #999999;
+/* 颜色表 - 对齐 pioneer 主题色 */
+@c-primary: #ff5000;
+@c-primary-light: #ffede5;
+@c-warning: #ffa608;
+@c-success: #40bf00;
+@c-error: #ff471a;
+@c-text: #1a1a1a;
+@c-text-secondary: #1a1a1a;
+@c-text-grey: #8a8a8a;
 @c-text-note: #8a9099;
-@c-border: #e2e2e2;
-@c-border-light: #e4e9ec;
+@c-border: #eaeaea;
+@c-border-light: #f0f0f0;
 @c-site-bg: #ffffff;
-@c-bg-grey: #eeeeee;
+@c-bg-grey: #f7f7f8;
 @c-bg-source-code: #fafafa;
-@c-bg-inline-code: rgba(188, 188, 188, 0.2);
+@c-bg-inline-code: rgba(255, 80, 0, 0.06);
 
 /* 颜色表 - dark */
-// dark theme colors
-// @dark-selector be injected by less-loader in feature/theme/index.ts
-@c-header-bg-dark: rgba(10, 25, 41, 0.7); //header背景色
+@c-header-bg-dark: rgba(10, 25, 41, 0.7);
 @c-site-bg-dark: #161b22;
 @c-text-dark: #f0f6fc;
 @c-border-dark: #30363d;
-@c-primary-dark: @c-primary;
+@c-primary-dark: #ff5000;
 @c-light-bg-dark: rgba(255, 255, 255, 0.08);
 @c-text-secondary-dark: #f0f6fc;
 
@@ -43,7 +41,7 @@
 @c-warning-dark: darken(@c-warning, @dark-solid-amount);
 @c-success-dark: darken(@c-success, @dark-solid-amount);
 @c-error-dark: darken(@c-error, @dark-solid-amount);
-@c-text-note-dark: lighten(@c-text, @dark-light-amount);
+@c-text-note-dark: lighten(#1a1a1a, @dark-light-amount);
 @c-border-less-dark: darken(@c-border-light, @dark-border-amount);
 
 @mobile: ~'only screen and (max-width: 800px)';

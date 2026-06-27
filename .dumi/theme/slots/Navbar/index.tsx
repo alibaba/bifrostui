@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { ReactComponent as IconDown } from '@ant-design/icons-svg/inline-svg/outlined/down.svg';
 import { Link, useLocation, useNavData } from 'dumi';
 import NavbarExtra from 'dumi/theme/slots/NavbarExtra';
 import React, { useState, type FC } from 'react';
@@ -17,19 +16,6 @@ const NavbarItem: FC<{
       return activePath && pathname.startsWith(activePath);
     });
   });
-  const CollapsedBtn = data.children && (
-    <button
-      className="dumi-default-navbar-collapse-btn"
-      type="button"
-      onClick={(e) => {
-        e.stopPropagation();
-        setIsCollapsed((v) => !v);
-      }}
-      data-collapsed={isCollapsed || undefined}
-    >
-      <IconDown />
-    </button>
-  );
   const NestedNav = data.children && (
     <ul
       className="dumi-default-navbar-dropdown"
@@ -48,12 +34,19 @@ const NavbarItem: FC<{
       : !!(activePath && pathname.startsWith(activePath));
   const extraProps = active ? { className: 'active' } : {};
 
+  const handleMobileToggle = (e: React.MouseEvent) => {
+    if (data.children && window.innerWidth <= 800) {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsCollapsed((v) => !v);
+    }
+  };
+
   return data.link ? (
     <>
-      <Link to={data.link} {...extraProps}>
+      <Link to={data.link} {...extraProps} onClick={handleMobileToggle}>
         {data.title}
       </Link>
-      {CollapsedBtn}
       {NestedNav}
     </>
   ) : (
@@ -67,7 +60,6 @@ const NavbarItem: FC<{
       >
         {data.title}
       </span>
-      {CollapsedBtn}
       {NestedNav}
     </>
   );

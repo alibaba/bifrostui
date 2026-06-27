@@ -1,14 +1,21 @@
+@import (reference) '../../../.dumi/theme/styles/variables.less';
+
 .theme-designer {
-  --gray-color-1: rgba(28, 31, 35, 0.62);
+  --gray-color-1: var(--bui-color-fg-muted, rgba(28, 31, 35, 0.62));
   --font-weight-bold: 600;
   --spacing-xs: 4px;
   --spacing-lg: 12px;
   --text-size-1: 14px;
   --spacing-md: 9px;
-  --color-neutral-6: #f5f6f8;
+  --color-neutral-6: var(--bui-color-neutral-6, #f5f6f8);
   --shape-radius-label: 3px;
   --text-size-3: 12px;
-  --color-white: #fff;
+  --color-white: var(--bui-color-bg-default, #fff);
+
+  @{dark-selector} & {
+    --color-neutral-6: var(--bui-color-border-default, #30363d);
+    --color-white: var(--bui-color-bg-view, #161b22);
+  }
 
   .theme-mode {
     display: flex;
@@ -26,9 +33,9 @@
     }
 
     .is-active {
-      color: rgb(22, 93, 255);
+      color: var(--bui-color-primary, #ff5000);
       font-weight: var(--font-weight-bold);
-      border-bottom: 1px solid rgb(22, 93, 255);
+      border-bottom: 1px solid var(--bui-color-primary, #ff5000);
     }
   }
 }
@@ -53,7 +60,7 @@
   border-radius: var(--shape-radius-label);
 
   &.is-active {
-    color: rgb(22, 93, 255);
+    color: var(--bui-color-primary, #ff5000);
     background: var(--color-white);
   }
 }
@@ -101,6 +108,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: var(--bui-color-fg-default);
   font-size: var(--text-size-3);
   border: 1px solid var(--color-neutral-6);
   border-radius: var(--shape-radius-label);
@@ -108,7 +116,7 @@
   margin-bottom: var(--spacing-lg);
 
   &:hover {
-    border-color: rgb(22, 93, 255);
+    border-color: var(--bui-color-primary, #ff5000);
 
     .theme-css-var-item-value-edit-icon {
       display: block;
@@ -218,6 +226,12 @@
 
   &:hover {
     --scroll-bar-background: rgba(0, 0, 0, 0.2);
+  }
+
+  @{dark-selector} & {
+    &:hover {
+      --scroll-bar-background: rgba(255, 255, 255, 0.2);
+    }
   }
 
   &::-webkit-scrollbar {

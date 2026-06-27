@@ -21,6 +21,7 @@ export default defineConfig({
         { title: '组件', link: '/cores/button', activePath: '/cores' },
         {
           title: '图标',
+          link: '/icons',
           activePath: '/icons',
           children: [
             { title: '默认图标', link: '/icons' },
@@ -35,6 +36,7 @@ export default defineConfig({
         { title: 'Components', link: '/cores/button-en', activePath: '/cores' },
         {
           title: 'Icons',
+          link: '/icons-en',
           activePath: '/icons',
           children: [
             { title: 'Default Icons', link: '/icons-en' },
@@ -45,7 +47,6 @@ export default defineConfig({
       ],
     },
   },
-  logo: 'https://gw.alicdn.com/imgextra/i4/O1CN01XWp8e31QbIi5YgLUw_!!6000000001994-2-tps-362-96.png',
   resolve: {
     atomDirs: [
       { type: 'core', dir: 'packages/bui-core/src' },
