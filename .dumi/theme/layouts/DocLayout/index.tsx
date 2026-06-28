@@ -44,7 +44,8 @@ const DocLayout: FC = () => {
   }, []);
 
   const isEmbed = new URLSearchParams(search).get('embed') === '1';
-  const isHomePage = pathname === '/' || pathname === '/index-en';
+  const isHomePage =
+    pathname === '/' || pathname === '/index-en' || pathname === '/index-en/';
   const showSidebar =
     !isHomePage && fm.sidebar !== false && sidebar?.length > 0;
   const hideToc = fm.title === 'bifrostui' && fm.filename === 'docs/index.md';

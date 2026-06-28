@@ -239,13 +239,6 @@
   max-width: 100%;
   box-sizing: border-box;
 
-  .home-page & {
-    padding: 0 !important;
-    max-width: 100%;
-    background: transparent;
-    border-radius: 0;
-  }
-
   &:not([data-no-sidebar]) {
     padding: @s-content-padding @s-content-padding 0;
     background-color: #fff;
@@ -273,11 +266,29 @@
         padding: 24px;
       }
     }
+
+    .home-page & {
+      padding: 0 !important;
+      max-width: 100%;
+      background: transparent;
+      border-radius: 0;
+    }
+  }
+
+  .home-page & {
+    padding: 0 !important;
+    max-width: 100%;
+    background: transparent;
+    border-radius: 0;
   }
 
   @media @mobile {
     &:not([data-no-sidebar]) {
       padding: @s-content-padding 12px 0;
+
+      .home-page & {
+        padding: 0 !important;
+      }
     }
   }
 

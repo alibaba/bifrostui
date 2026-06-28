@@ -19,18 +19,24 @@ const Header: FC = () => {
   const { themeConfig } = useSiteData();
   const { pathname } = useLocation();
   const isHomePage =
-    pathname === '/' || pathname === '/index-en' || Boolean(frontmatter.hero);
+    pathname === '/' ||
+    pathname === '/index-en' ||
+    pathname === '/index-en/' ||
+    Boolean(frontmatter.hero);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (!isHomePage) return undefined;
+    if (!isHomePage) {
+      setScrolled(false);
+      return undefined;
+    }
     const onScroll = () => {
       setScrolled(window.scrollY > 80);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
-  }, [isHomePage]);
+  }, [isHomePage, pathname]);
 
   return (
     <div
