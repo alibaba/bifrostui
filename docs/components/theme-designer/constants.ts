@@ -45,16 +45,16 @@ export const THEME_ROOT_SELECTOR =
 
 export const builtinThemes = [
   {
+    text: '活力橙',
+    value: BUILTIN_THEME.PIONEER,
+    themeData: pioneerLight,
+  },
+  {
     text: '默认',
     value: BUILTIN_THEME.DEFAULT,
     themeData: defaultLight,
   },
   { text: '大麦', value: BUILTIN_THEME.DM, themeData: dmLight },
-  {
-    text: '活力橙',
-    value: BUILTIN_THEME.PIONEER,
-    themeData: pioneerLight,
-  },
 ];
 
 export const tabList = [

@@ -27,14 +27,27 @@ const DocLayout: FC = () => {
   const intl = useIntl();
   const outlet = useOutlet();
   const sidebar = useSidebarData();
-  const { hash, pathname } = useLocation();
+  const { hash, pathname, search } = useLocation();
   const { loading, hostname } = useSiteData();
   const [activateSidebar, setActivateSidebar] = useState(false);
   const { frontmatter: fm } = useRouteMeta();
   const [color] = usePrefersColor();
   fm.toc = 'content';
 
-  const showSidebar = fm.sidebar !== false && sidebar?.length > 0;
+  useEffect(() => {
+    const saved = localStorage.getItem('bui-site-theme');
+    if (saved) {
+      document.documentElement.setAttribute('data-theme', saved);
+    } else {
+      document.documentElement.setAttribute('data-theme', 'pioneer');
+    }
+  }, []);
+
+  const isEmbed = new URLSearchParams(search).get('embed') === '1';
+  const isHomePage =
+    pathname === '/' || pathname === '/index-en' || pathname === '/index-en/';
+  const showSidebar =
+    !isHomePage && fm.sidebar !== false && sidebar?.length > 0;
   const hideToc = fm.title === 'bifrostui' && fm.filename === 'docs/index.md';
 
   // handle hash change or visit page hash after async chunk loaded
@@ -55,6 +68,31 @@ const DocLayout: FC = () => {
     }
   }, [loading, hash]);
 
+  if (isEmbed) {
+    return (
+      <div className="dumi-default-doc-layout dumi-embed-mode">
+        <Helmet>
+          <html
+            lang={intl.locale.replace(/-.+$/, '')}
+            data-color-mode={color}
+            data-embed="1"
+          />
+        </Helmet>
+        <ThemeProvider locale={intl.locale === 'en-US' ? En : CN}>
+          <main className="dumi-default-doc-layout-content">
+            <div className="right">
+              <div className="top">
+                <div className="main">
+                  <Content>{outlet}</Content>
+                </div>
+              </div>
+            </div>
+          </main>
+        </ThemeProvider>
+      </div>
+    );
+  }
+
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
     <div
@@ -63,11 +101,7 @@ const DocLayout: FC = () => {
       onClick={() => setActivateSidebar(false)}
     >
       <Helmet>
-        <html
-          lang={intl.locale.replace(/-.+$/, '')}
-          data-color-mode={color}
-          data-theme="default"
-        />
+        <html lang={intl.locale.replace(/-.+$/, '')} data-color-mode={color} />
         {fm.title && <title>{fm.title}</title>}
         {fm.title && <meta property="og:title" content={fm.title} />}
         {fm.description && <meta name="description" content={fm.description} />}
@@ -83,6 +117,13 @@ const DocLayout: FC = () => {
         {hostname && <link rel="canonical" href={hostname + pathname} />}
       </Helmet>
       <ThemeProvider locale={intl.locale === 'en-US' ? En : CN}>
+        {isHomePage && (
+          <div className="bui-home-hero-bg">
+            <div className="bui-home-hero-gradient" />
+            <div className="bui-home-hero-grid" />
+            <div className="bui-home-hero-glow" />
+          </div>
+        )}
         <Header />
         <Hero />
         <Features />
@@ -103,7 +144,7 @@ const DocLayout: FC = () => {
         )}
         <main
           className={clsx('dumi-default-doc-layout-content', {
-            'home-page': pathname === '/index-en' || pathname === '/',
+            'home-page': isHomePage,
           })}
         >
           <div className="left">{showSidebar && <Sidebar />}</div>

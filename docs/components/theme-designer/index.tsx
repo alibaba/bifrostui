@@ -41,7 +41,7 @@ const builtInThemeData = Object.fromEntries(
 const ThemeDesigner = () => {
   const [toast] = Toast.useToast();
   // 内置主题：default默认 dm大麦 pioneer活力橙
-  const [builtinTheme, setBuiltinTheme] = useState(BUILTIN_THEME.DEFAULT);
+  const [builtinTheme, setBuiltinTheme] = useState(BUILTIN_THEME.PIONEER);
   const [componentName, setComponentName] = useState('');
   // 存储只发生修改的CSS变量
   const [modifiedCssVars, setModifiedCssVars] = useState<ModifiedCssVars>(() =>

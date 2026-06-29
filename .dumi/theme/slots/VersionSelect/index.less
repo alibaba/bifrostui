@@ -5,25 +5,45 @@
     background-position: 0% center;
   }
 
+  50% {
+    background-position: 100% center;
+  }
+
   100% {
     background-position: 200% center;
+  }
+}
+
+@keyframes version-glow {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.15);
   }
 }
 
 .version-label {
   background: linear-gradient(
     135deg,
-    @c-primary 0%,
-    #7c3aed 40%,
-    #c026d3 60%,
-    @c-primary 100%
+    var(--bui-color-primary, @c-primary) 0%,
+    #7c3aed 30%,
+    #a855f7 50%,
+    #7c3aed 70%,
+    var(--bui-color-primary, @c-primary) 100%
   );
-  background-size: 200% auto;
+  background-size: 300% auto;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: version-shimmer 3s linear infinite;
-  font-weight: 500;
+  animation:
+    version-shimmer 4s ease-in-out infinite,
+    version-glow 4s ease-in-out infinite;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
 }
 
 .version-select {
@@ -33,7 +53,17 @@
   align-items: center;
   cursor: pointer;
 
+  > .version-label {
+    font-size: 15px;
+    font-weight: 800;
+    transition: transform 0.3s ease;
+  }
+
   &:hover {
+    > .version-label {
+      transform: scale(1.05);
+    }
+
     .versions-container {
       visibility: visible;
       opacity: 1;
@@ -47,18 +77,7 @@
   }
 
   &-arrow {
-    margin-left: 4px;
-    width: 6px;
-    height: 6px;
-    border-right: 1.5px solid @c-text-note;
-    border-bottom: 1.5px solid @c-text-note;
-    transform: rotate(45deg) translateY(-2px);
-    transition: transform 0.3s;
-
-    @{dark-selector} & {
-      border-right-color: @c-text-note-dark;
-      border-bottom-color: @c-text-note-dark;
-    }
+    display: none;
   }
 
   .versions-container {
@@ -105,7 +124,7 @@
       }
 
       &:hover {
-        background-color: @c-primary-light;
+        background-color: var(--bui-color-primary-light, @c-primary-light);
 
         @{dark-selector} & {
           background-color: @c-light-bg-dark;
@@ -113,7 +132,7 @@
       }
 
       &-active {
-        background-color: @c-primary-light;
+        background-color: var(--bui-color-primary-light, @c-primary-light);
 
         @{dark-selector} & {
           background-color: @c-light-bg-dark;
