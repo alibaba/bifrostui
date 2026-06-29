@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button } from '@bifrostui/react';
-import { usePrefersColor, useNavigate, useIntl } from 'dumi';
+import { usePrefersColor, useNavigate, useIntl, history } from 'dumi';
 import { motion } from 'motion/react';
 import Tpp from './user-icon/tpp';
 import Dm from './user-icon/dm';
@@ -69,6 +69,7 @@ const HomePage = () => {
   const { locale } = useIntl();
   const current = locale === 'zh-CN' ? 'zhCN' : 'enUS';
   const navigate = useNavigate();
+  const basePath = (history as any).basename || '/';
   const [theme, setTheme] = React.useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('bui-site-theme') || 'pioneer';
@@ -263,7 +264,7 @@ const HomePage = () => {
         >
           <iframe
             key={`${color}-${theme}`}
-            src="/guide/theme-designer?embed=1"
+            src={`${basePath}guide/theme-designer?embed=1`}
             title="Theme Designer"
             className="bui-home-theme-designer-iframe"
           />
