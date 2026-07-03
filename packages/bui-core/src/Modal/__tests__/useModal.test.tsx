@@ -122,8 +122,10 @@ describe('useModal', () => {
       const transitionProps = result.current.getTransitionProps();
 
       expect(transitionProps).toHaveProperty('onEnter');
+      expect(transitionProps).toHaveProperty('onEntered');
       expect(transitionProps).toHaveProperty('onExited');
       expect(typeof transitionProps.onEnter).toBe('function');
+      expect(typeof transitionProps.onEntered).toBe('function');
       expect(typeof transitionProps.onExited).toBe('function');
     });
 

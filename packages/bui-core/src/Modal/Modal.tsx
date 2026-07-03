@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
+import { useForkRef } from '@bifrostui/utils';
 import Backdrop from '../Backdrop';
 import Portal from '../Portal';
 import { ModalProps } from './Modal.types';
@@ -7,6 +8,10 @@ import { useModal } from './useModal';
 import './index.less';
 
 const prefixCls = 'bui-modal';
+
+function getChildRef(child: React.ReactElement): React.Ref<any> | null {
+  return (child as any).ref ?? (child.props as any)?.ref ?? null;
+}
 
 const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const {
@@ -17,11 +22,21 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     container,
     disablePortal = false,
     disableScrollLock = false,
+    disableAutoFocus = false,
+    disableRestoreFocus = false,
     hideBackdrop = false,
     onClose,
     keepMounted = false,
     ...others
   } = props;
+
+  const contentRef = React.useRef<HTMLElement>(null);
+
+  // 提取子元素 ref 并在顶层合并，避免在 renderChildren 中条件调用 Hook
+  const childRef = React.isValidElement(children)
+    ? getChildRef(children)
+    : null;
+  const mergedChildRef = useForkRef(childRef, contentRef);
 
   const {
     getRootProps,
@@ -33,7 +48,10 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   } = useModal({
     ...props,
     container,
+    contentRef,
     disableScrollLock,
+    disableAutoFocus,
+    disableRestoreFocus,
     children: React.isValidElement(children) ? children : undefined,
     open,
     onClose,
@@ -73,6 +91,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         tabIndex: -1,
         ...childProps,
         ...transitionProps,
+        ref: mergedChildRef,
       });
     }
 

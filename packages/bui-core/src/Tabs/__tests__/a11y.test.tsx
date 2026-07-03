@@ -68,20 +68,17 @@ getMdDemoCodes(
             if (tabPanel.getAttribute('role') !== 'tabpanel') {
               console.log(`Tabs面板 应该设置 role="tabpanel"`);
             }
-            if (tabPanel.getAttribute('tabindex') !== '0') {
-              console.log(`Tabs面板 应该设置 tabindex="0"`);
-            }
             if (tabPanel.classList.contains('bui-tabpanel-active')) {
-              if (tabPanel.getAttribute('aria-hidden') !== 'false') {
+              if (tabPanel.hasAttribute('hidden')) {
                 console.log(
-                  `Tabs选中项对应的面板 应该设置 aria-hidden="false"`,
+                  `Tabs选中项对应的面板 不应该设置 hidden 属性`,
                 );
               }
             }
             if (tabPanel.classList.contains('bui-tabpanel-inactive')) {
-              if (tabPanel.getAttribute('aria-hidden') !== 'true') {
+              if (!tabPanel.hasAttribute('hidden')) {
                 console.log(
-                  `Tabs未选中项对应的面板 应该设置 aria-hidden="true"`,
+                  `Tabs未选中项对应的面板 应该设置 hidden 属性`,
                 );
               }
             }

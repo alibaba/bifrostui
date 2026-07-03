@@ -55,6 +55,7 @@ vi.mock('../../Portal', () => ({
 interface MockTransitionProps {
   in?: boolean;
   onEnter?: () => void;
+  onEntered?: () => void;
   onExited?: () => void;
   children: React.ReactNode;
   [key: string]: any;
@@ -65,6 +66,7 @@ const MockTransition = React.forwardRef<HTMLDivElement, MockTransitionProps>(
     {
       in: inProp = false,
       onEnter = undefined,
+      onEntered = undefined,
       onExited = undefined,
       children,
       ...props
@@ -74,13 +76,17 @@ const MockTransition = React.forwardRef<HTMLDivElement, MockTransitionProps>(
     React.useEffect(() => {
       if (inProp && onEnter) {
         onEnter();
-      } else if (!inProp && onExited) {
-        // Simulate async transition
+      }
+      if (inProp && onEntered) {
+        const timer = setTimeout(onEntered, 10);
+        return () => clearTimeout(timer);
+      }
+      if (!inProp && onExited) {
         const timer = setTimeout(onExited, 10);
         return () => clearTimeout(timer);
       }
       return undefined;
-    }, [inProp, onEnter, onExited]);
+    }, [inProp, onEnter, onEntered, onExited]);
 
     return (
       <div ref={ref} data-testid="transition-mock" data-in={inProp} {...props}>
@@ -781,6 +787,152 @@ describe('Modal', () => {
 
       expect(screen.getByTestId('modal-1')).toBeInTheDocument();
       expect(screen.getByTestId('modal-2')).toBeInTheDocument();
+    });
+  });
+
+  describe('Focus management', () => {
+    it('should focus modal content when opened', () => {
+      render(
+        <Modal open>
+          <div data-testid="modal-content">content</div>
+        </Modal>,
+      );
+      expect(document.activeElement).toBe(screen.getByTestId('modal-content'));
+    });
+
+    it('should not focus modal when disableAutoFocus is true', () => {
+      const triggerButton = document.createElement('button');
+      document.body.appendChild(triggerButton);
+      triggerButton.focus();
+
+      render(
+        <Modal open disableAutoFocus>
+          <div data-testid="modal-content">content</div>
+        </Modal>,
+      );
+      expect(document.activeElement).toBe(triggerButton);
+
+      document.body.removeChild(triggerButton);
+    });
+
+    it('should defer focus until transition onEntered when child has transition', async () => {
+      const triggerButton = document.createElement('button');
+      triggerButton.setAttribute('data-testid', 'trigger');
+      document.body.appendChild(triggerButton);
+      triggerButton.focus();
+
+      render(
+        <Modal open>
+          <MockTransition in>
+            <div data-testid="modal-content">content</div>
+          </MockTransition>
+        </Modal>,
+      );
+
+      expect(document.activeElement).toBe(triggerButton);
+
+      await waitFor(() => {
+        expect(document.activeElement).toBe(
+          screen.getByTestId('transition-mock'),
+        );
+      });
+
+      document.body.removeChild(triggerButton);
+    });
+
+    it('should restore focus to trigger element when closed', async () => {
+      const triggerButton = document.createElement('button');
+      triggerButton.setAttribute('data-testid', 'trigger');
+      document.body.appendChild(triggerButton);
+      triggerButton.focus();
+
+      const { rerender } = render(
+        <Modal open>
+          <div>content</div>
+        </Modal>,
+      );
+
+      rerender(
+        <Modal open={false}>
+          <div>content</div>
+        </Modal>,
+      );
+
+      await waitFor(() => {
+        expect(document.activeElement).toBe(triggerButton);
+      });
+
+      document.body.removeChild(triggerButton);
+    });
+
+    it('should not restore focus when disableRestoreFocus is true', async () => {
+      const triggerButton = document.createElement('button');
+      document.body.appendChild(triggerButton);
+      triggerButton.focus();
+
+      const { rerender } = render(
+        <Modal open disableRestoreFocus>
+          <div>content</div>
+        </Modal>,
+      );
+
+      rerender(
+        <Modal open={false} disableRestoreFocus>
+          <div>content</div>
+        </Modal>,
+      );
+
+      await waitFor(() => {
+        expect(document.activeElement).not.toBe(triggerButton);
+      });
+
+      document.body.removeChild(triggerButton);
+    });
+
+    it('should not re-focus when children re-render', () => {
+      const ModalWithState = () => {
+        const [count, setCount] = React.useState(0);
+        return (
+          <Modal open>
+            <div>
+              <button
+                type="button"
+                data-testid="inner-btn"
+                onClick={() => setCount((c) => c + 1)}
+              >
+                count: {count}
+              </button>
+            </div>
+          </Modal>
+        );
+      };
+
+      const { container } = render(<ModalWithState />);
+      const innerBtn = screen.getByTestId('inner-btn');
+      innerBtn.focus();
+      expect(document.activeElement).toBe(innerBtn);
+
+      fireEvent.click(innerBtn);
+
+      expect(document.activeElement).toBe(innerBtn);
+    });
+
+    it('should not enforce focus when disableEnforceFocus is true', () => {
+      const outsideButton = document.createElement('button');
+      document.body.appendChild(outsideButton);
+
+      render(
+        <Modal open disableEnforceFocus>
+          <div data-testid="modal-content">content</div>
+        </Modal>,
+      );
+
+      outsideButton.focus();
+      fireEvent.focusIn(outsideButton);
+
+      expect(document.activeElement).toBe(outsideButton);
+
+      document.body.removeChild(outsideButton);
     });
   });
 

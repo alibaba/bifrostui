@@ -109,6 +109,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       ref={ref}
       className={clsx(prefixCls, `${prefixCls}-${type}`, className)}
       onClose={handleCancel}
+      disableAutoFocus={isPromptMode}
       {...others}
     >
       <div

@@ -12,9 +12,16 @@ function getContainer(
   return container || null;
 }
 
+function getFocusTarget(root: HTMLElement): HTMLElement {
+  return root.querySelector<HTMLElement>('[data-bui-focusable]') ?? root;
+}
+
 export interface UseModalParameters {
   container?: Element | (() => Element | null) | null;
+  contentRef?: React.RefObject<HTMLElement>;
   disableScrollLock?: boolean;
+  disableAutoFocus?: boolean;
+  disableRestoreFocus?: boolean;
   onClose?: (
     event: React.SyntheticEvent<Element, Event>,
     detail?: { from: 'backdropClick' | 'escapeKeyDown' },
@@ -39,6 +46,7 @@ export interface UseModalReturnValue {
   ) => Record<string, unknown>;
   getTransitionProps: () => {
     onEnter: () => void;
+    onEntered: () => void;
     onExited: () => void;
   };
   rootRef: React.RefCallback<Element>;
@@ -54,7 +62,10 @@ function getHasTransition(children: React.ReactElement): boolean {
 export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
     container,
+    contentRef,
     disableScrollLock = false,
+    disableAutoFocus = false,
+    disableRestoreFocus = false,
     onClose,
     open,
     rootRef,
@@ -74,6 +85,13 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const [exited, setExited] = useState(!open);
   const hasTransition = getHasTransition(children);
 
+  const activated = useRef(false);
+  const lastFocusedElement = useRef<HTMLElement | null>(null);
+  const disableRestoreFocusRef = useRef(disableRestoreFocus);
+  disableRestoreFocusRef.current = disableRestoreFocus;
+  const openRef = useRef(open);
+  openRef.current = open;
+
   let ariaHiddenProp = true;
   if (
     parameters['aria-hidden'] === 'false' ||
@@ -81,6 +99,8 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   ) {
     ariaHiddenProp = false;
   }
+  const ariaHiddenPropRef = useRef(ariaHiddenProp);
+  ariaHiddenPropRef.current = ariaHiddenProp;
 
   const getModal = () => {
     if (modalRef.current && mountNodeRef.current) {
@@ -117,13 +137,13 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
         return;
       }
 
-      if (open && isTopModal()) {
+      if (openRef.current && isTopModal()) {
         handleMounted();
       } else if (modalRef.current) {
-        ariaHidden(modalRef.current, ariaHiddenProp);
+        ariaHidden(modalRef.current, ariaHiddenPropRef.current);
       }
     },
-    [open, ariaHiddenProp, isTopModal, handleMounted],
+    [isTopModal, handleMounted],
   );
 
   const handleClose = useCallback(() => {
@@ -143,6 +163,52 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
       handleClose();
     }
   }, [open, handleClose, hasTransition, handleOpen]);
+
+  // Effect #1: activated gate — controls whether focus management is active
+  useEffect(() => {
+    if (open && contentRef?.current) {
+      activated.current = !disableAutoFocus;
+    }
+  }, [disableAutoFocus, open, contentRef]);
+
+  const handleAutoFocus = useCallback(() => {
+    if (!contentRef?.current || !activated.current) return;
+
+    const doc = contentRef.current.ownerDocument || document;
+    if (contentRef.current.contains(doc.activeElement)) return;
+
+    const focusTarget = getFocusTarget(contentRef.current);
+    if (!focusTarget.hasAttribute('tabIndex')) {
+      focusTarget.setAttribute('tabIndex', '-1');
+    }
+    focusTarget.focus({ preventScroll: true });
+  }, [contentRef]);
+
+  // Effect #2: autoFocus on open + restoreFocus on close
+  useEffect(() => {
+    if (!open || !contentRef?.current) {
+      return undefined;
+    }
+
+    const doc = contentRef.current.ownerDocument || document;
+
+    if (!lastFocusedElement.current) {
+      lastFocusedElement.current = doc.activeElement as HTMLElement;
+    }
+
+    if (!hasTransition) {
+      handleAutoFocus();
+    }
+
+    return () => {
+      if (!disableRestoreFocusRef.current && lastFocusedElement.current) {
+        if (typeof lastFocusedElement.current.focus === 'function') {
+          lastFocusedElement.current.focus({ preventScroll: true });
+        }
+        lastFocusedElement.current = null;
+      }
+    };
+  }, [open, contentRef, hasTransition, handleAutoFocus]);
 
   const createHandleBackdropClick =
     (backdropHandlers: Record<string, React.EventHandler<any>> = {}) =>
@@ -195,6 +261,11 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
       (children?.props as any)?.onEnter?.();
     };
 
+    const handleEntered = () => {
+      handleAutoFocus();
+      (children?.props as any)?.onEntered?.();
+    };
+
     const handleExited = () => {
       setExited(true);
       (children?.props as any)?.onExited?.();
@@ -202,9 +273,10 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
     return {
       onEnter: handleEnter,
+      onEntered: handleEntered,
       onExited: handleExited,
     };
-  }, [children]);
+  }, [children, handleAutoFocus]);
 
   return {
     getRootProps,

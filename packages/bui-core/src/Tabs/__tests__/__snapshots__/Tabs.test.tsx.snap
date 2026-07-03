@@ -47,24 +47,20 @@ exports[`Tabs > test with TabPanel > should be active by \`value\` property 1`] 
     </div>
   </div>
   <div
-    aria-hidden="true"
     class="bui-tabpanel bui-tabpanel-inactive"
+    hidden=""
     role="tabpanel"
-    tabindex="0"
   />
   <div
-    aria-hidden="false"
     class="bui-tabpanel bui-tabpanel-active"
     role="tabpanel"
-    tabindex="0"
   >
     西红柿
   </div>
   <div
-    aria-hidden="true"
     class="bui-tabpanel bui-tabpanel-inactive"
+    hidden=""
     role="tabpanel"
-    tabindex="0"
   />
 </div>
 `;
