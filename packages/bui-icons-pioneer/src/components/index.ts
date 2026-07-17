@@ -42,6 +42,7 @@ export { default as DownloadOutlinedIcon } from './DownloadOutlinedIcon';
 export { default as EditOutlinedIcon } from './EditOutlinedIcon';
 export { default as EmailOutlinedIcon } from './EmailOutlinedIcon';
 export { default as EnlargeOutlinedIcon } from './EnlargeOutlinedIcon';
+export { default as ExitFullScreenOutlinedIcon } from './ExitFullScreenOutlined';
 export { default as ExtractOutlinedIcon } from './ExtractOutlinedIcon';
 export { default as FlashLightFilledIcon } from './FlashLightFilledIcon';
 export { default as FlashLightOutlinedIcon } from './FlashLightOutlinedIcon';
