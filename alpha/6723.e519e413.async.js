@@ -1066,6 +1066,7 @@ function SvgIcon(props: ISvgIconProps, ref) {
     color,
     htmlColor,
     size,
+    titleAccess,
     viewBox = '0 0 96 96',
     style,
     ...rest
@@ -1098,35 +1099,44 @@ function SvgIcon(props: ISvgIconProps, ref) {
 
   if (Component === 'svg') {
     if (typeof children === 'string') {
+      // \u4F20\u5165string\uFF0Csvg dom\u6A21\u5F0F\uFF0C\u4F7F\u7528dangerouslySetInnerHTML
       return (
         <Component
           ref={ref}
           className={clsx(classes.root, className, {
             [\`icon-size-\${size}\`]: size,
           })}
+          aria-hidden={titleAccess ? undefined : true}
+          role={titleAccess ? 'img' : undefined}
           focusable="false"
           viewBox={viewBox}
           color={svgColor}
           dangerouslySetInnerHTML={{
-            __html: children,
+            __html: titleAccess
+              ? \`<title>\${titleAccess}</title>\${children}\`
+              : children,
           }}
           style={style}
           {...rest}
         />
       );
     }
+    // \u4F20\u5165ReactNode\uFF0C\u76F4\u63A5\u4E22\u8FDBchildren
     return (
       <Component
         ref={ref}
         className={clsx(classes.root, className, {
           [\`icon-size-\${size}\`]: size,
         })}
+        aria-hidden={titleAccess ? undefined : true}
+        role={titleAccess ? 'img' : undefined}
         focusable="false"
         viewBox={viewBox}
         color={svgColor || htmlColor}
         style={style}
         {...rest}
       >
+        {titleAccess ? <title>{titleAccess}</title> : null}
         {children}
       </Component>
     );
@@ -1137,12 +1147,16 @@ function SvgIcon(props: ISvgIconProps, ref) {
         cssVar: svgColor,
       }) || svgColor;
 
+    // div\u80CC\u666F\u8272\u6A21\u5F0F\uFF0C\u7EC4\u88C5data:image/svg+xml\u585E\u8FDB\u5185\u8054\u6837\u5F0F
     return (
       <Component
         ref={ref}
         className={clsx(classes.root, className, {
           [\`icon-size-\${size}\`]: size,
         })}
+        aria-hidden={titleAccess ? undefined : true}
+        aria-label={titleAccess}
+        role={titleAccess ? 'img' : undefined}
         style={{
           ...style,
           backgroundImage: \`url("data:image/svg+xml,\${encodeURIComponent(
@@ -3197,6 +3211,7 @@ function SvgIcon(props: ISvgIconProps, ref) {
     color,
     htmlColor,
     size,
+    titleAccess,
     viewBox = '0 0 96 96',
     style,
     ...rest
@@ -3236,11 +3251,15 @@ function SvgIcon(props: ISvgIconProps, ref) {
           className={clsx(classes.root, className, {
             [\`icon-size-\${size}\`]: size,
           })}
+          aria-hidden={titleAccess ? undefined : true}
+          role={titleAccess ? 'img' : undefined}
           focusable="false"
           viewBox={viewBox}
           color={svgColor}
           dangerouslySetInnerHTML={{
-            __html: children,
+            __html: titleAccess
+              ? \`<title>\${titleAccess}</title>\${children}\`
+              : children,
           }}
           style={style}
           {...rest}
@@ -3254,12 +3273,15 @@ function SvgIcon(props: ISvgIconProps, ref) {
         className={clsx(classes.root, className, {
           [\`icon-size-\${size}\`]: size,
         })}
+        aria-hidden={titleAccess ? undefined : true}
+        role={titleAccess ? 'img' : undefined}
         focusable="false"
         viewBox={viewBox}
         color={svgColor || htmlColor}
         style={style}
         {...rest}
       >
+        {titleAccess ? <title>{titleAccess}</title> : null}
         {children}
       </Component>
     );
@@ -3277,6 +3299,9 @@ function SvgIcon(props: ISvgIconProps, ref) {
         className={clsx(classes.root, className, {
           [\`icon-size-\${size}\`]: size,
         })}
+        aria-hidden={titleAccess ? undefined : true}
+        aria-label={titleAccess}
+        role={titleAccess ? 'img' : undefined}
         style={{
           ...style,
           backgroundImage: \`url("data:image/svg+xml,\${encodeURIComponent(
