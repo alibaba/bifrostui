@@ -57,7 +57,6 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
           )}
           role="dialog"
           aria-modal="true"
-          aria-label={contentProps?.['aria-label'] || 'Drawer'}
           tabIndex={-1}
         >
           {children}
