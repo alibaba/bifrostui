@@ -934,6 +934,73 @@ describe('Modal', () => {
 
       document.body.removeChild(outsideButton);
     });
+
+    it('should not restore focus until transition onExited fires when closing with transition', async () => {
+      const triggerButton = document.createElement('button');
+      triggerButton.setAttribute('data-testid', 'trigger');
+      document.body.appendChild(triggerButton);
+      triggerButton.focus();
+
+      const { rerender } = render(
+        <Modal open>
+          <MockTransition in>
+            <div data-testid="modal-content">content</div>
+          </MockTransition>
+        </Modal>,
+      );
+
+      // Wait for transition to enter and focus the modal content
+      await waitFor(() => {
+        expect(document.activeElement).toBe(
+          screen.getByTestId('transition-mock'),
+        );
+      });
+
+      // Close modal — focus should NOT immediately restore (waiting for onExited)
+      rerender(
+        <Modal open={false}>
+          <MockTransition in={false}>
+            <div data-testid="modal-content">content</div>
+          </MockTransition>
+        </Modal>,
+      );
+
+      // Focus should still be on the transition mock (cleanup deferred due to hasTransition + !openRef)
+      expect(document.activeElement).not.toBe(triggerButton);
+
+      // After transition exit completes, focus should be restored
+      await waitFor(() => {
+        expect(document.activeElement).toBe(triggerButton);
+      });
+
+      document.body.removeChild(triggerButton);
+    });
+
+    it('should not restore focus to body when body was focused before modal opened', () => {
+      // When body is the active element on open, it should be rejected as a restore target.
+      // Verify body is NOT used as restore target via the exported utility function.
+      document.body.focus();
+
+      const { rerender } = render(
+        <Modal open>
+          <div data-testid="modal-content">content</div>
+        </Modal>,
+      );
+
+      // Focus moved to modal content (auto-focus)
+      expect(document.activeElement).toBe(screen.getByTestId('modal-content'));
+
+      // Close modal — body was rejected by isValidRestoreFocusTarget, so no restore occurs
+      rerender(
+        <Modal open={false}>
+          <div data-testid="modal-content">content</div>
+        </Modal>,
+      );
+
+      // After close, content is unmounted, focus falls to body by default (not by restoration).
+      // The key invariant: isValidRestoreFocusTarget(body) === false is verified separately.
+      expect(document.activeElement).toBe(document.body);
+    });
   });
 
   describe('Edge cases', () => {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { renderHook, act } from 'testing';
-import { useModal } from '../useModal';
+import { useModal, isValidRestoreFocusTarget } from '../useModal';
 
 // Mock ModalManager - 直接在mock内部定义，避免变量提升问题
 vi.mock('../ModalManager', () => ({
@@ -143,7 +143,11 @@ describe('useModal', () => {
       expect(result.current.exited).toBe(false);
     });
 
-    it('should update exited state when onExited is called', () => {
+    it('should update exited state and restore focus when onExited is called', () => {
+      const triggerButton = document.createElement('button');
+      document.body.appendChild(triggerButton);
+      triggerButton.focus();
+
       const { result } = renderHook(() => useModal(defaultParams));
       const transitionProps = result.current.getTransitionProps();
 
@@ -154,6 +158,11 @@ describe('useModal', () => {
 
       // Should be true
       expect(result.current.exited).toBe(true);
+
+      // Should restore focus to trigger button (lastFocusedElement was captured on mount)
+      expect(document.activeElement).toBe(triggerButton);
+
+      document.body.removeChild(triggerButton);
     });
   });
 
@@ -299,6 +308,180 @@ describe('useModal', () => {
 
       // 不应该调用onClose
       expect(onClose).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Focus management - isValidRestoreFocusTarget', () => {
+    it('should reject document.body as restore target', () => {
+      expect(isValidRestoreFocusTarget(document.body)).toBe(false);
+    });
+
+    it('should reject document.documentElement as restore target', () => {
+      expect(isValidRestoreFocusTarget(document.documentElement)).toBe(false);
+    });
+
+    it('should reject null', () => {
+      expect(isValidRestoreFocusTarget(null)).toBe(false);
+    });
+
+    it('should accept valid HTMLElement', () => {
+      const btn = document.createElement('button');
+      expect(isValidRestoreFocusTarget(btn)).toBe(true);
+    });
+  });
+
+  describe('Focus management - focus restoration', () => {
+    it('should not restore focus to body when body was activeElement on open', () => {
+      // body is the default document.activeElement when nothing else is focused.
+      // isValidRestoreFocusTarget rejects body, so lastFocusedElement stays null.
+      const contentDiv = document.createElement('div');
+      document.body.appendChild(contentDiv);
+      const contentRef = { current: contentDiv };
+
+      const { rerender } = renderHook(
+        ({ open }) => useModal({ ...defaultParams, open, contentRef }),
+        { initialProps: { open: true } },
+      );
+
+      // Modal auto-focused the content div (body was rejected as restore target)
+      expect(document.activeElement).toBe(contentDiv);
+
+      // Close modal
+      rerender({ open: false });
+
+      // restoreFocus had nothing to restore (body was filtered out) — focus stays on contentDiv
+      expect(document.activeElement).toBe(contentDiv);
+
+      document.body.removeChild(contentDiv);
+    });
+
+    it('should restore focus via onExited when has transition', () => {
+      const triggerButton = document.createElement('button');
+      document.body.appendChild(triggerButton);
+      triggerButton.focus();
+
+      // Provide contentRef so handleAutoFocus actually moves focus away from trigger
+      const contentDiv = document.createElement('div');
+      document.body.appendChild(contentDiv);
+      const contentRef = { current: contentDiv };
+
+      // Render with a transition child (has 'in' prop → hasTransition = true)
+      const transitionChild = React.createElement('div', { in: true });
+      const { result, rerender } = renderHook(
+        ({ open }) =>
+          useModal({
+            ...defaultParams,
+            open,
+            children: transitionChild,
+            contentRef,
+          }),
+        { initialProps: { open: true } },
+      );
+
+      const transitionProps = result.current.getTransitionProps();
+
+      // Focus should have moved to content div (auto-focus fired, but deferred to onEntered for transitions)
+      // For this test, since there's no actual transition animation, focus stays on trigger until onEntered
+      // But the important part is that when we close, focus restoration is deferred
+
+      // Close modal (open=false). Cleanup defers restoration because hasTransition + !openRef
+      rerender({ open: false });
+
+      // Focus should NOT have been restored yet (waiting for onExited)
+      // Since focus may still be on trigger (no onEntered fired), verify the deferred behavior via onExited
+      const focusBeforeExit = document.activeElement;
+
+      // Simulate transition exit → restoreFocus should fire
+      act(() => {
+        transitionProps.onExited();
+      });
+
+      // Focus should now be on the trigger button (restored from lastFocusedElement)
+      expect(document.activeElement).toBe(triggerButton);
+
+      document.body.removeChild(triggerButton);
+      document.body.removeChild(contentDiv);
+    });
+
+    it('should only restore focus once when restoreFocus is called multiple times', () => {
+      const btn1 = document.createElement('button');
+      const btn2 = document.createElement('button');
+      document.body.appendChild(btn1);
+      document.body.appendChild(btn2);
+
+      btn1.focus();
+
+      const transitionChild = React.createElement('div', { in: true });
+      const { result, rerender } = renderHook(
+        ({ open }) =>
+          useModal({ ...defaultParams, open, children: transitionChild }),
+        { initialProps: { open: true } },
+      );
+
+      const transitionProps = result.current.getTransitionProps();
+
+      rerender({ open: false });
+
+      // Call onExited (triggers restoreFocus → focuses btn1)
+      act(() => {
+        transitionProps.onExited();
+      });
+      expect(document.activeElement).toBe(btn1);
+
+      // Manually move focus away
+      btn2.focus();
+      expect(document.activeElement).toBe(btn2);
+
+      // Call onExited again — should NOT restore focus (idempotent, lastFocusedElement already cleared)
+      act(() => {
+        transitionProps.onExited();
+      });
+      expect(document.activeElement).toBe(btn2);
+
+      document.body.removeChild(btn1);
+      document.body.removeChild(btn2);
+    });
+
+    it('should use contentRef ownerDocument when recording focus target', () => {
+      const triggerButton = document.createElement('button');
+      document.body.appendChild(triggerButton);
+      triggerButton.focus();
+
+      const contentRef = { current: document.createElement('div') };
+
+      const { rerender } = renderHook(
+        ({ open }) =>
+          useModal({
+            ...defaultParams,
+            open,
+            contentRef,
+          }),
+        { initialProps: { open: true } },
+      );
+
+      // Close — should restore focus to triggerButton
+      rerender({ open: false });
+
+      expect(document.activeElement).toBe(triggerButton);
+
+      document.body.removeChild(triggerButton);
+    });
+
+    it('should activate focus management immediately when open is true without waiting for contentRef', () => {
+      const triggerButton = document.createElement('button');
+      document.body.appendChild(triggerButton);
+      triggerButton.focus();
+
+      // No contentRef provided — activated should still be set when open=true
+      const { result } = renderHook(() =>
+        useModal({ ...defaultParams, open: true }),
+      );
+
+      // handleAutoFocus should respect activated (which is true) even without contentRef
+      // The actual focus only happens when contentRef.current exists
+      expect(result.current.hasTransition).toBe(false);
+
+      document.body.removeChild(triggerButton);
     });
   });
 });

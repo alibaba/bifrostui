@@ -1,5 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useForkRef, useEventCallback } from '@bifrostui/utils';
 import { ariaHidden, modalManager } from './ModalManager';
 
@@ -14,6 +20,16 @@ function getContainer(
 
 function getFocusTarget(root: HTMLElement): HTMLElement {
   return root.querySelector<HTMLElement>('[data-bui-focusable]') ?? root;
+}
+
+export function isValidRestoreFocusTarget(
+  element: Element | null,
+): element is HTMLElement {
+  if (!(element instanceof HTMLElement)) {
+    return false;
+  }
+  const doc = element.ownerDocument;
+  return element !== doc.body && element !== doc.documentElement;
 }
 
 export interface UseModalParameters {
@@ -164,12 +180,21 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
     }
   }, [open, handleClose, hasTransition, handleOpen]);
 
-  // Effect #1: activated gate — controls whether focus management is active
+  // Effect #1: activated gate — do not wait for contentRef (often null on first open)
   useEffect(() => {
-    if (open && contentRef?.current) {
-      activated.current = !disableAutoFocus;
+    activated.current = open ? !disableAutoFocus : false;
+  }, [disableAutoFocus, open]);
+
+  const restoreFocus = useCallback(() => {
+    if (disableRestoreFocusRef.current || !lastFocusedElement.current) {
+      return;
     }
-  }, [disableAutoFocus, open, contentRef]);
+    const target = lastFocusedElement.current;
+    lastFocusedElement.current = null;
+    if (typeof target.focus === 'function') {
+      target.focus({ preventScroll: true });
+    }
+  }, []);
 
   const handleAutoFocus = useCallback(() => {
     if (!contentRef?.current || !activated.current) return;
@@ -184,31 +209,49 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
     focusTarget.focus({ preventScroll: true });
   }, [contentRef]);
 
-  // Effect #2: autoFocus on open + restoreFocus on close
+  // Record focus target early on open (before autofocus / screen-reader churn)
+  useLayoutEffect(() => {
+    if (!open) {
+      return;
+    }
+    const doc = contentRef?.current?.ownerDocument || document;
+    const active = doc.activeElement;
+    if (!lastFocusedElement.current && isValidRestoreFocusTarget(active)) {
+      lastFocusedElement.current = active;
+    }
+  }, [open, contentRef]);
+
+  // Effect #2: autoFocus on open + restoreFocus on close / unmount
   useEffect(() => {
-    if (!open || !contentRef?.current) {
+    if (!open) {
+      // No-transition close path fallback (previous cleanup already ran in most cases)
+      if (!hasTransition) {
+        restoreFocus();
+      }
       return undefined;
     }
 
-    const doc = contentRef.current.ownerDocument || document;
-
-    if (!lastFocusedElement.current) {
-      lastFocusedElement.current = doc.activeElement as HTMLElement;
+    const doc = contentRef?.current?.ownerDocument || document;
+    if (
+      !lastFocusedElement.current &&
+      isValidRestoreFocusTarget(doc.activeElement)
+    ) {
+      lastFocusedElement.current = doc.activeElement;
     }
 
-    if (!hasTransition) {
+    if (!hasTransition && contentRef?.current) {
       handleAutoFocus();
     }
 
     return () => {
-      if (!disableRestoreFocusRef.current && lastFocusedElement.current) {
-        if (typeof lastFocusedElement.current.focus === 'function') {
-          lastFocusedElement.current.focus({ preventScroll: true });
-        }
-        lastFocusedElement.current = null;
+      // With transition + normal open=false: wait for onExited.
+      // Conditional unmount while still open: openRef stays true → restore here.
+      if (hasTransition && !openRef.current) {
+        return;
       }
+      restoreFocus();
     };
-  }, [open, contentRef, hasTransition, handleAutoFocus]);
+  }, [open, contentRef, hasTransition, handleAutoFocus, restoreFocus]);
 
   const createHandleBackdropClick =
     (backdropHandlers: Record<string, React.EventHandler<any>> = {}) =>
@@ -268,6 +311,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
     const handleExited = () => {
       setExited(true);
+      restoreFocus();
       (children?.props as any)?.onExited?.();
     };
 
@@ -276,7 +320,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
       onEntered: handleEntered,
       onExited: handleExited,
     };
-  }, [children, handleAutoFocus]);
+  }, [children, handleAutoFocus, restoreFocus]);
 
   return {
     getRootProps,

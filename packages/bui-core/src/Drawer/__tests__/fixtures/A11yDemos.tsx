@@ -11,7 +11,12 @@ import Drawer from '../../Drawer';
 // Demo 1: 基础 Drawer 组件（从底部弹出）
 export const basicDrawerDemo = () => {
   return (
-    <Drawer open anchor="bottom" aria-label="基础抽屉" disablePortal>
+    <Drawer
+      open
+      anchor="bottom"
+      contentProps={{ 'aria-label': '基础抽屉' }}
+      disablePortal
+    >
       <div style={{ padding: '20px', minHeight: '200px' }}>
         <h3>基础抽屉内容</h3>
         <p>这是一个从底部弹出的抽屉</p>
@@ -25,7 +30,12 @@ export const basicDrawerDemo = () => {
 // Demo 2: 从左侧弹出的 Drawer
 export const leftDrawerDemo = () => {
   return (
-    <Drawer open anchor="left" aria-label="左侧抽屉" disablePortal>
+    <Drawer
+      open
+      anchor="left"
+      contentProps={{ 'aria-label': '左侧抽屉' }}
+      disablePortal
+    >
       <div style={{ padding: '20px', width: '300px', minHeight: '100vh' }}>
         <h3>左侧抽屉</h3>
         <ul>
@@ -47,7 +57,12 @@ export const leftDrawerDemo = () => {
 // Demo 3: 从右侧弹出的 Drawer
 export const rightDrawerDemo = () => {
   return (
-    <Drawer open anchor="right" aria-label="右侧抽屉" disablePortal>
+    <Drawer
+      open
+      anchor="right"
+      contentProps={{ 'aria-label': '右侧抽屉' }}
+      disablePortal
+    >
       <div style={{ padding: '20px', width: '300px', minHeight: '100vh' }}>
         <h3>右侧抽屉</h3>
         <form>
@@ -69,7 +84,12 @@ export const rightDrawerDemo = () => {
 // Demo 4: 从顶部弹出的 Drawer
 export const topDrawerDemo = () => {
   return (
-    <Drawer open anchor="top" aria-label="顶部抽屉" disablePortal>
+    <Drawer
+      open
+      anchor="top"
+      contentProps={{ 'aria-label': '顶部抽屉' }}
+      disablePortal
+    >
       <div style={{ padding: '20px', minHeight: '200px' }}>
         <h3>顶部抽屉</h3>
         <p>这是一个从顶部弹出的抽屉</p>
@@ -89,7 +109,7 @@ export const noBackdropDrawerDemo = () => {
       open
       anchor="bottom"
       hideBackdrop
-      aria-label="无背景遮罩抽屉"
+      contentProps={{ 'aria-label': '无背景遮罩抽屉' }}
       disablePortal
     >
       <div style={{ padding: '20px', minHeight: '150px' }}>
@@ -131,7 +151,7 @@ export const interactiveDrawerDemo = () => {
         open={open}
         anchor="right"
         onClose={handleClose}
-        aria-label="可交互抽屉"
+        contentProps={{ 'aria-label': '可交互抽屉' }}
         disablePortal
       >
         <div style={{ padding: '20px', width: '350px' }}>

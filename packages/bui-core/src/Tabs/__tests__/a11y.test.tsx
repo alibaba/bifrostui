@@ -70,16 +70,12 @@ getMdDemoCodes(
             }
             if (tabPanel.classList.contains('bui-tabpanel-active')) {
               if (tabPanel.hasAttribute('hidden')) {
-                console.log(
-                  `Tabs选中项对应的面板 不应该设置 hidden 属性`,
-                );
+                console.log(`Tabs选中项对应的面板 不应该设置 hidden 属性`);
               }
             }
             if (tabPanel.classList.contains('bui-tabpanel-inactive')) {
               if (!tabPanel.hasAttribute('hidden')) {
-                console.log(
-                  `Tabs未选中项对应的面板 应该设置 hidden 属性`,
-                );
+                console.log(`Tabs未选中项对应的面板 应该设置 hidden 属性`);
               }
             }
           });
