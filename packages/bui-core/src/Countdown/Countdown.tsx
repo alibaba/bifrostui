@@ -140,7 +140,7 @@ const Countdown = forwardRef<HTMLDivElement, CountdownProps>((props, ref) => {
       ariaLabel || `${timer}，${getAccessibleTimeDescription(time)}`,
     'aria-labelledby': ariaLabelledby,
     'aria-describedby': ariaDescribedby,
-    'aria-live': 'polite' as const,
+    'aria-live': 'off' as const,
     'aria-atomic': true,
   };
 
