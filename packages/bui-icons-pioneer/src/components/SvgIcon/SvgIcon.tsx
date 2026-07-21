@@ -17,6 +17,7 @@ function SvgIcon(props: ISvgIconProps, ref) {
     color,
     htmlColor,
     size,
+    titleAccess,
     viewBox = '0 0 96 96',
     style,
     ...rest
@@ -49,35 +50,44 @@ function SvgIcon(props: ISvgIconProps, ref) {
 
   if (Component === 'svg') {
     if (typeof children === 'string') {
+      // 传入string，svg dom模式，使用dangerouslySetInnerHTML
       return (
         <Component
           ref={ref}
           className={clsx(classes.root, className, {
             [`icon-size-${size}`]: size,
           })}
+          aria-hidden={titleAccess ? undefined : true}
+          role={titleAccess ? 'img' : undefined}
           focusable="false"
           viewBox={viewBox}
           color={svgColor}
           dangerouslySetInnerHTML={{
-            __html: children,
+            __html: titleAccess
+              ? `<title>${titleAccess}</title>${children}`
+              : children,
           }}
           style={style}
           {...rest}
         />
       );
     }
+    // 传入ReactNode，直接丢进children
     return (
       <Component
         ref={ref}
         className={clsx(classes.root, className, {
           [`icon-size-${size}`]: size,
         })}
+        aria-hidden={titleAccess ? undefined : true}
+        role={titleAccess ? 'img' : undefined}
         focusable="false"
         viewBox={viewBox}
         color={svgColor || htmlColor}
         style={style}
         {...rest}
       >
+        {titleAccess ? <title>{titleAccess}</title> : null}
         {children}
       </Component>
     );
@@ -88,12 +98,16 @@ function SvgIcon(props: ISvgIconProps, ref) {
         cssVar: svgColor,
       }) || svgColor;
 
+    // div背景色模式，组装data:image/svg+xml塞进内联样式
     return (
       <Component
         ref={ref}
         className={clsx(classes.root, className, {
           [`icon-size-${size}`]: size,
         })}
+        aria-hidden={titleAccess ? undefined : true}
+        aria-label={titleAccess}
+        role={titleAccess ? 'img' : undefined}
         style={{
           ...style,
           backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(

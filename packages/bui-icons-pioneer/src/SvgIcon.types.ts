@@ -26,4 +26,10 @@ export interface ISvgIconProps {
    * onClick Event
    */
   onClick?: (event) => void;
+  /**
+   * Provides a human-readable title for the element that contains it.
+   * https://www.w3.org/TR/SVG-access/#EquivalentAlternatives
+   * When titleAccess is provided, aria-hidden will be removed and role="img" will be added.
+   */
+  titleAccess?: string;
 }

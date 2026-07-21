@@ -57,6 +57,52 @@ describe('SvgIcon', () => {
     expect(svgIcon).not.toBeInTheDocument();
   });
 
+  it('should have aria-hidden="true" by default', () => {
+    const { container } = render(
+      <SvgIcon component="svg" children="<path d='M10 10' />" />,
+    );
+    const svgIcon = container.querySelector('.bui-svg-icon');
+    expect(svgIcon).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('should remove aria-hidden and add role="img" when titleAccess is provided (svg string)', () => {
+    const { container } = render(
+      <SvgIcon
+        component="svg"
+        titleAccess="Arrow forward"
+        children="<path d='M10 10' />"
+      />,
+    );
+    const svgIcon = container.querySelector('.bui-svg-icon');
+    expect(svgIcon).not.toHaveAttribute('aria-hidden');
+    expect(svgIcon).toHaveAttribute('role', 'img');
+    expect(svgIcon).toContainHTML('<title>Arrow forward</title>');
+  });
+
+  it('should remove aria-hidden and add role="img" when titleAccess is provided (svg ReactNode)', () => {
+    const { container } = render(
+      <SvgIcon component="svg" titleAccess="Arrow forward">
+        <path d="M10 10" />
+      </SvgIcon>,
+    );
+    const svgIcon = container.querySelector('.bui-svg-icon');
+    expect(svgIcon).not.toHaveAttribute('aria-hidden');
+    expect(svgIcon).toHaveAttribute('role', 'img');
+    expect(svgIcon.querySelector('title')).toHaveTextContent('Arrow forward');
+  });
+
+  it('should allow consumer to override aria-hidden', () => {
+    const { container } = render(
+      <SvgIcon
+        component="svg"
+        aria-hidden={false}
+        children="<path d='M10 10' />"
+      />,
+    );
+    const svgIcon = container.querySelector('.bui-svg-icon');
+    expect(svgIcon).toHaveAttribute('aria-hidden', 'false');
+  });
+
   it('when children is children should render element width backgroundImage', () => {
     const props: ISvgIconProps = {
       component: 'div',

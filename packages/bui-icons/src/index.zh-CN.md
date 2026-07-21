@@ -37,9 +37,9 @@ import { SettingsOutlinedIcon } from '@bifrostui/icons';
 export default () => {
   return (
     <Stack direction="row" spacing="10px">
-      <SettingsOutlinedIcon size="small" />
-      <SettingsOutlinedIcon size="medium" />
-      <SettingsOutlinedIcon size="large" />
+      <SettingsOutlinedIcon size="small" titleAccess="设置" />
+      <SettingsOutlinedIcon size="medium" titleAccess="设置" />
+      <SettingsOutlinedIcon size="large" titleAccess="设置" />
     </Stack>
   );
 };
