@@ -423,6 +423,7 @@ exports[`Button demo snapshot > Button demo snapshot 0 5`] = `
         class="bui-btn-icon-start"
       >
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
           color="linear-gradient(150deg, #FFFDFC 0%, #D5B198 100%)"
           focusable="false"
@@ -444,6 +445,7 @@ exports[`Button demo snapshot > Button demo snapshot 0 5`] = `
         class="bui-btn-icon-end"
       >
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
           focusable="false"
           viewBox="0 0 96 96"

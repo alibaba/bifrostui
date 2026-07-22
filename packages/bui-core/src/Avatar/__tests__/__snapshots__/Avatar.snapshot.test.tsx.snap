@@ -66,6 +66,7 @@ exports[`Avatar snapshot > Avatar demo snapshot 0 3`] = `
         class="bui-avatar-children"
       >
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
           focusable="false"
           viewBox="0 0 96 96"

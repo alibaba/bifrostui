@@ -13,6 +13,7 @@ exports[`Checkbox > Checkbox label placement > label should on the bottom 1`] = 
     class="bui-checkbox-icon"
   >
     <svg
+      aria-hidden="true"
       class="bui-svg-icon"
       color="var(--bui-color-fg-disabled)"
       focusable="false"
@@ -44,6 +45,7 @@ exports[`Checkbox > Checkbox label placement > label should on the left 1`] = `
     class="bui-checkbox-icon"
   >
     <svg
+      aria-hidden="true"
       class="bui-svg-icon"
       color="var(--bui-color-fg-disabled)"
       focusable="false"
@@ -75,6 +77,7 @@ exports[`Checkbox > Checkbox label placement > label should on the right 1`] = `
     class="bui-checkbox-icon"
   >
     <svg
+      aria-hidden="true"
       class="bui-svg-icon"
       color="var(--bui-color-fg-disabled)"
       focusable="false"
@@ -106,6 +109,7 @@ exports[`Checkbox > Checkbox label placement > label should on the top 1`] = `
     class="bui-checkbox-icon"
   >
     <svg
+      aria-hidden="true"
       class="bui-svg-icon"
       color="var(--bui-color-fg-disabled)"
       focusable="false"

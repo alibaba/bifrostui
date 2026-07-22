@@ -112,8 +112,8 @@ export const snapshotTest = async (componentName) => {
     `../packages/bui-core/src/${componentName}/*.zh-CN.md`,
   );
   const files = glob.sync(filePath);
-  // Use a fixed temp directory in workspace root (excluded from Nx)
-  const tempDir = path.join(__dirname, '.temp-snapshots');
+  // Per-component temp dir avoids parallel snapshot tests racing on shared files
+  const tempDir = path.join(__dirname, '.temp-snapshots', componentName);
 
   // Ensure temp directory exists
   if (!fs.existsSync(tempDir)) {
@@ -129,7 +129,7 @@ export const snapshotTest = async (componentName) => {
       );
     });
     const snapshot = (index) => {
-      return new Promise((resolve) => {
+      return new Promise((resolve, reject) => {
         try {
           // 使用动态 import，但需要确保路径是绝对路径
           const snapshotPath = path.resolve(
@@ -146,19 +146,15 @@ export const snapshotTest = async (componentName) => {
               resolve(true);
             })
             .catch((err) => {
-              // eslint-disable-next-line no-console
-              console.log(err, 'err');
               try {
                 fs.unlinkSync(snapshotPath);
               } catch (unlinkErr) {
                 // ignore
               }
-              resolve(true);
+              reject(err);
             });
         } catch (err) {
-          // eslint-disable-next-line no-console
-          console.log(err, 'err');
-          resolve(true);
+          reject(err);
         }
       });
     };
@@ -168,7 +164,7 @@ export const snapshotTest = async (componentName) => {
         // eslint-disable-next-line no-await-in-loop
         await snapshot(index);
       }
-    });
+    }, 30000);
   });
 };
 

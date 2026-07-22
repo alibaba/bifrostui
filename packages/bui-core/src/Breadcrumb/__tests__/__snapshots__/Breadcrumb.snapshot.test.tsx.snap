@@ -92,6 +92,7 @@ exports[`Breadcrumb snapshot > Breadcrumb demo snapshot 0 3`] = `
           style="display: flex; align-items: center;"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             focusable="false"
             viewBox="0 0 96 96"
@@ -115,6 +116,7 @@ exports[`Breadcrumb snapshot > Breadcrumb demo snapshot 0 3`] = `
           style="display: flex; align-items: center;"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             focusable="false"
             viewBox="0 0 96 96"

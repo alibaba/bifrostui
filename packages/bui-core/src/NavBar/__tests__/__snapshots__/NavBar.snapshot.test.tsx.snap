@@ -13,6 +13,7 @@ exports[`NavBar demo snapshot > NavBar demo snapshot 0 1`] = `
         class="bui-navbar-left"
       >
         <svg
+          aria-hidden="true"
           class="bui-svg-icon bui-navbar-icon"
           focusable="false"
           viewBox="0 0 96 96"
@@ -46,6 +47,7 @@ exports[`NavBar demo snapshot > NavBar demo snapshot 0 2`] = `
         class="bui-navbar-left"
       >
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
           focusable="false"
           viewBox="0 0 96 96"
@@ -96,6 +98,7 @@ exports[`NavBar demo snapshot > NavBar demo snapshot 0 3`] = `
         class="bui-navbar-left"
       >
         <svg
+          aria-hidden="true"
           class="bui-svg-icon bui-navbar-icon"
           color="#ff335c"
           focusable="false"
@@ -132,6 +135,7 @@ exports[`NavBar demo snapshot > NavBar demo snapshot 0 4`] = `
         class="bui-navbar-left"
       >
         <svg
+          aria-hidden="true"
           class="bui-svg-icon bui-navbar-icon"
           focusable="false"
           viewBox="0 0 96 96"
@@ -170,6 +174,7 @@ exports[`NavBar demo snapshot > NavBar demo snapshot 0 5`] = `
           class="bui-navbar-left"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon bui-navbar-icon"
             focusable="false"
             viewBox="0 0 96 96"
@@ -195,6 +200,7 @@ exports[`NavBar demo snapshot > NavBar demo snapshot 0 5`] = `
           class="bui-navbar-left"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon bui-navbar-icon"
             focusable="false"
             viewBox="0 0 96 96"
@@ -231,6 +237,7 @@ exports[`NavBar demo snapshot > NavBar demo snapshot 0 6`] = `
         class="bui-navbar-left"
       >
         <svg
+          aria-hidden="true"
           class="bui-svg-icon bui-navbar-icon"
           focusable="false"
           viewBox="0 0 96 96"
@@ -258,6 +265,7 @@ exports[`NavBar demo snapshot > NavBar demo snapshot 0 6`] = `
         class="bui-navbar-left"
       >
         <svg
+          aria-hidden="true"
           class="bui-svg-icon bui-navbar-icon"
           focusable="false"
           viewBox="0 0 96 96"
@@ -276,6 +284,7 @@ exports[`NavBar demo snapshot > NavBar demo snapshot 0 6`] = `
         class="bui-navbar-right"
       >
         <svg
+          aria-hidden="true"
           class="bui-svg-icon icon-size-large"
           focusable="false"
           viewBox="0 0 96 96"
@@ -303,6 +312,7 @@ exports[`NavBar demo snapshot > NavBar demo snapshot 0 7`] = `
         class="bui-navbar-left"
       >
         <svg
+          aria-hidden="true"
           class="bui-svg-icon bui-navbar-icon"
           focusable="false"
           viewBox="0 0 96 96"

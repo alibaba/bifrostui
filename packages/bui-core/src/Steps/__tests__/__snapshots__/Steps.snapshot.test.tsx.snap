@@ -49,6 +49,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 1`] = `
             class="bui-step-icon"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               color="var(--bui-color-fg-disabled)"
               focusable="false"
@@ -83,6 +84,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 1`] = `
             class="bui-step-icon"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               color="var(--bui-color-fg-disabled)"
               focusable="false"
@@ -159,6 +161,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 2`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-fg-disabled)"
             focusable="false"
@@ -193,6 +196,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 2`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-fg-disabled)"
             focusable="false"
@@ -273,6 +277,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 3`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-fg-disabled)"
             focusable="false"
@@ -312,6 +317,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 3`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-fg-disabled)"
             focusable="false"
@@ -387,6 +393,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 3`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-fg-disabled)"
             focusable="false"
@@ -426,6 +433,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 3`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-fg-disabled)"
             focusable="false"
@@ -516,6 +524,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 4`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-fg-disabled)"
             focusable="false"
@@ -560,6 +569,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 4`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-fg-disabled)"
             focusable="false"
@@ -604,6 +614,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 4`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-fg-disabled)"
             focusable="false"
@@ -662,6 +673,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 5`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-primary)"
             focusable="false"
@@ -706,6 +718,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 5`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-primary)"
             focusable="false"
@@ -787,6 +800,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 5`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-fg-disabled)"
             focusable="false"
@@ -845,6 +859,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 6`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-primary)"
             focusable="false"
@@ -889,6 +904,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 6`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-primary)"
             focusable="false"
@@ -933,6 +949,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 6`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-primary)"
             focusable="false"
@@ -977,6 +994,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 6`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-primary)"
             focusable="false"
@@ -1035,6 +1053,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 7`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-primary)"
             focusable="false"
@@ -1101,6 +1120,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 7`] = `
           class="bui-step-icon"
         >
           <svg
+            aria-hidden="true"
             class="bui-svg-icon"
             color="var(--bui-color-fg-disabled)"
             focusable="false"
@@ -1236,6 +1256,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 8`] = `
         class="bui-step-icon"
       >
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           focusable="false"
@@ -1280,6 +1301,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 8`] = `
         class="bui-step-icon"
       >
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           focusable="false"
@@ -1368,6 +1390,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 9`] = `
             class="bui-step-icon"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               color="var(--bui-color-fg-disabled)"
               focusable="false"
@@ -1402,6 +1425,7 @@ exports[`Steps snapshot > Steps demo snapshot 0 9`] = `
             class="bui-step-icon"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               color="var(--bui-color-fg-disabled)"
               focusable="false"

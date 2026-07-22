@@ -20,6 +20,7 @@ exports[`Slider > should render with default properties 1`] = `
     tabindex="0"
   >
     <svg
+      aria-hidden="true"
       class="bui-svg-icon"
       color="var(--bui-color-fg-default)"
       focusable="false"

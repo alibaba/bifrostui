@@ -23,6 +23,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 1`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow bui-collapse-panel-item-header-icon-arrow-active"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -65,6 +66,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 1`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -107,6 +109,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 1`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -162,6 +165,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 2`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow bui-collapse-panel-item-header-icon-arrow-active"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -202,6 +206,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 2`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -242,6 +247,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 2`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -295,6 +301,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 3`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow bui-collapse-panel-item-header-icon-arrow-active"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -337,6 +344,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 3`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -379,6 +387,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 3`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -434,6 +443,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 4`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow bui-collapse-panel-item-header-icon-arrow-active"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -476,6 +486,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 4`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -518,6 +529,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 4`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -573,6 +585,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 5`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow bui-collapse-panel-item-header-icon-arrow-active"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -615,6 +628,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 5`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -657,6 +671,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 5`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -712,6 +727,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 6`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow bui-collapse-panel-item-header-icon-arrow-active"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -758,6 +774,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 6`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -804,6 +821,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 6`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -863,6 +881,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 7`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -909,6 +928,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 7`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"
@@ -955,6 +975,7 @@ exports[`CollapsePanel snapshot > CollapsePanel demo snapshot 0 7`] = `
             class="bui-collapse-panel-item-header-icon bui-collapse-panel-item-header-icon-arrow"
           >
             <svg
+              aria-hidden="true"
               class="bui-svg-icon"
               focusable="false"
               viewBox="0 0 96 96"

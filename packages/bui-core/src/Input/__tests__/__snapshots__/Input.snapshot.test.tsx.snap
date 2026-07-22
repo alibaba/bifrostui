@@ -25,6 +25,7 @@ exports[`Input snapshot > Input demo snapshot 0 2`] = `
       class="bui-input-icon bui-input-icon-start"
     >
       <svg
+        aria-hidden="true"
         class="bui-svg-icon"
         color="#959aa5"
         focusable="false"
@@ -62,6 +63,7 @@ exports[`Input snapshot > Input demo snapshot 0 3`] = `
       class="bui-input-icon bui-input-icon-end"
     >
       <svg
+        aria-hidden="true"
         class="bui-svg-icon"
         color="#959aa5"
         focusable="false"

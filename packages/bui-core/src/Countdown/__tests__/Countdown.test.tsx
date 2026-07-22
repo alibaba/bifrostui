@@ -137,7 +137,9 @@ describe('Countdown', () => {
     it('should have proper ARIA live region attributes', () => {
       render(<Countdown remainingTime={10 * 1000} />);
       const timer = screen.getByRole('timer');
-      expect(timer).toHaveAttribute('aria-live', 'polite');
+      // Root timer keeps aria-live off to avoid double announcements;
+      // live updates are announced via the sr-only region instead.
+      expect(timer).toHaveAttribute('aria-live', 'off');
       expect(timer).toHaveAttribute('aria-atomic', 'true');
     });
 
@@ -241,7 +243,7 @@ describe('Countdown', () => {
 
       const timer = screen.getByRole('timer');
       expect(timer).toHaveAttribute('aria-label', 'Custom timer');
-      expect(timer).toHaveAttribute('aria-live', 'polite');
+      expect(timer).toHaveAttribute('aria-live', 'off');
       expect(timer).toHaveAttribute('aria-atomic', 'true');
 
       // Should still contain accessible content even with custom render

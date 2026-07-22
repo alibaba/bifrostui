@@ -16,6 +16,7 @@ exports[`Radio > Radio label placement > label should on the bottom 1`] = `
       class="bui-radio-btn-icon"
     >
       <svg
+        aria-hidden="true"
         class="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
         color="var(--bui-color-fg-subtle)"
         focusable="false"
@@ -26,6 +27,7 @@ exports[`Radio > Radio label placement > label should on the bottom 1`] = `
         />
       </svg>
       <svg
+        aria-hidden="true"
         class="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
         color="var(--bui-color-fg-subtle)"
         focusable="false"
@@ -61,6 +63,7 @@ exports[`Radio > Radio label placement > label should on the left 1`] = `
       class="bui-radio-btn-icon"
     >
       <svg
+        aria-hidden="true"
         class="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
         color="var(--bui-color-fg-subtle)"
         focusable="false"
@@ -71,6 +74,7 @@ exports[`Radio > Radio label placement > label should on the left 1`] = `
         />
       </svg>
       <svg
+        aria-hidden="true"
         class="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
         color="var(--bui-color-fg-subtle)"
         focusable="false"
@@ -106,6 +110,7 @@ exports[`Radio > Radio label placement > label should on the right 1`] = `
       class="bui-radio-btn-icon"
     >
       <svg
+        aria-hidden="true"
         class="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
         color="var(--bui-color-fg-subtle)"
         focusable="false"
@@ -116,6 +121,7 @@ exports[`Radio > Radio label placement > label should on the right 1`] = `
         />
       </svg>
       <svg
+        aria-hidden="true"
         class="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
         color="var(--bui-color-fg-subtle)"
         focusable="false"
@@ -151,6 +157,7 @@ exports[`Radio > Radio label placement > label should on the top 1`] = `
       class="bui-radio-btn-icon"
     >
       <svg
+        aria-hidden="true"
         class="bui-svg-icon bui-radio-btn-icon-outline icon-size-medium"
         color="var(--bui-color-fg-subtle)"
         focusable="false"
@@ -161,6 +168,7 @@ exports[`Radio > Radio label placement > label should on the top 1`] = `
         />
       </svg>
       <svg
+        aria-hidden="true"
         class="bui-svg-icon bui-radio-btn-icon-contained icon-size-medium"
         color="var(--bui-color-fg-subtle)"
         focusable="false"

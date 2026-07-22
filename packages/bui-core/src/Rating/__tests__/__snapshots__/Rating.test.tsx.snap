@@ -17,6 +17,7 @@ exports[`Rating > renders correctly 1`] = `
           value="1"
         />
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           focusable="false"
@@ -40,6 +41,7 @@ exports[`Rating > renders correctly 1`] = `
           value="2"
         />
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           focusable="false"
@@ -63,6 +65,7 @@ exports[`Rating > renders correctly 1`] = `
           value="3"
         />
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           focusable="false"
@@ -86,6 +89,7 @@ exports[`Rating > renders correctly 1`] = `
           value="4"
         />
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           focusable="false"
@@ -109,6 +113,7 @@ exports[`Rating > renders correctly 1`] = `
           value="5"
         />
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
           color="var(--bui-color-fg-disabled)"
           focusable="false"

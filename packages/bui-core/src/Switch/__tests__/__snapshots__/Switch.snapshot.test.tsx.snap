@@ -132,6 +132,7 @@ exports[`Switch demo snapshot > Switch demo snapshot 0 4`] = `
         class="bui-switch-inner"
       >
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
           color="#fff"
           focusable="false"
@@ -154,6 +155,7 @@ exports[`Switch demo snapshot > Switch demo snapshot 0 4`] = `
         class="bui-switch-inner"
       >
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
           color="#fff"
           focusable="false"
