@@ -363,7 +363,7 @@ export default () => {
 | hotCities             | Information about popular cities                                      | City[]                                                  | -                |
 | hotCitiesGroupName    | Title for the popular cities section                                  | string                                                  | 'Popular Cities' |
 | disableIndex          | Disable index display, defaults to false (i.e., index is displayed)   | boolean                                                 | false            |
-| title                 | Header title, optional                                                | string                                                  | -                |
+| title                 | Header title, optional, supports ReactNode                            | ReactNode                                               | -                |
 | onClose               | Used with title, callback for closing on the right side of the header | (e: React.SyntheticEvent) => void                       | -                |
 
 #### CityGroup

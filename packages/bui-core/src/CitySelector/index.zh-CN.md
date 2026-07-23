@@ -363,7 +363,7 @@ export default () => {
 | hotCities             | 热门城市信息                        | City[]                                               | -          |
 | hotCitiesGroupName    | 热门城市栏的title                   | string                                               | '热门城市' |
 | disableIndex          | 禁用展示索引 默认false 即展示索引   | boolean                                              | false      |
-| title                 | 头部title，非必传                   | string                                               | -          |
+| title                 | 头部title，非必传，支持 ReactNode   | ReactNode                                            | -          |
 | onClose               | 和title配合使用，头部右侧的关闭回调 | (e: React.SyntheticEvent) => void                    | -          |
 
 #### CityGroup
