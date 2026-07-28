@@ -3,7 +3,7 @@
 exports[`Swiper snapshot > Swiper demo snapshot 0 1`] = `
 <div>
   <div
-    class="swiper swiper-initialized swiper-horizontal swiper-pointer-events bui-swiper"
+    class="swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-watch-progress bui-swiper"
     style="padding-top: 0px; padding-bottom: 0px; overflow: hidden; width: 300px; height: 200px; --indicator-color: rgba(255, 255, 255, .4); --indicator-color-active: var(--bui-color-bg-view);"
   >
     <div
@@ -71,7 +71,7 @@ exports[`Swiper snapshot > Swiper demo snapshot 0 2`] = `
     </button>
   </div>
   <div
-    class="swiper swiper-initialized swiper-horizontal swiper-pointer-events bui-swiper"
+    class="swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-watch-progress bui-swiper"
     style="padding-top: 0px; padding-bottom: 0px; overflow: hidden; width: 300px; height: 200px; --indicator-color: rgba(255, 255, 255, .4); --indicator-color-active: var(--bui-color-bg-view);"
   >
     <div
@@ -116,7 +116,7 @@ exports[`Swiper snapshot > Swiper demo snapshot 0 2`] = `
 exports[`Swiper snapshot > Swiper demo snapshot 0 3`] = `
 <div>
   <div
-    class="swiper swiper-initialized swiper-horizontal swiper-pointer-events bui-swiper"
+    class="swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-watch-progress bui-swiper"
     style="padding-top: 0px; padding-bottom: 0px; overflow: hidden; width: 300px; height: 200px; --indicator-color: rgba(255, 255, 255, .4); --indicator-color-active: var(--bui-color-bg-view);"
   >
     <div
@@ -161,7 +161,7 @@ exports[`Swiper snapshot > Swiper demo snapshot 0 3`] = `
 exports[`Swiper snapshot > Swiper demo snapshot 0 4`] = `
 <div>
   <div
-    class="swiper swiper-initialized swiper-horizontal swiper-pointer-events bui-swiper"
+    class="swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-watch-progress bui-swiper"
     style="padding-top: 0px; padding-bottom: 0px; overflow: hidden; width: 300px; height: 200px; --indicator-color: rgba(255, 255, 255, .4); --indicator-color-active: var(--bui-color-bg-view);"
   >
     <div
@@ -301,7 +301,7 @@ exports[`Swiper snapshot > Swiper demo snapshot 0 5`] = `
 exports[`Swiper snapshot > Swiper demo snapshot 0 6`] = `
 <div>
   <div
-    class="swiper swiper-initialized swiper-vertical swiper-pointer-events bui-swiper"
+    class="swiper swiper-initialized swiper-vertical swiper-pointer-events swiper-watch-progress bui-swiper"
     style="padding-right: 0px; padding-left: 0px; overflow: hidden; width: 300px; height: 200px; --indicator-color: rgba(255, 255, 255, .4); --indicator-color-active: var(--bui-color-bg-view);"
   >
     <div
@@ -346,7 +346,7 @@ exports[`Swiper snapshot > Swiper demo snapshot 0 6`] = `
 exports[`Swiper snapshot > Swiper demo snapshot 0 7`] = `
 <div>
   <div
-    class="swiper swiper-initialized swiper-horizontal swiper-pointer-events bui-swiper"
+    class="swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-watch-progress bui-swiper"
     style="padding-top: 0px; padding-bottom: 0px; overflow: hidden; width: 300px; height: 200px; --indicator-color: #880000; --indicator-color-active: #FF0000;"
   >
     <div
@@ -394,7 +394,7 @@ exports[`Swiper snapshot > Swiper demo snapshot 0 7`] = `
 exports[`Swiper snapshot > Swiper demo snapshot 0 8`] = `
 <div>
   <div
-    class="swiper swiper-initialized swiper-horizontal swiper-pointer-events bui-swiper"
+    class="swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-watch-progress bui-swiper"
     style="padding-top: 0px; padding-bottom: 0px; overflow: hidden; width: 300px; height: 200px; --indicator-color: rgba(255, 255, 255, .4); --indicator-color-active: var(--bui-color-bg-view);"
   >
     <div

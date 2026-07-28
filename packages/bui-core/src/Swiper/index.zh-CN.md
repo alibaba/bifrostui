@@ -107,7 +107,11 @@ import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
   return (
-    <Swiper interval={500} autoplay style={{ width: '300px', height: '200px' }}>
+    <Swiper
+      interval={3000}
+      autoplay
+      style={{ width: '300px', height: '200px' }}
+    >
       <SwiperItem>
         <Stack
           style={{ background: 'lightgray', width: '100%', height: '100%' }}
@@ -265,7 +269,7 @@ import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 export default () => {
   return (
     <Swiper
-      interval={500}
+      interval={5000}
       autoplay
       indicatorDots
       indicatorColor={'#880000'}
@@ -335,6 +339,10 @@ export default () => {
   );
 };
 ```
+
+## 无障碍
+
+H5 端对非可见 slide 做隔离：默认开启 `watchSlidesProgress`，对非 `swiper-slide-visible` 的 slide 设置 `aria-hidden` + `inert`，避免移动端读屏一次读完所有卡片。
 
 ## API
 

@@ -331,6 +331,10 @@ export default () => {
 };
 ```
 
+## Accessibility
+
+H5 hides non-visible slides from assistive tech: `watchSlidesProgress` is enabled, and slides without `swiper-slide-visible` get `aria-hidden` + `inert`, so mobile screen readers do not read every card at once.
+
 ## API
 
 | Property             | Description                                                           | Type             | Default value |
