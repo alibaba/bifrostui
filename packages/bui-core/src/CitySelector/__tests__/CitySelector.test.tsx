@@ -26,6 +26,10 @@ const queryEle = (container, selector) => {
 };
 
 describe('CitySelector', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   isConformant({
     Component: CitySelector,
     displayName: 'BuiCitySelector',
@@ -62,9 +66,11 @@ describe('CitySelector', () => {
       expect(
         queryEle(container, '.bui-city-selector-title'),
       ).toBeInTheDocument();
-      await userEvent.click(
-        container.querySelector('.bui-city-selector-btn-close'),
-      );
+
+      const closeButton = screen.getByRole('button', { name: '关闭按钮' });
+      expect(closeButton).toHaveClass('bui-city-selector-btn-close');
+      expect(closeButton).toHaveClass('bui-icon-btn');
+      await userEvent.click(closeButton);
       expect(onClose).toHaveBeenCalledTimes(1);
       await userEvent.click(
         container.querySelector(

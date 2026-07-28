@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import { throttle, useForkRef, useTouchEmulator } from '@bifrostui/utils';
+import { CloseLargeIcon } from '@bifrostui/icons';
+import IconButton from '../IconButton';
 import { useLocaleText } from '../locales';
 import ScrollView from '../ScrollView';
 import { CitySelectorCoreProps } from './CitySelector.types';
@@ -154,9 +156,13 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
         {pageTitle ? (
           <div className={`${prefixCls}-title`}>
             {pageTitle}
-            <div className={`${prefixCls}-btn-close`} onClick={closeHandler}>
-              &#x2715;
-            </div>
+            <IconButton
+              className={`${prefixCls}-btn-close`}
+              onClick={closeHandler}
+              aria-label="关闭按钮"
+            >
+              <CloseLargeIcon />
+            </IconButton>
           </div>
         ) : null}
         <ScrollView
