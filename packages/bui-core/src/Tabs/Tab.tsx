@@ -72,7 +72,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
       role="tab"
       aria-selected={isActive}
       aria-disabled={disabled}
-      tabIndex={disabled ? -1 : 0}
+      tabIndex={isActive && !disabled ? 0 : -1}
       ref={handleRef}
       className={rootCls}
       {...others}

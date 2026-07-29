@@ -268,9 +268,34 @@ describe('Tabs', () => {
       }
 
       const { container } = render(<Component handleChange={handleChange} />);
-      const [, tab2] = container.querySelectorAll(`.bui-tab`);
+      const [tab1, tab2, tab3] = container.querySelectorAll(`.bui-tab`);
+      expect(tab1).toHaveAttribute('tabindex', '0');
+      expect(tab2).toHaveAttribute('tabindex', '-1');
+      expect(tab2).toHaveAttribute('aria-disabled', 'true');
+      expect(tab3).toHaveAttribute('tabindex', '-1');
       fireEvent.click(tab2);
       expect(handleChange).not.toBeCalled();
+    });
+
+    it('should apply roving tabIndex based on active and disabled state', () => {
+      function Component() {
+        return (
+          <Tabs
+            value="vegetables"
+            tabs={[
+              { title: '水果', index: 'fruits' },
+              { title: '蔬菜', index: 'vegetables' },
+              { title: '动物', index: 'animals', disabled: true },
+            ]}
+          />
+        );
+      }
+
+      const { container } = render(<Component />);
+      const [tab1, tab2, tab3] = container.querySelectorAll(`.bui-tab`);
+      expect(tab1).toHaveAttribute('tabindex', '-1');
+      expect(tab2).toHaveAttribute('tabindex', '0');
+      expect(tab3).toHaveAttribute('tabindex', '-1');
     });
 
     it('should not render indicator when value is invalid and tabs is empty', () => {

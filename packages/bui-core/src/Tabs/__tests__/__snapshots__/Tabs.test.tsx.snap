@@ -22,7 +22,7 @@ exports[`Tabs > test with TabPanel > should be active by \`value\` property 1`] 
         aria-selected="false"
         class="bui-tab"
         role="tab"
-        tabindex="0"
+        tabindex="-1"
       >
         水果
       </div>
@@ -40,7 +40,7 @@ exports[`Tabs > test with TabPanel > should be active by \`value\` property 1`] 
         aria-selected="false"
         class="bui-tab"
         role="tab"
-        tabindex="0"
+        tabindex="-1"
       >
         动物
       </div>

@@ -243,8 +243,9 @@ export default () => {
 
 ## Accessibility
 
-- Tab has attributes such as `role="tab"`, `aria-disabled`, and `tabindex`.
-- TabPanel has attributes such as `role="tabpanel"`, `tabindex`, and `aria-hidden`.
+- Tab has attributes such as `role="tab"`, `aria-selected`, `aria-disabled`, and `tabindex`.
+- Tab uses Roving TabIndex: the selected tab has `tabindex="0"`; unselected and disabled tabs have `tabindex="-1"`.
+- TabPanel has attributes such as `role="tabpanel"` and `hidden`.
 
 ## API
 

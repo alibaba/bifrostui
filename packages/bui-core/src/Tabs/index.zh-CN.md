@@ -229,8 +229,9 @@ export default () => {
 
 ## Accessibility
 
-- Tab 具备 `role="tab"`、`aria-disabled`、`tabindex` 等属性。
-- TabPanel 具备 `role="tabpanel"`、`tabindex`、`aria-hidden` 等属性。
+- Tab 具备 `role="tab"`、`aria-selected`、`aria-disabled`、`tabindex` 等属性。
+- Tab 采用 Roving TabIndex：选中项 `tabindex="0"`，未选中与禁用项均为 `tabindex="-1"`。
+- TabPanel 具备 `role="tabpanel"`、`hidden` 等属性。
 
 ## API
 

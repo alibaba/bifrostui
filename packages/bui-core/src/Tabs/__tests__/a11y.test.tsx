@@ -45,11 +45,20 @@ getMdDemoCodes(
               if (tab.getAttribute('aria-selected') !== 'true') {
                 console.warn(`Tabs选中项 应该设置 aria-selected="true"`);
               }
+              if (
+                !tab.classList.contains('bui-tab-disabled') &&
+                tab.getAttribute('tabindex') !== '0'
+              ) {
+                console.warn(`Tabs选中项 应该设置 tabindex="0"`);
+              }
             }
 
             if (!tab.classList.contains('bui-tab-active')) {
               if (tab.getAttribute('aria-selected') !== 'false') {
                 console.warn(`Tabs非选中项 应该设置 aria-selected="false"`);
+              }
+              if (tab.getAttribute('tabindex') !== '-1') {
+                console.warn(`Tabs非选中项 应该设置 tabindex="-1"`);
               }
             }
 
