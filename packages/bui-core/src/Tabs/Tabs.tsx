@@ -125,6 +125,65 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     };
   }, [registrationVersion]);
 
+  const handleKeyDown = useEventCallback((e: React.KeyboardEvent) => {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+
+    const target = e.target as HTMLElement;
+    if (!target || target.getAttribute?.('role') !== 'tab') return;
+
+    const list = tabsRef.current;
+    if (!list) return;
+
+    const enabledTabs = Array.from(
+      list.querySelectorAll<HTMLElement>('[role="tab"]'),
+    ).filter((el) => el.getAttribute('aria-disabled') !== 'true');
+    if (enabledTabs.length === 0) return;
+
+    const currentIndex = enabledTabs.indexOf(target);
+    let nextIndex = -1;
+    let shouldActivate = false;
+
+    switch (e.key) {
+      case 'ArrowLeft':
+        nextIndex =
+          currentIndex <= 0 ? enabledTabs.length - 1 : currentIndex - 1;
+        shouldActivate = true;
+        break;
+      case 'ArrowRight':
+        nextIndex =
+          currentIndex >= enabledTabs.length - 1 ? 0 : currentIndex + 1;
+        shouldActivate = true;
+        break;
+      case 'Home':
+        nextIndex = 0;
+        shouldActivate = true;
+        break;
+      case 'End':
+        nextIndex = enabledTabs.length - 1;
+        shouldActivate = true;
+        break;
+      case 'Enter':
+      case ' ': {
+        e.preventDefault();
+        target.click();
+        return;
+      }
+      default:
+        return;
+    }
+
+    if (nextIndex < 0 || nextIndex === currentIndex) return;
+    e.preventDefault();
+
+    const nextTab = enabledTabs[nextIndex];
+    if (!nextTab) return;
+
+    nextTab.focus();
+    if (shouldActivate) {
+      nextTab.click();
+    }
+  });
+
   return (
     <div className={clsx(tabsRootClass, className)} {...others} ref={ref}>
       {isScrollable && (
@@ -139,6 +198,8 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         ref={tabsRef}
         role="tablist"
         aria-orientation="horizontal"
+        tabIndex={-1}
+        onKeyDown={handleKeyDown}
       >
         <TabIndicator
           currentValue={currentValue}

@@ -773,4 +773,146 @@ describe('Tabs', () => {
     // Restore console.count
     console.count = originalConsoleCount;
   });
+
+  describe('keyboard navigation', () => {
+    const arrowTabs = [
+      { title: '水果', index: 'fruits' },
+      { title: '蔬菜', index: 'vegetables' },
+      { title: '动物', index: 'animals' },
+    ];
+
+    function ArrowNavComponent(props: {
+      readonly onChange?: (
+        e: React.SyntheticEvent,
+        data: { index: string },
+      ) => void;
+      readonly tabs?: typeof arrowTabs;
+      readonly defaultValue?: string;
+    }) {
+      const { onChange, tabs = arrowTabs, defaultValue = 'fruits' } = props;
+      return (
+        <Tabs defaultValue={defaultValue} tabs={tabs} onChange={onChange} />
+      );
+    }
+
+    it('ArrowRight moves focus to next tab and activates it', () => {
+      const handleChange = vi.fn();
+      const { container } = render(
+        <ArrowNavComponent onChange={handleChange} />,
+      );
+      const [tab1, tab2] =
+        container.querySelectorAll<HTMLDivElement>('.bui-tab');
+      tab1.focus();
+      fireEvent.keyDown(tab1, { key: 'ArrowRight' });
+      expect(handleChange).toHaveBeenCalledWith(expect.anything(), {
+        index: 'vegetables',
+      });
+      expect(document.activeElement).toBe(tab2);
+    });
+
+    it('ArrowLeft wraps from first to last', () => {
+      const handleChange = vi.fn();
+      const { container } = render(
+        <ArrowNavComponent onChange={handleChange} />,
+      );
+      const [tab1, , tab3] =
+        container.querySelectorAll<HTMLDivElement>('.bui-tab');
+      tab1.focus();
+      fireEvent.keyDown(tab1, { key: 'ArrowLeft' });
+      expect(handleChange).toHaveBeenCalledWith(expect.anything(), {
+        index: 'animals',
+      });
+      expect(document.activeElement).toBe(tab3);
+    });
+
+    it('ArrowRight wraps from last to first', () => {
+      const handleChange = vi.fn();
+      const { container } = render(
+        <ArrowNavComponent defaultValue="animals" onChange={handleChange} />,
+      );
+      const [tab1, , tab3] =
+        container.querySelectorAll<HTMLDivElement>('.bui-tab');
+      tab3.focus();
+      fireEvent.keyDown(tab3, { key: 'ArrowRight' });
+      expect(handleChange).toHaveBeenCalledWith(expect.anything(), {
+        index: 'fruits',
+      });
+      expect(document.activeElement).toBe(tab1);
+    });
+
+    it('Home jumps to first and End jumps to last', () => {
+      const handleChange = vi.fn();
+      const { container } = render(
+        <ArrowNavComponent defaultValue="vegetables" onChange={handleChange} />,
+      );
+      const [tab1, tab2, tab3] =
+        container.querySelectorAll<HTMLDivElement>('.bui-tab');
+      tab2.focus();
+
+      fireEvent.keyDown(tab2, { key: 'Home' });
+      expect(document.activeElement).toBe(tab1);
+      expect(handleChange).toHaveBeenLastCalledWith(expect.anything(), {
+        index: 'fruits',
+      });
+
+      tab1.focus();
+      fireEvent.keyDown(tab1, { key: 'End' });
+      expect(document.activeElement).toBe(tab3);
+      expect(handleChange).toHaveBeenLastCalledWith(expect.anything(), {
+        index: 'animals',
+      });
+    });
+
+    it('skips disabled tab when navigating with arrow keys', () => {
+      const handleChange = vi.fn();
+      const tabs = [
+        { title: '水果', index: 'fruits' },
+        { title: '蔬菜', index: 'vegetables', disabled: true },
+        { title: '动物', index: 'animals' },
+      ];
+      const { container } = render(
+        <ArrowNavComponent tabs={tabs} onChange={handleChange} />,
+      );
+      const [tab1, , tab3] =
+        container.querySelectorAll<HTMLDivElement>('.bui-tab');
+      tab1.focus();
+      fireEvent.keyDown(tab1, { key: 'ArrowRight' });
+      expect(document.activeElement).toBe(tab3);
+      expect(handleChange).toHaveBeenCalledWith(expect.anything(), {
+        index: 'animals',
+      });
+    });
+
+    it('Enter activates focused tab', () => {
+      const handleChange = vi.fn();
+      const { container } = render(
+        <ArrowNavComponent onChange={handleChange} />,
+      );
+      const [tab1, tab2] =
+        container.querySelectorAll<HTMLDivElement>('.bui-tab');
+      // 通过 ArrowRight 移动焦点但先重置 onChange，验证 Enter 单独的行为
+      tab2.focus();
+      fireEvent.keyDown(tab2, { key: 'Enter' });
+      // Enter 在已激活 tab 上是幂等的（focus 上的 tab 已经是 fruits 之外的当前焦点 tab）
+      // 由于 ArrowRight 未触发，Enter 应尝试激活 vegetables
+      expect(handleChange).toHaveBeenCalledWith(expect.anything(), {
+        index: 'vegetables',
+      });
+      expect(tab1).toBeInTheDocument();
+    });
+
+    it('does not react when modifier keys are held', () => {
+      const handleChange = vi.fn();
+      const { container } = render(
+        <ArrowNavComponent onChange={handleChange} />,
+      );
+      const [tab1] = container.querySelectorAll<HTMLDivElement>('.bui-tab');
+      tab1.focus();
+      fireEvent.keyDown(tab1, { key: 'ArrowRight', ctrlKey: true });
+      fireEvent.keyDown(tab1, { key: 'ArrowRight', metaKey: true });
+      fireEvent.keyDown(tab1, { key: 'ArrowRight', altKey: true });
+      expect(handleChange).not.toHaveBeenCalled();
+      expect(document.activeElement).toBe(tab1);
+    });
+  });
 });

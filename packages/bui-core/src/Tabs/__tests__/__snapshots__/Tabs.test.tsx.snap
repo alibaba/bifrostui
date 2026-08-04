@@ -11,6 +11,7 @@ exports[`Tabs > test with TabPanel > should be active by \`value\` property 1`] 
       aria-orientation="horizontal"
       class="bui-tabs-tabs"
       role="tablist"
+      tabindex="-1"
     >
       <div
         aria-hidden="true"

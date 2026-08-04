@@ -231,6 +231,10 @@ export default () => {
 
 - Tab 具备 `role="tab"`、`aria-selected`、`aria-disabled`、`tabindex` 等属性。
 - Tab 采用 Roving TabIndex：选中项 `tabindex="0"`，未选中与禁用项均为 `tabindex="-1"`。
+- 键盘导航（焦点在 tab 上时）：
+  - `←` / `→`：在 tab 间循环切换，自动激活；跳过 disabled tab
+  - `Home` / `End`：跳到首/末 tab
+  - `Enter` / `Space`：激活当前聚焦的 tab
 - TabPanel 具备 `role="tabpanel"`、`hidden` 等属性。
 
 ## API
