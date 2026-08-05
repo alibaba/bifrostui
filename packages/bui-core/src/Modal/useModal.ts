@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { useForkRef, useEventCallback } from '@bifrostui/utils';
+import { isMini, useForkRef, useEventCallback } from '@bifrostui/utils';
 import { ariaHidden, modalManager } from './ModalManager';
 
 function getContainer(
@@ -25,7 +25,7 @@ function getFocusTarget(root: HTMLElement): HTMLElement {
 export function isValidRestoreFocusTarget(
   element: Element | null,
 ): element is HTMLElement {
-  if (!(element instanceof HTMLElement)) {
+  if (typeof HTMLElement === 'undefined' || !(element instanceof HTMLElement)) {
     return false;
   }
   const doc = element.ownerDocument;
@@ -211,7 +211,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
   // Record focus target early on open (before autofocus / screen-reader churn)
   useLayoutEffect(() => {
-    if (!open) {
+    if (!open || isMini) {
       return;
     }
     const doc = contentRef?.current?.ownerDocument || document;
@@ -223,6 +223,10 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
   // Effect #2: autoFocus on open + restoreFocus on close / unmount
   useEffect(() => {
+    if (isMini) {
+      return undefined;
+    }
+
     if (!open) {
       // No-transition close path fallback (previous cleanup already ran in most cases)
       if (!hasTransition) {

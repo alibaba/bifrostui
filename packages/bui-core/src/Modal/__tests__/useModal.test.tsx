@@ -328,6 +328,19 @@ describe('useModal', () => {
       const btn = document.createElement('button');
       expect(isValidRestoreFocusTarget(btn)).toBe(true);
     });
+
+    it('should return false when HTMLElement is not defined (mini-program)', () => {
+      const OriginalHTMLElement = globalThis.HTMLElement;
+      delete globalThis.HTMLElement;
+
+      try {
+        expect(
+          isValidRestoreFocusTarget(document.createElement('button')),
+        ).toBe(false);
+      } finally {
+        globalThis.HTMLElement = OriginalHTMLElement;
+      }
+    });
   });
 
   describe('Focus management - focus restoration', () => {
