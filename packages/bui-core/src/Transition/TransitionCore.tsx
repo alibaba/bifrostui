@@ -148,8 +148,23 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       }
     };
     useEffect(() => {
-      nextTick(() => updateStatus(appearStatus.current, true));
+      // React StrictMode（仅 dev）会对 effect 做「执行 → 清理 → 再执行」的双重调用。
+      // 清理函数把 isMountedRef 置为 false，而重新执行时不会自动恢复，导致重挂载后
+      // 所有 safeSetState 都被守卫拦截（第一行 if (!isMountedRef.current) return），
+      // appear 进场动画永远停在 exited —— 表现为 Modal/Fade 遮罩 opacity 恒为 0。
+      isMountedRef.current = true;
+      // 另外，这里的 nextTick 直接使用 setTimeout，不走 setNextCallback，
+      // 因此 cancelNextCallback() 无法取消。用局部 cancelled 标志把这次
+      // bootstrap 定时器绑定到当前 effect 实例，避免 StrictMode 下 Timer A
+      // 在第二次挂载后仍然触发，进而导致 onEnter 等回调被调用两次。
+      let cancelled = false;
+      nextTick(() => {
+        if (cancelled) return;
+        updateStatus(appearStatus.current, true);
+      });
+
       return () => {
+        cancelled = true;
         isMountedRef.current = false;
         cancelNextCallback();
       };
