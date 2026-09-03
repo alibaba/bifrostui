@@ -1,20 +1,16 @@
 import React, { useEffect, useState, type FC } from 'react';
+import {
+  getVersions,
+  latestVersion,
+  otherVersions,
+  type VersionItem,
+} from './versions';
 import './index.less';
 
 const VersionSelect: FC = () => {
-  const latestVersion = { label: 'v1.x', publicPath: '/', rootPath: '/' };
-  // 本地开发环境只显示latest版本
-  const otherVersions =
-    process.env.NODE_ENV === 'development'
-      ? []
-      : [
-          { label: 'alpha', publicPath: '/alpha/', rootPath: '/alpha' },
-          { label: 'beta', publicPath: '/beta/', rootPath: '/beta' },
-        ];
-  const versions = [latestVersion, ...otherVersions];
+  const versions = getVersions();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [version, setVersion] = useState<any>({});
+  const [version, setVersion] = useState<VersionItem>({} as VersionItem);
 
   useEffect(() => {
     // eslint-disable-next-line no-restricted-globals
@@ -31,7 +27,7 @@ const VersionSelect: FC = () => {
     setVersion(defaultVersion);
   }, []);
 
-  const clickVersionItem = (v) => {
+  const clickVersionItem = (v: VersionItem) => {
     setVersion(v);
   };
 

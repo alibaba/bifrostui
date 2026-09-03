@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Button } from '@bifrostui/react';
-import { usePrefersColor, useNavigate, useIntl, history } from 'dumi';
+import { usePrefersColor, useNavigate, useIntl } from 'dumi';
 import { motion } from 'motion/react';
+import { getBasePathByPathname } from '../../theme/slots/VersionSelect/versions';
 import Tpp from './user-icon/tpp';
 import Dm from './user-icon/dm';
 import ButtonDemo from '../../../docs/components/theme-designer/canvas-demos/ButtonDemo';
@@ -13,6 +14,7 @@ import ProgressDemo from '../../../docs/components/theme-designer/canvas-demos/P
 import InputDemo from '../../../docs/components/theme-designer/canvas-demos/InputDemo';
 import CheckboxDemo from '../../../docs/components/theme-designer/canvas-demos/CheckboxDemo';
 import logoMiaoya from './logos/miaoya.png';
+import logoMaiSeat from './logos/maiseat.png';
 import logoMaizuo from './logos/maizuo.png';
 import logoKuaidapiao from './logos/kuaidapiao.png';
 import logoAliyu from './logos/aliyu.png';
@@ -69,7 +71,15 @@ const HomePage = () => {
   const { locale } = useIntl();
   const current = locale === 'zh-CN' ? 'zhCN' : 'enUS';
   const navigate = useNavigate();
-  const basePath = (history as any).basename || '/';
+  // 与顶部 VersionSelect 版本选择器共用同一套版本→路径映射：
+  // 根据当前 URL 所处的版本前缀推导 base，保证原生 iframe src 前缀正确。
+  const basePath = React.useMemo(
+    () =>
+      typeof window === 'undefined'
+        ? '/'
+        : getBasePathByPathname(window.location.pathname),
+    [],
+  );
   const [theme, setTheme] = React.useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('bui-site-theme') || 'pioneer';
@@ -336,6 +346,11 @@ const HomePage = () => {
         <div className="bui-home-users-list">
           <Tpp color={color === 'light' ? '#bbb' : '#5F6672'} />
           <Dm color={color === 'light' ? '#bbb' : '#5F6672'} />
+          <img
+            src={logoMaiSeat}
+            alt="大麦国际"
+            className="bui-home-users-logo"
+          />
           <img src={logoMiaoya} alt="妙鸭" className="bui-home-users-logo" />
           <img src={logoMaizuo} alt="麦座" className="bui-home-users-logo" />
           <img
