@@ -24,7 +24,7 @@ const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>((props, ref) => {
   return (
     <div
       role="tabpanel"
-      hidden={!isActive}
+      aria-hidden={!isActive}
       ref={ref}
       className={clsx(tabPanelRootClass, className, {
         [tabPanelActiveClass]: isActive,
