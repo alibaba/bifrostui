@@ -1,13 +1,41 @@
 import clsx from 'clsx';
 import React, { forwardRef, useEffect, useRef } from 'react';
-import { Autoplay, EffectFade, Pagination } from 'swiper';
+import {
+  Autoplay,
+  EffectFade,
+  Pagination,
+  type Swiper as SwiperClass,
+} from 'swiper';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 import { Swiper as SwiperReact, SwiperRef } from 'swiper/react';
-import './Swiper.less';
 import { SwiperProps } from './Swiper.types';
+import './index.less';
+
+/**
+ * Keep non-visible slides out of the accessibility tree so mobile screen
+ * readers do not announce every card at once.
+ * Relies on `swiper-slide-visible` from `watchSlidesProgress`.
+ */
+export function syncSwiperSlideA11y(swiper?: SwiperClass | null) {
+  if (!swiper?.slides?.length) return;
+
+  swiper.slides.forEach((slideEl) => {
+    const el = slideEl as HTMLElement & { inert?: boolean };
+    const visible = el.classList.contains('swiper-slide-visible');
+    el.setAttribute('aria-hidden', visible ? 'false' : 'true');
+    // inert blocks focus/interaction for PC keyboard users; pair with aria-hidden
+    if (visible) {
+      el.removeAttribute('inert');
+      el.inert = false;
+    } else {
+      el.setAttribute('inert', '');
+      el.inert = true;
+    }
+  });
+}
 
 const Swiper = forwardRef<SwiperRef, SwiperProps>((props, ref) => {
   const {
@@ -29,6 +57,7 @@ const Swiper = forwardRef<SwiperRef, SwiperProps>((props, ref) => {
     className,
     onChange,
     onAnimationFinish,
+    onSwiper,
     ...others
   } = props;
 
@@ -45,28 +74,43 @@ const Swiper = forwardRef<SwiperRef, SwiperProps>((props, ref) => {
     ...style,
   };
 
-  const swiperInstance = useRef<any>();
+  const swiperInstance = useRef<SwiperClass>(null);
   const isInit = useRef(true);
+
   useEffect(() => {
     if (isInit.current) {
       isInit.current = false;
       return;
     }
-    swiperInstance?.current?.slideTo?.(current);
-  }, [current]);
+    if (circular) {
+      swiperInstance?.current?.slideToLoop?.(current);
+    } else {
+      swiperInstance?.current?.slideTo?.(current);
+    }
+  }, [current, circular]);
+
+  useEffect(() => {
+    if (swiperInstance?.current) {
+      if (autoplay) {
+        swiperInstance?.current?.autoplay.start();
+      } else {
+        swiperInstance?.current?.autoplay.stop();
+      }
+    }
+  }, [autoplay]);
+
   return (
     <SwiperReact
       modules={[Pagination, Autoplay, EffectFade]}
       loop={circular}
-      autoplay={
-        autoplay ? { delay: interval, disableOnInteraction: false } : false
-      }
+      autoplay={{ delay: interval, disableOnInteraction: false }}
       speed={duration}
       slidesPerView={displayMultipleItems}
       direction={vertical ? 'vertical' : 'horizontal'}
       pagination={indicatorDots ? { clickable: true } : false}
       initialSlide={current}
       onSlideChange={(swiper) => {
+        syncSwiperSlideA11y(swiper);
         onChange?.({
           detail: {
             current: swiper.realIndex,
@@ -76,6 +120,7 @@ const Swiper = forwardRef<SwiperRef, SwiperProps>((props, ref) => {
         });
       }}
       onSlideChangeTransitionEnd={(swiper) => {
+        syncSwiperSlideA11y(swiper);
         onAnimationFinish?.({
           detail: {
             current: swiper.realIndex,
@@ -86,8 +131,11 @@ const Swiper = forwardRef<SwiperRef, SwiperProps>((props, ref) => {
       }}
       spaceBetween={spaceBetween}
       {...others}
-      onSwiper={(o) => {
-        swiperInstance.current = o;
+      watchSlidesProgress
+      onSwiper={(instance) => {
+        swiperInstance.current = instance;
+        syncSwiperSlideA11y(instance);
+        onSwiper?.(instance);
       }}
       style={{
         ...sty,

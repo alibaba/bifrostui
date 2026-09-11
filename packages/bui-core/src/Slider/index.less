@@ -1,0 +1,123 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+@{root-selector} {
+  --bui-slider-line-color: var(--bui-color-primary);
+  --bui-slider-line-bg-color: var(--bui-color-border-default);
+  --bui-slider-width: 100%;
+  --bui-slider-height: 2px;
+  --bui-slider-padding: 19px 0;
+  --bui-slider-button-width: 26px;
+  --bui-slider-button-height: 26px;
+  --bui-slider-button-font-size: var(--bui-title-size-3);
+  --bui-slider-button-box-shadow: #ddd 0 0 10px;
+  --bui-slider-button-border-radius: 50%;
+  --bui-slider-tooltip-width: 46px;
+  --bui-slider-tooltip-height: 24px;
+  --bui-slider-tooltip-line-height: 24px;
+  --bui-slider-tooltip-border-radius: 24px;
+  --bui-slider-tooltip-font-size: var(--bui-text-size-3);
+  --bui-slider-tooltip-color: var(--bui-color-white);
+  --bui-slider-tooltip-bg-color: var(--bui-slider-line-color);
+}
+
+.bui-slider {
+  position: relative;
+  width: var(--bui-slider-width);
+  height: var(--bui-slider-height);
+  padding: var(--bui-slider-padding);
+  box-sizing: border-box;
+  font-family: var(--bui-font-family);
+
+  &-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: var(--bui-slider-height);
+    transform: translateY(-50%);
+    background-color: var(--bui-slider-line-color);
+  }
+
+  &-rail {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: var(--bui-slider-height);
+    transform: translateY(-50%);
+    background-color: var(--bui-slider-line-bg-color);
+  }
+
+  &-button {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: var(--bui-slider-button-width);
+    height: var(--bui-slider-button-height);
+    background-color: var(--bui-color-white);
+    box-shadow: var(--bui-slider-button-box-shadow);
+    border-radius: var(--bui-slider-button-border-radius);
+    transform: translate(-50%, -50%);
+    font-size: var(--bui-slider-button-font-size);
+    cursor: grab;
+
+    // 增加点击热区大小
+    &::after {
+      position: absolute;
+      content: '';
+      top: -10px;
+      bottom: -10px;
+      left: -10px;
+      right: -10px;
+    }
+
+    &-0 {
+      left: 0%;
+      top: 50%;
+      z-index: var(--bui-z-index-affix);
+    }
+
+    &-1 {
+      left: 0%;
+      top: 50%;
+      z-index: var(--bui-z-index-affix);
+    }
+  }
+
+  &-tooltip {
+    position: absolute;
+    top: -14px;
+    width: var(--bui-slider-tooltip-width);
+    height: var(--bui-slider-tooltip-height);
+    line-height: var(--bui-slider-tooltip-line-height);
+    font-size: var(--bui-slider-tooltip-font-size);
+    border-radius: var(--bui-slider-tooltip-border-radius);
+    color: var(--bui-slider-tooltip-color);
+    text-align: center;
+    background-color: var(--bui-slider-tooltip-bg-color);
+    transform: translate(-50%, -50%);
+    z-index: var(--bui-z-index-affix);
+
+    &::after {
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      content: '';
+      width: 0;
+      height: 0;
+      border: 6px solid transparent;
+      border-top: 6px solid var(--bui-slider-tooltip-bg-color);
+    }
+
+    &-hidden {
+      display: none;
+    }
+  }
+}

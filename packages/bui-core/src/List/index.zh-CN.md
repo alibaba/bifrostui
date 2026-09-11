@@ -5,17 +5,15 @@ name: List 列表组件
 
 # List 列表组件
 
-列表时一组连续的文本或者图像，由主要操作跟补充操作的项目组合成，常用于数据展示。
+列表是一组连续的文字或者图像，由主操作与补充操作的项目组合而成，常用于数据展示。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 最基础的列表展示，可用于承载文字、图片、段落等。
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -168,7 +166,7 @@ export default () => {
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -205,7 +203,7 @@ export default () => {
 列表组件提供`ListItemHeader`子组件，用于定制列表项头部操作区，常用于定制列表项头部图标。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import {
   List,
   ListItem,
@@ -254,7 +252,7 @@ export default () => {
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -288,7 +286,7 @@ import {
   ListItemFooter,
   Stack,
 } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -336,8 +334,8 @@ export default () => {
         <List style={{ width: '100%' }}>
           <ListItem>
             <ListItemContent
-              primary={<div>在优酷展示想看记录</div>}
-              secondary={<div>影片可在线播放时会通知提醒你</div>}
+              primary={<div>展示观看记录</div>}
+              secondary={<div>根据您的观看偏好推荐相关视频</div>}
             />
             <ListItemExtra
               onClick={(e) => {
@@ -361,7 +359,7 @@ export default () => {
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -394,7 +392,7 @@ export default () => {
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -431,7 +429,7 @@ export default () => {
 
 ```tsx
 import { List, ListItem, ListItemContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -511,10 +509,10 @@ export default () => {
 | --------- | ---------- | ----------------- | ------ |
 | component | 根节点标签 | React.ElementType | -      |
 
-### 样式变量
+## 样式变量
 
-| 属性                  | 说明           | 默认值    | 全局变量                       |
-| --------------------- | -------------- | --------- | ------------------------------ |
-| --small-item-padding  | 小号子项内边距 | 5px 12px  | --bui-list-small-item-padding  |
-| --medium-item-padding | 中等子项内边距 | 18px 12px | --bui-list-medium-item-padding |
-| --large-item-padding  | 大号子项内边距 | 20px 12px | --bui-list-large-item-padding  |
+| 全局变量                       | 说明               | 默认值      |
+| ------------------------------ | ------------------ | ----------- |
+| --bui-list-small-item-padding  | 小尺寸列表项内边距 | `5px 12px`  |
+| --bui-list-medium-item-padding | 中尺寸列表项内边距 | `18px 12px` |
+| --bui-list-large-item-padding  | 大尺寸列表项内边距 | `20px 12px` |

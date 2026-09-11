@@ -1,6 +1,6 @@
 {
   "name": "@bifrostui/types",
-  "version": "1.5.3",
+  "version": "2.0.0-alpha.45",
   "description": "Utility types for BUI",
   "typings": "src/index.ts",
   "files": [
@@ -9,10 +9,15 @@
     "README.md"
   ],
   "homepage": "http://bui.taopiaopiao.com",
+  "devDependencies": {
+    "@tarojs/components": "^3.0.0",
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0"
+  },
   "peerDependencies": {
     "@tarojs/components": "^3.0.0",
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0"
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "license": "MIT",
   "publishConfig": {

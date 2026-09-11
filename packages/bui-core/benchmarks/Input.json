@@ -1,0 +1,26 @@
+{
+  "root": "../../../",
+  "$schema": "https://raw.githubusercontent.com/Polymer/tachometer/master/config.schema.json",
+  "sampleSize": 30,
+  "timeout": 0,
+  "benchmarks": [
+    {
+      "name": "Input-Latest",
+      "url": "templates/latest.html?component=Input",
+      "browser": {
+        "name": "chrome",
+        "headless": true
+      },
+      "measurement": "fcp"
+    },
+    {
+      "name": "Input-Main",
+      "url": "templates/main.html?component=Input",
+      "browser": {
+        "name": "chrome",
+        "headless": true
+      },
+      "measurement": "fcp"
+    }
+  ]
+}

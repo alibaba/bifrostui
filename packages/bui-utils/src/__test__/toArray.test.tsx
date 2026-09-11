@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import toArray from '../toArray';
 
 describe('toArray', () => {
@@ -26,9 +26,9 @@ describe('toArray', () => {
 
     expect(result).toHaveLength(2);
     expect(result[0].type).toBe('span');
-    expect(result[0].props.children).toBe('Child 1');
+    expect((result[0].props as any).children).toBe('Child 1');
     expect(result[1].type).toBe('span');
-    expect(result[1].props.children).toBe('Child 2');
+    expect((result[1].props as any).children).toBe('Child 2');
   });
 
   it('should exclude undefined and null children when keepEmpty option is not set', () => {
@@ -46,7 +46,7 @@ describe('toArray', () => {
 
     expect(result).toHaveLength(1);
     expect(result[0].type).toBe('span');
-    expect(result[0].props.children).toBe('Child 1');
+    expect((result[0].props as any).children).toBe('Child 1');
   });
 
   it('should include undefined and null children when keepEmpty option is set to true', () => {
@@ -64,6 +64,6 @@ describe('toArray', () => {
     expect(result[0]).toBeNull();
     expect(result[1]).toBeNull();
     expect(result[2].type).toBe('span');
-    expect(result[2].props.children).toBe('Child 1');
+    expect((result[2].props as any).children).toBe('Child 1');
   });
 });

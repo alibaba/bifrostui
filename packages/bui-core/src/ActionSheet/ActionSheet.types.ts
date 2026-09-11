@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { DrawerProps } from '../Drawer/Drawer.types';
 import { ModalProps } from '../Modal/Modal.types';
 

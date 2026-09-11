@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import Taro from '@tarojs/taro';
 import { CitySelectorProps } from './CitySelector.types';
 import CitySelectorCore from './CitySelectorCore';
-import './miniapp.less';
 
 const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorProps>(
   (props, ref) => {

@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const inputDirectory = path.join(__dirname, '../../packages/bui-core/src');
 const outputFilePath = path.join(__dirname, 'component-tests.txt');
@@ -47,7 +47,10 @@ function processFiles(directoryPath) {
     if (stat.isDirectory()) {
       // 如果是目录，递归处理
       processFiles(filePath);
-    } else if (file.endsWith('.test.tsx') && !file.endsWith('.snapshot.test.tsx')) {
+    } else if (
+      file.endsWith('.test.tsx') &&
+      !file.endsWith('.snapshot.test.tsx')
+    ) {
       // 获取相对路径，格式如：packages/bui-core/src/Alert/xxx.test.tsx
       const relativePath = path.relative(
         path.join(__dirname, '../..'),

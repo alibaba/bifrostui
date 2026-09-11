@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import clsx from 'clsx';
 import BreadcrumbItem from './BreadcrumbItem';
 import { BreadcrumbProps } from './Breadcrumb.types';
-import './Breadcrumb.less';
+import './index.less';
 
 const prefixCls = 'bui-breadcrumb';
 
@@ -42,11 +42,14 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
           (child, index) => {
             // 确保我们只处理 React 元素
             if (React.isValidElement(child)) {
-              const itemSeparator = child.props.separator || separator;
+              const itemSeparator = (child.props as any).separator || separator;
               const newProps = {
                 separator: index === childrenLength - 1 ? '' : itemSeparator,
               };
-              return React.cloneElement(child, newProps);
+              return React.cloneElement(
+                child as React.ReactElement<any>,
+                newProps,
+              );
             }
             return child;
           },

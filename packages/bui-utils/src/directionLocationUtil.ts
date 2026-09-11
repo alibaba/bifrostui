@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, no-console */
+import * as React from 'react';
 import { getScrollRect, getClientRect } from './domUtils';
 import getBoundingClientRect from './getBoundingClientRect';
 

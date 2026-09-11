@@ -11,14 +11,12 @@ name: Swiper 滑块视图容器
 > 小程序文档参考：<https://taro-docs.jd.com/docs/components/viewContainer/swiper>；
 > H5端基于社区 swiper/react v8.x 进行封装，并透传了其属性，文档可参考：<https://v8.swiperjs.com/swiper-api>
 
-## 代码演示
-
-### 基础Swiper
+## 基础Swiper
 
 Swiper内嵌套SwiperItem即可构建一个基础的滑块视图容器。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -48,7 +46,7 @@ export default () => {
 };
 ```
 
-### 设置当前页
+## 设置当前页
 
 传入current以设置当前页面，当数据变更时会触发页面切换。
 如果需要同时兼容滑动和current控制，则还需要使用onChange事件同步当前页面位置。
@@ -98,18 +96,22 @@ export default () => {
 };
 ```
 
-### 自动切换
+## 自动切换
 
 传入autoplay以启用自动切换。
 使用interval控制两次自动切换的间隔时间（单位为毫秒）。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
   return (
-    <Swiper interval={500} autoplay style={{ width: '300px', height: '200px' }}>
+    <Swiper
+      interval={3000}
+      autoplay
+      style={{ width: '300px', height: '200px' }}
+    >
       <SwiperItem>
         <Stack
           style={{ background: 'lightgray', width: '100%', height: '100%' }}
@@ -134,12 +136,12 @@ export default () => {
 };
 ```
 
-### 循环滚动
+## 循环滚动
 
 传入circular使得该容器能够向同一方向无限循环滚动。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -174,12 +176,12 @@ export default () => {
 };
 ```
 
-### 淡入淡出
+## 淡入淡出
 
 传入effect参数选择切换效果。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -215,12 +217,12 @@ export default () => {
 };
 ```
 
-### 垂直滚动
+## 垂直滚动
 
 传入vertical使得该容器垂直（而非水平）滚动。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -255,19 +257,19 @@ export default () => {
 };
 ```
 
-### 页面指示器
+## 页面指示器
 
 传入indicatorDots启用页面指示器（小圆点）。
 使用indicatorColor和indicatorActiveColor设置小圆点的颜色。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
   return (
     <Swiper
-      interval={500}
+      interval={5000}
       autoplay
       indicatorDots
       indicatorColor={'#880000'}
@@ -298,13 +300,13 @@ export default () => {
 };
 ```
 
-### 事件
+## 事件
 
 支持onChange和onAnimationFinish事件。
 具体返回值在对应事件对象的detail中。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Swiper, SwiperItem, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -338,6 +340,10 @@ export default () => {
 };
 ```
 
+## 无障碍
+
+H5 端对非可见 slide 做隔离：默认开启 `watchSlidesProgress`，对非 `swiper-slide-visible` 的 slide 设置 `aria-hidden` + `inert`，避免移动端读屏一次读完所有卡片。
+
 ## API
 
 | 属性                 | 说明                           | 类型             | 默认值 |
@@ -360,6 +366,6 @@ export default () => {
 
 ## 样式变量
 
-| 属性     | 说明 | 默认值 | 全局变量            |
-| -------- | ---- | ------ | ------------------- |
-| --height | 高度 | 150px  | --bui-swiper-height |
+| 全局变量            | 说明 | 默认值 |
+| ------------------- | ---- | ------ |
+| --bui-swiper-height | 高度 | 150px  |

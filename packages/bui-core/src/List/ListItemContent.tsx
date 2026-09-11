@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import { ListItemContentProps } from './ListItemContent.types';
 
 import './ListItemContent.less';
@@ -11,7 +11,7 @@ const ListItemContent = React.forwardRef<HTMLElement, ListItemContentProps>(
     const {
       children,
       className,
-      component: Component,
+      component: Component = 'div',
       primary,
       secondary,
       ...others
@@ -34,8 +34,5 @@ const ListItemContent = React.forwardRef<HTMLElement, ListItemContentProps>(
 );
 
 ListItemContent.displayName = 'BuiListItemContent';
-ListItemContent.defaultProps = {
-  component: 'div',
-};
 
 export default ListItemContent;

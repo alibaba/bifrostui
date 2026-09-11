@@ -1,0 +1,78 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+@{root-selector} {
+  --bui-rating-xsmall-font-size: var(--bui-text-size-5);
+  --bui-rating-xsmall-margin: 0;
+  --bui-rating-small-margin: 0 0.5px 0 0;
+  --bui-rating-small-font-size: var(--bui-text-size-1);
+  --bui-rating-margin: 0 1px 0 0;
+  --bui-rating-font-size: var(--bui-title-size-3);
+  --bui-rating-large-margin: 0 2px 0 0;
+  --bui-rating-large-font-size: 22px;
+}
+
+.bui-rating {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--bui-font-family);
+
+  &-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &-container {
+    position: relative;
+    display: flex;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &-xsmall {
+      font-size: var(--bui-rating-xsmall-font-size);
+      margin: var(--bui-rating-xsmall-margin);
+    }
+
+    &-small {
+      font-size: var(--bui-rating-small-font-size);
+      margin: var(--bui-rating-small-margin);
+    }
+
+    &-medium {
+      font-size: var(--bui-rating-font-size);
+      margin: var(--bui-rating-margin);
+    }
+
+    &-large {
+      font-size: var(--bui-rating-large-font-size);
+      margin: var(--bui-rating-large-margin);
+    }
+  }
+
+  &-item {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    color: var(--bui-color-fg-disabled);
+
+    &-input {
+      display: none;
+    }
+
+    &-half {
+      position: absolute;
+      top: 0;
+      width: 50%;
+    }
+
+    &-readonly {
+      cursor: unset;
+    }
+
+    &-active {
+      color: var(--bui-color-warning);
+    }
+  }
+}

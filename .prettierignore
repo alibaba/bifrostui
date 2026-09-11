@@ -2,3 +2,4 @@
 **/*.svg
 package.json
 node_modules
+!/.dumi

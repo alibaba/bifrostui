@@ -1,9 +1,12 @@
-import clsx from 'clsx';
 import React, { forwardRef } from 'react';
-import './TabPanel.less';
+import clsx from 'clsx';
 import { TabPanelProps } from './TabPanel.types';
-
-const prefixCls = 'bui-tabpanel';
+import {
+  tabPanelRootClass,
+  tabPanelActiveClass,
+  tabPanelInactiveClass,
+} from './classes';
+import './TabPanel.less';
 
 const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>((props, ref) => {
   const {
@@ -15,18 +18,21 @@ const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>((props, ref) => {
     ...others
   } = props;
 
+  const isActive = value === index;
   const keepActiveDom = keepMounted ? children : null;
 
   return (
     <div
+      role="tabpanel"
+      aria-hidden={!isActive}
       ref={ref}
-      className={clsx(prefixCls, className, {
-        [`${prefixCls}-active`]: value === index,
-        [`${prefixCls}-inactive`]: value !== index,
+      className={clsx(tabPanelRootClass, className, {
+        [tabPanelActiveClass]: isActive,
+        [tabPanelInactiveClass]: !isActive,
       })}
       {...others}
     >
-      {value === index ? children : keepActiveDom}
+      {isActive ? children : keepActiveDom}
     </div>
   );
 });

@@ -4,10 +4,10 @@
  */
 
 import fs from 'node:fs';
-import path from 'path';
+import path from 'node:path';
 import OpenAI from 'openai';
 import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'node:url';
 import { getComponentName } from '../generate-md/help.mjs';
 
 const __filename = fileURLToPath(import.meta.url);

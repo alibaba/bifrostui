@@ -1,5 +1,5 @@
-const path = require('path');
-const { execSync } = require('child_process');
+const path = require('node:path');
+const { execSync } = require('node:child_process');
 const chalk = require('chalk');
 
 const args = process.argv.slice(2);
@@ -14,12 +14,12 @@ if (!events.includes(eventType) || !eventType) {
 
 switch (eventType) {
   case 'start':
-    execSync('yarn generate:mini:files', {
+    execSync('pnpm generate:mini:files', {
       cwd: process.cwd(),
       stdio: 'inherit',
     });
 
-    execSync(`yarn start:${type}`, {
+    execSync(`pnpm start:${type}`, {
       cwd: path.dirname(
         path.resolve(__dirname, '../../websites/mini-program/package.json'),
       ),
@@ -27,7 +27,7 @@ switch (eventType) {
     });
     break;
   case 'build':
-    execSync(`yarn build:${type}`, {
+    execSync(`pnpm build:${type}`, {
       cwd: path.dirname(
         path.resolve(__dirname, '../../websites/mini-program/package.json'),
       ),

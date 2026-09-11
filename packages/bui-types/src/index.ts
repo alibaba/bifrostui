@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import * as React from 'react';
 
 declare module 'react' {
   interface CSSProperties {
@@ -43,7 +43,15 @@ export type StandardProps<
   style?: React.CSSProperties;
 };
 
-export type ThemeColor = 'primary' | 'info' | 'success' | 'warning' | 'danger';
+export type ThemeColor =
+  | 'primary'
+  | 'info'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'light'
+  | 'neutral'
+  | 'dark';
 
 export type IClickEvent = React.MouseEvent<HTMLElement>;
 

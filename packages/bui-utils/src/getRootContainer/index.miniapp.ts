@@ -3,6 +3,7 @@ import type { TaroElement } from '@tarojs/runtime';
 
 const getRootContainer = (
   rootCon?: TaroElement | (() => TaroElement),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   defaultCon?: any,
 ) => {
   const currentPages = Taro.getCurrentPages() || [];

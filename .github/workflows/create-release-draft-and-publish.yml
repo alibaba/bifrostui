@@ -104,14 +104,20 @@ jobs:
       - name: Determine release type
         id: release-type
         run: |
-          if [[ "${{ env.COMMIT_TAG }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-beta\.[0-9]+$ ]]; then
+          if [[ "${{ env.COMMIT_TAG }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-alpha\.[0-9]+$ ]]; then
             echo "RELEASE=pre-release" >> $GITHUB_ENV
+            echo "TAGTYPE=alpha" >> $GITHUB_ENV
+            echo "......pre-release......"
+          elif [[ "${{ env.COMMIT_TAG }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-beta\.[0-9]+$ ]]; then
+            echo "RELEASE=pre-release" >> $GITHUB_ENV
+            echo "TAGTYPE=beta" >> $GITHUB_ENV
             echo "......pre-release......"
           elif [[ "${{ env.COMMIT_TAG }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             echo "RELEASE=latest" >> $GITHUB_ENV
+            echo "TAGTYPE=latest" >> $GITHUB_ENV
             echo "......latest......"
           else
-            echo "Error: Invalid tag, only support like vX.X.X-beta.X or vX.X.X, plase check your tag."
+            echo "Error: Invalid tag, only support like vX.X.X-alpha.X, vX.X.X-beta.X or vX.X.X, plase check your tag."
             exit 1
           fi
 
@@ -139,9 +145,11 @@ jobs:
       # ----------------------发布到npm---------------------
       - name: Publish to NPM
         run: |
-          if [ '${{ env.RELEASE }}' == 'pre-release' ] ; then
+          if [ '${{ env.TAGTYPE }}' == 'alpha' ] ; then
+            pnpm -r publish --tag alpha --publish-branch=${{ github.ref_name }}
+          elif [ '${{ env.TAGTYPE }}' == 'beta' ] ; then
             pnpm -r publish --tag beta --publish-branch=${{ github.ref_name }}
-          elif [ '${{ env.RELEASE }}' == 'latest' ] ; then
+          elif [ '${{ env.TAGTYPE }}' == 'latest' ] ; then
             pnpm -r publish --publish-branch=${{ github.ref_name }}
           fi
         env:

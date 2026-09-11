@@ -6,5 +6,103 @@
 
 html,
 body {
-  font-family: PingFangSC-Regular;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Segoe UI', roboto,
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', helvetica, arial,
+    sans-serif;
+  font-size: var(--bui-text-size-1, 14px);
+  color: var(--bui-color-fg-default, #1a1a1a);
+  line-height: var(--bui-line-height, 1.5);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================
+   站点文案层级规范 (基于 BUI Design Tokens)
+   -------------------------------------------------------
+   字号层级：
+   h1:   24px  --bui-font-size-lg3    页面大标题
+   h2:   20px  --bui-font-size-lg1    章节标题
+   h3:   16px  --bui-font-size-md3    小节标题
+   h4:   15px  --bui-font-size-md2    段落标题
+   body: 14px  --bui-text-size-1      正文/列表/代码/表格
+
+   颜色层级：
+   fg-default  (#030b1a)  标题、正文、主信息
+   fg-muted    (#444b5b)  次级信息（表格内容、引用）
+   fg-subtle   (#8b93a5)  辅助信息（锚点、时间戳）
+   fg-disabled (#bfc4cf)  不可用状态
+   primary     (主题色)   链接、code、强调
+   ============================================================ */
+
+.markdown h1 {
+  font-size: var(--bui-font-size-lg3, 24px);
+  color: var(--bui-color-fg-default, #030b1a);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.markdown h2 {
+  font-size: var(--bui-font-size-lg1, 20px);
+  color: var(--bui-color-fg-default, #030b1a);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.markdown h3 {
+  font-size: var(--bui-font-size-md3, 16px);
+  color: var(--bui-color-fg-default, #030b1a);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.markdown h4 {
+  font-size: var(--bui-font-size-md2, 15px);
+  color: var(--bui-color-fg-default, #030b1a);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.markdown p,
+.markdown li {
+  font-size: var(--bui-text-size-1, 14px);
+  color: var(--bui-color-fg-default, #030b1a);
+  line-height: 1.75;
+}
+
+.markdown th {
+  font-size: var(--bui-text-size-1, 14px);
+  color: var(--bui-color-fg-default, #030b1a);
+  font-weight: 500;
+  line-height: 1.75;
+}
+
+.markdown td {
+  font-size: var(--bui-text-size-1, 14px);
+  color: var(--bui-color-fg-muted, #444b5b);
+  line-height: 1.75;
+}
+
+.markdown code {
+  font-size: var(--bui-text-size-1, 14px);
+  color: var(--bui-color-primary, #ff5000);
+  background: rgba(255, 80, 0, 0.06);
+  border-radius: var(--bui-radius-1, 4px);
+  padding: 2px 6px;
+}
+
+.markdown a {
+  color: var(--bui-color-primary, #ff5000);
+  text-decoration: none;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.markdown blockquote {
+  border-left: 3px solid var(--bui-color-primary, #ff5000);
+  color: var(--bui-color-fg-muted, #444b5b);
+  font-size: var(--bui-text-size-1, 14px);
 }

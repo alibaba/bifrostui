@@ -7,14 +7,12 @@ name: Skeleton 骨架屏
 
 在需要等待加载内容的位置提供一个占位图形组合。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 使用`width`和`height`设置宽高。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Skeleton, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -36,7 +34,7 @@ export default () => {
 `circular`, `rectangular`, `rounded`: 可以根据`width`和`height`来调整大小。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Skeleton, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -56,7 +54,7 @@ export default () => {
 默认是`wave`。你可以根据`animation`来设置不同的动画或者完全禁用它。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Skeleton, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -75,7 +73,7 @@ export default () => {
 可以使用不同的图形组合。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Skeleton, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -103,7 +101,7 @@ export default () => {
 可以根据`style`的`height`和`width`属性来设置尺寸。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Skeleton, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -131,6 +129,6 @@ export default () => {
 
 ## 样式变量
 
-| 属性     | 说明       | 默认值 | 全局变量              |
-| -------- | ---------- | ------ | --------------------- |
-| --height | 骨架屏高度 | 1.2em  | --bui-skeleton-height |
+| 全局变量              | 说明     | 默认值  |
+| --------------------- | -------- | ------- |
+| --bui-skeleton-height | 骨架高度 | `1.2em` |

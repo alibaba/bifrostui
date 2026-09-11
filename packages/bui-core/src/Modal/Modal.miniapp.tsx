@@ -1,11 +1,11 @@
-import { useForkRef } from '@bifrostui/utils';
 import clsx from 'clsx';
-import React, { useState } from 'react';
+import * as React from 'react';
 import { View, ViewProps } from '@tarojs/components';
 import Backdrop from '../Backdrop';
 import Portal from '../Portal';
-import './Modal.less';
+import { useModal } from './useModal';
 import { ModalProps } from './Modal.types';
+import './index.less';
 
 const prefixCls = 'bui-modal';
 
@@ -13,63 +13,82 @@ const Modal = React.forwardRef<HTMLDivElement, ViewProps & ModalProps>(
   (props, ref) => {
     const {
       className,
-      open,
+      open = false,
       BackdropProps,
       children,
       container,
-      disablePortal,
-      disableScrollLock,
-      hideBackdrop,
+      disablePortal = false,
+      disableScrollLock = false,
+      hideBackdrop = false,
       onClose,
       onClick,
       keepMounted,
       ...others
     } = props;
-    const modalRef = React.useRef(null);
-    const handleRef = useForkRef(modalRef, ref);
-    const [backdropExited, setBackDropExited] = useState(hideBackdrop || !open);
-    const mounted = open || !backdropExited || keepMounted;
 
-    const handleBackdropClick = (event) => {
-      if (event.target.id !== event.currentTarget.id) {
-        return;
-      }
-
-      if (onClose) {
-        onClose(event, { from: 'backdrop' });
-      }
-    };
-
-    if (!mounted) {
+    const {
+      getRootProps,
+      getBackdropProps,
+      getTransitionProps,
+      exited,
+      hasTransition,
+    } = useModal({
+      ...props,
+      disableScrollLock,
+      children: React.isValidElement(children) ? children : undefined,
+      open,
+      onClose,
+      rootRef: ref,
+    });
+    // 如果不保持挂载且未打开，则不渲染
+    if (!keepMounted && !open && (!hasTransition || exited)) {
       return null;
     }
+    const rootProps = getRootProps({
+      ...others,
+      className: clsx(
+        prefixCls,
+        {
+          [`${prefixCls}-hidden`]: !open && exited,
+        },
+        className,
+      ),
+    });
+
+    const backdropProps = getBackdropProps({
+      ...BackdropProps,
+      className: clsx(`${prefixCls}-backdrop`, BackdropProps?.className),
+    });
+    const transitionProps = hasTransition ? getTransitionProps() : {};
+
+    // 渲染children，如果是React元素则克隆并添加transition props
+    const renderChildren = () => {
+      if (!children) {
+        return null;
+      }
+
+      if (React.isValidElement(children)) {
+        return React.cloneElement(children as React.ReactElement<any>, {
+          ...transitionProps,
+          tabIndex: -1,
+          ...(children.props as object),
+        });
+      }
+
+      return children;
+    };
 
     return (
       <Portal container={container} disablePortal={disablePortal}>
         <View
-          className={clsx(prefixCls, className)}
-          ref={handleRef}
           catchMove={!disableScrollLock}
-          // Fixed the issue where view binding events are lost when component view props are updated and re-rendered
+          {...rootProps}
           onClick={(event) => {
             onClick?.(event);
           }}
-          {...others}
         >
-          {!hideBackdrop ? (
-            <Backdrop
-              open={open}
-              onClick={handleBackdropClick}
-              onEnter={() => setBackDropExited(false)}
-              onExited={() => setBackDropExited(true)}
-              {...BackdropProps}
-              className={clsx(
-                `${prefixCls}-backdrop`,
-                BackdropProps?.className,
-              )}
-            />
-          ) : null}
-          {(open || keepMounted) && children}
+          {!hideBackdrop && <Backdrop {...backdropProps} />}
+          {renderChildren()}
         </View>
       </Portal>
     );
@@ -77,11 +96,5 @@ const Modal = React.forwardRef<HTMLDivElement, ViewProps & ModalProps>(
 );
 
 Modal.displayName = 'BuiModal';
-Modal.defaultProps = {
-  open: false,
-  disablePortal: false,
-  disableScrollLock: false,
-  hideBackdrop: false,
-};
 
 export default Modal;

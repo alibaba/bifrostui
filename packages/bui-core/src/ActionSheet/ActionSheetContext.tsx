@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { ActionSheetContextValue } from './ActionSheet.types';
 
 const ActionSheetContext = React.createContext<

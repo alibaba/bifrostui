@@ -5,17 +5,12 @@ name: Loading
 
 # Loading
 
-## Code Demos
+## Basic Usage
 
-### Basic Usage
-
-Show a loading icon.
+Display a loading icon.
 
 ```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+import * as React from 'react';
 import { Stack, Loading } from '@bifrostui/react';
 
 export default () => {
@@ -27,61 +22,61 @@ export default () => {
 };
 ```
 
-### Adding Text
+## Add Text
 
-You can pass text using the `children` property. Non-`ReactNode` content will automatically be wrapped in a DOM structure for style control.
+You can pass text via the `children` property. Content that is not of type `ReactNode` will automatically have an additional DOM layer applied to control styling.
 
 ```tsx
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, Loading } from '@bifrostui/react';
 
 export default () => {
   return (
     <Stack>
-      <Loading>loading...</Loading>
+      <Loading>Loading...</Loading>
     </Stack>
   );
 };
 ```
 
-### Changing Icon and Text Layout
+## Modify Icon and Text Arrangement
 
-Use the `direction` prop with values `vertical` or `horizontal` to control layout orientation.
+You can control the display arrangement by setting `direction` to either `vertical` | `horizontal`.
 
 ```tsx
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, Loading } from '@bifrostui/react';
 
 export default () => {
   return (
     <Stack>
-      <Loading direction="horizontal">loading...</Loading>
+      <Loading direction="horizontal">Loading...</Loading>
     </Stack>
   );
 };
 ```
 
-### Customizing Icon Display
+## Custom Icon Display
 
-Control the internal icon by setting `IconProps`.
+Control the internal icon via `IconProps`.
 
 ```tsx
 /**
  * background: '#f6f7f9'
  */
-import React from 'react';
+import * as React from 'react';
 import { Stack, Loading } from '@bifrostui/react';
 
 export default () => {
   return (
     <Stack>
-      <Loading IconProps={{ htmlColor: '#ff335c' }}>loading...</Loading>
+      <Loading IconProps={{ htmlColor: '#ff335c' }}>Loading...</Loading>
     </Stack>
   );
 };
@@ -89,20 +84,20 @@ export default () => {
 
 ## API
 
-### Loading
+### NavBar
 
-| Property  | Description                              | Type                       | Default Value |
-| --------- | ---------------------------------------- | -------------------------- | ------------- |
-| className | Component class name                     | string                     | -             |
-| icon      | Custom loading icon                      | ReactNode                  | -             |
-| IconProps | Customize the icon                       | ISvgIconProps              | -             |
-| direction | Layout direction of icon and text        | 'vertical' \| 'horizontal' | 'vertical'    |
-| children  | Controls the content of the loading text | ReactNode                  | -             |
+| Property  | Description                          | Type                       | Default    |
+| --------- | ------------------------------------ | -------------------------- | ---------- |
+| className | Component class name                 | string                     | -          |
+| icon      | Custom loading icon                  | ReactNode                  | -          |
+| IconProps | Custom icon                          | ISvgIconProps              | -          |
+| direction | Arrangement of loading icon and text | 'vertical' \| 'horizontal' | 'vertical' |
+| children  | Controls loading text content        | ReactNode                  | -          |
 
 ## Style Variables
 
-| Property             | Description                   | Default Value | Global Variable                  |
-| -------------------- | ----------------------------- | ------------- | -------------------------------- |
-| --icon-font-size     | Icon font size                | 30px          | --bui-loading-icon-font-size     |
-| --text-padding       | Padding inside text container | 10px          | --bui-loading-text-padding       |
-| --animation-duration | Duration of loading animation | 1.6s          | --bui-loading-animation-duration |
+| Global Variable                  | Description                   | Default |
+| -------------------------------- | ----------------------------- | ------- |
+| --bui-loading-icon-font-size     | Font size of loading icon     | `30px`  |
+| --bui-loading-text-padding       | Text padding                  | `10px`  |
+| --bui-loading-animation-duration | Duration of loading animation | `1.6s`  |

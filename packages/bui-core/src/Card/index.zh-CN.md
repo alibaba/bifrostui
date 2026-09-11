@@ -5,28 +5,26 @@ name: Card 卡片
 
 # Card 卡片
 
-通用卡片容器，最基础的卡片容器，可用于承载文字、列表、图片、段落、常用于后台概览页面。
+最基础的通用容器，可用于承载文字、列表、图片、段落，常用于后台概览页面。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 `Card`组件分为：`CardHeader`、 `CardContent` 、`CardFooter` 等 3 个模块，以下是示例文档。
 
-### 卡片标题
+## 卡片标题
 
 卡片组件提供 `CardHeader`子组件用来设置卡片头部模块，您可以通过`title`设置卡片容器的标题。
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader title={<div>美味小食</div>} />
+          <CardHeader title={<div>项目 Alpha</div>} />
         </Card>
       </Stack>
     </Stack>
@@ -34,20 +32,20 @@ export default () => {
 };
 ```
 
-### 卡片子标题
+## 卡片子标题
 
 您还可以通过`subtitle`设置卡片容器的子标题。
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader subtitle="（大桶爆米花1份+300ml自制奶茶2杯）" />
+          <CardHeader subtitle="最近更新：2024-04-29" />
         </Card>
       </Stack>
     </Stack>
@@ -59,17 +57,14 @@ export default () => {
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader
-            title="美味小食"
-            subtitle="（大桶爆米花1份+300ml自制奶茶2杯）"
-          />
+          <CardHeader title="项目 Alpha" subtitle="最近更新：2024-04-29" />
         </Card>
       </Stack>
     </Stack>
@@ -77,14 +72,14 @@ export default () => {
 };
 ```
 
-### 卡片头部操作区
+## 卡片头部操作区
 
 `CardHeader`子组件除了提供标题、子标题外，还提供卡片头部操作区，您可以通过`extra`承载卡片头部操作区 Action。
 当绑定`onClick`事件时，`CardHeader`提供默认的右侧操作 icon，您也可以通过设置`endIcon`属性为`true/false`来显示或者隐藏这个 icon。
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -92,8 +87,8 @@ export default () => {
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
           <CardHeader
-            title="订单"
-            extra="查看更多"
+            title="最近订单"
+            extra="查看全部"
             onClick={(e) => {
               console.log(e);
             }}
@@ -109,7 +104,7 @@ export default () => {
 
 ```tsx
 import { Card, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -117,8 +112,8 @@ export default () => {
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
           <CardHeader
-            title="订单"
-            extra="查看更多"
+            title="最近订单"
+            extra="查看全部"
             endIcon={false}
             onClick={(e) => {
               console.log(e);
@@ -131,13 +126,13 @@ export default () => {
 };
 ```
 
-### 卡片正文
+## 卡片正文
 
 `Card`组件提供`CardContent`子组件，通常用来承载卡片容器主要内容。
 
 ```tsx
 import { Card, CardContent, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -146,8 +141,8 @@ export default () => {
         <Card style={{ width: '100%' }}>
           <CardContent>
             <div>订单号：7a73fcggert235fag4</div>
-            <div>取餐码：235634</div>
-            <div>手机号: 134****5427</div>
+            <div>物流单号：SF1204056789</div>
+            <div>手机号：134****5427</div>
           </CardContent>
         </Card>
       </Stack>
@@ -156,7 +151,7 @@ export default () => {
 };
 ```
 
-### 卡片底部
+## 卡片底部
 
 `Card`组件提供`CardFooter`子组件，通常用来承载卡片容器底部操作区。
 
@@ -169,21 +164,21 @@ import {
   CardHeader,
   Stack,
 } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader title="订单" />
+          <CardHeader title="订单详情" />
           <CardContent>
             <div>订单号：7a73fcggert235fag4</div>
-            <div>取餐码：235634</div>
-            <div>手机号: 134****5427</div>
+            <div>物流单号：SF1204056789</div>
+            <div>手机号：134****5427</div>
           </CardContent>
           <CardFooter>
-            <Button color="success">签收</Button>
+            <Button color="success">确认收货</Button>
           </CardFooter>
         </Card>
       </Stack>
@@ -192,7 +187,7 @@ export default () => {
 };
 ```
 
-### 典型的卡片示例
+## 典型的卡片示例
 
 配合`CardHeader`、`CardContent`、`CardFooter`子组件使用。
 
@@ -205,21 +200,21 @@ import {
   CardHeader,
   Stack,
 } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader title="订单" />
+          <CardHeader title="订单详情" />
           <CardContent>
             <div>订单号：7a73fcggert235fag4</div>
-            <div>取餐码：235634</div>
-            <div>手机号: 134****5427</div>
+            <div>物流单号：SF1204056789</div>
+            <div>手机号：134****5427</div>
           </CardContent>
           <CardFooter>
-            <Button color="success">签收</Button>
+            <Button color="success">确认收货</Button>
           </CardFooter>
         </Card>
       </Stack>
@@ -228,47 +223,47 @@ export default () => {
 };
 ```
 
-### 复杂场景示例
+## 复杂场景示例
 
 `Card`组件支持嵌套使用。
 
 ```tsx
 import { Card, CardContent, CardHeader, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ width: '100%' }}>
-          <CardHeader title="购买商品" />
+          <CardHeader title="我的订单" />
           <CardContent>
             <Card style={{ width: '100%' }}>
               <CardHeader
-                title="生鲜水果"
+                title="电子产品"
                 onClick={(e) => {
                   console.log(e);
                 }}
-                extra="共6件"
+                extra="共 6 件"
               />
               <CardContent>
-                <div>苹果*2</div>
-                <div>木瓜*1</div>
-                <div>菠菜*3</div>
+                <div>无线鼠标 × 2</div>
+                <div>机械键盘 × 1</div>
+                <div>USB-C 扩展坞 × 3</div>
               </CardContent>
             </Card>
             <Card className="subCard">
               <CardHeader
-                title="零食饮料"
+                title="办公用品"
                 onClick={(e) => {
                   console.log(e);
                 }}
-                extra="共14件"
+                extra="共 14 件"
               />
               <CardContent>
-                <div>薯片*2</div>
-                <div>橙汁*2</div>
-                <div>火腿肠*10</div>
+                <div>A4 打印纸 × 2</div>
+                <div>便利贴 × 2</div>
+                <div>中性笔 × 10</div>
               </CardContent>
             </Card>
           </CardContent>
@@ -279,22 +274,22 @@ export default () => {
 };
 ```
 
-### 高度定制化
+## 定制
 
 除了配合`CardHeader`、`CardContent`、`CardFooter`子组件使用，您还可以通过直接插入 children，实现高度定制化卡片。
 
 ```tsx
 import { Card, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Stack style={{ background: '#eee', padding: '20px' }}>
       <Stack style={{ width: '270px' }}>
         <Card style={{ padding: '10px' }}>
-          <div>配料表</div>
-          <div>主要成分：水，生牛乳</div>
-          <div>产品检验合格</div>
+          <div>产品规格</div>
+          <div>材质：100% 纯棉</div>
+          <div>认证：ISO 9001</div>
         </Card>
       </Stack>
     </Stack>
@@ -302,9 +297,9 @@ export default () => {
 };
 ```
 
-### API
+## API
 
-##### CardHeaderProps
+### CardHeaderProps
 
 | 属性     | 说明           | 类型                 | 默认值 |
 | -------- | -------------- | -------------------- | ------ |
@@ -313,17 +308,12 @@ export default () => {
 | extra    | 卡片右侧操作区 | ReactNode            | -      |
 | endIcon  | 卡片右侧图标   | ReactNode ｜ boolean | -      |
 
-### 样式变量
+## 样式变量
 
-#### CardHeader
-
-| 属性                   | 说明           | 默认值                            | 全局变量                               |
-| ---------------------- | -------------- | --------------------------------- | -------------------------------------- |
-| --padding              | 内边距         | --bui-spacing-md --bui-spacing-lg | --bui-card-header-padding              |
-| --end-icon-margin-left | 尾部图标左边距 | 2px                               | --bui-card-header-end-icon-margin-left |
-
-#### CardFooter
-
-| 属性      | 说明   | 默认值                            | 全局变量                  |
-| --------- | ------ | --------------------------------- | ------------------------- |
-| --padding | 内边距 | --bui-spacing-md --bui-spacing-lg | --bui-card-footer-padding |
+| 全局变量                            | 说明             | 默认值                                        |
+| ----------------------------------- | ---------------- | --------------------------------------------- |
+| `--bui-card-header-padding`         | 卡片头部内边距   | `var(--bui-spacing-md) var(--bui-spacing-lg)` |
+| `--bui-card-footer-padding`         | 卡片底部内边距   | `var(--bui-spacing-md) var(--bui-spacing-lg)` |
+| `--bui-card-header-title-font-size` | 卡片标题字体大小 | `var(--bui-title-size-4)`                     |
+| `--bui-card-content-font-size`      | 卡片内容字体大小 | `var(--bui-text-size-2)`                      |
+| `--bui-card-footer-font-size`       | 卡片底部字体大小 | `var(--bui-text-size-2)`                      |

@@ -7,15 +7,13 @@ name: Countdown 倒计时
 
 用于实时展示倒计时数值。
 
-## 代码演示
-
-### 基本用法
+## 基本用法
 
 通过 `remainingTime` 控制倒计时剩余时长，与 `endTimestamp` 字段二选一。
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -32,7 +30,7 @@ export default () => {
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -49,7 +47,7 @@ export default () => {
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -70,7 +68,7 @@ export default () => {
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -84,95 +82,13 @@ export default () => {
 };
 ```
 
-### 倒计时单位样式
-
-通过 `unitStyle` 可设置倒计时单位样式。
-
-```tsx
-import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
-
-export default () => {
-  return (
-    <Stack>
-      <Countdown
-        endTimestamp={4102415999000}
-        format="YY年MM月DD日HH时mm分ss秒"
-        unitStyle={{
-          color: 'var(--bui-color-primary)',
-          fontWeight: 600,
-          fontSize: '16px',
-        }}
-      />
-    </Stack>
-  );
-};
-```
-
-### 倒计时数值样式
-
-可通过 `valueStyle` 定制倒计时第一、二位数值的样式。
-
-```tsx
-import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
-
-export default () => {
-  return (
-    <Stack>
-      <Countdown
-        remainingTime={24 * 60 * 60 * 1000}
-        valueStyle={[
-          {
-            color: 'var(--bui-color-primary)',
-            fontWeight: 600,
-            fontSize: '16px',
-          },
-          {
-            color: 'var(--bui-color-primary)',
-            fontWeight: 600,
-            fontSize: '20px',
-          },
-        ]}
-      />
-    </Stack>
-  );
-};
-```
-
-### 倒计时时间片的样式
-
-可通过 `timeSliceStyle` 定制倒计时每个时间片的样式。
-
-```tsx
-import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
-
-export default () => {
-  return (
-    <Stack>
-      <Countdown
-        remainingTime={24 * 60 * 60 * 1000}
-        format="HH时mm分ss秒"
-        timeSliceStyle={{
-          backgroundColor: 'var(--bui-color-bg-default)',
-          padding: '4px',
-          borderRadius: '4px',
-          marginRight: '4px',
-        }}
-      />
-    </Stack>
-  );
-};
-```
-
 ### 倒计时结束事件
 
 倒计时结束时会触发 `onFinish` 事件。
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const finish = () => {
@@ -193,7 +109,7 @@ export default () => {
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const change = (data) => {
@@ -214,7 +130,7 @@ export default () => {
 
 ```tsx
 import { Countdown, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -234,22 +150,62 @@ export default () => {
 };
 ```
 
+## Accessibility
+
+倒计时组件内置了完整的无障碍支持，确保所有用户都能访问倒计时信息。
+
+```tsx
+import { Countdown, Stack } from '@bifrostui/react';
+import * as React from 'react';
+
+export default () => {
+  return (
+    <Stack spacing={16}>
+      {/* 基础无障碍支持 - 自动生成aria-label */}
+      <Countdown remainingTime={60 * 1000} />
+
+      {/* 自定义无障碍标签 */}
+      <Countdown remainingTime={120 * 1000} aria-label="促销活动结束倒计时" />
+
+      {/* 通过ID关联标题 */}
+      <div>
+        <h3 id="flash-sale-title">限时抢购</h3>
+        <Countdown
+          remainingTime={180 * 1000}
+          aria-labelledby="flash-sale-title"
+        />
+      </div>
+
+      {/* 添加详细描述 */}
+      <div>
+        <Countdown
+          remainingTime={240 * 1000}
+          aria-describedby="countdown-description"
+        />
+        <p id="countdown-description">倒计时结束后，优惠价格将恢复为原价</p>
+      </div>
+    </Stack>
+  );
+};
+```
+
 ## API
 
 ### Countdown
 
-| 属性            | 说明                                                                                         | 类型                                    | 默认值   |
-| --------------- | -------------------------------------------------------------------------------------------- | --------------------------------------- | -------- |
-| remainingTime   | 倒计时剩余时间，是一个时间段（单位毫秒），与endTimestamp互斥                                 | number                                  | 0        |
-| endTimestamp    | 倒计时结束时间戳，是一个时间点，与remainingTime互斥，优先级比remainingTime高                 | number                                  | -        |
-| serverTimestamp | 服务器时间戳，是一个时间点，可与endTimestamp配合使用                                         | number                                  | -        |
-| format          | 格式化倒计时展示，参考 dayjs                                                                 | string                                  | HH:mm:ss |
-| unitStyle       | 时间单位的样式                                                                               | CSSProperties                           | -        |
-| valueStyle      | 倒计时位数的样式，用于定制第一、第二位数字的样式                                             | CSSProperties[]                         | -        |
-| timeSliceStyle  | 各时间区块的样式，用于定制各个时间块的样式，若第一、第二位数字的样式相同，则可替代valueStyle | CSSProperties                           | -        |
-| onFinish        | 倒计时完成时触发                                                                             | () => void                              | -        |
-| onChange        | 倒计时时间变化时触发                                                                         | (data: { value: CurrentTime }) => void; | -        |
-| renderContent   | 自定义渲染内容                                                                               | (data: CurrentTime) => React.ReactNode; | -        |
+| 属性             | 说明                                                                         | 类型                                    | 默认值   |
+| ---------------- | ---------------------------------------------------------------------------- | --------------------------------------- | -------- |
+| remainingTime    | 倒计时剩余时间，是一个时间段（单位毫秒），与endTimestamp互斥                 | number                                  | 0        |
+| endTimestamp     | 倒计时结束时间戳，是一个时间点，与remainingTime互斥，优先级比remainingTime高 | number                                  | -        |
+| serverTimestamp  | 服务器时间戳，是一个时间点，可与endTimestamp配合使用                         | number                                  | -        |
+| format           | 格式化倒计时展示，参考 dayjs                                                 | string                                  | HH:mm:ss |
+| onFinish         | 倒计时完成时触发                                                             | () => void                              | -        |
+| onChange         | 倒计时时间变化时触发                                                         | (data: { value: CurrentTime }) => void; | -        |
+| renderContent    | 自定义渲染内容                                                               | (data: CurrentTime) => React.ReactNode; | -        |
+| aria-label       | 无障碍标签，为屏幕阅读器提供组件描述                                         | string                                  | -        |
+| aria-labelledby  | 引用其他元素ID作为标签                                                       | string                                  | -        |
+| aria-describedby | 引用其他元素ID作为描述                                                       | string                                  | -        |
+| role             | 组件的语义角色                                                               | string                                  | timer    |
 
 #### CurrentTime
 
@@ -266,9 +222,9 @@ export default () => {
 
 ## 样式变量
 
-| 属性                | 说明         | 默认值                   | 全局变量                          |
-| ------------------- | ------------ | ------------------------ | --------------------------------- |
-| --font-size         | 文案字体大小 | --bui-text-size-1        | --bui-countdown-font-size         |
-| --color             | 文案字体颜色 | --bui-color-fg-default   | --bui-countdown-color             |
-| --font-weight       | 文案字体字重 | --bui-font-weight-normal | --bui-countdown-font-weight       |
-| --slice-unit-margin | 分隔符间距   | 0 2px                    | --bui-countdown-slice-unit-margin |
+| 变量名                            | 说明     | 默认值                          |
+| --------------------------------- | -------- | ------------------------------- |
+| --bui-countdown-font-size         | 字体大小 | `var(--bui-text-size-1)`        |
+| --bui-countdown-color             | 字体颜色 | `var(--bui-color-fg-default)`   |
+| --bui-countdown-font-weight       | 字体粗细 | `var(--bui-font-weight-normal)` |
+| --bui-countdown-slice-unit-margin | 单位间隔 | `0 2px`                         |

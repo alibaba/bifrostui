@@ -1,0 +1,42 @@
+.bui-drawer {
+  font-family: var(--bui-font-family);
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 1 0 auto;
+    position: fixed;
+    top: 0;
+    outline: 0;
+    background-color: var(--bui-color-bg-view);
+
+    &-left {
+      left: 0;
+    }
+
+    &-top {
+      top: 0;
+      left: 0;
+      right: 0;
+      height: auto;
+      max-height: 100%;
+      overflow-y: auto;
+    }
+
+    &-right {
+      right: 0;
+    }
+
+    &-bottom {
+      bottom: 0;
+      top: auto;
+      left: 0;
+      /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
+      right: 0;
+      height: auto;
+      max-height: 100%;
+      overflow-y: auto;
+    }
+  }
+}

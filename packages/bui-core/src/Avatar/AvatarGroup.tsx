@@ -12,8 +12,8 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
       maxCount,
       variant,
       spacing,
-      size,
-      orientation,
+      size = 'medium',
+      orientation = 'right',
       children,
       onClick,
       ...others
@@ -40,9 +40,12 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
           }
 
           const childStyle = {
-            className: clsx(`${prefixCls}-avatar`, child?.props?.className),
+            className: clsx(
+              `${prefixCls}-avatar`,
+              (child?.props as any)?.className,
+            ),
             style: {
-              ...child?.props?.style,
+              ...(child?.props as any)?.style,
               marginLeft: `-${spacing}`,
               zIndex,
             },
@@ -51,7 +54,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
           };
 
           return React.isValidElement(child)
-            ? cloneElement(child, { ...childStyle })
+            ? cloneElement(child as React.ReactElement<any>, { ...childStyle })
             : child;
         })
       : '';
@@ -65,9 +68,5 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
 );
 
 AvatarGroup.displayName = 'BuiAvatarGroup';
-AvatarGroup.defaultProps = {
-  size: 'medium',
-  orientation: 'right',
-};
 
 export default AvatarGroup;

@@ -40,7 +40,8 @@ export type TransitionChildren =
     ) => ReactElement);
 
 export interface TransitionCoreProps
-  extends TransitionActions,
+  extends
+    TransitionActions,
     Omit<React.HTMLAttributes<ReactElement>, 'children'> {
   /**
    * Show the component; triggers the enter or exit states

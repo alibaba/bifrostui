@@ -1,20 +1,18 @@
 ---
 group: Feedback
-name: Skeleton Placeholder
+name: Skeleton
 ---
 
-# Skeleton Placeholder
+# Skeleton
 
-Provides a placeholder graphic combination where content needs to be loaded.
+Provides a placeholder graphic combination at locations that require loading content.
 
-## Code Demos
+## Basic Usage
 
-### Basic Usage
-
-Use `width` and `height` to set dimensions.
+Set width and height using `width` and `height`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Skeleton, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -31,11 +29,12 @@ export default () => {
 
 The component supports 4 variants `variant`:
 
-- `text` (default): Automatically adjusts size based on `font-size`.
-- `circular`, `rectangular`, `rounded`: Adjust size based on `width` and `height`.
+`text` (default): Automatically adjusts size based on `font-size`.
+
+`circular`, `rectangular`, `rounded`: Size can be adjusted based on `width` and `height`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Skeleton, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -52,10 +51,10 @@ export default () => {
 
 ### Animation
 
-Default is `wave`. You can set different animations using `animation` or disable it entirely.
+The default is `wave`. You can set different animations or disable them altogether based on `animation`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Skeleton, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -69,12 +68,12 @@ export default () => {
 };
 ```
 
-### Combinations
+### Combination
 
-You can use different graphic combinations.
+Different graphic combinations can be used.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Skeleton, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -99,10 +98,10 @@ export default () => {
 
 ### Size Inference
 
-Dimensions can be set using the `height` and `width` properties of `style`.
+Size can be set based on `style`'s `height` and `width` properties.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Skeleton, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -123,13 +122,17 @@ export default () => {
 
 | Property  | Description        | Type                                               | Default |
 | --------- | ------------------ | -------------------------------------------------- | ------- |
-| animation | Animation effect   | `wave` \| `pulse` \| `false`                       | `wave`  |
+| animation | Animation          | `wave` \| `pulse` \| `false`                       | `wave`  |
 | variant   | Display form       | `text` \| `circular` \| `rectangular` \| `rounded` | `text`  |
 | width     | Placeholder width  | `string` \| `number`                               | `100%`  |
-| height    | Placeholder height | `string` \| `number `                              | `16px`  |
+| height    | Placeholder height | `string` \| `number`                               | `16px`  |
 
 ## Style Variables
 
-| Property | Description        | Default | Global Variable       |
-| -------- | ------------------ | ------- | --------------------- |
-| --height | Placeholder height | 1.2em   | --bui-skeleton-height |
+| Global Variable       | Description     | Default |
+| --------------------- | --------------- | ------- |
+| --bui-skeleton-height | Skeleton height | `1.2em` |
+
+```
+
+```

@@ -1,5 +1,5 @@
 import { fireEvent, isConformant, render } from 'testing';
-import React from 'react';
+import * as React from 'react';
 import TagGroup from '../TagGroup';
 
 describe('TagGroup', () => {
@@ -18,7 +18,7 @@ describe('TagGroup', () => {
   });
 
   it('should be clickable', () => {
-    const fakeClick = jest.fn();
+    const fakeClick = vi.fn();
     const { container } = render(<TagGroup onClick={fakeClick} />);
     const tagGroup = container.querySelectorAll(`.${rootClass}`)[0];
     fireEvent.click(tagGroup);

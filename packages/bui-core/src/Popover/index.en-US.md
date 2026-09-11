@@ -1,38 +1,36 @@
 ---
 group: Data Display
-name: Popover Tooltip Card
+name: Popover Card
 ---
 
-# Popover Tooltip Card
+# Popover Card
 
-A tooltip card can be triggered by `click` or `hover`. It supports custom events.
+The Popover component is commonly used to display bubble-style card overlays, triggered by click or hover, with customizable trigger events.
 
-## Code Demos
+## Basic Usage
 
-### Basic Usage
-
-Clicking the mouse will show the tooltip, and clicking again will hide it. The tooltip layer does not support complex text or operations.
+The Popover component can use `children` to set the trigger element, and `title` and `content` to set the bubble content.
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Popover
       title="This is a title"
       content="This is a content"
-      placement="topLeft"
+      anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
     >
-      <span>Click to Show</span>
+      <span>click to display</span>
     </Popover>
   );
 };
 ```
 
-### External Control of Visibility
+## External Control of Visibility
 
-Visibility of the tooltip layer can be controlled externally using the `open` prop.
+The display and hide of the bubble overlay can be externally controlled via the `open` property.
 
 ```tsx
 import { Popover } from '@bifrostui/react';
@@ -42,268 +40,311 @@ export default () => {
   const [open, setOpen] = useState(true);
   return (
     <Popover title="This is a popover" open={open}>
-      <span onClick={() => setOpen(!open)}>Control visibility</span>
+      <span onClick={() => setOpen(!open)}>open control visibility</span>
     </Popover>
   );
 };
 ```
 
-### Default Visibility (`defaultOpen`)
+## Default Display
 
-You can set `defaultOpen` to `true` to display the tooltip layer by default.
+Setting `defaultOpen` to `true` allows the bubble overlay to be displayed by default.
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Popover title="This is a popover" defaultOpen>
-      <span>Default visible</span>
+      <span>defaultOpen display by default</span>
     </Popover>
   );
 };
 ```
 
-### Offset Spacing Between Layer and Target Element
+## Offset Distance
 
-Set `offsetSpacing` to control the distance between the target element and the tooltip layer.
+The `offsetSpacing` property can be used to set the distance between the bubble overlay and the target element.
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Popover title="This is a popover" offsetSpacing={20} defaultOpen>
-      <span>Offset spacing control (set to 20 for observation)</span>
+      <span>
+        offsetSpacing controls target spacing (set to 20 for observation)
+      </span>
     </Popover>
   );
 };
 ```
 
-### Hide Arrow
+## Hide Arrow
 
-Set `hideArrow` to `true` to hide the arrow.
+Setting `hideArrow` to `true` hides the arrow of the bubble overlay.
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Popover title="This is a popover" defaultOpen hideArrow>
-      <span>Default visible</span>
+      <span>defaultOpen display by default</span>
     </Popover>
   );
 };
 ```
 
-### Placement of Tooltip Box
+## Positioning Setting
 
-Set `placement` to position the tooltip layer. Available values are: `top`, `left`, `right`, `bottom`, `topLeft`, `topRight`, `bottomLeft`, `bottomRight`, `leftTop`, `leftBottom`, `rightTop`, `rightBottom`.
+The `anchorOrigin` property can be used to set the position of the bubble overlay relative to the anchor point. This property includes two sub-properties: `vertical` and `horizontal`.
+
+- `vertical`: Vertical position, options are `top`, `center`, `bottom`.
+- `horizontal`: Horizontal position, options are `left`, `center`, `right`.
+
+Below are all 9 position combinations:
 
 ```tsx
 import { Popover, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
-  const packageButton = (inner) => {
+  const createButton = (text, anchorOrigin) => {
     return (
-      <Button style={{ borderRadius: 0, marginTop: '4px', width: '80px' }}>
-        {inner}
-      </Button>
+      <Popover
+        trigger={['hover', 'click']}
+        title={`anchorOrigin: ${JSON.stringify(anchorOrigin)}`}
+        content={`vertical: ${anchorOrigin.vertical}, horizontal: ${anchorOrigin.horizontal}`}
+        anchorOrigin={anchorOrigin}
+      >
+        <Button
+          style={{
+            width: '100px',
+            height: '40px',
+            margin: '4px',
+            fontSize: '12px',
+          }}
+        >
+          {text}
+        </Button>
+      </Popover>
     );
   };
 
   return (
-    <div>
-      <div
-        style={{
-          display: 'flex',
-          width: '300px',
-          marginLeft: '100px',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="topLeft"
-        >
-          {packageButton(<span>topLeft</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="top"
-        >
-          {packageButton(<span>top</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="topRight"
-        >
-          {packageButton(<span>topRight</span>)}
-        </Popover>
-      </div>
-      <div
-        style={{
-          marginTop: '20px',
-          display: 'inline-flex',
-          width: '100px',
-          flexDirection: 'column',
-        }}
-      >
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="leftTop"
-        >
-          {packageButton(<span>leftTop</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="left"
-        >
-          {packageButton(<span>left</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="leftBottom"
-        >
-          {packageButton(<span>leftBottom</span>)}
-        </Popover>
-      </div>
-      <div
-        style={{
-          marginLeft: '300px',
-          display: 'inline-flex',
-          width: '100px',
-          flexDirection: 'column',
-        }}
-      >
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="rightTop"
-        >
-          {packageButton(<span>rightTop</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="right"
-        >
-          {packageButton(<span>right</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="rightBottom"
-        >
-          {packageButton(<span>rightBottom</span>)}
-        </Popover>
-      </div>
-      <div
-        style={{
-          marginLeft: '100px',
-          marginTop: '20px',
-          display: 'flex',
-          width: '300px',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="bottomLeft"
-        >
-          {packageButton(<span>bottomLeft</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="bottom"
-        >
-          {packageButton(<span>bottom</span>)}
-        </Popover>
-        <Popover
-          trigger={['hover', 'click']}
-          title="This is a popover"
-          placement="bottomRight"
-        >
-          {packageButton(<span>bottomRight</span>)}
-        </Popover>
-      </div>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gap: '8px',
+        maxWidth: '400px',
+        margin: '20px auto',
+        padding: '20px',
+        border: '1px solid #e0e0e0',
+        borderRadius: '8px',
+        backgroundColor: '#fafafa',
+      }}
+    >
+      {/* First row: top */}
+      {createButton('top + left', { vertical: 'top', horizontal: 'left' })}
+      {createButton('top + center', { vertical: 'top', horizontal: 'center' })}
+      {createButton('top + right', { vertical: 'top', horizontal: 'right' })}
+
+      {/* Second row: center */}
+      {createButton('center + left', {
+        vertical: 'center',
+        horizontal: 'left',
+      })}
+      {createButton('center + center', {
+        vertical: 'center',
+        horizontal: 'center',
+      })}
+      {createButton('center + right', {
+        vertical: 'center',
+        horizontal: 'right',
+      })}
+
+      {/* Third row: bottom */}
+      {createButton('bottom + left', {
+        vertical: 'bottom',
+        horizontal: 'left',
+      })}
+      {createButton('bottom + center', {
+        vertical: 'bottom',
+        horizontal: 'center',
+      })}
+      {createButton('bottom + right', {
+        vertical: 'bottom',
+        horizontal: 'right',
+      })}
     </div>
   );
 };
 ```
 
-### Trigger Method
+## Trigger Mode
 
-The method to show the tooltip can be "click" or "hover", default is "click".
+The `trigger` property can be used to configure the trigger mode of the bubble overlay which supports click, hover, combination trigger, and manual control.
 
 ```tsx
 import { Popover } from '@bifrostui/react';
-import React from 'react';
+import React, { useState } from 'react';
 
 export default () => {
+  const [manualOpen, setManualOpen] = useState(false);
+
   return (
-    <Popover title="This is a popover" trigger="hover">
-      <span>Hover trigger method</span>
-    </Popover>
+    <div>
+      <p>
+        <Popover
+          title="This is a popover"
+          content="triggered by onClick"
+          trigger="click"
+        >
+          <span>click trigger</span>
+        </Popover>
+      </p>
+      <p>
+        <Popover
+          title="This is a popover"
+          content="triggered by hover"
+          trigger="hover"
+        >
+          <span>hover trigger</span>
+        </Popover>
+      </p>
+      <p>
+        <Popover
+          title="This is a popover"
+          content="triggered by both click and hover"
+          trigger={['click', 'hover']}
+        >
+          <span>click or hover trigger</span>
+        </Popover>
+      </p>
+      <p>
+        <button type="button" onClick={() => setManualOpen(!manualOpen)}>
+          External Control Button{' '}
+          {manualOpen ? '(Click to hide)' : '(Click to show)'}
+        </button>
+        <Popover
+          title="Fully Manual Control"
+          content="This bubble is fully controlled externally and does not respond to any automatic trigger events"
+          trigger="none"
+          open={manualOpen}
+        >
+          <span style={{ marginLeft: '10px' }}>
+            none trigger (external control)
+          </span>
+        </Popover>
+      </p>
+    </div>
   );
 };
 ```
 
-### Callback Method on Tooltip Visibility Change
+## Accessibility
+
+The Popover component provides complete accessibility support, including keyboard navigation, screen reader support, focus management, and semantic role settings.
 
 ```tsx
-import { Popover } from '@bifrostui/react';
-import React from 'react';
+import { Popover, Button } from '@bifrostui/react';
+import * as React from 'react';
 
 export default () => {
-  const onOpenChange = (event, data) => {
-    console.log(JSON.stringify(data));
-  };
   return (
-    <Popover
-      title="This is a popover"
-      trigger={['hover', 'click']}
-      onOpenChange={onOpenChange}
-    >
-      <span>Callback method for visibility change</span>
-    </Popover>
+    <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+      {/* Basic accessibility support */}
+      <Popover
+        title="Basic Accessibility"
+        content="Supports closing with ESC key, automatic focus management"
+        role="tooltip"
+        aria-label="Help information"
+        closeOnEscape
+      >
+        <Button>Basic Accessibility</Button>
+      </Popover>
+
+      {/* Dialog Mode */}
+      <Popover
+        title="Dialog Mode"
+        content={
+          <div>
+            <p>This is a bubble in dialog mode</p>
+            <button type="button">OK</button>
+            <button type="button">Cancel</button>
+          </div>
+        }
+        role="dialog"
+        aria-label="Operation confirmation dialog"
+      >
+        <Button>Dialog Mode</Button>
+      </Popover>
+
+      {/* Menu Mode */}
+      <Popover
+        title="Menu Options"
+        content={
+          <div>
+            <button type="button">Option 1</button>
+            <button type="button">Option 2</button>
+            <button type="button">Option 3</button>
+          </div>
+        }
+        role="menu"
+        aria-label="Operation menu"
+      >
+        <Button>Menu Mode</Button>
+      </Popover>
+
+      {/* Disable ESC Key Closing */}
+      <Popover
+        title="Disable ESC Key"
+        content="This bubble cannot be closed with the ESC key"
+        closeOnEscape={false}
+      >
+        <Button>Disable ESC Key</Button>
+      </Popover>
+    </div>
   );
 };
 ```
 
-### API
+## API
 
-| Property      | Description                           | Type                                                                                                                                                        | Default |
-| ------------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| title         | Title of the tooltip layer            | ReactNode                                                                                                                                                   | -       |
-| content       | Content of the tooltip layer          | ReactNode                                                                                                                                                   | -       |
-| defaultOpen   | Whether it is visible by default      | boolean                                                                                                                                                     | false   |
-| open          | Manually control visibility           | boolean                                                                                                                                                     | -       |
-| hideArrow     | Whether to show the arrow             | boolean                                                                                                                                                     | false   |
-| offsetSpacing | Offset between the layer and target   | number                                                                                                                                                      | 0       |
-| placement     | Position of the tooltip box           | string, enum values: `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` | 'top'   |
-| trigger       | Trigger behavior                      | string \| string[], enum values: 'click' \| 'hover'                                                                                                         | 'click' |
-| onOpenChange  | Callback method for visibility change | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                        | -       |
+### PopoverProps
+
+| Property        | Description                                                  | Type                                                                                   | Default Value                             |
+| --------------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------------- | ----------------------------------------- |
+| title           | Title of the bubble overlay                                  | ReactNode                                                                              | -                                         |
+| content         | Content of the bubble overlay                                | ReactNode                                                                              | -                                         |
+| defaultOpen     | Display by default                                           | boolean                                                                                | false                                     |
+| open            | Manually control the visibility of the bubble overlay        | boolean                                                                                | -                                         |
+| hideArrow       | Whether to hide the arrow                                    | boolean                                                                                | false                                     |
+| offsetSpacing   | Offset distance between the overlay and the target element   | number                                                                                 | 0                                         |
+| anchorOrigin    | Position of the bubble relative to the anchor point          | { vertical: 'top' \| 'center' \| 'bottom', horizontal: 'left' \| 'center' \| 'right' } | { vertical: 'top', horizontal: 'center' } |
+| trigger         | Trigger behavior                                             | string \| string[]; options are 'click' \| 'hover' \| 'none'                           | 'click'                                   |
+| onOpenChange    | Callback method for visibility changes of the bubble overlay | (e: React.MouseEvent<HTMLDivElement\>, data: {open: boolean}) => void                  | -                                         |
+| role            | Accessibility: Semantic role of the bubble                   | 'tooltip' \| 'dialog' \| 'menu' \| 'listbox'                                           | 'tooltip'                                 |
+| aria-label      | Accessibility: Label for the bubble                          | string                                                                                 | -                                         |
+| aria-labelledby | Accessibility: Associated label element ID                   | string                                                                                 | -                                         |
+| autoFocus       | Accessibility: Automatic focus upon opening                  | boolean                                                                                | false                                     |
+| closeOnEscape   | Accessibility: Close with ESC key                            | boolean                                                                                | false                                     |
 
 ### Style Variables
 
-| Property             | Description                    | Default Value | Global Variable                  |
-| -------------------- | ------------------------------ | ------------- | -------------------------------- |
-| --arrow-size         | Arrow size                     | 8PX           | --bui-popover-arrow-size         |
-| --localtion-position | Arrow position                 | 8PX           | --bui-popover-localtion-position |
-| --max-width          | Maximum width                  | 350px         | --bui-popover-max-width          |
-| --content-min-width  | Minimum width of content area  | 30px          | --bui-popover-content-min-width  |
-| --content-min-height | Minimum height of content area | 32px          | --bui-popover-content-min-height |
-| --content-padding    | Padding inside content area    | 0             | --bui-popover-content-padding    |
+| Property            | Description                  | Default Value | Global Variable                 |
+| ------------------- | ---------------------------- | ------------- | ------------------------------- |
+| --arrow-size        | Arrow size                   | 8px           | --bui-popover-arrow-size        |
+| --location-position | Arrow position offset        | 8px           | --bui-popover-location-position |
+| --max-width         | Maximum width of the bubble  | 350px         | --bui-popover-max-width         |
+| --content-min-width | Minimum width of the content | 30px          | --bui-popover-content-min-width |
+| --content-padding   | Content padding              | 6px 8px       | --bui-popover-content-padding   |
+
+```
+
+```
