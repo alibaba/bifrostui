@@ -29,7 +29,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     defaultValue,
     tabs = [],
     onChange,
-    style,
+    ...others
   } = props;
 
   const handleOnChange = useEventCallback(
@@ -255,7 +255,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   }, [tabs, children]);
 
   return (
-    <div className={clsx(tabsRootClass, className)} style={style} ref={ref}>
+    <div className={clsx(tabsRootClass, className)} {...others} ref={ref}>
       {isScrollable && (
         <>
           <TabMask position="left" />

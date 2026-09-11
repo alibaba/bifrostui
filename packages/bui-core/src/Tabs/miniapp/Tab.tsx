@@ -13,7 +13,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
     index,
     disabled = false,
     onClick,
-    style,
+    ...others
   } = props;
 
   const innerRef = useRef<HTMLDivElement>(null);
@@ -67,7 +67,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
       id={tabId}
       ref={handleRef}
       className={rootCls}
-      style={style}
+      {...others}
       onClick={(e) => {
         if (disabled) return;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
