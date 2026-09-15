@@ -1,14 +1,16 @@
-import { CaretLeftIcon, CaretRightIcon } from '@bifrostui/icons';
-import { useDidMountEffect, useValue } from '@bifrostui/utils';
+import React, { SyntheticEvent, useMemo, useState, useRef } from 'react';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import React, { SyntheticEvent, useMemo, useState } from 'react';
-import { CalendarProps, ICalendarInstance } from './Calendar.types';
-import { formatDate, isRange, isSame } from './utils';
+import { CaretLeftIcon, CaretRightIcon } from '@bifrostui/icons';
+import { useDidMountEffect, useValue } from '@bifrostui/utils';
+import CSSTransition from '../CSSTransition';
+import TransitionGroup from '../TransitionGroup';
 import { useLocaleText } from '../locales';
-import './Calendar.less';
+import { CalendarProps, ICalendarInstance } from './Calendar.types';
+import { formatDate, isDateInRange, isSame, isEqualVal } from './utils';
+import './index.less';
 
 dayjs.extend(isoWeek);
 dayjs.extend(customParseFormat);
@@ -27,16 +29,18 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       className,
       defaultValue,
       value,
-      minDate,
-      maxDate,
-      mode,
-      hideDaysOutsideCurrentMonth,
-      headerBarFormat,
+      minDate = dayjs(dayjs().format('YYYYMMDD')).add(0, 'month').toDate(),
+      maxDate = dayjs(dayjs().format('YYYYMMDD')).add(11, 'month').toDate(),
+      mode = 'single',
+      hideDaysOutsideCurrentMonth = false,
+      headerBarFormat = 'YYYY/MM',
       headerBarLeftIcon,
       headerBarRightIcon,
       disabledDate,
-      highlightDate,
+      highlightDate = 'today',
       headerVisible = false,
+      enableTransition = false,
+      CSSTransitionProps,
       dateRender,
       weekRender,
       onMonthChange,
@@ -73,6 +77,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
           : formattedValue?.[0];
       return dayjs(initMonth || minDate).toDate();
     });
+
     /**
      * 日历状态值
      * @type Array<Date|null>
@@ -83,12 +88,10 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       onChange,
     });
     // 根据calendarValue计算选中开始/结束日期
-    const selectedStartDate = useMemo(() => {
-      return calendarValue?.[0];
+    const [selectedStartDate, selectedEndDate] = useMemo(() => {
+      return [calendarValue?.[0], calendarValue?.[1]];
     }, [calendarValue]);
-    const selectedEndDate = useMemo(() => {
-      return calendarValue?.[1];
-    }, [calendarValue]);
+    const slideDirection = useRef<'left' | 'right' | ''>('');
 
     const isMinMonth = dayjs(minDate).isSame(renderMonth, 'month');
     const isMaxMonth = dayjs(maxDate).isSame(renderMonth, 'month');
@@ -100,7 +103,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       ) : (
         <CaretLeftIcon
           className={`${classes.handler}-btn-icon`}
-          htmlColor={isMinMonth && '#cccccc'}
+          htmlColor={isMinMonth && 'var(--bui-color-fg-disabled)'}
         />
       ),
       right: headerBarRightIcon ? (
@@ -108,18 +111,48 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       ) : (
         <CaretRightIcon
           className={`${classes.handler}-btn-icon`}
-          htmlColor={isMaxMonth && '#cccccc'}
+          htmlColor={isMaxMonth && 'var(--bui-color-fg-disabled)'}
         />
       ),
     };
 
+    const prevValueRef = useRef(value);
     useDidMountEffect(() => {
-      const initMonth =
-        formattedValue === undefined
-          ? formattedDefaultValue?.[0]
-          : formattedValue?.[0];
-      setRenderMonth(dayjs(initMonth || minDate).toDate());
-    }, [JSON.stringify(value), JSON.stringify(defaultValue)]);
+      // 受控时，只有当value中的日期不在当前显示的月份中，才更新renderMonth，避免用户点击日期时不必要的re-render
+      if (!isEqualVal(prevValueRef.current, value)) {
+        // 受控时点击日期的最新值
+        const latestDate = formattedValue?.[0];
+        // 上一次渲染传入的value初始值
+        const lastInitialValue = renderMonth;
+
+        // 如果 latestDate 为空（即取消选中的情况），不需要更新月份
+        // 当选择日期范围时，如果两次点击同一天（第一次选中，第二次取消），保持在当前月份
+        if (!latestDate) {
+          prevValueRef.current = value;
+          return;
+        }
+
+        // 最新一次的value与上一次渲染传入的value初始值是否在同一月份
+        // 对于范围模式：检查开始日期或结束日期是否在当前月份（任一在即可）
+        // 对于单选模式：检查选中日期是否在当前月份
+        const inSameMonth = isRangeMode
+          ? (selectedStartDate &&
+              dayjs(selectedStartDate).isSame(lastInitialValue, 'month')) ||
+            (selectedEndDate &&
+              dayjs(selectedEndDate).isSame(lastInitialValue, 'month'))
+          : latestDate && dayjs(latestDate).isSame(lastInitialValue, 'month');
+
+        if (!inSameMonth) {
+          const latestBeforeThanLast = dayjs(latestDate).isBefore(
+            lastInitialValue,
+            'month',
+          );
+          slideDirection.current = latestBeforeThanLast ? 'right' : 'left';
+          setRenderMonth(dayjs(latestDate || minDate).toDate());
+        }
+        prevValueRef.current = value;
+      }
+    }, [JSON.stringify(value)]);
 
     const getDaysInMonth = (args: Date) => {
       const m = dayjs(args).format('YYYY/MM');
@@ -152,7 +185,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         const day = dayjs(`${m}/${i + 1}`).toDate();
 
         // 先判断是否minDate与maxDate之间，再判断传入的方法
-        const defaultDisable = !isRange(day, minDate, maxDate);
+        const defaultDisable = !isDateInRange(day, minDate, maxDate);
         const propsDisable = disabledDate ? !!disabledDate?.(day) : false;
 
         list.push({
@@ -218,6 +251,10 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
             ins?.disabled && classes.disabled,
             dayClassName,
           )}
+          aria-disabled={ins?.disabled}
+          aria-current={
+            dayjs(ins.day).isSame(dayjs(), 'day') ? 'date' : undefined
+          }
         >
           {ins.day && dayjs(ins.day).format('D')}
         </div>
@@ -234,7 +271,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         }
         // start有值，end无值
         else if (selectedStartDate && !selectedEndDate) {
-          let result;
+          let result: [Date | null, Date | null];
           // 选中了start，此时置空start
           if (isSame(ins.day, selectedStartDate)) {
             result = [null, null];
@@ -261,34 +298,42 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       triggerChange?.(e, hasSelectedDate ? null : ins.day);
     };
 
-    const renderDayList = () =>
-      getDaysInMonth(renderMonth).map(
-        (ins: ICalendarInstance, index: number) => {
-          const dayStr = dayjs(ins.day).format('YYYYMMDD');
-          return (
-            <div
-              className={clsx(`${classes.day}-box`, {
-                [`${classes.root}-highlight-day`]:
-                  highlightDate === 'weekend' &&
-                  !ins.disabled &&
-                  (index % 7 === 0 || index % 7 === 6),
-              })}
-              key={`${dayStr}-${index}`}
-              onClick={(e) => onClickDay(e, ins)}
-            >
-              {dateRender ? dateRender(ins) : defaultDateRender(ins)}
-            </div>
-          );
-        },
-      );
+    const renderDayList = () => {
+      const days = getDaysInMonth(renderMonth);
+      return days.map((ins: ICalendarInstance, index: number) => {
+        const dayStr = dayjs(ins.day).format('YYYYMMDD');
+        const isSelected =
+          (selectedStartDate && isSame(selectedStartDate, ins.day)) ||
+          (selectedEndDate && isSame(selectedEndDate, ins.day));
+
+        return (
+          <div
+            className={clsx(`${classes.day}-box`, {
+              [`${classes.root}-highlight-day`]:
+                highlightDate === 'weekend' &&
+                !ins.disabled &&
+                (index % 7 === 0 || index % 7 === 6),
+            })}
+            key={`${dayStr}-${index}`}
+            onClick={(e) => onClickDay(e, ins)}
+            aria-selected={isSelected}
+            aria-disabled={ins.disabled}
+            tabIndex={ins.disabled ? -1 : 0}
+          >
+            {dateRender ? dateRender(ins) : defaultDateRender(ins)}
+          </div>
+        );
+      });
+    };
 
     /**
      * 切换上一个月
      */
-    const onClickPrev = (e) => {
+    const onClickPrev = (e: SyntheticEvent) => {
       if (!isMinMonth) {
         const month = dayjs(renderMonth).subtract(1, 'month').toDate();
         setRenderMonth(month);
+        slideDirection.current = 'right';
         onMonthChange?.(e, {
           type: 'prev',
           month: dayjs(month).format(headerBarFormat),
@@ -299,10 +344,11 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
     /**
      * 切换下一个月
      */
-    const onClickNext = (e) => {
+    const onClickNext = (e: SyntheticEvent) => {
       if (!isMaxMonth) {
         const month = dayjs(renderMonth).add(1, 'month').toDate();
         setRenderMonth(month);
+        slideDirection.current = 'left';
         onMonthChange?.(e, {
           type: 'next',
           month: dayjs(month).format(headerBarFormat),
@@ -310,17 +356,63 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       }
     };
 
-    let data: Record<string, string> = {};
-    if (isRangeMode) {
-      data = {
-        'data-start': dayjs(selectedStartDate).format('YYYYMMDD'),
-        'data-end': dayjs(selectedEndDate).format('YYYYMMDD'),
+    const data: Record<string, string> = isRangeMode
+      ? {
+          'data-start': dayjs(selectedStartDate).format('YYYYMMDD'),
+          'data-end': dayjs(selectedEndDate).format('YYYYMMDD'),
+        }
+      : {
+          'data-selected': dayjs(selectedStartDate).format('YYYYMMDD'),
+        };
+
+    const renderMonthDate = () => {
+      const hasSlideDirection = !!slideDirection.current;
+      const monthDateDom = (
+        <div
+          className={clsx(`${classes.root}-month`, {
+            'enable-transition': enableTransition,
+            visible: enableTransition && !hasSlideDirection,
+          })}
+          aria-label="date select"
+        >
+          {renderDayList()}
+        </div>
+      );
+      if (!enableTransition) {
+        return monthDateDom;
+      }
+
+      const transitionClasses = {
+        exit: hasSlideDirection && 'slide-exit',
+        exitActive: hasSlideDirection && `slide-exit-${slideDirection.current}`,
+        enter: hasSlideDirection && `slide-enter-${slideDirection.current}`,
+        enterActive: hasSlideDirection && 'slide-active',
+        enterDone: 'slide-enter-done',
       };
-    } else {
-      data = {
-        'data-selected': dayjs(selectedStartDate).format('YYYYMMDD'),
-      };
-    }
+      return (
+        <TransitionGroup
+          className={clsx(`${classes.root}-transition-group`)}
+          childFactory={(element: React.ReactElement) => {
+            return React.cloneElement(element as React.ReactElement<any>, {
+              classNames: transitionClasses,
+            });
+          }}
+        >
+          <CSSTransition
+            timeout={300}
+            {...CSSTransitionProps}
+            in
+            appear={hasSlideDirection}
+            mountOnEnter
+            unmountOnExit
+            key={renderMonth.toString()}
+            classNames={transitionClasses}
+          >
+            {monthDateDom}
+          </CSSTransition>
+        </TransitionGroup>
+      );
+    };
 
     return (
       <div
@@ -331,17 +423,31 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         {...others}
         data-mode={mode}
         {...data}
+        role="application"
+        aria-label="Calendar"
       >
         {/* 顶部操作栏 */}
         {!headerVisible && (
           <div className={classes.handler}>
-            <div onClick={onClickPrev} className={`${classes.handler}-btn`}>
+            <div
+              role="button"
+              onClick={onClickPrev}
+              className={`${classes.handler}-btn`}
+              aria-label="prev month"
+              tabIndex={0}
+            >
               {headerBarIcon.left}
             </div>
-            <div className={`${classes.handler}-text`}>
+            <div className={`${classes.handler}-text`} aria-live="polite">
               {dayjs(renderMonth).format(headerBarFormat)}
             </div>
-            <div onClick={onClickNext} className={`${classes.handler}-btn`}>
+            <div
+              role="button"
+              onClick={onClickNext}
+              className={`${classes.handler}-btn`}
+              aria-label="next month"
+              tabIndex={0}
+            >
               {headerBarIcon.right}
             </div>
           </div>
@@ -349,7 +455,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
 
         {/* 周横条 */}
         <div className={classes.week}>
-          {SUNDAY_WEEK_DATA?.map((w) => {
+          {SUNDAY_WEEK_DATA?.map((w, idx) => {
             return weekRender ? (
               weekRender(w)
             ) : (
@@ -360,20 +466,12 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
           })}
         </div>
 
-        <div className={clsx(`${classes.root}-month`)}>{renderDayList()}</div>
+        {renderMonthDate()}
       </div>
     );
   },
 );
 
 Calendar.displayName = 'BuiCalendar';
-Calendar.defaultProps = {
-  hideDaysOutsideCurrentMonth: false,
-  headerBarFormat: 'YYYY/MM',
-  mode: 'single',
-  minDate: dayjs(dayjs().format('YYYYMMDD')).add(0, 'month').toDate(),
-  maxDate: dayjs(dayjs().format('YYYYMMDD')).add(11, 'month').toDate(),
-  highlightDate: 'today',
-};
 
 export default Calendar;

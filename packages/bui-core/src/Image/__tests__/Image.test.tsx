@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render, screen, userEvent } from 'testing';
 import { waitFor } from '@testing-library/react';
 import Image from '../index';
@@ -12,8 +12,8 @@ describe('Image', () => {
       <Image src={src} fit="contain" width={100} height={100} />,
     );
     const [wrapper] = [...container.getElementsByClassName(classPrefix)];
-    const image = screen.getByRole('img');
-    fireEvent.load(screen.getByRole('img'));
+    const image = container.querySelector('img');
+    fireEvent.load(image);
     await waitFor(() => {
       expect(wrapper).toContainElement(image);
       expect(image).toHaveAttribute('src', src);
@@ -23,9 +23,7 @@ describe('Image', () => {
     const { container } = render(
       <Image src={src} fit="contain" width={100} height={100} placeholder />,
     );
-    expect(
-      container.querySelector(`.${classPrefix}-default-icon-item`),
-    ).not.toBeNull();
+    expect(container.querySelector('.default-holder')).not.toBeNull();
   });
 
   it.each(['contain', 'cover', 'fill', 'none', 'scale-down'])(
@@ -40,8 +38,10 @@ describe('Image', () => {
         | 'widthFix'
         | 'heightFix',
     ) => {
-      render(<Image src={src} fit={fit} width={100} height={100} />);
-      expect(screen.getByRole('img').style.objectFit === fit);
+      const { container } = render(
+        <Image src={src} fit={fit} width={100} height={100} />,
+      );
+      expect(container.querySelector('img').style.objectFit === fit);
     },
   );
 
@@ -60,8 +60,8 @@ describe('Image', () => {
     expect(screen.getByTestId('test-placeholder'));
   });
   it('should call onLoad callback', async () => {
-    const onLoad = jest.fn();
-    render(
+    const onLoad = vi.fn();
+    const { container } = render(
       <Image
         src={src}
         fit="contain"
@@ -70,40 +70,44 @@ describe('Image', () => {
         onLoad={onLoad}
       />,
     );
-    fireEvent.load(screen.getByRole('img'));
+    fireEvent.load(container.querySelector('img'));
     expect(onLoad).toHaveBeenCalled();
   });
   it('should call onError callback', async () => {
-    const onLoad = jest.fn();
-    render(
+    const onError = vi.fn();
+    const { container } = render(
       <Image
         src={src}
         fit="contain"
         width={100}
         height={100}
-        onError={onLoad}
+        onError={onError}
       />,
     );
-    fireEvent.error(screen.getByRole('img'));
-    expect(onLoad).toHaveBeenCalled();
+    fireEvent.error(container.querySelector('img'));
+    expect(onError).toHaveBeenCalled();
   });
+
   it('should call onClick', async () => {
-    const onLoad = jest.fn();
-    render(
+    const onClick = vi.fn();
+    const { container } = render(
       <Image
         src={src}
         fit="contain"
         width={100}
         height={100}
-        onClick={onLoad}
+        onClick={onClick}
       />,
     );
-    userEvent.click(screen.getByRole('img'));
-    expect(onLoad).toHaveBeenCalled();
+    await userEvent.click(container.querySelector('img'));
+    expect(onClick).toHaveBeenCalled();
   });
+
   it('supports vanilla lazyload', async () => {
     global.HTMLImageElement.prototype.loading = 'eager';
-    render(<Image src={src} fit="contain" width={100} height={100} lazy />);
-    expect(screen.getByRole('img')).toHaveAttribute('loading', 'lazy');
+    const { container } = render(
+      <Image src={src} fit="contain" width={100} height={100} lazy />,
+    );
+    expect(container.querySelector('img')).toHaveAttribute('loading', 'lazy');
   });
 });

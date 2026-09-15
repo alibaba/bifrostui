@@ -1,11 +1,11 @@
 {
   "miniprogramRoot": "dist/",
   "description": "",
-  "appid": "wx5ee52f8dc068c1fb",
+  "appid": "wx499585773c5687ed",
   "setting": {
     "urlCheck": true,
-    "es6": false,
-    "enhance": false,
+    "es6": true,
+    "enhance": true,
     "compileHotReLoad": false,
     "postcss": false,
     "minified": false,
@@ -18,7 +18,18 @@
     "ignoreUploadUnusedFiles": true,
     "coverView": false,
     "showShadowRootInWxmlPanel": false,
-    "packNpmRelationList": []
+    "packNpmRelationList": [],
+    "compileWorklet": false,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": true,
+    "packNpmManually": false,
+    "minifyWXSS": true,
+    "minifyWXML": true,
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "swc": false,
+    "disableSWC": true
   },
   "compileType": "miniprogram",
   "srcMiniprogramRoot": "dist/",
@@ -32,5 +43,6 @@
     "ignore": [],
     "include": []
   },
-  "projectname": "mini"
+  "projectname": "mini",
+  "simulatorPluginLibVersion": {}
 }

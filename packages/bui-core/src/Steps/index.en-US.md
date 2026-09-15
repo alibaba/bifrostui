@@ -5,17 +5,15 @@ name: Steps
 
 # Steps
 
-A navigation bar for step-by-step processes.
+Step Flow Navigation Bar.
 
-## Code Demos
+## Basic Usage
 
-### Basic Usage
-
-The default direction is vertical. If `current` is not specified, it defaults to 0, meaning the first step.
+The default direction is vertical, and if `current` is not specified, it defaults to 0, which means the first step.
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const handleChange = (e, data) => {
@@ -26,9 +24,9 @@ export default () => {
     <Stack>
       <div style={{ width: '120px' }}>
         <Steps onChange={handleChange}>
-          <Step key={1} title="Step 1" />
-          <Step key={2} title="Step 2" />
-          <Step key={3} title="Step 3" />
+          <Step key={1} title="Step One" />
+          <Step key={2} title="Step Two" />
+          <Step key={3} title="Step Three" />
         </Steps>
       </div>
     </Stack>
@@ -36,60 +34,60 @@ export default () => {
 };
 ```
 
-### Horizontal Display
+## Horizontal Display
 
-Change the direction of the steps using the `direction` prop.
+Change the direction of the step bar through `direction`.
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Stack>
       <Steps direction="horizontal">
-        <Step key={1} title="Step 1" />
-        <Step key={2} title="Step 2" />
-        <Step key={3} title="Step 3" />
+        <Step key={1} title="Step One" />
+        <Step key={2} title="Step Two" />
+        <Step key={3} title="Step Three" />
       </Steps>
     </Stack>
   );
 };
 ```
 
-### Changing Subtitle Placement
+## Change Subtitle Placement
 
-If there's a subtitle, you can change its placement using the `labelPlacement` prop.
+If there is a subtitle, change its display position through `labelPlacement`.
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Stack>
       <Steps>
-        <Step key={1} title="Step 1" subtitle="Subtitle 1" />
-        <Step key={2} title="Step 2" subtitle="Subtitle 2" />
-        <Step key={3} title="Step 3" subtitle="Subtitle 3" />
+        <Step key={1} title="Step One" subtitle="Subtitle 1" />
+        <Step key={2} title="Step Two" subtitle="Subtitle 2" />
+        <Step key={3} title="Step Three" subtitle="Subtitle 3" />
       </Steps>
       <Steps labelPlacement="vertical">
-        <Step key={1} title="Step 1" subtitle="Subtitle 1" />
-        <Step key={2} title="Step 2" subtitle="Subtitle 2" />
-        <Step key={3} title="Step 3" subtitle="Subtitle 3" />
+        <Step key={1} title="Step One" subtitle="Subtitle 1" />
+        <Step key={2} title="Step Two" subtitle="Subtitle 2" />
+        <Step key={3} title="Step Three" subtitle="Subtitle 3" />
       </Steps>
     </Stack>
   );
 };
 ```
 
-### Showing Description Text
+## Display Description Text
 
-Add descriptions by passing in the `description` prop.
+Add description by passing in `description`.
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -99,25 +97,25 @@ export default () => {
           key={1}
           title="Title 1"
           subtitle="Subtitle 1"
-          description="This is a description text"
+          description="This is a piece of description text"
         />
         <Step
           key={2}
           title="Title 2"
           subtitle="Subtitle 2"
-          description="This is a description text"
+          description="This is a piece of description text"
         />
         <Step
           key={3}
           title="Title 3"
           subtitle="Subtitle 3"
-          description="This is a description text"
+          description="This is a piece of description text"
         />
         <Step
           key={4}
           title="Title 4"
           subtitle="Subtitle 4"
-          description="This is a description text"
+          description="This is a piece of description text"
         />
       </Steps>
     </Stack>
@@ -125,13 +123,13 @@ export default () => {
 };
 ```
 
-### Controlling Step Status
+## Control Step Status
 
-Control the status of each step using the `status` prop: `wait` for pending, `active` for current, `finish` for completed, and `error` for failed.
+Control step status with `status`. `wait` is pending, `active` is currently active, `finish` is completed, and `error` is completed with a failure.
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -142,28 +140,28 @@ export default () => {
           title="Title 1"
           subtitle="Subtitle 1"
           status="error"
-          description="This is a description text"
+          description="This is a piece of description text"
         />
         <Step
           key={2}
           title="Title 2"
           subtitle="Subtitle 2"
           status="finish"
-          description="This is a description text"
+          description="This is a piece of description text"
         />
         <Step
           key={3}
           title="Title 3"
           subtitle="Subtitle 3"
           status="active"
-          description="This is a description text"
+          description="This is a piece of description text"
         />
         <Step
           key={4}
           title="Title 4"
           subtitle="Subtitle 4"
           status="wait"
-          description="This is a description text"
+          description="This is a piece of description text"
         />
       </Steps>
     </Stack>
@@ -171,12 +169,12 @@ export default () => {
 };
 ```
 
-### Customizing Icons
+## Custom Icons
 
-Customize icons for different statuses using the `icon` prop.
+Customize icons for each status using `icon`.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Step, Steps } from '@bifrostui/react';
 import {
   AccessTimeCircleFilledIcon,
@@ -194,7 +192,7 @@ export default () => {
           title="Title 1"
           subtitle="Subtitle 1"
           icon={<HeartFilledIcon color="primary" />}
-          description="This is a description text"
+          description="This is a piece of description text"
         />
         <Step
           key={2}
@@ -202,7 +200,7 @@ export default () => {
           subtitle="Subtitle 2"
           status="active"
           icon={<LocationFilledIcon color="primary" />}
-          description="This is a description text"
+          description="This is a piece of description text"
         />
         <Step
           key={3}
@@ -210,7 +208,7 @@ export default () => {
           subtitle="Subtitle 3"
           status="error"
           icon={<ErrorCircleOutlinedIcon color="primary" />}
-          description="This is a description text"
+          description="This is a piece of description text"
         />
         <Step
           key={4}
@@ -218,7 +216,7 @@ export default () => {
           subtitle="Subtitle 4"
           status="wait"
           icon={<AccessTimeCircleFilledIcon color="primary" />}
-          description="This is a description text"
+          description="This is a piece of description text"
         />
       </Steps>
     </Stack>
@@ -226,13 +224,13 @@ export default () => {
 };
 ```
 
-#### Disabling Clicks
+## Disable Click
 
-Disable clicking on steps using the `disabled` prop.
+Make step bar non-clickable via `disabled`.
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const handleChange = (e, data) => {
@@ -244,17 +242,17 @@ export default () => {
       <Steps direction="horizontal" current={1} onChange={handleChange}>
         <Step
           key={1}
-          title="Step 1"
+          title="Step One"
           status="error"
-          description="This is a description text"
+          description="This is a piece of description text"
           disabled
         />
-        <Step key={2} title="Step 2" />
+        <Step key={2} title="Step Two" />
         <Step
           key={3}
-          title="Step 3"
+          title="Step Three"
           subtitle="Subtitle 3"
-          description="This is a description text"
+          description="This is a piece of description text"
           disabled
         />
       </Steps>
@@ -263,11 +261,11 @@ export default () => {
 };
 ```
 
-### Complex Layout
+## Complex Layout
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const detail = () => {
   return (
@@ -286,21 +284,21 @@ const detail = () => {
         }}
       >
         <div>
-          <span style={{ color: '#5F6672' }}>Refunded Movie</span>
+          <span style={{ color: '#5F6672' }}>Refund Movie</span>
           <span style={{ color: '#2E333E', paddingLeft: '20px' }}>
-            Avengers: Infinity War (3 tickets)
+            Avengers 3 (3 tickets)
           </span>
         </div>
         <div>
           <span style={{ color: '#5F6672' }}>Refund Amount</span>
           <span style={{ color: '#2E333E', paddingLeft: '20px' }}>
-            38.9 RMB
+            38.9 USD
           </span>
         </div>
         <div>
           <span style={{ color: '#5F6672' }}>Service Fee</span>
           <span style={{ color: '#2E333E', paddingLeft: '34px' }}>
-            4 RMB (charged by cinema and Taobao Movies)
+            4 USD (charged by cinema and Taopiao)
           </span>
         </div>
       </div>
@@ -321,26 +319,26 @@ export default () => {
         key={2}
         title="Refund Application Submitted"
         subtitle="2021-03-30 19:08"
-        description="Processing refund application, expected to be returned to your payment account within 1-3 days."
+        description="Processing refund application, estimated to be returned to your payment account within 1-3 days."
       />
       <Step
         key={3}
-        title="Refund Completed"
+        title="Refund Complete"
         subtitle="2021-03-30 19:08"
-        description="After the refund arrives, this refund process will end."
+        description="The refund process will end once the refund is credited."
       />
     </Steps>
   );
 };
 ```
 
-### Modifying Styles with CSS Variables
+## Modify Styles Using CSS Variables
 
-Modify component styles using common CSS variables.
+Change component styles using common CSS variables.
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -353,9 +351,9 @@ export default () => {
             '--step-line-padding': '36px 0 0 0',
           }}
         >
-          <Step key={1} title="Step 1" />
-          <Step key={2} title="Step 2" />
-          <Step key={3} title="Step 3" />
+          <Step key={1} title="Step One" />
+          <Step key={2} title="Step Two" />
+          <Step key={3} title="Step Three" />
         </Steps>
       </div>
     </Stack>
@@ -367,40 +365,43 @@ export default () => {
 
 ### Steps
 
-| Property       | Description                                                                                                                | Type                                                    | Default Value |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ------------- |
-| current        | Specifies the current step, starting from 0. The status can be overridden by the `status` property in child Step elements. | number                                                  | 0             |
-| direction      | Direction of the steps                                                                                                     | `horizontal` \| `vertical`                              | `vertical`    |
-| labelPlacement | Placement of labels                                                                                                        | `horizontal` \| `vertical`                              | `horizontal`  |
-| onChange       | Triggered when switching steps                                                                                             | (ev?: SyntheticEvent,data?: { current: number }) =>void | -             |
+| Property       | Description                                                                                  | Type                                                      | Default      |
+| -------------- | -------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------ |
+| current        | Specifies the current step, starting from 0, status can be overridden in child Step elements | number                                                    | 0            |
+| direction      | Direction of step bar                                                                        | `horizontal` \| `vertical`                                | `vertical`   |
+| labelPlacement | Specifies label placement                                                                    | `horizontal` \| `vertical`                                | `horizontal` |
+| onChange       | Fires when switching steps on click                                                          | (ev?: SyntheticEvent, data?: { current: number }) => void | -            |
 
 ### Step
 
-| Property    | Description          | Type                                                    | Default Value |
-| ----------- | -------------------- | ------------------------------------------------------- | ------------- |
-| title       | Title                | React.ReactNode                                         | -             |
-| subtitle    | Subtitle             | React.ReactNode                                         | -             |
-| description | Detailed description | React.ReactNode                                         | -             |
-| icon        | Icon                 | React.ReactNode                                         | -             |
-| status      | Current step status  | `wait` \| `active` \| `finish` \| `error`               | `active`      |
-| disabled    | Disable clicking     | boolean                                                 | false         |
-| onClick     | Click event handler  | (ev?: SyntheticEvent,data?: { current: number }) =>void | -             |
+| Property    | Description         | Type                                                      | Default  |
+| ----------- | ------------------- | --------------------------------------------------------- | -------- |
+| title       | Title               | React.ReactNode                                           | -        |
+| subtitle    | Subtitle            | React.ReactNode                                           | -        |
+| description | Step description    | React.ReactNode                                           | -        |
+| icon        | Step icon           | React.ReactNode                                           | -        |
+| status      | Current step status | `wait` \| `active` \| `finish` \| `error`                 | `active` |
+| disabled    | Disable click       | boolean                                                   | false    |
+| onClick     | Step icon click     | (ev?: SyntheticEvent, data?: { current: number }) => void | -        |
 
 ## Style Variables
 
-| Property                            | Description                       | Default Value                                   | Global Variable                         |
-| ----------------------------------- | --------------------------------- | ----------------------------------------------- | --------------------------------------- |
-| --font-size                         | Default font size                 | --bui-title-size-3                              | --bui-steps-font-size                   |
-| --subtitle-font-size                | Subtitle font size                | --bui-text-size-2                               | --bui-step-subtitle-font-size           |
-| --step-icon-margin                  | Step icon margin                  | --bui-spacing-xs --bui-spacing-xs 0 0           | --bui-step-icon-margin                  |
-| --step-line-padding                 | Step line padding                 | 20px 0 3px 0                                    | --bui-step-line-padding                 |
-| --step-line-width                   | Step line width                   | 1px                                             | --bui-step-line-width                   |
-| --step-line-height                  | Step line height                  | 100%                                            | --bui-step-line-height                  |
-| --step-label-horizontal-line-height | Step label horizontal line height | 1.8                                             | --bui-step-label-horizontal-line-height |
-| --step-icon-width                   | Step icon width                   | 28px                                            | --bui-step-icon-width                   |
-| --step-icon-font-size               | Step icon font size               | var(--bui-title-size-4)                         | --bui-step-icon-font-size               |
-| --step-icon-active-width            | Active step icon width            | 12px                                            | --bui-step-icon-active-width            |
-| --step-icon-active-height           | Active step icon height           | 12px                                            | --bui-step-icon-active-height           |
-| --step-icon-margin                  | Step icon margin                  | var(--bui-spacing-xs) var(--bui-spacing-xs) 0 0 | --bui-step-icon-margin                  |
-| --step-content-padding              | Step content padding              | 3px 0                                           | --bui-step-content-padding              |
-| --step-horizontal-line-padding      | Step horizontal line padding      | 28px 0 6px                                      | --bui-step-horizontal-line-padding      |
+| Global Variable                         | Description                  | Default                                           |
+| --------------------------------------- | ---------------------------- | ------------------------------------------------- |
+| --bui-steps-font-size                   | Steps font size              | `var(--bui-title-size-3)`                         |
+| --bui-step-subtitle-font-size           | Subtitle font size           | `var(--bui-text-size-2)`                          |
+| --bui-step-line-padding                 | Line padding                 | `20px 0 3px 0`                                    |
+| --bui-step-line-width                   | Line width                   | `1px`                                             |
+| --bui-step-line-height                  | Line height                  | `100%`                                            |
+| --bui-step-label-horizontal-line-height | Horizontal label line height | `1.8`                                             |
+| --bui-step-icon-width                   | Icon width                   | `28px`                                            |
+| --bui-step-icon-active-width            | Active icon width            | `12px`                                            |
+| --bui-step-icon-active-height           | Active icon height           | `12px`                                            |
+| --bui-step-icon-font-size               | Icon font size               | `var(--bui-title-size-4)`                         |
+| --bui-step-icon-margin                  | Icon margin                  | `var(--bui-spacing-xs) var(--bui-spacing-xs) 0 0` |
+| --bui-step-content-padding              | Content padding              | `3px 0`                                           |
+| --bui-step-horizontal-line-padding      | Horizontal line padding      | `28px 0 6px`                                      |
+
+```
+
+```

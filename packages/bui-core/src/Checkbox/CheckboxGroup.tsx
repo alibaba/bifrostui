@@ -3,21 +3,23 @@ import clsx from 'clsx';
 import React, { forwardRef } from 'react';
 import { CheckboxGroupProps } from './Checkbox.types';
 import { CheckboxContextProvider } from './CheckboxContext';
-import './Checkbox.less';
+import './index.less';
 
 const prefixCls = 'bui-checkbox-group';
 
 const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
-  (props, ref) => {
-    const {
+  (
+    {
       className,
       children,
       defaultValue,
       value,
-      disabled,
+      disabled = false,
       onChange,
       ...others
-    } = props;
+    },
+    ref,
+  ) => {
     const [groupValue, triggerChange] = useValue({
       defaultValue,
       value,
@@ -53,8 +55,5 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
 );
 
 CheckboxGroup.displayName = 'CheckboxGroup';
-CheckboxGroup.defaultProps = {
-  disabled: false,
-};
 
 export default CheckboxGroup;

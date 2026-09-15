@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { OverrideProps } from '@bifrostui/types';
 import { PickerProps, IPickerOptionItem } from '../Picker';
 import { DatePickerType } from './constants';

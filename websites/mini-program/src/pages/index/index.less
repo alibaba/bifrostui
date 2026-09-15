@@ -1,19 +1,20 @@
 .home-wrapper {
-  padding: 6px 12px 30px;
+  padding: 0 0 30px;
 
   .header {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 12px;
+    padding: 12px;
 
     .logo {
       width: 104px;
       height: 30px;
-      margin-right: 12px;
     }
 
     .desc {
+      display: flex;
+
       .desc-title {
         font-size: 16px;
         font-weight: 500;
@@ -22,33 +23,33 @@
 
       .desc-summary {
         font-size: 14px;
-        color: #999;
-        margin-top: 10px;
+        padding: 9px 0 0;
       }
     }
   }
 
   .group-wrapper {
     .group-item {
-      margin-bottom: 12px;
-
       .group-name {
         font-size: 16px;
         font-weight: 500;
-        padding: 9px 4px;
+        padding: 9px 12px;
         background-color: var(--bui-color-bg-default);
-        margin-bottom: 8px;
       }
 
       .component-list {
-        padding: 0 4px;
+        padding: 9px 12px;
         color: #484f58;
 
         .component-item {
           padding: 9px;
-          margin-bottom: 8px;
-          border: 1px solid rgba(233, 235, 239, 0.5);
-          border-radius: 4px;
+          margin-bottom: 9px;
+          border: 1px solid var(--bui-color-border-default);
+          border-radius: 9px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
         }
       }
     }

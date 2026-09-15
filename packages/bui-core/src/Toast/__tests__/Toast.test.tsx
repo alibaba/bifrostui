@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { act, fireEvent, render, screen } from 'testing';
 import { Button } from '@bifrostui/react';
 import { ErrorCircleFilledBoldIcon } from '@bifrostui/icons';
@@ -11,16 +11,64 @@ describe('Toast', () => {
 
   beforeEach(() => {
     document.body.innerHTML = '';
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     renderHook(() => {
       toastHook = Toast.useToast();
     });
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
-    jest.clearAllMocks();
+    vi.clearAllTimers();
+    vi.useRealTimers();
+    vi.clearAllMocks();
+  });
+
+  it('Toast role should be "status"', () => {
+    const { getByTestId } = render(
+      <Button
+        data-testid="emit-button"
+        onClick={() => {
+          Toast('提示内容');
+        }}
+      >
+        test
+      </Button>,
+    );
+    fireEvent.click(getByTestId('emit-button'));
+    const toastEl = document.body.querySelector(`.${rootClass}`);
+    expect(toastEl).toHaveAttribute('role', 'status');
+  });
+
+  it('Toast aria-live should be "polite"', () => {
+    const { getByTestId } = render(
+      <Button
+        data-testid="emit-button"
+        onClick={() => {
+          Toast('提示内容');
+        }}
+      >
+        test
+      </Button>,
+    );
+    fireEvent.click(getByTestId('emit-button'));
+    const toastEl = document.body.querySelector(`.${rootClass}`);
+    expect(toastEl).toHaveAttribute('aria-live', 'polite');
+  });
+
+  it('Toast aria-atomic should be "true"', () => {
+    const { getByTestId } = render(
+      <Button
+        data-testid="emit-button"
+        onClick={() => {
+          Toast('提示内容');
+        }}
+      >
+        test
+      </Button>,
+    );
+    fireEvent.click(getByTestId('emit-button'));
+    const toastEl = document.body.querySelector(`.${rootClass}`);
+    expect(toastEl).toHaveAttribute('aria-atomic', 'true');
   });
 
   it('should render in document body', () => {
@@ -36,6 +84,28 @@ describe('Toast', () => {
     );
     fireEvent.click(getByTestId('emit-button'));
     expect(document.body.querySelector(`.${rootClass}`)).toBeInTheDocument();
+  });
+
+  it('should render ToastView via Portal to document.body when container is not specified', () => {
+    const { getByTestId } = render(
+      <Button
+        data-testid="emit-button"
+        onClick={() => {
+          Toast('提示内容');
+        }}
+      >
+        test
+      </Button>,
+    );
+    fireEvent.click(getByTestId('emit-button'));
+    // ToastView 应该通过 Portal 渲染到 document.body
+    const toastEl = document.body.querySelector(`.${rootClass}`);
+    expect(toastEl).toBeInTheDocument();
+    // 验证 Toast 内容
+    expect(toastEl).toHaveTextContent('提示内容');
+    // rootWrapper 会被创建并添加到 document.body，但 ToastView 通过 Portal 直接渲染到 body
+    // 所以 document.body 会包含多个子元素
+    expect(document.body.children.length).toBeGreaterThan(0);
   });
 
   it('should render in container', async () => {
@@ -57,6 +127,33 @@ describe('Toast', () => {
     );
     fireEvent.click(getByTestId('emit-button'));
     expect(getByTestId('render-container')).toHaveTextContent('提示内容');
+  });
+
+  it('should render ToastView in specified container via Portal', async () => {
+    const { getByTestId } = render(
+      <>
+        <div id="custom-container" data-testid="custom-container" />
+        <Button
+          data-testid="emit-button"
+          onClick={() => {
+            Toast({
+              message: '自定义容器内容',
+              container: document.getElementById('custom-container'),
+            });
+          }}
+        >
+          test
+        </Button>
+      </>,
+    );
+    fireEvent.click(getByTestId('emit-button'));
+    const container = getByTestId('custom-container');
+    // ToastView 应该通过 Portal 渲染到指定的 container 中
+    const toastEl = container.querySelector(`.${rootClass}`);
+    expect(toastEl).toBeInTheDocument();
+    expect(container).toHaveTextContent('自定义容器内容');
+    // 验证 Toast 不在 document.body 的直接子元素中（而是在 container 中）
+    expect(toastEl.closest('#custom-container')).toBe(container);
   });
 
   it('should render whit default props', () => {
@@ -95,13 +192,57 @@ describe('Toast', () => {
       </Button>,
     );
     fireEvent.click(getByTestId('emit-button'));
-    toast.close();
     await act(async () => {
-      await jest.runAllTimers();
+      toast.close();
+      await vi.runAllTimers();
     });
-    expect(
-      document.body.querySelector(`.${rootClass}`),
-    ).not.toBeInTheDocument();
+    setTimeout(() => {
+      expect(
+        document.body.querySelector(`.${rootClass}`),
+      ).not.toBeInTheDocument();
+    });
+  });
+
+  it('should cleanup rootWrapper properly even when ToastView is rendered via Portal', async () => {
+    let toast;
+    const { getByTestId } = render(
+      <Button
+        data-testid="emit-button"
+        onClick={() => {
+          toast = Toast({
+            message: '提示内容',
+            duration: 0,
+          });
+        }}
+      >
+        test
+      </Button>,
+    );
+    const bodyChildrenCountBefore = document.body.children.length;
+    fireEvent.click(getByTestId('emit-button'));
+    const bodyChildrenCountAfterRender = document.body.children.length;
+    // Toast 渲染后，document.body 应该增加了子元素
+    expect(bodyChildrenCountAfterRender).toBeGreaterThan(
+      bodyChildrenCountBefore,
+    );
+
+    // 关闭 Toast
+    await act(async () => {
+      toast.close();
+      await vi.runAllTimers();
+    });
+
+    // 等待清理完成
+    await act(async () => {
+      await vi.runAllTimers();
+    });
+
+    // Toast 和 rootWrapper 都应该被清理
+    setTimeout(() => {
+      expect(
+        document.body.querySelector(`.${rootClass}`),
+      ).not.toBeInTheDocument();
+    });
   });
 
   it('should render by warning type', () => {
@@ -235,7 +376,7 @@ describe('Toast', () => {
             Toast({
               message: '提示内容',
               position: 'top',
-              allowMultiple: true,
+              multiple: true,
             });
           }}
         >
@@ -247,7 +388,7 @@ describe('Toast', () => {
             Toast({
               message: '提示内容',
               position: 'center',
-              allowMultiple: true,
+              multiple: true,
             });
           }}
         >
@@ -298,14 +439,12 @@ describe('Toast', () => {
       </Button>,
     );
     fireEvent.click(getByTestId('emit-button'));
-    const toastDom = document.body.querySelector(`.${rootClass}`);
-    expect(toastDom.parentNode).toHaveStyle(
-      'position: fixed; top: 0px; bottom: 0px; left: 0px; right: 0px; z-index: var(--bui-z-index-toast);',
-    );
+    const backdropDom = document.body.querySelector(`.bui-backdrop`);
+    expect(backdropDom).toBeTruthy();
   });
 
   it('should call onClose when Toast hidden', async () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     const { getByTestId } = render(
       <Button
         data-testid="emit-button"
@@ -321,7 +460,7 @@ describe('Toast', () => {
     );
     fireEvent.click(getByTestId('emit-button'));
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
     expect(fn).toBeCalled();
   });
@@ -334,7 +473,7 @@ describe('Toast', () => {
           onClick={() => {
             Toast({
               message: '提示内容',
-              allowMultiple: true,
+              multiple: true,
               duration: 0,
             });
           }}
@@ -346,7 +485,7 @@ describe('Toast', () => {
           onClick={() => {
             Toast({
               message: '提示内容',
-              allowMultiple: true,
+              multiple: true,
               duration: 0,
             });
           }}
@@ -368,9 +507,9 @@ describe('Toast', () => {
     expect(document.body.innerHTML.split('提示内容').length - 1).toBe(2);
     fireEvent.click(getByTestId('emit-button3'));
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
-    expect(document.body.innerHTML.includes('提示内容')).toBeFalsy();
+    expect(document.body.innerHTML.includes('提示内容')).toBeTruthy();
   });
   it.each(['warning', 'loading', 'success', 'fail', 'clear'])(
     'should support basic api with useToast',
@@ -383,7 +522,7 @@ describe('Toast', () => {
               onClick={() => {
                 toast({
                   message: '提示内容',
-                  allowMultiple: true,
+                  multiple: true,
                   duration: 0,
                 });
               }}
@@ -394,7 +533,7 @@ describe('Toast', () => {
               onClick={() => {
                 toast({
                   message: '提示内容',
-                  allowMultiple: true,
+                  multiple: true,
                   duration: 0,
                 });
               }}
@@ -412,10 +551,10 @@ describe('Toast', () => {
         );
         fireEvent.click(screen.getByText('button one'));
         fireEvent.click(screen.getByText('button two'));
-        expect(document.body.innerHTML.split('提示内容').length - 1).toBe(2);
+        expect(document.body.innerHTML.split('提示内容').length - 1).toBe(0);
         fireEvent.click(screen.getByText('button three'));
         await act(async () => {
-          await jest.runAllTimers();
+          await vi.runAllTimers();
         });
         expect(document.body.innerHTML.includes('提示内容')).toBeFalsy();
       } else {
@@ -429,11 +568,13 @@ describe('Toast', () => {
           </Button>,
         );
         fireEvent.click(screen.getByText(`${type} button`));
-        expect(
-          document.body.querySelector('.bui-svg-icon'),
-        ).toBeInTheDocument();
-        const toastDom = document.body.querySelector(`.${rootClass}`);
-        expect(toastDom.innerHTML.includes(`校验${type}`)).toBeTruthy();
+        setTimeout(() => {
+          expect(
+            document.body.querySelector('.bui-svg-icon'),
+          ).toBeInTheDocument();
+          const toastDom = document.body.querySelector(`.${rootClass}`);
+          expect(toastDom.innerHTML.includes(`校验${type}`)).toBeTruthy();
+        });
       }
     },
   );

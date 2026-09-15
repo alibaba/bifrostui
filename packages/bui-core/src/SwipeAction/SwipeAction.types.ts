@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { OverrideProps, ThemeColor } from '@bifrostui/types';
-import React from 'react';
+import * as React from 'react';
 import { SideTypeEnum } from './constants';
 
 export type SwipeActionProps<

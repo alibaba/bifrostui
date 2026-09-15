@@ -8,6 +8,9 @@ node_modules
 # production
 dist
 es
+umd
+umd-main
+logs
 /dist
 /docs-dist
 .history
@@ -22,7 +25,6 @@ yarn.lock
 coverage/
 *.history
 .node
-.vscode
 
 
 .dumi/tmp
@@ -32,12 +34,24 @@ coverage/
 backstop_data/bitmaps_test
 backstop_data/html_report
 .ci/
+.nx
 
 
 /.ci
 /.dumi/tmp
-/.vscode
+/inspect.json
+/inspect.html
 
 project.private.config.json
 .tgz
 .env
+CLAUDE.md
+.cursor
+.qoder
+.claude
+
+# Test temp folders
+**/tempDemos*
+tests/.temp-snapshots/
+tests/.temp-demos/
+tests/snapshot.*.tsx

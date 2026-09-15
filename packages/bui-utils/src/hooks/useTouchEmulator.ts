@@ -12,13 +12,13 @@ let eventTarget;
  * @param target
  * @param identifier
  * @param pos
- * @param deltaX
- * @param deltaY
+ * @param dx
+ * @param dy
  * @returns {Object} touchPoint
  */
-const Touch = function Touch(target, identifier, pos, deltaX, deltaY) {
-  deltaX = deltaX || 0;
-  deltaY = deltaY || 0;
+const Touch = function Touch(target, identifier, pos, dx = 0, dy = 0) {
+  const deltaX = dx || 0;
+  const deltaY = dy || 0;
 
   this.identifier = identifier;
   this.target = target;
@@ -52,7 +52,7 @@ function TouchList() {
 }
 
 /**
- * only trigger touches when the left mousebutton has been pressed
+ * only trigger touches when the left mouse button has been pressed
  * @param touchType
  * @returns {Function}
  */
@@ -76,7 +76,7 @@ function onMouse(touchType) {
 
     // The EventTarget on which the touch point started when it was first placed on the surface,
     // even if the touch point has since moved outside the interactive area of that element.
-    // also, when the target doesnt exist anymore, we update it
+    // also, when the target doesn't exist anymore, we update it
     if (
       ev.type === 'mousedown' ||
       !eventTarget ||

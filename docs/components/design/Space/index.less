@@ -11,7 +11,7 @@
       width: 50px;
       height: 50px;
       flex-shrink: 0;
-      background-color: #ffebef;
+      background-color: var(--bui-color-primary-light, #ffebef);
       border-left: 1px dashed fade(#ff335c, 40%);
       border-right: 1px dashed fade(#ff335c, 40%);
 
@@ -26,7 +26,7 @@
       .size-text {
         position: relative;
         z-index: 1;
-        color: #ff335c;
+        color: var(--bui-color-primary, #ff335c);
         font-size: 12px;
         transform: translate(43px, 16px);
       }
@@ -79,14 +79,14 @@
       top: 47px;
       left: 138px;
       font-size: 12px;
-      color: #ff335c;
+      color: var(--bui-color-primary, #ff335c);
     }
 
     .vertical-text {
       position: absolute;
       left: 140px;
       font-size: 12px;
-      color: #ff335c;
+      color: var(--bui-color-primary, #ff335c);
     }
 
     .mb9 {
@@ -107,7 +107,7 @@
 
     .demo-block {
       height: 50px;
-      background-color: #ffebef;
+      background-color: var(--bui-color-primary-light, #ffebef);
 
       &.top {
         border-bottom: 1px dashed fade(#ff335c, 40%);
@@ -137,7 +137,7 @@
     .zindex-item {
       position: absolute;
       top: 0;
-      background-color: #ff335c;
+      background-color: var(--bui-color-primary, #ff335c);
       width: 200px;
       height: 120px;
     }
@@ -146,7 +146,7 @@
       position: absolute;
       width: 200px;
       height: 30px;
-      color: #ff335c;
+      color: var(--bui-color-primary, #ff335c);
       border-left: 1px solid fade(#ff335c, 20%);
       border-bottom: 1px solid fade(#ff335c, 20%);
       font-size: 12px;
@@ -167,7 +167,7 @@
     position: relative;
     width: 100px;
     height: 50px;
-    background-color: #ffebef;
+    background-color: var(--bui-color-primary-light, #ffebef);
     margin-bottom: 12px;
     display: flex;
     align-items: center;
@@ -179,7 +179,7 @@
       right: 0;
       border-radius: 50%;
       background-color: fade(#ff335c, 60%);
-      color: #ff335c;
+      color: var(--bui-color-primary, #ff335c);
       font-size: 14px;
     }
 
@@ -190,7 +190,7 @@
       right: -101px;
       display: flex;
       align-items: center;
-      color: #ff335c;
+      color: var(--bui-color-primary, #ff335c);
       font-size: 14px;
     }
 
@@ -200,7 +200,7 @@
     }
 
     .radius-desc {
-      color: #ff335c;
+      color: var(--bui-color-primary, #ff335c);
       font-size: 14px;
     }
   }

@@ -1,0 +1,24 @@
+{
+  "name": "@bifrostui/icons-pioneer",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/bui-icons-pioneer/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node esbuild.config.js",
+        "cwd": "packages/bui-icons-pioneer"
+      },
+      "outputs": ["{projectRoot}/dist", "{projectRoot}/es"]
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "vitest run --project bui-icons-pioneer",
+        "cwd": "{workspaceRoot}"
+      },
+      "outputs": ["{workspaceRoot}/coverage"]
+    }
+  }
+}

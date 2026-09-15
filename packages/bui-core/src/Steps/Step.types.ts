@@ -1,5 +1,5 @@
 import { OverrideProps } from '@bifrostui/types';
-import React from 'react';
+import * as React from 'react';
 import { OnChangeEvent } from './Steps.types';
 
 export type StatusProps = 'wait' | 'active' | 'finish' | 'error';

@@ -7,6 +7,7 @@
   text-decoration: none;
   transition: all 0.3s;
   cursor: pointer;
+  white-space: nowrap;
 
   @{dark-selector} & {
     color: @c-text-secondary-dark;
@@ -21,9 +22,8 @@
   }
 
   @media @mobile {
-    position: absolute;
-    left: 37%;
-    transform: translate(-50%, 50%);
+    position: static;
+    transform: none;
   }
 }
 

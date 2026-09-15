@@ -4,6 +4,9 @@ import './index.less';
 const Badge: FC<{
   children: ReactNode;
   type: 'info' | 'warning' | 'error' | 'success';
-}> = (props) => <span className="dumi-default-badge" {...props} />;
+}> = (props) => {
+  const { key, ...restProps } = props as any;
+  return <span className="dumi-default-badge" {...restProps} />;
+};
 
 export default Badge;

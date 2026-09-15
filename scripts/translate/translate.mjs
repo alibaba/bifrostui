@@ -4,16 +4,17 @@
  * @example node scripts/generate-md/generateMd.mjs
  * @example node scripts/translate/translate.mjs --all
  * @example node scripts/translate/translate.mjs --file ./packages/bui-icons/src/index.zh-CN.md
+ * @example node scripts/translate/translate.mjs --file ./packages/bui-icons-pioneer/src/index.zh-CN.md
  */
 
 import OpenAI from 'openai';
 import dotenv from 'dotenv';
 import fs from 'node:fs';
-import path from 'path';
+import path from 'node:path';
 import minimist from 'minimist';
 import ora from 'ora';
 import { input } from '@inquirer/prompts';
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'node:url';
 
 dotenv.config();
 const __filename = fileURLToPath(import.meta.url);

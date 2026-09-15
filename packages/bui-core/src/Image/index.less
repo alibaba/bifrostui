@@ -1,8 +1,10 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+@{root-selector} {
+  --bui-image-default-bg-color: rgba(127, 127, 127, 0.2);
+}
+
 .bui-image {
-  --default-background-color: var(
-    --bui-image-default-background-color,
-    rgba(127, 127, 127, 0.2)
-  );
   width: auto;
   height: auto;
   display: inline-block;
@@ -31,14 +33,8 @@
     width: 100%;
     height: 100%;
 
-    &.bui-image-loaded {
-      opacity: 0;
+    &.default-holder {
+      background-color: var(--bui-image-default-bg-color);
     }
-  }
-
-  &-default-icon-item {
-    width: 100%;
-    height: 100%;
-    background-color: var(--default-background-color);
   }
 }

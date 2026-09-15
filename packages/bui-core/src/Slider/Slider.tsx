@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { GripperBarVerticalIcon } from '@bifrostui/icons';
 import {
   isMini,
@@ -16,9 +17,9 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import './Slider.less';
 import { SliderProps, SliderValue } from './Slider.types';
 import { formatValue, isSameValue, sortValue } from './utils';
+import './index.less';
 
 const classes = {
   root: 'bui-slider',
@@ -37,15 +38,15 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     className,
     defaultValue,
     value: valueProp,
-    min,
-    max,
-    step,
-    tipVisible,
-    tooltipRender,
+    min = 0,
+    max = 100,
+    step = 1,
+    tipVisible = false,
+    tooltipRender = (value) => value,
     disabled,
     startIcon,
     endIcon,
-    disableSwap,
+    disableSwap = false,
     onChange,
     ...others
   } = props;
@@ -61,18 +62,20 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const handleRef = useForkRef(ref, setRootRef);
 
   // Slider BoundingClientRect
-  const sliderRect = useRef<Record<string, any>>();
+  const sliderRect = useRef<Record<string, any>>(null);
   // 滑动开始距离文档X轴原点距离
-  const touchStartPageX = useRef<number>();
+  const touchStartPageX = useRef<number>(0);
   // 按钮在滑动开始时距离左边的距离
-  const touchStartLeft = useRef<number>();
+  const touchStartLeft = useRef<number>(0);
   // 记录操作按钮
   const buttonIndex = useRef(0);
   // 记录双滑块touchMove之前的值
   const beforeMoveValue = useRef([0, 0]);
 
   // 默认图标
-  const defaultIcon = <GripperBarVerticalIcon htmlColor="#2e333e" />;
+  const defaultIcon = (
+    <GripperBarVerticalIcon htmlColor="var(--bui-color-fg-default)" />
+  );
   // 根据初始化时的数据判断是否为双滑块
   const initialRange = useRef(
     (value !== undefined && Array.isArray(value)) ||
@@ -114,7 +117,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     defaultValue: formattedDefaultValue,
     onChange: (e, data) => {
       onChange?.(e, {
-        value: data?.value,
+        value: data?.value as SliderValue,
         buttonIndex: buttonIndex.current,
       });
     },
@@ -346,13 +349,5 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
 });
 
 Slider.displayName = 'BuiSlider';
-Slider.defaultProps = {
-  min: 0,
-  max: 100,
-  step: 1,
-  disableSwap: false,
-  tipVisible: false,
-  tooltipRender: (value) => value,
-};
 
 export default Slider;

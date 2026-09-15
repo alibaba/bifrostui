@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import clsx from 'clsx';
 import React, { useEffect } from 'react';
 import {
@@ -7,7 +8,7 @@ import {
 import DesktopTimePickerList from './DesktopTimePickerList';
 
 import {
-  getdisabledTime,
+  getDisabledTime,
   calculateValidMinTime,
   isDisabledTime,
 } from './utils/utils';
@@ -84,7 +85,7 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
     const lists = ampm ? [...views, 'meridiem'] : views;
     return lists.map((type: ViewTypeWithMeridiem, index) => {
       const dataList = getViewListData(type, timeSteps[type]);
-      const disabledTime = getdisabledTime(
+      const disabledTime = getDisabledTime(
         type,
         timeValue,
         minTime,
@@ -135,7 +136,7 @@ const useGetTimePickerContent = (props: TimePickerContentProps) => {
 
         const getValidTimeValue = (view, newTimeValue) => {
           // 计算每一列的disabledData
-          let viewDisabledTime = getdisabledTime(
+          let viewDisabledTime = getDisabledTime(
             view,
             newTimeValue,
             minTime,

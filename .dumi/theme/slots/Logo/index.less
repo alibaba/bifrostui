@@ -3,15 +3,26 @@
 .@{prefix}-logo {
   display: inline-flex;
   align-items: center;
-  font-weight: bold;
   text-decoration: none;
-  height: 24px;
+  height: 32px;
+  gap: 8px;
 
-  @{dark-selector} & {
-    color: @c-text-dark;
+  &-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
   }
 
-  img {
-    height: 100%;
+  &-text {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--bui-color-fg-default, #030b1a);
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+
+    @{dark-selector} & {
+      color: @c-text-dark;
+    }
   }
 }

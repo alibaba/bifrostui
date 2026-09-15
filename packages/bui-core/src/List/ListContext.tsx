@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 interface IListContext {
   /** 是否展示分割线 */

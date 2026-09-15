@@ -28,7 +28,7 @@ describe('scrollLeftTo', () => {
 
   afterEach(() => {
     document.body.innerHTML = '';
-    jest.clearAllTimers(); // 清除所有定时器
+    vi.clearAllTimers(); // 清除所有定时器
   });
 
   test('should scroll left to the correct position over the specified duration', () => {

@@ -1,48 +1,53 @@
 @import (reference) '../../styles/variables.less';
 
 .@{prefix}-header {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 2000;
   border-bottom: solid 0.5px @c-border;
+  background-color: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(180%) blur(12px);
+  backdrop-filter: saturate(180%) blur(12px);
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    backdrop-filter 0.3s ease;
+
   @{dark-selector} & {
     border-bottom: solid 0.5px @c-border-dark;
+    background-color: rgba(22, 27, 34, 0.72);
   }
 
   &::selection,
   & ::selection {
-    background: @c-primary-light;
+    background: var(--bui-color-primary-light, @c-primary-light);
   }
 
-  &:not([data-static]) {
-    top: 0;
-    position: sticky;
-    background-color: fadeout(@c-site-bg, 10%);
-    backdrop-filter: blur(6px);
+  &[data-mobile-active] {
+    background-color: #fff;
+    backdrop-filter: none;
 
     @{dark-selector} & {
-      background-color: @c-header-bg-dark;
+      background-color: @c-site-bg-dark;
     }
+  }
 
-    // to avoid backdrop filter conflict with navbar overlay
-    &[data-mobile-active] {
-      background-color: @c-site-bg;
-      backdrop-filter: none;
-
-      @{dark-selector} & {
-        background-color: @c-site-bg-dark;
-      }
-    }
+  &[data-static] {
+    border-bottom-color: transparent;
+    background-color: transparent;
+    backdrop-filter: none;
+    backdrop-filter: none;
   }
 
   &-content {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    // margin: 0 auto;
     padding: 0 40px;
-    // max-width: @s-content-width;
     height: @s-header-height;
     box-sizing: border-box;
+    transition: height 0.3s ease;
 
     @media @mobile {
       height: @s-header-height-m;
@@ -82,11 +87,12 @@
       right: 0;
       height: calc(100vh - @s-header-height-m);
       display: block;
-      background-color: fadeout(@c-site-bg, 40%);
+      background-color: fadeout(#fff, 40%);
       border-top: 1px solid @c-border-light;
       backdrop-filter: blur(30px);
       box-sizing: border-box;
       transition: all 0.2s;
+      overflow-y: auto;
 
       @{dark-selector} & {
         background-color: fadeout(@c-site-bg-dark, 40%);
@@ -98,6 +104,18 @@
         visibility: hidden;
         padding-top: 20px;
       }
+    }
+  }
+
+  &-actions {
+    display: flex;
+    align-items: center;
+    gap: 0;
+
+    @media @mobile {
+      justify-content: center;
+      padding: 16px 0;
+      width: 100%;
     }
   }
 

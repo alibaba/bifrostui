@@ -1,16 +1,16 @@
 import clsx from 'clsx';
-import React, { useState, useRef, useEffect } from 'react';
-import {
-  getStylesAndLocation,
-  triggerEventTransform,
-  parsePlacement,
-  throttle,
-  useForkRef,
-  isMini,
-} from '@bifrostui/utils';
+import * as React from 'react';
+import { useForkRef } from '@bifrostui/utils';
 import Portal from '../Portal';
-import './Popover.less';
+import Backdrop from '../Backdrop';
 import { PopoverProps } from './Popover.types';
+import {
+  usePopoverState,
+  usePopoverPosition,
+  usePopoverA11y,
+  usePopoverEvents,
+} from './hooks';
+import './index.less';
 
 const prefixCls = 'bui-popover';
 
@@ -21,164 +21,156 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     children,
     title,
     content,
-    defaultOpen,
+    defaultOpen = false,
     offsetSpacing = 0,
-    placement = 'top',
+    anchorOrigin = { vertical: 'top', horizontal: 'center' },
     trigger = 'click',
     open,
     hideArrow,
     onOpenChange,
+    role = 'tooltip',
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
+    autoFocus = false,
+    closeOnEscape = false,
     ...others
   } = props;
 
-  const controlByUser = typeof open !== 'undefined';
-  const { direction, location = 'center' } = parsePlacement(placement);
-  const childrenRef = useRef<Element>();
-  const [openStatus, setOpenStatus] = useState(defaultOpen);
-  // 气泡所在位置
-  const [arrowDirection, setArrowDirection] = useState(direction);
-  // 箭头位置
-  const [arrowLocation, setArrowLocation] = useState(location);
-  const [toolStyles, setToolStyles] = useState({});
-  const tipRef = useRef(null);
+  const { isOpen, openStatus, controlByUser, changeOpenStatus } =
+    usePopoverState({
+      defaultOpen,
+      open,
+      onOpenChange,
+    });
+
+  const {
+    arrowDirection,
+    arrowLocation,
+    toolStyles,
+    tipRef,
+    childrenRef,
+    onMounted,
+    clearRef,
+  } = usePopoverPosition({
+    anchorOrigin,
+    offsetSpacing,
+    isOpen,
+  });
+
   const nodeRef = useForkRef(ref, tipRef);
 
-  const clearRef = (status) => {
-    // 隐藏时 清空tipRef
-    if (status === false) {
-      tipRef.current = null;
-    }
-  };
-
-  const changeOpenStatus = (event, status) => {
-    if (controlByUser) return;
-    // 隐藏时 清空tipRef
-    clearRef(status);
-    setOpenStatus(status);
-    onOpenChange?.(event, { open: status });
-  };
-
-  const triggerClick = (event) => {
-    event.stopPropagation();
-    const targetStatus = !openStatus;
-    changeOpenStatus(event, targetStatus);
-  };
-  const hidePopover = (event) => {
+  const handleHide = (event: React.SyntheticEvent | Event) => {
+    clearRef(false);
     changeOpenStatus(event, false);
   };
-  const showPopover = (event) => {
+
+  const handleShow = (event: React.SyntheticEvent | Event) => {
     changeOpenStatus(event, true);
   };
 
-  useEffect(() => {
-    if (!controlByUser) return;
-    setOpenStatus(open);
-    clearRef(open);
-  }, [open]);
-
-  useEffect(() => {
-    if (!openStatus) {
-      setToolStyles({
-        visibility: 'hidden',
-      });
+  const handleTriggerClick = (event: React.SyntheticEvent | Event) => {
+    event.stopPropagation();
+    const targetStatus = !openStatus;
+    if (targetStatus) {
+      changeOpenStatus(event, true);
+    } else {
+      clearRef(false);
+      changeOpenStatus(event, false);
     }
-  }, [openStatus]);
-
-  const clickEventHandler = (event) => {
-    if (
-      trigger === 'hover' ||
-      (trigger?.length === 1 && trigger?.[0] === 'hover')
-    )
-      return;
-
-    hidePopover(event);
   };
 
-  const onRootElementMouted = throttle(async () => {
-    if (!tipRef.current) return;
+  const { popoverId, handleKeyDown } = usePopoverA11y({
+    isOpen,
+    autoFocus,
+    closeOnEscape,
+    onClose: handleHide,
+    tipRef,
+    childrenRef,
+  });
 
-    const {
-      direction: newParsedDirection,
-      location: newParsedLocation = 'center',
-    } = parsePlacement(placement);
-    const result = await getStylesAndLocation({
-      childrenRef,
-      arrowDirection: newParsedDirection,
-      arrowLocation: newParsedLocation,
-      offsetSpacing,
-      tipRef,
-    });
-    if (!result) return;
-    const { styles, newArrowDirection, newArrowLocation } = result;
-
-    if (newArrowDirection !== arrowDirection) {
-      setArrowDirection(newArrowDirection);
-    }
-    if (newArrowLocation !== arrowLocation) {
-      setArrowLocation(newArrowLocation);
-    }
-    setToolStyles(styles);
-  }, 100);
-
-  useEffect(() => {
-    /**
-     * 绑定全局事件
-     * click 全局点击隐藏
-     * resize 仅支持H5
-     * @returns
-     */
-    const bindEvent = () => {
-      if (!tipRef.current) return;
-
-      if (!controlByUser) {
-        document.addEventListener('click', clickEventHandler);
-      }
-      if (!isMini) {
-        window.addEventListener('resize', onRootElementMouted);
-      }
-    };
-
-    const unbindEvent = () => {
-      if (!controlByUser) {
-        document.removeEventListener('click', clickEventHandler);
-      }
-      if (!isMini) {
-        window.removeEventListener('resize', onRootElementMouted);
-      }
-    };
-
-    bindEvent();
-    return () => {
-      unbindEvent();
-    };
-  }, [openStatus]);
+  const { triggerEventOption, backdropProps } = usePopoverEvents({
+    isOpen,
+    controlByUser,
+    trigger,
+    onShow: handleShow,
+    onHide: handleHide,
+    onTriggerClick: handleTriggerClick,
+    onMounted,
+    handleKeyDown,
+    tipRef,
+    childrenRef,
+  });
 
   if (!title && !content) return null;
 
-  let triggerEventOption;
-  if (!controlByUser) {
-    triggerEventOption = triggerEventTransform({
-      trigger,
-      click: triggerClick,
-      show: showPopover,
-      hide: hidePopover,
-    });
-  }
+  const getAriaHasPopup = () => {
+    if (role === 'menu') return 'menu';
+    if (role === 'listbox') return 'listbox';
+    return 'dialog';
+  };
 
   const childrenOptions = {
     ref: childrenRef,
     ...triggerEventOption,
+    'aria-describedby': isOpen ? popoverId : undefined,
+    'aria-haspopup': getAriaHasPopup(),
+    ...(React.isValidElement(children) &&
+      (children.type === 'button' ||
+        children.type === 'a' ||
+        (children.props as any)?.role === 'button') && {
+        'aria-expanded': isOpen,
+      }),
   };
   return (
     <>
-      {open || openStatus ? (
-        <Portal onRootElementMouted={onRootElementMouted}>
+      {isOpen ? (
+        <Portal onMounted={onMounted}>
+          {/* 小程序环境下的背景遮罩层 */}
+          {backdropProps && (
+            <Backdrop
+              className="bui-popover-backdrop"
+              style={{
+                zIndex: 999,
+              }}
+              open={isOpen}
+              invisible
+              role="button"
+              tabIndex={-1}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  if (
+                    backdropProps?.onClick &&
+                    typeof backdropProps.onClick === 'function'
+                  ) {
+                    backdropProps.onClick(
+                      e as unknown as React.MouseEvent<HTMLDivElement>,
+                    );
+                  }
+                }
+              }}
+              {...backdropProps}
+            />
+          )}
           <div
             className={clsx(prefixCls, className, `popover-${arrowDirection}`, {
               'bui-popover-arrow-hide': hideArrow,
             })}
             style={{ ...style, ...toolStyles }}
             ref={nodeRef}
+            // 无障碍功能：ARIA属性
+            id={popoverId}
+            role={role}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledby}
+            tabIndex={autoFocus ? 0 : undefined}
+            onClick={(e) => e.stopPropagation()} // 阻止气泡内容的点击事件冒泡到背景层
+            onKeyDown={(e) => {
+              // 仅处理键盘交互，不执行特定操作
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.stopPropagation();
+              }
+            }}
             {...others}
           >
             {!hideArrow ? (

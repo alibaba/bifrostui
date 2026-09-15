@@ -7,7 +7,7 @@
   font-family: var(--bui-font-family);
 
   &-label-horizontal {
-    line-height: var(--step-label-horizontal-line-height);
+    line-height: var(--bui-step-label-horizontal-line-height);
   }
 
   &:last-child {
@@ -20,17 +20,17 @@
 .bui-step-line {
   position: absolute;
   top: 0;
-  width: var(--step-line-width);
-  height: var(--step-line-height);
+  width: var(--bui-step-line-width);
+  height: var(--bui-step-line-height);
   box-sizing: border-box;
   left: 13px;
-  padding: var(--step-line-padding);
+  padding: var(--bui-step-line-padding);
 
   &::after {
     display: inline-block;
     content: '';
-    width: var(--step-line-width);
-    border-left-width: var(--step-line-width);
+    width: var(--bui-step-line-width);
+    border-left-width: var(--bui-step-line-width);
     border-left-style: dotted;
     height: calc(100% + 11px);
   }
@@ -62,14 +62,14 @@
 
 .bui-step-icon {
   flex-shrink: 0;
-  width: var(--step-icon-width);
+  width: var(--bui-step-icon-width);
   text-align: center;
-  margin: var(--step-icon-margin);
-  font-size: var(--step-icon-font-size);
+  margin: var(--bui-step-icon-margin);
+  font-size: var(--bui-step-icon-font-size);
 
   &-active {
-    width: var(--step-icon-active-width);
-    height: var(--step-icon-active-height);
+    width: var(--bui-step-icon-active-width);
+    height: var(--bui-step-icon-active-height);
     position: relative;
     background-color: var(--bui-color-primary);
     border-radius: 50%;
@@ -79,7 +79,7 @@
 }
 
 .bui-step-content {
-  padding: var(--step-content-padding);
+  padding: var(--bui-step-content-padding);
   box-sizing: border-box;
   flex: 1 0 0;
   overflow: hidden;
@@ -128,7 +128,7 @@
 }
 
 .bui-step-subtitle {
-  font-size: var(--subtitle-font-size);
+  font-size: var(--bui-step-subtitle-font-size);
   color: var(--bui-color-fg-subtle);
   .ellipsis();
 
@@ -163,7 +163,7 @@
 
   .bui-step-line {
     display: none;
-    padding: var(--step-horizontal-line-padding);
+    padding: var(--bui-step-horizontal-line-padding);
   }
 
   .bui-step-icon {

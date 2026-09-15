@@ -10,7 +10,7 @@ export type AlertProps<
       /**
        * 指定警告提示的样式
        */
-      color?: ThemeColor;
+      color?: Exclude<ThemeColor, 'light' | 'neutral' | 'dark'>;
       /**
        * 自定义图标，icon为false时隐藏图标
        */
@@ -46,7 +46,7 @@ export type AlertIconProps<
       /**
        * 指定警告提示的样式
        */
-      color?: ThemeColor;
+      color?: Exclude<ThemeColor, 'light' | 'neutral' | 'dark'>;
       /**
        * 自定义图标，icon为false时隐藏图标
        */
@@ -66,7 +66,7 @@ export type AlertActionProps<
       /**
        * 指定警告提示的样式
        */
-      color?: ThemeColor;
+      color?: Exclude<ThemeColor, 'light' | 'neutral' | 'dark'>;
       /**
        *  警告提示操作区
        */

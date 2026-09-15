@@ -1,6 +1,6 @@
 import { convertHexToRGBA } from '@bifrostui/utils';
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import { TagProps } from './Tag.types';
 import './Tag.less';
 
@@ -15,9 +15,9 @@ const colorHandler = (color: string, opacity = 1) => {
 
   // rgb
   if (color.includes('rgb')) {
-    color = color.replace('rgb', 'rgba');
-    const len = color.length;
-    return `${color.slice(0, len - 1)}, ${opacity})`;
+    const rgbaColor = color.replace('rgb', 'rgba');
+    const len = rgbaColor.length;
+    return `${rgbaColor.slice(0, len - 1)}, ${opacity})`;
   }
 
   // hex
@@ -30,9 +30,9 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   const {
     className,
     style,
-    color,
+    color = 'neutral',
     htmlColor,
-    variant,
+    variant = 'outlined',
     onClick,
     children,
     ...others
@@ -45,7 +45,7 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>((props, ref) => {
         color: htmlColor,
         borderColor: colorHandler(htmlColor, 0.4),
       };
-    } else if (variant === 'light') {
+    } else if (variant === 'subtle') {
       customStyles = {
         color: htmlColor,
         backgroundColor: colorHandler(htmlColor, 0.3),
@@ -78,9 +78,5 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>((props, ref) => {
 });
 
 Tag.displayName = 'BuiTag';
-Tag.defaultProps = {
-  variant: 'outlined',
-  color: 'default',
-};
 
 export default Tag;

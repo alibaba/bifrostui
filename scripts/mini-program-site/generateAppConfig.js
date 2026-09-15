@@ -18,9 +18,10 @@ export default defineAppConfig ({
   pages: ['pages/index/index'],
   subPackages,
   window: {
-    backgroundTextStyle: 'light',
+    backgroundColor: '#f7f9fc',
+    backgroundTextStyle: 'dark',
     navigationBarBackgroundColor: '#fff',
-    navigationBarTitleText: 'BUI-React',
+    navigationBarTitleText: 'BifrostUI',
     navigationBarTextStyle: 'black'
   }
 })

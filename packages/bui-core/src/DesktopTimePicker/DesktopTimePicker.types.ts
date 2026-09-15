@@ -9,6 +9,19 @@ export type ViewTypeWithMeridiem = ViewType | 'meridiem';
 
 export type TimeSteps = { hour?: number; minute?: number; second?: number };
 
+/** 时间面板单元格对象 */
+export interface ITimeInstance {
+  value: number | string;
+  label: string;
+  disabled: boolean;
+}
+
+export type DisabledTimeView = () => {
+  hour?: () => number[];
+  minute?: (selectedHour: number) => number[];
+  second?: (selectedHour: number, selectedMinute: number) => number[];
+};
+
 export type TimePickerProps<
   D extends React.ElementType = 'div',
   P = {},
@@ -112,12 +125,6 @@ export type TimePickerProps<
   D
 >;
 
-export type DisabledTimeView = () => {
-  hour?: () => number[];
-  minute?: (selectedHour: number) => number[];
-  second?: (selectedHour: number, selectedMinute: number) => number[];
-};
-
 export interface TimePickerContentProps {
   setIsOpen: Function;
   triggerChange: Function;
@@ -163,13 +170,6 @@ export interface TimePickerContentProps {
    * 校验timeValue是否有效
    */
   setIsInvalid: (a: boolean) => void;
-}
-
-/** 时间面板单元格对象 */
-export interface ITimeInstance {
-  value: number | string;
-  label: string;
-  disabled: boolean;
 }
 
 /** 时分秒面板单元格对象 */

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import clsx from 'clsx';
 import { TabBarProps } from './index.types';
 import TabBarContext from './TabBarContext';
@@ -8,9 +8,9 @@ const prefixCls = 'bui-tab-bar';
 
 const TabBar = React.forwardRef<HTMLDivElement, TabBarProps>((props, ref) => {
   const {
-    current,
-    activeColor,
-    color,
+    current = 0,
+    activeColor = 'primary',
+    color = 'neutral',
     children,
     className,
     onChange,
@@ -29,7 +29,7 @@ const TabBar = React.forwardRef<HTMLDivElement, TabBarProps>((props, ref) => {
     >
       <div ref={ref} className={clsx(`${prefixCls}`, className)} {...others}>
         {React.Children.toArray(children).map(
-          (item: React.ReactElement, index) => {
+          (item: React.ReactElement<any>, index) => {
             return React.cloneElement(item, {
               index,
             });
@@ -41,9 +41,5 @@ const TabBar = React.forwardRef<HTMLDivElement, TabBarProps>((props, ref) => {
 });
 
 TabBar.displayName = 'BuiTabBar';
-TabBar.defaultProps = {
-  activeColor: 'primary',
-  color: 'default',
-  current: 0,
-};
+
 export default TabBar;

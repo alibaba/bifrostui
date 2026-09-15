@@ -10,8 +10,8 @@ import OpenAI from 'openai';
 import dotenv from 'dotenv';
 import minimist from 'minimist';
 import ora from 'ora';
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import {
   getAllCodes,
   getComponentName,

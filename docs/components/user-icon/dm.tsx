@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 export default ({ color = '#eee' }) => {
   return (
     <svg

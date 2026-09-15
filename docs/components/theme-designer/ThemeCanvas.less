@@ -1,0 +1,33 @@
+.theme-canvas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-items: center;
+  min-height: 100%;
+}
+
+.theme-canvas-rows {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: none;
+  width: 50%;
+  margin: 30px 0;
+  padding: 0 20px;
+
+  &.is-full {
+    width: 100%;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.theme-canvas-row {
+  margin: 10px 0;
+}
+
+.theme-canvas-list-component {
+  width: 100%;
+}

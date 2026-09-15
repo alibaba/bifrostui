@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { CheckboxContextProps } from './Checkbox.types';
 
 const CheckboxContext = React.createContext<CheckboxContextProps | null>(null);

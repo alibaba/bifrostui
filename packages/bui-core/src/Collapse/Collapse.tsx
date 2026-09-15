@@ -9,7 +9,7 @@ import {
 import clsx from 'clsx';
 import { Transition } from '../Transition';
 import { CollapseProps } from './Collapse.types';
-import './Collapse.less';
+import './index.less';
 
 const defaultEasing = {
   enter: easing.easeOut,
@@ -78,18 +78,37 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
       appear={appear}
     >
       {(state, childProps) => {
-        const transition = transitions.create(
-          size,
-          getTransitionProps(
-            { timeout, style, easing: easingProp, delay },
-            { mode: state },
-          ),
-        );
+        const transition =
+          state === 'entering' || state === 'exiting'
+            ? transitions.create(
+                size,
+                getTransitionProps(
+                  { timeout, style, easing: easingProp, delay },
+                  {
+                    mode: state,
+                  },
+                ),
+              )
+            : 'none';
+
         const wrapperSize = () => {
-          const collapseWrapperSize =
-            state === 'entering' || state === 'entered'
-              ? getCollapseWrapperSize(wrapperRef.current?.children?.[0])
-              : collapsedSize;
+          let collapseWrapperSize = collapsedSize;
+
+          if (inProp && state === 'entered') {
+            // 展开结束，size设置为auto
+            collapseWrapperSize = 'auto';
+          } else if (state === 'entering' || state === 'entered') {
+            collapseWrapperSize = getCollapseWrapperSize(
+              wrapperRef.current?.children?.[0],
+            );
+          }
+
+          // 强制重绘
+          if (wrapperRef.current && state === 'exiting') {
+            const _ = wrapperRef.current.offsetHeight;
+            // eslint-disable-next-line no-console
+            console.log(_);
+          }
           return isHorizontal
             ? {
                 width: collapseWrapperSize,
@@ -103,9 +122,7 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
         return React.createElement(
           'div',
           {
-            className: clsx('bui-collapse', {
-              className,
-            }),
+            className: clsx('bui-collapse', className),
             style: {
               ...style,
               transition,
@@ -115,9 +132,9 @@ const Collapse = React.forwardRef<HTMLElement, CollapseProps>((props, ref) => {
             ...childProps,
             ref: collapseRef,
           },
-          React.cloneElement(children, {
+          React.cloneElement(children as React.ReactElement<any>, {
             style: {
-              ...children.props?.style,
+              ...(children.props as any)?.style,
             },
             ...childProps,
           }),

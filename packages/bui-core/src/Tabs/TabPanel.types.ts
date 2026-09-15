@@ -1,5 +1,5 @@
 import { OverrideProps } from '@bifrostui/types';
-import React from 'react';
+import * as React from 'react';
 
 export type TabPanelProps<
   D extends React.ElementType = 'div',

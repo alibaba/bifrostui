@@ -17,11 +17,11 @@
 
   &::selection,
   & ::selection {
-    background: @c-primary-light;
+    background: var(--bui-color-primary-light, @c-primary-light);
   }
 
   &-group-cn {
-    color: @c-text-grey;
+    color: inherit;
   }
 
   @media @not-desktop {
@@ -56,9 +56,10 @@
 
     > dt {
       margin: 8px 40px 8px 19px;
-      // margin-left: 19px;
-      color: @c-text-grey;
+      color: var(--bui-color-fg-default, #030b1a);
       font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
       line-height: 14px;
       white-space: nowrap;
       overflow: hidden;
@@ -66,7 +67,6 @@
       text-transform: uppercase;
       padding-bottom: 13px;
       border-bottom: solid 1px @c-border;
-      // padding-left: 19px;
 
       @{dark-selector} & {
         color: @c-text-dark;
@@ -85,7 +85,7 @@
         padding: 0 19px;
         height: 38px;
         display: block;
-        color: @c-text-secondary;
+        color: var(--bui-color-fg-muted, #444b5b);
         font-family: PingFangSC-Regular;
         font-size: 14px;
         line-height: 40px;
@@ -103,22 +103,43 @@
         &:hover {
           background-color: @c-bg-grey;
           border-radius: 4px;
+
           @{dark-selector} & {
-            color: @c-text;
+            background-color: @c-light-bg-dark;
+            color: @c-text-secondary-dark;
           }
         }
 
         &.active {
-          color: @c-primary;
+          color: var(--bui-color-primary, @c-primary);
           font-family: PingFangSC-Medium;
-          background-color: @c-primary-light;
+          background-color: var(--bui-color-primary-light, @c-primary-light);
+          position: relative;
 
-          @{dark-selector} & {
-            color: @c-primary-dark;
+          &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 18px;
+            border-radius: 0 2px 2px 0;
+            background: var(--bui-color-primary, @c-primary);
           }
 
-          > span {
-            color: @c-primary;
+          @{dark-selector} & {
+            color: var(--bui-color-primary, @c-primary-dark);
+            background-color: @c-light-bg-dark;
+          }
+
+          > span,
+          .dumi-default-sidebar-group-cn {
+            color: var(--bui-color-primary, @c-primary);
+
+            @{dark-selector} & {
+              color: var(--bui-color-primary, @c-primary-dark);
+            }
           }
         }
       }

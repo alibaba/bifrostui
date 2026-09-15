@@ -54,3 +54,5 @@ export * from './Dialog';
 export * from './ThemeProvider';
 export * from './locales';
 export * from './SwipeAction';
+export * from './CSSTransition';
+export * from './TransitionGroup';

@@ -73,6 +73,34 @@ export type TextAreaProps<
           value: string;
         },
       ) => void;
+      /**
+       * 无障碍功能：ARIA标签
+       */
+      'aria-label'?: string;
+      /**
+       * 无障碍功能：是否隐藏元素
+       */
+      'aria-hidden'?: boolean;
+      /**
+       * 无障碍功能：元素在无障碍树中的细节程度
+       */
+      'aria-details'?: string;
+      /**
+       * 无障碍功能：当前元素是否为必填
+       */
+      'aria-required'?: boolean;
+      /**
+       * 无障碍功能：当前元素是否为只读
+       */
+      'aria-readonly'?: boolean;
+      /**
+       * 无障碍功能：多行文本框的第一行索引
+       */
+      'aria-rowindex'?: number;
+      /**
+       * 无障碍功能：多行文本框的列数
+       */
+      'aria-colcount'?: number;
     };
     defaultComponent: D;
   },

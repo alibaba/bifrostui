@@ -1,0 +1,27 @@
+.slide-enter {
+  transform: translate3d(-100%, 0, 0);
+}
+
+.slide-enter-active {
+  will-change: transform;
+  transform: translate3d(0%, 0, 0);
+  transition: transform 300ms ease 0ms;
+}
+
+.slide-enter-done {
+  transform: translate3d(0%, 0, 0);
+}
+
+.slide-exit {
+  transform: translate3d(0%, 0, 0);
+}
+
+.slide-exit-active {
+  will-change: transform;
+  transform: translate3d(-100%, 0, 0);
+  transition: transform 300ms ease 0ms;
+}
+
+.slide-exit-done {
+  transform: translate3d(-100%, 0, 0);
+}

@@ -1,0 +1,46 @@
+.theme-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .theme-modal-content {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    height: 480px;
+    padding: 16px;
+    background: var(--bui-color-bg-view);
+    border-radius: 6px;
+    overflow-y: auto;
+  }
+
+  .theme-modal-title {
+    text-align: center;
+    font-size: var(--bui-title-size-2);
+    font-weight: var(--bui-font-weight-medium);
+    margin-bottom: var(--bui-spacing-md);
+  }
+
+  .theme-modal-desc {
+    font-size: var(--bui-text-size-2);
+  }
+
+  .theme-modal-textarea {
+    flex: 1;
+    margin: var(--bui-spacing-lg) 0;
+
+    textarea {
+      height: 100%;
+    }
+  }
+
+  .theme-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .btn-cancel {
+      margin-right: var(--bui-spacing-lg);
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { SwiperSlide, SwiperSlideProps } from 'swiper/react';
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 
 const SwiperItem = (props: SwiperSlideProps) => {
   const { className, style, children, ...restProps } = props;

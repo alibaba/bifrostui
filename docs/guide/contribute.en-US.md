@@ -12,22 +12,22 @@ The following is a guide for submitting feedback or code.
 
 Follow the steps below to develop the component library locally
 
-BUI uses lerna for multi package management, please use [yarn](https://pnpm.io/) to install dependencies.
+BUI uses lerna for multi package management, please use [pnpm](https://pnpm.io/) to install dependencies.
 
 ```bash
 # 克隆仓库
 git clone xxxx
 
 # 安装依赖
-yarn install
+pnpm install
 
 # 进入web开发，浏览器访问 http://localhost:8000
-yarn start:h5
+pnpm start
 
 # 进入小程序开发  使用小程序的ide开发工具打开 websites/mini-program/dist 文件夹
-yarn start:weapp  // 微信小程序
-yarn start:alipay // 支付宝小程序
-yarn start:tt     // 头条小程序
+pnpm start:weapp  // 微信小程序
+pnpm start:alipay // 支付宝小程序
+pnpm start:tt     // 头条小程序
 
 ```
 

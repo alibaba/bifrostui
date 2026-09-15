@@ -4,7 +4,11 @@ import isDev from '../isDev';
 
 describe('useMemoizedFn', () => {
   test('should log an error if the parameter is not a function in development or test environment', () => {
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+    const consoleErrorSpy = vi
+      .spyOn(console, 'error')
+      .mockImplementation(() => {
+        // 空实现
+      });
     const nonFunctionParam = 'not a function';
     renderHook(() => {
       // @ts-ignore
@@ -28,7 +32,7 @@ describe('useMemoizedFn', () => {
   });
 
   test('should return the same memoized function', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     const { result, rerender } = renderHook(() => useMemoizedFn(fn));
     const memoizedFn1 = result.current;
 
@@ -40,7 +44,7 @@ describe('useMemoizedFn', () => {
 
   test('should invoke the original function with the correct context and arguments', () => {
     const context = { name: 'Test' };
-    const fn = jest.fn(function (
+    const fn = vi.fn(function testFn(
       this: typeof context,
       arg1: number,
       arg2: string,

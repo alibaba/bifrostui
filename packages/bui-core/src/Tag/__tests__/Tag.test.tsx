@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render, isConformant } from 'testing';
 import Tag from '../Tag';
 
@@ -18,7 +18,7 @@ describe('Tag', () => {
   });
 
   it('should be clickable', () => {
-    const fakeClick = jest.fn();
+    const fakeClick = vi.fn();
     const { container } = render(<Tag onClick={fakeClick} />);
     const tag = container.querySelectorAll(`.${rootClass}`)[0];
     fireEvent.click(tag);
@@ -59,7 +59,9 @@ describe('Tag', () => {
   });
   it('should render with htmlColor currently  when light', () => {
     const htmlColor = '#666666';
-    const { container } = render(<Tag variant="light" htmlColor={htmlColor} />);
+    const { container } = render(
+      <Tag variant="subtle" htmlColor={htmlColor} />,
+    );
     const target = container.querySelector<HTMLDivElement>(`.${rootClass}`);
     expect(container.querySelector(`.${rootClass}`)).toHaveStyle(
       `color: ${htmlColor}`,

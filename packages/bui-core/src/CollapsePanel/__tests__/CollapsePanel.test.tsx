@@ -146,7 +146,7 @@ describe('CollapsePanel', () => {
     });
   });
   it('should call onChange', async () => {
-    const fakeChange = jest.fn();
+    const fakeChange = vi.fn();
     const Component = () => {
       const [activeKeys, setActiveKeys] = useState(['1']);
       const handleChange = (event, params) => {
@@ -170,7 +170,7 @@ describe('CollapsePanel', () => {
       '.bui-collapse-panel-item',
     )[1];
 
-    userEvent.click(screen.getByText('这是面板标题2'));
+    await userEvent.click(screen.getByText('这是面板标题2'));
     await waitFor(() => {
       expect(fakeChange).toBeCalled();
       expect(fakeChange).toBeCalledWith(['2', '1']);
@@ -265,7 +265,7 @@ describe('CollapsePanel', () => {
       });
     });
     it('should call onChange', async () => {
-      const fakeChange = jest.fn();
+      const fakeChange = vi.fn();
       const Component = () => {
         const [activeKeys, setActiveKeys] = useState(['1']);
         const handleChange = (event, params) => {
@@ -292,7 +292,7 @@ describe('CollapsePanel', () => {
         '.bui-collapse-panel-item',
       )[1];
 
-      userEvent.click(screen.getByText('这是面板标题2'));
+      await userEvent.click(screen.getByText('这是面板标题2'));
       await waitFor(() => {
         expect(fakeChange).toBeCalled();
         expect(fakeChange).toBeCalledWith(['2', '1']);

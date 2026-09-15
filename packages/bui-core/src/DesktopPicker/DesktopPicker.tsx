@@ -47,7 +47,7 @@ const DesktopPicker = React.forwardRef<HTMLDivElement, DesktopPickerProps>(
     } = props;
     const contentRef = useRef<HTMLDivElement>(null);
     const nodeRef = useRef<HTMLDivElement>(null);
-    const renderChildren = React.cloneElement(children as ReactElement, {
+    const renderChildren = React.cloneElement(children as ReactElement<any>, {
       ref: nodeRef,
       style: {
         flex: 1,

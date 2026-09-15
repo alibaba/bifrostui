@@ -1,5 +1,5 @@
 import { OverrideProps } from '@bifrostui/types';
-import React, { Ref, SyntheticEvent } from 'react';
+import React, { ReactNode, Ref, SyntheticEvent } from 'react';
 import { BackdropProps } from '../Backdrop';
 
 export type BuiSelectValue = string | number;
@@ -12,7 +12,7 @@ export interface BuiSelectContextProps {
   /**
    * 设置根选择器展示内容
    */
-  setRenderValue?: React.Dispatch<React.SetStateAction<string>>;
+  setRenderValue?: React.Dispatch<React.SetStateAction<ReactNode>>;
   /**
    * 选项点击的回调
    */

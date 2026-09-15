@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, no-console */
 import { useMemo, useRef } from 'react';
 import isDev from '../isDev';
 import { isFunction } from '../isType';
@@ -22,9 +23,9 @@ export default function useMemoizedFn<T extends noop>(fn: T) {
 
   fnRef.current = useMemo(() => fn, [fn]);
 
-  const memoizedFn = useRef<PickFunction<T>>();
+  const memoizedFn = useRef<PickFunction<T>>(null);
   if (!memoizedFn.current) {
-    memoizedFn.current = function (this, ...args) {
+    memoizedFn.current = function memoized(this, ...args) {
       return fnRef.current.apply(this, args);
     };
   }
