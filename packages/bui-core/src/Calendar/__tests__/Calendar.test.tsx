@@ -383,6 +383,36 @@ describe('Calendar', () => {
     expect(rightIcon).toHaveStyle('color: #cccccc');
   });
 
+  it('should render default handler bar icons with disabled color', () => {
+    const { container } = render(
+      <Calendar
+        mode="single"
+        value={dayjs('20230402').toDate()}
+        minDate={dayjs('20230401').toDate()}
+        maxDate={dayjs('20230501').toDate()}
+      />,
+    );
+    const getIcons = () =>
+      container.querySelectorAll(`.${rootClass}-handler-btn-icon`);
+    const disabledColor = 'var(--bui-color-fg-disabled)';
+
+    let icons = getIcons();
+    expect(icons.length).toBe(2);
+    icons.forEach((icon) => {
+      expect(icon.tagName.toLowerCase()).toBe('svg');
+      expect(icon).toHaveClass('bui-svg-icon');
+    });
+    expect(icons[0]).toHaveAttribute('color', disabledColor);
+    expect(icons[1]).not.toHaveAttribute('color', disabledColor);
+
+    const btns = container.querySelectorAll(`.${rootClass}-handler-btn`);
+    fireEvent.click(btns[1]);
+
+    icons = getIcons();
+    expect(icons[0]).not.toHaveAttribute('color', disabledColor);
+    expect(icons[1]).toHaveAttribute('color', disabledColor);
+  });
+
   describe('transition effect', () => {
     it('should render month date without transition when enableTransition is false', () => {
       const { container } = render(

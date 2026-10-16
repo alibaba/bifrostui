@@ -3,7 +3,10 @@ import clsx from 'clsx';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import { CaretLeftIcon, CaretRightIcon } from '@bifrostui/icons';
+import {
+  ArrowLeftFilledIcon,
+  ArrowRightFilledIcon,
+} from '@bifrostui/icons-pioneer';
 import { useDidMountEffect, useValue } from '@bifrostui/utils';
 import CSSTransition from '../CSSTransition';
 import TransitionGroup from '../TransitionGroup';
@@ -101,7 +104,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       left: headerBarLeftIcon ? (
         headerBarLeftIcon({ isMinMonth })
       ) : (
-        <CaretLeftIcon
+        <ArrowLeftFilledIcon
           className={`${classes.handler}-btn-icon`}
           htmlColor={isMinMonth && 'var(--bui-color-fg-disabled)'}
         />
@@ -109,7 +112,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       right: headerBarRightIcon ? (
         headerBarRightIcon({ isMaxMonth })
       ) : (
-        <CaretRightIcon
+        <ArrowRightFilledIcon
           className={`${classes.handler}-btn-icon`}
           htmlColor={isMaxMonth && 'var(--bui-color-fg-disabled)'}
         />
