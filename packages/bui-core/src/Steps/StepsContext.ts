@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { StepsContextProps } from './Steps.types';
 
 const StepsContext = React.createContext<StepsContextProps | null>(null);

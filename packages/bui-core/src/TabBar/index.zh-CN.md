@@ -7,9 +7,7 @@ name: TabBar 底部导航栏
 
 底部导航栏，用于切换不同页面
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 通过监听`onChange`事件来更新`current`值变化，`current`值必填， 默认选中第一个元素。
 
@@ -34,7 +32,7 @@ export default () => {
 };
 ```
 
-### 自定义图标
+## 自定义图标
 
 可以通过`icon`、`activeIcon` 属性自定义`TabBarItem`的默认图标、选中图标
 
@@ -78,7 +76,7 @@ export default () => {
 };
 ```
 
-### 自定义主题
+## 自定义主题
 
 支持通过`color`、`activeColor`设置默认主题色、选中主题色，以此实现自定义图标、字体颜色
 
@@ -129,7 +127,7 @@ export default () => {
 };
 ```
 
-### 徽标提示
+## 徽标提示
 
 支持通过BadgeProps属性，设置`TabBarItem`相应的徽标内容
 
@@ -173,18 +171,18 @@ export default () => {
 };
 ```
 
-### API
+## API
 
-#### TabBar
+### TabBar
 
-| 属性        | 说明                 | 类型                                                                            | 默认值    |
-| ----------- | -------------------- | ------------------------------------------------------------------------------- | --------- |
-| current     | 当前选中的标签索引值 | number                                                                          | 0         |
-| color       | 默认主题色           | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` \| `vip` | `default` |
-| activeColor | 选中主题色           | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` \| `vip` | `primary` |
-| onChange    | 选中某一项时的回调   | (e:SyntheticEvent, data:{value:number}) => void                                 | -         |
+| 属性        | 说明                 | 类型                                                                                               | 默认值    |
+| ----------- | -------------------- | -------------------------------------------------------------------------------------------------- | --------- |
+| current     | 当前选中的标签索引值 | number                                                                                             | 0         |
+| color       | 默认主题色           | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `neutral`\| `dark`\| `light` \| `vip` | `neutral` |
+| activeColor | 选中主题色           | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `neutral`\| `dark`\| `light` \| `vip` | `primary` |
+| onChange    | 选中某一项时的回调   | (e:SyntheticEvent, data:{value:number}) => void                                                    | -         |
 
-#### TabBarItem
+### TabBarItem
 
 | 属性       | 说明     | 类型       | 默认值 |
 | ---------- | -------- | ---------- | ------ |
@@ -193,18 +191,13 @@ export default () => {
 | activeIcon | 选中图标 | ReactNode  |
 | BadgeProps | 徽标     | BadgeProps | -      |
 
-### 样式变量
+## 样式变量
 
-#### TabBar
+### TabBar
 
-| 属性      | 说明   | 默认值 | 全局变量              |
-| --------- | ------ | ------ | --------------------- |
-| --width   | 宽度   | 100%   | --bui-tab-bar-width   |
-| --height  | 高度   | 50px   | --bui-tab-bar-height  |
-| --padding | 内边距 | 6px 0  | --bui-tab-bar-padding |
-
-#### TabBarItem
-
-| 属性        | 说明     | 默认值                 | 全局变量                    |
-| ----------- | -------- | ---------------------- | --------------------------- |
-| --tab-color | 文字颜色 | --bui-color-fg-default | --bui-tab-bar-default-color |
+| 全局变量              | 说明     | 默认值                        |
+| --------------------- | -------- | ----------------------------- |
+| --bui-tab-bar-width   | 宽度     | `100%`                        |
+| --bui-tab-bar-height  | 高度     | `50px`                        |
+| --bui-tab-bar-padding | 内边距   | `6px 0`                       |
+| --bui-tab-bar-color   | 文本颜色 | `var(--bui-color-fg-default)` |

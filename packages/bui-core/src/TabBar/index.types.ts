@@ -15,14 +15,14 @@ export type TabBarProps<
       current?: number;
       /**
        * 默认文案颜色
-       * @default 'default'
+       * @default 'neutral'
        */
-      color?: ThemeColor | 'default' | 'vip';
+      color?: ThemeColor | 'vip';
       /**
        * 选中文案颜色
        * @default 'primary'
        */
-      activeColor?: ThemeColor | 'default' | 'vip';
+      activeColor?: ThemeColor | 'vip';
       /**
        * 变化时回调函数
        */

@@ -19,7 +19,7 @@ import './index.less';
 function getTreeFromList(nodes: ReactNode, prefix = '') {
   const data: TreeProps['treeData'] = [];
 
-  ([] as ReactNode[]).concat(nodes).forEach((node, i) => {
+  ([] as ReactNode[]).concat(nodes).forEach((node: any, i) => {
     const key = `${prefix ? `${prefix}-` : ''}${i}`;
 
     switch (node?.type) {
@@ -37,7 +37,7 @@ function getTreeFromList(nodes: ReactNode, prefix = '') {
         data.push({
           title: ([] as ReactNode[])
             .concat(node.props.children)
-            .filter((child) => child.type !== 'ul'),
+            .filter((child: any) => child.type !== 'ul'),
           key,
           children: liLeafs,
           isLeaf: !liLeafs.length,
@@ -85,16 +85,16 @@ const getIcon = (props: TreeNodeProps<DataNode>) => {
 const renderSwitcherIcon = (props: TreeNodeProps<DataNode>) => {
   const { isLeaf, expanded } = props;
   if (isLeaf) {
-    return <span className={`tree-switcher-leaf-line`} />;
+    return <span className="tree-switcher-leaf-line" />;
   }
   return expanded ? (
-    <span className={`tree-switcher-line-icon`}>
+    <span className="tree-switcher-line-icon">
       <span className="dumi-default-tree-icon">
         <MinusSquareOutlined fill="currentColor" />
       </span>
     </span>
   ) : (
-    <span className={`tree-switcher-line-icon`}>
+    <span className="tree-switcher-line-icon">
       <span className="dumi-default-tree-icon">
         <PlusSquareOutlined fill="currentColor" />
       </span>
@@ -133,7 +133,8 @@ const initCollapseMotion: CSSMotionProps = {
 };
 
 export default (props: ComponentProps<'div'>) => {
-  const data = useListToTree(props.children);
+  const { children, title } = props;
+  const data = useListToTree(children);
 
   const treeRef = createRef<Tree>();
 
@@ -155,7 +156,7 @@ export default (props: ComponentProps<'div'>) => {
       icon={getIcon}
       ref={treeRef}
       itemHeight={20}
-      showLine={true}
+      showLine
       selectable={false}
       virtual={false}
       motion={{
@@ -163,7 +164,7 @@ export default (props: ComponentProps<'div'>) => {
         motionAppear: false,
       }}
       onClick={onClick}
-      treeData={[{ key: '0', title: props.title || '<root>', children: data }]}
+      treeData={[{ key: '0', title: title || '<root>', children: data }]}
       defaultExpandAll
       switcherIcon={renderSwitcherIcon}
     />

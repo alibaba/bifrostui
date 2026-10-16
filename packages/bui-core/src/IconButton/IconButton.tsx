@@ -1,8 +1,8 @@
 import { isMini } from '@bifrostui/utils';
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import { IconButtonProps } from './IconButton.types';
-import './IconButton.less';
+import './index.less';
 
 const prefixCls = 'bui-icon-btn';
 
@@ -12,14 +12,31 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       className,
       children,
       color,
-      disabled,
-      size,
-      variant,
-      shape,
+      disabled = false,
+      size = 'medium',
+      variant = 'default',
+      shape = 'circular',
+      // 无障碍属性
+      'aria-label': ariaLabel,
       ...others
     } = props;
 
     const isContainedVariant = variant === 'contained';
+
+    let childrenDisplayName = '';
+    const firstChild = React.Children.toArray(children)?.[0];
+    if (React.isValidElement(firstChild)) {
+      childrenDisplayName =
+        (firstChild.type as any)?.type?.render?.displayName || '';
+    }
+
+    // 无障碍功能：应用ARIA属性
+    const accessibilityProps = {
+      // 描述性文本标签。默认取第一个children的displayName
+      'aria-label': ariaLabel || childrenDisplayName,
+      // 禁用状态
+      'aria-disabled': disabled,
+    };
 
     return (
       <button
@@ -36,17 +53,22 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
           className,
         )}
         ref={ref}
+        {...accessibilityProps}
         {...others}
       >
         {/* 小程序中svgIcon不能继承父元素的color */}
         {isMini && React.isValidElement(children)
-          ? React.cloneElement(children, {
+          ? React.cloneElement(children as React.ReactElement<any>, {
               ...(!isContainedVariant && {
-                color: children.props?.color || color,
-                htmlColor: children.props?.htmlColor || '#959aa5',
+                color: (children.props as any)?.color || color,
+                htmlColor:
+                  (children.props as any)?.htmlColor ||
+                  'var(--bui-color-fg-subtle)',
               }),
               ...(isContainedVariant && {
-                htmlColor: children.props?.htmlColor || '#fff',
+                htmlColor:
+                  (children.props as any)?.htmlColor ||
+                  'var(--bui-color-white)',
               }),
             })
           : children}
@@ -56,11 +78,5 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
 );
 
 IconButton.displayName = 'BuiIconButton';
-IconButton.defaultProps = {
-  size: 'medium',
-  variant: 'default',
-  shape: 'circular',
-  disabled: false,
-};
 
 export default IconButton;

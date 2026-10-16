@@ -1,9 +1,9 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import setRef from '../setRef';
 
 describe('setRef', () => {
   test('should set value to ref when ref is a function', () => {
-    const refFn = jest.fn();
+    const refFn = vi.fn();
     const value = 'test value';
 
     renderHook(() => setRef(refFn, value));

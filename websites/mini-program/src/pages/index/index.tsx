@@ -31,9 +31,7 @@ const Index = () => {
           src="https://gw.alicdn.com/imgextra/i4/O1CN01XWp8e31QbIi5YgLUw_!!6000000001994-2-tps-362-96.png"
         />
         <div className="desc">
-          <span className="desc-summary">
-            BUI React-阿里影业风格的跨端组件库
-          </span>
+          <span className="desc-summary">一款简洁灵活的跨端组件库</span>
         </div>
       </div>
       <div className="group-wrapper">
@@ -49,7 +47,7 @@ const Index = () => {
                     key={component.enName}
                     onClick={() => goDemo(component)}
                   >
-                    {component.zhName}({component.enName})
+                    {`${component.enName} ${component.zhName}`}
                   </div>
                 ))}
             </div>

@@ -17,6 +17,7 @@ body {
 .@{prefix}-doc-layout {
   font-family: sans-serif;
   background-color: @c-site-bg;
+  position: relative;
 
   @{dark-selector} & {
     background-color: @c-site-bg-dark;
@@ -50,7 +51,7 @@ body {
     align-items: center;
     padding: 0 24px;
     height: @height;
-    background-color: fadeout(@c-site-bg, 10%);
+    background-color: fadeout(#fff, 10%);
     backdrop-filter: blur(6px);
 
     @{dark-selector} & {
@@ -93,6 +94,22 @@ body {
     align-items: stretch;
     min-height: calc(100vh - @s-header-height);
 
+    &.home-page {
+      display: block;
+
+      .left {
+        display: none;
+      }
+
+      .right .top .main {
+        padding-bottom: 0;
+      }
+
+      .right .top .side {
+        display: none;
+      }
+    }
+
     .left {
       flex: none;
     }
@@ -132,5 +149,40 @@ body {
         }
       }
     }
+  }
+}
+
+html[data-embed='1'],
+html[data-embed='1'] body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.dumi-embed-mode {
+  width: 100%;
+  height: 100%;
+
+  body & {
+    background: transparent;
+  }
+
+  .dumi-default-doc-layout-content {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+
+    .right .top .main {
+      padding: 0;
+      height: 100%;
+    }
+  }
+
+  .dumi-default-content {
+    padding: 0 !important;
+    max-width: 100%;
+    height: 100%;
   }
 }

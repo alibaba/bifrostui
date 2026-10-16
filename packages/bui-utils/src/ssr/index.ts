@@ -1,0 +1,1 @@
+export { canUseDOM } from './canUseDOM';

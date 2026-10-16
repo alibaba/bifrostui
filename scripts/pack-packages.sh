@@ -18,7 +18,7 @@ for package in "$PACKAGES_DIR"/*; do
 
     # 检查特定包的构建产物
     case "$package_name" in
-      "bui-core"|"bui-icons"|"bui-utils")
+      "bui-core"|"bui-icons"|"bui-icons-pioneer"|"bui-utils")
         [[ -d "$package/dist" && -d "$package/es" ]] || {
           echo ">>>💔 $package 缺少构建产物dist或es目录，请确认是否执行构建命令: yarn build"
           exit 1

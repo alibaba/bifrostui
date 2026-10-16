@@ -11,12 +11,12 @@ export interface TabBarState {
    * 选中文案颜色
    * @default 'primary'
    */
-  activeColor?: ThemeColor | 'default' | 'vip';
+  activeColor?: ThemeColor | 'vip';
   /**
    * 默认文案颜色
-   * @default 'default'
+   * @default 'neutral'
    */
-  color?: ThemeColor | 'default' | 'vip';
+  color?: ThemeColor | 'vip';
   /**
    * 变化时回调函数
    */

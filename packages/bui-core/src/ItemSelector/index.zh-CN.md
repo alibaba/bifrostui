@@ -12,7 +12,7 @@ Item选择
 Item选择展示当前Item、定位Item、热门Item及所有Item，支持右侧字母导航
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { ItemSelector } from '@bifrostui/react';
 
 const items = [
@@ -139,7 +139,7 @@ export default () => {
 用户可以自定义 indexName|indexCode 控制右侧字母导航的展示文案
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { ItemSelector } from '@bifrostui/react';
 
 const items = [
@@ -318,7 +318,7 @@ export default () => {
 用户可以设置disableIndex控制右侧字母导航的展示，默认为false，即展示字母导航
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { ItemSelector } from '@bifrostui/react';
 
 const items = [
@@ -444,7 +444,7 @@ export default () => {
 用户可以设置title来控制头部的展示
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { ItemSelector } from '@bifrostui/react';
 
 const items = [

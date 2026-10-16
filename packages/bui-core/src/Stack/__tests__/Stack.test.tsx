@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render, isConformant } from 'testing';
 import Stack from '../Stack';
 import { Divider } from '../../Divider';

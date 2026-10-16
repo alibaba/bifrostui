@@ -1,18 +1,21 @@
-import { CircleOutlinedIcon, SuccessCircleFilledIcon } from '@bifrostui/icons';
+import {
+  NotCheckedCircleOutlinedIcon,
+  SuccessCircleFilledIcon,
+} from '@bifrostui/icons-pioneer';
 import { useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import React, { forwardRef, useContext } from 'react';
 import { CheckboxProps } from './Checkbox.types';
 import CheckboxContext from './CheckboxContext';
-import './Checkbox.less';
+import './index.less';
 
 const prefixCls = 'bui-checkbox';
 
 const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
   const {
     className,
-    defaultChecked,
-    checked,
+    defaultChecked = false,
+    checked = false,
     inputProps,
     inputRef,
     name,
@@ -20,11 +23,16 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
     disabled,
     icon,
     checkedIcon,
-    labelPlacement,
+    labelPlacement = 'right',
     onChange,
     children,
     ...others
   } = props;
+  // 无障碍支持
+  const ariaProps = {
+    ...(disabled && { 'aria-disabled': disabled }),
+  };
+
   const groupContext = useContext(CheckboxContext);
   let validDefaultChecked = defaultChecked;
   let validChecked = checked;
@@ -39,6 +47,7 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
     value: validChecked,
   });
   if (groupContext && !value) {
+    // eslint-disable-next-line no-console
     console.error('CheckboxGroup模式下Checkbox须传入value属性');
   }
 
@@ -46,10 +55,10 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
     <SuccessCircleFilledIcon color="primary" />
   );
   const checkboxUncheckIcon = icon || (
-    <CircleOutlinedIcon htmlColor="#ced1d6" />
+    <NotCheckedCircleOutlinedIcon color="disabled" />
   );
   const checkboxDisabled =
-    disabled !== undefined ? disabled : groupContext?.disabled;
+    disabled !== undefined ? disabled : groupContext?.disabled || false;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = !checkboxChecked;
@@ -88,6 +97,7 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
         name={name}
         checked={checkboxChecked}
         disabled={checkboxDisabled}
+        {...ariaProps}
         {...inputProps}
         onChange={handleChange}
         className={clsx(`${prefixCls}-input`, inputProps?.className)}
@@ -101,9 +111,5 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((props, ref) => {
 });
 
 Checkbox.displayName = 'BuiCheckbox';
-Checkbox.defaultProps = {
-  defaultChecked: false,
-  labelPlacement: 'right',
-};
 
 export default Checkbox;

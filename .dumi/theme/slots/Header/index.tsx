@@ -1,7 +1,6 @@
-import type { SocialTypes } from '@/client/theme-api/types';
 import { ReactComponent as IconClose } from '@ant-design/icons-svg/inline-svg/outlined/close.svg';
 import { ReactComponent as IconMenu } from '@ant-design/icons-svg/inline-svg/outlined/menu.svg';
-import { useRouteMeta, useSiteData } from 'dumi';
+import { useRouteMeta, useSiteData, useLocation } from 'dumi';
 import ColorSwitch from 'dumi/theme/slots/ColorSwitch';
 import HeaderExtra from 'dumi/theme/slots/HeaderExtra';
 import LangSwitch from 'dumi/theme/slots/LangSwitch';
@@ -10,31 +9,39 @@ import VersionSelect from 'dumi/theme/slots/VersionSelect';
 import Navbar from 'dumi/theme/slots/Navbar';
 import RtlSwitch from 'dumi/theme/slots/RtlSwitch';
 import SearchBar from 'dumi/theme/slots/SearchBar';
-import React, { useMemo, useState, type FC } from 'react';
+import ThemeSwitch from 'dumi/theme/slots/ThemeSwitch';
+import React, { useState, useEffect, type FC } from 'react';
 import './index.less';
 
 const Header: FC = () => {
   const { frontmatter } = useRouteMeta();
   const [showMenu, setShowMenu] = useState(false);
   const { themeConfig } = useSiteData();
+  const { pathname } = useLocation();
+  const isHomePage =
+    pathname === '/' ||
+    pathname === '/index-en' ||
+    pathname === '/index-en/' ||
+    Boolean(frontmatter.hero);
+  const [scrolled, setScrolled] = useState(false);
 
-  const socialIcons = useMemo(
-    () =>
-      themeConfig.socialLinks
-        ? Object.keys(themeConfig.socialLinks)
-            .slice(0, 5)
-            .map((key) => ({
-              icon: key as SocialTypes,
-              link: themeConfig.socialLinks[key as SocialTypes],
-            }))
-        : [],
-    [themeConfig.socialLinks],
-  );
+  useEffect(() => {
+    if (!isHomePage) {
+      setScrolled(false);
+      return undefined;
+    }
+    const onScroll = () => {
+      setScrolled(window.scrollY > 80);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [isHomePage, pathname]);
 
   return (
     <div
       className="dumi-default-header"
-      data-static={Boolean(frontmatter.hero) || undefined}
+      data-static={(isHomePage && !scrolled) || undefined}
       data-mobile-active={showMenu || undefined}
       onClick={() => setShowMenu(false)}
     >
@@ -44,17 +51,15 @@ const Header: FC = () => {
           <VersionSelect />
         </section>
         <section className="dumi-default-header-right">
-          {/* <div className="dumi-default-header-right-aside"> */}
           <SearchBar />
           <Navbar />
-          <LangSwitch />
+          <div className="dumi-default-header-actions">
+            <LangSwitch />
+            <ThemeSwitch />
+            {themeConfig.prefersColor.switch && <ColorSwitch />}
+          </div>
           <RtlSwitch />
-          {themeConfig.prefersColor.switch && <ColorSwitch />}
-          {/* {socialIcons.map((item) => (
-              <SocialIcon icon={item.icon} link={item.link} key={item.link} />
-            ))} */}
           <HeaderExtra />
-          {/* </div> */}
         </section>
         <button
           type="button"

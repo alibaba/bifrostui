@@ -1,7 +1,13 @@
-import classnames from 'classnames';
-import { IPreviewerProps, useLocation, useIntl,   openCodeSandbox,
-  openStackBlitz,   getSketchJSON } from 'dumi';
-  import { ReactComponent as IconCheck } from '@ant-design/icons-svg/inline-svg/outlined/check.svg';
+import clsx from 'clsx';
+import {
+  IPreviewerProps,
+  useLocation,
+  useIntl,
+  openCodeSandbox,
+  openStackBlitz,
+  getSketchJSON,
+} from 'dumi';
+import { ReactComponent as IconCheck } from '@ant-design/icons-svg/inline-svg/outlined/check.svg';
 import { ReactComponent as IconCodeSandbox } from '@ant-design/icons-svg/inline-svg/outlined/code-sandbox.svg';
 import { ReactComponent as IconSketch } from '@ant-design/icons-svg/inline-svg/outlined/sketch.svg';
 import { ReactComponent as IconStackBlitz } from '@ant-design/icons-svg/inline-svg/outlined/thunderbolt.svg';
@@ -47,7 +53,7 @@ const Previewer: FC<IPreviewerProps> = (props) => {
   return (
     <div
       id={props.asset.id}
-      className={classnames('dumi-default-previewer', props.className)}
+      className={clsx('dumi-default-previewer', props.className)}
       style={props.style}
       data-debug={props.debug}
       data-active={hash === link || undefined}
@@ -78,9 +84,9 @@ const Previewer: FC<IPreviewerProps> = (props) => {
               className="dumi-default-previewer-action-btn  qr-icon"
               type="button"
             >
-            <IconQrCode  style={{ fontSize: '16px' }}/>
-            <QRCode value={props.demoUrl} size={96} />
-          </button>
+              <IconQrCode style={{ fontSize: '16px' }} />
+              <QRCode value={props.demoUrl} size={96} />
+            </button>
           }
           {!props.disabledActions?.includes('CSB') && (
             <button
@@ -91,7 +97,7 @@ const Previewer: FC<IPreviewerProps> = (props) => {
               })}
               onClick={() => openCodeSandbox(props)}
             >
-              <IconCodeSandbox style={{ fontSize: '16px' }}/>
+              <IconCodeSandbox style={{ fontSize: '16px' }} />
             </button>
           )}
           {!props.disabledActions?.includes('STACKBLITZ') && (
@@ -149,10 +155,14 @@ const Previewer: FC<IPreviewerProps> = (props) => {
                   {intl.formatMessage({ id: 'previewer.actions.sketch.group' })}
                 </option>
                 <option value="symbol">
-                  {intl.formatMessage({ id: 'previewer.actions.sketch.symbol' })}
+                  {intl.formatMessage({
+                    id: 'previewer.actions.sketch.symbol',
+                  })}
                 </option>
                 <option value="-" disabled>
-                  {intl.formatMessage({ id: 'previewer.actions.sketch.divider' })}
+                  {intl.formatMessage({
+                    id: 'previewer.actions.sketch.divider',
+                  })}
                 </option>
                 <option value="guide">
                   {intl.formatMessage({ id: 'previewer.actions.sketch.guide' })}
@@ -174,7 +184,7 @@ const Previewer: FC<IPreviewerProps> = (props) => {
               <IconExternalLink />
             </a>
           )}
-        {props.extra}
+          {props.extra}
           <PreviewerActionsExtra {...props} />
           {!props.forceShowCode && (
             <button
@@ -208,7 +218,7 @@ const Previewer: FC<IPreviewerProps> = (props) => {
           </div>
         )}
         <PreviewerActions
-          {...{...props, showCode}}
+          {...{ ...props, showCode }}
           demoContainer={
             props.iframe
               ? (demoContainer.current?.firstElementChild as HTMLIFrameElement)

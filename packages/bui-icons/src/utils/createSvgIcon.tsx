@@ -1,5 +1,5 @@
 import { isMini } from '@bifrostui/utils';
-import React from 'react';
+import * as React from 'react';
 import SvgIcon from '../components/SvgIcon';
 
 export default function createSvgIcon(

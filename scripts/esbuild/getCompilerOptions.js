@@ -1,5 +1,5 @@
-const { createHash } = require('crypto');
-const { resolve } = require('path');
+const { createHash } = require('node:crypto');
+const { resolve } = require('node:path');
 const ts = require('typescript');
 
 function getCompilerOptions(opts) {
@@ -9,9 +9,11 @@ function getCompilerOptions(opts) {
   ).options;
   compilerOptions.declaration = true;
   compilerOptions.emitDeclarationOnly = true;
-  compilerOptions.declarationDir =
-    compilerOptions.baseUrl + '/' + opts.esbuildOptions.outdir;
-
+  compilerOptions.declarationDir = resolve(
+    process.cwd(),
+    opts.esbuildOptions.outdir,
+  );
+  compilerOptions.rootDir = resolve(process.cwd(), 'src');
   if (opts.willBundleDeclarations) {
     compilerOptions.declarationDir = resolve(
       compilerOptions.declarationDir,

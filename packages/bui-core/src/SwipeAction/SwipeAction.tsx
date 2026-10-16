@@ -45,7 +45,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
     // 标记是否正在拖动
     const isDragging = useRef(false);
     // 上一次移动定格状态时的translateX
-    let pretranslateX = 0;
+    let preTranslateX = 0;
     // 拖动阶段标记
     let dragPhase = DragPhaseEnum.START;
     // 有效拖动的阈值
@@ -89,7 +89,6 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
     };
 
     const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-      // console.log('handleTouchStart', isOpen, closeOnClickContainer);
       dragPhase = DragPhaseEnum.START;
       // 判断e.target的id是否是content-mask
       const isMaskEle = (e.target as HTMLElement).id === 'content-mask';
@@ -121,13 +120,13 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
     );
 
     const emitActionsReveal = (targetX: number, stop = false) => {
-      const isSpecial = targetX === pretranslateX && targetX !== 0;
+      const isSpecial = targetX === preTranslateX && targetX !== 0;
       // 如果当前不需要触发任何操作，直接返回
-      if ((targetX === pretranslateX && !isSpecial) || stop) return;
+      if ((targetX === preTranslateX && !isSpecial) || stop) return;
       let resStr: SideTypeEnum | null = null;
       const shouldOpen =
-        (targetX > 0 && pretranslateX <= 0) ||
-        (targetX < 0 && pretranslateX >= 0) ||
+        (targetX > 0 && preTranslateX <= 0) ||
+        (targetX < 0 && preTranslateX >= 0) ||
         isSpecial;
       // 判断左右侧并设置 `isOpen` 状态
       if (shouldOpen) {
@@ -140,7 +139,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
       } else {
         setIsOpen(false);
       }
-      // 如果结果字符串为空，并且 targetX 为 0 且 pretranslateX 不为 0 时，保持 resStr 为 null 以不触发 onActionsReveal
+      // 如果结果字符串为空，并且 targetX 为 0 且 preTranslateX 不为 0 时，保持 resStr 为 null 以不触发 onActionsReveal
       if (resStr) {
         onActionsReveal?.({ side: resStr });
       }
@@ -167,16 +166,15 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
       // 小程序端拖动阶段和浏览器有差异所以这里要|| isMini
       if (dragPhase === DragPhaseEnum.END || isMini) {
         emitActionsReveal(targetX);
-        console.log('handleTouchEnd：', targetX, e);
         setTranslateX(targetX);
-        pretranslateX = targetX;
+        preTranslateX = targetX;
       }
       currentX.current = 0;
     };
 
     const close = () => {
       setTranslateX(0);
-      pretranslateX = 0;
+      preTranslateX = 0;
       setIsOpen(false);
     };
 
@@ -222,7 +220,7 @@ const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
           targetX = await getLefRefWidth();
         }
         setTranslateX(targetX);
-        pretranslateX = targetX;
+        preTranslateX = targetX;
         emitActionsReveal(targetX);
       },
       close,

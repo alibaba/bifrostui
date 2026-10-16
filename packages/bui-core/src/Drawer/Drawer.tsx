@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import React, { useState } from 'react';
+import * as React from 'react';
 import Modal from '../Modal';
 import Slide from '../Slide';
 import { DrawerProps } from './Drawer.types';
-import './Drawer.less';
+import './index.less';
 
 const prefixCls = 'bui-drawer';
 
@@ -16,21 +16,20 @@ const oppositeDirection = {
 
 const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
   const {
-    anchor: anchorProp,
+    anchor: anchorProp = 'bottom',
     container,
     children,
     className,
-    hideBackdrop,
+    hideBackdrop = false,
     onClose,
     SlideProps,
-    open,
-    disablePortal,
+    open = false,
+    disablePortal = false,
     contentProps,
     transitionDuration,
     ...others
   } = props;
   const anchorInvariant = oppositeDirection[anchorProp];
-  const [keepMounted, setKeepMounted] = useState(open);
 
   return (
     <Modal
@@ -41,15 +40,12 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
       ref={ref}
       className={clsx(prefixCls, className)}
       disablePortal={disablePortal}
-      keepMounted={keepMounted}
       {...others}
     >
       <Slide
         in={open}
         direction={anchorInvariant}
         timeout={transitionDuration}
-        onEnter={() => setKeepMounted(true)}
-        onExited={() => setKeepMounted(false)}
         {...SlideProps}
       >
         <div
@@ -59,6 +55,9 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
             `${prefixCls}-content-${anchorProp}`,
             contentProps?.className,
           )}
+          role="dialog"
+          aria-modal="true"
+          tabIndex={-1}
         >
           {children}
         </div>
@@ -68,11 +67,5 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
 });
 
 Drawer.displayName = 'BuiDrawer';
-Drawer.defaultProps = {
-  anchor: 'bottom',
-  hideBackdrop: false,
-  open: false,
-  disablePortal: false,
-};
 
 export default Drawer;

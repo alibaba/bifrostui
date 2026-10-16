@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import Drawer from '../Drawer';
 import { ActionSheetProps } from './ActionSheet.types';
 import ActionSheetContext from './ActionSheetContext';

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Rating renders correctly 1`] = `
+exports[`Rating > renders correctly 1`] = `
 <div>
   <div
     class="bui-rating"
@@ -17,8 +17,9 @@ exports[`Rating renders correctly 1`] = `
           value="1"
         />
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
-          color="#ced1d6"
+          color="var(--bui-color-fg-disabled)"
           focusable="false"
           viewBox="0 0 96 96"
         >
@@ -40,8 +41,9 @@ exports[`Rating renders correctly 1`] = `
           value="2"
         />
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
-          color="#ced1d6"
+          color="var(--bui-color-fg-disabled)"
           focusable="false"
           viewBox="0 0 96 96"
         >
@@ -63,8 +65,9 @@ exports[`Rating renders correctly 1`] = `
           value="3"
         />
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
-          color="#ced1d6"
+          color="var(--bui-color-fg-disabled)"
           focusable="false"
           viewBox="0 0 96 96"
         >
@@ -86,8 +89,9 @@ exports[`Rating renders correctly 1`] = `
           value="4"
         />
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
-          color="#ced1d6"
+          color="var(--bui-color-fg-disabled)"
           focusable="false"
           viewBox="0 0 96 96"
         >
@@ -109,8 +113,9 @@ exports[`Rating renders correctly 1`] = `
           value="5"
         />
         <svg
+          aria-hidden="true"
           class="bui-svg-icon"
-          color="#ced1d6"
+          color="var(--bui-color-fg-disabled)"
           focusable="false"
           viewBox="0 0 96 96"
         >

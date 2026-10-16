@@ -1,6 +1,10 @@
-const root = window || global;
-let rafId: number;
+/* eslint-disable no-param-reassign */
+
+const root = typeof window !== 'undefined' ? window : global;
 let prev = Date.now();
+
+// 用于存储每个元素的 rafId，避免多个 Tabs 实例相互干扰
+const rafIdMap = new WeakMap<HTMLElement, number>();
 
 const rafPolyfill = (fn: FrameRequestCallback) => {
   const curr = Date.now();
@@ -22,7 +26,11 @@ const raf = (fn: FrameRequestCallback): number => {
 };
 
 const scrollLeftTo = (scroller: HTMLElement, to: number, duration: number) => {
-  cancelRaf(rafId);
+  // 取消当前元素正在进行的滚动动画
+  const existingRafId = rafIdMap.get(scroller);
+  if (existingRafId !== undefined) {
+    cancelRaf(existingRafId);
+  }
 
   let count = 0;
   const from = scroller.scrollLeft;
@@ -32,7 +40,10 @@ const scrollLeftTo = (scroller: HTMLElement, to: number, duration: number) => {
     scroller.scrollLeft += (to - from) / frames;
     count += 1;
     if (count < frames) {
-      rafId = raf(animate);
+      const newRafId = raf(animate);
+      rafIdMap.set(scroller, newRafId);
+    } else {
+      rafIdMap.delete(scroller);
     }
   }
 

@@ -3,7 +3,7 @@ import { BaseLang } from './base';
 const enUS: BaseLang = {
   dialog: {
     cancel: 'Cancel',
-    confirm: 'Confirm',
+    ok: 'OK',
     placeholder: 'Placeholder',
   },
   picker: {
@@ -23,7 +23,10 @@ const enUS: BaseLang = {
     placeholder: 'Placeholder',
   },
   textarea: {
+    labelName: 'TextArea',
     placeholder: 'Placeholder',
+    remaining: 'Remaining',
+    characters: 'Characters',
   },
   selector: {
     select: 'Please select',
@@ -68,6 +71,31 @@ const enUS: BaseLang = {
     hour: 'Hour',
     minute: 'Minute',
     second: 'Second',
+  },
+  countdown: {
+    remain: {
+      year: 'Year',
+      month: 'Month',
+      day: 'Day',
+      hour: 'Hour',
+      minute: 'Minute',
+      second: 'Second',
+    },
+    remainTime: 'Remaining Time',
+    hasEnd: 'Countdown has ended',
+    willEnd: 'About to end',
+    timer: 'Timer',
+  },
+  progress: {
+    labelName: 'Progress Bar',
+    notStarted: 'Not started',
+    justBegun: 'Just begun',
+    gettingStarted: 'Getting started',
+    inProgress: 'In progress',
+    moreThanHalfway: 'More than halfway',
+    nearingCompletion: 'Nearing completion',
+    almostComplete: 'Almost complete',
+    complete: 'Complete',
   },
 };
 

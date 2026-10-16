@@ -5,18 +5,15 @@ name: Select Dropdown Selector
 
 # Select Dropdown Selector
 
-The Select component is used to collect information provided by users from a list of options.
-Currently, the Select component only supports `single selection`, with more features coming soon.
+The Select component is used to collect user information from a list of options. Currently, the Select component only supports `single selection`. More features are coming soon.
 
-## Code Demonstrations
+## Basic Usage
 
-### Basic Usage
-
-By combining the `SelectOption` component, you can achieve a dropdown selection effect.
+Achieve dropdown functionality by combining the `SelectOption` component.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
@@ -48,11 +45,11 @@ export default () => {
 
 ### Placeholder
 
-Supports configuring the default display content of the selection box via `placeholder`.
+Support configuring default display content in the select box via `placeholder`.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
@@ -72,7 +69,7 @@ const options = [
 export default () => {
   return (
     <Stack alignItems="stretch" style={{ background: '#eee', padding: '50px' }}>
-      <Select placeholder="Dropdown Selection">
+      <Select placeholder="Choose an option">
         {options.map((item, index) => (
           <SelectOption key={index} value={item.value} label={item.label} />
         ))}
@@ -82,13 +79,13 @@ export default () => {
 };
 ```
 
-### Initializing Default Value
+### Initialize Default Value
 
-Supports setting the initial selected value using the `defaultValue` attribute.
+Support initializing the selected value via the `defaultValue` attribute.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
@@ -120,10 +117,9 @@ export default () => {
 
 ### Controlled/Uncontrolled
 
-Determine if it's a controlled component by whether `value` is passed:
-
-- For controlled components, business logic controls the component value via the `onChange` callback;
-- For uncontrolled components, the component value can be obtained through `inputRef`.
+Distinguish whether it is a controlled component by whether `value` is passed in:
+In a controlled case, the business controls the component value via the `onChange` callback;
+In an uncontrolled case, the component value can be obtained via `inputRef`.
 
 ```tsx
 import { Alert, Button, Select, SelectOption, Stack } from '@bifrostui/react';
@@ -195,12 +191,12 @@ export default () => {
 
 ### Disabled
 
-Provides a `disabled` attribute to prevent user operations.
-You can disable all operations on the `Select` or disable specific options by setting `disabled` on `SelectOption`.
+Provide a `disabled` attribute to prevent user interaction.
+You can disable all interactions by setting `disabled` on the `Select`, or disable a specific option by setting `disabled` on a `SelectOption`.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
@@ -244,9 +240,9 @@ export default () => {
 };
 ```
 
-### Controlled Expansion/Collapse
+### Controlled Open/Close
 
-Control the expansion and collapse of the selector using the controlled `open` property.
+Control the dropdown's open/close state with the controlled `open` attribute.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
@@ -292,10 +288,10 @@ export default () => {
 
 ### Custom Icons
 
-Supports custom icons via the `icon` attribute.
+Provide the capability to customize icons through the `icon` attribute.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Select, SelectOption, Stack } from '@bifrostui/react';
 import { ArrowDownwardIcon } from '@bifrostui/icons';
 
@@ -329,11 +325,11 @@ export default () => {
 
 #### Custom Option Display Content
 
-When you do not want to use `label` as the display content for `SelectOptions`, you can customize the display content using `children`.
+When you do not want to use `label` as the display content of the option `SelectOptions`, you can customize the option display content through `children`.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
@@ -369,12 +365,12 @@ export default () => {
 };
 ```
 
-### Customizing Selector Display Result
+### Custom Select Display Results
 
-`label` supports `ReactNode` type. To customize the display content of the `Select`, you can use the `label` and `children` properties of the `SelectOption` component together.
+`label` supports the `ReactNode` type. When you want to customize the `Select` display content, you can use the `label` and `children` attributes of the `SelectOption` component to achieve customization.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Select, SelectOption, Stack } from '@bifrostui/react';
 import { SettingsOutlinedIcon } from '@bifrostui/icons';
 
@@ -420,7 +416,7 @@ export default () => {
 
 ### Events
 
-In addition to the basic `onChange` callback, the Select component also provides event callbacks for when options are expanded or collapsed.
+The Select component not only provides a basic `onChange` callback but also event callbacks for when options `expand` or `collapse`.
 
 ```tsx
 import { Alert, Select, SelectOption, Stack } from '@bifrostui/react';
@@ -446,15 +442,15 @@ export default () => {
 
   return (
     <Stack alignItems="stretch" style={{ background: '#eee', padding: '50px' }}>
-      <Alert color="info">Current Status: {curValue}</Alert>
+      <Alert color="info">Current State: {curValue}</Alert>
       <Select
         onOpen={() => {
-          setCurValue('Opened Dropdown Selector');
+          setCurValue('Dropdown Opened');
         }}
         onClose={() => {
-          setCurValue('Closed Dropdown Selector');
+          setCurValue('Dropdown Closed');
         }}
-        placeholder="Dropdown Selection"
+        placeholder="Select an option"
       >
         {options.map((item, index) => (
           <SelectOption key={index} value={item.value} label={item.label} />
@@ -465,11 +461,9 @@ export default () => {
 };
 ```
 
-### Specifying Scroll Parent Container
+### Specify Scroll Parent Container
 
-Specify the scroll parent container using `scrollContainer`, which defaults to `() => document.body`.
-After specifying, the dropdown direction will be automatically calculated based on the scroll parent container.
-Only supported in H5.
+Use scrollContainer to specify the scroll parent container. By default, the scroll parent container is the page. After specifying, the display direction of the dropdown will be automatically calculated based on the scroll parent container.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
@@ -517,14 +511,14 @@ export default () => {
 };
 ```
 
-### Overriding Styles via Class Names
+### Override Styles with Class Name
 
-Passing the `className` attribute allows you to override styles.
-The `className` will be mounted on the root component and will also be mounted on the dropdown container in the form of `className-option-container`.
+Override styles by passing the `className` attribute.
+className will be mounted on the root component and on the dropdown container as `className-option-container`.
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
@@ -567,40 +561,45 @@ export default () => {
 
 ##### SelectProps
 
-| Property      | Description                          | Type                                             | Default |
-| ------------- | ------------------------------------ | ------------------------------------------------ | ------- |
-| inputRef      | Selector inputRef                    | Ref                                              | -       |
-| inputProps    | Props passed to `<input/>` tag       | React.InputHTMLAttributes                        | -       |
-| BackdropProps | Props passed to `<Backdrop/>` tag    | React.DivHTMLAttributes                          | -       |
-| name          | Name identifier for `<input/>` tag   | string                                           | -       |
-| value         | Selected value                       | string ｜ number                                 | -       |
-| defaultValue  | Default value                        | string ｜ number                                 | -       |
-| placeholder   | Placeholder content                  | ReactNode                                        | -       |
-| icon          | Selector icon                        | ReactNode                                        | -       |
-| disabled      | Whether the selector is clickable    | boolean                                          | false   |
-| open          | Whether the dropdown is open         | boolean                                          | false   |
-| onChange      | Callback when an item is selected    | (e: SyntheticEvent, data:{value:string}) => void | -       |
-| onOpen        | Callback when the dropdown expands   | () => void                                       | -       |
-| onClose       | Callback when the dropdown collapses | () => void                                       | -       |
+| Property      | Description                                   | Type                                            | Default |
+| ------------- | --------------------------------------------- | ----------------------------------------------- | ------- |
+| inputRef      | Selector inputRef                             | Ref                                             | -       |
+| inputProps    | Pass-through attributes for `<input/>` tag    | React.InputHTMLAttributes                       | -       |
+| BackdropProps | Pass-through attributes for `<Backdrop/>` tag | React.DivHTMLAttributes                         | -       |
+| name          | Name identifier for `<input/>` tag            | string                                          | -       |
+| value         | Selected value of the selector                | string ｜ number                                | -       |
+| defaultValue  | Default value of the selector                 | string ｜ number                                | -       |
+| placeholder   | Placeholder content of the selector           | ReactNode                                       | -       |
+| icon          | Icon of the selector                          | ReactNode                                       | -       |
+| disabled      | Whether the selector is disabled              | boolean                                         | false   |
+| open          | Whether dropdown options are open             | boolean                                         | false   |
+| onChange      | Callback when selecting an option             | (e:SyntheticEvent, data:{value:string}) => void | -       |
+| onOpen        | Callback when the dropdown expands            | () => void                                      | -       |
+| onClose       | Callback when the dropdown collapses          | () => void                                      | -       |
 
 ##### SelectOptionProps
 
-| Property | Description     | Type             | Default |
-| -------- | --------------- | ---------------- | ------- |
-| label    | Fill content    | ReactNode        | -       |
-| value    | Option value    | string ｜ number | -       |
-| disabled | Clickable state | boolean          | false   |
+| Property | Description            | Type             | Default |
+| -------- | ---------------------- | ---------------- | ------- |
+| label    | Option fill content    | ReactNode        | -       |
+| value    | Option value           | string ｜ number | -       |
+| disabled | Option clickable state | boolean          | false   |
 
-### Style Variables
+## Style Variables
 
-| Property                      | Description                 | Default Value           | Global Variable                       |
-| ----------------------------- | --------------------------- | ----------------------- | ------------------------------------- |
-| --height                      | Selector height             | 27px                    | --bui-select-height                   |
-| --mini-width                  | Minimum width               | 100px                   | --bui-select-mini-width               |
-| --font-size                   | Font size                   | var(--bui-title-size-3) | --bui-select-font-size                |
-| --padding                     | Padding                     | 100px                   | --bui-select-mini-width               |
-| --option-container-padding    | Overall padding of dropdown | 3px 0                   | --bui-select-option-container-padding |
-| --option-container-margin-top | Top margin of dropdown      | 6px                     | --bui-select-option-margin-top        |
-| --option-padding              | Padding of each option      | 0 14px                  | --bui-select-option-padding           |
-| --option-margin               | Margin of each option       | 0 3px                   | --bui-select-option-margin            |
-| --option-height               | Height of each option       | 27px                    | --bui-select-option-height            |
+| Global Variable                         | Description                           | Default Value            |
+| --------------------------------------- | ------------------------------------- | ------------------------ |
+| --bui-select-height                     | Height of the selector                | `32px`                   |
+| --bui-select-min-width                  | Minimum width of the selector         | `100px`                  |
+| --bui-select-font-size                  | Font size of the selector             | `var(--bui-text-size-1)` |
+| --bui-select-selector-container-padding | Padding of the selector container     | `0 14px`                 |
+| --bui-select-option-main-padding        | Main padding of the option container  | `3px 0`                  |
+| --bui-select-option-padding             | Padding of the option                 | `0 14px`                 |
+| --bui-select-option-border-radius       | Border radius of the option           | `5px`                    |
+| --bui-select-option-margin              | Margin of the option                  | `0 3px`                  |
+| --bui-select-option-height              | Height of the option                  | `32px`                   |
+| --bui-select-option-active-bg-color     | Active background color of the option | `#fff2f0`                |
+
+```
+
+```

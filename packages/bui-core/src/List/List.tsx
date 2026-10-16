@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import { ListProps } from './List.types';
 import ListContext from './ListContext';
 
@@ -9,11 +9,11 @@ const prefixCls = 'bui-list';
 
 const List = React.forwardRef<HTMLElement, ListProps>((props, ref) => {
   const {
-    hideDivider,
+    hideDivider = false,
     children,
     className,
-    size,
-    component: Component,
+    size = 'medium',
+    component: Component = 'div',
     header,
     subheader,
     ...others
@@ -41,10 +41,5 @@ const List = React.forwardRef<HTMLElement, ListProps>((props, ref) => {
 });
 
 List.displayName = 'BuiList';
-List.defaultProps = {
-  hideDivider: false,
-  size: 'medium',
-  component: 'div',
-};
 
 export default List;

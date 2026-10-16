@@ -1,17 +1,15 @@
 ---
 group: Data Display
-name: TabBar Bottom Navigation Bar
+name: TabBar Bottom Navigation
 ---
 
-# TabBar Bottom Navigation Bar
+# TabBar Bottom Navigation
 
-Bottom navigation bar, used for switching between different pages.
+A bottom navigation bar used for switching between different pages.
 
-## Code Examples
+## Basic Usage
 
-### Basic Usage
-
-By listening to the `onChange` event to update changes in the `current` value. The `current` value is required and defaults to selecting the first element.
+Update `current` value changes by listening to the `onChange` event. The `current` value is required and defaults to selecting the first element.
 
 ```tsx
 import React, { useState } from 'react';
@@ -34,9 +32,9 @@ export default () => {
 };
 ```
 
-### Custom Icons
+## Custom Icons
 
-You can customize the default icons and selected icons of `TabBarItem` using the `icon`, `activeIcon` properties.
+Customize the default and active icons of `TabBarItem` using the `icon` and `activeIcon` properties.
 
 ```tsx
 import React, { useState } from 'react';
@@ -78,9 +76,9 @@ export default () => {
 };
 ```
 
-### Custom Themes
+## Custom Theme
 
-Supports setting default theme colors and selected theme colors via `color`, `activeColor` to achieve custom icon and font colors.
+Support customizing icon and font colors by setting the default and active theme colors via the `color` and `activeColor` properties.
 
 ```tsx
 import React, { useState } from 'react';
@@ -101,7 +99,7 @@ export default () => {
         style={{ background: '#eee', padding: '20px 0 10px' }}
         alignItems="flex-start"
       >
-        <div style={{ margin: '8px' }}>Custom selected theme color:</div>
+        <div style={{ margin: '8px' }}>Custom Active Theme Color: </div>
         <TabBar current={active} onChange={handleChange}>
           <TabBarItem title="Home" />
           <TabBarItem title="Store" />
@@ -112,7 +110,7 @@ export default () => {
         style={{ background: '#eee', padding: '20px 0 10px' }}
         alignItems="flex-start"
       >
-        <div style={{ margin: '8px' }}>Custom default theme color:</div>
+        <div style={{ margin: '8px' }}>Custom Default Theme Color: </div>
         <TabBar
           current={active2}
           onChange={handleChange2}
@@ -129,9 +127,9 @@ export default () => {
 };
 ```
 
-### Badge Notifications
+## Badge Notifications
 
-Supports setting badge content for `TabBarItem` through the `BadgeProps` property.
+Enable setting badge content for `TabBarItem` using the BadgeProps attribute.
 
 ```tsx
 import React, { useState } from 'react';
@@ -173,38 +171,37 @@ export default () => {
 };
 ```
 
-### API
+## API
 
-#### TabBar
+### TabBar
 
-| Property    | Description                         | Type                                                                            | Default Value |
-| ----------- | ----------------------------------- | ------------------------------------------------------------------------------- | ------------- |
-| current     | Index of the currently selected tab | number                                                                          | 0             |
-| color       | Default theme color                 | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` \| `vip` | `default`     |
-| activeColor | Selected theme color                | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `default` \| `vip` | `primary`     |
-| onChange    | Callback when an item is selected   | (e: SyntheticEvent, data: {value: number}) => void                              | -             |
+| Property    | Description                         | Type                                                                                               | Default   |
+| ----------- | ----------------------------------- | -------------------------------------------------------------------------------------------------- | --------- |
+| current     | Index of the currently selected tab | number                                                                                             | 0         |
+| color       | Default theme color                 | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `neutral`\| `dark`\| `light` \| `vip` | `neutral` |
+| activeColor | Active theme color                  | `primary` \| `info` \| `success` \| `warning` \| `danger` \| `neutral`\| `dark`\| `light` \| `vip` | `primary` |
+| onChange    | Callback when a tab is selected     | (e:SyntheticEvent, data:{value:number}) => void                                                    | -         |
 
-#### TabBarItem
+### TabBarItem
 
-| Property   | Description   | Type       | Default Value |
-| ---------- | ------------- | ---------- | ------------- |
-| title      | Title         | string     | -             |
-| icon       | Icon          | ReactNode  | -             |
-| activeIcon | Selected Icon | ReactNode  | -             |
-| BadgeProps | Badge         | BadgeProps | -             |
+| Property   | Description      | Type       | Default |
+| ---------- | ---------------- | ---------- | ------- |
+| title      | Title            | string     | -       |
+| icon       | Icon             | ReactNode  | -       |
+| activeIcon | Active Icon      | ReactNode  | -       |
+| BadgeProps | Badge Properties | BadgeProps | -       |
 
-### Style Variables
+## Style Variables
 
-#### TabBar
+### TabBar
 
-| Property  | Description | Default Value | Global Variable       |
-| --------- | ----------- | ------------- | --------------------- |
-| --width   | Width       | 100%          | --bui-tab-bar-width   |
-| --height  | Height      | 50px          | --bui-tab-bar-height  |
-| --padding | Padding     | 6px 0         | --bui-tab-bar-padding |
+| Global Variable       | Description | Default                       |
+| --------------------- | ----------- | ----------------------------- |
+| --bui-tab-bar-width   | Width       | `100%`                        |
+| --bui-tab-bar-height  | Height      | `50px`                        |
+| --bui-tab-bar-padding | Padding     | `6px 0`                       |
+| --bui-tab-bar-color   | Text Color  | `var(--bui-color-fg-default)` |
 
-#### TabBarItem
+```
 
-| Property    | Description | Default Value          | Global Variable             |
-| ----------- | ----------- | ---------------------- | --------------------------- |
-| --tab-color | Text Color  | --bui-color-fg-default | --bui-tab-bar-default-color |
+```

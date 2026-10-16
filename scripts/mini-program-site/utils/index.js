@@ -1,10 +1,14 @@
 const mdastFromMarkdown = require('mdast-util-from-markdown');
 const pinyin = require('pinyin');
 const fse = require('fs-extra');
-const path = require('path');
+const path = require('node:path');
 
 const coreDir = path.resolve(__dirname, '../../../packages/bui-core/src');
 const iconsDir = path.resolve(__dirname, '../../../packages/bui-icons/src');
+const iconsPioneerDir = path.resolve(
+  __dirname,
+  '../../../packages/bui-icons-pioneer/src',
+);
 
 const flatten = (arr) => {
   return arr.reduce((result, item) => {
@@ -14,9 +18,6 @@ const flatten = (arr) => {
 
 /** 解析markdown代码模块 */
 const parseCodeModules = (modules, theme, index) => {
-  // if (theme.enName === 'Tabs') {
-  //   debugger;
-  // }
   const codeItem = modules.find((moduleItem) => moduleItem.type === 'code');
 
   let code = '';
@@ -34,19 +35,28 @@ const parseCodeModules = (modules, theme, index) => {
     if (isCodeFlagModule && childrenItem) {
       const reg = /(?<=src=(['|"])).*?(?=(['|"]))/gi;
       const relativePath = `${childrenItem.value}`.match(reg)?.[0];
+      const relativeComponents = ['TransitionGroup', 'CSSTransition', 'Stack'];
       const isSvgIcons = theme.enName === 'Icons';
-      const rootDir = isSvgIcons ? iconsDir : coreDir;
+      const isSvgIconsPioneer = theme.enName === 'IconsPioneer';
+      const isIconsPackage = isSvgIcons || isSvgIconsPioneer;
+      const iconsRootDir = isSvgIconsPioneer ? iconsPioneerDir : iconsDir;
+      const rootDir = isIconsPackage ? iconsRootDir : coreDir;
       const realPath = path.join(
         rootDir,
-        isSvgIcons ? './' : theme.enName,
+        isIconsPackage ? './' : theme.enName,
         relativePath,
       );
       code = fse.readFileSync(realPath, 'utf-8');
-      if (isSvgIcons) {
-        // TODO 暂时对SVG demo/index.tsx中的import相对路径做特殊处理
+      if (isIconsPackage) {
         code = code
-          .replace('../components', `${iconsDir}/components`)
-          .replace('./index.less', `${iconsDir}/demo/index.less`);
+          .replace('../components', `${iconsRootDir}/components`)
+          .replace('./index.less', `${iconsRootDir}/demo/index.less`);
+      }
+      if (relativeComponents.includes(theme.enName)) {
+        code = code.replace(
+          './index.less',
+          `${coreDir}/${theme.enName}/demo/index.less`,
+        );
       }
     }
   }

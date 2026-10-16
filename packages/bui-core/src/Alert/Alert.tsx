@@ -6,7 +6,7 @@ import {
   VolumeUpOutlinedIcon,
 } from '@bifrostui/icons';
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import { isMini } from '@bifrostui/utils';
 import { IconButton } from '../IconButton';
 import { AlertActionProps, AlertIconProps, AlertProps } from './Alert.types';
@@ -56,8 +56,8 @@ const AlertIcon = (props: AlertIconProps) => {
   return (
     <div className={clsx(`${prefixCls}-icon`)}>
       {isMini && React.isValidElement(icon)
-        ? React.cloneElement(icon, {
-            ...{ color: icon.props?.color || color },
+        ? React.cloneElement(icon as React.ReactElement<any>, {
+            ...{ color: (icon.props as any)?.color || color },
           })
         : icon}
     </div>
@@ -67,6 +67,7 @@ const AlertIcon = (props: AlertIconProps) => {
 // 警告框操作区
 const AlertAction = (props: AlertActionProps) => {
   const { color, action, onClose } = props;
+
   if (!action && !onClose) return null;
   if (action) {
     return (
@@ -81,6 +82,7 @@ const AlertAction = (props: AlertActionProps) => {
       className={`${prefixCls}-action`}
       color={color}
       onClick={onClose}
+      aria-label="关闭按钮"
     >
       <CloseIcon />
     </IconButton>
@@ -89,10 +91,10 @@ const AlertAction = (props: AlertActionProps) => {
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const {
-    color,
+    color = 'primary',
+    icon = true,
+    variant = 'standard',
     className,
-    icon,
-    variant,
     marquee,
     children,
     action,
@@ -131,10 +133,5 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
 });
 
 Alert.displayName = 'BuiAlert';
-Alert.defaultProps = {
-  icon: true,
-  color: 'primary',
-  variant: 'standard',
-};
 
 export default Alert;

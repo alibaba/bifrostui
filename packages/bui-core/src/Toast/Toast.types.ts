@@ -1,10 +1,7 @@
-import React from 'react';
+import React, { MutableRefObject } from 'react';
 import { FadeProps } from '../Fade/Fade.types';
-import { ThemeProps } from '../ThemeProvider/ThemeProvider.types';
+import { TransitionProps } from '../Transition';
 
-export type ToastRef = {
-  theme?: ThemeProps;
-};
 /**
  * 提示类型
  */
@@ -37,15 +34,11 @@ export interface ToastProps extends FadeProps {
    * 是否允许同时存在多个Toast
    * @default false
    */
-  allowMultiple?: boolean;
+  multiple?: boolean;
   /**
    * 自定义图标
    */
   icon?: React.ReactNode;
-  /**
-   * theme 主题定制
-   */
-  theme?: ThemeProps;
   /**
    * 展示Toast时，页面内容是否可以点击
    * @default false
@@ -55,11 +48,17 @@ export interface ToastProps extends FadeProps {
    * 渲染Toast的根容器
    * @default document.body
    */
-  container?: HTMLElement | (() => HTMLElement);
+  container?: HTMLElement | (() => HTMLElement) | null;
   /**
    * 关闭时的回调函数
    */
   onClose?: () => void;
+  /**
+   * Toast动画时长(ms)
+   */
+  transitionDuration?: TransitionProps['timeout'];
+  // Toast Div Element
+  ref?: MutableRefObject<HTMLDivElement>;
 }
 
 /**

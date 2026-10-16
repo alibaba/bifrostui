@@ -7,10 +7,10 @@ const ItemSelector = React.forwardRef<HTMLDivElement, ItemSelectorProps>(
     const { items } = props;
     const [height, setHeight] = useState('');
     const touchHandler = (e, scrollToCode) => {
-      const t: any = document.elementFromPoint(
+      const t = document.elementFromPoint(
         e.changedTouches[0].clientX,
         e.changedTouches[0].clientY,
-      );
+      ) as HTMLElement | null;
       const code = t?.dataset?.code;
       scrollToCode(code);
     };
