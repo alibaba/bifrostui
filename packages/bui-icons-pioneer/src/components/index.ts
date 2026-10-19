@@ -35,6 +35,7 @@ export { default as CloseCircleOutlinedIcon } from './CloseCircleOutlined';
 export { default as CloseOutlinedIcon } from './CloseOutlinedIcon';
 export { default as CommentFilledIcon } from './CommentFilledIcon';
 export { default as CommentOutlinedIcon } from './CommentOutlinedIcon';
+export { default as CopyOutlinedIcon } from './CopyOutlinedIcon';
 export { default as CouponFilledIcon } from './CouponFilledIcon';
 export { default as CouponOutlinedIcon } from './CouponOutlinedIcon';
 export { default as DMVipOutlinedIcon } from './DMVipOutlinedIcon';
