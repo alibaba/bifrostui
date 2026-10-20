@@ -18,7 +18,7 @@ const PortalCore = React.forwardRef<Element, PortalCoreProps>(
       container,
       disablePortal = false,
       rootElement,
-      onRootElementMouted,
+      onMounted,
     } = props;
     const [mountNode, setMountNode] = React.useState(null);
     const handleRef = useForkRef(
@@ -36,7 +36,7 @@ const PortalCore = React.forwardRef<Element, PortalCoreProps>(
     useLayoutEffect(() => {
       if (mountNode && !disablePortal) {
         setRef(ref, mountNode);
-        onRootElementMouted?.(mountNode);
+        onMounted?.(mountNode);
         return () => {
           setRef(ref, null);
         };

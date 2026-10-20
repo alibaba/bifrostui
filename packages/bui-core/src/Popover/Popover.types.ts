@@ -1,7 +1,20 @@
-import React from 'react';
+import * as React from 'react';
 import { OverrideProps } from '@bifrostui/types';
 
-type triggerType = 'click' | 'hover';
+type triggerType = 'click' | 'hover' | 'none';
+
+export interface AnchorOrigin {
+  /**
+   * 垂直方向位置
+   * @default 'top'
+   */
+  vertical: 'top' | 'center' | 'bottom';
+  /**
+   * 水平方向位置
+   * @default 'center'
+   */
+  horizontal: 'left' | 'center' | 'right';
+}
 
 export type PopoverProps<
   D extends React.ElementType = 'div',
@@ -36,30 +49,19 @@ export type PopoverProps<
        */
       offsetSpacing?: number;
       /**
-       * 气泡框位置
-       * @default 'top'
+       * 气泡框相对于锚点的位置
+       * @default { vertical: 'top', horizontal: 'center' }
        */
-      placement?:
-        | 'top'
-        | 'left'
-        | 'right'
-        | 'bottom'
-        | 'topLeft'
-        | 'topRight'
-        | 'bottomLeft'
-        | 'bottomRight'
-        | 'leftTop'
-        | 'leftBottom'
-        | 'rightTop'
-        | 'rightBottom';
+      anchorOrigin?: AnchorOrigin;
       /**
        * 触发行为
        * - click: 点击触发
        * - hover: hover触发
-       * - 或者是他们的数组
+       * - none: 不自动触发，完全通过 open 属性控制
+       * - 或者是 click 和 hover 的数组组合
        * @default 'click'
        */
-      trigger?: triggerType | triggerType[];
+      trigger?: triggerType | Exclude<triggerType, 'none'>[];
       /**
        * 点击事件回调方法
        * - event 触发事件
@@ -67,9 +69,33 @@ export type PopoverProps<
        * @returns
        */
       onOpenChange?: (
-        event: React.SyntheticEvent,
+        event: React.SyntheticEvent | Event,
         data: { open: boolean },
       ) => void;
+      /**
+       * 无障碍功能：Popover的角色
+       * @default 'tooltip'
+       */
+      role?: 'tooltip' | 'dialog' | 'menu' | 'listbox';
+      /**
+       * 无障碍功能：为Popover提供可访问的标签
+       */
+      'aria-label'?: string;
+      /**
+       * 无障碍功能：引用描述此Popover的元素ID
+       */
+      'aria-labelledby'?: string;
+      /**
+       * 无障碍功能：是否自动管理焦点
+       * 当为true时，Popover打开时会自动获取焦点，关闭时焦点返回到触发元素
+       * @default false
+       */
+      autoFocus?: boolean;
+      /**
+       * 无障碍功能：是否支持Escape键关闭
+       * @default false
+       */
+      closeOnEscape?: boolean;
     };
     defaultComponent: D;
   },

@@ -1,9 +1,14 @@
+/* eslint-disable no-console */
 import { ChangeEvent, useCallback, useRef, useState, useEffect } from 'react';
 
 type Options<T> = {
   value?: T;
   defaultValue: T;
-  onChange?: (e: ChangeEvent<HTMLElement>, data: Record<string, any>) => void;
+  onChange?: (
+    e: ChangeEvent<HTMLElement>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data: Record<string, any>,
+  ) => void;
   config?: {
     name?: string;
     state?: string;
@@ -18,7 +23,6 @@ export default function useValue<T>(options: Options<T>) {
 
   const isControlled = value !== undefined;
 
-  // 异常情况
   useEffect(() => {
     if (
       !isControlled &&

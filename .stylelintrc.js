@@ -20,6 +20,7 @@ module.exports = {
     'selector-class-pattern': null,
     'selector-id-pattern': null,
     'selector-not-notation': null,
+    'comment-empty-line-before': null,
     'function-no-unknown': null,
     "font-family-no-missing-generic-family-keyword": null,
     "declaration-block-no-redundant-longhand-properties": null,

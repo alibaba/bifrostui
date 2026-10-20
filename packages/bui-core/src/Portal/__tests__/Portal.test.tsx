@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render, screen } from 'testing';
 import Portal from '../index';
 
@@ -95,20 +95,17 @@ describe('Portal', () => {
     ).toEqual(true);
   });
 
-  it('test onRootElementMouted props', () => {
-    const onRootElementMouted = jest.fn();
+  it('test onMounted props', () => {
+    const onMounted = vi.fn();
     const containerRef = React.createRef<HTMLDivElement>();
     render(
       <>
         <div ref={containerRef} data-testid="container" />
-        <Portal
-          container={() => containerRef.current}
-          onRootElementMouted={onRootElementMouted}
-        >
+        <Portal container={() => containerRef.current} onMounted={onMounted}>
           <div data-testid="test" />
         </Portal>
       </>,
     );
-    expect(onRootElementMouted).toHaveBeenCalled();
+    expect(onMounted).toHaveBeenCalled();
   });
 });

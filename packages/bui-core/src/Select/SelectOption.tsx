@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import React, { SetStateAction, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { SelectOptionProps } from './Select.types';
 import BuiSelectContext from './selectContext';
 
-import './Select.less';
+import './index.less';
 
 const prefixCls = 'bui-select-option';
 
@@ -17,7 +17,7 @@ const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(
     // 自定义label值+defaultValue初始化时，传递自定义label值到select
     useEffect(() => {
       if (value === selectValue) {
-        setRenderValue(label as SetStateAction<string>);
+        setRenderValue(label);
       }
       return () => {
         setRenderValue('');
@@ -31,6 +31,10 @@ const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(
           [`${prefixCls}-disabled`]: disabled,
         })}
         ref={ref}
+        role="option"
+        aria-selected={!disabled && value === selectValue}
+        aria-disabled={disabled}
+        tabIndex={disabled ? -1 : 0}
         {...others}
         onClick={(e) => {
           // 传递当前选中选项的value、label

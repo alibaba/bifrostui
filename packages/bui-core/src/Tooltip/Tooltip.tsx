@@ -1,16 +1,9 @@
 import clsx from 'clsx';
-import React, { useState, useRef, useEffect } from 'react';
-import {
-  getStylesAndLocation,
-  triggerEventTransform,
-  parsePlacement,
-  throttle,
-  useForkRef,
-  isMini,
-} from '@bifrostui/utils';
+import * as React from 'react';
 import Portal from '../Portal';
 import { TooltipProps } from './Tooltip.types';
-import './Tooltip.less';
+import { useTooltip } from './useTooltip';
+import './index.less';
 
 const prefixCls = 'bui-tooltip';
 
@@ -20,160 +13,71 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
     style,
     children,
     title,
-    defaultOpen,
-    offsetSpacing = 0,
+    defaultOpen = false,
+    offset,
     placement = 'top',
     trigger = 'click',
     open,
     onOpenChange,
+    // 无障碍功能相关属性
+    role = 'tooltip',
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
+    autoFocus = false,
+    closeOnEscape = false,
+    'aria-hidden': ariaHidden = false,
     ...others
   } = props;
 
-  const controlByUser = typeof open !== 'undefined';
+  const {
+    getTooltipProps,
+    getChildProps,
+    getPortalProps,
+    isOpen,
+    toolStyles,
+    arrowDirection,
+    arrowLocation,
+  } = useTooltip({
+    title,
+    defaultOpen,
+    open,
+    offset,
+    placement,
+    trigger,
+    onOpenChange,
+    autoFocus,
+    closeOnEscape,
+    children,
+    rootRef: ref,
+  });
 
-  const { direction, location = 'center' } = parsePlacement(placement);
-  const childrenRef = useRef<Element>();
-  const [openStatus, setOpenStatus] = useState(defaultOpen);
-  // 气泡所在位置
-  const [arrowDirection, setArrowDirection] = useState(direction);
-  // 箭头位置
-  const [arrowLocation, setArrowLocation] = useState(location);
-  const [toolStyles, setToolStyles] = useState({});
-  const tipRef = useRef(null);
-  const nodeRef = useForkRef(ref, tipRef);
-
-  const clearRef = (status) => {
-    // 隐藏时 清空tipRef
-    if (status === false) {
-      tipRef.current = null;
-    }
-  };
-
-  const changeOpenStatus = (event, status) => {
-    if (controlByUser) return;
-    // 隐藏时 清空tipRef
-    clearRef(status);
-    setOpenStatus(status);
-    onOpenChange?.(event, { open: status });
-  };
-
-  const triggerClick = (event) => {
-    event.stopPropagation();
-    const targetStatus = !openStatus;
-    changeOpenStatus(event, targetStatus);
-  };
-  const hideTooltip = (event) => {
-    changeOpenStatus(event, false);
-  };
-  const showTooltip = (event) => {
-    changeOpenStatus(event, true);
-  };
-
-  useEffect(() => {
-    if (!controlByUser) return;
-    setOpenStatus(open);
-    clearRef(open);
-  }, [open]);
-
-  useEffect(() => {
-    if (!openStatus) {
-      setToolStyles({
-        visibility: 'hidden',
-      });
-    }
-  }, [openStatus]);
-
-  const clickEventHandler = (event) => {
-    if (
-      trigger === 'hover' ||
-      (trigger?.length === 1 && trigger?.[0] === 'hover')
-    )
-      return;
-
-    hideTooltip(event);
-  };
-
-  const onRootElementMouted = throttle(async () => {
-    if (!tipRef.current) return;
-    const {
-      direction: newParsedDirection,
-      location: newParsedLocation = 'center',
-    } = parsePlacement(placement);
-    const result = await getStylesAndLocation({
-      childrenRef,
-      arrowDirection: newParsedDirection,
-      arrowLocation: newParsedLocation,
-      offsetSpacing,
-      tipRef,
-    });
-    if (!result) return;
-    const { styles, newArrowDirection, newArrowLocation } = result;
-
-    if (newArrowDirection !== arrowDirection) {
-      setArrowDirection(newArrowDirection);
-    }
-    if (newArrowLocation !== arrowLocation) {
-      setArrowLocation(newArrowLocation);
-    }
-    setToolStyles(styles);
-  }, 100);
-
-  useEffect(() => {
-    /**
-     * 绑定全局事件
-     * click 全局点击隐藏
-     * resize 仅支持H5
-     * @returns
-     */
-    const bindEvent = () => {
-      if (!openStatus) return;
-      if (!controlByUser) {
-        document.addEventListener('click', clickEventHandler);
-      }
-      if (!isMini) {
-        window.addEventListener('resize', onRootElementMouted);
-      }
-    };
-    const unbindEvent = () => {
-      if (!controlByUser) {
-        document.removeEventListener('click', clickEventHandler);
-      }
-      if (!isMini) {
-        window.removeEventListener('resize', onRootElementMouted);
-      }
-    };
-
-    bindEvent();
-    return () => {
-      unbindEvent();
-    };
-  }, [openStatus]);
-
-  let triggerEventOption;
-  if (!controlByUser) {
-    triggerEventOption = triggerEventTransform({
-      trigger,
-      click: triggerClick,
-      show: showTooltip,
-      hide: hideTooltip,
-    });
+  // 确保 children 是有效的 React 元素
+  if (!React.isValidElement(children)) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      'BUI Tooltip: children must be a valid React element that can accept a ref.',
+    );
+    return children as React.ReactElement;
   }
 
-  const childrenOptions = {
-    ref: childrenRef,
-    ...triggerEventOption,
-  };
+  const tooltipProps = getTooltipProps({
+    ...others,
+    className: clsx(prefixCls, className, `tooltip-${arrowDirection}`),
+    style: { ...style, ...toolStyles },
+    role,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
+    'aria-hidden': ariaHidden,
+  });
+
+  const childProps = getChildProps();
+  const portalProps = getPortalProps();
 
   return (
     <>
-      {(open || openStatus) && title ? (
-        <Portal onRootElementMouted={onRootElementMouted}>
-          <div
-            className={clsx(prefixCls, className, `tooltip-${arrowDirection}`)}
-            style={{ ...style, ...toolStyles }}
-            ref={nodeRef}
-            {...others}
-          >
+      {isOpen && title ? (
+        <Portal {...portalProps}>
+          <div {...tooltipProps}>
             <div
               className={clsx('bui-tooltip-arrow', `location-${arrowLocation}`)}
             />
@@ -181,9 +85,7 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>((props, ref) => {
           </div>
         </Portal>
       ) : null}
-      {React.isValidElement(children)
-        ? React.cloneElement(children, childrenOptions)
-        : children}
+      {React.cloneElement(children, childProps)}
     </>
   );
 });

@@ -1,435 +1,253 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Image snapshot Image demo snapshot 0 1`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "column",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "0",
-    }
-  }
->
+exports[`Image snapshot > Image demo snapshot 0 1`] = `
+<div>
   <div
-    className="bui-image"
-    style={
-      Object {
-        "height": 100,
-        "width": 100,
-      }
-    }
-  >
-    <img
-      className="bui-image-img bui-image-loaded"
-      loading="eager"
-      onError={[Function]}
-      onLoad={[Function]}
-      src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
-      style={
-        Object {
-          "objectFit": "fill",
-        }
-      }
-    />
-  </div>
-</div>
-`;
-
-exports[`Image snapshot Image demo snapshot 0 2`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "wrap",
-      "--justify-content": "center",
-      "--spacing": "8px",
-    }
-  }
->
-  <div
-    className="bui-image"
-    style={
-      Object {
-        "height": 100,
-        "width": 100,
-      }
-    }
-  >
-    <img
-      alt="contain"
-      className="bui-image-img bui-image-loaded"
-      loading="eager"
-      onError={[Function]}
-      onLoad={[Function]}
-      src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
-      style={
-        Object {
-          "objectFit": "contain",
-        }
-      }
-    />
-  </div>
-  <div
-    className="bui-image"
-    style={
-      Object {
-        "height": 100,
-        "width": 100,
-      }
-    }
-  >
-    <img
-      alt="cover"
-      className="bui-image-img bui-image-loaded"
-      loading="eager"
-      onError={[Function]}
-      onLoad={[Function]}
-      src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
-      style={
-        Object {
-          "objectFit": "cover",
-        }
-      }
-    />
-  </div>
-  <div
-    className="bui-image"
-    style={
-      Object {
-        "height": 100,
-        "width": 100,
-      }
-    }
-  >
-    <img
-      alt="fill"
-      className="bui-image-img bui-image-loaded"
-      loading="eager"
-      onError={[Function]}
-      onLoad={[Function]}
-      src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
-      style={
-        Object {
-          "objectFit": "fill",
-        }
-      }
-    />
-  </div>
-  <div
-    className="bui-image"
-    style={
-      Object {
-        "height": 100,
-        "width": 100,
-      }
-    }
-  >
-    <img
-      alt="none"
-      className="bui-image-img bui-image-loaded"
-      loading="eager"
-      onError={[Function]}
-      onLoad={[Function]}
-      src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
-      style={
-        Object {
-          "objectFit": "none",
-        }
-      }
-    />
-  </div>
-  <div
-    className="bui-image"
-    style={
-      Object {
-        "height": 100,
-        "width": 100,
-      }
-    }
-  >
-    <img
-      alt="scale-down"
-      className="bui-image-img bui-image-loaded"
-      loading="eager"
-      onError={[Function]}
-      onLoad={[Function]}
-      src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
-      style={
-        Object {
-          "objectFit": "scale-down",
-        }
-      }
-    />
-  </div>
-</div>
-`;
-
-exports[`Image snapshot Image demo snapshot 0 3`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "8px",
-    }
-  }
->
-  <div
-    className="bui-image"
-    style={
-      Object {
-        "borderRadius": 4,
-        "height": 100,
-        "width": 100,
-      }
-    }
-  >
-    <img
-      className="bui-image-img bui-image-loaded"
-      loading="eager"
-      onError={[Function]}
-      onLoad={[Function]}
-      src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
-      style={
-        Object {
-          "objectFit": "cover",
-        }
-      }
-    />
-  </div>
-  <div
-    className="bui-image"
-    style={
-      Object {
-        "borderRadius": 8,
-        "height": 100,
-        "width": 100,
-      }
-    }
-  >
-    <img
-      className="bui-image-img bui-image-loaded"
-      loading="eager"
-      onError={[Function]}
-      onLoad={[Function]}
-      src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
-      style={
-        Object {
-          "objectFit": "cover",
-        }
-      }
-    />
-  </div>
-  <div
-    className="bui-image"
-    style={
-      Object {
-        "borderRadius": 32,
-        "height": 100,
-        "width": 100,
-      }
-    }
-  >
-    <img
-      className="bui-image-img bui-image-loaded"
-      loading="eager"
-      onError={[Function]}
-      onLoad={[Function]}
-      src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
-      style={
-        Object {
-          "objectFit": "cover",
-        }
-      }
-    />
-  </div>
-</div>
-`;
-
-exports[`Image snapshot Image demo snapshot 0 4`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "row",
-      "--flex-wrap": "nowrap",
-      "--justify-content": "center",
-      "--spacing": "8px",
-    }
-  }
->
-  <div
-    className="bui-image"
-    style={
-      Object {
-        "borderRadius": 4,
-        "height": 100,
-        "width": 100,
-      }
-    }
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: column; --spacing: 0; --flex-wrap: nowrap;"
   >
     <div
-      className="bui-image-default-icon-wrap"
+      class="bui-image"
+      style="width: 100px; height: 100px;"
     >
-      <div
-        className="bui-image-default-icon-item"
+      <img
+        alt=""
+        class="bui-image-img bui-image-loaded"
+        loading="eager"
+        src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
+        style="object-fit: fill;"
       />
     </div>
-    <img
-      className="bui-image-img"
-      loading="eager"
-      onError={[Function]}
-      onLoad={[Function]}
-      src="https://localhost:3000/failed"
-      style={
-        Object {
-          "objectFit": "cover",
-        }
-      }
-    />
-  </div>
-  <div
-    className="bui-image"
-    style={
-      Object {
-        "borderRadius": 4,
-        "height": 100,
-        "width": 100,
-      }
-    }
-  >
-    <img
-      className="bui-image-img bui-image-loaded"
-      loading="eager"
-      onError={[Function]}
-      onLoad={[Function]}
-      src="https://localhost:3000/failed"
-      style={
-        Object {
-          "objectFit": "cover",
-        }
-      }
-    />
   </div>
 </div>
 `;
 
-exports[`Image snapshot Image demo snapshot 0 5`] = `
-Array [
+exports[`Image snapshot > Image demo snapshot 0 2`] = `
+<div>
+  <div
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 8px; --flex-wrap: wrap;"
+  >
+    <div
+      class="bui-image"
+      style="width: 100px; height: 100px;"
+    >
+      <img
+        alt="contain"
+        class="bui-image-img bui-image-loaded"
+        loading="eager"
+        src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
+        style="object-fit: contain;"
+      />
+    </div>
+    <div
+      class="bui-image"
+      style="width: 100px; height: 100px;"
+    >
+      <img
+        alt="cover"
+        class="bui-image-img bui-image-loaded"
+        loading="eager"
+        src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
+        style="object-fit: cover;"
+      />
+    </div>
+    <div
+      class="bui-image"
+      style="width: 100px; height: 100px;"
+    >
+      <img
+        alt="fill"
+        class="bui-image-img bui-image-loaded"
+        loading="eager"
+        src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
+        style="object-fit: fill;"
+      />
+    </div>
+    <div
+      class="bui-image"
+      style="width: 100px; height: 100px;"
+    >
+      <img
+        alt="none"
+        class="bui-image-img bui-image-loaded"
+        loading="eager"
+        src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
+        style="object-fit: none;"
+      />
+    </div>
+    <div
+      class="bui-image"
+      style="width: 100px; height: 100px;"
+    >
+      <img
+        alt="scale-down"
+        class="bui-image-img bui-image-loaded"
+        loading="eager"
+        src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
+        style="object-fit: scale-down;"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Image snapshot > Image demo snapshot 0 3`] = `
+<div>
+  <div
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 8px; --flex-wrap: nowrap;"
+  >
+    <div
+      class="bui-image"
+      style="width: 100px; height: 100px; border-radius: 4px;"
+    >
+      <img
+        alt=""
+        class="bui-image-img bui-image-loaded"
+        loading="eager"
+        src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
+        style="object-fit: cover;"
+      />
+    </div>
+    <div
+      class="bui-image"
+      style="width: 100px; height: 100px; border-radius: 8px;"
+    >
+      <img
+        alt=""
+        class="bui-image-img bui-image-loaded"
+        loading="eager"
+        src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
+        style="object-fit: cover;"
+      />
+    </div>
+    <div
+      class="bui-image"
+      style="width: 100px; height: 100px; border-radius: 32px;"
+    >
+      <img
+        alt=""
+        class="bui-image-img bui-image-loaded"
+        loading="eager"
+        src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg"
+        style="object-fit: cover;"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Image snapshot > Image demo snapshot 0 4`] = `
+<div>
+  <div
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 8px; --flex-wrap: nowrap;"
+  >
+    <div
+      class="bui-image"
+      style="width: 100px; height: 100px; border-radius: 4px;"
+    >
+      <div
+        aria-hidden="true"
+        class="bui-image-default-icon-wrap default-holder"
+      />
+      <img
+        alt=""
+        class="bui-image-img"
+        loading="eager"
+        src="https://localhost:3000/failed"
+        style="object-fit: cover;"
+      />
+    </div>
+    <div
+      class="bui-image"
+      style="width: 100px; height: 100px; border-radius: 4px;"
+    >
+      <img
+        alt=""
+        class="bui-image-img bui-image-loaded"
+        loading="eager"
+        src="https://localhost:3000/failed"
+        style="object-fit: cover;"
+      />
+    </div>
+    <div
+      class="bui-image"
+      style="height: 100px; border-radius: 4px;"
+    >
+      <img
+        alt=""
+        class="bui-image-img bui-image-loaded"
+        loading="eager"
+        src="https://localhost:3000/failed"
+        style="object-fit: fill;"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Image snapshot > Image demo snapshot 0 5`] = `
+<div>
   <button
-    className="bui-btn bui-btn-outlined bui-btn-medium bui-btn-default"
-    onClick={[Function]}
+    class="bui-btn bui-btn-outlined bui-btn-medium"
     type="button"
   >
     重新加载
-  </button>,
+  </button>
   <div
-    className="bui-stack"
-    style={
-      Object {
-        "--align-items": "center",
-        "--flex-direction": "row",
-        "--flex-wrap": "nowrap",
-        "--justify-content": "center",
-        "--spacing": "8px",
-      }
-    }
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 8px; --flex-wrap: nowrap;"
   >
     <div
-      className="bui-image"
-      style={
-        Object {
-          "height": 100,
-          "width": 100,
-        }
-      }
+      class="bui-image"
+      style="width: 100px; height: 100px;"
     >
       <img
-        className="bui-image-img bui-image-loaded"
+        alt=""
+        class="bui-image-img bui-image-loaded"
         loading="eager"
-        onError={[Function]}
-        onLoad={[Function]}
         src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg?t=0"
-        style={
-          Object {
-            "objectFit": "fill",
-          }
-        }
+        style="object-fit: fill;"
       />
     </div>
     <div
-      className="bui-image"
-      style={
-        Object {
-          "height": 100,
-          "width": 100,
-        }
-      }
+      class="bui-image"
+      style="width: 100px; height: 100px;"
     >
       <div
-        className="bui-image-default-icon-wrap"
-      >
-        <div
-          className="bui-image-default-icon-item"
-        />
-      </div>
+        aria-hidden="true"
+        class="bui-image-default-icon-wrap default-holder"
+      />
       <img
-        className="bui-image-img"
+        alt=""
+        class="bui-image-img"
         loading="eager"
-        onError={[Function]}
-        onLoad={[Function]}
         src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg?t=0"
-        style={
-          Object {
-            "objectFit": "fill",
-          }
-        }
+        style="object-fit: fill;"
       />
     </div>
     <div
-      className="bui-image"
-      style={
-        Object {
-          "height": 100,
-          "width": 100,
-        }
-      }
+      class="bui-image"
+      style="width: 100px; height: 100px;"
     >
       <div
-        className="bui-image-default-icon-wrap"
+        aria-hidden="true"
+        class="bui-image-default-icon-wrap"
       >
         <div
-          style={
-            Object {
-              "background": "red",
-              "height": "100%",
-              "width": "100%",
-            }
-          }
+          style="background: red; width: 100%; height: 100%;"
         />
       </div>
       <img
-        className="bui-image-img"
+        alt=""
+        class="bui-image-img"
         loading="eager"
-        onError={[Function]}
-        onLoad={[Function]}
         src="https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg?t=0"
-        style={
-          Object {
-            "objectFit": "fill",
-          }
-        }
+        style="object-fit: fill;"
       />
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;

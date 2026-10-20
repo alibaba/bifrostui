@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { OverrideProps } from '@bifrostui/types';
 
 export type cityType = {
@@ -37,7 +38,7 @@ export type CitySelectorProps<
       /** 禁用展示索引 默认false 即展示索引 */
       disableIndex?: boolean;
       /** 头部标题 */
-      title?: string;
+      title?: React.ReactNode;
       /** 选择城市回调 */
       onSelect: (
         e: React.SyntheticEvent,

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { isConformant, render, screen, userEvent } from 'testing';
 import IconButton from '../index';
 
@@ -11,10 +11,10 @@ describe('IconButton', () => {
     className: rootClass,
   });
 
-  it('can trigger a function by being clicked', () => {
-    const onClick = jest.fn();
+  it('can trigger a function by being clicked', async () => {
+    const onClick = vi.fn();
     render(<IconButton onClick={onClick}>IconButton</IconButton>);
-    userEvent.click(screen.getByRole('button'));
+    await userEvent.click(screen.getByRole('button'));
     expect(onClick).toHaveBeenCalled();
   });
 
@@ -29,8 +29,8 @@ describe('IconButton', () => {
   });
 
   it('should render correctly with variant props', () => {
-    const colors = ['default', 'contained', 'outlined'] as const;
-    colors.forEach((variant) => {
+    const variants = ['default', 'contained', 'outlined'] as const;
+    variants.forEach((variant) => {
       render(<IconButton variant={variant}>{variant} IconButton</IconButton>);
       expect(
         screen.getByRole('button', { name: `${variant} IconButton` }),
@@ -44,7 +44,7 @@ describe('IconButton', () => {
       'success',
       'info',
       'danger',
-      'default',
+      'neutral',
     ] as const;
     colors.forEach((color) => {
       render(<IconButton color={color}>{color} IconButton</IconButton>);
@@ -54,8 +54,8 @@ describe('IconButton', () => {
     });
   });
   it('in miniapp children can set color props', async () => {
-    jest.resetModules();
-    jest.doMock('@bifrostui/utils', () => ({
+    vi.resetModules();
+    vi.doMock('@bifrostui/utils', () => ({
       isMini: true,
     }));
     const { default: MiniIconButton } = await import('../index');
@@ -65,7 +65,7 @@ describe('IconButton', () => {
       </MiniIconButton>,
     );
     expect(screen.getByText('icon')).toHaveAttribute('color', 'success');
-    const mockBackdropFn = jest.fn();
+    const mockBackdropFn = vi.fn();
     const TestChildren = (props) => {
       mockBackdropFn(props);
       return <div />;
@@ -76,7 +76,7 @@ describe('IconButton', () => {
       </MiniIconButton>,
     );
     expect(mockBackdropFn).toHaveBeenCalledWith(
-      expect.objectContaining({ htmlColor: '#fff' }),
+      expect.objectContaining({ htmlColor: 'var(--bui-color-white)' }),
     );
   });
 });

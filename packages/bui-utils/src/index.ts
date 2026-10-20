@@ -23,7 +23,7 @@ export {
   useUniqueId,
 } from './hooks';
 export { default as isDev } from './isDev';
-export { isMini, isWeapp, isAlipay, isMiniapp } from './isMini';
+export { isMini, isWeapp, isAlipay, isTt, isMiniapp } from './isMini';
 export { default as setRef } from './setRef';
 export { default as throttle } from './throttle';
 export { default as toArray } from './toArray';
@@ -36,6 +36,8 @@ export {
 } from './transitions';
 export { default as getRootContainer } from './getRootContainer';
 export { default as getBoundingClientRect } from './getBoundingClientRect';
-export { getScrollRect, getClientRect } from './domUtils';
+export * from './domUtils';
 export * from './isType';
 export * from './render';
+export * from './themeCreator';
+export * from './context-selector';

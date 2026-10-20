@@ -5,6 +5,7 @@ import { ReactComponent as IconGitlab } from '@ant-design/icons-svg/inline-svg/o
 import { ReactComponent as IconLinkedin } from '@ant-design/icons-svg/inline-svg/outlined/linkedin.svg';
 import { ReactComponent as IconTwitter } from '@ant-design/icons-svg/inline-svg/outlined/twitter.svg';
 import { ReactComponent as IconWeiBo } from '@ant-design/icons-svg/inline-svg/outlined/weibo.svg';
+import { ReactComponent as IconX } from '@ant-design/icons-svg/inline-svg/outlined/x.svg';
 import { ReactComponent as IconYuque } from '@ant-design/icons-svg/inline-svg/outlined/yuque.svg';
 import { ReactComponent as IconZhihu } from '@ant-design/icons-svg/inline-svg/outlined/zhihu.svg';
 import React, { FunctionComponent, useMemo, type FC } from 'react';
@@ -30,6 +31,7 @@ const presetIconMap: Record<SocialTypes, FunctionComponent> = {
   zhihu: IconZhihu,
   yuque: IconYuque,
   linkedin: IconLinkedin,
+  x: IconX,
 };
 
 const SocialIcon: FC<SocialIconProps> = (props: SocialIconProps) => {

@@ -25,23 +25,21 @@ $ pnpm add @bifrostui/icons
 import { SettingsOutlinedIcon } from '@bifrostui/icons';
 ```
 
-## 代码演示
-
 ### 大小
 
 通过`size`属性设置图标大小。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack } from '@bifrostui/react';
 import { SettingsOutlinedIcon } from '@bifrostui/icons';
 
 export default () => {
   return (
     <Stack direction="row" spacing="10px">
-      <SettingsOutlinedIcon size="small" />
-      <SettingsOutlinedIcon size="medium" />
-      <SettingsOutlinedIcon size="large" />
+      <SettingsOutlinedIcon size="small" titleAccess="设置" />
+      <SettingsOutlinedIcon size="medium" titleAccess="设置" />
+      <SettingsOutlinedIcon size="large" titleAccess="设置" />
     </Stack>
   );
 };
@@ -52,20 +50,25 @@ export default () => {
 通过`color`属性设置图标色彩。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack } from '@bifrostui/react';
 import { SettingsOutlinedIcon } from '@bifrostui/icons';
 
 export default () => {
   return (
-    <Stack direction="row" spacing="10px">
-      <SettingsOutlinedIcon size="large" />
+    <Stack
+      direction="row"
+      spacing="10px"
+      style={{ backgroundColor: '#eee', padding: '10px' }}
+    >
+      <SettingsOutlinedIcon color="light" size="large" />
+      <SettingsOutlinedIcon color="dark" size="large" />
+      <SettingsOutlinedIcon color="neutral" size="large" />
       <SettingsOutlinedIcon color="primary" size="large" />
-      <SettingsOutlinedIcon color="default" size="large" />
       <SettingsOutlinedIcon color="info" size="large" />
-      <SettingsOutlinedIcon color="warning" size="large" />
       <SettingsOutlinedIcon color="danger" size="large" />
       <SettingsOutlinedIcon color="success" size="large" />
+      <SettingsOutlinedIcon color="warning" size="large" />
       <SettingsOutlinedIcon color="disabled" size="large" />
     </Stack>
   );
@@ -77,7 +80,7 @@ export default () => {
 如果预定义的图标大小、色彩不能满足需要的话，可以通过通过`htmlColor`属性定制颜色, 或者`style`属性自定义。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack } from '@bifrostui/react';
 import { SettingsOutlinedIcon } from '@bifrostui/icons';
 
@@ -97,9 +100,9 @@ export default () => {
 
 ## API
 
-| 属性      | 说明                                                            | 类型                                                                                 | 默认值               |
-| --------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------- |
-| color     | 图标主题颜                                                      | `default` \| `primary` \| `info` \| `success` \| `warning` \| `danger` \| `disabled` | -                    |
-| htmlColor | 自定义图标颜色                                                  | string                                                                               | -                    |
-| size      | 预置的图标大小，也可以通过元素的font-size来设置自定义的图标大小 | `small` \| `medium` \| `large`                                                       | 继承父元素的字体大小 |
-| viewBox   | SVG的viewBox属性                                                | string                                                                               | '0 0 96 96'          |
+| 属性      | 说明                                                            | 类型                                                                                                    | 默认值               |
+| --------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | -------------------- |
+| color     | 图标主题颜                                                      | `light` \| `dark` \| `neutral` \| `primary` \| `info` \| `danger` \|`success` \|`warning` \| `disabled` | -                    |
+| htmlColor | 自定义图标颜色                                                  | string                                                                                                  | -                    |
+| size      | 预置的图标大小，也可以通过元素的font-size来设置自定义的图标大小 | `small` \| `medium` \| `large`                                                                          | 继承父元素的字体大小 |
+| viewBox   | SVG的viewBox属性                                                | string                                                                                                  | '0 0 96 96'          |

@@ -1,4 +1,4 @@
-import { useForkRef } from '@bifrostui/utils';
+import { useForkRef, useDidMountEffect } from '@bifrostui/utils';
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import { TransitionCoreProps, TransitionStatus } from './Transition.types';
 
@@ -10,17 +10,17 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       children,
       mountOnEnter,
       unmountOnExit,
-      enter,
-      exit,
+      enter = true,
+      exit = true,
       timeout: _timeout,
-      delay: _delay,
+      delay: _delay = 0,
       onEnter,
       onEntering,
       onEntered,
       onExit,
       onExiting,
       onExited,
-      nextTick,
+      nextTick = setTimeout,
       ...childProps
     } = props;
     const UNMOUNTED = 'unmounted';
@@ -32,19 +32,25 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       if (inProp) return appear ? EXITED : ENTERED;
       return mountOnEnter || unmountOnExit ? UNMOUNTED : EXITED;
     });
-    const innerNodeRef = useRef();
+    const innerNodeRef = useRef<HTMLElement>(null);
     const nodeRef = useForkRef(innerNodeRef, ref);
     const timeout =
       typeof _timeout === 'object'
         ? { ..._timeout }
-        : { enter: _timeout, exit: _timeout };
+        : { enter: _timeout, exit: _timeout, appear: _timeout };
+
     const delay =
-      typeof _delay === 'object' ? _delay : { enter: _delay, exit: _delay };
-    timeout.enter += delay.enter;
-    timeout.exit += delay.exit;
+      typeof _delay === 'object'
+        ? _delay
+        : { enter: _delay, exit: _delay, appear: _delay };
+
+    // Apply delay to timeout
+    if (timeout.enter !== undefined) timeout.enter += delay.enter || 0;
+    if (timeout.exit !== undefined) timeout.exit += delay.exit || 0;
+    if (timeout.appear !== undefined) timeout.appear += delay.appear || 0;
     const nextCallback = useRef(null);
     const appearStatus = useRef(inProp && appear ? ENTERING : null);
-    const isFirstRender = useRef(false);
+    const isMountedRef = useRef(true);
 
     const cancelNextCallback = () => {
       if (nextCallback.current !== null) {
@@ -58,7 +64,7 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       let active = true;
 
       nextCallback.current = (event) => {
-        if (active) {
+        if (active && isMountedRef.current) {
           active = false;
           nextCallback.current = null;
           callback(event);
@@ -81,10 +87,13 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       // This shouldn't be necessary, but there are weird race conditions with
       // setState callbacks and unmounting in testing, so always make sure that
       // we can cancel any pending setState callbacks after we unmount.
+      if (!isMountedRef.current) return;
       setStatus(nextState);
       setNextCallback(callback);
       nextTick(() => {
-        nextCallback?.current?.();
+        if (isMountedRef.current) {
+          nextCallback?.current?.();
+        }
       });
     };
     const performEnter = async (mounting) => {
@@ -107,7 +116,8 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
 
     const performExit = async () => {
       if (!exit) {
-        safeSetState(unmountOnExit ? UNMOUNTED : EXITED, async () => {
+        safeSetState(EXITED, async () => {
+          if (unmountOnExit) setStatus(UNMOUNTED);
           await onExited?.(innerNodeRef?.current);
         });
         return;
@@ -116,7 +126,8 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       safeSetState(EXITING, async () => {
         await onExiting?.(innerNodeRef?.current);
         onTransitionEnd(timeout.exit, () => {
-          safeSetState(unmountOnExit ? UNMOUNTED : EXITED, async () => {
+          safeSetState(EXITED, async () => {
+            if (unmountOnExit) setStatus(UNMOUNTED);
             await onExited?.(innerNodeRef?.current);
           });
         });
@@ -127,6 +138,9 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       if (nextStatus !== null) {
         cancelNextCallback();
         if (nextStatus === ENTERING) {
+          if (unmountOnExit || mountOnEnter) {
+            forceReflow(innerNodeRef?.current);
+          }
           performEnter(mounting);
         } else if (nextStatus === EXITING) {
           performExit();
@@ -134,18 +148,29 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       }
     };
     useEffect(() => {
-      nextTick(() => updateStatus(appearStatus.current, true));
+      // React StrictMode（仅 dev）会对 effect 做「执行 → 清理 → 再执行」的双重调用。
+      // 清理函数把 isMountedRef 置为 false，而重新执行时不会自动恢复，导致重挂载后
+      // 所有 safeSetState 都被守卫拦截（第一行 if (!isMountedRef.current) return），
+      // appear 进场动画永远停在 exited —— 表现为 Modal/Fade 遮罩 opacity 恒为 0。
+      isMountedRef.current = true;
+      // 另外，这里的 nextTick 直接使用 setTimeout，不走 setNextCallback，
+      // 因此 cancelNextCallback() 无法取消。用局部 cancelled 标志把这次
+      // bootstrap 定时器绑定到当前 effect 实例，避免 StrictMode 下 Timer A
+      // 在第二次挂载后仍然触发，进而导致 onEnter 等回调被调用两次。
+      let cancelled = false;
+      nextTick(() => {
+        if (cancelled) return;
+        updateStatus(appearStatus.current, true);
+      });
+
       return () => {
+        cancelled = true;
+        isMountedRef.current = false;
         cancelNextCallback();
       };
     }, []);
 
-    useEffect(() => {
-      const isMounted = status !== UNMOUNTED;
-      if (!isFirstRender.current) {
-        isFirstRender.current = true;
-        return;
-      }
+    useDidMountEffect(() => {
       let nextStatus = null;
       if (inProp) {
         if (status !== ENTERING && status !== ENTERED) {
@@ -154,30 +179,30 @@ const TransitionCore = forwardRef<HTMLElement, TransitionCoreProps>(
       } else if (status === ENTERING || status === ENTERED) {
         nextStatus = EXITING;
       }
-      if (isMounted) updateStatus(nextStatus, false);
-      else
-        safeSetState(inProp ? 'EXITED' : 'ENTERED', () => {
-          // With unmountOnExit or mountOnEnter, the enter animation should happen at the transition between `exited` and `entering`.
-          // To make the animation happen,  we have to separate each rendering and avoid being processed as batched.
-          forceReflow(innerNodeRef?.current);
+      if (inProp && status === UNMOUNTED) {
+        safeSetState(EXITED, () => {
           updateStatus(nextStatus, false);
         });
+      } else {
+        updateStatus(nextStatus, false);
+      }
     }, [inProp]);
 
     if (status === UNMOUNTED) return null;
-    return typeof children === 'function'
-      ? children(status as TransitionStatus, { ...childProps, ref: nodeRef })
-      : React.cloneElement(React.Children.only(children), {
-          ...childProps,
-          ref: nodeRef,
-        });
+    if (typeof children === 'function') {
+      return children(status as TransitionStatus, {
+        ...childProps,
+        ref: nodeRef,
+      });
+    }
+    const onlyChild = React.Children.only(children) as React.ReactElement<any>;
+    return React.cloneElement(onlyChild, {
+      ...childProps,
+      ref: nodeRef,
+    } as any);
   },
 );
 
 TransitionCore.displayName = 'BuiTransitionCore';
-TransitionCore.defaultProps = {
-  enter: true,
-  exit: true,
-  nextTick: setTimeout,
-};
+
 export default TransitionCore;

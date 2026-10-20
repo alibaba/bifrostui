@@ -1,0 +1,44 @@
+@import '@bifrostui/styles/mixins/index.less';
+
+@{root-selector} {
+  --bui-loading-icon-font-size: 30px;
+  --bui-loading-text-padding: 10px;
+  --bui-loading-animation-duration: 1.6s;
+}
+
+.bui-loading {
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--bui-spacing-md);
+  font-family: var(--bui-font-family);
+
+  &-icon {
+    font-size: var(--bui-loading-icon-font-size);
+    animation: loading var(--bui-loading-animation-duration) linear infinite;
+  }
+
+  &-text {
+    padding: var(--bui-loading-text-padding);
+    font-size: var(--bui-title-size-3);
+  }
+
+  &-vertical {
+    flex-direction: row;
+  }
+
+  &-horizontal {
+    flex-direction: column;
+  }
+
+  @keyframes loading {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

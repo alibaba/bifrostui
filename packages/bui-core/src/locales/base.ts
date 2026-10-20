@@ -1,7 +1,7 @@
 export interface BaseLang {
   dialog?: {
     cancel?: string;
-    confirm?: string;
+    ok?: string;
     placeholder?: string;
   };
   picker?: {
@@ -21,7 +21,10 @@ export interface BaseLang {
     placeholder?: string;
   };
   textarea?: {
+    labelName?: string;
     placeholder?: string;
+    remaining?: string;
+    characters?: string;
   };
   selector?: {
     select?: string;
@@ -47,5 +50,30 @@ export interface BaseLang {
     hour: string;
     minute: string;
     second: string;
+  };
+  countdown?: {
+    remain?: {
+      year?: string;
+      month?: string;
+      day?: string;
+      hour?: string;
+      minute?: string;
+      second?: string;
+    };
+    remainTime?: string;
+    hasEnd?: string;
+    willEnd?: string;
+    timer?: string;
+  };
+  progress?: {
+    labelName?: string;
+    notStarted?: string;
+    justBegun?: string;
+    gettingStarted?: string;
+    inProgress?: string;
+    moreThanHalfway?: string;
+    almostComplete?: string;
+    complete?: string;
+    nearingCompletion?: string;
   };
 }

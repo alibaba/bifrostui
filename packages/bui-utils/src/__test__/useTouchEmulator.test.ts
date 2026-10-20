@@ -18,7 +18,7 @@ describe('useTouchEmulator', () => {
       cancelable: true,
       bubbles: true,
     });
-    const touchMove = jest.fn();
+    const touchMove = vi.fn();
     div.addEventListener('touchmove', touchMove, false);
 
     div.dispatchEvent(mousedown);

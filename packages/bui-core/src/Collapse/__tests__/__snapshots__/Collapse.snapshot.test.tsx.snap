@@ -1,148 +1,169 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Collapse snapshot Collapse demo snapshot 0 1`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "column",
-      "--flex-wrap": "wrap",
-      "--justify-content": "center",
-      "--spacing": "8px",
-    }
-  }
->
+exports[`Collapse snapshot > Collapse demo snapshot 0 1`] = `
+<div>
   <div
-    className="bui-switch bui-switch-medium bui-switch-primary"
-  >
-    <input
-      checked={false}
-      className="bui-switch-input"
-      disabled={false}
-      onChange={[Function]}
-      type="checkbox"
-    />
-  </div>
-  <div
-    className="bui-collapse"
-    style={
-      Object {
-        "WebKitWidth": "0px",
-        "WebkitTransition": "width 1500ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
-        "transition": "width 1500ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
-        "width": "0px",
-      }
-    }
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: column; --spacing: 8px; --flex-wrap: wrap;"
   >
     <div
-      className="bui-card"
-      style={
-        Object {
-          "background": "#CCCCCC",
-          "height": "100px",
-          "width": "100px",
-        }
-      }
-    />
+      class="bui-switch bui-switch-medium bui-switch-primary"
+    >
+      <input
+        class="bui-switch-input"
+        type="checkbox"
+      />
+    </div>
+    <div
+      class="bui-collapse"
+      style="transition: none; width: 0px;"
+    >
+      <div
+        class="bui-card"
+        style="background: rgb(204, 204, 204); width: 100px; height: 100px;"
+      />
+    </div>
   </div>
 </div>
 `;
 
-exports[`Collapse snapshot Collapse demo snapshot 0 2`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "column",
-      "--flex-wrap": "wrap",
-      "--justify-content": "center",
-      "--spacing": "8px",
-    }
-  }
->
+exports[`Collapse snapshot > Collapse demo snapshot 0 2`] = `
+<div>
   <div
-    className="bui-switch bui-switch-medium bui-switch-primary bui-switch-checked"
-  >
-    <input
-      checked={true}
-      className="bui-switch-input"
-      disabled={false}
-      onChange={[Function]}
-      type="checkbox"
-    />
-  </div>
-  <div
-    className="bui-collapse"
-    style={
-      Object {
-        "WebKitHeight": "fit-content",
-        "WebkitTransition": "height 1500ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
-        "height": "fit-content",
-        "transition": "height 1500ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
-      }
-    }
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: column; --spacing: 8px; --flex-wrap: wrap;"
   >
     <div
-      className="bui-card"
-      style={
-        Object {
-          "background": "#CCCCCC",
-          "height": "100px",
-          "width": "100px",
-        }
-      }
-    />
+      class="bui-switch bui-switch-medium bui-switch-primary bui-switch-checked"
+    >
+      <input
+        checked=""
+        class="bui-switch-input"
+        type="checkbox"
+      />
+    </div>
+    <div
+      class="bui-collapse"
+      style="transition: none; height: auto;"
+    >
+      <div
+        class="bui-card"
+        style="background: rgb(204, 204, 204); width: 100px; height: 100px;"
+      />
+    </div>
   </div>
 </div>
 `;
 
-exports[`Collapse snapshot Collapse demo snapshot 0 3`] = `
-<div
-  className="bui-stack"
-  style={
-    Object {
-      "--align-items": "center",
-      "--flex-direction": "column",
-      "--flex-wrap": "wrap",
-      "--justify-content": "center",
-      "--spacing": "8px",
-    }
-  }
->
+exports[`Collapse snapshot > Collapse demo snapshot 0 3`] = `
+<div>
   <div
-    className="bui-switch bui-switch-medium bui-switch-primary bui-switch-checked"
-  >
-    <input
-      checked={true}
-      className="bui-switch-input"
-      disabled={false}
-      onChange={[Function]}
-      type="checkbox"
-    />
-  </div>
-  <div
-    className="bui-collapse"
-    style={
-      Object {
-        "WebKitHeight": "fit-content",
-        "WebkitTransition": "height 1500ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
-        "height": "fit-content",
-        "transition": "height 1500ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
-      }
-    }
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: column; --spacing: 8px; --flex-wrap: wrap;"
   >
     <div
-      className="bui-card"
-      style={
-        Object {
-          "background": "#CCCCCC",
-          "height": "100px",
-          "width": "100px",
-        }
-      }
-    />
+      class="bui-switch bui-switch-medium bui-switch-primary bui-switch-checked"
+    >
+      <input
+        checked=""
+        class="bui-switch-input"
+        type="checkbox"
+      />
+    </div>
+    <div
+      class="bui-collapse"
+      style="transition: none; height: auto;"
+    >
+      <div
+        class="bui-card"
+        style="background: rgb(204, 204, 204); width: 100px; height: 100px;"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Collapse snapshot > Collapse demo snapshot 0 4`] = `
+<div>
+  <div
+    class="bui-stack"
+    style="--align-items: center; --justify-content: center; --flex-direction: column; --spacing: 16px; --flex-wrap: nowrap;"
+  >
+    <button
+      class="bui-btn bui-btn-outlined bui-btn-medium"
+      type="button"
+    >
+      切换状态
+    </button>
+    <div
+      class="bui-stack"
+      style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 16px; --flex-wrap: nowrap;"
+    >
+      <div
+        style="width: 120px;"
+      >
+        仅进入动画:
+      </div>
+      <div
+        class="bui-collapse"
+        style="transition: none; height: 0px;"
+      >
+        <div
+          class="bui-card"
+          style="background: rgb(204, 204, 204); width: 100px; height: 80px; padding: 8px;"
+        >
+          <div>
+            瞬间退出，平滑进入
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="bui-stack"
+      style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 16px; --flex-wrap: nowrap;"
+    >
+      <div
+        style="width: 120px;"
+      >
+        仅退出动画:
+      </div>
+      <div
+        class="bui-collapse"
+        style="transition: none; width: 0px;"
+      >
+        <div
+          class="bui-card"
+          style="background: rgb(204, 204, 204); width: 100px; height: 80px; padding: 8px;"
+        >
+          <div>
+            瞬间进入，平滑退出
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="bui-stack"
+      style="--align-items: center; --justify-content: center; --flex-direction: row; --spacing: 16px; --flex-wrap: nowrap;"
+    >
+      <div
+        style="width: 120px;"
+      >
+        全部禁用:
+      </div>
+      <div
+        class="bui-collapse"
+        style="transition: none; height: 0px;"
+      >
+        <div
+          class="bui-card"
+          style="background: rgb(204, 204, 204); width: 100px; height: 80px; padding: 8px;"
+        >
+          <div>
+            瞬间切换，无动画
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;

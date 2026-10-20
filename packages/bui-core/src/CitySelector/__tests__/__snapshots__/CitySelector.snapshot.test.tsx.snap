@@ -1,187 +1,419 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CitySelector snapshot CitySelector demo snapshot 0 1`] = `
-<div
-  className="bui-city-selector"
-  style={
-    Object {
-      "height": "500px",
-    }
-  }
->
+exports[`CitySelector snapshot > CitySelector demo snapshot 0 1`] = `
+<div>
   <div
-    className="bui-scroll bui-scroll-view-scroll-y bui-city-selector-scroll-view-container tph"
-    onScroll={[Function]}
-    onTouchMove={[Function]}
-    style={Object {}}
+    class="bui-city-selector"
+    style="height: 500px;"
   >
     <div
-      className="bui-city-selector-all-city"
+      class="bui-scroll bui-scroll-view-scroll-y bui-city-selector-scroll-view-container tph"
     >
-      <div>
-        <div
-          className="select-city-title"
-          id="CRRT"
-        >
-          当前城市
-        </div>
-        <div
-          className="select-city-buttons"
-        >
-          <span
-            className="bui-city-selector-item"
-            onClick={[Function]}
-          >
-            北京
-          </span>
-        </div>
-      </div>
-      <div>
-        <div
-          className="select-city-title"
-          id="GPS"
-        >
-          定位城市
-        </div>
-        <div
-          className="select-city-buttons"
-        >
-          <span
-            className="bui-city-selector-item"
-            onClick={[Function]}
-          >
-            上海
-          </span>
-        </div>
-      </div>
-      <div>
-        <div
-          className="select-city-title"
-          id="HOT"
-        >
-          热门城市
-        </div>
-        <div
-          className="select-city-buttons"
-        >
-          <span
-            className="bui-city-selector-item"
-            onClick={[Function]}
-          >
-            北京
-          </span>
-          <span
-            className="bui-city-selector-item"
-            onClick={[Function]}
-          >
-            上海
-          </span>
-          <span
-            className="bui-city-selector-item"
-            onClick={[Function]}
-          >
-            广州
-          </span>
-        </div>
-      </div>
       <div
-        className="bui-city-selector-list-container"
+        class="bui-city-selector-all-city"
       >
         <div>
           <div
-            className="select-city-title"
-            id="A"
+            class="select-city-title"
+            id="CRRT"
           >
-            A
+            当前城市
           </div>
-          <ul
-            className="bui-city-selector-list"
+          <div
+            class="select-city-buttons"
           >
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
+            <span
+              class="bui-city-selector-item"
             >
-              安康
-            </li>
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
-            >
-              鞍山
-            </li>
-          </ul>
+              北京
+            </span>
+          </div>
         </div>
         <div>
           <div
-            className="select-city-title"
-            id="B"
+            class="select-city-title"
+            id="GPS"
           >
-            B
+            定位城市
           </div>
-          <ul
-            className="bui-city-selector-list"
+          <div
+            class="select-city-buttons"
           >
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
+            <span
+              class="bui-city-selector-item"
             >
-              巴音郭楞
-            </li>
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
-            >
-              巴中
-            </li>
-          </ul>
+              上海
+            </span>
+          </div>
         </div>
         <div>
           <div
-            className="select-city-title"
-            id="C"
+            class="select-city-title"
+            id="HOT"
           >
-            C
+            热门城市
           </div>
-          <ul
-            className="bui-city-selector-list"
+          <div
+            class="select-city-buttons"
           >
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
+            <span
+              class="bui-city-selector-item"
             >
-              沧州
-            </li>
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
+              北京
+            </span>
+            <span
+              class="bui-city-selector-item"
             >
-              长春
-            </li>
-          </ul>
+              上海
+            </span>
+            <span
+              class="bui-city-selector-item"
+            >
+              广州
+            </span>
+          </div>
+        </div>
+        <div
+          class="bui-city-selector-list-container"
+        >
+          <div>
+            <div
+              class="select-city-title"
+              id="A"
+            >
+              A
+            </div>
+            <ul
+              class="bui-city-selector-list"
+            >
+              <li
+                class="bui-city-selector-list-item"
+              >
+                安康
+              </li>
+              <li
+                class="bui-city-selector-list-item"
+              >
+                鞍山
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div
+              class="select-city-title"
+              id="B"
+            >
+              B
+            </div>
+            <ul
+              class="bui-city-selector-list"
+            >
+              <li
+                class="bui-city-selector-list-item"
+              >
+                巴音郭楞
+              </li>
+              <li
+                class="bui-city-selector-list-item"
+              >
+                巴中
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div
+              class="select-city-title"
+              id="C"
+            >
+              C
+            </div>
+            <ul
+              class="bui-city-selector-list"
+            >
+              <li
+                class="bui-city-selector-list-item"
+              >
+                沧州
+              </li>
+              <li
+                class="bui-city-selector-list-item"
+              >
+                长春
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div
+              class="select-city-title"
+              id="D"
+            >
+              D
+            </div>
+            <ul
+              class="bui-city-selector-list"
+            >
+              <li
+                class="bui-city-selector-list-item"
+              >
+                大理
+              </li>
+              <li
+                class="bui-city-selector-list-item"
+              >
+                大连
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="bui-city-selector-index-container left-in"
+    >
+      <ul
+        class="bui-city-selector-index-list"
+      >
+        <li
+          class="bui-city-selector-index-item"
+          data-code="CRRT"
+          style="max-height: calc((0vh - 6vmin) / 7);"
+        >
+          当前
+        </li>
+        <li
+          class="bui-city-selector-index-item"
+          data-code="GPS"
+          style="max-height: calc((0vh - 6vmin) / 7);"
+        >
+          定位
+        </li>
+        <li
+          class="bui-city-selector-index-item"
+          data-code="HOT"
+          style="max-height: calc((0vh - 6vmin) / 7);"
+        >
+          热门
+        </li>
+        <li
+          class="bui-city-selector-index-item"
+          data-code="A"
+          style="max-height: calc((0vh - 6vmin) / 7);"
+        >
+          A
+        </li>
+        <li
+          class="bui-city-selector-index-item"
+          data-code="B"
+          style="max-height: calc((0vh - 6vmin) / 7);"
+        >
+          B
+        </li>
+        <li
+          class="bui-city-selector-index-item"
+          data-code="C"
+          style="max-height: calc((0vh - 6vmin) / 7);"
+        >
+          C
+        </li>
+        <li
+          class="bui-city-selector-index-item"
+          data-code="D"
+          style="max-height: calc((0vh - 6vmin) / 7);"
+        >
+          D
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CitySelector snapshot > CitySelector demo snapshot 0 2`] = `
+<div>
+  <div
+    class="bui-city-selector"
+    style="height: 500px;"
+  >
+    <div
+      class="bui-city-selector-title"
+    >
+      选择城市
+      <button
+        aria-disabled="false"
+        aria-label="关闭按钮"
+        class="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular bui-city-selector-btn-close"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="bui-svg-icon"
+          focusable="false"
+          viewBox="0 0 96 96"
+        >
+          <path
+            d="m48 43.7 25.8-25.8c1.2-1.2 3.1-1.2 4.3 0 1.2 1.2 1.2 3.1 0 4.3L52.3 48l25.8 25.8c1.2 1.2 1.2 3.1 0 4.3s-3.1 1.2-4.3 0L48 52.3 22.2 78.1c-1.2 1.2-3.1 1.2-4.3 0-1.2-1.2-1.2-3.1 0-4.3L43.7 48 17.9 22.2c-1.2-1.2-1.2-3.1 0-4.3 1.2-1.2 3.1-1.2 4.3 0L48 43.7z"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="bui-scroll bui-scroll-view-scroll-y bui-city-selector-scroll-view-container tph container-has-title"
+    >
+      <div
+        class="bui-city-selector-all-city"
+      >
+        <div>
+          <div
+            class="select-city-title"
+            id=""
+          >
+            当前城市
+          </div>
+          <div
+            class="select-city-buttons"
+          >
+            <span
+              class="bui-city-selector-item"
+            >
+              北京
+            </span>
+          </div>
         </div>
         <div>
           <div
-            className="select-city-title"
-            id="D"
+            class="select-city-title"
+            id=""
           >
-            D
+            定位城市
           </div>
-          <ul
-            className="bui-city-selector-list"
+          <div
+            class="select-city-buttons"
           >
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
+            <span
+              class="bui-city-selector-item"
             >
-              大理
-            </li>
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
+              上海
+            </span>
+          </div>
+        </div>
+        <div>
+          <div
+            class="select-city-title"
+            id=""
+          >
+            热门城市
+          </div>
+          <div
+            class="select-city-buttons"
+          >
+            <span
+              class="bui-city-selector-item"
             >
-              大连
-            </li>
-          </ul>
+              北京
+            </span>
+            <span
+              class="bui-city-selector-item"
+            >
+              上海
+            </span>
+            <span
+              class="bui-city-selector-item"
+            >
+              广州
+            </span>
+          </div>
+        </div>
+        <div
+          class="bui-city-selector-list-container"
+        >
+          <div>
+            <div
+              class="select-city-title"
+              id=""
+            >
+              A
+            </div>
+            <ul
+              class="bui-city-selector-list"
+            >
+              <li
+                class="bui-city-selector-list-item"
+              >
+                安康
+              </li>
+              <li
+                class="bui-city-selector-list-item"
+              >
+                鞍山
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div
+              class="select-city-title"
+              id=""
+            >
+              B
+            </div>
+            <ul
+              class="bui-city-selector-list"
+            >
+              <li
+                class="bui-city-selector-list-item"
+              >
+                巴音郭楞
+              </li>
+              <li
+                class="bui-city-selector-list-item"
+              >
+                巴中
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div
+              class="select-city-title"
+              id=""
+            >
+              C
+            </div>
+            <ul
+              class="bui-city-selector-list"
+            >
+              <li
+                class="bui-city-selector-list-item"
+              >
+                沧州
+              </li>
+              <li
+                class="bui-city-selector-list-item"
+              >
+                长春
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div
+              class="select-city-title"
+              id=""
+            >
+              D
+            </div>
+            <ul
+              class="bui-city-selector-list"
+            >
+              <li
+                class="bui-city-selector-list-item"
+              >
+                大理
+              </li>
+              <li
+                class="bui-city-selector-list-item"
+              >
+                大连
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -189,388 +421,170 @@ exports[`CitySelector snapshot CitySelector demo snapshot 0 1`] = `
 </div>
 `;
 
-exports[`CitySelector snapshot CitySelector demo snapshot 0 2`] = `
-<div
-  className="bui-city-selector"
-  style={
-    Object {
-      "height": "500px",
-    }
-  }
->
+exports[`CitySelector snapshot > CitySelector demo snapshot 0 3`] = `
+<div>
   <div
-    className="bui-city-selector-title"
-  >
-    选择城市
-    <div
-      className="bui-city-selector-btn-close"
-      onClick={[Function]}
-    >
-      ✕
-    </div>
-  </div>
-  <div
-    className="bui-scroll bui-scroll-view-scroll-y bui-city-selector-scroll-view-container tph container-has-title"
-    onScroll={[Function]}
-    onTouchMove={[Function]}
-    style={Object {}}
+    class="bui-city-selector"
+    style="height: 500px;"
   >
     <div
-      className="bui-city-selector-all-city"
+      class="bui-scroll bui-scroll-view-scroll-y bui-city-selector-scroll-view-container tph"
     >
-      <div>
-        <div
-          className="select-city-title"
-          id=""
-        >
-          当前城市
-        </div>
-        <div
-          className="select-city-buttons"
-        >
-          <span
-            className="bui-city-selector-item"
-            onClick={[Function]}
-          >
-            北京
-          </span>
-        </div>
-      </div>
-      <div>
-        <div
-          className="select-city-title"
-          id=""
-        >
-          定位城市
-        </div>
-        <div
-          className="select-city-buttons"
-        >
-          <span
-            className="bui-city-selector-item"
-            onClick={[Function]}
-          >
-            上海
-          </span>
-        </div>
-      </div>
-      <div>
-        <div
-          className="select-city-title"
-          id=""
-        >
-          热门城市
-        </div>
-        <div
-          className="select-city-buttons"
-        >
-          <span
-            className="bui-city-selector-item"
-            onClick={[Function]}
-          >
-            北京
-          </span>
-          <span
-            className="bui-city-selector-item"
-            onClick={[Function]}
-          >
-            上海
-          </span>
-          <span
-            className="bui-city-selector-item"
-            onClick={[Function]}
-          >
-            广州
-          </span>
-        </div>
-      </div>
       <div
-        className="bui-city-selector-list-container"
+        class="bui-city-selector-all-city"
       >
         <div>
           <div
-            className="select-city-title"
+            class="select-city-title"
             id=""
           >
-            A
+            当前城市
           </div>
-          <ul
-            className="bui-city-selector-list"
+          <div
+            class="select-city-buttons"
           >
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
+            <span
+              class="bui-city-selector-item"
             >
-              安康
-            </li>
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
-            >
-              鞍山
-            </li>
-          </ul>
+              北京
+            </span>
+          </div>
         </div>
         <div>
           <div
-            className="select-city-title"
+            class="select-city-title"
             id=""
           >
-            B
+            定位城市
           </div>
-          <ul
-            className="bui-city-selector-list"
+          <div
+            class="select-city-buttons"
           >
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
+            <span
+              class="bui-city-selector-item"
             >
-              巴音郭楞
-            </li>
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
-            >
-              巴中
-            </li>
-          </ul>
+              上海
+            </span>
+          </div>
         </div>
         <div>
           <div
-            className="select-city-title"
+            class="select-city-title"
             id=""
           >
-            C
+            热门城市
           </div>
-          <ul
-            className="bui-city-selector-list"
-          >
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
-            >
-              沧州
-            </li>
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
-            >
-              长春
-            </li>
-          </ul>
-        </div>
-        <div>
           <div
-            className="select-city-title"
-            id=""
+            class="select-city-buttons"
           >
-            D
+            <span
+              class="bui-city-selector-item"
+            >
+              北京
+            </span>
+            <span
+              class="bui-city-selector-item"
+            >
+              上海
+            </span>
+            <span
+              class="bui-city-selector-item"
+            >
+              广州
+            </span>
           </div>
-          <ul
-            className="bui-city-selector-list"
-          >
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
-            >
-              大理
-            </li>
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
-            >
-              大连
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`CitySelector snapshot CitySelector demo snapshot 0 3`] = `
-<div
-  className="bui-city-selector"
-  style={
-    Object {
-      "height": "500px",
-    }
-  }
->
-  <div
-    className="bui-scroll bui-scroll-view-scroll-y bui-city-selector-scroll-view-container tph"
-    onScroll={[Function]}
-    onTouchMove={[Function]}
-    style={Object {}}
-  >
-    <div
-      className="bui-city-selector-all-city"
-    >
-      <div>
-        <div
-          className="select-city-title"
-          id=""
-        >
-          当前城市
         </div>
         <div
-          className="select-city-buttons"
+          class="bui-city-selector-list-container"
         >
-          <span
-            className="bui-city-selector-item"
-            onClick={[Function]}
-          >
-            北京
-          </span>
-        </div>
-      </div>
-      <div>
-        <div
-          className="select-city-title"
-          id=""
-        >
-          定位城市
-        </div>
-        <div
-          className="select-city-buttons"
-        >
-          <span
-            className="bui-city-selector-item"
-            onClick={[Function]}
-          >
-            上海
-          </span>
-        </div>
-      </div>
-      <div>
-        <div
-          className="select-city-title"
-          id=""
-        >
-          热门城市
-        </div>
-        <div
-          className="select-city-buttons"
-        >
-          <span
-            className="bui-city-selector-item"
-            onClick={[Function]}
-          >
-            北京
-          </span>
-          <span
-            className="bui-city-selector-item"
-            onClick={[Function]}
-          >
-            上海
-          </span>
-          <span
-            className="bui-city-selector-item"
-            onClick={[Function]}
-          >
-            广州
-          </span>
-        </div>
-      </div>
-      <div
-        className="bui-city-selector-list-container"
-      >
-        <div>
-          <div
-            className="select-city-title"
-            id=""
-          >
-            A
+          <div>
+            <div
+              class="select-city-title"
+              id=""
+            >
+              A
+            </div>
+            <ul
+              class="bui-city-selector-list"
+            >
+              <li
+                class="bui-city-selector-list-item"
+              >
+                安康
+              </li>
+              <li
+                class="bui-city-selector-list-item"
+              >
+                鞍山
+              </li>
+            </ul>
           </div>
-          <ul
-            className="bui-city-selector-list"
-          >
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
+          <div>
+            <div
+              class="select-city-title"
+              id=""
             >
-              安康
-            </li>
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
+              B
+            </div>
+            <ul
+              class="bui-city-selector-list"
             >
-              鞍山
-            </li>
-          </ul>
-        </div>
-        <div>
-          <div
-            className="select-city-title"
-            id=""
-          >
-            B
+              <li
+                class="bui-city-selector-list-item"
+              >
+                巴音郭楞
+              </li>
+              <li
+                class="bui-city-selector-list-item"
+              >
+                巴中
+              </li>
+            </ul>
           </div>
-          <ul
-            className="bui-city-selector-list"
-          >
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
+          <div>
+            <div
+              class="select-city-title"
+              id=""
             >
-              巴音郭楞
-            </li>
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
+              C
+            </div>
+            <ul
+              class="bui-city-selector-list"
             >
-              巴中
-            </li>
-          </ul>
-        </div>
-        <div>
-          <div
-            className="select-city-title"
-            id=""
-          >
-            C
+              <li
+                class="bui-city-selector-list-item"
+              >
+                沧州
+              </li>
+              <li
+                class="bui-city-selector-list-item"
+              >
+                长春
+              </li>
+            </ul>
           </div>
-          <ul
-            className="bui-city-selector-list"
-          >
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
+          <div>
+            <div
+              class="select-city-title"
+              id=""
             >
-              沧州
-            </li>
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
+              D
+            </div>
+            <ul
+              class="bui-city-selector-list"
             >
-              长春
-            </li>
-          </ul>
-        </div>
-        <div>
-          <div
-            className="select-city-title"
-            id=""
-          >
-            D
+              <li
+                class="bui-city-selector-list-item"
+              >
+                大理
+              </li>
+              <li
+                class="bui-city-selector-list-item"
+              >
+                大连
+              </li>
+            </ul>
           </div>
-          <ul
-            className="bui-city-selector-list"
-          >
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
-            >
-              大理
-            </li>
-            <li
-              className="bui-city-selector-list-item"
-              onClick={[Function]}
-            >
-              大连
-            </li>
-          </ul>
         </div>
       </div>
     </div>

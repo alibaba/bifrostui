@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { isConformant, render, screen, userEvent } from 'testing';
 import Avatar from '../Avatar';
 
@@ -30,7 +30,7 @@ describe('Avatar', () => {
       );
       const { container } = render(component);
 
-      expect(screen.getByRole('img')).toHaveAttribute(
+      expect(container.querySelector('img')).toHaveAttribute(
         'src',
         'https://gw.alicdn.com/imgextra/i3/O1CN01tp2YUs1WFD8lboMDu_!!6000000002758-2-tps-126-126.png',
       );
@@ -64,34 +64,32 @@ describe('Avatar', () => {
   });
 
   describe('prop: ImageProps', () => {
-    render(
-      <Avatar src="https://not.exists.image/" ImageProps={{ fit: 'fill' }} />,
-    );
-    expect(screen.getByRole('img').style.objectFit === 'fill');
+    it('should apply ImageProps correctly', () => {
+      const { container } = render(
+        <Avatar src="https://not.exists.image/" ImageProps={{ fit: 'fill' }} />,
+      );
+      expect(container.querySelector('img').style.objectFit).toBe('fill');
+    });
   });
-  // it('has placeholder', async () => {
-  //   render(<Avatar src="https://not.exists.image/" placeholder="加载失败" />);
-  //   expect(screen.getByText('加载失败')).toBeTruthy();
-  // });
 
-  it.each(['contain', 'cover', 'fill', 'none', 'scale-down'])(
+  it.each(['contain', 'cover', 'fill', 'none', 'scale-down'] as const)(
     'renders with different fit modes',
-    async (fit: any) => {
-      render(
+    async (fit) => {
+      const { container } = render(
         <Avatar
           src="https://gw.alicdn.com/imgextra/i3/O1CN01tp2YUs1WFD8lboMDu_!!6000000002758-2-tps-126-126.png"
           fit={fit}
         />,
       );
-      expect(screen.getByRole('img').style.objectFit === fit);
+      expect(container.querySelector('img').style.objectFit === fit);
     },
   );
 
   describe('events', () => {
-    it('responses click events', () => {
-      const onClick = jest.fn();
+    it('responses click events', async () => {
+      const onClick = vi.fn();
       render(<Avatar onClick={onClick}>hello world</Avatar>);
-      userEvent.click(screen.getByText('hello world'));
+      await userEvent.click(screen.getByText('hello world'));
       expect(onClick).toHaveBeenCalled();
     });
   });

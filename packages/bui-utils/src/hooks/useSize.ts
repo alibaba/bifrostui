@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import useDomReady from './useDomReady';
 import getBoundingClientRect from '../getBoundingClientRect';
 import { getTargetElement } from '../domTarget';

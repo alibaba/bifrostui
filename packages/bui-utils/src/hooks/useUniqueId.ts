@@ -3,7 +3,7 @@ import { useRef } from 'react';
 let globalClientIdCounter = 0;
 
 function useUniqueId() {
-  const idRef = useRef<string>();
+  const idRef = useRef<string>(null);
 
   if (!idRef.current) {
     globalClientIdCounter += 1;

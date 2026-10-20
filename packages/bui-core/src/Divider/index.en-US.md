@@ -5,17 +5,15 @@ name: Divider
 
 # Divider
 
-A divider is commonly used to group components in lists or layouts.
+The Divider is often used to group content within a list or layout.
 
-## Code Examples
+## Basic Usage
 
-### Basic Usage
-
-The default divider is a thin line.
+The default divider is a fine line.
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -28,13 +26,13 @@ export default () => {
 };
 ```
 
-### Dashed Line
+## Dashed Line
 
-You can control whether the divider is dashed or solid using the `dashed` property.
+You can also control the divider style to be dashed or solid using the `dashed` attribute.
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -47,15 +45,16 @@ export default () => {
 };
 ```
 
-### Divider Direction
+## Divider Direction
 
-The default divider orientation is vertical, but horizontal dividers are also available. You can control the orientation using the `direction` property.
+By default, the divider is oriented vertically. We also provide horizontal dividers.
+You can control the divider's orientation using the `direction` attribute.
 
-##### Vertical: Stretch to Parent Height
+### Vertical: Full Height of Parent Element
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -68,11 +67,11 @@ export default () => {
 };
 ```
 
-##### Horizontal: Stretch to Parent Width
+### Horizontal: Full Width of Parent Element
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -85,15 +84,15 @@ export default () => {
 };
 ```
 
-### Customizing Divider Size
+## Custom Divider Size
 
-By default, the divider stretches to fill the parent element's width/height, but you can customize its size using the `size` property.
+By default, the divider fills the width/height of the parent element, but you can customize the divider size using `size`.
 
-##### Vertical: Specified Size
+### Vertical: Specify `size`
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -106,11 +105,11 @@ export default () => {
 };
 ```
 
-##### Horizontal: Specified Size
+### Horizontal: Specify `size`
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -123,13 +122,14 @@ export default () => {
 };
 ```
 
-### Divider with Text
+## Divider with Description Text
 
-You can render dividers with text content by passing it as children. This feature is currently supported only when `direction` is set to `horizontal`.
+You can also render dividers with content, using `children` to pass text.
+Currently only supported when `direction` is set to `horizontal`.
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -144,13 +144,13 @@ export default () => {
 };
 ```
 
-### Customizing Divider Style
+## Customizing the Divider
 
-For other special styles, you can customize them using the `style` property, such as adjusting the thickness of the divider.
+For other special styles, you can customize the divider via `style`, such as adjusting the divider thickness.
 
 ```tsx
 import { Divider, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -163,21 +163,25 @@ export default () => {
 };
 ```
 
-### API
+## API
 
-#### DividerProps
+### DividerProps
 
-| Property  | Description       | Type                       | Default Value |
-| --------- | ----------------- | -------------------------- | ------------- |
-| direction | Divider direction | `horizontal` \| `vertical` | `vertical`    |
-| size      | Divider size      | string                     | -             |
-| dashed    | Whether dashed    | boolean                    | false         |
+| Property  | Description         | Type                       | Default    |
+| --------- | ------------------- | -------------------------- | ---------- |
+| direction | Divider direction   | `horizontal` ｜ `vertical` | `vertical` |
+| size      | Divider size        | string                     | -          |
+| dashed    | Whether dashed line | boolean                    | false      |
 
-### Style Variables
+## Style Variables
 
-| Property       | Description                                    | Default Value | Global Variable            |
-| -------------- | ---------------------------------------------- | ------------- | -------------------------- |
-| --height       | Divider height                                 | 100%          | --bui-divider-height       |
-| --width        | Divider width                                  | 100%          | --bui-divider-width        |
-| --border-width | Divider thickness (controls all divider types) | 1px           | --bui-divider-border-width |
-| --line-width   | Length for dividers with text                  | 40px          | --bui-divider-line-width   |
+| Global Variable            | Description                      | Default |
+| -------------------------- | -------------------------------- | ------- |
+| --bui-divider-height       | Height of vertical divider       | `100%`  |
+| --bui-divider-width        | Width of horizontal divider      | `100%`  |
+| --bui-divider-border-width | Border width                     | `1px`   |
+| --bui-divider-line-width   | Line width on both sides of text | `40px`  |
+
+```
+
+```

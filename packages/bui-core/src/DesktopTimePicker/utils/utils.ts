@@ -183,7 +183,7 @@ export const getOutOfMaxRangeSeconds = (
 };
 
 // 获取disabled的时间面板
-export const getdisabledTime = (
+export const getDisabledTime = (
   type: ViewTypeWithMeridiem,
   timeValue: Dayjs,
   minTime: Dayjs,

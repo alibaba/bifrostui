@@ -6,29 +6,27 @@ name: Select 下拉选择器
 # Select 下拉选择器
 
 Select 组件用于从选项列表收集用户提供的信息。
-目前 Select 组件仅支持`单项选择`，更多功能敬请期待我们解锁。
+目前 Select 组件仅支持`单项选择`，多选等能力将在后续版本中提供。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 通过组合`SelectOption`组件，达到下拉选择效果。
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员',
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑',
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客',
     value: 3,
   },
 ];
@@ -52,19 +50,19 @@ export default () => {
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员',
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑',
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客',
     value: 3,
   },
 ];
@@ -72,7 +70,7 @@ const options = [
 export default () => {
   return (
     <Stack alignItems="stretch" style={{ background: '#eee', padding: '50px' }}>
-      <Select placeholder="下拉选择">
+      <Select placeholder="请选择角色">
         {options.map((item, index) => (
           <SelectOption key={index} value={item.value} label={item.label} />
         ))}
@@ -88,19 +86,19 @@ export default () => {
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员',
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑',
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客',
     value: 3,
   },
 ];
@@ -130,15 +128,15 @@ import React, { useRef, useState } from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员',
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑',
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客',
     value: 3,
   },
 ];
@@ -151,7 +149,7 @@ export default () => {
   return (
     <>
       {alert && (
-        <Alert color="success">{`选择器A值：${curValue || ''}; 选择器B值: ${
+        <Alert color="success">{`受控选择器值：${curValue || ''}; 非受控选择器值：${
           selectRef.current.value
         }`}</Alert>
       )}
@@ -161,7 +159,7 @@ export default () => {
         style={{ background: '#eee', padding: '50px' }}
       >
         <Select
-          placeholder="选择器A"
+          placeholder="受控选择器"
           value={curValue}
           onChange={(e, { value = '' }) => {
             setCurValue(value);
@@ -171,7 +169,7 @@ export default () => {
             <SelectOption key={index} value={item.value} label={item.label} />
           ))}
         </Select>
-        <Select placeholder="选择器B" inputRef={selectRef}>
+        <Select placeholder="非受控选择器" inputRef={selectRef}>
           {options.map((item, index) => (
             <SelectOption key={index} value={item.value} label={item.label} />
           ))}
@@ -199,19 +197,19 @@ export default () => {
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员',
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑',
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客',
     value: 3,
   },
 ];
@@ -253,15 +251,15 @@ import React, { useState } from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员',
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑',
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客',
     value: 3,
   },
 ];
@@ -294,21 +292,21 @@ export default () => {
 提供自定义图标能力，可以通过`icon`属性来定制图标。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Select, SelectOption, Stack } from '@bifrostui/react';
 import { ArrowDownwardIcon } from '@bifrostui/icons';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员',
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑',
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客',
     value: 3,
   },
 ];
@@ -332,19 +330,19 @@ export default () => {
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员',
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑',
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客',
     value: 3,
   },
 ];
@@ -373,21 +371,21 @@ export default () => {
 `label`支持 `ReactNode`类型，当您想定制选择器`Select`展示内容，可以通过`SelectOption`组件属性：`label`与`children`，两者配合使用实现定制化。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Select, SelectOption, Stack } from '@bifrostui/react';
 import { SettingsOutlinedIcon } from '@bifrostui/icons';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员',
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑',
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客',
     value: 3,
   },
 ];
@@ -427,15 +425,15 @@ import React, { useState } from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员',
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑',
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客',
     value: 3,
   },
 ];
@@ -475,15 +473,15 @@ import React, { useRef } from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员',
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑',
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客',
     value: 3,
   },
 ];
@@ -522,19 +520,19 @@ className除了会挂载在根组件上，还会以`className-option-container`�
 
 ```tsx
 import { Select, SelectOption, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const options = [
   {
-    label: 'option 1',
+    label: '管理员',
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '编辑',
     value: 2,
   },
   {
-    label: 'option 3',
+    label: '访客',
     value: 3,
   },
 ];
@@ -589,16 +587,17 @@ export default () => {
 | value    | 选项值       | string ｜ number | -      |
 | disabled | 选项可点击态 | boolean          | false  |
 
-### 样式变量
+## 样式变量
 
-| 属性                          | 说明                 | 默认值                  | 全局变量                              |
-| ----------------------------- | -------------------- | ----------------------- | ------------------------------------- |
-| --height                      | 选择器高度           | 27px                    | --bui-select-height                   |
-| --mini-width                  | 选择器最小宽度       | 100px                   | --bui-select-mini-width               |
-| --font-size                   | 选择器字体大小       | var(--bui-title-size-3) | --bui-select-font-size                |
-| --padding                     | 选择器内边距         | 100px                   | --bui-select-mini-width               |
-| --option-container-padding    | 下拉框整体内边距     | 3px 0                   | --bui-select-option-container-padding |
-| --option-container-margin-top | 下拉框整体顶部外边距 | 6px                     | --bui-select-option-margin-top        |
-| --option-padding              | 下拉框单个选项内边距 | 0 14px                  | --bui-select-option-padding           |
-| --option-margin               | 下拉框单个选项外边距 | 0 3px                   | --bui-select-option-margin            |
-| --option-height               | 下拉框单个选项高度   | 27px                    | --bui-select-option-height            |
+| 全局变量                                | 说明               | 默认值                   |
+| --------------------------------------- | ------------------ | ------------------------ |
+| --bui-select-height                     | 选择器高度         | `32px`                   |
+| --bui-select-min-width                  | 选择器最小宽度     | `100px`                  |
+| --bui-select-font-size                  | 选择器字体大小     | `var(--bui-text-size-1)` |
+| --bui-select-selector-container-padding | 选择器容器内边距   | `0 14px`                 |
+| --bui-select-option-main-padding        | 选项主要容器内边距 | `3px 0`                  |
+| --bui-select-option-padding             | 选项内边距         | `0 14px`                 |
+| --bui-select-option-border-radius       | 选项边框圆角       | `5px`                    |
+| --bui-select-option-margin              | 选项外边距         | `0 3px`                  |
+| --bui-select-option-height              | 选项高度           | `32px`                   |
+| --bui-select-option-active-bg-color     | 选项激活背景色     | `#fff2f0`                |
