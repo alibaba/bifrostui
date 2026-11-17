@@ -35,18 +35,13 @@ const enUS: BaseLang = {
     selectedCityGroupName: 'Selected City',
     currentCityGroupName: 'Current City',
     hotCitiesGroupName: 'Hot Cities',
-    gpsType: {
-      title: 'Current',
-      code: 'GPS',
-    },
-    currentType: {
-      title: 'Selected',
-      code: 'CRRT',
-    },
-    hotCityType: {
-      title: 'Hot',
-      code: 'HOT',
-    },
+    // 索引条短名，与 zh-CN 保持同一套扁平字段（原来这里是 gpsType/currentType/hotCityType 对象，组件取不到）
+    located: 'Current',
+    current: 'Selected',
+    hot: 'Hot',
+    close: 'Close',
+    groupIndexLabel: 'City group index',
+    letterGroupLabel: 'Letter {letter}',
   },
   desktopDatePicker: {
     month: {

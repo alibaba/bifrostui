@@ -275,7 +275,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         enablePassive
       >
         {/** `bottom: 0` 在小程序的 ScrollView 内不生效，所以引入了wrapper容器，让Indicator在wrapper内 */}
-        <div id={wrapperId} className={tabsScrollWrapperClass}>
+        <div id={wrapperId} className={tabsScrollWrapperClass} role="tablist">
           <TabIndicator
             currentValue={currentValue}
             registeredTabValues={registeredTabValues}

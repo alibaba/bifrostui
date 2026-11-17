@@ -36,9 +36,9 @@ export interface BaseLang {
     located?: string;
     current?: string;
     hot?: string;
-    gpsType?: Record<string, string>;
-    currentType?: Record<string, string>;
-    hotCityType?: Record<string, string>;
+    close?: string;
+    groupIndexLabel?: string;
+    letterGroupLabel?: string;
   };
   desktopDatePicker?: {
     month?: Record<number, string>;

@@ -13,6 +13,15 @@ import './index.less';
 // 误差偏移量
 const DEVIATION_HEIGHT = '6vmin';
 
+// 字母分组（A-Z / a-z）的读屏名统一写成“字母A”：字母在句尾才按字母名读，
+const isSingleLetter = (name) =>
+  typeof name === 'string' && /^[a-zA-Z]$/.test(name);
+
+const toGroupLabel = (name, letterLabel?) =>
+  isSingleLetter(name)
+    ? letterLabel?.replace('{letter}', name.toUpperCase())
+    : name;
+
 const prefixCls = 'bui-city-selector';
 
 const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
@@ -24,6 +33,9 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
       located,
       current,
       hot,
+      close: closeLabel,
+      groupIndexLabel,
+      letterGroupLabel,
     } = useLocaleText('citySelector');
     const {
       className,
@@ -45,15 +57,18 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
 
     const GPS_TYPE = {
       title: located,
+      label: currentCityGroupName,
       code: 'GPS',
     };
     const CURRENT_TYPE = {
       title: current,
+      label: selectedCityGroupName,
       code: 'CRRT',
     };
 
     const HOT_CITY_TYPE = {
       title: hot,
+      label: hotCitiesGroupName,
       code: 'HOT',
     };
 
@@ -81,11 +96,13 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
       if (currentCity) {
         newGroup.push(GPS_TYPE);
       }
-      if (hotCities) {
+      if (hotCities?.length > 0) {
         newGroup.push(HOT_CITY_TYPE);
       }
       cities.forEach((item) => {
-        newGroup.push(item.groupName.toUpperCase());
+        if (item?.groupName) {
+          newGroup.push(item.groupName.toUpperCase());
+        }
       });
       setCodeGroup(newGroup);
     }, [cities, selectedCity, currentCity, hotCities]);
@@ -130,7 +147,11 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
     const renderTitle = (title, titleCode?) => {
       const parseTitle = (titleCode || title).toUpperCase();
       return (
-        <div className="select-city-title" id={disableIndex ? '' : parseTitle}>
+        <div
+          className="select-city-title"
+          id={disableIndex ? '' : parseTitle}
+          aria-hidden={isSingleLetter(parseTitle) || undefined}
+        >
           {title?.toUpperCase()}
         </div>
       );
@@ -159,7 +180,7 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
             <IconButton
               className={`${prefixCls}-btn-close`}
               onClick={closeHandler}
-              aria-label="关闭按钮"
+              aria-label={closeLabel}
             >
               <CloseLargeIcon />
             </IconButton>
@@ -194,15 +215,27 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
               <div className={`${prefixCls}-list-container`}>
                 {cities.map((item, cityGroupIndex) => {
                   if (!item?.groupName) return null;
+                  const groupLabel = toGroupLabel(
+                    item.groupName,
+                    letterGroupLabel,
+                  );
                   return (
                     <div key={cityGroupIndex}>
                       {renderTitle(item.groupName, item.groupName)}
-                      <ul className={`${prefixCls}-list`}>
+                      <ul
+                        className={`${prefixCls}-list`}
+                        role="listbox"
+                        aria-label={groupLabel}
+                      >
                         {item.cities.map((city, cityIndex) => {
                           return (
                             <li
                               className={`${prefixCls}-list-item`}
                               key={cityIndex}
+                              role="option"
+                              aria-selected={
+                                selectedCity?.code === city.code || undefined
+                              }
                               onClick={(e) => {
                                 selectHandler(e, city);
                               }}
@@ -226,13 +259,25 @@ const CitySelector = React.forwardRef<HTMLDivElement, CitySelectorCoreProps>(
               'city-index-has-title': pageTitle,
             })}
           >
-            <ul onTouchMove={touchCbk} className={`${prefixCls}-index-list`}>
+            <ul
+              onTouchMove={touchCbk}
+              className={`${prefixCls}-index-list`}
+              role="listbox"
+              aria-label={groupIndexLabel}
+            >
               {codeGroup.map((item, chartIndex) => {
+                const indexLabel = toGroupLabel(
+                  item.label || item,
+                  letterGroupLabel,
+                );
                 return (
                   <li
                     className={`${prefixCls}-index-item`}
                     key={chartIndex}
                     data-code={item.code || item}
+                    role="option"
+                    aria-selected={targetId === (item.code || item)}
+                    aria-label={indexLabel}
                     onClick={() => {
                       codeClickHandler(item.code || item);
                     }}

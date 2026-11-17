@@ -12,6 +12,8 @@ const Selector = (props: propsType) => {
   return (
     <span
       className="bui-city-selector-item"
+      role="button"
+      tabIndex={0}
       onClick={(e) => {
         onSelect?.(e, city);
       }}

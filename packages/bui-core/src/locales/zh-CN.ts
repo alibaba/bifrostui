@@ -26,6 +26,9 @@ const zhCN: BaseLang = {
     located: '定位',
     current: '当前',
     hot: '热门',
+    close: '关闭',
+    groupIndexLabel: '城市分组索引',
+    letterGroupLabel: '字母{letter}',
   },
   desktopDatePicker: {
     month: {

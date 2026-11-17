@@ -24,6 +24,8 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 1`] = `
           >
             <span
               class="bui-city-selector-item"
+              role="button"
+              tabindex="-1"
             >
               北京
             </span>
@@ -41,6 +43,8 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 1`] = `
           >
             <span
               class="bui-city-selector-item"
+              role="button"
+              tabindex="-1"
             >
               上海
             </span>
@@ -58,16 +62,22 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 1`] = `
           >
             <span
               class="bui-city-selector-item"
+              role="button"
+              tabindex="-1"
             >
               北京
             </span>
             <span
               class="bui-city-selector-item"
+              role="button"
+              tabindex="-1"
             >
               上海
             </span>
             <span
               class="bui-city-selector-item"
+              role="button"
+              tabindex="-1"
             >
               广州
             </span>
@@ -78,21 +88,26 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 1`] = `
         >
           <div>
             <div
+              aria-hidden="true"
               class="select-city-title"
               id="A"
             >
               A
             </div>
             <ul
+              aria-label="字母A"
               class="bui-city-selector-list"
+              role="listbox"
             >
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 安康
               </li>
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 鞍山
               </li>
@@ -100,21 +115,26 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 1`] = `
           </div>
           <div>
             <div
+              aria-hidden="true"
               class="select-city-title"
               id="B"
             >
               B
             </div>
             <ul
+              aria-label="字母B"
               class="bui-city-selector-list"
+              role="listbox"
             >
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 巴音郭楞
               </li>
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 巴中
               </li>
@@ -122,21 +142,26 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 1`] = `
           </div>
           <div>
             <div
+              aria-hidden="true"
               class="select-city-title"
               id="C"
             >
               C
             </div>
             <ul
+              aria-label="字母C"
               class="bui-city-selector-list"
+              role="listbox"
             >
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 沧州
               </li>
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 长春
               </li>
@@ -144,21 +169,26 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 1`] = `
           </div>
           <div>
             <div
+              aria-hidden="true"
               class="select-city-title"
               id="D"
             >
               D
             </div>
             <ul
+              aria-label="字母D"
               class="bui-city-selector-list"
+              role="listbox"
             >
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 大理
               </li>
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 大连
               </li>
@@ -171,53 +201,76 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 1`] = `
       class="bui-city-selector-index-container left-in"
     >
       <ul
+        aria-label="城市分组索引"
         class="bui-city-selector-index-list"
+        role="listbox"
       >
         <li
+          aria-label="当前城市"
+          aria-selected="false"
           class="bui-city-selector-index-item"
           data-code="CRRT"
+          role="option"
           style="max-height: calc((0vh - 6vmin) / 7);"
         >
           当前
         </li>
         <li
+          aria-label="定位城市"
+          aria-selected="false"
           class="bui-city-selector-index-item"
           data-code="GPS"
+          role="option"
           style="max-height: calc((0vh - 6vmin) / 7);"
         >
           定位
         </li>
         <li
+          aria-label="热门城市"
+          aria-selected="false"
           class="bui-city-selector-index-item"
           data-code="HOT"
+          role="option"
           style="max-height: calc((0vh - 6vmin) / 7);"
         >
           热门
         </li>
         <li
+          aria-label="字母A"
+          aria-selected="false"
           class="bui-city-selector-index-item"
           data-code="A"
+          role="option"
           style="max-height: calc((0vh - 6vmin) / 7);"
         >
           A
         </li>
         <li
+          aria-label="字母B"
+          aria-selected="false"
           class="bui-city-selector-index-item"
           data-code="B"
+          role="option"
           style="max-height: calc((0vh - 6vmin) / 7);"
         >
           B
         </li>
         <li
+          aria-label="字母C"
+          aria-selected="false"
           class="bui-city-selector-index-item"
           data-code="C"
+          role="option"
           style="max-height: calc((0vh - 6vmin) / 7);"
         >
           C
         </li>
         <li
+          aria-label="字母D"
+          aria-selected="false"
           class="bui-city-selector-index-item"
           data-code="D"
+          role="option"
           style="max-height: calc((0vh - 6vmin) / 7);"
         >
           D
@@ -240,7 +293,7 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 2`] = `
       选择城市
       <button
         aria-disabled="false"
-        aria-label="关闭按钮"
+        aria-label="关闭"
         class="bui-icon-btn bui-icon-btn-medium bui-icon-btn-default bui-icon-btn-circular bui-city-selector-btn-close"
         type="button"
       >
@@ -274,6 +327,8 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 2`] = `
           >
             <span
               class="bui-city-selector-item"
+              role="button"
+              tabindex="-1"
             >
               北京
             </span>
@@ -291,6 +346,8 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 2`] = `
           >
             <span
               class="bui-city-selector-item"
+              role="button"
+              tabindex="-1"
             >
               上海
             </span>
@@ -308,16 +365,22 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 2`] = `
           >
             <span
               class="bui-city-selector-item"
+              role="button"
+              tabindex="-1"
             >
               北京
             </span>
             <span
               class="bui-city-selector-item"
+              role="button"
+              tabindex="-1"
             >
               上海
             </span>
             <span
               class="bui-city-selector-item"
+              role="button"
+              tabindex="-1"
             >
               广州
             </span>
@@ -328,21 +391,26 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 2`] = `
         >
           <div>
             <div
+              aria-hidden="true"
               class="select-city-title"
               id=""
             >
               A
             </div>
             <ul
+              aria-label="字母A"
               class="bui-city-selector-list"
+              role="listbox"
             >
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 安康
               </li>
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 鞍山
               </li>
@@ -350,21 +418,26 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 2`] = `
           </div>
           <div>
             <div
+              aria-hidden="true"
               class="select-city-title"
               id=""
             >
               B
             </div>
             <ul
+              aria-label="字母B"
               class="bui-city-selector-list"
+              role="listbox"
             >
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 巴音郭楞
               </li>
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 巴中
               </li>
@@ -372,21 +445,26 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 2`] = `
           </div>
           <div>
             <div
+              aria-hidden="true"
               class="select-city-title"
               id=""
             >
               C
             </div>
             <ul
+              aria-label="字母C"
               class="bui-city-selector-list"
+              role="listbox"
             >
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 沧州
               </li>
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 长春
               </li>
@@ -394,21 +472,26 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 2`] = `
           </div>
           <div>
             <div
+              aria-hidden="true"
               class="select-city-title"
               id=""
             >
               D
             </div>
             <ul
+              aria-label="字母D"
               class="bui-city-selector-list"
+              role="listbox"
             >
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 大理
               </li>
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 大连
               </li>
@@ -445,6 +528,8 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 3`] = `
           >
             <span
               class="bui-city-selector-item"
+              role="button"
+              tabindex="-1"
             >
               北京
             </span>
@@ -462,6 +547,8 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 3`] = `
           >
             <span
               class="bui-city-selector-item"
+              role="button"
+              tabindex="-1"
             >
               上海
             </span>
@@ -479,16 +566,22 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 3`] = `
           >
             <span
               class="bui-city-selector-item"
+              role="button"
+              tabindex="-1"
             >
               北京
             </span>
             <span
               class="bui-city-selector-item"
+              role="button"
+              tabindex="-1"
             >
               上海
             </span>
             <span
               class="bui-city-selector-item"
+              role="button"
+              tabindex="-1"
             >
               广州
             </span>
@@ -499,21 +592,26 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 3`] = `
         >
           <div>
             <div
+              aria-hidden="true"
               class="select-city-title"
               id=""
             >
               A
             </div>
             <ul
+              aria-label="字母A"
               class="bui-city-selector-list"
+              role="listbox"
             >
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 安康
               </li>
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 鞍山
               </li>
@@ -521,21 +619,26 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 3`] = `
           </div>
           <div>
             <div
+              aria-hidden="true"
               class="select-city-title"
               id=""
             >
               B
             </div>
             <ul
+              aria-label="字母B"
               class="bui-city-selector-list"
+              role="listbox"
             >
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 巴音郭楞
               </li>
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 巴中
               </li>
@@ -543,21 +646,26 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 3`] = `
           </div>
           <div>
             <div
+              aria-hidden="true"
               class="select-city-title"
               id=""
             >
               C
             </div>
             <ul
+              aria-label="字母C"
               class="bui-city-selector-list"
+              role="listbox"
             >
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 沧州
               </li>
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 长春
               </li>
@@ -565,21 +673,26 @@ exports[`CitySelector snapshot > CitySelector demo snapshot 0 3`] = `
           </div>
           <div>
             <div
+              aria-hidden="true"
               class="select-city-title"
               id=""
             >
               D
             </div>
             <ul
+              aria-label="字母D"
               class="bui-city-selector-list"
+              role="listbox"
             >
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 大理
               </li>
               <li
                 class="bui-city-selector-list-item"
+                role="option"
               >
                 大连
               </li>

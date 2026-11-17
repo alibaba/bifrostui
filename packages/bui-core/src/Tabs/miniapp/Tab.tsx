@@ -63,10 +63,14 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
   const tabId = tabsContainerId ? `${tabsContainerId}-tab-${index}` : undefined;
 
   return (
+    // eslint-disable-next-line jsx-a11y/interactive-supports-focus
     <div
       id={tabId}
       ref={handleRef}
       className={rootCls}
+      role="tab"
+      aria-selected={isActive}
+      aria-disabled={disabled}
       {...others}
       onClick={(e) => {
         if (disabled) return;

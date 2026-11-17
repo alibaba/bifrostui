@@ -71,6 +71,9 @@ const Modal = React.forwardRef<HTMLDivElement, ViewProps & ModalProps>(
         return React.cloneElement(children as React.ReactElement<any>, {
           ...transitionProps,
           tabIndex: -1,
+          // 微信小程序读屏需要role=dialog；children 自带 role 时由下面的展开覆盖
+          role: 'dialog',
+          ariaModal: true,
           ...(children.props as object),
         });
       }

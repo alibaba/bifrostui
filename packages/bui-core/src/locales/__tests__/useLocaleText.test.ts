@@ -324,4 +324,58 @@ describe('useLocaleText', () => {
       expect(typeof result.complete).toBe('string');
     });
   });
+
+  describe('citySelector localization', () => {
+    it('should return the default Chinese citySelector localization', () => {
+      (useTheme as Mock).mockReturnValue({ locale: undefined });
+
+      const result = useLocaleText('citySelector');
+      expect(result).toEqual(zhCN.citySelector);
+      expect(result.selectedCityGroupName).toBe('当前城市');
+      expect(result.currentCityGroupName).toBe('定位城市');
+      expect(result.hotCitiesGroupName).toBe('热门城市');
+      expect(result.located).toBe('定位');
+      expect(result.current).toBe('当前');
+      expect(result.hot).toBe('热门');
+      // 无障碍朗读文案
+      expect(result.close).toBe('关闭');
+      expect(result.groupIndexLabel).toBe('城市分组索引');
+      expect(result.letterGroupLabel).toBe('字母{letter}');
+    });
+
+    it('should return the English citySelector localization', () => {
+      (useTheme as Mock).mockReturnValue({ locale: enUS });
+
+      const result = useLocaleText('citySelector');
+      expect(result).toEqual(enUS.citySelector);
+      expect(result.close).toBe('Close');
+      expect(result.groupIndexLabel).toBe('City group index');
+      // 中文“字母{letter}”与英文“Letter {letter}”的分隔差异由语言包控制
+      expect(result.letterGroupLabel).toBe('Letter {letter}');
+    });
+
+    it('should return the Traditional Chinese citySelector localization', () => {
+      (useTheme as Mock).mockReturnValue({ locale: zhTW });
+
+      const result = useLocaleText('citySelector');
+      expect(result.close).toBe('關閉');
+      expect(result.groupIndexLabel).toBe('城市分組索引');
+      expect(result.letterGroupLabel).toBe('字母{letter}');
+    });
+
+    it('should merge partial custom citySelector localization', () => {
+      const customLocale = {
+        citySelector: {
+          close: 'Dismiss',
+        },
+      };
+
+      (useTheme as Mock).mockReturnValue({ locale: customLocale });
+
+      const result = useLocaleText('citySelector');
+      expect(result.close).toBe('Dismiss');
+      expect(result.groupIndexLabel).toBe('城市分组索引');
+      expect(result.letterGroupLabel).toBe('字母{letter}');
+    });
+  });
 });

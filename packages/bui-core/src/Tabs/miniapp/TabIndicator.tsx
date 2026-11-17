@@ -287,6 +287,7 @@ const TabIndicator: React.FC<TabIndicatorProps> = ({
       ref={indicatorRef}
       id={`${wrapperId}-indicator`}
       className={clsx(tabIndicatorClass)}
+      aria-hidden="true"
       style={{
         transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-in-out',
         transform: 'translate(0px, 0px)',
