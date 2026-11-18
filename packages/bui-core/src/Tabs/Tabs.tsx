@@ -1,240 +1,214 @@
-import {
-  debounce,
-  isMini,
-  throttle,
-  useDidMountEffect,
-} from '@bifrostui/utils';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { useValue, useEventCallback } from '@bifrostui/utils';
 import Tab from './Tab';
+import TabIndicator from './TabIndicator';
+import TabMask from './TabMask';
 import { TabsProps } from './Tabs.types';
 import { TabsContextProvider } from './TabsContext';
-import scrollLeftTo from './utils/scroll';
+import { tabsRootClass, tabsScrollClass } from './classes';
+
 import './Tabs.less';
 
-const prefixCls = 'bui-tabs';
-const duration = 300;
-
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
-  const { children, className, value, tabs, align, onChange, ...others } =
-    props;
-  const [active, setActive] = useState('');
-  const tabsRef = useRef<HTMLDivElement>(null);
-  const activeLineRef = useRef<HTMLDivElement>(null);
-  const [lineData, setLineData] = useState({
-    x: 0,
-    transitionInUse: false,
-    hasActiveTab: false,
-  });
-  const [maskData, setMaskData] = useState({
-    leftMaskOpacity: 0,
-    rightMaskOpacity: 0,
-  });
+  const {
+    children,
+    className,
+    defaultValue,
+    value,
+    tabs = [],
+    onChange,
+    ...others
+  } = props;
 
-  const getActiveTabElement = () => {
-    const container = tabsRef.current;
-    if (!container) return undefined;
-
-    const activeIndex =
-      !!tabs.length && tabs.findIndex((item) => item.index === active);
-    let activeTab;
-
-    if (tabs.length) {
-      activeTab =
-        activeIndex > -1
-          ? (container.childNodes[activeIndex + 1] as HTMLDivElement)
-          : undefined;
-    } else {
-      activeTab = [...container.childNodes].find((child: any) => {
-        if (isMini) {
-          return [...child.classList.tokenList].includes(
-            'bui-tab-miniapp-active',
-          );
-        }
-        return [...child.classList].includes('bui-tab-active');
-      }) as HTMLDivElement;
-    }
-
-    return activeTab;
-  };
-
-  const scrollIntoView = () => {
-    const tabsContainer = tabsRef.current;
-    const activeTab = getActiveTabElement();
-    if (!tabsContainer || !activeTab) {
-      return;
-    }
-
-    const to =
-      activeTab.offsetLeft -
-      (tabsContainer.offsetWidth - activeTab.offsetWidth) / 2;
-    scrollLeftTo(tabsContainer, to, duration);
-  };
-
-  const animate = ({ transitionInUse }: { transitionInUse: boolean }) => {
-    const container = tabsRef.current;
-    if (!container) return;
-
-    const activeLine = activeLineRef.current;
-    if (!activeLine) return;
-
-    const activeTab = getActiveTabElement();
-
-    let activeTabLeft = 0;
-    let activeTabWidth = 0;
-    let containerWidth = 0;
-    let containerScrollWidth = 0;
-    let activeLineWidth = 0;
-    let x = 0;
-    if (activeTab) {
-      activeTabLeft = activeTab.offsetLeft;
-      activeTabWidth = activeTab.offsetWidth;
-      containerWidth = container.offsetWidth;
-      containerScrollWidth = container.scrollWidth;
-      activeLineWidth = activeLine.offsetWidth;
-      x = activeTabLeft + (activeTabWidth - activeLineWidth) / 2;
-    }
-    setLineData({
-      x,
-      transitionInUse,
-      hasActiveTab: !!activeTab,
-    });
-
-    const maxScrollDistance = containerScrollWidth - containerWidth;
-    if (maxScrollDistance <= 0 || !activeTab) return;
-
-    if (!isMini) {
-      scrollIntoView();
-    }
-  };
-
-  useEffect(() => {
-    setActive(value);
-  }, [value]);
-
-  useLayoutEffect(() => {
-    animate({ transitionInUse: false });
-  }, []);
-
-  useEffect(() => {
-    const handleResize = debounce(() => {
-      animate({ transitionInUse: true });
-      updateMask();
-    }, 100);
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [active]);
-
-  useDidMountEffect(() => {
-    animate({ transitionInUse: true });
-  }, [active, tabs, children]);
-
-  const updateMask = useMemo(
-    () =>
-      throttle(
-        () => {
-          const container = tabsRef.current;
-          if (!container) return;
-
-          const scrollLeft = container?.scrollLeft;
-          const showLeftMask = scrollLeft > 0;
-          const rightRange = Math.abs(
-            container.scrollWidth - (scrollLeft + container.offsetWidth),
-          );
-          // 右侧遮罩rightRange在0-1范围内即可隐藏，处理浏览器兼容问题
-          const showRightMask = rightRange > 1;
-
-          setMaskData({
-            leftMaskOpacity: showLeftMask ? 1 : 0,
-            rightMaskOpacity: showRightMask ? 1 : 0,
-          });
-        },
-        100,
-        {
-          trailing: true,
-          leading: true,
-        },
-      ),
-    [],
+  const handleOnChange = useEventCallback(
+    (e: React.SyntheticEvent, data: { value: string }) => {
+      onChange?.(e, { index: data.value });
+    },
   );
 
-  useLayoutEffect(() => {
-    updateMask();
-  }, []);
+  const [currentValue, triggerValueChange] = useValue({
+    value,
+    defaultValue: defaultValue ?? '',
+    onChange: handleOnChange,
+    config: {
+      name: 'Tabs',
+      state: 'value',
+    },
+  });
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const registeredTabs = useRef<Record<string, React.RefObject<HTMLElement>>>(
+    {},
+  );
+  // Track registration changes to trigger indicator updates explicitly
+  const [registrationVersion, setRegistrationVersion] = useState(0);
+  const [isScrollable, setIsScrollable] = useState(false);
 
-  const handleClick = (e, item) => {
-    const { index, disabled = false } = item;
-    if (disabled) return;
-    if (index === undefined || index === null) {
-      return;
+  if (process.env.NODE_ENV !== 'production') {
+    if (tabs.length > 0 && React.Children.count(children) > 0) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        'BUI Warning: Tabs 组件不应该同时使用 tabs 属性和 children。请只使用其中一种方式。当前将优先使用 tabs 属性，children 将被忽略。',
+      );
     }
-    if (active !== value) {
-      setActive(index);
-    }
-    if (index !== value) {
-      onChange?.(e, { index });
-    }
-  };
+  }
 
-  const providerValue = useMemo(() => {
-    return { value, align, triggerChange: handleClick };
-  }, [value, align, children, handleClick]);
+  // 注册和取消注册 Tab 的回调函数
+  const onRegister = useEventCallback(
+    (data: { value: string; ref: React.RefObject<HTMLElement> }) => {
+      if (data.value !== undefined && data.value !== null) {
+        registeredTabs.current[data.value] = data.ref;
+        // Increment version to signal registration change
+        setRegistrationVersion((v) => v + 1);
+      }
+    },
+  );
+
+  const onUnregister = useEventCallback((data: { value: string }) => {
+    delete registeredTabs.current[data.value];
+    setRegistrationVersion((v) => v + 1);
+  });
+
+  // 使用 useEventCallback 保持回调引用稳定，同时能访问最新的 currentValue 和 triggerValueChange
+  const handleClick = useEventCallback(
+    (e: React.SyntheticEvent, item: { index: string; disabled?: boolean }) => {
+      const { index, disabled = false } = item;
+      if (disabled || [undefined, null].includes(index)) return;
+      if (index !== currentValue) {
+        triggerValueChange(e, index);
+      }
+    },
+  );
+
+  const contextValue = useMemo(
+    () => ({
+      value: currentValue,
+      triggerChange: handleClick,
+      onRegister,
+      onUnregister,
+    }),
+    [currentValue, handleClick, onRegister, onUnregister],
+  );
+  const renderedTabs = useMemo(() => {
+    if (tabs.length > 0) {
+      return tabs.map((item) => (
+        <Tab key={item.index} index={item?.index} disabled={item?.disabled}>
+          {item.title}
+        </Tab>
+      ));
+    }
+    return children;
+  }, [tabs, children]);
+
+  useEffect(() => {
+    const tabsEl = tabsRef.current;
+    if (!tabsEl) return undefined;
+
+    const checkScrollable = () => {
+      const { scrollWidth = 0, offsetWidth = 0 } = tabsEl;
+      // 处理浏览器兼容问题，同一个元素的scrollWidth和offsetWidth可能存在误差
+      const isOverflow = scrollWidth - offsetWidth > 1;
+      setIsScrollable(isOverflow);
+    };
+
+    checkScrollable();
+
+    if (typeof ResizeObserver === 'undefined') {
+      return undefined;
+    }
+
+    const resizeObserver = new ResizeObserver(checkScrollable);
+    resizeObserver.observe(tabsEl);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [registrationVersion]);
+
+  const handleKeyDown = useEventCallback((e: React.KeyboardEvent) => {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+
+    const target = e.target as HTMLElement;
+    if (!target || target.getAttribute?.('role') !== 'tab') return;
+
+    const list = tabsRef.current;
+    if (!list) return;
+
+    const enabledTabs = Array.from(
+      list.querySelectorAll<HTMLElement>('[role="tab"]'),
+    ).filter((el) => el.getAttribute('aria-disabled') !== 'true');
+    if (enabledTabs.length === 0) return;
+
+    const currentIndex = enabledTabs.indexOf(target);
+    let nextIndex = -1;
+    let shouldActivate = false;
+
+    switch (e.key) {
+      case 'ArrowLeft':
+        nextIndex =
+          currentIndex <= 0 ? enabledTabs.length - 1 : currentIndex - 1;
+        shouldActivate = true;
+        break;
+      case 'ArrowRight':
+        nextIndex =
+          currentIndex >= enabledTabs.length - 1 ? 0 : currentIndex + 1;
+        shouldActivate = true;
+        break;
+      case 'Home':
+        nextIndex = 0;
+        shouldActivate = true;
+        break;
+      case 'End':
+        nextIndex = enabledTabs.length - 1;
+        shouldActivate = true;
+        break;
+      case 'Enter':
+      case ' ': {
+        e.preventDefault();
+        target.click();
+        return;
+      }
+      default:
+        return;
+    }
+
+    if (nextIndex < 0 || nextIndex === currentIndex) return;
+    e.preventDefault();
+
+    const nextTab = enabledTabs[nextIndex];
+    if (!nextTab) return;
+
+    nextTab.focus();
+    if (shouldActivate) {
+      nextTab.click();
+    }
+  });
 
   return (
-    <div ref={ref} className={clsx(prefixCls, className)} {...others}>
-      <div
-        className={clsx(`${prefixCls}-mask`, `${prefixCls}-mask-left`)}
-        style={{
-          opacity: maskData.leftMaskOpacity,
-        }}
-      />
-      <div
-        className={clsx(`${prefixCls}-mask`, `${prefixCls}-mask-right`)}
-        style={{
-          opacity: maskData.rightMaskOpacity,
-        }}
-      />
+    <div className={clsx(tabsRootClass, className)} {...others} ref={ref}>
+      {isScrollable && (
+        <>
+          <TabMask position="left" />
+          <TabMask position="right" />
+        </>
+      )}
 
-      <div className={`${prefixCls}-tabs`} ref={tabsRef} onScroll={updateMask}>
-        <div
-          ref={activeLineRef}
-          className={clsx(`${prefixCls}-tabline`, {
-            'bui-tabline-invisible': isMini || !lineData.hasActiveTab,
-          })}
-          style={{
-            transition: lineData.transitionInUse
-              ? `transform ${duration / 1000}s ease`
-              : undefined,
-            transform: `translate3d(${lineData.x}px, 0px, 0px)`,
-          }}
+      <div
+        className={tabsScrollClass}
+        ref={tabsRef}
+        role="tablist"
+        aria-orientation="horizontal"
+        tabIndex={-1}
+        onKeyDown={handleKeyDown}
+      >
+        <TabIndicator
+          currentValue={currentValue}
+          registeredTabs={registeredTabs}
+          tabsContainerRef={tabsRef}
         />
 
-        <TabsContextProvider value={providerValue}>
-          {/* 支持通过tabs生成Tab */}
-          {!!tabs.length &&
-            tabs.map((item) => {
-              return (
-                <Tab
-                  key={item.index}
-                  index={item?.index}
-                  disabled={item?.disabled}
-                >
-                  {item.title}
-                </Tab>
-              );
-            })}
-
-          {children}
+        <TabsContextProvider value={contextValue}>
+          {renderedTabs}
         </TabsContextProvider>
       </div>
     </div>
@@ -242,9 +216,5 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
 });
 
 Tabs.displayName = 'BuiTabs';
-Tabs.defaultProps = {
-  align: 'center',
-  tabs: [],
-};
 
 export default Tabs;

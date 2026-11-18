@@ -20,7 +20,10 @@
     left: 12px;
     width: 16px;
     height: 250px;
-    background-image: linear-gradient(#ff335c, fade(#ff335c, 40%));
+    background-image: linear-gradient(
+      var(--bui-color-primary, #ff335c),
+      rgba(255, 51, 92, 0.4)
+    );
     color: #fff;
     font-size: 12px;
     text-align: center;
@@ -36,7 +39,7 @@
       height: 0;
       border-left: 16px solid transparent;
       border-right: 16px solid transparent;
-      border-top: 32px solid fade(#ff335c, 40%);
+      border-top: 32px solid rgba(255, 51, 92, 0.4);
       top: 100%;
     }
   }

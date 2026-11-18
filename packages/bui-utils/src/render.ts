@@ -1,6 +1,7 @@
 // 参考rc-util: https://github.com/react-component/util/blob/master/src/React/render.ts
-import { ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import * as ReactDOM from 'react-dom';
+import * as ReactDOMClient from 'react-dom/client';
 import type { Root } from 'react-dom/client';
 
 const MARK = '__bifrostui_react_root__';
@@ -17,15 +18,20 @@ const fullClone = {
     usingClientEntryPoint?: boolean;
   };
   createRoot?: CreateRoot;
+  render?: (node: ReactElement, container: ContainerType) => void;
+  unmountComponentAtNode?: (container: ContainerType) => boolean;
 };
-
+// @ts-ignore
 const { version, render: reactRender, unmountComponentAtNode } = fullClone;
 
 let createRoot: CreateRoot;
 try {
-  if (Number((version || '').split('.')[0]) >= 18 && fullClone.createRoot) {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    createRoot = fullClone.createRoot;
+  const majorVersion = Number((version || '').split('.')[0]);
+  if (majorVersion >= 18) {
+    // React 18/19: createRoot lives in react-dom/client
+    createRoot =
+      (ReactDOMClient as unknown as { createRoot?: CreateRoot }).createRoot ||
+      fullClone.createRoot;
   }
 } catch (e) {
   // Do nothing;
@@ -61,13 +67,23 @@ function modernRender(node: ReactElement, container: ContainerType) {
   toggleWarning(true);
   const root = container[MARK] || createRoot(container);
   toggleWarning(false);
-  root.render(node);
+  // Cast to the exact parameter type of Root.render to avoid
+  // React 18/19 @types/react version skew (ReactPortal.children
+  // requirement in v19, bigint in ReactNode in v19, etc.).
+  root.render(node as Parameters<Root['render']>[0]);
   // eslint-disable-next-line no-param-reassign
   container[MARK] = root;
 }
 
 function legacyRender(node: ReactElement, container: ContainerType) {
-  reactRender(node, container);
+  if (typeof reactRender === 'function') {
+    reactRender(node, container);
+    return;
+  }
+  // React 19+: legacy ReactDOM.render was removed. Fall back to createRoot.
+  if (createRoot) {
+    modernRender(node, container);
+  }
 }
 
 export function render(node: ReactElement, container: ContainerType) {
@@ -98,7 +114,11 @@ async function modernUnmount(container: ContainerType) {
 }
 
 function legacyUnmount(container: ContainerType) {
-  return unmountComponentAtNode(container);
+  if (typeof unmountComponentAtNode === 'function') {
+    return unmountComponentAtNode(container);
+  }
+  // React 19+: unmountComponentAtNode was removed. Use modern unmount.
+  return modernUnmount(container);
 }
 
 export function unmount(container: ContainerType) {

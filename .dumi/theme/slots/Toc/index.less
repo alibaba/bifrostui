@@ -12,7 +12,7 @@
 
   &::selection,
   & ::selection {
-    background: @c-primary-light;
+    background: var(--bui-color-primary-light, @c-primary-light);
   }
 
   &:empty {
@@ -24,7 +24,7 @@
       display: block;
       margin: 6px 0;
       padding: 3px 12px;
-      color: @c-text-secondary;
+      color: var(--bui-color-fg-subtle, #8b93a5);
       font-size: 13px;
       font-family: PingFangSC-Regular;
       line-height: 1;
@@ -38,7 +38,7 @@
       }
 
       &:hover {
-        color: @c-text;
+        color: var(--bui-color-fg-default, #030b1a);
         @{dark-selector} & {
           color: @c-text-dark;
         }
@@ -46,8 +46,8 @@
 
       &.active {
         margin-inline-start: -1px;
-        color: @c-primary;
-        border-inline-start: 1px solid @c-primary;
+        color: var(--bui-color-primary, @c-primary);
+        border-inline-start: 1px solid var(--bui-color-primary, @c-primary);
       }
     }
 

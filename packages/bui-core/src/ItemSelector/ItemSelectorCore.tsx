@@ -5,7 +5,7 @@ import ScrollView from '../ScrollView';
 import { ItemSelectorCoreProps, ItemGroup } from './ItemSelector.types';
 import Selector from './Selector';
 
-import './ItemSelector.less';
+import './index.less';
 
 // 误差偏移量
 const DEVIATION_HEIGHT = '6vmin';

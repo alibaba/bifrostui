@@ -15,7 +15,7 @@ DesktopTimePicker 组件，常用于选择时间，包括时分秒。
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import React, { useState } from 'react';
 dayjs.extend(customParseFormat);
@@ -41,7 +41,7 @@ export default () => {
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -70,7 +70,7 @@ export default () => {
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -96,7 +96,7 @@ export default () => {
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -141,7 +141,7 @@ export default () => {
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -171,7 +171,7 @@ export default () => {
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -201,7 +201,7 @@ export default () => {
 
 ```tsx
 import { DesktopTimePicker, Stack, Button } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -234,7 +234,7 @@ export default () => {
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -273,7 +273,7 @@ export default () => {
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
 import { HelpCircleOutlinedIcon } from '@bifrostui/icons';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -302,7 +302,7 @@ export default () => {
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -340,7 +340,7 @@ export default () => {
 
 ```tsx
 import { Button, DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -375,7 +375,7 @@ export default () => {
 
 ```tsx
 import { DesktopTimePicker, Button, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -403,7 +403,7 @@ export default () => {
 
 ```tsx
 import { DesktopTimePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {

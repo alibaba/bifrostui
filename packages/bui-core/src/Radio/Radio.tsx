@@ -4,15 +4,15 @@ import React, { forwardRef, useContext } from 'react';
 import { RadioProps } from './Radio.types';
 import RadioButtonIcon from './RadioButtonIcon';
 import RadioContext from './RadioContext';
-import './Radio.less';
+import './index.less';
 
 const prefixCls = 'bui-radio';
 
 const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
   const {
     className,
-    defaultChecked,
-    checked,
+    defaultChecked = false,
+    checked = false,
     inputProps,
     inputRef,
     name,
@@ -20,11 +20,15 @@ const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
     disabled,
     icon,
     checkedIcon,
-    labelPlacement,
+    labelPlacement = 'right',
     onChange,
     children,
     ...others
   } = props;
+  // 无障碍支持
+  const ariaProps = {
+    ...(disabled && { 'aria-disabled': disabled }),
+  };
   const groupContext = useContext(RadioContext);
   let validDefaultChecked = defaultChecked;
   let validChecked = checked;
@@ -43,13 +47,14 @@ const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
     value: validChecked,
   });
   if (groupContext && !value) {
+    // eslint-disable-next-line no-console
     console.error('RadioGroup模式下Radio须传入value属性');
   }
 
   const radioCheckIcon = checkedIcon || <RadioButtonIcon checked />;
   const radioUncheckIcon = icon || <RadioButtonIcon checked={false} />;
   const radioDisabled =
-    disabled !== undefined ? disabled : groupContext?.disabled;
+    disabled !== undefined ? disabled : groupContext?.disabled || false;
 
   const changeAction = (e, isChecked: boolean) => {
     // Radio
@@ -105,6 +110,7 @@ const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
         name={name}
         checked={radioChecked}
         disabled={radioDisabled}
+        {...ariaProps}
         {...inputProps}
         onChange={handleChange}
         className={clsx(`${prefixCls}-input`, inputProps?.className)}
@@ -118,9 +124,5 @@ const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
 });
 
 Radio.displayName = 'BuiRadio';
-Radio.defaultProps = {
-  defaultChecked: false,
-  labelPlacement: 'right',
-};
 
 export default Radio;

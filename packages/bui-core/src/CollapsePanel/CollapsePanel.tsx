@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import clsx from 'clsx';
 import { ArrowDownwardLargeIcon } from '@bifrostui/icons';
 import { useValue } from '@bifrostui/utils';
@@ -7,7 +7,7 @@ import {
   CollapsePanelProps,
   CollapsePanelItemProps,
 } from './CollapsePanel.types';
-import './CollapsePanel.less';
+import './index.less';
 
 const prefixCls = 'bui-collapse-panel';
 

@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const dayjs = require('dayjs');
-const path = require('path');
+const path = require('node:path');
 const chokidar = require('chokidar');
 const fse = require('fs-extra');
 const shelljs = require('shelljs');
@@ -15,8 +15,12 @@ class MdWatcher {
       process.cwd(),
       '../../packages/bui-icons/src',
     );
+    const svgIconPioneerMdPath = path.resolve(
+      process.cwd(),
+      '../../packages/bui-icons-pioneer/src',
+    );
     const dirs = fse.readdirSync(rootPath);
-    const mdPathList = [svgIconMdPath];
+    const mdPathList = [svgIconMdPath, svgIconPioneerMdPath];
     dirs.forEach((dir) => {
       const componentPath = path.resolve(rootPath, dir);
       if (fse.lstatSync(componentPath).isDirectory()) {

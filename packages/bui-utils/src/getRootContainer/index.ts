@@ -1,5 +1,6 @@
 const getRootContainer = (
   rootCon?: HTMLElement | (() => HTMLElement) | Window,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   defaultCon?: any,
 ) => {
   const rootElement = typeof rootCon === 'function' ? rootCon() : rootCon;

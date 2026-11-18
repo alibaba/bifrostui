@@ -1,6 +1,6 @@
 import { OverrideProps } from '@bifrostui/types';
 import { SwiperProps as SwiperPropsH5 } from 'swiper/react';
-import React from 'react';
+import * as React from 'react';
 
 export type SwiperProps<
   D extends React.ElementType = 'div',

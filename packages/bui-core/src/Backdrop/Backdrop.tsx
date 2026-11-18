@@ -1,8 +1,8 @@
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import Fade from '../Fade';
-import './Backdrop.less';
 import { BackdropProps } from './Backdrop.types';
+import './index.less';
 
 const prefixCls = 'bui-backdrop';
 
@@ -11,8 +11,8 @@ const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(
     const {
       children,
       className,
-      invisible,
-      open,
+      invisible = false,
+      open = false,
       transitionDuration,
       ...others
     } = props;
@@ -20,6 +20,7 @@ const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(
     return (
       <Fade in={open} timeout={transitionDuration} {...others}>
         <div
+          aria-hidden="true"
           className={clsx(
             prefixCls,
             {

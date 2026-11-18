@@ -1,9 +1,9 @@
 import { ErrorCircleFilledIcon } from '@bifrostui/icons';
 import { isMini, useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import { InputProps } from './index';
-import './Input.less';
+import './index.less';
 
 const prefixCls = 'bui-input';
 
@@ -15,18 +15,27 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     inputProps,
     inputRef,
     name,
-    type,
-    clearable,
+    type = 'text',
+    clearable = false,
     startIcon,
     endIcon,
     placeholder,
-    disabled,
+    disabled = false,
     onClear,
     onChange,
     onFocus,
     onBlur,
     ...others
   } = props;
+  // 原生属性
+  const { required, readOnly } = inputProps || {};
+  // 无障碍支持
+  const ariaProps = {
+    ...(required && { 'aria-required': required }),
+    ...(readOnly && { 'aria-readonly': readOnly }),
+    ...(disabled && { 'aria-disabled': disabled }),
+    ...(placeholder && { 'aria-placeholder': placeholder }),
+  };
 
   const [inputValue, triggerChange] = useValue({
     value,
@@ -34,8 +43,19 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     onChange,
   });
   const [hasFocus, setHasFocus] = useState(false);
+  const blurTimerRef = useRef(null);
+
+  const clearBlurTimer = () => {
+    if (blurTimerRef.current) {
+      clearTimeout(blurTimerRef.current);
+      blurTimerRef.current = null;
+    }
+  };
+
+  useEffect(() => clearBlurTimer, []);
 
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    clearBlurTimer();
     setHasFocus(true);
     onFocus?.(e);
     inputProps?.onFocus?.(e);
@@ -43,7 +63,9 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     // 解决H5/小程序清除按钮先失焦隐藏不到的问题
-    setTimeout(() => {
+    clearBlurTimer();
+    blurTimerRef.current = setTimeout(() => {
+      blurTimerRef.current = null;
       setHasFocus(false);
     }, 200);
     onBlur?.(e);
@@ -57,7 +79,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     inputProps?.onChange?.(e);
   };
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInput = (e: any) => {
     // 小程序中input实际有onChange事件，但文档没有标明，故统一通过onInput模拟
     if (isMini) {
       triggerChange(e, e.target.value);
@@ -101,6 +123,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
         value={inputValue}
         disabled={disabled}
         placeholder={placeholder}
+        {...ariaProps}
         {...inputProps}
         onChange={handleChange}
         onFocus={handleFocus}
@@ -112,7 +135,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
       {/* 清除按钮 */}
       {clearable && !!inputValue && hasFocus && (
         <div className={`${prefixCls}-clear`} onClick={handleClear}>
-          <ErrorCircleFilledIcon htmlColor="#959aa5" />
+          <ErrorCircleFilledIcon htmlColor="var(--bui-color-fg-subtle)" />
         </div>
       )}
 
@@ -127,11 +150,5 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
 });
 
 Input.displayName = 'BuiInput';
-Input.defaultProps = {
-  defaultValue: '',
-  type: 'text',
-  clearable: false,
-  disabled: false,
-};
 
 export default Input;

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import * as React from 'react';
 import { ITouchEvent } from '@tarojs/components';
 
 /**

@@ -7,9 +7,7 @@ name: Collapse 折叠动效
 
 使用Transition封装的基础折叠动画，从元素的起始边缘展开
 
-## 代码演示
-
-### 基础使用
+## 基础使用
 
 Collapse组件支持两个折叠方向，通过`direction`参数传入，如果需要水平折叠则使用`horizontal`值，如果需要垂直方向折叠则使用`vertical`值。默认值为`vertical`
 
@@ -104,6 +102,93 @@ export default () => {
           }}
         ></Card>
       </Collapse>
+    </Stack>
+  );
+};
+```
+
+### 禁用动画
+
+通过设置 `enter=false` 或 `exit=false`，可以禁用进入或退出动画。元素将立即显示或隐藏，无过渡效果。
+
+```tsx
+import React, { useState } from 'react';
+import { Button, Collapse, Stack, Card } from '@bifrostui/react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Stack direction="column" spacing="16px">
+      <Button
+        onClick={() => {
+          setOpen((prev) => !prev);
+        }}
+      >
+        切换状态
+      </Button>
+
+      {/* 仅进入动画，无退出动画 */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>仅进入动画:</div>
+        <Collapse
+          in={open}
+          direction="vertical"
+          enter={true}
+          exit={false}
+          timeout={500}
+        >
+          <Card
+            style={{
+              background: '#CCCCCC',
+              width: '100px',
+              height: '80px',
+              padding: '8px',
+            }}
+          >
+            <div>瞬间退出，平滑进入</div>
+          </Card>
+        </Collapse>
+      </Stack>
+
+      {/* 仅退出动画，无进入动画 */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>仅退出动画:</div>
+        <Collapse
+          in={open}
+          direction="horizontal"
+          enter={false}
+          exit={true}
+          timeout={500}
+        >
+          <Card
+            style={{
+              background: '#CCCCCC',
+              width: '100px',
+              height: '80px',
+              padding: '8px',
+            }}
+          >
+            <div>瞬间进入，平滑退出</div>
+          </Card>
+        </Collapse>
+      </Stack>
+
+      {/* 禁用所有动画 */}
+      <Stack direction="row" spacing="16px" alignItems="center">
+        <div style={{ width: '120px' }}>全部禁用:</div>
+        <Collapse in={open} direction="vertical" enter={false} exit={false}>
+          <Card
+            style={{
+              background: '#CCCCCC',
+              width: '100px',
+              height: '80px',
+              padding: '8px',
+            }}
+          >
+            <div>瞬间切换，无动画</div>
+          </Card>
+        </Collapse>
+      </Stack>
     </Stack>
   );
 };

@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 
 const config = {
   projectName: 'bui-miniapp',
@@ -37,7 +37,7 @@ const config = {
     compile: {
       include: [
         (modulePath) =>
-          /bui-core|bui-utils|bui-icons|bui-styles|bui-types/.test(modulePath),
+          /bui-core|bui-utils|bui-icons|bui-icons-pioneer|bui-styles|bui-types/.test(modulePath),
       ],
     },
     webpackChain: (chain, webpack) => {

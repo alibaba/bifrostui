@@ -29,7 +29,7 @@ describe('useValue', () => {
     const defaultValue = 'default';
     const newValue = 'new value';
 
-    const onChangeMock = jest.fn();
+    const onChangeMock = vi.fn();
 
     const { result } = renderHook(() =>
       useValue({ defaultValue, onChange: onChangeMock }),

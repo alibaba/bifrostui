@@ -1,5 +1,5 @@
 import { OverrideProps } from '@bifrostui/types';
-import React, { CSSProperties } from 'react';
+import * as React from 'react';
 
 /**
  * 当前时间
@@ -64,18 +64,6 @@ export type CountdownProps<
        */
       format?: string;
       /**
-       * 时间单位的样式
-       */
-      unitStyle?: CSSProperties;
-      /**
-       * 倒计时位数的样式，用于定制第一、第二位数字的样式
-       */
-      valueStyle?: CSSProperties[];
-      /**
-       * 各时间区块的样式，用于定制各个时间块的样式，若第一、第二位数字的样式相同，则可替代valueStyle
-       */
-      timeSliceStyle?: CSSProperties;
-      /**
        * 倒计时完成时触发
        */
       onFinish?: () => void;
@@ -87,6 +75,23 @@ export type CountdownProps<
        * 自定义render内容
        */
       renderContent?: (data: CurrentTime) => React.ReactNode;
+      /**
+       * 无障碍标签，为屏幕阅读器提供组件描述
+       */
+      'aria-label'?: string;
+      /**
+       * 引用其他元素ID作为标签
+       */
+      'aria-labelledby'?: string;
+      /**
+       * 引用其他元素ID作为描述
+       */
+      'aria-describedby'?: string;
+      /**
+       * 组件的语义角色
+       * @default 'timer'
+       */
+      role?: string;
     };
     defaultComponent: D;
   },
@@ -96,7 +101,7 @@ export type CountdownProps<
 /**
  * 倒计时格式化后分割项
  */
-interface CountdownItem {
+export interface CountdownItem {
   /**
    * 倒计时切片字符串
    */
@@ -118,7 +123,7 @@ interface CountdownItem {
 /**
  * 格式化倒计时
  */
-export type FormatedCountdown = {
+export type FormattedCountdown = {
   /**
    * 剩余总时间
    */

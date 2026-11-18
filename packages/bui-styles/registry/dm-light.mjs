@@ -1,0 +1,60 @@
+export const dmLight = {
+  name: 'dmLight',
+  label: 'Damai Light',
+  mixinName: 'dm-light',
+  cssVars: {
+    /** 淘麦红 */
+    '--bui-color-red': '#ff3299',
+    '--bui-color-red-light': '#ffeaf5',
+    '--bui-color-red-dark': '#e62d8a',
+
+    /** 活力黄 */
+    '--bui-color-yellow': '#ffaf00',
+    '--bui-color-yellow-light': '#fff7e5',
+    '--bui-color-yellow-dark': '#e59d00',
+
+    /** 荧光黄 */
+    '--bui-color-lemonyellow': '#fff36f',
+    '--bui-color-lemonyellow-light': '#ffffeb',
+    '--bui-color-lemonyellow-dark': '#b3a13d',
+
+    /** 亲和绿 */
+    '--bui-color-green': '#0cdc87',
+    '--bui-color-green-light': '#e6fbf3',
+    '--bui-color-green-dark': '#0bc679',
+
+    /** 神秘紫 */
+    '--bui-color-purple': '#754dff',
+    '--bui-color-purple-light': '#f6f0ff',
+    '--bui-color-purple-dark': '#3924b3',
+
+    /** 宁静蓝 */
+    '--bui-color-blue': '#30aeff',
+    '--bui-color-blue-light': '#eaf7ff',
+    '--bui-color-blue-dark': '#2b9ce5',
+
+    /** 智能蓝 */
+    '--bui-color-aiblue': '#5cfffa',
+    '--bui-color-aiblue-light': '#f0fffc',
+    '--bui-color-aiblue-dark': '#00898e',
+
+    /** 主题色渐变 */
+    '--bui-color-primary-start': 'var(--bui-color-red)',
+    '--bui-color-primary-end': '#ff4a72',
+    '--bui-color-info-start': '#51bbff',
+    '--bui-color-info-end': 'var(--bui-color-blue)',
+    '--bui-color-warning-start': '#ffc341',
+    '--bui-color-warning-end': 'var(--bui-color-yellow)',
+    '--bui-color-success-start': 'var(--bui-color-green)',
+    '--bui-color-success-end': '#00c474',
+    '--bui-color-danger-start': 'var(--bui-color-red)',
+    '--bui-color-danger-end': '#ff4a72',
+
+    /** 分割线、边框 */
+    '--bui-color-border-primary': 'rgba(255, 50, 153, 0.4)',
+    '--bui-color-border-info': 'rgba(48, 174, 255, 0.4)',
+    '--bui-color-border-success': 'rgba(12, 220, 135, 0.4)',
+    '--bui-color-border-warning': 'rgba(255, 175, 0, 0.4)',
+    '--bui-color-border-danger': 'rgba(255, 50, 153, 0.4)',
+  },
+};

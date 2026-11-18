@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { ModalProps } from '../Modal/Modal.types';
 import { SlideProps } from '../Slide/Slide.types';
 import { TransitionProps } from '../Transition';

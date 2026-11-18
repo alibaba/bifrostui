@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
+
 /**
- * skip inital run useEffect
+ * skip initial run useEffect
  */
 const useDidMountEffect = (func, deps) => {
   const didMount = useRef(false);

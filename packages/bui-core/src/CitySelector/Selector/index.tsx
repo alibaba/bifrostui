@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { cityType } from '../CitySelector.types';
 import './index.less';
 
@@ -12,6 +12,8 @@ const Selector = (props: propsType) => {
   return (
     <span
       className="bui-city-selector-item"
+      role="button"
+      tabIndex={0}
       onClick={(e) => {
         onSelect?.(e, city);
       }}

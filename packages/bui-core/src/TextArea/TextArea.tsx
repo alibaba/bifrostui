@@ -1,48 +1,62 @@
 import { isMini, useForkRef, useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { TextAreaProps } from './TextArea.types';
-import './TextArea.less';
+import { useLocaleText } from '../locales';
+import './index.less';
 
 const prefixCls = 'bui-textarea';
 const DEFAULT_ROWS = 2;
 
 const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
   (props, ref) => {
+    const textareaText = useLocaleText('textarea');
     const {
       className,
       value,
-      defaultValue,
+      defaultValue = '',
       textareaProps,
       textareaRef,
       name,
       placeholder,
       disabled,
-      rows,
+      rows = DEFAULT_ROWS, // 默认行数
       maxLength,
-      autoSize,
-      autoFocus,
-      showCount,
+      autoSize = false, // 是否自适应高度
+      autoFocus = false, // 是否自动聚焦
+      showCount = false, // 是否展示字数统计
+      // 无障碍属性
+      'aria-label': ariaLabel = textareaText.labelName,
+      'aria-hidden': ariaHidden,
+      'aria-details': ariaDetails,
+      'aria-required': ariaRequired,
+      'aria-readonly': ariaReadonly,
+      'aria-rowindex': ariaRowindex,
+      'aria-colcount': ariaColcount,
       onChange,
       ...others
     } = props;
-
+    // 受控/非受控 value 处理
     const [textAreaValue, triggerChange] = useValue({
       value,
       defaultValue,
       onChange,
     });
+    // 小程序初始化高度锁
     const initLock = useRef(false);
+    // textarea dom 引用
     const internalRef = useRef<HTMLTextAreaElement>(null);
+    // 合并外部和内部ref
     const handleInputRef = useForkRef(internalRef, textareaRef);
 
-    // autoFocus
+    // 自动聚焦
     useEffect(() => {
       if (autoFocus && internalRef.current) {
         internalRef.current.focus();
       }
-    }, [internalRef]);
+    }, [autoFocus]);
 
+    // 处理自适应高度的最大/最小高度
     const handleAutoHeight = (height) => {
       if (typeof autoSize === 'object') {
         const { maxHeight, minHeight } = autoSize;
@@ -56,7 +70,7 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
       return height;
     };
 
-    // H5 autoSize
+    // H5 下自适应高度
     useEffect(() => {
       if (!autoSize || isMini) return;
 
@@ -68,15 +82,14 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
       textArea.style.height = `${height}px`;
     }, [textAreaValue, autoSize]);
 
-    // miniprogram autoSize
+    // 小程序下自适应高度处理
     const handleLineChange = (e) => {
       if (!isMini) return;
       const textArea = internalRef.current;
       const { height, lineCount } = e?.detail || {};
       const line = lineCount <= 1 ? rows : lineCount;
       // 总高度 = 行数 * 单行高度
-      let textAreaHeight = line * (height / lineCount + 4);
-      textAreaHeight = handleAutoHeight(textAreaHeight);
+      const textAreaHeight = handleAutoHeight(line * (height / lineCount));
       // autoSize=false也需要初始化小程序textarea高度
       if (!initLock.current && !autoSize && rows === DEFAULT_ROWS) {
         textArea.style.height = `${textAreaHeight}px`;
@@ -88,13 +101,37 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
       }
     };
 
+    const [ariaDescription, setAriaDescription] = useState('');
+
+    // 组装原生属性，兼容小程序和H5
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let nativeProps: Record<string, any> = {
       [isMini ? 'maxlength' : 'maxLength']: maxLength ?? -1,
+      'aria-description': ariaDescription,
     };
+
+    // 添加无障碍属性到原生属性中
+    const accessibilityProps = {
+      'aria-label': ariaLabel,
+      'aria-hidden': ariaHidden,
+      'aria-details': ariaDetails,
+      'aria-required': ariaRequired,
+      'aria-readonly': ariaReadonly,
+      'aria-rowindex': ariaRowindex,
+      'aria-colcount': ariaColcount,
+    };
+
+    // 过滤掉 undefined 的无障碍属性
+    Object.keys(accessibilityProps).forEach((key) => {
+      if (accessibilityProps[key] !== undefined) {
+        nativeProps[key] = accessibilityProps[key];
+      }
+    });
+
     if (isMini) {
       nativeProps = {
         ...nativeProps,
-        onLineChange: handleLineChange,
+        onLineChange: handleLineChange, // 小程序行高变化事件
         placeholderClass: 'bui-mini-placeholder',
         autoFocus,
         focus: autoFocus,
@@ -122,11 +159,19 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
           rows={rows}
           {...textareaProps}
           onChange={(e) => {
+            // 受控/非受控统一触发
             triggerChange(e, e.target.value);
             textareaProps?.onChange?.(e);
           }}
-          onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+          onInput={(e: any) => {
             // 小程序中无onChange事件，通过onInput模拟
+            if (showCount) {
+              const remaining = maxLength - e.target.value.length;
+              // 动态更新 aria-description
+              setAriaDescription(
+                `${textareaText.remaining} ${remaining} ${textareaText.characters}`,
+              );
+            }
             if (isMini) {
               triggerChange(e, e.target.value);
             }
@@ -135,6 +180,7 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
           className={clsx(`${prefixCls}-content`, textareaProps?.className)}
         />
 
+        {/* 字数统计 */}
         {showCount && (
           <div className={`${prefixCls}-count`}>
             {maxLength === undefined
@@ -148,12 +194,5 @@ const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>(
 );
 
 TextArea.displayName = 'BuiTextArea';
-TextArea.defaultProps = {
-  defaultValue: '',
-  rows: DEFAULT_ROWS,
-  autoSize: false,
-  autoFocus: false,
-  showCount: false,
-};
 
 export default TextArea;

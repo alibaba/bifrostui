@@ -3,8 +3,6 @@ import { fireEvent, isConformant, render, act } from 'testing';
 import { TabPanel, Tabs, Tab } from '..';
 
 describe('Tabs', () => {
-  const originalModule = jest.requireActual('@bifrostui/utils');
-  const restApi = jest.requireActual('react');
   const rootClass = {
     tabs: 'bui-tabs',
     tabpanel: 'bui-tabpanel',
@@ -12,16 +10,20 @@ describe('Tabs', () => {
 
   beforeEach(() => {
     document.body.innerHTML = '';
-    jest.mock('@bifrostui/utils', () => ({
-      isMini: false,
-    }));
-    jest.useFakeTimers();
+    vi.mock('@bifrostui/utils', async () => {
+      const actual = await vi.importActual('@bifrostui/utils');
+      return {
+        ...actual,
+        isMini: false,
+      };
+    });
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
-    jest.clearAllMocks();
+    vi.clearAllTimers();
+    vi.useRealTimers();
+    vi.clearAllMocks();
   });
 
   isConformant({
@@ -74,10 +76,10 @@ describe('Tabs', () => {
     }
     const { container } = render(<Component />);
 
-    const tabLine = container.querySelector(`.${rootClass.tabs}-tabline`);
-    expect(tabLine).toHaveStyle({
-      transform: 'translate3d(0px, 0px, 0px)',
-      transition: 'transform 0.3s ease',
+    const indicator = container.querySelector(`.${rootClass.tabs}-indicator`);
+    expect(indicator).toBeInTheDocument();
+    expect(indicator).toHaveStyle({
+      transition: 'left 0.3s ease-in-out',
     });
   });
 
@@ -107,7 +109,7 @@ describe('Tabs', () => {
   });
 
   describe('test with TabPanel', () => {
-    it('should be actived by `value` property', () => {
+    it('should be active by `value` property', () => {
       function Component() {
         const [value] = useState('vegetables');
         return (
@@ -134,12 +136,12 @@ describe('Tabs', () => {
       }
       const { container, getByTestId } = render(<Component />);
 
-      const tabLine = container.querySelector(`.${rootClass.tabs}-tabline`);
-      const activePabel = container.querySelector(
+      const indicator = container.querySelector(`.${rootClass.tabs}-indicator`);
+      const activePanel = container.querySelector(
         `.${rootClass.tabpanel}-active`,
       );
-      expect(tabLine).toBeVisible();
-      expect(activePabel).toHaveTextContent('西红柿');
+      expect(indicator).toBeVisible();
+      expect(activePanel).toHaveTextContent('西红柿');
       expect(getByTestId('test-wrapper')).toMatchSnapshot();
     });
 
@@ -231,8 +233,13 @@ describe('Tabs', () => {
     });
 
     it('should disable click', () => {
-      const handleChange = jest.fn();
-      function Component(props: { handleChange: any }) {
+      const handleChange = vi.fn();
+      function Component(props: {
+        readonly handleChange: (
+          e: React.MouseEvent,
+          data: { index: string },
+        ) => void;
+      }) {
         const { handleChange: change } = props;
         const [value] = useState('fruits');
         return (
@@ -261,12 +268,37 @@ describe('Tabs', () => {
       }
 
       const { container } = render(<Component handleChange={handleChange} />);
-      const [, tab2] = container.querySelectorAll(`.bui-tab`);
+      const [tab1, tab2, tab3] = container.querySelectorAll(`.bui-tab`);
+      expect(tab1).toHaveAttribute('tabindex', '0');
+      expect(tab2).toHaveAttribute('tabindex', '-1');
+      expect(tab2).toHaveAttribute('aria-disabled', 'true');
+      expect(tab3).toHaveAttribute('tabindex', '-1');
       fireEvent.click(tab2);
       expect(handleChange).not.toBeCalled();
     });
 
-    it('should active default Tab when got error value', () => {
+    it('should apply roving tabIndex based on active and disabled state', () => {
+      function Component() {
+        return (
+          <Tabs
+            value="vegetables"
+            tabs={[
+              { title: '水果', index: 'fruits' },
+              { title: '蔬菜', index: 'vegetables' },
+              { title: '动物', index: 'animals', disabled: true },
+            ]}
+          />
+        );
+      }
+
+      const { container } = render(<Component />);
+      const [tab1, tab2, tab3] = container.querySelectorAll(`.bui-tab`);
+      expect(tab1).toHaveAttribute('tabindex', '-1');
+      expect(tab2).toHaveAttribute('tabindex', '0');
+      expect(tab3).toHaveAttribute('tabindex', '-1');
+    });
+
+    it('should not render indicator when value is invalid and tabs is empty', () => {
       function Component() {
         const [value, setValue] = useState('vegetables111');
         const handleChange = (e, { index }) => {
@@ -294,21 +326,22 @@ describe('Tabs', () => {
       }
 
       const { container } = render(<Component />);
-      const tabline = container.querySelector(`.bui-tabs-tabline`);
-      expect(tabline).toHaveClass('bui-tabs-tabline');
+      const indicator = container.querySelector(`.bui-tabs-indicator`);
+      // When there's no valid tab, indicator should not render
+      expect(indicator).toBeNull();
     });
   });
 
-  it('should render when resize', async () => {
-    jest.resetModules();
-    jest.doMock('@bifrostui/utils', () => ({
-      ...originalModule,
-      debounce: jest.fn((fn) => fn),
-    }));
-    jest.doMock('react', () => ({
-      ...restApi,
-    }));
-    const { default: FakeTabs } = await import('../index');
+  it('should re-render indicator on window resize', () => {
+    // Mock debounce to execute immediately for testing
+    vi.resetModules();
+    vi.doMock('@bifrostui/utils', async () => {
+      const actual = await vi.importActual('@bifrostui/utils');
+      return {
+        ...actual,
+        debounce: vi.fn((fn) => fn),
+      };
+    });
 
     function Component() {
       const [value, setValue] = useState('fruits');
@@ -317,7 +350,7 @@ describe('Tabs', () => {
       };
       return (
         <>
-          <FakeTabs
+          <Tabs
             className="tabs-test"
             onChange={handleChange}
             value={value}
@@ -341,15 +374,16 @@ describe('Tabs', () => {
     }
 
     const { container } = render(<Component />);
-    await act(async () => {
-      await jest.runAllTimers();
-    });
 
+    // Trigger resize event to test indicator repositioning
     act(() => {
       global.dispatchEvent(new Event('resize'));
-      const [, tab2] = container.querySelectorAll(`.bui-tab`);
-      fireEvent.click(tab2);
     });
+
+    // Verify component still works after resize
+    const [, tab2] = container.querySelectorAll(`.bui-tab`);
+    fireEvent.click(tab2);
+
     const activeTab = container.querySelector(`.bui-tab-active`);
     const activeTabPanel = container.querySelector(
       `.${rootClass.tabpanel}-active`,
@@ -361,7 +395,7 @@ describe('Tabs', () => {
   it('should no active Tab when value is invalid', () => {
     function Component() {
       const [value, setValue] = useState('2');
-      const defultList = [
+      const tabs = [
         { title: '长津湖', index: '1' },
         { title: '战狼2', index: '2' },
         { title: '你好，李焕英', index: '3' },
@@ -369,7 +403,7 @@ describe('Tabs', () => {
         { title: '流浪地球', index: '5' },
         { title: '唐人街探案3', index: '6' },
       ];
-      const [tabList, setTabList] = useState(defultList);
+      const [tabList, setTabList] = useState(tabs);
 
       const handleChange = (e, { index }) => {
         setValue(index);
@@ -382,6 +416,13 @@ describe('Tabs', () => {
             onClick={() => {
               setValue('');
             }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                setValue('');
+              }
+            }}
+            role="button"
+            tabIndex={0}
           >
             置为无效值
           </div>
@@ -389,15 +430,30 @@ describe('Tabs', () => {
             data-testid="test-modify-tablist"
             onClick={() => {
               if (tabList.length === 4) {
-                setTabList(defultList);
+                setTabList(tabs);
               } else {
-                const newTabList = defultList.slice(0, 4);
+                const newTabList = tabs.slice(0, 4);
                 setTabList(newTabList);
                 if (!newTabList.some((item) => item.index === value)) {
                   setValue('1');
                 }
               }
             }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                if (tabList.length === 4) {
+                  setTabList(tabs);
+                } else {
+                  const newTabList = tabs.slice(0, 4);
+                  setTabList(newTabList);
+                  if (!newTabList.some((item) => item.index === value)) {
+                    setValue('1');
+                  }
+                }
+              }
+            }}
+            role="button"
+            tabIndex={0}
           >
             {tabList.length === 4 ? '增加' : '减少'}TabList长度
           </div>
@@ -456,7 +512,7 @@ describe('Tabs', () => {
   it('should no active Tab when value is invalid by use tabs', () => {
     function Component() {
       const [value, setValue] = useState('2');
-      const defultList = [
+      const tabs = [
         { title: '长津湖', index: '1' },
         { title: '战狼2', index: '2' },
         { title: '你好，李焕英', index: '3' },
@@ -464,7 +520,7 @@ describe('Tabs', () => {
         { title: '流浪地球', index: '5' },
         { title: '唐人街探案3', index: '6' },
       ];
-      const [tabList, setTabList] = useState(defultList);
+      const [tabList, setTabList] = useState(tabs);
 
       const handleChange = (e, { index }) => {
         setValue(index);
@@ -477,6 +533,13 @@ describe('Tabs', () => {
             onClick={() => {
               setValue('');
             }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                setValue('');
+              }
+            }}
+            role="button"
+            tabIndex={0}
           >
             置为无效值
           </div>
@@ -484,15 +547,30 @@ describe('Tabs', () => {
             data-testid="test-modify-tablist"
             onClick={() => {
               if (tabList.length === 4) {
-                setTabList(defultList);
+                setTabList(tabs);
               } else {
-                const newTabList = defultList.slice(0, 4);
+                const newTabList = tabs.slice(0, 4);
                 setTabList(newTabList);
                 if (!newTabList.some((item) => item.index === value)) {
                   setValue('1');
                 }
               }
             }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                if (tabList.length === 4) {
+                  setTabList(tabs);
+                } else {
+                  const newTabList = tabs.slice(0, 4);
+                  setTabList(newTabList);
+                  if (!newTabList.some((item) => item.index === value)) {
+                    setValue('1');
+                  }
+                }
+              }
+            }}
+            role="button"
+            tabIndex={0}
           >
             {tabList.length === 4 ? '增加' : '减少'}TabList长度
           </div>
@@ -546,7 +624,7 @@ describe('Tabs', () => {
   it('should render correctly when TabList changed', async () => {
     function Component() {
       const [value, setValue] = useState('2');
-      const defultList = [
+      const tabs = [
         { title: '长津湖', index: '1' },
         { title: '战狼2', index: '2' },
         { title: '你好，李焕英', index: '3' },
@@ -554,7 +632,7 @@ describe('Tabs', () => {
         { title: '流浪地球', index: '5' },
         { title: '唐人街探案3', index: '6' },
       ];
-      const [tabList, setTabList] = useState(defultList);
+      const [tabList, setTabList] = useState(tabs);
 
       const handleChange = (e, { index }) => {
         setValue(index);
@@ -566,15 +644,30 @@ describe('Tabs', () => {
             data-testid="test-modify-tablist2"
             onClick={() => {
               if (tabList.length === 4) {
-                setTabList(defultList);
+                setTabList(tabs);
               } else {
-                const newTabList = defultList.slice(0, 4);
+                const newTabList = tabs.slice(0, 4);
                 setTabList(newTabList);
                 if (!newTabList.some((item) => item.index === value)) {
                   setValue('1');
                 }
               }
             }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                if (tabList.length === 4) {
+                  setTabList(tabs);
+                } else {
+                  const newTabList = tabs.slice(0, 4);
+                  setTabList(newTabList);
+                  if (!newTabList.some((item) => item.index === value)) {
+                    setValue('1');
+                  }
+                }
+              }
+            }}
+            role="button"
+            tabIndex={0}
           >
             {tabList.length === 4 ? '增加' : '减少'}TabList长度
           </div>
@@ -632,5 +725,194 @@ describe('Tabs', () => {
     fireEvent.click(testModifyTablistBtn);
     expect(tab1).toHaveClass('bui-tab-active');
     expect(tabpanel1).toHaveTextContent('1');
+  });
+
+  it('should only re-render 2 tabs when changing active tab', () => {
+    // Spy on Tab component renders by monkey-patching console.count
+    const originalConsoleCount = console.count;
+    let tabRenderCount = 0;
+
+    console.count = (label) => {
+      if (label === 'Tab render') {
+        tabRenderCount += 1;
+      }
+      originalConsoleCount.call(console, label);
+    };
+
+    function Component() {
+      const [value, setValue] = useState('one');
+      return (
+        <div>
+          <Tabs value={value} onChange={(e, { index }) => setValue(index)}>
+            <Tab index="one">Tab 1</Tab>
+            <Tab index="two">Tab 2</Tab>
+            <Tab index="three">Tab 3</Tab>
+            <Tab index="four">Tab 4</Tab>
+            <Tab index="five">Tab 5</Tab>
+          </Tabs>
+        </div>
+      );
+    }
+
+    const { container } = render(<Component />);
+
+    // Initial render: all 5 tabs render once
+    expect(tabRenderCount).toBe(5);
+
+    // Reset count for next interaction
+    tabRenderCount = 0;
+
+    // Click on tab 3 (change from tab 1 to tab 3)
+    const tab3 = container.querySelectorAll('.bui-tab')[2];
+    fireEvent.click(tab3);
+    vi.runAllTimers();
+
+    // Only 2 tabs should re-render: tab 1 (becoming inactive) and tab 3 (becoming active)
+    expect(tabRenderCount).toBe(2);
+
+    // Restore console.count
+    console.count = originalConsoleCount;
+  });
+
+  describe('keyboard navigation', () => {
+    const arrowTabs = [
+      { title: '水果', index: 'fruits' },
+      { title: '蔬菜', index: 'vegetables' },
+      { title: '动物', index: 'animals' },
+    ];
+
+    function ArrowNavComponent(props: {
+      readonly onChange?: (
+        e: React.SyntheticEvent,
+        data: { index: string },
+      ) => void;
+      readonly tabs?: typeof arrowTabs;
+      readonly defaultValue?: string;
+    }) {
+      const { onChange, tabs = arrowTabs, defaultValue = 'fruits' } = props;
+      return (
+        <Tabs defaultValue={defaultValue} tabs={tabs} onChange={onChange} />
+      );
+    }
+
+    it('ArrowRight moves focus to next tab and activates it', () => {
+      const handleChange = vi.fn();
+      const { container } = render(
+        <ArrowNavComponent onChange={handleChange} />,
+      );
+      const [tab1, tab2] =
+        container.querySelectorAll<HTMLDivElement>('.bui-tab');
+      tab1.focus();
+      fireEvent.keyDown(tab1, { key: 'ArrowRight' });
+      expect(handleChange).toHaveBeenCalledWith(expect.anything(), {
+        index: 'vegetables',
+      });
+      expect(document.activeElement).toBe(tab2);
+    });
+
+    it('ArrowLeft wraps from first to last', () => {
+      const handleChange = vi.fn();
+      const { container } = render(
+        <ArrowNavComponent onChange={handleChange} />,
+      );
+      const [tab1, , tab3] =
+        container.querySelectorAll<HTMLDivElement>('.bui-tab');
+      tab1.focus();
+      fireEvent.keyDown(tab1, { key: 'ArrowLeft' });
+      expect(handleChange).toHaveBeenCalledWith(expect.anything(), {
+        index: 'animals',
+      });
+      expect(document.activeElement).toBe(tab3);
+    });
+
+    it('ArrowRight wraps from last to first', () => {
+      const handleChange = vi.fn();
+      const { container } = render(
+        <ArrowNavComponent defaultValue="animals" onChange={handleChange} />,
+      );
+      const [tab1, , tab3] =
+        container.querySelectorAll<HTMLDivElement>('.bui-tab');
+      tab3.focus();
+      fireEvent.keyDown(tab3, { key: 'ArrowRight' });
+      expect(handleChange).toHaveBeenCalledWith(expect.anything(), {
+        index: 'fruits',
+      });
+      expect(document.activeElement).toBe(tab1);
+    });
+
+    it('Home jumps to first and End jumps to last', () => {
+      const handleChange = vi.fn();
+      const { container } = render(
+        <ArrowNavComponent defaultValue="vegetables" onChange={handleChange} />,
+      );
+      const [tab1, tab2, tab3] =
+        container.querySelectorAll<HTMLDivElement>('.bui-tab');
+      tab2.focus();
+
+      fireEvent.keyDown(tab2, { key: 'Home' });
+      expect(document.activeElement).toBe(tab1);
+      expect(handleChange).toHaveBeenLastCalledWith(expect.anything(), {
+        index: 'fruits',
+      });
+
+      tab1.focus();
+      fireEvent.keyDown(tab1, { key: 'End' });
+      expect(document.activeElement).toBe(tab3);
+      expect(handleChange).toHaveBeenLastCalledWith(expect.anything(), {
+        index: 'animals',
+      });
+    });
+
+    it('skips disabled tab when navigating with arrow keys', () => {
+      const handleChange = vi.fn();
+      const tabs = [
+        { title: '水果', index: 'fruits' },
+        { title: '蔬菜', index: 'vegetables', disabled: true },
+        { title: '动物', index: 'animals' },
+      ];
+      const { container } = render(
+        <ArrowNavComponent tabs={tabs} onChange={handleChange} />,
+      );
+      const [tab1, , tab3] =
+        container.querySelectorAll<HTMLDivElement>('.bui-tab');
+      tab1.focus();
+      fireEvent.keyDown(tab1, { key: 'ArrowRight' });
+      expect(document.activeElement).toBe(tab3);
+      expect(handleChange).toHaveBeenCalledWith(expect.anything(), {
+        index: 'animals',
+      });
+    });
+
+    it('Enter activates focused tab', () => {
+      const handleChange = vi.fn();
+      const { container } = render(
+        <ArrowNavComponent onChange={handleChange} />,
+      );
+      const [tab1, tab2] =
+        container.querySelectorAll<HTMLDivElement>('.bui-tab');
+      // 通过 ArrowRight 移动焦点但先重置 onChange，验证 Enter 单独的行为
+      tab2.focus();
+      fireEvent.keyDown(tab2, { key: 'Enter' });
+      // Enter 在已激活 tab 上是幂等的（focus 上的 tab 已经是 fruits 之外的当前焦点 tab）
+      // 由于 ArrowRight 未触发，Enter 应尝试激活 vegetables
+      expect(handleChange).toHaveBeenCalledWith(expect.anything(), {
+        index: 'vegetables',
+      });
+      expect(tab1).toBeInTheDocument();
+    });
+
+    it('does not react when modifier keys are held', () => {
+      const handleChange = vi.fn();
+      const { container } = render(
+        <ArrowNavComponent onChange={handleChange} />,
+      );
+      const [tab1] = container.querySelectorAll<HTMLDivElement>('.bui-tab');
+      tab1.focus();
+      fireEvent.keyDown(tab1, { key: 'ArrowRight', ctrlKey: true });
+      fireEvent.keyDown(tab1, { key: 'ArrowRight', metaKey: true });
+      fireEvent.keyDown(tab1, { key: 'ArrowRight', altKey: true });
+      expect(handleChange).not.toHaveBeenCalled();
+      expect(document.activeElement).toBe(tab1);
+    });
   });
 });

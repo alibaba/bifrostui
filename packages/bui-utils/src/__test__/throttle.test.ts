@@ -3,17 +3,17 @@ import throttle from '../throttle';
 
 describe('throttle', () => {
   // 模拟需要执行的函数
-  const mockFn = jest.fn();
+  const mockFn = vi.fn();
 
   beforeEach(() => {
     // 在每个测试之前重置模拟函数的状态
     mockFn.mockClear();
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
   });
 
   it('should support leading option to execute the function immediately', () => {
@@ -26,12 +26,12 @@ describe('throttle', () => {
     expect(mockFn).toHaveBeenCalledTimes(1);
 
     // 等待 100 毫秒后再次调用
-    jest.advanceTimersByTime(100);
+    vi.advanceTimersByTime(100);
     throttledFn();
     expect(mockFn).toHaveBeenCalledTimes(1); // 函数不再执行
 
     // 等待 200 毫秒后再次调用
-    jest.advanceTimersByTime(200);
+    vi.advanceTimersByTime(200);
     throttledFn();
     expect(mockFn).toHaveBeenCalledTimes(2); // 函数再次执行
   });
@@ -46,12 +46,12 @@ describe('throttle', () => {
     expect(mockFn).toHaveBeenCalledTimes(1);
 
     // 等待 200 毫秒后再次调用
-    jest.advanceTimersByTime(200);
+    vi.advanceTimersByTime(200);
     throttledFn();
     expect(mockFn).toHaveBeenCalledTimes(1); // 函数不再执行
 
     // 等待 300 毫秒后再次调用
-    jest.advanceTimersByTime(300);
+    vi.advanceTimersByTime(300);
     throttledFn();
     expect(mockFn).toHaveBeenCalledTimes(2); // 函数再次执行
   });
@@ -67,12 +67,12 @@ describe('throttle', () => {
     expect(mockFn).toHaveBeenCalledTimes(0);
 
     // 等待 200 毫秒后再次调用
-    jest.advanceTimersByTime(200);
+    vi.advanceTimersByTime(200);
     throttledFn();
     expect(mockFn).toHaveBeenCalledTimes(0); // 函数不再执行
 
     // 等待 400 毫秒后再次调用
-    jest.advanceTimersByTime(400);
+    vi.advanceTimersByTime(400);
     throttledFn();
     expect(mockFn).toHaveBeenCalledTimes(1); // 函数再次执行
   });
@@ -88,12 +88,12 @@ describe('throttle', () => {
     expect(mockFn).toHaveBeenCalledTimes(0);
 
     // 等待 200 毫秒后再次调用
-    jest.advanceTimersByTime(200);
+    vi.advanceTimersByTime(200);
     throttledFn();
     expect(mockFn).toHaveBeenCalledTimes(1); // 函数不再执行
 
     // 等待 400 毫秒后再次调用
-    jest.advanceTimersByTime(100);
+    vi.advanceTimersByTime(100);
     throttledFn();
     expect(mockFn).toHaveBeenCalledTimes(1); // 函数再次执行
   });
@@ -106,12 +106,12 @@ describe('throttle', () => {
     expect(mockFn).toHaveBeenCalledTimes(1);
 
     // 等待 100 毫秒后再次调用
-    jest.advanceTimersByTime(100);
+    vi.advanceTimersByTime(100);
     throttledFn();
     expect(mockFn).toHaveBeenCalledTimes(1); // 函数不再执行
 
     // 等待 200 毫秒后再次调用
-    jest.advanceTimersByTime(200);
+    vi.advanceTimersByTime(200);
     throttledFn();
     expect(mockFn).toHaveBeenCalledTimes(2); // 函数再次执行
   });

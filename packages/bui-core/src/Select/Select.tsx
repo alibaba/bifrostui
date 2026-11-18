@@ -14,7 +14,7 @@ import { SelectProps } from './Select.types';
 import BuiSelectContext from './selectContext';
 import Backdrop from '../Backdrop';
 import Portal from '../Portal';
-import './Select.less';
+import './index.less';
 
 const prefixCls = 'bui-select';
 const defaultPlacement = 'bottom';
@@ -28,12 +28,14 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     inputProps,
     BackdropProps,
     value,
-    defaultValue,
+    defaultValue = '',
     disabled,
     placeholder,
     icon,
     open,
-    scrollContainer,
+    scrollContainer = () => {
+      return isMini ? null : document.body;
+    },
     onChange,
     onClose,
     onOpen,
@@ -49,7 +51,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
 
   const [internalOpen, setInternalOpen] = useState<boolean>(false);
   // 根选择器展示的内容
-  const [renderValue, setRenderValue] = useState<string>('');
+  const [renderValue, setRenderValue] = useState('');
   const [placement, setPlacement] = useState<string>(defaultPlacement);
   const [optionStyle, setOptionStyle] = useState({});
   const isOpen = open !== undefined ? open : internalOpen;
@@ -127,12 +129,9 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   }, []);
 
   const defaultIcon = isOpen ? (
-    <CaretUpIcon className={`${prefixCls}-selector-icon`} htmlColor="#9c9ca5" />
+    <CaretUpIcon className={`${prefixCls}-selector-icon`} color="neutral" />
   ) : (
-    <CaretDownIcon
-      className={`${prefixCls}-selector-icon`}
-      htmlColor="#9c9ca5"
-    />
+    <CaretDownIcon className={`${prefixCls}-selector-icon`} color="neutral" />
   );
 
   const renderOptions = () => {
@@ -169,6 +168,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             <div
               className={clsx(`${prefixCls}-option-main`)}
               ref={optionMainRef}
+              role="listbox"
+              aria-label="option list"
             >
               {children}
             </div>
@@ -186,6 +187,11 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           [`${prefixCls}-active`]: isOpen,
         })}
         ref={rootRef}
+        role="combobox"
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+        aria-label={others['aria-label'] || 'Select'}
+        tabIndex={disabled ? -1 : 0}
         {...others}
         onClick={handleSelectClick}
       >
@@ -198,6 +204,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             readOnly
             ref={inputRef}
             value={selectValue}
+            aria-hidden="true"
+            tabIndex={-1}
             {...inputProps}
             className={clsx(`${prefixCls}-input`, {
               [inputProps?.className]: inputProps?.className,
@@ -206,7 +214,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           {icon || defaultIcon}
         </div>
       </div>
-      <Portal onRootElementMouted={updateOptionStyle}>{renderOptions()}</Portal>
+      <Portal onMounted={updateOptionStyle}>{renderOptions()}</Portal>
       <Backdrop
         open={isOpen}
         invisible
@@ -223,9 +231,5 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
 });
 
 Select.displayName = 'BuiSelect';
-Select.defaultProps = {
-  defaultValue: '',
-  scrollContainer: () => null,
-};
 
 export default Select;

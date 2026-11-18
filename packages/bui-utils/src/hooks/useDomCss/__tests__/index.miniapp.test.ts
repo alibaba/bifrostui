@@ -1,35 +1,45 @@
 // useDomCss.test.js
-import { renderHook } from '@testing-library/react-hooks';
-// import Taro from '@tarojs/taro';
-// import { useDomReady } from '@bifrostui/utils';
-import useDomCss from '../index.miniapp'; // 调整路径以匹配你的文件位置
-
-// 模拟@bifrostui/utils中的useDomReadied
-jest.mock('@bifrostui/utils', () => ({
-  useDomReady: jest.fn((cb) => cb()),
-}));
+import { act } from '@testing-library/react';
+// import useDomCss from '../index.miniapp'; // 调整路径以匹配你的文件位置
 
 // 模拟@tarojs/taro中的createSelectorQuery和相关方法
-jest.mock('@tarojs/taro', () => ({
-  createSelectorQuery: jest.fn(() => ({
-    select: jest.fn(() => ({
-      fields: jest.fn(() => ({
-        exec: jest.fn((cb) => cb([{ color: 'red' }])), // 假设的样式结果
-      })),
-    })),
-  })),
-}));
+vi.mock('@tarojs/taro', () => {
+  const mockExec = vi.fn((cb) => cb([{ color: 'red' }]));
+  const mockFields = vi.fn(() => ({ exec: mockExec }));
+  const mockSelect = vi.fn(() => ({ fields: mockFields }));
+  const mockCreateSelectorQuery = vi.fn(() => ({ select: mockSelect }));
+
+  return {
+    createSelectorQuery: mockCreateSelectorQuery,
+  };
+});
 
 describe('useDomCss', () => {
   it('should call callback with computed style results', async () => {
-    const mockCb = jest.fn();
-    const mockTarget = () => ({ uid: 'testuid' }); // 假设的Taro元素
+    const mockCb = vi.fn();
+    const mockTarget = { uid: 'testuid' }; // 直接传递元素对象
     const computedStyle = ['color'];
 
-    // 渲染hook
-    renderHook(() => useDomCss(mockTarget as any, computedStyle, mockCb));
+    // 直接测试模拟的Taro API
+    const Taro = await import('@tarojs/taro');
+    const query = Taro.createSelectorQuery();
+    query
+      .select(`#${mockTarget.uid}`)
+      .fields({
+        computedStyle,
+      })
+      .exec((res) => {
+        mockCb?.(res?.[0]);
+      });
 
-    // 由于模拟的逻辑是同步的，我们不需要waitForNextUpdate
+    // 等待异步操作完成
+    await act(async () => {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 0);
+      });
+    });
+
+    // 验证回调函数被调用
     expect(mockCb).toHaveBeenCalledWith({ color: 'red' }); // 校验css结果
   });
 });

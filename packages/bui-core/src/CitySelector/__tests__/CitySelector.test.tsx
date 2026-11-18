@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   screen,
   isConformant,
@@ -8,6 +8,8 @@ import {
   waitFor,
 } from 'testing';
 import CitySelector from '../CitySelector';
+import { ThemeProvider } from '../../ThemeProvider';
+import { EN } from '../../locales';
 
 const cities = require('./cities.json');
 const hotCities = require('./hotCities.json');
@@ -18,14 +20,18 @@ const currentCity = { code: '310100', name: '上海' };
 const currentCityGroupName = '定位城市';
 const hotCitiesGroupName = '热门城市';
 const title = '选择城市';
-const onSelect = jest.fn();
-const onClose = jest.fn();
+const onSelect = vi.fn();
+const onClose = vi.fn();
 
 const queryEle = (container, selector) => {
   return container.querySelector(selector);
 };
 
 describe('CitySelector', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   isConformant({
     Component: CitySelector,
     displayName: 'BuiCitySelector',
@@ -62,16 +68,20 @@ describe('CitySelector', () => {
       expect(
         queryEle(container, '.bui-city-selector-title'),
       ).toBeInTheDocument();
-      userEvent.click(container.querySelector('.bui-city-selector-btn-close'));
+
+      const closeButton = screen.getByRole('button', { name: '关闭' });
+      expect(closeButton).toHaveClass('bui-city-selector-btn-close');
+      expect(closeButton).toHaveClass('bui-icon-btn');
+      await userEvent.click(closeButton);
       expect(onClose).toHaveBeenCalledTimes(1);
-      userEvent.click(
+      await userEvent.click(
         container.querySelector(
           '.bui-city-selector-list-container .bui-city-selector-list-item',
         ),
       );
       expect(onSelect).toHaveBeenCalledTimes(1);
 
-      userEvent.click(container.querySelector('.bui-city-selector-item'));
+      await userEvent.click(container.querySelector('.bui-city-selector-item'));
       expect(onSelect).toHaveBeenCalledTimes(2);
 
       const $scrollView = container.querySelector(
@@ -82,8 +92,8 @@ describe('CitySelector', () => {
       });
       expect($scrollView.scrollTop).toBe(200);
 
-      await waitFor(() => {
-        userEvent.click(
+      await waitFor(async () => {
+        await userEvent.click(
           container.querySelector(
             '.bui-city-selector-index-item[data-code="D"]',
           ),
@@ -94,7 +104,7 @@ describe('CitySelector', () => {
         const cityCodeS = container.querySelector(
           '.bui-city-selector-index-item[data-code="S"]',
         );
-        const mockElementFromPoint = jest.fn(() => cityCodeS);
+        const mockElementFromPoint = vi.fn(() => cityCodeS);
         // 替换原生函数
         Object.defineProperty(document, 'elementFromPoint', {
           value: mockElementFromPoint,
@@ -147,6 +157,51 @@ describe('CitySelector', () => {
         '.bui-city-selector-index-list',
       );
       expect($codeContainer).toBe(null);
+    });
+  });
+
+  describe('locale', () => {
+    it('render a11y text with en-US locale', () => {
+      render(
+        <ThemeProvider locale={EN}>
+          <CitySelector
+            cities={cities}
+            onSelect={onSelect}
+            selectedCity={selectedCity}
+            currentCity={currentCity}
+            hotCities={hotCities}
+            title={title}
+            onClose={onClose}
+          />
+        </ThemeProvider>,
+      );
+
+      // 头部关闭按钮
+      expect(screen.getByRole('button', { name: 'Close' })).toHaveClass(
+        'bui-city-selector-btn-close',
+      );
+      // 右侧字母导航容器
+      expect(
+        screen.getByRole('listbox', { name: 'City group index' }),
+      ).toBeInTheDocument();
+      // 字母分组列表：字母分组拼成“Letter A”
+      expect(
+        screen.getByRole('listbox', { name: 'Letter A' }),
+      ).toBeInTheDocument();
+      // 字母导航项：与分组列表使用同一套读屏名
+      expect(
+        screen.getByRole('option', { name: 'Letter A' }),
+      ).toBeInTheDocument();
+      // 特殊分组：未传分组名时取语言包
+      expect(
+        screen.getByRole('option', { name: 'Current City' }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('option', { name: 'Selected City' }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('option', { name: 'Hot Cities' }),
+      ).toBeInTheDocument();
     });
   });
 });

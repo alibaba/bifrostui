@@ -1,21 +1,20 @@
 ---
 group: Feedback
+
 name: Picker Selector
 ---
 
 # Picker Selector
 
-Provides a set of multiple options for users to choose one. Note that during inertial scrolling, it is not allowed to confirm and close the selector.
+Provides multiple sets of options for the user to choose one from, supporting single column, multi-column, cascading, and other modes. Suitable for forms, filtering, and similar scenarios. **Note: During inertia scrolling, the selector cannot be closed by confirmation.**
 
-## Code Demonstrations
+## Basic Usage
 
-### Basic Selector
-
-Use `open` to control the opening/closing of the selector. Clicking events like closing via the mask layer will return through the `onClose` callback.
+Use `open` to control the opening/closing of the picker. Events like closing via the mask layer will be returned through the `onClose` callback.
 
 ```tsx
-import { Button, Picker, Stack } from '@bifrostui/react';
 import React, { useState, useEffect } from 'react';
+import { Button, Picker, Stack } from '@bifrostui/react';
 
 export default () => {
   const [open, setOpen] = useState(false);
@@ -32,7 +31,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        Open Selector
+        Open Picker
       </Button>
       <Picker
         open={open}
@@ -79,13 +78,13 @@ export default () => {
 };
 ```
 
-### Setting Title
+## Custom Labels
 
-The `title` attribute can be used to specify the title of the selector.
+Customize header text through `title`, `confirmText`, and `cancelText`.
 
 ```tsx
-import { Button, Picker, Stack } from '@bifrostui/react';
 import React, { useState } from 'react';
+import { Button, Picker, Stack } from '@bifrostui/react';
 
 export default () => {
   const [open, setOpen] = useState(false);
@@ -96,11 +95,13 @@ export default () => {
           setOpen(true);
         }}
       >
-        Open Selector
+        Open Picker
       </Button>
       <Picker
         open={open}
         title="Please Select"
+        confirmText="Yes"
+        cancelText="No"
         onClose={(e, data) => {
           setOpen(false);
           console.log('onClose', e, data);
@@ -143,13 +144,13 @@ export default () => {
 };
 ```
 
-### Multi-column Mode
+## Multi-Column Mode
 
-By passing a two-dimensional array via the `options` property, you can implement a multi-column selector.
+Implement multi-column selection by passing a two-dimensional array to `options`.
 
 ```tsx
-import { Button, Picker, Stack } from '@bifrostui/react';
 import React, { useState } from 'react';
+import { Button, Picker, Stack } from '@bifrostui/react';
 
 export default () => {
   const [open, setOpen] = useState(false);
@@ -160,7 +161,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        Open Selector
+        Open Picker
       </Button>
       <Picker
         open={open}
@@ -220,13 +221,13 @@ export default () => {
 };
 ```
 
-### Cascading Mode
+## Cascading Mode
 
-Using the `children` field in the sub-items of the `options` property can achieve cascading selectors.
+Implement cascading selection through the `children` field of `options` sub-items.
 
 ```tsx
-import { Button, Picker, Stack } from '@bifrostui/react';
 import React, { useState } from 'react';
+import { Button, Picker, Stack } from '@bifrostui/react';
 
 export default () => {
   const [open, setOpen] = useState(false);
@@ -237,7 +238,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        Open Selector
+        Open Picker
       </Button>
       <Picker
         open={open}
@@ -316,7 +317,7 @@ export default () => {
                   },
                   {
                     value: 2,
-                    label: 'Yunjing Road',
+                    label: 'Yunjin Road',
                   },
                 ],
               },
@@ -329,13 +330,13 @@ export default () => {
 };
 ```
 
-### Asynchronous Data Source Retrieval
+## Asynchronous Data Sources
 
-Asynchronously retrieve the `options` data source.
+Support asynchronous loading of `options`.
 
 ```tsx
-import { Button, Picker, Stack } from '@bifrostui/react';
 import React, { useState, useEffect } from 'react';
+import { Button, Picker, Stack } from '@bifrostui/react';
 
 export default () => {
   const mockData = [
@@ -422,7 +423,7 @@ export default () => {
           },
           {
             value: 2,
-            label: 'Yunjing Road',
+            label: 'Yunjin Road',
           },
         ],
       },
@@ -446,7 +447,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        Open Selector
+        Open Picker
       </Button>
       <Picker
         open={open}
@@ -463,13 +464,13 @@ export default () => {
 };
 ```
 
-### Selecting Specific Options
+## Select Specific Option
 
-You can specify the default selected option using the `value` property.
+Specify the default selected item with `value`.
 
 ```tsx
-import { Button, Picker, Stack } from '@bifrostui/react';
 import React, { useState } from 'react';
+import { Button, Picker, Stack } from '@bifrostui/react';
 
 export default () => {
   const [open, setOpen] = useState(false);
@@ -480,7 +481,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        Open Selector
+        Open Picker
       </Button>
       <Picker
         open={open}
@@ -560,7 +561,7 @@ export default () => {
                   },
                   {
                     value: 2,
-                    label: 'Yunjing Road',
+                    label: 'Yunjin Road',
                   },
                 ],
               },
@@ -573,13 +574,13 @@ export default () => {
 };
 ```
 
-### Passing Attributes to Content DOM
+## Pass Attributes to Content DOM
 
-You can pass valid attributes to internal content DOM elements via the `contentProps` attribute.
+Pass properties to the content area via `contentProps`.
 
 ```tsx
-import { Button, Picker, Stack } from '@bifrostui/react';
 import React, { useState } from 'react';
+import { Button, Picker, Stack } from '@bifrostui/react';
 
 export default () => {
   const [open, setOpen] = useState(false);
@@ -590,13 +591,13 @@ export default () => {
           setOpen(true);
         }}
       >
-        Open Selector
+        Open Picker
       </Button>
       <Picker
         open={open}
         contentProps={{
           style: {
-            height: '400px',
+            height: 400,
           },
         }}
         onClose={(e, data) => {
@@ -641,13 +642,13 @@ export default () => {
 };
 ```
 
-### Confirm Selection
+## Confirm Selection
 
-By listening to `onConfirm`, you can obtain the callback event when the confirmation button is clicked. After this event ends, the `onClose` event will be triggered.
+Listen for the `onConfirm` event to get confirmation button click events. After this event, the `onClose` event will be triggered.
 
 ```tsx
-import { Button, Picker, Stack } from '@bifrostui/react';
 import React, { useState } from 'react';
+import { Button, Picker, Stack } from '@bifrostui/react';
 
 export default () => {
   const [open, setOpen] = useState(false);
@@ -659,7 +660,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        Open Selector
+        Open Picker
       </Button>
       <Picker
         open={open}
@@ -743,7 +744,7 @@ export default () => {
                   },
                   {
                     value: 2,
-                    label: 'Yunjing Road',
+                    label: 'Yunjin Road',
                   },
                 ],
               },
@@ -756,9 +757,9 @@ export default () => {
 };
 ```
 
-### Correcting Parameters in Callbacks
+## Correct Parameters in Callback
 
-If the passed `value` is not a subset of equal length to `options`, the `value` field in callbacks will be automatically corrected upon closing the selector to match an existing option in `options`.
+When closing the picker, if `value` is not a subset of the same length as `options`, the `value` field in the callback will be automatically corrected.
 
 ```tsx
 import { Button, Picker, Stack } from '@bifrostui/react';
@@ -774,7 +775,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        Open Selector
+        Open Picker
       </Button>
       <Picker
         open={open}
@@ -858,7 +859,7 @@ export default () => {
                   },
                   {
                     value: 2,
-                    label: 'Yunjing Road',
+                    label: 'Yunjin Road',
                   },
                 ],
               },
@@ -871,13 +872,13 @@ export default () => {
 };
 ```
 
-### Callback on Value Change
+## Callback on Value Change
 
-By listening to `onOptionChange`, you can obtain real-time callbacks whenever the value of each column changes.
+Listen for `onOptionChange` to get the event when each column's value changes.
 
 ```tsx
-import { Button, Picker, Stack } from '@bifrostui/react';
 import React, { useState } from 'react';
+import { Button, Picker, Stack } from '@bifrostui/react';
 
 export default () => {
   const [open, setOpen] = useState(false);
@@ -888,7 +889,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        Open Selector
+        Open Picker
       </Button>
       <Picker
         open={open}
@@ -969,7 +970,7 @@ export default () => {
                   },
                   {
                     value: 2,
-                    label: 'Yunjing Road',
+                    label: 'Yunjin Road',
                   },
                 ],
               },
@@ -982,13 +983,13 @@ export default () => {
 };
 ```
 
-### Cancel Selection
+## Cancel Selection
 
-By listening to `onCancel`, you can obtain the callback event when the cancel button is clicked. This event ends with the triggering of the `onClose` event.
+Listen for the `onCancel` event when the cancel button is clicked. After this event, the `onClose` event will be triggered.
 
 ```tsx
-import { Button, Picker, Stack } from '@bifrostui/react';
 import React, { useState } from 'react';
+import { Button, Picker, Stack } from '@bifrostui/react';
 
 export default () => {
   const [open, setOpen] = useState(false);
@@ -999,7 +1000,7 @@ export default () => {
           setOpen(true);
         }}
       >
-        Open Selector
+        Open Picker
       </Button>
       <Picker
         open={open}
@@ -1080,7 +1081,7 @@ export default () => {
                   },
                   {
                     value: 2,
-                    label: 'Yunjing Road',
+                    label: 'Yunjin Road',
                   },
                 ],
               },
@@ -1093,13 +1094,13 @@ export default () => {
 };
 ```
 
-### Customizing Styles
+## Disable Options
 
-Through the Tokens provided by [style variables](#style-variables), you can customize styles.
+Use `option.disabled` to disable options. Disabled items will not trigger the `onConfirm` event but will trigger the `onOptionChange` event. You can check the current option's disabled status via `currentOption.disabled`.
 
 ```tsx
-import { Button, Picker, Stack } from '@bifrostui/react';
 import React, { useState } from 'react';
+import { Button, Picker, Stack } from '@bifrostui/react';
 
 export default () => {
   const [open, setOpen] = useState(false);
@@ -1110,13 +1111,129 @@ export default () => {
           setOpen(true);
         }}
       >
-        Open Selector
+        Open Picker
+      </Button>
+      <Picker
+        open={open}
+        onCancel={(e) => {
+          console.log('onCancel', e);
+        }}
+        onClose={() => {
+          setOpen(false);
+        }}
+        onOptionChange={(e, { currentOption }) => {
+          console.log('onOptionChange', currentOption.disabled);
+        }}
+        options={[
+          {
+            value: 1,
+            label: 'Beijing',
+            children: [
+              {
+                value: 1,
+                label: 'Chaoyang District',
+                children: [
+                  {
+                    value: 1,
+                    label: 'Chaoyang Street',
+                    disabled: true,
+                  },
+                ],
+              },
+              {
+                value: 2,
+                label: 'Haidian District',
+              },
+              {
+                value: 3,
+                label: 'Daxing District',
+              },
+              {
+                value: 4,
+                label: 'Dongcheng District',
+                disabled: true,
+              },
+              {
+                value: 5,
+                label: 'Xicheng District',
+              },
+              {
+                value: 6,
+                label: 'Fengtai District',
+              },
+            ],
+          },
+          {
+            value: 2,
+            label: 'Shanghai',
+            children: [
+              {
+                value: 1,
+                label: 'Huangpu District',
+              },
+              {
+                value: 2,
+                label: 'Changning District',
+              },
+              {
+                value: 3,
+                label: 'Putuo District',
+              },
+              {
+                value: 4,
+                label: 'Yangpu District',
+              },
+              {
+                value: 5,
+                label: 'Pudong New Area',
+              },
+              {
+                value: 6,
+                label: 'Xuhui District',
+                children: [
+                  {
+                    value: 1,
+                    label: 'Longyao Road',
+                  },
+                  {
+                    value: 2,
+                    label: 'Yunjin Road',
+                  },
+                ],
+              },
+            ],
+          },
+        ]}
+      />
+    </Stack>
+  );
+};
+```
+
+## Custom Styles
+
+Customize styles using the Tokens provided by [Style Variables](#样式变量).
+
+```tsx
+import React, { useState } from 'react';
+import { Button, Picker, Stack } from '@bifrostui/react';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Stack>
+      <Button
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+        Open Picker
       </Button>
       <Picker
         style={{
-          '--panel-container-height': '500px',
-          '--indicator-top': '207px',
-          '--option-height': '70px',
+          '--bui-picker-panel-height': '500px',
+          '--bui-picker-indicator-top': '207px',
+          '--bui-picker-option-height': '70px',
         }}
         open={open}
         onClose={() => {
@@ -1193,7 +1310,7 @@ export default () => {
                   },
                   {
                     value: 2,
-                    label: 'Yunjing Road',
+                    label: 'Yunjin Road',
                   },
                 ],
               },
@@ -1206,74 +1323,85 @@ export default () => {
 };
 ```
 
+## Accessibility
+
+- Main accessibility features include:
+  - The outer dialog uses `role="dialog"`, `aria-modal="true"`, `aria-label`.
+  - The toolbar uses `role="toolbar"` and `aria-label`.
+  - The title uses `role="heading"` and `aria-level`.
+  - The header buttons include `aria-label`, `tabIndex`, `type="button"`.
+  - The options container uses `role="listbox"` and `aria-label`, where each option has `role="option"` and `aria-disabled`.
+- It is recommended to add necessary accessibility attributes when customizing `PickerPanel`.
+
 ## API
 
 ### Picker
 
-| Property       | Description                             | Type                                                                                                                                                                        | Default |
-| -------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| open           | Whether to display the selector         | boolean                                                                                                                                                                     | false   |
-| title          | Title                                   | string                                                                                                                                                                      | -       |
-| options        | List data                               | IPickerOptionItem[][] \| ICascadePickerOptionItem[]                                                                                                                         | []      |
-| value          | Selected value                          | (string \| number)[]                                                                                                                                                        | -       |
-| contentProps   | Props on the drawer content DOM         | React.HTMLAttributes\<HTMLDivElement\>                                                                                                                                      | -       |
-| onConfirm      | Callback when confirm button is clicked | (e: React.MouseEvent<HTMLDivElement\>,data: { value: (string \| number)[]; options: ICascadePickerChildOptionItem[][]}) => void                                             | -       |
-| onOptionChange | Callback when option value changes      | (e: React.TransitionEvent<HTMLDivElement\>,data: { value: (string \| number)[];options: ICascadePickerChildOptionItem[][];currentOption: ICascadePickerOptionItem}) => void | -       |
-| onCancel       | Callback when cancel button is clicked  | (e: React.MouseEvent<HTMLDivElement\>) => void                                                                                                                              | -       |
-| onClose        | Executed when closing the selector      | (e: React.MouseEvent<HTMLDivElement\>,data: {from: string;value: (string \| number)[];options: ICascadePickerChildOptionItem[][]}) => void                                  | -       |
+| Attribute      | Description                       | Type                                                                                                                                                                                                        | Default   |
+| -------------- | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| open           | Whether the picker is displayed   | `boolean`                                                                                                                                                                                                   | `false`   |
+| title          | Title                             | `string`                                                                                                                                                                                                    | -         |
+| confirmText    | Text for the confirm button       | `string`                                                                                                                                                                                                    | `Confirm` |
+| cancelText     | Text for the cancel button        | `string`                                                                                                                                                                                                    | `Cancel`  |
+| options        | List data                         | `IPickerOptionItem[][] \| ICascadePickerOptionItem[]`                                                                                                                                                       | `[]`      |
+| value          | Selected value                    | `(string \| number)[]`                                                                                                                                                                                      | -         |
+| contentProps   | DOM attributes for content area   | `React.HTMLAttributes<HTMLDivElement>`                                                                                                                                                                      | -         |
+| onConfirm      | Callback for confirm button click | `(e: React.MouseEvent<HTMLDivElement>, data: { value: (string \| number)[]; options: ICascadePickerChildOptionItem[][]; }) => void`                                                                         | -         |
+| onOptionChange | Callback on option value change   | `(e: React.TransitionEvent<HTMLDivElement>, data: { value: (string \| number)[]; options: ICascadePickerChildOptionItem[][]; currentOption: ICascadePickerChildOptionItem; columnIndex: number; }) => void` | -         |
+| onCancel       | Callback for cancel button click  | `(e: React.MouseEvent<HTMLDivElement>) => void`                                                                                                                                                             | -         |
+| onClose        | Callback when the picker closes   | `(e: React.MouseEvent<HTMLDivElement>, data: { from: string; value: (string \| number)[]; options: ICascadePickerChildOptionItem[][]; }) => void`                                                           | -         |
 
 ### PickerPanel
 
-| Property     | Description                       | Type                                                                                                                        | Default |
-| ------------ | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
-| options      | Single-column panel list data     | ICascadePickerChildOptionItem[]                                                                                             | []      |
-| defaultValue | Single-column panel default value | string \| number                                                                                                            | -       |
-| columnIndex  | Column index                      | number                                                                                                                      | -       |
-| onSelect     | Callback when option is clicked   | (e: React.TransitionEvent<HTMLDivElement\>,data: {columnOption: ICascadePickerChildOptionItem;columnIndex: number}) => void | -       |
+| Attribute   | Description                         | Type                                                                                                                              | Default |
+| ----------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| options     | List data for single column panel   | `ICascadePickerChildOptionItem[]`                                                                                                 | `[]`    |
+| value       | Default value                       | `string \| number`                                                                                                                | -       |
+| columnIndex | Column index                        | `number`                                                                                                                          | -       |
+| open        | Whether the picker is displayed     | `boolean`                                                                                                                         | -       |
+| onSelect    | Callback when an option is selected | `(e: React.TransitionEvent<HTMLDivElement>, data: { columnOption: ICascadePickerChildOptionItem; columnIndex: number; }) => void` | -       |
+
+### Data Structure Types
 
 #### IPickerOptionItem
 
-| Property | Description                    | Type             | Default |
-| -------- | ------------------------------ | ---------------- | ------- |
-| label    | Option text content            | string \| number | -       |
-| value    | Unique value for the option    | string \| number | -       |
-| disabled | Whether the option is disabled | boolean          | -       |
-
-#### ICascadePickerOptionItem
-
-| Property | Description                   | Type                       | Default |
-| -------- | ----------------------------- | -------------------------- | ------- |
-| label    | Option text content           | string \| number           | -       |
-| value    | Unique value for the option   | string \| number           | -       |
-| children | For cascade options, required | ICascadePickerOptionItem[] | -       |
+| Attribute | Description                    | Type               | Default |
+| --------- | ------------------------------ | ------------------ | ------- |
+| label     | Option text content            | `string \| number` | -       |
+| value     | Unique value for option        | `string \| number` | -       |
+| disabled  | Whether the option is disabled | boolean            | -       |
 
 #### ICascadePickerChildOptionItem
 
-| Property | Description                   | Type                       | Default |
-| -------- | ----------------------------- | -------------------------- | ------- |
-| label    | Option text content           | string \| number           | -       |
-| value    | Unique value for the option   | string \| number           | -       |
-| children | For cascade options, optional | ICascadePickerOptionItem[] | -       |
+| Attribute | Description                                                           | Type                              | Default |
+| --------- | --------------------------------------------------------------------- | --------------------------------- | ------- |
+| label     | Option text content                                                   | `string \| number`                | -       |
+| value     | Unique value for option                                               | `string \| number`                | -       |
+| children  | Used for cascading options, some children may not have this attribute | `ICascadePickerChildOptionItem[]` | -       |
 
-`Picker` inherits other properties from `Drawer`. See [Drawer API](/cores/drawer?#API)
+#### ICascadePickerOptionItem
 
-### Style Variables
+| Attribute | Description                                                     | Type                              | Default |
+| --------- | --------------------------------------------------------------- | --------------------------------- | ------- |
+| label     | Option text content                                             | `string \| number`                | -       |
+| value     | Unique value for option                                         | `string \| number`                | -       |
+| children  | Used for cascading options, root nodes must have this attribute | `ICascadePickerChildOptionItem[]` | -       |
 
-| Property                 | Description                                             | Default Value              | Global Variable                       |
-| ------------------------ | ------------------------------------------------------- | -------------------------- | ------------------------------------- |
-| --header-height          | Selector header height                                  | 50px                       | --bui-picker-header-height            |
-| --header-padding         | Selector header padding                                 | 0 var(--bui-spacing-lg)    | --bui-picker-header-padding           |
-| --cancel-height          | Cancel button height                                    | 100%                       | --bui-picker-cancel-height            |
-| --cancel-line-height     | Cancel button line height                               | 50px                       | --bui-picker-cancel-line-height       |
-| --confirm-height         | Confirm button height                                   | 100%                       | --bui-picker-confirm-height           |
-| --confirm-line-height    | Confirm button line height                              | 50px                       | --bui-picker-confirm-line-height      |
-| --panel-container-height | Selector container height                               | 260px                      | --bui-picker-panel-height             |
-| --indicator-top          | Distance from top to indicator                          | 108px                      | --bui-picker-indicator-top            |
-| --indicator-border-color | Indicator border color                                  | --bui-color-border-default | --bui-picker-indicator-border-color   |
-| --option-height          | Option height, same as indicator height, must be inline | 36px                       | --bui-picker-option-height            |
-| -                        | The opacity of the confirm button when disabled         | 0.38                       | --bui-picker-confirm-disabled-opacity |
-| -                        | The opacity of the option when disabled                 | 0.38                       | --bui-picker-option-disabled-opacity  |
+> `Picker` directly inherits from `Drawer`; for other attributes see [Drawer API](/cores/drawer?#api)
 
-#### Why Use Inline Style for `--option-height`
+## Style Variables
 
-The Picker component's logic layer needs to dynamically retrieve the value of `--option-height` to calculate the scrollable panel height. If it is not passed inline in the style, the value cannot be obtained in tsx.
+### Picker
+
+| Global Variable                  | Description                | Default Value             |
+| -------------------------------- | -------------------------- | ------------------------- |
+| --bui-picker-header-height       | Header height              | `50px`                    |
+| --bui-picker-header-padding      | Header padding             | `0 var(--bui-spacing-lg)` |
+| --bui-picker-cancel-height       | Cancel button height       | `100%`                    |
+| --bui-picker-cancel-line-height  | Cancel button line height  | `50px`                    |
+| --bui-picker-confirm-height      | Confirm button height      | `100%`                    |
+| --bui-picker-confirm-line-height | Confirm button line height | `50px`                    |
+| --bui-picker-panel-height        | Panel height               | `260px`                   |
+| --bui-picker-indicator-top       | Indicator top position     | `108px`                   |
+| --bui-picker-option-height       | Option height              | `36px`                    |
+| --bui-picker-option-font-size    | Option font size           | `var(--bui-title-size-4)` |

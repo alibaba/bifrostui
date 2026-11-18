@@ -7,9 +7,7 @@ name: Checkbox 复选框
 
 复选框，在展示一系列选项时，为用户提供可选多项或取消已选项。
 
-## 代码演示
-
-### 基本用法
+## 基本用法
 
 通过 `checked` 和 `onChange` 控制状态。
 
@@ -34,7 +32,7 @@ export default () => {
 };
 ```
 
-### 给内部 input 标签透传属性
+## 给内部 input 标签透传属性
 
 通过 `inputProps` 传入的 input 属性可透传至内部`input`标签。
 
@@ -62,7 +60,7 @@ export default () => {
 };
 ```
 
-### 内部 input 标签 name 和 value
+## 内部 input 标签 name 和 value
 
 `name` 和 `value` 可直接透传至内部`input`标签，不会被 `inputProps` 传入的同名属性覆盖。
 
@@ -89,7 +87,7 @@ export default () => {
 };
 ```
 
-### 文案位置
+## 文案位置
 
 通过 `labelPlacement` 可控制文案在复选框图标的位置。
 
@@ -147,7 +145,7 @@ export default () => {
 };
 ```
 
-### 自定义图标
+## 自定义图标
 
 通过 `icon` 可自定义为选中状态图标，`checkedIcon` 可自定义选中状态图标。
 
@@ -175,7 +173,7 @@ export default () => {
 };
 ```
 
-### 禁用状态
+## 禁用状态
 
 使用`disabled`禁用组件，`CheckboxGroup.disabled` 可整组禁用。
 
@@ -221,7 +219,7 @@ export default () => {
 };
 ```
 
-### 受控的 Checkbox
+## 受控的 Checkbox
 
 通过 `value` 控制 `CheckboxGroup` 组件，通过 `checked` 控制 `Checkbox` 组件。
 
@@ -264,13 +262,13 @@ export default () => {
 };
 ```
 
-### 使用默认值
+## 使用默认值
 
 使用 `defaultValue` 指定 `CheckboxGroup` 组件默认值，使用 `defaultChecked` 指定 `Checkbox` 组件默认值。
 
 ```tsx
 import { Checkbox, CheckboxGroup, Stack } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -293,6 +291,13 @@ export default () => {
 };
 ```
 
+## Accessibility
+
+默认无障碍属性支持如下：
+
+- 当属性 `disabled=true` 时，会自动添加 aria-disabled 属性
+- 更多无障碍属性，可通过 `inputProps` 属性设置，如 inputProps={{ 'aria-label': 'Checkbox label' }}
+
 ## API
 
 ### CheckboxGroup
@@ -308,8 +313,8 @@ export default () => {
 
 | 属性           | 说明                                        | 类型                                                      | 默认值  |
 | -------------- | ------------------------------------------- | --------------------------------------------------------- | ------- |
-| defaultChecked | 默认是否选中，当组件非受控时使用            | boolean                                                   | -       |
-| checked        | 是否选中，当组件受控时使用                  | boolean                                                   | -       |
+| defaultChecked | 默认是否选中，当组件非受控时使用            | boolean                                                   | false   |
+| checked        | 是否选中，当组件受控时使用                  | boolean                                                   | false   |
 | inputProps     | 内部`<input>`标签的标准属性                 | React.InputHTMLAttributes<HTMLInputElement\>              | -       |
 | inputRef       | 内部`<input>`标签的 ref                     | React.Ref<HTMLInputElement\>                              | -       |
 | name           | `<input>`名称标识                           | string                                                    | -       |
@@ -322,10 +327,10 @@ export default () => {
 
 ## 样式变量
 
-| 属性               | 说明           | 默认值                 | 全局变量                        |
-| ------------------ | -------------- | ---------------------- | ------------------------------- |
-| --label-color      | 文案字体颜色   | --bui-color-fg-default | --bui-checkbox-label-color      |
-| --label-font-size  | 文案字体大小   | --bui-text-size-1      | --bui-checkbox-label-font-size  |
-| --icon-font-size   | 图标字体大小   | --bui-title-size-2     | --bui-checkbox-icon-font-size   |
-| --disabled-opacity | 禁用状态透明度 | 0.5                    | --bui-checkbox-disabled-opacity |
-| --icon-padding     | 图标内边距     | 5px                    | --bui-checkbox-icon-padding     |
+| 全局变量                        | 说明           | 默认值                       |
+| ------------------------------- | -------------- | ---------------------------- |
+| --bui-checkbox-label-color      | 标签文字颜色   | `var(--bui-color-fg-subtle)` |
+| --bui-checkbox-label-font-size  | 标签文字大小   | `var(--bui-text-size-3)`     |
+| --bui-checkbox-icon-font-size   | 图标大小       | `var(--bui-font-size-md2)`   |
+| --bui-checkbox-disabled-opacity | 禁用状态透明度 | `0.5`                        |
+| --bui-checkbox-icon-padding     | 图标内边距     | `var(--bui-spacing-3)`       |
