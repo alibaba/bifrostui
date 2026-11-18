@@ -1,7 +1,7 @@
 import { ErrorCircleFilledIcon } from '@bifrostui/icons';
 import { isMini, useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import { InputProps } from './index';
 import './index.less';
 
@@ -43,8 +43,19 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     onChange,
   });
   const [hasFocus, setHasFocus] = useState(false);
+  const blurTimerRef = useRef(null);
+
+  const clearBlurTimer = () => {
+    if (blurTimerRef.current) {
+      clearTimeout(blurTimerRef.current);
+      blurTimerRef.current = null;
+    }
+  };
+
+  useEffect(() => clearBlurTimer, []);
 
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    clearBlurTimer();
     setHasFocus(true);
     onFocus?.(e);
     inputProps?.onFocus?.(e);
@@ -52,7 +63,9 @@ const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     // 解决H5/小程序清除按钮先失焦隐藏不到的问题
-    setTimeout(() => {
+    clearBlurTimer();
+    blurTimerRef.current = setTimeout(() => {
+      blurTimerRef.current = null;
       setHasFocus(false);
     }, 200);
     onBlur?.(e);
