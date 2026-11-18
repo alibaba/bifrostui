@@ -10,7 +10,7 @@
 
 ## 开发配置
 
-> 保证你的 Node.js 版本 >= 24、pnpm 版本 >= 11（版本分别声明在 `.node-version` 和 `package.json` 的 `packageManager` 中）
+> 保证你的 Node.js 版本 >= 24、pnpm 版本 >= 11
 
 ### 安装依赖
 
