@@ -1,27 +1,29 @@
 import debounce from '../debounce';
 
 describe('debounce', () => {
-  jest.useFakeTimers();
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
   test('should debounce the function and execute it after the specified wait time', () => {
-    const mockFn = jest.fn();
+    const mockFn = vi.fn();
     const debouncedFn = debounce(mockFn, 100);
 
     debouncedFn();
-    jest.advanceTimersByTime(50);
+    vi.advanceTimersByTime(50);
     debouncedFn();
-    jest.advanceTimersByTime(50);
+    vi.advanceTimersByTime(50);
     debouncedFn();
 
     expect(mockFn).not.toBeCalled();
 
-    jest.advanceTimersByTime(100);
+    vi.advanceTimersByTime(100);
 
     expect(mockFn).toBeCalled();
     expect(mockFn).toHaveBeenCalledTimes(1);
   });
 
   test('should debounce the function and immediately execute it when `immediate` is true', () => {
-    const mockFn = jest.fn();
+    const mockFn = vi.fn();
     const debouncedFn = debounce(mockFn, 100, true);
 
     debouncedFn();
@@ -29,13 +31,13 @@ describe('debounce', () => {
     expect(mockFn).toBeCalled();
     expect(mockFn).toHaveBeenCalledTimes(1);
 
-    jest.advanceTimersByTime(50);
+    vi.advanceTimersByTime(50);
 
     debouncedFn();
 
     expect(mockFn).toHaveBeenCalledTimes(1);
 
-    jest.advanceTimersByTime(100);
+    vi.advanceTimersByTime(100);
 
     debouncedFn();
 
@@ -43,16 +45,16 @@ describe('debounce', () => {
   });
 
   test('should preserve the context and arguments of the debounced function', () => {
-    const mockFn = jest.fn();
+    const mockFn = vi.fn();
     const context = { name: 'test' };
     const args = [1, 2, 3];
-    const debouncedFn = debounce(function () {
+    const debouncedFn = debounce(function testFn() {
       mockFn.apply(this, args);
     }, 100);
 
     debouncedFn.apply(context, args);
 
-    jest.advanceTimersByTime(100);
+    vi.advanceTimersByTime(100);
 
     expect(mockFn).toBeCalled();
     expect(mockFn).toHaveBeenCalledTimes(1);

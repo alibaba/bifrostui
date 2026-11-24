@@ -69,7 +69,7 @@ describe('Checkbox', () => {
   });
 
   it('should call `onChange`', () => {
-    const fakeChange = jest.fn((e) => e.target.value);
+    const fakeChange = vi.fn((e) => e.target.value);
     function Component() {
       const [value] = useState('淘票票');
       const [checked] = useState(false);
@@ -117,7 +117,7 @@ describe('Checkbox', () => {
     });
 
     it('should call `onChange`', () => {
-      const fakeChange = jest.fn((e, data) => data.value);
+      const fakeChange = vi.fn((e, data) => data.value);
       const { container } = render(
         <CheckboxGroup value={[]} onChange={fakeChange}>
           <Checkbox value="水门桥">水门桥</Checkbox>
@@ -131,7 +131,7 @@ describe('Checkbox', () => {
     });
 
     it('should be cancel selected', () => {
-      const fakeChange = jest.fn((e, { value }) => value);
+      const fakeChange = vi.fn((e, { value }) => value);
       const { container } = render(
         <CheckboxGroup value={['淘票票']} onChange={fakeChange}>
           <Checkbox value="水门桥">水门桥</Checkbox>

@@ -1,8 +1,8 @@
 websites
 scripts
 coverage
-node_modules
-dist
+**/canvas-demos/**
+**/node_modules/**
 **/es/**
 **/dist/**
 .idea
@@ -10,3 +10,4 @@ dist
 .vscode
 .github
 pnpm-workspace.yaml
+!/.dumi

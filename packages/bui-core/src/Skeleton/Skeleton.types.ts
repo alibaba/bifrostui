@@ -1,5 +1,5 @@
 import { OverrideProps } from '@bifrostui/types';
-import React from 'react';
+import * as React from 'react';
 
 export type VariantEnum = 'text' | 'circular' | 'rectangular' | 'rounded';
 export type animationEnum = 'wave' | 'pulse' | false;

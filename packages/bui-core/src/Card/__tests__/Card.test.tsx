@@ -97,7 +97,7 @@ describe('Card', () => {
             <CardHeader
               title="卡片标题"
               onClick={() => {
-                console.log('hello');
+                // console.log('hello');
               }}
             />
           </Card>,
@@ -129,7 +129,7 @@ describe('Card', () => {
     });
     describe('action', () => {
       it('title click', () => {
-        const onClick = jest.fn();
+        const onClick = vi.fn();
         const { getByTestId } = render(
           <Card>
             <CardHeader
@@ -144,7 +144,7 @@ describe('Card', () => {
         expect(onClick).toHaveBeenCalled();
       });
       // it('extra click', () => {
-      //   const onClick = jest.fn();
+      //   const onClick = vi.fn();
       //   const { getByTestId } = render(
       //     <Card>
       //       <CardHeader

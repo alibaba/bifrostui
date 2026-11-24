@@ -13,17 +13,15 @@ const generateComponentIndex = ({ theme, codeModules }, indexPath) => {
     `import './index.less';\nimport Taro from '@tarojs/taro';\n`,
   );
 
-  // if (theme.enName === 'Button') {
-  // debugger;
-  // }
-
   const componentsRender = codeModules.reduce(
     (res, { componentName, descriptions }, index) =>
       res.concat(
         `<div className="demo-component">
-        ${renderDesc(descriptions)}
-        <${componentName} />
-      </div>\n\n\t\t\t`,
+          ${renderDesc(descriptions)}
+          <div className="demo-component-container">
+            <${componentName} />
+          </div>
+        </div>\n\n\t\t\t`,
       ),
     '',
   );
@@ -41,11 +39,10 @@ export default ${demoName};`;
   const demoFile = `${FILE_COMMENT}${importBlock}${contentBlock}`;
   const lessFile = `@import '~@bifrostui/styles/index.less';\n
 .demo-wrapper {
-  padding: 12px;
+  padding: 9px 12px 40px;
 }
 .demo-component {
   padding: 6px 0;
-  border-bottom: 1px solid rgba(233,235,239,0.5);
   &:first-child {
     padding: 0 0 6px;
   }
@@ -57,7 +54,7 @@ export default ${demoName};`;
   margin-bottom: 9px;
 }
 .heading {
-  margin-bottom: 6px;
+  padding: 12px 0 9px;
 }
 .paragraph {
   font-size: 15px;
@@ -102,10 +99,7 @@ const renderDesc = (descriptions) => {
     '',
   );
 
-  return `<div className="demo-description">
-          ${descStr}
-        </div>
-    `;
+  return `<div className="demo-description">${descStr}</div>`;
 };
 
 exports.generateComponentIndex = generateComponentIndex;

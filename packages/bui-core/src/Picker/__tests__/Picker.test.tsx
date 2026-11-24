@@ -1,13 +1,149 @@
-import React from 'react';
-import {
-  act,
-  fireEvent,
-  isConformant,
-  render,
-  screen,
-  userEvent,
-} from 'testing';
+import * as React from 'react';
+import { act, fireEvent, isConformant, render, screen } from 'testing';
 import Picker from '..';
+
+describe('Picker Accessibility', () => {
+  const singleData = [
+    [
+      {
+        value: 1,
+        label: '周一',
+      },
+      {
+        value: 2,
+        label: '周二',
+      },
+      {
+        value: 3,
+        label: '周三',
+      },
+      {
+        value: 4,
+        label: '周四',
+      },
+      {
+        value: 5,
+        label: '周五',
+      },
+      {
+        value: 6,
+        label: '周六',
+      },
+      {
+        value: 7,
+        label: '周日',
+      },
+    ],
+  ];
+  it('Picker aria-label should be "Picker"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    expect(picker).toHaveAttribute('aria-label', 'Picker');
+  });
+
+  it('Picker backdrop aria-hidden should be "true"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const backdrop = picker.querySelector('.bui-modal-backdrop');
+    expect(backdrop).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('Picker header role should be "toolbar"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const pickerHeader = picker.querySelector('.bui-picker-header');
+    expect(pickerHeader).toHaveAttribute('role', 'toolbar');
+  });
+
+  it('Picker header aria-label should be "Toolbar"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const pickerHeader = picker.querySelector('.bui-picker-header');
+    expect(pickerHeader).toHaveAttribute('aria-label', 'Toolbar');
+  });
+
+  it('Picker cancel button aria-label should be "Cancel"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const cancelBtn = picker.querySelector('.bui-picker-cancel');
+    expect(cancelBtn).toHaveAttribute('aria-label', 'Cancel');
+  });
+
+  it('Picker confirm button should not have type attribute', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const confirmBtn = picker.querySelector('.bui-picker-confirm');
+    expect(confirmBtn).not.toHaveAttribute('type');
+  });
+
+  it('Picker confirm button aria-label should be "Confirm"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const confirmBtn = picker.querySelector('.bui-picker-confirm');
+    expect(confirmBtn).toHaveAttribute('aria-label', 'Confirm');
+  });
+
+  it('Picker confirm button tabindex should be "0"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const panel = picker.querySelector('.bui-picker-confirm');
+    expect(panel).toHaveAttribute('tabindex', '0');
+  });
+
+  it('Picker panel role should be "listbox"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const panel = picker.querySelector('.bui-picker-panel');
+    expect(panel).toHaveAttribute('role', 'listbox');
+  });
+
+  it('Picker panel aria-label should be "options"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const panel = picker.querySelector('.bui-picker-panel');
+    expect(panel).toHaveAttribute('aria-label', 'options');
+  });
+
+  it('Picker panel aria-orientation should be "vertical"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const panel = picker.querySelector('.bui-picker-panel');
+    expect(panel).toHaveAttribute('aria-orientation', 'vertical');
+  });
+
+  it('Picker panel option role should be "option"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const panelOptions = picker.querySelectorAll('.bui-picker-panel-option');
+
+    panelOptions.forEach((panelOption) => {
+      expect(panelOption).toHaveAttribute('role', 'option');
+    });
+  });
+
+  it('Picker panel option aria-disabled should be "false"', () => {
+    render(<Picker open options={singleData} value={[2]} />);
+
+    const picker = document.querySelector('.bui-picker');
+    const panelOptions = picker.querySelectorAll('.bui-picker-panel-option');
+
+    panelOptions.forEach((panelOption) => {
+      expect(panelOption).toHaveAttribute('aria-disabled', 'false');
+    });
+  });
+});
 
 describe('Picker', () => {
   const rootClass = 'bui-picker';
@@ -218,13 +354,13 @@ describe('Picker', () => {
   ];
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers({ shouldAdvanceTime: true });
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
-    jest.clearAllMocks();
+    vi.clearAllTimers();
+    vi.useRealTimers();
+    vi.clearAllMocks();
   });
 
   isConformant({
@@ -296,8 +432,8 @@ describe('Picker', () => {
     expect(content).toHaveStyle('height: 300px');
   });
 
-  it('should call `onConfirm` when click confirm button', () => {
-    const confirm = jest.fn((_, { value }) => value);
+  it('should call `onConfirm` when click confirm button', async () => {
+    const confirm = vi.fn((_, { value }) => value);
     render(
       <Picker
         open
@@ -306,17 +442,22 @@ describe('Picker', () => {
         options={cascadeData}
       />,
     );
+    await act(async () => {
+      await vi.runAllTimers();
+    });
     const comfirmButton = document.querySelector(`.${rootClass}-confirm`);
-    userEvent.click(comfirmButton);
+    await act(async () => {
+      fireEvent.click(comfirmButton);
+    });
     expect(confirm).toHaveBeenCalled();
     expect(confirm).toReturnWith([2, 6, 2]);
   });
 
-  it('should modify callback `value` when click confirm button', () => {
-    const confirm = jest.fn((_, { options, value }) => {
+  it('should modify callback `value` when click confirm button', async () => {
+    const confirm = vi.fn((_, { options, value }) => {
       return { options, value };
     });
-    const close = jest.fn((_, { options, value }) => {
+    const close = vi.fn((_, { options, value }) => {
       return { options, value };
     });
     render(
@@ -328,8 +469,13 @@ describe('Picker', () => {
         options={cascadeData}
       />,
     );
+    await act(async () => {
+      await vi.runAllTimers();
+    });
     const comfirmButton = document.querySelector(`.${rootClass}-confirm`);
-    userEvent.click(comfirmButton);
+    await act(async () => {
+      fireEvent.click(comfirmButton);
+    });
     expect(confirm).toHaveBeenCalled();
     expect(confirm).toReturnWith({
       options: cascadeCallbackOptions,
@@ -341,15 +487,20 @@ describe('Picker', () => {
     });
   });
 
-  it('should modify callback `value` when click cancel button', () => {
-    const close = jest.fn((_, { options, value }) => {
+  it('should modify callback `value` when click cancel button', async () => {
+    const close = vi.fn((_, { options, value }) => {
       return { options, value };
     });
     render(
       <Picker open onClose={close} value={[2, 6, 100]} options={cascadeData} />,
     );
+    await act(async () => {
+      await vi.runAllTimers();
+    });
     const cancelButton = document.querySelector(`.${rootClass}-cancel`);
-    userEvent.click(cancelButton);
+    await act(async () => {
+      fireEvent.click(cancelButton);
+    });
     expect(close).toReturnWith({
       options: [
         [
@@ -413,11 +564,11 @@ describe('Picker', () => {
     });
   });
 
-  it('should modify callback `value` when click confirm button in multiple picker', () => {
-    const confirm = jest.fn((_, { options, value }) => {
+  it('should modify callback `value` when click confirm button in multiple picker', async () => {
+    const confirm = vi.fn((_, { options, value }) => {
       return { options, value };
     });
-    const close = jest.fn((_, { options, value }) => {
+    const close = vi.fn((_, { options, value }) => {
       return { options, value };
     });
     render(
@@ -429,8 +580,13 @@ describe('Picker', () => {
         options={multiData}
       />,
     );
+    await act(async () => {
+      await vi.runAllTimers();
+    });
     const comfirmButton = document.querySelector(`.${rootClass}-confirm`);
-    userEvent.click(comfirmButton);
+    await act(async () => {
+      fireEvent.click(comfirmButton);
+    });
     expect(confirm).toHaveBeenCalled();
     expect(confirm).toReturnWith({
       options: multiData,
@@ -442,11 +598,11 @@ describe('Picker', () => {
     });
   });
 
-  it('should modify callback `value` when click confirm button in single picker', () => {
-    const confirm = jest.fn((_, { options, value }) => {
+  it('should modify callback `value` when click confirm button in single picker', async () => {
+    const confirm = vi.fn((_, { options, value }) => {
       return { options, value };
     });
-    const close = jest.fn((_, { options, value }) => {
+    const close = vi.fn((_, { options, value }) => {
       return { options, value };
     });
     render(
@@ -458,8 +614,13 @@ describe('Picker', () => {
         options={singleData}
       />,
     );
+    await act(async () => {
+      await vi.runAllTimers();
+    });
     const comfirmButton = document.querySelector(`.${rootClass}-confirm`);
-    userEvent.click(comfirmButton);
+    await act(async () => {
+      fireEvent.click(comfirmButton);
+    });
     expect(confirm).toHaveBeenCalled();
     expect(confirm).toReturnWith({
       options: singleData,
@@ -472,11 +633,11 @@ describe('Picker', () => {
   });
 
   it('should call cascade `onOptionChange` when select option', async () => {
-    const change = jest.fn((_, { value }) => value);
+    const change = vi.fn((_, { value }) => value);
     render(<Picker open onOptionChange={change} options={cascadeData} />);
 
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     const [panel1] = document.querySelectorAll(`.${rootClass}-panel`);
@@ -508,11 +669,11 @@ describe('Picker', () => {
   });
 
   it('should call multiple `onOptionChange` when select option', async () => {
-    const change = jest.fn((_, { value }) => value);
+    const change = vi.fn((_, { value }) => value);
     render(<Picker open onOptionChange={change} options={multiData} />);
 
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     const [, panel2] = document.querySelectorAll(`.${rootClass}-panel`);
@@ -544,11 +705,11 @@ describe('Picker', () => {
   });
 
   it('should roll with inertial', async () => {
-    const change = jest.fn((_, { value }) => value);
+    const change = vi.fn((_, { value }) => value);
     render(<Picker open onOptionChange={change} options={multiData} />);
 
     await act(async () => {
-      await jest.runAllTimers();
+      await vi.runAllTimers();
     });
 
     const [, panel2] = document.querySelectorAll(`.${rootClass}-panel`);
@@ -590,21 +751,35 @@ describe('Picker', () => {
     expect(change).toReturnWith([1, 3]);
   });
 
-  it('should call `onCancel` when click cancel button', () => {
-    const cancel = jest.fn();
+  it('should call `onCancel` when click cancel button', async () => {
+    const cancel = vi.fn();
     render(<Picker open onCancel={cancel} options={cascadeData} />);
-    userEvent.click(document.querySelector(`.${rootClass}-cancel`));
+    await act(async () => {
+      await vi.runAllTimers();
+    });
+    await act(async () => {
+      fireEvent.click(document.querySelector(`.${rootClass}-cancel`));
+    });
     expect(cancel).toBeCalled();
   });
 
-  it('should call `onClose` when Picker hidden', () => {
-    const close = jest.fn();
+  it('should call `onClose` when Picker hidden', async () => {
+    const close = vi.fn();
     render(<Picker open onClose={close} options={cascadeData} />);
-    userEvent.click(document.querySelector(`.${rootClass}-cancel`));
+    await act(async () => {
+      await vi.runAllTimers();
+    });
+    await act(async () => {
+      fireEvent.click(document.querySelector(`.${rootClass}-cancel`));
+    });
     expect(close).toBeCalled();
-    userEvent.click(document.querySelector(`.${rootClass}-confirm`));
+    await act(async () => {
+      fireEvent.click(document.querySelector(`.${rootClass}-confirm`));
+    });
     expect(close).toBeCalled();
-    userEvent.click(document.querySelector('.bui-backdrop'));
+    await act(async () => {
+      fireEvent.click(document.querySelector('.bui-backdrop'));
+    });
     expect(close).toBeCalled();
   });
 });

@@ -15,7 +15,7 @@ DesktopDatePicker 组件，常用于选择日期，包括年月日。
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -41,7 +41,7 @@ export default () => {
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -71,7 +71,7 @@ export default () => {
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -97,7 +97,7 @@ export default () => {
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -134,7 +134,7 @@ export default () => {
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -164,7 +164,7 @@ export default () => {
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -194,7 +194,7 @@ export default () => {
 
 ```tsx
 import { DesktopDatePicker, Stack, Button } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -227,7 +227,7 @@ export default () => {
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -258,7 +258,7 @@ export default () => {
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
 import { HelpCircleOutlinedIcon } from '@bifrostui/icons';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -287,7 +287,7 @@ export default () => {
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -321,7 +321,7 @@ import {
   DoubleArrowLeftTwoToneIcon,
   DoubleArrowRightTwoToneIcon,
 } from '@bifrostui/icons';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -362,7 +362,7 @@ export default () => {
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -398,7 +398,7 @@ export default () => {
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -435,7 +435,7 @@ export default () => {
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -473,7 +473,7 @@ export default () => {
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -506,7 +506,7 @@ export default () => {
 
 ```tsx
 import { DesktopDatePicker, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 export default () => {
   const [value, setValue] = useState(dayjs().toDate());
@@ -537,7 +537,7 @@ export default () => {
 
 ```tsx
 import { Button, DesktopDatePicker, Input, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {
@@ -574,7 +574,7 @@ export default () => {
 
 ```tsx
 import { DesktopDatePicker, Button, Stack } from '@bifrostui/react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default () => {

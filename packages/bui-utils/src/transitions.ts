@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 interface IEasing {
   easeInOut: string;
@@ -108,11 +108,11 @@ export function createTransitions(
 
   const create = (
     props: ITransitionProps = ['all'],
-    options?: Partial<{
+    options: Partial<{
       duration: number | string;
       easing: string;
       delay: number | string;
-    }>,
+    }> = {},
   ) => {
     const {
       duration: durationOption = mergedDuration.standard,

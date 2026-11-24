@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { TransitionProps } from '../Transition';
 
 export interface FadeProps extends Omit<TransitionProps, 'children'> {

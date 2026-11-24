@@ -1,5 +1,7 @@
+/* eslint-disable no-console */
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
+import { cssVarToValue } from '@bifrostui/utils';
 import { ISvgIconProps } from '../../SvgIcon.types';
 import './SvgIcon.less';
 
@@ -15,19 +17,22 @@ function SvgIcon(props: ISvgIconProps, ref) {
     color,
     htmlColor,
     size,
+    titleAccess,
     viewBox = '0 0 96 96',
     style,
     ...rest
   } = props;
 
   const colorMap = {
-    default: '#959aa5',
-    primary: '#ff335c',
-    info: '#148aff',
-    danger: '#ff335c',
-    success: '#00d68f',
-    warning: '#ff8533',
-    disabled: '#ced1d6',
+    light: 'var(--bui-color-bg-view)',
+    dark: 'var(--bui-color-fg-default)',
+    neutral: 'var(--bui-color-fg-subtle)',
+    primary: 'var(--bui-color-primary)',
+    info: 'var(--bui-color-info)',
+    danger: 'var(--bui-color-danger)',
+    success: 'var(--bui-color-success)',
+    warning: 'var(--bui-color-warning)',
+    disabled: 'var(--bui-color-fg-disabled)',
   };
 
   const svgColor = colorMap[color] || htmlColor || style?.color;
@@ -52,11 +57,15 @@ function SvgIcon(props: ISvgIconProps, ref) {
           className={clsx(classes.root, className, {
             [`icon-size-${size}`]: size,
           })}
+          aria-hidden={titleAccess ? undefined : true}
+          role={titleAccess ? 'img' : undefined}
           focusable="false"
           viewBox={viewBox}
           color={svgColor}
           dangerouslySetInnerHTML={{
-            __html: children,
+            __html: titleAccess
+              ? `<title>${titleAccess}</title>${children}`
+              : children,
           }}
           style={style}
           {...rest}
@@ -70,17 +79,25 @@ function SvgIcon(props: ISvgIconProps, ref) {
         className={clsx(classes.root, className, {
           [`icon-size-${size}`]: size,
         })}
+        aria-hidden={titleAccess ? undefined : true}
+        role={titleAccess ? 'img' : undefined}
         focusable="false"
         viewBox={viewBox}
         color={svgColor || htmlColor}
         style={style}
         {...rest}
       >
+        {titleAccess ? <title>{titleAccess}</title> : null}
         {children}
       </Component>
     );
   }
   if (typeof children === 'string') {
+    const parsedSvgColor =
+      cssVarToValue({
+        cssVar: svgColor,
+      }) || svgColor;
+
     // div背景色模式，组装data:image/svg+xml塞进内联样式
     return (
       <Component
@@ -88,11 +105,14 @@ function SvgIcon(props: ISvgIconProps, ref) {
         className={clsx(classes.root, className, {
           [`icon-size-${size}`]: size,
         })}
+        aria-hidden={titleAccess ? undefined : true}
+        aria-label={titleAccess}
+        role={titleAccess ? 'img' : undefined}
         style={{
           ...style,
           backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(
             `<svg viewBox='${viewBox}' xmlns='http://www.w3.org/2000/svg' ${
-              svgColor ? `fill='${svgColor}'` : ''
+              parsedSvgColor ? `fill='${parsedSvgColor}'` : ''
             }>${children}</svg>`,
           )}")`,
         }}

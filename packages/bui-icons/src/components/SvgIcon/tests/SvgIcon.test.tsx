@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render, screen } from 'testing';
 import { ISvgIconProps } from '../../../SvgIcon.types';
 import SvgIcon from '../SvgIcon';
@@ -57,13 +57,61 @@ describe('SvgIcon', () => {
     expect(svgIcon).not.toBeInTheDocument();
   });
 
+  it('should have aria-hidden="true" by default', () => {
+    const { container } = render(
+      <SvgIcon component="svg" children="<path d='M10 10' />" />,
+    );
+    const svgIcon = container.querySelector('.bui-svg-icon');
+    expect(svgIcon).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('should remove aria-hidden and add role="img" when titleAccess is provided (svg string)', () => {
+    const { container } = render(
+      <SvgIcon
+        component="svg"
+        titleAccess="Arrow forward"
+        children="<path d='M10 10' />"
+      />,
+    );
+    const svgIcon = container.querySelector('.bui-svg-icon');
+    expect(svgIcon).not.toHaveAttribute('aria-hidden');
+    expect(svgIcon).toHaveAttribute('role', 'img');
+    expect(svgIcon).toContainHTML('<title>Arrow forward</title>');
+  });
+
+  it('should remove aria-hidden and add role="img" when titleAccess is provided (svg ReactNode)', () => {
+    const { container } = render(
+      <SvgIcon component="svg" titleAccess="Arrow forward">
+        <path d="M10 10" />
+      </SvgIcon>,
+    );
+    const svgIcon = container.querySelector('.bui-svg-icon');
+    expect(svgIcon).not.toHaveAttribute('aria-hidden');
+    expect(svgIcon).toHaveAttribute('role', 'img');
+    expect(svgIcon.querySelector('title')).toHaveTextContent('Arrow forward');
+  });
+
+  it('should allow consumer to override aria-hidden', () => {
+    const { container } = render(
+      <SvgIcon
+        component="svg"
+        aria-hidden={false}
+        children="<path d='M10 10' />"
+      />,
+    );
+    const svgIcon = container.querySelector('.bui-svg-icon');
+    expect(svgIcon).toHaveAttribute('aria-hidden', 'false');
+  });
+
   it('when children is children should render element width backgroundImage', () => {
     const props: ISvgIconProps = {
       component: 'div',
       children:
         '<path d="M48 20c2.2 0 4 1.8 4 4v20h20c2.2 0 4 1.8 4 4s-1.8 4-4 4H52v20c0 2.2-1.8 4-4 4s-4-1.8-4-4V52H24c-2.2 0-4-1.8-4-4s1.8-4 4-4h20V24c0-2.2 1.8-4 4-4z"/>',
     };
-    jest.spyOn(console, 'warn').mockImplementation();
+    vi.spyOn(console, 'warn').mockImplementation(() => {
+      // 空实现
+    });
     render(<SvgIcon {...props} data-testid="test-icon" />);
     expect(screen.getByTestId('test-icon').nodeName).toEqual('DIV');
   });

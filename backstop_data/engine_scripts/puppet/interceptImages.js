@@ -12,8 +12,8 @@
  *
  */
 
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const IMAGE_URL_RE = /\.gif|\.jpg|\.png/i;
 const IMAGE_STUB_URL = path.resolve(__dirname, '../imageStub.jpg');
@@ -26,7 +26,7 @@ module.exports = async function (page, scenario) {
       await request.respond({
         body: IMAGE_DATA_BUFFER,
         headers: HEADERS_STUB,
-        status: 200
+        status: 200,
       });
     } else {
       request.continue();

@@ -1,121 +1,110 @@
 ---
 group: Theme
-name: ThemeProvider Theme Configuration
+name: ThemeProvider Configuration
 ---
 
 # ThemeProvider
 
-ThemeProvider is used to configure the theme, allowing you to specify component colors, sizes, language, and more. `ThemeProvider` relies on React's `context` to pass the theme and internationalization to components, so you need to ensure that `ThemeProvider` is a parent of any components you wish to customize.
+The theme configuration can be used to specify component colors, sizes, language, etc. `ThemeProvider` relies on React's `context` to propagate theme and localization to the components, so you need to ensure that `ThemeProvider` is the parent of the components you are attempting to customize.
 
-## Code Examples
+## Theme Customization
 
-## Customizing Themes
+**There are two points developers should note when customizing Tokens.** For more detailed information on theme customization, please refer to [Custom Theme](/guide/theme).
 
-**Developers should pay attention to the following two points when customizing Tokens**, for detailed information on theme customization, please refer to [Customizing Themes](/guide/theme).
-
-1. Do not confuse definitions: For different business scenarios, use corresponding APIs to customize Tokens. For example, use responsive properties for responsive layouts, use `defaultDarkToken` or `dmDarkToken` for dark mode, and use `defaultLightToken` or `dmLightToken` to override built-in highlight mode Tokens.
-2. Understand priorities: Specific scenario priorities always take precedence over global common scenarios.
+1. Avoid confusion in definition: Different business scenarios should use the respective API to customize Tokens. For example, responsive layouts should use responsive attributes, dark mode should use defaultDarkToken, and built-in highlight mode Tokens should be overridden using defaultLightToken or dmLightToken.
+2. Determine the priority: The priority of special scenarios always outweighs the global general scenarios.
 
 ### Browser
 
-In browsers, Design Tokens can be customized quite flexibly.
+In the browser, Design Tokens can be customized flexibly.
 
 ```tsx
 import { ThemeProvider, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 /**
  * Responsive: Customize Tokens for different screen sizes
- * Configure built-in Tokens and global Tokens for responsive scenarios
+ * Configurable built-in Tokens for responsive scenarios and global Tokens for components
  */
 const responsive = {
   xs: {
-    '--bui-button-border-radius': '2px',
+    '--bui-btn-border-radius': '2px',
   },
   sm: {
-    '--bui-button-border-radius': '6px',
+    '--bui-btn-border-radius': '6px',
   },
   md: {
-    '--bui-button-border-radius': '10px',
+    '--bui-btn-border-radius': '10px',
   },
   lg: {
-    '--bui-button-border-radius': '14px',
+    '--bui-btn-border-radius': '14px',
   },
   xl: {
-    '--bui-button-border-radius': '16px',
+    '--bui-btn-border-radius': '16px',
   },
 };
 
 /**
- * Customize Tokens for default light mode
- * Should configure BUI's built-in default light mode global Tokens
+ * Custom Tokens for default light mode
+ * Configure global Tokens for BUI's built-in default light mode
  */
 const defaultLightToken = {
-  '--bui-color-info-start': '#33a7ff',
-  '--bui-color-info-end': '#148aff',
+  '--bui-color-info-start': '#ff335c',
+  '--bui-color-info-end': '#ff7600',
 };
 
 /**
- * Customize Tokens for default dark mode
- * Should configure BUI's built-in default dark mode global Tokens
+ * Custom Tokens for default dark mode
+ * Configure global Tokens for BUI's built-in default dark mode
  */
 const defaultDarkToken = {
-  '--bui-color-info-start': '#11caee',
-  '--bui-color-info-end': '#47bfbb',
-};
-
-/**
- * Customize component-level Tokens
- * Should configure component-level global Tokens
- */
-const token = {
-  '--bui-button-height': '34px',
+  '--bui-color-info-start': '#ff7600',
+  '--bui-color-info-end': '#ff335c',
 };
 
 export default () => {
   return (
     <ThemeProvider
       isRoot
-      token={token}
       responsive={responsive}
       defaultLightToken={defaultLightToken}
       defaultDarkToken={defaultDarkToken}
     >
       <Button variant="contained" color="info">
-        Customized Tokens
+        info
       </Button>
     </ThemeProvider>
   );
 };
 ```
 
-### Local Themes (Nested Themes)
+````
 
-You can configure global Design Tokens related to components by nesting `ThemeProvider` components. BUI does not restrict passing built-in Token properties in component-level custom Tokens to overwrite global built-in Tokens, but it is recommended not to do so unless necessary to avoid confusion in theme configurations.
+### Local Theme (Nested Theme)
+
+Design Tokens for components can be configured by nesting `ThemeProvider` components.
 
 ```tsx
 import { ThemeProvider, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const token = {
-  '--bui-button-height': '34px',
+  '--bui-btn-height': '40px',
 };
 
 const internalToken = {
-  '--bui-button-height': '28px',
-  // Not recommended to rewrite built-in Tokens in tokens; try using global variables of components to customize styles
-  // '--bui-color-info-end': '#148a00',
+  '--bui-btn-height': '28px',
 };
 
 export default () => {
   return (
     <ThemeProvider isRoot token={token}>
       <Button variant="contained" color="info" style={{ marginRight: '20px' }}>
-        Customized Tokens
+        Outer Button
       </Button>
       <ThemeProvider token={internalToken}>
-        <Button variant="contained" color="info" className="test">
-          Nested Tokens
+        <Button variant="contained" color="info">
+          Inner Button
         </Button>
       </ThemeProvider>
     </ThemeProvider>
@@ -123,31 +112,31 @@ export default () => {
 };
 ```
 
-### Mini Program
+### Mini Programs
 
-Mini Programs cannot dynamically inject code and therefore cannot dynamically configure themes and responsive-related Design Tokens through the `ThemeProvider` component. Currently, there are two ways to modify Mini Program themes:
+In mini programs, it is not possible to inject code dynamically or use the `ThemeProvider` component to dynamically configure themes and responsive-related Design Tokens. Currently, two methods are supported for modifying the themes of mini programs:
 
-1. Write corresponding selector Tokens in style files manually; page-level style files will override global style files.
-2. Local themes can only be passed inline as CSS variables when using components.
+1. Write Tokens under the corresponding selectors in the styles file yourself; the theme configuration in the global styles file will be overridden by page-level styles files.
+2. Local themes can only be passed in css variables in an inline manner when using components.
 
 ```tsx
 import { Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 /**
- * 1. Global or page-level theme for Mini Programs can be written in entry or page-level style files with corresponding selector style variables; page-level will override global styles.
+ * 1. Global or page-level theme for mini programs can be written by yourself in the entry or page-level styles files; page-level will override global styles
  * app.less
- * page { --bui-button-height: 32px }
+ * page { --bui-btn-height: 32px }
  */
 
-// 2. Local theme for Mini Programs
+// 2. Local theme for mini programs
 export default () => {
   return (
     <Button
       variant="contained"
       color="info"
-      style={{ '--bui-button-height': '28px' }}
+      style={{ '--bui-btn-height': '28px' }}
     >
-      Customized Tokens
+      Custom Tokens
     </Button>
   );
 };
@@ -155,7 +144,7 @@ export default () => {
 
 ## Internationalization
 
-BUI provides Chinese, Traditional Chinese, and English by default. If these do not meet your needs, you can also customize languages at the component level. The following lists the currently internationalized components, and you can switch languages in the demos.
+BUI provides default languages: Simplified Chinese, Traditional Chinese, and English. If these do not meet your needs, customization at the component level is also supported. Below are the components involving internationalization; you can switch languages in the demos.
 
 ```tsx
 import {
@@ -173,7 +162,7 @@ import {
   TW,
 } from '@bifrostui/react';
 import React, { useState } from 'react';
-import dayjs from 'dayjs/esm/index';
+import dayjs from 'dayjs';
 
 const options = [
   {
@@ -224,7 +213,7 @@ const cities = [
     cities: [
       {
         code: '652800',
-        name: 'Bayin Gol',
+        name: 'Bayingol',
       },
       {
         code: '511900',
@@ -320,14 +309,14 @@ export default () => {
             });
           }}
         >
-          Open Dialog
+          open Dialog
         </Button>
         <Button
           onClick={() => {
             setOpen(true);
           }}
         >
-          Open Picker
+          open Picker
         </Button>
         <Picker
           open={open}
@@ -388,17 +377,17 @@ export default () => {
 
 ### ThemeProviderProps, ThemeProps
 
-| Property          | Description                                            | Type                   | Default |
-| ----------------- | ------------------------------------------------------ | ---------------------- | ------- |
-| isRoot            | Whether this ThemeProvider is mounted at the top level | boolean                | false   |
-| container         | Mounting container                                     | ReactNode              | -       |
-| containerId       | ID of the mounting container                           | string                 | -       |
-| locale            | Language                                               | BaseLang               | zh-CN   |
-| responsive        | Responsive screen breakpoint configuration             | ResponsiveTokenOptions | -       |
-| defaultLightToken | Default light theme token                              | Record<string, string> | -       |
-| defaultDarkToken  | Default dark theme token                               | Record<string, string> | -       |
-| dmLightToken      | Dark mode light theme token                            | Record<string, string> | -       |
-| token             | Component global Token                                 | Record<string, string> | -       |
+| Property          | Description                                                    | Type                   | Default |
+| ----------------- | -------------------------------------------------------------- | ---------------------- | ------- |
+| isRoot            | Whether the current ThemeProvider is mounted at the root level | boolean                | false   |
+| container         | The container to mount                                         | ReactNode              | -       |
+| containerId       | The id of the mount container                                  | string                 | -       |
+| locale            | Language                                                       | BaseLang               | zh-CN   |
+| responsive        | Configuration for responsive screen breakpoints                | ResponsiveTokenOptions | -       |
+| defaultLightToken | Token for default light theme                                  | Record<string, string> | -       |
+| defaultDarkToken  | Token for default dark theme                                   | Record<string, string> | -       |
+| dmLightToken      | Token for Taobao dark theme                                    | Record<string, string> | -       |
+| token             | Global Token for the component                                 | Record<string, string> | -       |
 
 ### ResponsiveTokenOptions
 
@@ -409,3 +398,8 @@ export default () => {
 | md       | Medium screen      | Record<string, string> | 768px    |
 | lg       | Large screen       | Record<string, string> | 992px    |
 | xl       | Extra large screen | Record<string, string> | 1200px   |
+
+```
+
+```
+````

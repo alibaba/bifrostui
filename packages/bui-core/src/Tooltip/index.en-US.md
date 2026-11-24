@@ -1,92 +1,111 @@
 ---
 group: Data Display
-name: Tooltip Text Hint
+name: Tooltip
 ---
 
-# Tooltip Text Hint
+# Tooltip
 
-A simple text hint bubble.
+The Tooltip component provides a concise text hint bubble for users, suitable for supplementing explanations of page elements.
 
-## Code Demos
+## Features
 
-### Basic Usage
+- 🎯 **Flexible Trigger** - Supports multiple trigger methods including click, hover, etc.
+- 📍 **Smart Positioning** - 12 position options with automatic adjustment to avoid boundary overflow
+- ♿ **Accessibility Support** - Full ARIA support and keyboard navigation
+- 🎨 **Highly Customizable** - Allows custom content, styles, and behavior
+- 📱 **Cross-platform Compatibility** - Compatible with both H5 and mini program platforms
 
-Clicking the mouse shows the tooltip, clicking again hides it. The bubble overlay does not carry complex text or operations.
+## When to Use
+
+- When a brief explanation or hint for page elements is needed
+- When space is limited and complete information cannot be displayed
+- When additional explanation for action buttons or form fields is needed
+- To replace the traditional title attribute for better user experience
+
+## Basic Usage
+
+The simplest Tooltip usage, with default click trigger for display/hide toggling.
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Tooltip title="This is a tooltip">
-      <span>click to show</span>
+      <span>Click to show tooltip</span>
     </Tooltip>
   );
 };
 ```
 
-### External Control with `open`
+````
 
-Control the visibility of the bubble overlay externally using `open`.
+## Controlled Mode
+
+Control the visibility of the Tooltip externally using the `open` prop.
 
 ```tsx
-import { Tooltip } from '@bifrostui/react';
+import { Tooltip, Button, Stack } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+
   return (
-    <Tooltip title="This is a tooltip" open={open}>
-      <span onClick={() => setOpen(!open)}>Control visibility with open</span>
-    </Tooltip>
+    <Stack direction="row" spacing={2}>
+      <Button onClick={() => setOpen(!open)}>
+        {open ? 'Hide' : 'Show'} Tooltip
+      </Button>
+      <Tooltip title="Controlled Tooltip" open={open}>
+        <span>Target Element</span>
+      </Tooltip>
+    </Stack>
   );
 };
 ```
 
-### Default Visibility with `defaultOpen`
+## Default Display
 
-Set `defaultOpen` to `true` to display the bubble overlay by default.
+Set `defaultOpen` to `true` to display the Tooltip by default.
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Tooltip title="This is a tooltip" defaultOpen>
-      <span>Default visibility with defaultOpen</span>
+      <span>Default display with defaultOpen</span>
     </Tooltip>
   );
 };
 ```
 
-### Adjusting Distance with `offsetSpacing`
+### Offset Distance Between Tooltip and Target Element
 
-Use `offsetSpacing` to control the distance between the target element and the bubble overlay.
+You can set the offset to control the distance from the target element.
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
-    <Tooltip title="This is a tooltip" offsetSpacing={20} defaultOpen>
-      <span>
-        Adjust distance with offsetSpacing (set to 20 for observation)
-      </span>
+    <Tooltip title="This is a tooltip" offset={20} defaultOpen>
+      <span>Offset control (set to 20 for observation)</span>
     </Tooltip>
   );
 };
 ```
 
-### Setting Placement with `placement`
+### Placement of the Tooltip
 
-Use `placement` to set the position of the bubble overlay. Options include `top`, `left`, `right`, `bottom`, `topLeft`, `topRight`, `bottomLeft`, `bottomRight`, `leftTop`, `leftBottom`, `rightTop`, `rightBottom`.
+Placement sets the position of the tooltip bubble layer, options are top, left, right, bottom, topLeft, topRight, bottomLeft, bottomRight, leftTop, leftBottom, rightTop, rightBottom.
 
 ```tsx
 import { Tooltip, Button } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const packageButton = (inner) => {
@@ -225,28 +244,28 @@ export default () => {
 };
 ```
 
-### Trigger Behavior with `trigger`
+### Trigger Method
 
-Set the trigger behavior for displaying the bubble overlay to either "click" or "hover". Default is "click".
+The trigger method for displaying the bubble, "click" or "hover", default is click.
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Tooltip title="This is a tooltip" trigger={['hover']}>
-      <span>Hover trigger</span>
+      <span>Hover trigger method</span>
     </Tooltip>
   );
 };
 ```
 
-### Callback Method for Visibility Changes with `onOpenChange`
+### onOpenChange Callback Method
 
 ```tsx
 import { Tooltip } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const onOpenChange = (event, data) => {
@@ -257,32 +276,124 @@ export default () => {
       title="This is a tooltip"
       trigger="click"
       onOpenChange={onOpenChange}
+      placement="bottom"
     >
-      <span>Callback method for visibility changes</span>
+      <span>onOpenChange Callback Method</span>
     </Tooltip>
   );
 };
 ```
 
-### API
+## Accessibility
 
-| Property      | Description                  | Type                                                                                                                                                           | Default |
-| ------------- | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| title         | Bubble overlay content       | string                                                                                                                                                         | -       |
-| defaultOpen   | Default visibility           | boolean                                                                                                                                                        | false   |
-| open          | Manual control of visibility | boolean                                                                                                                                                        | -       |
-| offsetSpacing | Offset from target element   | number                                                                                                                                                         | 0       |
-| placement     | Position of the bubble       | string, enum values are `center` `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` | 'top'   |
-| trigger       | Trigger behavior             | string \| string[], enum values are 'click' \| 'hover'                                                                                                         | 'click' |
-| onOpenChange  | Callback for visibility      | (e: React.MouseEvent<HTMLDivElement\>,data: {open: boolean}) => void                                                                                           | -       |
+The Tooltip component is equipped with complete accessibility support to ensure it is usable by both screen reader users and keyboard users.
 
-### Style Variables
+### Keyboard Navigation
 
-| Property             | Description            | Default Value | Global Variable                  |
-| -------------------- | ---------------------- | ------------- | -------------------------------- |
-| --arrow-size         | Arrow size             | 8PX           | --bui-tooltip-arrow-size         |
-| --localtion-position | Arrow position         | 8PX           | --bui-tooltip-localtion-position |
-| --max-width          | Maximum width          | 350px         | --bui-tooltip-max-width          |
-| --content-min-width  | Minimum content width  | 30px          | --bui-tooltip-content-min-width  |
-| --content-min-height | Minimum content height | 32px          | --bui-tooltip-content-min-height |
-| --content-padding    | Content padding        | 6px 8px       | --bui-tooltip-content-padding    |
+```tsx
+import { Tooltip, Button, Stack } from '@bifrostui/react';
+import * as React from 'react';
+
+export default () => {
+  return (
+    <Stack spacing={2}>
+      <Tooltip title="Close with Esc key support" closeOnEscape>
+        <Button>Press Esc key to close after opening</Button>
+      </Tooltip>
+    </Stack>
+  );
+};
+```
+
+### Focus Management
+
+```tsx
+import { Tooltip, Button } from '@bifrostui/react';
+import * as React from 'react';
+
+export default () => {
+  return (
+    <Tooltip title="Tooltip content will auto-focus" autoFocus role="dialog">
+      <Button>Automatic Focus Management</Button>
+    </Tooltip>
+  );
+};
+```
+
+## API
+
+### Tooltip Props
+
+| Attribute    | Description                                                   | Type                                       | Default |
+| ------------ | ------------------------------------------------------------- | ------------------------------------------ | ------- |
+| title        | Content of the bubble                                         | React.ReactNode                            | -       |
+| defaultOpen  | Whether the bubble is visible by default                      | boolean                                    | false   |
+| open         | Manually controls bubble visibility                           | boolean                                    | -       |
+| offset       | Offset distance (pixels) between the layer and target element | number                                     | 0       |
+| placement    | Bubble position                                               | TooltipPlacement                           | 'top'   |
+| trigger      | Trigger actions                                               | TooltipTriggerType \| TooltipTriggerType[] | 'click' |
+| onOpenChange | Callback method for bubble visibility change                  | (event, data) => void                      | -       |
+
+### Accessibility Attributes
+
+| Attribute       | Description                       | Type                                         | Default   |
+| --------------- | --------------------------------- | -------------------------------------------- | --------- |
+| role            | ARIA role                         | 'tooltip' \| 'dialog' \| 'status' \| 'alert' | 'tooltip' |
+| aria-label      | Accessibility label               | string                                       | -         |
+| aria-labelledby | Reference ID of described element | string                                       | -         |
+| aria-hidden     | Whether hidden for screen readers | boolean                                      | false     |
+| autoFocus       | Whether to automatically focus    | boolean                                      | false     |
+| closeOnEscape   | Whether to close with Esc key     | boolean                                      | false     |
+
+### TooltipPlacement
+
+```typescript
+type TooltipPlacement =
+  | 'top'
+  | 'left'
+  | 'right'
+  | 'bottom'
+  | 'topLeft'
+  | 'topRight'
+  | 'bottomLeft'
+  | 'bottomRight'
+  | 'leftTop'
+  | 'leftBottom'
+  | 'rightTop'
+  | 'rightBottom';
+```
+
+### TooltipTriggerType
+
+```typescript
+type TooltipTriggerType = 'click' | 'hover';
+```
+
+### OnOpenChange Callback
+
+```typescript
+interface TooltipOpenChangeData {
+  open: boolean;
+}
+
+type OnOpenChange = (
+  event: React.SyntheticEvent,
+  data: TooltipOpenChangeData,
+) => void;
+```
+
+## Style Variables
+
+| Global Variable                  | Description            | Default   |
+| -------------------------------- | ---------------------- | --------- |
+| --bui-tooltip-arrow-size         | Arrow size             | `8PX`     |
+| --bui-tooltip-location-position  | Location offset        | `8PX`     |
+| --bui-tooltip-max-width          | Maximum width          | `350px`   |
+| --bui-tooltip-content-min-width  | Minimum content width  | `30px`    |
+| --bui-tooltip-content-min-height | Minimum content height | `32px`    |
+| --bui-tooltip-content-padding    | Content padding        | `6px 8px` |
+
+```
+
+```
+````

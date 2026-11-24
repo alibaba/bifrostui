@@ -3,7 +3,7 @@ import { useValue } from '@bifrostui/utils';
 import clsx from 'clsx';
 import React, { forwardRef } from 'react';
 import { RatingProps } from './Rating.types';
-import './Rating.less';
+import './index.less';
 
 const classes = {
   root: 'bui-rating',
@@ -14,18 +14,18 @@ const classes = {
 const Rating = forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
   const {
     className,
-    size,
+    size = 'medium',
     defaultValue,
-    allowHalf,
-    icon,
-    checkedIcon,
-    count,
-    readOnly,
-    disabled,
+    allowHalf = false,
+    icon = <StarFilledIcon color="disabled" />,
+    checkedIcon = <StarFilledIcon color="warning" />,
+    count = 5,
+    readOnly = false,
+    disabled = false,
     value,
     onChange,
     name,
-    disableClear,
+    disableClear = false,
     ...others
   } = props;
   const [rateValue, triggerChange] = useValue({
@@ -100,15 +100,5 @@ const Rating = forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
 });
 
 Rating.displayName = 'BuiRating';
-Rating.defaultProps = {
-  size: 'medium',
-  count: 5,
-  icon: <StarFilledIcon htmlColor="#ced1d6" />,
-  checkedIcon: <StarFilledIcon color="warning" />,
-  readOnly: false,
-  disabled: false,
-  allowHalf: false,
-  disableClear: false,
-};
 
 export default Rating;

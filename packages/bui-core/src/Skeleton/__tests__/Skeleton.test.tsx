@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render, isConformant, screen } from 'testing';
 import Skeleton from '../index';
 

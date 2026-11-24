@@ -5,68 +5,55 @@ name: Tabs 标签页
 
 # Tabs 标签页
 
-标签页切换组件。
+用于在多个内容区域之间切换的标签页组件，支持键盘无障碍访问和自定义渲染。
 
-## 小程序与 H5 存在两点差异：
+## 小程序与H5差异
 
-1. 小程序切换 Tab 底部 Line 使用渐变动画，H5 使用位移动画;
-2. 小程序对于超出可滚动的 Tabs，点击激活无法移动到视图中间位置。
+- 小程序获取元素位置是异步的，所以`indicator`初始渲染保留了动效，避免很突兀的**跳变**效果
 
-## 代码演示
-
-### 基础用法
-
-搭配 Tab 组件完成布局
+## 基础用法
 
 ```tsx
-import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
+import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
 
 export default () => {
-  const [value, setValue] = useState('fruits');
-  const tabList = [
-    { title: '水果', index: 'fruits' },
-    { title: '蔬菜', index: 'vegetables' },
-    { title: '动物', index: 'animals' },
-  ];
-  const handleClick = (e, { index }) => {
+  const handleChange = (e, { index }) => {
     console.log(`Click Tab, value index is: ${index}`);
-    setValue(index);
   };
 
   return (
     <Stack alignItems="stretch">
-      <Tabs style={{ marginBottom: '12px' }} value={value}>
-        {tabList.map((item) => (
-          <Tab key={item.index} index={item.index} onClick={handleClick}>
-            {item.title}
-          </Tab>
-        ))}
+      <Tabs
+        style={{ marginBottom: 12 }}
+        defaultValue="one"
+        onChange={handleChange}
+      >
+        <Tab key="one" index="one">
+          TAB ONE
+        </Tab>
+        <Tab key="two" index="two">
+          TAB TWO
+        </Tab>
+        <Tab key="three" index="three">
+          TAB THREE
+        </Tab>
       </Tabs>
-      <TabPanel value={value} index="fruits">
-        菠萝
-      </TabPanel>
-      <TabPanel value={value} index="vegetables">
-        西红柿
-      </TabPanel>
-      <TabPanel value={value} index="animals">
-        蚂蚁
-      </TabPanel>
     </Stack>
   );
 };
 ```
 
-### 支持使用 tabs
+## 使用 `tabs`
 
-使用 `tabs` 生成 Tab。
+通过 `tabs` 属性快速生成标签页。
 
 ```tsx
-import { Stack, TabPanel, Tabs, Button } from '@bifrostui/react';
+import { Stack, TabPanel, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState('fruits');
+  const [value, setValue] = useState('three');
   const handleChange = (e, { index }) => {
     console.log(`Tabs change, value index is: ${index}`);
     setValue(index);
@@ -75,185 +62,39 @@ export default () => {
   return (
     <Stack>
       <Tabs
-        style={{ marginBottom: '12px' }}
+        style={{ marginBottom: 12 }}
         onChange={handleChange}
         value={value}
         tabs={[
-          { title: '水果', index: 'fruits' },
-          { title: '蔬菜', index: 'vegetables', disabled: true },
-          { title: '动物', index: 'animals' },
+          { title: 'TAB ONE', index: 'one' },
+          { title: 'TAB TWO', index: 'two' },
+          { title: 'TAB THREE', index: 'three' },
         ]}
       />
-      <TabPanel value={value} index="fruits">
-        菠萝
+      <TabPanel value={value} index="one">
+        Tab Panel 1
       </TabPanel>
-      <TabPanel value={value} index="vegetables">
-        西红柿
+      <TabPanel value={value} index="two">
+        Tab Panel 2
       </TabPanel>
-      <TabPanel value={value} index="animals">
-        蚂蚁
+      <TabPanel value={value} index="three">
+        Tab Panel 3
       </TabPanel>
     </Stack>
   );
 };
 ```
 
-### value值无效时不选中
+## 禁用状态
 
-value为无效值时不选中任何Tab。
+通过 `disabled` 属性禁用某个 Tab。
 
 ```tsx
-import { Stack, Tab, TabPanel, Tabs, Button } from '@bifrostui/react';
+import { Stack, TabPanel, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState('2');
-  const defultList = [
-    { title: '长津湖', index: '1' },
-    { title: '战狼2', index: '2' },
-    { title: '你好，李焕英', index: '3' },
-    { title: '哪吒之魔童降世', index: '4' },
-    { title: '流浪地球', index: '5' },
-    { title: '唐人街探案3', index: '6' },
-  ];
-  const [tabList, setTabList] = useState(defultList);
-
-  const handleChange = (e, { index }) => {
-    console.log(e, `Tab Change, value index is: ${index}`);
-    setValue(index);
-  };
-
-  return (
-    <Stack>
-      <Button
-        onClick={() => {
-          setValue('');
-        }}
-      >
-        置为无效值
-      </Button>
-      <Button
-        onClick={() => {
-          if (tabList.length === 4) {
-            setTabList(defultList);
-          } else {
-            const newTabList = defultList.slice(0, 4);
-            setTabList(newTabList);
-            if (!newTabList.some((item) => item.index === value)) {
-              setValue('1');
-            }
-          }
-        }}
-      >
-        {tabList.length === 4 ? '增加' : '减少'}TabList长度
-      </Button>
-      <div style={{ width: '325px' }}>
-        <Tabs
-          style={{ marginTop: '20px', marginBottom: '12px' }}
-          value={value}
-          onChange={handleChange}
-        >
-          {tabList.map((item) => (
-            <Tab key={item.index} {...item}>
-              {item.title}
-            </Tab>
-          ))}
-        </Tabs>
-
-        {tabList.map((item) => (
-          <TabPanel key={item.index} value={value} index={item.index}>
-            {item.index}
-          </TabPanel>
-        ))}
-      </div>
-    </Stack>
-  );
-};
-```
-
-### value值无效时不选中（使用tabs）
-
-value为无效值时不选中任何Tab。
-
-```tsx
-import { Stack, Tab, TabPanel, Tabs, Button } from '@bifrostui/react';
-import React, { useState } from 'react';
-
-export default () => {
-  const [value, setValue] = useState('2');
-  const defultList = [
-    { title: '长津湖', index: '1' },
-    { title: '战狼2', index: '2' },
-    { title: '你好，李焕英', index: '3' },
-    { title: '哪吒之魔童降世', index: '4' },
-    { title: '流浪地球', index: '5' },
-    { title: '唐人街探案3', index: '6' },
-  ];
-  const [tabList, setTabList] = useState(defultList);
-
-  const handleChange = (e, { index }) => {
-    console.log(e, `Tab Change, value index is: ${index}`);
-    setValue(index);
-  };
-
-  return (
-    <Stack>
-      <Button
-        onClick={() => {
-          setValue('');
-        }}
-      >
-        置为无效值
-      </Button>
-      <Button
-        onClick={() => {
-          if (tabList.length === 4) {
-            setTabList(defultList);
-          } else {
-            const newTabList = defultList.slice(0, 4);
-            setTabList(newTabList);
-            if (!newTabList.some((item) => item.index === value)) {
-              setValue('1');
-            }
-          }
-        }}
-      >
-        {tabList.length === 4 ? '增加' : '减少'}TabList长度
-      </Button>
-      <div style={{ width: '325px' }}>
-        <Tabs
-          style={{ marginTop: '20px', marginBottom: '12px' }}
-          tabs={tabList}
-          value={value}
-          onChange={handleChange}
-        />
-
-        {tabList.map((item) => (
-          <TabPanel key={item.index} value={value} index={item.index}>
-            {item.index}
-          </TabPanel>
-        ))}
-      </div>
-    </Stack>
-  );
-};
-```
-
-### 禁用状态
-
-通过 `disabled` 禁止 Tab 触发点击。
-
-```tsx
-import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
-import React, { useState } from 'react';
-
-export default () => {
-  const [value, setValue] = useState('fruits');
-  const tabList = [
-    { title: '水果', index: 'fruits' },
-    { title: '蔬菜', index: 'vegetables' },
-    { title: '动物', index: 'animals' },
-  ];
+  const [value, setValue] = useState('one');
   const handleClick = (e, { index }) => {
     console.log(`Click Tab, value index is: ${index}`);
     setValue(index);
@@ -261,147 +102,113 @@ export default () => {
 
   return (
     <Stack>
-      <Tabs style={{ marginBottom: '12px' }} value={value}>
-        {tabList.map((item) => (
-          <Tab
-            key={item.index}
-            index={item.index}
-            disabled
-            onClick={handleClick}
-          >
-            {item.title}
-          </Tab>
-        ))}
-      </Tabs>
-      <TabPanel value={value} index="fruits">
-        菠萝
+      <Tabs
+        style={{ marginBottom: 12 }}
+        value={value}
+        tabs={[
+          { title: 'TAB ONE', index: 'one' },
+          { title: 'TAB DISABLED', index: 'two', disabled: true },
+          { title: 'TAB THREE', index: 'three' },
+        ]}
+        onChange={handleClick}
+      />
+      <TabPanel value={value} index="one">
+        Tab Panel 1
       </TabPanel>
-      <TabPanel value={value} index="vegetables">
-        西红柿
+      <TabPanel value={value} index="two">
+        Tab Panel 2
       </TabPanel>
-      <TabPanel value={value} index="animals">
-        蚂蚁
+      <TabPanel value={value} index="three">
+        Tab Panel 3
       </TabPanel>
     </Stack>
   );
 };
 ```
 
-### 受控 tabs 组件
+## 受控用法
 
-可通过 `value` 属性控制Tabs组件的选中态。
+通过 `value` 属性控制 Tabs 组件的选中态。
 
 ```tsx
 import { Button, Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState('fruits');
-  const tabList = [
-    { title: '水果', index: 'fruits' },
-    { title: '蔬菜', index: 'vegetables' },
-    { title: '动物', index: 'animals' },
-  ];
+  const [value, setValue] = useState('one');
+  const [tabs, setTabs] = useState([
+    { title: 'TAB ONE', index: 'one' },
+    { title: 'TAB TWO', index: 'two' },
+    { title: 'TAB THREE', index: 'three' },
+  ]);
   const handleChange = (e, { index }) => {
     console.log(e, `Tab change, value index is: ${index}`);
-    setValue(index);
-  };
-
-  const handleButton = (index) => {
     setValue(index);
   };
 
   return (
     <Stack>
       <Tabs
-        style={{ marginBottom: '12px' }}
+        style={{ marginBottom: 12, width: 325 }}
         align="start"
         onChange={handleChange}
+        tabs={tabs}
         value={value}
-      >
-        {tabList.map((item) => (
-          <Tab key={item.index} {...item}>
-            {item.title}
-          </Tab>
-        ))}
-      </Tabs>
-      <TabPanel value={value} index="fruits">
-        <div>菠萝</div>
-        <Button
-          onClick={() => {
-            handleButton('animals');
-          }}
-        >
-          我要蚂蚁
-        </Button>
-        <Button
-          onClick={() => {
-            handleButton('vegetables');
-          }}
-        >
-          我要西红柿
-        </Button>
+      />
+      <TabPanel value={value} index="one">
+        <div>Tab Panel 1</div>
       </TabPanel>
-      <TabPanel value={value} index="vegetables">
-        <div>西红柿</div>
-        <Button
-          onClick={() => {
-            handleButton('fruits');
-          }}
-        >
-          我要菠萝
-        </Button>
-        <Button
-          onClick={() => {
-            handleButton('animals');
-          }}
-        >
-          我要蚂蚁
-        </Button>
+      <TabPanel value={value} index="two">
+        <div>Tab Panel 2</div>
       </TabPanel>
-      <TabPanel value={value} index="animals">
-        <div>蚂蚁</div>
-        <Button
-          onClick={() => {
-            handleButton('fruits');
-          }}
-        >
-          我要菠萝
-        </Button>
-        <Button
-          onClick={() => {
-            handleButton('vegetables');
-          }}
-        >
-          我要西红柿
-        </Button>
+      <TabPanel value={value} index="three">
+        <div>Tab Panel 3</div>
       </TabPanel>
+      <div>
+        <Button onClick={() => setValue('three')}>Select Tab Three</Button>
+        <Button
+          onClick={() => {
+            setTabs([
+              ...tabs,
+              { title: `Tab ${Date.now()}`, index: Date.now() },
+            ]);
+          }}
+        >
+          Add New Tab
+        </Button>
+      </div>
     </Stack>
   );
 };
 ```
 
-### 超出可滑动
+## 滑动居中
 
-当Tab过多时，超出可滑动。
+当 Tab 数量较多时，选中的 Tab 自动滑动居中
 
 ```tsx
-import { Stack, Tab, TabPanel, Tabs } from '@bifrostui/react';
+import { Stack, Tab, Tabs } from '@bifrostui/react';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState('2');
-  const tabList = [
-    { title: '长津湖', index: '1' },
-    { title: '战狼2', index: '2' },
-    { title: '你好，李焕英', index: '3' },
-    { title: '哪吒之魔童降世', index: '4' },
-    { title: '流浪地球', index: '5' },
-    { title: '唐人街探案3', index: '6' },
-    { title: '复仇者联盟4：终局之战', index: '7' },
-    { title: '长津湖之水门桥', index: '8' },
-    { title: '红海行动', index: '9' },
-  ];
+  const [value, setValue] = useState('13');
+  const [tabs, setTabs] = useState([
+    { title: 'Item 1', index: '1' },
+    { title: 'Item 2', index: '2' },
+    { title: 'Item 3', index: '3' },
+    { title: 'Item 4', index: '4' },
+    { title: 'Item 5', index: '5' },
+    { title: 'Item 6', index: '6' },
+    { title: 'Item 7', index: '7' },
+    { title: 'Item 8', index: '8' },
+    { title: 'Item 9', index: '9' },
+    { title: 'Item 10', index: '10' },
+    { title: 'Item 11', index: '11' },
+    { title: 'Item 12', index: '12' },
+    { title: 'Item 13', index: '13' },
+    { title: 'Item 14', index: '14' },
+    { title: 'Item 15', index: '15' },
+  ]);
   const handleChange = (e, { index }) => {
     console.log(e, `Tab Change, value index is: ${index}`);
     setValue(index);
@@ -409,39 +216,39 @@ export default () => {
 
   return (
     <Stack>
-      <div style={{ width: '325px' }}>
-        <Tabs
-          style={{ marginTop: '20px', marginBottom: '12px' }}
-          value={value}
-          onChange={handleChange}
-        >
-          {tabList.map((item) => (
-            <Tab key={item.index} {...item}>
-              {item.title}
-            </Tab>
-          ))}
-        </Tabs>
-        {tabList.map((item) => (
-          <TabPanel key={item.index} value={value} index={item.index}>
-            {item.index}
-          </TabPanel>
-        ))}
-      </div>
+      <Tabs
+        style={{ width: 325, marginBottom: 12 }}
+        value={value}
+        tabs={tabs}
+        onChange={handleChange}
+      />
     </Stack>
   );
 };
 ```
 
+## Accessibility
+
+- Tab 具备 `role="tab"`、`aria-selected`、`aria-disabled`、`tabindex` 等属性。
+- Tab 采用 Roving TabIndex：选中项 `tabindex="0"`，未选中与禁用项均为 `tabindex="-1"`。
+- 键盘导航（焦点在 tab 上时）：
+  - `←` / `→`：在 tab 间循环切换，自动激活；跳过 disabled tab
+  - `Home` / `End`：跳到首/末 tab
+  - `Enter` / `Space`：激活当前聚焦的 tab
+- TabPanel 具备 `role="tabpanel"`、`hidden` 等属性。
+
 ## API
 
 ### Tabs
 
-| 属性     | 说明                                     | 类型                                               | 默认值   |
-| -------- | ---------------------------------------- | -------------------------------------------------- | -------- |
-| value    | 当前选中面板的索引值，与 tabs.index 对应 | string                                             | -        |
-| tabs     | 切换面板的数据                           | ITabItem[]                                         | -        |
-| align    | 对齐方式                                 | `start` \| `center`                                | `center` |
-| onChange | 切换面板的回调                           | (e?: SyntheticEvent,data?:{index: string}) => void | -        |
+| 属性         | 说明                                     | 类型                                               | 默认值 |
+| ------------ | ---------------------------------------- | -------------------------------------------------- | ------ |
+| value        | 当前选中面板的索引值，与 tabs.index 对应 | string                                             | -      |
+| defaultValue | 默认选中面板的索引值（非受控模式）       | string                                             | -      |
+| tabs         | 切换面板的数据                           | ITabItem[]                                         | -      |
+| onChange     | 切换面板的回调                           | (e?: SyntheticEvent,data?:{index: string}) => void | -      |
+
+**注意：** `tabs` 属性和 `children` 是互斥的，只能使用其中一种方式。如果同时提供，将优先使用 `tabs` 属性。
 
 ### ITabItem
 
@@ -469,23 +276,20 @@ export default () => {
 
 ## 样式变量
 
-### Tabs
-
-| 属性           | 说明              | 默认值                 | 全局变量                |
-| -------------- | ----------------- | ---------------------- | ----------------------- |
-| --height       | Tabs 高度         | 39px                   | --bui-tabs-height       |
-| --color        | 字体颜色          | --bui-color-fg-subtle  | --bui-tabs-color        |
-| --active-color | 激活 Tab 字体颜色 | --bui-color-fg-default | --bui-tabs-active-color |
-| --line-width   | 下标线宽度        | 18px                   | --bui-tabs-line-width   |
-| --line-height  | 下标线高度        | 3PX                    | --bui-tabs-line-height  |
-| --line-color   | 下标线颜色        | --bui-color-primary    | --bui-tabs-line-color   |
-| --mask-width   | 蒙层宽度          | 12px                   | --bui-tabs-mask-width   |
-| --mask-height  | 蒙层高度          | 100%                   | --bui-tabs-mask-height  |
-
-### Tab
-
-| 属性        | 说明        | 默认值                                           | 全局变量            |
-| ----------- | ----------- | ------------------------------------------------ | ------------------- |
-| --height    | Tab 高度    | 100%                                             | --bui-tab-height    |
-| --padding   | Tab内边距   | var(--bui-spacing-lg) var(--bui-spacing-lg) 10px | --bui-tab-padding   |
-| --font-size | Tab字体大小 | --bui-text-size-1                                | --bui-tab-font-size |
+| 全局变量                           | 说明           | 默认值                                             |
+| ---------------------------------- | -------------- | -------------------------------------------------- |
+| --bui-tabs-height                  | 标签页高度     | `39px`                                             |
+| --bui-tabs-font-weight             | 字体粗细       | `var(--bui-font-weight-medium)`                    |
+| --bui-tabs-indicator-bg            | 指示器背景色   | `var(--bui-color-primary)`                         |
+| --bui-tabs-indicator-height        | 指示器高度     | `3PX`                                              |
+| --bui-tabs-indicator-width         | 指示器宽度     | `24px`                                             |
+| --bui-tabs-indicator-border-radius | 指示器圆角     | `3px 3px 0 0`                                      |
+| --bui-tabs-indicator-bottom        | 指示器底部位置 | `0`                                                |
+| --bui-tabs-indicator-box-shadow    | 指示器阴影     | `none`                                             |
+| --bui-tabs-mask-width              | 遮罩宽度       | `12px`                                             |
+| --bui-tabs-mask-height             | 遮罩高度       | `100%`                                             |
+| --bui-tab-font-size                | 标签字体大小   | `var(--bui-text-size-1)`                           |
+| --bui-tab-color                    | 标签颜色       | `var(--bui-color-fg-subtle)`                       |
+| --bui-tab-height                   | 标签高度       | `100%`                                             |
+| --bui-tab-padding                  | 标签内边距     | `var(--bui-spacing-lg) var(--bui-spacing-lg) 10px` |
+| --bui-tab-active-color             | 激活标签颜色   | `var(--bui-color-fg-default)`                      |

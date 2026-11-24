@@ -7,14 +7,12 @@ name: Switch 开关
 
 只需轻点按钮，用户就可以触发动作或做出选择。
 
-## 代码演示
-
-### 基础使用
+## 基础使用
 
 `Switch`基础用法。Switch 默认颜色为`primary`，默认大小为`medium`。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Switch } from '@bifrostui/react';
 export default () => {
   return (
@@ -32,7 +30,7 @@ export default () => {
 `Switch`组件提供了 5 种主题颜色：`primary`、`info`、`success`、`warning`、`danger`，可通过`color`来设置组件主题色。`color`属性默认值`primary`。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Switch } from '@bifrostui/react';
 export default () => {
   return (
@@ -52,7 +50,7 @@ export default () => {
 可通过`size`来规定组件大小，可选值有`small`、`medium`、`large`。默认为`medium`。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Switch } from '@bifrostui/react';
 export default () => {
   return (
@@ -70,7 +68,7 @@ export default () => {
 通过`checkedChildren`和`unCheckedChildren`来自定义状态文字或图标。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Switch } from '@bifrostui/react';
 import { MoonOutlinedIcon, SunOutlinedIcon } from '@bifrostui/icons';
 
@@ -147,7 +145,7 @@ export default () => {
 通过`disabled`指定 `Switch`为禁用状态。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Switch } from '@bifrostui/react';
 
 export default () => {
@@ -160,12 +158,19 @@ export default () => {
 };
 ```
 
+## Accessibility
+
+默认无障碍属性支持如下：
+
+- 当属性 `disabled=true` 时，会自动添加 aria-disabled 属性
+- 更多无障碍属性，可通过 `inputProps` 属性设置，如 inputProps={{ 'aria-label': 'Switch label' }}
+
 ## API
 
 | 属性              | 说明                             | 类型                                                          | 默认值    |
 | ----------------- | -------------------------------- | ------------------------------------------------------------- | --------- |
-| checked           | 是否选中                         | boolean                                                       | -         |
-| defaultChecked    | 默认是否选中，当组件非受控时使用 | boolean                                                       | -         |
+| checked           | 是否选中                         | boolean                                                       | false     |
+| defaultChecked    | 默认是否选中，当组件非受控时使用 | boolean                                                       | false     |
 | inputRef          | 内部`<input>`标签的 ref          | React.Ref<HTMLInputElement\>                                  | -         |
 | inputProps        | 内部`<input>`标签的标准属性      | React.InputHTMLAttributes<HTMLInputElement\>                  | -         |
 | name              | 内部`<input>`名称标识            | string                                                        | -         |
@@ -180,21 +185,25 @@ export default () => {
 
 ## 样式变量
 
-| 属性                       | 说明         | 默认值 | 全局变量                              |
-| -------------------------- | ------------ | ------ | ------------------------------------- |
-| --bg-color                 | 背景颜色     | #ccc   | --bui-switch-bg-color                 |
-| --padding                  | 内边距       | 0      | --bui-switch-padding                  |
-| --border-radius            | 圆角         | 15px   | --bui-switch-border-radius            |
-| --small-width              | 小号开关宽度 | 24px   | --bui-switch-small-width              |
-| --small-height             | 小号开关高度 | 16px   | --bui-switch-small-height             |
-| --small-font-size          | 小号字体     | 9px    | --bui-switch-small-font-size          |
-| --controller-small-width   | 小号控件宽度 | 12px   | --bui-switch-controller-small-width   |
-| --controller-small-height  | 小号控件高度 | 12px   | --bui-switch-controller-small-height  |
-| --medium-width             | 中号开关宽度 | 44px   | --bui-switch-medium-width             |
-| --medium-height            | 中号开关高度 | 22px   | --bui-switch-medium-height            |
-| --controller-medium-width  | 中号控件宽度 | 18px   | --bui-switch-controller-medium-width  |
-| --controller-medium-height | 中号控件高度 | 18px   | --bui-switch-controller-medium-height |
-| --large-width              | 大号开关宽度 | 51px   | --bui-switch-large-width              |
-| --large-height             | 大号开关高度 | 30px   | --bui-switch-large-height             |
-| --controller-large-width   | 大号控件宽度 | 24px   | --bui-switch-controller-large-width   |
-| --controller-large-height  | 大号控件高度 | 24px   | --bui-switch-controller-large-height  |
+| 全局变量                             | 说明                   | 默认值                   |
+| ------------------------------------ | ---------------------- | ------------------------ |
+| --bui-switch-bg-color                | 背景颜色               | `#ccc`                   |
+| --bui-switch-padding                 | 内边距                 | `0`                      |
+| --bui-switch-border-radius           | 边框圆角               | `15px`                   |
+| --bui-switch-small-width             | 小尺寸宽度             | `27px`                   |
+| --bui-switch-small-height            | 小尺寸高度             | `15px`                   |
+| --bui-switch-small-font-size         | 小尺寸字体大小         | `9px`                    |
+| --bui-switch-controller-small-width  | 小尺寸控制器宽度       | `11px`                   |
+| --bui-switch-controller-small-height | 小尺寸控制器高度       | `11px`                   |
+| --bui-switch-width                   | 中尺寸宽度             | `44px`                   |
+| --bui-switch-height                  | 中尺寸高度             | `22px`                   |
+| --bui-switch-font-size               | 中尺寸字体大小         | `var(--bui-text-size-3)` |
+| --bui-switch-controller-width        | 中尺寸控制器宽度       | `18px`                   |
+| --bui-switch-controller-height       | 中尺寸控制器高度       | `18px`                   |
+| --bui-switch-checked-controller-left | 选中状态控制器左侧位置 | `calc(100% - 20px)`      |
+| --bui-switch-controller-left         | 控制器左侧位置         | `2px`                    |
+| --bui-switch-large-width             | 大尺寸宽度             | `51px`                   |
+| --bui-switch-large-height            | 大尺寸高度             | `30px`                   |
+| --bui-switch-large-font-size         | 大尺寸字体大小         | `var(--bui-text-size-3)` |
+| --bui-switch-controller-large-width  | 大尺寸控制器宽度       | `26px`                   |
+| --bui-switch-controller-large-height | 大尺寸控制器高度       | `26px`                   |

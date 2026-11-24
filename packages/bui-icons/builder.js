@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 const chalk = require('chalk');
 const fse = require('fs-extra');
 const rimraf = require('rimraf');
@@ -55,6 +55,7 @@ export default createSvgIcon(
   });
 
   tsxFiles.forEach(({ name, content }) => {
+    // eslint-disable-next-line no-console
     console.log(`${chalk.blue(name)} icon created`);
     const absDestPath = path.join(outputDir, `${name}.tsx`);
     fse.writeFileSync(absDestPath, content);

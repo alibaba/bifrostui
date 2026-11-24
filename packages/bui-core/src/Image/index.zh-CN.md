@@ -7,12 +7,10 @@ name: Image 图片
 
 在img标签的基础上增加了Placeholder和Fallback能力，兼容多端原生懒加载，更完善的图片组件。
 
-## 代码演示
-
-### 基础使用
+## 基础使用
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Image, Stack } from '@bifrostui/react';
 
 const src =
@@ -33,7 +31,7 @@ export default () => {
 `widthFix`和`heightFix`仅小程序可用
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Image, Stack } from '@bifrostui/react';
 
 const src =
@@ -64,7 +62,7 @@ export default () => {
 如果需要传到img上，可以使用`imgProps`
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Image, Stack } from '@bifrostui/react';
 
 const src =
@@ -106,7 +104,7 @@ export default () => {
 也可以单独传入fallback对象进行自定义。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Image, Stack } from '@bifrostui/react';
 
 export default () => {
@@ -127,6 +125,22 @@ export default () => {
         height={100}
         style={{ borderRadius: 4 }}
         fallback={<>MY FALLBACK</>}
+      />
+      <Image
+        src="https://localhost:3000/failed"
+        fit="fill"
+        height={100}
+        style={{ borderRadius: 4 }}
+        fallback={
+          <Image
+            src={
+              'https://gw.alicdn.com/i2/O1CN01D7yqW229UZMB5eh00_!!6000000008071-0-alipicbeacon.jpg'
+            }
+            fit="cover"
+            width={150}
+            height={150}
+          />
+        }
       />
     </Stack>
   );
@@ -193,6 +207,6 @@ export default () => {
 
 ## 样式变量
 
-| 属性                       | 说明           | 默认值                   | 全局变量                             |
-| -------------------------- | -------------- | ------------------------ | ------------------------------------ |
-| --default-background-color | 默认占位背景色 | rgba(127, 127, 127, 0.2) | --bui-image-default-background-color |
+| 全局变量                     | 说明           | 默认值                     |
+| ---------------------------- | -------------- | -------------------------- |
+| --bui-image-default-bg-color | 默认占位背景色 | `rgba(127, 127, 127, 0.2)` |

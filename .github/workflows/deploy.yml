@@ -11,17 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '18'
+          node-version-file: '.node-version'
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: '9'
+        uses: pnpm/action-setup@v6
 
       - name: Install Dependencies
         run: pnpm install
@@ -36,6 +34,20 @@ jobs:
           echo "MAJOR_TAG=${MAJOR_TAG}" >> $GITHUB_ENV
           echo "Current TAG: ${TAG}"
           echo "Major TAG: ${MAJOR_TAG}"
+
+      - name: Build Docs for Alpha
+        if: contains(env.TAG, 'alpha') == true
+        run: pnpm docs:build:alpha alpha
+
+      - name: Deploy Alpha to GitHub Pages
+        if: contains(env.TAG, 'alpha') == true
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: docs-dist/alpha
+          target-folder: alpha
+          force: false
+          clean: true
 
       - name: Build Docs for Beta
         if: contains(env.TAG, 'beta') == true
@@ -52,11 +64,11 @@ jobs:
           clean: true
 
       - name: Build Docs for Current
-        if: contains(env.TAG, 'beta') == false
+        if: contains(env.TAG, 'alpha') == false && contains(env.TAG, 'beta') == false
         run: pnpm docs:build v1
 
       - name: Deploy Latest to GitHub Pages
-        if: contains(env.TAG, 'beta') == false
+        if: contains(env.TAG, 'alpha') == false && contains(env.TAG, 'beta') == false
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
@@ -65,4 +77,5 @@ jobs:
           clean: true
           # 若存在老版本，需要在此添加老版本目录
           clean-exclude: |
+            alpha/**
             beta/**

@@ -1,17 +1,17 @@
 ---
 group: Date
-name: DatePicker Date Component
+name: DatePicker Component
 ---
 
-# DatePicker Date Component
+# DatePicker Component
 
-DatePicker is a mobile component primarily used for selecting dates, supporting various selection methods including year, month, day, hour, minute, and second.
+DatePicker is a mobile component mainly used for selecting dates, supporting multiple selection modes such as year, month, day, hour, minute, and second.
 
-## Code Examples
+## Code Demonstration
 
 ### Basic Usage
 
-Pass a `Date` object via the `value` attribute to set the current value. The default selectable range is 10 years before and after the current year.
+By passing in a `Date` object through the `value` attribute, you can set the current value. The default selectable range is 10 years before and after the current year.
 
 ```tsx
 import React, { useState, useRef, useEffect } from 'react';
@@ -41,9 +41,9 @@ export default () => {
 };
 ```
 
-### 非受控状态
+### Uncontrolled State
 
-When using the defaultValue property, the component is in an uncontrolled state, and if not specified, the default value will be minDate. The timestamp of the currently selected date can be obtained through the data-selected attribute on the DOM.
+When using the `defaultValue` attribute, the component is in an uncontrolled state. If unspecified, the default value is `minDate`. The current selected date equivalent timestamp can be obtained via the DOM's `data-selected` attribute.
 
 ```tsx
 import React, { useState, useRef } from 'react';
@@ -75,9 +75,9 @@ export default () => {
 };
 ```
 
-### Select Hour, Minute, Second
+### Selection of Hour, Minute, Second
 
-By setting the `views` attribute, you can select hour, minute, and second, or any combination of them.
+You can choose hour, minute, and second or combine them at will by setting the `views` attribute.
 
 ```tsx
 import React, { useState } from 'react';
@@ -110,7 +110,7 @@ export default () => {
 
 ### Restrict Maximum and Minimum Dates
 
-Use the `minDate` and `maxDate` attributes to restrict the selectable date range.
+The selectable date range can be limited with the `minDate` and `maxDate` attributes.
 
 ```tsx
 import React, { useState } from 'react';
@@ -185,7 +185,7 @@ export default () => {
 
 ### Format Options
 
-With the `formatter` function, you can format the option text. The `showUnit` property also adds units to the options, but the `formatter` function takes precedence over the `showUnit` property.
+Through the `formatter` function, option text can be formatted. The `showUnit` attribute also adds units after options, but the `formatter` function has higher priority over the `showUnit` attribute.
 
 ```tsx
 import React, { useState } from 'react';
@@ -238,9 +238,9 @@ export default () => {
 };
 ```
 
-### Step Settings
+### Step Setting
 
-Set time steps using `timeSteps` to achieve incremental step settings.
+Set the time steps with `timeSteps` for incremental step settings.
 
 ```tsx
 import React, { useState } from 'react';
@@ -267,7 +267,7 @@ export default () => {
       </Button>
       <DatePicker
         open={open}
-        title="Select Time"
+        title="Select Hour and Minute"
         defaultValue={value}
         views={['hour', 'minute', 'second']}
         dateTimeStep={{ hour: 4, minute: 10, second: 30 }}
@@ -281,7 +281,7 @@ export default () => {
 
 ### Disable Options
 
-Disable specific options using `disableDateTimeView`.
+Disable specific options through `disableDateTimeView`.
 
 ```tsx
 import React, { useState } from 'react';
@@ -310,8 +310,8 @@ export default () => {
         open={open}
         defaultValue={value}
         disableDateTimeView={{
-          day: (options) => {
-            return options.filter((option) => option.value % 2 === 0);
+          day: (values) => {
+            return values.filter((value) => value % 2 === 0);
           },
         }}
         onConfirm={handleConfirm}
@@ -322,9 +322,9 @@ export default () => {
 };
 ```
 
-### 过滤选项
+### Filter Options
 
-Filter options using the `filter` function to implement custom filtering logic.
+Filter options through the `filter` function to implement custom filtering logic.
 
 ```tsx
 import React, { useState } from 'react';
@@ -375,48 +375,52 @@ export default () => {
 
 ### API
 
-| Property            | Description                                       | Type                                                                                          | Default Value            |
-| ------------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------ |
-| open                | Whether the overlay is open                       | boolean                                                                                       | false                    |
-| title               | Title                                             | string                                                                                        | -                        |
-| confirmText         | Confirm button text                               | string                                                                                        | Confirm                  |
-| cancelText          | Cancel button text                                | string                                                                                        | Cancel                   |
-| defaultValue        | Default selected value for uncontrolled component | Date                                                                                          | -                        |
-| value               | Selected value for controlled component           | Date                                                                                          | -                        |
-| views               | DatePicker types                                  | Array<DatePickerType\>                                                                        | ['year', 'month', 'day'] |
-| minDate             | Minimum selectable date                           | Date                                                                                          | 10 years ago             |
-| maxDate             | Maximum selectable date                           | Date                                                                                          | 10 years later           |
-| showUnit            | Whether to show unit in picker                    | boolean                                                                                       | false                    |
-| disableDateTimeView | Disabled dates                                    | Partial<{[key in DatePickerType]: (options: (string \| number)[]) => (string \| number)[]; }> | -                        |
-| dateTimeStep        | Time step interval                                | Partial<{[key in DatePickerType]: number; }>                                                  | -                        |
-| formatter           | Option formatter function                         | (type: string, option: DatePickerOption) => DatePickerOption                                  | -                        |
-| filter              | Option filter function                            | (type: string, options: DatePickerOption[]) => DatePickerOption[]                             | -                        |
-| onConfirm           | Triggered when confirm button is clicked          | (e: React.SyntheticEvent, { value: Date }) => void                                            | -                        |
-| onCancel            | Triggered when cancel button is clicked           | (e: React.SyntheticEvent) => void                                                             | -                        |
-| onClose             | Triggered on both confirm and cancel              | (e: React.SyntheticEvent, { value: Date }) => void                                            | -                        |
-| onChange            | Triggered when options change                     | (e: React.SyntheticEvent, { value: Date, type: DatePickerType }) => void                      | -                        |
+| Attribute           | Description                              | Type                                                                                         | Default Value            |
+| ------------------- | ---------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------ |
+| open                | Whether the overlay is open              | boolean                                                                                      | false                    |
+| title               | Title                                    | string                                                                                       | -                        |
+| confirmText         | Confirm button text                      | string                                                                                       | Confirm                  |
+| cancelText          | Cancel button text                       | string                                                                                       | Cancel                   |
+| defaultValue        | Default selected value                   | Date                                                                                         | -                        |
+| value               | Selected value                           | Date                                                                                         | -                        |
+| views               | Types of date selectors                  | Array<DatePickerType\>                                                                       | ['year', 'month', 'day'] |
+| minDate             | Minimum selectable date                  | Date                                                                                         | Ten years ago            |
+| maxDate             | Maximum selectable date                  | Date                                                                                         | Ten years later          |
+| showUnit            | Display unit after selectors             | boolean                                                                                      | false                    |
+| disableDateTimeView | Disable specific date selection          | Partial<{[key in DatePickerType]: (options: (string \| number)[]) => (string \| number)[] }> | -                        |
+| dateTimeStep        | Time interval setting                    | Partial<{[key in DatePickerType]: number }>                                                  | -                        |
+| formatter           | Formatting function for options          | (type: string, option: DatePickerOption) => DatePickerOption                                 | -                        |
+| filter              | Filtering function for options           | (type: string, options: DatePickerOption[]) => DatePickerOption[]                            | -                        |
+| onConfirm           | Triggered when confirm button is clicked | (e: React.SyntheticEvent, { value: Date }) => void                                           | -                        |
+| onCancel            | Triggered when cancel button is clicked  | (e: React.SyntheticEvent) => void                                                            | -                        |
+| onClose             | Triggered on confirm and cancel          | (e: React.SyntheticEvent, { value: Date }) => void                                           | -                        |
+| onChange            | Triggered when option changes            | (e: React.SyntheticEvent, { value: Date, type: DatePickerType }) => void                     | -                        |
 
-`DatePicker` inherits properties from `Picker`. See other properties at [Picker API](/cores/picker?#api).
+`DatePicker` inherits from `Picker`, for other attributes see [Picker API](/cores/picker?#api)
 
 ### DatePickerType Enum Type
 
-`DatePickerType` is an enum type used to define different types of time pickers。
+`DatePickerType` is an enum type used to define different time selector types.
 
-| Enum Value | Description   |
-| ---------- | ------------- |
-| `year`     | Year picker   |
-| `month`    | Month picker  |
-| `day`      | Day picker    |
-| `hour`     | Hour picker   |
-| `minute`   | Minute picker |
-| `second`   | Second picker |
+| Enum Value | Description     |
+| ---------- | --------------- |
+| `year`     | Year selector   |
+| `month`    | Month selector  |
+| `day`      | Day selector    |
+| `hour`     | Hour selector   |
+| `minute`   | Minute selector |
+| `second`   | Second selector |
 
 ### DatePickerOption Type
 
-`DatePickerOption` is a composite type similar to `IPickerOptionItem`, with the difference that the `value` property is of type `number`, and the `label` property is of type `string`.
+`DatePickerOption` is a composite type similar to `IPickerOptionItem`, differing in that the `value` attribute is of `number` type, and the `label` attribute is of `string` type.
 
-| 属性     | 说明                           | 类型    | 默认值 |
-| -------- | ------------------------------ | ------- | ------ |
-| label    | Text content of the option     | string  | -      |
-| value    | Unique value for the option    | number  | -      |
-| disabled | Whether the option is disabled | boolean | -      |
+| Attribute | Description            | Type    | Default Value |
+| --------- | ---------------------- | ------- | ------------- |
+| label     | Text content           | string  | -             |
+| value     | Unique value           | number  | -             |
+| disabled  | Whether it is disabled | boolean | -             |
+
+```
+
+```

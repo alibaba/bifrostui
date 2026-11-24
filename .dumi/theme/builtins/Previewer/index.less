@@ -1,10 +1,15 @@
 @import (reference) '../../styles/variables.less';
 
 .@{prefix}-previewer {
+  max-width: 100%;
   margin: 24px 0 32px;
-  // border: 1px solid @c-border-light;
   border-radius: 16px;
   background-color: inherit;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 20px rgba(255, 80, 0, 0.04);
+  }
 
   @{dark-selector} & {
     border-color: @c-border-dark;
@@ -22,12 +27,16 @@
     }
   }
 
+  &-action-btn {
+    margin-bottom: 0;
+  }
+
   &-actions {
     position: absolute;
     right: 0;
     bottom: 0;
     display: flex;
-    height: 32px;
+    padding: var(--bui-spacing-md, 9px);
     align-items: center;
     justify-content: flex-end;
 
@@ -62,15 +71,20 @@
 
   &-demo {
     position: relative;
-    border-radius: 8px;
-    padding: 40px 24px 82px;
+    border-radius: var(--bui-shape-radius-card, 12px);
+    padding: 24px 20px 48px;
     border: 1px solid @c-border;
+    background: var(--bui-color-bg-view, #f9f9fa);
+    transition: border-color 0.3s ease;
     @{dark-selector} & {
       border-color: @c-border-dark;
+      background: rgba(255, 255, 255, 0.02);
     }
 
     @media @mobile {
-      padding: 40px 8px 82px;
+      margin: 24px -12px 0;
+      border-radius: 0;
+      border-width: 1px 0;
     }
 
     > iframe {
@@ -91,10 +105,6 @@
         display: block;
         height: 24px;
         background-color: @c-border-light;
-
-        @{dark-selector} & {
-          // background-color: @c-border-less-dark;
-        }
       }
 
       &::after {
@@ -124,16 +134,6 @@
     }
   }
 
-  &-meta {
-    // margin-top: 24px;
-
-    // border-top: 1px solid @c-border-light;
-
-    // @{dark-selector} & {
-    //   border-top-color: @c-border-less-dark;
-    // }
-  }
-
   &-desc {
     position: relative;
 
@@ -151,8 +151,9 @@
       top: -7px;
       left: 20px;
       margin: 0;
-      padding: 0 4px;
-      display: inline-block;
+      padding: 0 8px;
+      display: inline-flex;
+      align-items: center;
       font-size: 14px;
       line-height: 1;
       font-weight: bold;
@@ -163,6 +164,15 @@
           rgba(255, 255, 255, 0)
         )
         100%;
+
+      &::before {
+        content: '';
+        width: 3px;
+        height: 12px;
+        border-radius: 2px;
+        background: var(--bui-color-primary, @c-primary);
+        margin-right: 6px;
+      }
 
       @{dark-selector} & {
         background: linear-gradient(

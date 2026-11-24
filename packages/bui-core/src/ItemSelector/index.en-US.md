@@ -1,62 +1,62 @@
 ---
 group: Data Display
-name: Itemselector Item Selection
+name: ItemSelector Item Selection
 ---
 
-# Itemselector Item Selection
+# ItemSelector Item Selection
 
-Item selection
+Item Selection
 
-### Basic usage
+### Basic Usage
 
-Item selection displays the current item, location item, popular items, and all items, supporting right-hand letter navigation
+The item selector displays the current Item, positioning Item, popular Items, and all Items, supporting right-side letter navigation.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { ItemSelector } from '@bifrostui/react';
 
 const items = [
   {
-    groupName: '当前城市',
-    indexName: '当前',
+    groupName: 'Current City',
+    indexName: 'Current',
     indexCode: 'CRT',
     isFlat: true,
     items: [
       {
         code: '310100',
-        name: '上海',
+        name: 'Shanghai',
       },
     ],
   },
   {
-    groupName: '定位城市',
-    indexName: '定位',
+    groupName: 'Positioning City',
+    indexName: 'Position',
     indexCode: 'POS',
     isFlat: true,
     items: [
       {
         code: '110100',
-        name: '北京',
+        name: 'Beijing',
       },
     ],
   },
   {
-    groupName: '热门城市',
-    indexName: '常用',
+    groupName: 'Popular Cities',
+    indexName: 'Common',
     indexCode: 'HOT',
     isFlat: true,
     items: [
       {
         code: '110100',
-        name: '北京',
+        name: 'Beijing',
       },
       {
         code: '310100',
-        name: '上海',
+        name: 'Shanghai',
       },
       {
         code: '440100',
-        name: '广州',
+        name: 'Guangzhou',
       },
     ],
   },
@@ -65,11 +65,11 @@ const items = [
     items: [
       {
         code: '610900',
-        name: '安康',
+        name: 'Ankang',
       },
       {
         code: '210300',
-        name: '鞍山',
+        name: 'Anshan',
       },
     ],
   },
@@ -78,11 +78,11 @@ const items = [
     items: [
       {
         code: '652800',
-        name: '巴音郭楞',
+        name: 'Bayingolin',
       },
       {
         code: '511900',
-        name: '巴中',
+        name: 'Bazhong',
       },
     ],
   },
@@ -91,11 +91,11 @@ const items = [
     items: [
       {
         code: '130900',
-        name: '沧州',
+        name: 'Cangzhou',
       },
       {
         code: '220100',
-        name: '长春',
+        name: 'Changchun',
       },
     ],
   },
@@ -104,11 +104,11 @@ const items = [
     items: [
       {
         code: '532900',
-        name: '大理',
+        name: 'Dali',
       },
       {
         code: '210200',
-        name: '大连',
+        name: 'Dalian',
       },
     ],
   },
@@ -136,20 +136,20 @@ export default () => {
 
 ### Custom Index
 
-Users can customize indexName|indexCode to control the display copy of the letter navigation on the right
+Users can customize `indexName`|`indexCode` to control the display text of the right-side letter navigation.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { ItemSelector } from '@bifrostui/react';
 
 const items = [
   {
     groupName: 'Fruit',
-    indexName: '果',
+    indexName: 'Fruit',
     indexCode: 'FRT',
     items: [
       {
-        name: 'Bannar',
+        name: 'Banana',
       },
       {
         name: 'Apple',
@@ -175,48 +175,48 @@ const items = [
     ],
   },
   {
-    groupName: '交通工具',
-    indexName: '通',
+    groupName: 'Transportation',
+    indexName: 'Traffic',
     indexCode: 'TFC',
     items: [
       {
-        name: '汽车',
+        name: 'Car',
       },
       {
-        name: '飞机',
+        name: 'Plane',
       },
       {
-        name: '火车',
+        name: 'Train',
       },
       {
-        name: '卡车',
+        name: 'Truck',
       },
       {
-        name: '轮船',
+        name: 'Ship',
       },
       {
-        name: '公共汽车',
+        name: 'Bus',
       },
       {
-        name: '大巴士',
+        name: 'Coach',
       },
       {
-        name: '自行车',
+        name: 'Bicycle',
       },
       {
-        name: '徒步',
+        name: 'Hiking',
       },
       {
-        name: '滑板车',
+        name: 'Scooter',
       },
       {
-        name: '三轮车',
+        name: 'Tricycle',
       },
     ],
   },
   {
     groupName: 'Stationery',
-    indexName: '文',
+    indexName: 'Wen',
     indexCode: 'SIY',
     items: [
       {
@@ -253,40 +253,40 @@ const items = [
     indexName: 'Main',
     items: [
       {
-        name: '自定义数据',
+        name: 'Custom Data',
         param1: 123,
         param2: 'abc',
         param3: false,
       },
       {
-        name: '测试1',
+        name: 'Test1',
       },
       {
-        name: '测试2',
+        name: 'Test2',
       },
       {
-        name: '测试3',
+        name: 'Test3',
       },
       {
-        name: '测试4',
+        name: 'Test4',
       },
       {
-        name: '测试4',
+        name: 'Test4',
       },
       {
-        name: '测试4',
+        name: 'Test4',
       },
       {
-        name: '测试4',
+        name: 'Test4',
       },
       {
-        name: '测试4',
+        name: 'Test4',
       },
       {
-        name: '测试4',
+        name: 'Test4',
       },
       {
-        name: '测试4',
+        name: 'Test4',
       },
     ],
   },
@@ -305,7 +305,7 @@ export default () => {
     <ItemSelector
       items={items}
       onSelect={onSelect}
-      title="自定义Index"
+      title="Custom Index"
       onClose={onHide}
       style={{ height: '500px' }}
     />
@@ -313,53 +313,53 @@ export default () => {
 };
 ```
 
-### Do not display navigation usage
+### Usage Without Navigation
 
-Users can set the disabling Index to control the display of letter navigation on the right side, which defaults to false, indicating the display of letter navigation
+Users can set `disableIndex` to control the display of the right-side letter navigation, default is `false`, which means the letter navigation is displayed.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { ItemSelector } from '@bifrostui/react';
 
 const items = [
   {
-    groupName: '当前城市',
-    indexName: '当前',
+    groupName: 'Current City',
+    indexName: 'Current',
     isFlat: true,
     items: [
       {
         code: '310100',
-        name: '上海',
+        name: 'Shanghai',
       },
     ],
   },
   {
-    groupName: '定位城市',
-    indexName: '定位',
+    groupName: 'Positioning City',
+    indexName: 'Position',
     isFlat: true,
     items: [
       {
         code: '110100',
-        name: '北京',
+        name: 'Beijing',
       },
     ],
   },
   {
-    groupName: '热门城市',
-    indexName: '常用',
+    groupName: 'Popular Cities',
+    indexName: 'Common',
     isFlat: true,
     items: [
       {
         code: '110100',
-        name: '北京',
+        name: 'Beijing',
       },
       {
         code: '310100',
-        name: '上海',
+        name: 'Shanghai',
       },
       {
         code: '440100',
-        name: '广州',
+        name: 'Guangzhou',
       },
     ],
   },
@@ -368,11 +368,11 @@ const items = [
     items: [
       {
         code: '610900',
-        name: '安康',
+        name: 'Ankang',
       },
       {
         code: '210300',
-        name: '鞍山',
+        name: 'Anshan',
       },
     ],
   },
@@ -381,11 +381,11 @@ const items = [
     items: [
       {
         code: '652800',
-        name: '巴音郭楞',
+        name: 'Bayingolin',
       },
       {
         code: '511900',
-        name: '巴中',
+        name: 'Bazhong',
       },
     ],
   },
@@ -394,11 +394,11 @@ const items = [
     items: [
       {
         code: '130900',
-        name: '沧州',
+        name: 'Cangzhou',
       },
       {
         code: '220100',
-        name: '长春',
+        name: 'Changchun',
       },
     ],
   },
@@ -407,11 +407,11 @@ const items = [
     items: [
       {
         code: '532900',
-        name: '大理',
+        name: 'Dali',
       },
       {
         code: '210200',
-        name: '大连',
+        name: 'Dalian',
       },
     ],
   },
@@ -430,7 +430,7 @@ export default () => {
     <ItemSelector
       items={items}
       onSelect={onSelect}
-      title="选择Item"
+      title="Select Item"
       disableIndex
       onClose={onHide}
       style={{ height: '500px' }}
@@ -439,53 +439,53 @@ export default () => {
 };
 ```
 
-### Do not display title and navigation usage
+### Usage Without Title and Navigation
 
-Users can set the title to control the display of the head
+Users can set the `title` to control the display of the header.
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { ItemSelector } from '@bifrostui/react';
 
 const items = [
   {
-    groupName: '当前城市',
-    indexName: '当前',
+    groupName: 'Current City',
+    indexName: 'Current',
     isFlat: true,
     items: [
       {
         code: '310100',
-        name: '上海',
+        name: 'Shanghai',
       },
     ],
   },
   {
-    groupName: '定位城市',
-    indexName: '定位',
+    groupName: 'Positioning City',
+    indexName: 'Position',
     isFlat: true,
     items: [
       {
         code: '110100',
-        name: '北京',
+        name: 'Beijing',
       },
     ],
   },
   {
-    groupName: '热门城市',
-    indexName: '常用',
+    groupName: 'Popular Cities',
+    indexName: 'Common',
     isFlat: true,
     items: [
       {
         code: '110100',
-        name: '北京',
+        name: 'Beijing',
       },
       {
         code: '310100',
-        name: '上海',
+        name: 'Shanghai',
       },
       {
         code: '440100',
-        name: '广州',
+        name: 'Guangzhou',
       },
     ],
   },
@@ -494,11 +494,11 @@ const items = [
     items: [
       {
         code: '610900',
-        name: '安康',
+        name: 'Ankang',
       },
       {
         code: '210300',
-        name: '鞍山',
+        name: 'Anshan',
       },
     ],
   },
@@ -507,11 +507,11 @@ const items = [
     items: [
       {
         code: '652800',
-        name: '巴音郭楞',
+        name: 'Bayingolin',
       },
       {
         code: '511900',
-        name: '巴中',
+        name: 'Bazhong',
       },
     ],
   },
@@ -520,11 +520,11 @@ const items = [
     items: [
       {
         code: '130900',
-        name: '沧州',
+        name: 'Cangzhou',
       },
       {
         code: '220100',
-        name: '长春',
+        name: 'Changchun',
       },
     ],
   },
@@ -533,11 +533,11 @@ const items = [
     items: [
       {
         code: '532900',
-        name: '大理',
+        name: 'Dali',
       },
       {
         code: '210200',
-        name: '大连',
+        name: 'Dalian',
       },
     ],
   },
@@ -568,47 +568,51 @@ export default () => {
 
 #### ItemSelectorProps
 
-| attribute    | explain                                                                              | type                                                 | Default value |
-| ------------ | ------------------------------------------------------------------------------------ | ---------------------------------------------------- | ------------- |
-| items        | Item List                                                                            | ItemGroup[]                                          | -             |
-| onSelect     | Select item callback                                                                 | (e: React.SyntheticEvent,data: {item: Item}) => void | -             |
-| disableIndex | Disable display index. Default false means display index is disabled                 | boolean                                              | false         |
-| title        | Title at the top, not mandatory                                                      | string                                               | -             |
-| onClose      | Used in conjunction with the title, the close callback on the right side of the head | (e: React.SyntheticEvent) => void                    | -             |
+| Property     | Description                                    | Type                                                  | Default |
+| ------------ | ---------------------------------------------- | ----------------------------------------------------- | ------- |
+| items        | List of Items                                  | ItemGroup[]                                           | -       |
+| onSelect     | Callback for selecting an Item                 | (e: React.SyntheticEvent, data: {item: Item}) => void | -       |
+| disableIndex | Disable index display, default is false        | boolean                                               | false   |
+| title        | Title for the header, optional                 | string                                                | -       |
+| onClose      | Callback for closing the header with the title | (e: React.SyntheticEvent) => void                     | -       |
 
 #### ItemGroup
 
-| attribute | explain     | type    | Default value |
-| --------- | ----------- | ------- | ------------- |
-| groupName | Group name  | string  | -             |
-| indexName | Index name  | string  | -             |
-| indexCode | Index code  | string  | -             |
-| isFlat    | flat layout | boolean | -             |
-| items     | Item List   | Item[]  | -             |
+| Property  | Description | Type    | Default |
+| --------- | ----------- | ------- | ------- |
+| groupName | Group name  | string  | -       |
+| indexName | Index name  | string  | -       |
+| indexCode | Index code  | string  | -       |
+| isFlat    | Is flat     | boolean | -       |
+| items     | Item list   | Item[]  | -       |
 
 #### Item
 
-| attribute | explain   | type   | Default value |
-| --------- | --------- | ------ | ------------- |
-| code      | Item ID   | string | -             |
-| name      | Item name | string | -             |
+| Property | Description | Type   | Default |
+| -------- | ----------- | ------ | ------- |
+| code     | Item ID     | string | -       |
+| name     | Item name   | string | -       |
 
-### Style variables
+## Style Variables
 
-| attribute                                         | explain                                    | Default value                                           |
-| ------------------------------------------------- | ------------------------------------------ | ------------------------------------------------------- |
-| --bui-item-selector-item-width                    | Horizontal item width                      | `111px`                                                 |
-| --bui-item-selector-item-height                   | Horizontal item height                     | `36px`                                                  |
-| --bui-item-selector-item-border-radius            | Horizontal item border radius              | `20px`                                                  |
-| --bui-item-selector-item-margin                   | Horizontal item margin                     | `4.5px 0 4.5px 9px`                                     |
-| --bui-item-selector-title-height                  | Title height                               | `45px`                                                  |
-| --bui-item-selector-title-line-height             | Title line height                          | `45px`                                                  |
-| --bui-item-selector-btn-close-size                | Close button container size                | `45px`                                                  |
-| --bui-item-selector-btn-close-font-size           | Close button font size                     | `20px`                                                  |
-| --bui-item-selector-container-with-title-height   | Container height with title                | `calc(100% - var(--bui-item-selector-title-height))`    |
-| --bui-item-selector-item-container-min-height     | Minimum city container height              | `500px`                                                 |
-| --bui-item-selector-select-item-buttons-padding   | Horizontal button padding                  | `7.5px 0 0 3px`                                         |
-| --bui-item-selector-select-item-title-line-height | City index title line height               | `15px`                                                  |
-| --bui-item-selector-list-item-height              | City item height                           | `45px`                                                  |
-| --bui-item-selector-item-index-has-title-top      | Distance from top for city index container | `calc(50% + var(--bui-item-selector-title-height) / 2)` |
-| --bui-item-selector-index-item-height             | City index item height                     | `20px`                                                  |
+| Variable                                          | Description                          | Default                                                 |
+| ------------------------------------------------- | ------------------------------------ | ------------------------------------------------------- |
+| --bui-item-selector-item-width                    | Width of selection item              | `111px`                                                 |
+| --bui-item-selector-item-height                   | Height of selection item             | `36px`                                                  |
+| --bui-item-selector-item-border-radius            | Border radius of selection item      | `20px`                                                  |
+| --bui-item-selector-item-margin                   | Margin of selection item             | `4.5px 0 4.5px 9px`                                     |
+| --bui-item-selector-title-height                  | Title height                         | `45px`                                                  |
+| --bui-item-selector-title-line-height             | Title line height                    | `45px`                                                  |
+| --bui-item-selector-btn-close-size                | Close button size                    | `45px`                                                  |
+| --bui-item-selector-btn-close-font-size           | Close button font size               | `20px`                                                  |
+| --bui-item-selector-container-with-title-height   | Container height with title          | `calc(100% - var(--bui-item-selector-title-height))`    |
+| --bui-item-selector-item-container-min-height     | Minimum item container height        | `500px`                                                 |
+| --bui-item-selector-select-item-buttons-padding   | Padding for item button container    | `7.5px 0 0 3px`                                         |
+| --bui-item-selector-select-item-title-line-height | Line height for group title          | `15px`                                                  |
+| --bui-item-selector-list-item-height              | List item height                     | `45px`                                                  |
+| --bui-item-selector-item-index-has-title-top      | Index position when title is present | `calc(50% + var(--bui-item-selector-title-height) / 2)` |
+| --bui-item-selector-index-item-height             | Index item height                    | `20px`                                                  |
+
+```
+
+```

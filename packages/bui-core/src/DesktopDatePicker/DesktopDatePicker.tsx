@@ -6,7 +6,7 @@ import { useValue } from '@bifrostui/utils';
 import { DesktopDatePickerProps } from './DesktopDatePicker.types';
 import DesktopPicker from '../DesktopPicker';
 import useGetDatePickerContent from './useGetDatePickerContent';
-import './index.less';
+import './DesktopDatePicker.less';
 
 const prefixCls = 'bui-d-date-picker';
 const DesktopDatePicker = React.forwardRef<

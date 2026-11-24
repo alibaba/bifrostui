@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { OverrideProps } from '@bifrostui/types';
 
 export type itemType = {
@@ -47,6 +48,7 @@ export type ItemSelectorProps<
 >;
 
 export type ItemSelectorCoreProps = ItemSelectorProps & {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   touchHandler: any;
   height?: string;
 };

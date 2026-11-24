@@ -3,7 +3,7 @@
  * @description A component that implements slide in/out animation effects for elements
  * @component Slide
  */
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import {
   createTransitions,
   duration,
@@ -116,16 +116,20 @@ const Slide = React.forwardRef<HTMLElement, SlideProps>(
     const transitions = createTransitions();
     const animationName = getAnimationName(direction, inProp);
     const animationDurationAndDelay = getAnimationDurationAndDelay();
-    const animation = transitions.create(
-      animationName,
-      getTransitionProps(
-        {
-          ...animationDurationAndDelay,
-          style,
-          easing: easingProp,
-        },
-        { mode: inProp ? 'enter' : 'exit' },
-      ),
+    const animation = useMemo(
+      () =>
+        transitions.create(
+          animationName,
+          getTransitionProps(
+            {
+              ...animationDurationAndDelay,
+              style,
+              easing: easingProp,
+            },
+            { mode: inProp ? 'enter' : 'exit' },
+          ),
+        ),
+      [inProp],
     );
 
     /**
@@ -156,7 +160,7 @@ const Slide = React.forwardRef<HTMLElement, SlideProps>(
       } else {
         onExit?.(elementRef.current);
       }
-    }, [inProp, isMounted, shouldExecuteAnimation, onEnter, onExit]);
+    }, [inProp, isMounted]);
 
     const handleAnimationStart = () => {
       if (!shouldExecuteAnimation) return;
@@ -186,7 +190,7 @@ const Slide = React.forwardRef<HTMLElement, SlideProps>(
      */
     if (!children || !isMounted) return null;
 
-    return React.cloneElement(children, {
+    return React.cloneElement(children as React.ReactElement<any>, {
       ...others,
       ref: handleRef,
       onAnimationEnd: handleAnimationEnd,
@@ -195,7 +199,7 @@ const Slide = React.forwardRef<HTMLElement, SlideProps>(
         animation,
         animationFillMode: 'both',
         ...style,
-        ...children.props?.style,
+        ...(children.props as any)?.style,
       },
     });
   },

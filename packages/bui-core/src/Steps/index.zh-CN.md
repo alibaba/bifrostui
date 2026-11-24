@@ -7,15 +7,13 @@ name: Steps 步骤条
 
 步骤流程导航条。
 
-## 代码演示
-
-### 基础用法
+## 基础用法
 
 默认方向为纵向，若未指定 current，则默认为 0，即第一步
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const handleChange = (e, data) => {
@@ -26,9 +24,9 @@ export default () => {
     <Stack>
       <div style={{ width: '120px' }}>
         <Steps onChange={handleChange}>
-          <Step key={1} title="第一步" />
-          <Step key={2} title="第二步" />
-          <Step key={3} title="第三步" />
+          <Step key={1} title="选择活动" />
+          <Step key={2} title="创建内容" />
+          <Step key={3} title="发布上线" />
         </Steps>
       </div>
     </Stack>
@@ -36,60 +34,60 @@ export default () => {
 };
 ```
 
-### 横向展示
+## 横向展示
 
 通过`direction`改变步骤条方向
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Stack>
       <Steps direction="horizontal">
-        <Step key={1} title="第一步" />
-        <Step key={2} title="第二步" />
-        <Step key={3} title="第三步" />
+        <Step key={1} title="选择活动" />
+        <Step key={2} title="创建内容" />
+        <Step key={3} title="发布上线" />
       </Steps>
     </Stack>
   );
 };
 ```
 
-### 改变副标题排列位置
+## 改变副标题排列位置
 
 若有副标题，可以通过`labelPlacement`改变其展示位置
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
     <Stack>
       <Steps>
-        <Step key={1} title="第一步" subtitle="副标题 1" />
-        <Step key={2} title="第二步" subtitle="副标题 2" />
-        <Step key={3} title="第三步" subtitle="副标题 3" />
+        <Step key={1} title="选择活动" subtitle="选定目标受众" />
+        <Step key={2} title="创建内容" subtitle="上传创意素材" />
+        <Step key={3} title="发布上线" subtitle="审批活动" />
       </Steps>
       <Steps labelPlacement="vertical">
-        <Step key={1} title="第一步" subtitle="副标题 1" />
-        <Step key={2} title="第二步" subtitle="副标题 2" />
-        <Step key={3} title="第三步" subtitle="副标题 3" />
+        <Step key={1} title="选择活动" subtitle="选定目标受众" />
+        <Step key={2} title="创建内容" subtitle="上传创意素材" />
+        <Step key={3} title="发布上线" subtitle="审批活动" />
       </Steps>
     </Stack>
   );
 };
 ```
 
-### 展示描述文案
+## 展示描述文案
 
 传入`description`可添加描述说明。
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -97,27 +95,27 @@ export default () => {
       <Steps>
         <Step
           key={1}
-          title="标题 1"
-          subtitle="副标题 1"
-          description="这是一段描述文案"
+          title="选择活动"
+          subtitle="选定目标受众"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={2}
-          title="标题 2"
-          subtitle="副标题 2"
-          description="这是一段描述文案"
+          title="创建内容"
+          subtitle="上传创意素材"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={3}
-          title="标题 3"
-          subtitle="副标题 3"
-          description="这是一段描述文案"
+          title="审核确认"
+          subtitle="审批活动"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={4}
-          title="标题 4"
-          subtitle="副标题 4"
-          description="这是一段描述文案"
+          title="发布上线"
+          subtitle="正式上线"
+          description="配置当前步骤的详细项。"
         />
       </Steps>
     </Stack>
@@ -125,13 +123,13 @@ export default () => {
 };
 ```
 
-### 控制步骤状态
+## 控制步骤状态
 
 可通过 status 控制步骤状态，`wait`为等待中， `active`为当前激活， `finish`为已完成， `error`为失败已完成
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -139,31 +137,31 @@ export default () => {
       <Steps>
         <Step
           key={1}
-          title="标题 1"
-          subtitle="副标题 1"
+          title="选择活动"
+          subtitle="选定目标受众"
           status="error"
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={2}
-          title="标题 2"
-          subtitle="副标题 2"
+          title="创建内容"
+          subtitle="上传创意素材"
           status="finish"
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={3}
-          title="标题 3"
-          subtitle="副标题 3"
+          title="审核确认"
+          subtitle="审批活动"
           status="active"
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={4}
-          title="标题 4"
-          subtitle="副标题 4"
+          title="发布上线"
+          subtitle="正式上线"
           status="wait"
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
         />
       </Steps>
     </Stack>
@@ -171,12 +169,12 @@ export default () => {
 };
 ```
 
-### 自定义图标
+## 自定义图标
 
 通过`icon`可以自定义各个状态的图标。
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 import { Stack, Step, Steps } from '@bifrostui/react';
 import {
   AccessTimeCircleFilledIcon,
@@ -191,34 +189,34 @@ export default () => {
       <Steps>
         <Step
           key={1}
-          title="标题 1"
-          subtitle="副标题 1"
+          title="选择活动"
+          subtitle="选定目标受众"
           icon={<HeartFilledIcon color="primary" />}
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={2}
-          title="标题 2"
-          subtitle="副标题 2"
+          title="创建内容"
+          subtitle="上传创意素材"
           status="active"
           icon={<LocationFilledIcon color="primary" />}
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={3}
-          title="标题 3"
-          subtitle="副标题 3"
+          title="审核确认"
+          subtitle="审批活动"
           status="error"
           icon={<ErrorCircleOutlinedIcon color="primary" />}
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
         />
         <Step
           key={4}
-          title="标题 4"
-          subtitle="副标题 4"
+          title="发布上线"
+          subtitle="正式上线"
           status="wait"
           icon={<AccessTimeCircleFilledIcon color="primary" />}
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
         />
       </Steps>
     </Stack>
@@ -226,13 +224,13 @@ export default () => {
 };
 ```
 
-#### 禁用点击
+## 禁用点击
 
-通过`disabled`使步骤台不可点击
+通过`disabled`使步骤条不可点击
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   const handleChange = (e, data) => {
@@ -244,17 +242,17 @@ export default () => {
       <Steps direction="horizontal" current={1} onChange={handleChange}>
         <Step
           key={1}
-          title="第一步"
+          title="选择活动"
           status="error"
-          description="这是一段描述文案"
+          description="配置当前步骤的详细项。"
           disabled
         />
-        <Step key={2} title="第二步" />
+        <Step key={2} title="创建内容" />
         <Step
           key={3}
-          title="第三步"
-          subtitle="副标题 3"
-          description="这是一段描述文案"
+          title="发布上线"
+          subtitle="审批活动"
+          description="配置当前步骤的详细项。"
           disabled
         />
       </Steps>
@@ -263,11 +261,11 @@ export default () => {
 };
 ```
 
-### 复杂布局
+## 复杂布局
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 const detail = () => {
   return (
@@ -286,19 +284,19 @@ const detail = () => {
         }}
       >
         <div>
-          <span style={{ color: '#5F6672' }}>退票电影</span>
+          <span style={{ color: '#5F6672' }}>退货商品</span>
           <span style={{ color: '#2E333E', paddingLeft: '20px' }}>
-            复仇者联盟3（3张）
+            无线鼠标 × 3
           </span>
         </div>
         <div>
-          <span style={{ color: '#5F6672' }}>退票金额</span>
-          <span style={{ color: '#2E333E', paddingLeft: '20px' }}>38.9元</span>
+          <span style={{ color: '#5F6672' }}>退款金额</span>
+          <span style={{ color: '#2E333E', paddingLeft: '20px' }}>¥199.00</span>
         </div>
         <div>
-          <span style={{ color: '#5F6672' }}>服务费</span>
+          <span style={{ color: '#5F6672' }}>手续费</span>
           <span style={{ color: '#2E333E', paddingLeft: '34px' }}>
-            4元（影院、淘票票收取）
+            ¥10.00（平台处理费）
           </span>
         </div>
       </div>
@@ -311,34 +309,34 @@ export default () => {
     <Steps labelPlacement="vertical">
       <Step
         key={1}
-        title="退款申请 已提交"
-        subtitle="2021-03-30 19:00 "
+        title="退款申请已提交"
+        subtitle="2024-04-29 19:00"
         description={detail()}
       />
       <Step
         key={2}
-        title="退款申请 已提交"
-        subtitle="2021-03-30 19:08 "
-        description="正在处理退款申请，预计1-3天原路返回至你的付款账户。"
+        title="退款处理中"
+        subtitle="2024-04-29 19:08"
+        description="正在处理退款申请，预计 1-3 个工作日原路返回付款账户。"
       />
       <Step
         key={3}
         title="退款完成"
-        subtitle="2021-03-30 19:08 "
-        description="退款到账后，将结束本次退款流程。"
+        subtitle="2024-04-29 19:15"
+        description="退款已到账，本次退款流程已结束。"
       />
     </Steps>
   );
 };
 ```
 
-### 使用 css 变量修改样式
+## 使用 css 变量修改样式
 
 可通过常用的 css 变量改变组件样式
 
 ```tsx
 import { Stack, Step, Steps } from '@bifrostui/react';
-import React from 'react';
+import * as React from 'react';
 
 export default () => {
   return (
@@ -351,9 +349,9 @@ export default () => {
             '--step-line-padding': '36px 0 0 0',
           }}
         >
-          <Step key={1} title="第一步" />
-          <Step key={2} title="第二步" />
-          <Step key={3} title="第三步" />
+          <Step key={1} title="选择活动" />
+          <Step key={2} title="创建内容" />
+          <Step key={3} title="发布上线" />
         </Steps>
       </div>
     </Stack>
@@ -386,19 +384,18 @@ export default () => {
 
 ## 样式变量
 
-| 属性                                | 说明                   | 默认值                                          | 全局变量                                |
-| ----------------------------------- | ---------------------- | ----------------------------------------------- | --------------------------------------- |
-| --font-size                         | 默认字体大小           | --bui-title-size-3                              | --bui-steps-font-size                   |
-| --subtitle-font-size                | 副标题字体大小         | --bui-text-size-2                               | --bui-step-subtitle-font-size           |
-| --step-icon-margin                  | 步骤图标外边距         | --bui-spacing-xs --bui-spacing-xs 0 0           | --bui-step-icon-margin                  |
-| --step-line-padding                 | 步骤条连线内边距       | 20px 0 3px 0                                    | --bui-step-line-padding                 |
-| --step-line-width                   | 步骤条连线宽度         | 1px                                             | --bui-step-line-width                   |
-| --step-line-height                  | 步骤条连线高度         | 100%                                            | --bui-step-line-height                  |
-| --step-label-horizontal-line-height | 步骤条标签水平方向行高 | 1.8                                             | --bui-step-label-horizontal-line-height |
-| --step-icon-width                   | 步骤条图标宽度         | 28px                                            | --bui-step-icon-width                   |
-| --step-icon-font-size               | 步骤条图标             | var(--bui-title-size-4)                         | --bui-step-icon-font-size               |
-| --step-icon-active-width            | 步骤条当前激活图标宽度 | 12px                                            | --bui-step-icon-active-width            |
-| --step-icon-active-height           | 步骤条当前激活图标高度 | 12px                                            | --bui-step-icon-active-height           |
-| --step-icon-margin                  | 步骤条图标外边距       | var(--bui-spacing-xs) var(--bui-spacing-xs) 0 0 | --bui-step-icon-margin                  |
-| --step-content-padding              | 步骤条内容内边距       | 3px 0                                           | --bui-step-content-padding              |
-| --step-horizontal-line-padding      | 步骤条水平连线内边距   | 28px 0 6px                                      | --bui-step-horizontal-line-padding      |
+| 全局变量                                | 说明             | 默认值                                            |
+| --------------------------------------- | ---------------- | ------------------------------------------------- |
+| --bui-steps-font-size                   | 步骤条字体大小   | `var(--bui-title-size-3)`                         |
+| --bui-step-subtitle-font-size           | 副标题字体大小   | `var(--bui-text-size-2)`                          |
+| --bui-step-line-padding                 | 线条内边距       | `20px 0 3px 0`                                    |
+| --bui-step-line-width                   | 线条宽度         | `1px`                                             |
+| --bui-step-line-height                  | 线条高度         | `100%`                                            |
+| --bui-step-label-horizontal-line-height | 水平标签行高     | `1.8`                                             |
+| --bui-step-icon-width                   | 图标宽度         | `28px`                                            |
+| --bui-step-icon-active-width            | 激活状态图标宽度 | `12px`                                            |
+| --bui-step-icon-active-height           | 激活状态图标高度 | `12px`                                            |
+| --bui-step-icon-font-size               | 图标字体大小     | `var(--bui-title-size-4)`                         |
+| --bui-step-icon-margin                  | 图标外边距       | `var(--bui-spacing-xs) var(--bui-spacing-xs) 0 0` |
+| --bui-step-content-padding              | 内容内边距       | `3px 0`                                           |
+| --bui-step-horizontal-line-padding      | 水平线条内边距   | `28px 0 6px`                                      |

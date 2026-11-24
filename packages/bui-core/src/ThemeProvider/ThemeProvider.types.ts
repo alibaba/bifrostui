@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { OverrideProps } from '@bifrostui/types';
-import { BaseLang } from '../locales/base';
+import type { BaseLang } from '../locales/base';
 
 export interface Breakpoints {
   /**
@@ -60,7 +60,6 @@ interface ThemeProps {
   /**
    * 当前ThemeProvider是否为最顶层
    * 若当前应用会出现嵌套的ThemeProvider，则需要将最外层的ThemeProvider isRoot属性设置为true
-   * TODO 不通过属性判断
    * @default false
    */
   isRoot?: boolean;
@@ -94,11 +93,11 @@ interface ThemeProps {
    */
   dmLightToken?: Record<string, string>;
   /**
-   * 大麦暗黑主题Token
+   * 先锋版高亮主题Token
    */
-  dmDarkToken?: Record<string, string>;
+  pioneerLightToken?: Record<string, string>;
   /**
-   * 组件全局Token
+   * 组件Token
    */
   token?: Record<string, string>;
 }
@@ -108,7 +107,10 @@ interface ThemeProps {
  */
 type BuiltInThemesTokenOptions = Pick<
   ThemeProps,
-  'defaultLightToken' | 'defaultDarkToken' | 'dmLightToken' | 'dmDarkToken'
+  | 'defaultLightToken'
+  | 'defaultDarkToken'
+  | 'dmLightToken'
+  | 'pioneerLightToken'
 >;
 
 /**
@@ -118,11 +120,6 @@ export type MountComponentsTokenOptions = Pick<
   ThemeProps,
   'isRoot' | 'container' | 'containerId' | 'token'
 >;
-
-/**
- * 挂载响应式Tokens参数
- */
-type componentsTokenOptions = Pick<ThemeProps, 'token'>;
 
 export type MountResponsiveTokenOptions = Pick<ThemeProps, 'responsive'> & {
   // 屏幕断点配置
@@ -155,5 +152,4 @@ export {
   ResponsiveTokenOptions,
   ThemeProps,
   BuiltInThemesTokenOptions,
-  componentsTokenOptions,
 };

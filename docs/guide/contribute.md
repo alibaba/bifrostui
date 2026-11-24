@@ -6,32 +6,30 @@ order: 2
 
 以下是关于提交反馈或代码的指南。
 
-## 参与开发
-
-### 本地开发
+## 本地开发
 
 按照下面的步骤操作，即可在本地开发组件库
 
-BUI 使用 lerna 进行多包管理， 请使用[yarn](https://pnpm.io/)安装依赖
+BUI 使用 lerna 进行多包管理， 请使用[pnpm](https://pnpm.io/)安装依赖
 
 ```bash
 # 克隆仓库
 git clone xxxx
 
 # 安装依赖
-yarn install
+pnpm install
 
 # 进入web开发，浏览器访问 http://localhost:8000
-yarn start:h5
+pnpm start
 
 # 进入小程序开发  使用小程序的ide开发工具打开 websites/mini-program/dist 文件夹
-yarn start:weapp  // 微信小程序
-yarn start:alipay // 支付宝小程序
-yarn start:tt     // 头条小程序
+pnpm start:weapp  // 微信小程序
+pnpm start:alipay // 支付宝小程序
+pnpm start:tt     // 头条小程序
 
 ```
 
-### 目录结构
+## 目录结构
 
 项目结构
 
