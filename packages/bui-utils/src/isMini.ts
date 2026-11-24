@@ -3,9 +3,9 @@ const isMini =
   ['weapp', 'swan', 'alipay', 'tt', 'qq', 'jd'].includes(process.env.TARO_ENV);
 const isWeapp = process.env.TARO_ENV === 'weapp';
 const isAlipay = process.env.TARO_ENV === 'alipay';
-const isTt = process.env.TARO_ENV === 'tt';
+const isTT = process.env.TARO_ENV === 'tt';
 
-export { isMini, isWeapp, isAlipay, isTt };
+export { isMini, isWeapp, isAlipay, isTT };
 
 export const isMiniapp = () => {
   return isMini;
